@@ -1281,7 +1281,7 @@
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 0,
-        "precision" : 5,
+        "precision" : 6,
         "generator" : "assigned",
         "isRelated" : false,
         "scale" : 3

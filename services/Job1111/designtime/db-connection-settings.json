@@ -78,22 +78,49 @@
     "table" : "LandingWeldSpecProcedures",
     "schema" : null
   }, {
-    "table" : "REF_LineSpecs",
+    "table" : "PipeBoltUp",
+    "schema" : null
+  }, {
+    "table" : "PipeDelay",
+    "schema" : null
+  }, {
+    "table" : "PipeDemo",
+    "schema" : null
+  }, {
+    "table" : "PipeErection",
+    "schema" : null
+  }, {
+    "table" : "PipeEWO",
+    "schema" : null
+  }, {
+    "table" : "PipeMisc",
+    "schema" : null
+  }, {
+    "table" : "PipeSupports",
+    "schema" : null
+  }, {
+    "table" : "PipeTesting",
+    "schema" : null
+  }, {
+    "table" : "PipeTrackerClassic",
+    "schema" : null
+  }, {
+    "table" : "PipeTrackerDetails",
+    "schema" : null
+  }, {
+    "table" : "PipeTrim",
+    "schema" : null
+  }, {
+    "table" : "PipeWeld",
     "schema" : null
   }, {
     "table" : "REF_SpoolList",
-    "schema" : null
-  }, {
-    "table" : "REF_WeldProcedures",
     "schema" : null
   }, {
     "table" : "REF_WeldSpecProcedures",
     "schema" : null
   }, {
     "table" : "SETTINGS",
-    "schema" : null
-  }, {
-    "table" : "SSNotes",
     "schema" : null
   }, {
     "table" : "SteelBoltOut",
@@ -129,46 +156,16 @@
     "table" : "SteelWeld",
     "schema" : null
   }, {
-    "table" : "SubmissionStatus",
-    "schema" : null
-  }, {
-    "table" : "SubsBoltUp",
-    "schema" : null
-  }, {
-    "table" : "SubsDelay",
-    "schema" : null
-  }, {
-    "table" : "SubsDemo",
+    "table" : "SubmissionActivityStatus",
     "schema" : null
   }, {
     "table" : "SubsDetails",
     "schema" : null
   }, {
-    "table" : "SubsErection",
+    "table" : "SubsSignatures",
     "schema" : null
   }, {
-    "table" : "SubsEWO",
-    "schema" : null
-  }, {
-    "table" : "SubsMisc",
-    "schema" : null
-  }, {
-    "table" : "SubsSupports",
-    "schema" : null
-  }, {
-    "table" : "SubsTesting",
-    "schema" : null
-  }, {
-    "table" : "SubsTrim",
-    "schema" : null
-  }, {
-    "table" : "SubsWeld",
-    "schema" : null
-  }, {
-    "table" : "trackerDetails",
-    "schema" : null
-  }, {
-    "table" : "trackerPipeClassic",
+    "table" : "SubsWeatherDetails",
     "schema" : null
   } ],
   "schemaFilter" : [ ".*" ],

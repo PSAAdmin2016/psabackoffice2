@@ -27,7 +27,7 @@ import javax.persistence.Table;
 public class SteelMisc implements Serializable {
 
     private Integer id;
-    private int fkSubmissionId;
+    private int activityId;
     private String miscArea;
     private String miscPieceNumber;
     private Short miscQuantity;
@@ -37,7 +37,7 @@ public class SteelMisc implements Serializable {
     private Short miscTimeInForm;
     private short rev;
     private Timestamp timeStamp;
-    private SubsDetails subsDetails;
+    private SubmissionActivityStatus submissionActivityStatus;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,13 +50,13 @@ public class SteelMisc implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "`fk_SubmissionID`", nullable = false, scale = 0, precision = 10)
-    public int getFkSubmissionId() {
-        return this.fkSubmissionId;
+    @Column(name = "`ActivityID`", nullable = false, scale = 0, precision = 10)
+    public int getActivityId() {
+        return this.activityId;
     }
 
-    public void setFkSubmissionId(int fkSubmissionId) {
-        this.fkSubmissionId = fkSubmissionId;
+    public void setActivityId(int activityId) {
+        this.activityId = activityId;
     }
 
     @Column(name = "`MiscArea`", nullable = true, length = 45)
@@ -141,17 +141,17 @@ public class SteelMisc implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_SubmissionID`", referencedColumnName = "`SubmissionID`", insertable = false, updatable = false)
-    public SubsDetails getSubsDetails() {
-        return this.subsDetails;
+    @JoinColumn(name = "`ActivityID`", referencedColumnName = "`ActivityID`", insertable = false, updatable = false)
+    public SubmissionActivityStatus getSubmissionActivityStatus() {
+        return this.submissionActivityStatus;
     }
 
-    public void setSubsDetails(SubsDetails subsDetails) {
-        if(subsDetails != null) {
-            this.fkSubmissionId = subsDetails.getSubmissionId();
+    public void setSubmissionActivityStatus(SubmissionActivityStatus submissionActivityStatus) {
+        if(submissionActivityStatus != null) {
+            this.activityId = submissionActivityStatus.getActivityId();
         }
 
-        this.subsDetails = subsDetails;
+        this.submissionActivityStatus = submissionActivityStatus;
     }
 
     @Override

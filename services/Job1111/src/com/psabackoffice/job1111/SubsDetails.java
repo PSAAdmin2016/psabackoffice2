@@ -17,6 +17,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -31,50 +33,23 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class SubsDetails implements Serializable {
 
     private Integer submissionId;
-    private String submissionGuid;
-    private String formExternalId;
-    private Integer jobNumber;
-    private Short formVersion;
-    private String userFirstName;
-    private String userLastName;
-    private String userEmail;
+    private String formName;
+    private String formVersion;
+    private Integer userId;
+    private Integer crewId;
+    private Short crewRev;
     private Float latitude;
     private Float longitude;
     private Timestamp startTime;
     private Timestamp completeTime;
     private Timestamp receivedTime;
-    private String temperature;
-    private String precipitation;
-    private String wind;
-    private String signature;
-    private Integer crewId;
-    private Short crewRev;
+    private Integer weatherDetailsId;
+    private Integer signatureId;
     private Short rev;
     private Timestamp timeStamp;
-    private List<CivilFa> civilFas;
-    private List<CivilMisc> civilMiscs;
-    private List<CivilSellPackage> civilSellPackages;
-    private List<EquipFa> equipFas;
-    private List<SteelBoltOut> steelBoltOuts;
-    private List<SteelDemo> steelDemos;
-    private List<SteelErect> steelErects;
-    private List<SteelImp> steelImps;
-    private List<SteelMisc> steelMiscs;
-    private List<SteelSell> steelSells;
-    private List<SteelSellPackage> steelSellPackages;
-    private List<SteelShake> steelShakes;
-    private List<SteelWeld> steelWelds;
-    private List<SubmissionStatus> submissionStatuses;
-    private List<SubsBoltUp> subsBoltUps;
-    private List<SubsDelay> subsDelays;
-    private List<SubsDemo> subsDemos;
-    private List<SubsEwo> subsEwos;
-    private List<SubsErection> subsErections;
-    private List<SubsMisc> subsMiscs;
-    private List<SubsSupports> subsSupportses;
-    private List<SubsTesting> subsTestings;
-    private List<SubsTrim> subsTrims;
-    private List<SubsWeld> subsWelds;
+    private SubsSignatures subsSignatures;
+    private SubsWeatherDetails subsWeatherDetails;
+    private List<SubmissionActivityStatus> submissionActivityStatuses;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -87,67 +62,49 @@ public class SubsDetails implements Serializable {
         this.submissionId = submissionId;
     }
 
-    @Column(name = "`SubmissionGUID`", nullable = true, length = 40)
-    public String getSubmissionGuid() {
-        return this.submissionGuid;
+    @Column(name = "`FormName`", nullable = true, length = 20)
+    public String getFormName() {
+        return this.formName;
     }
 
-    public void setSubmissionGuid(String submissionGuid) {
-        this.submissionGuid = submissionGuid;
+    public void setFormName(String formName) {
+        this.formName = formName;
     }
 
-    @Column(name = "`FormExternalId`", nullable = true, length = 20)
-    public String getFormExternalId() {
-        return this.formExternalId;
-    }
-
-    public void setFormExternalId(String formExternalId) {
-        this.formExternalId = formExternalId;
-    }
-
-    @Column(name = "`JobNumber`", nullable = true, scale = 0, precision = 10)
-    public Integer getJobNumber() {
-        return this.jobNumber;
-    }
-
-    public void setJobNumber(Integer jobNumber) {
-        this.jobNumber = jobNumber;
-    }
-
-    @Column(name = "`FormVersion`", nullable = true, scale = 0, precision = 3)
-    public Short getFormVersion() {
+    @Column(name = "`FormVersion`", nullable = true, length = 8)
+    public String getFormVersion() {
         return this.formVersion;
     }
 
-    public void setFormVersion(Short formVersion) {
+    public void setFormVersion(String formVersion) {
         this.formVersion = formVersion;
     }
 
-    @Column(name = "`UserFirstName`", nullable = true, length = 32)
-    public String getUserFirstName() {
-        return this.userFirstName;
+    @Column(name = "`UserID`", nullable = true, scale = 0, precision = 10)
+    public Integer getUserId() {
+        return this.userId;
     }
 
-    public void setUserFirstName(String userFirstName) {
-        this.userFirstName = userFirstName;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    @Column(name = "`UserLastName`", nullable = true, length = 32)
-    public String getUserLastName() {
-        return this.userLastName;
+    @Column(name = "`CrewID`", nullable = true, scale = 0, precision = 10)
+    public Integer getCrewId() {
+        return this.crewId;
     }
 
-    public void setUserLastName(String userLastName) {
-        this.userLastName = userLastName;
+    public void setCrewId(Integer crewId) {
+        this.crewId = crewId;
     }
 
-    @Column(name = "`UserEmail`", nullable = true, length = 120)
-    public String getUserEmail() {
-        return this.userEmail;
+    @Column(name = "`CrewRev`", nullable = true, scale = 0, precision = 5)
+    public Short getCrewRev() {
+        return this.crewRev;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public void setCrewRev(Short crewRev) {
+        this.crewRev = crewRev;
     }
 
     @Column(name = "`Latitude`", nullable = true, scale = 7, precision = 10)
@@ -195,58 +152,22 @@ public class SubsDetails implements Serializable {
         this.receivedTime = receivedTime;
     }
 
-    @Column(name = "`Temperature`", nullable = true, length = 16)
-    public String getTemperature() {
-        return this.temperature;
+    @Column(name = "`WeatherDetailsID`", nullable = true, scale = 0, precision = 10)
+    public Integer getWeatherDetailsId() {
+        return this.weatherDetailsId;
     }
 
-    public void setTemperature(String temperature) {
-        this.temperature = temperature;
+    public void setWeatherDetailsId(Integer weatherDetailsId) {
+        this.weatherDetailsId = weatherDetailsId;
     }
 
-    @Column(name = "`Precipitation`", nullable = true, length = 20)
-    public String getPrecipitation() {
-        return this.precipitation;
+    @Column(name = "`SignatureID`", nullable = true, scale = 0, precision = 10)
+    public Integer getSignatureId() {
+        return this.signatureId;
     }
 
-    public void setPrecipitation(String precipitation) {
-        this.precipitation = precipitation;
-    }
-
-    @Column(name = "`Wind`", nullable = true, length = 16)
-    public String getWind() {
-        return this.wind;
-    }
-
-    public void setWind(String wind) {
-        this.wind = wind;
-    }
-
-    @Column(name = "`Signature`", nullable = true, length = 32)
-    public String getSignature() {
-        return this.signature;
-    }
-
-    public void setSignature(String signature) {
-        this.signature = signature;
-    }
-
-    @Column(name = "`CrewID`", nullable = true, scale = 0, precision = 10)
-    public Integer getCrewId() {
-        return this.crewId;
-    }
-
-    public void setCrewId(Integer crewId) {
-        this.crewId = crewId;
-    }
-
-    @Column(name = "`CrewRev`", nullable = true, scale = 0, precision = 5)
-    public Short getCrewRev() {
-        return this.crewRev;
-    }
-
-    public void setCrewRev(Short crewRev) {
-        this.crewRev = crewRev;
+    public void setSignatureId(Integer signatureId) {
+        this.signatureId = signatureId;
     }
 
     @Column(name = "`Rev`", nullable = true, scale = 0, precision = 3)
@@ -267,244 +188,42 @@ public class SubsDetails implements Serializable {
         this.timeStamp = timeStamp;
     }
 
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<CivilFa> getCivilFas() {
-        return this.civilFas;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`SignatureID`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public SubsSignatures getSubsSignatures() {
+        return this.subsSignatures;
     }
 
-    public void setCivilFas(List<CivilFa> civilFas) {
-        this.civilFas = civilFas;
+    public void setSubsSignatures(SubsSignatures subsSignatures) {
+        if(subsSignatures != null) {
+            this.signatureId = subsSignatures.getId();
+        }
+
+        this.subsSignatures = subsSignatures;
     }
 
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<CivilMisc> getCivilMiscs() {
-        return this.civilMiscs;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`WeatherDetailsID`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public SubsWeatherDetails getSubsWeatherDetails() {
+        return this.subsWeatherDetails;
     }
 
-    public void setCivilMiscs(List<CivilMisc> civilMiscs) {
-        this.civilMiscs = civilMiscs;
-    }
+    public void setSubsWeatherDetails(SubsWeatherDetails subsWeatherDetails) {
+        if(subsWeatherDetails != null) {
+            this.weatherDetailsId = subsWeatherDetails.getId();
+        }
 
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<CivilSellPackage> getCivilSellPackages() {
-        return this.civilSellPackages;
-    }
-
-    public void setCivilSellPackages(List<CivilSellPackage> civilSellPackages) {
-        this.civilSellPackages = civilSellPackages;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<EquipFa> getEquipFas() {
-        return this.equipFas;
-    }
-
-    public void setEquipFas(List<EquipFa> equipFas) {
-        this.equipFas = equipFas;
+        this.subsWeatherDetails = subsWeatherDetails;
     }
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SteelBoltOut> getSteelBoltOuts() {
-        return this.steelBoltOuts;
+    public List<SubmissionActivityStatus> getSubmissionActivityStatuses() {
+        return this.submissionActivityStatuses;
     }
 
-    public void setSteelBoltOuts(List<SteelBoltOut> steelBoltOuts) {
-        this.steelBoltOuts = steelBoltOuts;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SteelDemo> getSteelDemos() {
-        return this.steelDemos;
-    }
-
-    public void setSteelDemos(List<SteelDemo> steelDemos) {
-        this.steelDemos = steelDemos;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SteelErect> getSteelErects() {
-        return this.steelErects;
-    }
-
-    public void setSteelErects(List<SteelErect> steelErects) {
-        this.steelErects = steelErects;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SteelImp> getSteelImps() {
-        return this.steelImps;
-    }
-
-    public void setSteelImps(List<SteelImp> steelImps) {
-        this.steelImps = steelImps;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SteelMisc> getSteelMiscs() {
-        return this.steelMiscs;
-    }
-
-    public void setSteelMiscs(List<SteelMisc> steelMiscs) {
-        this.steelMiscs = steelMiscs;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SteelSell> getSteelSells() {
-        return this.steelSells;
-    }
-
-    public void setSteelSells(List<SteelSell> steelSells) {
-        this.steelSells = steelSells;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SteelSellPackage> getSteelSellPackages() {
-        return this.steelSellPackages;
-    }
-
-    public void setSteelSellPackages(List<SteelSellPackage> steelSellPackages) {
-        this.steelSellPackages = steelSellPackages;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SteelShake> getSteelShakes() {
-        return this.steelShakes;
-    }
-
-    public void setSteelShakes(List<SteelShake> steelShakes) {
-        this.steelShakes = steelShakes;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SteelWeld> getSteelWelds() {
-        return this.steelWelds;
-    }
-
-    public void setSteelWelds(List<SteelWeld> steelWelds) {
-        this.steelWelds = steelWelds;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SubmissionStatus> getSubmissionStatuses() {
-        return this.submissionStatuses;
-    }
-
-    public void setSubmissionStatuses(List<SubmissionStatus> submissionStatuses) {
-        this.submissionStatuses = submissionStatuses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SubsBoltUp> getSubsBoltUps() {
-        return this.subsBoltUps;
-    }
-
-    public void setSubsBoltUps(List<SubsBoltUp> subsBoltUps) {
-        this.subsBoltUps = subsBoltUps;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SubsDelay> getSubsDelays() {
-        return this.subsDelays;
-    }
-
-    public void setSubsDelays(List<SubsDelay> subsDelays) {
-        this.subsDelays = subsDelays;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SubsDemo> getSubsDemos() {
-        return this.subsDemos;
-    }
-
-    public void setSubsDemos(List<SubsDemo> subsDemos) {
-        this.subsDemos = subsDemos;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SubsEwo> getSubsEwos() {
-        return this.subsEwos;
-    }
-
-    public void setSubsEwos(List<SubsEwo> subsEwos) {
-        this.subsEwos = subsEwos;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SubsErection> getSubsErections() {
-        return this.subsErections;
-    }
-
-    public void setSubsErections(List<SubsErection> subsErections) {
-        this.subsErections = subsErections;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SubsMisc> getSubsMiscs() {
-        return this.subsMiscs;
-    }
-
-    public void setSubsMiscs(List<SubsMisc> subsMiscs) {
-        this.subsMiscs = subsMiscs;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SubsSupports> getSubsSupportses() {
-        return this.subsSupportses;
-    }
-
-    public void setSubsSupportses(List<SubsSupports> subsSupportses) {
-        this.subsSupportses = subsSupportses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SubsTesting> getSubsTestings() {
-        return this.subsTestings;
-    }
-
-    public void setSubsTestings(List<SubsTesting> subsTestings) {
-        this.subsTestings = subsTestings;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SubsTrim> getSubsTrims() {
-        return this.subsTrims;
-    }
-
-    public void setSubsTrims(List<SubsTrim> subsTrims) {
-        this.subsTrims = subsTrims;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SubsWeld> getSubsWelds() {
-        return this.subsWelds;
-    }
-
-    public void setSubsWelds(List<SubsWeld> subsWelds) {
-        this.subsWelds = subsWelds;
+    public void setSubmissionActivityStatuses(List<SubmissionActivityStatus> submissionActivityStatuses) {
+        this.submissionActivityStatuses = submissionActivityStatuses;
     }
 
     @Override
