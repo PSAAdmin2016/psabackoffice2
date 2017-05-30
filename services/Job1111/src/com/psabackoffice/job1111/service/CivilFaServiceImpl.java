@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.CivilFa;
-import com.psabackoffice.job1111.CivilFarev;
 
 
 /**
@@ -37,9 +36,6 @@ public class CivilFaServiceImpl implements CivilFaService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CivilFaServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.CivilFarevService")
-	private CivilFarevService civilFarevService;
 
     @Autowired
     @Qualifier("Job1111.CivilFaDao")
@@ -54,13 +50,6 @@ public class CivilFaServiceImpl implements CivilFaService {
 	public CivilFa create(CivilFa civilFa) {
         LOGGER.debug("Creating a new CivilFa with information: {}", civilFa);
         CivilFa civilFaCreated = this.wmGenericDao.create(civilFa);
-        if(civilFaCreated.getCivilFarevs() != null) {
-            for(CivilFarev civilFarev : civilFaCreated.getCivilFarevs()) {
-                civilFarev.setCivilFa(civilFaCreated);
-                LOGGER.debug("Creating a new child CivilFarev with information: {}", civilFarev);
-                civilFarevService.create(civilFarev);
-            }
-        }
         return civilFaCreated;
     }
 
@@ -141,25 +130,7 @@ public class CivilFaServiceImpl implements CivilFaService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<CivilFarev> findAssociatedCivilFarevs(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated civilFarevs");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("civilFa.id = '" + id + "'");
-
-        return civilFarevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service CivilFarevService instance
-	 */
-	protected void setCivilFarevService(CivilFarevService service) {
-        this.civilFarevService = service;
-    }
 
 }
 

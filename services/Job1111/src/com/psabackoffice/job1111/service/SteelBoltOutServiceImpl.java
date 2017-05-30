@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SteelBoltOut;
-import com.psabackoffice.job1111.SteelBoltOutRev;
 
 
 /**
@@ -37,9 +36,6 @@ public class SteelBoltOutServiceImpl implements SteelBoltOutService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SteelBoltOutServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.SteelBoltOutRevService")
-	private SteelBoltOutRevService steelBoltOutRevService;
 
     @Autowired
     @Qualifier("Job1111.SteelBoltOutDao")
@@ -54,13 +50,6 @@ public class SteelBoltOutServiceImpl implements SteelBoltOutService {
 	public SteelBoltOut create(SteelBoltOut steelBoltOut) {
         LOGGER.debug("Creating a new SteelBoltOut with information: {}", steelBoltOut);
         SteelBoltOut steelBoltOutCreated = this.wmGenericDao.create(steelBoltOut);
-        if(steelBoltOutCreated.getSteelBoltOutRevs() != null) {
-            for(SteelBoltOutRev steelBoltOutRev : steelBoltOutCreated.getSteelBoltOutRevs()) {
-                steelBoltOutRev.setSteelBoltOut(steelBoltOutCreated);
-                LOGGER.debug("Creating a new child SteelBoltOutRev with information: {}", steelBoltOutRev);
-                steelBoltOutRevService.create(steelBoltOutRev);
-            }
-        }
         return steelBoltOutCreated;
     }
 
@@ -141,25 +130,7 @@ public class SteelBoltOutServiceImpl implements SteelBoltOutService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelBoltOutRev> findAssociatedSteelBoltOutRevs(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelBoltOutRevs");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("steelBoltOut.id = '" + id + "'");
-
-        return steelBoltOutRevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SteelBoltOutRevService instance
-	 */
-	protected void setSteelBoltOutRevService(SteelBoltOutRevService service) {
-        this.steelBoltOutRevService = service;
-    }
 
 }
 

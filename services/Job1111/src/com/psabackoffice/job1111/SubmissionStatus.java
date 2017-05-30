@@ -44,7 +44,6 @@ public class SubmissionStatus implements Serializable {
     private Timestamp timeStamp;
     private SubsDetails subsDetails;
     private List<Ssnotes> ssnoteses;
-    private List<SubmissionStatusRev> submissionStatusRevs;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -160,16 +159,6 @@ public class SubmissionStatus implements Serializable {
 
     public void setSsnoteses(List<Ssnotes> ssnoteses) {
         this.ssnoteses = ssnoteses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "submissionStatus")
-    public List<SubmissionStatusRev> getSubmissionStatusRevs() {
-        return this.submissionStatusRevs;
-    }
-
-    public void setSubmissionStatusRevs(List<SubmissionStatusRev> submissionStatusRevs) {
-        this.submissionStatusRevs = submissionStatusRevs;
     }
 
     @Override

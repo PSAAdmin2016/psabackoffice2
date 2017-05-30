@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SubsDelay;
-import com.psabackoffice.job1111.SubsDelayRev;
 
 
 /**
@@ -37,9 +36,6 @@ public class SubsDelayServiceImpl implements SubsDelayService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SubsDelayServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.SubsDelayRevService")
-	private SubsDelayRevService subsDelayRevService;
 
     @Autowired
     @Qualifier("Job1111.SubsDelayDao")
@@ -54,13 +50,6 @@ public class SubsDelayServiceImpl implements SubsDelayService {
 	public SubsDelay create(SubsDelay subsDelay) {
         LOGGER.debug("Creating a new SubsDelay with information: {}", subsDelay);
         SubsDelay subsDelayCreated = this.wmGenericDao.create(subsDelay);
-        if(subsDelayCreated.getSubsDelayRevs() != null) {
-            for(SubsDelayRev subsDelayRev : subsDelayCreated.getSubsDelayRevs()) {
-                subsDelayRev.setSubsDelay(subsDelayCreated);
-                LOGGER.debug("Creating a new child SubsDelayRev with information: {}", subsDelayRev);
-                subsDelayRevService.create(subsDelayRev);
-            }
-        }
         return subsDelayCreated;
     }
 
@@ -141,25 +130,7 @@ public class SubsDelayServiceImpl implements SubsDelayService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SubsDelayRev> findAssociatedSubsDelayRevs(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated subsDelayRevs");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDelay.id = '" + id + "'");
-
-        return subsDelayRevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SubsDelayRevService instance
-	 */
-	protected void setSubsDelayRevService(SubsDelayRevService service) {
-        this.subsDelayRevService = service;
-    }
 
 }
 

@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SteelErect;
-import com.psabackoffice.job1111.SteelErectRev;
 
 
 /**
@@ -37,9 +36,6 @@ public class SteelErectServiceImpl implements SteelErectService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SteelErectServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.SteelErectRevService")
-	private SteelErectRevService steelErectRevService;
 
     @Autowired
     @Qualifier("Job1111.SteelErectDao")
@@ -54,13 +50,6 @@ public class SteelErectServiceImpl implements SteelErectService {
 	public SteelErect create(SteelErect steelErect) {
         LOGGER.debug("Creating a new SteelErect with information: {}", steelErect);
         SteelErect steelErectCreated = this.wmGenericDao.create(steelErect);
-        if(steelErectCreated.getSteelErectRevs() != null) {
-            for(SteelErectRev steelErectRev : steelErectCreated.getSteelErectRevs()) {
-                steelErectRev.setSteelErect(steelErectCreated);
-                LOGGER.debug("Creating a new child SteelErectRev with information: {}", steelErectRev);
-                steelErectRevService.create(steelErectRev);
-            }
-        }
         return steelErectCreated;
     }
 
@@ -141,25 +130,7 @@ public class SteelErectServiceImpl implements SteelErectService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelErectRev> findAssociatedSteelErectRevs(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelErectRevs");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("steelErect.id = '" + id + "'");
-
-        return steelErectRevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SteelErectRevService instance
-	 */
-	protected void setSteelErectRevService(SteelErectRevService service) {
-        this.steelErectRevService = service;
-    }
 
 }
 

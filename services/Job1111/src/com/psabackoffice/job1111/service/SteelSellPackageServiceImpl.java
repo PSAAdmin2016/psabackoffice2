@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SteelSellPackage;
-import com.psabackoffice.job1111.SteelSellPackageRev;
 
 
 /**
@@ -37,9 +36,6 @@ public class SteelSellPackageServiceImpl implements SteelSellPackageService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SteelSellPackageServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.SteelSellPackageRevService")
-	private SteelSellPackageRevService steelSellPackageRevService;
 
     @Autowired
     @Qualifier("Job1111.SteelSellPackageDao")
@@ -54,13 +50,6 @@ public class SteelSellPackageServiceImpl implements SteelSellPackageService {
 	public SteelSellPackage create(SteelSellPackage steelSellPackage) {
         LOGGER.debug("Creating a new SteelSellPackage with information: {}", steelSellPackage);
         SteelSellPackage steelSellPackageCreated = this.wmGenericDao.create(steelSellPackage);
-        if(steelSellPackageCreated.getSteelSellPackageRevs() != null) {
-            for(SteelSellPackageRev steelSellPackageRev : steelSellPackageCreated.getSteelSellPackageRevs()) {
-                steelSellPackageRev.setSteelSellPackage(steelSellPackageCreated);
-                LOGGER.debug("Creating a new child SteelSellPackageRev with information: {}", steelSellPackageRev);
-                steelSellPackageRevService.create(steelSellPackageRev);
-            }
-        }
         return steelSellPackageCreated;
     }
 
@@ -141,25 +130,7 @@ public class SteelSellPackageServiceImpl implements SteelSellPackageService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelSellPackageRev> findAssociatedSteelSellPackageRevs(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelSellPackageRevs");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("steelSellPackage.id = '" + id + "'");
-
-        return steelSellPackageRevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SteelSellPackageRevService instance
-	 */
-	protected void setSteelSellPackageRevService(SteelSellPackageRevService service) {
-        this.steelSellPackageRevService = service;
-    }
 
 }
 

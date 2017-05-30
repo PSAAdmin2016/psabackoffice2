@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SteelDemo;
-import com.psabackoffice.job1111.SteelDemoRev;
 
 
 /**
@@ -37,9 +36,6 @@ public class SteelDemoServiceImpl implements SteelDemoService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SteelDemoServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.SteelDemoRevService")
-	private SteelDemoRevService steelDemoRevService;
 
     @Autowired
     @Qualifier("Job1111.SteelDemoDao")
@@ -54,13 +50,6 @@ public class SteelDemoServiceImpl implements SteelDemoService {
 	public SteelDemo create(SteelDemo steelDemo) {
         LOGGER.debug("Creating a new SteelDemo with information: {}", steelDemo);
         SteelDemo steelDemoCreated = this.wmGenericDao.create(steelDemo);
-        if(steelDemoCreated.getSteelDemoRevs() != null) {
-            for(SteelDemoRev steelDemoRev : steelDemoCreated.getSteelDemoRevs()) {
-                steelDemoRev.setSteelDemo(steelDemoCreated);
-                LOGGER.debug("Creating a new child SteelDemoRev with information: {}", steelDemoRev);
-                steelDemoRevService.create(steelDemoRev);
-            }
-        }
         return steelDemoCreated;
     }
 
@@ -141,25 +130,7 @@ public class SteelDemoServiceImpl implements SteelDemoService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelDemoRev> findAssociatedSteelDemoRevs(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelDemoRevs");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("steelDemo.id = '" + id + "'");
-
-        return steelDemoRevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SteelDemoRevService instance
-	 */
-	protected void setSteelDemoRevService(SteelDemoRevService service) {
-        this.steelDemoRevService = service;
-    }
 
 }
 

@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.TrackerDetails;
-import com.psabackoffice.job1111.TrackerDetailsRev;
 
 
 /**
@@ -37,9 +36,6 @@ public class TrackerDetailsServiceImpl implements TrackerDetailsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TrackerDetailsServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.TrackerDetailsRevService")
-	private TrackerDetailsRevService trackerDetailsRevService;
 
     @Autowired
     @Qualifier("Job1111.TrackerDetailsDao")
@@ -54,13 +50,6 @@ public class TrackerDetailsServiceImpl implements TrackerDetailsService {
 	public TrackerDetails create(TrackerDetails trackerDetails) {
         LOGGER.debug("Creating a new TrackerDetails with information: {}", trackerDetails);
         TrackerDetails trackerDetailsCreated = this.wmGenericDao.create(trackerDetails);
-        if(trackerDetailsCreated.getTrackerDetailsRevs() != null) {
-            for(TrackerDetailsRev trackerDetailsRev : trackerDetailsCreated.getTrackerDetailsRevs()) {
-                trackerDetailsRev.setTrackerDetails(trackerDetailsCreated);
-                LOGGER.debug("Creating a new child TrackerDetailsRev with information: {}", trackerDetailsRev);
-                trackerDetailsRevService.create(trackerDetailsRev);
-            }
-        }
         return trackerDetailsCreated;
     }
 
@@ -141,25 +130,7 @@ public class TrackerDetailsServiceImpl implements TrackerDetailsService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<TrackerDetailsRev> findAssociatedTrackerDetailsRevs(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated trackerDetailsRevs");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("trackerDetails.id = '" + id + "'");
-
-        return trackerDetailsRevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service TrackerDetailsRevService instance
-	 */
-	protected void setTrackerDetailsRevService(TrackerDetailsRevService service) {
-        this.trackerDetailsRevService = service;
-    }
 
 }
 

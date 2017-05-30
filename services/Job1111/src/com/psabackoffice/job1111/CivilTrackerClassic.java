@@ -36,9 +36,9 @@ public class CivilTrackerClassic implements Serializable {
     private String area;
     private String location;
     private String structure;
+    private String cu;
     private String grouping;
     private String foundationDescription;
-    private String cu;
     private String p6description;
     private String engDrawingNumber;
     private Short sheetNumber;
@@ -191,6 +191,15 @@ public class CivilTrackerClassic implements Serializable {
         this.structure = structure;
     }
 
+    @Column(name = "`CU`", nullable = true, length = 45)
+    public String getCu() {
+        return this.cu;
+    }
+
+    public void setCu(String cu) {
+        this.cu = cu;
+    }
+
     @Column(name = "`Grouping`", nullable = true, length = 45)
     public String getGrouping() {
         return this.grouping;
@@ -207,15 +216,6 @@ public class CivilTrackerClassic implements Serializable {
 
     public void setFoundationDescription(String foundationDescription) {
         this.foundationDescription = foundationDescription;
-    }
-
-    @Column(name = "`CU`", nullable = true, length = 45)
-    public String getCu() {
-        return this.cu;
-    }
-
-    public void setCu(String cu) {
-        this.cu = cu;
     }
 
     @Column(name = "`P6Description`", nullable = true, length = 255)

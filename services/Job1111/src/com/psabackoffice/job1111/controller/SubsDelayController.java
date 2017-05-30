@@ -33,7 +33,6 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 import com.psabackoffice.job1111.SubsDelay;
-import com.psabackoffice.job1111.SubsDelayRev;
 import com.psabackoffice.job1111.service.SubsDelayService;
 
 
@@ -152,14 +151,6 @@ public class SubsDelayController {
         return subsDelayService.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/subsDelayRevs", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the subsDelayRevs instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SubsDelayRev> findAssociatedSubsDelayRevs(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated subsDelayRevs");
-        return subsDelayService.findAssociatedSubsDelayRevs(id, pageable);
-    }
 
     /**
 	 * This setter method should only be used by unit tests

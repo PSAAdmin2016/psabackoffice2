@@ -34,7 +34,6 @@ import com.psabackoffice.job1111.SubsBoltUp;
 import com.psabackoffice.job1111.SubsDelay;
 import com.psabackoffice.job1111.SubsDemo;
 import com.psabackoffice.job1111.SubsDetails;
-import com.psabackoffice.job1111.SubsDetailsRev;
 import com.psabackoffice.job1111.SubsErection;
 import com.psabackoffice.job1111.SubsEwo;
 import com.psabackoffice.job1111.SubsMisc;
@@ -368,18 +367,6 @@ public interface SubsDetailsService {
      * @see Page
      */
     Page<SubsDemo> findAssociatedSubsDemos(Integer submissionId, Pageable pageable);
-
-    /*
-     * Returns the associated subsDetailsRevs for given SubsDetails id.
-     *
-     * @param submissionId value of submissionId; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SubsDetailsRev instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SubsDetailsRev> findAssociatedSubsDetailsRevs(Integer submissionId, Pageable pageable);
 
     /*
      * Returns the associated subsEwos for given SubsDetails id.

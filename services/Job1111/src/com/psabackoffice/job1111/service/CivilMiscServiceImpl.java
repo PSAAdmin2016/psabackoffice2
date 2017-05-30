@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.CivilMisc;
-import com.psabackoffice.job1111.CivilMiscRev;
 
 
 /**
@@ -37,9 +36,6 @@ public class CivilMiscServiceImpl implements CivilMiscService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CivilMiscServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.CivilMiscRevService")
-	private CivilMiscRevService civilMiscRevService;
 
     @Autowired
     @Qualifier("Job1111.CivilMiscDao")
@@ -54,13 +50,6 @@ public class CivilMiscServiceImpl implements CivilMiscService {
 	public CivilMisc create(CivilMisc civilMisc) {
         LOGGER.debug("Creating a new CivilMisc with information: {}", civilMisc);
         CivilMisc civilMiscCreated = this.wmGenericDao.create(civilMisc);
-        if(civilMiscCreated.getCivilMiscRevs() != null) {
-            for(CivilMiscRev civilMiscRev : civilMiscCreated.getCivilMiscRevs()) {
-                civilMiscRev.setCivilMisc(civilMiscCreated);
-                LOGGER.debug("Creating a new child CivilMiscRev with information: {}", civilMiscRev);
-                civilMiscRevService.create(civilMiscRev);
-            }
-        }
         return civilMiscCreated;
     }
 
@@ -141,25 +130,7 @@ public class CivilMiscServiceImpl implements CivilMiscService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<CivilMiscRev> findAssociatedCivilMiscRevs(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated civilMiscRevs");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("civilMisc.id = '" + id + "'");
-
-        return civilMiscRevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service CivilMiscRevService instance
-	 */
-	protected void setCivilMiscRevService(CivilMiscRevService service) {
-        this.civilMiscRevService = service;
-    }
 
 }
 

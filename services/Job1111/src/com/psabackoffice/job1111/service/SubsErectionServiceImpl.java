@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SubsErection;
-import com.psabackoffice.job1111.SubsErectionRev;
 
 
 /**
@@ -37,9 +36,6 @@ public class SubsErectionServiceImpl implements SubsErectionService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SubsErectionServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.SubsErectionRevService")
-	private SubsErectionRevService subsErectionRevService;
 
     @Autowired
     @Qualifier("Job1111.SubsErectionDao")
@@ -54,13 +50,6 @@ public class SubsErectionServiceImpl implements SubsErectionService {
 	public SubsErection create(SubsErection subsErection) {
         LOGGER.debug("Creating a new SubsErection with information: {}", subsErection);
         SubsErection subsErectionCreated = this.wmGenericDao.create(subsErection);
-        if(subsErectionCreated.getSubsErectionRevs() != null) {
-            for(SubsErectionRev subsErectionRev : subsErectionCreated.getSubsErectionRevs()) {
-                subsErectionRev.setSubsErection(subsErectionCreated);
-                LOGGER.debug("Creating a new child SubsErectionRev with information: {}", subsErectionRev);
-                subsErectionRevService.create(subsErectionRev);
-            }
-        }
         return subsErectionCreated;
     }
 
@@ -141,25 +130,7 @@ public class SubsErectionServiceImpl implements SubsErectionService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SubsErectionRev> findAssociatedSubsErectionRevs(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated subsErectionRevs");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsErection.id = '" + id + "'");
-
-        return subsErectionRevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SubsErectionRevService instance
-	 */
-	protected void setSubsErectionRevService(SubsErectionRevService service) {
-        this.subsErectionRevService = service;
-    }
 
 }
 

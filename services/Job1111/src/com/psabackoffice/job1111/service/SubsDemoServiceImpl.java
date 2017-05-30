@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SubsDemo;
-import com.psabackoffice.job1111.SubsDemoRev;
 
 
 /**
@@ -37,9 +36,6 @@ public class SubsDemoServiceImpl implements SubsDemoService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SubsDemoServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.SubsDemoRevService")
-	private SubsDemoRevService subsDemoRevService;
 
     @Autowired
     @Qualifier("Job1111.SubsDemoDao")
@@ -54,13 +50,6 @@ public class SubsDemoServiceImpl implements SubsDemoService {
 	public SubsDemo create(SubsDemo subsDemo) {
         LOGGER.debug("Creating a new SubsDemo with information: {}", subsDemo);
         SubsDemo subsDemoCreated = this.wmGenericDao.create(subsDemo);
-        if(subsDemoCreated.getSubsDemoRevs() != null) {
-            for(SubsDemoRev subsDemoRev : subsDemoCreated.getSubsDemoRevs()) {
-                subsDemoRev.setSubsDemo(subsDemoCreated);
-                LOGGER.debug("Creating a new child SubsDemoRev with information: {}", subsDemoRev);
-                subsDemoRevService.create(subsDemoRev);
-            }
-        }
         return subsDemoCreated;
     }
 
@@ -141,25 +130,7 @@ public class SubsDemoServiceImpl implements SubsDemoService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SubsDemoRev> findAssociatedSubsDemoRevs(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated subsDemoRevs");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDemo.id = '" + id + "'");
-
-        return subsDemoRevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SubsDemoRevService instance
-	 */
-	protected void setSubsDemoRevService(SubsDemoRevService service) {
-        this.subsDemoRevService = service;
-    }
 
 }
 

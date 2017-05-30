@@ -17,7 +17,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SubsDemo;
-import com.psabackoffice.job1111.SubsDemoRev;
 
 /**
  * Service object for domain model class {@link SubsDemo}.
@@ -141,17 +140,6 @@ public interface SubsDemoService {
 	 */
 	Page<Map<String, Object>> getAggregatedValues(AggregationInfo aggregationInfo, Pageable pageable);
 
-    /*
-     * Returns the associated subsDemoRevs for given SubsDemo id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SubsDemoRev instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SubsDemoRev> findAssociatedSubsDemoRevs(Integer id, Pageable pageable);
 
 }
 

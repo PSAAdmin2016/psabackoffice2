@@ -34,7 +34,7 @@ public class Settings implements Serializable {
         this.label = label;
     }
 
-    @Column(name = "`Value1`", nullable = true, scale = 3, precision = 5)
+    @Column(name = "`Value1`", nullable = true, scale = 3, precision = 6)
     public Float getValue1() {
         return this.value1;
     }

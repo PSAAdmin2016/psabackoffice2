@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SubsBoltUp;
-import com.psabackoffice.job1111.SubsBoltUpRev;
 
 
 /**
@@ -37,9 +36,6 @@ public class SubsBoltUpServiceImpl implements SubsBoltUpService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SubsBoltUpServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.SubsBoltUpRevService")
-	private SubsBoltUpRevService subsBoltUpRevService;
 
     @Autowired
     @Qualifier("Job1111.SubsBoltUpDao")
@@ -54,13 +50,6 @@ public class SubsBoltUpServiceImpl implements SubsBoltUpService {
 	public SubsBoltUp create(SubsBoltUp subsBoltUp) {
         LOGGER.debug("Creating a new SubsBoltUp with information: {}", subsBoltUp);
         SubsBoltUp subsBoltUpCreated = this.wmGenericDao.create(subsBoltUp);
-        if(subsBoltUpCreated.getSubsBoltUpRevs() != null) {
-            for(SubsBoltUpRev subsBoltUpRev : subsBoltUpCreated.getSubsBoltUpRevs()) {
-                subsBoltUpRev.setSubsBoltUp(subsBoltUpCreated);
-                LOGGER.debug("Creating a new child SubsBoltUpRev with information: {}", subsBoltUpRev);
-                subsBoltUpRevService.create(subsBoltUpRev);
-            }
-        }
         return subsBoltUpCreated;
     }
 
@@ -141,25 +130,7 @@ public class SubsBoltUpServiceImpl implements SubsBoltUpService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SubsBoltUpRev> findAssociatedSubsBoltUpRevs(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated subsBoltUpRevs");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsBoltUp.id = '" + id + "'");
-
-        return subsBoltUpRevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SubsBoltUpRevService instance
-	 */
-	protected void setSubsBoltUpRevService(SubsBoltUpRevService service) {
-        this.subsBoltUpRevService = service;
-    }
 
 }
 

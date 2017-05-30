@@ -33,7 +33,6 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 import com.psabackoffice.job1111.SubsErection;
-import com.psabackoffice.job1111.SubsErectionRev;
 import com.psabackoffice.job1111.service.SubsErectionService;
 
 
@@ -152,14 +151,6 @@ public class SubsErectionController {
         return subsErectionService.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/subsErectionRevs", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the subsErectionRevs instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SubsErectionRev> findAssociatedSubsErectionRevs(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated subsErectionRevs");
-        return subsErectionService.findAssociatedSubsErectionRevs(id, pageable);
-    }
 
     /**
 	 * This setter method should only be used by unit tests

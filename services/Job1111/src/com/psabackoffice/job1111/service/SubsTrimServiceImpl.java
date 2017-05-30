@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SubsTrim;
-import com.psabackoffice.job1111.SubsTrimRev;
 
 
 /**
@@ -37,9 +36,6 @@ public class SubsTrimServiceImpl implements SubsTrimService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SubsTrimServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.SubsTrimRevService")
-	private SubsTrimRevService subsTrimRevService;
 
     @Autowired
     @Qualifier("Job1111.SubsTrimDao")
@@ -54,13 +50,6 @@ public class SubsTrimServiceImpl implements SubsTrimService {
 	public SubsTrim create(SubsTrim subsTrim) {
         LOGGER.debug("Creating a new SubsTrim with information: {}", subsTrim);
         SubsTrim subsTrimCreated = this.wmGenericDao.create(subsTrim);
-        if(subsTrimCreated.getSubsTrimRevs() != null) {
-            for(SubsTrimRev subsTrimRev : subsTrimCreated.getSubsTrimRevs()) {
-                subsTrimRev.setSubsTrim(subsTrimCreated);
-                LOGGER.debug("Creating a new child SubsTrimRev with information: {}", subsTrimRev);
-                subsTrimRevService.create(subsTrimRev);
-            }
-        }
         return subsTrimCreated;
     }
 
@@ -141,25 +130,7 @@ public class SubsTrimServiceImpl implements SubsTrimService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SubsTrimRev> findAssociatedSubsTrimRevs(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated subsTrimRevs");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsTrim.id = '" + id + "'");
-
-        return subsTrimRevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SubsTrimRevService instance
-	 */
-	protected void setSubsTrimRevService(SubsTrimRevService service) {
-        this.subsTrimRevService = service;
-    }
 
 }
 

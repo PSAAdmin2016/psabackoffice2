@@ -33,7 +33,6 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 import com.psabackoffice.job1111.SteelBoltOut;
-import com.psabackoffice.job1111.SteelBoltOutRev;
 import com.psabackoffice.job1111.service.SteelBoltOutService;
 
 
@@ -152,14 +151,6 @@ public class SteelBoltOutController {
         return steelBoltOutService.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/steelBoltOutRevs", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the steelBoltOutRevs instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SteelBoltOutRev> findAssociatedSteelBoltOutRevs(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated steelBoltOutRevs");
-        return steelBoltOutService.findAssociatedSteelBoltOutRevs(id, pageable);
-    }
 
     /**
 	 * This setter method should only be used by unit tests

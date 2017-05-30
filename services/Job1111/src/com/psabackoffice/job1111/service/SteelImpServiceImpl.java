@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SteelImp;
-import com.psabackoffice.job1111.SteelImpRev;
 
 
 /**
@@ -37,9 +36,6 @@ public class SteelImpServiceImpl implements SteelImpService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SteelImpServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.SteelImpRevService")
-	private SteelImpRevService steelImpRevService;
 
     @Autowired
     @Qualifier("Job1111.SteelImpDao")
@@ -54,13 +50,6 @@ public class SteelImpServiceImpl implements SteelImpService {
 	public SteelImp create(SteelImp steelImp) {
         LOGGER.debug("Creating a new SteelImp with information: {}", steelImp);
         SteelImp steelImpCreated = this.wmGenericDao.create(steelImp);
-        if(steelImpCreated.getSteelImpRevs() != null) {
-            for(SteelImpRev steelImpRev : steelImpCreated.getSteelImpRevs()) {
-                steelImpRev.setSteelImp(steelImpCreated);
-                LOGGER.debug("Creating a new child SteelImpRev with information: {}", steelImpRev);
-                steelImpRevService.create(steelImpRev);
-            }
-        }
         return steelImpCreated;
     }
 
@@ -141,25 +130,7 @@ public class SteelImpServiceImpl implements SteelImpService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelImpRev> findAssociatedSteelImpRevs(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelImpRevs");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("steelImp.id = '" + id + "'");
-
-        return steelImpRevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SteelImpRevService instance
-	 */
-	protected void setSteelImpRevService(SteelImpRevService service) {
-        this.steelImpRevService = service;
-    }
 
 }
 

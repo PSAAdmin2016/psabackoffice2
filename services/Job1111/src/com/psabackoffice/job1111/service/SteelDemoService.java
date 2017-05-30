@@ -17,7 +17,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SteelDemo;
-import com.psabackoffice.job1111.SteelDemoRev;
 
 /**
  * Service object for domain model class {@link SteelDemo}.
@@ -141,17 +140,6 @@ public interface SteelDemoService {
 	 */
 	Page<Map<String, Object>> getAggregatedValues(AggregationInfo aggregationInfo, Pageable pageable);
 
-    /*
-     * Returns the associated steelDemoRevs for given SteelDemo id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SteelDemoRev instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SteelDemoRev> findAssociatedSteelDemoRevs(Integer id, Pageable pageable);
 
 }
 

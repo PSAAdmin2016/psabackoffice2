@@ -17,7 +17,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SubsErection;
-import com.psabackoffice.job1111.SubsErectionRev;
 
 /**
  * Service object for domain model class {@link SubsErection}.
@@ -141,17 +140,6 @@ public interface SubsErectionService {
 	 */
 	Page<Map<String, Object>> getAggregatedValues(AggregationInfo aggregationInfo, Pageable pageable);
 
-    /*
-     * Returns the associated subsErectionRevs for given SubsErection id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SubsErectionRev instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SubsErectionRev> findAssociatedSubsErectionRevs(Integer id, Pageable pageable);
 
 }
 

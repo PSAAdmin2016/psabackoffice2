@@ -17,7 +17,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.CivilFa;
-import com.psabackoffice.job1111.CivilFarev;
 
 /**
  * Service object for domain model class {@link CivilFa}.
@@ -141,17 +140,6 @@ public interface CivilFaService {
 	 */
 	Page<Map<String, Object>> getAggregatedValues(AggregationInfo aggregationInfo, Pageable pageable);
 
-    /*
-     * Returns the associated civilFarevs for given CivilFa id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated CivilFarev instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<CivilFarev> findAssociatedCivilFarevs(Integer id, Pageable pageable);
 
 }
 

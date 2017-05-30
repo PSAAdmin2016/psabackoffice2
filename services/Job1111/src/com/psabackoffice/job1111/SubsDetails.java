@@ -68,7 +68,6 @@ public class SubsDetails implements Serializable {
     private List<SubsBoltUp> subsBoltUps;
     private List<SubsDelay> subsDelays;
     private List<SubsDemo> subsDemos;
-    private List<SubsDetailsRev> subsDetailsRevs;
     private List<SubsEwo> subsEwos;
     private List<SubsErection> subsErections;
     private List<SubsMisc> subsMiscs;
@@ -436,16 +435,6 @@ public class SubsDetails implements Serializable {
 
     public void setSubsDemos(List<SubsDemo> subsDemos) {
         this.subsDemos = subsDemos;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SubsDetailsRev> getSubsDetailsRevs() {
-        return this.subsDetailsRevs;
-    }
-
-    public void setSubsDetailsRevs(List<SubsDetailsRev> subsDetailsRevs) {
-        this.subsDetailsRevs = subsDetailsRevs;
     }
 
     @JsonInclude(Include.NON_EMPTY)

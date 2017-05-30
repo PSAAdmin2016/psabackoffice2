@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SteelShake;
-import com.psabackoffice.job1111.SteelShakeRev;
 
 
 /**
@@ -37,9 +36,6 @@ public class SteelShakeServiceImpl implements SteelShakeService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SteelShakeServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.SteelShakeRevService")
-	private SteelShakeRevService steelShakeRevService;
 
     @Autowired
     @Qualifier("Job1111.SteelShakeDao")
@@ -54,13 +50,6 @@ public class SteelShakeServiceImpl implements SteelShakeService {
 	public SteelShake create(SteelShake steelShake) {
         LOGGER.debug("Creating a new SteelShake with information: {}", steelShake);
         SteelShake steelShakeCreated = this.wmGenericDao.create(steelShake);
-        if(steelShakeCreated.getSteelShakeRevs() != null) {
-            for(SteelShakeRev steelShakeRev : steelShakeCreated.getSteelShakeRevs()) {
-                steelShakeRev.setSteelShake(steelShakeCreated);
-                LOGGER.debug("Creating a new child SteelShakeRev with information: {}", steelShakeRev);
-                steelShakeRevService.create(steelShakeRev);
-            }
-        }
         return steelShakeCreated;
     }
 
@@ -141,25 +130,7 @@ public class SteelShakeServiceImpl implements SteelShakeService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelShakeRev> findAssociatedSteelShakeRevs(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelShakeRevs");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("steelShake.id = '" + id + "'");
-
-        return steelShakeRevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SteelShakeRevService instance
-	 */
-	protected void setSteelShakeRevService(SteelShakeRevService service) {
-        this.steelShakeRevService = service;
-    }
 
 }
 

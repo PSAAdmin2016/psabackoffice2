@@ -33,7 +33,6 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 import com.psabackoffice.job1111.CivilSellPackage;
-import com.psabackoffice.job1111.CivilSellPackageRev;
 import com.psabackoffice.job1111.service.CivilSellPackageService;
 
 
@@ -152,14 +151,6 @@ public class CivilSellPackageController {
         return civilSellPackageService.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/civilSellPackageRevs", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the civilSellPackageRevs instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<CivilSellPackageRev> findAssociatedCivilSellPackageRevs(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated civilSellPackageRevs");
-        return civilSellPackageService.findAssociatedCivilSellPackageRevs(id, pageable);
-    }
 
     /**
 	 * This setter method should only be used by unit tests

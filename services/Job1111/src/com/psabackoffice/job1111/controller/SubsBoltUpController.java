@@ -33,7 +33,6 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 import com.psabackoffice.job1111.SubsBoltUp;
-import com.psabackoffice.job1111.SubsBoltUpRev;
 import com.psabackoffice.job1111.service.SubsBoltUpService;
 
 
@@ -152,14 +151,6 @@ public class SubsBoltUpController {
         return subsBoltUpService.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/subsBoltUpRevs", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the subsBoltUpRevs instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SubsBoltUpRev> findAssociatedSubsBoltUpRevs(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated subsBoltUpRevs");
-        return subsBoltUpService.findAssociatedSubsBoltUpRevs(id, pageable);
-    }
 
     /**
 	 * This setter method should only be used by unit tests

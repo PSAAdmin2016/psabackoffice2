@@ -17,7 +17,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SubsDelay;
-import com.psabackoffice.job1111.SubsDelayRev;
 
 /**
  * Service object for domain model class {@link SubsDelay}.
@@ -141,17 +140,6 @@ public interface SubsDelayService {
 	 */
 	Page<Map<String, Object>> getAggregatedValues(AggregationInfo aggregationInfo, Pageable pageable);
 
-    /*
-     * Returns the associated subsDelayRevs for given SubsDelay id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SubsDelayRev instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SubsDelayRev> findAssociatedSubsDelayRevs(Integer id, Pageable pageable);
 
 }
 

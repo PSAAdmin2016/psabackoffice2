@@ -17,7 +17,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SteelMisc;
-import com.psabackoffice.job1111.SteelMiscRev;
 
 /**
  * Service object for domain model class {@link SteelMisc}.
@@ -141,17 +140,6 @@ public interface SteelMiscService {
 	 */
 	Page<Map<String, Object>> getAggregatedValues(AggregationInfo aggregationInfo, Pageable pageable);
 
-    /*
-     * Returns the associated steelMiscRevs for given SteelMisc id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SteelMiscRev instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SteelMiscRev> findAssociatedSteelMiscRevs(Integer id, Pageable pageable);
 
 }
 

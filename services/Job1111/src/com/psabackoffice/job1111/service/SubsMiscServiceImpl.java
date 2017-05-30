@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SubsMisc;
-import com.psabackoffice.job1111.SubsMiscRev;
 
 
 /**
@@ -37,9 +36,6 @@ public class SubsMiscServiceImpl implements SubsMiscService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SubsMiscServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.SubsMiscRevService")
-	private SubsMiscRevService subsMiscRevService;
 
     @Autowired
     @Qualifier("Job1111.SubsMiscDao")
@@ -54,13 +50,6 @@ public class SubsMiscServiceImpl implements SubsMiscService {
 	public SubsMisc create(SubsMisc subsMisc) {
         LOGGER.debug("Creating a new SubsMisc with information: {}", subsMisc);
         SubsMisc subsMiscCreated = this.wmGenericDao.create(subsMisc);
-        if(subsMiscCreated.getSubsMiscRevs() != null) {
-            for(SubsMiscRev subsMiscRev : subsMiscCreated.getSubsMiscRevs()) {
-                subsMiscRev.setSubsMisc(subsMiscCreated);
-                LOGGER.debug("Creating a new child SubsMiscRev with information: {}", subsMiscRev);
-                subsMiscRevService.create(subsMiscRev);
-            }
-        }
         return subsMiscCreated;
     }
 
@@ -141,25 +130,7 @@ public class SubsMiscServiceImpl implements SubsMiscService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SubsMiscRev> findAssociatedSubsMiscRevs(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated subsMiscRevs");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsMisc.id = '" + id + "'");
-
-        return subsMiscRevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SubsMiscRevService instance
-	 */
-	protected void setSubsMiscRevService(SubsMiscRevService service) {
-        this.subsMiscRevService = service;
-    }
 
 }
 

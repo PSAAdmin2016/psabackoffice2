@@ -34,7 +34,6 @@ import com.wordnik.swagger.annotations.ApiParam;
 
 import com.psabackoffice.job1111.Ssnotes;
 import com.psabackoffice.job1111.SubmissionStatus;
-import com.psabackoffice.job1111.SubmissionStatusRev;
 import com.psabackoffice.job1111.service.SubmissionStatusService;
 
 
@@ -160,15 +159,6 @@ public class SubmissionStatusController {
 
         LOGGER.debug("Fetching all associated ssnoteses");
         return submissionStatusService.findAssociatedSsnoteses(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/submissionStatusRevs", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the submissionStatusRevs instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SubmissionStatusRev> findAssociatedSubmissionStatusRevs(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated submissionStatusRevs");
-        return submissionStatusService.findAssociatedSubmissionStatusRevs(id, pageable);
     }
 
     /**

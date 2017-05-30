@@ -33,7 +33,6 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 import com.psabackoffice.job1111.SteelSell;
-import com.psabackoffice.job1111.SteelSellRev;
 import com.psabackoffice.job1111.service.SteelSellService;
 
 
@@ -152,14 +151,6 @@ public class SteelSellController {
         return steelSellService.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/steelSellRevs", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the steelSellRevs instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SteelSellRev> findAssociatedSteelSellRevs(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated steelSellRevs");
-        return steelSellService.findAssociatedSteelSellRevs(id, pageable);
-    }
 
     /**
 	 * This setter method should only be used by unit tests

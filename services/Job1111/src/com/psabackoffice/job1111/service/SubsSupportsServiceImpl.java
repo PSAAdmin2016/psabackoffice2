@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SubsSupports;
-import com.psabackoffice.job1111.SubsSupportsRev;
 
 
 /**
@@ -37,9 +36,6 @@ public class SubsSupportsServiceImpl implements SubsSupportsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SubsSupportsServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.SubsSupportsRevService")
-	private SubsSupportsRevService subsSupportsRevService;
 
     @Autowired
     @Qualifier("Job1111.SubsSupportsDao")
@@ -54,13 +50,6 @@ public class SubsSupportsServiceImpl implements SubsSupportsService {
 	public SubsSupports create(SubsSupports subsSupports) {
         LOGGER.debug("Creating a new SubsSupports with information: {}", subsSupports);
         SubsSupports subsSupportsCreated = this.wmGenericDao.create(subsSupports);
-        if(subsSupportsCreated.getSubsSupportsRevs() != null) {
-            for(SubsSupportsRev subsSupportsRev : subsSupportsCreated.getSubsSupportsRevs()) {
-                subsSupportsRev.setSubsSupports(subsSupportsCreated);
-                LOGGER.debug("Creating a new child SubsSupportsRev with information: {}", subsSupportsRev);
-                subsSupportsRevService.create(subsSupportsRev);
-            }
-        }
         return subsSupportsCreated;
     }
 
@@ -141,25 +130,7 @@ public class SubsSupportsServiceImpl implements SubsSupportsService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SubsSupportsRev> findAssociatedSubsSupportsRevs(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated subsSupportsRevs");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsSupports.id = '" + id + "'");
-
-        return subsSupportsRevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SubsSupportsRevService instance
-	 */
-	protected void setSubsSupportsRevService(SubsSupportsRevService service) {
-        this.subsSupportsRevService = service;
-    }
 
 }
 

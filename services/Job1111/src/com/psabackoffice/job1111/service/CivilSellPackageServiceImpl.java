@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.CivilSellPackage;
-import com.psabackoffice.job1111.CivilSellPackageRev;
 
 
 /**
@@ -37,9 +36,6 @@ public class CivilSellPackageServiceImpl implements CivilSellPackageService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CivilSellPackageServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.CivilSellPackageRevService")
-	private CivilSellPackageRevService civilSellPackageRevService;
 
     @Autowired
     @Qualifier("Job1111.CivilSellPackageDao")
@@ -54,13 +50,6 @@ public class CivilSellPackageServiceImpl implements CivilSellPackageService {
 	public CivilSellPackage create(CivilSellPackage civilSellPackage) {
         LOGGER.debug("Creating a new CivilSellPackage with information: {}", civilSellPackage);
         CivilSellPackage civilSellPackageCreated = this.wmGenericDao.create(civilSellPackage);
-        if(civilSellPackageCreated.getCivilSellPackageRevs() != null) {
-            for(CivilSellPackageRev civilSellPackageRev : civilSellPackageCreated.getCivilSellPackageRevs()) {
-                civilSellPackageRev.setCivilSellPackage(civilSellPackageCreated);
-                LOGGER.debug("Creating a new child CivilSellPackageRev with information: {}", civilSellPackageRev);
-                civilSellPackageRevService.create(civilSellPackageRev);
-            }
-        }
         return civilSellPackageCreated;
     }
 
@@ -141,25 +130,7 @@ public class CivilSellPackageServiceImpl implements CivilSellPackageService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<CivilSellPackageRev> findAssociatedCivilSellPackageRevs(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated civilSellPackageRevs");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("civilSellPackage.id = '" + id + "'");
-
-        return civilSellPackageRevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service CivilSellPackageRevService instance
-	 */
-	protected void setCivilSellPackageRevService(CivilSellPackageRevService service) {
-        this.civilSellPackageRevService = service;
-    }
 
 }
 

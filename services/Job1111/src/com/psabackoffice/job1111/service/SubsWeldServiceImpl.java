@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SubsWeld;
-import com.psabackoffice.job1111.SubsWeldRev;
 
 
 /**
@@ -37,9 +36,6 @@ public class SubsWeldServiceImpl implements SubsWeldService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SubsWeldServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.SubsWeldRevService")
-	private SubsWeldRevService subsWeldRevService;
 
     @Autowired
     @Qualifier("Job1111.SubsWeldDao")
@@ -54,13 +50,6 @@ public class SubsWeldServiceImpl implements SubsWeldService {
 	public SubsWeld create(SubsWeld subsWeld) {
         LOGGER.debug("Creating a new SubsWeld with information: {}", subsWeld);
         SubsWeld subsWeldCreated = this.wmGenericDao.create(subsWeld);
-        if(subsWeldCreated.getSubsWeldRevs() != null) {
-            for(SubsWeldRev subsWeldRev : subsWeldCreated.getSubsWeldRevs()) {
-                subsWeldRev.setSubsWeld(subsWeldCreated);
-                LOGGER.debug("Creating a new child SubsWeldRev with information: {}", subsWeldRev);
-                subsWeldRevService.create(subsWeldRev);
-            }
-        }
         return subsWeldCreated;
     }
 
@@ -141,25 +130,7 @@ public class SubsWeldServiceImpl implements SubsWeldService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SubsWeldRev> findAssociatedSubsWeldRevs(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated subsWeldRevs");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsWeld.id = '" + id + "'");
-
-        return subsWeldRevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SubsWeldRevService instance
-	 */
-	protected void setSubsWeldRevService(SubsWeldRevService service) {
-        this.subsWeldRevService = service;
-    }
 
 }
 

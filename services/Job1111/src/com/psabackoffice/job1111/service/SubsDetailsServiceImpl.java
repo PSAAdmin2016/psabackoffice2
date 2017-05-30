@@ -41,7 +41,6 @@ import com.psabackoffice.job1111.SubsBoltUp;
 import com.psabackoffice.job1111.SubsDelay;
 import com.psabackoffice.job1111.SubsDemo;
 import com.psabackoffice.job1111.SubsDetails;
-import com.psabackoffice.job1111.SubsDetailsRev;
 import com.psabackoffice.job1111.SubsErection;
 import com.psabackoffice.job1111.SubsEwo;
 import com.psabackoffice.job1111.SubsMisc;
@@ -70,48 +69,12 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
 	private SteelBoltOutService steelBoltOutService;
 
     @Autowired
-	@Qualifier("Job1111.EquipFaService")
-	private EquipFaService equipFaService;
-
-    @Autowired
 	@Qualifier("Job1111.SubsMiscService")
 	private SubsMiscService subsMiscService;
 
     @Autowired
-	@Qualifier("Job1111.SteelErectService")
-	private SteelErectService steelErectService;
-
-    @Autowired
-	@Qualifier("Job1111.SubsDemoService")
-	private SubsDemoService subsDemoService;
-
-    @Autowired
-	@Qualifier("Job1111.SubsDetailsRevService")
-	private SubsDetailsRevService subsDetailsRevService;
-
-    @Autowired
-	@Qualifier("Job1111.SubsEwoService")
-	private SubsEwoService subsEwoService;
-
-    @Autowired
-	@Qualifier("Job1111.SteelImpService")
-	private SteelImpService steelImpService;
-
-    @Autowired
-	@Qualifier("Job1111.SubmissionStatusService")
-	private SubmissionStatusService submissionStatusService;
-
-    @Autowired
-	@Qualifier("Job1111.SubsSupportsService")
-	private SubsSupportsService subsSupportsService;
-
-    @Autowired
-	@Qualifier("Job1111.SteelWeldService")
-	private SteelWeldService steelWeldService;
-
-    @Autowired
-	@Qualifier("Job1111.SteelDemoService")
-	private SteelDemoService steelDemoService;
+	@Qualifier("Job1111.EquipFaService")
+	private EquipFaService equipFaService;
 
     @Autowired
 	@Qualifier("Job1111.SteelMiscService")
@@ -120,6 +83,10 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
     @Autowired
 	@Qualifier("Job1111.SteelSellService")
 	private SteelSellService steelSellService;
+
+    @Autowired
+	@Qualifier("Job1111.SteelErectService")
+	private SteelErectService steelErectService;
 
     @Autowired
 	@Qualifier("Job1111.CivilSellPackageService")
@@ -134,32 +101,60 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
 	private SubsDelayService subsDelayService;
 
     @Autowired
+	@Qualifier("Job1111.SubsDemoService")
+	private SubsDemoService subsDemoService;
+
+    @Autowired
 	@Qualifier("Job1111.SubsErectionService")
 	private SubsErectionService subsErectionService;
+
+    @Autowired
+	@Qualifier("Job1111.SubsEwoService")
+	private SubsEwoService subsEwoService;
+
+    @Autowired
+	@Qualifier("Job1111.SteelImpService")
+	private SteelImpService steelImpService;
 
     @Autowired
 	@Qualifier("Job1111.SteelShakeService")
 	private SteelShakeService steelShakeService;
 
     @Autowired
+	@Qualifier("Job1111.CivilFaService")
+	private CivilFaService civilFaService;
+
+    @Autowired
 	@Qualifier("Job1111.CivilMiscService")
 	private CivilMiscService civilMiscService;
 
     @Autowired
-	@Qualifier("Job1111.CivilFaService")
-	private CivilFaService civilFaService;
+	@Qualifier("Job1111.SubmissionStatusService")
+	private SubmissionStatusService submissionStatusService;
 
     @Autowired
 	@Qualifier("Job1111.SubsTrimService")
 	private SubsTrimService subsTrimService;
 
     @Autowired
+	@Qualifier("Job1111.SubsSupportsService")
+	private SubsSupportsService subsSupportsService;
+
+    @Autowired
 	@Qualifier("Job1111.SubsTestingService")
 	private SubsTestingService subsTestingService;
 
     @Autowired
+	@Qualifier("Job1111.SteelWeldService")
+	private SteelWeldService steelWeldService;
+
+    @Autowired
 	@Qualifier("Job1111.SubsBoltUpService")
 	private SubsBoltUpService subsBoltUpService;
+
+    @Autowired
+	@Qualifier("Job1111.SteelDemoService")
+	private SteelDemoService steelDemoService;
 
     @Autowired
     @Qualifier("Job1111.SubsDetailsDao")
@@ -307,14 +302,6 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
                 subsDemo.setSubsDetails(subsDetailsCreated);
                 LOGGER.debug("Creating a new child SubsDemo with information: {}", subsDemo);
                 subsDemoService.create(subsDemo);
-            }
-        }
-
-        if(subsDetailsCreated.getSubsDetailsRevs() != null) {
-            for(SubsDetailsRev subsDetailsRev : subsDetailsCreated.getSubsDetailsRevs()) {
-                subsDetailsRev.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child SubsDetailsRev with information: {}", subsDetailsRev);
-                subsDetailsRevService.create(subsDetailsRev);
             }
         }
 
@@ -642,17 +629,6 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<SubsDetailsRev> findAssociatedSubsDetailsRevs(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated subsDetailsRevs");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
-
-        return subsDetailsRevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
     public Page<SubsEwo> findAssociatedSubsEwos(Integer submissionId, Pageable pageable) {
         LOGGER.debug("Fetching all associated subsEwos");
 
@@ -749,15 +725,6 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service EquipFaService instance
-	 */
-	protected void setEquipFaService(EquipFaService service) {
-        this.equipFaService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
 	 * @param service SubsMiscService instance
 	 */
 	protected void setSubsMiscService(SubsMiscService service) {
@@ -767,82 +734,10 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service SteelErectService instance
+	 * @param service EquipFaService instance
 	 */
-	protected void setSteelErectService(SteelErectService service) {
-        this.steelErectService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SubsDemoService instance
-	 */
-	protected void setSubsDemoService(SubsDemoService service) {
-        this.subsDemoService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SubsDetailsRevService instance
-	 */
-	protected void setSubsDetailsRevService(SubsDetailsRevService service) {
-        this.subsDetailsRevService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SubsEwoService instance
-	 */
-	protected void setSubsEwoService(SubsEwoService service) {
-        this.subsEwoService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SteelImpService instance
-	 */
-	protected void setSteelImpService(SteelImpService service) {
-        this.steelImpService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SubmissionStatusService instance
-	 */
-	protected void setSubmissionStatusService(SubmissionStatusService service) {
-        this.submissionStatusService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SubsSupportsService instance
-	 */
-	protected void setSubsSupportsService(SubsSupportsService service) {
-        this.subsSupportsService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SteelWeldService instance
-	 */
-	protected void setSteelWeldService(SteelWeldService service) {
-        this.steelWeldService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SteelDemoService instance
-	 */
-	protected void setSteelDemoService(SteelDemoService service) {
-        this.steelDemoService = service;
+	protected void setEquipFaService(EquipFaService service) {
+        this.equipFaService = service;
     }
 
     /**
@@ -861,6 +756,15 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
 	 */
 	protected void setSteelSellService(SteelSellService service) {
         this.steelSellService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SteelErectService instance
+	 */
+	protected void setSteelErectService(SteelErectService service) {
+        this.steelErectService = service;
     }
 
     /**
@@ -893,10 +797,37 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service SubsDemoService instance
+	 */
+	protected void setSubsDemoService(SubsDemoService service) {
+        this.subsDemoService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service SubsErectionService instance
 	 */
 	protected void setSubsErectionService(SubsErectionService service) {
         this.subsErectionService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SubsEwoService instance
+	 */
+	protected void setSubsEwoService(SubsEwoService service) {
+        this.subsEwoService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SteelImpService instance
+	 */
+	protected void setSteelImpService(SteelImpService service) {
+        this.steelImpService = service;
     }
 
     /**
@@ -911,6 +842,15 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service CivilFaService instance
+	 */
+	protected void setCivilFaService(CivilFaService service) {
+        this.civilFaService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service CivilMiscService instance
 	 */
 	protected void setCivilMiscService(CivilMiscService service) {
@@ -920,10 +860,10 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service CivilFaService instance
+	 * @param service SubmissionStatusService instance
 	 */
-	protected void setCivilFaService(CivilFaService service) {
-        this.civilFaService = service;
+	protected void setSubmissionStatusService(SubmissionStatusService service) {
+        this.submissionStatusService = service;
     }
 
     /**
@@ -938,6 +878,15 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service SubsSupportsService instance
+	 */
+	protected void setSubsSupportsService(SubsSupportsService service) {
+        this.subsSupportsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service SubsTestingService instance
 	 */
 	protected void setSubsTestingService(SubsTestingService service) {
@@ -947,10 +896,28 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service SteelWeldService instance
+	 */
+	protected void setSteelWeldService(SteelWeldService service) {
+        this.steelWeldService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service SubsBoltUpService instance
 	 */
 	protected void setSubsBoltUpService(SubsBoltUpService service) {
         this.subsBoltUpService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SteelDemoService instance
+	 */
+	protected void setSteelDemoService(SteelDemoService service) {
+        this.steelDemoService = service;
     }
 
 }

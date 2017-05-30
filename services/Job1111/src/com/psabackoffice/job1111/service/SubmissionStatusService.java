@@ -18,7 +18,6 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.Ssnotes;
 import com.psabackoffice.job1111.SubmissionStatus;
-import com.psabackoffice.job1111.SubmissionStatusRev;
 
 /**
  * Service object for domain model class {@link SubmissionStatus}.
@@ -153,18 +152,6 @@ public interface SubmissionStatusService {
      * @see Page
      */
     Page<Ssnotes> findAssociatedSsnoteses(Integer psaactivityId, Pageable pageable);
-
-    /*
-     * Returns the associated submissionStatusRevs for given SubmissionStatus id.
-     *
-     * @param psaactivityId value of psaactivityId; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SubmissionStatusRev instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SubmissionStatusRev> findAssociatedSubmissionStatusRevs(Integer psaactivityId, Pageable pageable);
 
 }
 

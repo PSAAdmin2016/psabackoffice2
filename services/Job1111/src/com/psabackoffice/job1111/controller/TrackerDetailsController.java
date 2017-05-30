@@ -33,7 +33,6 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 import com.psabackoffice.job1111.TrackerDetails;
-import com.psabackoffice.job1111.TrackerDetailsRev;
 import com.psabackoffice.job1111.service.TrackerDetailsService;
 
 
@@ -152,14 +151,6 @@ public class TrackerDetailsController {
         return trackerDetailsService.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/trackerDetailsRevs", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the trackerDetailsRevs instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<TrackerDetailsRev> findAssociatedTrackerDetailsRevs(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated trackerDetailsRevs");
-        return trackerDetailsService.findAssociatedTrackerDetailsRevs(id, pageable);
-    }
 
     /**
 	 * This setter method should only be used by unit tests

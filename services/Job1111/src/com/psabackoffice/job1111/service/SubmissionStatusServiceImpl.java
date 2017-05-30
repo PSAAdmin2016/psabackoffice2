@@ -25,7 +25,6 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.Ssnotes;
 import com.psabackoffice.job1111.SubmissionStatus;
-import com.psabackoffice.job1111.SubmissionStatusRev;
 
 
 /**
@@ -37,10 +36,6 @@ import com.psabackoffice.job1111.SubmissionStatusRev;
 public class SubmissionStatusServiceImpl implements SubmissionStatusService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SubmissionStatusServiceImpl.class);
-
-    @Autowired
-	@Qualifier("Job1111.SubmissionStatusRevService")
-	private SubmissionStatusRevService submissionStatusRevService;
 
     @Autowired
 	@Qualifier("Job1111.SsnotesService")
@@ -64,14 +59,6 @@ public class SubmissionStatusServiceImpl implements SubmissionStatusService {
                 ssnotese.setSubmissionStatus(submissionStatusCreated);
                 LOGGER.debug("Creating a new child Ssnotes with information: {}", ssnotese);
                 ssnotesService.create(ssnotese);
-            }
-        }
-
-        if(submissionStatusCreated.getSubmissionStatusRevs() != null) {
-            for(SubmissionStatusRev submissionStatusRev : submissionStatusCreated.getSubmissionStatusRevs()) {
-                submissionStatusRev.setSubmissionStatus(submissionStatusCreated);
-                LOGGER.debug("Creating a new child SubmissionStatusRev with information: {}", submissionStatusRev);
-                submissionStatusRevService.create(submissionStatusRev);
             }
         }
         return submissionStatusCreated;
@@ -163,26 +150,6 @@ public class SubmissionStatusServiceImpl implements SubmissionStatusService {
         queryBuilder.append("submissionStatus.psaactivityId = '" + psaactivityId + "'");
 
         return ssnotesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SubmissionStatusRev> findAssociatedSubmissionStatusRevs(Integer psaactivityId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated submissionStatusRevs");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("submissionStatus.psaactivityId = '" + psaactivityId + "'");
-
-        return submissionStatusRevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SubmissionStatusRevService instance
-	 */
-	protected void setSubmissionStatusRevService(SubmissionStatusRevService service) {
-        this.submissionStatusRevService = service;
     }
 
     /**

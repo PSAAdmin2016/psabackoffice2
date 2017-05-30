@@ -50,7 +50,6 @@ import com.psabackoffice.job1111.SubsBoltUp;
 import com.psabackoffice.job1111.SubsDelay;
 import com.psabackoffice.job1111.SubsDemo;
 import com.psabackoffice.job1111.SubsDetails;
-import com.psabackoffice.job1111.SubsDetailsRev;
 import com.psabackoffice.job1111.SubsErection;
 import com.psabackoffice.job1111.SubsEwo;
 import com.psabackoffice.job1111.SubsMisc;
@@ -327,15 +326,6 @@ public class SubsDetailsController {
 
         LOGGER.debug("Fetching all associated subsDemos");
         return subsDetailsService.findAssociatedSubsDemos(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/subsDetailsRevs", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the subsDetailsRevs instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SubsDetailsRev> findAssociatedSubsDetailsRevs(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated subsDetailsRevs");
-        return subsDetailsService.findAssociatedSubsDetailsRevs(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/subsEwos", method=RequestMethod.GET)

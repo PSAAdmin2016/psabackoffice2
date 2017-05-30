@@ -17,7 +17,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.CivilMisc;
-import com.psabackoffice.job1111.CivilMiscRev;
 
 /**
  * Service object for domain model class {@link CivilMisc}.
@@ -141,17 +140,6 @@ public interface CivilMiscService {
 	 */
 	Page<Map<String, Object>> getAggregatedValues(AggregationInfo aggregationInfo, Pageable pageable);
 
-    /*
-     * Returns the associated civilMiscRevs for given CivilMisc id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated CivilMiscRev instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<CivilMiscRev> findAssociatedCivilMiscRevs(Integer id, Pageable pageable);
 
 }
 

@@ -17,7 +17,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SubsTrim;
-import com.psabackoffice.job1111.SubsTrimRev;
 
 /**
  * Service object for domain model class {@link SubsTrim}.
@@ -141,17 +140,6 @@ public interface SubsTrimService {
 	 */
 	Page<Map<String, Object>> getAggregatedValues(AggregationInfo aggregationInfo, Pageable pageable);
 
-    /*
-     * Returns the associated subsTrimRevs for given SubsTrim id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SubsTrimRev instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SubsTrimRev> findAssociatedSubsTrimRevs(Integer id, Pageable pageable);
 
 }
 

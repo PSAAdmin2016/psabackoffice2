@@ -17,7 +17,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SteelErect;
-import com.psabackoffice.job1111.SteelErectRev;
 
 /**
  * Service object for domain model class {@link SteelErect}.
@@ -141,17 +140,6 @@ public interface SteelErectService {
 	 */
 	Page<Map<String, Object>> getAggregatedValues(AggregationInfo aggregationInfo, Pageable pageable);
 
-    /*
-     * Returns the associated steelErectRevs for given SteelErect id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SteelErectRev instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SteelErectRev> findAssociatedSteelErectRevs(Integer id, Pageable pageable);
 
 }
 

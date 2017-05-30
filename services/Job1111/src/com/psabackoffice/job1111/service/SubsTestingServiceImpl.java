@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SubsTesting;
-import com.psabackoffice.job1111.SubsTestingRev;
 
 
 /**
@@ -37,9 +36,6 @@ public class SubsTestingServiceImpl implements SubsTestingService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SubsTestingServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.SubsTestingRevService")
-	private SubsTestingRevService subsTestingRevService;
 
     @Autowired
     @Qualifier("Job1111.SubsTestingDao")
@@ -54,13 +50,6 @@ public class SubsTestingServiceImpl implements SubsTestingService {
 	public SubsTesting create(SubsTesting subsTesting) {
         LOGGER.debug("Creating a new SubsTesting with information: {}", subsTesting);
         SubsTesting subsTestingCreated = this.wmGenericDao.create(subsTesting);
-        if(subsTestingCreated.getSubsTestingRevs() != null) {
-            for(SubsTestingRev subsTestingRev : subsTestingCreated.getSubsTestingRevs()) {
-                subsTestingRev.setSubsTesting(subsTestingCreated);
-                LOGGER.debug("Creating a new child SubsTestingRev with information: {}", subsTestingRev);
-                subsTestingRevService.create(subsTestingRev);
-            }
-        }
         return subsTestingCreated;
     }
 
@@ -141,25 +130,7 @@ public class SubsTestingServiceImpl implements SubsTestingService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SubsTestingRev> findAssociatedSubsTestingRevs(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated subsTestingRevs");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsTesting.id = '" + id + "'");
-
-        return subsTestingRevService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SubsTestingRevService instance
-	 */
-	protected void setSubsTestingRevService(SubsTestingRevService service) {
-        this.subsTestingRevService = service;
-    }
 
 }
 
