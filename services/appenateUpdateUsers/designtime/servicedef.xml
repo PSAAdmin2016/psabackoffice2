@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service xmlns="http://www.activegrid.com/namespaces/ServiceDefinitions/1.0" id="appenateUpdateUsers" type="RestService" springFile="appenateUpdateUsers.spring.xml">
+    <operation name="invoke">
+        <parameter name="RequestBody" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="appenateUpdateUsers.RootResponse" isList="false"/>
+    </operation>
+    <dataobjects>
+        <dataobject javaType="appenateUpdateUsers.MetadataEntryItem" name="MetadataEntryItem" supportsQuickData="false">
+            <element name="Key" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="Val" typeRef="java.lang.String" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="appenateUpdateUsers.RootRequest" name="RootRequest" supportsQuickData="false">
+            <element name="WebsiteRole" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="CompanyId" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="ExternalId" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="Password" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="DoNotEmail" typeRef="java.lang.Boolean" isList="false" allowNull="false"/>
+            <element name="IntegrationKey" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="Country" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="LastName" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="Groups" typeRef="java.lang.String" isList="true" allowNull="false"/>
+            <element name="Status" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="ResetPassword" typeRef="java.lang.Boolean" isList="false" allowNull="false"/>
+            <element name="Email" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="Folders" typeRef="java.lang.String" isList="true" allowNull="false"/>
+            <element name="FirstName" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="Id" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="Metadata" typeRef="appenateUpdateUsers.MetadataEntryItem" isList="true" allowNull="false"/>
+            <element name="TimeZone" typeRef="java.lang.String" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="appenateUpdateUsers.User" name="User" supportsQuickData="false">
+            <element name="WebsiteRole" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="LastUpdated" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="CompanyId" typeRef="java.lang.Integer" isList="false" allowNull="false"/>
+            <element name="LastName" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="Groups" typeRef="appenateUpdateUsers.java.lang.Object" isList="true" allowNull="false"/>
+            <element name="Status" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="Email" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="Folders" typeRef="java.lang.String" isList="true" allowNull="false"/>
+            <element name="CreatedDate" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="FirstName" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="LocationHistory" typeRef="appenateUpdateUsers.LocationHistoryEntryItem" isList="true" allowNull="false"/>
+            <element name="LastActivity" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="Id" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="Metadata" typeRef="appenateUpdateUsers.MetadataEntryItem" isList="true" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="appenateUpdateUsers.LocationHistoryEntryItem" name="LocationHistoryEntryItem" supportsQuickData="false">
+            <element name="Latitude" typeRef="java.lang.Double" isList="false" allowNull="false"/>
+            <element name="Longitude" typeRef="java.lang.Double" isList="false" allowNull="false"/>
+            <element name="Timestamp" typeRef="java.lang.String" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="appenateUpdateUsers.java.lang.Object" name="java.lang.Object" supportsQuickData="false"/>
+        <dataobject javaType="appenateUpdateUsers.RootResponse" name="RootResponse" supportsQuickData="false">
+            <element name="User" typeRef="appenateUpdateUsers.User" isList="false" allowNull="false"/>
+        </dataobject>
+    </dataobjects>
+</service>

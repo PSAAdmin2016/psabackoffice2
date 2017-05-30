@@ -1,0 +1,896 @@
+{
+  "CompareColumns" : {
+    "name" : "CompareColumns",
+    "description" : "compares the column names of the imported data in the landing table to the column names of the landing table.",
+    "version" : "V2",
+    "procedureString" : "call ImportCheckColumns(:tableName, :jobNumber, :returnStatus, :expectedColumn, :recievedColumn)",
+    "parameters" : [ {
+      "name" : "tableName",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "trackerPipeLanding",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "jobNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1111",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "returnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "expectedColumn",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "recievedColumn",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.procedure.CompareColumnsResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "returnStatus",
+        "fieldName" : "returnStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "expectedColumn",
+        "fieldName" : "expectedColumn",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "recievedColumn",
+        "fieldName" : "recievedColumn",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "CreateNewConversation" : {
+    "name" : "CreateNewConversation",
+    "description" : "name",
+    "version" : "V1",
+    "procedureString" : "call CreateNewConversation(:varCreator, :varRecipient, :ReturnStatus, :ReturnConversationID)",
+    "parameters" : [ {
+      "name" : "varCreator",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "varRecipient",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "46",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "",
+      "required" : false,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ReturnConversationID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "",
+      "required" : false,
+      "parameterType" : "OUT"
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.procedure.CreateNewConversationRequest",
+      "method" : "POST"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.procedure.CreateNewConversationResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "ReturnStatus",
+        "fieldName" : "returnStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "ReturnConversationID",
+        "fieldName" : "returnConversationId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "CreateNewJobDB" : {
+    "name" : "CreateNewJobDB",
+    "description" : "Creates a new Job#### Schema, Tables, Indexes, FK Constraints.",
+    "version" : "V1",
+    "procedureString" : "call Create_JobDB(:jobNumber, :ReturnStatus)",
+    "parameters" : [ {
+      "name" : "jobNumber",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1234",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "",
+      "required" : false,
+      "parameterType" : "OUT"
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.procedure.CreateNewJobDbRequest",
+      "method" : "POST"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.procedure.CreateNewJobDbResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "ReturnStatus",
+        "fieldName" : "returnStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "CreateNewJobSeeds" : {
+    "name" : "CreateNewJobSeeds",
+    "description" : "Seeds all the needed tables of a new Job DB",
+    "version" : "V1",
+    "procedureString" : "call Create_JobSeeds(:jobNumber, :ReturnStatus)",
+    "parameters" : [ {
+      "name" : "jobNumber",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1234",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "",
+      "required" : false,
+      "parameterType" : "OUT"
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.procedure.CreateNewJobSeedsRequest",
+      "method" : "POST"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.procedure.CreateNewJobSeedsResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "ReturnStatus",
+        "fieldName" : "returnStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetImportTotals" : {
+    "name" : "GetImportTotals",
+    "description" : "Get all calculated totals for the new import table in Landing",
+    "version" : "V1",
+    "procedureString" : "call ImportGetTotals(:tableNameLanding, :tableNameDestination, :jobNumber, :returnStatus, :totalRows, :newRows, :ModifiedRows, :hoursDelta)",
+    "parameters" : [ {
+      "name" : "tableNameLanding",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "trackerPipeLanding",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "tableNameDestination",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "trackerDetails",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "jobNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1111",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "returnStatus",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "",
+      "required" : false,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "totalRows",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "",
+      "required" : false,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "newRows",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "",
+      "required" : false,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ModifiedRows",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "",
+      "required" : false,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "hoursDelta",
+      "type" : "big_decimal",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : false,
+      "parameterType" : "OUT"
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.procedure.GetImportTotalsResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "returnStatus",
+        "fieldName" : "returnStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "totalRows",
+        "fieldName" : "totalRows",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "newRows",
+        "fieldName" : "newRows",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "ModifiedRows",
+        "fieldName" : "modifiedRows",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "hoursDelta",
+        "fieldName" : "hoursDelta",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.math.BigDecimal",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "ImportInstalledQuantitiesCivil" : {
+    "name" : "ImportInstalledQuantitiesCivil",
+    "description" : "create FAs for progress claimed in the imported tracker",
+    "version" : "V2",
+    "procedureString" : "CALL PSA.Import_InstalledQuantitiesCivil(:jobNumber)",
+    "parameters" : [ {
+      "name" : "jobNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1111",
+      "required" : true,
+      "parameterType" : "IN"
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Void",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "ImportInstalledQuantitiesEquip" : {
+    "name" : "ImportInstalledQuantitiesEquip",
+    "description" : "create FAs for progress claimed in the imported tracker",
+    "version" : "V2",
+    "procedureString" : "CALL PSA.Import_InstalledQuantitiesEquip(:jobNumber)",
+    "parameters" : [ {
+      "name" : "jobNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1111",
+      "required" : true,
+      "parameterType" : "IN"
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Void",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "ImportInstalledQuantitiesPipe" : {
+    "name" : "ImportInstalledQuantitiesPipe",
+    "description" : "create FAs for progress claimed in the imported tracker",
+    "version" : "V2",
+    "procedureString" : "CALL Import_InstalledQuantitiesPipe(:jobNumber)",
+    "parameters" : [ {
+      "name" : "jobNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1234",
+      "required" : true,
+      "parameterType" : "IN"
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Void",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "ImportInstalledQuantitiesSteel" : {
+    "name" : "ImportInstalledQuantitiesSteel",
+    "description" : "create FAs for progress claimed in the imported tracker",
+    "version" : "V2",
+    "procedureString" : "CALL PSA.Import_InstalledQuantitiesSteel(:jobNumber)",
+    "parameters" : [ {
+      "name" : "jobNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1234",
+      "required" : true,
+      "parameterType" : "IN"
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Void",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "LandingToPipeSpools" : {
+    "name" : "LandingToPipeSpools",
+    "description" : "Moves data in SpoolListLanding to REF_SpoolList",
+    "version" : "V2",
+    "procedureString" : "CALL PSA.LandingToPipeSpools(:jobNumber, :ReturnStatus, :ReturnError)",
+    "parameters" : [ {
+      "name" : "jobNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1111",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ReturnError",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.procedure.LandingToPipeSpoolsResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "ReturnStatus",
+        "fieldName" : "returnStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "ReturnError",
+        "fieldName" : "returnError",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "LandingToTrackerCivil" : {
+    "name" : "LandingToTrackerCivil",
+    "description" : "Copies all rows from Civil Landing table to Civil Tracker",
+    "version" : "V2",
+    "procedureString" : "CALL PSA.LandingToTrackerCivil(:jobNumber, :ReturnStatus, :ReturnError)",
+    "parameters" : [ {
+      "name" : "jobNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1234",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ReturnError",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.procedure.LandingToTrackerCivilResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "ReturnStatus",
+        "fieldName" : "returnStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "ReturnError",
+        "fieldName" : "returnError",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "LandingToTrackerEquip" : {
+    "name" : "LandingToTrackerEquip",
+    "description" : "Inserts records from LandingTrackerEquip into EquipTrackerDetails",
+    "version" : "V2",
+    "procedureString" : "CALL PSA.LandingToTrackerEquip(:jobNumber, :ReturnStatus, :ReturnError)",
+    "parameters" : [ {
+      "name" : "jobNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "0",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ReturnError",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.procedure.LandingToTrackerEquipResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "ReturnStatus",
+        "fieldName" : "returnStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "ReturnError",
+        "fieldName" : "returnError",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "LandingToTrackerPipe" : {
+    "name" : "LandingToTrackerPipe",
+    "description" : "Inserts data from Landing table into trackerDetails",
+    "version" : "V2",
+    "procedureString" : "CALL LandingToTrackerPipe(:JobNumber, :ReturnStatus, :ReturnError)",
+    "parameters" : [ {
+      "name" : "JobNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1233",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ReturnError",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.procedure.LandingToTrackerPipeResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "ReturnStatus",
+        "fieldName" : "returnStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "ReturnError",
+        "fieldName" : "returnError",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "LandingToTrackerSteel" : {
+    "name" : "LandingToTrackerSteel",
+    "description" : "Copies all rows from SteelLanding table to Steel Tracker",
+    "version" : "V2",
+    "procedureString" : "CALL PSA.LandingToTrackerSteel(:jobNumber, :ReturnStatus, :ReturnError)",
+    "parameters" : [ {
+      "name" : "jobNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1234",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ReturnError",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.procedure.LandingToTrackerSteelResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "ReturnStatus",
+        "fieldName" : "returnStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "ReturnError",
+        "fieldName" : "returnError",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "LandingToWeldSpecProcedures" : {
+    "name" : "LandingToWeldSpecProcedures",
+    "description" : "Copy rows from LandingWeldSpecProcedures to REF_WeldSpecProcedures",
+    "version" : "V2",
+    "procedureString" : "CALL LandingToWeldSpecProcedures(:jobNumber, :ReturnStatus, :ReturnError)",
+    "parameters" : [ {
+      "name" : "jobNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1111",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ReturnError",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.procedure.LandingToWeldSpecProceduresResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "ReturnStatus",
+        "fieldName" : "returnStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "ReturnError",
+        "fieldName" : "returnError",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "ValidateLandingData" : {
+    "name" : "ValidateLandingData",
+    "description" : "Validate the data in the landing table for bad fields   (eg. single and double quotes)",
+    "version" : "V1",
+    "procedureString" : "call ImportValidateData(:tableName, :jobNumber, :returnStatus, :ErrorText)",
+    "parameters" : [ {
+      "name" : "tableName",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "trackerPipeLanding",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "jobNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1111",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "returnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "",
+      "required" : false,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "",
+      "required" : false,
+      "parameterType" : "OUT"
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.procedure.ValidateLandingDataResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "returnStatus",
+        "fieldName" : "returnStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "ErrorText",
+        "fieldName" : "errorText",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  }
+}

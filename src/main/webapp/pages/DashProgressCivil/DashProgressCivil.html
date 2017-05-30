@@ -1,0 +1,391 @@
+<wm-page data-ng-controller="DashProgressCivilPageController" pagetitle="Dash Progress Civil" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="1" content="leftnavDashboard" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="11" name="page_content1">
+            <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow1">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn1"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn2"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn3"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow4">
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn8">
+                        <wm-label caption="Percent Complete (Civil)" fontweight="bold" fontsize="18" width="100%" name="label2"></wm-label>
+                        <wm-label padding="0em 0em unset 0.5em" caption="bind:&quot;Total Hours: &quot;" margin="unset 0px unset unset" fontweight="bold" name="label3"></wm-label>
+                        <wm-label padding="0em unset unset unset" caption="bind:Variables.serviceGetCivilStatsByJob.firstRecord.content[$i].HoursAllCivil + Variables.serviceGetCivilStatsByJob.firstRecord.content[$i].HoursSellPunch | numberToString: '2'"
+                        name="label4"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="10" name="gridcolumn9">
+                        <wm-progress maxvalue="100" pollinterval="1000" height="30px" type="success-striped" hint="Over All Job Progress (Civil &amp; Testing)" datavalue="bind:Variables.serviceGetCivilStatsByJob.firstRecord.content[$i].PercentComplete | numberToString: '2'"
+                        margin=".75% unset 0% unset" captionplacement="inside" displayformat="percentage" class="custom-progress" name="progress1"></wm-progress>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow54">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn129" padding="unset 0%">
+                        <wm-tile backgroundcolor="#b4e7dc" margin="unset 0%" width="12%" name="tile1">
+                            <wm-layoutgrid horizontalalign="center" height="100%" name="layoutgrid4">
+                                <wm-gridrow name="gridrow8">
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn15">
+                                        <wm-label width="100%" caption="Excavation" class="text-uppercase h4" textdecoration="underline" margin="unset unset 0em unset" color="#000000" fontweight="bold" name="label5"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow9">
+                                    <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn16">
+                                        <wm-label width="100%" caption="Quantity (cy.)" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label6"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn17">
+                                        <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label7"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow10">
+                                    <wm-gridcolumn columnwidth="6" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn18">
+                                        <wm-label width="100%" caption="bind:Variables.serviceGetCivilStatsByJob.firstRecord.content[$i].CountExcavation | numberToString: '2'
+" class="h5" fontweight="bold" margin="0px unset" name="label8"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn19">
+                                        <wm-label width="100%" caption="bind:Variables.serviceGetCivilStatsByJob.firstRecord.content[$i].HoursExcavation | numberToString: '2'" class="h5" fontweight="bold" margin="0px unset" name="label9"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow horizontalalign="center" name="gridrow11">
+                                    <wm-gridcolumn columnwidth="6" paddingunit="%" horizontalalign="center" name="gridcolumn20">
+                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" marginunit="%" ynumberformat=",r" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].RemainingExcavation },{&quot;Label&quot;:&quot;Installed&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].InstalledExcavation }]);"
+                                        xaxisdatakey="Label" yaxisdatakey="Value" name="chart1"></wm-chart>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn21">
+                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].RemainingExcavationHours },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].EarnedExcavationHours }]);"
+                                        xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart2"></wm-chart>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-tile>
+                        <wm-tile backgroundcolor="#b4e7dc" margin="unset 0% unset .25%" width="12%" name="tile9">
+                            <wm-layoutgrid horizontalalign="center" height="100%" name="layoutgrid18">
+                                <wm-gridrow name="gridrow55">
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn138">
+                                        <wm-label width="100%" caption="Forms" class="text-uppercase h4" textdecoration="underline" margin="unset unset 0em unset" color="#000000" fontweight="bold" name="label45"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow56">
+                                    <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn139">
+                                        <wm-label width="100%" caption="Quantity (sf.)" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label46"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn140">
+                                        <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label47"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow57">
+                                    <wm-gridcolumn columnwidth="6" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn141">
+                                        <wm-label width="100%" caption="bind:Variables.serviceGetCivilStatsByJob.firstRecord.content[$i].CountForm | numberToString: '2'" class="h5" fontweight="bold" margin="0px unset" name="label48"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn142">
+                                        <wm-label width="100%" caption="bind:Variables.serviceGetCivilStatsByJob.firstRecord.content[$i].HoursForm | numberToString: '2'" class="h5" fontweight="bold" margin="0px unset" name="label49"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow horizontalalign="center" name="gridrow58">
+                                    <wm-gridcolumn columnwidth="6" paddingunit="%" horizontalalign="center" name="gridcolumn143">
+                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" marginunit="%" ynumberformat=",r" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].RemainingForm },{&quot;Label&quot;:&quot;Installed&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].InstalledForm }]);"
+                                        xaxisdatakey="Label" yaxisdatakey="Value" name="chart20"></wm-chart>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn144">
+                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].RemainingFormHours },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].EarnedFormHours }]);"
+                                        xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart21"></wm-chart>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-tile>
+                        <wm-tile backgroundcolor="#b4e7dc" margin="unset 0% unset .25%" width="12%" name="tile19">
+                            <wm-layoutgrid horizontalalign="center" height="100%" name="layoutgrid28">
+                                <wm-gridrow name="gridrow95">
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn199">
+                                        <wm-label width="100%" caption="Rebar" class="text-uppercase h4" textdecoration="underline" margin="unset unset 0em unset" color="#000000" fontweight="bold" name="label89"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow96">
+                                    <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn200">
+                                        <wm-label width="100%" caption="Quantity (lbs.)" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label90"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn201">
+                                        <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label91"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow97">
+                                    <wm-gridcolumn columnwidth="6" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn202">
+                                        <wm-label width="100%" caption="bind:Variables.serviceGetCivilStatsByJob.firstRecord.content[$i].CountRebar | numberToString: '2'" class="h5" fontweight="bold" margin="0px unset" name="label92"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn203">
+                                        <wm-label width="100%" caption="bind:Variables.serviceGetCivilStatsByJob.firstRecord.content[$i].HoursRebar | numberToString: '2'" class="h5" fontweight="bold" margin="0px unset" name="label93"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow horizontalalign="center" name="gridrow98">
+                                    <wm-gridcolumn columnwidth="6" paddingunit="%" horizontalalign="center" name="gridcolumn204">
+                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" marginunit="%" ynumberformat=",r" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].RemainingRebar },{&quot;Label&quot;:&quot;Installed&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].InstalledRebar }]);"
+                                        xaxisdatakey="Label" yaxisdatakey="Value" name="chart37"></wm-chart>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn205">
+                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].RemainingRebarHours },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].EarnedRebarHours }]);"
+                                        xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart38"></wm-chart>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-tile>
+                        <wm-tile backgroundcolor="#b4e7dc" margin="unset 0% unset .25%" width="12%" name="tile20">
+                            <wm-layoutgrid horizontalalign="center" height="100%" name="layoutgrid29">
+                                <wm-gridrow name="gridrow99">
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn206">
+                                        <wm-label width="100%" caption="Concrete" class="text-uppercase h4" textdecoration="underline" margin="unset unset 0em unset" color="#000000" fontweight="bold" name="label94"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow100">
+                                    <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn207">
+                                        <wm-label width="100%" caption="Quantity (cy.)" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label95"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn208">
+                                        <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label96"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow101">
+                                    <wm-gridcolumn columnwidth="6" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn209">
+                                        <wm-label width="100%" caption="bind:Variables.serviceGetCivilStatsByJob.firstRecord.content[$i].CountConcrete | numberToString: '2'" class="h5" fontweight="bold" margin="0px unset" name="label97"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn210">
+                                        <wm-label width="100%" caption="bind:Variables.serviceGetCivilStatsByJob.firstRecord.content[$i].HoursConcrete | numberToString: '2'" class="h5" fontweight="bold" margin="0px unset" name="label98"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow horizontalalign="center" name="gridrow102">
+                                    <wm-gridcolumn columnwidth="6" paddingunit="%" horizontalalign="center" name="gridcolumn211">
+                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" marginunit="%" ynumberformat=",r" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].RemainingConcrete },{&quot;Label&quot;:&quot;Installed&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].InstalledConcrete }]);"
+                                        xaxisdatakey="Label" yaxisdatakey="Value" name="chart39"></wm-chart>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn212">
+                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].RemainingConcreteHours },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].EarnedConcreteHours }]);"
+                                        xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart40"></wm-chart>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-tile>
+                        <wm-tile backgroundcolor="#b4e7dc" margin="unset 0% unset .25%" width="12%" name="tile21">
+                            <wm-layoutgrid horizontalalign="center" height="100%" name="layoutgrid30">
+                                <wm-gridrow name="gridrow103">
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn213">
+                                        <wm-label width="100%" caption="Precast" class="text-uppercase h4" textdecoration="underline" margin="unset unset 0em unset" color="#000000" fontweight="bold" name="label99"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow104">
+                                    <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn214">
+                                        <wm-label width="100%" caption="Quantity" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label100"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn215">
+                                        <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label101"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow105">
+                                    <wm-gridcolumn columnwidth="6" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn216">
+                                        <wm-label width="100%" caption="bind:Variables.serviceGetCivilStatsByJob.firstRecord.content[$i].CountPrecast | numberToString: '2'" class="h5" fontweight="bold" margin="0px unset" name="label102"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn217">
+                                        <wm-label width="100%" caption="bind:Variables.serviceGetCivilStatsByJob.firstRecord.content[$i].HoursPrecast | numberToString: '2'" class="h5" fontweight="bold" margin="0px unset" name="label103"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow horizontalalign="center" name="gridrow106">
+                                    <wm-gridcolumn columnwidth="6" paddingunit="%" horizontalalign="center" name="gridcolumn218">
+                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" marginunit="%" ynumberformat=",r" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].RemainingPrecast },{&quot;Label&quot;:&quot;Installed&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].InstalledPrecast }]);"
+                                        xaxisdatakey="Label" yaxisdatakey="Value" name="chart41"></wm-chart>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn219">
+                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].RemainingPrecastHours },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].EarnedPrecastHours }]);"
+                                        xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart42"></wm-chart>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-tile>
+                        <wm-tile backgroundcolor="#b4e7dc" margin="unset 0% unset .25%" width="12%" name="tile22">
+                            <wm-layoutgrid horizontalalign="center" height="100%" name="layoutgrid31">
+                                <wm-gridrow name="gridrow107">
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn220">
+                                        <wm-label width="100%" caption="Anchors" class="text-uppercase h4" textdecoration="underline" margin="unset unset 0em unset" color="#000000" fontweight="bold" name="label104"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow108">
+                                    <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn221">
+                                        <wm-label width="100%" caption="Quantity" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label105"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn222">
+                                        <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label106"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow109">
+                                    <wm-gridcolumn columnwidth="6" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn223">
+                                        <wm-label width="100%" caption="bind:Variables.serviceGetCivilStatsByJob.firstRecord.content[$i].CountAnchor | numberToString: '2'" class="h5" fontweight="bold" margin="0px unset" name="label107"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn224">
+                                        <wm-label width="100%" caption="bind:Variables.serviceGetCivilStatsByJob.firstRecord.content[$i].HoursAnchor | numberToString: '2'" class="h5" fontweight="bold" margin="0px unset" name="label108"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow horizontalalign="center" name="gridrow110">
+                                    <wm-gridcolumn columnwidth="6" paddingunit="%" horizontalalign="center" name="gridcolumn225">
+                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" marginunit="%" ynumberformat=",r" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].RemainingAnchor },{&quot;Label&quot;:&quot;Installed&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].InstalledAnchor }]);"
+                                        xaxisdatakey="Label" yaxisdatakey="Value" name="chart43"></wm-chart>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn226">
+                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].RemainingAnchorHours },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].EarnedAnchorHours }]);"
+                                        xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart44"></wm-chart>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-tile>
+                        <wm-tile backgroundcolor="#b4e7dc" margin="unset 0% unset .25%" width="6.25%" name="tile15">
+                            <wm-layoutgrid horizontalalign="center" height="100%" name="layoutgrid24">
+                                <wm-gridrow name="gridrow79">
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn180">
+                                        <wm-label width="100%" caption="Grout" class="text-uppercase h4" textdecoration="underline" margin="unset unset 0em unset" color="#000000" fontweight="bold" name="label75"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow80">
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn182">
+                                        <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label77"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow81">
+                                    <wm-gridcolumn columnwidth="12" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn184">
+                                        <wm-label width="100%" caption="bind:Variables.serviceGetCivilStatsByJob.firstRecord.content[$i].HoursGrout | numberToString: '2'" class="h5" fontweight="bold" margin="0px unset" name="label79"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow horizontalalign="center" name="gridrow82">
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn186">
+                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].RemainingGrout },{&quot;Label&quot;:&quot;Installed&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].InstalledGrout }]);"
+                                        xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart33"></wm-chart>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-tile>
+                        <wm-tile backgroundcolor="#ddaa66" margin="unset 0% unset .25%" width="6.5%" name="tile23">
+                            <wm-layoutgrid horizontalalign="center" height="100%" name="layoutgrid32">
+                                <wm-gridrow name="gridrow111">
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn227">
+                                        <wm-label width="100%" caption="Misc" class="text-uppercase h4" textdecoration="underline" margin="unset unset 0em unset" color="#000000" fontweight="bold" name="label109"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow112">
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn228">
+                                        <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label110"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow113">
+                                    <wm-gridcolumn columnwidth="12" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn229">
+                                        <wm-label width="100%" caption="bind:Variables.serviceGetCivilStatsByJob.firstRecord.content[$i].HoursMisc | numberToString: '2'" class="h5" fontweight="bold" margin="0px unset" name="label111"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow horizontalalign="center" name="gridrow114">
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn230">
+                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].RemainingMiscHours },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].EarnedMiscHours }]);"
+                                        xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart45"></wm-chart>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-tile>
+                        <wm-tile backgroundcolor="#ff7d7d" margin="unset 0% unset .25%" width="6.5%" name="tile24">
+                            <wm-layoutgrid horizontalalign="center" height="100%" name="layoutgrid33">
+                                <wm-gridrow name="gridrow115">
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn231">
+                                        <wm-label width="100%" caption="Demo" class="text-uppercase h4" textdecoration="underline" margin="unset unset 0em unset" color="#000000" fontweight="bold" name="label112"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow116">
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn232">
+                                        <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label113"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow117">
+                                    <wm-gridcolumn columnwidth="12" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn233">
+                                        <wm-label width="100%" caption="bind:Variables.serviceGetCivilStatsByJob.firstRecord.content[$i].HoursDemo | numberToString: '2'" class="h5" fontweight="bold" margin="0px unset" name="label114"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow horizontalalign="center" name="gridrow118">
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn234">
+                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].RemainingDemoHours },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].EarnedDemoHours }]);"
+                                        xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart46"></wm-chart>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-tile>
+                        <wm-tile backgroundcolor="#2db457" margin="unset 0% unset .25%" width="6.5%" name="tile25" padding="unset 0px">
+                            <wm-layoutgrid horizontalalign="center" height="100%" name="layoutgrid34">
+                                <wm-gridrow name="gridrow119" padding="unset 0px">
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn235" padding="unset 0px">
+                                        <wm-label width="100%" caption="Sell/Punch" class="text-uppercase h4" textdecoration="underline" margin="unset 0em 0em 0em" color="#000000" fontweight="bold" name="label115" padding="unset 0px"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow120">
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn236">
+                                        <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label116"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow121">
+                                    <wm-gridcolumn columnwidth="12" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn237">
+                                        <wm-label width="100%" caption="bind:Variables.serviceGetCivilStatsByJob.firstRecord.content[$i].HoursSellPunch | numberToString: '2'" class="h5" fontweight="bold" margin="0px unset" name="label117"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow horizontalalign="center" name="gridrow122">
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn238">
+                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].RemainingSellPunchHours },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].EarnedSellPunchHours }]);"
+                                        xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart47"></wm-chart>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-tile>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow3">
+                    <wm-gridcolumn columnwidth="9" name="gridcolumn7">
+                        <wm-panel iconclass="wi wi-line-chart" height="450px" collapsible="false" enablefullscreen="true" title="Percent Complete (Civil-Hours)" on-fullscreen="panel1Fullscreen($event, $isolateScope)" on-exitfullscreen="panel1Exitfullscreen($event, $isolateScope)"
+                        name="panel1">
+                            <wm-chart type="Line" title="" iconclass="wi wi-line-chart" height="100%" dataset="bind:Variables.serviceGetCivilPCOT.dataSet[$i].content" xdateformat="%x" yunits="%" ynumberformat=".2f" showlegend="hide" name="chart17" customcolors="#000000"
+                            xaxisdatakey="EarnedDate" yaxisdatakey="TotalPercentComplete"></wm-chart>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn242">
+                        <wm-layoutgrid name="layoutgrid13">
+                            <wm-gridrow name="gridrow43">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn84">
+                                    <wm-chart type="Donut" title="Hours Breakdown (Activity)" iconclass="wi wi-donut-large" dataset="bind:dataTransformer([
+
+{&quot;Label&quot;:&quot;Excavation&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].HoursExcavation },
+
+{&quot;Label&quot;:&quot;Forms&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].HoursForm },
+
+{&quot;Label&quot;:&quot;Rebar&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].HoursRebar },
+
+{&quot;Label&quot;:&quot;Concrete&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.dataSet[0].HoursConcrete },
+
+{&quot;Label&quot;:&quot;Precast&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].HoursPrecast },
+
+{&quot;Label&quot;:&quot;Anchors&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].HoursAnchor },
+
+{&quot;Label&quot;:&quot;Grout&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].HoursGrout },
+
+{&quot;Label&quot;:&quot;Misc&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].HoursMisc },
+
+{&quot;Label&quot;:&quot;Demo&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].HoursDemo },
+
+{&quot;Label&quot;:&quot;Sell/Punch&quot;,&quot;Value&quot;: Variables.serviceGetCivilStatsByJob.firstRecord.content[0].HoursSellPunch }
+
+]);" xaxisdatakey="Label" yaxisdatakey="Value" height="300px" offsettop="25" centerlabel="Activity" name="chart18"></wm-chart>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                            <wm-gridrow name="gridrow44">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn85"></wm-gridcolumn>
+                            </wm-gridrow>
+                        </wm-layoutgrid>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow123">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn239"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn240"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn241"></wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>

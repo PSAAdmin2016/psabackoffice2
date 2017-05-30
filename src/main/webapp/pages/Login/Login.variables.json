@@ -1,0 +1,30 @@
+{
+  "notificationLoginFail" : {
+    "_id" : "wm-notificationLoginFail-wm.NotificationVariable-1472756323229",
+    "name" : "notificationLoginFail",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "list"
+    }, {
+      "target" : "text",
+      "value" : "Username or Password incorrect...",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "3000",
+      "type" : "list"
+    }, {
+      "target" : "class",
+      "value" : "Error",
+      "type" : "list"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "list"
+    } ],
+    "operation" : "toast"
+  }
+}

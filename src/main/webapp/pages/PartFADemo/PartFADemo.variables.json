@@ -1,0 +1,53 @@
+{
+  "serviceUpdateActivity" : {
+    "_id" : "wm-serviceUpdateDemo-wm.ServiceVariable-1476112021382",
+    "name" : "serviceUpdateActivity",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "DrawingNumber",
+      "value" : "bind:Widgets.textDemoDrawing.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "LineNumber",
+      "value" : "bind:Widgets.textDemoLine.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "SheetNumber",
+      "value" : "bind:Widgets.textDemoSheet.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Quantity",
+      "value" : "bind:Widgets.textDemoQuantity.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "Size",
+      "value" : "bind:Widgets.selectDemoSize.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "Notes",
+      "value" : "bind:Widgets.textareaDemoNotes.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "RowID",
+      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityRowId",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "Job1111",
+    "operation" : "executeUpdateDemo",
+    "operationId" : "QueryExecutionController_executeUpdateDemo",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 3,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  }
+}

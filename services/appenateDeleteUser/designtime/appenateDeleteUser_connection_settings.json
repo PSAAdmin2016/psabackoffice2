@@ -1,0 +1,32 @@
+{
+  "authType" : "NONE",
+  "contentType" : "text/xml",
+  "endpointAddress" : "https://secure.appenate.com:443/api/v2/user",
+  "method" : "DELETE",
+  "requestBody" : "",
+  "headers" : { },
+  "queryParams" : {
+    "CompanyId" : "39400",
+    "Id" : "12539820c0eb4e26a9fca63d0107db7b",
+    "IntegrationKey" : "2eb6ded2e17348fdb8fd30bde7222128"
+  },
+  "sampleHttpResponseDetails" : {
+    "responseBody" : "{\"User\":{\"Id\":\"12539820c0eb4e26a9fca63d0107db7b\",\"FirstName\":\"Steven\",\"LastName\":\"Garza\",\"Email\":\"StevenG@noemail.com\",\"Status\":\"Inactive\",\"ExternalId\":\"\",\"WebsiteRole\":\"\",\"CreatedDate\":\"2016-07-08T16:00:40.5130000Z\",\"LastUpdated\":\"2017-01-30T20:37:21.0570000Z\",\"LastActivity\":\"2016-09-26T22:22:54.2470000Z\",\"LocationHistory\":[{\"Timestamp\":\"2016-09-22T22:24:19.5712586Z\",\"Latitude\":29.3771443,\"Longitude\":-94.9072022},{\"Timestamp\":\"2016-09-21T22:27:33.6033849Z\",\"Latitude\":29.3736009,\"Longitude\":-94.9102072},{\"Timestamp\":\"2016-09-19T21:58:13.4560514Z\",\"Latitude\":29.3738249,\"Longitude\":-94.9103117},{\"Timestamp\":\"2016-09-19T12:37:43.8684353Z\",\"Latitude\":29.3773347,\"Longitude\":-94.9070449},{\"Timestamp\":\"2016-09-12T16:46:21.5310964Z\",\"Latitude\":29.3773101,\"Longitude\":-94.9069895},{\"Timestamp\":\"2016-09-12T14:50:47.8812324Z\",\"Latitude\":29.3772813,\"Longitude\":-94.9070887},{\"Timestamp\":\"2016-09-08T11:55:57.0596557Z\",\"Latitude\":29.3772214,\"Longitude\":-94.9071946},{\"Timestamp\":\"2016-09-07T12:16:59.2935512Z\",\"Latitude\":29.3769082,\"Longitude\":-94.9070955},{\"Timestamp\":\"2016-09-06T15:51:47.7587853Z\",\"Latitude\":29.3771368,\"Longitude\":-94.9069797},{\"Timestamp\":\"2016-09-06T15:12:04.8986104Z\",\"Latitude\":29.3772008,\"Longitude\":-94.9070177},{\"Timestamp\":\"2016-09-06T14:40:08.7001583Z\",\"Latitude\":29.377225,\"Longitude\":-94.9070234},{\"Timestamp\":\"2016-08-26T23:01:36.9249775Z\",\"Latitude\":29.3771788,\"Longitude\":-94.9069821},{\"Timestamp\":\"2016-08-26T19:28:45.2700085Z\",\"Latitude\":29.3772031,\"Longitude\":-94.9068636},{\"Timestamp\":\"2016-08-26T19:23:27.5539841Z\",\"Latitude\":29.3771737,\"Longitude\":-94.9069462},{\"Timestamp\":\"2016-08-26T19:18:14.3876541Z\",\"Latitude\":29.3772359,\"Longitude\":-94.9070219},{\"Timestamp\":\"2016-08-26T19:09:47.8295849Z\",\"Latitude\":29.3772092,\"Longitude\":-94.9069471},{\"Timestamp\":\"2016-08-26T18:24:48.3013300Z\",\"Latitude\":29.3772092,\"Longitude\":-94.9069471},{\"Timestamp\":\"2016-08-26T18:14:55.8431632Z\",\"Latitude\":29.3772092,\"Longitude\":-94.9069471},{\"Timestamp\":\"2016-08-26T18:08:40.7271079Z\",\"Latitude\":29.3772092,\"Longitude\":-94.9069471},{\"Timestamp\":\"2016-08-22T20:59:44.7697137Z\",\"Latitude\":29.4128028,\"Longitude\":-95.4271803},{\"Timestamp\":\"2016-08-20T16:16:27.8096874Z\",\"Latitude\":29.3771919,\"Longitude\":-94.906889},{\"Timestamp\":\"2016-08-20T14:41:31.0321010Z\",\"Latitude\":29.3771948,\"Longitude\":-94.9071016},{\"Timestamp\":\"2016-08-20T14:16:46.8487352Z\",\"Latitude\":29.3771824,\"Longitude\":-94.9069906},{\"Timestamp\":\"2016-08-18T17:46:52.6070371Z\",\"Latitude\":29.3771824,\"Longitude\":-94.9069906},{\"Timestamp\":\"2016-08-18T12:17:24.1165322Z\",\"Latitude\":29.3774857,\"Longitude\":-94.9074179},{\"Timestamp\":\"2016-08-17T16:27:44.3369247Z\",\"Latitude\":29.3773808,\"Longitude\":-94.9070942},{\"Timestamp\":\"2016-08-17T15:36:33.3701005Z\",\"Latitude\":29.3775273,\"Longitude\":-94.9074336},{\"Timestamp\":\"2016-08-17T15:19:57.7676035Z\",\"Latitude\":29.3774225,\"Longitude\":-94.9072208},{\"Timestamp\":\"2016-08-16T17:32:26.7995173Z\",\"Latitude\":29.3772467,\"Longitude\":-94.9070185},{\"Timestamp\":\"2016-08-16T14:49:58.5741055Z\",\"Latitude\":29.3773886,\"Longitude\":-94.9071102},{\"Timestamp\":\"2016-07-13T19:32:27.4132667Z\",\"Latitude\":27.8247201,\"Longitude\":-97.2043626},{\"Timestamp\":\"2016-07-13T19:27:13.6636194Z\",\"Latitude\":27.8247201,\"Longitude\":-97.2043626},{\"Timestamp\":\"2016-07-13T19:16:46.7244176Z\",\"Latitude\":27.8238795,\"Longitude\":-97.2043318}],\"UserDevices\":[{\"Id\":\"31383739313234373232363239323466\",\"OS\":\"Android\",\"OSVersion\":\"22\",\"Hardware\":\"Samsung: SM-T280\",\"AppVersion\":\"1.02.4.35\"},{\"Id\":\"38336234643532343163626165616334\",\"OS\":\"Android\",\"OSVersion\":\"21\",\"Hardware\":\"Samsung: SM-S906L\",\"AppVersion\":\"1.02.4.35\"},{\"Id\":\"63633663616362396537633964343139\",\"OS\":\"Android\",\"OSVersion\":\"23\",\"Hardware\":\"Samsung: SM-T710\",\"AppVersion\":\"1.02.4.35\"},{\"Id\":\"63376263326165343532613133363034\",\"OS\":\"Android\",\"OSVersion\":\"23\",\"Hardware\":\"Samsung: SM-T713\",\"AppVersion\":\"1.02.4.35\"},{\"Id\":\"26bded466437420dacb5c3e447cd806f\",\"OS\":\"IOS\",\"OSVersion\":\"7.1.1\",\"Hardware\":\"iPhone6,1|iPhone\",\"AppVersion\":\"1.03.4.35\"},{\"Id\":\"39393665316561356534386266613561\",\"OS\":\"Android\",\"OSVersion\":\"23\",\"Hardware\":\"Samsung: SM-N920V\",\"AppVersion\":\"1.02.4.35\"}],\"Folders\":[\"400b41ddb05943f48ea4a59801040e33\"],\"Groups\":[],\"Metadata\":[{\"Key\":\"JobNumber\"}],\"CompanyId\":39400}}",
+    "convertedResponse" : null,
+    "statusCode" : 200,
+    "headers" : {
+      "X-AspNet-Version" : [ "4.0.30319" ],
+      "Access-Control-Allow-Headers" : [ "Content-Type" ],
+      "Transfer-Encoding" : [ "chunked" ],
+      "Access-Control-Allow-Origin" : [ "*" ],
+      "Date" : [ "Thu, 02 Feb 2017 21:00:38 GMT" ],
+      "Access-Control-Allow-Methods" : [ "GET, POST, PUT, DELETE, OPTIONS" ],
+      "Content-Type" : [ "application/json" ],
+      "Server" : [ "Microsoft-IIS/8.5" ],
+      "X-Powered-By" : [ "ServiceStack/3.971 Win32NT/.NET", "ASP.NET" ],
+      "Cache-Control" : [ "private" ]
+    }
+  },
+  "redirectEnabled" : true,
+  "proxy" : null
+}

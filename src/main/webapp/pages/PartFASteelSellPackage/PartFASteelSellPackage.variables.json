@@ -1,0 +1,37 @@
+{
+  "serviceUpdateActivity" : {
+    "_id" : "wm-serviceUpdateTesting-wm.ServiceVariable-1476111931924",
+    "name" : "serviceUpdateActivity",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "TestPackage",
+      "value" : "bind:Widgets.textTestPackageNumber.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Notes",
+      "value" : "bind:Widgets.textareaNotes.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "RowID",
+      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityRowId",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "Job1111",
+    "operation" : "executeUpdateSteelSellPackage",
+    "operationId" : "QueryExecutionController_executeUpdateSteelSellPackage",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 3,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  }
+}

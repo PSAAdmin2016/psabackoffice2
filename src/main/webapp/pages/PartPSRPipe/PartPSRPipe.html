@@ -1,0 +1,1622 @@
+<wm-partial data-ng-controller="PartPSRPipePageController" name="partial1"> 
+ <wm-layoutgrid name="layoutgrid2" show="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 40 &amp;&amp; $parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 41 &amp;&amp; $parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 42 &amp;&amp; $parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 43"> 
+  <wm-gridrow name="gridrow3"> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn7"> 
+    <wm-button class="btn-default" caption="Return" type="button" hint="Return to Superintendent for further review." show="true" backgroundcolor="#dc0000" iconclass="wi wi-backward" shortcutkey="r" on-click="Widgets.dialogRejection.open()" name="button2"></wm-button> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn13"> 
+    <wm-composite name="composite78_1"> 
+     <wm-container class="col-md-9" name="container94_1" width="80%"> 
+      <wm-switch datavalue="Spool1" name="switchSpool1Spool2" dataset="Spool1,Spool2" show="bind:(Widgets.gridApprovalReview.selecteditem.Sheet1 != Widgets.gridApprovalReview.selecteditem.Sheet2) || (Widgets.gridApprovalReview.selecteditem.Drawing1 != Widgets.gridApprovalReview.selecteditem.Drawing2) || (Widgets.gridApprovalReview.selecteditem.Line1 != Widgets.gridApprovalReview.selecteditem.Line2)" on-change="Variables.serviceGetBidActivityMatches.invoke()" hint="Toggle between sheets if the connection spans 2 Iso's."></wm-switch> 
+     </wm-container> 
+    </wm-composite> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="2" name="gridcolumn198_1" horizontalalign="center"> 
+    <wm-layoutgrid name="layoutgrid32_1"> 
+     <wm-gridrow name="gridrow86_3"> 
+      <wm-gridcolumn columnwidth="6" name="gridcolumn199_1"> 
+       <wm-label caption="Manual Search" fontweight="bold" textdecoration="underline" borderstyle="none" hint="This is the selected activity." name="label227_2" horizontalalign="center"></wm-label> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+     <wm-gridrow name="gridrow87"> 
+      <wm-gridcolumn columnwidth="6" name="gridcolumn202_3"> 
+       <wm-checkbox caption="Toggle" type="toggle" height="10" width="45" datavalue="0" checkedvalue="1" uncheckedvalue="0" name="toggleManualSearch" on-change="toggleManualSearchChange($event, $scope, newVal, oldVal)" hint="Toggle Manual Search On/Off"></wm-checkbox> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="4" name="gridcolumn208_1" horizontalalign="left"> 
+       <wm-button class="btn-default" caption="Search" type="button" name="buttonManualSearch" on-click="Variables.serviceGetBidActivityMatches.invoke()" show="bind:Widgets.toggleManualSearch.datavalue == 1"></wm-button> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+    </wm-layoutgrid> 
+   </wm-gridcolumn> 
+  </wm-gridrow> 
+  <wm-gridrow name="gridrow4" padding=".5% unset unset unset"> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn8_1" horizontalalign="right"> 
+    <wm-label name="label233_1" caption="Filters:" textalign="left" hint="Turn all filters OFF  to see the entire tracker." borderstyle="none" fontsize="18" margin="unset 5% unset unset" padding="1%"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn9_1"> 
+    <wm-checkbox caption="Toggle" type="toggle" height="20" width="45" datavalue="1" checkedvalue="1" uncheckedvalue="0" on-change="Variables.serviceGetBidActivityMatches.invoke()" name="toggleFilterLineNumber" hint="Filter the tracker by the LINE associated with the selected activity." show="bind:Widgets.toggleManualSearch.datavalue == '0'"></wm-checkbox> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="2" name="gridcolumn10"> 
+    <wm-checkbox caption="Toggle" type="toggle" height="20" width="45" datavalue="1" checkedvalue="1" uncheckedvalue="0" name="toggleFilterDrawingNumber" on-change="Variables.serviceGetBidActivityMatches.invoke()" hint="Filter the tracker by the DWG associated with the selected activity." show="bind:Widgets.toggleManualSearch.datavalue == '0'"></wm-checkbox> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn13_1"> 
+    <wm-checkbox caption="Toggle" type="toggle" height="20" width="45" datavalue="1" checkedvalue="1" uncheckedvalue="0" name="toggleFilterSheetNumber" on-change="Variables.serviceGetBidActivityMatches.invoke()" hint="Filter the tracker by the SHEET associated with the selected activity." show="bind:Widgets.toggleManualSearch.datavalue == '0'"></wm-checkbox> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn14_1"> 
+    <wm-checkbox caption="Toggle" type="toggle" height="20" width="45" datavalue="1" checkedvalue="1" uncheckedvalue="0" name="toggleFilterECT" on-change="Variables.serviceGetBidActivityMatches.invoke()" hint="Filter the tracker by E,C,T."></wm-checkbox> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn15"> 
+    <wm-checkbox caption="Toggle" type="toggle" height="20" width="45" datavalue="1" checkedvalue="1" uncheckedvalue="0" name="toggleFilterECTType" on-change="Variables.serviceGetBidActivityMatches.invoke()" hint="Filter the tracker by the TYPE associated with the selected activity."></wm-checkbox> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn196_1"></wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn197_2"></wm-gridcolumn> 
+  </wm-gridrow> 
+  <wm-gridrow name="gridrow68" backgroundcolor="#b1efe4" bordercolor="#a0a0a0" borderstyle="groove" borderwidth="0px 0px 8px 0px" padding="1% 1% unset 1%"> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn161_1"> 
+    <wm-label caption="Field ActivityID" fontweight="bold" textdecoration="underline" name="label221_2" hint="This is the selected activity."></wm-label> 
+    <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID" name="label229_1" hint="This is the selected activity." color="#000000"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn162_2"> 
+    <wm-label caption="Line #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label222_2"></wm-label> 
+    <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Line1" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool1' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0" name="labelLineNumberSpool1" hint="This is the selected activity." color="#000000"></wm-label> 
+    <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Line2" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool2' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0" name="labelLineNumberSpool2" color="#000000"></wm-label> 
+    <wm-text name="textLineNumberSearch" width="95%" datavalue="bind:$parent.Widgets.gridApprovalReview.selecteditem.Line1" placeholder="Enter Line Number" backgroundcolor="#96c6bd" color="#000000" type="text" updateon="default" show="bind:Widgets.toggleManualSearch.datavalue == 1" margin="unset unset unset 0px" textalign="left"></wm-text> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="2" name="gridcolumn163"> 
+    <wm-label caption="Drawing #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label223_2" hint="This is the selected activity."></wm-label> 
+    <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Drawing1" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool1' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0" name="labelDrawingSpool1" hint="This is the selected activity." color="#000000"></wm-label> 
+    <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Drawing2" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool2' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0" name="labelDrawingSpool2" color="#000000"></wm-label> 
+    <wm-text width="95%" datavalue="bind:$parent.Widgets.gridApprovalReview.selecteditem.Drawing1" placeholder="Enter Drawing Number" backgroundcolor="#96c6bd" color="#000000" type="text" updateon="default" show="bind:Widgets.toggleManualSearch.datavalue == 1" margin="unset unset unset 0px" textalign="left" name="textDrawingNumberSearch"></wm-text> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn164"> 
+    <wm-label caption="Sheet #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label224_1" hint="This is the selected activity."></wm-label> 
+    <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Sheet1" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool1' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0" name="label232" hint="This is the selected activity." color="#000000"></wm-label> 
+    <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Sheet2" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool2' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0" name="label238_1" color="#000000"></wm-label> 
+    <wm-text width="95%" datavalue="bind:$parent.Widgets.gridApprovalReview.selecteditem.Sheet1" placeholder="Enter Sheet Number" backgroundcolor="#96c6bd" color="#000000" type="text" updateon="default" show="bind:Widgets.toggleManualSearch.datavalue == 1" margin="unset unset unset 0px" textalign="left" name="textSheetNumberSearch"></wm-text> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn165"> 
+    <wm-label caption="ECT" fontweight="bold" textdecoration="underline" borderstyle="none" name="label225_1" hint="This is the selected activity."></wm-label> 
+    <wm-label width="100%" caption="bind:Variables.staticECT.dataSet.dataValue" name="label233_2" hint="This is the selected activity." color="#000000"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn166"> 
+    <wm-label caption="ECT SubType" fontweight="bold" textdecoration="underline" borderstyle="none" name="label226_1" hint="This is the selected activity."></wm-label> 
+    <wm-label width="100%" caption="bind:Variables.staticECTType.dataSet.dataValue" name="label234" hint="This is the selected activity." color="#000000"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn167"> 
+    <wm-label caption="Size" fontweight="bold" textdecoration="underline" borderstyle="none" name="label227_1" hint="This is the selected activity."></wm-label> 
+    <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Size" show="true" name="label235" hint="This is the selected activity." color="#000000"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="2" name="gridcolumn168"> 
+    <wm-label caption="Submitted Notes" fontweight="bold" textdecoration="underline" borderstyle="none" name="label238_2" hint="Notes entered by the Foreman during field activity input."></wm-label> 
+    <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Notes" readonlygrid="true" show="true" name="label240_2" hint="This is the selected activity." color="#000000"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="2" name="gridcolumn169" padding="unset 0px"> 
+    <wm-layoutgrid name="layoutgrid37"> 
+     <wm-gridrow name="gridrow98" padding="unset 0px"> 
+      <wm-gridcolumn columnwidth="3" name="gridcolumn243_1" padding="unset 0px"> 
+       <wm-label width="100%" caption="Notes" show="bind:$parent.Variables.serviceGetNoteCount.dataSet.content[$i].NoteCount > 0" name="label237_2" fontweight="bold" textdecoration="underline" padding="unset 0px" margin="unset 0px" hint="Notes added during the Supervisor &amp; Project Services Review Process"></wm-label> 
+       <wm-button class="btn-default" caption="View" type="button" show="bind:$parent.Variables.serviceGetNoteCount.dataSet.content[$i].NoteCount > 0" backgroundcolor="#e7dd51" marginunit="%" on-click="buttonReviewNotesClick($event, $scope)" name="buttonReviewNotes" iconclass="glyphicon glyphicon-list-alt" hint="Review notes from the Superintendent." width="95%" margin="unset unset 2% unset"></wm-button> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="4" name="gridcolumn244"> 
+       <wm-button class="btn-raised" caption="Research" type="button" margin="22% unset unset unset" backgroundcolor="#40E0D0" hint="Jump to Classic Tracker, Filtered to This Dwg, Sheet, ECT, &amp; ECT SubType" accessroles="Everyone" name="Research" width="95%" on-click="ResearchClick($event, $scope)"></wm-button> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="4" name="gridcolumn247_1"> 
+       <wm-button class="btn-default" caption="Details" type="button" name="buttonDetail1" backgroundcolor="#5fb4ff" opacity="1" width="95%" iconclass="glyphicon glyphicon-asterisk" on-click="buttonDetail1Click($event, $scope);Widgets.dialogPSAActivityDetails.open()" cursor="default" margin="22% unset unset unset" hint="View details submitted by foreman for the selected activity."></wm-button> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+    </wm-layoutgrid> 
+   </wm-gridcolumn> 
+  </wm-gridrow> 
+  <wm-gridrow name="gridrow6_1"> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn14_2"> 
+    <wm-label name="label234_1" caption="Bid Matches:" fontweight="bold" fontstyle="italic" fontsize="18" textdecoration="underline" margin="unset unset unset 0%" hint="Tracker entries which match the selected activity."></wm-label> 
+   </wm-gridcolumn> 
+  </wm-gridrow> 
+  <wm-gridrow name="gridrow7" padding=".5% 1% unset 1%"> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn125_2"> 
+    <wm-label caption="Bid ActivityID" fontweight="bold" textdecoration="underline" borderstyle="none" name="label152"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn126_1"> 
+    <wm-label caption="Line #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label146"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="2" name="gridcolumn127_1"> 
+    <wm-label caption="Drawing #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label147"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn128_1"> 
+    <wm-label caption="Sheet #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label148"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn129_2"> 
+    <wm-label caption="ECT" fontweight="bold" textdecoration="underline" borderstyle="none" name="label149"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn130"> 
+    <wm-label caption="ECT SubType" fontweight="bold" textdecoration="underline" borderstyle="none" name="label150"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="3" name="gridcolumn131_1"> 
+    <wm-label caption="Description" fontweight="bold" textdecoration="underline" borderstyle="none" name="label151"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn160"> 
+    <wm-label caption="Remaining Quantity" fontweight="bold" textdecoration="underline" borderstyle="none" name="label215"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn132_2"></wm-gridcolumn> 
+  </wm-gridrow> 
+  <wm-gridrow name="gridrow11"> 
+   <wm-gridcolumn columnwidth="12" name="gridcolumn42"> 
+    <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" dataset="bind:Variables.serviceGetBidActivityMatches.dataSet" name="livelistBidActivities" itemsperrow="1" readonlygrid="true" selectionlimit="1" selectfirstitem="true" enablereorder="true" margin="unset 0%" padding="unset 0%"> 
+     <wm-listtemplate layout="blank" name="listtemplate2"> 
+      <wm-container class="blank" data-template-ctr="true" name="container98_1" margin="unset 0%" padding="unset 0%"> 
+       <wm-layoutgrid class="gridlayout" name="layoutgrid33" margin="unset 0%" padding="unset 0px"></wm-layoutgrid> 
+       <wm-gridrow name="gridrow8" padding="unset 0%"> 
+        <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn118" padding="unset unset unset 0%"> 
+         <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatches.dataSet[$i].BidID" name="labelBidActivityId" readonlygrid="true" margin="unset unset unset 0%" padding="unset unset unset 0%"></wm-label> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn119"> 
+         <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatches.dataSet[$i].LineNumber" name="labelBidCU" readonlygrid="true"></wm-label> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn class="col-xs-6" columnwidth="2" name="gridcolumn120"> 
+         <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatches.dataSet[$i].EngDrawingNumber" name="labelBidLineNumber" readonlygrid="true"></wm-label> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn121"> 
+         <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatches.dataSet[$i].SheetNumber" name="labelBidSheetNumber"></wm-label> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn122"> 
+         <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatches.dataSet[$i].ECT" name="labelBidECT" readonlygrid="true"></wm-label> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn123_1"> 
+         <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatches.dataSet[$i].PipingActivityType" name="labelBidECTType"></wm-label> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn class="col-xs-6" columnwidth="3" name="gridcolumn124_1"> 
+         <wm-label width="100%" caption="bind:(Variables.serviceGetBidActivityMatches.dataSet[$i].ComponentNumber != '0') ? Variables.serviceGetBidActivityMatches.dataSet[$i].Description + ' - ' + Variables.serviceGetBidActivityMatches.dataSet[$i].ComponentNumber : Variables.serviceGetBidActivityMatches.dataSet[$i].Description" name="labelBidDescription"></wm-label> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="1" name="gridcolumn159_1"> 
+         <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatches.dataSet[$i].RemainingQuant" name="labelQuantRemaining"></wm-label> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="1" name="gridcolumn122_1" horizontalalign="right" padding="unset 0%"> 
+         <wm-button class="btn-default" caption="Assign" type="button" hint="Assign the selected activity to this line in the tracker." on-click="Variables.serviceLockSSActivity.invoke()" readonlygrid="true" tabindex="1" show="bind:Variables.serviceGetBidActivityMatches.dataSet[$i].ECT == Variables.staticECT.dataSet.dataValue 
+
+
+
+&amp;&amp; 
+
+
+
+Variables.serviceGetBidActivityMatches.dataSet[$i].PipingActivityType == Variables.staticECTType.dataSet.dataValue 
+
+
+
+|| 
+
+
+
+Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" iconclass="glyphicon glyphicon-ok-sign" disabled="false" name="buttonAssign" width="50%" padding="unset 1%"></wm-button> 
+         <wm-button class="btn-default" caption="Details" type="button" name="buttonDetail2" iconclass="glyphicon glyphicon-asterisk" width="50%" backgroundcolor="#5fb4ff" borderstyle="outset" opacity="0.8" on-click="Widgets.dialogBidActivityDetails.open()" margin="unset 0% unset unset" padding="unset 1%" hint="View the tracker details for this line item."></wm-button> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+      </wm-container> 
+     </wm-listtemplate> 
+    </wm-livelist> 
+   </wm-gridcolumn> 
+  </wm-gridrow> 
+ </wm-layoutgrid> 
+ <wm-layoutgrid name="layoutgrid3" show="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 40 || $parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41 || $parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42 || $parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43"> 
+  <wm-gridrow name="gridrow87_2"> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn201_3"> 
+    <wm-button class="btn-default" caption="Return" type="button" hint="Return to Superintendent for further review." show="true" backgroundcolor="#dc0000" iconclass="wi wi-backward" shortcutkey="r" on-click="Widgets.dialogRejection.open()" name="button24_1" margin="unset unset 20% unset"></wm-button> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn232"> 
+    <wm-button class="btn-default" caption="Assign" type="button" hint="Assign the selected activity to all items that are part of this Test Package" on-click="buttonAssign2Click($event, $scope)" readonlygrid="true" tabindex="1" show="true" backgroundcolor="#0B9642" iconclass="glyphicon glyphicon-ok-sign" disabled="false" width="50%" padding="unset 1%" name="buttonAssign2"></wm-button> 
+   </wm-gridcolumn> 
+  </wm-gridrow> 
+  <wm-gridrow name="gridrow90_2"> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn208_3" horizontalalign="right"> 
+    <wm-label caption="Filters:" textalign="left" hint="Turn all filters OFF  to see the entire tracker." borderstyle="none" fontsize="18" margin="unset 5% unset unset" padding="1%" name="label234_2"></wm-label> 
+   </wm-gridcolumn> 
+  </wm-gridrow> 
+  <wm-gridrow name="gridrow88_2" backgroundcolor="#b1efe4" padding="1% 1% unset 1%"> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn204_1"> 
+    <wm-label caption="Field ActivityID" fontweight="bold" textdecoration="underline" hint="This is the selected activity." name="label230_1"></wm-label> 
+    <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID" hint="This is the selected activity." color="#000000" name="label231_1"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn205_2"> 
+    <wm-label caption="Test Package" fontweight="bold" textdecoration="underline" borderstyle="none" name="label232_1"></wm-label> 
+    <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Line1" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool1' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0" hint="This is the selected activity." color="#000000" name="label233_3"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn232_1"> 
+    <wm-label caption="Testing Activity" fontweight="bold" textdecoration="underline" borderstyle="none" name="label259_3"></wm-label> 
+    <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityTypeName" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool1' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0" hint="This is the selected activity." color="#000000" name="label260_2"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="2" name="gridcolumn215_1" padding="unset unset unset 0px"> 
+    <wm-label caption="Notes" fontweight="bold" textdecoration="underline" borderstyle="none" name="label237_3"></wm-label> 
+    <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Notes" readonlygrid="true" show="true" hint="This is the selected activity." color="#000000" name="label258_4"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="6" name="gridcolumn212"> 
+    <wm-label name="labelMatchCount" caption="bind:Variables.serviceGetBidActivityMatchesByTestPackage.count()"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn213"> 
+    <wm-label width="100%" caption="Review Notes" show="bind:$parent.Variables.serviceGetNoteCount.dataSet.content[$i].NoteCount > 0" fontweight="bold" textdecoration="underline" name="label236"></wm-label> 
+    <wm-button class="btn-default" caption="View" type="button" show="bind:$parent.Variables.serviceGetNoteCount.dataSet.content[$i].NoteCount > 0" backgroundcolor="#e7dd51" marginunit="%" on-click="buttonReviewNotesClick($event, $scope);Widgets.dialogNotes.open()" iconclass="glyphicon glyphicon-list-alt" hint="Review notes from the Superintendent." name="button25_1"></wm-button> 
+   </wm-gridcolumn> 
+  </wm-gridrow> 
+  <wm-gridrow name="gridrow89_1"> 
+   <wm-gridcolumn columnwidth="2" name="gridcolumn207"> 
+    <wm-label caption="Test Package Bid Items:" fontweight="bold" fontstyle="italic" fontsize="18" textdecoration="underline" margin="unset unset unset 0%" hint="Tracker entries which match the selected activity." name="label235_1"></wm-label> 
+   </wm-gridcolumn> 
+  </wm-gridrow> 
+  <wm-gridrow name="gridrow91_1"> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn210"> 
+    <wm-label caption="Bid ActivityID" fontweight="bold" textdecoration="underline" borderstyle="none" name="label239_3"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn212_1"> 
+    <wm-label caption="Line #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label240_3"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn213_1"> 
+    <wm-label caption="Drawing #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label241_2"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn214_2"> 
+    <wm-label caption="Sheet #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label242_2"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn215_2"> 
+    <wm-label caption="ECT" fontweight="bold" textdecoration="underline" borderstyle="none" name="label243_1"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn216_1"> 
+    <wm-label caption="ECT Type" fontweight="bold" textdecoration="underline" borderstyle="none" name="label244_1"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="3" name="gridcolumn217_1"> 
+    <wm-label caption="Description" fontweight="bold" textdecoration="underline" borderstyle="none" name="label245_1"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn218"> 
+    <wm-label caption="Remaining Ready For Testing" fontweight="bold" textdecoration="underline" borderstyle="none" name="label246_1"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn219_1"> 
+    <wm-label caption="Remaining Hydro" fontweight="bold" textdecoration="underline" borderstyle="none" name="label247_1"></wm-label> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="1" name="gridcolumn220_1"> 
+    <wm-label caption="Remaining Client Turnover" fontweight="bold" textdecoration="underline" borderstyle="none" name="label248"></wm-label> 
+   </wm-gridcolumn> 
+  </wm-gridrow> 
+  <wm-gridrow name="gridrow92_2"> 
+   <wm-gridcolumn columnwidth="12" name="gridcolumn211"> 
+    <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" dataset="bind:Variables.serviceGetBidActivityMatchesByTestPackage.dataSet" itemsperrow="1" readonlygrid="true" selectionlimit="1" selectfirstitem="true" enablereorder="true" margin="unset 0%" padding="unset 0%" name="livelist3" datafield="All Fields"> 
+     <wm-listtemplate layout="blank" name="listtemplate3"> 
+      <wm-container class="blank" data-template-ctr="true" margin="unset 0%" padding="unset 0%" name="container108"> 
+       <wm-layoutgrid class="gridlayout" margin="unset 0%" padding="unset 0px" name="layoutgrid35"></wm-layoutgrid> 
+       <wm-gridrow padding="unset 0%" name="gridrow93_2"> 
+        <wm-gridcolumn class="col-xs-6" columnwidth="1" padding="unset unset unset 0%" name="gridcolumn221"> 
+         <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatchesByTestPackage.dataSet[$i].BidID" readonlygrid="true" margin="unset unset unset 0%" padding="unset unset unset 0%" name="label249_1"></wm-label> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn222"> 
+         <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatchesByTestPackage.dataSet[$i].LineNumber" readonlygrid="true" name="label250"></wm-label> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn223"> 
+         <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatchesByTestPackage.dataSet[$i].EngDrawingNumber" readonlygrid="true" name="label251_1"></wm-label> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn224"> 
+         <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatchesByTestPackage.dataSet[$i].SheetNumber" name="label252_1"></wm-label> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn225_1"> 
+         <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatchesByTestPackage.dataSet[$i].ECT" readonlygrid="true" name="label253_1"></wm-label> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn226_2"> 
+         <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatchesByTestPackage.dataSet[$i].PipingActivityType" name="label254_1"></wm-label> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn class="col-xs-6" columnwidth="3" name="gridcolumn227_1"> 
+         <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatchesByTestPackage.dataSet[$i].Description" name="label255_2"></wm-label> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="1" name="gridcolumn228_1"> 
+         <wm-label width="100%" caption="bind:1 - Variables.serviceGetBidActivityMatchesByTestPackage.dataSet[$i].ReadyForTestingInstalled | toNumber: '2'" name="label256_3"></wm-label> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="1" name="gridcolumn230_1"> 
+         <wm-label width="100%" caption="bind:1 - Variables.serviceGetBidActivityMatchesByTestPackage.dataSet[$i].HydroInstalled | toNumber: '2'" name="label257_1"></wm-label> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="1" name="gridcolumn231_1"> 
+         <wm-label width="100%" caption="bind:1 - Variables.serviceGetBidActivityMatchesByTestPackage.dataSet[$i].ClientTurnoverInstalled | toNumber: '2'" name="label258_3"></wm-label> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+      </wm-container> 
+     </wm-listtemplate> 
+    </wm-livelist> 
+   </wm-gridcolumn> 
+  </wm-gridrow> 
+ </wm-layoutgrid> 
+ <wm-view class="dialog-view" name="viewAssignQuantities" show="false"> 
+  <wm-dialog dialogtype="design-dialog" modal="true" name="dialogAssignQuantities" tabindex="1" closable="true" animation="zoomInUp" width="30%" on-close="Variables.serviceUnLockSSActivity.invoke();dialogAssignQuantitiesClose($event, $scope)" title="Update Quantities" iconclass="glyphicon glyphicon-edit" on-opened="dialogAssignQuantitiesOpened($event, $scope)"> 
+   <wm-form class="app-dialog-form" name="formQuantities" show="true"> 
+    <wm-layoutgrid name="layoutgrid34"> 
+     <wm-gridrow name="gridrow67"> 
+      <wm-gridcolumn columnwidth="3" name="gridcolumn157_1"> 
+       <wm-label name="label213_2" width="100%" caption="Pending Activity" fontweight="bold" fontsize="14"></wm-label> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="8" name="gridcolumn162_1" horizontalalign="center"> 
+       <wm-label caption="Current Quantity" fontweight="bold" fontsize="14" name="label214_1" hint="All Quantities, and percentages are BEFORE this pending activity is added." margin="unset unset 0px unset"></wm-label> 
+       <wm-label name="label241" width="100%" caption="(Mech. hrs. Only)" hint="No Testing Hours Included" fontsize="10" textalign="center" margin="0px unset unset unset"></wm-label> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+     <wm-gridrow name="gridrow52_1" paddingunit="%" padding="unset unset 0px unset"> 
+      <wm-gridcolumn columnwidth="3" name="gridcolumn121_2" borderstyle="solid" borderwidth="5px 5px unset 5px" padding="2% unset 1% 1%" height="90px"> 
+       <wm-composite name="composite109_1" captionposition="top" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 10 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 11" margin="0px unset"> 
+        <wm-label class="col-md-3" name="label132_1" caption="Footage Installed" hint="The amount installed by this activity" fontweight="bold"></wm-label> 
+       </wm-composite> 
+       <wm-composite captionposition="top" name="composite114" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 21" margin="0px unset"> 
+        <wm-label class="col-md-3" caption="BoltUps Made" hint="The amount installed by this activity" name="label160" fontweight="bold"></wm-label> 
+       </wm-composite> 
+       <wm-composite captionposition="top" name="composite117" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22" margin="0px unset"> 
+        <wm-label class="col-md-3" caption="Weld Completed" hint="The amount installed by this activity" name="label163" fontweight="bold"></wm-label> 
+       </wm-composite> 
+       <wm-composite captionposition="top" name="composite120" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 30 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 31 ||$parent. $parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 33 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 34 || $parent.$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 35 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 39 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 91" margin="0px unset"> 
+        <wm-label class="col-md-3" caption="Activities Completed" hint="The amount installed by this activity" name="label166" fontweight="bold"></wm-label> 
+       </wm-composite> 
+       <wm-composite captionposition="top" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 32" name="composite181" margin="0px unset"> 
+        <wm-label class="col-md-3" caption="Supports Completed" hint="The amount installed by this activity" name="label285_1" fontweight="bold"></wm-label> 
+       </wm-composite> 
+       <wm-composite captionposition="top" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 51 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 52 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 53 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 59" margin="0px unset" name="composite79_1"> 
+        <wm-label class="col-md-3" caption="Demo Completed" hint="The amount installed by this activity" fontweight="bold" name="label204_1"></wm-label> 
+       </wm-composite> 
+       <wm-composite captionposition="top" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 23" margin="0px unset" name="composite92_1"> 
+        <wm-label class="col-md-3" caption="Cuts Completed" hint="The amount installed by this activity" fontweight="bold" name="label220_3"></wm-label> 
+       </wm-composite> 
+       <wm-text name="textInstalled" hint="The amount installed by this activity" datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.Quantity" type="number" updateon="default" backgroundcolor="#b1efe4" readonly="true" width="80%" disabled="false" placeholder="Enter Quantity" scopedatavalue="textInstalled" margin="unset unset 0px unset" color="#000000"></wm-text> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="9" name="gridcolumn122_2" padding="0% unset"> 
+       <wm-container name="container120" borderstyle="solid" borderwidth="5px 5px 0px 5px" padding="3% unset unset 4%" margin="0% unset 0% 1%" height="90px" bordercolor="#c1c1c1"> 
+        <wm-layoutgrid name="layoutgrid35_1"> 
+         <wm-gridrow name="gridrow93_3"> 
+          <wm-gridcolumn columnwidth="6" name="gridcolumn224_1"> 
+           <wm-composite name="composite110" captionposition="top" margin="unset unset 0px unset"> 
+            <wm-label class="col-md-3" name="label133_2" caption="Estimated Quantity" fontweight="bold"></wm-label> 
+            <wm-container class="col-md-9" name="container105_1"> 
+             <wm-label name="label289" caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity   | toNumber"></wm-label> 
+            </wm-container> 
+           </wm-composite> 
+          </wm-gridcolumn> 
+          <wm-gridcolumn columnwidth="6" name="gridcolumn225_4"> 
+           <wm-composite name="composite111" captionposition="top"> 
+            <wm-label class="col-md-3" name="label134_1" caption="Remaining Quantity" hint="Remaining quantity BEFORE pending activity is added" fontweight="bold"></wm-label> 
+            <wm-container class="col-md-9" name="container106" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 10 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 11"> 
+             <wm-label name="labelErectionRemaining" caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityLFInstalled.dataSet[$i].Total | toNumber: '2'
+" hint="Remaining quantity BEFORE pending activity is added"></wm-label> 
+            </wm-container> 
+            <wm-container class="col-md-9" name="container176" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 21"> 
+             <wm-label name="labelBoltUpsRemaining" caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityBoltUpInstalled.dataSet[$i].Total | toNumber" hint="Remaining quantity BEFORE pending activity is added"></wm-label> 
+            </wm-container> 
+            <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22" name="container177_1"> 
+             <wm-label name="labelWeldsRemaining" caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityWeldInstalled.dataSet[$i].Total | toNumber: '2'" hint="Remaining quantity BEFORE pending activity is added"></wm-label> 
+            </wm-container> 
+            <wm-container class="col-md-9" show="false" name="container178"> 
+             <wm-text tabindex="1" readonly="true" hint="Remaining quantity BEFORE pending activity is added" type="number" datavalue="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityLFInstalled.dataSet[$i].Total" name="text126"></wm-text> 
+            </wm-container> 
+            <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 30 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 31 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 33 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 34 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 35 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 39" name="container191"> 
+             <wm-label name="labelTrimRemaining" caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityTrimInstalled.dataSet[$i].Total | toNumber" hint="Remaining quantity BEFORE pending activity is added"></wm-label> 
+            </wm-container> 
+            <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 32" name="container186"> 
+             <wm-label name="labelSupportsRemaining" caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantitySupportsInstalled.dataSet[$i].Total | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"></wm-label> 
+            </wm-container> 
+            <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 51 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 52 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 53 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 59" name="container87"> 
+             <wm-label caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityDemoRem.dataSet[$i].Total | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added" name="labelDemoRemaining"></wm-label> 
+            </wm-container> 
+            <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 23" name="container101_1"> 
+             <wm-label caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityCutPrepInstalled.dataSet[$i].Total | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added" name="labelCutPrepRemaining"></wm-label> 
+            </wm-container> 
+            <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 91" name="container104_1"> 
+             <wm-label caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityMiscInstalled.dataSet[$i].Total | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added" name="labelMiscRemaining"></wm-label> 
+            </wm-container> 
+           </wm-composite> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+        </wm-layoutgrid> 
+       </wm-container> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+     <wm-gridrow name="gridrow53" padding="0px unset unset unset"> 
+      <wm-gridcolumn columnwidth="3" name="gridcolumn124_2" borderstyle="solid" borderwidth="unset 5px 5px 5px" padding="unset unset 1% 1%"> 
+       <wm-composite name="composite183" captionposition="top" margin="unset unset 0px unset"> 
+        <wm-label class="col-md-3 control-label" name="label236_1" caption="Hour Value" fontweight="bold"></wm-label> 
+       </wm-composite> 
+       <wm-container class="col-md-9" name="containerErectionHrsEarned" show="true"> 
+        <wm-text hint="The hours to be earned by this activity" datavalue="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity * textInstalled | toNumber: '2'" type="number" updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" name="textHrsEarned" color="#000000"></wm-text> 
+       </wm-container> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="9" name="gridcolumn125_1" padding="0% unset 1% unset"> 
+       <wm-container name="container121_2" margin="0% unset unset 1%" borderwidth="0px 5px 5px 5px" borderstyle="solid" padding="unset unset unset 4%" bordercolor="#c1c1c1"> 
+        <wm-layoutgrid name="layoutgrid36"> 
+         <wm-gridrow name="gridrow94_2"> 
+          <wm-gridcolumn columnwidth="6" name="gridcolumn225_5"> 
+           <wm-composite name="composite182" captionposition="top"> 
+            <wm-label class="col-md-3 control-label" name="label235_2" caption="Estimated Hours" hint="Estimated man hours for this Bid Activity MINUS Hydro" fontweight="bold"></wm-label> 
+            <wm-container class="col-md-9" name="container174_1"> 
+             <wm-label caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelTotalHours"></wm-label> 
+            </wm-container> 
+           </wm-composite> 
+          </wm-gridcolumn> 
+          <wm-gridcolumn columnwidth="6" name="gridcolumn226_3"> 
+           <wm-composite name="composite184_1" captionposition="top"> 
+            <wm-label class="col-md-3 control-label" name="label237_1" caption="Remaining Hours" hint="Remaining hours BEFORE current activity is added" fontweight="bold"></wm-label> 
+            <wm-container class="col-md-9" name="container176_1" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 10 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 11" height="20px"> 
+             <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity) * (Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityLFInstalled.dataSet[$i].Total) | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelErectionHoursRemaining"></wm-label> 
+            </wm-container> 
+            <wm-container class="col-md-9" name="container179_1" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 21" height="20px"> 
+             <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours  / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity) * (Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityBoltUpInstalled.dataSet[$i].Total) | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelBoltUpHoursRemaining"></wm-label> 
+            </wm-container> 
+            <wm-container class="col-md-9" name="container181_1" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22" height="20px"> 
+             <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity) * (Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityWeldInstalled.dataSet[$i].Total) | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelWeldHoursRemaining"></wm-label> 
+            </wm-container> 
+            <wm-container class="col-md-9" name="container182_1" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 30 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 31 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 33 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 34 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 35 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 39" height="20px"> 
+             <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity) * (Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityTrimInstalled.dataSet[$i].Total) | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelTrimHoursRemaining"></wm-label> 
+            </wm-container> 
+            <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 32" name="container188" height="20px"> 
+             <wm-label name="labelSupportHoursRemaining" caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity) * (Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantitySupportsInstalled.dataSet[$i].Total) | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added"></wm-label> 
+            </wm-container> 
+            <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 51 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 52 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 53 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 59" name="container88" height="20px"> 
+             <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity) * (Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityDemoRem.dataSet[$i].Total) | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelDemoHoursRemaining"></wm-label> 
+            </wm-container> 
+            <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 23" name="container102_1" height="20px"> 
+             <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity) * (Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityCutPrepInstalled.dataSet[$i].Total) | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelCutHoursRemaining"></wm-label> 
+            </wm-container> 
+            <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 91" name="container105_2" height="20px"> 
+             <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity) * (Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityMiscInstalled.dataSet[$i].Total) | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelMiscHoursRemaining"></wm-label> 
+            </wm-container> 
+           </wm-composite> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+        </wm-layoutgrid> 
+       </wm-container> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+     <wm-gridrow name="gridrow54" horizontalalign="right"> 
+      <wm-gridcolumn columnwidth="3" name="gridcolumn129_1" horizontalalign="right"></wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="4" name="gridcolumn201_1"></wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="4" name="gridcolumn202_1"> 
+       <wm-composite name="composite186_1" captionposition="top" horizontalalign="left"> 
+        <wm-label class="col-md-3 control-label" caption="Percent Complete" textalign="left" hint="Percent complete BEFORE current activity is added" fontweight="bold" name="label288" color="#000000"></wm-label> 
+        <wm-container class="col-md-9" name="container178_1" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 10 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 11"> 
+         <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity * Variables.serviceGetQuantityLFInstalled.dataSet[$i].Total) / (Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours) * 100 | toNumber: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added" name="labelErectionPercentComplete"></wm-label> 
+        </wm-container> 
+        <wm-container class="col-md-9" horizontalalign="left" name="container183" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 21"> 
+         <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity * Variables.serviceGetQuantityBoltUpInstalled.dataSet[$i].Total) / (Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours) * 100 | toNumber: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added" name="labelBoltUpPercentComplete"></wm-label> 
+        </wm-container> 
+        <wm-container class="col-md-9" horizontalalign="left" name="container184" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22"> 
+         <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity * Variables.serviceGetQuantityWeldInstalled.dataSet[$i].Total) / (Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours) * 100 | toNumber: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added" name="labelWeldPercentComplete"></wm-label> 
+        </wm-container> 
+        <wm-container class="col-md-9" horizontalalign="left" name="container185" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 30 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 31 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 33 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 34 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 35 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 39"> 
+         <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity * Variables.serviceGetQuantityTrimInstalled.dataSet[$i].Total) / (Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours) * 100 | toNumber: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added" name="labelTrimPercentComplete"></wm-label> 
+        </wm-container> 
+        <wm-container class="col-md-9" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 32" name="container189"> 
+         <wm-label name="labelSupportsPercentComplete" caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours  / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity * Variables.serviceGetQuantitySupportsInstalled.dataSet[$i].Total) / (Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours ) * 100 | toNumber: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added"></wm-label> 
+        </wm-container> 
+        <wm-container class="col-md-9" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 51 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 52 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 53 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 59" name="container89"> 
+         <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours  / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity * Variables.serviceGetQuantityDemoRem.dataSet[$i].Total) / (Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours) * 100 | toNumber: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added" name="labelDemoPercentComplete"></wm-label> 
+        </wm-container> 
+        <wm-container class="col-md-9" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 23" name="container103_1"> 
+         <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity * Variables.serviceGetQuantityCutPrepInstalled.dataSet[$i].Total) / (Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours ) * 100 | toNumber: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added" name="labelCutPercentComplete"></wm-label> 
+        </wm-container> 
+        <wm-container class="col-md-9" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 91" name="container106_1"> 
+         <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity * Variables.serviceGetQuantityMiscInstalled.dataSet[$i].Total) / (Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours) * 100 | toNumber: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added" name="labelMiscPercentComplete"></wm-label> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+    </wm-layoutgrid> 
+   </wm-form> 
+   <wm-dialogactions name="dialogactions1"> 
+    <wm-button class="btn-default" caption="Reject" type="button" show="true" backgroundcolor="#dc0000" iconclass="glyphicon glyphicon-thumbs-down" shortcutkey="r" on-click="Widgets.dialogRejection.open()" name="buttonRejectQuantity" hint="Return to Superintendent for further review."></wm-button> 
+    <wm-button class="btn-secondary" caption="Cancel" on-click="Widgets.dialogAssignQuantities.close();Variables.serviceUnLockSSActivity.invoke();buttonDialogAssignCancelClick($event, $scope)" name="buttonDialogAssignCancel" tabindex="1"></wm-button> 
+    <wm-button class="btn-primary" caption="Update" name="buttonQuantitiesUpdate" type="button" on-click="buttonQuantitiesUpdateClick($event, $scope);Widgets.dialogAssignQuantities.close();Variables.serviceUnLockSSActivity.invoke()" hint="Commit this entry to the tracker."></wm-button> 
+   </wm-dialogactions> 
+  </wm-dialog> 
+ </wm-view> 
+ <wm-view class="dialog-view" name="viewAssignTestingQuantities" show="false"> 
+  <wm-dialog dialogtype="design-dialog" modal="true" name="dialogAssignTestingQuantities" tabindex="1" closable="true" animation="zoomInUp" width="30%" on-close="Variables.serviceUnLockSSActivity.invoke()" title="bind:'Update Quantities, Test Package: ' + $parent.Widgets.gridApprovalReview.selecteditem.Line1" iconclass="glyphicon glyphicon-edit" on-opened="dialogAssignTestingQuantitiesOpened($event, $scope)"> 
+   <wm-form class="app-dialog-form" name="formQuantities" show="true"> 
+    <wm-layoutgrid name="layoutgrid34"> 
+     <wm-gridrow name="gridrow67"> 
+      <wm-gridcolumn columnwidth="3" name="gridcolumn157_1"> 
+       <wm-label name="label213_2" width="100%" caption="Ready for Testing Activity" fontweight="bold" fontsize="14" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41"></wm-label> 
+       <wm-label width="100%" caption="Hydro Activity" fontweight="bold" fontsize="14" name="label324" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42"></wm-label> 
+       <wm-label width="100%" caption="Client Turnover Activity" fontweight="bold" fontsize="14" name="label325" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43"></wm-label> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="8" name="gridcolumn162_1" horizontalalign="center"> 
+       <wm-label caption="Current Quantity" fontweight="bold" fontsize="14" name="label214_1" hint="All Totals/Quantities, And percentages are BEFORE the current activity is added." margin="unset unset 0px unset"></wm-label> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+     <wm-gridrow name="gridrow52_1" paddingunit="%"> 
+      <wm-gridcolumn columnwidth="4" name="gridcolumn121_2" borderstyle="solid" borderwidth="5px 5px unset 5px" padding="2% unset 1% 1%"> 
+       <wm-composite name="composite109_1" captionposition="top" show="true" margin="0px unset"> 
+        <wm-label class="col-md-3" caption="Bid Items claimed" hint="The amount installed by this current Activity" fontweight="bold" name="label311"></wm-label> 
+       </wm-composite> 
+       <wm-text name="textInstalled" hint="The amount installed by this current Activity" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ItemsTotal" type="number" updateon="default" backgroundcolor="#b1efe4" readonly="bind:Widgets.gridApprovalReview.selecteditem.ActivityType != 22 || Widgets.gridApprovalReview.selecteditem.ActivityType == 32" width="80%" disabled="false" placeholder="Enter Quantity" scopedatavalue="textInstalled" margin="unset unset 0px unset" color="#000000"></wm-text> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="4" name="gridcolumn122_2" padding="2% unset 1% 5%"></wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="4" name="gridcolumn123_2" padding="2% unset 1% unset"> 
+       <wm-composite name="composite111" captionposition="top"> 
+        <wm-label class="col-md-3" name="label134_1" caption="Bid Items Remaining" hint="Remaining quantity BEFORE current activity is added" fontweight="bold"></wm-label> 
+        <wm-container class="col-md-9" name="container106" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41"> 
+         <wm-label name="labelRfTRemaining" caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ItemsTotal - Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ReadyForTestingInstalled" hint="Remaining quantity BEFORE current activity is added"></wm-label> 
+        </wm-container> 
+        <wm-container class="col-md-9" show="false" name="container178"> 
+         <wm-text tabindex="1" readonly="true" hint="Remaining quantity BEFORE current activity is added" type="number" datavalue="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityLFInstalled.dataSet[$i].Total" name="text126"></wm-text> 
+        </wm-container> 
+        <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42" name="container141"> 
+         <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ItemsTotal - Variables.serviceGetQuantitiesTestPackage.dataSet[$i].HydroInstalled" hint="Remaining quantity BEFORE current activity is added" name="label318"></wm-label> 
+        </wm-container> 
+        <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43" name="container142"> 
+         <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ItemsTotal - Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ClientTurnoverInstalled" hint="Remaining quantity BEFORE current activity is added" name="label319"></wm-label> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+     <wm-gridrow name="gridrow53"> 
+      <wm-gridcolumn columnwidth="4" name="gridcolumn124_2" borderstyle="solid" borderwidth="unset 5px 5px 5px" padding="unset unset 1% 1%"> 
+       <wm-composite name="composite183" captionposition="top" margin="unset unset 0px unset" show="true"> 
+        <wm-label class="col-md-3 control-label" caption="Hours Earned" fontweight="bold" name="label308"></wm-label> 
+       </wm-composite> 
+       <wm-container class="col-md-9" name="containerErectionHrsEarned" show="true"> 
+        <wm-text hint="The amount installed by this current Activity" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ReadyForTestingHours.toFixed(2)" type="number" updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" name="textReadyForTestHrsEarned" color="#000000" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41"></wm-text> 
+        <wm-text hint="The amount installed by this current Activity" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].HydroHours.toFixed(2)" type="number" updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textHydroHrsEarned" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42"></wm-text> 
+        <wm-text hint="The amount installed by this current Activity" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ClientTurnoverHours.toFixed(2)" type="number" updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textClientTurnoverHrsEarned" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43"></wm-text> 
+       </wm-container> 
+       <wm-composite captionposition="top" margin="unset unset 0px unset" show="true" name="composite113"> 
+        <wm-label class="col-md-3 control-label" caption="Loose Hours Earned" fontweight="bold" name="label326" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41"></wm-label> 
+        <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41" name="container147"> 
+         <wm-text hint="Number of hours that will be earned by taking all items in this test package to 100%" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].LooseHours.toFixed(2)" type="number" updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="text69"></wm-text> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="4" name="gridcolumn125_1" padding="unset unset 1% 5%"></wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="4" name="gridcolumn126" padding="unset unset 1% unset"> 
+       <wm-composite name="composite184_1" captionposition="top"> 
+        <wm-label class="col-md-3 control-label" name="label237_1" caption="Remaining Hours" hint="Remaining hours BEFORE current activity is added" fontweight="bold"></wm-label> 
+        <wm-container class="col-md-9" name="container176_1" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41" height="20px"> 
+         <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ReadyForTestingHours - Variables.serviceGetQuantitiesTestPackage.dataSet[$i].EarnedReadyForTestingHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelRFTHoursRemaining"></wm-label> 
+        </wm-container> 
+        <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42" name="container143" height="20px"> 
+         <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].HydroHours - Variables.serviceGetQuantitiesTestPackage.dataSet[$i].EarnedHydroHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelHydroHoursRemaining"></wm-label> 
+        </wm-container> 
+        <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43" name="container144" height="20px"> 
+         <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ClientTurnoverHours - Variables.serviceGetQuantitiesTestPackage.dataSet[$i].EarnedClientTurnoverHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelClientTurnoverHoursRemainin"></wm-label> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+     <wm-gridrow name="gridrow54" horizontalalign="right"> 
+      <wm-gridcolumn columnwidth="4" name="gridcolumn129_1" horizontalalign="right"></wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="4" name="gridcolumn201_1"></wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="4" name="gridcolumn202_1"> 
+       <wm-composite name="composite186_1" captionposition="top" horizontalalign="left"> 
+        <wm-container class="col-md-9" show="true" name="container121_1"> 
+         <wm-label class="col-md-3 control-label" caption="Percent Complete" textalign="left" hint="Percent of test package complete BEFORE current activity is added" fontweight="bold" width="100%" margin="unset unset 0px unset" name="label284_1"></wm-label> 
+        </wm-container> 
+        <wm-container class="col-md-9" name="container178_1" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41"> 
+         <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].EarnedReadyForTestingHours / Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ReadyForTestingHours * 100 | toNumber: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added" name="labelRFTPercentComplete"></wm-label> 
+        </wm-container> 
+        <wm-container class="col-md-9" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42" name="container145"> 
+         <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].EarnedHydroHours / Variables.serviceGetQuantitiesTestPackage.dataSet[$i].HydroHours * 100 | toNumber: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added" name="label322"></wm-label> 
+        </wm-container> 
+        <wm-container class="col-md-9" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43" name="container146"> 
+         <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].EarnedClientTurnoverHours / Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ClientTurnoverHours * 100 | toNumber: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added" name="label323"></wm-label> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+    </wm-layoutgrid> 
+   </wm-form> 
+   <wm-dialogactions name="dialogactions1"> 
+    <wm-button class="btn-default" caption="Reject" type="button" show="true" backgroundcolor="#dc0000" iconclass="glyphicon glyphicon-thumbs-down" shortcutkey="r" on-click="Widgets.dialogRejection.open()" name="buttonRejectQuantity" hint="Return to Superintendent for further review."></wm-button> 
+    <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog();Variables.serviceUnLockSSActivity.invoke();buttonDialogAssignTestCancelClick($event, $scope)" name="buttonDialogAssignTestCancel" tabindex="1"></wm-button> 
+    <wm-button class="btn-primary" caption="Update" name="buttonQuantitiesUpdate2" type="button" on-click="buttonQuantitiesUpdate2Click($event, $scope);Widgets.dialogAssignTestingQuantities.close();Variables.serviceUnLockSSActivity.invoke()" hint="Commit this entry to the tracker."></wm-button> 
+   </wm-dialogactions> 
+  </wm-dialog> 
+ </wm-view> 
+ <wm-view class="dialog-view" name="viewPSAActivityDetails" show="false"> 
+  <wm-dialog dialogtype="design-dialog" modal="true" name="dialogPSAActivityDetails" closable="false" title="PIPE Field Activity Details" iconclass="glyphicon glyphicon-edit"> 
+   <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 21 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID != null" name="layoutgrid37_1" margin="unset unset 1px unset"> 
+    <wm-gridrow name="gridrow63_1"> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn167_1"> 
+      <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite115_1"> 
+       <wm-label class="col-md-3 control-label" caption="Spool 1" name="label161_1"></wm-label> 
+       <wm-container class="col-md-9" name="container110_1"> 
+        <wm-text datavalue="bind:Variables.liveApprovalBoltUp.dataSet.data[$i].boltUpSpool1" readonly="false" width="50%" readonlygrid="true" disabled="true" updatedelay="0" name="text75_1"></wm-text> 
+       </wm-container> 
+      </wm-composite> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn168_1"> 
+      <wm-layoutgrid name="layoutgrid38_1"> 
+       <wm-gridrow name="gridrow64_1"> 
+        <wm-gridcolumn columnwidth="9" name="gridcolumn169_1"> 
+         <wm-composite captionposition="top" name="composite77"> 
+          <wm-label class="col-md-3 control-label" caption="Drawing Number" readonlygrid="true" name="label199"></wm-label> 
+          <wm-container class="col-md-9" width="100%" name="container93"> 
+           <wm-text width="90%" datavalue="bind:Variables.liveApprovalBoltUp.dataSet.data[$i].boltUpDrawingNumber" disabled="true" readonlygrid="true" name="text56"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn170_1"> 
+         <wm-composite captionposition="top" name="composite119_1"> 
+          <wm-label class="col-md-3 control-label" caption="Sheet" name="label165_1"></wm-label> 
+          <wm-container class="col-md-9" name="container114_1"> 
+           <wm-text datavalue="bind:Variables.liveApprovalBoltUp.dataSet.data[$i].boltUpSheetNumber" width="100%" disabled="true" name="text79_1"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+      </wm-layoutgrid> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow96_1"> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn228_3"> 
+      <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite116_1"> 
+       <wm-label class="col-md-3 control-label" caption="Spool 2" name="label162_1"></wm-label> 
+       <wm-container class="col-md-9" name="container111_1"> 
+        <wm-text datavalue="bind:Variables.liveApprovalBoltUp.dataSet.data[$i].boltUpSpool2" width="50%" disabled="true" readonlygrid="true" name="text76_1"></wm-text> 
+       </wm-container> 
+      </wm-composite> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn229_2"> 
+      <wm-composite captionposition="top" name="composite118_1"> 
+       <wm-label class="col-md-3 control-label" caption="Line Number" readonlygrid="true" name="label164_1"></wm-label> 
+       <wm-container class="col-md-9" width="100%" name="container113_1"> 
+        <wm-text datavalue="bind:Variables.liveApprovalBoltUp.dataSet.data[$i].boltUpLineNumber" disabled="true" readonlygrid="true" name="text78_1" width="90%"></wm-text> 
+       </wm-container> 
+      </wm-composite> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow97"> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn230_2"> 
+      <wm-composite paddingunit="%" captionposition="top" name="composite117_1"> 
+       <wm-label class="col-md-3 control-label" caption="Size BU" name="label163_1"></wm-label> 
+       <wm-container class="col-md-9" name="container112_1"> 
+        <wm-text width="30%" type="number" disabled="true" readonlygrid="true" name="text77_1" datavalue="bind:Variables.liveApprovalBoltUp.dataSet.data[$i].boltUpSize"></wm-text> 
+       </wm-container> 
+      </wm-composite> 
+      <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalBoltUp.dataSet.data[$i].boltUpRework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)" padding="unset unset unset 0px" show="true" name="checkbox6_1"></wm-checkbox> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn231_2"> 
+      <wm-composite captionposition="top" name="composite121_1"> 
+       <wm-label class="col-md-3 control-label" caption="Notes" name="label167_1"></wm-label> 
+       <wm-container class="col-md-9" name="container116_1" width="100%"> 
+        <wm-textarea datavalue="bind:Variables.liveApprovalBoltUp.dataSet.data[$i].boltUpNotes" readonlygrid="true" disabled="true" name="textarea7"></wm-textarea> 
+       </wm-container> 
+      </wm-composite> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+   </wm-layoutgrid> 
+   <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 11 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID != null" name="layoutgrid40"> 
+    <wm-gridrow name="gridrow66_1"> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn173_1"> 
+      <wm-layoutgrid name="layoutgrid41"> 
+       <wm-gridrow paddingunit="%" name="gridrow67_1"> 
+        <wm-gridcolumn columnwidth="7" name="gridcolumn174_1"> 
+         <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite126"> 
+          <wm-label class="col-md-3 control-label" caption="Spool 1" name="label172"></wm-label> 
+          <wm-container class="col-md-9" name="container121"> 
+           <wm-text datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool1" readonly="false" readonlygrid="true" disabled="true" type="text" name="text82_1"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn175_1"> 
+         <wm-composite captionposition="top" name="composite127"> 
+          <wm-label class="col-md-3 control-label" caption="Length" name="label174"></wm-label> 
+          <wm-container class="col-md-9" name="container122" width="100%"> 
+           <wm-text type="number" datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionLengthSpool1" disabled="true" name="text83"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow paddingunit="%" name="gridrow68_2"> 
+        <wm-gridcolumn columnwidth="7" name="gridcolumn176_1"> 
+         <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool2 != '' &amp;&amp; Variables.liveApprovalErection.dataSet.data[$i].erectionSpool2 != NULL
+
+" name="composite128"> 
+          <wm-label class="col-md-3 control-label" caption="Spool 2" name="label175"></wm-label> 
+          <wm-container class="col-md-9" name="container123"> 
+           <wm-text datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool2" disabled="true" name="text84"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn177_1"> 
+         <wm-composite captionposition="top" show="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool2 != '' &amp;&amp; Variables.liveApprovalErection.dataSet.data[$i].erectionSpool2 != NULL" name="composite129"> 
+          <wm-label class="col-md-3 control-label" caption="Length" name="label176"></wm-label> 
+          <wm-container class="col-md-9" name="container124" width="100%"> 
+           <wm-text type="number" datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionLengthSpool2" disabled="true" name="text85"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow paddingunit="%" name="gridrow69_1"> 
+        <wm-gridcolumn columnwidth="7" name="gridcolumn178_1"> 
+         <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool3 != '' &amp;&amp; Variables.liveApprovalErection.dataSet.data[$i].erectionSpool3 != NULL" name="composite130"> 
+          <wm-label class="col-md-3 control-label" caption="Spool 3" name="label177"></wm-label> 
+          <wm-container class="col-md-9" name="container125"> 
+           <wm-text datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool3" disabled="true" readonlygrid="true" name="text86"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn179_1"> 
+         <wm-composite captionposition="top" show="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool3 != '' &amp;&amp; Variables.liveApprovalErection.dataSet.data[$i].erectionSpool3 != NULL" name="composite131"> 
+          <wm-label class="col-md-3 control-label" caption="Length" name="label178"></wm-label> 
+          <wm-container class="col-md-9" name="container126" width="100%"> 
+           <wm-text type="number" datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionLengthSpool3" disabled="true" name="text87"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow paddingunit="%" name="gridrow70_1"> 
+        <wm-gridcolumn columnwidth="7" name="gridcolumn180_1"> 
+         <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool4 != '' &amp;&amp; Variables.liveApprovalErection.dataSet.data[$i].erectionSpool4 != NULL" name="composite132"> 
+          <wm-label class="col-md-3 control-label" caption="Spool 4" name="label179"></wm-label> 
+          <wm-container class="col-md-9" name="container127"> 
+           <wm-text datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool4" disabled="true" name="text88"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn181_1"> 
+         <wm-composite captionposition="top" show="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool4 != '' &amp;&amp; Variables.liveApprovalErection.dataSet.data[$i].erectionSpool4 != NULL" name="composite133"> 
+          <wm-label class="col-md-3 control-label" caption="Length" name="label180"></wm-label> 
+          <wm-container class="col-md-9" name="container128" width="100%"> 
+           <wm-text type="number" datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionLengthSpool4" disabled="true" name="text89"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow paddingunit="%" name="gridrow71"> 
+        <wm-gridcolumn columnwidth="7" name="gridcolumn182_1"> 
+         <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool5 != '' &amp;&amp; Variables.liveApprovalErection.dataSet.data[$i].erectionSpool5 != NULL" name="composite134"> 
+          <wm-label class="col-md-3 control-label" caption="Spool 5" name="label181"></wm-label> 
+          <wm-container class="col-md-9" name="container129"> 
+           <wm-text datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool5" disabled="true" name="text90"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn183_1"> 
+         <wm-composite captionposition="top" show="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool5 != '' &amp;&amp; Variables.liveApprovalErection.dataSet.data[$i].erectionSpool5 != NULL" name="composite135"> 
+          <wm-label class="col-md-3 control-label" caption="Length" name="label182"></wm-label> 
+          <wm-container class="col-md-9" name="container130" width="100%"> 
+           <wm-text type="number" datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionLengthSpool5" disabled="true" name="text91"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow paddingunit="%" name="gridrow72"> 
+        <wm-gridcolumn columnwidth="7" name="gridcolumn184_1"> 
+         <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool6 != '' &amp;&amp; Variables.liveApprovalErection.dataSet.data[$i].erectionSpool6 != NULL" name="composite136"> 
+          <wm-label class="col-md-3 control-label" caption="Spool 6" name="label183"></wm-label> 
+          <wm-container class="col-md-9" name="container131"> 
+           <wm-text datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool6" disabled="true" readonlygrid="true" name="text92"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn185_1"> 
+         <wm-composite captionposition="top" show="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool6 != '' &amp;&amp; Variables.liveApprovalErection.dataSet.data[$i].erectionSpool6 != NULL" name="composite137"> 
+          <wm-label class="col-md-3 control-label" caption="Length" name="label184"></wm-label> 
+          <wm-container class="col-md-9" name="container132" width="100%"> 
+           <wm-text type="number" disabled="true" datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionLengthSpool6" readonlygrid="true" name="text93"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow paddingunit="%" name="gridrow73"> 
+        <wm-gridcolumn columnwidth="7" name="gridcolumn186"> 
+         <wm-composite captionposition="top" name="composite138" padding="unset unset unset 2%"> 
+          <wm-label class="col-md-3 control-label" caption="Size" name="label185"></wm-label> 
+          <wm-container class="col-md-9" name="container133"> 
+           <wm-text width="80%" datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionPipeSize" type="number" disabled="true" name="text94"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn187"> 
+         <wm-composite captionposition="top" name="composite139"> 
+          <wm-label class="col-md-3" caption="Total:" textdecoration="underline" fontweight="bold" readonlygrid="true" name="label186"></wm-label> 
+          <wm-container class="col-md-9" name="container134" width="100%"> 
+           <wm-text type="number" datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.Quantity" readonly="true" disabled="false" readonlygrid="true" name="text95"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow95_2"> 
+        <wm-gridcolumn columnwidth="7" name="gridcolumn226_4" padding="unset unset unset 0px"> 
+         <wm-checkbox caption="On Coordinates" class="checkbox-custom" name="checkbox6" datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionOnCords" checkedvalue="1" uncheckedvalue="0" disabled="true"></wm-checkbox> 
+         <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionRework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)" padding="unset unset unset 0px" show="true" name="checkbox7"></wm-checkbox> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn227_2"></wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="4" name="gridcolumn228_2"></wm-gridcolumn> 
+       </wm-gridrow> 
+      </wm-layoutgrid> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn189"> 
+      <wm-layoutgrid name="layoutgrid42"> 
+       <wm-gridrow name="gridrow74"> 
+        <wm-gridcolumn columnwidth="9" name="gridcolumn190"> 
+         <wm-composite captionposition="top" name="composite78"> 
+          <wm-label class="col-md-3 control-label" caption="Drawing Number" readonlygrid="true" name="label200"></wm-label> 
+          <wm-container class="col-md-9" width="100%" name="container94"> 
+           <wm-text width="90%" datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionDrawingNumber" disabled="true" readonlygrid="true" name="text57"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn191"> 
+         <wm-composite captionposition="top" name="composite142"> 
+          <wm-label class="col-md-3 control-label" caption="Sheet" name="label188"></wm-label> 
+          <wm-container class="col-md-9" name="container136"> 
+           <wm-text datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSheetNumber" width="100%" disabled="true" name="text97"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow57"> 
+        <wm-gridcolumn columnwidth="9" name="gridcolumn141"> 
+         <wm-composite captionposition="top" name="composite141"> 
+          <wm-label class="col-md-3 control-label" caption="Line Number" name="label187"></wm-label> 
+          <wm-container class="col-md-9" width="100%" name="container135"> 
+           <wm-text datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionLineNumber" disabled="true" name="text96" width="90%"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn142"></wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow58"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn143"> 
+         <wm-composite captionposition="top" name="composite144"> 
+          <wm-label class="col-md-3 control-label" caption="Notes" name="label190"></wm-label> 
+          <wm-container class="col-md-9" name="container138" width="100%"> 
+           <wm-textarea datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionNotes" disabled="true" readonlygrid="true" name="textarea8"></wm-textarea> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+      </wm-layoutgrid> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+   </wm-layoutgrid> 
+   <wm-layoutgrid show="bind:($parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 23) &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID != null" name="layoutgrid55" margin="unset unset 1px unset"> 
+    <wm-gridrow readonlygrid="true" name="gridrow95"> 
+     <wm-gridcolumn columnwidth="7" name="gridcolumn237"> 
+      <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite202" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22"> 
+       <wm-label class="col-md-3 control-label" caption="Spool 1" name="label255"></wm-label> 
+       <wm-container class="col-md-9" name="container195"> 
+        <wm-text datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldSpool1" readonly="false" readonlygrid="true" disabled="true" width="40%" name="text137"></wm-text> 
+       </wm-container> 
+      </wm-composite> 
+      <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite203" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22"> 
+       <wm-label class="col-md-3 control-label" caption="Spool 2" name="label256_1"></wm-label> 
+       <wm-container class="col-md-9" name="container196_1"> 
+        <wm-text datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldSpool2" disabled="true" readonlygrid="true" width="40%" name="text138"></wm-text> 
+       </wm-container> 
+      </wm-composite> 
+      <wm-layoutgrid name="layoutgrid56" margin="17% unset unset unset" padding="unset 0px unset unset"> 
+       <wm-gridrow name="gridrow96"> 
+        <wm-gridcolumn columnwidth="5" name="gridcolumn238"> 
+         <wm-composite captionposition="top" name="composite204" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22"> 
+          <wm-label class="col-md-3 control-label" caption="Weld Number" name="label257"></wm-label> 
+          <wm-container class="col-md-9" name="container197_1"> 
+           <wm-text disabled="true" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldNumber" name="text139"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="5" name="gridcolumn240"> 
+         <wm-composite captionposition="top" horizontalalign="left" name="composite205" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22"> 
+          <wm-label class="col-md-3 control-label" caption="Welders Stencil" name="label258_1"></wm-label> 
+          <wm-container class="col-md-9" name="container198"> 
+           <wm-text disabled="true" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldStencil" name="text140"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+      </wm-layoutgrid> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="5" name="gridcolumn251"> 
+      <wm-layoutgrid name="layoutgrid57"> 
+       <wm-gridrow name="gridrow100"> 
+        <wm-gridcolumn columnwidth="9" name="gridcolumn252"> 
+         <wm-composite captionposition="top" name="composite79"> 
+          <wm-label class="col-md-3 control-label" caption="Drawing Number" readonlygrid="true" name="label201"></wm-label> 
+          <wm-container class="col-md-9" width="100%" name="container95"> 
+           <wm-text width="90%" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldDrawingNumber" disabled="true" readonlygrid="true" name="text58"></wm-text> 
+          </wm-container> 
+          <wm-composite captionposition="top" name="composite80"></wm-composite> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn253"> 
+         <wm-composite captionposition="top" name="composite217"> 
+          <wm-label class="col-md-3 control-label" caption="Sheet" name="label268"></wm-label> 
+          <wm-container class="col-md-9" name="container208"> 
+           <wm-text datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldSheetNumber" width="100%" disabled="true" name="text148"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow59"> 
+        <wm-gridcolumn columnwidth="9" name="gridcolumn145"> 
+         <wm-composite captionposition="top" name="composite216"> 
+          <wm-label class="col-md-3 control-label" caption="Line Number" name="label267"></wm-label> 
+          <wm-container class="col-md-9" width="100%" name="container207"> 
+           <wm-text width="90%" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldLineNumber" disabled="true" name="text147"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn146"></wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow60"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn147"> 
+         <wm-composite captionposition="top" name="composite219"> 
+          <wm-label class="col-md-3 control-label" caption="Notes" name="label270"></wm-label> 
+          <wm-container class="col-md-9" name="container210" width="100%"> 
+           <wm-textarea datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldNotes" readonlygrid="true" disabled="true" name="textarea15"></wm-textarea> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+      </wm-layoutgrid> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow75"> 
+     <wm-gridcolumn columnwidth="3" name="gridcolumn197"> 
+      <wm-composite paddingunit="%" captionposition="top" name="composite206"> 
+       <wm-label class="col-md-3 control-label" caption="Size" name="label259_1"></wm-label> 
+       <wm-container class="col-md-9" name="container199"> 
+        <wm-text datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldSize" type="number" scopedatavalue="Size" disabled="true" name="text141"></wm-text> 
+       </wm-container> 
+      </wm-composite> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="3" name="gridcolumn198"> 
+      <wm-composite captionposition="top" name="composite207_1"> 
+       <wm-label class="col-md-3 control-label" caption="Wall Thickness" name="label260"></wm-label> 
+       <wm-container class="col-md-9" name="container200"> 
+        <wm-text disabled="true" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldThickness" name="text142"></wm-text> 
+       </wm-container> 
+      </wm-composite> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="3" name="gridcolumn199"> 
+      <wm-composite captionposition="top" name="composite208_1" margin="unset 5% unset unset" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22"> 
+       <wm-label class="col-md-3 control-label" caption="Weld Type" width="70%" name="label261"></wm-label> 
+       <wm-container class="col-md-9" marginunit="%" paddingunit="%" width="100%" name="container201"> 
+        <wm-text disabled="true" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldType" marginunit="%" name="text143"></wm-text> 
+       </wm-container> 
+      </wm-composite> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="3" name="gridcolumn200"> 
+      <wm-composite captionposition="top" name="composite209" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22"> 
+       <wm-label class="col-md-3 control-label" caption="Position" name="label262"></wm-label> 
+       <wm-container class="col-md-9" name="container202"> 
+        <wm-select datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldPosition" readonlygrid="true" disabled="true" dataset="bind:Variables.PSARefWeldPositionsData.dataSet" datafield="value" hint="bind:Variables.PSARefWeldPositionsData.dataSet.data[$i].description" textalign="left" name="select22" displayfield="description" margin="unset unset unset 0%" padding="unset unset unset 0%"></wm-select> 
+       </wm-container> 
+      </wm-composite> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow76"> 
+     <wm-gridcolumn columnwidth="3" name="gridcolumn201"> 
+      <wm-composite captionposition="top" name="composite210" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22"> 
+       <wm-label class="col-md-3 control-label" caption="Material" name="label263"></wm-label> 
+       <wm-container class="col-md-9" name="container203"> 
+        <wm-text disabled="true" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldMaterial" name="text144"></wm-text> 
+       </wm-container> 
+      </wm-composite> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="3" name="gridcolumn202"> 
+      <wm-composite captionposition="top" name="composite211" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22"> 
+       <wm-label class="col-md-3 control-label" caption="Weld Procedure" name="label264"></wm-label> 
+       <wm-container class="col-md-9" name="container204"> 
+        <wm-text disabled="true" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldProcedure" name="text145"></wm-text> 
+       </wm-container> 
+      </wm-composite> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="3" name="gridcolumn203"> 
+      <wm-composite captionposition="top" name="composite212" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22"> 
+       <wm-label class="col-md-3 control-label" caption="Line Spec" name="label265"></wm-label> 
+       <wm-container class="col-md-9" name="container205"> 
+        <wm-text disabled="true" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldLineSpec" name="text146"></wm-text> 
+       </wm-container> 
+      </wm-composite> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="3" name="gridcolumn204"></wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow98_1"> 
+     <wm-gridcolumn columnwidth="3" name="gridcolumn232_2"> 
+      <wm-checkbox caption="Weld Complete" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldComplete" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)" name="checkbox13" margin="unset unset 0px unset"></wm-checkbox> 
+      <wm-checkbox caption="Shared Weld" class="checkbox-custom" hint="Check if this weld was worked on by welders other then the ones named in Welder Stencil." disabled="true" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldShared" checkedvalue="1" uncheckedvalue="0" readonlygrid="true" name="checkbox14"></wm-checkbox> 
+      <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldRework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)" padding="unset unset unset 0px" show="true" name="checkbox8"></wm-checkbox> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="3" name="gridcolumn233"> 
+      <wm-composite captionposition="top" hint="Percentage of the Entire weld did the above listed welders complete in this Activity?" name="composite215" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22"> 
+       <wm-label class="col-md-3 control-label" caption="Percent Completed" name="label266"></wm-label> 
+       <wm-container class="col-md-9" name="container206"> 
+        <wm-select disabled="true" datafield="value" dataset="bind:Variables.PSARefPercentListData.dataSet" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldPercentCompleted" readonlygrid="true" displayfield="label" name="select23"></wm-select> 
+       </wm-container> 
+      </wm-composite> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="3" name="gridcolumn234_2"></wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="3" name="gridcolumn235_1"></wm-gridcolumn> 
+    </wm-gridrow> 
+   </wm-layoutgrid> 
+   <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 32 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID != null" name="layoutgrid44" margin="unset unset 1px unset"> 
+    <wm-gridrow name="gridrow80"> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn214"> 
+      <wm-layoutgrid name="layoutgrid45"> 
+       <wm-gridrow name="gridrow81"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn215"> 
+         <wm-label caption="Support / Shoe" show="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportType == 1" fontweight="bold" name="label206" fontsize="13"></wm-label> 
+         <wm-label caption="Guide/Stops/Ect" show="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportType == 2" fontweight="bold" name="label207" color="#ff6500" fontsize="13"></wm-label> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow82"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn216"> 
+         <wm-composite captionposition="top" marginunit="px" paddingunit="%" show="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportType == 1" name="composite157"> 
+          <wm-label class="col-md-3 control-label" caption="Support Part#" name="label208"></wm-label> 
+          <wm-container class="col-md-9" name="container154"> 
+           <wm-text datavalue="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportPartNumber" readonly="false" readonlygrid="true" disabled="true" width="80%" name="text111"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+         <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite158"> 
+          <wm-label class="col-md-3 control-label" caption="Installed Quantity" name="label209"></wm-label> 
+          <wm-container class="col-md-9" name="container155"> 
+           <wm-text datavalue="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportQuantity" disabled="true" readonlygrid="true" width="50%" name="text112"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow83"> 
+        <wm-gridcolumn columnwidth="7" name="gridcolumn217" horizontalalign="left" paddingunit="%"> 
+         <wm-checkbox caption="Support Complete" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportComplete" checkedvalue="1" uncheckedvalue="0" show="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportType == 1" readonlygrid="true" on-change="checkboxSupportCompleteChange($event, $scope)" name="checkbox9" padding="unset unset unset 0%"></wm-checkbox> 
+         <wm-checkbox caption="Shared Support" class="checkbox-custom" hint="Check if this weld was worked on by welders other then the ones named in Welder Stencil." disabled="true" datavalue="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportShared" checkedvalue="1" uncheckedvalue="0" readonlygrid="true" show="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportType == 1" name="checkbox10" padding="unset unset unset 0px"></wm-checkbox> 
+         <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportRework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)" padding="unset unset unset 0px" show="true" name="checkbox9_1"></wm-checkbox> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="5" name="gridcolumn219"> 
+         <wm-composite captionposition="top" hint="Percentage of the Entire weld did the above listed welders complete in this Activity?" show="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportType == 1
+
+
+
+" name="composite161"> 
+          <wm-label class="col-md-3 control-label" caption="Percent Completed" name="label210"></wm-label> 
+          <wm-container class="col-md-9" name="container156"> 
+           <wm-select disabled="true" datafield="value" displayfield="label" dataset="bind:Variables.PSARefPercentListData.dataSet" datavalue="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportPercentCompleted" readonlygrid="true" name="select14"></wm-select> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+      </wm-layoutgrid> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn220"> 
+      <wm-layoutgrid name="layoutgrid46"> 
+       <wm-gridrow name="gridrow84"> 
+        <wm-gridcolumn columnwidth="9" name="gridcolumn221_1"> 
+         <wm-composite captionposition="top" name="composite81"> 
+          <wm-label class="col-md-3 control-label" caption="Drawing Number" readonlygrid="true" name="label203"></wm-label> 
+          <wm-container class="col-md-9" width="100%" name="container97"> 
+           <wm-text width="90%" datavalue="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportDrawingNumber" disabled="true" readonlygrid="true" name="text60"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn222_1"> 
+         <wm-composite captionposition="top" name="composite163"> 
+          <wm-label class="col-md-3 control-label" caption="Sheet" name="label212"></wm-label> 
+          <wm-container class="col-md-9" name="container158"> 
+           <wm-text datavalue="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportSheetNumber" width="100%" disabled="true" name="text114"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow62"> 
+        <wm-gridcolumn columnwidth="9" name="gridcolumn151"> 
+         <wm-composite captionposition="top" name="composite162"> 
+          <wm-label class="col-md-3 control-label" caption="Line Number" name="label211"></wm-label> 
+          <wm-container class="col-md-9" width="100%" name="container157"> 
+           <wm-text width="90%" datavalue="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportLineNumber" disabled="true" name="text113"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn152"></wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow61"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn149"> 
+         <wm-composite captionposition="top" name="composite165"> 
+          <wm-label class="col-md-3 control-label" caption="Notes" name="label214"></wm-label> 
+          <wm-container class="col-md-9" name="container160" width="100%"> 
+           <wm-textarea datavalue="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportNotes" readonlygrid="true" disabled="true" name="textarea11"></wm-textarea> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+      </wm-layoutgrid> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+   </wm-layoutgrid> 
+   <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 30 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 31 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 33 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 34 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 35 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 39" name="layoutgrid48" margin="unset unset 1px unset"> 
+    <wm-gridrow name="gridrow86"> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn225"> 
+      <wm-layoutgrid name="layoutgrid49"> 
+       <wm-gridrow name="gridrow87_1"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn226"> 
+         <wm-label caption="Plugs" show="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimActivitySelect == &quot;Plug&quot;" fontweight="bold" readonlygrid="true" name="label219"></wm-label> 
+         <wm-label caption="Valve Handles" show="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimActivitySelect == &quot;ValveHandle&quot;" fontweight="bold" name="label220" fontsize="13"></wm-label> 
+         <wm-label caption="Steam Trap" show="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimActivitySelect == &quot;SteamTrap&quot;" fontweight="bold" name="label221" fontsize="13"></wm-label> 
+         <wm-label caption="Instrumentaion Equipment" show="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimActivitySelect == &quot;InstEquip&quot;" fontweight="bold" name="label222" fontsize="13"></wm-label> 
+         <wm-label caption="Other" show="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimActivitySelect == &quot;Other&quot;" fontweight="bold" name="label223" fontsize="13"></wm-label> 
+         <wm-label caption="Wall Penatration" show="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimActivitySelect == &quot;PEN&quot;" fontweight="bold" name="label218" fontsize="13"></wm-label> 
+         <wm-label caption="Valve" show="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimActivitySelect == &quot;Valve&quot;" fontweight="bold" name="label219_1" fontsize="13"></wm-label> 
+         <wm-label caption="Vents / Drains" show="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimActivitySelect == &quot;HpLp&quot;" fontweight="bold" name="label220_2" fontsize="13"></wm-label> 
+         <wm-label caption="Blind" show="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimActivitySelect == &quot;Blind&quot;" fontweight="bold" fontsize="13" name="label228_1"></wm-label> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow88"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn227"> 
+         <wm-composite captionposition="top" show="true" name="composite172"> 
+          <wm-label class="col-md-3 control-label" caption="Size" name="label226"></wm-label> 
+          <wm-container class="col-md-9" name="container167"> 
+           <wm-select width="40%" datavalue="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimSize" dataset="bind:Variables.PSARefPipeSizesData.dataSet" datafield="value" disabled="true" name="select17" displayfield="label"></wm-select> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow89"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn228"> 
+         <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimActivitySelect == &quot;Plug&quot; || Variables.liveApprovalTrim.dataSet.data[$i].trimActivitySelect == &quot;Blind&quot;" name="composite173"> 
+          <wm-label class="col-md-3 control-label" caption="Installed Quantity" name="label227"></wm-label> 
+          <wm-container class="col-md-9" name="container168"> 
+           <wm-text disabled="false" readonlygrid="true" width="40%" type="number" datavalue="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimQuantity" name="text117" readonly="true"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+         <wm-composite captionposition="top" show="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimActivitySelect == &quot;ValveHandle&quot;" name="composite174"> 
+          <wm-label class="col-md-3 control-label" caption="Handle Type" name="label228"></wm-label> 
+          <wm-container class="col-md-9" name="container169"> 
+           <wm-select datavalue="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimHandleType" disabled="true" dataset="bind:Variables.PSARefHandleTypesData.dataSet" datafield="value" width="50%" readonlygrid="true" name="select18" displayfield="label"></wm-select> 
+          </wm-container> 
+         </wm-composite> 
+         <wm-composite captionposition="top" show="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimActivitySelect == &quot;InstEquip&quot;" name="composite175"> 
+          <wm-label class="col-md-3 control-label" caption="Instrument Type" name="label229"></wm-label> 
+          <wm-container class="col-md-9" name="container170"> 
+           <wm-select datavalue="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimInstrumentType" disabled="true" dataset="bind:Variables.PSARefInstTypesData.dataSet" datafield="value" width="50%" name="select19_1" displayfield="label"></wm-select> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow99"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn236_1"> 
+         <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimRework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)" padding="unset unset unset 0px" show="true" name="checkbox10_1"></wm-checkbox> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+      </wm-layoutgrid> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn229"> 
+      <wm-layoutgrid name="layoutgrid50"> 
+       <wm-gridrow name="gridrow90"> 
+        <wm-gridcolumn columnwidth="9" name="gridcolumn230"> 
+         <wm-composite captionposition="top" name="composite82"> 
+          <wm-label class="col-md-3 control-label" caption="Drawing Number" readonlygrid="true" name="label204"></wm-label> 
+          <wm-container class="col-md-9" width="100%" name="container98"> 
+           <wm-text width="90%" datavalue="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimDrawingNumber" disabled="true" readonlygrid="true" name="text61"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn231"> 
+         <wm-composite captionposition="top" name="composite177"> 
+          <wm-label class="col-md-3 control-label" caption="Sheet" name="label231"></wm-label> 
+          <wm-container class="col-md-9" name="container172"> 
+           <wm-text datavalue="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimSheetNumber" width="100%" disabled="true" name="text119"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow63"> 
+        <wm-gridcolumn columnwidth="9" name="gridcolumn153"> 
+         <wm-composite captionposition="top" name="composite176"> 
+          <wm-label class="col-md-3 control-label" caption="Line Number" name="label230"></wm-label> 
+          <wm-container class="col-md-9" width="100%" name="container171"> 
+           <wm-text width="90%" datavalue="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimLineNumber" disabled="true" name="text118"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn154"></wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow64"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn155"> 
+         <wm-composite captionposition="top" name="composite179"> 
+          <wm-label class="col-md-3 control-label" caption="Notes" name="label233"></wm-label> 
+          <wm-container class="col-md-9" name="container174" width="100%"> 
+           <wm-textarea datavalue="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimNotes" readonlygrid="true" disabled="true" name="textarea12"></wm-textarea> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+      </wm-layoutgrid> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+   </wm-layoutgrid> 
+   <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 91 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID != null" name="layoutgrid52" margin="unset unset 1px unset"> 
+    <wm-gridrow name="gridrow92"> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn234"> 
+      <wm-layoutgrid name="layoutgrid53"> 
+       <wm-gridrow name="gridrow93"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn235"> 
+         <wm-label caption="Miscellaneous" show="true" fontweight="bold" readonlygrid="true" name="label238" fontsize="13"></wm-label> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow88_1"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn202_4"> 
+         <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="true" name="composite93_1"> 
+          <wm-label class="col-md-3 control-label" caption="Installed Quantity" name="label229_2"></wm-label> 
+          <wm-container class="col-md-9" name="container107"> 
+           <wm-text disabled="true" readonlygrid="true" width="40%" type="number" datavalue="bind:Variables.liveApprovalMisc.dataSet.data[$i].miscQuantity" name="text65"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow100_1"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn237_2"> 
+         <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalMisc.dataSet.data[$i].miscRework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)" padding="unset unset unset 0px" show="true" name="checkbox11"></wm-checkbox> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+      </wm-layoutgrid> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn236"> 
+      <wm-layoutgrid name="layoutgrid54"> 
+       <wm-gridrow name="gridrow94"> 
+        <wm-gridcolumn columnwidth="9" name="gridcolumn237_1"> 
+         <wm-composite captionposition="top" name="composite83"> 
+          <wm-label class="col-md-3" caption="Drawing Number" readonlygrid="true" name="label205"></wm-label> 
+          <wm-container class="col-md-9" width="100%" name="container99"> 
+           <wm-text width="90%" datavalue="bind:Variables.liveApprovalMisc.dataSet.data[$i].miscDrawingNumber" disabled="true" readonlygrid="true" name="text62"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn238_1"> 
+         <wm-composite captionposition="top" name="composite185"> 
+          <wm-label class="col-md-3" caption="Sheet" name="label240"></wm-label> 
+          <wm-container class="col-md-9" name="container180"> 
+           <wm-text datavalue="bind:Variables.liveApprovalMisc.dataSet.data[$i].miscSheetNumber" width="100%" disabled="true" readonlygrid="true" name="text123"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow65"> 
+        <wm-gridcolumn columnwidth="9" name="gridcolumn157"> 
+         <wm-composite captionposition="top" name="composite184"> 
+          <wm-label class="col-md-3" caption="Line Number" name="label239"></wm-label> 
+          <wm-container class="col-md-9" width="100%" name="container179"> 
+           <wm-text width="90%" datavalue="bind:Variables.liveApprovalMisc.dataSet.data[$i].miscLineNumber" disabled="true" name="text122"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn158"></wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow66"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn159"> 
+         <wm-composite captionposition="top" name="composite187"> 
+          <wm-label class="col-md-3" caption="Notes" name="label242"></wm-label> 
+          <wm-container class="col-md-9" name="container182" width="100%"> 
+           <wm-textarea datavalue="bind:Variables.liveApprovalMisc.dataSet.data[$i].miscNotes" readonlygrid="true" disabled="true" name="textarea13_1"></wm-textarea> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+      </wm-layoutgrid> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+   </wm-layoutgrid> 
+   <wm-layoutgrid show="bind:($parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 50 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 51|| $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 52|| $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 53|| $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 59) &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID != null" margin="unset unset 1px unset" name="layoutgrid26"> 
+    <wm-gridrow name="gridrow72_1"> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn176"> 
+      <wm-layoutgrid name="layoutgrid27"> 
+       <wm-gridrow name="gridrow73_1"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn177"> 
+         <wm-label caption="Demo" show="true" fontweight="bold" readonlygrid="true" fontsize="13" name="label207_1"></wm-label> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow74_1"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn178"> 
+         <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="true" name="composite80_1"> 
+          <wm-label class="col-md-3 control-label" caption="Quantity" name="label208_1"></wm-label> 
+          <wm-container class="col-md-9" name="container90"> 
+           <wm-text disabled="true" readonlygrid="true" width="30%" type="number" minvalue="1" maxvalue="32700" datavalue="bind:Variables.liveApprovalDemo.dataSet.data[$i].demoQuantity" name="text54"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow75_1"> 
+        <wm-gridcolumn columnwidth="12" horizontalalign="left" name="gridcolumn179"> 
+         <wm-composite captionposition="top" show="true" name="composite81_1"> 
+          <wm-label class="col-md-3 control-label" caption="Size" name="label209_1"></wm-label> 
+          <wm-container class="col-md-9" name="container91"> 
+           <wm-select width="40%" datavalue="bind:Variables.liveApprovalDemo.dataSet.data[$i].demoSize" dataset="bind:Variables.PSARefPipeSizesData.dataSet" datafield="value" disabled="true" displayfield="label" name="select8"></wm-select> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+      </wm-layoutgrid> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn180"> 
+      <wm-layoutgrid name="layoutgrid28"> 
+       <wm-gridrow name="gridrow76_1"> 
+        <wm-gridcolumn columnwidth="9" name="gridcolumn181"> 
+         <wm-composite captionposition="top" name="composite82_1"> 
+          <wm-label class="col-md-3 control-label" caption="Drawing Number" readonlygrid="true" name="label210_1"></wm-label> 
+          <wm-container class="col-md-9" width="100%" name="container92"> 
+           <wm-text width="90%" datavalue="bind:Variables.liveApprovalDemo.dataSet.data[$i].demoDrawingNumber" disabled="true" readonlygrid="true" name="text55"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn182"> 
+         <wm-composite captionposition="top" name="composite83_1"> 
+          <wm-label class="col-md-3 control-label" caption="Sheet" name="label211_1"></wm-label> 
+          <wm-container class="col-md-9" name="container93_1"> 
+           <wm-text datavalue="bind:Variables.liveApprovalDemo.dataSet.data[$i].demoSheetNumber" width="70%" disabled="true" readonlygrid="true" name="text56_1"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow77_1"> 
+        <wm-gridcolumn columnwidth="9" name="gridcolumn183"> 
+         <wm-composite captionposition="top" name="composite84"> 
+          <wm-label class="col-md-3 control-label" caption="Line Number" name="label212_1"></wm-label> 
+          <wm-container class="col-md-9" width="100%" name="container94_2"> 
+           <wm-text width="90%" datavalue="bind:Variables.liveApprovalDemo.dataSet.data[$i].demoLineNumber" disabled="true" name="text57_1"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn184"></wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow78_1"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn185"> 
+         <wm-composite captionposition="top" name="composite85"> 
+          <wm-label class="col-md-3 control-label" caption="Notes" name="label213"></wm-label> 
+          <wm-container class="col-md-9" name="container95_1" width="100%"> 
+           <wm-textarea datavalue="bind:Variables.liveApprovalDemo.dataSet.data[$i].demoNotes" readonlygrid="true" disabled="true" name="textarea9"></wm-textarea> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+      </wm-layoutgrid> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+   </wm-layoutgrid> 
+   <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 93 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID != null" margin="unset unset 1px unset" name="layoutgrid30"> 
+    <wm-gridrow name="gridrow80_1"> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn188_1"> 
+      <wm-layoutgrid name="layoutgrid31"> 
+       <wm-gridrow name="gridrow81_1"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn189_1"> 
+         <wm-label caption="Field EWO" show="true" fontweight="bold" readonlygrid="true" fontsize="13" name="label218_1"></wm-label> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow82_1"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn190_1"> 
+         <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="true" name="composite90"> 
+          <wm-label class="col-md-3 control-label" caption="EWO Number" name="label219_2"></wm-label> 
+          <wm-container class="col-md-9" name="container100"> 
+           <wm-text disabled="true" readonlygrid="true" width="30%" type="text" minvalue="1" maxvalue="32700" datavalue="bind:Variables.liveApprovalEWO.dataSet.data[$i].ewonumber" name="text59_1"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow83_1"> 
+        <wm-gridcolumn columnwidth="12" horizontalalign="left" name="gridcolumn191_1"> 
+         <wm-composite captionposition="top" show="true" name="composite91"> 
+          <wm-label class="col-md-3 control-label" caption="Hours Spent" name="label220_1"></wm-label> 
+          <wm-container class="col-md-9" name="container101"> 
+           <wm-text disabled="true" readonlygrid="true" width="30%" type="text" minvalue="1" maxvalue="32700" datavalue="bind:Variables.liveApprovalEWO.dataSet.data[$i].ewohours" name="text63"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow102"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn239_1"> 
+         <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalEWO.dataSet.data[$i].eworework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)" padding="unset unset unset 0px" show="true" name="checkbox13_1"></wm-checkbox> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+      </wm-layoutgrid> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="6" name="gridcolumn192"> 
+      <wm-layoutgrid name="layoutgrid32"> 
+       <wm-gridrow name="gridrow84_2"> 
+        <wm-gridcolumn columnwidth="9" name="gridcolumn193"> 
+         <wm-composite captionposition="top" name="composite92"> 
+          <wm-label class="col-md-3 control-label" caption="Drawing Number" readonlygrid="true" name="label221_1"></wm-label> 
+          <wm-container class="col-md-9" width="100%" name="container102"> 
+           <wm-text width="90%" datavalue="bind:Variables.liveApprovalEWO.dataSet.data[$i].ewodrawingNumber" disabled="true" readonlygrid="true" name="text60_1"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn194"> 
+         <wm-composite captionposition="top" name="composite93"> 
+          <wm-label class="col-md-3 control-label" caption="Sheet" name="label222_1"></wm-label> 
+          <wm-container class="col-md-9" name="container103"> 
+           <wm-text datavalue="bind:Variables.liveApprovalEWO.dataSet.data[$i].ewosheetNumber" width="70%" disabled="true" readonlygrid="true" name="text61_1"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow85"> 
+        <wm-gridcolumn columnwidth="9" name="gridcolumn195"> 
+         <wm-composite captionposition="top" name="composite94"> 
+          <wm-label class="col-md-3 control-label" caption="Line Number" name="label223_1"></wm-label> 
+          <wm-container class="col-md-9" width="100%" name="container104"> 
+           <wm-text width="90%" datavalue="bind:Variables.liveApprovalEWO.dataSet.data[$i].ewolineNumber" disabled="true" name="text62_1"></wm-text> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+        <wm-gridcolumn columnwidth="3" name="gridcolumn196"></wm-gridcolumn> 
+       </wm-gridrow> 
+       <wm-gridrow name="gridrow86_2"> 
+        <wm-gridcolumn columnwidth="12" name="gridcolumn197_1"> 
+         <wm-composite captionposition="top" name="composite95"> 
+          <wm-label class="col-md-3 control-label" caption="Notes" name="label224"></wm-label> 
+          <wm-container class="col-md-9" width="100%" name="container105"> 
+           <wm-textarea datavalue="bind:Variables.liveApprovalEWO.dataSet.data[$i].ewonotes" readonlygrid="true" disabled="true" name="textarea10"></wm-textarea> 
+          </wm-container> 
+         </wm-composite> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+      </wm-layoutgrid> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+   </wm-layoutgrid> 
+   <wm-dialogactions name="dialogactions2"> 
+    <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button12"></wm-button> 
+   </wm-dialogactions> 
+  </wm-dialog> 
+ </wm-view> 
+ <wm-view class="dialog-view" name="viewBidActivityDetails" show="false"> 
+  <wm-dialog dialogtype="design-dialog" modal="true" name="dialogBidActivityDetails" width="60%" closable="false" title="Bid Activity Details" iconclass="glyphicon glyphicon-edit"> 
+   <wm-layoutgrid name="layoutgrid51"> 
+    <wm-gridrow name="gridrow90_1" backgroundcolor="#c9cfdd"> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn229_1"> 
+      <wm-label width="100%" caption="Unique Identifiers" fontweight="bold" name="label264_1" fontsize="13" margin=".5% unset unset unset"></wm-label> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow84_1"> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn201_2"> 
+      <wm-label name="label239_2" width="100%" caption="Bid Activity ID" fontweight="bold" textdecoration="underline"></wm-label> 
+      <wm-label name="label240_1" width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.BidID"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn161"> 
+      <wm-label width="100%" caption="Drawing Number" fontweight="bold" textdecoration="underline" name="label276"></wm-label> 
+      <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.EngDrawingNumber" name="label277"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn162"> 
+      <wm-label width="100%" name="label243" caption="Sheet #" fontweight="bold" textdecoration="underline"></wm-label> 
+      <wm-label width="100%" name="label244" caption="bind:Widgets.livelistBidActivities.selecteditem.SheetNumber"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn202_2"> 
+      <wm-label width="100%" name="label241_1" caption="Line #" fontweight="bold" textdecoration="underline"></wm-label> 
+      <wm-label width="100%" name="label242_1" caption="bind:Widgets.livelistBidActivities.selecteditem.LineNumber"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="1" name="gridcolumn225_3"> 
+      <wm-label width="100%" caption="Rev" fontweight="bold" textdecoration="underline" name="label247"></wm-label> 
+      <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.Rev" name="label249"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="3" name="gridcolumn225_2"> 
+      <wm-label width="100%" name="label245" caption="Description" fontweight="bold" textdecoration="underline"></wm-label> 
+      <wm-label width="100%" name="label246" caption="bind:Widgets.livelistBidActivities.selecteditem.Description"></wm-label> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow91" backgroundcolor="#c9cfdd"> 
+     <wm-gridcolumn columnwidth="4" name="gridcolumn234_1"> 
+      <wm-label width="100%" caption="Location Groupings" fontweight="bold" name="label265_1" fontsize="13" margin=".5% unset unset unset"></wm-label> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow85_1"> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn205_1"> 
+      <wm-label width="100%" caption="Area" fontweight="bold" textdecoration="underline" name="label252"></wm-label> 
+      <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.Area" name="label259_2"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn235_2"> 
+      <wm-label width="100%" caption="Location" fontweight="bold" textdecoration="underline" name="label268_2"></wm-label> 
+      <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.Location" name="label270_2"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn234_3"> 
+      <wm-label width="100%" caption="Structure" fontweight="bold" textdecoration="underline" name="label269"></wm-label> 
+      <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.Structure" name="label271_1"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn206_1"> 
+      <wm-label width="100%" caption="CU" fontweight="bold" textdecoration="underline" name="label253"></wm-label> 
+      <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.CU" name="label260_1"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn226_1"> 
+      <wm-label width="100%" caption="Elevation" fontweight="bold" textdecoration="underline" name="label254"></wm-label> 
+      <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.Elevation" name="label261_1"></wm-label> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow86_1" backgroundcolor="#c9cfdd"> 
+     <wm-gridcolumn columnwidth="4" name="gridcolumn207_2"> 
+      <wm-label width="100%" caption="Logical Groupings" fontweight="bold" name="label266_1" fontsize="13" margin=".5% unset unset unset"></wm-label> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow92_1"> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn240_1"> 
+      <wm-label width="100%" caption="Phase" fontweight="bold" textdecoration="underline" name="label251"></wm-label> 
+      <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.Phase" name="label258_2"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn237_3"> 
+      <wm-label width="100%" caption="Stage" fontweight="bold" textdecoration="underline" name="label272_1"></wm-label> 
+      <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.Stage" name="label273_1"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn236_2"> 
+      <wm-label width="100%" caption="Test Package" fontweight="bold" textdecoration="underline" name="label255_1"></wm-label> 
+      <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.TestPackageNumber" name="label262_1"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn241"> 
+      <wm-label width="100%" caption="Cost Code" fontweight="bold" textdecoration="underline" name="label268_1"></wm-label> 
+      <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.CostCode" name="label269_1"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn242"> 
+      <wm-label width="100%" caption="P6ID" fontweight="bold" textdecoration="underline" name="label256_2"></wm-label> 
+      <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.P6ID" name="label263_1"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn249"> 
+      <wm-label width="100%" caption="Contractor" fontweight="bold" textdecoration="underline" name="label274_1"></wm-label> 
+      <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.AssignedContractor" name="label275_1"></wm-label> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow93_1" backgroundcolor="#c9cfdd"> 
+     <wm-gridcolumn columnwidth="4" name="gridcolumn243"> 
+      <wm-label width="100%" caption="Details" fontweight="bold" name="label267_1" fontsize="13" margin=".5% unset unset unset"></wm-label> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow94_1"> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn246"> 
+      <wm-label width="100%" caption="System" fontweight="bold" textdecoration="underline" name="label271"></wm-label> 
+      <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.System" name="label279"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn247"> 
+      <wm-label width="100%" caption="Service" fontweight="bold" textdecoration="underline" name="label272"></wm-label> 
+      <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.Service" name="label280"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn248"> 
+      <wm-label width="100%" caption="Material Code" fontweight="bold" textdecoration="underline" name="label273"></wm-label> 
+      <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.MaterialCode" name="label281"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn250"> 
+      <wm-label width="100%" caption="Client Pipe Spec" fontweight="bold" textdecoration="underline" name="label274"></wm-label> 
+      <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.ClientPipeSpec" name="label282"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="1" name="gridcolumn251_1"> 
+      <wm-label width="100%" caption="Size" fontweight="bold" textdecoration="underline" name="label270_1"></wm-label> 
+      <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.PipeSize" name="label283"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="1" name="gridcolumn252_1"> 
+      <wm-label width="100%" caption="ECT" fontweight="bold" textdecoration="underline" name="label275"></wm-label> 
+      <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.ECT" name="label284"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="2" name="gridcolumn254"> 
+      <wm-label width="100%" caption="Piping Activity Type" fontweight="bold" textdecoration="underline" name="label278"></wm-label> 
+      <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.PipingActivityType" name="label285"></wm-label> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+   </wm-layoutgrid> 
+   <wm-dialogactions name="dialogactions4"> 
+    <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button15_1"></wm-button> 
+   </wm-dialogactions> 
+  </wm-dialog> 
+ </wm-view> 
+ <wm-view class="dialog-view" name="viewRejection" show="false"> 
+  <wm-dialog dialogtype="design-dialog" modal="true" name="dialogRejection" width="30%" closable="false" title="Reject Field Activity" iconclass="glyphicon glyphicon-edit"> 
+   <wm-form class="panel-primary" enctype="application/x-www-form-urlencoded" method="post" name="formReject" width="100%" height="100%" on-submit="formRejectSubmit($event, $scope, $formData);Widgets.dialogRejection.close();Widgets.dialogAssignQuantities.close();Variables.Job1111ExecuteUnLockSSActivity.invoke()" margin="0%"> 
+    <wm-layoutgrid name="layoutgrid54_1" margin="unset 0px" padding="unset 0px"> 
+     <wm-gridrow name="gridrow95_1" padding="unset 0%"> 
+      <wm-gridcolumn name="gridcolumn240_2"> 
+       <wm-composite name="composite207" captionposition="top"> 
+        <wm-label class="col-md-3" name="label258" caption="Reason For Rejecting"></wm-label> 
+        <wm-container class="col-md-9" name="container196" width="80%"> 
+         <wm-select name="selectRejectReason" readonlygrid="true" dataset="bind:Variables.PSARefActivityRejectionsData.dataSet" datafield="id" displayfield="label" required="true"></wm-select> 
+        </wm-container> 
+       </wm-composite> 
+       <wm-composite name="composite208" captionposition="top"> 
+        <wm-label class="col-md-3" name="label259" caption="Notes:"></wm-label> 
+        <wm-container class="col-md-9" name="container197" width="100%"> 
+         <wm-textarea name="textareaSSNoteReject" maxchars="252" required="true" updateon="default" on-keyup="textareaSSNoteRejectKeyup($event, $scope)"></wm-textarea> 
+         <wm-gridcolumn columnwidth="3" name="gridcolumn239"> 
+          <wm-label width="70%" caption="Remaining:" fontsize="10" textalign="right" name="label282_1"></wm-label> 
+          <wm-label width="30%" caption="252" fontsize="10" name="labelRejectTextCount"></wm-label> 
+         </wm-gridcolumn> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+    </wm-layoutgrid> 
+    <wm-buttongroup horizontalalign="right" class="form-action col-md-12" name="buttongroup1"> 
+     <wm-button caption="Cancel" type="button" class="btn-warning" name="button24" on-click="Widgets.dialogRejection.close()"></wm-button> 
+     <wm-button caption="Save" type="submit" class="btn-primary" name="buttonDialogRejectionSave" on-click="buttonDialogRejectionSaveClick($event, $scope)"></wm-button> 
+    </wm-buttongroup> 
+   </wm-form> 
+   <wm-dialogactions name="dialogactions3" show="false"> 
+    <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button14"></wm-button> 
+    <wm-button class="btn-primary" caption="Save" name="buttonRejectSave" type="submit"></wm-button> 
+   </wm-dialogactions> 
+  </wm-dialog> 
+ </wm-view> 
+</wm-partial>

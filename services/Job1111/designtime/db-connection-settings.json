@@ -1,0 +1,294 @@
+{
+  "username" : "PSAAdmin",
+  "password" : "7b6a43524a151e3b4a686a7511507770477c612a43",
+  "url" : "jdbc:mysql://130.211.120.98:3306/Job1111?useUnicode=yes&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull",
+  "driverClass" : "com.mysql.jdbc.Driver",
+  "dialect" : "com.wavemaker.runtime.data.dialect.MySQLDialect",
+  "serviceId" : "Job1111",
+  "packageName" : "com.psabackoffice.job1111",
+  "dbType" : "MySQL",
+  "host" : "130.211.120.98",
+  "dbName" : "Job1111",
+  "port" : "3306",
+  "schemaName" : null,
+  "tableFilter" : [ {
+    "table" : "CacheRef_CivilBidActivities",
+    "schema" : null
+  }, {
+    "table" : "CacheRef_EquipBidActivities",
+    "schema" : null
+  }, {
+    "table" : "CacheREF_SpoolInfo",
+    "schema" : null
+  }, {
+    "table" : "CacheREF_SteelPieceMarks",
+    "schema" : null
+  }, {
+    "table" : "CacheREF_UniqueDrawingNumbers",
+    "schema" : null
+  }, {
+    "table" : "CacheREF_UniqueLineNumbers",
+    "schema" : null
+  }, {
+    "table" : "CacheStats_CivilPCOT",
+    "schema" : null
+  }, {
+    "table" : "CacheStats_CivilStats",
+    "schema" : null
+  }, {
+    "table" : "CacheStats_EquipPCOT",
+    "schema" : null
+  }, {
+    "table" : "CacheStats_EquipStats",
+    "schema" : null
+  }, {
+    "table" : "CacheStats_PipePCOT",
+    "schema" : null
+  }, {
+    "table" : "CacheStats_PipeStats",
+    "schema" : null
+  }, {
+    "table" : "CacheStats_SteelPCOT",
+    "schema" : null
+  }, {
+    "table" : "CacheStats_SteelStats",
+    "schema" : null
+  }, {
+    "table" : "CivilFA",
+    "schema" : null
+  }, {
+    "table" : "CivilFAREV",
+    "schema" : null
+  }, {
+    "table" : "CivilMisc",
+    "schema" : null
+  }, {
+    "table" : "CivilMiscREV",
+    "schema" : null
+  }, {
+    "table" : "CivilSellPackage",
+    "schema" : null
+  }, {
+    "table" : "CivilSellPackageREV",
+    "schema" : null
+  }, {
+    "table" : "CivilTrackerClassic",
+    "schema" : null
+  }, {
+    "table" : "CivilTrackerDetails",
+    "schema" : null
+  }, {
+    "table" : "CivilTrackerDetailsREV",
+    "schema" : null
+  }, {
+    "table" : "EquipFA",
+    "schema" : null
+  }, {
+    "table" : "EquipFAREV",
+    "schema" : null
+  }, {
+    "table" : "EquipTrackerClassic",
+    "schema" : null
+  }, {
+    "table" : "EquipTrackerDetails",
+    "schema" : null
+  }, {
+    "table" : "EquipTrackerDetailsREV",
+    "schema" : null
+  }, {
+    "table" : "LandingSpoolList",
+    "schema" : null
+  }, {
+    "table" : "LandingTrackerCivil",
+    "schema" : null
+  }, {
+    "table" : "LandingTrackerEquip",
+    "schema" : null
+  }, {
+    "table" : "LandingTrackerPipe",
+    "schema" : null
+  }, {
+    "table" : "LandingTrackerSteel",
+    "schema" : null
+  }, {
+    "table" : "LandingWeldSpecProcedures",
+    "schema" : null
+  }, {
+    "table" : "REF_LineSpecs",
+    "schema" : null
+  }, {
+    "table" : "REF_SpoolList",
+    "schema" : null
+  }, {
+    "table" : "REF_WeldProcedures",
+    "schema" : null
+  }, {
+    "table" : "REF_WeldSpecProcedures",
+    "schema" : null
+  }, {
+    "table" : "SETTINGS",
+    "schema" : null
+  }, {
+    "table" : "SSNotes",
+    "schema" : null
+  }, {
+    "table" : "SteelBoltOut",
+    "schema" : null
+  }, {
+    "table" : "SteelBoltOutREV",
+    "schema" : null
+  }, {
+    "table" : "SteelDemo",
+    "schema" : null
+  }, {
+    "table" : "SteelDemoREV",
+    "schema" : null
+  }, {
+    "table" : "SteelErect",
+    "schema" : null
+  }, {
+    "table" : "SteelErectREV",
+    "schema" : null
+  }, {
+    "table" : "SteelImp",
+    "schema" : null
+  }, {
+    "table" : "SteelImpREV",
+    "schema" : null
+  }, {
+    "table" : "SteelMisc",
+    "schema" : null
+  }, {
+    "table" : "SteelMiscREV",
+    "schema" : null
+  }, {
+    "table" : "SteelSell",
+    "schema" : null
+  }, {
+    "table" : "SteelSellPackage",
+    "schema" : null
+  }, {
+    "table" : "SteelSellPackageREV",
+    "schema" : null
+  }, {
+    "table" : "SteelSellREV",
+    "schema" : null
+  }, {
+    "table" : "SteelShake",
+    "schema" : null
+  }, {
+    "table" : "SteelShakeREV",
+    "schema" : null
+  }, {
+    "table" : "SteelTrackerClassic",
+    "schema" : null
+  }, {
+    "table" : "SteelTrackerDetails",
+    "schema" : null
+  }, {
+    "table" : "SteelTrackerDetailsREV",
+    "schema" : null
+  }, {
+    "table" : "SteelWeld",
+    "schema" : null
+  }, {
+    "table" : "SteelWeldREV",
+    "schema" : null
+  }, {
+    "table" : "SubmissionStatus",
+    "schema" : null
+  }, {
+    "table" : "SubmissionStatusREV",
+    "schema" : null
+  }, {
+    "table" : "SubsBoltUp",
+    "schema" : null
+  }, {
+    "table" : "SubsBoltUpREV",
+    "schema" : null
+  }, {
+    "table" : "SubsDelay",
+    "schema" : null
+  }, {
+    "table" : "SubsDelayREV",
+    "schema" : null
+  }, {
+    "table" : "SubsDemo",
+    "schema" : null
+  }, {
+    "table" : "SubsDemoREV",
+    "schema" : null
+  }, {
+    "table" : "SubsDetails",
+    "schema" : null
+  }, {
+    "table" : "SubsDetailsREV",
+    "schema" : null
+  }, {
+    "table" : "SubsErection",
+    "schema" : null
+  }, {
+    "table" : "SubsErectionREV",
+    "schema" : null
+  }, {
+    "table" : "SubsEWO",
+    "schema" : null
+  }, {
+    "table" : "SubsMisc",
+    "schema" : null
+  }, {
+    "table" : "SubsMiscREV",
+    "schema" : null
+  }, {
+    "table" : "SubsSupports",
+    "schema" : null
+  }, {
+    "table" : "SubsSupportsREV",
+    "schema" : null
+  }, {
+    "table" : "SubsTesting",
+    "schema" : null
+  }, {
+    "table" : "SubsTestingREV",
+    "schema" : null
+  }, {
+    "table" : "SubsTrim",
+    "schema" : null
+  }, {
+    "table" : "SubsTrimREV",
+    "schema" : null
+  }, {
+    "table" : "SubsWeld",
+    "schema" : null
+  }, {
+    "table" : "SubsWeldREV",
+    "schema" : null
+  }, {
+    "table" : "trackerDetails",
+    "schema" : null
+  }, {
+    "table" : "trackerDetailsREV",
+    "schema" : null
+  }, {
+    "table" : "trackerPipeClassic",
+    "schema" : null
+  }, {
+    "table" : "UpdateTracker",
+    "schema" : null
+  } ],
+  "schemaFilter" : [ ".*" ],
+  "impersonateUser" : false,
+  "activeDirectoryDomain" : null,
+  "hbm2ddl" : "none",
+  "maxPageSize" : 100,
+  "minPoolSize" : 2,
+  "maxPoolSize" : 4,
+  "dataSourceType" : "WM_MANAGED_DATASOURCE",
+  "jndiName" : "",
+  "reloadInfo" : {
+    "reload" : false,
+    "reason" : null,
+    "message" : null
+  },
+  "readOnly" : false
+}

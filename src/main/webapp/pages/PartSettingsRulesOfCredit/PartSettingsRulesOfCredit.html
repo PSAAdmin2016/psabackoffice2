@@ -1,0 +1,242 @@
+<wm-partial data-ng-controller="PartSettingsRulesOfCreditPageController" name="partial1">
+    <wm-tabs name="tabs2">
+        <wm-tabpane name="tabpane3" title="Pipe" on-select="Variables.serviceGetPipeMech.invoke();Variables.serviceGetPipeTesting.invoke();Variables.serviceGetPipeRFT.invoke();Variables.serviceGetPipeHydro.invoke();Variables.serviceGetPipeCTO.invoke()">
+            <wm-layoutgrid name="layoutgrid4_1">
+                <wm-gridrow name="gridrow5_1">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn10_1">
+                        <wm-label class="col-md-3 control-label" caption="Pipe Rules of Credit" fontsize="16" fontweight="bold" color="#000000" horizontalalign="center" name="label10"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn11_1"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow11">
+                    <wm-gridcolumn columnwidth="7" name="gridcolumn29_1">
+                        <wm-form errormessage="" captionposition="top" title="" enctype="application/x-www-form-urlencoded" method="post" dataset="bind:Variables.staticYesNo.dataSet" captionalign="left" name="formPipeRules" on-submit="Variables.serviceUpdatePipeMech.invoke();Variables.serviceUpdatePipeTesting.invoke();Variables.serviceUpdatePipeRFT.invoke();Variables.serviceUpdatePipeHydro.invoke();Variables.serviceUpdatePipeCTO.invoke()">
+                            <wm-layoutgrid columns="3" name="layoutgrid7_2">
+                                <wm-gridrow name="gridrow20_2">
+                                    <wm-gridcolumn columnwidth="2" backgroundcolor="#9accd6" name="gridcolumn51_1">
+                                        <wm-label class="col-md-3 control-label" caption="Mechanical Hours %" fontsize="14" fontweight="bold" color="#000000" horizontalalign="center" name="label25"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" backgroundcolor="#2db457" padding="unset unset unset 0px" horizontalalign="left" name="gridcolumn52_1">
+                                        <wm-label class="col-md-3 control-label" caption="Testing Hours %" padding="unset unset unset 0px" fontweight="bold" color="#000000" fontsize="14" horizontalalign="center" name="label26"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" horizontalalign="left" name="gridcolumn53_1">
+                                        <wm-label class="col-md-3 control-label" caption="Total" fontweight="bold" color="#000000" fontsize="14" horizontalalign="left" textdecoration="underline" name="label27"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn54_1"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow21">
+                                    <wm-gridcolumn columnwidth="2" backgroundcolor="#9accd6" horizontalalign="center" name="gridcolumn55_2">
+                                        <wm-text tabindex="1" placeholder="Enter Decimal" type="number" maxvalue="1" minvalue="0" width="80%" margin="unset unset 4% 10%" hint="Enter Percent as Decimal.  Eg. &quot;.90&quot;" datavalue="bind:Variables.serviceGetPipeMech.dataSet[$i].Value1"
+                                        name="textMechPercent" step="0.0001"></wm-text>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" backgroundcolor="#2db457" horizontalalign="center" name="gridcolumn56_1">
+                                        <wm-text tabindex="1" placeholder="Enter Decimal" type="number" maxvalue="1" minvalue="0" margin="unset unset 4% 10%" width="80%" hint="Enter Percent as Decimal.  Eg. &quot;.90&quot;" datavalue="bind:Variables.serviceGetPipeTesting.dataSet[$i].Value1"
+                                        name="textTestingPercent" step="0.0001"></wm-text>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn57_1">
+                                        <wm-label class="col-md-3 control-label" caption="bind:(Widgets.formPipeRules.formWidgets.textMechPercent.datavalue + Widgets.formPipeRules.formWidgets.textTestingPercent.datavalue) * 100 | toNumber: '0' | suffix: '%'"
+                                        horizontalalign="left" name="label28" hint="All Percents should add up to 100%"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn58_1"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow22">
+                                    <wm-gridcolumn columnwidth="2" horizontalalign="center" name="gridcolumn59_1"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" backgroundcolor="#2db457" name="gridcolumn60_1">
+                                        <wm-composite horizontalalign="left" name="composite7">
+                                            <wm-label class="col-md-3 control-label" caption="Ready For Testing %" name="label29"></wm-label>
+                                            <wm-container class="col-md-9" width="80%" margin="unset unset unset 10%" name="container7">
+                                                <wm-text tabindex="1" placeholder="Enter Decimal" type="number" minvalue="0" maxvalue="1" hint="Enter Percent as Decimal.  Eg. &quot;.90&quot;" datavalue="bind:Variables.serviceGetPipeRFT.dataSet[$i].Value1"
+                                                name="textRFTPercent" step="0.0001"></wm-text>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" backgroundcolor="#2db457" name="gridcolumn61">
+                                        <wm-composite name="composite8">
+                                            <wm-label class="col-md-3 control-label" caption="Hydro %" name="label30"></wm-label>
+                                            <wm-container class="col-md-9" name="container8">
+                                                <wm-text tabindex="1" placeholder="Enter Decimal" type="number" minvalue="0" maxvalue="1" hint="Enter Percent as Decimal.  Eg. &quot;.90&quot;" datavalue="bind:Variables.serviceGetPipeHydro.dataSet[$i].Value1"
+                                                name="textHydroPercent" step="0.0001"></wm-text>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" backgroundcolor="#2db457" name="gridcolumn62_1">
+                                        <wm-composite name="composite9">
+                                            <wm-label class="col-md-3 control-label" caption="Client Turn Over %" name="label31_1"></wm-label>
+                                            <wm-container class="col-md-9" name="container9">
+                                                <wm-text tabindex="1" placeholder="Enter Decimal" type="number" minvalue="0" maxvalue="1" hint="Enter Percent as Decimal.  Eg. &quot;.90&quot;" datavalue="bind:Variables.serviceGetPipeCTO.dataSet[$i].Value1"
+                                                name="textCTOPercent" step="0.0001"></wm-text>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn63_1">
+                                        <wm-label class="col-md-3 control-label" caption="Total" fontweight="bold" color="#000000" fontsize="14" horizontalalign="left" textdecoration="underline" name="label32"></wm-label>
+                                        <wm-label class="col-md-3 control-label" caption="bind:(Widgets.formPipeRules.formWidgets.textHydroPercent.datavalue + 
+Widgets.formPipeRules.formWidgets.textRFTPercent.datavalue + 
+Widgets.formPipeRules.formWidgets.textCTOPercent.datavalue) * 100 | toNumber: '0' | suffix: '%'" horizontalalign="left" name="label33" hint="All SUB Percents should add up to 100%"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                            <wm-buttongroup horizontalalign="right" class="form-action col-md-12" name="buttongroup2_1">
+                                <wm-button caption="Save" type="submit" class="btn-primary" name="button6_1"></wm-button>
+                            </wm-buttongroup>
+                        </wm-form>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn30"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow19_2">
+                    <wm-gridcolumn columnwidth="7" name="gridcolumn48_1"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn49_1"></wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-tabpane>
+        <wm-tabpane name="tabpane4" title="Steel" on-select="Variables.serviceGetSteelShake.invoke();Variables.serviceGetSteelErect.invoke();Variables.serviceGetSteelBoltout.invoke();Variables.serviceGetSteelImp.invoke();Variables.serviceGetSteelSell.invoke()">
+            <wm-layoutgrid name="layoutgrid6_1">
+                <wm-gridrow name="gridrow16">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn39" padding="unset unset unset 0px">
+                        <wm-label class="col-md-3 control-label" caption="Steel Rules of Credit" fontsize="16" fontweight="bold" color="#000000" horizontalalign="center" name="label24" padding="unset unset unset 0px"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn40"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow17">
+                    <wm-gridcolumn columnwidth="7" name="gridcolumn41">
+                        <wm-form errormessage="" captionposition="top" title="" enctype="application/x-www-form-urlencoded" method="post" dataset="bind:Variables.staticYesNo.dataSet" captionalign="left" name="formSteelRules" on-submit="Variables.serviceUpdateSteelShake.invoke();Variables.serviceUpdateSteelErect.invoke();Variables.serviceUpdateSteelBoltout.invoke();Variables.serviceUpdateSteelImp.invoke();Variables.serviceUpdateSteelSell.invoke()">
+                            <wm-layoutgrid columns="3" name="layoutgrid7">
+                                <wm-gridrow name="gridrow18">
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn42">
+                                        <wm-label class="col-md-3 control-label" caption="Shake Hours %" fontsize="14" fontweight="bold" color="#000000" horizontalalign="left" name="label15"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" padding="unset unset unset 0px" horizontalalign="left" name="gridcolumn43">
+                                        <wm-label class="col-md-3 control-label" caption="Erect Hours %" padding="unset unset unset 0px" fontweight="bold" color="#000000" fontsize="14" horizontalalign="left" name="label16"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn52">
+                                        <wm-label class="col-md-3 control-label" caption="Bolt-out Hours %" padding="unset unset unset 0px" fontweight="bold" color="#000000" fontsize="14" horizontalalign="left" name="label25_1"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn51">
+                                        <wm-label class="col-md-3 control-label" caption="Impact Hours %" padding="unset unset unset 0px" fontweight="bold" color="#000000" fontsize="14" horizontalalign="left" name="label26_1"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" horizontalalign="left" name="gridcolumn44">
+                                        <wm-label class="col-md-3 control-label" caption="Sell/Punch Hours %" padding="unset unset unset 0px" fontweight="bold" color="#000000" fontsize="14" horizontalalign="left" name="label27_1"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn45">
+                                        <wm-label class="col-md-3 control-label" caption="Total" fontweight="bold" color="#000000" fontsize="14" horizontalalign="center" textdecoration="underline" name="label17"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow19">
+                                    <wm-gridcolumn columnwidth="2" horizontalalign="center" name="gridcolumn46">
+                                        <wm-text tabindex="1" placeholder="Enter Decimal" type="number" maxvalue="1" minvalue="0" width="80%" margin="unset unset 4% unset" hint="Enter Percent as Decimal.  Eg. &quot;.90&quot;" datavalue="bind:Variables.serviceGetSteelShake.dataSet[$i].Value1"
+                                        name="textSteelShake" step="0.0001"></wm-text>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" horizontalalign="center" name="gridcolumn47">
+                                        <wm-text tabindex="1" placeholder="Enter Decimal" type="number" maxvalue="1" minvalue="0" margin="unset unset 4% unset" width="80%" hint="Enter Percent as Decimal.  Eg. &quot;.90&quot;" datavalue="bind:Variables.serviceGetSteelErect.dataSet[$i].Value1"
+                                        name="textSteelErect" step="0.0001"></wm-text>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn54" horizontalalign="center">
+                                        <wm-text tabindex="1" placeholder="Enter Decimal" type="number" maxvalue="1" minvalue="0" width="80%" margin="unset unset 4% unset" hint="Enter Percent as Decimal.  Eg. &quot;.90&quot;" datavalue="bind:Variables.serviceGetSteelBoltout.dataSet[$i].Value1"
+                                        step="0.0001" name="textSteelBoltout"></wm-text>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn53" horizontalalign="center">
+                                        <wm-text tabindex="1" placeholder="Enter Decimal" type="number" maxvalue="1" minvalue="0" width="80%" margin="unset unset 4% unset" hint="Enter Percent as Decimal.  Eg. &quot;.90&quot;" datavalue="bind:Variables.serviceGetSteelImp.dataSet[$i].Value1"
+                                        step="0.0001" name="textSteelImp"></wm-text>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn48" horizontalalign="center">
+                                        <wm-text tabindex="1" placeholder="Enter Decimal" type="number" maxvalue="1" minvalue="0" width="80%" margin="unset unset 4% unset" hint="Enter Percent as Decimal.  Eg. &quot;.90&quot;" datavalue="bind:Variables.serviceGetSteelSell.dataSet[$i].Value1"
+                                        step="0.0001" name="textSteelSell"></wm-text>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn49">
+                                        <wm-label class="col-md-3 control-label" caption="bind:(Widgets.formSteelRules.formWidgets.textSteelShake.datavalue + 
+Widgets.formSteelRules.formWidgets.textSteelErect.datavalue + 
+Widgets.formSteelRules.formWidgets.textSteelBoltout.datavalue + 
+Widgets.formSteelRules.formWidgets.textSteelImp.datavalue + 
+Widgets.formSteelRules.formWidgets.textSteelSell.datavalue) * 100 | toNumber: '0' | suffix: '%'" horizontalalign="center" name="label18" hint="All Percents should add up to 100%"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                            <wm-buttongroup horizontalalign="right" class="form-action col-md-12" name="buttongroup2">
+                                <wm-button caption="Save" type="submit" class="btn-primary" name="button6"></wm-button>
+                            </wm-buttongroup>
+                        </wm-form>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn55"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow24">
+                    <wm-gridcolumn columnwidth="7" name="gridcolumn62"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn63"></wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-tabpane>
+        <wm-tabpane name="tabpane5" title="Civil" on-select="Variables.serviceGetCivilWork.invoke();Variables.serviceGetCivilPunch.invoke()">
+            <wm-layoutgrid name="layoutgrid5">
+                <wm-gridrow name="gridrow13">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn39_1">
+                        <wm-label class="col-md-3 control-label" caption="Civil Rules of Credit" fontsize="16" fontweight="bold" color="#000000" horizontalalign="center" name="label21_1"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn40_1"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow14">
+                    <wm-gridcolumn columnwidth="7" name="gridcolumn41_1">
+                        <wm-form errormessage="" captionposition="top" title="" enctype="application/x-www-form-urlencoded" method="post" dataset="bind:Variables.staticYesNo.dataSet" captionalign="left" name="formCivilRules" on-beforesubmit="Variables.serviceUpdateCivilWork.invoke();Variables.serviceUpdateCivilPunch.invoke()">
+                            <wm-layoutgrid columns="3" name="layoutgrid7_3">
+                                <wm-gridrow name="gridrow18_2">
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn50">
+                                        <wm-label class="col-md-3 control-label" caption="Work Hours %" fontsize="14" fontweight="bold" color="#000000" horizontalalign="left" name="label23"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" padding="unset unset unset 0px" horizontalalign="left" name="gridcolumn51_2">
+                                        <wm-label class="col-md-3 control-label" caption="Sell/Punch Hours %" padding="unset unset unset 0px" fontweight="bold" color="#000000" fontsize="14" horizontalalign="left" name="label24_1"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn55_3">
+                                        <wm-label class="col-md-3 control-label" caption="Total" fontweight="bold" color="#000000" fontsize="14" horizontalalign="center" textdecoration="underline" name="label28_1"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn62_2"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow19_3">
+                                    <wm-gridcolumn columnwidth="3" horizontalalign="center" name="gridcolumn56_2">
+                                        <wm-text tabindex="1" placeholder="Enter Decimal" type="number" maxvalue="1" minvalue="0" width="80%" margin="unset unset 4% unset" hint="Enter Percent as Decimal.  Eg. &quot;.90&quot;" datavalue="bind:Variables.serviceGetCivilWork.dataSet[$i].Value1"
+                                        step="0.0001" name="textCivilWork"></wm-text>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" horizontalalign="center" name="gridcolumn57_2">
+                                        <wm-text tabindex="1" placeholder="Enter Decimal" type="number" maxvalue="1" minvalue="0" margin="unset unset 4% unset" width="80%" hint="Enter Percent as Decimal.  Eg. &quot;.90&quot;" datavalue="bind:Variables.serviceGetCivilPunch.dataSet[$i].Value1"
+                                        name="textCivilPunch" step="0.0001"></wm-text>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn61_1">
+                                        <wm-label class="col-md-3 control-label" caption="bind:(Widgets.formCivilRules.formWidgets.textCivilWork.datavalue + 
+Widgets.formCivilRules.formWidgets.textCivilPunch.datavalue ) * 100 | toNumber: '0' | suffix: '%'" horizontalalign="center" hint="All Percents should add up to 100%" name="label29_1"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn63_2"></wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                            <wm-buttongroup horizontalalign="right" class="form-action col-md-12" name="buttongroup3">
+                                <wm-button caption="Save" type="submit" class="btn-primary" name="button6_2"></wm-button>
+                            </wm-buttongroup>
+                        </wm-form>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn55_1"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow18_1">
+                    <wm-gridcolumn columnwidth="7" name="gridcolumn56"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn57"></wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-tabpane>
+        <wm-tabpane name="tabpane6" title="Equip">
+            <wm-layoutgrid name="layoutgrid7_1">
+                <wm-gridrow name="gridrow19_1">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn58" horizontalalign="left">
+                        <wm-label class="col-md-3 control-label" caption="Equip Rules of Credit" fontsize="16" fontweight="bold" color="#000000" horizontalalign="center" name="label31" width="100%" textalign="left"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn59"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow20_1">
+                    <wm-gridcolumn columnwidth="7" name="gridcolumn60">
+                        <wm-label class="col-md-3 control-label" caption="100% claim on completion" fontsize="14" fontweight="bold" color="#000000" horizontalalign="center" name="label51" textalign="left" width="25%" padding="unset unset unset 2%" borderwidth="2px"
+                        bordercolor="#000000" borderstyle="ridge"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn74"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow24_1">
+                    <wm-gridcolumn columnwidth="7" name="gridcolumn75"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn76"></wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-tabpane>
+    </wm-tabs>
+</wm-partial>

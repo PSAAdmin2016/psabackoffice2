@@ -1,0 +1,108 @@
+{
+  "liveGetSteelTypes" : {
+    "_id" : "wm-liveGetSteelTypes-wm.LiveVariable-1479142783953",
+    "name" : "liveGetSteelTypes",
+    "owner" : "Page",
+    "category" : "wm.LiveVariable",
+    "dataBinding" : [ ],
+    "operation" : "read",
+    "dataSet" : [ ],
+    "type" : "RefSteelTypes",
+    "isList" : false,
+    "saveInPhonegap" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "inFlightBehavior" : "executeLast",
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "transformationRequired" : false,
+    "liveSource" : "PSA",
+    "ignoreCase" : true,
+    "matchMode" : "start",
+    "propertiesMap" : {
+      "columns" : [ {
+        "fieldName" : "id",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "ID",
+        "isPrimaryKey" : true,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
+        "fieldName" : "steelName",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "SteelName",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 45,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      } ],
+      "entityName" : "RefSteelTypes",
+      "fullyQualifiedName" : "com.psabackoffice.psa.RefSteelTypes",
+      "tableType" : "TABLE",
+      "primaryFields" : [ "id" ]
+    },
+    "bindCount" : 1,
+    "tableName" : "REF_SteelTypes",
+    "tableType" : "TABLE",
+    "properties" : [ ],
+    "relatedTables" : [ ],
+    "filterFields" : { },
+    "package" : "com.psabackoffice.psa.RefSteelTypes"
+  },
+  "serviceUpdateActivity" : {
+    "_id" : "wm-serviceUpdateActivity-wm.ServiceVariable-1479141542774",
+    "name" : "serviceUpdateActivity",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "Area",
+      "value" : "bind:Widgets.textArea.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Size",
+      "value" : "bind:Widgets.textSize.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Notes",
+      "value" : "bind:Widgets.textareaNotes.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "SteelType",
+      "value" : "bind:Widgets.selectSteelType.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "RowID",
+      "value" : "bind:$parent.Variables.liveGetSteelDemo.dataSet.data[$i].id",
+      "type" : "integer"
+    }, {
+      "target" : "Quantity",
+      "value" : "bind:Widgets.textQuantity.datavalue",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "Job1111",
+    "operation" : "executeUpdateSteelDemo",
+    "operationId" : "QueryExecutionController_executeUpdateSteelDemo",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 1,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  }
+}

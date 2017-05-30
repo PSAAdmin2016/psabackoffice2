@@ -1,0 +1,377 @@
+{
+  "Job1111ExecuteGetActivitiesPendingApproval" : {
+    "_id" : "wm-Job1111ExecuteGetActivitiesPendingApproval-wm.ServiceVariable-1460641646816",
+    "name" : "Job1111ExecuteGetActivitiesPendingApproval",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "UserID",
+      "value" : "bind:Variables.loggedInUser.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.query.GetActivitiesPendingApprovalResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetActivitiesPendingApproval",
+    "operationId" : "QueryExecutionController_executeGetActivitiesPendingApproval",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "isList" : true,
+    "firstRow" : 0,
+    "maxResults" : 5000,
+    "designMaxResults" : 10,
+    "orderBy" : "Craft asc, PSAActivityID desc",
+    "onSuccess" : "Variables.serviceGetActivitiesPendingApprovalCount.invoke()",
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "QueryExecution"
+  },
+  "Job1111ExecuteGetPSRecentActivities" : {
+    "_id" : "wm-Job1111ExecuteGetPSRecentActivities-wm.ServiceVariable-1464286247551",
+    "name" : "Job1111ExecuteGetPSRecentActivities",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "UserID",
+      "value" : "bind:Variables.loggedInUser.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.query.GetPsrecentActivitiesResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetPSRecentActivities",
+    "operationId" : "QueryExecutionController_executeGetPSRecentActivities",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "isList" : true,
+    "firstRow" : 0,
+    "maxResults" : 200,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "QueryExecution"
+  },
+  "Job1111ExecuteUpdateSSReturnToListPS" : {
+    "_id" : "wm-Job1111ExecuteUpdateSSReturnToListPS-wm.ServiceVariable-1464297686390",
+    "name" : "Job1111ExecuteUpdateSSReturnToListPS",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "ActivityStatus",
+      "value" : "11",
+      "type" : "integer"
+    }, {
+      "target" : "UserID",
+      "value" : "bind:Variables.loggedInUser.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "FieldActivityID",
+      "value" : "bind:Widgets.livelistRecentActivities.selecteditem.PSAActivityID",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "Job1111",
+    "operation" : "executeUpdateSS",
+    "operationId" : "QueryExecutionController_executeUpdateSS",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "isList" : false,
+    "firstRow" : 0,
+    "maxResults" : 3,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.Job1111ExecuteGetPSRecentActivities.invoke();Variables.Job1111ExecuteGetActivitiesPendingApproval.invoke()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "QueryExecution"
+  },
+  "navigationToClassicCivil" : {
+    "_id" : "wm-navigationToClassicCivil-wm.NavigationVariable-1483028170791",
+    "name" : "navigationToClassicCivil",
+    "owner" : "Page",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "TrackerClassicCivil",
+      "type" : "string"
+    } ],
+    "operation" : "gotoPage",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
+  "navigationToClassicEquip" : {
+    "_id" : "wm-navigationToClassicEquip-wm.NavigationVariable-1490293503146",
+    "name" : "navigationToClassicEquip",
+    "owner" : "Page",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "TrackerClassicEquip",
+      "type" : "string"
+    } ],
+    "operation" : "gotoPage",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
+  "navigationToClassicPipe" : {
+    "_id" : "wm-navigationToClassicPipe-wm.NavigationVariable-1474656396144",
+    "name" : "navigationToClassicPipe",
+    "owner" : "Page",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "TrackerClassicPipe",
+      "type" : "list"
+    } ],
+    "operation" : "gotoPage",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
+  "navigationToClassicSteel" : {
+    "_id" : "wm-navigationToClassicSteel-wm.NavigationVariable-1478199436615",
+    "name" : "navigationToClassicSteel",
+    "owner" : "Page",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "TrackerClassicSteel",
+      "type" : "list"
+    } ],
+    "operation" : "gotoPage",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
+  "serviceCreateSSNote" : {
+    "_id" : "wm-Job1111ExecuteCreateSSNote-wm.ServiceVariable-1457040761432",
+    "name" : "serviceCreateSSNote",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "PSAActivityID",
+      "value" : "bind:Widgets.gridApprovalReview.selecteditem.PSAActivityID",
+      "type" : "integer"
+    }, {
+      "target" : "CreatedBy",
+      "value" : "bind:Variables.loggedInUser.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "Note",
+      "value" : "bind:Widgets.textareaSSNoteNew.datavalue",
+      "type" : "string"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "Job1111",
+    "operation" : "executeCreateSSNote",
+    "operationId" : "QueryExecutionController_executeCreateSSNote",
+    "operationType" : "post",
+    "serviceType" : "DataService",
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "isList" : false,
+    "firstRow" : 0,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onResult" : "Variables.serviceGetNotesByPSAActivityID.invoke()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "QueryExecution"
+  },
+  "serviceGetActivitiesPendingApprovalCount" : {
+    "_id" : "wm-serviceGetActivitiesPendingApprovalCount-wm.ServiceVariable-1474567775589",
+    "name" : "serviceGetActivitiesPendingApprovalCount",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "UserID",
+      "value" : "bind:Variables.loggedInUser.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.query.GetActivitiesPendingApprovalCountResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetActivitiesPendingApprovalCount",
+    "operationId" : "QueryExecutionController_executeGetActivitiesPendingApprovalCount",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 1,
+    "designMaxResults" : 1,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "serviceGetCivilWorkPercent" : {
+    "_id" : "wm-serviceGetCivilWorkPercent-wm.ServiceVariable-1483645180449",
+    "name" : "serviceGetCivilWorkPercent",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "type" : "Job1111GetSettingCivilWorkPercentrtnType",
+    "service" : "Job1111",
+    "operation" : "executeGetSettingCivilWorkPercent",
+    "operationId" : "QueryExecutionController_executeGetSettingCivilWorkPercent",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 1,
+    "designMaxResults" : 10,
+    "startUpdate" : true,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "serviceGetNoteCount" : {
+    "_id" : "wm-Job1111ExecuteGetNoteCount-wm.ServiceVariable-1457044813736",
+    "name" : "serviceGetNoteCount",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "PSAActivityID",
+      "value" : "bind:Widgets.gridApprovalReview.selecteditem.PSAActivityID",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.query.GetNoteCountResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetNoteCount",
+    "operationId" : "QueryExecutionController_executeGetNoteCount",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "isList" : true,
+    "firstRow" : 0,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "QueryExecution"
+  },
+  "serviceGetNotesByPSAActivityID" : {
+    "_id" : "wm-Job1111ExecuteGetNotesByPSAActivityID-wm.ServiceVariable-1457038180972",
+    "name" : "serviceGetNotesByPSAActivityID",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "ActivityID",
+      "value" : "bind:Widgets.gridApprovalReview.selecteditem.PSAActivityID",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.query.GetNotesByPsaactivityIdResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetNotesByPSAActivityID",
+    "operationId" : "QueryExecutionController_executeGetNotesByPSAActivityID",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "isList" : true,
+    "firstRow" : 0,
+    "maxResults" : 50,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page",
+    "spinnerMessage" : "Retrieving Data..."
+  },
+  "serviceGetTestingPercent" : {
+    "_id" : "wm-serviceGetTestingPercent-wm.ServiceVariable-1473991044179",
+    "name" : "serviceGetTestingPercent",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "type" : "com.psabackoffice.job1111.models.query.GetSettingPipeTestingPercentResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetSettingPipeTestingPercent",
+    "operationId" : "QueryExecutionController_executeGetSettingPipeTestingPercent",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 1,
+    "designMaxResults" : 10,
+    "startUpdate" : true,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "serviceUpdateSSApproval" : {
+    "_id" : "wm-Job1111ExecuteUpdateSSApproval-wm.ServiceVariable-1456860296403",
+    "name" : "serviceUpdateSSApproval",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "UserID",
+      "value" : "bind:Variables.loggedInUser.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "FieldActivityID",
+      "value" : "bind:Widgets.gridApprovalReview.selecteditem.PSAActivityID",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "Job1111",
+    "operation" : "executeUpdateSS",
+    "operationId" : "QueryExecutionController_executeUpdateSS",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "isList" : false,
+    "firstRow" : 0,
+    "maxResults" : 3,
+    "designMaxResults" : 10,
+    "onResult" : "Variables.Job1111ExecuteGetActivitiesPendingApproval.invoke()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page",
+    "spinnerMessage" : "Updating..."
+  }
+}

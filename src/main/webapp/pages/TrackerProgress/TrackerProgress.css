@@ -1,0 +1,25 @@
+.pink {
+    background-color: #F8E0E0;
+}
+.blue {
+    background-color: #5fb4ff;
+}
+.green {
+    background-color: #D8F6CE;
+}
+.lightgreen {
+    background-color: #CEF6F5;
+}
+.yellowBrown {
+    background-color: #f4e6bc;
+}
+.yellow {
+    background-color: #fffe80;
+}
+.orange {
+    background-color: #ff6500;
+}
+.wm-app .app-grid .app-datagrid .table-container { min-height: 20px; }
+.wrapheader .table thead th.app-datagrid-header-cell {
+white-space: pre;
+}

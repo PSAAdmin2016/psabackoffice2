@@ -1,0 +1,49 @@
+{
+  "serviceUpdateActivity" : {
+    "_id" : "wm-serviceUpdateActivity-wm.ServiceVariable-1479138213354",
+    "name" : "serviceUpdateActivity",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "Area",
+      "value" : "bind:Widgets.textSteelArea.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Piece",
+      "value" : "bind:Widgets.textSteelPieceNumber.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Quantity",
+      "value" : "bind:Widgets.textSteelQuantity.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "Rework",
+      "value" : "bind:Widgets.checkbox3.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Notes",
+      "value" : "bind:Widgets.textareaSteelNotes.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "RowID",
+      "value" : "bind:$parent.Variables.liveGetSteelShake.dataSet.data[$i].id",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "Job1111",
+    "operation" : "executeUpdateSteelShake",
+    "operationId" : "QueryExecutionController_executeUpdateSteelShake",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 1,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  }
+}

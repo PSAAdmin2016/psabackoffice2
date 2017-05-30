@@ -1,0 +1,96 @@
+[ {
+  "urlPattern" : "/pages/Login/**",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : null
+}, {
+  "urlPattern" : "/pages/SettingsGeneral/**",
+  "permission" : "Role",
+  "roles" : [ "SuperUser" ],
+  "httpMethod" : null
+}, {
+  "urlPattern" : "/pages/SettingsSite/**",
+  "permission" : "Role",
+  "roles" : [ "SuperUser", "Site Office-Project Services", "Corp. Office-Site Admin", "Corp. Office-Project Services" ],
+  "httpMethod" : null
+}, {
+  "urlPattern" : "/pages/ToolsMobileUserManagement/**",
+  "permission" : "Role",
+  "roles" : [ "SuperUser" ],
+  "httpMethod" : null
+}, {
+  "urlPattern" : "/services/PSA/Settings/",
+  "permission" : "Role",
+  "roles" : [ "CorporateOffice", "SuperUser" ],
+  "httpMethod" : "POST"
+}, {
+  "urlPattern" : "/services/PSA/Settings/{id}",
+  "permission" : "Role",
+  "roles" : [ "CorporateOffice", "SuperUser" ],
+  "httpMethod" : "PUT"
+}, {
+  "urlPattern" : "/services/PSA/Settings/{id}",
+  "permission" : "Role",
+  "roles" : [ "SuperUser", "CorporateOffice" ],
+  "httpMethod" : "DELETE"
+}, {
+  "urlPattern" : "/services/PSA/TblJobNumbers/{id}",
+  "permission" : "Authenticated",
+  "roles" : [ ],
+  "httpMethod" : "PUT"
+}, {
+  "urlPattern" : "/services/PSA/TblJobNumbers/{id}",
+  "permission" : "Authenticated",
+  "roles" : [ ],
+  "httpMethod" : "DELETE"
+}, {
+  "urlPattern" : "/services/PSA/TblJobSites/",
+  "permission" : "Authenticated",
+  "roles" : [ ],
+  "httpMethod" : "POST"
+}, {
+  "urlPattern" : "/services/PSA/TblJobSites/{id}",
+  "permission" : "Authenticated",
+  "roles" : [ ],
+  "httpMethod" : "PUT"
+}, {
+  "urlPattern" : "/services/PSA/TblJobSites/{id}",
+  "permission" : "Authenticated",
+  "roles" : [ ],
+  "httpMethod" : "DELETE"
+}, {
+  "urlPattern" : "/services/PSA/TblUserPsa/{id}",
+  "permission" : "Authenticated",
+  "roles" : [ ],
+  "httpMethod" : "PUT"
+}, {
+  "urlPattern" : "/services/PSA/TblUserPsa/{id}",
+  "permission" : "Authenticated",
+  "roles" : [ ],
+  "httpMethod" : "DELETE"
+}, {
+  "urlPattern" : "/services/sHA256Encryption/**",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : null
+}, {
+  "urlPattern" : "/services/fileImporter/**",
+  "permission" : "Role",
+  "roles" : [ "SuperUser", "Site Office-Project Services", "Corp. Office-Site Admin", "Corp. Office-Project Services" ],
+  "httpMethod" : null
+}, {
+  "urlPattern" : "/services/appenateDeleteUser/invoke/v2/user/**",
+  "permission" : "Role",
+  "roles" : [ "SuperUser" ],
+  "httpMethod" : null
+}, {
+  "urlPattern" : "/services/PSA/queryExecutor/queries/InsertLoginFailure",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : "POST"
+}, {
+  "urlPattern" : "/services/PSA/queryExecutor/queries/InsertLoginSuccess",
+  "permission" : "Authenticated",
+  "roles" : [ ],
+  "httpMethod" : "POST"
+} ]

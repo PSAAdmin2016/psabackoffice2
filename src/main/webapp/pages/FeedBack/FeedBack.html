@@ -1,0 +1,52 @@
+<wm-partial data-ng-controller="FeedBackPageController" type="popover" name="partial1"> 
+ <wm-form class="panel-primary" title="Feedback" enctype="application/x-www-form-urlencoded" method="post" name="formFeedback" on-submit="formFeedbackSubmit($event, $scope, $formData)" dataset="bind:Variables.staticPercentList.dataSet"> 
+  <wm-layoutgrid name="layoutgrid3_1"> 
+   <wm-gridrow name="gridrow4_1"> 
+    <wm-gridcolumn name="gridcolumn7_1" columnwidth="4"> 
+     <wm-composite name="composite2" captionposition="top"> 
+      <wm-label class="col-md-3 control-label" name="label4_1" caption="Feedback Type" fontweight="bold"></wm-label> 
+      <wm-container class="col-md-9" name="container2_1" width="100%"> 
+       <wm-select name="selectFBType" dataset="bind:Variables.PSARefFbTypesData.dataSet" datafield="id" displayfield="label" required="true"></wm-select> 
+      </wm-container> 
+     </wm-composite> 
+    </wm-gridcolumn> 
+    <wm-gridcolumn columnwidth="4" name="gridcolumn9"> 
+     <wm-composite name="composite3" captionposition="top" show="bind:Widgets.selectFBType.datavalue == 2 || Widgets.selectFBType.datavalue == 3"> 
+      <wm-label class="col-md-3 control-label" name="label5_1" caption="Sub Type" fontweight="bold"></wm-label> 
+      <wm-container class="col-md-9" name="container3" width="100%"> 
+       <wm-select name="selectFBSubType" datafield="ID" required="bind:Widgets.selectFBType.datavalue == 2 || Widgets.selectFBType.datavalue == 3" show="true" dataset="bind:Variables.serviceGetFBSubType.dataSet" displayfield="FBSubType"></wm-select> 
+      </wm-container> 
+     </wm-composite> 
+    </wm-gridcolumn> 
+    <wm-gridcolumn columnwidth="4" name="gridcolumn10"> 
+     <wm-composite name="composite5" captionposition="top" show="bind:Widgets.selectFBType.datavalue == 3"> 
+      <wm-label class="col-md-3 control-label" name="label7" caption="Severity" fontweight="bold"></wm-label> 
+      <wm-container class="col-md-9" name="container5" width="100%"> 
+       <wm-select name="selectFBSeverity" dataset="bind:Variables.PSARefFbSeverityData.dataSet" datafield="id" displayfield="label" required="bind:Widgets.selectFBType.datavalue == 3"></wm-select> 
+      </wm-container> 
+     </wm-composite> 
+    </wm-gridcolumn> 
+   </wm-gridrow> 
+   <wm-gridrow name="gridrow5"> 
+    <wm-gridcolumn columnwidth="12" name="gridcolumn8_1"> 
+     <wm-container class="col-md-9" name="container2" width="100%"> 
+      <wm-label class="col-md-3 control-label" name="label4" caption="Please Describe Below" width="100%" fontweight="bold"></wm-label> 
+      <wm-textarea name="textareaFeedBack" on-keyup="textareaFeedBackKeyup($event, $scope)" scopedatavalue="FeedBackNotes" updateon="default" maxchars="1024" required="true" width="100%" height="100" placeholder="Place text here.."></wm-textarea> 
+      <wm-layoutgrid name="layoutgrid2"> 
+       <wm-gridrow name="gridrow3_1"> 
+        <wm-gridcolumn columnwidth="4" name="gridcolumn5_1"> 
+         <wm-label name="label5" width="70%" caption="Remaining:" fontsize="10" textalign="right"></wm-label> 
+         <wm-label width="30%" caption="1022" fontsize="10" name="labelTextCount"></wm-label> 
+        </wm-gridcolumn> 
+       </wm-gridrow> 
+      </wm-layoutgrid> 
+     </wm-container> 
+    </wm-gridcolumn> 
+   </wm-gridrow> 
+  </wm-layoutgrid> 
+  <wm-buttongroup horizontalalign="right" class="form-action col-md-12" name="buttongroup1"> 
+   <wm-button caption="Cancel" type="button" class="btn-warning" name="button2" on-click="button2Click($event, $scope)"></wm-button> 
+   <wm-button caption="Save" type="submit" class="btn-primary" name="button3"></wm-button> 
+  </wm-buttongroup> 
+ </wm-form> 
+</wm-partial>

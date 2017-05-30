@@ -1,0 +1,4 @@
+.wm-app .app-grid .app-datagrid .table-container { min-height: 20px; }
+.wrapheader .table thead th.app-datagrid-header-cell {
+white-space: pre;
+}

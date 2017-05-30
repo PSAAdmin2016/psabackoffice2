@@ -1,0 +1,62 @@
+<wm-page data-ng-controller="ToolsHelpMenuVideosPageController" pagetitle="Tools Help Menu Videos" name="page1"> 
+ <wm-header content="header" name="header1"></wm-header> 
+ <wm-content name="content1"> 
+  <wm-left-panel columnwidth="1" content="leftnavPSATools" name="left_panel1"></wm-left-panel> 
+  <wm-page-content columnwidth="11" name="page_content1"> 
+   <wm-layoutgrid name="layoutgrid1"> 
+    <wm-gridrow name="gridrow1"> 
+     <wm-gridcolumn columnwidth="4" name="gridcolumn1"> 
+      <wm-label padding="unset 0.5em" name="label1" caption="Video Categories" fontsize="16" fontweight="bold" color="#000000"></wm-label> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="8" name="gridcolumn2" padding="unset unset unset 2%"> 
+      <wm-label padding="unset 0.5em" caption="Video Description" name="label2" fontsize="16" color="#000000" fontweight="bold"></wm-label> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+    <wm-gridrow name="gridrow2"> 
+     <wm-gridcolumn columnwidth="4" name="gridcolumn3" padding="unset 2% unset unset"> 
+      <wm-grid editmode="inline" title="" dataset="bind:Variables.liveHelpMenuVideoCategories.dataSet" navigation="None" name="gridCategories" height="100%" spacing="condensed" enablesort="true"> 
+       <wm-grid-column binding="label" caption="Category" type="string" width="60%" generator="assigned" edit-widget-type="text" show="true" readonly="false" required="true"></wm-grid-column> 
+       <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="20%" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column> 
+       <wm-grid-column binding="rank" caption="Rank" type="short" width="20%" generator="assigned" edit-widget-type="number" show="true" readonly="false" required="true"></wm-grid-column> 
+       <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action> 
+       <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action> 
+       <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action> 
+      </wm-grid> 
+     </wm-gridcolumn> 
+     <wm-gridcolumn columnwidth="8" name="gridcolumn6" padding="unset unset unset 2%"> 
+      <wm-livegrid name="livegrid1"> 
+       <wm-grid gridfirstrowselect="false" editmode="form" title="" dataset="bind:Variables.liveHelpMenuVideoSubCategories.dataSet" navigation="None" name="gridSubCategory" spacing="condensed" height="100%"> 
+        <wm-grid-column binding="label" caption="Short Description" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
+        <wm-grid-column binding="title" caption="Title" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
+        <wm-grid-column binding="fileName" caption="File Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
+        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column> 
+        <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow();addNewRowAction($event)" shortcutkey="" disabled="false"></wm-grid-action> 
+        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow();updaterowAction($event)" disabled="false"></wm-grid-row-action> 
+        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action> 
+       </wm-grid> 
+       <wm-liveform novalidate="false" errormessage="" title="Sub Category Form" formlayout="inline" iconclass="wi wi-edit" dataset="bind:Variables.liveHelpMenuVideoSubCategories.dataSet" captionalign="left" captionposition="top" name="liveform1" on-beforeservicecall="liveform1Beforeservicecall($event, $operation, $data)"> 
+        <wm-layoutgrid columns="3" name="layoutgrid2"> 
+         <wm-gridrow name="gridrow4"> 
+          <wm-gridcolumn columnwidth="4" name="gridcolumn9"> 
+           <wm-form-field name="label" displayname="Short Description" show="true" primary-key="false" generator="assigned" key="label" type="string" widget="text" maxchars="45" inputtype="text" placeholder="Enter value" required="true"></wm-form-field> 
+          </wm-gridcolumn> 
+          <wm-gridcolumn columnwidth="4" name="gridcolumn6_1"> 
+           <wm-form-field name="title" displayname="Title" show="true" primary-key="false" generator="assigned" key="title" type="string" widget="text" maxchars="45" inputtype="text" placeholder="Enter value" required="true"></wm-form-field> 
+          </wm-gridcolumn> 
+          <wm-gridcolumn columnwidth="4" name="gridcolumn7"> 
+           <wm-form-field name="fileName" displayname="File Name" show="true" primary-key="false" generator="assigned" key="fileName" type="string" widget="text" maxchars="45" inputtype="text" placeholder="Upload Video..." disabled="false" defaultvalue="bind:Widgets.liveform1.formWidgets.fileupload1.uploadedFiles[$i].fileName" required="true"></wm-form-field> 
+           <wm-fileupload name="fileupload1" service="FileService" operation="uploadFile" destination="bind:&quot;psa/videos/HelpVideos/&quot;" maxfilesize="100" caption="Upload Video File" contenttype="video/* mp4" disabled="bind:Widgets.gridCategories.selecteditem.id == undefined || Variables.staticUploadEnabled.dataSet.dataValue == false;"></wm-fileupload> 
+          </wm-gridcolumn> 
+         </wm-gridrow> 
+        </wm-layoutgrid> 
+        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel();cancelAction($event)" disabled="false" type="button" update-mode="true"></wm-form-action> 
+        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" action="saveAction($event)" disabled="false" type="submit" update-mode="true"></wm-form-action> 
+       </wm-liveform> 
+      </wm-livegrid> 
+     </wm-gridcolumn> 
+    </wm-gridrow> 
+   </wm-layoutgrid> 
+  </wm-page-content> 
+ </wm-content> 
+ <wm-footer content="footer" name="footer1"></wm-footer> 
+</wm-page>

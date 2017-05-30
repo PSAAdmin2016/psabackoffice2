@@ -1,0 +1,183 @@
+{
+  "username" : "PSAAdmin",
+  "password" : "7b6a43524a151e3b4a686a7511507770477c612a43",
+  "url" : "jdbc:mysql://130.211.120.98:3306/PSA?useUnicode=yes&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull",
+  "driverClass" : "com.mysql.jdbc.Driver",
+  "dialect" : "com.wavemaker.runtime.data.dialect.MySQLDialect",
+  "serviceId" : "PSA",
+  "packageName" : "com.psabackoffice.psa",
+  "dbType" : "MySQL",
+  "host" : "130.211.120.98",
+  "dbName" : "PSA",
+  "port" : "3306",
+  "schemaName" : null,
+  "tableFilter" : [ {
+    "table" : "ChatConversationMembers",
+    "schema" : null
+  }, {
+    "table" : "ChatConversations",
+    "schema" : null
+  }, {
+    "table" : "ChatMessages",
+    "schema" : null
+  }, {
+    "table" : "EmailTemplates",
+    "schema" : null
+  }, {
+    "table" : "FeedBack",
+    "schema" : null
+  }, {
+    "table" : "FeedBackNotes",
+    "schema" : null
+  }, {
+    "table" : "MenuHelpVideos",
+    "schema" : null
+  }, {
+    "table" : "MenuSubHelpVideos",
+    "schema" : null
+  }, {
+    "table" : "Pool_InactiveMobileAccounts",
+    "schema" : null
+  }, {
+    "table" : "REF_ActivityRejections",
+    "schema" : null
+  }, {
+    "table" : "REF_ActivityStatuses",
+    "schema" : null
+  }, {
+    "table" : "REF_ActivityTypes",
+    "schema" : null
+  }, {
+    "table" : "REF_ChatStatus",
+    "schema" : null
+  }, {
+    "table" : "REF_CraftClasses",
+    "schema" : null
+  }, {
+    "table" : "REF_Crafts",
+    "schema" : null
+  }, {
+    "table" : "REF_Disciplines",
+    "schema" : null
+  }, {
+    "table" : "REF_FB_Severity",
+    "schema" : null
+  }, {
+    "table" : "REF_FB_Statuses",
+    "schema" : null
+  }, {
+    "table" : "REF_FB_SubTypes",
+    "schema" : null
+  }, {
+    "table" : "REF_FB_Types",
+    "schema" : null
+  }, {
+    "table" : "REF_GenericPipeSpools",
+    "schema" : null
+  }, {
+    "table" : "REF_HandleTypes",
+    "schema" : null
+  }, {
+    "table" : "REF_ImportableTables",
+    "schema" : null
+  }, {
+    "table" : "REF_InstTypes",
+    "schema" : null
+  }, {
+    "table" : "REF_JobTitles",
+    "schema" : null
+  }, {
+    "table" : "REF_MobileApps",
+    "schema" : null
+  }, {
+    "table" : "REF_PercentList",
+    "schema" : null
+  }, {
+    "table" : "REF_PipeSchedules",
+    "schema" : null
+  }, {
+    "table" : "REF_PipeSizes",
+    "schema" : null
+  }, {
+    "table" : "REF_Roles",
+    "schema" : null
+  }, {
+    "table" : "REF_RolesMobileFolders",
+    "schema" : null
+  }, {
+    "table" : "REF_StateAbbreviations",
+    "schema" : null
+  }, {
+    "table" : "REF_SteelTypes",
+    "schema" : null
+  }, {
+    "table" : "REF_TrimActivities",
+    "schema" : null
+  }, {
+    "table" : "REF_ValveTypes",
+    "schema" : null
+  }, {
+    "table" : "REF_Weather",
+    "schema" : null
+  }, {
+    "table" : "REF_WeldMaterials",
+    "schema" : null
+  }, {
+    "table" : "REF_WeldPositions",
+    "schema" : null
+  }, {
+    "table" : "REF_WeldTypes",
+    "schema" : null
+  }, {
+    "table" : "SETTINGS",
+    "schema" : null
+  }, {
+    "table" : "tblCrews",
+    "schema" : null
+  }, {
+    "table" : "tblCrewsRev",
+    "schema" : null
+  }, {
+    "table" : "tblJobNumbers",
+    "schema" : null
+  }, {
+    "table" : "tblJobSites",
+    "schema" : null
+  }, {
+    "table" : "tblUserAssignedApps",
+    "schema" : null
+  }, {
+    "table" : "tblUserCreds",
+    "schema" : null
+  }, {
+    "table" : "tblUserJobNumbers",
+    "schema" : null
+  }, {
+    "table" : "tblUserLoginTracker",
+    "schema" : null
+  }, {
+    "table" : "tblUserPSA",
+    "schema" : null
+  }, {
+    "table" : "tblUserPSARev",
+    "schema" : null
+  }, {
+    "table" : "UpdateTracker",
+    "schema" : null
+  } ],
+  "schemaFilter" : [ ".*" ],
+  "impersonateUser" : false,
+  "activeDirectoryDomain" : null,
+  "hbm2ddl" : "none",
+  "maxPageSize" : 100,
+  "minPoolSize" : 2,
+  "maxPoolSize" : 4,
+  "dataSourceType" : "WM_MANAGED_DATASOURCE",
+  "jndiName" : "",
+  "reloadInfo" : {
+    "reload" : false,
+    "reason" : null,
+    "message" : null
+  },
+  "readOnly" : false
+}

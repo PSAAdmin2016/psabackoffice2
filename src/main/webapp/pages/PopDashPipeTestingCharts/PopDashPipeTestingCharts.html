@@ -1,0 +1,24 @@
+<wm-partial data-ng-controller="PopDashPipeTestingChartsPageController" type="popover" name="partial1"> 
+ <wm-tile name="tile1" padding="unset 0px" margin="0px" backgroundcolor="#2db457"> 
+  <wm-layoutgrid name="layoutgrid12"> 
+   <wm-gridrow name="gridrow44_1" padding="unset 0px"> 
+    <wm-gridcolumn columnwidth="12" name="gridcolumn83_2" padding="unset 0px" horizontalalign="center"> 
+     <wm-label name="label40_2" caption="Ready For Testing" hint="Ready For Testing Hours" padding="0px unset" margin="0px unset" color="#000000" fontweight="bold" textdecoration="underline" horizontalalign="left" class="text-uppercase h4" textalign="center"></wm-label> 
+     <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="hide" labeltype="percent" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: $parent.$parent.$parent.Variables.serviceGetStatsJob.dataSet[0].RemainingReadyForTestingHours },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: $parent.$parent.$parent.Variables.serviceGetStatsJob.dataSet[0].EarnedReadyForTestingHours }]);" name="chart20_1" xaxisdatakey="Label" yaxisdatakey="Value" ynumberformat=",r" height="120"></wm-chart> 
+    </wm-gridcolumn> 
+   </wm-gridrow> 
+   <wm-gridrow name="gridrow45" padding="unset 0px"> 
+    <wm-gridcolumn columnwidth="12" name="gridcolumn86_1" padding="unset 0px" horizontalalign="center"> 
+     <wm-label caption="Hydro" hint="Hydro Hours" padding="0px unset" margin="0px unset" color="#000000" name="label41" fontweight="bold" textdecoration="underline" class="text-uppercase h4" textalign="center"></wm-label> 
+     <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="hide" labeltype="percent" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: $parent.$parent.$parent.Variables.serviceGetStatsJob.dataSet[0].RemainingHydroHours },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: $parent.$parent.$parent.Variables.serviceGetStatsJob.dataSet[0].EarnedHydroHours }]);" name="chart21" xaxisdatakey="Label" yaxisdatakey="Value" ynumberformat=",r" height="120"></wm-chart> 
+    </wm-gridcolumn> 
+   </wm-gridrow> 
+   <wm-gridrow name="gridrow46" padding="unset 0px"> 
+    <wm-gridcolumn columnwidth="12" name="gridcolumn89_1" padding="unset 0px" horizontalalign="center"> 
+     <wm-label caption="Client Turnover" hint="Client Turnover Hours" padding="0px unset" margin="0px unset" color="#000000" name="label42" fontweight="bold" textdecoration="underline" class="text-uppercase h4" textalign="center"></wm-label> 
+     <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="hide" labeltype="percent" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: $parent.$parent.$parent.Variables.serviceGetStatsJob.dataSet[0].RemainingClientTurnoverHours },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: $parent.$parent.$parent.Variables.serviceGetStatsJob.dataSet[0].EarnedClientTurnoverHours }]);" name="chart22" xaxisdatakey="Label" yaxisdatakey="Value" ynumberformat=",r" height="120"></wm-chart> 
+    </wm-gridcolumn> 
+   </wm-gridrow> 
+  </wm-layoutgrid> 
+ </wm-tile> 
+</wm-partial>

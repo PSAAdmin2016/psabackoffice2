@@ -1,0 +1,523 @@
+<wm-page data-ng-controller="ToolsImportExportPageController" pagetitle="Tools Import Export" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="1" content="leftnavPSATools" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="11" name="page_content1">
+            <wm-tabs name="tabs1" height="100%">
+                <wm-tabpane name="tabpane1" title="Trackers" on-select="tabpane1Select($event, $scope)" accessroles="SuperUser,Site Office-Project Services,Corp. Office-Project Services,Corp. Office-Site Admin">
+                    <wm-layoutgrid name="layoutgrid3_1">
+                        <wm-gridrow name="gridrow38">
+                            <wm-gridcolumn columnwidth="2" name="gridcolumn81">
+                                <wm-label class="col-md-3 control-label" caption="Import New File:" color="#000000" fontweight="bold" fontsize="16" width="100%" name="label32" textdecoration="underline"></wm-label>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn82"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow17">
+                            <wm-gridcolumn columnwidth="2" name="gridcolumn30">
+                                <wm-button class="btn-default" caption="Upload/Import" type="button" on-click="Widgets.dialogImport.open()" iconclass="wi wi-file-upload" name="button4"></wm-button>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn33"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow35">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn66" padding="3% unset unset unset">
+                                <wm-label class="col-md-3 control-label" name="label3" caption="Previous Imports:" color="#000000" fontweight="bold" fontsize="16" width="100%" textdecoration="underline"></wm-label>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow37">
+                            <wm-gridcolumn columnwidth="2" name="gridcolumn76">
+                                <wm-label class="col-md-3 control-label" caption="Select table" color="#000000" fontweight="bold" fontsize="13" width="100%" name="label29"></wm-label>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn80"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow36">
+                            <wm-gridcolumn columnwidth="2" name="gridcolumn71">
+                                <wm-container class="col-md-9" name="container3" width="70%">
+                                    <wm-select name="selectTableNameTrackers" dataset="bind:Variables.liveGetTableChoices.dataSet" datafield="All Fields" displayfield="destinationLabel"></wm-select>
+                                </wm-container>
+                                <wm-popover popoverwidth="25%" popoverheight="6%" margin="unset 0.5em" name="popoverHelp1" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" width="10%">
+                                    <wm-label padding="unset 0.5em" name="label4" caption="All files are uploaded and stored under directories specific to the JobNumber &amp; Table they are imported into.  These files are kept for archival purpose and cannot be deleted."
+                                    color="#000000" fontweight="bold" fontstyle="italic"></wm-label>
+                                </wm-popover>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="2" name="gridcolumn72">
+                                <wm-button class="btn-default" caption="Download" type="button" name="buttonDownloadTracker" on-click="Variables.FileServiceDownloadFileTracker.invoke()" iconclass="wi wi-file-download"></wm-button>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="2" name="gridcolumn73">
+                                <wm-button class="btn-default" caption="Delete" type="button" name="buttonDelete" on-click="Variables.FileServiceDeleteFileTrackers.invoke();Variables.FileServiceListFilesTrackers.invoke()" accessroles="SuperUser" iconclass="fa fa-remove"></wm-button>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn75"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow9">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn17">
+                                <wm-grid title="" dataset="bind:Variables.FileServiceListFilesTrackers.dataSet" navigation="Classic" name="gridFileListTrackers" filtermode="multicolumn" showrecordcount="true" pagesize="100" height="460px" spacing="condensed">
+                                    <wm-grid-column binding="name" caption="Name" type="string" width="18%" readonly="true" edit-widget-type="text" show="true" filterwidget="autocomplete" filterplaceholder="Search..."></wm-grid-column>
+                                    <wm-grid-column binding="size" caption="Size (Bytes)" type="string" width="7%" readonly="true" edit-widget-type="text" searchable="false" show="true"></wm-grid-column>
+                                    <wm-grid-column binding="path" caption="Path" type="string" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" filterplaceholder="Search..."></wm-grid-column>
+                                </wm-grid>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow10">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn20" horizontalalign="center"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn21" horizontalalign="center"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn22" horizontalalign="center"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="9" name="gridcolumn23"></wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
+                </wm-tabpane>
+                <wm-tabpane name="tabpane2" title="Pipe Spools" on-select="tabpane2Select($event, $scope)" accessroles="SuperUser,Site Office-Project Services,Corp. Office-Project Services,Corp. Office-Site Admin">
+                    <wm-layoutgrid name="layoutgrid14">
+                        <wm-gridrow name="gridrow36_1">
+                            <wm-gridcolumn columnwidth="2" name="gridcolumn60_1">
+                                <wm-label class="col-md-3 control-label" caption="Import New File:" color="#000000" fontweight="bold" fontsize="16" width="100%" textdecoration="underline" name="label31"></wm-label>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn61"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow37_1">
+                            <wm-gridcolumn columnwidth="2" name="gridcolumn62">
+                                <wm-button class="btn-default" caption="Upload/Import" type="button" on-click="Widgets.dialogImport.open()" iconclass="wi wi-file-upload" name="button5"></wm-button>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn63"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow38_1">
+                            <wm-gridcolumn columnwidth="12" padding="3% unset unset unset" name="gridcolumn64">
+                                <wm-label class="col-md-3 control-label" caption="Previous Imports:" color="#000000" fontweight="bold" fontsize="16" width="100%" textdecoration="underline" name="label32_1"></wm-label>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow39">
+                            <wm-gridcolumn columnwidth="2" name="gridcolumn65">
+                                <wm-label class="col-md-3 control-label" caption="Select table" color="#000000" fontweight="bold" fontsize="13" width="100%" name="label33"></wm-label>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn66_1"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow40">
+                            <wm-gridcolumn columnwidth="2" name="gridcolumn67">
+                                <wm-container class="col-md-9" width="70%" name="container14">
+                                    <wm-select dataset="bind:Variables.liveGetTableChoices.dataSet" datafield="All Fields" displayfield="destinationLabel" name="selectTableNameSpools" datavalue="bind:Variables.liveGetTableChoices.dataSet[$i]"></wm-select>
+                                </wm-container>
+                                <wm-popover popoverwidth="25%" popoverheight="6%" margin="unset 0.5em" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" width="10%" name="popover7">
+                                    <wm-label padding="unset 0.5em" caption="All files are uploaded and stored under directories specific to the JobNumber &amp; Table they are imported into.  These files are kept for archival purpose and cannot be deleted."
+                                    color="#000000" fontweight="bold" fontstyle="italic" name="label34"></wm-label>
+                                </wm-popover>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="2" name="gridcolumn68">
+                                <wm-button class="btn-default" caption="Download" type="button" on-click="Variables.FileServiceDownloadFileSpools.invoke()" iconclass="wi wi-file-download" name="buttonDownloadSpools"></wm-button>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="2" name="gridcolumn69">
+                                <wm-button class="btn-default" caption="Delete" type="button" on-click="Variables.FileServiceDeleteFileSpools.invoke();Variables.FileServiceListFilesSpools.invoke()" accessroles="SuperUser" iconclass="fa fa-remove" name="button7"></wm-button>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn70"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow41">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn71_1">
+                                <wm-grid title="" dataset="bind:Variables.FileServiceListFilesSpools.dataSet" navigation="Classic" filtermode="multicolumn" showrecordcount="true" pagesize="100" height="460px" name="gridFileListSpools" spacing="condensed">
+                                    <wm-grid-column binding="name" caption="Name" type="string" width="18%" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="size" caption="Size (Bytes)" type="string" width="7%" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="path" caption="Path" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                </wm-grid>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow42">
+                            <wm-gridcolumn columnwidth="1" horizontalalign="center" name="gridcolumn72_1"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" horizontalalign="center" name="gridcolumn73_1"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" horizontalalign="center" name="gridcolumn74"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="9" name="gridcolumn75_1"></wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
+                </wm-tabpane>
+                <wm-tabpane name="tabpane3" title="QC Data" on-select="tabpane3Select($event, $scope)" accessroles="Corp. Office-Project Services,Corp. Office-Site Admin,SuperUser,Site Office-Project Services,QC-Area Manager,QC-Site Manager Manager,QC-Regional,QC-Corporate Manager">
+                    <wm-layoutgrid name="layoutgrid15">
+                        <wm-gridrow name="gridrow43">
+                            <wm-gridcolumn columnwidth="2" name="gridcolumn76_1">
+                                <wm-label class="col-md-3 control-label" caption="Import New File:" color="#000000" fontweight="bold" fontsize="16" width="100%" textdecoration="underline" name="label35"></wm-label>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn77"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow44">
+                            <wm-gridcolumn columnwidth="2" name="gridcolumn78">
+                                <wm-button class="btn-default" caption="Upload/Import" type="button" on-click="Widgets.dialogImport.open()" iconclass="wi wi-file-upload" name="button8"></wm-button>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn79"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow45">
+                            <wm-gridcolumn columnwidth="12" padding="3% unset unset unset" name="gridcolumn80_1">
+                                <wm-label class="col-md-3 control-label" caption="Previous Imports:" color="#000000" fontweight="bold" fontsize="16" width="100%" textdecoration="underline" name="label36"></wm-label>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow46">
+                            <wm-gridcolumn columnwidth="2" name="gridcolumn81_1">
+                                <wm-label class="col-md-3 control-label" caption="Select table" color="#000000" fontweight="bold" fontsize="13" width="100%" name="label37"></wm-label>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn82_1"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow47">
+                            <wm-gridcolumn columnwidth="2" name="gridcolumn83">
+                                <wm-container class="col-md-9" width="70%" name="container15">
+                                    <wm-select dataset="bind:Variables.liveGetTableChoices.dataSet" datafield="All Fields" displayfield="destinationLabel" name="selectTableNameQC" datavalue="bind:Variables.liveGetTableChoices.dataSet[$i]"></wm-select>
+                                </wm-container>
+                                <wm-popover popoverwidth="25%" popoverheight="6%" margin="unset 0.5em" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" width="10%" name="popover8">
+                                    <wm-label padding="unset 0.5em" caption="All files are uploaded and stored under directories specific to the JobNumber &amp; Table they are imported into.  These files are kept for archival purpose and cannot be deleted."
+                                    color="#000000" fontweight="bold" fontstyle="italic" name="label38"></wm-label>
+                                </wm-popover>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="2" name="gridcolumn84">
+                                <wm-button class="btn-default" caption="Download" type="button" on-click="Variables.FileServiceDownloadFileQC.invoke()" iconclass="wi wi-file-download" name="buttonDownloadQC"></wm-button>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="2" name="gridcolumn85">
+                                <wm-button class="btn-default" caption="Delete" type="button" on-click="Variables.FileServiceDeleteFileQC.invoke();Variables.FileServiceListFilesQC.invoke()" accessroles="SuperUser" iconclass="fa fa-remove" name="button10"></wm-button>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn86"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow48">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn87">
+                                <wm-grid title="" dataset="bind:Variables.FileServiceListFilesQC.dataSet" navigation="Classic" filtermode="multicolumn" showrecordcount="true" pagesize="100" height="460px" name="gridFileListQC" spacing="condensed">
+                                    <wm-grid-column binding="name" caption="Name" type="string" width="18%" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="size" caption="Size (Bytes)" type="string" width="7%" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="path" caption="Path" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                </wm-grid>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow49">
+                            <wm-gridcolumn columnwidth="1" horizontalalign="center" name="gridcolumn88"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" horizontalalign="center" name="gridcolumn89"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" horizontalalign="center" name="gridcolumn90"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="9" name="gridcolumn91"></wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
+                </wm-tabpane>
+            </wm-tabs>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="viewImport">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="bind:&quot;Upload / Import - Job# &quot; + Variables.ActiveJobNumber.dataSet.dataValue" iconclass="wi wi-edit" name="dialogImport" on-close="Widgets.dialogImport.close();dialogImportClose($event, $scope)"
+        on-opened="dialogImportOpened($event, $scope)" width="750">
+            <wm-layoutgrid name="layoutgrid2">
+                <wm-gridrow name="gridrow7_1">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn13"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn14"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow6">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn12">
+                        <wm-wizard name="wizardUploadImport" donebtnlabel="Finish" on-done="Widgets.dialogImport.close()" on-cancel="Widgets.dialogImport.close();wizard1Cancel($scope, steps)" stepstyle="justified">
+                            <wm-wizardstep name="wizardstep1" title="Select Table" on-next="wizardstep1Next($scope, currentStep, stepIndex)">
+                                <wm-composite captionposition="top" name="composite4" width="50%">
+                                    <wm-label class="col-md-3 control-label" caption="Select Table For Import" color="#000000" fontweight="bold" fontsize="14" name="label5"></wm-label>
+                                    <wm-container class="col-md-9" name="container4">
+                                        <wm-select dataset="bind:Variables.liveGetTableChoices.dataSet" datafield="All Fields" displayfield="destinationLabel" name="selectTableNameImport" required="true" datavalue="bind:Variables.liveGetTableChoices.dataSet.data[0].id >= 4 ? Variables.liveGetTableChoices.dataSet[$i] : Widgets.selectTableNameTrackers.datavalue"></wm-select>
+                                    </wm-container>
+                                </wm-composite>
+                            </wm-wizardstep>
+                            <wm-wizardstep name="wizardstep2" title="Select File">
+                                <wm-layoutgrid name="layoutgrid3">
+                                    <wm-gridrow name="gridrow10_1">
+                                        <wm-gridcolumn columnwidth="6" name="gridcolumn20_1">
+                                            <wm-label class="col-md-3 control-label" caption="Select File For Import" color="#000000" fontweight="bold" fontsize="14" name="label8" width="100%"></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow7">
+                                        <wm-gridcolumn columnwidth="2" name="gridcolumn22_1"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="8" name="gridcolumn14_1" horizontalalign="center">
+                                            <wm-switch datavalue="new" name="switch1" dataset="bind:Variables.staticSwitchChoices1.dataSet" datafield="Value" displayfield="Label" margin="unset unset 5% unset" width="75%"></wm-switch>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="2" name="gridcolumn21_1"></wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow8_1">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn16" horizontalalign="center">
+                                            <wm-fileupload service="FileService" operation="uploadFile" contenttype=".csv" destination="bind:&quot;jobData/&quot; + Variables.ActiveJobNumber.dataSet.dataValue + &quot;/&quot; + Widgets.selectTableNameImport.datavalue.landingTable + &quot;/&quot;"
+                                            mode="Upload" maxfilesize="50" on-success="Variables.FileServiceListFilesTrackers.invoke();Variables.FileServiceListFilesSpools.invoke();Variables.FileServiceListFilesQC.invoke()" disabled="false" hint="Select new file to upload and import"
+                                            name="fileuploadImport" show="bind:Widgets.switch1.datavalue == &quot;new&quot;" width="100%" caption="Upload File"></wm-fileupload>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow9_1">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn18">
+                                            <wm-grid title="" dataset="bind:Variables.FileServiceListFilesImport.dataSet" navigation="Classic" filtermode="multicolumn" showrecordcount="false" pagesize="50" name="gridFileListImport" spacing="condensed" show="bind:Widgets.switch1.datavalue == &quot;existing&quot;">
+                                                <wm-grid-column binding="name" caption="Name" type="string" width="80%" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="size" caption="Size" type="string" width="20%" readonly="true" edit-widget-type="text" searchable="false" show="true"></wm-grid-column>
+                                            </wm-grid>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-wizardstep>
+                            <wm-wizardstep name="wizardstep3" title="Options" on-next="wizardstep3Next($scope, currentStep, stepIndex)">
+                                <wm-layoutgrid name="layoutgrid6">
+                                    <wm-gridrow name="gridrow21">
+                                        <wm-gridcolumn columnwidth="6" name="gridcolumn40_1">
+                                            <wm-label class="col-md-3 control-label" caption="No Special options for this Import." color="#000000" fontweight="bold" fontsize="14" width="100%" name="label20_1" show="bind:Widgets.selectTableNameImport.datavalue.id == '5' || Widgets.selectTableNameImport.datavalue.id == '6'"
+                                            margin="2% unset unset unset"></wm-label>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="6" name="gridcolumn41"></wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow23">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn44">
+                                            <wm-container name="container7" show="bind:Widgets.selectTableNameImport.datavalue.id == '1' || Widgets.selectTableNameImport.datavalue.id == '2' || Widgets.selectTableNameImport.datavalue.id == '3' || Widgets.selectTableNameImport.datavalue.id == '4'"
+                                            margin="2% unset unset unset">
+                                                <wm-layoutgrid name="layoutgrid7">
+                                                    <wm-gridrow name="gridrow24">
+                                                        <wm-gridcolumn columnwidth="3" name="gridcolumn46">
+                                                            <wm-label class="col-md-3 control-label" caption="Import installed quantities?" color="#000000" fontweight="bold" fontsize="14" width="90%" name="label21_1"></wm-label>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="1" name="gridcolumn50">
+                                                            <wm-popover popoverwidth="25%" margin="unset 0.5em" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" name="popover2" title="">
+                                                                <wm-label padding="unset 0.5em" caption="Installed quantities should only be imported when importing a tracker the very first time.  Also only from a job that was previously being tracked in an Excel Tracker.  (Not tracked in PSA) "
+                                                                color="#000000" fontweight="bold" fontstyle="italic" name="label22"></wm-label>
+                                                            </wm-popover>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="8" name="gridcolumn47" horizontalalign="left">
+                                                            <wm-container class="col-md-9" name="container6" width="100%" horizontalalign="center">
+                                                                <wm-switch datavalue="0" name="switchImportQuantities" dataset="bind:Variables.staticSwitchChoices2.dataSet" width="45%" datafield="Value" displayfield="Label"></wm-switch>
+                                                            </wm-container>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                </wm-layoutgrid>
+                                            </wm-container>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-wizardstep>
+                            <wm-wizardstep name="wizardstep4" title="Confirm Data" on-prev="wizardstep4Prev($scope, currentStep, stepIndex)">
+                                <wm-layoutgrid name="layoutgrid4">
+                                    <wm-gridrow name="gridrow11">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn23_1" horizontalalign="center"></wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow12">
+                                        <wm-gridcolumn columnwidth="6" name="gridcolumn25">
+                                            <wm-label class="col-md-3 control-label" caption="Import File to Landing Table" color="#000000" fontweight="bold" fontsize="14" width="100%" name="label7"></wm-label>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="6" name="gridcolumn26">
+                                            <wm-composite color="#00c105" fontweight="bold" name="composite7" show="bind:Variables.serviceFileImport.dataSet.value == &quot;1&quot;">
+                                                <wm-checkbox caption="OK" class="col-md-push-3 col-md-9" datavalue="true" checkedvalue="true" uncheckedvalue="false" name="checkbox3" required="false" disabled="true"></wm-checkbox>
+                                            </wm-composite>
+                                            <wm-composite captionposition="top" name="composite10" show="bind:Variables.serviceFileImport.dataSet.value != &quot;1&quot; &amp;&amp; Variables.serviceFileImport.dataSet.value != undefined">
+                                                <wm-label class="col-md-3 control-label" caption="FAILED" color="#c10000" fontweight="bold" name="label21"></wm-label>
+                                                <wm-container class="col-md-9" width="100%" name="container5">
+                                                    <wm-textarea name="textarea3" placeholder="Error text..." datavalue="bind:Variables.serviceFileImport.dataSet.value"></wm-textarea>
+                                                </wm-container>
+                                            </wm-composite>
+                                            <wm-spinner show="true" name="spinner1" caption="Importing..." servicevariabletotrack="serviceFileImport"></wm-spinner>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow14">
+                                        <wm-gridcolumn columnwidth="6" name="gridcolumn24_1">
+                                            <wm-label class="col-md-3 control-label" caption="Validate Column Names" color="#000000" fontweight="bold" fontsize="14" width="100%" name="label8_1"></wm-label>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="6" name="gridcolumn25_1">
+                                            <wm-composite color="#00c105" fontweight="bold" name="composite8" show="bind:Variables.serviceCheckColumnNames.dataSet.returnStatus">
+                                                <wm-checkbox caption="OK" class="col-md-push-3 col-md-9" datavalue="true" checkedvalue="true" uncheckedvalue="false" name="checkbox4" disabled="true"></wm-checkbox>
+                                            </wm-composite>
+                                            <wm-composite captionposition="top" name="composite9" show="bind:Variables.serviceCheckColumnNames.dataSet.returnStatus == false
+">
+                                                <wm-label class="col-md-3 control-label" caption="FAILED" color="#c10000" fontweight="bold" name="label20"></wm-label>
+                                                <wm-container class="col-md-9" width="100%" name="container4_1">
+                                                    <wm-textarea name="textarea2" placeholder="Error text.." datavalue="bind:&quot;Column name mismatch... \nExpected column named: \n&quot; + Variables.serviceCheckColumnNames.dataSet.expectedColumn + &quot;\n\nBut Import file has column named: \n&quot; + Variables.serviceCheckColumnNames.dataSet.recievedColumn"
+                                                    height="auto"></wm-textarea>
+                                                </wm-container>
+                                            </wm-composite>
+                                            <wm-spinner show="bind:Variables.serviceFileImport.dataSet.value == &quot;1&quot;" name="spinner2" caption="Checking..." servicevariabletotrack="serviceCheckColumnNames"></wm-spinner>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow20">
+                                        <wm-gridcolumn columnwidth="6" name="gridcolumn39">
+                                            <wm-label class="col-md-3 control-label" caption="Validate Data" color="#000000" fontweight="bold" fontsize="14" width="100%" name="label17"></wm-label>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="6" name="gridcolumn40">
+                                            <wm-composite name="composite5" color="#00c105" fontweight="bold" show="bind:Variables.serviceCheckValidData.dataSet[$i].returnStatus == true" horizontalalign="left">
+                                                <wm-checkbox caption="OK" class="col-md-push-3 col-md-9" name="checkbox2" datavalue="true" checkedvalue="true" uncheckedvalue="false" required="false" disabled="true"></wm-checkbox>
+                                            </wm-composite>
+                                            <wm-composite name="composite6" captionposition="top" show="bind:Variables.serviceCheckValidData.dataSet[$i].returnStatus == false">
+                                                <wm-label class="col-md-3 control-label" name="label19" caption="FAILED" color="#c10000" fontweight="bold"></wm-label>
+                                                <wm-container class="col-md-9" name="container3_1" width="100%">
+                                                    <wm-textarea name="textarea1" datavalue="bind:Variables.serviceCheckValidData.dataSet[$i].ErrorText"></wm-textarea>
+                                                </wm-container>
+                                            </wm-composite>
+                                            <wm-spinner show="bind:Variables.serviceCheckColumnNames.dataSet[$i].returnStatus == true" name="spinner3" servicevariabletotrack="serviceCheckValidData" caption="Checking..."></wm-spinner>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow24_1">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn46_1">
+                                            <wm-container name="container8">
+                                                <wm-layoutgrid name="layoutgrid8">
+                                                    <wm-gridrow name="gridrow28">
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn51">
+                                                            <wm-label class="col-md-3 control-label" caption="Total Rows to Import" color="#000000" fontweight="bold" fontsize="14" width="60%" name="label9"></wm-label>
+                                                            <wm-popover popoverwidth="25%" margin="unset 0.5em" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" title="" name="popover6">
+                                                                <wm-label padding="unset 0.5em" caption="Total number of rows to be imported." color="#000000" fontweight="bold" fontstyle="italic" name="label26"></wm-label>
+                                                            </wm-popover>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn52">
+                                                            <wm-label padding="unset 0.5em" name="label16" caption="bind:Variables.serviceGetImportTotals.dataSet[$i].totalRows | toNumber" color="#000000" horizontalalign="center"></wm-label>
+                                                            <wm-spinner show="bind:Variables.serviceCheckValidData.dataSet[$i].returnStatus == true" servicevariabletotrack="serviceGetImportTotals" name="spinner4" caption="Calculating..."></wm-spinner>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                </wm-layoutgrid>
+                                            </wm-container>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow25">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn48">
+                                            <wm-container name="container9">
+                                                <wm-layoutgrid name="layoutgrid9">
+                                                    <wm-gridrow name="gridrow30">
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn55">
+                                                            <wm-label class="col-md-3 control-label" caption="Total New Rows" color="#000000" fontweight="bold" fontsize="14" width="60%" name="label10"></wm-label>
+                                                            <wm-popover popoverwidth="25%" margin="unset 0.5em" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" title="" name="popover5">
+                                                                <wm-label padding="unset 0.5em" caption="Number of rows in New Import with NO IDs matching in the previously imported table. " color="#000000" fontweight="bold" fontstyle="italic" name="label25"></wm-label>
+                                                            </wm-popover>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn56">
+                                                            <wm-label padding="unset 0.5em" name="label15" caption="bind:Variables.serviceGetImportTotals.dataSet[$i].newRows | toNumber" color="#000000" horizontalalign="center"></wm-label>
+                                                            <wm-spinner show="bind:Variables.serviceCheckValidData.dataSet[$i].returnStatus == true" servicevariabletotrack="serviceGetImportTotals" name="spinner5" caption="Calculating..."></wm-spinner>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                </wm-layoutgrid>
+                                            </wm-container>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow26">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn49">
+                                            <wm-container name="container10">
+                                                <wm-layoutgrid name="layoutgrid10">
+                                                    <wm-gridrow name="gridrow31">
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn57">
+                                                            <wm-label class="col-md-3 control-label" caption="Total Modified Rows" color="#000000" fontweight="bold" fontsize="14" width="60%" name="label11"></wm-label>
+                                                            <wm-popover popoverwidth="25%" margin="unset 0.5em" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" title="" name="popover4">
+                                                                <wm-label padding="unset 0.5em" caption="Number of rows in New Import with IDs matching in the previous import, BUT New import has different values in one or more of the other fields. " color="#000000"
+                                                                fontweight="bold" fontstyle="italic" name="label24"></wm-label>
+                                                            </wm-popover>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn58">
+                                                            <wm-label padding="unset 0.5em" name="label14" caption="bind:Variables.serviceGetImportTotals.dataSet[$i].ModifiedRows | toNumber" color="#000000" horizontalalign="center"></wm-label>
+                                                            <wm-spinner show="bind:Variables.serviceCheckValidData.dataSet[$i].returnStatus == true" servicevariabletotrack="serviceGetImportTotals" name="spinner6" caption="Calculating..."></wm-spinner>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                </wm-layoutgrid>
+                                            </wm-container>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow27">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn50_1">
+                                            <wm-container name="container11" show="bind:Widgets.selectTableNameImport.datavalue.landingTable == 'LandingTrackerPipe' || Widgets.selectTableNameImport.datavalue.landingTable == 'LandingTrackerSteel' || Widgets.selectTableNameImport.datavalue.landingTable == 'LandingTrackerCivil' || Widgets.selectTableNameImport.datavalue.landingTable == 'LandingTrackerEquip'">
+                                                <wm-layoutgrid name="layoutgrid11">
+                                                    <wm-gridrow name="gridrow32">
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn59">
+                                                            <wm-label class="col-md-3 control-label" caption="Hours Delta" color="#000000" fontweight="bold" fontsize="14" width="60%" name="label12" hint="Difference between total hours of tracker already imported, and this tracker. (If Applicable)"></wm-label>
+                                                            <wm-popover popoverwidth="25%" margin="unset 0.5em" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" title="" name="popover3">
+                                                                <wm-label padding="unset 0.5em" caption="Difference in estimated hours the NEW Tracker has compared to the already imported Tracker  (NewTracker - PreviouslyImportedTracker = HoursDelta)." color="#000000"
+                                                                fontweight="bold" fontstyle="italic" name="label23"></wm-label>
+                                                            </wm-popover>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn60">
+                                                            <wm-label padding="unset 0.5em" name="label13" caption="bind:(Variables.serviceGetImportTotals.dataSet[$i].hoursDelta | toNumber) + 'hrs'" color="#000000" textalign="left" horizontalalign="center"></wm-label>
+                                                            <wm-spinner show="bind:Variables.serviceCheckValidData.dataSet[$i].returnStatus == true" servicevariabletotrack="serviceGetImportTotals" name="spinner7" caption="Calculating..."></wm-spinner>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                </wm-layoutgrid>
+                                            </wm-container>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-wizardstep>
+                            <wm-wizardstep name="wizardstep5" title="Commit Changes" on-next="wizardstep5Next($scope, currentStep, stepIndex)">
+                                <wm-layoutgrid name="layoutgrid5">
+                                    <wm-gridrow name="gridrow28_1">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn50_2"></wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow12_1">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn21_2">
+                                            <wm-label class="col-md-3 control-label" caption="Please Confirm Choices Below:" color="#000000" fontweight="bold" fontsize="14" width="100%" name="label5_1"></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow29">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn51_1">
+                                            <wm-container name="container12">
+                                                <wm-layoutgrid name="layoutgrid12">
+                                                    <wm-gridrow name="gridrow32_1">
+                                                        <wm-gridcolumn columnwidth="2" name="gridcolumn54">
+                                                            <wm-checkbox caption="YES" class="pull-left" name="checkboxConformation1" checkedvalue="true" uncheckedvalue="false" required="true"></wm-checkbox>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="10" name="gridcolumn55_1" padding="3% unset unset unset">
+                                                            <wm-label padding="unset 0.5em" name="label27" caption="bind:&quot;Job Number: &quot; + Variables.ActiveJobNumber.dataSet.dataValue"></wm-label>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                </wm-layoutgrid>
+                                            </wm-container>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow30_1">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn52_1">
+                                            <wm-container name="container13" show="bind:Widgets.switchImportQuantities.datavalue == &quot;1&quot;" deferload="true">
+                                                <wm-layoutgrid name="layoutgrid13">
+                                                    <wm-gridrow name="gridrow33">
+                                                        <wm-gridcolumn columnwidth="2" name="gridcolumn56_1">
+                                                            <wm-checkbox caption="YES" class="pull-left" checkedvalue="true" uncheckedvalue="false" name="checkboxConformation2" required="bind:Widgets.switchImportQuantities.datavalue == &quot;1&quot;"></wm-checkbox>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="10" padding="3% unset unset unset" name="gridcolumn57_1">
+                                                            <wm-label padding="unset 0.5em" caption="bind:&quot;Import Quantities set to: YES&quot;" name="label28"></wm-label>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                </wm-layoutgrid>
+                                            </wm-container>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-wizardstep>
+                            <wm-wizardstep name="wizardstep6" title="Finish" on-prev="wizardstep6Prev($scope, currentStep, stepIndex)">
+                                <wm-layoutgrid name="layoutgrid17">
+                                    <wm-gridrow name="gridrow51">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn95">
+                                            <wm-container name="containerCommitSuccess" show="bind:Variables.staticCommitSuccess.dataSet.dataValue">
+                                                <wm-layoutgrid name="layoutgrid16">
+                                                    <wm-gridrow name="gridrow49_1" padding="2% unset unset unset">
+                                                        <wm-gridcolumn columnwidth="1" name="gridcolumn94_1" horizontalalign="center">
+                                                            <wm-icon name="icon1" iconclass="fa fa-check"></wm-icon>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="11" name="gridcolumn91_1">
+                                                            <wm-label class="col-md-3 control-label" caption="bind:&quot;Changes to table \&quot;&quot; + Widgets.selectTableNameImport.datavalue.destinationTable + &quot;\&quot; in Job# &quot; + Variables.ActiveJobNumber.dataSet.dataValue + &quot; Successfull.&quot;"
+                                                            color="#40ce4c" fontweight="bold" fontsize="14" width="100%" name="label39"></wm-label>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                </wm-layoutgrid>
+                                            </wm-container>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow52">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn97">
+                                            <wm-container name="containerCommitError" show="bind:Variables.staticCommitSuccess.dataSet.dataValue != true">
+                                                <wm-layoutgrid name="layoutgrid18">
+                                                    <wm-gridrow name="gridrow53" padding="2% unset unset unset">
+                                                        <wm-gridcolumn columnwidth="1" name="gridcolumn99" horizontalalign="center">
+                                                            <wm-icon iconclass="fa fa-warning" name="icon2"></wm-icon>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="11" name="gridcolumn100">
+                                                            <wm-label class="col-md-3 control-label" caption="Error during commit." color="#d33131" fontweight="bold" fontsize="14" width="50%" name="label40"></wm-label>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                    <wm-gridrow name="gridrow54_1">
+                                                        <wm-gridcolumn columnwidth="1" name="gridcolumn99_1"></wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="11" name="gridcolumn98">
+                                                            <wm-label padding="unset 0.5em" name="label42_1" caption="Please contact:"></wm-label>
+                                                            <wm-label padding="unset 0.5em" name="label43" caption="PSAAdmin@Performance-Contractors.com" color="#3d43ff"></wm-label>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                    <wm-gridrow name="gridrow54">
+                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn102">
+                                                            <wm-composite name="composite8_1" captionposition="top">
+                                                                <wm-label class="col-md-3 control-label" name="label42" caption="Error Message:"></wm-label>
+                                                                <wm-container class="col-md-9" name="container18">
+                                                                    <wm-textarea name="textareaErrorMessageCommit"></wm-textarea>
+                                                                </wm-container>
+                                                            </wm-composite>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                </wm-layoutgrid>
+                                            </wm-container>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-wizardstep>
+                        </wm-wizard>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-dialog>
+    </wm-view>
+</wm-page>

@@ -1,0 +1,28 @@
+<wm-partial data-ng-controller="leftnavTrackersPageController" type="leftnav" name="partial1">
+    <wm-nav type="pills" layout="stacked" name="nav1" padding="unset unset unset 0px">
+        <wm-nav-item name="nav_item1">
+            <wm-anchor iconclass="glyphicon glyphicon-home" caption="HOME" on-click="Variables.goToPage_Main.invoke()" name="anchor1"></wm-anchor>
+        </wm-nav-item>
+        <wm-nav-item name="nav_item4" accessroles="Corp. Office-Director,Corp. Office-Project Manager,Corp. Office-Project Services,Corp. Office-Regional Manager,Corp. Office-Site Admin,Site Office-Site Manager,Site Office-Project Services B,Site Office-Project Services A,Site Office-Construction Manager,Site Office-Area Manager,SuperUser,Civil-GF,Civil-Superintendent Non-Staff,Civil-Superintendent Staff,Iron-GF,Iron-Superintendent Non-Staff,Iron-Superintendent Staff,Millwright-GF,Millwright-Superintendent Non-Staff,Millwright-Superintendent Staff,Pipe-GF,Pipe-Superintendent Non-Staff,Pipe-Superintendent Staff">
+            <wm-anchor caption="Bid Quantities" name="anchor4" on-click="Variables.goToPage_TrackerBidQuantities.invoke()" hint="At-a-glance totals."></wm-anchor>
+        </wm-nav-item>
+        <wm-nav-item name="nav_item5" accessroles="SuperUser,Site Office-Site Manager,Site Office-Project Services B,Site Office-Project Services A,Site Office-Construction Manager,Site Office-Area Manager,Corp. Office-Site Admin,Corp. Office-Regional Manager,Corp. Office-Project Services,Corp. Office-Project Manager,Corp. Office-Director,Civil-GF,Civil-Superintendent Non-Staff,Civil-Superintendent Staff,Iron-GF,Iron-Superintendent Non-Staff,Iron-Superintendent Staff,Millwright-GF,Millwright-Superintendent Non-Staff,Millwright-Superintendent Staff,Pipe-GF,Pipe-Superintendent Non-Staff,Pipe-Superintendent Staff">
+            <wm-anchor caption="Installed/Remaining Quantities" name="anchor5" on-click="Variables.goToPage_TrackerInstallQuant.invoke()" hint="At-a-glance quantities."></wm-anchor>
+        </wm-nav-item>
+        <wm-nav-item name="nav_item2" accessroles="Corp. Office-Site Admin,Corp. Office-Regional Manager,Corp. Office-Project Services,Corp. Office-Project Manager,Corp. Office-Director,SuperUser,Site Office-Site Manager,Site Office-Project Services B,Site Office-Project Services A,Site Office-Construction Manager,Site Office-Area Manager,Civil-GF,Civil-Superintendent Non-Staff,Civil-Superintendent Staff,Iron-GF,Iron-Superintendent Non-Staff,Iron-Superintendent Staff,Millwright-GF,Millwright-Superintendent Non-Staff,Millwright-Superintendent Staff,Pipe-GF,Pipe-Superintendent Non-Staff,Pipe-Superintendent Staff">
+            <wm-anchor caption="Progress" name="anchor2" on-click="Variables.goToPage_TrackerProgress.invoke()" hint="Percentage complete by P6 ID or other grouping level."></wm-anchor>
+        </wm-nav-item>
+        <wm-nav-item name="nav_item6" accessroles="Corp. Office-Director,Corp. Office-Project Manager,Corp. Office-Project Services,Corp. Office-Regional Manager,Corp. Office-Site Admin,Pipe-GF,Pipe-Superintendent Non-Staff,Pipe-Superintendent Staff,SuperUser,Site Office-Site Manager,Site Office-Project Services B,Site Office-Project Services A,Site Office-Construction Manager,Site Office-Area Manager">
+            <wm-anchor name="anchor6" iconclass="fa fa-table" caption="Pipe" on-click="Variables.goToPage_TrackerClassicPipe.invoke()" hint="Manually edit progress data." padding="unset unset unset 0px" margin="unset unset unset 0px"></wm-anchor>
+        </wm-nav-item>
+        <wm-nav-item name="nav_item6_1" accessroles="SuperUser,Site Office-Site Manager,Site Office-Project Services B,Site Office-Project Services A,Site Office-Construction Manager,Site Office-Area Manager,Iron-GF,Iron-Superintendent Non-Staff,Iron-Superintendent Staff,Corp. Office-Director,Corp. Office-Project Manager,Corp. Office-Project Services,Corp. Office-Regional Manager,Corp. Office-Site Admin">
+            <wm-anchor name="anchor6_1" iconclass="fa fa-table" caption="Steel" hint="Manually edit progress data." on-click="Variables.goToPage_TrackerClassicSteel.invoke()" padding="unset unset unset 0px" margin="unset unset unset 0px"></wm-anchor>
+        </wm-nav-item>
+        <wm-nav-item name="nav_item7" accessroles="SuperUser,Site Office-Site Manager,Site Office-Project Services B,Site Office-Project Services A,Site Office-Construction Manager,Site Office-Area Manager,Corp. Office-Director,Corp. Office-Project Manager,Corp. Office-Project Services,Corp. Office-Regional Manager,Corp. Office-Site Admin,Civil-GF,Civil-Superintendent Non-Staff,Civil-Superintendent Staff">
+            <wm-anchor name="anchor7" iconclass="fa fa-table" caption="Civil" hint="Manually edit progress data." on-click="Variables.goToPage_TrackerClassicCivil.invoke()" padding="unset unset unset 0px" margin="unset unset unset 0px"></wm-anchor>
+        </wm-nav-item>
+        <wm-nav-item name="nav_item8" accessroles="SuperUser,Site Office-Site Manager,Site Office-Project Services B,Site Office-Project Services A,Site Office-Construction Manager,Site Office-Area Manager,Corp. Office-Director,Corp. Office-Project Manager,Corp. Office-Project Services,Corp. Office-Regional Manager,Corp. Office-Site Admin,Millwright-GF,Millwright-Superintendent Non-Staff,Millwright-Superintendent Staff">
+            <wm-anchor name="anchor8" iconclass="fa fa-table" caption="Equip." on-click="Variables.goToPage_TrackerClassicEquip.invoke()" padding="unset unset unset 0px" margin="unset unset unset 0px"></wm-anchor>
+        </wm-nav-item>
+    </wm-nav>
+</wm-partial>

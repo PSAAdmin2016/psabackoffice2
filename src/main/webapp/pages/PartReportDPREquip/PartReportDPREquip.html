@@ -1,0 +1,134 @@
+<wm-partial data-ng-controller="PartReportDPREquipPageController" name="partial1">
+    <wm-tabs name="tabs1">
+        <wm-tabpane name="tabpane2" heading="By Superintendent" isdefaulttab="true" accessroles="Everyone">
+            <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow7">
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn17"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn18"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn19"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn20"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow1">
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn1">
+                        <wm-composite name="composite1" captionposition="top">
+                            <wm-label class="col-md-3 control-label" name="label2" caption="Superintendent"></wm-label>
+                            <wm-container class="col-md-9" name="container1">
+                                <wm-select name="selectSuperintendent1" dataset="bind:Variables.serviceGetSuperintendents.dataSet" datafield="ID" displayexpression="bind:$[FirstName] + ' ' + $[LastName] + &quot; - &quot; + $[Email]" disabled="bind:Variables.loggedInUser.dataSet.roles == 'Pipe-Superintendent' || Variables.loggedInUser.dataSet.roles == 'Pipe-GF' "
+                                datavalue="bind:Variables.loggedInUser.dataSet.id"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn2">
+                        <wm-composite name="composite2" captionposition="top">
+                            <wm-label class="col-md-3 control-label" name="label3" caption="Start Date"></wm-label>
+                            <wm-container class="col-md-9" name="container2">
+                                <wm-date name="dateStart2" hint="Select date range."></wm-date>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn3">
+                        <wm-composite name="composite3" captionposition="top">
+                            <wm-label class="col-md-3 control-label" name="label4" caption="End Date"></wm-label>
+                            <wm-container class="col-md-9" name="container3">
+                                <wm-date name="dateEnd2" datavalue="CURRENT_DATE" hint="Select date range."></wm-date>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn30">
+                        <wm-button class="btn-default" caption="Get Report" type="button" name="buttonGetReport2" on-click="buttonGetReport2Click($event, $scope)" backgroundcolor="#0B9642" iconclass="wi wi-view-day" margin="16px unset unset unset" hint="Get report for the selected date range."></wm-button>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow63" padding="unset 0px">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn188">
+                        <wm-grid title="" dataset="bind:Variables.serviceGetDPRByDate2.dataSet" navigation="Classic" name="gridDPRBySuper" showrecordcount="true" height="650px" width="100%" spacing="condensed">
+                            <wm-grid-column binding="fieldActivityId" caption="Field Activity ID" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                            <wm-grid-column binding="activityTypeName" caption="Activity Type" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                            <wm-grid-column binding="description" caption="Description" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                            <wm-grid-column binding="tagNumber" caption="Tag Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                            <wm-grid-column binding="quantityInstalled" caption="Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                            <wm-grid-column binding="currentStatus" caption="Current Status" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                            <wm-grid-column binding="notes" caption="Notes" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                            <wm-grid-column binding="rework" caption="Rework" type="string" widget-type="checkbox" readonly="true" edit-widget-type="text" show="true">
+                                <wm-checkbox scopedatavalue="row['rework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom"></wm-checkbox>
+                            </wm-grid-column>
+                            <wm-grid-column binding="dateSubmitted" caption="Date Submitted" datepattern="M/d/yyyy" formatpattern="toDate" show="true" readonly="undefined"></wm-grid-column>
+                        </wm-grid>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow3">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn7"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn8"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn9"></wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-tabpane>
+        <wm-tabpane name="tabpane3" heading="By Foreman" title="By Crew" accessroles="Everyone">
+            <wm-layoutgrid name="layoutgrid8_1">
+                <wm-gridrow name="gridrow8">
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn21"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn22"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn23"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn24"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow21_2">
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn63_1">
+                        <wm-composite captionposition="top" name="composite13">
+                            <wm-label class="col-md-3 control-label" caption="Superintendent" name="label139"></wm-label>
+                            <wm-container class="col-md-9" name="container31">
+                                <wm-select dataset="bind:Variables.serviceGetSuperintendents.dataSet" datafield="ID" displayexpression="bind:$[FirstName] + ' ' + $[LastName] + &quot; - &quot; + $[Email]" disabled="bind:Variables.loggedInUser.dataSet.roles == 'Pipe-Superintendent' || Variables.loggedInUser.dataSet.roles == 'Pipe-GF' "
+                                datavalue="bind:Variables.loggedInUser.dataSet.id" name="selectSuperintendent2"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                        <wm-composite captionposition="top" name="composite5">
+                            <wm-label class="col-md-3 control-label" caption="Crew - Foreman" name="label47_2"></wm-label>
+                            <wm-container class="col-md-9" name="container11">
+                                <wm-select dataset="bind:Variables.serviceGetForemen.dataSet" datafield="ID" displayexpression="bind:$[CrewNumber] + &quot; - &quot; + $[FirstName] + &quot; &quot; + $[LastName] + &quot; - &quot; + $[Email]" disabled="false"
+                                name="selectForeman"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn64_1">
+                        <wm-composite captionposition="top" name="composite6">
+                            <wm-label class="col-md-3 control-label" caption="Start Date" name="label48_2"></wm-label>
+                            <wm-container class="col-md-9" name="container12">
+                                <wm-date name="dateStart3" hint="Select a date range."></wm-date>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn65_2">
+                        <wm-composite captionposition="top" name="composite7">
+                            <wm-label class="col-md-3 control-label" caption="End Date" name="label49_2"></wm-label>
+                            <wm-container class="col-md-9" name="container13">
+                                <wm-date datavalue="CURRENT_DATE" name="dateEnd3" hint="Select a date range."></wm-date>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn66_2">
+                        <wm-button class="btn-default" caption="Get Report" type="button" on-click="buttonGetReport3Click($event, $scope)" backgroundcolor="#0B9642" iconclass="wi wi-view-day" name="buttonGetReport3" margin="16px unset unset unset" hint="Get report for the selected date range."></wm-button>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow27_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn79_1">
+                        <wm-grid readonlygrid="true" title="" dataset="bind:Variables.serviceGetDPRByDate3.dataSet" navigation="Classic" showrecordcount="true" height="650px" width="100%" name="gridDPRByForeman" spacing="condensed">
+                            <wm-grid-column binding="fieldActivityId" caption="Field Activity ID" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                            <wm-grid-column binding="activityTypeName" caption="Activity Type" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                            <wm-grid-column binding="description" caption="Description" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                            <wm-grid-column binding="tagNumber" caption="Tag Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                            <wm-grid-column binding="quantityInstalled" caption="Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                            <wm-grid-column binding="currentStatus" caption="Current Status" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                            <wm-grid-column binding="notes" caption="Notes" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                            <wm-grid-column binding="rework" caption="Rework" type="string" widget-type="checkbox" readonly="true" edit-widget-type="text" show="true">
+                                <wm-checkbox scopedatavalue="row['rework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom"></wm-checkbox>
+                            </wm-grid-column>
+                        </wm-grid>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow40">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn122"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn123"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn124"></wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-tabpane>
+    </wm-tabs>
+</wm-partial>

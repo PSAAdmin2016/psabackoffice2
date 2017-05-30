@@ -1,0 +1,99 @@
+{
+  "tags" : [ {
+    "description" : "Rest service swagger documentation",
+    "name" : "RestServiceVirtualController"
+  } ],
+  "basePath" : "",
+  "paths" : {
+    "/AppenateFolderSearch/invoke/v2/folder/search" : {
+      "x-WM-TAG" : "RestServiceVirtualController",
+      "x-WM-BASE_PATH" : "/AppenateFolderSearch/invoke/v2/folder/search",
+      "get" : {
+        "tags" : [ "RestServiceVirtualController" ],
+        "x-WM-METHOD_NAME" : "invoke",
+        "x-WM-ACCESS_SPECIFIER" : "APP_ONLY",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "description" : "CompanyId",
+          "name" : "CompanyId",
+          "x-WM-EDITABLE" : false,
+          "format" : "string",
+          "type" : "string",
+          "required" : false,
+          "in" : "query"
+        }, {
+          "description" : "IntegrationKey",
+          "name" : "IntegrationKey",
+          "x-WM-EDITABLE" : false,
+          "format" : "string",
+          "type" : "string",
+          "required" : false,
+          "in" : "query"
+        } ],
+        "consumes" : [ "text/xml" ],
+        "responses" : {
+          "200" : {
+            "schema" : {
+              "$ref" : "#/definitions/RootResponse"
+            },
+            "description" : "Success"
+          }
+        },
+        "operationId" : "AppenateFolderSearch_RestServiceVirtualController-invoke"
+      },
+      "x-WM-COMPLETE_PATH" : "${rest.AppenateFolderSearch.scheme}://${rest.AppenateFolderSearch.host}${rest.AppenateFolderSearch.basepath}/v2/folder/search",
+      "x-WM-RELATIVE_PATH" : ""
+    }
+  },
+  "host" : "secure.appenate.com:443",
+  "schemes" : [ "https" ],
+  "swagger" : "2.0",
+  "definitions" : {
+    "RootResponse" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "AppenateFolderSearch.RootResponse",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "Folders" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/FoldersEntryItem"
+          },
+          "type" : "array"
+        },
+        "TotalRows" : {
+          "format" : "int32",
+          "type" : "integer"
+        }
+      },
+      "required" : [ "Folders", "TotalRows" ]
+    },
+    "FoldersEntryItem" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "AppenateFolderSearch.FoldersEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "Name" : {
+          "type" : "string"
+        },
+        "CompanyId" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "Id" : {
+          "type" : "string"
+        },
+        "IsRestricted" : {
+          "type" : "boolean"
+        }
+      },
+      "required" : [ "CompanyId", "Id", "IsRestricted", "Name" ]
+    }
+  },
+  "info" : {
+    "x-WM-SERVICE_TYPE" : "RestService",
+    "x-WM-API_ID" : "0bd565b0-1ef1-45f9-a52d-fdb07aa89fe2",
+    "x-WM-USE_PROXY_FOR_WEB" : true,
+    "x-WM-SERVICE_ID" : "appenate",
+    "x-WM-USE_PROXY_FOR_MOBILE" : true,
+    "version" : "2.0"
+  }
+}

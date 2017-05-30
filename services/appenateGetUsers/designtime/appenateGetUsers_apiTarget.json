@@ -1,0 +1,229 @@
+{
+  "tags" : [ {
+    "description" : "Rest service swagger documentation",
+    "name" : "RestServiceVirtualController"
+  } ],
+  "basePath" : "/api",
+  "paths" : {
+    "/v2/user/search" : {
+      "x-WM-BASE_PATH" : "/v2/user/search",
+      "x-WM-TAG" : "RestServiceVirtualController",
+      "get" : {
+        "tags" : [ "RestServiceVirtualController" ],
+        "x-WM-METHOD_NAME" : "invoke",
+        "x-WM-ACCESS_SPECIFIER" : "APP_ONLY",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "description" : "Status",
+          "name" : "Status",
+          "x-WM-EDITABLE" : false,
+          "format" : "string",
+          "type" : "string",
+          "required" : false,
+          "in" : "query"
+        }, {
+          "description" : "CompanyId",
+          "name" : "CompanyId",
+          "x-WM-EDITABLE" : false,
+          "format" : "string",
+          "type" : "string",
+          "required" : false,
+          "in" : "query"
+        }, {
+          "description" : "IntegrationKey",
+          "name" : "IntegrationKey",
+          "x-WM-EDITABLE" : false,
+          "format" : "string",
+          "type" : "string",
+          "required" : false,
+          "in" : "query"
+        }, {
+          "name" : "Email",
+          "format" : "string",
+          "type" : "string",
+          "required" : false,
+          "in" : "query"
+        } ],
+        "consumes" : [ "text/xml" ],
+        "responses" : {
+          "200" : {
+            "schema" : {
+              "$ref" : "#/definitions/RootResponse"
+            },
+            "description" : "Success"
+          }
+        },
+        "operationId" : "appenateGetUsers_RestServiceVirtualController-invoke"
+      },
+      "x-WM-RELATIVE_PATH" : "",
+      "x-WM-COMPLETE_PATH" : "${rest.appenateGetUsers.scheme}://${rest.appenateGetUsers.host}${rest.appenateGetUsers.basepath}/v2/user/search"
+    }
+  },
+  "host" : "secure.appenate.com:443",
+  "schemes" : [ "https" ],
+  "swagger" : "2.0",
+  "definitions" : {
+    "MetadataEntryItem" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "appenateGetUsers.MetadataEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "Key" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "Key" ]
+    },
+    "RootResponse" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "appenateGetUsers.RootResponse",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "Users" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/UsersEntryItem"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        },
+        "TotalRows" : {
+          "format" : "int32",
+          "type" : "integer"
+        }
+      },
+      "required" : [ "TotalRows", "Users" ]
+    },
+    "UserDevicesEntryItem" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "appenateGetUsers.UserDevicesEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "AppVersion" : {
+          "type" : "string"
+        },
+        "Hardware" : {
+          "type" : "string"
+        },
+        "OSVersion" : {
+          "type" : "string"
+        },
+        "OS" : {
+          "type" : "string"
+        },
+        "Id" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "AppVersion", "Hardware", "Id", "OS", "OSVersion" ]
+    },
+    "UsersEntryItem" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "appenateGetUsers.UsersEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "WebsiteRole" : {
+          "type" : "string"
+        },
+        "LastUpdated" : {
+          "type" : "string"
+        },
+        "CompanyId" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "ExternalId" : {
+          "type" : "string"
+        },
+        "LastName" : {
+          "type" : "string"
+        },
+        "UserDevices" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/UserDevicesEntryItem"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        },
+        "Groups" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/java.lang.Object"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        },
+        "Status" : {
+          "type" : "string"
+        },
+        "Email" : {
+          "type" : "string"
+        },
+        "Folders" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "type" : "string"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        },
+        "CreatedDate" : {
+          "type" : "string"
+        },
+        "FirstName" : {
+          "type" : "string"
+        },
+        "Id" : {
+          "type" : "string"
+        },
+        "LastActivity" : {
+          "type" : "string"
+        },
+        "LocationHistory" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/LocationHistoryEntryItem"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        },
+        "Metadata" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/MetadataEntryItem"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        }
+      },
+      "required" : [ "CompanyId", "CreatedDate", "Email", "ExternalId", "FirstName", "Folders", "Groups", "Id", "LastActivity", "LastName", "LastUpdated", "LocationHistory", "Metadata", "Status", "UserDevices", "WebsiteRole" ]
+    },
+    "java.lang.Object" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "appenateGetUsers.java.lang.Object",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "LocationHistoryEntryItem" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "appenateGetUsers.LocationHistoryEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "Latitude" : {
+          "format" : "double",
+          "type" : "number"
+        },
+        "Longitude" : {
+          "format" : "double",
+          "type" : "number"
+        },
+        "Timestamp" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "Latitude", "Longitude", "Timestamp" ]
+    }
+  },
+  "info" : {
+    "x-WM-SERVICE_TYPE" : "RestService",
+    "x-WM-API_ID" : "c719a520-8d74-4095-a671-f6ce5b76ddab",
+    "x-WM-USE_PROXY_FOR_WEB" : true,
+    "x-WM-SERVICE_ID" : "appenate",
+    "x-WM-USE_PROXY_FOR_MOBILE" : true,
+    "version" : "2.0"
+  }
+}

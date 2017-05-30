@@ -1,0 +1,57 @@
+{
+  "serviceUpdateActivity" : {
+    "_id" : "wm-serviceUpdateEWO-wm.ServiceVariable-1476112040726",
+    "name" : "serviceUpdateActivity",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "EWONumber",
+      "value" : "bind:Widgets.textEWONumber.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "EWOHours",
+      "value" : "bind:Widgets.textEWOHoursSpent.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "DrawingNumber",
+      "value" : "bind:Widgets.textEWODrawing.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "LineNumber",
+      "value" : "bind:Widgets.textEWOLine.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "SheetNumber",
+      "value" : "bind:Widgets.textEWOSheet.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Rework",
+      "value" : "bind:Widgets.checkboxEWORework.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "Notes",
+      "value" : "bind:Widgets.textareaEWONotes.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "RowID",
+      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityRowId",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "Job1111",
+    "operation" : "executeUpdateEWO",
+    "operationId" : "QueryExecutionController_executeUpdateEWO",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 3,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  }
+}

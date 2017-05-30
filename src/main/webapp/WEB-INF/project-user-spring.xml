@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Local spring modifications.  This file is never altered by WaveMaker software,
+and is an ideal location for end-users to put any code they need.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+        <bean id="Job1111WMManagedDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" depends-on="systemPropertyInitializer" lazy-init="true"
+          p:driverClass="${Job1111.driverClass}"
+          p:jdbcUrl="${Job1111.url}"
+          p:user="${Job1111.username}"
+          p:password="${Job1111.password}"
+          p:maxPoolSize="10"
+          p:minPoolSize="2"
+          p:maxIdleTime="600"
+          p:maxStatements="50"
+          p:maxStatementsPerConnection="20"
+          p:checkoutTimeout="30000"
+          p:idleConnectionTestPeriod="300"
+          p:unreturnedConnectionTimeout="300"
+          p:debugUnreturnedConnectionStackTraces="true"
+          p:acquireRetryAttempts="3"
+          p:acquireRetryDelay="1000"
+          p:contextClassLoaderSource="library"
+          p:privilegeSpawnedThreads="true"
+            />
+
+  <bean id="Job1111SessionFactory" class="com.wavemaker.runtime.data.factory.TypeResolverSessionFactoryBean">
+    <property name="dataSource" ref="Job1111DataSource"/>
+    <property name="packagesToScan" value="com.psabackoffice.job1111"/>
+    <property name="currentTenantIdentifierResolver">
+      <bean class="com.psabackoffice.psa.CurrentTenantIdentifierResolverImpl"/>
+    </property>
+    <property name="multiTenantConnectionProvider">
+      <bean class="com.psabackoffice.psa.MultiTenantConnectionProviderImpl">
+        <property name="dataSource" ref="Job1111DataSource"/>
+      </bean>
+    </property>
+    <property name="mappingResources">
+      <list>
+        <value>
+          Job1111-queries.hbm.xml
+        </value>
+      </list>
+    </property>
+    <property name="customTypes">
+      <array value-type="com.wavemaker.runtime.data.CustomType">
+        <ref bean="dateTimeCustomType"/>
+      </array>
+    </property>
+    <property name="hibernateProperties">
+      <props>
+        <prop key="hibernate.dialect">
+          ${Job1111.dialect}
+        </prop>
+        <prop key="hibernate.show_sql">
+          true
+        </prop>
+        <prop key="hibernate.globally_quoted_identifiers">
+          false
+        </prop>
+        <prop key="hibernate.hbm2ddl.auto">
+          ${Job1111.hbm2ddl}
+        </prop>
+        <prop key="hibernate.temp.use_jdbc_metadata_defaults">
+          false
+        </prop>
+        <prop key="hibernate.multiTenancy">
+          SCHEMA
+        </prop>
+      </props>
+    </property>
+  </bean>
+</beans>

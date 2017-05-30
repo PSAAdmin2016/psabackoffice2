@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service xmlns="http://www.activegrid.com/namespaces/ServiceDefinitions/1.0" id="NewJobTriggers" class="com.psabackoffice.newjobtriggers.NewJobTriggers" type="JavaService" springFile="NewJobTriggers.spring.xml">
+    <dataobjects/>
+</service>

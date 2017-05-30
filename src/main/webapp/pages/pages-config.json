@@ -1,0 +1,456 @@
+[ {
+  "name" : "ActivityHistory",
+  "type" : "POPOVER",
+  "params" : [ ]
+}, {
+  "name" : "ActivityHistorySteel",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "BidEditorCivil",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "BidEditorEquip",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "BidEditorLanding",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "BidEditorMechanical",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "BidEditorSteel",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "Common",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "DashProgressCivil",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "DashProgressEquip",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "DashProgressJob",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "DashProgressPipe",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "DashProgressSteel",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "Dashboard",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "DashboardProductivityJob",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "FeedBack",
+  "type" : "POPOVER",
+  "params" : [ ]
+}, {
+  "name" : "HelpMenu",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "Login",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "Main",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "PartFABoltUp",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFACivilMisc",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFACivilSellPackage",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFACivilStandard",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFADemo",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFAEWO",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFAEquipStandard",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFAErection",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFAMisc",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFASteelBoltOut",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFASteelDemo",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFASteelErect",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFASteelImpact",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFASteelMisc",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFASteelSell",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFASteelSellPackage",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFASteelShake",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFASteelWeld",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFASupports",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFATesting",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFATrim",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFAWeld",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartHelpLiveChat",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartHelpMedia",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartPSRCivil",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartPSREquip",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartPSRPipe",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartPSRSteel",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartReportDPRCivil",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartReportDPREquip",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartReportDPRPipe",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartReportDPRSteel",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartReportEarnedHrsCivil",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartReportEarnedHrsEquip",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartReportEarnedHrsPipe",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartReportEarnedHrsSteel",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartSettingsRulesOfCredit",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartSettingsSiteNumbers",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PopDashPipeTestingCharts",
+  "type" : "POPOVER",
+  "params" : [ ]
+}, {
+  "name" : "PopSteelFAExpanded",
+  "type" : "POPOVER",
+  "params" : [ ]
+}, {
+  "name" : "ReportBrowser",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "ReportDPR",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "ReportEarnedManHours",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "ReportManPower",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "ReportProductivity",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "ReportWeld",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "ReviewLanding",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "ReviewProjectService",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "ReviewSuper",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "SettingsGeneral",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "SettingsLanding",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "SettingsSite",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "TestLab",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "ToolsCrewManagement",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "ToolsFeedBackReview",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "ToolsHelpMenuVideos",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "ToolsImportExport",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "ToolsJobNumberManagement",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "ToolsLanding",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "ToolsMobileUserManagement",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "ToolsUserManagement",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "ToolsUserManagementLanding",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "TrackerBidQuantities",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "TrackerClassicCivil",
+  "type" : "PAGE",
+  "params" : [ {
+    "name" : "PageLoadFiltered",
+    "type" : "boolean"
+  }, {
+    "name" : "PageLoadBidID",
+    "type" : "integer"
+  } ]
+}, {
+  "name" : "TrackerClassicEquip",
+  "type" : "PAGE",
+  "params" : [ {
+    "name" : "PageLoadFiltered",
+    "type" : "boolean"
+  }, {
+    "name" : "PageLoadBidID",
+    "type" : "integer"
+  } ]
+}, {
+  "name" : "TrackerClassicPipe",
+  "type" : "PAGE",
+  "params" : [ {
+    "name" : "PageLoadDrawing",
+    "type" : "string"
+  }, {
+    "name" : "PageLoadSheet",
+    "type" : "string"
+  }, {
+    "name" : "PageLoadFiltered",
+    "type" : "boolean"
+  }, {
+    "name" : "PageLoadECT",
+    "type" : "string"
+  }, {
+    "name" : "PageLoadECTSubType",
+    "type" : "string"
+  }, {
+    "name" : "PageLoadTestPackage",
+    "type" : "string"
+  } ]
+}, {
+  "name" : "TrackerClassicSteel",
+  "type" : "PAGE",
+  "params" : [ {
+    "name" : "PageLoadFiltered",
+    "type" : "boolean"
+  }, {
+    "name" : "PageLoadArea",
+    "type" : "string"
+  }, {
+    "name" : "PageLoadPieceMark",
+    "type" : "string"
+  } ]
+}, {
+  "name" : "TrackerInstallQuant",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "TrackerLanding",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "TrackerProgress",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
+  "name" : "footer",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "header",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "headerMain",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "leftnavBidEditor",
+  "type" : "LEFTNAV",
+  "params" : [ ]
+}, {
+  "name" : "leftnavDashboard",
+  "type" : "LEFTNAV",
+  "params" : [ ]
+}, {
+  "name" : "leftnavMain",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "leftnavPSATools",
+  "type" : "LEFTNAV",
+  "params" : [ ]
+}, {
+  "name" : "leftnavProgressTrack",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "leftnavReportBrowser",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "leftnavSettings",
+  "type" : "LEFTNAV",
+  "params" : [ ]
+}, {
+  "name" : "leftnavTestLab",
+  "type" : "LEFTNAV",
+  "params" : [ ]
+}, {
+  "name" : "leftnavTrackers",
+  "type" : "LEFTNAV",
+  "params" : [ ]
+}, {
+  "name" : "leftnavUserManagemen",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "rightnav",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "topnav",
+  "type" : "PARTIAL",
+  "params" : [ ]
+} ]

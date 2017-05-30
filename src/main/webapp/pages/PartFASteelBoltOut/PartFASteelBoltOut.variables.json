@@ -1,0 +1,53 @@
+{
+  "serviceUpdateActivity" : {
+    "_id" : "wm-serviceUpdateActivity-wm.ServiceVariable-1479139631540",
+    "name" : "serviceUpdateActivity",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "Area",
+      "value" : "bind:Widgets.textArea.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Piece",
+      "value" : "bind:Widgets.textPiece.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Quantity",
+      "value" : "bind:Widgets.textQuant.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "Percent",
+      "value" : "bind:Widgets.selectSteelBoltOutPercent.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "Rework",
+      "value" : "bind:Widgets.checkboxRework.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Notes",
+      "value" : "bind:Widgets.textareaNotes.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "RowID",
+      "value" : "bind:$parent.Variables.liveGetSteelBoltOut.dataSet.data[$i].id",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "Job1111",
+    "operation" : "executeUpdateSteelBoltout",
+    "operationId" : "QueryExecutionController_executeUpdateSteelBoltout",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 1,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  }
+}

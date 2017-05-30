@@ -1,0 +1,53 @@
+{
+  "SchemaChangeServiceChangeSchema" : {
+    "_id" : "wm-SchemaChangeServiceChangeSchema-wm.ServiceVariable-1461249068062",
+    "name" : "SchemaChangeServiceChangeSchema",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "type" : "string",
+    "service" : "schemaChangeService",
+    "operation" : "changeSchema",
+    "operationId" : "SchemaChangeController_changeSchema",
+    "operationType" : "post",
+    "serviceType" : "JavaService",
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "isList" : false,
+    "firstRow" : 0,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "SchemaChangeServiceChangeSchemaonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "SchemaChange"
+  },
+  "staticHelpMenu" : {
+    "_id" : "wm-staticHelpMenu-wm.Variable-1470232315378",
+    "name" : "staticHelpMenu",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "FAQ",
+      "icon" : "wi wi-help-outline",
+      "link" : "#FAQ"
+    }, {
+      "label" : "Documentation",
+      "icon" : "wi wi-help-outline",
+      "link" : "#Main"
+    }, {
+      "label" : "Live Help",
+      "icon" : "wi wi-help-outline",
+      "link" : "#Main"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  }
+}

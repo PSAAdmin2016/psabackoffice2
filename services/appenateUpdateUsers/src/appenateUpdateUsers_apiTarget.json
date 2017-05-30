@@ -1,0 +1,229 @@
+{
+  "tags" : [ {
+    "description" : "Rest service swagger documentation",
+    "name" : "RestServiceVirtualController"
+  } ],
+  "basePath" : "${rest.appenateUpdateUsers.basepath}",
+  "paths" : {
+    "/v2/user" : {
+      "x-WM-BASE_PATH" : "/v2/user",
+      "x-WM-TAG" : "RestServiceVirtualController",
+      "put" : {
+        "x-WM-OPERATION_UID" : "fbfbc3dc-98f5-40c9-a01a-a8a6886b2181",
+        "tags" : [ "RestServiceVirtualController" ],
+        "x-WM-METHOD_NAME" : "invoke",
+        "x-WM-ACCESS_SPECIFIER" : "APP_ONLY",
+        "parameters" : [ {
+          "schema" : {
+            "$ref" : "#/definitions/RootRequest"
+          },
+          "x-WM-FULLY_QUALIFIED_TYPE" : "java.lang.Object",
+          "description" : "RequestBody",
+          "name" : "RequestBody",
+          "required" : false,
+          "in" : "body"
+        } ],
+        "consumes" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "schema" : {
+              "$ref" : "#/definitions/RootResponse"
+            },
+            "description" : "Success"
+          }
+        },
+        "operationId" : "appenateUpdateUsers_RestServiceVirtualController-invoke"
+      },
+      "x-WM-RELATIVE_PATH" : ""
+    }
+  },
+  "host" : "${rest.appenateUpdateUsers.host}",
+  "schemes" : [ "${rest.appenateUpdateUsers.scheme}" ],
+  "swagger" : "2.0",
+  "definitions" : {
+    "MetadataEntryItem" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "appenateUpdateUsers.MetadataEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "Key" : {
+          "type" : "string"
+        },
+        "Val" : {
+          "type" : "string"
+        }
+      }
+    },
+    "User" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "appenateUpdateUsers.User",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "Groups" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/java.lang.Object"
+          },
+          "type" : "array"
+        },
+        "Status" : {
+          "type" : "string"
+        },
+        "WebsiteRole" : {
+          "type" : "string"
+        },
+        "LastUpdated" : {
+          "type" : "string"
+        },
+        "Email" : {
+          "type" : "string"
+        },
+        "CompanyId" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "Folders" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "type" : "string"
+          },
+          "type" : "array"
+        },
+        "CreatedDate" : {
+          "type" : "string"
+        },
+        "FirstName" : {
+          "type" : "string"
+        },
+        "Id" : {
+          "type" : "string"
+        },
+        "LastActivity" : {
+          "type" : "string"
+        },
+        "LocationHistory" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/LocationHistoryEntryItem"
+          },
+          "type" : "array"
+        },
+        "Metadata" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/MetadataEntryItem"
+          },
+          "type" : "array"
+        },
+        "LastName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RootRequest" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "appenateUpdateUsers.RootRequest",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "WebsiteRole" : {
+          "type" : "string"
+        },
+        "CompanyId" : {
+          "type" : "string"
+        },
+        "ExternalId" : {
+          "type" : "string"
+        },
+        "DoNotEmail" : {
+          "type" : "boolean"
+        },
+        "Password" : {
+          "type" : "string"
+        },
+        "IntegrationKey" : {
+          "type" : "string"
+        },
+        "LastName" : {
+          "type" : "string"
+        },
+        "Country" : {
+          "type" : "string"
+        },
+        "Groups" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "type" : "string"
+          },
+          "type" : "array"
+        },
+        "ResetPassword" : {
+          "type" : "boolean"
+        },
+        "Status" : {
+          "type" : "string"
+        },
+        "Email" : {
+          "type" : "string"
+        },
+        "Folders" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "type" : "string"
+          },
+          "type" : "array"
+        },
+        "FirstName" : {
+          "type" : "string"
+        },
+        "Id" : {
+          "type" : "string"
+        },
+        "TimeZone" : {
+          "type" : "string"
+        },
+        "Metadata" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/MetadataEntryItem"
+          },
+          "type" : "array"
+        }
+      }
+    },
+    "RootResponse" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "appenateUpdateUsers.RootResponse",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "User" : {
+          "$ref" : "#/definitions/User"
+        }
+      }
+    },
+    "java.lang.Object" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "appenateUpdateUsers.java.lang.Object",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "LocationHistoryEntryItem" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "appenateUpdateUsers.LocationHistoryEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "Latitude" : {
+          "format" : "double",
+          "type" : "number"
+        },
+        "Longitude" : {
+          "format" : "double",
+          "type" : "number"
+        },
+        "Timestamp" : {
+          "type" : "string"
+        }
+      }
+    }
+  },
+  "info" : {
+    "x-WM-SERVICE_TYPE" : "RestService",
+    "x-WM-API_ID" : "2278f747-1a05-4f26-a951-24697b84112c",
+    "x-WM-USE_PROXY_FOR_WEB" : true,
+    "x-WM-SERVICE_ID" : "appenate",
+    "x-WM-USE_PROXY_FOR_MOBILE" : true,
+    "version" : "2.0"
+  }
+}

@@ -1,0 +1,28 @@
+<wm-partial data-ng-controller="PartHelpMediaPageController" name="partial1"> 
+ <wm-layoutgrid name="layoutgrid3"> 
+  <wm-gridrow name="gridrow11"> 
+   <wm-gridcolumn columnwidth="3" name="gridcolumn2"> 
+    <wm-tree name="tree1" dataset="bind:Variables.liveGetMenu.dataSet" nodelabel="label" nodechildren="menuSubHelpVideoses" on-select="tree1Select($event, $scope, $item, $path)" treeicons="plus-minus" borderstyle="groove" orderby="rank:asc"></wm-tree> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="8" name="gridcolumn16" horizontalalign="left"> 
+    <wm-layoutgrid name="layoutgrid2"> 
+     <wm-gridrow name="gridrow2"> 
+      <wm-gridcolumn columnwidth="5" name="gridcolumn3"> 
+       <wm-label padding="unset 0.5em" name="label1" caption="" fontsize="16" color="#000000" fontweight="bold"></wm-label> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="6" name="gridcolumn4"></wm-gridcolumn> 
+     </wm-gridrow> 
+     <wm-gridrow name="gridrow3"> 
+      <wm-gridcolumn columnwidth="12" name="gridcolumn5" padding="0px unset unset unset" horizontalalign="left"> 
+       <wm-video controls="controls" videopreload="none" name="video1" width="640" height="480" videoposter="resources/images/logos/Animated_Training_Logo.gif" autoplay="true"></wm-video> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+    </wm-layoutgrid> 
+   </wm-gridcolumn> 
+  </wm-gridrow> 
+  <wm-gridrow name="gridrow4"> 
+   <wm-gridcolumn columnwidth="3" name="gridcolumn6"></wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="8" name="gridcolumn7"></wm-gridcolumn> 
+  </wm-gridrow> 
+ </wm-layoutgrid> 
+</wm-partial>

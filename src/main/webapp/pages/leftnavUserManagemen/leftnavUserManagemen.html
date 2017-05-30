@@ -1,0 +1,21 @@
+<wm-partial data-ng-controller="leftnavUserManagemenPageController" type="leftnav" name="partial1">
+    <wm-nav type="pills" layout="stacked" name="nav1">
+        <wm-nav-item name="nav_item1">
+            <wm-anchor iconclass="glyphicon glyphicon-home" caption="HOME" on-click="Variables.goToPage_Main.invoke()" name="anchor1" accessroles="Authenticated"></wm-anchor>
+        </wm-nav-item>
+        <wm-nav-item name="nav_item4">
+            <wm-anchor name="anchor4" iconclass="wi wi-backward" caption="Back" on-click="Variables.goToPage_ToolsLanding.invoke()"></wm-anchor>
+        </wm-nav-item>
+        <wm-nav-item name="nav_item3">
+            <wm-anchor caption="User Management" on-click="Variables.goToPage_ToolsUserManagement.invoke()" name="anchor3" accessroles="1,SuperUser,CorporateOffice,SiteAdmin,Corp. Office-Project Services,Corp. Office-Site Admin,Site Office-Project Services,Corp. Office-Project Manager"
+            iconclass="fa fa-user"></wm-anchor>
+        </wm-nav-item>
+        <wm-nav-item name="nav_item2">
+            <wm-anchor caption="Crew Management" name="anchor2" accessroles="1,SuperUser,CorporateOffice,SiteAdmin,ProjectServices,Manager,Site Office-Project Services,Corp. Office-Project Manager,Corp. Office-Project Services,Corp. Office-Site Admin" iconclass="fa fa-users"
+            on-click="Variables.goToPage_ToolsCrewManagement.invoke()"></wm-anchor>
+        </wm-nav-item>
+        <wm-nav-item name="nav_item5" accessroles="SuperUser">
+            <wm-anchor name="anchor5" iconclass="fa fa-mobile-phone" caption="Mobile User Management" on-click="Variables.goToPage_ToolsMobileUserManagement.invoke()"></wm-anchor>
+        </wm-nav-item>
+    </wm-nav>
+</wm-partial>

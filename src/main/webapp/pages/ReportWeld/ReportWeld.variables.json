@@ -1,0 +1,34 @@
+{
+  "serviceGetDWRByDate" : {
+    "_id" : "wm-Job1111ExecuteGetDWRByDate-wm.ServiceVariable-1471372718622",
+    "name" : "serviceGetDWRByDate",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "BeginDate",
+      "value" : "bind:Widgets.dateStart.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "EndDate",
+      "value" : "bind:Widgets.dateEnd.datavalue",
+      "type" : "string"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.query.GetReportDwrbyDateResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetReportDWRByDate",
+    "operationId" : "QueryExecutionController_executeGetReportDWRByDate",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 50,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "QueryExecution"
+  }
+}

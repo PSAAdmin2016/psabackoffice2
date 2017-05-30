@@ -1,0 +1,28 @@
+.wm-app .app-grid .table > tbody > tr.active > td {
+    background-color: #b1efe4;
+}
+.wm-app .nav-tabs > li.active > a,
+.wm-app .nav-tabs > li.active > a:focus,
+.wm-app .nav-tabs > li.active .app-menu a {
+    border-color: #6c768b;
+    color: #545454;
+    background-color: #a6b4d0;
+}
+.wm-app .checkbox-custom {
+    margin: 0;
+    padding: 0;
+}
+.app-tabs .tab-content {
+    height: calc(100% - 2.3em);
+}
+@media (min-width: 768px) {
+    .wm-app .app-header+.app-content {
+        height: calc(100% - 12em);
+    }
+}
+.caption-top .app-label {
+    width: 100%;
+}
+.wm-app .modal-dialog {
+    margin-top: 90px;
+}

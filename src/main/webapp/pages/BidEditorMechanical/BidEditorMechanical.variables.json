@@ -1,0 +1,59 @@
+{
+  "Job1111ExecuteGetBidChangeLogByID" : {
+    "_id" : "wm-Job1111ExecuteGetBidChangeLogByID-wm.ServiceVariable-1462989600247",
+    "name" : "Job1111ExecuteGetBidChangeLogByID",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "ID",
+      "value" : "bind:Widgets.gridBidEditor.selecteditem.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.query.GetBidChangeLogByIdResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetBidChangeLogByID",
+    "operationId" : "QueryExecutionController_executeGetBidChangeLogByID",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "isList" : true,
+    "firstRow" : 0,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "QueryExecution"
+  },
+  "staticGridHeight" : {
+    "_id" : "wm-staticGridHeight-wm.Variable-1462991127496",
+    "name" : "staticGridHeight",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : "700px"
+    },
+    "type" : "string",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
+  "staticShowChangeLog" : {
+    "_id" : "wm-staticShowChangeLog-wm.Variable-1462990106747",
+    "name" : "staticShowChangeLog",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : false
+    },
+    "type" : "boolean",
+    "isList" : false,
+    "saveInPhonegap" : false
+  }
+}

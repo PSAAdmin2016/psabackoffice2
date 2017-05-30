@@ -1,0 +1,105 @@
+{
+  "serviceUpdateActivity" : {
+    "_id" : "wm-serviceUpdateErection-wm.ServiceVariable-1476108453642",
+    "name" : "serviceUpdateActivity",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "RowID",
+      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityRowId",
+      "type" : "integer"
+    }, {
+      "target" : "Spool1",
+      "value" : "bind:Widgets.textErectionSpool1.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Spool1Length",
+      "value" : "bind:Widgets.textErectionLength1.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "Spool2",
+      "value" : "bind:Widgets.textErectionSpool2.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Spool2Length",
+      "value" : "bind:Widgets.textErectionLength2.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "Spool3",
+      "value" : "bind:Widgets.textErectionSpool3.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Spool3Length",
+      "value" : "bind:Widgets.textErectionLength3.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "Spool4",
+      "value" : "bind:Widgets.textErectionSpool4.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Spool4Length",
+      "value" : "bind:Widgets.textErectionLength4.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "Spool5",
+      "value" : "bind:Widgets.textErectionSpool5.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Spool5Length",
+      "value" : "bind:Widgets.textErectionLength5.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "Spool6",
+      "value" : "bind:Widgets.textErectionSpool6.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Spool6Length",
+      "value" : "bind:Widgets.textErectionLength6.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "OnCords",
+      "value" : "bind:Widgets.checkboxErectionOnCoords.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "DrawingNumber",
+      "value" : "bind:Widgets.textErectionDrawing.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "LineNumber",
+      "value" : "bind:Widgets.textErectionLine.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "SheetNumber",
+      "value" : "bind:Widgets.textErectionSheet.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Size",
+      "value" : "bind:Widgets.selectErectionPipeSize.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "Rework",
+      "value" : "bind:Widgets.checkboxErectionRework.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "Notes",
+      "value" : "bind:Widgets.textareaErectionNotes.datavalue",
+      "type" : "string"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "Job1111",
+    "operation" : "executeUpdateErection",
+    "operationId" : "QueryExecutionController_executeUpdateErection",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  }
+}

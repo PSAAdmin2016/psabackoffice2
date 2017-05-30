@@ -1,0 +1,38 @@
+{
+  "serviceUpdateSSReturnToListPS" : {
+    "_id" : "wm-serviceUpdateSSReturnToListPS-wm.ServiceVariable-1478186165837",
+    "name" : "serviceUpdateSSReturnToListPS",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "ActivityStatus",
+      "value" : "11",
+      "type" : "integer"
+    }, {
+      "target" : "UserID",
+      "value" : "bind:Variables.loggedInUser.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "FieldActivityID",
+      "value" : "bind:Widgets.livelist1.selectedItemWidgets.label9.caption",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "Job1111",
+    "operation" : "executeUpdateSS",
+    "operationId" : "QueryExecutionController_executeUpdateSS",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 3,
+    "designMaxResults" : 10,
+    "onSuccess" : "serviceUpdateSSReturnToListPSonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  }
+}

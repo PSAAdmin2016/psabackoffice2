@@ -1,0 +1,33 @@
+{
+  "GetActivityStatusHistory" : {
+    "_id" : "wm-Job1111ExecuteGetActivitiyHistoryStatus-wm.ServiceVariable-1464563599906",
+    "name" : "GetActivityStatusHistory",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "PSAActivityID",
+      "value" : "bind:$parent.$parent.$parent.$parent.Widgets.livelistBidWorkHistory.selecteditem.PSAActivityID",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryStatusResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetActivityHistoryStatus",
+    "operationId" : "QueryExecutionController_executeGetActivityHistoryStatus",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "isList" : true,
+    "firstRow" : 0,
+    "maxResults" : 125,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "QueryExecution"
+  }
+}

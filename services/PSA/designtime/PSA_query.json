@@ -1,0 +1,2907 @@
+{
+  "DeleteAssignedJobNumber" : {
+    "name" : "DeleteAssignedJobNumber",
+    "description" : "Assigns a User to a Job  Number",
+    "version" : "V1",
+    "queryString" : "DELETE FROM `PSA`.`tblUserJobNumbers` \nWHERE `fk_UserId`= :UserID\nAND `fk_JobNumber` = :JobNumber",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "DELETE",
+    "parameters" : [ {
+      "name" : "UserID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "JobNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2222",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "DELETE"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "DeleteUserAssignedApps" : {
+    "name" : "DeleteUserAssignedApps",
+    "description" : "name",
+    "version" : "V1",
+    "queryString" : "DELETE FROM `PSA`.`tblUserAssignedApps` \n\nWHERE `UserID`= :UserID\nAND MobileAppGroupID = :MobileAppGroupID",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "DELETE",
+    "parameters" : [ {
+      "name" : "UserID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "154",
+      "required" : false
+    }, {
+      "name" : "MobileAppGroupID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "DELETE"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "GetAssignedJobNumbers" : {
+    "name" : "GetAssignedJobNumbers",
+    "description" : "Get all Job numbers logged in user is assigned to.",
+    "version" : "V1",
+    "queryString" : "SELECT uj.fk_UserId, jn.JobNumber, js.SiteName, js.SiteCity, js.SiteState, jn.Status\nFROM PSA.tblJobNumbers jn\n\tLEFT JOIN PSA.tblJobSites js\n\t\tON js.ID = jn.fk_JobSiteID\n\tJOIN PSA.tblUserJobNumbers uj\n\t\ton uj.fk_JobNumber = jn.JobNumber AND uj.fk_UserId = :UserID\nORDER BY jn.JobNumber",
+    "countQueryString" : "select count(*) from (SELECT uj.fk_UserId, jn.JobNumber, js.SiteName, js.SiteCity, js.SiteState, jn.Status\nFROM PSA.tblJobNumbers jn\n\tLEFT JOIN PSA.tblJobSites js\n\t\tON js.ID = jn.fk_JobSiteID\n\tJOIN PSA.tblUserJobNumbers uj\n\t\ton uj.fk_JobNumber = jn.JobNumber AND uj.fk_UserId = :UserID\nORDER BY jn.JobNumber) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "UserID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetAssignedJobNumbersResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "JobNumber",
+        "fieldName" : "jobNumber",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "SiteCity",
+        "fieldName" : "siteCity",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "SiteName",
+        "fieldName" : "siteName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "SiteState",
+        "fieldName" : "siteState",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Status",
+        "fieldName" : "status",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Byte",
+          "list" : false
+        }
+      }, {
+        "name" : "fk_UserId",
+        "fieldName" : "fkUserId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetChatAllLastRead" : {
+    "name" : "GetChatAllLastRead",
+    "description" : "Gets the timestamp of the last time the provided user viewed All Chat",
+    "version" : "V2",
+    "queryString" : "SELECT TimeStamp \nFROM PSA.ChatAllLastRead\nWHERE UserID = :UserID",
+    "countQueryString" : "select count(*) from (SELECT TimeStamp \nFROM PSA.ChatAllLastRead\nWHERE UserID = :UserID) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "UserID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetChatAllLastReadResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "TimeStamp",
+        "fieldName" : "timeStamp",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Timestamp",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetChatAllLatestTimeStamp" : {
+    "name" : "GetChatAllLatestTimeStamp",
+    "description" : "Gets the timestamp of the newest Message in the AllChat conversation",
+    "version" : "V2",
+    "queryString" : "SELECT MAX(TimeStamp) AS LatestTimeStamp\nFROM ChatMessages\nWHERE ConversationID = 1\nAND Author != :UserID",
+    "countQueryString" : "select count(*) from (SELECT MAX(TimeStamp) AS LatestTimeStamp\nFROM ChatMessages\nWHERE ConversationID = 1\nAND Author != :UserID) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "UserID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetChatAllLatestTimeStampResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "LatestTimeStamp",
+        "fieldName" : "latestTimeStamp",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Timestamp",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetChatConversationsByLoggedInUser" : {
+    "name" : "GetChatConversationsByLoggedInUser",
+    "description" : "name",
+    "version" : "V1",
+    "queryString" : "SELECT tsc.*, cm2.Message AS LastMessage, cm2.Status, cm2.Author\nFROM (\nSELECT ccm1.ConversationID, ccm2.UserID AS RecipientUserID, u.FirstName, u.LastName, u.Email, MAX(cm1.TimeStamp) AS Timestamp\nFROM ChatConversationMembers ccm1\n\nJOIN ChatConversationMembers ccm2\n\ton ccm2.ConversationID = ccm1.ConversationID AND ccm2.UserID != :UserID\n\nJOIN tblUserPSA u\n\ton u.ID = ccm2.UserID\n  \nJOIN ChatMessages cm1\n\tON cm1.ConversationID = ccm1.ConversationID\n\n\nWHERE ccm1.UserID = :UserID\nAND cm1.ConversationID != 1\n\nGROUP BY ccm1.ConversationID\n) tsc\nJOIN ChatMessages cm2\n\tON cm2.ConversationID = tsc.ConversationID AND cm2.TimeStamp = tsc.Timestamp",
+    "countQueryString" : "select count(*) from (SELECT tsc.*, cm2.Message AS LastMessage, cm2.Status, cm2.Author\nFROM (\nSELECT ccm1.ConversationID, ccm2.UserID AS RecipientUserID, u.FirstName, u.LastName, u.Email, MAX(cm1.TimeStamp) AS Timestamp\nFROM ChatConversationMembers ccm1\n\nJOIN ChatConversationMembers ccm2\n\ton ccm2.ConversationID = ccm1.ConversationID AND ccm2.UserID != :UserID\n\nJOIN tblUserPSA u\n\ton u.ID = ccm2.UserID\n  \nJOIN ChatMessages cm1\n\tON cm1.ConversationID = ccm1.ConversationID\n\n\nWHERE ccm1.UserID = :UserID\nAND cm1.ConversationID != 1\n\nGROUP BY ccm1.ConversationID\n) tsc\nJOIN ChatMessages cm2\n\tON cm2.ConversationID = tsc.ConversationID AND cm2.TimeStamp = tsc.Timestamp) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "UserID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetChatConversationsByLoggedInUserResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "ConversationID",
+        "fieldName" : "conversationId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "RecipientUserID",
+        "fieldName" : "recipientUserId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "FirstName",
+        "fieldName" : "firstName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "LastName",
+        "fieldName" : "lastName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Email",
+        "fieldName" : "email",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Timestamp",
+        "fieldName" : "timestamp",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "org.joda.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "LastMessage",
+        "fieldName" : "lastMessage",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Status",
+        "fieldName" : "status",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Short",
+          "list" : false
+        }
+      }, {
+        "name" : "Author",
+        "fieldName" : "author",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetChatMessagesByConversationID" : {
+    "name" : "GetChatMessagesByConversationID",
+    "description" : "name",
+    "version" : "V1",
+    "queryString" : "SELECT cm.UID, cm.ConversationID, cm.Author, cm.Message, u.FirstName, u.LastName, u.Email ,cm.TimeStamp\nFROM ChatMessages cm\nJOIN tblUserPSA u\n\tON u.ID = cm.Author\nWHERE ConversationID = :ConversationID\nOrder BY cm.UID",
+    "countQueryString" : "select count(*) from (SELECT cm.UID, cm.ConversationID, cm.Author, cm.Message, u.FirstName, u.LastName, u.Email ,cm.TimeStamp\nFROM ChatMessages cm\nJOIN tblUserPSA u\n\tON u.ID = cm.Author\nWHERE ConversationID = :ConversationID\nOrder BY cm.UID) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "ConversationID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetChatMessagesByConversationIdResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "Author",
+        "fieldName" : "author",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "ConversationID",
+        "fieldName" : "conversationId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "Email",
+        "fieldName" : "email",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "FirstName",
+        "fieldName" : "firstName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "LastName",
+        "fieldName" : "lastName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Message",
+        "fieldName" : "message",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "TimeStamp",
+        "fieldName" : "timeStamp",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Timestamp",
+          "list" : false
+        }
+      }, {
+        "name" : "UID",
+        "fieldName" : "uid",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetChatRecipientName" : {
+    "name" : "GetChatRecipientName",
+    "description" : "name",
+    "version" : "V1",
+    "queryString" : "SELECT u.ID, u.FirstName, u.LastName, u.Email \nFROM ChatConversationMembers ccm\nJOIN tblUserPSA u\n    ON u.ID = ccm.UserID\nWHERE ConversationID = :ConversationID\nAND UserID != :UserID",
+    "countQueryString" : "select count(*) from (SELECT u.ID, u.FirstName, u.LastName, u.Email \nFROM ChatConversationMembers ccm\nJOIN tblUserPSA u\n    ON u.ID = ccm.UserID\nWHERE ConversationID = :ConversationID\nAND UserID != :UserID) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "ConversationID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : false
+    }, {
+      "name" : "UserID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetChatRecipientNameResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "Email",
+        "fieldName" : "email",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "FirstName",
+        "fieldName" : "firstName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "LastName",
+        "fieldName" : "lastName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetDefaultJobNumber" : {
+    "name" : "GetDefaultJobNumber",
+    "description" : "Gets the default job number assigned to the logged in user",
+    "version" : "V1",
+    "queryString" : "SELECT u.fk_DefaultJobNumberId\nFROM tblUserPSA u\nWHERE ID = :UserID",
+    "countQueryString" : "select count(*) from (SELECT u.fk_DefaultJobNumberId\nFROM tblUserPSA u\nWHERE ID = :UserID) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "UserID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetDefaultJobNumberResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "fk_DefaultJobNumberId",
+        "fieldName" : "fkDefaultJobNumberId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetFBNotesByFBID" : {
+    "name" : "GetFBNotesByFBID",
+    "description" : "Gets all Feedback notes for a given feedbackID",
+    "version" : "V1",
+    "queryString" : "SELECT * \nFROM PSA.FeedBackNotes\nWHERE fk_FeedBackID = :FeedbackID",
+    "countQueryString" : "select count(*) from (SELECT * \nFROM PSA.FeedBackNotes\nWHERE fk_FeedBackID = :FeedbackID) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "FeedbackID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "29",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetFbnotesByFbidResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "Notes",
+        "fieldName" : "notes",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "fk_FeedBackID",
+        "fieldName" : "fkFeedBackId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "TimeStamp",
+        "fieldName" : "timeStamp",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Timestamp",
+          "list" : false
+        }
+      }, {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetFBSubTypeByType" : {
+    "name" : "GetFBSubTypeByType",
+    "description" : "get the feedback sub types By Type",
+    "version" : "V1",
+    "queryString" : "SELECT * \nFROM PSA.REF_FB_SubTypes\nWHERE fk_FBType = :FBType",
+    "countQueryString" : "select count(*) from (SELECT * \nFROM PSA.REF_FB_SubTypes\nWHERE fk_FBType = :FBType) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "FBType",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetFbsubTypeByTypeResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "FBSubType",
+        "fieldName" : "fbsubType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "fk_FBType",
+        "fieldName" : "fkFbtype",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetForemenBySuper" : {
+    "name" : "GetForemenBySuper",
+    "description" : "Get all Foremen assigned to Crews with selected Superintendent",
+    "version" : "V1",
+    "queryString" : "SELECT u.ID, u.FirstName, u.LastName, u.Email, tc.CrewNumber\nFROM PSA.tblUserPSA u\nLEFT JOIN PSA.tblCrews tc\n\ton tc.Foreman = u.ID\nWHERE tc.Superintendent = :SuperID",
+    "countQueryString" : "select count(*) from (SELECT u.ID, u.FirstName, u.LastName, u.Email, tc.CrewNumber\nFROM PSA.tblUserPSA u\nLEFT JOIN PSA.tblCrews tc\n\ton tc.Foreman = u.ID\nWHERE tc.Superintendent = :SuperID) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "SuperID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "47",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetForemenBySuperResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "CrewNumber",
+        "fieldName" : "crewNumber",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "Email",
+        "fieldName" : "email",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "FirstName",
+        "fieldName" : "firstName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "LastName",
+        "fieldName" : "lastName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetHelpMenuVideos" : {
+    "name" : "GetHelpMenuVideos",
+    "description" : "Get the Help Menu Video tree",
+    "version" : "V1",
+    "queryString" : "SELECT m.ID AS CategoryID, sm.ID AS SubCategoryID, m.label AS Category, sm.label AS SubCategory, sm.title, sm.fileName\nFROM PSA.MenuHelpVideos m\nJOIN PSA.MenuSubHelpVideos sm\n\tON sm.fk_ParentMenu = m.ID\nORDER BY m.ID, sm.ID",
+    "countQueryString" : "select count(*) from (SELECT m.ID AS CategoryID, sm.ID AS SubCategoryID, m.label AS Category, sm.label AS SubCategory, sm.title, sm.fileName\nFROM PSA.MenuHelpVideos m\nJOIN PSA.MenuSubHelpVideos sm\n\tON sm.fk_ParentMenu = m.ID\nORDER BY m.ID, sm.ID) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetHelpMenuVideosResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "Category",
+        "fieldName" : "category",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "CategoryID",
+        "fieldName" : "categoryId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "SubCategory",
+        "fieldName" : "subCategory",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "SubCategoryID",
+        "fieldName" : "subCategoryId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "fileName",
+        "fieldName" : "fileName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "title",
+        "fieldName" : "title",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetJobNumberCountByJobNumber" : {
+    "name" : "GetJobNumberCountByJobNumber",
+    "description" : "Checks to see if the Job Number exists",
+    "version" : "V1",
+    "queryString" : "SELECT count(JobNumber) AS JobNumberCount\nFROM PSA.tblJobNumbers\nWHERE JobNumber = :JobNumber",
+    "countQueryString" : "select count(*) from (SELECT count(JobNumber) AS JobNumberCount\nFROM PSA.tblJobNumbers\nWHERE JobNumber = :JobNumber) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "JobNumber",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1111",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetJobNumberCountByJobNumberResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "JobNumberCount",
+        "fieldName" : "jobNumberCount",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.math.BigInteger",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetJobSites" : {
+    "name" : "GetJobSites",
+    "description" : "Search through for all matching Job Sites",
+    "version" : "V1",
+    "queryString" : "SELECT * \nFROM PSA.tblJobSites\nWHERE SiteName = :SiteName\nAND SiteCity = :City\nAND SiteState = :State",
+    "countQueryString" : "select count(*) from (SELECT * \nFROM PSA.tblJobSites\nWHERE SiteName = :SiteName\nAND SiteCity = :City\nAND SiteState = :State) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "SiteName",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Test",
+      "required" : false
+    }, {
+      "name" : "City",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Test",
+      "required" : false
+    }, {
+      "name" : "State",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "SD",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetJobSitesResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "SiteCity",
+        "fieldName" : "siteCity",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "SiteName",
+        "fieldName" : "siteName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "SiteState",
+        "fieldName" : "siteState",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetPSAUsers" : {
+    "name" : "GetPSAUsers",
+    "description" : "Gets all PSA users BY JobNumber",
+    "version" : "V1",
+    "queryString" : "SELECT u.*, rd.Discipline\nFROM tblUserPSA u\nLEFT JOIN REF_Disciplines rd\n    ON rd.ID = u.fk_DisciplineId\nWHERE u.Id != 1",
+    "countQueryString" : "select count(*) from (SELECT u.*, rd.Discipline\nFROM tblUserPSA u\nLEFT JOIN REF_Disciplines rd\n    ON rd.ID = u.fk_DisciplineId\nWHERE u.Id != 1) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetPsausersResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "Active",
+        "fieldName" : "active",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Byte",
+          "list" : false
+        }
+      }, {
+        "name" : "CreatedDate",
+        "fieldName" : "createdDate",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Timestamp",
+          "list" : false
+        }
+      }, {
+        "name" : "Discipline",
+        "fieldName" : "discipline",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Email",
+        "fieldName" : "email",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "FirstName",
+        "fieldName" : "firstName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "LastModifiedBy",
+        "fieldName" : "lastModifiedBy",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "LastName",
+        "fieldName" : "lastName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "MobileUser",
+        "fieldName" : "mobileUser",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Byte",
+          "list" : false
+        }
+      }, {
+        "name" : "Nickname",
+        "fieldName" : "nickname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Password",
+        "fieldName" : "password",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Rev",
+        "fieldName" : "rev",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Byte",
+          "list" : false
+        }
+      }, {
+        "name" : "TimeStamp",
+        "fieldName" : "timeStamp",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Timestamp",
+          "list" : false
+        }
+      }, {
+        "name" : "fk_CraftClassId",
+        "fieldName" : "fkCraftClassId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "fk_CraftId",
+        "fieldName" : "fkCraftId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "fk_DefaultJobNumberId",
+        "fieldName" : "fkDefaultJobNumberId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "fk_DisciplineId",
+        "fieldName" : "fkDisciplineId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "fk_RoleId",
+        "fieldName" : "fkRoleId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "pciEmployeeId",
+        "fieldName" : "pciEmployeeId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetRefPrecipitation" : {
+    "name" : "GetRefPrecipitation",
+    "description" : "No description is provided",
+    "version" : "V1",
+    "queryString" : "SELECT * \nFROM PSA.REF_Weather\nWHERE Label = 'Precipitation'",
+    "countQueryString" : "select count(*) from (SELECT * \nFROM PSA.REF_Weather\nWHERE Label = 'Precipitation') wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetRefPrecipitationResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "Value",
+        "fieldName" : "value",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "Label",
+        "fieldName" : "label",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetRefTemperatures" : {
+    "name" : "GetRefTemperatures",
+    "description" : "No description is provided",
+    "version" : "V1",
+    "queryString" : "SELECT * \nFROM PSA.REF_Weather\nWHERE Label = 'Temperature'",
+    "countQueryString" : "select count(*) from (SELECT * \nFROM PSA.REF_Weather\nWHERE Label = 'Temperature') wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetRefTemperaturesResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "Value",
+        "fieldName" : "value",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "Label",
+        "fieldName" : "label",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetRefWind" : {
+    "name" : "GetRefWind",
+    "description" : "No description is provided",
+    "version" : "V1",
+    "queryString" : "SELECT * \nFROM PSA.REF_Weather\nWHERE Label = 'Wind'",
+    "countQueryString" : "select count(*) from (SELECT * \nFROM PSA.REF_Weather\nWHERE Label = 'Wind') wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetRefWindResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "Value",
+        "fieldName" : "value",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "Label",
+        "fieldName" : "label",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetRolesByDiscipline" : {
+    "name" : "GetRolesByDiscipline",
+    "description" : "Get all  valid Roles for selected Discipline",
+    "version" : "V1",
+    "queryString" : "SELECT r.* \nFROM PSA.REF_Roles r\nWHERE r.RoleName LIKE CONCAT('%',(SELECT Discipline FROM PSA.REF_Disciplines WHERE ID = :DisciplineID),'%')\nAND r.ID NOT IN (1)",
+    "countQueryString" : "select count(*) from (SELECT r.* \nFROM PSA.REF_Roles r\nWHERE r.RoleName LIKE CONCAT('%',(SELECT Discipline FROM PSA.REF_Disciplines WHERE ID = :DisciplineID),'%')\nAND r.ID NOT IN (1)) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "DisciplineID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetRolesByDisciplineResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "RoleName",
+        "fieldName" : "roleName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetSettingDashUpdateInt" : {
+    "name" : "GetSettingDashUpdateInt",
+    "description" : "Get the Dashboard Update Intervals",
+    "version" : "V1",
+    "queryString" : "SELECT s1.Value2 AS Interval1, s2.Value2 AS Interval2\nFROM SETTINGS s1\nLEFT JOIN SETTINGS s2\n    ON s2.Label = \"DashUpdateInt2\"\nWHERE s1.Label = \"DashUpdateInt1\"",
+    "countQueryString" : "select count(*) from (SELECT s1.Value2 AS Interval1, s2.Value2 AS Interval2\nFROM SETTINGS s1\nLEFT JOIN SETTINGS s2\n    ON s2.Label = \"DashUpdateInt2\"\nWHERE s1.Label = \"DashUpdateInt1\") wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetSettingDashUpdateIntResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "Interval1",
+        "fieldName" : "interval1",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "Interval2",
+        "fieldName" : "interval2",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetSteelActivityTypes" : {
+    "name" : "GetSteelActivityTypes",
+    "description" : "name",
+    "version" : "V1",
+    "queryString" : "SELECT * \nFROM PSA.REF_ActivityTypes at\nWHERE at.ID BETWEEN 61 AND 69",
+    "countQueryString" : "select count(*) from (SELECT * \nFROM PSA.REF_ActivityTypes at\nWHERE at.ID BETWEEN 61 AND 69) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetSteelActivityTypesResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "ActivityType",
+        "fieldName" : "activityType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetUsersForemen" : {
+    "name" : "GetUsersForemen",
+    "description" : "Get foremen list by given inputs",
+    "version" : "V1",
+    "queryString" : "SELECT u.*,\nc.CrewNumber, c.JobNumber, c.ProjectManager, c.ConstructionManager, c.SiteManager, c.AreaManager, c.Superintendent, c\n    .GF, c.Foreman, c.Leadman, c.DisciplineId, (c.Rev) AS cRev\nFROM `PSA`.tblUserPSA u\nJOIN `PSA`.tblCrews c\n    ON c.GF = u.ID OR  c.Foreman = u.ID\nWHERE c.JobNumber = :JobNumber\nAND c.DisciplineId LIKE :DisciplineID\nAND c.ProjectManager LIKE :PM\nAND c.ConstructionManager LIKE :ConstM\nAND c.SiteManager LIKE :SiteM\nAND c.AreaManager LIKE :AreaM\nAND c.Superintendent LIKE :Super",
+    "countQueryString" : "select count(*) from (SELECT u.*,\nc.CrewNumber, c.JobNumber, c.ProjectManager, c.ConstructionManager, c.SiteManager, c.AreaManager, c.Superintendent, c\n    .GF, c.Foreman, c.Leadman, c.DisciplineId, (c.Rev) AS cRev\nFROM `PSA`.tblUserPSA u\nJOIN `PSA`.tblCrews c\n    ON c.GF = u.ID OR  c.Foreman = u.ID\nWHERE c.JobNumber = :JobNumber\nAND c.DisciplineId LIKE :DisciplineID\nAND c.ProjectManager LIKE :PM\nAND c.ConstructionManager LIKE :ConstM\nAND c.SiteManager LIKE :SiteM\nAND c.AreaManager LIKE :AreaM\nAND c.Superintendent LIKE :Super) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "JobNumber",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1111",
+      "required" : false
+    }, {
+      "name" : "DisciplineID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "%",
+      "required" : false
+    }, {
+      "name" : "PM",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "%",
+      "required" : false
+    }, {
+      "name" : "ConstM",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "%",
+      "required" : false
+    }, {
+      "name" : "SiteM",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "%",
+      "required" : false
+    }, {
+      "name" : "AreaM",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "%",
+      "required" : false
+    }, {
+      "name" : "Super",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "%",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetUsersForemenResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "Active",
+        "fieldName" : "active",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Byte",
+          "list" : false
+        }
+      }, {
+        "name" : "AreaManager",
+        "fieldName" : "areaManager",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "ConstructionManager",
+        "fieldName" : "constructionManager",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "CreatedDate",
+        "fieldName" : "createdDate",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Timestamp",
+          "list" : false
+        }
+      }, {
+        "name" : "CrewNumber",
+        "fieldName" : "crewNumber",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "DisciplineId",
+        "fieldName" : "disciplineId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "Email",
+        "fieldName" : "email",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "FirstName",
+        "fieldName" : "firstName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Foreman",
+        "fieldName" : "foreman",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "GF",
+        "fieldName" : "gf",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "JobNumber",
+        "fieldName" : "jobNumber",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "LastModifiedBy",
+        "fieldName" : "lastModifiedBy",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "LastName",
+        "fieldName" : "lastName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Leadman",
+        "fieldName" : "leadman",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "MobileUser",
+        "fieldName" : "mobileUser",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Byte",
+          "list" : false
+        }
+      }, {
+        "name" : "Nickname",
+        "fieldName" : "nickname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Password",
+        "fieldName" : "password",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ProjectManager",
+        "fieldName" : "projectManager",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "Rev",
+        "fieldName" : "rev",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Byte",
+          "list" : false
+        }
+      }, {
+        "name" : "SiteManager",
+        "fieldName" : "siteManager",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "Superintendent",
+        "fieldName" : "superintendent",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "TimeStamp",
+        "fieldName" : "timeStamp",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Timestamp",
+          "list" : false
+        }
+      }, {
+        "name" : "cRev",
+        "fieldName" : "crev",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Short",
+          "list" : false
+        }
+      }, {
+        "name" : "fk_CraftClassId",
+        "fieldName" : "fkCraftClassId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "fk_CraftId",
+        "fieldName" : "fkCraftId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "fk_DefaultJobNumberId",
+        "fieldName" : "fkDefaultJobNumberId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "fk_DisciplineId",
+        "fieldName" : "fkDisciplineId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "fk_RoleId",
+        "fieldName" : "fkRoleId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "pciEmployeeId",
+        "fieldName" : "pciEmployeeId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetUsersManagers" : {
+    "name" : "GetUsersManagers",
+    "description" : "Get all the managers on a specified Job",
+    "version" : "V1",
+    "queryString" : "SELECT DISTINCT uc.FirstName, uc.LastName, uc.Email, uc.ID\nFROM (\nSELECT u.*,\nc.CrewNumber, c.JobNumber, c.ProjectManager, c.ConstructionManager, c.SiteManager, c.AreaManager, c.Superintendent, c.GF, c.Foreman, c.Leadman, c.DisciplineId, (c.Rev) AS cRev\nFROM `PSA`.tblUserPSA u\nLEFT JOIN `PSA`.tblCrews c\n\tON c.ProjectManager = u.ID OR  c.ConstructionManager = u.ID OR  c.SiteManager = u.ID OR  c.AreaManager = u.ID\nWHERE c.JobNumber = :JobNumber\n) uc",
+    "countQueryString" : "select count(*) from (SELECT DISTINCT uc.FirstName, uc.LastName, uc.Email, uc.ID\nFROM (\nSELECT u.*,\nc.CrewNumber, c.JobNumber, c.ProjectManager, c.ConstructionManager, c.SiteManager, c.AreaManager, c.Superintendent, c.GF, c.Foreman, c.Leadman, c.DisciplineId, (c.Rev) AS cRev\nFROM `PSA`.tblUserPSA u\nLEFT JOIN `PSA`.tblCrews c\n\tON c.ProjectManager = u.ID OR  c.ConstructionManager = u.ID OR  c.SiteManager = u.ID OR  c.AreaManager = u.ID\nWHERE c.JobNumber = :JobNumber\n) uc) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "JobNumber",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1111",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetUsersManagersResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "Email",
+        "fieldName" : "email",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "FirstName",
+        "fieldName" : "firstName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "LastName",
+        "fieldName" : "lastName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "GetUsersSupers" : {
+    "name" : "GetUsersSupers",
+    "description" : "Get Superintendents by given Input",
+    "version" : "V1",
+    "queryString" : "SELECT DISTINCT uc.FirstName, uc.LastName, uc.Email, uc.ID\nFROM (\nSELECT u.*,\nc.CrewNumber, c.JobNumber, c.ProjectManager, c.ConstructionManager, c.SiteManager, c.AreaManager, c.Superintendent, c.GF, c.Foreman, c.Leadman, c.DisciplineId, (c.Rev) AS cRev\nFROM `PSA`.tblUserPSA u\nJOIN `PSA`.tblCrews c\n\tON c.Superintendent = u.ID \n\nWHERE c.JobNumber = :JobNumber\nAND c.DisciplineId LIKE :DisciplineID\nAND c.ProjectManager LIKE :PM\nAND c.ConstructionManager LIKE :ConstM\nAND c.SiteManager LIKE :SiteM\nAND c.AreaManager LIKE :AreaM\n) uc",
+    "countQueryString" : "select count(*) from (SELECT DISTINCT uc.FirstName, uc.LastName, uc.Email, uc.ID\nFROM (\nSELECT u.*,\nc.CrewNumber, c.JobNumber, c.ProjectManager, c.ConstructionManager, c.SiteManager, c.AreaManager, c.Superintendent, c.GF, c.Foreman, c.Leadman, c.DisciplineId, (c.Rev) AS cRev\nFROM `PSA`.tblUserPSA u\nJOIN `PSA`.tblCrews c\n\tON c.Superintendent = u.ID \n\nWHERE c.JobNumber = :JobNumber\nAND c.DisciplineId LIKE :DisciplineID\nAND c.ProjectManager LIKE :PM\nAND c.ConstructionManager LIKE :ConstM\nAND c.SiteManager LIKE :SiteM\nAND c.AreaManager LIKE :AreaM\n) uc) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "JobNumber",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1111",
+      "required" : false
+    }, {
+      "name" : "DisciplineID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "%",
+      "required" : false
+    }, {
+      "name" : "PM",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "%",
+      "required" : false
+    }, {
+      "name" : "ConstM",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "%",
+      "required" : false
+    }, {
+      "name" : "SiteM",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "%",
+      "required" : false
+    }, {
+      "name" : "AreaM",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "%",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.GetUsersSupersResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "Email",
+        "fieldName" : "email",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "FirstName",
+        "fieldName" : "firstName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "LastName",
+        "fieldName" : "lastName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "InsertAssignedJobNumber" : {
+    "name" : "InsertAssignedJobNumber",
+    "description" : "No description is provided",
+    "version" : "V1",
+    "queryString" : "INSERT INTO `PSA`.`tblUserJobNumbers` (`fk_UserId`, `fk_JobNumber`) \nVALUES ( :UserId, :JobNumber)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "UserId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "JobNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2222",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.query.InsertAssignedJobNumberRequest",
+      "method" : "POST"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "InsertChatMessage" : {
+    "name" : "InsertChatMessage",
+    "description" : "name",
+    "version" : "V1",
+    "queryString" : "INSERT INTO `ChatMessages` (`ConversationID`, `Author`, `Message`) \nVALUES (:ConversationID, :UserID, :Message)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "ConversationID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "8",
+      "required" : false
+    }, {
+      "name" : "UserID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "Message",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Query Test",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.query.InsertChatMessageRequest",
+      "method" : "POST"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "InsertFeedbackNotes" : {
+    "name" : "InsertFeedbackNotes",
+    "description" : "Insert Feedback Notes to the last ticket created by the current logged in user.  (Ment to be ran directly after InsertFeedbackTicket)",
+    "version" : "V1",
+    "queryString" : "INSERT INTO `PSA`.`FeedBackNotes` (`fk_FeedBackID`, `fk_UserID`, `Notes`)\nVALUES ((SELECT fb.ID \nFROM PSA.FeedBack fb\n\tINNER JOIN (SELECT MAX(fb.TimeStamp) AS Latest \n\t\t\t\tFROM PSA.FeedBack fb\n\t\t\t\tWHERE fb.fk_UserID = :UserID\n                ) n\n\t\t\tON n.Latest = TimeStamp), \n\t\t\t:UserID,\n\t\t\t:Notes)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "UserID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "Notes",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "test notes",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.query.InsertFeedbackNotesRequest",
+      "method" : "POST"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "InsertFeedbackTicket" : {
+    "name" : "InsertFeedbackTicket",
+    "description" : "Insert a new feedback ticket",
+    "version" : "V1",
+    "queryString" : "INSERT INTO `PSA`.`FeedBack` (`fk_UserID`, `fk_FeedBackType`, `fk_FBSubType`, `fk_Severity`) \nVALUES (:UserID, :FeedbackType, :FBSubType, :ErrorSeverity)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "UserID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "FeedbackType",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : false
+    }, {
+      "name" : "FBSubType",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "ErrorSeverity",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.query.InsertFeedbackTicketRequest",
+      "method" : "POST"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "InsertFeedbackTicketNotes" : {
+    "name" : "InsertFeedbackTicketNotes",
+    "description" : "Adds more notes to a given ticket",
+    "version" : "V1",
+    "queryString" : "INSERT INTO `PSA`.`FeedBackNotes` \n(`fk_FeedBackID`, `fk_UserID`, `Notes`) \nVALUES (:TicketID, :UserID, :Note)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "TicketID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "34",
+      "required" : false
+    }, {
+      "name" : "UserID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "Note",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "TEST Note",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.query.InsertFeedbackTicketNotesRequest",
+      "method" : "POST"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "InsertLoginFailure" : {
+    "name" : "InsertLoginFailure",
+    "description" : "Insert a failed login attempt into the tblUserLoginTracker table",
+    "version" : "V1",
+    "queryString" : "INSERT INTO `PSA`.`tblUserLoginTracker` \n(`UserID`, `Email`, `LoginResult`, `FailedPassword`) \nVALUES ( COALESCE((SELECT ID FROM PSA.tblUserPSA WHERE Email LIKE :EnteredUsername),0), :EnteredUsername, 0, :EnteredPassword)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "EnteredUsername",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "bob@nopes.com",
+      "required" : false
+    }, {
+      "name" : "EnteredPassword",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "bobpass",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.query.InsertLoginFailureRequest",
+      "method" : "POST"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "InsertLoginSuccess" : {
+    "name" : "InsertLoginSuccess",
+    "description" : "Insert a Successful login attempt into the tblUserLoginTracker table",
+    "version" : "V1",
+    "queryString" : "INSERT INTO `PSA`.`tblUserLoginTracker` \n(`UserID`, `Email`, `LoginResult`, `FailedPassword`) \nVALUES ( COALESCE((SELECT ID FROM PSA.tblUserPSA WHERE Email LIKE :EnteredUsername),0), :EnteredUsername, 1, 'N/A')",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "EnteredUsername",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "bob@nope.com",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.query.InsertLoginSuccessRequest",
+      "method" : "POST"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "InsertUserAssignedApps" : {
+    "name" : "InsertUserAssignedApps",
+    "description" : "Blindly insert User Assigned app IDs",
+    "version" : "V1",
+    "queryString" : "INSERT INTO `PSA`.`tblUserAssignedApps` \n(`UserID`, `MobileAppGroupID`) \nVALUES (:UserID, :MobileAppGroupID)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "UserID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "141",
+      "required" : false
+    }, {
+      "name" : "MobileAppGroupID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.query.InsertUserAssignedAppsRequest",
+      "method" : "POST"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "InsertUserCreds" : {
+    "name" : "InsertUserCreds",
+    "description" : "Insert new user credentials into tblUserCreds",
+    "version" : "V1",
+    "queryString" : "INSERT INTO `PSA`.`tblUserCreds` \n(`UserID`, `UserName`, `Password`) \nVALUES (:UserID, :UserName, :Password);",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "UserID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "156",
+      "required" : false
+    }, {
+      "name" : "UserName",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "bob@nope.com",
+      "required" : false
+    }, {
+      "name" : "Password",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "BobPass",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.query.InsertUserCredsRequest",
+      "method" : "POST"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "InsertUserPSA" : {
+    "name" : "InsertUserPSA",
+    "description" : "Add new Record to UserPSA Table",
+    "version" : "V1",
+    "queryString" : "INSERT INTO tblUserPSA (pciEmployeeId,FirstName,LastName, Email, Password, MobileUser, Active, LastModifiedBy, fk_DisciplineId, fk_CraftId, fk_CraftClassId, fk_RoleId, fk_DefaultJobNumberId, Rev)\nVALUES(:PerformanceEmployeeID, :FirstName, :LastName, :Email, :Password, :MobileUser, :ActiveUser, :ModifiedBy, :DisciplineId, :CraftId, :CraftClassId, :RoleId, :JobNumber, 0)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "PerformanceEmployeeID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "12345678",
+      "required" : false
+    }, {
+      "name" : "FirstName",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "LastName",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Guy",
+      "required" : false
+    }, {
+      "name" : "Email",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "NewG@nope.com",
+      "required" : false
+    }, {
+      "name" : "Password",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "MobileUser",
+      "type" : "byte",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "ActiveUser",
+      "type" : "byte",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "ModifiedBy",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "DisciplineId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "CraftId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "CraftClassId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "RoleId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "JobNumber",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1111",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.query.InsertUserPsaRequest",
+      "method" : "POST"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "Managers" : {
+    "name" : "Managers",
+    "description" : "Get a list of all users in a manager position on any crew by JobNumber",
+    "version" : "V1",
+    "queryString" : "SELECT DISTINCT u.ID, u.Firstname, u.LastName, u.Email \nFROM tblUserPSA u \n\nLEFT JOIN PSA.tblCrews tc\n\tON u.ID IN (tc.ProjectManager, tc.ConstructionManager, tc.SiteManager, tc.AreaManager)\nWHERE tc.JobNumber = :JobNumber",
+    "countQueryString" : "select count(*) from (SELECT DISTINCT u.ID, u.Firstname, u.LastName, u.Email \nFROM tblUserPSA u \n\nLEFT JOIN PSA.tblCrews tc\n\tON u.ID IN (tc.ProjectManager, tc.ConstructionManager, tc.SiteManager, tc.AreaManager)\nWHERE tc.JobNumber = :JobNumber) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "JobNumber",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1111",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.ManagersResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "Email",
+        "fieldName" : "email",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Firstname",
+        "fieldName" : "firstname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "LastName",
+        "fieldName" : "lastName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "PoolDeleteInactiveMobile" : {
+    "name" : "PoolDeleteInactiveMobile",
+    "description" : "Deletes an Account from the Inactive Pool",
+    "version" : "V1",
+    "queryString" : "DELETE FROM `PSA`.`Pool_InactiveMobileAccounts` \nWHERE `AccountID`= :AccountID",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "DELETE",
+    "parameters" : [ {
+      "name" : "AccountID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "bob",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "DELETE"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "PoolGetLockedInactiveMobile" : {
+    "name" : "PoolGetLockedInactiveMobile",
+    "description" : "Gets 1 row locked by the current UserID from the inactive mobile table",
+    "version" : "V1",
+    "queryString" : "SELECT AccountID \nFROM PSA.Pool_InactiveMobileAccounts\nWHERE LockedBy = :UserId",
+    "countQueryString" : "select count(*) from (SELECT AccountID \nFROM PSA.Pool_InactiveMobileAccounts\nWHERE LockedBy = :UserId) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "UserId",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "someone",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.PoolGetLockedInactiveMobileResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "AccountID",
+        "fieldName" : "accountId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "PoolInsertInactiveMobile" : {
+    "name" : "PoolInsertInactiveMobile",
+    "description" : "Inserts new Inactive Mobile Account into pool",
+    "version" : "V1",
+    "queryString" : "INSERT INTO `PSA`.`Pool_InactiveMobileAccounts` (`AccountID`) \nVALUES (:AccountID);",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "AccountID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "bob",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.query.PoolInsertInactiveMobileRequest",
+      "method" : "POST"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "PoolLockInactiveMobile" : {
+    "name" : "PoolLockInactiveMobile",
+    "description" : "Sets one account in the PoolInactiveMobileAccounts with a LockedBy",
+    "version" : "V1",
+    "queryString" : "UPDATE `PSA`.`Pool_InactiveMobileAccounts` \nSET `LockedBy`= :UserId\nWHERE  LockedBy = '0'\nLIMIT 1",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "UserId",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "someone",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.query.PoolLockInactiveMobileRequest",
+      "method" : "PUT"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "PoolUNLockInactiveMobile" : {
+    "name" : "PoolUNLockInactiveMobile",
+    "description" : "Unlocks all pool accounts locked by current user.",
+    "version" : "V1",
+    "queryString" : "UPDATE `PSA`.`Pool_InactiveMobileAccounts` \nSET `LockedBy`= '0'\nWHERE  LockedBy = :UserId",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "UserId",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.query.PoolUnlockInactiveMobileRequest",
+      "method" : "PUT"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "Superintendents" : {
+    "name" : "Superintendents",
+    "description" : "List of all Superintendents on specified JobNumber",
+    "version" : "V1",
+    "queryString" : "SELECT DISTINCT u.ID, u.Firstname, u.LastName, u.Email \nFROM tblUserPSA u \n\nLEFT JOIN PSA.tblCrews tc\n\tON u.ID = tc.Superintendent\nWHERE tc.JobNumber = :JobNumber",
+    "countQueryString" : "select count(*) from (SELECT DISTINCT u.ID, u.Firstname, u.LastName, u.Email \nFROM tblUserPSA u \n\nLEFT JOIN PSA.tblCrews tc\n\tON u.ID = tc.Superintendent\nWHERE tc.JobNumber = :JobNumber) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "JobNumber",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1111",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.psa.models.query.SuperintendentsResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "Email",
+        "fieldName" : "email",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Firstname",
+        "fieldName" : "firstname",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "LastName",
+        "fieldName" : "lastName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "UpdateChatAllLastRead" : {
+    "name" : "UpdateChatAllLastRead",
+    "description" : "sets the timestamp for when the user last viewed all chat",
+    "version" : "V2",
+    "queryString" : "INSERT INTO `ChatAllLastRead` \n(`UserID`) VALUES (:UserID)\nON DUPLICATE KEY UPDATE\nUserID = :UserID",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "UserID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.query.UpdateChatAllLastReadRequest",
+      "method" : "POST"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
+  "UpdateChatMessageStatus" : {
+    "name" : "UpdateChatMessageStatus",
+    "description" : "Changes chat message status to 0",
+    "version" : "V2",
+    "queryString" : "UPDATE `PSA`.`ChatMessages` \nSET `Status`='0' \nWHERE `ConversationID`= :ConversationID \nAND `Status` = '1'\nAND `Author` != :UserID",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "ConversationID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "46",
+      "required" : true
+    }, {
+      "name" : "UserID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.query.UpdateChatMessageStatusRequest",
+      "method" : "PUT"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
+  "UpdateUserCreds" : {
+    "name" : "UpdateUserCreds",
+    "description" : "name",
+    "version" : "V1",
+    "queryString" : "UPDATE `PSA`.`tblUserCreds` \nSET `UserName`= :UserName, \n`Password`= :Password \nWHERE `UserID`= :UserID",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "UserName",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "bob",
+      "required" : false
+    }, {
+      "name" : "Password",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Bob",
+      "required" : false
+    }, {
+      "name" : "UserID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "156",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.query.UpdateUserCredsRequest",
+      "method" : "PUT"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "UpdateUserCredsUserName" : {
+    "name" : "UpdateUserCredsUserName",
+    "description" : "Update tblUserCreds but only the UserName column... to leave password untouched.",
+    "version" : "V1",
+    "queryString" : "UPDATE `PSA`.`tblUserCreds` \nSET `UserName`= :UserName\nWHERE `UserID`= :UserID",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "UserName",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "bob1",
+      "required" : false
+    }, {
+      "name" : "UserID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "156",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.query.UpdateUserCredsUserNameRequest",
+      "method" : "PUT"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  },
+  "UpdateUserPSA" : {
+    "name" : "UpdateUserPSA",
+    "description" : "Updates the User PSA table with supplied Inputs",
+    "version" : "V1",
+    "queryString" : "UPDATE tblUserPSA\nSET \npciEmployeeId = :PerformanceEmployeeId,\nFirstName = :FirstName,\nLastName = :LastName,\nNickname = :Nickname,\nEmail = :Email,\nMobileUser = :MobileUser,\nActive = :ActiveUser,\nLastModifiedBy = :ModifiedBy,\nfk_DisciplineId = :DisciplineId,\nfk_CraftId = :CraftId,\nfk_CraftClassId = :CraftClassId,\nfk_RoleId = :RoleId,\nfk_DefaultJobNumberId = :DefaultJobNumberId\nWHERE ID= :UserID",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "PerformanceEmployeeId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "12345680",
+      "required" : false
+    }, {
+      "name" : "FirstName",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Some",
+      "required" : false
+    }, {
+      "name" : "LastName",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Guy",
+      "required" : false
+    }, {
+      "name" : "Nickname",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Bobbin",
+      "required" : false
+    }, {
+      "name" : "Email",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "no@nope.com",
+      "required" : false
+    }, {
+      "name" : "MobileUser",
+      "type" : "byte",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "ActiveUser",
+      "type" : "byte",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "0",
+      "required" : false
+    }, {
+      "name" : "ModifiedBy",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "DisciplineId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "CraftId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "CraftClassId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "RoleId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : false
+    }, {
+      "name" : "DefaultJobNumberId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1111",
+      "required" : false
+    }, {
+      "name" : "UserID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "156",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.psa.models.query.UpdateUserPsaRequest",
+      "method" : "PUT"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "PRIMITIVE",
+      "responseType" : "SINGLE"
+    }
+  }
+}

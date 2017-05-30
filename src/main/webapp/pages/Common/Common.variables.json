@@ -1,0 +1,32 @@
+{
+  "serviceSHAEncode2" : {
+    "_id" : "wm-serviceSHAEncode2-wm.ServiceVariable-1463507556561",
+    "name" : "serviceSHAEncode2",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "inText",
+      "value" : "bind:Widgets.passwordtext.datavalue",
+      "type" : "string"
+    } ],
+    "type" : "string",
+    "service" : "SHA256Encryption",
+    "operation" : "sha2",
+    "operationId" : "SHA256EncryptionController_sha2",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "isList" : false,
+    "firstRow" : 0,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeAll",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "SHA256Encryption"
+  }
+}

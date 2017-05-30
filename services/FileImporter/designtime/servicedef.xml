@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service xmlns="http://www.activegrid.com/namespaces/ServiceDefinitions/1.0" id="FileImporter" class="com.psabackoffice.fileimporter.FileImporter" type="JavaService" springFile="FileImporter.spring.xml">
+    <operation name="importFile">
+        <parameter name="jobNumber" typeRef="java.lang.String" isList="false"/>
+        <parameter name="tableName" typeRef="java.lang.String" isList="false"/>
+        <parameter name="fileName" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="java.lang.String" isList="false"/>
+    </operation>
+    <dataobjects/>
+</service>

@@ -1,0 +1,127 @@
+{
+  "liveGetEmailInvite" : {
+    "_id" : "wm-liveGetEmailInvite-wm.LiveVariable-1493673210041",
+    "name" : "liveGetEmailInvite",
+    "owner" : "Page",
+    "category" : "wm.LiveVariable",
+    "dataBinding" : [ {
+      "target" : "title",
+      "value" : "Invite",
+      "type" : "string"
+    } ],
+    "operation" : "read",
+    "dataSet" : [ ],
+    "type" : "EmailTemplates",
+    "isList" : false,
+    "saveInPhonegap" : false,
+    "maxResults" : 1,
+    "designMaxResults" : 10,
+    "inFlightBehavior" : "executeLast",
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "transformationRequired" : false,
+    "liveSource" : "PSA",
+    "ignoreCase" : true,
+    "matchMode" : "start",
+    "orderBy" : "id asc",
+    "propertiesMap" : {
+      "columns" : [ {
+        "fieldName" : "id",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "ID",
+        "isPrimaryKey" : true,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "identity",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
+        "fieldName" : "title",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "Title",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 45,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
+        "fieldName" : "subject",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "Subject",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 100,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
+        "fieldName" : "body",
+        "type" : "text",
+        "fullyQualifiedType" : "text",
+        "columnName" : "Body",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 2147483647,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      } ],
+      "entityName" : "EmailTemplates",
+      "fullyQualifiedName" : "com.psabackoffice.psa.EmailTemplates",
+      "tableType" : "TABLE",
+      "primaryFields" : [ "id" ]
+    },
+    "tableName" : "EmailTemplates",
+    "tableType" : "TABLE",
+    "properties" : [ ],
+    "relatedTables" : [ ],
+    "filterFields" : { },
+    "package" : "com.psabackoffice.psa.EmailTemplates"
+  },
+  "serviceSendEmailSMTP" : {
+    "_id" : "wm-serviceSendEmailSMTP-wm.ServiceVariable-1493312711444",
+    "name" : "serviceSendEmailSMTP",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "from",
+      "value" : "psamailer@performance-contractors.com",
+      "type" : "string"
+    }, {
+      "target" : "subject",
+      "value" : "Test Subject",
+      "type" : "string"
+    }, {
+      "target" : "body",
+      "value" : "Test Body",
+      "type" : "string"
+    }, {
+      "target" : "to",
+      "value" : "darbym@performance-contractors.com",
+      "type" : "string"
+    } ],
+    "type" : "string",
+    "service" : "EmailSMTP",
+    "operation" : "sendEmail",
+    "operationId" : "EmailSMTPController_sendEmail",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "EmailSMTP"
+  }
+}

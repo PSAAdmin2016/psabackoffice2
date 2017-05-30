@@ -1,0 +1,15 @@
+<wm-page data-ng-controller="ReportDPRPageController" pagetitle="Report Dpr" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="1" content="leftnavReportBrowser" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="11" name="page_content1">
+            <wm-tabs name="tabs1">
+                <wm-tabpane name="tabpane1" title="Pipe" content="PartReportDPRPipe" accessroles="Corp. Office-Site Admin,Corp. Office-Project Services,Pipe-GF,Pipe-Superintendent Non-Staff,Pipe-Superintendent Staff,Site Office-Area Manager,Site Office-Project Services A,Site Office-Project Services B,Site Office-Site Manager,SuperUser"></wm-tabpane>
+                <wm-tabpane name="tabpane2" title="Steel" content="PartReportDPRSteel" show="true" accessroles="Corp. Office-Site Admin,Corp. Office-Project Services,Iron-GF,Iron-Superintendent Non-Staff,Iron-Superintendent Staff,Site Office-Area Manager,Site Office-Project Services A,Site Office-Project Services B,Site Office-Site Manager,SuperUser"></wm-tabpane>
+                <wm-tabpane name="tabpane5" title="Civil" content="PartReportDPRCivil" accessroles="SuperUser,Site Office-Site Manager,Site Office-Project Services B,Site Office-Project Services A,Site Office-Area Manager,Corp. Office-Project Services,Corp. Office-Site Admin,Civil-GF,Civil-Superintendent Non-Staff,Civil-Superintendent Staff"></wm-tabpane>
+                <wm-tabpane name="tabpane6" title="Equip" content="PartReportDPREquip" accessroles="SuperUser,Site Office-Site Manager,Site Office-Project Services B,Site Office-Project Services A,Site Office-Area Manager,Millwright-GF,Millwright-Superintendent Non-Staff,Millwright-Superintendent Staff,Corp. Office-Site Admin,Corp. Office-Project Services"></wm-tabpane>
+            </wm-tabs>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>

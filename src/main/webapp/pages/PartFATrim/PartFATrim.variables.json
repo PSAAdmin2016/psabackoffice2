@@ -1,0 +1,65 @@
+{
+  "serviceUpdateActivity" : {
+    "_id" : "wm-serviceUpdateTrim-wm.ServiceVariable-1476111910001",
+    "name" : "serviceUpdateActivity",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "Size",
+      "value" : "bind:Widgets.selectTrimSize.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "PlugQuantity",
+      "value" : "bind:Widgets.textTrimQuantity.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "HandleType",
+      "value" : "bind:Widgets.selectTrimHandle.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "InstType",
+      "value" : "bind:Widgets.selectTrimInstType.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "DrawingNumber",
+      "value" : "bind:Widgets.textTrimDrawing.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "LineNumber",
+      "value" : "bind:Widgets.textTrimLine.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "SheetNumber",
+      "value" : "bind:Widgets.textTrimSheet.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Rework",
+      "value" : "bind:Widgets.checkboxTrimRework.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "Notes",
+      "value" : "bind:Widgets.textareaTrimNotes.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "RowId",
+      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityRowId",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "Job1111",
+    "operation" : "executeUpdateTrim",
+    "operationId" : "QueryExecutionController_executeUpdateTrim",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 3,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  }
+}

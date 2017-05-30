@@ -1,0 +1,30 @@
+.pink {
+    background-color: #F8E0E0;
+}
+.blue {
+    background-color: #5fb4ff;
+}
+.green {
+    background-color: #D8F6CE;
+}
+.yellow {
+    background-color: #fffe80;
+}
+.orange {
+    background-color: #ff6500;
+}
+.wm-app .app-grid .app-datagrid .table-container .table tbody tr td.pink {
+background-color: #F8E0E0;
+}
+.wm-app .app-grid .app-datagrid .table-container .table tbody tr td.blue {
+background-color: #5fb4ff;
+}
+.wm-app .app-grid .app-datagrid .table-container .table tbody tr td.green {
+background-color: #D8F6CE;
+}
+.wm-app .app-grid .app-datagrid .table-container .table tbody tr td.yellow {
+background-color: #fffe80;
+}
+.wm-app .app-grid .app-datagrid .table-container .table tbody tr td.orange {
+background-color: #ff6500;
+}

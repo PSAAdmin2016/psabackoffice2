@@ -1,0 +1,69 @@
+{
+  "serviceUpdateActivity" : {
+    "_id" : "wm-serviceUpdateSupports-wm.ServiceVariable-1476111960752",
+    "name" : "serviceUpdateActivity",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "PartNumber",
+      "value" : "bind:Widgets.textSupportPart.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Quantity",
+      "value" : "bind:Widgets.textSupportQuantity.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "DrawingNumber",
+      "value" : "bind:Widgets.textSupportDrawing.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "LineNumber",
+      "value" : "bind:Widgets.textSupportLine.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Sheet",
+      "value" : "bind:Widgets.textSupportSheet.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Complete",
+      "value" : "bind:Widgets.checkboxSupportComplete.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Shared",
+      "value" : "bind:Widgets.checkboxSupportShared.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "PercentComplete",
+      "value" : "bind:Widgets.selectSupportPercentComplete.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "Rework",
+      "value" : "bind:Widgets.checkboxSupportRework.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "Notes",
+      "value" : "bind:Widgets.textareaSupportNotes.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "RowID",
+      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityRowId",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "Job1111",
+    "operation" : "executeUpdateSupports",
+    "operationId" : "QueryExecutionController_executeUpdateSupports",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 3,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  }
+}

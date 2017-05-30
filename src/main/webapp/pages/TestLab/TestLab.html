@@ -1,0 +1,78 @@
+<wm-page data-ng-controller="TestLabPageController" pagetitle="Test Lab" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="1" content="leftnavTestLab" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="11" name="page_content1">
+            <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow1">
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn1"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="11" name="gridcolumn2"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow2">
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn3"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="7" name="gridcolumn8">
+                        <wm-form errormessage="bind:Variables.serviceSendEmailSMTP.dataSet.value" captionposition="top" title="Email" enctype="application/x-www-form-urlencoded" method="get" dataset="bind:Variables.serviceSendEmailSMTP.dataSet" captionalign="left"
+                        name="formEmail" postmessage="Email Sent.">
+                            <wm-layoutgrid columns="2" name="layoutgrid2">
+                                <wm-gridrow name="gridrow5">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn9">
+                                        <wm-form-field name="to" readonly="false" displayname="To" key="to" type="string" show="true" widget="text" inputtype="email" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn10">
+                                        <wm-form-field name="fileDir" readonly="false" displayname="File Dir" key="fileDir" type="string" show="true" widget="text" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow6">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn11">
+                                        <wm-form-field name="subject" readonly="false" displayname="Subject" key="subject" type="string" show="true" widget="text" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn12">
+                                        <wm-form-field name="fileName" readonly="false" displayname="File Name" key="fileName" type="string" show="true" widget="text" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow7">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn13">
+                                        <wm-form-field name="body" readonly="false" displayname="Body" key="body" type="string" show="true" widget="textarea" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                            <wm-buttongroup horizontalalign="right" class="form-action col-md-12" name="buttongroup1">
+                                <wm-button caption="Reset" type="reset" class="btn-secondary" name="button2"></wm-button>
+                                <wm-button caption="SEND" type="submit" class="btn-primary" name="button4"></wm-button>
+                            </wm-buttongroup>
+                        </wm-form>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn4"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow3">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn5">
+                        <wm-textarea name="textarea1" datavalue="bind:replaceFields('BobUser','BobPass',Variables.liveGetEmailInvite.firstRecord.body)"></wm-textarea>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow4">
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn6"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="11" name="gridcolumn14">
+                        <wm-accordion name="accordion1">
+                            <wm-accordionpane name="accordionpane1" title="T123">
+                                <wm-prefab prefabname="QRCode" name="QRCode1" text="T123"></wm-prefab>
+                            </wm-accordionpane>
+                            <wm-accordionpane name="accordionpane2" title="B123">
+                                <wm-prefab prefabname="QRCode" name="QRCode2" text="B123"></wm-prefab>
+                            </wm-accordionpane>
+                            <wm-accordionpane name="accordionpane3" title="B456 (new)">
+                                <wm-prefab prefabname="QRCode" name="QRCode3" text="B456"></wm-prefab>
+                            </wm-accordionpane>
+                            <wm-accordionpane name="accordionpane4" title="T456 (new)">
+                                <wm-prefab prefabname="QRCode" name="QRCode4" text="T456"></wm-prefab>
+                            </wm-accordionpane>
+                            <wm-accordionpane name="accordionpane5" title="E567">
+                                <wm-prefab prefabname="QRCode" name="QRCode5" text="E567" type="2" level="H"></wm-prefab>
+                            </wm-accordionpane>
+                        </wm-accordion>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>

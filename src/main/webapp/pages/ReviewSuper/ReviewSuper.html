@@ -1,0 +1,310 @@
+<wm-page data-ng-controller="ReviewSuperPageController" pagetitle="Review Super" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="1" content="leftnavProgressTrack" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="11" name="page_content1">
+            <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow4">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn10">
+                        <wm-composite padding="2% unset unset 2%" name="composite1">
+                            <wm-label class="col-md-3" caption="Superintendant" name="label2"></wm-label>
+                            <wm-container class="col-md-9" name="container1">
+                                <wm-select datafield="ID" tabindex="1" autofocus="true" readonlygrid="true" datavalue="bind:Variables.loggedInUser.dataSet.id" readonly="false" disabled="bind:Variables.loggedInUser.dataSet.roles == 'Pipe-Superintendent Staff' ||
+Variables.loggedInUser.dataSet.roles == 'Pipe-Superintendent Non-Staff' ||
+Variables.loggedInUser.dataSet.roles == 'Pipe-GF' ||
+Variables.loggedInUser.dataSet.roles == 'Iron-Superintendent Staff' ||
+Variables.loggedInUser.dataSet.roles == 'Iron-Superintendent Non-Staff' ||
+Variables.loggedInUser.dataSet.roles == 'Iron-GF' ||
+Variables.loggedInUser.dataSet.roles == 'Civil-Superintendent Staff' ||
+Variables.loggedInUser.dataSet.roles == 'Civil-Superintendent Non-Staff' ||
+Variables.loggedInUser.dataSet.roles == 'Civil-GF' ||
+Variables.loggedInUser.dataSet.roles == 'Millwright-Superintendent Staff' ||
+Variables.loggedInUser.dataSet.roles == 'Millwright-Superintendent Non-Staff' ||
+Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables.serviceGetSuperintendents.dataSet" displayexpression="bind:$[FirstName] + ' ' + $[LastName]" name="selectSuperintendant"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn11" padding=".7% unset unset 1%">
+                        <wm-button class="btn-default" caption="Refresh" type="button" iconclass="glyphicon glyphicon-refresh" on-click="buttonRefreshClick($event, $scope)" paddingunit="%" name="buttonRefresh"></wm-button>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn12"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn13">
+                        <wm-composite horizontalalign="right" padding="2% unset unset 2%" name="composite2">
+                            <wm-label class="col-md-3" caption="Total Activities:" width="40%" padding="unset 1% unset unset" name="label3"></wm-label>
+                            <wm-container class="col-md-9" horizontalalign="right" width="40%" padding="unset unset unset 1%" name="container2">
+                                <wm-text type="number" placeholder="" width="100%" readonly="true" autocomplete="false" readonlygrid="true" datavalue="bind:Variables.serviceGetFieldActivitiesCount.dataSet[$i].Count" name="text1"></wm-text>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn14"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow2">
+                    <wm-gridcolumn columnwidth="10" name="gridcolumn4">
+                        <wm-grid shownavigation="false" gridfirstrowselect="true" dataset="bind:Variables.serviceGetFieldActivities.dataSet" on-select="gridSuperReviewActivitiesSelect($event, $rowData)" class="panel-default" height="250px" name="gridSuperReviewActivities"
+                        filtermode="multicolumn" navigation="None" spacing="condensed" on-datarender="gridSuperReviewActivitiesDatarender($scope, $data)">
+                            <wm-grid-column binding="PSAActivityID" caption="Field Activity Id" type="string" width="10%" readonly="true" show="true" filterwidget="number" filterplaceholder="Search Activity ID..."></wm-grid-column>
+                            <wm-grid-column binding="Status" caption="Status" type="string" width="15%" readonly="true" col-ng-class="{'yellow':row.Status == 'Progress Returned', 'orange':row.Status == 'Supervisor Modified' || row.Status == 'Progress Returned Mod', 'blue':row.Status == 'Returned To List'}"
+                            show="true" filterwidget="select"></wm-grid-column>
+                            <wm-grid-column binding="Craft" caption="Craft" width="15%" readonly="true" show="true" filterwidget="select"></wm-grid-column>
+                            <wm-grid-column binding="ActivityTypeName" caption="Activity Type" type="string" width="15%" readonly="true" show="true" filterwidget="select"></wm-grid-column>
+                            <wm-grid-column binding="NameFull" caption="Foreman Name" type="string" width="25%" readonly="true" show="true" filterwidget="select"></wm-grid-column>
+                            <wm-grid-column binding="ReceivedTime" caption="Received Time" type="string" width="19%" textalignment="center" readonly="true" datepattern="MM-dd-yy hh:mm a" formatpattern="toDate" searchable="false" show="true"></wm-grid-column>
+                        </wm-grid>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn44">
+                        <wm-layoutgrid name="layoutgrid9">
+                            <wm-gridrow name="gridrow19">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn45">
+                                    <wm-button class="btn-default" caption="Recent Activities" type="button" backgroundcolor="#5fb4ff" iconclass="wi wi-history" width="50%" hint="View or edit activities processed in the last 7 days." on-click="Variables.serviceGetSuperRecentActivities.invoke();Widgets.dialogRecentActivities.open()"
+                                    margin="2% unset 5% 2%" name="buttonRecent"></wm-button>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                            <wm-gridrow name="gridrow20">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn47">
+                                    <wm-button class="btn-raised" caption="Research" type="button" margin="unset unset 5% 2%" backgroundcolor="#40E0D0" hint="Jump to Classic Tracker, Filtered to This Dwg, Sheet" on-click="buttonResearchClick($event, $scope)"
+                                    accessroles="Everyone" name="buttonResearch" width="50%" iconclass="fa fa-search" disabled="bind:Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 93"></wm-button>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                            <wm-gridrow name="gridrow21">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn49">
+                                    <wm-button class="btn-default" caption="View/Add Notes" type="button" show="bind:Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus == 6 || Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus == 4  || Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus == 8  || Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus == 10 || Variables.EditMode.dataSet.dataValue"
+                                    backgroundcolor="#e7dd51" marginunit="%" on-click="Variables.serviceGetNotesByPSAActivityID.invoke();Widgets.dialogNotes.open()" iconclass="glyphicon glyphicon-list-alt" animation="slideInRight" hint="Add a note for project services, or view a note sent to you."
+                                    name="btnReviewNotes" width="50%" margin="unset unset 5% 2%"></wm-button>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                        </wm-layoutgrid>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow3">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn5">
+                        <wm-layoutgrid name="layoutgrid2">
+                            <wm-gridrow name="gridrow6">
+                                <wm-gridcolumn columnwidth="4" name="gridcolumn14_1">
+                                    <wm-button class="btn-default" caption="Accept" type="button" hint="Accept the activity and submit to project services review." on-click="btnAcceptClick($event, $scope)" readonlygrid="true" tabindex="1" show="bind:Variables.staticEditMode.dataSet.dataValue == false"
+                                    backgroundcolor="#0B9642" iconclass="glyphicon glyphicon-thumbs-up" shortcutkey="a" name="btnAccept"></wm-button>
+                                </wm-gridcolumn>
+                                <wm-gridcolumn columnwidth="4" name="gridcolumn15">
+                                    <wm-button class="btn-default" caption="Modify" type="button" hint="Modify this activity." readonlygrid="true" on-click="btnModifyClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == false" backgroundcolor="#ff6500"
+                                    iconclass="glyphicon glyphicon-edit" shortcutkey="m" name="btnModify"></wm-button>
+                                    <wm-button class="btn-default" caption="Cancel" type="button" hint="Cancel." on-click="btnCancelClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == true" backgroundcolor="#a07d7d"
+                                    iconclass="glyphicon glyphicon-remove" name="btnCancel"></wm-button>
+                                </wm-gridcolumn>
+                                <wm-gridcolumn columnwidth="4" name="gridcolumn16">
+                                    <wm-button class="btn-default" caption="Reject" type="button" hint="Reject this activity and remove it from the list." on-click="btnRejectClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == false"
+                                    backgroundcolor="#dc0000" iconclass="glyphicon glyphicon-thumbs-down" shortcutkey="r" name="btnReject"></wm-button>
+                                    <wm-button class="btn-default" caption="Save" type="button" hint="Save your changes." readonlygrid="true" show="bind:Variables.staticEditMode.dataSet.dataValue == true" backgroundcolor="#0B9642" on-click="btnSaveClick($event, $scope)"
+                                    iconclass="glyphicon glyphicon-ok" name="btnSave"></wm-button>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                        </wm-layoutgrid>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn6">
+                        <wm-layoutgrid name="layoutgrid3">
+                            <wm-gridrow name="gridrow7">
+                                <wm-gridcolumn columnwidth="4" name="gridcolumn17">
+                                    <wm-composite captionposition="top" name="composite3">
+                                        <wm-label class="col-md-3 control-label" caption="Temperature" name="label4"></wm-label>
+                                        <wm-container class="col-md-9" name="container3">
+                                            <wm-select datavalue="bind:Variables.liveGetSubsDetails.dataSet.data[$i].temperature" dataset="bind:Variables.serviceGetRefTemps.dataSet" datafield="Value" disabled="bind:Variables.staticEditMode.dataSet.dataValue == false"
+                                            name="selectSDTemperature" displayfield="Value" orderby="Value:desc"></wm-select>
+                                        </wm-container>
+                                    </wm-composite>
+                                </wm-gridcolumn>
+                                <wm-gridcolumn columnwidth="4" name="gridcolumn18">
+                                    <wm-composite captionposition="top" name="composite4">
+                                        <wm-label class="col-md-3 control-label" caption="Precipitation" name="label5"></wm-label>
+                                        <wm-container class="col-md-9" name="container4">
+                                            <wm-select datavalue="bind:Variables.liveGetSubsDetails.dataSet.data[$i].precipitation" dataset="bind:Variables.serviceGetRefPrecip.dataSet" datafield="Value" displayfield="Value" disabled="bind:Variables.staticEditMode.dataSet.dataValue == false"
+                                            name="selectSDPrecipitation" orderby="Value:desc"></wm-select>
+                                        </wm-container>
+                                    </wm-composite>
+                                </wm-gridcolumn>
+                                <wm-gridcolumn columnwidth="4" name="gridcolumn19">
+                                    <wm-composite captionposition="top" name="composite5">
+                                        <wm-label class="col-md-3 control-label" caption="Wind" name="label6"></wm-label>
+                                        <wm-container class="col-md-9" name="container5">
+                                            <wm-select datavalue="bind:Variables.liveGetSubsDetails.dataSet.data[$i].wind" dataset="bind:Variables.serviceGetRefWind.dataSet" datafield="Value" displayfield="Value" disabled="bind:Variables.staticEditMode.dataSet.dataValue == false"
+                                            name="selectSDWind" orderby="Value:desc"></wm-select>
+                                        </wm-container>
+                                    </wm-composite>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                        </wm-layoutgrid>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn7">
+                        <wm-layoutgrid padding="unset unset unset 2%" name="layoutgrid4">
+                            <wm-gridrow name="gridrow8">
+                                <wm-gridcolumn columnwidth="4" name="gridcolumn20"></wm-gridcolumn>
+                                <wm-gridcolumn columnwidth="4" horizontalalign="center" name="gridcolumn21"></wm-gridcolumn>
+                                <wm-gridcolumn columnwidth="4" name="gridcolumn22">
+                                    <wm-composite captionposition="top" paddingunit="%" name="composite6" show="false">
+                                        <wm-label class="col-md-3 control-label" caption="Field Activity ID" name="label8"></wm-label>
+                                        <wm-container class="col-md-9" name="container6">
+                                            <wm-text width="80%" datavalue="bind:Widgets.gridSuperReviewActivities.selecteditem.PSAActivityID" readonly="true" show="true" disabled="false" readonlygrid="true" name="text2"></wm-text>
+                                        </wm-container>
+                                    </wm-composite>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                        </wm-layoutgrid>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow5">
+                    <wm-gridcolumn columnwidth="8" name="gridcolumn11_1">
+                        <wm-container name="containerFADetails"></wm-container>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn13_1">
+                        <wm-layoutgrid name="layoutgrid6">
+                            <wm-gridrow name="gridrow11">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn26">
+                                    <wm-composite padding="unset unset unset 2%" name="composite7">
+                                        <wm-label class="col-md-3" caption="Submission Started" name="label9"></wm-label>
+                                        <wm-container class="col-md-9" name="container7">
+                                            <wm-datetime datavalue="bind:Variables.liveGetSubsDetails.dataSet.data[$i].startTime" width="60%" readonly="true" readonlygrid="true" name="datetime1"></wm-datetime>
+                                        </wm-container>
+                                    </wm-composite>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                            <wm-gridrow name="gridrow13">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn30">
+                                    <wm-composite padding="unset unset unset 2%" name="composite8">
+                                        <wm-label class="col-md-3" caption="Submission Completed" name="label10"></wm-label>
+                                        <wm-container class="col-md-9" name="container8">
+                                            <wm-datetime datavalue="bind:Variables.liveGetSubsDetails.dataSet.data[$i].completeTime" width="60%" readonly="true" name="datetime2"></wm-datetime>
+                                        </wm-container>
+                                    </wm-composite>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                            <wm-gridrow name="gridrow14">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn31">
+                                    <wm-composite padding="unset unset unset 2%" name="composite9">
+                                        <wm-label class="col-md-3" caption="Submission Recieved" name="label11"></wm-label>
+                                        <wm-container class="col-md-9" name="container9">
+                                            <wm-datetime datavalue="bind:Variables.liveGetSubsDetails.dataSet.data[$i].receivedTime | toDate: 'timestamp'" width="60%" readonly="true" name="datetime3" outputformat="timestamp"></wm-datetime>
+                                        </wm-container>
+                                    </wm-composite>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                        </wm-layoutgrid>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow9">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn23" padding="5% unset unset unset">
+                        <wm-composite captionposition="top" margin="unset unset 1px unset" name="composite11">
+                            <wm-label class="col-md-3 control-label" caption="Name" width="11%" name="label13"></wm-label>
+                            <wm-container class="col-md-9" width="90%" name="container11">
+                                <wm-text datavalue="bind:Variables.liveGetSubsDetails.dataSet.data[$i].userFirstName + ' ' + Variables.liveGetSubsDetails.dataSet.data[$i].userLastName
+
+" width="65%" readonly="true" disabled="false" name="text4"></wm-text>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn24" padding="5% unset unset unset">
+                        <wm-composite captionposition="top" margin="unset unset 1px unset" name="composite12">
+                            <wm-label class="col-md-3 control-label" caption="Email" width="11%" name="label14"></wm-label>
+                            <wm-container class="col-md-9" width="90%" name="container12">
+                                <wm-text datavalue="bind:Variables.liveGetSubsDetails.dataSet.data[$i].userEmail" width="85%" type="email" readonly="true" readonlygrid="true" name="text5"></wm-text>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn25">
+                        <wm-layoutgrid padding="unset unset unset 4%" name="layoutgrid7">
+                            <wm-gridrow padding="unset unset 0% unset" name="gridrow16">
+                                <wm-gridcolumn columnwidth="4" padding="unset unset 0% unset" name="gridcolumn35">
+                                    <wm-label caption="Signature:" textdecoration="underline" class="col-md-3 control-label" name="label15"></wm-label>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                            <wm-gridrow name="gridrow17">
+                                <wm-gridcolumn columnwidth="12" padding="0% unset unset unset" name="gridcolumn36">
+                                    <wm-picture picturesource="bind:&quot;https://secure.appenate.com/api/v1/mediafile?EntryId=&quot; + Variables.liveGetSubsDetails.dataSet.data[$i].submissionGuid + &quot;&amp;FileName=&quot; + Variables.liveGetSubsDetails.dataSet.data[$i].signature + &quot;&amp;integrationkey=&quot; + Variables.liveGetIntegrationKey.dataSet.data[$i].value1 + &quot;&amp;providerid=39400&quot;"
+                                    pictureaspect="H" width="60%" borderstyle="solid" bordercolor="#555555" disabled="false" borderwidth="1px" padding="0% unset unset unset" name="picture1" encodeurl="false"></wm-picture>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                        </wm-layoutgrid>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="viewNotes" show="false">
+        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogNotes" title="Notes" iconclass="glyphicon glyphicon-edit">
+            <wm-grid readonlygrid="true" insertrow="false" updaterow="false" deleterow="false" dataset="bind:Variables.serviceGetNotesByPSAActivityID.dataSet" name="gridNotes" showheader="false" enablesort="false" shownavigation="false" class="panel-default">
+                <wm-grid-column binding="Notes" caption="Notes" type="string" readonly="true" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                <wm-grid-column binding="Email" caption="Email" type="string" readonly="true" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+            </wm-grid>
+            <wm-dialogactions name="dialogactions5">
+                <wm-button class="btn-secondary" caption="Exit" on-click="closeDialog()" name="button20"></wm-button>
+                <wm-button class="btn-primary" caption="New" name="buttonNoteNew" iconclass="glyphicon glyphicon-plus" on-click="Widgets.dialogNotesNew.open()"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewNotesNEW" show="false">
+        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogNotesNew" width="25%" title="New Note" iconclass="glyphicon glyphicon-edit">
+            <wm-textarea name="textareaSSNoteNew" placeholder="Type Note here" updateon="default" on-keyup="textareaSSNoteNewKeyup($event, $scope)" required="true" maxchars="252"></wm-textarea>
+            <wm-label width="20%" caption="Remaining:" fontsize="10" textalign="right" name="label283_1"></wm-label>
+            <wm-label width="20%" caption="252" fontsize="10" textalign="right" name="labelTextCountNewNote"></wm-label>
+            <wm-dialogactions name="dialogactions6">
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button22"></wm-button>
+                <wm-button class="btn-primary" caption="Save" name="buttonNoteSave" type="submit" on-click="Variables.serviceCreateSSNote.invoke();Widgets.dialogNotesNew.close()"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewRecentActivities" show="false">
+        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogRecentActivities" height="60%" animation="slideInRight" title="Recent Activities" iconclass="wi wi-history">
+            <wm-layoutgrid name="layoutgrid32">
+                <wm-gridrow name="gridrow57">
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn116_1" horizontalalign="center">
+                        <wm-label width="100%" caption="Activity ID" name="label114_2" fontweight="bold"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn125_1" horizontalalign="center">
+                        <wm-label width="100%" caption="Activity Type" fontweight="bold" name="label115_1"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn126" horizontalalign="center">
+                        <wm-label width="100%" caption="Current Status" fontweight="bold" name="label116_1"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn127" horizontalalign="center">
+                        <wm-label width="100%" caption="Date" fontweight="bold" name="label117_1"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow58" padding="unset 0px">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn119" padding="unset 0px">
+                        <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" dataset="bind:Variables.serviceGetSuperRecentActivities.dataSet" navigation="Classic" name="livelistRecentActivities" showrecordcount="true">
+                            <wm-listtemplate layout="blank" name="listtemplate1">
+                                <wm-container class="blank" data-template-ctr="true" name="container95_2">
+                                    <wm-layoutgrid class="gridlayout" name="layoutgrid31">
+                                        <wm-gridrow name="gridrow56">
+                                            <wm-gridcolumn class="col-xs-6" columnwidth="2" name="gridcolumn111_1" horizontalalign="center">
+                                                <wm-label width="100%" caption="bind:Variables.serviceGetSuperRecentActivities.dataSet.PSAActivityID" name="label114_1" fontsize="11"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn class="col-xs-6" columnwidth="2" name="gridcolumn112_1" horizontalalign="center">
+                                                <wm-label width="100%" caption="bind:Variables.serviceGetSuperRecentActivities.dataSet.ActivityType" name="label113_2" fontsize="11"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn class="col-xs-6" columnwidth="2" name="gridcolumn113_1" horizontalalign="center">
+                                                <wm-label width="100%" caption="bind:Variables.serviceGetSuperRecentActivities.dataSet.Status" name="label111_2" fontsize="11"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn class="col-xs-6" columnwidth="2" name="gridcolumn114_1" horizontalalign="center">
+                                                <wm-label width="90%" caption="bind:Variables.serviceGetSuperRecentActivities.dataSet.TimeStamp | toDate: 'MM-dd-yy hh:mm:ss a'" name="label112" fontsize="11"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="2" name="gridcolumn115_1"></wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="2" name="gridcolumn128">
+                                                <wm-button class="btn-default" caption="Return" type="button" name="button14" hint="Return this activity to Superintendent Review List" on-click="Variables.serviceUpdateSSReturnToList.invoke()" height="24"></wm-button>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
+                                </wm-container>
+                            </wm-listtemplate>
+                        </wm-livelist>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow59">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn122"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn123_1"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn124_1"></wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions3">
+                <wm-button class="btn-secondary" caption="OK" on-click="closeDialog()" name="button13"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+</wm-page>

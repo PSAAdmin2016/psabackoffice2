@@ -1,0 +1,31 @@
+.toolbar {
+    background-color: rgba(0,0,0,0.05);
+    border-bottom: 1px rgba(0,0,0,0.1) solid;
+    padding: 0.5em;
+}
+.scrollable-list {
+    height: calc(100% - 3.5em);
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.message-list {
+    height: calc(100% - 11em);
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: auto; 
+}
+.wm-app .message-container {
+    background-color: rgba(0,0,0,0.05);
+    border-top: 1px rgba(0,0,0,0.1) solid;
+    margin: 0;
+}
+.message-container .form-group , .message-container .form-group .control-label{
+    margin: 0;
+    padding: 0;
+}
+.comment {
+    border-radius: 0.5em;
+    border: 1px rgba(0,0,0,0.1) solid;
+    padding: 0.5em;
+}

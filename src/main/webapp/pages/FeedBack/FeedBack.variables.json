@@ -1,0 +1,121 @@
+{
+  "PSAExecuteInsertFeedbackNotes" : {
+    "_id" : "wm-PSAExecuteInsertFeedbackNotes-wm.ServiceVariable-1458829191085",
+    "name" : "PSAExecuteInsertFeedbackNotes",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "UserID",
+      "value" : "bind:Variables.loggedInUser.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "Notes",
+      "value" : "bind:Widgets.textareaFeedBack.datavalue",
+      "type" : "string"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "PSA",
+    "operation" : "executeInsertFeedbackNotes",
+    "operationId" : "QueryExecutionController_executeInsertFeedbackNotes",
+    "operationType" : "post",
+    "serviceType" : "DataService",
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "isList" : false,
+    "firstRow" : 0,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "QueryExecution"
+  },
+  "PSAExecuteInsertFeedbackTicket" : {
+    "_id" : "wm-PSAExecuteInsertFeedbackTicket-wm.ServiceVariable-1458828035932",
+    "name" : "PSAExecuteInsertFeedbackTicket",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "UserID",
+      "value" : "bind:Variables.loggedInUser.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "FeedbackType",
+      "value" : "bind:Widgets.selectFBType.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "ErrorSeverity",
+      "value" : "bind:Widgets.selectFBSeverity.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "FBSubType",
+      "value" : "bind:Widgets.selectFBSubType.datavalue",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "PSA",
+    "operation" : "executeInsertFeedbackTicket",
+    "operationId" : "QueryExecutionController_executeInsertFeedbackTicket",
+    "operationType" : "post",
+    "serviceType" : "DataService",
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "isList" : false,
+    "firstRow" : 0,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.PSAExecuteInsertFeedbackNotes.invoke()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "QueryExecution"
+  },
+  "serviceGetFBSubType" : {
+    "_id" : "wm-serviceGetFBSubType-wm.ServiceVariable-1474422690494",
+    "name" : "serviceGetFBSubType",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "FBType",
+      "value" : "bind:Widgets.selectFBType.datavalue",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.psa.models.query.GetFbsubTypeByTypeResponse",
+    "service" : "PSA",
+    "operation" : "executeGetFBSubTypeByType",
+    "operationId" : "QueryExecutionController_executeGetFBSubTypeByType",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "staticVariableMachineStateTimer2" : {
+    "_id" : "wm-staticVariableMachineStateTimer2-wm.Variable-1459178942192",
+    "name" : "staticVariableMachineStateTimer2",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : 1458795600000
+    },
+    "type" : "date",
+    "isList" : false,
+    "saveInPhonegap" : false
+  }
+}

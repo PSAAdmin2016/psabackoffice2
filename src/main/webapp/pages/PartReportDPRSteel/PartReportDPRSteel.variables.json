@@ -1,0 +1,353 @@
+{
+  "serviceGetDPR2Condensed" : {
+    "_id" : "wm-serviceGetDPR2Condensed-wm.ServiceVariable-1479741476397",
+    "name" : "serviceGetDPR2Condensed",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "PM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "ConstM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "SiteM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "AreaM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "Super",
+      "value" : "bind:Widgets.selectSuper2.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "GF",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "Foreman",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "StartDate",
+      "value" : "bind:Widgets.dateStart2.timestamp",
+      "type" : "string"
+    }, {
+      "target" : "EndDate",
+      "value" : "bind:Widgets.dateEnd2.timestamp",
+      "type" : "string"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.query.GetReportDprsteelCondensedResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetReportDPRSteelCondensed",
+    "operationId" : "QueryExecutionController_executeGetReportDPRSteelCondensed",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 1000,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "serviceGetDPR2Detailed" : {
+    "_id" : "wm-serviceGetDPR2Detailed-wm.ServiceVariable-1492550040491",
+    "name" : "serviceGetDPR2Detailed",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "PM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "ConstM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "SiteM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "AreaM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "Super",
+      "value" : "bind:Widgets.selectSuper2.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "GF",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "Foreman",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "StartDate",
+      "value" : "bind:Widgets.dateStart2.timestamp",
+      "type" : "string"
+    }, {
+      "target" : "EndDate",
+      "value" : "bind:Widgets.dateEnd2.timestamp",
+      "type" : "string"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.query.GetReportDprsteelDetailedResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetReportDPRSteelDetailed",
+    "operationId" : "QueryExecutionController_executeGetReportDPRSteelDetailed",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 1000,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "serviceGetDPR3Condensed" : {
+    "_id" : "wm-serviceGetDPR3Condensed-wm.ServiceVariable-1492549315735",
+    "name" : "serviceGetDPR3Condensed",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "PM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "ConstM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "SiteM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "AreaM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "Super",
+      "value" : "bind:Widgets.selectSuper3.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "GF",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "Foreman",
+      "value" : "bind:Widgets.selectForeman3.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "StartDate",
+      "value" : "bind:Widgets.dateStart3.timestamp",
+      "type" : "string"
+    }, {
+      "target" : "EndDate",
+      "value" : "bind:Widgets.dateEnd3.timestamp",
+      "type" : "string"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.query.GetReportDprsteelCondensedResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetReportDPRSteelCondensed",
+    "operationId" : "QueryExecutionController_executeGetReportDPRSteelCondensed",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 1000,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "serviceGetDPR3Detailed" : {
+    "_id" : "wm-serviceGetDPR3Detailed-wm.ServiceVariable-1479426938034",
+    "name" : "serviceGetDPR3Detailed",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "PM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "ConstM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "SiteM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "AreaM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "Super",
+      "value" : "bind:Widgets.selectSuper3.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "GF",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "Foreman",
+      "value" : "bind:Widgets.selectForeman3.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "StartDate",
+      "value" : "bind:Widgets.dateStart3.timestamp",
+      "type" : "string"
+    }, {
+      "target" : "EndDate",
+      "value" : "bind:Widgets.dateEnd3.timestamp",
+      "type" : "string"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.query.GetReportDprsteelDetailedResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetReportDPRSteelDetailed",
+    "operationId" : "QueryExecutionController_executeGetReportDPRSteelDetailed",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 1000,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "serviceGetForemen" : {
+    "_id" : "wm-serviceGetForemen-wm.ServiceVariable-1492548383737",
+    "name" : "serviceGetForemen",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "JobNumber",
+      "value" : "bind:Variables.ActiveJobNumber.dataSet.dataValue",
+      "type" : "integer"
+    }, {
+      "target" : "PM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "ConstM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "SiteM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "AreaM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "Super",
+      "value" : "bind:Widgets.selectSuper3.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "DisciplineID",
+      "value" : "2",
+      "type" : "string"
+    } ],
+    "type" : "com.psabackoffice.psa.models.query.GetUsersForemenResponse",
+    "service" : "PSA",
+    "operation" : "executeGetUsersForemen",
+    "operationId" : "QueryExecutionController_executeGetUsersForemen",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 1000,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "serviceGetSuperintendents" : {
+    "_id" : "wm-serviceGetSuperintendents-wm.ServiceVariable-1492548474160",
+    "name" : "serviceGetSuperintendents",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "JobNumber",
+      "value" : "bind:Variables.ActiveJobNumber.dataSet.dataValue",
+      "type" : "integer"
+    }, {
+      "target" : "PM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "ConstM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "SiteM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "AreaM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "DisciplineID",
+      "value" : "2",
+      "type" : "string"
+    } ],
+    "type" : "com.psabackoffice.psa.models.query.GetUsersSupersResponse",
+    "service" : "PSA",
+    "operation" : "executeGetUsersSupers",
+    "operationId" : "QueryExecutionController_executeGetUsersSupers",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 1000,
+    "designMaxResults" : 10,
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "staticSwitchOptions" : {
+    "_id" : "wm-staticSwitchOptions-wm.Variable-1479425921972",
+    "name" : "staticSwitchOptions",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "Label" : "Condensed",
+      "Value" : "1"
+    }, {
+      "Label" : "Detailed",
+      "Value" : "2"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  }
+}

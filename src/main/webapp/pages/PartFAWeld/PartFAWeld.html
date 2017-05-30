@@ -1,0 +1,175 @@
+<wm-partial data-ng-controller="PartFAWeldPageController" name="partial1"> 
+ <wm-layoutgrid name="layoutgrid1"> 
+  <wm-gridrow name="gridrow1"> 
+   <wm-gridcolumn columnwidth="6" name="gridcolumn1"> 
+    <wm-layoutgrid padding="unset 0px unset unset" name="layoutgrid3"> 
+     <wm-gridrow name="gridrow4"> 
+      <wm-gridcolumn columnwidth="3" name="gridcolumn5"> 
+       <wm-label caption="Weld" show="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 22" fontweight="bold" fontsize="13" name="label1"></wm-label> 
+       <wm-label caption="Cut / Prep" show="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 23" fontweight="bold" fontsize="13" name="label2"></wm-label> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="4" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn6"> 
+       <wm-checkbox caption="Rework" class="checkbox-custom" hint="Activity can NOT be accepted if it is Rework." disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetSubsWeld.dataSet.data[$i].weldRework" checkedvalue="1" uncheckedvalue="0" readonlygrid="true" show="true" padding="unset unset unset 0px" margin="0px unset unset unset" name="checkboxWeldRework"></wm-checkbox> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+     <wm-gridrow name="gridrow5"> 
+      <wm-gridcolumn columnwidth="5" name="gridcolumn7"> 
+       <wm-composite captionposition="top" marginunit="px" paddingunit="%" show="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 22" name="composite1"> 
+        <wm-label class="col-md-3 control-label" caption="Spool 1" name="label3"></wm-label> 
+        <wm-container class="col-md-9" width="95%" name="container1"> 
+         <wm-text datavalue="bind:$parent.Variables.liveGetSubsWeld.dataSet.data[$i].weldSpool1" readonly="false" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" width="100%" autocomplete="true" name="textWeldSpool1" placeholder="Enter Spool 1"></wm-text> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="2" horizontalalign="center" padding="4% unset unset unset" name="gridcolumn8"> 
+       <wm-label caption="TO:" show="bind:Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 22" fontsize="14" name="label4"></wm-label> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="5" name="gridcolumn9"> 
+       <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 22" name="composite2"> 
+        <wm-label class="col-md-3 control-label" caption="Spool 2" name="label5"></wm-label> 
+        <wm-container class="col-md-9" width="95%" name="container2"> 
+         <wm-text datavalue="bind:$parent.Variables.liveGetSubsWeld.dataSet.data[$i].weldSpool2" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" width="100%" name="textWeldSpool2" placeholder="Enter Spool 2"></wm-text> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+     <wm-gridrow padding="4% unset unset unset" name="gridrow6"> 
+      <wm-gridcolumn columnwidth="3" name="gridcolumn10"> 
+       <wm-composite captionposition="top" horizontalalign="left" show="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 22" name="composite3"> 
+        <wm-label class="col-md-3 control-label" caption="Welders Stencil" name="label6"></wm-label> 
+        <wm-container class="col-md-9" width="90%" name="container3"> 
+         <wm-text disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetSubsWeld.dataSet.data[$i].weldStencil" name="textWeldStencil" placeholder="Enter Stencil"></wm-text> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="4" name="gridcolumn11"> 
+       <wm-composite captionposition="top" show="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 22" name="composite4"> 
+        <wm-label class="col-md-3 control-label" caption="Weld Number" name="label7"></wm-label> 
+        <wm-container class="col-md-9" name="container4"> 
+         <wm-text disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetSubsWeld.dataSet.data[$i].weldNumber" name="textWeldNumber" placeholder="Enter Weld Number"></wm-text> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+     <wm-gridrow name="gridrow7"> 
+      <wm-gridcolumn columnwidth="2" name="gridcolumn12"> 
+       <wm-composite captionposition="top" name="composite5"> 
+        <wm-label class="col-md-3 control-label" caption="Size" name="label8"></wm-label> 
+        <wm-container class="col-md-9" width="90%" name="container5"> 
+         <wm-select datavalue="bind:$parent.Variables.liveGetSubsWeld.dataSet.data[$i].weldSize" dataset="bind:Variables.PSARefPipeSizesData.dataSet" datafield="value" displayfield="label" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="selectWeldSize"></wm-select> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="3" name="gridcolumn13"> 
+       <wm-composite captionposition="top" name="composite6"> 
+        <wm-label class="col-md-3 control-label" caption="Wall Thickness" name="label9"></wm-label> 
+        <wm-container class="col-md-9" width="90%" name="container6"> 
+         <wm-select datavalue="bind:$parent.Variables.liveGetSubsWeld.dataSet.data[$i].weldThickness" dataset="bind:Variables.PSARefPipeSchedulesData.dataSet" datafield="value" displayfield="label" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="selectWeldThickness"></wm-select> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="4" padding="unset 0% unset unset" name="gridcolumn14"> 
+       <wm-composite captionposition="top" show="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 22" name="composite7"> 
+        <wm-label class="col-md-3 control-label" caption="Weld Type" name="label10"></wm-label> 
+        <wm-container class="col-md-9" width="90%" name="container7"> 
+         <wm-select datavalue="bind:$parent.Variables.liveGetSubsWeld.dataSet.data[$i].weldType" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" dataset="bind:Variables.PSARefWeldTypesData.dataSet" datafield="value" displayfield="label" name="selectWeldType"></wm-select> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="3" name="gridcolumn15"> 
+       <wm-composite captionposition="top" show="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 22" name="composite8"> 
+        <wm-label class="col-md-3 control-label" caption="Position" name="label11"></wm-label> 
+        <wm-container class="col-md-9" width="90%" name="container8"> 
+         <wm-select datavalue="bind:$parent.Variables.liveGetSubsWeld.dataSet.data[$i].weldPosition" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" dataset="bind:Variables.PSARefWeldPositionsData.dataSet" datafield="value" hint="bind:Variables.PSARefWeldPositionsData.dataSet.data[$i].description" textalign="left" displayfield="description" margin="unset unset unset 0%" padding="unset unset unset 0%" name="selectWeldPosition"></wm-select> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+     <wm-gridrow name="gridrow8"> 
+      <wm-gridcolumn columnwidth="4" name="gridcolumn16"> 
+       <wm-composite captionposition="top" show="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 22" name="composite9"> 
+        <wm-label class="col-md-3 control-label" caption="Material" name="label12"></wm-label> 
+        <wm-container class="col-md-9" width="90%" name="container9"> 
+         <wm-select disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetSubsWeld.dataSet.data[$i].weldMaterial" dataset="bind:Variables.PSARefWeldMaterialsData.dataSet" datafield="label" displayfield="label" displayexpression="bind:$[data[$i].label] + ' - ' +$[data[$i].value]" name="selectWeldMaterial"></wm-select> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="4" name="gridcolumn17"> 
+       <wm-composite captionposition="top" show="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 22" name="composite10"> 
+        <wm-label class="col-md-3 control-label" caption="Weld Procedure" name="label13"></wm-label> 
+        <wm-container class="col-md-9" width="90%" name="container10"> 
+         <wm-select disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetSubsWeld.dataSet.data[$i].weldProcedure" dataset="bind:Variables.Job1111RefWeldProcedures.dataSet" datafield="procedure" displayfield="procedure" name="selectWeldProcedure" orderby="procedure:asc"></wm-select> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="4" name="gridcolumn18"> 
+       <wm-composite captionposition="top" show="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 22" name="composite11"> 
+        <wm-label class="col-md-3 control-label" caption="Line Spec" name="label14"></wm-label> 
+        <wm-container class="col-md-9" width="90%" name="container11"> 
+         <wm-select disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetSubsWeld.dataSet.data[$i].weldLineSpec" dataset="bind:Variables.Job1111RefLineSpecs.dataSet" datafield="value" displayfield="label" name="selectWeldSpec" orderby="label:asc"></wm-select> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+     <wm-gridrow name="gridrow9"> 
+      <wm-gridcolumn columnwidth="4" horizontalalign="left" name="gridcolumn19"> 
+       <wm-checkbox caption="Weld Complete" class="checkbox-custom" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetSubsWeld.dataSet.data[$i].weldComplete" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)" padding="unset unset unset 0px" show="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 22" name="checkboxWeldComplete"></wm-checkbox> 
+       <wm-checkbox caption="Shared Weld" class="checkbox-custom" hint="Check if this weld was worked on by welders other then the ones named in Welder Stencil." disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetSubsWeld.dataSet.data[$i].weldShared" checkedvalue="1" uncheckedvalue="0" readonlygrid="true" padding="unset unset unset 0px" show="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 22" name="checkboxWeldShared" margin="2% unset unset unset"></wm-checkbox> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="4" name="gridcolumn20"> 
+       <wm-composite captionposition="top" hint="Percentage of the Entire weld did the above listed welders complete in this Activity?" show="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 22" name="composite12"> 
+        <wm-label class="col-md-3 control-label" caption="Percent Completed" name="label15"></wm-label> 
+        <wm-container class="col-md-9" width="90%" name="container12"> 
+         <wm-select disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datafield="value" dataset="bind:Variables.PSARefPercentListData.dataSet" datavalue="bind:$parent.Variables.liveGetSubsWeld.dataSet.data[$i].weldPercentCompleted" readonlygrid="true" displayfield="label" name="selectWeldPercentComplete"></wm-select> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+    </wm-layoutgrid> 
+   </wm-gridcolumn> 
+   <wm-gridcolumn columnwidth="6" name="gridcolumn2"> 
+    <wm-layoutgrid name="layoutgrid4"> 
+     <wm-gridrow name="gridrow10"> 
+      <wm-gridcolumn columnwidth="8" name="gridcolumn22"> 
+       <wm-composite captionposition="top" name="composite13"> 
+        <wm-label class="col-md-3 control-label" caption="Drawing Number" readonlygrid="true" name="label16"></wm-label> 
+        <wm-container class="col-md-9" width="100%" name="container13"> 
+         <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetSubsWeld.dataSet.data[$i].weldDrawingNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" name="textWeldDrawing" placeholder="Enter Drawing Number"></wm-text> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="3" name="gridcolumn23"> 
+       <wm-composite captionposition="top" name="composite14"> 
+        <wm-label class="col-md-3 control-label" caption="Sheet" name="label17"></wm-label> 
+        <wm-container class="col-md-9" name="container14"> 
+         <wm-text datavalue="bind:$parent.Variables.liveGetSubsWeld.dataSet.data[$i].weldSheetNumber" width="70%" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textWeldSheet" placeholder="Enter Sheet Number"></wm-text> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+     <wm-gridrow name="gridrow11"> 
+      <wm-gridcolumn columnwidth="8" name="gridcolumn24"> 
+       <wm-composite captionposition="top" name="composite15"> 
+        <wm-label class="col-md-3 control-label" caption="Line Number" name="label18"></wm-label> 
+        <wm-container class="col-md-9" width="100%" name="container15"> 
+         <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetSubsWeld.dataSet.data[$i].weldLineNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textWeldLine" placeholder="Enter Line Number"></wm-text> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+      <wm-gridcolumn columnwidth="3" name="gridcolumn25"></wm-gridcolumn> 
+     </wm-gridrow> 
+     <wm-gridrow name="gridrow12"> 
+      <wm-gridcolumn columnwidth="12" name="gridcolumn26"> 
+       <wm-composite captionposition="top" name="composite16"> 
+        <wm-label class="col-md-3 control-label" caption="Notes" name="label19"></wm-label> 
+        <wm-container class="col-md-9" name="container16"> 
+         <wm-textarea datavalue="bind:$parent.Variables.liveGetSubsWeld.dataSet.data[$i].weldNotes" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textareaWeldNotes" placeholder="Input notes here"></wm-textarea> 
+        </wm-container> 
+       </wm-composite> 
+      </wm-gridcolumn> 
+     </wm-gridrow> 
+    </wm-layoutgrid> 
+   </wm-gridcolumn> 
+  </wm-gridrow> 
+ </wm-layoutgrid> 
+</wm-partial>

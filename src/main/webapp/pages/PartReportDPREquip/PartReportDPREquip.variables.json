@@ -1,0 +1,146 @@
+{
+  "serviceGetDPRByDate2" : {
+    "_id" : "wm-serviceGetDPRByDate2-wm.ServiceVariable-1492547204145",
+    "name" : "serviceGetDPRByDate2",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "type" : "com.psabackoffice.job1111.models.query.GetReportDprequipResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetReportDPREquip",
+    "operationId" : "QueryExecutionController_executeGetReportDPREquip",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 1000,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "serviceGetDPRByDate3" : {
+    "_id" : "wm-serviceGetDPRByDate3-wm.ServiceVariable-1492547222033",
+    "name" : "serviceGetDPRByDate3",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "type" : "com.psabackoffice.job1111.models.query.GetReportDprequipResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetReportDPREquip",
+    "operationId" : "QueryExecutionController_executeGetReportDPREquip",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 1000,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "serviceGetForemen" : {
+    "_id" : "wm-serviceGetForemen-wm.ServiceVariable-1492547247253",
+    "name" : "serviceGetForemen",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "JobNumber",
+      "value" : "bind:Variables.ActiveJobNumber.dataSet.dataValue",
+      "type" : "integer"
+    }, {
+      "target" : "PM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "ConstM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "SiteM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "AreaM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "Super",
+      "value" : "bind:Widgets.selectSuperintendent2.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "DisciplineID",
+      "value" : "%",
+      "type" : "string"
+    } ],
+    "type" : "com.psabackoffice.psa.models.query.GetUsersForemenResponse",
+    "service" : "PSA",
+    "operation" : "executeGetUsersForemen",
+    "operationId" : "QueryExecutionController_executeGetUsersForemen",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 1000,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "serviceGetSuperintendents" : {
+    "_id" : "wm-serviceGetSuperintendents-wm.ServiceVariable-1492547262914",
+    "name" : "serviceGetSuperintendents",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "JobNumber",
+      "value" : "bind:Variables.ActiveJobNumber.dataSet.dataValue",
+      "type" : "integer"
+    }, {
+      "target" : "PM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "ConstM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "SiteM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "AreaM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "DisciplineID",
+      "value" : "%",
+      "type" : "string"
+    } ],
+    "type" : "com.psabackoffice.psa.models.query.GetUsersSupersResponse",
+    "service" : "PSA",
+    "operation" : "executeGetUsersSupers",
+    "operationId" : "QueryExecutionController_executeGetUsersSupers",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 1000,
+    "designMaxResults" : 10,
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  }
+}

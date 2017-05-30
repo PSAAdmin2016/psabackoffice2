@@ -1,0 +1,179 @@
+{
+  "tags" : [ {
+    "description" : "Rest service swagger documentation",
+    "name" : "RestServiceVirtualController"
+  } ],
+  "basePath" : "/api",
+  "paths" : {
+    "/v2/user" : {
+      "x-WM-BASE_PATH" : "/v2/user",
+      "x-WM-TAG" : "RestServiceVirtualController",
+      "post" : {
+        "tags" : [ "RestServiceVirtualController" ],
+        "x-WM-METHOD_NAME" : "invoke",
+        "x-WM-ACCESS_SPECIFIER" : "APP_ONLY",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "schema" : {
+            "$ref" : "#/definitions/RootRequest"
+          },
+          "x-WM-FULLY_QUALIFIED_TYPE" : "java.lang.Object",
+          "description" : "RequestBody",
+          "name" : "RequestBody",
+          "required" : false,
+          "in" : "body"
+        } ],
+        "consumes" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "schema" : {
+              "$ref" : "#/definitions/RootResponse"
+            },
+            "description" : "Success"
+          }
+        },
+        "operationId" : "appenateCreateUsers_RestServiceVirtualController-invoke"
+      },
+      "x-WM-RELATIVE_PATH" : "",
+      "x-WM-COMPLETE_PATH" : "${rest.appenateCreateUsers.scheme}://${rest.appenateCreateUsers.host}${rest.appenateCreateUsers.basepath}/v2/user"
+    }
+  },
+  "host" : "secure.appenate.com:443",
+  "schemes" : [ "https" ],
+  "swagger" : "2.0",
+  "definitions" : {
+    "ErrorsEntryItem" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "appenateCreateUsers.ErrorsEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "Message" : {
+          "type" : "string"
+        },
+        "FieldName" : {
+          "type" : "string"
+        },
+        "ErrorCode" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "ErrorCode", "FieldName", "Message" ]
+    },
+    "MetadataEntryItem" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "appenateCreateUsers.MetadataEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "Key" : {
+          "type" : "string"
+        },
+        "Val" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "Key", "Val" ]
+    },
+    "RootResponse" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "appenateCreateUsers.RootResponse",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "ResponseStatus" : {
+          "$ref" : "#/definitions/ResponseStatus"
+        }
+      },
+      "required" : [ "ResponseStatus" ]
+    },
+    "RootRequest" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "appenateCreateUsers.RootRequest",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "WebsiteRole" : {
+          "type" : "string"
+        },
+        "CompanyId" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "ExternalId" : {
+          "type" : "string"
+        },
+        "DoNotEmail" : {
+          "type" : "boolean"
+        },
+        "Password" : {
+          "type" : "string"
+        },
+        "IntegrationKey" : {
+          "type" : "string"
+        },
+        "LastName" : {
+          "type" : "string"
+        },
+        "Country" : {
+          "type" : "string"
+        },
+        "Groups" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "type" : "string"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        },
+        "Email" : {
+          "type" : "string"
+        },
+        "Folders" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "type" : "string"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        },
+        "FirstName" : {
+          "type" : "string"
+        },
+        "TimeZone" : {
+          "type" : "string"
+        },
+        "Metadata" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/MetadataEntryItem"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        }
+      },
+      "required" : [ "CompanyId", "Country", "DoNotEmail", "Email", "ExternalId", "FirstName", "Folders", "Groups", "IntegrationKey", "LastName", "Metadata", "Password", "TimeZone", "WebsiteRole" ]
+    },
+    "ResponseStatus" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "appenateCreateUsers.ResponseStatus",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "Message" : {
+          "type" : "string"
+        },
+        "Errors" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/ErrorsEntryItem"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        },
+        "ErrorCode" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "ErrorCode", "Errors", "Message" ]
+    }
+  },
+  "info" : {
+    "x-WM-SERVICE_TYPE" : "RestService",
+    "x-WM-API_ID" : "5d21a365-0cb5-4a0e-947d-14fb22ef3896",
+    "x-WM-USE_PROXY_FOR_WEB" : true,
+    "x-WM-SERVICE_ID" : "appenate",
+    "x-WM-USE_PROXY_FOR_MOBILE" : true,
+    "version" : "2.0"
+  }
+}

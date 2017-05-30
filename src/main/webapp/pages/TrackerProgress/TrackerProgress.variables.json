@@ -1,0 +1,250 @@
+{
+  "serviceGetCivilStatsGrouped" : {
+    "_id" : "wm-serviceGetCivilStatsGrouped-wm.ServiceVariable-1482861939757",
+    "name" : "serviceGetCivilStatsGrouped",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "GroupedBy",
+      "value" : "bind:Widgets.selectCivilGroupBy.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "RunMode",
+      "value" : "1",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.procedure.GetCivilStatsResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetCivilStats",
+    "operationId" : "ProcedureExecutionController_executeGetCivilStats",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "ProcedureExecution"
+  },
+  "serviceGetCivilStatsJob" : {
+    "_id" : "wm-serviceGetCivilStatsJob-wm.ServiceVariable-1482861894216",
+    "name" : "serviceGetCivilStatsJob",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "GroupedBy",
+      "value" : "WBS10",
+      "type" : "string"
+    }, {
+      "target" : "RunMode",
+      "value" : "1",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.procedure.GetCivilStatsResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetCivilStats",
+    "operationId" : "ProcedureExecutionController_executeGetCivilStats",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "ProcedureExecution"
+  },
+  "serviceGetEquipStatsGrouped" : {
+    "_id" : "wm-serviceGetEquipStatsGrouped-wm.ServiceVariable-1490716099231",
+    "name" : "serviceGetEquipStatsGrouped",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "GroupedBy",
+      "value" : "bind:Widgets.selectEquipGroupBy.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "RunMode",
+      "value" : "1",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.procedure.GetEquipStatsResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetEquipStats",
+    "operationId" : "ProcedureExecutionController_executeGetEquipStats",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "ProcedureExecution"
+  },
+  "serviceGetEquipStatsJob" : {
+    "_id" : "wm-serviceGetEquipStatsJob-wm.ServiceVariable-1490716162913",
+    "name" : "serviceGetEquipStatsJob",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "GroupedBy",
+      "value" : "WBS10",
+      "type" : "string"
+    }, {
+      "target" : "RunMode",
+      "value" : "1",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.procedure.GetEquipStatsResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetEquipStats",
+    "operationId" : "ProcedureExecutionController_executeGetEquipStats",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "ProcedureExecution"
+  },
+  "serviceGetPipeStatsGrouped" : {
+    "_id" : "wm-serviceGetPipeStatsGrouped-wm.ServiceVariable-1478717954031",
+    "name" : "serviceGetPipeStatsGrouped",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "GroupedBy",
+      "value" : "bind:Widgets.selectPipeGroupBy.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "RunMode",
+      "value" : "1",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.procedure.GetPipeStatsResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetPipeStats",
+    "operationId" : "ProcedureExecutionController_executeGetPipeStats",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "ProcedureExecution"
+  },
+  "serviceGetPipeStatsJob" : {
+    "_id" : "wm-serviceGetPipeStatsJob-wm.ServiceVariable-1478717867427",
+    "name" : "serviceGetPipeStatsJob",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "GroupedBy",
+      "value" : "WBS10",
+      "type" : "string"
+    }, {
+      "target" : "RunMode",
+      "value" : "1",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.procedure.GetPipeStatsResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetPipeStats",
+    "operationId" : "ProcedureExecutionController_executeGetPipeStats",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "ProcedureExecution"
+  },
+  "serviceGetSteelStatsGrouped" : {
+    "_id" : "wm-serviceGetSteelStatsGrouped-wm.ServiceVariable-1478535118646",
+    "name" : "serviceGetSteelStatsGrouped",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "GroupedBy",
+      "value" : "bind:Widgets.selectSteelGroupBy.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "RunMode",
+      "value" : "1",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.procedure.GetSteelStatsResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetSteelStats",
+    "operationId" : "ProcedureExecutionController_executeGetSteelStats",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "ProcedureExecution"
+  },
+  "serviceGetSteelStatsJob" : {
+    "_id" : "wm-serviceGetSteelStatsJob-wm.ServiceVariable-1478535670617",
+    "name" : "serviceGetSteelStatsJob",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "GroupedBy",
+      "value" : "WBS10",
+      "type" : "string"
+    }, {
+      "target" : "RunMode",
+      "value" : "1",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.procedure.GetSteelStatsResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetSteelStats",
+    "operationId" : "ProcedureExecutionController_executeGetSteelStats",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "ProcedureExecution"
+  }
+}

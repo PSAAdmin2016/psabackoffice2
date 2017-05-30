@@ -1,0 +1,206 @@
+{
+  "serviceGetEarnedHoursCrew" : {
+    "_id" : "wm-serviceGetEarnedHoursForeman-wm.ServiceVariable-1492544802604",
+    "name" : "serviceGetEarnedHoursCrew",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "GroupedBy",
+      "value" : "ForemanID",
+      "type" : "string"
+    }, {
+      "target" : "CrewID",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "CrewRev",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "ForemanID",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "SuperintendentID",
+      "value" : "bind:Widgets.selectSuper2.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "ProjectManagerID",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "ConstructionManagerID",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "SiteManagerID",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "AreaManagerID",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "InputDate",
+      "value" : "bind:Widgets.dateForeman.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "RunMode",
+      "value" : "1",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.procedure.GetCivilEarnedHoursResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetCivilEarnedHours",
+    "operationId" : "ProcedureExecutionController_executeGetCivilEarnedHours",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 100,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "ProcedureExecution"
+  },
+  "serviceGetEarnedHoursSuper" : {
+    "_id" : "wm-serviceGetEarnedHoursSuper-wm.ServiceVariable-1492544831520",
+    "name" : "serviceGetEarnedHoursSuper",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "GroupedBy",
+      "value" : "SuperintendentID",
+      "type" : "string"
+    }, {
+      "target" : "CrewID",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "CrewRev",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "ForemanID",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "SuperintendentID",
+      "value" : "bind:Variables.loggedInUser.dataSet.roles == 'Civil-Superintendent' ? Variables.loggedInUser.dataSet.id : Variables.loggedInUser.dataSet.roles == 'Civil-GF' ? Variables.loggedInUser.dataSet.id :'%'",
+      "type" : "string"
+    }, {
+      "target" : "ProjectManagerID",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "ConstructionManagerID",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "SiteManagerID",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "AreaManagerID",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "InputDate",
+      "value" : "bind:Widgets.dateSuper.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "RunMode",
+      "value" : "1",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.procedure.GetCivilEarnedHoursResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetCivilEarnedHours",
+    "operationId" : "ProcedureExecutionController_executeGetCivilEarnedHours",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 1,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "ProcedureExecution"
+  },
+  "serviceGetIntervals" : {
+    "_id" : "wm-serviceGetIntervals-wm.ServiceVariable-1492545028760",
+    "name" : "serviceGetIntervals",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "type" : "com.psabackoffice.job1111.models.query.GetSettingProductivityIntervalsResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetSettingProductivityIntervals",
+    "operationId" : "QueryExecutionController_executeGetSettingProductivityIntervals",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 1,
+    "designMaxResults" : 10,
+    "startUpdate" : true,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "serviceGetSupers" : {
+    "_id" : "wm-serviceGetSupers-wm.ServiceVariable-1492544896544",
+    "name" : "serviceGetSupers",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "JobNumber",
+      "value" : "bind:Variables.ActiveJobNumber.dataSet.dataValue",
+      "type" : "integer"
+    }, {
+      "target" : "PM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "ConstM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "SiteM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "AreaM",
+      "value" : "%",
+      "type" : "string"
+    }, {
+      "target" : "DisciplineID",
+      "value" : "3",
+      "type" : "string"
+    } ],
+    "type" : "com.psabackoffice.psa.models.query.GetUsersSupersResponse",
+    "service" : "PSA",
+    "operation" : "executeGetUsersSupers",
+    "operationId" : "QueryExecutionController_executeGetUsersSupers",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 1000,
+    "designMaxResults" : 10,
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  }
+}

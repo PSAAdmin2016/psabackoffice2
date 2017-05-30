@@ -1,0 +1,61 @@
+{
+  "serviceUpdateActivity" : {
+    "_id" : "wm-serviceUpdateActivity-wm.ServiceVariable-1490218299037",
+    "name" : "serviceUpdateActivity",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "RowID",
+      "value" : "bind:$parent.Variables.liveGetCivilFA.dataSet.data[$i].id",
+      "type" : "integer"
+    }, {
+      "target" : "Quantity",
+      "value" : "bind:Widgets.textQuant.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "Foundation",
+      "value" : "bind:Widgets.textFoundation.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "DetailDrawing",
+      "value" : "bind:Widgets.textDetailDrawing.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Notes",
+      "value" : "bind:Widgets.textareaNotes.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Drawing",
+      "value" : "bind:Widgets.textDrawing.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Percent",
+      "value" : "bind:Widgets.selectPercent.datavalue",
+      "type" : "number"
+    }, {
+      "target" : "Rework",
+      "value" : "bind:Widgets.checkbox1.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "Description",
+      "value" : "bind:Widgets.textActivity.datavalue",
+      "type" : "string"
+    } ],
+    "type" : "integer",
+    "service" : "Job1111",
+    "operation" : "executeUpdateCivilFA",
+    "operationId" : "QueryExecutionController_executeUpdateCivilFA",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  }
+}
