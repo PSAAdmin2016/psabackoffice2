@@ -12,22 +12,17 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-import org.joda.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivitiesPendingApprovalResponse implements Serializable {
 
-    @JsonProperty("fk_SubmissionId")
-    @ColumnAlias("fk_SubmissionId")
-    private Integer fkSubmissionId;
-    @JsonProperty("PSAActivityID")
-    @ColumnAlias("PSAActivityID")
-    private Integer psaactivityId;
-    @JsonProperty("ActivityRowId")
-    @ColumnAlias("ActivityRowId")
-    private Integer activityRowId;
+    @JsonProperty("SubmissionID")
+    @ColumnAlias("SubmissionID")
+    private Integer submissionId;
+    @JsonProperty("ActivityID")
+    @ColumnAlias("ActivityID")
+    private Integer activityId;
     @JsonProperty("ActivityType")
     @ColumnAlias("ActivityType")
     private Short activityType;
@@ -76,38 +71,30 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
     @JsonProperty("Quantity")
     @ColumnAlias("Quantity")
     private String quantity;
-    @JsonProperty("SteelArea")
-    @ColumnAlias("SteelArea")
-    private String steelArea;
-    @JsonProperty("SteelPercentClaim")
-    @ColumnAlias("SteelPercentClaim")
-    private String steelPercentClaim;
+    @JsonProperty("Area")
+    @ColumnAlias("Area")
+    private String area;
+    @JsonProperty("PercentClaim")
+    @ColumnAlias("PercentClaim")
+    private String percentClaim;
     @JsonProperty("Rework")
     @ColumnAlias("Rework")
-    private Integer rework;
+    private Long rework;
 
-    public Integer getFkSubmissionId() {
-        return this.fkSubmissionId;
+    public Integer getSubmissionId() {
+        return this.submissionId;
     }
 
-    public void setFkSubmissionId(Integer fkSubmissionId) {
-        this.fkSubmissionId = fkSubmissionId;
+    public void setSubmissionId(Integer submissionId) {
+        this.submissionId = submissionId;
     }
 
-    public Integer getPsaactivityId() {
-        return this.psaactivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setPsaactivityId(Integer psaactivityId) {
-        this.psaactivityId = psaactivityId;
-    }
-
-    public Integer getActivityRowId() {
-        return this.activityRowId;
-    }
-
-    public void setActivityRowId(Integer activityRowId) {
-        this.activityRowId = activityRowId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     public Short getActivityType() {
@@ -238,27 +225,27 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
         this.quantity = quantity;
     }
 
-    public String getSteelArea() {
-        return this.steelArea;
+    public String getArea() {
+        return this.area;
     }
 
-    public void setSteelArea(String steelArea) {
-        this.steelArea = steelArea;
+    public void setArea(String area) {
+        this.area = area;
     }
 
-    public String getSteelPercentClaim() {
-        return this.steelPercentClaim;
+    public String getPercentClaim() {
+        return this.percentClaim;
     }
 
-    public void setSteelPercentClaim(String steelPercentClaim) {
-        this.steelPercentClaim = steelPercentClaim;
+    public void setPercentClaim(String percentClaim) {
+        this.percentClaim = percentClaim;
     }
 
-    public Integer getRework() {
+    public Long getRework() {
         return this.rework;
     }
 
-    public void setRework(Integer rework) {
+    public void setRework(Long rework) {
         this.rework = rework;
     }
 
@@ -267,9 +254,8 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivitiesPendingApprovalResponse)) return false;
         final GetActivitiesPendingApprovalResponse getActivitiesPendingApprovalResponse = (GetActivitiesPendingApprovalResponse) o;
-        return Objects.equals(getFkSubmissionId(), getActivitiesPendingApprovalResponse.getFkSubmissionId()) &&
-                Objects.equals(getPsaactivityId(), getActivitiesPendingApprovalResponse.getPsaactivityId()) &&
-                Objects.equals(getActivityRowId(), getActivitiesPendingApprovalResponse.getActivityRowId()) &&
+        return Objects.equals(getSubmissionId(), getActivitiesPendingApprovalResponse.getSubmissionId()) &&
+                Objects.equals(getActivityId(), getActivitiesPendingApprovalResponse.getActivityId()) &&
                 Objects.equals(getActivityType(), getActivitiesPendingApprovalResponse.getActivityType()) &&
                 Objects.equals(getActivityTypeName(), getActivitiesPendingApprovalResponse.getActivityTypeName()) &&
                 Objects.equals(getStatus(), getActivitiesPendingApprovalResponse.getStatus()) &&
@@ -286,16 +272,15 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
                 Objects.equals(getSize(), getActivitiesPendingApprovalResponse.getSize()) &&
                 Objects.equals(getNotes(), getActivitiesPendingApprovalResponse.getNotes()) &&
                 Objects.equals(getQuantity(), getActivitiesPendingApprovalResponse.getQuantity()) &&
-                Objects.equals(getSteelArea(), getActivitiesPendingApprovalResponse.getSteelArea()) &&
-                Objects.equals(getSteelPercentClaim(), getActivitiesPendingApprovalResponse.getSteelPercentClaim()) &&
+                Objects.equals(getArea(), getActivitiesPendingApprovalResponse.getArea()) &&
+                Objects.equals(getPercentClaim(), getActivitiesPendingApprovalResponse.getPercentClaim()) &&
                 Objects.equals(getRework(), getActivitiesPendingApprovalResponse.getRework());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getFkSubmissionId(),
-                getPsaactivityId(),
-                getActivityRowId(),
+        return Objects.hash(getSubmissionId(),
+                getActivityId(),
                 getActivityType(),
                 getActivityTypeName(),
                 getStatus(),
@@ -312,8 +297,8 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
                 getSize(),
                 getNotes(),
                 getQuantity(),
-                getSteelArea(),
-                getSteelPercentClaim(),
+                getArea(),
+                getPercentClaim(),
                 getRework());
     }
 }

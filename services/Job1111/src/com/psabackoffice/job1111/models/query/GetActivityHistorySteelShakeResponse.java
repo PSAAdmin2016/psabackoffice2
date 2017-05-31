@@ -16,46 +16,54 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistorySteelShakeResponse implements Serializable {
 
-    @JsonProperty("ActivityType")
-    @ColumnAlias("ActivityType")
-    private Byte activityType;
-    @JsonProperty("FAArea")
-    @ColumnAlias("FAArea")
-    private String faarea;
-    @JsonProperty("FANotes")
-    @ColumnAlias("FANotes")
-    private String fanotes;
-    @JsonProperty("FAPieceNumber")
-    @ColumnAlias("FAPieceNumber")
-    private String fapieceNumber;
-    @JsonProperty("FARework")
-    @ColumnAlias("FARework")
-    private Byte farework;
-    @JsonProperty("FAShakeQuantity")
-    @ColumnAlias("FAShakeQuantity")
-    private Byte fashakeQuantity;
-    @JsonProperty("FATimeInForm")
-    @ColumnAlias("FATimeInForm")
-    private Byte fatimeInForm;
     @JsonProperty("ID")
     @ColumnAlias("ID")
     private Integer id;
+    @JsonProperty("ActivityID")
+    @ColumnAlias("ActivityID")
+    private Integer activityId;
+    @JsonProperty("FAArea")
+    @ColumnAlias("FAArea")
+    private String faarea;
+    @JsonProperty("FAPieceNumber")
+    @ColumnAlias("FAPieceNumber")
+    private String fapieceNumber;
+    @JsonProperty("FAShakeQuantity")
+    @ColumnAlias("FAShakeQuantity")
+    private Short fashakeQuantity;
+    @JsonProperty("FARework")
+    @ColumnAlias("FARework")
+    private Short farework;
+    @JsonProperty("FANotes")
+    @ColumnAlias("FANotes")
+    private String fanotes;
+    @JsonProperty("ActivityType")
+    @ColumnAlias("ActivityType")
+    private Short activityType;
+    @JsonProperty("FATimeInForm")
+    @ColumnAlias("FATimeInForm")
+    private Short fatimeInForm;
     @JsonProperty("Rev")
     @ColumnAlias("Rev")
-    private Byte rev;
+    private Short rev;
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-    @JsonProperty("fk_SubmissionID")
-    @ColumnAlias("fk_SubmissionID")
-    private Integer fkSubmissionId;
 
-    public Byte getActivityType() {
-        return this.activityType;
+    public Integer getId() {
+        return this.id;
     }
 
-    public void setActivityType(Byte activityType) {
-        this.activityType = activityType;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getActivityId() {
+        return this.activityId;
+    }
+
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     public String getFaarea() {
@@ -66,14 +74,6 @@ public class GetActivityHistorySteelShakeResponse implements Serializable {
         this.faarea = faarea;
     }
 
-    public String getFanotes() {
-        return this.fanotes;
-    }
-
-    public void setFanotes(String fanotes) {
-        this.fanotes = fanotes;
-    }
-
     public String getFapieceNumber() {
         return this.fapieceNumber;
     }
@@ -82,43 +82,51 @@ public class GetActivityHistorySteelShakeResponse implements Serializable {
         this.fapieceNumber = fapieceNumber;
     }
 
-    public Byte getFarework() {
-        return this.farework;
-    }
-
-    public void setFarework(Byte farework) {
-        this.farework = farework;
-    }
-
-    public Byte getFashakeQuantity() {
+    public Short getFashakeQuantity() {
         return this.fashakeQuantity;
     }
 
-    public void setFashakeQuantity(Byte fashakeQuantity) {
+    public void setFashakeQuantity(Short fashakeQuantity) {
         this.fashakeQuantity = fashakeQuantity;
     }
 
-    public Byte getFatimeInForm() {
+    public Short getFarework() {
+        return this.farework;
+    }
+
+    public void setFarework(Short farework) {
+        this.farework = farework;
+    }
+
+    public String getFanotes() {
+        return this.fanotes;
+    }
+
+    public void setFanotes(String fanotes) {
+        this.fanotes = fanotes;
+    }
+
+    public Short getActivityType() {
+        return this.activityType;
+    }
+
+    public void setActivityType(Short activityType) {
+        this.activityType = activityType;
+    }
+
+    public Short getFatimeInForm() {
         return this.fatimeInForm;
     }
 
-    public void setFatimeInForm(Byte fatimeInForm) {
+    public void setFatimeInForm(Short fatimeInForm) {
         this.fatimeInForm = fatimeInForm;
     }
 
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Byte getRev() {
+    public Short getRev() {
         return this.rev;
     }
 
-    public void setRev(Byte rev) {
+    public void setRev(Short rev) {
         this.rev = rev;
     }
 
@@ -130,44 +138,36 @@ public class GetActivityHistorySteelShakeResponse implements Serializable {
         this.timeStamp = timeStamp;
     }
 
-    public Integer getFkSubmissionId() {
-        return this.fkSubmissionId;
-    }
-
-    public void setFkSubmissionId(Integer fkSubmissionId) {
-        this.fkSubmissionId = fkSubmissionId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistorySteelShakeResponse)) return false;
         final GetActivityHistorySteelShakeResponse getActivityHistorySteelShakeResponse = (GetActivityHistorySteelShakeResponse) o;
-        return Objects.equals(getActivityType(), getActivityHistorySteelShakeResponse.getActivityType()) &&
+        return Objects.equals(getId(), getActivityHistorySteelShakeResponse.getId()) &&
+                Objects.equals(getActivityId(), getActivityHistorySteelShakeResponse.getActivityId()) &&
                 Objects.equals(getFaarea(), getActivityHistorySteelShakeResponse.getFaarea()) &&
-                Objects.equals(getFanotes(), getActivityHistorySteelShakeResponse.getFanotes()) &&
                 Objects.equals(getFapieceNumber(), getActivityHistorySteelShakeResponse.getFapieceNumber()) &&
-                Objects.equals(getFarework(), getActivityHistorySteelShakeResponse.getFarework()) &&
                 Objects.equals(getFashakeQuantity(), getActivityHistorySteelShakeResponse.getFashakeQuantity()) &&
+                Objects.equals(getFarework(), getActivityHistorySteelShakeResponse.getFarework()) &&
+                Objects.equals(getFanotes(), getActivityHistorySteelShakeResponse.getFanotes()) &&
+                Objects.equals(getActivityType(), getActivityHistorySteelShakeResponse.getActivityType()) &&
                 Objects.equals(getFatimeInForm(), getActivityHistorySteelShakeResponse.getFatimeInForm()) &&
-                Objects.equals(getId(), getActivityHistorySteelShakeResponse.getId()) &&
                 Objects.equals(getRev(), getActivityHistorySteelShakeResponse.getRev()) &&
-                Objects.equals(getTimeStamp(), getActivityHistorySteelShakeResponse.getTimeStamp()) &&
-                Objects.equals(getFkSubmissionId(), getActivityHistorySteelShakeResponse.getFkSubmissionId());
+                Objects.equals(getTimeStamp(), getActivityHistorySteelShakeResponse.getTimeStamp());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getActivityType(),
+        return Objects.hash(getId(),
+                getActivityId(),
                 getFaarea(),
-                getFanotes(),
                 getFapieceNumber(),
-                getFarework(),
                 getFashakeQuantity(),
+                getFarework(),
+                getFanotes(),
+                getActivityType(),
                 getFatimeInForm(),
-                getId(),
                 getRev(),
-                getTimeStamp(),
-                getFkSubmissionId());
+                getTimeStamp());
     }
 }

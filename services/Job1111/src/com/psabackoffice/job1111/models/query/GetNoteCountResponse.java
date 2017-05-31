@@ -12,8 +12,6 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-import org.joda.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 

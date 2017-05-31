@@ -11,22 +11,17 @@ import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-import org.joda.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class GetBidWorkHistoryResponse implements Serializable {
+public class GetBidWorkHistoryPipeResponse implements Serializable {
 
-    @JsonProperty("PSAActivityID")
-    @ColumnAlias("PSAActivityID")
-    private Integer psaactivityId;
+    @JsonProperty("ActivityID")
+    @ColumnAlias("ActivityID")
+    private Integer activityId;
     @JsonProperty("ActivityType")
     @ColumnAlias("ActivityType")
     private String activityType;
-    @JsonProperty("ActivityRowId")
-    @ColumnAlias("ActivityRowId")
-    private Integer activityRowId;
     @JsonProperty("Quantity")
     @ColumnAlias("Quantity")
     private Double quantity;
@@ -50,14 +45,14 @@ public class GetBidWorkHistoryResponse implements Serializable {
     private Timestamp completeTime;
     @JsonProperty("ReviewedTime")
     @ColumnAlias("ReviewedTime")
-    private LocalDateTime reviewedTime;
+    private Timestamp reviewedTime;
 
-    public Integer getPsaactivityId() {
-        return this.psaactivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setPsaactivityId(Integer psaactivityId) {
-        this.psaactivityId = psaactivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     public String getActivityType() {
@@ -66,14 +61,6 @@ public class GetBidWorkHistoryResponse implements Serializable {
 
     public void setActivityType(String activityType) {
         this.activityType = activityType;
-    }
-
-    public Integer getActivityRowId() {
-        return this.activityRowId;
-    }
-
-    public void setActivityRowId(Integer activityRowId) {
-        this.activityRowId = activityRowId;
     }
 
     public Double getQuantity() {
@@ -132,37 +119,35 @@ public class GetBidWorkHistoryResponse implements Serializable {
         this.completeTime = completeTime;
     }
 
-    public LocalDateTime getReviewedTime() {
+    public Timestamp getReviewedTime() {
         return this.reviewedTime;
     }
 
-    public void setReviewedTime(LocalDateTime reviewedTime) {
+    public void setReviewedTime(Timestamp reviewedTime) {
         this.reviewedTime = reviewedTime;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GetBidWorkHistoryResponse)) return false;
-        final GetBidWorkHistoryResponse getBidWorkHistoryResponse = (GetBidWorkHistoryResponse) o;
-        return Objects.equals(getPsaactivityId(), getBidWorkHistoryResponse.getPsaactivityId()) &&
-                Objects.equals(getActivityType(), getBidWorkHistoryResponse.getActivityType()) &&
-                Objects.equals(getActivityRowId(), getBidWorkHistoryResponse.getActivityRowId()) &&
-                Objects.equals(getQuantity(), getBidWorkHistoryResponse.getQuantity()) &&
-                Objects.equals(getNotes(), getBidWorkHistoryResponse.getNotes()) &&
-                Objects.equals(getRev(), getBidWorkHistoryResponse.getRev()) &&
-                Objects.equals(getRework(), getBidWorkHistoryResponse.getRework()) &&
-                Objects.equals(getForeman(), getBidWorkHistoryResponse.getForeman()) &&
-                Objects.equals(getSupervisor(), getBidWorkHistoryResponse.getSupervisor()) &&
-                Objects.equals(getCompleteTime(), getBidWorkHistoryResponse.getCompleteTime()) &&
-                Objects.equals(getReviewedTime(), getBidWorkHistoryResponse.getReviewedTime());
+        if (!(o instanceof GetBidWorkHistoryPipeResponse)) return false;
+        final GetBidWorkHistoryPipeResponse getBidWorkHistoryPipeResponse = (GetBidWorkHistoryPipeResponse) o;
+        return Objects.equals(getActivityId(), getBidWorkHistoryPipeResponse.getActivityId()) &&
+                Objects.equals(getActivityType(), getBidWorkHistoryPipeResponse.getActivityType()) &&
+                Objects.equals(getQuantity(), getBidWorkHistoryPipeResponse.getQuantity()) &&
+                Objects.equals(getNotes(), getBidWorkHistoryPipeResponse.getNotes()) &&
+                Objects.equals(getRev(), getBidWorkHistoryPipeResponse.getRev()) &&
+                Objects.equals(getRework(), getBidWorkHistoryPipeResponse.getRework()) &&
+                Objects.equals(getForeman(), getBidWorkHistoryPipeResponse.getForeman()) &&
+                Objects.equals(getSupervisor(), getBidWorkHistoryPipeResponse.getSupervisor()) &&
+                Objects.equals(getCompleteTime(), getBidWorkHistoryPipeResponse.getCompleteTime()) &&
+                Objects.equals(getReviewedTime(), getBidWorkHistoryPipeResponse.getReviewedTime());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPsaactivityId(),
+        return Objects.hash(getActivityId(),
                 getActivityType(),
-                getActivityRowId(),
                 getQuantity(),
                 getNotes(),
                 getRev(),

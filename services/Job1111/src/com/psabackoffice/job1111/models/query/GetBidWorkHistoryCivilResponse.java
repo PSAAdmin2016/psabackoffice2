@@ -12,56 +12,59 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-import org.joda.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetBidWorkHistoryCivilResponse implements Serializable {
 
-    @JsonProperty("ActivityRowId")
-    @ColumnAlias("ActivityRowId")
-    private Integer activityRowId;
+    @JsonProperty("SubmissionID")
+    @ColumnAlias("SubmissionID")
+    private Integer submissionId;
+    @JsonProperty("ActivityID")
+    @ColumnAlias("ActivityID")
+    private Integer activityId;
     @JsonProperty("ActivityType")
     @ColumnAlias("ActivityType")
     private String activityType;
-    @JsonProperty("CompleteTime")
-    @ColumnAlias("CompleteTime")
-    private Timestamp completeTime;
     @JsonProperty("Foreman")
     @ColumnAlias("Foreman")
     private String foreman;
-    @JsonProperty("Notes")
-    @ColumnAlias("Notes")
-    private String notes;
-    @JsonProperty("PSAActivityID")
-    @ColumnAlias("PSAActivityID")
-    private Integer psaactivityId;
-    @JsonProperty("PercentClaimed")
-    @ColumnAlias("PercentClaimed")
-    private BigDecimal percentClaimed;
-    @JsonProperty("Quantity")
-    @ColumnAlias("Quantity")
-    private BigDecimal quantity;
-    @JsonProperty("ReviewedTime")
-    @ColumnAlias("ReviewedTime")
-    private Timestamp reviewedTime;
-    @JsonProperty("Rework")
-    @ColumnAlias("Rework")
-    private Integer rework;
     @JsonProperty("Supervisor")
     @ColumnAlias("Supervisor")
     private String supervisor;
-    @JsonProperty("fk_SubmissionId")
-    @ColumnAlias("fk_SubmissionId")
-    private Integer fkSubmissionId;
+    @JsonProperty("CompleteTime")
+    @ColumnAlias("CompleteTime")
+    private Timestamp completeTime;
+    @JsonProperty("ReviewedTime")
+    @ColumnAlias("ReviewedTime")
+    private Timestamp reviewedTime;
+    @JsonProperty("Quantity")
+    @ColumnAlias("Quantity")
+    private BigInteger quantity;
+    @JsonProperty("PercentClaimed")
+    @ColumnAlias("PercentClaimed")
+    private Float percentClaimed;
+    @JsonProperty("Notes")
+    @ColumnAlias("Notes")
+    private String notes;
+    @JsonProperty("Rework")
+    @ColumnAlias("Rework")
+    private Integer rework;
 
-    public Integer getActivityRowId() {
-        return this.activityRowId;
+    public Integer getSubmissionId() {
+        return this.submissionId;
     }
 
-    public void setActivityRowId(Integer activityRowId) {
-        this.activityRowId = activityRowId;
+    public void setSubmissionId(Integer submissionId) {
+        this.submissionId = submissionId;
+    }
+
+    public Integer getActivityId() {
+        return this.activityId;
+    }
+
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     public String getActivityType() {
@@ -72,68 +75,12 @@ public class GetBidWorkHistoryCivilResponse implements Serializable {
         this.activityType = activityType;
     }
 
-    public Timestamp getCompleteTime() {
-        return this.completeTime;
-    }
-
-    public void setCompleteTime(Timestamp completeTime) {
-        this.completeTime = completeTime;
-    }
-
     public String getForeman() {
         return this.foreman;
     }
 
     public void setForeman(String foreman) {
         this.foreman = foreman;
-    }
-
-    public String getNotes() {
-        return this.notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public Integer getPsaactivityId() {
-        return this.psaactivityId;
-    }
-
-    public void setPsaactivityId(Integer psaactivityId) {
-        this.psaactivityId = psaactivityId;
-    }
-
-    public BigDecimal getPercentClaimed() {
-        return this.percentClaimed;
-    }
-
-    public void setPercentClaimed(BigDecimal percentClaimed) {
-        this.percentClaimed = percentClaimed;
-    }
-
-    public BigDecimal getQuantity() {
-        return this.quantity;
-    }
-
-    public void setQuantity(BigDecimal quantity) {
-        this.quantity = quantity;
-    }
-
-    public Timestamp getReviewedTime() {
-        return this.reviewedTime;
-    }
-
-    public void setReviewedTime(Timestamp reviewedTime) {
-        this.reviewedTime = reviewedTime;
-    }
-
-    public Integer getRework() {
-        return this.rework;
-    }
-
-    public void setRework(Integer rework) {
-        this.rework = rework;
     }
 
     public String getSupervisor() {
@@ -144,12 +91,52 @@ public class GetBidWorkHistoryCivilResponse implements Serializable {
         this.supervisor = supervisor;
     }
 
-    public Integer getFkSubmissionId() {
-        return this.fkSubmissionId;
+    public Timestamp getCompleteTime() {
+        return this.completeTime;
     }
 
-    public void setFkSubmissionId(Integer fkSubmissionId) {
-        this.fkSubmissionId = fkSubmissionId;
+    public void setCompleteTime(Timestamp completeTime) {
+        this.completeTime = completeTime;
+    }
+
+    public Timestamp getReviewedTime() {
+        return this.reviewedTime;
+    }
+
+    public void setReviewedTime(Timestamp reviewedTime) {
+        this.reviewedTime = reviewedTime;
+    }
+
+    public BigInteger getQuantity() {
+        return this.quantity;
+    }
+
+    public void setQuantity(BigInteger quantity) {
+        this.quantity = quantity;
+    }
+
+    public Float getPercentClaimed() {
+        return this.percentClaimed;
+    }
+
+    public void setPercentClaimed(Float percentClaimed) {
+        this.percentClaimed = percentClaimed;
+    }
+
+    public String getNotes() {
+        return this.notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public Integer getRework() {
+        return this.rework;
+    }
+
+    public void setRework(Integer rework) {
+        this.rework = rework;
     }
 
     @Override
@@ -157,33 +144,31 @@ public class GetBidWorkHistoryCivilResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetBidWorkHistoryCivilResponse)) return false;
         final GetBidWorkHistoryCivilResponse getBidWorkHistoryCivilResponse = (GetBidWorkHistoryCivilResponse) o;
-        return Objects.equals(getActivityRowId(), getBidWorkHistoryCivilResponse.getActivityRowId()) &&
+        return Objects.equals(getSubmissionId(), getBidWorkHistoryCivilResponse.getSubmissionId()) &&
+                Objects.equals(getActivityId(), getBidWorkHistoryCivilResponse.getActivityId()) &&
                 Objects.equals(getActivityType(), getBidWorkHistoryCivilResponse.getActivityType()) &&
-                Objects.equals(getCompleteTime(), getBidWorkHistoryCivilResponse.getCompleteTime()) &&
                 Objects.equals(getForeman(), getBidWorkHistoryCivilResponse.getForeman()) &&
-                Objects.equals(getNotes(), getBidWorkHistoryCivilResponse.getNotes()) &&
-                Objects.equals(getPsaactivityId(), getBidWorkHistoryCivilResponse.getPsaactivityId()) &&
-                Objects.equals(getPercentClaimed(), getBidWorkHistoryCivilResponse.getPercentClaimed()) &&
-                Objects.equals(getQuantity(), getBidWorkHistoryCivilResponse.getQuantity()) &&
-                Objects.equals(getReviewedTime(), getBidWorkHistoryCivilResponse.getReviewedTime()) &&
-                Objects.equals(getRework(), getBidWorkHistoryCivilResponse.getRework()) &&
                 Objects.equals(getSupervisor(), getBidWorkHistoryCivilResponse.getSupervisor()) &&
-                Objects.equals(getFkSubmissionId(), getBidWorkHistoryCivilResponse.getFkSubmissionId());
+                Objects.equals(getCompleteTime(), getBidWorkHistoryCivilResponse.getCompleteTime()) &&
+                Objects.equals(getReviewedTime(), getBidWorkHistoryCivilResponse.getReviewedTime()) &&
+                Objects.equals(getQuantity(), getBidWorkHistoryCivilResponse.getQuantity()) &&
+                Objects.equals(getPercentClaimed(), getBidWorkHistoryCivilResponse.getPercentClaimed()) &&
+                Objects.equals(getNotes(), getBidWorkHistoryCivilResponse.getNotes()) &&
+                Objects.equals(getRework(), getBidWorkHistoryCivilResponse.getRework());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getActivityRowId(),
+        return Objects.hash(getSubmissionId(),
+                getActivityId(),
                 getActivityType(),
-                getCompleteTime(),
                 getForeman(),
-                getNotes(),
-                getPsaactivityId(),
-                getPercentClaimed(),
-                getQuantity(),
-                getReviewedTime(),
-                getRework(),
                 getSupervisor(),
-                getFkSubmissionId());
+                getCompleteTime(),
+                getReviewedTime(),
+                getQuantity(),
+                getPercentClaimed(),
+                getNotes(),
+                getRework());
     }
 }

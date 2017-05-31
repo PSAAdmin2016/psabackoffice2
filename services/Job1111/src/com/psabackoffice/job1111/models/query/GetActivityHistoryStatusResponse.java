@@ -12,40 +12,30 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-import org.joda.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistoryStatusResponse implements Serializable {
 
-    @JsonProperty("LastModifiedBy")
-    @ColumnAlias("LastModifiedBy")
-    private String lastModifiedBy;
-    @JsonProperty("PSAActivityID")
-    @ColumnAlias("PSAActivityID")
-    private Integer psaactivityId;
+    @JsonProperty("ActivityID")
+    @ColumnAlias("ActivityID")
+    private Integer activityId;
     @JsonProperty("Status")
     @ColumnAlias("Status")
     private String status;
+    @JsonProperty("LastModifiedBy")
+    @ColumnAlias("LastModifiedBy")
+    private String lastModifiedBy;
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
 
-    public String getLastModifiedBy() {
-        return this.lastModifiedBy;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setLastModifiedBy(String lastModifiedBy) {
-        this.lastModifiedBy = lastModifiedBy;
-    }
-
-    public Integer getPsaactivityId() {
-        return this.psaactivityId;
-    }
-
-    public void setPsaactivityId(Integer psaactivityId) {
-        this.psaactivityId = psaactivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     public String getStatus() {
@@ -54,6 +44,14 @@ public class GetActivityHistoryStatusResponse implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getLastModifiedBy() {
+        return this.lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
     }
 
     public Timestamp getTimeStamp() {
@@ -69,17 +67,17 @@ public class GetActivityHistoryStatusResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistoryStatusResponse)) return false;
         final GetActivityHistoryStatusResponse getActivityHistoryStatusResponse = (GetActivityHistoryStatusResponse) o;
-        return Objects.equals(getLastModifiedBy(), getActivityHistoryStatusResponse.getLastModifiedBy()) &&
-                Objects.equals(getPsaactivityId(), getActivityHistoryStatusResponse.getPsaactivityId()) &&
+        return Objects.equals(getActivityId(), getActivityHistoryStatusResponse.getActivityId()) &&
                 Objects.equals(getStatus(), getActivityHistoryStatusResponse.getStatus()) &&
+                Objects.equals(getLastModifiedBy(), getActivityHistoryStatusResponse.getLastModifiedBy()) &&
                 Objects.equals(getTimeStamp(), getActivityHistoryStatusResponse.getTimeStamp());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getLastModifiedBy(),
-                getPsaactivityId(),
+        return Objects.hash(getActivityId(),
                 getStatus(),
+                getLastModifiedBy(),
                 getTimeStamp());
     }
 }

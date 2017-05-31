@@ -11,29 +11,27 @@ import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-import org.joda.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetBidActivityQuantityResponse implements Serializable {
 
-    @JsonProperty("EstimatedHours")
-    @ColumnAlias("EstimatedHours")
-    private BigDecimal estimatedHours;
-    @JsonProperty("QuantityUnit")
-    @ColumnAlias("QuantityUnit")
-    private String quantityUnit;
     @JsonProperty("TakeOffQuantity")
     @ColumnAlias("TakeOffQuantity")
     private BigDecimal takeOffQuantity;
+    @JsonProperty("QuantityUnit")
+    @ColumnAlias("QuantityUnit")
+    private String quantityUnit;
+    @JsonProperty("EstimatedHours")
+    @ColumnAlias("EstimatedHours")
+    private BigDecimal estimatedHours;
 
-    public BigDecimal getEstimatedHours() {
-        return this.estimatedHours;
+    public BigDecimal getTakeOffQuantity() {
+        return this.takeOffQuantity;
     }
 
-    public void setEstimatedHours(BigDecimal estimatedHours) {
-        this.estimatedHours = estimatedHours;
+    public void setTakeOffQuantity(BigDecimal takeOffQuantity) {
+        this.takeOffQuantity = takeOffQuantity;
     }
 
     public String getQuantityUnit() {
@@ -44,12 +42,12 @@ public class GetBidActivityQuantityResponse implements Serializable {
         this.quantityUnit = quantityUnit;
     }
 
-    public BigDecimal getTakeOffQuantity() {
-        return this.takeOffQuantity;
+    public BigDecimal getEstimatedHours() {
+        return this.estimatedHours;
     }
 
-    public void setTakeOffQuantity(BigDecimal takeOffQuantity) {
-        this.takeOffQuantity = takeOffQuantity;
+    public void setEstimatedHours(BigDecimal estimatedHours) {
+        this.estimatedHours = estimatedHours;
     }
 
     @Override
@@ -57,15 +55,15 @@ public class GetBidActivityQuantityResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetBidActivityQuantityResponse)) return false;
         final GetBidActivityQuantityResponse getBidActivityQuantityResponse = (GetBidActivityQuantityResponse) o;
-        return Objects.equals(getEstimatedHours(), getBidActivityQuantityResponse.getEstimatedHours()) &&
+        return Objects.equals(getTakeOffQuantity(), getBidActivityQuantityResponse.getTakeOffQuantity()) &&
                 Objects.equals(getQuantityUnit(), getBidActivityQuantityResponse.getQuantityUnit()) &&
-                Objects.equals(getTakeOffQuantity(), getBidActivityQuantityResponse.getTakeOffQuantity());
+                Objects.equals(getEstimatedHours(), getBidActivityQuantityResponse.getEstimatedHours());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getEstimatedHours(),
+        return Objects.hash(getTakeOffQuantity(),
                 getQuantityUnit(),
-                getTakeOffQuantity());
+                getEstimatedHours());
     }
 }

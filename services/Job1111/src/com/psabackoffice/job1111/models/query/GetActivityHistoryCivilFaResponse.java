@@ -12,65 +12,71 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-import org.joda.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistoryCivilFaResponse implements Serializable {
 
-    @JsonProperty("ActivityType")
-    @ColumnAlias("ActivityType")
-    private Byte activityType;
+    @JsonProperty("ID")
+    @ColumnAlias("ID")
+    private Integer id;
+    @JsonProperty("ActivityID")
+    @ColumnAlias("ActivityID")
+    private Integer activityId;
     @JsonProperty("FABidID")
     @ColumnAlias("FABidID")
     private Integer fabidId;
-    @JsonProperty("FADescription")
-    @ColumnAlias("FADescription")
-    private String fadescription;
-    @JsonProperty("FADetailDrawingNumber")
-    @ColumnAlias("FADetailDrawingNumber")
-    private String fadetailDrawingNumber;
-    @JsonProperty("FADrawingNumber")
-    @ColumnAlias("FADrawingNumber")
-    private String fadrawingNumber;
     @JsonProperty("FAFoundation")
     @ColumnAlias("FAFoundation")
     private String fafoundation;
-    @JsonProperty("FANotes")
-    @ColumnAlias("FANotes")
-    private String fanotes;
+    @JsonProperty("FADescription")
+    @ColumnAlias("FADescription")
+    private String fadescription;
+    @JsonProperty("FADrawingNumber")
+    @ColumnAlias("FADrawingNumber")
+    private String fadrawingNumber;
+    @JsonProperty("FADetailDrawingNumber")
+    @ColumnAlias("FADetailDrawingNumber")
+    private String fadetailDrawingNumber;
     @JsonProperty("FAPercentComplete")
     @ColumnAlias("FAPercentComplete")
-    private BigDecimal fapercentComplete;
+    private Float fapercentComplete;
     @JsonProperty("FAQuantity")
     @ColumnAlias("FAQuantity")
     private Integer faquantity;
     @JsonProperty("FARework")
     @ColumnAlias("FARework")
-    private Byte farework;
+    private Short farework;
+    @JsonProperty("FANotes")
+    @ColumnAlias("FANotes")
+    private String fanotes;
+    @JsonProperty("ActivityType")
+    @ColumnAlias("ActivityType")
+    private Short activityType;
     @JsonProperty("FATimeInForm")
     @ColumnAlias("FATimeInForm")
-    private Byte fatimeInForm;
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
+    private Short fatimeInForm;
     @JsonProperty("Rev")
     @ColumnAlias("Rev")
-    private Byte rev;
+    private Short rev;
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-    @JsonProperty("fk_SubmissionID")
-    @ColumnAlias("fk_SubmissionID")
-    private Integer fkSubmissionId;
 
-    public Byte getActivityType() {
-        return this.activityType;
+    public Integer getId() {
+        return this.id;
     }
 
-    public void setActivityType(Byte activityType) {
-        this.activityType = activityType;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getActivityId() {
+        return this.activityId;
+    }
+
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     public Integer getFabidId() {
@@ -81,20 +87,20 @@ public class GetActivityHistoryCivilFaResponse implements Serializable {
         this.fabidId = fabidId;
     }
 
+    public String getFafoundation() {
+        return this.fafoundation;
+    }
+
+    public void setFafoundation(String fafoundation) {
+        this.fafoundation = fafoundation;
+    }
+
     public String getFadescription() {
         return this.fadescription;
     }
 
     public void setFadescription(String fadescription) {
         this.fadescription = fadescription;
-    }
-
-    public String getFadetailDrawingNumber() {
-        return this.fadetailDrawingNumber;
-    }
-
-    public void setFadetailDrawingNumber(String fadetailDrawingNumber) {
-        this.fadetailDrawingNumber = fadetailDrawingNumber;
     }
 
     public String getFadrawingNumber() {
@@ -105,27 +111,19 @@ public class GetActivityHistoryCivilFaResponse implements Serializable {
         this.fadrawingNumber = fadrawingNumber;
     }
 
-    public String getFafoundation() {
-        return this.fafoundation;
+    public String getFadetailDrawingNumber() {
+        return this.fadetailDrawingNumber;
     }
 
-    public void setFafoundation(String fafoundation) {
-        this.fafoundation = fafoundation;
+    public void setFadetailDrawingNumber(String fadetailDrawingNumber) {
+        this.fadetailDrawingNumber = fadetailDrawingNumber;
     }
 
-    public String getFanotes() {
-        return this.fanotes;
-    }
-
-    public void setFanotes(String fanotes) {
-        this.fanotes = fanotes;
-    }
-
-    public BigDecimal getFapercentComplete() {
+    public Float getFapercentComplete() {
         return this.fapercentComplete;
     }
 
-    public void setFapercentComplete(BigDecimal fapercentComplete) {
+    public void setFapercentComplete(Float fapercentComplete) {
         this.fapercentComplete = fapercentComplete;
     }
 
@@ -137,35 +135,43 @@ public class GetActivityHistoryCivilFaResponse implements Serializable {
         this.faquantity = faquantity;
     }
 
-    public Byte getFarework() {
+    public Short getFarework() {
         return this.farework;
     }
 
-    public void setFarework(Byte farework) {
+    public void setFarework(Short farework) {
         this.farework = farework;
     }
 
-    public Byte getFatimeInForm() {
+    public String getFanotes() {
+        return this.fanotes;
+    }
+
+    public void setFanotes(String fanotes) {
+        this.fanotes = fanotes;
+    }
+
+    public Short getActivityType() {
+        return this.activityType;
+    }
+
+    public void setActivityType(Short activityType) {
+        this.activityType = activityType;
+    }
+
+    public Short getFatimeInForm() {
         return this.fatimeInForm;
     }
 
-    public void setFatimeInForm(Byte fatimeInForm) {
+    public void setFatimeInForm(Short fatimeInForm) {
         this.fatimeInForm = fatimeInForm;
     }
 
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Byte getRev() {
+    public Short getRev() {
         return this.rev;
     }
 
-    public void setRev(Byte rev) {
+    public void setRev(Short rev) {
         this.rev = rev;
     }
 
@@ -177,52 +183,44 @@ public class GetActivityHistoryCivilFaResponse implements Serializable {
         this.timeStamp = timeStamp;
     }
 
-    public Integer getFkSubmissionId() {
-        return this.fkSubmissionId;
-    }
-
-    public void setFkSubmissionId(Integer fkSubmissionId) {
-        this.fkSubmissionId = fkSubmissionId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistoryCivilFaResponse)) return false;
         final GetActivityHistoryCivilFaResponse getActivityHistoryCivilFaResponse = (GetActivityHistoryCivilFaResponse) o;
-        return Objects.equals(getActivityType(), getActivityHistoryCivilFaResponse.getActivityType()) &&
+        return Objects.equals(getId(), getActivityHistoryCivilFaResponse.getId()) &&
+                Objects.equals(getActivityId(), getActivityHistoryCivilFaResponse.getActivityId()) &&
                 Objects.equals(getFabidId(), getActivityHistoryCivilFaResponse.getFabidId()) &&
-                Objects.equals(getFadescription(), getActivityHistoryCivilFaResponse.getFadescription()) &&
-                Objects.equals(getFadetailDrawingNumber(), getActivityHistoryCivilFaResponse.getFadetailDrawingNumber()) &&
-                Objects.equals(getFadrawingNumber(), getActivityHistoryCivilFaResponse.getFadrawingNumber()) &&
                 Objects.equals(getFafoundation(), getActivityHistoryCivilFaResponse.getFafoundation()) &&
-                Objects.equals(getFanotes(), getActivityHistoryCivilFaResponse.getFanotes()) &&
+                Objects.equals(getFadescription(), getActivityHistoryCivilFaResponse.getFadescription()) &&
+                Objects.equals(getFadrawingNumber(), getActivityHistoryCivilFaResponse.getFadrawingNumber()) &&
+                Objects.equals(getFadetailDrawingNumber(), getActivityHistoryCivilFaResponse.getFadetailDrawingNumber()) &&
                 Objects.equals(getFapercentComplete(), getActivityHistoryCivilFaResponse.getFapercentComplete()) &&
                 Objects.equals(getFaquantity(), getActivityHistoryCivilFaResponse.getFaquantity()) &&
                 Objects.equals(getFarework(), getActivityHistoryCivilFaResponse.getFarework()) &&
+                Objects.equals(getFanotes(), getActivityHistoryCivilFaResponse.getFanotes()) &&
+                Objects.equals(getActivityType(), getActivityHistoryCivilFaResponse.getActivityType()) &&
                 Objects.equals(getFatimeInForm(), getActivityHistoryCivilFaResponse.getFatimeInForm()) &&
-                Objects.equals(getId(), getActivityHistoryCivilFaResponse.getId()) &&
                 Objects.equals(getRev(), getActivityHistoryCivilFaResponse.getRev()) &&
-                Objects.equals(getTimeStamp(), getActivityHistoryCivilFaResponse.getTimeStamp()) &&
-                Objects.equals(getFkSubmissionId(), getActivityHistoryCivilFaResponse.getFkSubmissionId());
+                Objects.equals(getTimeStamp(), getActivityHistoryCivilFaResponse.getTimeStamp());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getActivityType(),
+        return Objects.hash(getId(),
+                getActivityId(),
                 getFabidId(),
-                getFadescription(),
-                getFadetailDrawingNumber(),
-                getFadrawingNumber(),
                 getFafoundation(),
-                getFanotes(),
+                getFadescription(),
+                getFadrawingNumber(),
+                getFadetailDrawingNumber(),
                 getFapercentComplete(),
                 getFaquantity(),
                 getFarework(),
+                getFanotes(),
+                getActivityType(),
                 getFatimeInForm(),
-                getId(),
                 getRev(),
-                getTimeStamp(),
-                getFkSubmissionId());
+                getTimeStamp());
     }
 }

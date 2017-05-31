@@ -11,53 +11,59 @@ import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-import org.joda.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistorySteelSellResponse implements Serializable {
 
-    @JsonProperty("ActivityType")
-    @ColumnAlias("ActivityType")
-    private Byte activityType;
-    @JsonProperty("FAArea")
-    @ColumnAlias("FAArea")
-    private String faarea;
-    @JsonProperty("FANotes")
-    @ColumnAlias("FANotes")
-    private String fanotes;
-    @JsonProperty("FAPieceNumber")
-    @ColumnAlias("FAPieceNumber")
-    private String fapieceNumber;
-    @JsonProperty("FARework")
-    @ColumnAlias("FARework")
-    private Byte farework;
-    @JsonProperty("FASellQuantity")
-    @ColumnAlias("FASellQuantity")
-    private Byte fasellQuantity;
-    @JsonProperty("FATimeInForm")
-    @ColumnAlias("FATimeInForm")
-    private Byte fatimeInForm;
     @JsonProperty("ID")
     @ColumnAlias("ID")
     private Integer id;
+    @JsonProperty("ActivityID")
+    @ColumnAlias("ActivityID")
+    private Integer activityId;
+    @JsonProperty("FAArea")
+    @ColumnAlias("FAArea")
+    private String faarea;
+    @JsonProperty("FAPieceNumber")
+    @ColumnAlias("FAPieceNumber")
+    private String fapieceNumber;
+    @JsonProperty("FASellQuantity")
+    @ColumnAlias("FASellQuantity")
+    private Short fasellQuantity;
+    @JsonProperty("FARework")
+    @ColumnAlias("FARework")
+    private Short farework;
+    @JsonProperty("FANotes")
+    @ColumnAlias("FANotes")
+    private String fanotes;
+    @JsonProperty("ActivityType")
+    @ColumnAlias("ActivityType")
+    private Short activityType;
+    @JsonProperty("FATimeInForm")
+    @ColumnAlias("FATimeInForm")
+    private Short fatimeInForm;
     @JsonProperty("Rev")
     @ColumnAlias("Rev")
-    private Byte rev;
+    private Short rev;
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-    @JsonProperty("fk_SubmissionID")
-    @ColumnAlias("fk_SubmissionID")
-    private Integer fkSubmissionId;
 
-    public Byte getActivityType() {
-        return this.activityType;
+    public Integer getId() {
+        return this.id;
     }
 
-    public void setActivityType(Byte activityType) {
-        this.activityType = activityType;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getActivityId() {
+        return this.activityId;
+    }
+
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     public String getFaarea() {
@@ -68,14 +74,6 @@ public class GetActivityHistorySteelSellResponse implements Serializable {
         this.faarea = faarea;
     }
 
-    public String getFanotes() {
-        return this.fanotes;
-    }
-
-    public void setFanotes(String fanotes) {
-        this.fanotes = fanotes;
-    }
-
     public String getFapieceNumber() {
         return this.fapieceNumber;
     }
@@ -84,43 +82,51 @@ public class GetActivityHistorySteelSellResponse implements Serializable {
         this.fapieceNumber = fapieceNumber;
     }
 
-    public Byte getFarework() {
-        return this.farework;
-    }
-
-    public void setFarework(Byte farework) {
-        this.farework = farework;
-    }
-
-    public Byte getFasellQuantity() {
+    public Short getFasellQuantity() {
         return this.fasellQuantity;
     }
 
-    public void setFasellQuantity(Byte fasellQuantity) {
+    public void setFasellQuantity(Short fasellQuantity) {
         this.fasellQuantity = fasellQuantity;
     }
 
-    public Byte getFatimeInForm() {
+    public Short getFarework() {
+        return this.farework;
+    }
+
+    public void setFarework(Short farework) {
+        this.farework = farework;
+    }
+
+    public String getFanotes() {
+        return this.fanotes;
+    }
+
+    public void setFanotes(String fanotes) {
+        this.fanotes = fanotes;
+    }
+
+    public Short getActivityType() {
+        return this.activityType;
+    }
+
+    public void setActivityType(Short activityType) {
+        this.activityType = activityType;
+    }
+
+    public Short getFatimeInForm() {
         return this.fatimeInForm;
     }
 
-    public void setFatimeInForm(Byte fatimeInForm) {
+    public void setFatimeInForm(Short fatimeInForm) {
         this.fatimeInForm = fatimeInForm;
     }
 
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Byte getRev() {
+    public Short getRev() {
         return this.rev;
     }
 
-    public void setRev(Byte rev) {
+    public void setRev(Short rev) {
         this.rev = rev;
     }
 
@@ -132,44 +138,36 @@ public class GetActivityHistorySteelSellResponse implements Serializable {
         this.timeStamp = timeStamp;
     }
 
-    public Integer getFkSubmissionId() {
-        return this.fkSubmissionId;
-    }
-
-    public void setFkSubmissionId(Integer fkSubmissionId) {
-        this.fkSubmissionId = fkSubmissionId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistorySteelSellResponse)) return false;
         final GetActivityHistorySteelSellResponse getActivityHistorySteelSellResponse = (GetActivityHistorySteelSellResponse) o;
-        return Objects.equals(getActivityType(), getActivityHistorySteelSellResponse.getActivityType()) &&
+        return Objects.equals(getId(), getActivityHistorySteelSellResponse.getId()) &&
+                Objects.equals(getActivityId(), getActivityHistorySteelSellResponse.getActivityId()) &&
                 Objects.equals(getFaarea(), getActivityHistorySteelSellResponse.getFaarea()) &&
-                Objects.equals(getFanotes(), getActivityHistorySteelSellResponse.getFanotes()) &&
                 Objects.equals(getFapieceNumber(), getActivityHistorySteelSellResponse.getFapieceNumber()) &&
-                Objects.equals(getFarework(), getActivityHistorySteelSellResponse.getFarework()) &&
                 Objects.equals(getFasellQuantity(), getActivityHistorySteelSellResponse.getFasellQuantity()) &&
+                Objects.equals(getFarework(), getActivityHistorySteelSellResponse.getFarework()) &&
+                Objects.equals(getFanotes(), getActivityHistorySteelSellResponse.getFanotes()) &&
+                Objects.equals(getActivityType(), getActivityHistorySteelSellResponse.getActivityType()) &&
                 Objects.equals(getFatimeInForm(), getActivityHistorySteelSellResponse.getFatimeInForm()) &&
-                Objects.equals(getId(), getActivityHistorySteelSellResponse.getId()) &&
                 Objects.equals(getRev(), getActivityHistorySteelSellResponse.getRev()) &&
-                Objects.equals(getTimeStamp(), getActivityHistorySteelSellResponse.getTimeStamp()) &&
-                Objects.equals(getFkSubmissionId(), getActivityHistorySteelSellResponse.getFkSubmissionId());
+                Objects.equals(getTimeStamp(), getActivityHistorySteelSellResponse.getTimeStamp());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getActivityType(),
+        return Objects.hash(getId(),
+                getActivityId(),
                 getFaarea(),
-                getFanotes(),
                 getFapieceNumber(),
-                getFarework(),
                 getFasellQuantity(),
+                getFarework(),
+                getFanotes(),
+                getActivityType(),
                 getFatimeInForm(),
-                getId(),
                 getRev(),
-                getTimeStamp(),
-                getFkSubmissionId());
+                getTimeStamp());
     }
 }

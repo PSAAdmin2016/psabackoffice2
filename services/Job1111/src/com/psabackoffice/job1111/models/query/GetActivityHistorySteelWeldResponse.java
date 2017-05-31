@@ -11,56 +11,62 @@ import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-import org.joda.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistorySteelWeldResponse implements Serializable {
 
-    @JsonProperty("ActivityType")
-    @ColumnAlias("ActivityType")
-    private Byte activityType;
-    @JsonProperty("FAArea")
-    @ColumnAlias("FAArea")
-    private String faarea;
-    @JsonProperty("FANotes")
-    @ColumnAlias("FANotes")
-    private String fanotes;
-    @JsonProperty("FAPieceNumber")
-    @ColumnAlias("FAPieceNumber")
-    private String fapieceNumber;
-    @JsonProperty("FARework")
-    @ColumnAlias("FARework")
-    private Byte farework;
-    @JsonProperty("FATimeInForm")
-    @ColumnAlias("FATimeInForm")
-    private Byte fatimeInForm;
-    @JsonProperty("FAWeldPercent")
-    @ColumnAlias("FAWeldPercent")
-    private BigDecimal faweldPercent;
-    @JsonProperty("FAWeldQuantity")
-    @ColumnAlias("FAWeldQuantity")
-    private Byte faweldQuantity;
     @JsonProperty("ID")
     @ColumnAlias("ID")
     private Integer id;
+    @JsonProperty("ActivityID")
+    @ColumnAlias("ActivityID")
+    private Integer activityId;
+    @JsonProperty("FAArea")
+    @ColumnAlias("FAArea")
+    private String faarea;
+    @JsonProperty("FAPieceNumber")
+    @ColumnAlias("FAPieceNumber")
+    private String fapieceNumber;
+    @JsonProperty("FAWeldQuantity")
+    @ColumnAlias("FAWeldQuantity")
+    private Short faweldQuantity;
+    @JsonProperty("FAWeldPercent")
+    @ColumnAlias("FAWeldPercent")
+    private Float faweldPercent;
+    @JsonProperty("FARework")
+    @ColumnAlias("FARework")
+    private Short farework;
+    @JsonProperty("FANotes")
+    @ColumnAlias("FANotes")
+    private String fanotes;
+    @JsonProperty("ActivityType")
+    @ColumnAlias("ActivityType")
+    private Short activityType;
+    @JsonProperty("FATimeInForm")
+    @ColumnAlias("FATimeInForm")
+    private Short fatimeInForm;
     @JsonProperty("Rev")
     @ColumnAlias("Rev")
-    private Byte rev;
+    private Short rev;
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-    @JsonProperty("fk_SubmissionID")
-    @ColumnAlias("fk_SubmissionID")
-    private Integer fkSubmissionId;
 
-    public Byte getActivityType() {
-        return this.activityType;
+    public Integer getId() {
+        return this.id;
     }
 
-    public void setActivityType(Byte activityType) {
-        this.activityType = activityType;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getActivityId() {
+        return this.activityId;
+    }
+
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     public String getFaarea() {
@@ -71,14 +77,6 @@ public class GetActivityHistorySteelWeldResponse implements Serializable {
         this.faarea = faarea;
     }
 
-    public String getFanotes() {
-        return this.fanotes;
-    }
-
-    public void setFanotes(String fanotes) {
-        this.fanotes = fanotes;
-    }
-
     public String getFapieceNumber() {
         return this.fapieceNumber;
     }
@@ -87,51 +85,59 @@ public class GetActivityHistorySteelWeldResponse implements Serializable {
         this.fapieceNumber = fapieceNumber;
     }
 
-    public Byte getFarework() {
-        return this.farework;
-    }
-
-    public void setFarework(Byte farework) {
-        this.farework = farework;
-    }
-
-    public Byte getFatimeInForm() {
-        return this.fatimeInForm;
-    }
-
-    public void setFatimeInForm(Byte fatimeInForm) {
-        this.fatimeInForm = fatimeInForm;
-    }
-
-    public BigDecimal getFaweldPercent() {
-        return this.faweldPercent;
-    }
-
-    public void setFaweldPercent(BigDecimal faweldPercent) {
-        this.faweldPercent = faweldPercent;
-    }
-
-    public Byte getFaweldQuantity() {
+    public Short getFaweldQuantity() {
         return this.faweldQuantity;
     }
 
-    public void setFaweldQuantity(Byte faweldQuantity) {
+    public void setFaweldQuantity(Short faweldQuantity) {
         this.faweldQuantity = faweldQuantity;
     }
 
-    public Integer getId() {
-        return this.id;
+    public Float getFaweldPercent() {
+        return this.faweldPercent;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setFaweldPercent(Float faweldPercent) {
+        this.faweldPercent = faweldPercent;
     }
 
-    public Byte getRev() {
+    public Short getFarework() {
+        return this.farework;
+    }
+
+    public void setFarework(Short farework) {
+        this.farework = farework;
+    }
+
+    public String getFanotes() {
+        return this.fanotes;
+    }
+
+    public void setFanotes(String fanotes) {
+        this.fanotes = fanotes;
+    }
+
+    public Short getActivityType() {
+        return this.activityType;
+    }
+
+    public void setActivityType(Short activityType) {
+        this.activityType = activityType;
+    }
+
+    public Short getFatimeInForm() {
+        return this.fatimeInForm;
+    }
+
+    public void setFatimeInForm(Short fatimeInForm) {
+        this.fatimeInForm = fatimeInForm;
+    }
+
+    public Short getRev() {
         return this.rev;
     }
 
-    public void setRev(Byte rev) {
+    public void setRev(Short rev) {
         this.rev = rev;
     }
 
@@ -143,46 +149,38 @@ public class GetActivityHistorySteelWeldResponse implements Serializable {
         this.timeStamp = timeStamp;
     }
 
-    public Integer getFkSubmissionId() {
-        return this.fkSubmissionId;
-    }
-
-    public void setFkSubmissionId(Integer fkSubmissionId) {
-        this.fkSubmissionId = fkSubmissionId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistorySteelWeldResponse)) return false;
         final GetActivityHistorySteelWeldResponse getActivityHistorySteelWeldResponse = (GetActivityHistorySteelWeldResponse) o;
-        return Objects.equals(getActivityType(), getActivityHistorySteelWeldResponse.getActivityType()) &&
+        return Objects.equals(getId(), getActivityHistorySteelWeldResponse.getId()) &&
+                Objects.equals(getActivityId(), getActivityHistorySteelWeldResponse.getActivityId()) &&
                 Objects.equals(getFaarea(), getActivityHistorySteelWeldResponse.getFaarea()) &&
-                Objects.equals(getFanotes(), getActivityHistorySteelWeldResponse.getFanotes()) &&
                 Objects.equals(getFapieceNumber(), getActivityHistorySteelWeldResponse.getFapieceNumber()) &&
-                Objects.equals(getFarework(), getActivityHistorySteelWeldResponse.getFarework()) &&
-                Objects.equals(getFatimeInForm(), getActivityHistorySteelWeldResponse.getFatimeInForm()) &&
-                Objects.equals(getFaweldPercent(), getActivityHistorySteelWeldResponse.getFaweldPercent()) &&
                 Objects.equals(getFaweldQuantity(), getActivityHistorySteelWeldResponse.getFaweldQuantity()) &&
-                Objects.equals(getId(), getActivityHistorySteelWeldResponse.getId()) &&
+                Objects.equals(getFaweldPercent(), getActivityHistorySteelWeldResponse.getFaweldPercent()) &&
+                Objects.equals(getFarework(), getActivityHistorySteelWeldResponse.getFarework()) &&
+                Objects.equals(getFanotes(), getActivityHistorySteelWeldResponse.getFanotes()) &&
+                Objects.equals(getActivityType(), getActivityHistorySteelWeldResponse.getActivityType()) &&
+                Objects.equals(getFatimeInForm(), getActivityHistorySteelWeldResponse.getFatimeInForm()) &&
                 Objects.equals(getRev(), getActivityHistorySteelWeldResponse.getRev()) &&
-                Objects.equals(getTimeStamp(), getActivityHistorySteelWeldResponse.getTimeStamp()) &&
-                Objects.equals(getFkSubmissionId(), getActivityHistorySteelWeldResponse.getFkSubmissionId());
+                Objects.equals(getTimeStamp(), getActivityHistorySteelWeldResponse.getTimeStamp());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getActivityType(),
+        return Objects.hash(getId(),
+                getActivityId(),
                 getFaarea(),
-                getFanotes(),
                 getFapieceNumber(),
-                getFarework(),
-                getFatimeInForm(),
-                getFaweldPercent(),
                 getFaweldQuantity(),
-                getId(),
+                getFaweldPercent(),
+                getFarework(),
+                getFanotes(),
+                getActivityType(),
+                getFatimeInForm(),
                 getRev(),
-                getTimeStamp(),
-                getFkSubmissionId());
+                getTimeStamp());
     }
 }

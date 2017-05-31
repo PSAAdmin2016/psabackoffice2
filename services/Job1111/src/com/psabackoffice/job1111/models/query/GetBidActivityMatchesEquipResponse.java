@@ -12,8 +12,6 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-import org.joda.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
@@ -54,9 +52,9 @@ public class GetBidActivityMatchesEquipResponse implements Serializable {
     @ColumnAlias("EngDrawingNumber")
     private String engDrawingNumber;
     @ColumnAlias("SheetNumber")
-    private Byte sheetNumber;
+    private Short sheetNumber;
     @ColumnAlias("DrawingRev")
-    private Byte drawingRev;
+    private Short drawingRev;
     @ColumnAlias("ComponentNumber")
     private String componentNumber;
     @ColumnAlias("Description")
@@ -236,19 +234,19 @@ public class GetBidActivityMatchesEquipResponse implements Serializable {
         this.engDrawingNumber = engDrawingNumber;
     }
 
-    public Byte getSheetNumber() {
+    public Short getSheetNumber() {
         return this.sheetNumber;
     }
 
-    public void setSheetNumber(Byte sheetNumber) {
+    public void setSheetNumber(Short sheetNumber) {
         this.sheetNumber = sheetNumber;
     }
 
-    public Byte getDrawingRev() {
+    public Short getDrawingRev() {
         return this.drawingRev;
     }
 
-    public void setDrawingRev(Byte drawingRev) {
+    public void setDrawingRev(Short drawingRev) {
         this.drawingRev = drawingRev;
     }
 

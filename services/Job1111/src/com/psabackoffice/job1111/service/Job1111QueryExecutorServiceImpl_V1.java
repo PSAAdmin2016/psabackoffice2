@@ -80,44 +80,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetActivityHistoryOverride(Pageable pageable, Integer rowId) {
-        Map params = new HashMap(1);
-
-        params.put("RowID", rowId);
-
-        return queryExecutor.executeNamedQuery("GetActivityHistoryOverride", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<Object> executeGetALLTotalsByCU(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("GetALLTotalsByCU", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<Object> executeGetALLTotals(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("GetALLTotals", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<Object> executeGetActivityHistoryDemo(Pageable pageable, Integer rowId) {
-        Map params = new HashMap(1);
-
-        params.put("RowID", rowId);
-
-        return queryExecutor.executeNamedQuery("GetActivityHistoryDemo", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
     public Page<Object> executeGetActivityHistorySteelErect(Pageable pageable, Integer rowId) {
         Map params = new HashMap(1);
 
@@ -189,6 +151,26 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
+    public Page<Object> executeGetActivityHistoryPipeBoltup(Pageable pageable, Integer rowId) {
+        Map params = new HashMap(1);
+
+        params.put("RowID", rowId);
+
+        return queryExecutor.executeNamedQuery("GetActivityHistoryPipeBoltup", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<Object> executeGetBidActivityMatchesByTestPackagePipe(Pageable pageable, String testPackage) {
+        Map params = new HashMap(1);
+
+        params.put("TestPackage", testPackage);
+
+        return queryExecutor.executeNamedQuery("GetBidActivityMatchesByTestPackagePipe", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
     public Page<Object> executeGetActivityHistorySteelShake(Pageable pageable, Integer rowId) {
         Map params = new HashMap(1);
 
@@ -223,26 +205,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         return queryExecutor.executeNamedQueryForUpdate("UpdateSettingCivilPunch", params);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<Object> executeGetActivityHistoryWeld(Pageable pageable, Integer rowId) {
-        Map params = new HashMap(1);
-
-        params.put("RowID", rowId);
-
-        return queryExecutor.executeNamedQuery("GetActivityHistoryWeld", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<Object> executeGetActivityHistorySupport(Pageable pageable, Integer rowId) {
-        Map params = new HashMap(1);
-
-        params.put("RowID", rowId);
-
-        return queryExecutor.executeNamedQuery("GetActivityHistorySupport", params, Object.class, pageable);
-    }
-
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public int executeUpdateSteelMiscQuantity(Integer quantity, Integer rowId) {
@@ -252,16 +214,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("RowID", rowId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelMiscQuantity", params);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<Object> executeGetBidWorkHistory(Pageable pageable, Integer bidId) {
-        Map params = new HashMap(1);
-
-        params.put("BidID", bidId);
-
-        return queryExecutor.executeNamedQuery("GetBidWorkHistory", params, Object.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -344,12 +296,22 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetActivityHistoryBoltup(Pageable pageable, Integer rowId) {
+    public Page<Object> executeGetBidWorkHistoryPipe(Pageable pageable, Integer bidId) {
+        Map params = new HashMap(1);
+
+        params.put("BidID", bidId);
+
+        return queryExecutor.executeNamedQuery("GetBidWorkHistoryPipe", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<Object> executeGetActivityHistoryPipeWeld(Pageable pageable, Integer rowId) {
         Map params = new HashMap(1);
 
         params.put("RowID", rowId);
 
-        return queryExecutor.executeNamedQuery("GetActivityHistoryBoltup", params, Object.class, pageable);
+        return queryExecutor.executeNamedQuery("GetActivityHistoryPipeWeld", params, Object.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -437,15 +399,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         return queryExecutor.executeNamedQuery("GetBidActivityMatchesByTestPackageCivil", params, Object.class, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<Object> executeGetALLTotalsByTestPackage(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("GetALLTotalsByTestPackage", params, Object.class, pageable);
-    }
-
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public int executeUpdateSettingCivilWork(BigDecimal value1) {
@@ -487,16 +440,12 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetBidActivityMatches(Pageable pageable, String lineNumber, String drawingNumber, String sheetNumber, String ect, String ecttype) {
-        Map params = new HashMap(5);
+    public Page<Object> executeGetActivityHistoryPipeSupport(Pageable pageable, Integer rowId) {
+        Map params = new HashMap(1);
 
-        params.put("LineNumber", lineNumber);
-        params.put("DrawingNumber", drawingNumber);
-        params.put("SheetNumber", sheetNumber);
-        params.put("ECT", ect);
-        params.put("ECTType", ecttype);
+        params.put("RowID", rowId);
 
-        return queryExecutor.executeNamedQuery("GetBidActivityMatches", params, Object.class, pageable);
+        return queryExecutor.executeNamedQuery("GetActivityHistoryPipeSupport", params, Object.class, pageable);
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -524,15 +473,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("RowID", rowId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelShake", params);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<Object> executeGetALLTotalsByArea(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("GetALLTotalsByArea", params, Object.class, pageable);
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -612,6 +552,20 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
 
         return queryExecutor.executeNamedQuery("GetSettingPipeMechPercent", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<Object> executeGetBidActivityMatchesPipe(Pageable pageable, String lineNumber, String drawingNumber, String sheetNumber, String ect, String ecttype) {
+        Map params = new HashMap(5);
+
+        params.put("LineNumber", lineNumber);
+        params.put("DrawingNumber", drawingNumber);
+        params.put("SheetNumber", sheetNumber);
+        params.put("ECT", ect);
+        params.put("ECTType", ecttype);
+
+        return queryExecutor.executeNamedQuery("GetBidActivityMatchesPipe", params, Object.class, pageable);
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -812,10 +766,10 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeCreateSSNote(Integer psaactivityId, Integer createdBy, String note) {
+    public int executeCreateSSNote(String activityId, Integer createdBy, String note) {
         Map params = new HashMap(3);
 
-        params.put("PSAActivityID", psaactivityId);
+        params.put("ActivityID", activityId);
         params.put("CreatedBy", createdBy);
         params.put("Note", note);
 
@@ -849,6 +803,16 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("Value1", value1);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSettingPipeHydroPercent", params);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<Object> executeGetActivityHistoryPipeMisc(Pageable pageable, Integer rowId) {
+        Map params = new HashMap(1);
+
+        params.put("RowID", rowId);
+
+        return queryExecutor.executeNamedQuery("GetActivityHistoryPipeMisc", params, Object.class, pageable);
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -1095,11 +1059,22 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetALLTotalsByP6ID(Pageable pageable) {
-        Map params = new HashMap(0);
+    public Page<Object> executeGetActivityHistoryPipeErection(Pageable pageable, Integer rowId) {
+        Map params = new HashMap(1);
 
+        params.put("RowID", rowId);
 
-        return queryExecutor.executeNamedQuery("GetALLTotalsByP6ID", params, Object.class, pageable);
+        return queryExecutor.executeNamedQuery("GetActivityHistoryPipeErection", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<Object> executeCheckSASLock(Pageable pageable, String activityId) {
+        Map params = new HashMap(1);
+
+        params.put("ActivityID", activityId);
+
+        return queryExecutor.executeNamedQuery("CheckSASLock", params, Object.class, pageable);
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -1208,10 +1183,10 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetActivityHistoryStatus(Pageable pageable, Integer psaactivityId) {
+    public Page<Object> executeGetActivityHistoryStatus(Pageable pageable, Integer activityId) {
         Map params = new HashMap(1);
 
-        params.put("PSAActivityID", psaactivityId);
+        params.put("ActivityID", activityId);
 
         return queryExecutor.executeNamedQuery("GetActivityHistoryStatus", params, Object.class, pageable);
     }
@@ -1245,16 +1220,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         return queryExecutor.executeNamedQueryForUpdate("UpdateSettingSteelSell", params);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<Object> executeGetActivityHistoryMisc(Pageable pageable, Integer rowId) {
-        Map params = new HashMap(1);
-
-        params.put("RowID", rowId);
-
-        return queryExecutor.executeNamedQuery("GetActivityHistoryMisc", params, Object.class, pageable);
-    }
-
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public int executeUpdateBoltUp(String spool1, String spool2, String drawingNumber, String lineNumber, String sheetNumber, BigDecimal size, Integer quantity, Integer rework, String notes, Integer rowId) {
@@ -1286,11 +1251,12 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetALLTotalsByBidID(Pageable pageable) {
-        Map params = new HashMap(0);
+    public Page<Object> executeGetActivityHistoryPipeTesting(Pageable pageable, Integer rowId) {
+        Map params = new HashMap(1);
 
+        params.put("RowID", rowId);
 
-        return queryExecutor.executeNamedQuery("GetALLTotalsByBidID", params, Object.class, pageable);
+        return queryExecutor.executeNamedQuery("GetActivityHistoryPipeTesting", params, Object.class, pageable);
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -1398,35 +1364,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         return queryExecutor.executeNamedQueryForUpdate("UpdateSupportsQuantity", params);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<Object> executeGetActivityHistoryErection(Pageable pageable, Integer rowId) {
-        Map params = new HashMap(1);
-
-        params.put("RowID", rowId);
-
-        return queryExecutor.executeNamedQuery("GetActivityHistoryErection", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<Object> executeCheckSSLock(Pageable pageable, Integer psaactivityId) {
-        Map params = new HashMap(1);
-
-        params.put("PSAActivityID", psaactivityId);
-
-        return queryExecutor.executeNamedQuery("CheckSSLock", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<Object> executeGetALLTotalsByCostCode(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("GetALLTotalsByCostCode", params, Object.class, pageable);
-    }
-
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public int executeUpdateOverrideActivityQuantity(Integer newQuantity, Integer rowId) {
@@ -1515,16 +1452,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetActivityHistoryTrim(Pageable pageable, Integer rowId) {
-        Map params = new HashMap(1);
-
-        params.put("RowID", rowId);
-
-        return queryExecutor.executeNamedQuery("GetActivityHistoryTrim", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
     public Page<Object> executeGetQuantitiesTestPackageCivil(Pageable pageable, String testPackage) {
         Map params = new HashMap(1);
 
@@ -1546,16 +1473,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetActivityHistoryTesting(Pageable pageable, Integer rowId) {
-        Map params = new HashMap(1);
-
-        params.put("RowID", rowId);
-
-        return queryExecutor.executeNamedQuery("GetActivityHistoryTesting", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
     public Page<Object> executeGetNoteCount(Pageable pageable, Integer psaactivityId) {
         Map params = new HashMap(1);
 
@@ -1566,12 +1483,12 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetBidActivityMatchesByTestPackage(Pageable pageable, String testPackage) {
+    public Page<Object> executeGetActivityHistoryPipeTrim(Pageable pageable, Integer rowId) {
         Map params = new HashMap(1);
 
-        params.put("TestPackage", testPackage);
+        params.put("RowID", rowId);
 
-        return queryExecutor.executeNamedQuery("GetBidActivityMatchesByTestPackage", params, Object.class, pageable);
+        return queryExecutor.executeNamedQuery("GetActivityHistoryPipeTrim", params, Object.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -1645,6 +1562,16 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("BidID", bidId);
 
         return queryExecutor.executeNamedQuery("GetQuantityTrimInstalled", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<Object> executeGetActivityHistoryPipeDemo(Pageable pageable, Integer rowId) {
+        Map params = new HashMap(1);
+
+        params.put("RowID", rowId);
+
+        return queryExecutor.executeNamedQuery("GetActivityHistoryPipeDemo", params, Object.class, pageable);
     }
 
 }

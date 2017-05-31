@@ -8,14 +8,13 @@ package com.psabackoffice.job1111.models.query;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class GetActivityHistorySteelMiscResponse implements Serializable {
+public class GetActivityHistoryPipeMiscResponse implements Serializable {
 
     @JsonProperty("ID")
     @ColumnAlias("ID")
@@ -23,15 +22,21 @@ public class GetActivityHistorySteelMiscResponse implements Serializable {
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
-    @JsonProperty("MiscArea")
-    @ColumnAlias("MiscArea")
-    private String miscArea;
-    @JsonProperty("MiscPieceNumber")
-    @ColumnAlias("MiscPieceNumber")
-    private String miscPieceNumber;
+    @JsonProperty("MiscDrawingNumber")
+    @ColumnAlias("MiscDrawingNumber")
+    private String miscDrawingNumber;
+    @JsonProperty("MiscLineNumber")
+    @ColumnAlias("MiscLineNumber")
+    private String miscLineNumber;
+    @JsonProperty("MiscSheetNumber")
+    @ColumnAlias("MiscSheetNumber")
+    private String miscSheetNumber;
+    @JsonProperty("MiscTimeInForm")
+    @ColumnAlias("MiscTimeInForm")
+    private Integer miscTimeInForm;
     @JsonProperty("MiscQuantity")
     @ColumnAlias("MiscQuantity")
-    private Short miscQuantity;
+    private Double miscQuantity;
     @JsonProperty("MiscRework")
     @ColumnAlias("MiscRework")
     private Short miscRework;
@@ -41,9 +46,6 @@ public class GetActivityHistorySteelMiscResponse implements Serializable {
     @JsonProperty("ActivityType")
     @ColumnAlias("ActivityType")
     private Short activityType;
-    @JsonProperty("MiscTimeInForm")
-    @ColumnAlias("MiscTimeInForm")
-    private Integer miscTimeInForm;
     @JsonProperty("Rev")
     @ColumnAlias("Rev")
     private Short rev;
@@ -67,27 +69,43 @@ public class GetActivityHistorySteelMiscResponse implements Serializable {
         this.activityId = activityId;
     }
 
-    public String getMiscArea() {
-        return this.miscArea;
+    public String getMiscDrawingNumber() {
+        return this.miscDrawingNumber;
     }
 
-    public void setMiscArea(String miscArea) {
-        this.miscArea = miscArea;
+    public void setMiscDrawingNumber(String miscDrawingNumber) {
+        this.miscDrawingNumber = miscDrawingNumber;
     }
 
-    public String getMiscPieceNumber() {
-        return this.miscPieceNumber;
+    public String getMiscLineNumber() {
+        return this.miscLineNumber;
     }
 
-    public void setMiscPieceNumber(String miscPieceNumber) {
-        this.miscPieceNumber = miscPieceNumber;
+    public void setMiscLineNumber(String miscLineNumber) {
+        this.miscLineNumber = miscLineNumber;
     }
 
-    public Short getMiscQuantity() {
+    public String getMiscSheetNumber() {
+        return this.miscSheetNumber;
+    }
+
+    public void setMiscSheetNumber(String miscSheetNumber) {
+        this.miscSheetNumber = miscSheetNumber;
+    }
+
+    public Integer getMiscTimeInForm() {
+        return this.miscTimeInForm;
+    }
+
+    public void setMiscTimeInForm(Integer miscTimeInForm) {
+        this.miscTimeInForm = miscTimeInForm;
+    }
+
+    public Double getMiscQuantity() {
         return this.miscQuantity;
     }
 
-    public void setMiscQuantity(Short miscQuantity) {
+    public void setMiscQuantity(Double miscQuantity) {
         this.miscQuantity = miscQuantity;
     }
 
@@ -115,14 +133,6 @@ public class GetActivityHistorySteelMiscResponse implements Serializable {
         this.activityType = activityType;
     }
 
-    public Integer getMiscTimeInForm() {
-        return this.miscTimeInForm;
-    }
-
-    public void setMiscTimeInForm(Integer miscTimeInForm) {
-        this.miscTimeInForm = miscTimeInForm;
-    }
-
     public Short getRev() {
         return this.rev;
     }
@@ -142,32 +152,34 @@ public class GetActivityHistorySteelMiscResponse implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GetActivityHistorySteelMiscResponse)) return false;
-        final GetActivityHistorySteelMiscResponse getActivityHistorySteelMiscResponse = (GetActivityHistorySteelMiscResponse) o;
-        return Objects.equals(getId(), getActivityHistorySteelMiscResponse.getId()) &&
-                Objects.equals(getActivityId(), getActivityHistorySteelMiscResponse.getActivityId()) &&
-                Objects.equals(getMiscArea(), getActivityHistorySteelMiscResponse.getMiscArea()) &&
-                Objects.equals(getMiscPieceNumber(), getActivityHistorySteelMiscResponse.getMiscPieceNumber()) &&
-                Objects.equals(getMiscQuantity(), getActivityHistorySteelMiscResponse.getMiscQuantity()) &&
-                Objects.equals(getMiscRework(), getActivityHistorySteelMiscResponse.getMiscRework()) &&
-                Objects.equals(getMiscNotes(), getActivityHistorySteelMiscResponse.getMiscNotes()) &&
-                Objects.equals(getActivityType(), getActivityHistorySteelMiscResponse.getActivityType()) &&
-                Objects.equals(getMiscTimeInForm(), getActivityHistorySteelMiscResponse.getMiscTimeInForm()) &&
-                Objects.equals(getRev(), getActivityHistorySteelMiscResponse.getRev()) &&
-                Objects.equals(getTimeStamp(), getActivityHistorySteelMiscResponse.getTimeStamp());
+        if (!(o instanceof GetActivityHistoryPipeMiscResponse)) return false;
+        final GetActivityHistoryPipeMiscResponse getActivityHistoryPipeMiscResponse = (GetActivityHistoryPipeMiscResponse) o;
+        return Objects.equals(getId(), getActivityHistoryPipeMiscResponse.getId()) &&
+                Objects.equals(getActivityId(), getActivityHistoryPipeMiscResponse.getActivityId()) &&
+                Objects.equals(getMiscDrawingNumber(), getActivityHistoryPipeMiscResponse.getMiscDrawingNumber()) &&
+                Objects.equals(getMiscLineNumber(), getActivityHistoryPipeMiscResponse.getMiscLineNumber()) &&
+                Objects.equals(getMiscSheetNumber(), getActivityHistoryPipeMiscResponse.getMiscSheetNumber()) &&
+                Objects.equals(getMiscTimeInForm(), getActivityHistoryPipeMiscResponse.getMiscTimeInForm()) &&
+                Objects.equals(getMiscQuantity(), getActivityHistoryPipeMiscResponse.getMiscQuantity()) &&
+                Objects.equals(getMiscRework(), getActivityHistoryPipeMiscResponse.getMiscRework()) &&
+                Objects.equals(getMiscNotes(), getActivityHistoryPipeMiscResponse.getMiscNotes()) &&
+                Objects.equals(getActivityType(), getActivityHistoryPipeMiscResponse.getActivityType()) &&
+                Objects.equals(getRev(), getActivityHistoryPipeMiscResponse.getRev()) &&
+                Objects.equals(getTimeStamp(), getActivityHistoryPipeMiscResponse.getTimeStamp());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getId(),
                 getActivityId(),
-                getMiscArea(),
-                getMiscPieceNumber(),
+                getMiscDrawingNumber(),
+                getMiscLineNumber(),
+                getMiscSheetNumber(),
+                getMiscTimeInForm(),
                 getMiscQuantity(),
                 getMiscRework(),
                 getMiscNotes(),
                 getActivityType(),
-                getMiscTimeInForm(),
                 getRev(),
                 getTimeStamp());
     }

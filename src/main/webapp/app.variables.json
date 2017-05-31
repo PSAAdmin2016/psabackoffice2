@@ -632,10 +632,10 @@
       "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
       "type" : "integer"
     } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryBoltupResponse",
+    "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryPipeBoltupResponse",
     "service" : "Job1111",
-    "operation" : "executeGetActivityHistoryBoltup",
-    "operationId" : "QueryExecutionController_executeGetActivityHistoryBoltup",
+    "operation" : "executeGetActivityHistoryPipeBoltup",
+    "operationId" : "QueryExecutionController_executeGetActivityHistoryPipeBoltup",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : {
@@ -663,10 +663,10 @@
       "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
       "type" : "integer"
     } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryDemoResponse",
+    "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryPipeDemoResponse",
     "service" : "Job1111",
-    "operation" : "executeGetActivityHistoryDemo",
-    "operationId" : "QueryExecutionController_executeGetActivityHistoryDemo",
+    "operation" : "executeGetActivityHistoryPipeDemo",
+    "operationId" : "QueryExecutionController_executeGetActivityHistoryPipeDemo",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : {
@@ -694,10 +694,10 @@
       "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
       "type" : "integer"
     } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryErectionResponse",
+    "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryPipeErectionResponse",
     "service" : "Job1111",
-    "operation" : "executeGetActivityHistoryErection",
-    "operationId" : "QueryExecutionController_executeGetActivityHistoryErection",
+    "operation" : "executeGetActivityHistoryPipeErection",
+    "operationId" : "QueryExecutionController_executeGetActivityHistoryPipeErection",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : {
@@ -725,10 +725,10 @@
       "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
       "type" : "integer"
     } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryMiscResponse",
+    "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryPipeMiscResponse",
     "service" : "Job1111",
-    "operation" : "executeGetActivityHistoryMisc",
-    "operationId" : "QueryExecutionController_executeGetActivityHistoryMisc",
+    "operation" : "executeGetActivityHistoryPipeMisc",
+    "operationId" : "QueryExecutionController_executeGetActivityHistoryPipeMisc",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : {
@@ -787,10 +787,10 @@
       "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
       "type" : "integer"
     } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetActivityHistorySupportResponse",
+    "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryPipeSupportResponse",
     "service" : "Job1111",
-    "operation" : "executeGetActivityHistorySupport",
-    "operationId" : "QueryExecutionController_executeGetActivityHistorySupport",
+    "operation" : "executeGetActivityHistoryPipeSupport",
+    "operationId" : "QueryExecutionController_executeGetActivityHistoryPipeSupport",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : {
@@ -818,10 +818,10 @@
       "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
       "type" : "integer"
     } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryTestingResponse",
+    "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryPipeTestingResponse",
     "service" : "Job1111",
-    "operation" : "executeGetActivityHistoryTesting",
-    "operationId" : "QueryExecutionController_executeGetActivityHistoryTesting",
+    "operation" : "executeGetActivityHistoryPipeTesting",
+    "operationId" : "QueryExecutionController_executeGetActivityHistoryPipeTesting",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],
@@ -845,10 +845,10 @@
       "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
       "type" : "integer"
     } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryTrimResponse",
+    "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryPipeTrimResponse",
     "service" : "Job1111",
-    "operation" : "executeGetActivityHistoryTrim",
-    "operationId" : "QueryExecutionController_executeGetActivityHistoryTrim",
+    "operation" : "executeGetActivityHistoryPipeTrim",
+    "operationId" : "QueryExecutionController_executeGetActivityHistoryPipeTrim",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : {
@@ -876,10 +876,10 @@
       "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
       "type" : "integer"
     } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryWeldResponse",
+    "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryPipeWeldResponse",
     "service" : "Job1111",
-    "operation" : "executeGetActivityHistoryWeld",
-    "operationId" : "QueryExecutionController_executeGetActivityHistoryWeld",
+    "operation" : "executeGetActivityHistoryPipeWeld",
+    "operationId" : "QueryExecutionController_executeGetActivityHistoryPipeWeld",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : {

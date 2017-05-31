@@ -11,16 +11,14 @@ import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-import org.joda.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetBidWorkHistorySteelResponse implements Serializable {
 
-    @JsonProperty("fk_SubmissionId")
-    @ColumnAlias("fk_SubmissionId")
-    private Integer fkSubmissionId;
+    @JsonProperty("SubmissionID")
+    @ColumnAlias("SubmissionID")
+    private Integer submissionId;
     @JsonProperty("Foreman")
     @ColumnAlias("Foreman")
     private String foreman;
@@ -32,7 +30,7 @@ public class GetBidWorkHistorySteelResponse implements Serializable {
     private Timestamp completeTime;
     @JsonProperty("ReviewedTime")
     @ColumnAlias("ReviewedTime")
-    private LocalDateTime reviewedTime;
+    private Timestamp reviewedTime;
     @JsonProperty("ShakeQuantity")
     @ColumnAlias("ShakeQuantity")
     private BigInteger shakeQuantity;
@@ -70,12 +68,12 @@ public class GetBidWorkHistorySteelResponse implements Serializable {
     @ColumnAlias("MiscQuantity")
     private BigInteger miscQuantity;
 
-    public Integer getFkSubmissionId() {
-        return this.fkSubmissionId;
+    public Integer getSubmissionId() {
+        return this.submissionId;
     }
 
-    public void setFkSubmissionId(Integer fkSubmissionId) {
-        this.fkSubmissionId = fkSubmissionId;
+    public void setSubmissionId(Integer submissionId) {
+        this.submissionId = submissionId;
     }
 
     public String getForeman() {
@@ -102,11 +100,11 @@ public class GetBidWorkHistorySteelResponse implements Serializable {
         this.completeTime = completeTime;
     }
 
-    public LocalDateTime getReviewedTime() {
+    public Timestamp getReviewedTime() {
         return this.reviewedTime;
     }
 
-    public void setReviewedTime(LocalDateTime reviewedTime) {
+    public void setReviewedTime(Timestamp reviewedTime) {
         this.reviewedTime = reviewedTime;
     }
 
@@ -211,7 +209,7 @@ public class GetBidWorkHistorySteelResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetBidWorkHistorySteelResponse)) return false;
         final GetBidWorkHistorySteelResponse getBidWorkHistorySteelResponse = (GetBidWorkHistorySteelResponse) o;
-        return Objects.equals(getFkSubmissionId(), getBidWorkHistorySteelResponse.getFkSubmissionId()) &&
+        return Objects.equals(getSubmissionId(), getBidWorkHistorySteelResponse.getSubmissionId()) &&
                 Objects.equals(getForeman(), getBidWorkHistorySteelResponse.getForeman()) &&
                 Objects.equals(getSupervisor(), getBidWorkHistorySteelResponse.getSupervisor()) &&
                 Objects.equals(getCompleteTime(), getBidWorkHistorySteelResponse.getCompleteTime()) &&
@@ -232,7 +230,7 @@ public class GetBidWorkHistorySteelResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getFkSubmissionId(),
+        return Objects.hash(getSubmissionId(),
                 getForeman(),
                 getSupervisor(),
                 getCompleteTime(),

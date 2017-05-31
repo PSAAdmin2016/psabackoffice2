@@ -12,56 +12,62 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-import org.joda.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistorySteelBoltoutResponse implements Serializable {
 
-    @JsonProperty("ActivityType")
-    @ColumnAlias("ActivityType")
-    private Byte activityType;
-    @JsonProperty("FAArea")
-    @ColumnAlias("FAArea")
-    private String faarea;
-    @JsonProperty("FABoltOutPercent")
-    @ColumnAlias("FABoltOutPercent")
-    private BigDecimal faboltOutPercent;
-    @JsonProperty("FABoltOutQuantity")
-    @ColumnAlias("FABoltOutQuantity")
-    private Byte faboltOutQuantity;
-    @JsonProperty("FANotes")
-    @ColumnAlias("FANotes")
-    private String fanotes;
-    @JsonProperty("FAPieceNumber")
-    @ColumnAlias("FAPieceNumber")
-    private String fapieceNumber;
-    @JsonProperty("FARework")
-    @ColumnAlias("FARework")
-    private Byte farework;
-    @JsonProperty("FATimeInForm")
-    @ColumnAlias("FATimeInForm")
-    private Byte fatimeInForm;
     @JsonProperty("ID")
     @ColumnAlias("ID")
     private Integer id;
+    @JsonProperty("ActivityID")
+    @ColumnAlias("ActivityID")
+    private Integer activityId;
+    @JsonProperty("FAArea")
+    @ColumnAlias("FAArea")
+    private String faarea;
+    @JsonProperty("FAPieceNumber")
+    @ColumnAlias("FAPieceNumber")
+    private String fapieceNumber;
+    @JsonProperty("FABoltOutQuantity")
+    @ColumnAlias("FABoltOutQuantity")
+    private Short faboltOutQuantity;
+    @JsonProperty("FABoltOutPercent")
+    @ColumnAlias("FABoltOutPercent")
+    private Float faboltOutPercent;
+    @JsonProperty("FARework")
+    @ColumnAlias("FARework")
+    private Short farework;
+    @JsonProperty("FANotes")
+    @ColumnAlias("FANotes")
+    private String fanotes;
+    @JsonProperty("ActivityType")
+    @ColumnAlias("ActivityType")
+    private Short activityType;
+    @JsonProperty("FATimeInForm")
+    @ColumnAlias("FATimeInForm")
+    private Short fatimeInForm;
     @JsonProperty("Rev")
     @ColumnAlias("Rev")
-    private Byte rev;
+    private Short rev;
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-    @JsonProperty("fk_SubmissionID")
-    @ColumnAlias("fk_SubmissionID")
-    private Integer fkSubmissionId;
 
-    public Byte getActivityType() {
-        return this.activityType;
+    public Integer getId() {
+        return this.id;
     }
 
-    public void setActivityType(Byte activityType) {
-        this.activityType = activityType;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getActivityId() {
+        return this.activityId;
+    }
+
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     public String getFaarea() {
@@ -72,20 +78,36 @@ public class GetActivityHistorySteelBoltoutResponse implements Serializable {
         this.faarea = faarea;
     }
 
-    public BigDecimal getFaboltOutPercent() {
-        return this.faboltOutPercent;
+    public String getFapieceNumber() {
+        return this.fapieceNumber;
     }
 
-    public void setFaboltOutPercent(BigDecimal faboltOutPercent) {
-        this.faboltOutPercent = faboltOutPercent;
+    public void setFapieceNumber(String fapieceNumber) {
+        this.fapieceNumber = fapieceNumber;
     }
 
-    public Byte getFaboltOutQuantity() {
+    public Short getFaboltOutQuantity() {
         return this.faboltOutQuantity;
     }
 
-    public void setFaboltOutQuantity(Byte faboltOutQuantity) {
+    public void setFaboltOutQuantity(Short faboltOutQuantity) {
         this.faboltOutQuantity = faboltOutQuantity;
+    }
+
+    public Float getFaboltOutPercent() {
+        return this.faboltOutPercent;
+    }
+
+    public void setFaboltOutPercent(Float faboltOutPercent) {
+        this.faboltOutPercent = faboltOutPercent;
+    }
+
+    public Short getFarework() {
+        return this.farework;
+    }
+
+    public void setFarework(Short farework) {
+        this.farework = farework;
     }
 
     public String getFanotes() {
@@ -96,43 +118,27 @@ public class GetActivityHistorySteelBoltoutResponse implements Serializable {
         this.fanotes = fanotes;
     }
 
-    public String getFapieceNumber() {
-        return this.fapieceNumber;
+    public Short getActivityType() {
+        return this.activityType;
     }
 
-    public void setFapieceNumber(String fapieceNumber) {
-        this.fapieceNumber = fapieceNumber;
+    public void setActivityType(Short activityType) {
+        this.activityType = activityType;
     }
 
-    public Byte getFarework() {
-        return this.farework;
-    }
-
-    public void setFarework(Byte farework) {
-        this.farework = farework;
-    }
-
-    public Byte getFatimeInForm() {
+    public Short getFatimeInForm() {
         return this.fatimeInForm;
     }
 
-    public void setFatimeInForm(Byte fatimeInForm) {
+    public void setFatimeInForm(Short fatimeInForm) {
         this.fatimeInForm = fatimeInForm;
     }
 
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Byte getRev() {
+    public Short getRev() {
         return this.rev;
     }
 
-    public void setRev(Byte rev) {
+    public void setRev(Short rev) {
         this.rev = rev;
     }
 
@@ -144,46 +150,38 @@ public class GetActivityHistorySteelBoltoutResponse implements Serializable {
         this.timeStamp = timeStamp;
     }
 
-    public Integer getFkSubmissionId() {
-        return this.fkSubmissionId;
-    }
-
-    public void setFkSubmissionId(Integer fkSubmissionId) {
-        this.fkSubmissionId = fkSubmissionId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistorySteelBoltoutResponse)) return false;
         final GetActivityHistorySteelBoltoutResponse getActivityHistorySteelBoltoutResponse = (GetActivityHistorySteelBoltoutResponse) o;
-        return Objects.equals(getActivityType(), getActivityHistorySteelBoltoutResponse.getActivityType()) &&
+        return Objects.equals(getId(), getActivityHistorySteelBoltoutResponse.getId()) &&
+                Objects.equals(getActivityId(), getActivityHistorySteelBoltoutResponse.getActivityId()) &&
                 Objects.equals(getFaarea(), getActivityHistorySteelBoltoutResponse.getFaarea()) &&
-                Objects.equals(getFaboltOutPercent(), getActivityHistorySteelBoltoutResponse.getFaboltOutPercent()) &&
-                Objects.equals(getFaboltOutQuantity(), getActivityHistorySteelBoltoutResponse.getFaboltOutQuantity()) &&
-                Objects.equals(getFanotes(), getActivityHistorySteelBoltoutResponse.getFanotes()) &&
                 Objects.equals(getFapieceNumber(), getActivityHistorySteelBoltoutResponse.getFapieceNumber()) &&
+                Objects.equals(getFaboltOutQuantity(), getActivityHistorySteelBoltoutResponse.getFaboltOutQuantity()) &&
+                Objects.equals(getFaboltOutPercent(), getActivityHistorySteelBoltoutResponse.getFaboltOutPercent()) &&
                 Objects.equals(getFarework(), getActivityHistorySteelBoltoutResponse.getFarework()) &&
+                Objects.equals(getFanotes(), getActivityHistorySteelBoltoutResponse.getFanotes()) &&
+                Objects.equals(getActivityType(), getActivityHistorySteelBoltoutResponse.getActivityType()) &&
                 Objects.equals(getFatimeInForm(), getActivityHistorySteelBoltoutResponse.getFatimeInForm()) &&
-                Objects.equals(getId(), getActivityHistorySteelBoltoutResponse.getId()) &&
                 Objects.equals(getRev(), getActivityHistorySteelBoltoutResponse.getRev()) &&
-                Objects.equals(getTimeStamp(), getActivityHistorySteelBoltoutResponse.getTimeStamp()) &&
-                Objects.equals(getFkSubmissionId(), getActivityHistorySteelBoltoutResponse.getFkSubmissionId());
+                Objects.equals(getTimeStamp(), getActivityHistorySteelBoltoutResponse.getTimeStamp());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getActivityType(),
+        return Objects.hash(getId(),
+                getActivityId(),
                 getFaarea(),
-                getFaboltOutPercent(),
-                getFaboltOutQuantity(),
-                getFanotes(),
                 getFapieceNumber(),
+                getFaboltOutQuantity(),
+                getFaboltOutPercent(),
                 getFarework(),
+                getFanotes(),
+                getActivityType(),
                 getFatimeInForm(),
-                getId(),
                 getRev(),
-                getTimeStamp(),
-                getFkSubmissionId());
+                getTimeStamp());
     }
 }

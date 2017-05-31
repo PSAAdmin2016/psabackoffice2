@@ -9,10 +9,10 @@
       "value" : "bind:Widgets.gridClassicTrackerPipe.selecteditem.bidId",
       "type" : "integer"
     } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetBidWorkHistoryResponse",
+    "type" : "com.psabackoffice.job1111.models.query.GetBidWorkHistoryPipeResponse",
     "service" : "Job1111",
-    "operation" : "executeGetBidWorkHistory",
-    "operationId" : "QueryExecutionController_executeGetBidWorkHistory",
+    "operation" : "executeGetBidWorkHistoryPipe",
+    "operationId" : "QueryExecutionController_executeGetBidWorkHistoryPipe",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : {

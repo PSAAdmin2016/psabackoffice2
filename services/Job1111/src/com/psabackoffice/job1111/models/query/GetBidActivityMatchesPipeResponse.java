@@ -8,14 +8,13 @@ package com.psabackoffice.job1111.models.query;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class GetBidChangeLogByIdResponse implements Serializable {
+public class GetBidActivityMatchesPipeResponse implements Serializable {
 
     @JsonProperty("ID")
     @ColumnAlias("ID")
@@ -35,6 +34,9 @@ public class GetBidChangeLogByIdResponse implements Serializable {
     @JsonProperty("Location")
     @ColumnAlias("Location")
     private String location;
+    @JsonProperty("Structure")
+    @ColumnAlias("Structure")
+    private String structure;
     @JsonProperty("Elevation")
     @ColumnAlias("Elevation")
     private String elevation;
@@ -53,6 +55,9 @@ public class GetBidChangeLogByIdResponse implements Serializable {
     @JsonProperty("TestPackageNumber")
     @ColumnAlias("TestPackageNumber")
     private String testPackageNumber;
+    @JsonProperty("AssignedContractor")
+    @ColumnAlias("AssignedContractor")
+    private String assignedContractor;
     @JsonProperty("CostCode")
     @ColumnAlias("CostCode")
     private String costCode;
@@ -97,13 +102,13 @@ public class GetBidChangeLogByIdResponse implements Serializable {
     private Float pipeSize;
     @JsonProperty("TakeOffQuantity")
     @ColumnAlias("TakeOffQuantity")
-    private Double takeOffQuantity;
+    private BigDecimal takeOffQuantity;
     @JsonProperty("QuantityUnit")
     @ColumnAlias("QuantityUnit")
     private String quantityUnit;
     @JsonProperty("EstimatedHours")
     @ColumnAlias("EstimatedHours")
-    private Double estimatedHours;
+    private BigDecimal estimatedHours;
     @JsonProperty("WBS1")
     @ColumnAlias("WBS1")
     private String wbs1;
@@ -140,6 +145,9 @@ public class GetBidChangeLogByIdResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
+    @JsonProperty("RemainingQuant")
+    @ColumnAlias("RemainingQuant")
+    private BigDecimal remainingQuant;
 
     public Integer getId() {
         return this.id;
@@ -189,6 +197,14 @@ public class GetBidChangeLogByIdResponse implements Serializable {
         this.location = location;
     }
 
+    public String getStructure() {
+        return this.structure;
+    }
+
+    public void setStructure(String structure) {
+        this.structure = structure;
+    }
+
     public String getElevation() {
         return this.elevation;
     }
@@ -235,6 +251,14 @@ public class GetBidChangeLogByIdResponse implements Serializable {
 
     public void setTestPackageNumber(String testPackageNumber) {
         this.testPackageNumber = testPackageNumber;
+    }
+
+    public String getAssignedContractor() {
+        return this.assignedContractor;
+    }
+
+    public void setAssignedContractor(String assignedContractor) {
+        this.assignedContractor = assignedContractor;
     }
 
     public String getCostCode() {
@@ -349,11 +373,11 @@ public class GetBidChangeLogByIdResponse implements Serializable {
         this.pipeSize = pipeSize;
     }
 
-    public Double getTakeOffQuantity() {
+    public BigDecimal getTakeOffQuantity() {
         return this.takeOffQuantity;
     }
 
-    public void setTakeOffQuantity(Double takeOffQuantity) {
+    public void setTakeOffQuantity(BigDecimal takeOffQuantity) {
         this.takeOffQuantity = takeOffQuantity;
     }
 
@@ -365,11 +389,11 @@ public class GetBidChangeLogByIdResponse implements Serializable {
         this.quantityUnit = quantityUnit;
     }
 
-    public Double getEstimatedHours() {
+    public BigDecimal getEstimatedHours() {
         return this.estimatedHours;
     }
 
-    public void setEstimatedHours(Double estimatedHours) {
+    public void setEstimatedHours(BigDecimal estimatedHours) {
         this.estimatedHours = estimatedHours;
     }
 
@@ -469,52 +493,63 @@ public class GetBidChangeLogByIdResponse implements Serializable {
         this.timeStamp = timeStamp;
     }
 
+    public BigDecimal getRemainingQuant() {
+        return this.remainingQuant;
+    }
+
+    public void setRemainingQuant(BigDecimal remainingQuant) {
+        this.remainingQuant = remainingQuant;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GetBidChangeLogByIdResponse)) return false;
-        final GetBidChangeLogByIdResponse getBidChangeLogByIdResponse = (GetBidChangeLogByIdResponse) o;
-        return Objects.equals(getId(), getBidChangeLogByIdResponse.getId()) &&
-                Objects.equals(getBidId(), getBidChangeLogByIdResponse.getBidId()) &&
-                Objects.equals(getScope(), getBidChangeLogByIdResponse.getScope()) &&
-                Objects.equals(getPhase(), getBidChangeLogByIdResponse.getPhase()) &&
-                Objects.equals(getArea(), getBidChangeLogByIdResponse.getArea()) &&
-                Objects.equals(getLocation(), getBidChangeLogByIdResponse.getLocation()) &&
-                Objects.equals(getElevation(), getBidChangeLogByIdResponse.getElevation()) &&
-                Objects.equals(getCu(), getBidChangeLogByIdResponse.getCu()) &&
-                Objects.equals(getP6id(), getBidChangeLogByIdResponse.getP6id()) &&
-                Objects.equals(getP6description(), getBidChangeLogByIdResponse.getP6description()) &&
-                Objects.equals(getStage(), getBidChangeLogByIdResponse.getStage()) &&
-                Objects.equals(getTestPackageNumber(), getBidChangeLogByIdResponse.getTestPackageNumber()) &&
-                Objects.equals(getCostCode(), getBidChangeLogByIdResponse.getCostCode()) &&
-                Objects.equals(getLineNumber(), getBidChangeLogByIdResponse.getLineNumber()) &&
-                Objects.equals(getEngDrawingNumber(), getBidChangeLogByIdResponse.getEngDrawingNumber()) &&
-                Objects.equals(getSheetNumber(), getBidChangeLogByIdResponse.getSheetNumber()) &&
-                Objects.equals(getRevisionNumber(), getBidChangeLogByIdResponse.getRevisionNumber()) &&
-                Objects.equals(getSystem(), getBidChangeLogByIdResponse.getSystem()) &&
-                Objects.equals(getService(), getBidChangeLogByIdResponse.getService()) &&
-                Objects.equals(getClientPipeSpec(), getBidChangeLogByIdResponse.getClientPipeSpec()) &&
-                Objects.equals(getMaterialCode(), getBidChangeLogByIdResponse.getMaterialCode()) &&
-                Objects.equals(getDescription(), getBidChangeLogByIdResponse.getDescription()) &&
-                Objects.equals(getComponentNumber(), getBidChangeLogByIdResponse.getComponentNumber()) &&
-                Objects.equals(getEct(), getBidChangeLogByIdResponse.getEct()) &&
-                Objects.equals(getPipingActivityType(), getBidChangeLogByIdResponse.getPipingActivityType()) &&
-                Objects.equals(getPipeSize(), getBidChangeLogByIdResponse.getPipeSize()) &&
-                Objects.equals(getTakeOffQuantity(), getBidChangeLogByIdResponse.getTakeOffQuantity()) &&
-                Objects.equals(getQuantityUnit(), getBidChangeLogByIdResponse.getQuantityUnit()) &&
-                Objects.equals(getEstimatedHours(), getBidChangeLogByIdResponse.getEstimatedHours()) &&
-                Objects.equals(getWbs1(), getBidChangeLogByIdResponse.getWbs1()) &&
-                Objects.equals(getWbs2(), getBidChangeLogByIdResponse.getWbs2()) &&
-                Objects.equals(getWbs3(), getBidChangeLogByIdResponse.getWbs3()) &&
-                Objects.equals(getWbs4(), getBidChangeLogByIdResponse.getWbs4()) &&
-                Objects.equals(getWbs5(), getBidChangeLogByIdResponse.getWbs5()) &&
-                Objects.equals(getWbs6(), getBidChangeLogByIdResponse.getWbs6()) &&
-                Objects.equals(getWbs7(), getBidChangeLogByIdResponse.getWbs7()) &&
-                Objects.equals(getWbs8(), getBidChangeLogByIdResponse.getWbs8()) &&
-                Objects.equals(getWbs9(), getBidChangeLogByIdResponse.getWbs9()) &&
-                Objects.equals(getWbs10(), getBidChangeLogByIdResponse.getWbs10()) &&
-                Objects.equals(getRev(), getBidChangeLogByIdResponse.getRev()) &&
-                Objects.equals(getTimeStamp(), getBidChangeLogByIdResponse.getTimeStamp());
+        if (!(o instanceof GetBidActivityMatchesPipeResponse)) return false;
+        final GetBidActivityMatchesPipeResponse getBidActivityMatchesPipeResponse = (GetBidActivityMatchesPipeResponse) o;
+        return Objects.equals(getId(), getBidActivityMatchesPipeResponse.getId()) &&
+                Objects.equals(getBidId(), getBidActivityMatchesPipeResponse.getBidId()) &&
+                Objects.equals(getScope(), getBidActivityMatchesPipeResponse.getScope()) &&
+                Objects.equals(getPhase(), getBidActivityMatchesPipeResponse.getPhase()) &&
+                Objects.equals(getArea(), getBidActivityMatchesPipeResponse.getArea()) &&
+                Objects.equals(getLocation(), getBidActivityMatchesPipeResponse.getLocation()) &&
+                Objects.equals(getStructure(), getBidActivityMatchesPipeResponse.getStructure()) &&
+                Objects.equals(getElevation(), getBidActivityMatchesPipeResponse.getElevation()) &&
+                Objects.equals(getCu(), getBidActivityMatchesPipeResponse.getCu()) &&
+                Objects.equals(getP6id(), getBidActivityMatchesPipeResponse.getP6id()) &&
+                Objects.equals(getP6description(), getBidActivityMatchesPipeResponse.getP6description()) &&
+                Objects.equals(getStage(), getBidActivityMatchesPipeResponse.getStage()) &&
+                Objects.equals(getTestPackageNumber(), getBidActivityMatchesPipeResponse.getTestPackageNumber()) &&
+                Objects.equals(getAssignedContractor(), getBidActivityMatchesPipeResponse.getAssignedContractor()) &&
+                Objects.equals(getCostCode(), getBidActivityMatchesPipeResponse.getCostCode()) &&
+                Objects.equals(getLineNumber(), getBidActivityMatchesPipeResponse.getLineNumber()) &&
+                Objects.equals(getEngDrawingNumber(), getBidActivityMatchesPipeResponse.getEngDrawingNumber()) &&
+                Objects.equals(getSheetNumber(), getBidActivityMatchesPipeResponse.getSheetNumber()) &&
+                Objects.equals(getRevisionNumber(), getBidActivityMatchesPipeResponse.getRevisionNumber()) &&
+                Objects.equals(getSystem(), getBidActivityMatchesPipeResponse.getSystem()) &&
+                Objects.equals(getService(), getBidActivityMatchesPipeResponse.getService()) &&
+                Objects.equals(getClientPipeSpec(), getBidActivityMatchesPipeResponse.getClientPipeSpec()) &&
+                Objects.equals(getMaterialCode(), getBidActivityMatchesPipeResponse.getMaterialCode()) &&
+                Objects.equals(getDescription(), getBidActivityMatchesPipeResponse.getDescription()) &&
+                Objects.equals(getComponentNumber(), getBidActivityMatchesPipeResponse.getComponentNumber()) &&
+                Objects.equals(getEct(), getBidActivityMatchesPipeResponse.getEct()) &&
+                Objects.equals(getPipingActivityType(), getBidActivityMatchesPipeResponse.getPipingActivityType()) &&
+                Objects.equals(getPipeSize(), getBidActivityMatchesPipeResponse.getPipeSize()) &&
+                Objects.equals(getTakeOffQuantity(), getBidActivityMatchesPipeResponse.getTakeOffQuantity()) &&
+                Objects.equals(getQuantityUnit(), getBidActivityMatchesPipeResponse.getQuantityUnit()) &&
+                Objects.equals(getEstimatedHours(), getBidActivityMatchesPipeResponse.getEstimatedHours()) &&
+                Objects.equals(getWbs1(), getBidActivityMatchesPipeResponse.getWbs1()) &&
+                Objects.equals(getWbs2(), getBidActivityMatchesPipeResponse.getWbs2()) &&
+                Objects.equals(getWbs3(), getBidActivityMatchesPipeResponse.getWbs3()) &&
+                Objects.equals(getWbs4(), getBidActivityMatchesPipeResponse.getWbs4()) &&
+                Objects.equals(getWbs5(), getBidActivityMatchesPipeResponse.getWbs5()) &&
+                Objects.equals(getWbs6(), getBidActivityMatchesPipeResponse.getWbs6()) &&
+                Objects.equals(getWbs7(), getBidActivityMatchesPipeResponse.getWbs7()) &&
+                Objects.equals(getWbs8(), getBidActivityMatchesPipeResponse.getWbs8()) &&
+                Objects.equals(getWbs9(), getBidActivityMatchesPipeResponse.getWbs9()) &&
+                Objects.equals(getWbs10(), getBidActivityMatchesPipeResponse.getWbs10()) &&
+                Objects.equals(getRev(), getBidActivityMatchesPipeResponse.getRev()) &&
+                Objects.equals(getTimeStamp(), getBidActivityMatchesPipeResponse.getTimeStamp()) &&
+                Objects.equals(getRemainingQuant(), getBidActivityMatchesPipeResponse.getRemainingQuant());
     }
 
     @Override
@@ -525,12 +560,14 @@ public class GetBidChangeLogByIdResponse implements Serializable {
                 getPhase(),
                 getArea(),
                 getLocation(),
+                getStructure(),
                 getElevation(),
                 getCu(),
                 getP6id(),
                 getP6description(),
                 getStage(),
                 getTestPackageNumber(),
+                getAssignedContractor(),
                 getCostCode(),
                 getLineNumber(),
                 getEngDrawingNumber(),
@@ -559,6 +596,7 @@ public class GetBidChangeLogByIdResponse implements Serializable {
                 getWbs9(),
                 getWbs10(),
                 getRev(),
-                getTimeStamp());
+                getTimeStamp(),
+                getRemainingQuant());
     }
 }

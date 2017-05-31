@@ -11,53 +11,59 @@ import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-import org.joda.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistorySteelDemoResponse implements Serializable {
 
-    @JsonProperty("ActivityType")
-    @ColumnAlias("ActivityType")
-    private Byte activityType;
-    @JsonProperty("DemoArea")
-    @ColumnAlias("DemoArea")
-    private String demoArea;
-    @JsonProperty("DemoNotes")
-    @ColumnAlias("DemoNotes")
-    private String demoNotes;
-    @JsonProperty("DemoQuantity")
-    @ColumnAlias("DemoQuantity")
-    private Integer demoQuantity;
-    @JsonProperty("DemoSize")
-    @ColumnAlias("DemoSize")
-    private String demoSize;
-    @JsonProperty("DemoSteelType")
-    @ColumnAlias("DemoSteelType")
-    private Integer demoSteelType;
-    @JsonProperty("DemoTimeInForm")
-    @ColumnAlias("DemoTimeInForm")
-    private Short demoTimeInForm;
     @JsonProperty("ID")
     @ColumnAlias("ID")
     private Integer id;
+    @JsonProperty("ActivityID")
+    @ColumnAlias("ActivityID")
+    private Integer activityId;
+    @JsonProperty("DemoArea")
+    @ColumnAlias("DemoArea")
+    private String demoArea;
+    @JsonProperty("DemoSteelType")
+    @ColumnAlias("DemoSteelType")
+    private Integer demoSteelType;
+    @JsonProperty("DemoSize")
+    @ColumnAlias("DemoSize")
+    private String demoSize;
+    @JsonProperty("DemoQuantity")
+    @ColumnAlias("DemoQuantity")
+    private Integer demoQuantity;
+    @JsonProperty("DemoNotes")
+    @ColumnAlias("DemoNotes")
+    private String demoNotes;
+    @JsonProperty("ActivityType")
+    @ColumnAlias("ActivityType")
+    private Short activityType;
+    @JsonProperty("DemoTimeInForm")
+    @ColumnAlias("DemoTimeInForm")
+    private Integer demoTimeInForm;
     @JsonProperty("Rev")
     @ColumnAlias("Rev")
-    private Byte rev;
+    private Short rev;
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-    @JsonProperty("fk_SubmissionId")
-    @ColumnAlias("fk_SubmissionId")
-    private Integer fkSubmissionId;
 
-    public Byte getActivityType() {
-        return this.activityType;
+    public Integer getId() {
+        return this.id;
     }
 
-    public void setActivityType(Byte activityType) {
-        this.activityType = activityType;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getActivityId() {
+        return this.activityId;
+    }
+
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     public String getDemoArea() {
@@ -68,20 +74,12 @@ public class GetActivityHistorySteelDemoResponse implements Serializable {
         this.demoArea = demoArea;
     }
 
-    public String getDemoNotes() {
-        return this.demoNotes;
+    public Integer getDemoSteelType() {
+        return this.demoSteelType;
     }
 
-    public void setDemoNotes(String demoNotes) {
-        this.demoNotes = demoNotes;
-    }
-
-    public Integer getDemoQuantity() {
-        return this.demoQuantity;
-    }
-
-    public void setDemoQuantity(Integer demoQuantity) {
-        this.demoQuantity = demoQuantity;
+    public void setDemoSteelType(Integer demoSteelType) {
+        this.demoSteelType = demoSteelType;
     }
 
     public String getDemoSize() {
@@ -92,35 +90,43 @@ public class GetActivityHistorySteelDemoResponse implements Serializable {
         this.demoSize = demoSize;
     }
 
-    public Integer getDemoSteelType() {
-        return this.demoSteelType;
+    public Integer getDemoQuantity() {
+        return this.demoQuantity;
     }
 
-    public void setDemoSteelType(Integer demoSteelType) {
-        this.demoSteelType = demoSteelType;
+    public void setDemoQuantity(Integer demoQuantity) {
+        this.demoQuantity = demoQuantity;
     }
 
-    public Short getDemoTimeInForm() {
+    public String getDemoNotes() {
+        return this.demoNotes;
+    }
+
+    public void setDemoNotes(String demoNotes) {
+        this.demoNotes = demoNotes;
+    }
+
+    public Short getActivityType() {
+        return this.activityType;
+    }
+
+    public void setActivityType(Short activityType) {
+        this.activityType = activityType;
+    }
+
+    public Integer getDemoTimeInForm() {
         return this.demoTimeInForm;
     }
 
-    public void setDemoTimeInForm(Short demoTimeInForm) {
+    public void setDemoTimeInForm(Integer demoTimeInForm) {
         this.demoTimeInForm = demoTimeInForm;
     }
 
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Byte getRev() {
+    public Short getRev() {
         return this.rev;
     }
 
-    public void setRev(Byte rev) {
+    public void setRev(Short rev) {
         this.rev = rev;
     }
 
@@ -132,44 +138,36 @@ public class GetActivityHistorySteelDemoResponse implements Serializable {
         this.timeStamp = timeStamp;
     }
 
-    public Integer getFkSubmissionId() {
-        return this.fkSubmissionId;
-    }
-
-    public void setFkSubmissionId(Integer fkSubmissionId) {
-        this.fkSubmissionId = fkSubmissionId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistorySteelDemoResponse)) return false;
         final GetActivityHistorySteelDemoResponse getActivityHistorySteelDemoResponse = (GetActivityHistorySteelDemoResponse) o;
-        return Objects.equals(getActivityType(), getActivityHistorySteelDemoResponse.getActivityType()) &&
+        return Objects.equals(getId(), getActivityHistorySteelDemoResponse.getId()) &&
+                Objects.equals(getActivityId(), getActivityHistorySteelDemoResponse.getActivityId()) &&
                 Objects.equals(getDemoArea(), getActivityHistorySteelDemoResponse.getDemoArea()) &&
-                Objects.equals(getDemoNotes(), getActivityHistorySteelDemoResponse.getDemoNotes()) &&
-                Objects.equals(getDemoQuantity(), getActivityHistorySteelDemoResponse.getDemoQuantity()) &&
-                Objects.equals(getDemoSize(), getActivityHistorySteelDemoResponse.getDemoSize()) &&
                 Objects.equals(getDemoSteelType(), getActivityHistorySteelDemoResponse.getDemoSteelType()) &&
+                Objects.equals(getDemoSize(), getActivityHistorySteelDemoResponse.getDemoSize()) &&
+                Objects.equals(getDemoQuantity(), getActivityHistorySteelDemoResponse.getDemoQuantity()) &&
+                Objects.equals(getDemoNotes(), getActivityHistorySteelDemoResponse.getDemoNotes()) &&
+                Objects.equals(getActivityType(), getActivityHistorySteelDemoResponse.getActivityType()) &&
                 Objects.equals(getDemoTimeInForm(), getActivityHistorySteelDemoResponse.getDemoTimeInForm()) &&
-                Objects.equals(getId(), getActivityHistorySteelDemoResponse.getId()) &&
                 Objects.equals(getRev(), getActivityHistorySteelDemoResponse.getRev()) &&
-                Objects.equals(getTimeStamp(), getActivityHistorySteelDemoResponse.getTimeStamp()) &&
-                Objects.equals(getFkSubmissionId(), getActivityHistorySteelDemoResponse.getFkSubmissionId());
+                Objects.equals(getTimeStamp(), getActivityHistorySteelDemoResponse.getTimeStamp());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getActivityType(),
+        return Objects.hash(getId(),
+                getActivityId(),
                 getDemoArea(),
-                getDemoNotes(),
-                getDemoQuantity(),
-                getDemoSize(),
                 getDemoSteelType(),
+                getDemoSize(),
+                getDemoQuantity(),
+                getDemoNotes(),
+                getActivityType(),
                 getDemoTimeInForm(),
-                getId(),
                 getRev(),
-                getTimeStamp(),
-                getFkSubmissionId());
+                getTimeStamp());
     }
 }

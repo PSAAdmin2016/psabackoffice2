@@ -12,31 +12,29 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-import org.joda.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class CheckSslockResponse implements Serializable {
+public class CheckSaslockResponse implements Serializable {
 
     @JsonProperty("LockField")
     @ColumnAlias("LockField")
-    private String lockField;
+    private Integer lockField;
 
-    public String getLockField() {
+    public Integer getLockField() {
         return this.lockField;
     }
 
-    public void setLockField(String lockField) {
+    public void setLockField(Integer lockField) {
         this.lockField = lockField;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof CheckSslockResponse)) return false;
-        final CheckSslockResponse checkSslockResponse = (CheckSslockResponse) o;
-        return Objects.equals(getLockField(), checkSslockResponse.getLockField());
+        if (!(o instanceof CheckSaslockResponse)) return false;
+        final CheckSaslockResponse checkSaslockResponse = (CheckSaslockResponse) o;
+        return Objects.equals(getLockField(), checkSaslockResponse.getLockField());
     }
 
     @Override

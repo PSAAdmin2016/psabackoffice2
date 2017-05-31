@@ -11,8 +11,6 @@ import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-import org.joda.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
@@ -20,13 +18,13 @@ public class GetActivitiesPendingApprovalCountResponse implements Serializable {
 
     @JsonProperty("Count")
     @ColumnAlias("Count")
-    private BigInteger _count;
+    private Long _count;
 
-    public BigInteger get_count() {
+    public Long get_count() {
         return this._count;
     }
 
-    public void set_count(BigInteger _count) {
+    public void set_count(Long _count) {
         this._count = _count;
     }
 

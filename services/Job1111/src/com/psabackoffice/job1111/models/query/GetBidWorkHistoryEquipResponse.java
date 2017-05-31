@@ -12,21 +12,17 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-import org.joda.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetBidWorkHistoryEquipResponse implements Serializable {
 
-    @ColumnAlias("fk_SubmissionId")
-    private Integer fkSubmissionId;
-    @ColumnAlias("PSAActivityID")
-    private Integer psaactivityId;
+    @ColumnAlias("SubmissionID")
+    private Integer submissionId;
+    @ColumnAlias("ActivityID")
+    private Integer activityId;
     @ColumnAlias("ActivityType")
     private String activityType;
-    @ColumnAlias("ActivityRowId")
-    private Integer activityRowId;
     @ColumnAlias("Foreman")
     private String foreman;
     @ColumnAlias("Supervisor")
@@ -34,7 +30,7 @@ public class GetBidWorkHistoryEquipResponse implements Serializable {
     @ColumnAlias("CompleteTime")
     private Timestamp completeTime;
     @ColumnAlias("ReviewedTime")
-    private LocalDateTime reviewedTime;
+    private Timestamp reviewedTime;
     @ColumnAlias("Quantity")
     private BigInteger quantity;
     @ColumnAlias("PercentClaimed")
@@ -42,22 +38,22 @@ public class GetBidWorkHistoryEquipResponse implements Serializable {
     @ColumnAlias("Notes")
     private String notes;
     @ColumnAlias("Rework")
-    private Byte rework;
+    private Integer rework;
 
-    public Integer getFkSubmissionId() {
-        return this.fkSubmissionId;
+    public Integer getSubmissionId() {
+        return this.submissionId;
     }
 
-    public void setFkSubmissionId(Integer fkSubmissionId) {
-        this.fkSubmissionId = fkSubmissionId;
+    public void setSubmissionId(Integer submissionId) {
+        this.submissionId = submissionId;
     }
 
-    public Integer getPsaactivityId() {
-        return this.psaactivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setPsaactivityId(Integer psaactivityId) {
-        this.psaactivityId = psaactivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     public String getActivityType() {
@@ -66,14 +62,6 @@ public class GetBidWorkHistoryEquipResponse implements Serializable {
 
     public void setActivityType(String activityType) {
         this.activityType = activityType;
-    }
-
-    public Integer getActivityRowId() {
-        return this.activityRowId;
-    }
-
-    public void setActivityRowId(Integer activityRowId) {
-        this.activityRowId = activityRowId;
     }
 
     public String getForeman() {
@@ -100,11 +88,11 @@ public class GetBidWorkHistoryEquipResponse implements Serializable {
         this.completeTime = completeTime;
     }
 
-    public LocalDateTime getReviewedTime() {
+    public Timestamp getReviewedTime() {
         return this.reviewedTime;
     }
 
-    public void setReviewedTime(LocalDateTime reviewedTime) {
+    public void setReviewedTime(Timestamp reviewedTime) {
         this.reviewedTime = reviewedTime;
     }
 
@@ -132,11 +120,11 @@ public class GetBidWorkHistoryEquipResponse implements Serializable {
         this.notes = notes;
     }
 
-    public Byte getRework() {
+    public Integer getRework() {
         return this.rework;
     }
 
-    public void setRework(Byte rework) {
+    public void setRework(Integer rework) {
         this.rework = rework;
     }
 
@@ -145,10 +133,9 @@ public class GetBidWorkHistoryEquipResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetBidWorkHistoryEquipResponse)) return false;
         final GetBidWorkHistoryEquipResponse getBidWorkHistoryEquipResponse = (GetBidWorkHistoryEquipResponse) o;
-        return Objects.equals(getFkSubmissionId(), getBidWorkHistoryEquipResponse.getFkSubmissionId()) &&
-                Objects.equals(getPsaactivityId(), getBidWorkHistoryEquipResponse.getPsaactivityId()) &&
+        return Objects.equals(getSubmissionId(), getBidWorkHistoryEquipResponse.getSubmissionId()) &&
+                Objects.equals(getActivityId(), getBidWorkHistoryEquipResponse.getActivityId()) &&
                 Objects.equals(getActivityType(), getBidWorkHistoryEquipResponse.getActivityType()) &&
-                Objects.equals(getActivityRowId(), getBidWorkHistoryEquipResponse.getActivityRowId()) &&
                 Objects.equals(getForeman(), getBidWorkHistoryEquipResponse.getForeman()) &&
                 Objects.equals(getSupervisor(), getBidWorkHistoryEquipResponse.getSupervisor()) &&
                 Objects.equals(getCompleteTime(), getBidWorkHistoryEquipResponse.getCompleteTime()) &&
@@ -161,10 +148,9 @@ public class GetBidWorkHistoryEquipResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getFkSubmissionId(),
-                getPsaactivityId(),
+        return Objects.hash(getSubmissionId(),
+                getActivityId(),
                 getActivityType(),
-                getActivityRowId(),
                 getForeman(),
                 getSupervisor(),
                 getCompleteTime(),

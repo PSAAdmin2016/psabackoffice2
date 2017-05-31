@@ -16,65 +16,54 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetBidWorkHistorySteelExpandedResponse implements Serializable {
 
-    @JsonProperty("ActivityRowId")
-    @ColumnAlias("ActivityRowId")
-    private Integer activityRowId;
-    @JsonProperty("ActivityTypeName")
-    @ColumnAlias("ActivityTypeName")
-    private String activityTypeName;
-    @JsonProperty("CompleteTime")
-    @ColumnAlias("CompleteTime")
-    private Timestamp completeTime;
+    @JsonProperty("SubmissionID")
+    @ColumnAlias("SubmissionID")
+    private Integer submissionId;
+    @JsonProperty("ActivityID")
+    @ColumnAlias("ActivityID")
+    private Integer activityId;
     @JsonProperty("Foreman")
     @ColumnAlias("Foreman")
     private String foreman;
-    @JsonProperty("Notes")
-    @ColumnAlias("Notes")
-    private String notes;
-    @JsonProperty("PSAActivityID")
-    @ColumnAlias("PSAActivityID")
-    private Integer psaactivityId;
-    @JsonProperty("Percent")
-    @ColumnAlias("Percent")
-    private String percent;
-    @JsonProperty("Quantity")
-    @ColumnAlias("Quantity")
-    private BigInteger quantity;
-    @JsonProperty("ReviewedTime")
-    @ColumnAlias("ReviewedTime")
-    private String reviewedTime;
-    @JsonProperty("Rework")
-    @ColumnAlias("Rework")
-    private BigInteger rework;
     @JsonProperty("Supervisor")
     @ColumnAlias("Supervisor")
     private String supervisor;
-    @JsonProperty("fk_SubmissionId")
-    @ColumnAlias("fk_SubmissionId")
-    private Integer fkSubmissionId;
+    @JsonProperty("CompleteTime")
+    @ColumnAlias("CompleteTime")
+    private Timestamp completeTime;
+    @JsonProperty("ReviewedTime")
+    @ColumnAlias("ReviewedTime")
+    private Timestamp reviewedTime;
+    @JsonProperty("ActivityTypeName")
+    @ColumnAlias("ActivityTypeName")
+    private String activityTypeName;
+    @JsonProperty("Quantity")
+    @ColumnAlias("Quantity")
+    private Long quantity;
+    @JsonProperty("Percent")
+    @ColumnAlias("Percent")
+    private String percent;
+    @JsonProperty("Notes")
+    @ColumnAlias("Notes")
+    private String notes;
+    @JsonProperty("Rework")
+    @ColumnAlias("Rework")
+    private Long rework;
 
-    public Integer getActivityRowId() {
-        return this.activityRowId;
+    public Integer getSubmissionId() {
+        return this.submissionId;
     }
 
-    public void setActivityRowId(Integer activityRowId) {
-        this.activityRowId = activityRowId;
+    public void setSubmissionId(Integer submissionId) {
+        this.submissionId = submissionId;
     }
 
-    public String getActivityTypeName() {
-        return this.activityTypeName;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setActivityTypeName(String activityTypeName) {
-        this.activityTypeName = activityTypeName;
-    }
-
-    public Timestamp getCompleteTime() {
-        return this.completeTime;
-    }
-
-    public void setCompleteTime(Timestamp completeTime) {
-        this.completeTime = completeTime;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     public String getForeman() {
@@ -85,20 +74,44 @@ public class GetBidWorkHistorySteelExpandedResponse implements Serializable {
         this.foreman = foreman;
     }
 
-    public String getNotes() {
-        return this.notes;
+    public String getSupervisor() {
+        return this.supervisor;
     }
 
-    public void setNotes(String notes) {
-        this.notes = notes;
+    public void setSupervisor(String supervisor) {
+        this.supervisor = supervisor;
     }
 
-    public Integer getPsaactivityId() {
-        return this.psaactivityId;
+    public Timestamp getCompleteTime() {
+        return this.completeTime;
     }
 
-    public void setPsaactivityId(Integer psaactivityId) {
-        this.psaactivityId = psaactivityId;
+    public void setCompleteTime(Timestamp completeTime) {
+        this.completeTime = completeTime;
+    }
+
+    public Timestamp getReviewedTime() {
+        return this.reviewedTime;
+    }
+
+    public void setReviewedTime(Timestamp reviewedTime) {
+        this.reviewedTime = reviewedTime;
+    }
+
+    public String getActivityTypeName() {
+        return this.activityTypeName;
+    }
+
+    public void setActivityTypeName(String activityTypeName) {
+        this.activityTypeName = activityTypeName;
+    }
+
+    public Long getQuantity() {
+        return this.quantity;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
     }
 
     public String getPercent() {
@@ -109,44 +122,20 @@ public class GetBidWorkHistorySteelExpandedResponse implements Serializable {
         this.percent = percent;
     }
 
-    public BigInteger getQuantity() {
-        return this.quantity;
+    public String getNotes() {
+        return this.notes;
     }
 
-    public void setQuantity(BigInteger quantity) {
-        this.quantity = quantity;
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
-    public String getReviewedTime() {
-        return this.reviewedTime;
-    }
-
-    public void setReviewedTime(String reviewedTime) {
-        this.reviewedTime = reviewedTime;
-    }
-
-    public BigInteger getRework() {
+    public Long getRework() {
         return this.rework;
     }
 
-    public void setRework(BigInteger rework) {
+    public void setRework(Long rework) {
         this.rework = rework;
-    }
-
-    public String getSupervisor() {
-        return this.supervisor;
-    }
-
-    public void setSupervisor(String supervisor) {
-        this.supervisor = supervisor;
-    }
-
-    public Integer getFkSubmissionId() {
-        return this.fkSubmissionId;
-    }
-
-    public void setFkSubmissionId(Integer fkSubmissionId) {
-        this.fkSubmissionId = fkSubmissionId;
     }
 
     @Override
@@ -154,33 +143,31 @@ public class GetBidWorkHistorySteelExpandedResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetBidWorkHistorySteelExpandedResponse)) return false;
         final GetBidWorkHistorySteelExpandedResponse getBidWorkHistorySteelExpandedResponse = (GetBidWorkHistorySteelExpandedResponse) o;
-        return Objects.equals(getActivityRowId(), getBidWorkHistorySteelExpandedResponse.getActivityRowId()) &&
-                Objects.equals(getActivityTypeName(), getBidWorkHistorySteelExpandedResponse.getActivityTypeName()) &&
-                Objects.equals(getCompleteTime(), getBidWorkHistorySteelExpandedResponse.getCompleteTime()) &&
+        return Objects.equals(getSubmissionId(), getBidWorkHistorySteelExpandedResponse.getSubmissionId()) &&
+                Objects.equals(getActivityId(), getBidWorkHistorySteelExpandedResponse.getActivityId()) &&
                 Objects.equals(getForeman(), getBidWorkHistorySteelExpandedResponse.getForeman()) &&
-                Objects.equals(getNotes(), getBidWorkHistorySteelExpandedResponse.getNotes()) &&
-                Objects.equals(getPsaactivityId(), getBidWorkHistorySteelExpandedResponse.getPsaactivityId()) &&
-                Objects.equals(getPercent(), getBidWorkHistorySteelExpandedResponse.getPercent()) &&
-                Objects.equals(getQuantity(), getBidWorkHistorySteelExpandedResponse.getQuantity()) &&
-                Objects.equals(getReviewedTime(), getBidWorkHistorySteelExpandedResponse.getReviewedTime()) &&
-                Objects.equals(getRework(), getBidWorkHistorySteelExpandedResponse.getRework()) &&
                 Objects.equals(getSupervisor(), getBidWorkHistorySteelExpandedResponse.getSupervisor()) &&
-                Objects.equals(getFkSubmissionId(), getBidWorkHistorySteelExpandedResponse.getFkSubmissionId());
+                Objects.equals(getCompleteTime(), getBidWorkHistorySteelExpandedResponse.getCompleteTime()) &&
+                Objects.equals(getReviewedTime(), getBidWorkHistorySteelExpandedResponse.getReviewedTime()) &&
+                Objects.equals(getActivityTypeName(), getBidWorkHistorySteelExpandedResponse.getActivityTypeName()) &&
+                Objects.equals(getQuantity(), getBidWorkHistorySteelExpandedResponse.getQuantity()) &&
+                Objects.equals(getPercent(), getBidWorkHistorySteelExpandedResponse.getPercent()) &&
+                Objects.equals(getNotes(), getBidWorkHistorySteelExpandedResponse.getNotes()) &&
+                Objects.equals(getRework(), getBidWorkHistorySteelExpandedResponse.getRework());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getActivityRowId(),
-                getActivityTypeName(),
-                getCompleteTime(),
+        return Objects.hash(getSubmissionId(),
+                getActivityId(),
                 getForeman(),
-                getNotes(),
-                getPsaactivityId(),
-                getPercent(),
-                getQuantity(),
-                getReviewedTime(),
-                getRework(),
                 getSupervisor(),
-                getFkSubmissionId());
+                getCompleteTime(),
+                getReviewedTime(),
+                getActivityTypeName(),
+                getQuantity(),
+                getPercent(),
+                getNotes(),
+                getRework());
     }
 }

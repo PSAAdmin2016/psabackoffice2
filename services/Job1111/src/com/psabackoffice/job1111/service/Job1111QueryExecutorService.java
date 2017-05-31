@@ -30,22 +30,6 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdateSettingSteelShake(UpdateSettingSteelShakeRequest updateSettingSteelShakeRequest);
 
-    Page<GetActivityHistoryOverrideResponse> executeGetActivityHistoryOverride(Integer rowId, Pageable pageable);
-
-    Downloadable exportGetActivityHistoryOverride(ExportType exportType, Integer rowId, Pageable pageable);
-
-    Page<GetAlltotalsByCuResponse> executeGetALLTotalsByCU(Pageable pageable);
-
-    Downloadable exportGetALLTotalsByCU(ExportType exportType, Pageable pageable);
-
-    Page<GetAlltotalsResponse> executeGetALLTotals(Pageable pageable);
-
-    Downloadable exportGetALLTotals(ExportType exportType, Pageable pageable);
-
-    Page<GetActivityHistoryDemoResponse> executeGetActivityHistoryDemo(Integer rowId, Pageable pageable);
-
-    Downloadable exportGetActivityHistoryDemo(ExportType exportType, Integer rowId, Pageable pageable);
-
     Page<GetActivityHistorySteelErectResponse> executeGetActivityHistorySteelErect(Integer rowId, Pageable pageable);
 
     Downloadable exportGetActivityHistorySteelErect(ExportType exportType, Integer rowId, Pageable pageable);
@@ -66,6 +50,14 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdateTrim(UpdateTrimRequest updateTrimRequest);
 
+    Page<GetActivityHistoryPipeBoltupResponse> executeGetActivityHistoryPipeBoltup(Integer rowId, Pageable pageable);
+
+    Downloadable exportGetActivityHistoryPipeBoltup(ExportType exportType, Integer rowId, Pageable pageable);
+
+    Page<GetBidActivityMatchesByTestPackagePipeResponse> executeGetBidActivityMatchesByTestPackagePipe(String testPackage, Pageable pageable);
+
+    Downloadable exportGetBidActivityMatchesByTestPackagePipe(ExportType exportType, String testPackage, Pageable pageable);
+
     Page<GetActivityHistorySteelShakeResponse> executeGetActivityHistorySteelShake(Integer rowId, Pageable pageable);
 
     Downloadable exportGetActivityHistorySteelShake(ExportType exportType, Integer rowId, Pageable pageable);
@@ -74,23 +66,11 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdateSettingCivilPunch(UpdateSettingCivilPunchRequest updateSettingCivilPunchRequest);
 
-    Page<GetActivityHistoryWeldResponse> executeGetActivityHistoryWeld(Integer rowId, Pageable pageable);
-
-    Downloadable exportGetActivityHistoryWeld(ExportType exportType, Integer rowId, Pageable pageable);
-
-    Page<GetActivityHistorySupportResponse> executeGetActivityHistorySupport(Integer rowId, Pageable pageable);
-
-    Downloadable exportGetActivityHistorySupport(ExportType exportType, Integer rowId, Pageable pageable);
-
     Page<GetActivityHistoryEquipFaResponse> executeGetActivityHistoryEquipFA(String rowId, Pageable pageable);
 
     Downloadable exportGetActivityHistoryEquipFA(ExportType exportType, String rowId, Pageable pageable);
 
     Integer executeUpdateSteelMiscQuantity(UpdateSteelMiscQuantityRequest updateSteelMiscQuantityRequest);
-
-    Page<GetBidWorkHistoryResponse> executeGetBidWorkHistory(Integer bidId, Pageable pageable);
-
-    Downloadable exportGetBidWorkHistory(ExportType exportType, Integer bidId, Pageable pageable);
 
     Page<GetDrawingsByTestPackageResponse> executeGetDrawingsByTestPackage(String testPackage, Pageable pageable);
 
@@ -106,9 +86,13 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdateBoltupQuantity(UpdateBoltupQuantityRequest updateBoltupQuantityRequest);
 
-    Page<GetActivityHistoryBoltupResponse> executeGetActivityHistoryBoltup(Integer rowId, Pageable pageable);
+    Page<GetBidWorkHistoryPipeResponse> executeGetBidWorkHistoryPipe(Integer bidId, Pageable pageable);
 
-    Downloadable exportGetActivityHistoryBoltup(ExportType exportType, Integer rowId, Pageable pageable);
+    Downloadable exportGetBidWorkHistoryPipe(ExportType exportType, Integer bidId, Pageable pageable);
+
+    Page<GetActivityHistoryPipeWeldResponse> executeGetActivityHistoryPipeWeld(Integer rowId, Pageable pageable);
+
+    Downloadable exportGetActivityHistoryPipeWeld(ExportType exportType, Integer rowId, Pageable pageable);
 
     Page<GetReportDprsteelCondensedResponse> executeGetReportDPRSteelCondensed(String pm, String constM, String siteM, String areaM, String super_, String gf, String foreman, Date startDate, Date endDate, Pageable pageable);
 
@@ -132,10 +116,6 @@ public interface Job1111QueryExecutorService {
 
     Downloadable exportGetBidActivityMatchesByTestPackageCivil(ExportType exportType, String testPackage, Pageable pageable);
 
-    Page<GetAlltotalsByTestPackageResponse> executeGetALLTotalsByTestPackage(Pageable pageable);
-
-    Downloadable exportGetALLTotalsByTestPackage(ExportType exportType, Pageable pageable);
-
     Integer executeUpdateSettingCivilWork(UpdateSettingCivilWorkRequest updateSettingCivilWorkRequest);
 
     Page<GetPsaactivityByUidResponse> executeGetPSAActivityByUid(Integer superId, Pageable pageable);
@@ -150,17 +130,13 @@ public interface Job1111QueryExecutorService {
 
     Downloadable exportGetQuantitiesTestPackageSteel(ExportType exportType, String testPackage, Pageable pageable);
 
-    Page<GetBidActivityMatchesResponse> executeGetBidActivityMatches(String lineNumber, String drawingNumber, String sheetNumber, String ect, String ecttype, Pageable pageable);
+    Page<GetActivityHistoryPipeSupportResponse> executeGetActivityHistoryPipeSupport(Integer rowId, Pageable pageable);
 
-    Downloadable exportGetBidActivityMatches(ExportType exportType, String lineNumber, String drawingNumber, String sheetNumber, String ect, String ecttype, Pageable pageable);
+    Downloadable exportGetActivityHistoryPipeSupport(ExportType exportType, Integer rowId, Pageable pageable);
 
     Integer executeUpdateSteelErectQuantity(UpdateSteelErectQuantityRequest updateSteelErectQuantityRequest);
 
     Integer executeUpdateSteelShake(UpdateSteelShakeRequest updateSteelShakeRequest);
-
-    Page<GetAlltotalsByAreaResponse> executeGetALLTotalsByArea(Pageable pageable);
-
-    Downloadable exportGetALLTotalsByArea(ExportType exportType, Pageable pageable);
 
     Integer executeUpdateSettingPipeCTOPercent(UpdateSettingPipeCtopercentRequest updateSettingPipeCtopercentRequest);
 
@@ -185,6 +161,10 @@ public interface Job1111QueryExecutorService {
     Page<GetSettingPipeMechPercentResponse> executeGetSettingPipeMechPercent(Pageable pageable);
 
     Downloadable exportGetSettingPipeMechPercent(ExportType exportType, Pageable pageable);
+
+    Page<GetBidActivityMatchesPipeResponse> executeGetBidActivityMatchesPipe(String lineNumber, String drawingNumber, String sheetNumber, String ect, String ecttype, Pageable pageable);
+
+    Downloadable exportGetBidActivityMatchesPipe(ExportType exportType, String lineNumber, String drawingNumber, String sheetNumber, String ect, String ecttype, Pageable pageable);
 
     Integer executeUpdateSteelWeldQuantity(UpdateSteelWeldQuantityRequest updateSteelWeldQuantityRequest);
 
@@ -235,6 +215,10 @@ public interface Job1111QueryExecutorService {
     Downloadable exportGetSettingPipeCTOPercent(ExportType exportType, Pageable pageable);
 
     Integer executeUpdateSettingPipeHydroPercent(UpdateSettingPipeHydroPercentRequest updateSettingPipeHydroPercentRequest);
+
+    Page<GetActivityHistoryPipeMiscResponse> executeGetActivityHistoryPipeMisc(Integer rowId, Pageable pageable);
+
+    Downloadable exportGetActivityHistoryPipeMisc(ExportType exportType, Integer rowId, Pageable pageable);
 
     Integer executeUpdateTesting(UpdateTestingRequest updateTestingRequest);
 
@@ -324,13 +308,17 @@ public interface Job1111QueryExecutorService {
 
     Downloadable exportGetBidActivityMatchesByTestPackageSteel(ExportType exportType, String testPackage, Pageable pageable);
 
-    Page<GetAlltotalsByP6idResponse> executeGetALLTotalsByP6ID(Pageable pageable);
+    Page<GetActivityHistoryPipeErectionResponse> executeGetActivityHistoryPipeErection(Integer rowId, Pageable pageable);
 
-    Downloadable exportGetALLTotalsByP6ID(ExportType exportType, Pageable pageable);
+    Downloadable exportGetActivityHistoryPipeErection(ExportType exportType, Integer rowId, Pageable pageable);
 
     Page<GetBidWorkHistoryEquipResponse> executeGetBidWorkHistoryEquip(String bidId, Pageable pageable);
 
     Downloadable exportGetBidWorkHistoryEquip(ExportType exportType, String bidId, Pageable pageable);
+
+    Page<CheckSaslockResponse> executeCheckSASLock(String activityId, Pageable pageable);
+
+    Downloadable exportCheckSASLock(ExportType exportType, String activityId, Pageable pageable);
 
     Page<GetEquipBidActivityQuantitesResponse> executeGetEquipBidActivityQuantites(String bidId, Pageable pageable);
 
@@ -368,9 +356,9 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdateSettingSteelErect(UpdateSettingSteelErectRequest updateSettingSteelErectRequest);
 
-    Page<GetActivityHistoryStatusResponse> executeGetActivityHistoryStatus(Integer psaactivityId, Pageable pageable);
+    Page<GetActivityHistoryStatusResponse> executeGetActivityHistoryStatus(Integer activityId, Pageable pageable);
 
-    Downloadable exportGetActivityHistoryStatus(ExportType exportType, Integer psaactivityId, Pageable pageable);
+    Downloadable exportGetActivityHistoryStatus(ExportType exportType, Integer activityId, Pageable pageable);
 
     Page<GetSettingSteelShakePercentResponse> executeGetSettingSteelShakePercent(Pageable pageable);
 
@@ -380,19 +368,15 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdateSettingSteelSell(UpdateSettingSteelSellRequest updateSettingSteelSellRequest);
 
-    Page<GetActivityHistoryMiscResponse> executeGetActivityHistoryMisc(Integer rowId, Pageable pageable);
-
-    Downloadable exportGetActivityHistoryMisc(ExportType exportType, Integer rowId, Pageable pageable);
-
     Integer executeUpdateBoltUp(UpdateBoltUpRequest updateBoltUpRequest);
 
     Page<GetQuantitiesTestPackageResponse> executeGetQuantitiesTestPackage(String testPackage, Pageable pageable);
 
     Downloadable exportGetQuantitiesTestPackage(ExportType exportType, String testPackage, Pageable pageable);
 
-    Page<GetAlltotalsByBidIdResponse> executeGetALLTotalsByBidID(Pageable pageable);
+    Page<GetActivityHistoryPipeTestingResponse> executeGetActivityHistoryPipeTesting(Integer rowId, Pageable pageable);
 
-    Downloadable exportGetALLTotalsByBidID(ExportType exportType, Pageable pageable);
+    Downloadable exportGetActivityHistoryPipeTesting(ExportType exportType, Integer rowId, Pageable pageable);
 
     Integer executeUpdateMiscQuantity(UpdateMiscQuantityRequest updateMiscQuantityRequest);
 
@@ -428,18 +412,6 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdateSupportsQuantity(UpdateSupportsQuantityRequest updateSupportsQuantityRequest);
 
-    Page<GetActivityHistoryErectionResponse> executeGetActivityHistoryErection(Integer rowId, Pageable pageable);
-
-    Downloadable exportGetActivityHistoryErection(ExportType exportType, Integer rowId, Pageable pageable);
-
-    Page<CheckSslockResponse> executeCheckSSLock(Integer psaactivityId, Pageable pageable);
-
-    Downloadable exportCheckSSLock(ExportType exportType, Integer psaactivityId, Pageable pageable);
-
-    Page<GetAlltotalsByCostCodeResponse> executeGetALLTotalsByCostCode(Pageable pageable);
-
-    Downloadable exportGetALLTotalsByCostCode(ExportType exportType, Pageable pageable);
-
     Integer executeUpdateOverrideActivityQuantity(UpdateOverrideActivityQuantityRequest updateOverrideActivityQuantityRequest);
 
     Page<GetSettingSteelSellPercentResponse> executeGetSettingSteelSellPercent(Pageable pageable);
@@ -456,10 +428,6 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdateSteelSellQuantity(UpdateSteelSellQuantityRequest updateSteelSellQuantityRequest);
 
-    Page<GetActivityHistoryTrimResponse> executeGetActivityHistoryTrim(Integer rowId, Pageable pageable);
-
-    Downloadable exportGetActivityHistoryTrim(ExportType exportType, Integer rowId, Pageable pageable);
-
     Page<GetQuantitiesTestPackageCivilResponse> executeGetQuantitiesTestPackageCivil(String testPackage, Pageable pageable);
 
     Downloadable exportGetQuantitiesTestPackageCivil(ExportType exportType, String testPackage, Pageable pageable);
@@ -468,17 +436,13 @@ public interface Job1111QueryExecutorService {
 
     Downloadable exportGetReportDWRByDate(ExportType exportType, Date beginDate, Date endDate, Pageable pageable);
 
-    Page<GetActivityHistoryTestingResponse> executeGetActivityHistoryTesting(Integer rowId, Pageable pageable);
-
-    Downloadable exportGetActivityHistoryTesting(ExportType exportType, Integer rowId, Pageable pageable);
-
     Page<GetNoteCountResponse> executeGetNoteCount(Integer psaactivityId, Pageable pageable);
 
     Downloadable exportGetNoteCount(ExportType exportType, Integer psaactivityId, Pageable pageable);
 
-    Page<GetBidActivityMatchesByTestPackageResponse> executeGetBidActivityMatchesByTestPackage(String testPackage, Pageable pageable);
+    Page<GetActivityHistoryPipeTrimResponse> executeGetActivityHistoryPipeTrim(Integer rowId, Pageable pageable);
 
-    Downloadable exportGetBidActivityMatchesByTestPackage(ExportType exportType, String testPackage, Pageable pageable);
+    Downloadable exportGetActivityHistoryPipeTrim(ExportType exportType, Integer rowId, Pageable pageable);
 
     Page<GetReportDprbyDateResponse> executeGetReportDPRByDate(String foremanId, String superId, String managerId, Date startDate, Date endDate, Pageable pageable);
 
@@ -497,6 +461,10 @@ public interface Job1111QueryExecutorService {
     Page<GetQuantityTrimInstalledResponse> executeGetQuantityTrimInstalled(Integer bidId, Pageable pageable);
 
     Downloadable exportGetQuantityTrimInstalled(ExportType exportType, Integer bidId, Pageable pageable);
+
+    Page<GetActivityHistoryPipeDemoResponse> executeGetActivityHistoryPipeDemo(Integer rowId, Pageable pageable);
+
+    Downloadable exportGetActivityHistoryPipeDemo(ExportType exportType, Integer rowId, Pageable pageable);
 
 }
 

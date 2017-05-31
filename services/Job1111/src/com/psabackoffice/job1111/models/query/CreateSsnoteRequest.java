@@ -9,23 +9,26 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CreateSsnoteRequest implements Serializable {
 
-    @JsonProperty("PSAActivityID")
-    private Integer psaactivityId;
+    @NotNull
+    @JsonProperty("ActivityID")
+    private String activityId;
     @JsonProperty("CreatedBy")
     private Integer createdBy;
     @JsonProperty("Note")
     private String note;
 
-    public Integer getPsaactivityId() {
-        return this.psaactivityId;
+    public String getActivityId() {
+        return this.activityId;
     }
 
-    public void setPsaactivityId(Integer psaactivityId) {
-        this.psaactivityId = psaactivityId;
+    public void setActivityId(String activityId) {
+        this.activityId = activityId;
     }
 
     public Integer getCreatedBy() {
@@ -49,14 +52,14 @@ public class CreateSsnoteRequest implements Serializable {
         if (this == o) return true;
         if (!(o instanceof CreateSsnoteRequest)) return false;
         final CreateSsnoteRequest createSsnoteRequest = (CreateSsnoteRequest) o;
-        return Objects.equals(getPsaactivityId(), createSsnoteRequest.getPsaactivityId()) &&
+        return Objects.equals(getActivityId(), createSsnoteRequest.getActivityId()) &&
                 Objects.equals(getCreatedBy(), createSsnoteRequest.getCreatedBy()) &&
                 Objects.equals(getNote(), createSsnoteRequest.getNote());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPsaactivityId(),
+        return Objects.hash(getActivityId(),
                 getCreatedBy(),
                 getNote());
     }

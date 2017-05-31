@@ -12,57 +12,47 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-import org.joda.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistoryCivilMiscResponse implements Serializable {
 
-    @JsonProperty("ActivityType")
-    @ColumnAlias("ActivityType")
-    private Byte activityType;
     @JsonProperty("ID")
     @ColumnAlias("ID")
     private Integer id;
-    @JsonProperty("MiscDetailDrawingNumber")
-    @ColumnAlias("MiscDetailDrawingNumber")
-    private String miscDetailDrawingNumber;
-    @JsonProperty("MiscDrawingNumber")
-    @ColumnAlias("MiscDrawingNumber")
-    private String miscDrawingNumber;
+    @JsonProperty("ActivityID")
+    @ColumnAlias("ActivityID")
+    private Integer activityId;
     @JsonProperty("MiscFoundation")
     @ColumnAlias("MiscFoundation")
     private String miscFoundation;
+    @JsonProperty("MiscDrawingNumber")
+    @ColumnAlias("MiscDrawingNumber")
+    private String miscDrawingNumber;
+    @JsonProperty("MiscDetailDrawingNumber")
+    @ColumnAlias("MiscDetailDrawingNumber")
+    private String miscDetailDrawingNumber;
+    @JsonProperty("MiscPercentComplete")
+    @ColumnAlias("MiscPercentComplete")
+    private Float miscPercentComplete;
+    @JsonProperty("MiscRework")
+    @ColumnAlias("MiscRework")
+    private Short miscRework;
     @JsonProperty("MiscNotes")
     @ColumnAlias("MiscNotes")
     private String miscNotes;
-    @JsonProperty("MiscPercentComplete")
-    @ColumnAlias("MiscPercentComplete")
-    private BigDecimal miscPercentComplete;
-    @JsonProperty("MiscRework")
-    @ColumnAlias("MiscRework")
-    private Byte miscRework;
+    @JsonProperty("ActivityType")
+    @ColumnAlias("ActivityType")
+    private Short activityType;
     @JsonProperty("MiscTimeInForm")
     @ColumnAlias("MiscTimeInForm")
-    private Byte miscTimeInForm;
+    private Short miscTimeInForm;
     @JsonProperty("Rev")
     @ColumnAlias("Rev")
-    private Byte rev;
+    private Short rev;
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-    @JsonProperty("fk_SubmissionID")
-    @ColumnAlias("fk_SubmissionID")
-    private Integer fkSubmissionId;
-
-    public Byte getActivityType() {
-        return this.activityType;
-    }
-
-    public void setActivityType(Byte activityType) {
-        this.activityType = activityType;
-    }
 
     public Integer getId() {
         return this.id;
@@ -72,20 +62,12 @@ public class GetActivityHistoryCivilMiscResponse implements Serializable {
         this.id = id;
     }
 
-    public String getMiscDetailDrawingNumber() {
-        return this.miscDetailDrawingNumber;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setMiscDetailDrawingNumber(String miscDetailDrawingNumber) {
-        this.miscDetailDrawingNumber = miscDetailDrawingNumber;
-    }
-
-    public String getMiscDrawingNumber() {
-        return this.miscDrawingNumber;
-    }
-
-    public void setMiscDrawingNumber(String miscDrawingNumber) {
-        this.miscDrawingNumber = miscDrawingNumber;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     public String getMiscFoundation() {
@@ -96,6 +78,38 @@ public class GetActivityHistoryCivilMiscResponse implements Serializable {
         this.miscFoundation = miscFoundation;
     }
 
+    public String getMiscDrawingNumber() {
+        return this.miscDrawingNumber;
+    }
+
+    public void setMiscDrawingNumber(String miscDrawingNumber) {
+        this.miscDrawingNumber = miscDrawingNumber;
+    }
+
+    public String getMiscDetailDrawingNumber() {
+        return this.miscDetailDrawingNumber;
+    }
+
+    public void setMiscDetailDrawingNumber(String miscDetailDrawingNumber) {
+        this.miscDetailDrawingNumber = miscDetailDrawingNumber;
+    }
+
+    public Float getMiscPercentComplete() {
+        return this.miscPercentComplete;
+    }
+
+    public void setMiscPercentComplete(Float miscPercentComplete) {
+        this.miscPercentComplete = miscPercentComplete;
+    }
+
+    public Short getMiscRework() {
+        return this.miscRework;
+    }
+
+    public void setMiscRework(Short miscRework) {
+        this.miscRework = miscRework;
+    }
+
     public String getMiscNotes() {
         return this.miscNotes;
     }
@@ -104,35 +118,27 @@ public class GetActivityHistoryCivilMiscResponse implements Serializable {
         this.miscNotes = miscNotes;
     }
 
-    public BigDecimal getMiscPercentComplete() {
-        return this.miscPercentComplete;
+    public Short getActivityType() {
+        return this.activityType;
     }
 
-    public void setMiscPercentComplete(BigDecimal miscPercentComplete) {
-        this.miscPercentComplete = miscPercentComplete;
+    public void setActivityType(Short activityType) {
+        this.activityType = activityType;
     }
 
-    public Byte getMiscRework() {
-        return this.miscRework;
-    }
-
-    public void setMiscRework(Byte miscRework) {
-        this.miscRework = miscRework;
-    }
-
-    public Byte getMiscTimeInForm() {
+    public Short getMiscTimeInForm() {
         return this.miscTimeInForm;
     }
 
-    public void setMiscTimeInForm(Byte miscTimeInForm) {
+    public void setMiscTimeInForm(Short miscTimeInForm) {
         this.miscTimeInForm = miscTimeInForm;
     }
 
-    public Byte getRev() {
+    public Short getRev() {
         return this.rev;
     }
 
-    public void setRev(Byte rev) {
+    public void setRev(Short rev) {
         this.rev = rev;
     }
 
@@ -144,46 +150,38 @@ public class GetActivityHistoryCivilMiscResponse implements Serializable {
         this.timeStamp = timeStamp;
     }
 
-    public Integer getFkSubmissionId() {
-        return this.fkSubmissionId;
-    }
-
-    public void setFkSubmissionId(Integer fkSubmissionId) {
-        this.fkSubmissionId = fkSubmissionId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistoryCivilMiscResponse)) return false;
         final GetActivityHistoryCivilMiscResponse getActivityHistoryCivilMiscResponse = (GetActivityHistoryCivilMiscResponse) o;
-        return Objects.equals(getActivityType(), getActivityHistoryCivilMiscResponse.getActivityType()) &&
-                Objects.equals(getId(), getActivityHistoryCivilMiscResponse.getId()) &&
-                Objects.equals(getMiscDetailDrawingNumber(), getActivityHistoryCivilMiscResponse.getMiscDetailDrawingNumber()) &&
-                Objects.equals(getMiscDrawingNumber(), getActivityHistoryCivilMiscResponse.getMiscDrawingNumber()) &&
+        return Objects.equals(getId(), getActivityHistoryCivilMiscResponse.getId()) &&
+                Objects.equals(getActivityId(), getActivityHistoryCivilMiscResponse.getActivityId()) &&
                 Objects.equals(getMiscFoundation(), getActivityHistoryCivilMiscResponse.getMiscFoundation()) &&
-                Objects.equals(getMiscNotes(), getActivityHistoryCivilMiscResponse.getMiscNotes()) &&
+                Objects.equals(getMiscDrawingNumber(), getActivityHistoryCivilMiscResponse.getMiscDrawingNumber()) &&
+                Objects.equals(getMiscDetailDrawingNumber(), getActivityHistoryCivilMiscResponse.getMiscDetailDrawingNumber()) &&
                 Objects.equals(getMiscPercentComplete(), getActivityHistoryCivilMiscResponse.getMiscPercentComplete()) &&
                 Objects.equals(getMiscRework(), getActivityHistoryCivilMiscResponse.getMiscRework()) &&
+                Objects.equals(getMiscNotes(), getActivityHistoryCivilMiscResponse.getMiscNotes()) &&
+                Objects.equals(getActivityType(), getActivityHistoryCivilMiscResponse.getActivityType()) &&
                 Objects.equals(getMiscTimeInForm(), getActivityHistoryCivilMiscResponse.getMiscTimeInForm()) &&
                 Objects.equals(getRev(), getActivityHistoryCivilMiscResponse.getRev()) &&
-                Objects.equals(getTimeStamp(), getActivityHistoryCivilMiscResponse.getTimeStamp()) &&
-                Objects.equals(getFkSubmissionId(), getActivityHistoryCivilMiscResponse.getFkSubmissionId());
+                Objects.equals(getTimeStamp(), getActivityHistoryCivilMiscResponse.getTimeStamp());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getActivityType(),
-                getId(),
-                getMiscDetailDrawingNumber(),
-                getMiscDrawingNumber(),
+        return Objects.hash(getId(),
+                getActivityId(),
                 getMiscFoundation(),
-                getMiscNotes(),
+                getMiscDrawingNumber(),
+                getMiscDetailDrawingNumber(),
                 getMiscPercentComplete(),
                 getMiscRework(),
+                getMiscNotes(),
+                getActivityType(),
                 getMiscTimeInForm(),
                 getRev(),
-                getTimeStamp(),
-                getFkSubmissionId());
+                getTimeStamp());
     }
 }

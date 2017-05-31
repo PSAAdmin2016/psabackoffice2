@@ -8,14 +8,13 @@ package com.psabackoffice.job1111.models.query;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class GetBidChangeLogByIdResponse implements Serializable {
+public class GetBidActivityMatchesByTestPackagePipeResponse implements Serializable {
 
     @JsonProperty("ID")
     @ColumnAlias("ID")
@@ -140,6 +139,33 @@ public class GetBidChangeLogByIdResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
+    @JsonProperty("ReadyForTestingInstalled")
+    @ColumnAlias("ReadyForTestingInstalled")
+    private BigInteger readyForTestingInstalled;
+    @JsonProperty("HydroInstalled")
+    @ColumnAlias("HydroInstalled")
+    private BigInteger hydroInstalled;
+    @JsonProperty("ClientTurnoverInstalled")
+    @ColumnAlias("ClientTurnoverInstalled")
+    private BigInteger clientTurnoverInstalled;
+    @JsonProperty("ReadyForTestingHours")
+    @ColumnAlias("ReadyForTestingHours")
+    private BigDecimal readyForTestingHours;
+    @JsonProperty("HydroHours")
+    @ColumnAlias("HydroHours")
+    private BigDecimal hydroHours;
+    @JsonProperty("ClientTurnoverHours")
+    @ColumnAlias("ClientTurnoverHours")
+    private BigDecimal clientTurnoverHours;
+    @JsonProperty("EarnedReadyForTestingHours")
+    @ColumnAlias("EarnedReadyForTestingHours")
+    private BigDecimal earnedReadyForTestingHours;
+    @JsonProperty("EarnedHydroHours")
+    @ColumnAlias("EarnedHydroHours")
+    private BigDecimal earnedHydroHours;
+    @JsonProperty("EarnedClientTurnoverHours")
+    @ColumnAlias("EarnedClientTurnoverHours")
+    private BigDecimal earnedClientTurnoverHours;
 
     public Integer getId() {
         return this.id;
@@ -469,52 +495,133 @@ public class GetBidChangeLogByIdResponse implements Serializable {
         this.timeStamp = timeStamp;
     }
 
+    public BigInteger getReadyForTestingInstalled() {
+        return this.readyForTestingInstalled;
+    }
+
+    public void setReadyForTestingInstalled(BigInteger readyForTestingInstalled) {
+        this.readyForTestingInstalled = readyForTestingInstalled;
+    }
+
+    public BigInteger getHydroInstalled() {
+        return this.hydroInstalled;
+    }
+
+    public void setHydroInstalled(BigInteger hydroInstalled) {
+        this.hydroInstalled = hydroInstalled;
+    }
+
+    public BigInteger getClientTurnoverInstalled() {
+        return this.clientTurnoverInstalled;
+    }
+
+    public void setClientTurnoverInstalled(BigInteger clientTurnoverInstalled) {
+        this.clientTurnoverInstalled = clientTurnoverInstalled;
+    }
+
+    public BigDecimal getReadyForTestingHours() {
+        return this.readyForTestingHours;
+    }
+
+    public void setReadyForTestingHours(BigDecimal readyForTestingHours) {
+        this.readyForTestingHours = readyForTestingHours;
+    }
+
+    public BigDecimal getHydroHours() {
+        return this.hydroHours;
+    }
+
+    public void setHydroHours(BigDecimal hydroHours) {
+        this.hydroHours = hydroHours;
+    }
+
+    public BigDecimal getClientTurnoverHours() {
+        return this.clientTurnoverHours;
+    }
+
+    public void setClientTurnoverHours(BigDecimal clientTurnoverHours) {
+        this.clientTurnoverHours = clientTurnoverHours;
+    }
+
+    public BigDecimal getEarnedReadyForTestingHours() {
+        return this.earnedReadyForTestingHours;
+    }
+
+    public void setEarnedReadyForTestingHours(BigDecimal earnedReadyForTestingHours) {
+        this.earnedReadyForTestingHours = earnedReadyForTestingHours;
+    }
+
+    public BigDecimal getEarnedHydroHours() {
+        return this.earnedHydroHours;
+    }
+
+    public void setEarnedHydroHours(BigDecimal earnedHydroHours) {
+        this.earnedHydroHours = earnedHydroHours;
+    }
+
+    public BigDecimal getEarnedClientTurnoverHours() {
+        return this.earnedClientTurnoverHours;
+    }
+
+    public void setEarnedClientTurnoverHours(BigDecimal earnedClientTurnoverHours) {
+        this.earnedClientTurnoverHours = earnedClientTurnoverHours;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GetBidChangeLogByIdResponse)) return false;
-        final GetBidChangeLogByIdResponse getBidChangeLogByIdResponse = (GetBidChangeLogByIdResponse) o;
-        return Objects.equals(getId(), getBidChangeLogByIdResponse.getId()) &&
-                Objects.equals(getBidId(), getBidChangeLogByIdResponse.getBidId()) &&
-                Objects.equals(getScope(), getBidChangeLogByIdResponse.getScope()) &&
-                Objects.equals(getPhase(), getBidChangeLogByIdResponse.getPhase()) &&
-                Objects.equals(getArea(), getBidChangeLogByIdResponse.getArea()) &&
-                Objects.equals(getLocation(), getBidChangeLogByIdResponse.getLocation()) &&
-                Objects.equals(getElevation(), getBidChangeLogByIdResponse.getElevation()) &&
-                Objects.equals(getCu(), getBidChangeLogByIdResponse.getCu()) &&
-                Objects.equals(getP6id(), getBidChangeLogByIdResponse.getP6id()) &&
-                Objects.equals(getP6description(), getBidChangeLogByIdResponse.getP6description()) &&
-                Objects.equals(getStage(), getBidChangeLogByIdResponse.getStage()) &&
-                Objects.equals(getTestPackageNumber(), getBidChangeLogByIdResponse.getTestPackageNumber()) &&
-                Objects.equals(getCostCode(), getBidChangeLogByIdResponse.getCostCode()) &&
-                Objects.equals(getLineNumber(), getBidChangeLogByIdResponse.getLineNumber()) &&
-                Objects.equals(getEngDrawingNumber(), getBidChangeLogByIdResponse.getEngDrawingNumber()) &&
-                Objects.equals(getSheetNumber(), getBidChangeLogByIdResponse.getSheetNumber()) &&
-                Objects.equals(getRevisionNumber(), getBidChangeLogByIdResponse.getRevisionNumber()) &&
-                Objects.equals(getSystem(), getBidChangeLogByIdResponse.getSystem()) &&
-                Objects.equals(getService(), getBidChangeLogByIdResponse.getService()) &&
-                Objects.equals(getClientPipeSpec(), getBidChangeLogByIdResponse.getClientPipeSpec()) &&
-                Objects.equals(getMaterialCode(), getBidChangeLogByIdResponse.getMaterialCode()) &&
-                Objects.equals(getDescription(), getBidChangeLogByIdResponse.getDescription()) &&
-                Objects.equals(getComponentNumber(), getBidChangeLogByIdResponse.getComponentNumber()) &&
-                Objects.equals(getEct(), getBidChangeLogByIdResponse.getEct()) &&
-                Objects.equals(getPipingActivityType(), getBidChangeLogByIdResponse.getPipingActivityType()) &&
-                Objects.equals(getPipeSize(), getBidChangeLogByIdResponse.getPipeSize()) &&
-                Objects.equals(getTakeOffQuantity(), getBidChangeLogByIdResponse.getTakeOffQuantity()) &&
-                Objects.equals(getQuantityUnit(), getBidChangeLogByIdResponse.getQuantityUnit()) &&
-                Objects.equals(getEstimatedHours(), getBidChangeLogByIdResponse.getEstimatedHours()) &&
-                Objects.equals(getWbs1(), getBidChangeLogByIdResponse.getWbs1()) &&
-                Objects.equals(getWbs2(), getBidChangeLogByIdResponse.getWbs2()) &&
-                Objects.equals(getWbs3(), getBidChangeLogByIdResponse.getWbs3()) &&
-                Objects.equals(getWbs4(), getBidChangeLogByIdResponse.getWbs4()) &&
-                Objects.equals(getWbs5(), getBidChangeLogByIdResponse.getWbs5()) &&
-                Objects.equals(getWbs6(), getBidChangeLogByIdResponse.getWbs6()) &&
-                Objects.equals(getWbs7(), getBidChangeLogByIdResponse.getWbs7()) &&
-                Objects.equals(getWbs8(), getBidChangeLogByIdResponse.getWbs8()) &&
-                Objects.equals(getWbs9(), getBidChangeLogByIdResponse.getWbs9()) &&
-                Objects.equals(getWbs10(), getBidChangeLogByIdResponse.getWbs10()) &&
-                Objects.equals(getRev(), getBidChangeLogByIdResponse.getRev()) &&
-                Objects.equals(getTimeStamp(), getBidChangeLogByIdResponse.getTimeStamp());
+        if (!(o instanceof GetBidActivityMatchesByTestPackagePipeResponse)) return false;
+        final GetBidActivityMatchesByTestPackagePipeResponse getBidActivityMatchesByTestPackagePipeResponse = (GetBidActivityMatchesByTestPackagePipeResponse) o;
+        return Objects.equals(getId(), getBidActivityMatchesByTestPackagePipeResponse.getId()) &&
+                Objects.equals(getBidId(), getBidActivityMatchesByTestPackagePipeResponse.getBidId()) &&
+                Objects.equals(getScope(), getBidActivityMatchesByTestPackagePipeResponse.getScope()) &&
+                Objects.equals(getPhase(), getBidActivityMatchesByTestPackagePipeResponse.getPhase()) &&
+                Objects.equals(getArea(), getBidActivityMatchesByTestPackagePipeResponse.getArea()) &&
+                Objects.equals(getLocation(), getBidActivityMatchesByTestPackagePipeResponse.getLocation()) &&
+                Objects.equals(getElevation(), getBidActivityMatchesByTestPackagePipeResponse.getElevation()) &&
+                Objects.equals(getCu(), getBidActivityMatchesByTestPackagePipeResponse.getCu()) &&
+                Objects.equals(getP6id(), getBidActivityMatchesByTestPackagePipeResponse.getP6id()) &&
+                Objects.equals(getP6description(), getBidActivityMatchesByTestPackagePipeResponse.getP6description()) &&
+                Objects.equals(getStage(), getBidActivityMatchesByTestPackagePipeResponse.getStage()) &&
+                Objects.equals(getTestPackageNumber(), getBidActivityMatchesByTestPackagePipeResponse.getTestPackageNumber()) &&
+                Objects.equals(getCostCode(), getBidActivityMatchesByTestPackagePipeResponse.getCostCode()) &&
+                Objects.equals(getLineNumber(), getBidActivityMatchesByTestPackagePipeResponse.getLineNumber()) &&
+                Objects.equals(getEngDrawingNumber(), getBidActivityMatchesByTestPackagePipeResponse.getEngDrawingNumber()) &&
+                Objects.equals(getSheetNumber(), getBidActivityMatchesByTestPackagePipeResponse.getSheetNumber()) &&
+                Objects.equals(getRevisionNumber(), getBidActivityMatchesByTestPackagePipeResponse.getRevisionNumber()) &&
+                Objects.equals(getSystem(), getBidActivityMatchesByTestPackagePipeResponse.getSystem()) &&
+                Objects.equals(getService(), getBidActivityMatchesByTestPackagePipeResponse.getService()) &&
+                Objects.equals(getClientPipeSpec(), getBidActivityMatchesByTestPackagePipeResponse.getClientPipeSpec()) &&
+                Objects.equals(getMaterialCode(), getBidActivityMatchesByTestPackagePipeResponse.getMaterialCode()) &&
+                Objects.equals(getDescription(), getBidActivityMatchesByTestPackagePipeResponse.getDescription()) &&
+                Objects.equals(getComponentNumber(), getBidActivityMatchesByTestPackagePipeResponse.getComponentNumber()) &&
+                Objects.equals(getEct(), getBidActivityMatchesByTestPackagePipeResponse.getEct()) &&
+                Objects.equals(getPipingActivityType(), getBidActivityMatchesByTestPackagePipeResponse.getPipingActivityType()) &&
+                Objects.equals(getPipeSize(), getBidActivityMatchesByTestPackagePipeResponse.getPipeSize()) &&
+                Objects.equals(getTakeOffQuantity(), getBidActivityMatchesByTestPackagePipeResponse.getTakeOffQuantity()) &&
+                Objects.equals(getQuantityUnit(), getBidActivityMatchesByTestPackagePipeResponse.getQuantityUnit()) &&
+                Objects.equals(getEstimatedHours(), getBidActivityMatchesByTestPackagePipeResponse.getEstimatedHours()) &&
+                Objects.equals(getWbs1(), getBidActivityMatchesByTestPackagePipeResponse.getWbs1()) &&
+                Objects.equals(getWbs2(), getBidActivityMatchesByTestPackagePipeResponse.getWbs2()) &&
+                Objects.equals(getWbs3(), getBidActivityMatchesByTestPackagePipeResponse.getWbs3()) &&
+                Objects.equals(getWbs4(), getBidActivityMatchesByTestPackagePipeResponse.getWbs4()) &&
+                Objects.equals(getWbs5(), getBidActivityMatchesByTestPackagePipeResponse.getWbs5()) &&
+                Objects.equals(getWbs6(), getBidActivityMatchesByTestPackagePipeResponse.getWbs6()) &&
+                Objects.equals(getWbs7(), getBidActivityMatchesByTestPackagePipeResponse.getWbs7()) &&
+                Objects.equals(getWbs8(), getBidActivityMatchesByTestPackagePipeResponse.getWbs8()) &&
+                Objects.equals(getWbs9(), getBidActivityMatchesByTestPackagePipeResponse.getWbs9()) &&
+                Objects.equals(getWbs10(), getBidActivityMatchesByTestPackagePipeResponse.getWbs10()) &&
+                Objects.equals(getRev(), getBidActivityMatchesByTestPackagePipeResponse.getRev()) &&
+                Objects.equals(getTimeStamp(), getBidActivityMatchesByTestPackagePipeResponse.getTimeStamp()) &&
+                Objects.equals(getReadyForTestingInstalled(), getBidActivityMatchesByTestPackagePipeResponse.getReadyForTestingInstalled()) &&
+                Objects.equals(getHydroInstalled(), getBidActivityMatchesByTestPackagePipeResponse.getHydroInstalled()) &&
+                Objects.equals(getClientTurnoverInstalled(), getBidActivityMatchesByTestPackagePipeResponse.getClientTurnoverInstalled()) &&
+                Objects.equals(getReadyForTestingHours(), getBidActivityMatchesByTestPackagePipeResponse.getReadyForTestingHours()) &&
+                Objects.equals(getHydroHours(), getBidActivityMatchesByTestPackagePipeResponse.getHydroHours()) &&
+                Objects.equals(getClientTurnoverHours(), getBidActivityMatchesByTestPackagePipeResponse.getClientTurnoverHours()) &&
+                Objects.equals(getEarnedReadyForTestingHours(), getBidActivityMatchesByTestPackagePipeResponse.getEarnedReadyForTestingHours()) &&
+                Objects.equals(getEarnedHydroHours(), getBidActivityMatchesByTestPackagePipeResponse.getEarnedHydroHours()) &&
+                Objects.equals(getEarnedClientTurnoverHours(), getBidActivityMatchesByTestPackagePipeResponse.getEarnedClientTurnoverHours());
     }
 
     @Override
@@ -559,6 +666,15 @@ public class GetBidChangeLogByIdResponse implements Serializable {
                 getWbs9(),
                 getWbs10(),
                 getRev(),
-                getTimeStamp());
+                getTimeStamp(),
+                getReadyForTestingInstalled(),
+                getHydroInstalled(),
+                getClientTurnoverInstalled(),
+                getReadyForTestingHours(),
+                getHydroHours(),
+                getClientTurnoverHours(),
+                getEarnedReadyForTestingHours(),
+                getEarnedHydroHours(),
+                getEarnedClientTurnoverHours());
     }
 }
