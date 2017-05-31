@@ -74,10 +74,10 @@
       "value" : "bind:Widgets.livelistBidActivities.selecteditem.BidID",
       "type" : "integer"
     } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetSteelBidActivityQuantitiesResponse",
+    "type" : "com.psabackoffice.job1111.models.query.GetBidActivityQuantitiesSteelResponse",
     "service" : "Job1111",
-    "operation" : "executeGetSteelBidActivityQuantities",
-    "operationId" : "QueryExecutionController_executeGetSteelBidActivityQuantities",
+    "operation" : "executeGetBidActivityQuantitiesSteel",
+    "operationId" : "QueryExecutionController_executeGetBidActivityQuantitiesSteel",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],

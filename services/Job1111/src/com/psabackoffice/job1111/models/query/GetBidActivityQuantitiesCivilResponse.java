@@ -8,14 +8,13 @@ package com.psabackoffice.job1111.models.query;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class GetCivilBidActivityQuantitiesResponse implements Serializable {
+public class GetBidActivityQuantitiesCivilResponse implements Serializable {
 
     @JsonProperty("BidID")
     @ColumnAlias("BidID")
@@ -87,14 +86,14 @@ public class GetCivilBidActivityQuantitiesResponse implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GetCivilBidActivityQuantitiesResponse)) return false;
-        final GetCivilBidActivityQuantitiesResponse getCivilBidActivityQuantitiesResponse = (GetCivilBidActivityQuantitiesResponse) o;
-        return Objects.equals(getBidId(), getCivilBidActivityQuantitiesResponse.getBidId()) &&
-                Objects.equals(getTakeOffQuantity(), getCivilBidActivityQuantitiesResponse.getTakeOffQuantity()) &&
-                Objects.equals(getQuantityUnit(), getCivilBidActivityQuantitiesResponse.getQuantityUnit()) &&
-                Objects.equals(getFahours(), getCivilBidActivityQuantitiesResponse.getFahours()) &&
-                Objects.equals(getInstalledQuantity(), getCivilBidActivityQuantitiesResponse.getInstalledQuantity()) &&
-                Objects.equals(getInstalledPercent(), getCivilBidActivityQuantitiesResponse.getInstalledPercent());
+        if (!(o instanceof GetBidActivityQuantitiesCivilResponse)) return false;
+        final GetBidActivityQuantitiesCivilResponse getBidActivityQuantitiesCivilResponse = (GetBidActivityQuantitiesCivilResponse) o;
+        return Objects.equals(getBidId(), getBidActivityQuantitiesCivilResponse.getBidId()) &&
+                Objects.equals(getTakeOffQuantity(), getBidActivityQuantitiesCivilResponse.getTakeOffQuantity()) &&
+                Objects.equals(getQuantityUnit(), getBidActivityQuantitiesCivilResponse.getQuantityUnit()) &&
+                Objects.equals(getFahours(), getBidActivityQuantitiesCivilResponse.getFahours()) &&
+                Objects.equals(getInstalledQuantity(), getBidActivityQuantitiesCivilResponse.getInstalledQuantity()) &&
+                Objects.equals(getInstalledPercent(), getBidActivityQuantitiesCivilResponse.getInstalledPercent());
     }
 
     @Override

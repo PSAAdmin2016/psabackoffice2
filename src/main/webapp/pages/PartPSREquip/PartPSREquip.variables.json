@@ -469,10 +469,10 @@
       "value" : "bind:Widgets.livelistBidActivities.selecteditem.bidId",
       "type" : "string"
     } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetEquipBidActivityQuantitesResponse",
+    "type" : "com.psabackoffice.job1111.models.query.GetBidActivityQuantitesEquipResponse",
     "service" : "Job1111",
-    "operation" : "executeGetEquipBidActivityQuantites",
-    "operationId" : "QueryExecutionController_executeGetEquipBidActivityQuantites",
+    "operation" : "executeGetBidActivityQuantitesEquip",
+    "operationId" : "QueryExecutionController_executeGetBidActivityQuantitesEquip",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],

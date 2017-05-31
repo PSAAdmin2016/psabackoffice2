@@ -11855,10 +11855,10 @@
       "value" : "bind:Variables.liveGetSubsTesting.dataSet.data[$i].testingTestPackageNumber",
       "type" : "string"
     } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetDrawingsByTestPackageResponse",
+    "type" : "com.psabackoffice.job1111.models.query.GetDrawingsByTestPackagePipeResponse",
     "service" : "Job1111",
-    "operation" : "executeGetDrawingsByTestPackage",
-    "operationId" : "QueryExecutionController_executeGetDrawingsByTestPackage",
+    "operation" : "executeGetDrawingsByTestPackagePipe",
+    "operationId" : "QueryExecutionController_executeGetDrawingsByTestPackagePipe",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],

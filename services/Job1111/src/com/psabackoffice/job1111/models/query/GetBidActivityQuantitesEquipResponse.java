@@ -8,14 +8,13 @@ package com.psabackoffice.job1111.models.query;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class GetEquipBidActivityQuantitesResponse implements Serializable {
+public class GetBidActivityQuantitesEquipResponse implements Serializable {
 
     @ColumnAlias("BidID")
     private Integer bidId;
@@ -71,13 +70,13 @@ public class GetEquipBidActivityQuantitesResponse implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GetEquipBidActivityQuantitesResponse)) return false;
-        final GetEquipBidActivityQuantitesResponse getEquipBidActivityQuantitesResponse = (GetEquipBidActivityQuantitesResponse) o;
-        return Objects.equals(getBidId(), getEquipBidActivityQuantitesResponse.getBidId()) &&
-                Objects.equals(getTakeOffQuantity(), getEquipBidActivityQuantitesResponse.getTakeOffQuantity()) &&
-                Objects.equals(getQuantityUnit(), getEquipBidActivityQuantitesResponse.getQuantityUnit()) &&
-                Objects.equals(getFahours(), getEquipBidActivityQuantitesResponse.getFahours()) &&
-                Objects.equals(getInstalledPercent(), getEquipBidActivityQuantitesResponse.getInstalledPercent());
+        if (!(o instanceof GetBidActivityQuantitesEquipResponse)) return false;
+        final GetBidActivityQuantitesEquipResponse getBidActivityQuantitesEquipResponse = (GetBidActivityQuantitesEquipResponse) o;
+        return Objects.equals(getBidId(), getBidActivityQuantitesEquipResponse.getBidId()) &&
+                Objects.equals(getTakeOffQuantity(), getBidActivityQuantitesEquipResponse.getTakeOffQuantity()) &&
+                Objects.equals(getQuantityUnit(), getBidActivityQuantitesEquipResponse.getQuantityUnit()) &&
+                Objects.equals(getFahours(), getBidActivityQuantitesEquipResponse.getFahours()) &&
+                Objects.equals(getInstalledPercent(), getBidActivityQuantitesEquipResponse.getInstalledPercent());
     }
 
     @Override

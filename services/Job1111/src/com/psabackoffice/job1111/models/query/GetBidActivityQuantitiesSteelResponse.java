@@ -15,7 +15,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class GetSteelBidActivityQuantitiesResponse implements Serializable {
+public class GetBidActivityQuantitiesSteelResponse implements Serializable {
 
     @JsonProperty("BidID")
     @ColumnAlias("BidID")
@@ -230,27 +230,27 @@ public class GetSteelBidActivityQuantitiesResponse implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GetSteelBidActivityQuantitiesResponse)) return false;
-        final GetSteelBidActivityQuantitiesResponse getSteelBidActivityQuantitiesResponse = (GetSteelBidActivityQuantitiesResponse) o;
-        return Objects.equals(getBidId(), getSteelBidActivityQuantitiesResponse.getBidId()) &&
-                Objects.equals(getSteelQuantity(), getSteelBidActivityQuantitiesResponse.getSteelQuantity()) &&
-                Objects.equals(getWeldQuantity(), getSteelBidActivityQuantitiesResponse.getWeldQuantity()) &&
-                Objects.equals(getShakeHours(), getSteelBidActivityQuantitiesResponse.getShakeHours()) &&
-                Objects.equals(getErectHours(), getSteelBidActivityQuantitiesResponse.getErectHours()) &&
-                Objects.equals(getBoltoutHours(), getSteelBidActivityQuantitiesResponse.getBoltoutHours()) &&
-                Objects.equals(getImpHours(), getSteelBidActivityQuantitiesResponse.getImpHours()) &&
-                Objects.equals(getWeldHours(), getSteelBidActivityQuantitiesResponse.getWeldHours()) &&
-                Objects.equals(getSellHours(), getSteelBidActivityQuantitiesResponse.getSellHours()) &&
-                Objects.equals(getDemoHours(), getSteelBidActivityQuantitiesResponse.getDemoHours()) &&
-                Objects.equals(getMiscHours(), getSteelBidActivityQuantitiesResponse.getMiscHours()) &&
-                Objects.equals(getInstalledShake(), getSteelBidActivityQuantitiesResponse.getInstalledShake()) &&
-                Objects.equals(getInstalledErect(), getSteelBidActivityQuantitiesResponse.getInstalledErect()) &&
-                Objects.equals(getInstalledBoltout(), getSteelBidActivityQuantitiesResponse.getInstalledBoltout()) &&
-                Objects.equals(getInstalledImp(), getSteelBidActivityQuantitiesResponse.getInstalledImp()) &&
-                Objects.equals(getInstalledWeld(), getSteelBidActivityQuantitiesResponse.getInstalledWeld()) &&
-                Objects.equals(getInstalledSell(), getSteelBidActivityQuantitiesResponse.getInstalledSell()) &&
-                Objects.equals(getInstalledDemo(), getSteelBidActivityQuantitiesResponse.getInstalledDemo()) &&
-                Objects.equals(getInstalledMisc(), getSteelBidActivityQuantitiesResponse.getInstalledMisc());
+        if (!(o instanceof GetBidActivityQuantitiesSteelResponse)) return false;
+        final GetBidActivityQuantitiesSteelResponse getBidActivityQuantitiesSteelResponse = (GetBidActivityQuantitiesSteelResponse) o;
+        return Objects.equals(getBidId(), getBidActivityQuantitiesSteelResponse.getBidId()) &&
+                Objects.equals(getSteelQuantity(), getBidActivityQuantitiesSteelResponse.getSteelQuantity()) &&
+                Objects.equals(getWeldQuantity(), getBidActivityQuantitiesSteelResponse.getWeldQuantity()) &&
+                Objects.equals(getShakeHours(), getBidActivityQuantitiesSteelResponse.getShakeHours()) &&
+                Objects.equals(getErectHours(), getBidActivityQuantitiesSteelResponse.getErectHours()) &&
+                Objects.equals(getBoltoutHours(), getBidActivityQuantitiesSteelResponse.getBoltoutHours()) &&
+                Objects.equals(getImpHours(), getBidActivityQuantitiesSteelResponse.getImpHours()) &&
+                Objects.equals(getWeldHours(), getBidActivityQuantitiesSteelResponse.getWeldHours()) &&
+                Objects.equals(getSellHours(), getBidActivityQuantitiesSteelResponse.getSellHours()) &&
+                Objects.equals(getDemoHours(), getBidActivityQuantitiesSteelResponse.getDemoHours()) &&
+                Objects.equals(getMiscHours(), getBidActivityQuantitiesSteelResponse.getMiscHours()) &&
+                Objects.equals(getInstalledShake(), getBidActivityQuantitiesSteelResponse.getInstalledShake()) &&
+                Objects.equals(getInstalledErect(), getBidActivityQuantitiesSteelResponse.getInstalledErect()) &&
+                Objects.equals(getInstalledBoltout(), getBidActivityQuantitiesSteelResponse.getInstalledBoltout()) &&
+                Objects.equals(getInstalledImp(), getBidActivityQuantitiesSteelResponse.getInstalledImp()) &&
+                Objects.equals(getInstalledWeld(), getBidActivityQuantitiesSteelResponse.getInstalledWeld()) &&
+                Objects.equals(getInstalledSell(), getBidActivityQuantitiesSteelResponse.getInstalledSell()) &&
+                Objects.equals(getInstalledDemo(), getBidActivityQuantitiesSteelResponse.getInstalledDemo()) &&
+                Objects.equals(getInstalledMisc(), getBidActivityQuantitiesSteelResponse.getInstalledMisc());
     }
 
     @Override

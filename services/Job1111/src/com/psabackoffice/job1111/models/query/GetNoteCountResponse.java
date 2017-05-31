@@ -19,13 +19,13 @@ public class GetNoteCountResponse implements Serializable {
 
     @JsonProperty("NoteCount")
     @ColumnAlias("NoteCount")
-    private BigInteger noteCount;
+    private Long noteCount;
 
-    public BigInteger getNoteCount() {
+    public Long getNoteCount() {
         return this.noteCount;
     }
 
-    public void setNoteCount(BigInteger noteCount) {
+    public void setNoteCount(Long noteCount) {
         this.noteCount = noteCount;
     }
 

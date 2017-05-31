@@ -14,7 +14,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class GetBidActivityQuantityResponse implements Serializable {
+public class GetBidActivityQuantitiesPipeResponse implements Serializable {
 
     @JsonProperty("TakeOffQuantity")
     @ColumnAlias("TakeOffQuantity")
@@ -53,11 +53,11 @@ public class GetBidActivityQuantityResponse implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GetBidActivityQuantityResponse)) return false;
-        final GetBidActivityQuantityResponse getBidActivityQuantityResponse = (GetBidActivityQuantityResponse) o;
-        return Objects.equals(getTakeOffQuantity(), getBidActivityQuantityResponse.getTakeOffQuantity()) &&
-                Objects.equals(getQuantityUnit(), getBidActivityQuantityResponse.getQuantityUnit()) &&
-                Objects.equals(getEstimatedHours(), getBidActivityQuantityResponse.getEstimatedHours());
+        if (!(o instanceof GetBidActivityQuantitiesPipeResponse)) return false;
+        final GetBidActivityQuantitiesPipeResponse getBidActivityQuantitiesPipeResponse = (GetBidActivityQuantitiesPipeResponse) o;
+        return Objects.equals(getTakeOffQuantity(), getBidActivityQuantitiesPipeResponse.getTakeOffQuantity()) &&
+                Objects.equals(getQuantityUnit(), getBidActivityQuantitiesPipeResponse.getQuantityUnit()) &&
+                Objects.equals(getEstimatedHours(), getBidActivityQuantitiesPipeResponse.getEstimatedHours());
     }
 
     @Override

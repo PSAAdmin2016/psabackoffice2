@@ -4429,10 +4429,10 @@
       "value" : "bind:Widgets.livelistBidActivities.selecteditem.BidID",
       "type" : "integer"
     } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetBidActivityQuantityResponse",
+    "type" : "com.psabackoffice.job1111.models.query.GetBidActivityQuantitiesPipeResponse",
     "service" : "Job1111",
-    "operation" : "executeGetBidActivityQuantity",
-    "operationId" : "QueryExecutionController_executeGetBidActivityQuantity",
+    "operation" : "executeGetBidActivityQuantitiesPipe",
+    "operationId" : "QueryExecutionController_executeGetBidActivityQuantitiesPipe",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : {

@@ -69,9 +69,6 @@ public interface Job1111QueryExecutorService_V1 {
     public int executeUpdateSteelMiscQuantity(Integer quantity, Integer rowId);
 
     @Deprecated
-    public Page<Object> executeGetDrawingsByTestPackage(Pageable pageable, String testPackage);
-
-    @Deprecated
     public int executeUpdateMisc(String drawingNumber, String lineNumber, String sheetNumber, Integer quantity, Integer rework, String notes, Integer rowId);
 
     @Deprecated
@@ -118,6 +115,9 @@ public interface Job1111QueryExecutorService_V1 {
 
     @Deprecated
     public Page<Object> executeGetPSAActivityByUid(Pageable pageable, Integer superId);
+
+    @Deprecated
+    public Page<Object> executeGetBidActivityQuantitiesPipe(Pageable pageable, Integer bidId);
 
     @Deprecated
     public Page<Object> executeGetUniqueLineNumbers(Pageable pageable);
@@ -228,13 +228,7 @@ public interface Job1111QueryExecutorService_V1 {
     public int executeUpdateCivilFA(String description, String foundation, String drawing, String detailDrawing, BigDecimal percent, Integer quantity, Integer rework, String notes, Integer rowId);
 
     @Deprecated
-    public Page<Object> executeGetEarnedHoursReport(Pageable pageable, String foremanId, String superId, String managerId, Date date);
-
-    @Deprecated
     public Page<Object> executeGetActivityHistorySteelWeld(Pageable pageable, Integer rowId);
-
-    @Deprecated
-    public Page<Object> executeGetBidActivityQuantity(Pageable pageable, Integer bidId);
 
     @Deprecated
     public Page<Object> executeGetActivityHistorySteelImp(Pageable pageable, Integer rowId);
@@ -267,6 +261,9 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetPSRecentActivities(Pageable pageable, Integer userId);
 
     @Deprecated
+    public Page<Object> executeGetBidActivityQuantitiesCivil(Pageable pageable, Integer bidId);
+
+    @Deprecated
     public Page<Object> executeGetActivitiesPendingApprovalCount(Pageable pageable, Integer userId);
 
     @Deprecated
@@ -274,9 +271,6 @@ public interface Job1111QueryExecutorService_V1 {
 
     @Deprecated
     public Page<Object> executeGetBidChangeLogByID(Pageable pageable, Integer id);
-
-    @Deprecated
-    public Page<Object> executeGetSteelBidActivityQuantities(Pageable pageable, Integer bidId);
 
     @Deprecated
     public Page<Object> executeGetActivityHistoryCivilMisc(Pageable pageable, Integer rowId);
@@ -300,10 +294,13 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetReportDPRSteelDetailed(Pageable pageable, String pm, String constM, String siteM, String areaM, String super_, String gf, String foreman, Date startDate, Date endDate);
 
     @Deprecated
+    public Page<Object> executeGetDrawingsByTestPackagePipe(Pageable pageable, String testPackage);
+
+    @Deprecated
     public int executeUpdateSettingSteelBoltout(BigDecimal value1);
 
     @Deprecated
-    public Page<Object> executeGetNotesByPSAActivityID(Pageable pageable, Integer activityId);
+    public Page<Object> executeGetNotesByPSAActivityID(Pageable pageable, String psaactivityId);
 
     @Deprecated
     public Page<Object> executeGetBidActivityMatchesSteel(Pageable pageable, String area, String pieceMark, String bidActivityType, String steelType);
@@ -313,9 +310,6 @@ public interface Job1111QueryExecutorService_V1 {
 
     @Deprecated
     public int executeUpdateCivilFAQuantity(BigDecimal percent, Integer quantity, Integer rowId);
-
-    @Deprecated
-    public Page<Object> executeGetCivilBidActivityQuantities(Pageable pageable, Integer bidId);
 
     @Deprecated
     public int executeUpdateSettingSteelErect(BigDecimal value1);
@@ -328,6 +322,9 @@ public interface Job1111QueryExecutorService_V1 {
 
     @Deprecated
     public int executeUpdateSettingPipeTestingPercent(BigDecimal value1);
+
+    @Deprecated
+    public Page<Object> executeGetBidActivityQuantitiesSteel(Pageable pageable, Integer bidId);
 
     @Deprecated
     public int executeUpdateSettingSteelSell(BigDecimal value1);
