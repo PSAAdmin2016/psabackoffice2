@@ -19,8 +19,9 @@ public class UpdateSteelSellPackageRequest implements Serializable {
     private String testPackage;
     @JsonProperty("Notes")
     private String notes;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public String getTestPackage() {
         return this.testPackage;
@@ -38,12 +39,12 @@ public class UpdateSteelSellPackageRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
@@ -53,13 +54,13 @@ public class UpdateSteelSellPackageRequest implements Serializable {
         final UpdateSteelSellPackageRequest updateSteelSellPackageRequest = (UpdateSteelSellPackageRequest) o;
         return Objects.equals(getTestPackage(), updateSteelSellPackageRequest.getTestPackage()) &&
                 Objects.equals(getNotes(), updateSteelSellPackageRequest.getNotes()) &&
-                Objects.equals(getRowId(), updateSteelSellPackageRequest.getRowId());
+                Objects.equals(getFieldActivityId(), updateSteelSellPackageRequest.getFieldActivityId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getTestPackage(),
                 getNotes(),
-                getRowId());
+                getFieldActivityId());
     }
 }

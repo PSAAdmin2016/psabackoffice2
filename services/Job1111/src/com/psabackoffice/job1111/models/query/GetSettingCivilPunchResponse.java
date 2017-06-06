@@ -15,14 +15,14 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class GetSettingCivilPuchResponse implements Serializable {
+public class GetSettingCivilPunchResponse implements Serializable {
 
     @JsonProperty("Label")
     @ColumnAlias("Label")
     private String label;
     @JsonProperty("Value1")
     @ColumnAlias("Value1")
-    private BigDecimal value1;
+    private Float value1;
     @JsonProperty("Value2")
     @ColumnAlias("Value2")
     private String value2;
@@ -35,11 +35,11 @@ public class GetSettingCivilPuchResponse implements Serializable {
         this.label = label;
     }
 
-    public BigDecimal getValue1() {
+    public Float getValue1() {
         return this.value1;
     }
 
-    public void setValue1(BigDecimal value1) {
+    public void setValue1(Float value1) {
         this.value1 = value1;
     }
 
@@ -54,11 +54,11 @@ public class GetSettingCivilPuchResponse implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GetSettingCivilPuchResponse)) return false;
-        final GetSettingCivilPuchResponse getSettingCivilPuchResponse = (GetSettingCivilPuchResponse) o;
-        return Objects.equals(getLabel(), getSettingCivilPuchResponse.getLabel()) &&
-                Objects.equals(getValue1(), getSettingCivilPuchResponse.getValue1()) &&
-                Objects.equals(getValue2(), getSettingCivilPuchResponse.getValue2());
+        if (!(o instanceof GetSettingCivilPunchResponse)) return false;
+        final GetSettingCivilPunchResponse getSettingCivilPunchResponse = (GetSettingCivilPunchResponse) o;
+        return Objects.equals(getLabel(), getSettingCivilPunchResponse.getLabel()) &&
+                Objects.equals(getValue1(), getSettingCivilPunchResponse.getValue1()) &&
+                Objects.equals(getValue2(), getSettingCivilPunchResponse.getValue2());
     }
 
     @Override

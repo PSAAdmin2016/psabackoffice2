@@ -25,40 +25,40 @@ public class GetReportDprsteelDetailedResponse implements Serializable {
     private String pieceNumber;
     @JsonProperty("ShakeQuantity")
     @ColumnAlias("ShakeQuantity")
-    private Byte shakeQuantity;
+    private Short shakeQuantity;
     @JsonProperty("ErectQuantity")
     @ColumnAlias("ErectQuantity")
-    private Byte erectQuantity;
+    private Short erectQuantity;
     @JsonProperty("ErectPercent")
     @ColumnAlias("ErectPercent")
     private String erectPercent;
     @JsonProperty("BoltoutQuantity")
     @ColumnAlias("BoltoutQuantity")
-    private Byte boltoutQuantity;
+    private Short boltoutQuantity;
     @JsonProperty("BoltoutPercent")
     @ColumnAlias("BoltoutPercent")
     private String boltoutPercent;
     @JsonProperty("ImpQuantity")
     @ColumnAlias("ImpQuantity")
-    private Byte impQuantity;
+    private Short impQuantity;
     @JsonProperty("ImpPercent")
     @ColumnAlias("ImpPercent")
     private String impPercent;
     @JsonProperty("WeldQuantity")
     @ColumnAlias("WeldQuantity")
-    private Byte weldQuantity;
+    private Short weldQuantity;
     @JsonProperty("WeldPercent")
     @ColumnAlias("WeldPercent")
     private String weldPercent;
     @JsonProperty("SellQuantity")
     @ColumnAlias("SellQuantity")
-    private Byte sellQuantity;
+    private Short sellQuantity;
     @JsonProperty("DemoQuantity")
     @ColumnAlias("DemoQuantity")
     private Integer demoQuantity;
     @JsonProperty("MiscQuantity")
     @ColumnAlias("MiscQuantity")
-    private Short miscQuantity;
+    private Integer miscQuantity;
     @JsonProperty("ReceivedTime")
     @ColumnAlias("ReceivedTime")
     private Date receivedTime;
@@ -82,19 +82,19 @@ public class GetReportDprsteelDetailedResponse implements Serializable {
         this.pieceNumber = pieceNumber;
     }
 
-    public Byte getShakeQuantity() {
+    public Short getShakeQuantity() {
         return this.shakeQuantity;
     }
 
-    public void setShakeQuantity(Byte shakeQuantity) {
+    public void setShakeQuantity(Short shakeQuantity) {
         this.shakeQuantity = shakeQuantity;
     }
 
-    public Byte getErectQuantity() {
+    public Short getErectQuantity() {
         return this.erectQuantity;
     }
 
-    public void setErectQuantity(Byte erectQuantity) {
+    public void setErectQuantity(Short erectQuantity) {
         this.erectQuantity = erectQuantity;
     }
 
@@ -106,11 +106,11 @@ public class GetReportDprsteelDetailedResponse implements Serializable {
         this.erectPercent = erectPercent;
     }
 
-    public Byte getBoltoutQuantity() {
+    public Short getBoltoutQuantity() {
         return this.boltoutQuantity;
     }
 
-    public void setBoltoutQuantity(Byte boltoutQuantity) {
+    public void setBoltoutQuantity(Short boltoutQuantity) {
         this.boltoutQuantity = boltoutQuantity;
     }
 
@@ -122,11 +122,11 @@ public class GetReportDprsteelDetailedResponse implements Serializable {
         this.boltoutPercent = boltoutPercent;
     }
 
-    public Byte getImpQuantity() {
+    public Short getImpQuantity() {
         return this.impQuantity;
     }
 
-    public void setImpQuantity(Byte impQuantity) {
+    public void setImpQuantity(Short impQuantity) {
         this.impQuantity = impQuantity;
     }
 
@@ -138,11 +138,11 @@ public class GetReportDprsteelDetailedResponse implements Serializable {
         this.impPercent = impPercent;
     }
 
-    public Byte getWeldQuantity() {
+    public Short getWeldQuantity() {
         return this.weldQuantity;
     }
 
-    public void setWeldQuantity(Byte weldQuantity) {
+    public void setWeldQuantity(Short weldQuantity) {
         this.weldQuantity = weldQuantity;
     }
 
@@ -154,11 +154,11 @@ public class GetReportDprsteelDetailedResponse implements Serializable {
         this.weldPercent = weldPercent;
     }
 
-    public Byte getSellQuantity() {
+    public Short getSellQuantity() {
         return this.sellQuantity;
     }
 
-    public void setSellQuantity(Byte sellQuantity) {
+    public void setSellQuantity(Short sellQuantity) {
         this.sellQuantity = sellQuantity;
     }
 
@@ -170,11 +170,11 @@ public class GetReportDprsteelDetailedResponse implements Serializable {
         this.demoQuantity = demoQuantity;
     }
 
-    public Short getMiscQuantity() {
+    public Integer getMiscQuantity() {
         return this.miscQuantity;
     }
 
-    public void setMiscQuantity(Short miscQuantity) {
+    public void setMiscQuantity(Integer miscQuantity) {
         this.miscQuantity = miscQuantity;
     }
 

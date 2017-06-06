@@ -8,6 +8,8 @@ package com.psabackoffice.job1111.models.query;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UpdateCivilSellPackageRequest implements Serializable {
@@ -16,8 +18,9 @@ public class UpdateCivilSellPackageRequest implements Serializable {
     private String testPackageNumber;
     @JsonProperty("Notes")
     private String notes;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public String getTestPackageNumber() {
         return this.testPackageNumber;
@@ -35,12 +38,12 @@ public class UpdateCivilSellPackageRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
@@ -50,13 +53,13 @@ public class UpdateCivilSellPackageRequest implements Serializable {
         final UpdateCivilSellPackageRequest updateCivilSellPackageRequest = (UpdateCivilSellPackageRequest) o;
         return Objects.equals(getTestPackageNumber(), updateCivilSellPackageRequest.getTestPackageNumber()) &&
                 Objects.equals(getNotes(), updateCivilSellPackageRequest.getNotes()) &&
-                Objects.equals(getRowId(), updateCivilSellPackageRequest.getRowId());
+                Objects.equals(getFieldActivityId(), updateCivilSellPackageRequest.getFieldActivityId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getTestPackageNumber(),
                 getNotes(),
-                getRowId());
+                getFieldActivityId());
     }
 }

@@ -19,8 +19,9 @@ public class UpdateSteelBoltoutQuantityRequest implements Serializable {
     private Integer quantity;
     @JsonProperty("Percent")
     private BigDecimal percent;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public Integer getQuantity() {
         return this.quantity;
@@ -38,12 +39,12 @@ public class UpdateSteelBoltoutQuantityRequest implements Serializable {
         this.percent = percent;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
@@ -53,13 +54,13 @@ public class UpdateSteelBoltoutQuantityRequest implements Serializable {
         final UpdateSteelBoltoutQuantityRequest updateSteelBoltoutQuantityRequest = (UpdateSteelBoltoutQuantityRequest) o;
         return Objects.equals(getQuantity(), updateSteelBoltoutQuantityRequest.getQuantity()) &&
                 Objects.equals(getPercent(), updateSteelBoltoutQuantityRequest.getPercent()) &&
-                Objects.equals(getRowId(), updateSteelBoltoutQuantityRequest.getRowId());
+                Objects.equals(getFieldActivityId(), updateSteelBoltoutQuantityRequest.getFieldActivityId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getQuantity(),
                 getPercent(),
-                getRowId());
+                getFieldActivityId());
     }
 }

@@ -9,14 +9,17 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateBoltupQuantityRequest implements Serializable {
+public class UpdatePipeBoltupQuantityRequest implements Serializable {
 
     @JsonProperty("BoltUpQuantity")
     private Integer boltUpQuantity;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public Integer getBoltUpQuantity() {
         return this.boltUpQuantity;
@@ -26,26 +29,26 @@ public class UpdateBoltupQuantityRequest implements Serializable {
         this.boltUpQuantity = boltUpQuantity;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UpdateBoltupQuantityRequest)) return false;
-        final UpdateBoltupQuantityRequest updateBoltupQuantityRequest = (UpdateBoltupQuantityRequest) o;
-        return Objects.equals(getBoltUpQuantity(), updateBoltupQuantityRequest.getBoltUpQuantity()) &&
-                Objects.equals(getRowId(), updateBoltupQuantityRequest.getRowId());
+        if (!(o instanceof UpdatePipeBoltupQuantityRequest)) return false;
+        final UpdatePipeBoltupQuantityRequest updatePipeBoltupQuantityRequest = (UpdatePipeBoltupQuantityRequest) o;
+        return Objects.equals(getBoltUpQuantity(), updatePipeBoltupQuantityRequest.getBoltUpQuantity()) &&
+                Objects.equals(getFieldActivityId(), updatePipeBoltupQuantityRequest.getFieldActivityId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getBoltUpQuantity(),
-                getRowId());
+                getFieldActivityId());
     }
 }

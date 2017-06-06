@@ -17,8 +17,9 @@ public class UpdateCivilMiscQuantityRequest implements Serializable {
 
     @JsonProperty("Percent")
     private BigDecimal percent;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public BigDecimal getPercent() {
         return this.percent;
@@ -28,12 +29,12 @@ public class UpdateCivilMiscQuantityRequest implements Serializable {
         this.percent = percent;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
@@ -42,12 +43,12 @@ public class UpdateCivilMiscQuantityRequest implements Serializable {
         if (!(o instanceof UpdateCivilMiscQuantityRequest)) return false;
         final UpdateCivilMiscQuantityRequest updateCivilMiscQuantityRequest = (UpdateCivilMiscQuantityRequest) o;
         return Objects.equals(getPercent(), updateCivilMiscQuantityRequest.getPercent()) &&
-                Objects.equals(getRowId(), updateCivilMiscQuantityRequest.getRowId());
+                Objects.equals(getFieldActivityId(), updateCivilMiscQuantityRequest.getFieldActivityId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getPercent(),
-                getRowId());
+                getFieldActivityId());
     }
 }

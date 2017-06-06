@@ -11959,10 +11959,10 @@
       "value" : "bind:Widgets.selectSuperintendant.datavalue",
       "type" : "integer"
     } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetPsaactivityByUidResponse",
+    "type" : "com.psabackoffice.job1111.models.query.GetActivitiesPendingReviewResponse",
     "service" : "Job1111",
-    "operation" : "executeGetPSAActivityByUid",
-    "operationId" : "QueryExecutionController_executeGetPSAActivityByUid",
+    "operation" : "executeGetActivitiesPendingReview",
+    "operationId" : "QueryExecutionController_executeGetActivitiesPendingReview",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],

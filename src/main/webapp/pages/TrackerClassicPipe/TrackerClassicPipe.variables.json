@@ -44,10 +44,10 @@
       "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
       "type" : "integer"
     } ],
-    "type" : "integer",
+    "type" : "java.lang.Integer",
     "service" : "Job1111",
-    "operation" : "executeUpdateBoltupQuantity",
-    "operationId" : "QueryExecutionController_executeUpdateBoltupQuantity",
+    "operation" : "executeUpdatePipeBoltupQuantity",
+    "operationId" : "QueryExecutionController_executeUpdatePipeBoltupQuantity",
     "operationType" : "put",
     "serviceType" : "DataService",
     "dataSet" : {
@@ -80,10 +80,10 @@
       "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
       "type" : "integer"
     } ],
-    "type" : "integer",
+    "type" : "java.lang.Integer",
     "service" : "Job1111",
-    "operation" : "executeUpdateDemoQuantity",
-    "operationId" : "QueryExecutionController_executeUpdateDemoQuantity",
+    "operation" : "executeUpdatePipeDemoQuantity",
+    "operationId" : "QueryExecutionController_executeUpdatePipeDemoQuantity",
     "operationType" : "put",
     "serviceType" : "DataService",
     "dataSet" : {
@@ -116,10 +116,10 @@
       "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
       "type" : "integer"
     } ],
-    "type" : "integer",
+    "type" : "java.lang.Integer",
     "service" : "Job1111",
-    "operation" : "executeUpdateErectionQuantity",
-    "operationId" : "QueryExecutionController_executeUpdateErectionQuantity",
+    "operation" : "executeUpdatePipeErectionQuantity",
+    "operationId" : "QueryExecutionController_executeUpdatePipeErectionQuantity",
     "operationType" : "put",
     "serviceType" : "DataService",
     "dataSet" : {
@@ -152,10 +152,10 @@
       "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
       "type" : "integer"
     } ],
-    "type" : "integer",
+    "type" : "java.lang.Integer",
     "service" : "Job1111",
-    "operation" : "executeUpdateMiscQuantity",
-    "operationId" : "QueryExecutionController_executeUpdateMiscQuantity",
+    "operation" : "executeUpdatePipeMiscQuantity",
+    "operationId" : "QueryExecutionController_executeUpdatePipeMiscQuantity",
     "operationType" : "put",
     "serviceType" : "DataService",
     "dataSet" : {
@@ -188,10 +188,10 @@
       "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
       "type" : "integer"
     } ],
-    "type" : "integer",
+    "type" : "java.lang.Integer",
     "service" : "Job1111",
-    "operation" : "executeUpdateSupportsQuantity",
-    "operationId" : "QueryExecutionController_executeUpdateSupportsQuantity",
+    "operation" : "executeUpdatePipeSupportsQuantity",
+    "operationId" : "QueryExecutionController_executeUpdatePipeSupportsQuantity",
     "operationType" : "put",
     "serviceType" : "DataService",
     "dataSet" : {
@@ -224,10 +224,10 @@
       "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
       "type" : "integer"
     } ],
-    "type" : "integer",
+    "type" : "java.lang.Integer",
     "service" : "Job1111",
-    "operation" : "executeUpdateTrimQuantity",
-    "operationId" : "QueryExecutionController_executeUpdateTrimQuantity",
+    "operation" : "executeUpdatePipeTrimQuantity",
+    "operationId" : "QueryExecutionController_executeUpdatePipeTrimQuantity",
     "operationType" : "put",
     "serviceType" : "DataService",
     "dataSet" : {
@@ -260,10 +260,10 @@
       "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
       "type" : "integer"
     } ],
-    "type" : "integer",
+    "type" : "java.lang.Integer",
     "service" : "Job1111",
-    "operation" : "executeUpdateWeldQuantity",
-    "operationId" : "QueryExecutionController_executeUpdateWeldQuantity",
+    "operation" : "executeUpdatePipeWeldQuantity",
+    "operationId" : "QueryExecutionController_executeUpdatePipeWeldQuantity",
     "operationType" : "put",
     "serviceType" : "DataService",
     "dataSet" : {

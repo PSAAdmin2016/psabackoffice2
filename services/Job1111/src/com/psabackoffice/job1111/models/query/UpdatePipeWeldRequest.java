@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateWeldRequest implements Serializable {
+public class UpdatePipeWeldRequest implements Serializable {
 
     @JsonProperty("Spool1")
     private String spool1;
@@ -50,11 +50,12 @@ public class UpdateWeldRequest implements Serializable {
     @JsonProperty("PercentComplete")
     private Integer percentComplete;
     @JsonProperty("Rework")
-    private Integer rework;
+    private Byte rework;
     @JsonProperty("Notes")
     private String notes;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public String getSpool1() {
         return this.spool1;
@@ -192,11 +193,11 @@ public class UpdateWeldRequest implements Serializable {
         this.percentComplete = percentComplete;
     }
 
-    public Integer getRework() {
+    public Byte getRework() {
         return this.rework;
     }
 
-    public void setRework(Integer rework) {
+    public void setRework(Byte rework) {
         this.rework = rework;
     }
 
@@ -208,39 +209,39 @@ public class UpdateWeldRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UpdateWeldRequest)) return false;
-        final UpdateWeldRequest updateWeldRequest = (UpdateWeldRequest) o;
-        return Objects.equals(getSpool1(), updateWeldRequest.getSpool1()) &&
-                Objects.equals(getSpool2(), updateWeldRequest.getSpool2()) &&
-                Objects.equals(getDrawingNumber(), updateWeldRequest.getDrawingNumber()) &&
-                Objects.equals(getLineNumber(), updateWeldRequest.getLineNumber()) &&
-                Objects.equals(getSheetNumber(), updateWeldRequest.getSheetNumber()) &&
-                Objects.equals(getLineSpec(), updateWeldRequest.getLineSpec()) &&
-                Objects.equals(getWeldNumber(), updateWeldRequest.getWeldNumber()) &&
-                Objects.equals(getStencil(), updateWeldRequest.getStencil()) &&
-                Objects.equals(getSize(), updateWeldRequest.getSize()) &&
-                Objects.equals(getThickness(), updateWeldRequest.getThickness()) &&
-                Objects.equals(getWeldType(), updateWeldRequest.getWeldType()) &&
-                Objects.equals(getWeldPosition(), updateWeldRequest.getWeldPosition()) &&
-                Objects.equals(getMaterial(), updateWeldRequest.getMaterial()) &&
-                Objects.equals(getProcedure(), updateWeldRequest.getProcedure()) &&
-                Objects.equals(getComplete(), updateWeldRequest.getComplete()) &&
-                Objects.equals(getShared(), updateWeldRequest.getShared()) &&
-                Objects.equals(getPercentComplete(), updateWeldRequest.getPercentComplete()) &&
-                Objects.equals(getRework(), updateWeldRequest.getRework()) &&
-                Objects.equals(getNotes(), updateWeldRequest.getNotes()) &&
-                Objects.equals(getRowId(), updateWeldRequest.getRowId());
+        if (!(o instanceof UpdatePipeWeldRequest)) return false;
+        final UpdatePipeWeldRequest updatePipeWeldRequest = (UpdatePipeWeldRequest) o;
+        return Objects.equals(getSpool1(), updatePipeWeldRequest.getSpool1()) &&
+                Objects.equals(getSpool2(), updatePipeWeldRequest.getSpool2()) &&
+                Objects.equals(getDrawingNumber(), updatePipeWeldRequest.getDrawingNumber()) &&
+                Objects.equals(getLineNumber(), updatePipeWeldRequest.getLineNumber()) &&
+                Objects.equals(getSheetNumber(), updatePipeWeldRequest.getSheetNumber()) &&
+                Objects.equals(getLineSpec(), updatePipeWeldRequest.getLineSpec()) &&
+                Objects.equals(getWeldNumber(), updatePipeWeldRequest.getWeldNumber()) &&
+                Objects.equals(getStencil(), updatePipeWeldRequest.getStencil()) &&
+                Objects.equals(getSize(), updatePipeWeldRequest.getSize()) &&
+                Objects.equals(getThickness(), updatePipeWeldRequest.getThickness()) &&
+                Objects.equals(getWeldType(), updatePipeWeldRequest.getWeldType()) &&
+                Objects.equals(getWeldPosition(), updatePipeWeldRequest.getWeldPosition()) &&
+                Objects.equals(getMaterial(), updatePipeWeldRequest.getMaterial()) &&
+                Objects.equals(getProcedure(), updatePipeWeldRequest.getProcedure()) &&
+                Objects.equals(getComplete(), updatePipeWeldRequest.getComplete()) &&
+                Objects.equals(getShared(), updatePipeWeldRequest.getShared()) &&
+                Objects.equals(getPercentComplete(), updatePipeWeldRequest.getPercentComplete()) &&
+                Objects.equals(getRework(), updatePipeWeldRequest.getRework()) &&
+                Objects.equals(getNotes(), updatePipeWeldRequest.getNotes()) &&
+                Objects.equals(getFieldActivityId(), updatePipeWeldRequest.getFieldActivityId());
     }
 
     @Override
@@ -264,6 +265,6 @@ public class UpdateWeldRequest implements Serializable {
                 getPercentComplete(),
                 getRework(),
                 getNotes(),
-                getRowId());
+                getFieldActivityId());
     }
 }

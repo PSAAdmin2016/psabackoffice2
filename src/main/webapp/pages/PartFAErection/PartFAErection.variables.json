@@ -85,10 +85,10 @@
       "value" : "bind:Widgets.textareaErectionNotes.datavalue",
       "type" : "string"
     } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "type" : "java.lang.Integer",
     "service" : "Job1111",
-    "operation" : "executeUpdateErection",
-    "operationId" : "QueryExecutionController_executeUpdateErection",
+    "operation" : "executeUpdatePipeErection",
+    "operationId" : "QueryExecutionController_executeUpdatePipeErection",
     "operationType" : "put",
     "serviceType" : "DataService",
     "dataSet" : [ ],

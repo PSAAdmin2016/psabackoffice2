@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateErectionRequest implements Serializable {
+public class UpdatePipeErectionRequest implements Serializable {
 
     @JsonProperty("Spool1")
     private String spool1;
@@ -53,8 +53,9 @@ public class UpdateErectionRequest implements Serializable {
     private Integer rework;
     @JsonProperty("Notes")
     private String notes;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public String getSpool1() {
         return this.spool1;
@@ -208,39 +209,39 @@ public class UpdateErectionRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UpdateErectionRequest)) return false;
-        final UpdateErectionRequest updateErectionRequest = (UpdateErectionRequest) o;
-        return Objects.equals(getSpool1(), updateErectionRequest.getSpool1()) &&
-                Objects.equals(getSpool1length(), updateErectionRequest.getSpool1length()) &&
-                Objects.equals(getSpool2(), updateErectionRequest.getSpool2()) &&
-                Objects.equals(getSpool2length(), updateErectionRequest.getSpool2length()) &&
-                Objects.equals(getSpool3(), updateErectionRequest.getSpool3()) &&
-                Objects.equals(getSpool3length(), updateErectionRequest.getSpool3length()) &&
-                Objects.equals(getSpool4(), updateErectionRequest.getSpool4()) &&
-                Objects.equals(getSpool4length(), updateErectionRequest.getSpool4length()) &&
-                Objects.equals(getSpool5(), updateErectionRequest.getSpool5()) &&
-                Objects.equals(getSpool5length(), updateErectionRequest.getSpool5length()) &&
-                Objects.equals(getSpool6(), updateErectionRequest.getSpool6()) &&
-                Objects.equals(getSpool6length(), updateErectionRequest.getSpool6length()) &&
-                Objects.equals(getOnCords(), updateErectionRequest.getOnCords()) &&
-                Objects.equals(getDrawingNumber(), updateErectionRequest.getDrawingNumber()) &&
-                Objects.equals(getLineNumber(), updateErectionRequest.getLineNumber()) &&
-                Objects.equals(getSheetNumber(), updateErectionRequest.getSheetNumber()) &&
-                Objects.equals(getSize(), updateErectionRequest.getSize()) &&
-                Objects.equals(getRework(), updateErectionRequest.getRework()) &&
-                Objects.equals(getNotes(), updateErectionRequest.getNotes()) &&
-                Objects.equals(getRowId(), updateErectionRequest.getRowId());
+        if (!(o instanceof UpdatePipeErectionRequest)) return false;
+        final UpdatePipeErectionRequest updatePipeErectionRequest = (UpdatePipeErectionRequest) o;
+        return Objects.equals(getSpool1(), updatePipeErectionRequest.getSpool1()) &&
+                Objects.equals(getSpool1length(), updatePipeErectionRequest.getSpool1length()) &&
+                Objects.equals(getSpool2(), updatePipeErectionRequest.getSpool2()) &&
+                Objects.equals(getSpool2length(), updatePipeErectionRequest.getSpool2length()) &&
+                Objects.equals(getSpool3(), updatePipeErectionRequest.getSpool3()) &&
+                Objects.equals(getSpool3length(), updatePipeErectionRequest.getSpool3length()) &&
+                Objects.equals(getSpool4(), updatePipeErectionRequest.getSpool4()) &&
+                Objects.equals(getSpool4length(), updatePipeErectionRequest.getSpool4length()) &&
+                Objects.equals(getSpool5(), updatePipeErectionRequest.getSpool5()) &&
+                Objects.equals(getSpool5length(), updatePipeErectionRequest.getSpool5length()) &&
+                Objects.equals(getSpool6(), updatePipeErectionRequest.getSpool6()) &&
+                Objects.equals(getSpool6length(), updatePipeErectionRequest.getSpool6length()) &&
+                Objects.equals(getOnCords(), updatePipeErectionRequest.getOnCords()) &&
+                Objects.equals(getDrawingNumber(), updatePipeErectionRequest.getDrawingNumber()) &&
+                Objects.equals(getLineNumber(), updatePipeErectionRequest.getLineNumber()) &&
+                Objects.equals(getSheetNumber(), updatePipeErectionRequest.getSheetNumber()) &&
+                Objects.equals(getSize(), updatePipeErectionRequest.getSize()) &&
+                Objects.equals(getRework(), updatePipeErectionRequest.getRework()) &&
+                Objects.equals(getNotes(), updatePipeErectionRequest.getNotes()) &&
+                Objects.equals(getFieldActivityId(), updatePipeErectionRequest.getFieldActivityId());
     }
 
     @Override
@@ -264,6 +265,6 @@ public class UpdateErectionRequest implements Serializable {
                 getSize(),
                 getRework(),
                 getNotes(),
-                getRowId());
+                getFieldActivityId());
     }
 }

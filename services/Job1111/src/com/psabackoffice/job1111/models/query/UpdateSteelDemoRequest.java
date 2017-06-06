@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UpdateSteelDemoRequest implements Serializable {
@@ -23,8 +25,9 @@ public class UpdateSteelDemoRequest implements Serializable {
     private Integer quantity;
     @JsonProperty("Notes")
     private String notes;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public String getArea() {
         return this.area;
@@ -66,12 +69,12 @@ public class UpdateSteelDemoRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
@@ -84,7 +87,7 @@ public class UpdateSteelDemoRequest implements Serializable {
                 Objects.equals(getSize(), updateSteelDemoRequest.getSize()) &&
                 Objects.equals(getQuantity(), updateSteelDemoRequest.getQuantity()) &&
                 Objects.equals(getNotes(), updateSteelDemoRequest.getNotes()) &&
-                Objects.equals(getRowId(), updateSteelDemoRequest.getRowId());
+                Objects.equals(getFieldActivityId(), updateSteelDemoRequest.getFieldActivityId());
     }
 
     @Override
@@ -94,6 +97,6 @@ public class UpdateSteelDemoRequest implements Serializable {
                 getSize(),
                 getQuantity(),
                 getNotes(),
-                getRowId());
+                getFieldActivityId());
     }
 }

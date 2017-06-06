@@ -9,10 +9,16 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateCutPrepRequest implements Serializable {
+public class UpdatePipeBoltUpRequest implements Serializable {
 
+    @JsonProperty("Spool1")
+    private String spool1;
+    @JsonProperty("Spool2")
+    private String spool2;
     @JsonProperty("DrawingNumber")
     private String drawingNumber;
     @JsonProperty("LineNumber")
@@ -21,14 +27,31 @@ public class UpdateCutPrepRequest implements Serializable {
     private String sheetNumber;
     @JsonProperty("Size")
     private BigDecimal size;
-    @JsonProperty("Thickness")
-    private String thickness;
+    @JsonProperty("Quantity")
+    private Integer quantity;
     @JsonProperty("Rework")
     private Integer rework;
     @JsonProperty("Notes")
     private String notes;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
+
+    public String getSpool1() {
+        return this.spool1;
+    }
+
+    public void setSpool1(String spool1) {
+        this.spool1 = spool1;
+    }
+
+    public String getSpool2() {
+        return this.spool2;
+    }
+
+    public void setSpool2(String spool2) {
+        this.spool2 = spool2;
+    }
 
     public String getDrawingNumber() {
         return this.drawingNumber;
@@ -62,12 +85,12 @@ public class UpdateCutPrepRequest implements Serializable {
         this.size = size;
     }
 
-    public String getThickness() {
-        return this.thickness;
+    public Integer getQuantity() {
+        return this.quantity;
     }
 
-    public void setThickness(String thickness) {
-        this.thickness = thickness;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public Integer getRework() {
@@ -86,38 +109,42 @@ public class UpdateCutPrepRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UpdateCutPrepRequest)) return false;
-        final UpdateCutPrepRequest updateCutPrepRequest = (UpdateCutPrepRequest) o;
-        return Objects.equals(getDrawingNumber(), updateCutPrepRequest.getDrawingNumber()) &&
-                Objects.equals(getLineNumber(), updateCutPrepRequest.getLineNumber()) &&
-                Objects.equals(getSheetNumber(), updateCutPrepRequest.getSheetNumber()) &&
-                Objects.equals(getSize(), updateCutPrepRequest.getSize()) &&
-                Objects.equals(getThickness(), updateCutPrepRequest.getThickness()) &&
-                Objects.equals(getRework(), updateCutPrepRequest.getRework()) &&
-                Objects.equals(getNotes(), updateCutPrepRequest.getNotes()) &&
-                Objects.equals(getRowId(), updateCutPrepRequest.getRowId());
+        if (!(o instanceof UpdatePipeBoltUpRequest)) return false;
+        final UpdatePipeBoltUpRequest updatePipeBoltUpRequest = (UpdatePipeBoltUpRequest) o;
+        return Objects.equals(getSpool1(), updatePipeBoltUpRequest.getSpool1()) &&
+                Objects.equals(getSpool2(), updatePipeBoltUpRequest.getSpool2()) &&
+                Objects.equals(getDrawingNumber(), updatePipeBoltUpRequest.getDrawingNumber()) &&
+                Objects.equals(getLineNumber(), updatePipeBoltUpRequest.getLineNumber()) &&
+                Objects.equals(getSheetNumber(), updatePipeBoltUpRequest.getSheetNumber()) &&
+                Objects.equals(getSize(), updatePipeBoltUpRequest.getSize()) &&
+                Objects.equals(getQuantity(), updatePipeBoltUpRequest.getQuantity()) &&
+                Objects.equals(getRework(), updatePipeBoltUpRequest.getRework()) &&
+                Objects.equals(getNotes(), updatePipeBoltUpRequest.getNotes()) &&
+                Objects.equals(getFieldActivityId(), updatePipeBoltUpRequest.getFieldActivityId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getDrawingNumber(),
+        return Objects.hash(getSpool1(),
+                getSpool2(),
+                getDrawingNumber(),
                 getLineNumber(),
                 getSheetNumber(),
                 getSize(),
-                getThickness(),
+                getQuantity(),
                 getRework(),
                 getNotes(),
-                getRowId());
+                getFieldActivityId());
     }
 }

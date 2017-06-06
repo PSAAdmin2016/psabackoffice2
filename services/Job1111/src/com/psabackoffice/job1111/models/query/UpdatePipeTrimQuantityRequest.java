@@ -13,41 +13,42 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateMiscQuantityRequest implements Serializable {
+public class UpdatePipeTrimQuantityRequest implements Serializable {
 
     @JsonProperty("Quantity")
-    private Integer quantity;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    private String quantity;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
-    public Integer getQuantity() {
+    public String getQuantity() {
         return this.quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UpdateMiscQuantityRequest)) return false;
-        final UpdateMiscQuantityRequest updateMiscQuantityRequest = (UpdateMiscQuantityRequest) o;
-        return Objects.equals(getQuantity(), updateMiscQuantityRequest.getQuantity()) &&
-                Objects.equals(getRowId(), updateMiscQuantityRequest.getRowId());
+        if (!(o instanceof UpdatePipeTrimQuantityRequest)) return false;
+        final UpdatePipeTrimQuantityRequest updatePipeTrimQuantityRequest = (UpdatePipeTrimQuantityRequest) o;
+        return Objects.equals(getQuantity(), updatePipeTrimQuantityRequest.getQuantity()) &&
+                Objects.equals(getFieldActivityId(), updatePipeTrimQuantityRequest.getFieldActivityId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getQuantity(),
-                getRowId());
+                getFieldActivityId());
     }
 }

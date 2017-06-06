@@ -49,10 +49,10 @@
       "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityRowId",
       "type" : "integer"
     } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "type" : "java.lang.Integer",
     "service" : "Job1111",
-    "operation" : "executeUpdateSupports",
-    "operationId" : "QueryExecutionController_executeUpdateSupports",
+    "operation" : "executeUpdatePipeSupports",
+    "operationId" : "QueryExecutionController_executeUpdatePipeSupports",
     "operationType" : "put",
     "serviceType" : "DataService",
     "dataSet" : [ ],

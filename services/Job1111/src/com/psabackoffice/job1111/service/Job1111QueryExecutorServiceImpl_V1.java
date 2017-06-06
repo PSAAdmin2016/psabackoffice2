@@ -37,12 +37,12 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateCivilSellPackage(String testPackageNumber, String notes, Integer rowId) {
+    public int executeUpdateCivilSellPackage(String testPackageNumber, String notes, Integer fieldActivityId) {
         Map params = new HashMap(3);
 
         params.put("TestPackageNumber", testPackageNumber);
         params.put("Notes", notes);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateCivilSellPackage", params);
     }
@@ -120,33 +120,14 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateSteelImpQuantity(Integer quantity, BigDecimal percent, Integer rowId) {
+    public int executeUpdateSteelImpQuantity(Integer quantity, BigDecimal percent, Integer fieldActivityId) {
         Map params = new HashMap(3);
 
         params.put("Quantity", quantity);
         params.put("Percent", percent);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelImpQuantity", params);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public int executeUpdateTrim(BigDecimal size, Integer plugQuantity, String handleType, String instType, String drawingNumber, String lineNumber, String sheetNumber, Integer rework, String notes, Integer rowId) {
-        Map params = new HashMap(10);
-
-        params.put("Size", size);
-        params.put("PlugQuantity", plugQuantity);
-        params.put("HandleType", handleType);
-        params.put("InstType", instType);
-        params.put("DrawingNumber", drawingNumber);
-        params.put("LineNumber", lineNumber);
-        params.put("SheetNumber", sheetNumber);
-        params.put("Rework", rework);
-        params.put("Notes", notes);
-        params.put("RowId", rowId);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateTrim", params);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -181,7 +162,7 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateSteelWeld(String area, String piece, Integer quantity, BigDecimal percent, Character rework, String notes, Integer rowId) {
+    public int executeUpdateSteelWeld(String area, String piece, Integer quantity, BigDecimal percent, Character rework, String notes, Integer fieldActivityId) {
         Map params = new HashMap(7);
 
         params.put("Area", area);
@@ -190,7 +171,7 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("Percent", percent);
         params.put("Rework", rework);
         params.put("Notes", notes);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelWeld", params);
     }
@@ -207,18 +188,7 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateSteelMiscQuantity(Integer quantity, Integer rowId) {
-        Map params = new HashMap(2);
-
-        params.put("Quantity", quantity);
-        params.put("RowID", rowId);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateSteelMiscQuantity", params);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public int executeUpdateMisc(String drawingNumber, String lineNumber, String sheetNumber, Integer quantity, Integer rework, String notes, Integer rowId) {
+    public int executeUpdatePipeMisc(String drawingNumber, String lineNumber, String sheetNumber, Integer quantity, Integer rework, String notes, Integer fieldActivityId) {
         Map params = new HashMap(7);
 
         params.put("DrawingNumber", drawingNumber);
@@ -227,14 +197,39 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("Quantity", quantity);
         params.put("Rework", rework);
         params.put("Notes", notes);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
-        return queryExecutor.executeNamedQueryForUpdate("UpdateMisc", params);
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePipeMisc", params);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<Object> executeGetReportDPRPipe(Pageable pageable, String foremanId, String superId, String managerId, Date startDate, Date endDate) {
+        Map params = new HashMap(5);
+
+        params.put("ForemanID", foremanId);
+        params.put("SuperID", superId);
+        params.put("ManagerID", managerId);
+        params.put("StartDate", startDate);
+        params.put("EndDate", endDate);
+
+        return queryExecutor.executeNamedQuery("GetReportDPRPipe", params, Object.class, pageable);
     }
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateSteelMisc(String area, String piece, Integer quantity, Byte rework, String notes, Integer rowId) {
+    public int executeUpdateSteelMiscQuantity(Integer quantity, Float fieldActivityId) {
+        Map params = new HashMap(2);
+
+        params.put("Quantity", quantity);
+        params.put("FieldActivityID", fieldActivityId);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateSteelMiscQuantity", params);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public int executeUpdateSteelMisc(String area, String piece, Integer quantity, Byte rework, String notes, Integer fieldActivityId) {
         Map params = new HashMap(6);
 
         params.put("Area", area);
@@ -242,25 +237,25 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("Quantity", quantity);
         params.put("Rework", rework);
         params.put("Notes", notes);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelMisc", params);
     }
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateSteelDemoQuantity(Integer quantity, Integer rowId) {
+    public int executeUpdateSteelDemoQuantity(Integer quantity, Integer fieldActivityId) {
         Map params = new HashMap(2);
 
         params.put("Quantity", quantity);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelDemoQuantity", params);
     }
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateSteelDemo(String area, Integer steelType, String size, Integer quantity, String notes, Integer rowId) {
+    public int executeUpdateSteelDemo(String area, Integer steelType, String size, Integer quantity, String notes, Integer fieldActivityId) {
         Map params = new HashMap(6);
 
         params.put("Area", area);
@@ -268,20 +263,9 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("Size", size);
         params.put("Quantity", quantity);
         params.put("Notes", notes);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelDemo", params);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public int executeUpdateBoltupQuantity(Integer boltUpQuantity, Integer rowId) {
-        Map params = new HashMap(2);
-
-        params.put("BoltUpQuantity", boltUpQuantity);
-        params.put("RowID", rowId);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateBoltupQuantity", params);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -324,7 +308,7 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateSteelBoltout(String area, String piece, Integer quantity, BigDecimal percent, Byte rework, String notes, Integer rowId) {
+    public int executeUpdateSteelBoltout(String area, String piece, Integer quantity, BigDecimal percent, Byte rework, String notes, Integer fieldActivityId) {
         Map params = new HashMap(7);
 
         params.put("Area", area);
@@ -333,18 +317,9 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("Percent", percent);
         params.put("Rework", rework);
         params.put("Notes", notes);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelBoltout", params);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<Object> executeGetUniqueDrawingNumber(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("GetUniqueDrawingNumber", params, Object.class, pageable);
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -401,31 +376,12 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetPSAActivityByUid(Pageable pageable, Integer superId) {
-        Map params = new HashMap(1);
-
-        params.put("SuperID", superId);
-
-        return queryExecutor.executeNamedQuery("GetPSAActivityByUid", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
     public Page<Object> executeGetBidActivityQuantitiesPipe(Pageable pageable, Integer bidId) {
         Map params = new HashMap(1);
 
         params.put("BidID", bidId);
 
         return queryExecutor.executeNamedQuery("GetBidActivityQuantitiesPipe", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<Object> executeGetUniqueLineNumbers(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("GetUniqueLineNumbers", params, Object.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -450,19 +406,19 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateSteelErectQuantity(Integer quantity, BigDecimal percent, Integer rowId) {
+    public int executeUpdateSteelErectQuantity(Integer quantity, BigDecimal percent, Integer fieldActivityId) {
         Map params = new HashMap(3);
 
         params.put("Quantity", quantity);
         params.put("Percent", percent);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelErectQuantity", params);
     }
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateSteelShake(String area, String piece, Integer quantity, Byte rework, String notes, Integer rowId) {
+    public int executeUpdateSteelShake(String area, String piece, Integer quantity, Byte rework, String notes, Integer fieldActivityId) {
         Map params = new HashMap(6);
 
         params.put("Area", area);
@@ -470,7 +426,7 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("Quantity", quantity);
         params.put("Rework", rework);
         params.put("Notes", notes);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelShake", params);
     }
@@ -496,27 +452,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetPSAActivityByUidCount(Pageable pageable, Integer superId) {
-        Map params = new HashMap(1);
-
-        params.put("SuperID", superId);
-
-        return queryExecutor.executeNamedQuery("GetPSAActivityByUidCount", params, Object.class, pageable);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public int executeUpdateTrimQuantity(Integer quantity, Integer rowId) {
-        Map params = new HashMap(2);
-
-        params.put("Quantity", quantity);
-        params.put("RowId", rowId);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateTrimQuantity", params);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
     public Page<Object> executeGetSettingCivilWork(Pageable pageable) {
         Map params = new HashMap(0);
 
@@ -526,11 +461,11 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateSteelShakeQuantity(Integer quantity, Integer rowId) {
+    public int executeUpdateSteelShakeQuantity(Integer quantity, Integer fieldActivityId) {
         Map params = new HashMap(2);
 
         params.put("Quantity", quantity);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelShakeQuantity", params);
     }
@@ -570,19 +505,19 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateSteelWeldQuantity(Integer quantity, BigDecimal percent, Integer rowId) {
+    public int executeUpdateSteelWeldQuantity(Integer quantity, BigDecimal percent, Integer fieldActivityId) {
         Map params = new HashMap(3);
 
         params.put("Quantity", quantity);
         params.put("Percent", percent);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelWeldQuantity", params);
     }
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateSteelImp(String area, String piece, Integer quantity, BigDecimal percent, Byte rework, String notes, Integer rowId) {
+    public int executeUpdateSteelImp(String area, String piece, Integer quantity, BigDecimal percent, Byte rework, String notes, Integer fieldActivityId) {
         Map params = new HashMap(7);
 
         params.put("Area", area);
@@ -591,14 +526,25 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("Percent", percent);
         params.put("Rework", rework);
         params.put("Notes", notes);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelImp", params);
     }
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateSteelSell(String area, String piece, Integer quantity, Byte rework, String notes, Integer rowId) {
+    public int executeUpdatePipeBoltupQuantity(Integer boltUpQuantity, Integer fieldActivityId) {
+        Map params = new HashMap(2);
+
+        params.put("BoltUpQuantity", boltUpQuantity);
+        params.put("FieldActivityID", fieldActivityId);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePipeBoltupQuantity", params);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public int executeUpdateSteelSell(String area, String piece, Integer quantity, Byte rework, String notes, Integer fieldActivityId) {
         Map params = new HashMap(6);
 
         params.put("Area", area);
@@ -606,7 +552,7 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("Quantity", quantity);
         params.put("Rework", rework);
         params.put("Notes", notes);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelSell", params);
     }
@@ -618,17 +564,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
 
         return queryExecutor.executeNamedQuery("GetSettingPipeTestingPercent", params, Object.class, pageable);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public int executeUpdateErectionQuantity(Integer spool1length, Integer rowId) {
-        Map params = new HashMap(2);
-
-        params.put("Spool1Length", spool1length);
-        params.put("RowID", rowId);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateErectionQuantity", params);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -646,7 +581,7 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateSteelErect(String area, String piece, Integer quantity, BigDecimal percent, Byte rework, String notes, Integer rowId) {
+    public int executeUpdateSteelErect(String area, String piece, Integer quantity, BigDecimal percent, Byte rework, String notes, Integer fieldActivityId) {
         Map params = new HashMap(7);
 
         params.put("Area", area);
@@ -655,29 +590,26 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("Percent", percent);
         params.put("Rework", rework);
         params.put("Notes", notes);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelErect", params);
     }
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateSupports(String partNumber, Integer quantity, String drawingNumber, String lineNumber, String sheet, Byte complete, Byte shared, Integer percentComplete, Integer rework, String notes, Integer rowId) {
-        Map params = new HashMap(11);
+    public int executeUpdatePipeEWO(String ewonumber, Integer ewohours, String drawingNumber, String lineNumber, String sheetNumber, Integer rework, String notes, Integer fieldActivityId) {
+        Map params = new HashMap(8);
 
-        params.put("PartNumber", partNumber);
-        params.put("Quantity", quantity);
+        params.put("EWONumber", ewonumber);
+        params.put("EWOHours", ewohours);
         params.put("DrawingNumber", drawingNumber);
         params.put("LineNumber", lineNumber);
-        params.put("Sheet", sheet);
-        params.put("Complete", complete);
-        params.put("Shared", shared);
-        params.put("PercentComplete", percentComplete);
+        params.put("SheetNumber", sheetNumber);
         params.put("Rework", rework);
         params.put("Notes", notes);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
-        return queryExecutor.executeNamedQueryForUpdate("UpdateSupports", params);
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePipeEWO", params);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -688,17 +620,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("BidID", bidId);
 
         return queryExecutor.executeNamedQuery("GetQuantityLFInstalled", params, Object.class, pageable);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public int executeUpdateDemoQuantity(Integer quantity, Integer rowId) {
-        Map params = new HashMap(2);
-
-        params.put("Quantity", quantity);
-        params.put("RowID", rowId);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateDemoQuantity", params);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -723,24 +644,7 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateCutPrep(String drawingNumber, String lineNumber, String sheetNumber, BigDecimal size, String thickness, Integer rework, String notes, Integer rowId) {
-        Map params = new HashMap(8);
-
-        params.put("DrawingNumber", drawingNumber);
-        params.put("LineNumber", lineNumber);
-        params.put("SheetNumber", sheetNumber);
-        params.put("Size", size);
-        params.put("Thickness", thickness);
-        params.put("Rework", rework);
-        params.put("Notes", notes);
-        params.put("RowID", rowId);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateCutPrep", params);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public int executeUpdateCivilMisc(String foundation, String drawing, String detailDrawing, BigDecimal percent, Integer rework, String notes, Integer rowId) {
+    public int executeUpdateCivilMisc(String foundation, String drawing, String detailDrawing, BigDecimal percent, Integer rework, String notes, Integer fieldActivityId) {
         Map params = new HashMap(7);
 
         params.put("Foundation", foundation);
@@ -749,7 +653,7 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("Percent", percent);
         params.put("Rework", rework);
         params.put("Notes", notes);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateCivilMisc", params);
     }
@@ -817,20 +721,7 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateTesting(String testPackageNumber, Integer rework, String notes, Integer rowId) {
-        Map params = new HashMap(4);
-
-        params.put("TestPackageNumber", testPackageNumber);
-        params.put("Rework", rework);
-        params.put("Notes", notes);
-        params.put("RowID", rowId);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateTesting", params);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public int executeUpdateCivilFA(String description, String foundation, String drawing, String detailDrawing, BigDecimal percent, Integer quantity, Integer rework, String notes, Integer rowId) {
+    public int executeUpdateCivilFA(String description, String foundation, String drawing, String detailDrawing, BigDecimal percent, Integer quantity, Integer rework, String notes, Integer fieldActivityId) {
         Map params = new HashMap(9);
 
         params.put("Description", description);
@@ -841,7 +732,7 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("Quantity", quantity);
         params.put("Rework", rework);
         params.put("Notes", notes);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateCivilFA", params);
     }
@@ -866,6 +757,17 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         return queryExecutor.executeNamedQuery("GetActivityHistorySteelImp", params, Object.class, pageable);
     }
 
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public int executeUpdatePipeWeldQuantity(Integer percentComplete, Integer fieldActivityId) {
+        Map params = new HashMap(2);
+
+        params.put("PercentComplete", percentComplete);
+        params.put("FieldActivityID", fieldActivityId);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePipeWeldQuantity", params);
+    }
+
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
     public Page<Object> executeGetQuantityMiscInstalled(Pageable pageable, Integer bidId) {
@@ -876,6 +778,26 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         return queryExecutor.executeNamedQuery("GetQuantityMiscInstalled", params, Object.class, pageable);
     }
 
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public int executeUpdatePipeSupportsQuantity(Integer quantity, Integer fieldActivityId) {
+        Map params = new HashMap(2);
+
+        params.put("Quantity", quantity);
+        params.put("FieldActivityID", fieldActivityId);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePipeSupportsQuantity", params);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<Object> executeGetSettingCivilPunch(Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.executeNamedQuery("GetSettingCivilPunch", params, Object.class, pageable);
+    }
+
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
     public Page<Object> executeGetQuantityDemoRemoved(Pageable pageable, Integer bidId) {
@@ -884,6 +806,16 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("BidID", bidId);
 
         return queryExecutor.executeNamedQuery("GetQuantityDemoRemoved", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<Object> executeGetActivitiesPendingReview(Pageable pageable, Integer superId) {
+        Map params = new HashMap(1);
+
+        params.put("SuperID", superId);
+
+        return queryExecutor.executeNamedQuery("GetActivitiesPendingReview", params, Object.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -908,12 +840,23 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateSteelSellPackage(String testPackage, String notes, Integer rowId) {
+    public int executeUpdatePipeErectionQuantity(Integer spool1length, Integer fieldActivityId) {
+        Map params = new HashMap(2);
+
+        params.put("Spool1Length", spool1length);
+        params.put("FieldActivityID", fieldActivityId);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePipeErectionQuantity", params);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public int executeUpdateSteelSellPackage(String testPackage, String notes, Integer fieldActivityId) {
         Map params = new HashMap(3);
 
         params.put("TestPackage", testPackage);
         params.put("Notes", notes);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelSellPackage", params);
     }
@@ -928,23 +871,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         return queryExecutor.executeNamedQuery("GetBidWorkHistorySteel", params, Object.class, pageable);
     }
 
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public int executeUpdateEWO(String ewonumber, Integer ewohours, String drawingNumber, String lineNumber, String sheetNumber, Integer rework, String notes, Integer rowId) {
-        Map params = new HashMap(8);
-
-        params.put("EWONumber", ewonumber);
-        params.put("EWOHours", ewohours);
-        params.put("DrawingNumber", drawingNumber);
-        params.put("LineNumber", lineNumber);
-        params.put("SheetNumber", sheetNumber);
-        params.put("Rework", rework);
-        params.put("Notes", notes);
-        params.put("RowID", rowId);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateEWO", params);
-    }
-
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
     public Page<Object> executeGetSettingProductivityIntervals(Pageable pageable) {
@@ -952,6 +878,26 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
 
         return queryExecutor.executeNamedQuery("GetSettingProductivityIntervals", params, Object.class, pageable);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public int executeUpdatePipeSupports(String partNumber, Integer quantity, String drawingNumber, String lineNumber, String sheet, Byte complete, Byte shared, Integer percentComplete, Integer rework, String notes, Integer fieldActivityId) {
+        Map params = new HashMap(11);
+
+        params.put("PartNumber", partNumber);
+        params.put("Quantity", quantity);
+        params.put("DrawingNumber", drawingNumber);
+        params.put("LineNumber", lineNumber);
+        params.put("Sheet", sheet);
+        params.put("Complete", complete);
+        params.put("Shared", shared);
+        params.put("PercentComplete", percentComplete);
+        params.put("Rework", rework);
+        params.put("Notes", notes);
+        params.put("FieldActivityID", fieldActivityId);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePipeSupports", params);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -1056,12 +1002,12 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateSteelBoltoutQuantity(Integer quantity, BigDecimal percent, Integer rowId) {
+    public int executeUpdateSteelBoltoutQuantity(Integer quantity, BigDecimal percent, Integer fieldActivityId) {
         Map params = new HashMap(3);
 
         params.put("Quantity", quantity);
         params.put("Percent", percent);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelBoltoutQuantity", params);
     }
@@ -1092,6 +1038,35 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("TestPackage", testPackage);
 
         return queryExecutor.executeNamedQuery("GetDrawingsByTestPackagePipe", params, Object.class, pageable);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public int executeUpdatePipeWeld(String spool1, String spool2, String drawingNumber, String lineNumber, String sheetNumber, String lineSpec, String weldNumber, String stencil, BigDecimal size, String thickness, String weldType, String weldPosition, String material, String procedure, Byte complete, Byte shared, Integer percentComplete, Byte rework, String notes, Integer fieldActivityId) {
+        Map params = new HashMap(20);
+
+        params.put("Spool1", spool1);
+        params.put("Spool2", spool2);
+        params.put("DrawingNumber", drawingNumber);
+        params.put("LineNumber", lineNumber);
+        params.put("SheetNumber", sheetNumber);
+        params.put("LineSpec", lineSpec);
+        params.put("WeldNumber", weldNumber);
+        params.put("Stencil", stencil);
+        params.put("Size", size);
+        params.put("Thickness", thickness);
+        params.put("WeldType", weldType);
+        params.put("WeldPosition", weldPosition);
+        params.put("Material", material);
+        params.put("Procedure", procedure);
+        params.put("Complete", complete);
+        params.put("Shared", shared);
+        params.put("PercentComplete", percentComplete);
+        params.put("Rework", rework);
+        params.put("Notes", notes);
+        params.put("FieldActivityID", fieldActivityId);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePipeWeld", params);
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -1138,12 +1113,12 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateCivilFAQuantity(BigDecimal percent, Integer quantity, Integer rowId) {
+    public int executeUpdateCivilFAQuantity(BigDecimal percent, Integer quantity, Integer fieldActivityId) {
         Map params = new HashMap(3);
 
         params.put("Percent", percent);
         params.put("Quantity", quantity);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateCivilFAQuantity", params);
     }
@@ -1166,6 +1141,17 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("ActivityID", activityId);
 
         return queryExecutor.executeNamedQuery("GetActivityHistoryStatus", params, Object.class, pageable);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public int executeUpdatePipeDemoQuantity(Integer quantity, Integer fieldActivityId) {
+        Map params = new HashMap(2);
+
+        params.put("Quantity", quantity);
+        params.put("FieldActivityID", fieldActivityId);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePipeDemoQuantity", params);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -1199,6 +1185,23 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
+    public int executeUpdatePipeCutPrep(String drawingNumber, String lineNumber, String sheetNumber, BigDecimal size, String thickness, Integer rework, String notes, Integer fieldActivityId) {
+        Map params = new HashMap(8);
+
+        params.put("DrawingNumber", drawingNumber);
+        params.put("LineNumber", lineNumber);
+        params.put("SheetNumber", sheetNumber);
+        params.put("Size", size);
+        params.put("Thickness", thickness);
+        params.put("Rework", rework);
+        params.put("Notes", notes);
+        params.put("FieldActivityID", fieldActivityId);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePipeCutPrep", params);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
     public int executeUpdateSettingSteelSell(BigDecimal value1) {
         Map params = new HashMap(1);
 
@@ -1209,21 +1212,21 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateBoltUp(String spool1, String spool2, String drawingNumber, String lineNumber, String sheetNumber, BigDecimal size, Integer quantity, Integer rework, String notes, Integer rowId) {
+    public int executeUpdatePipeTrim(BigDecimal size, Integer plugQuantity, String handleType, String instType, String drawingNumber, String lineNumber, String sheetNumber, Integer rework, String notes, Integer fieldActivityId) {
         Map params = new HashMap(10);
 
-        params.put("Spool1", spool1);
-        params.put("Spool2", spool2);
+        params.put("Size", size);
+        params.put("PlugQuantity", plugQuantity);
+        params.put("HandleType", handleType);
+        params.put("InstType", instType);
         params.put("DrawingNumber", drawingNumber);
         params.put("LineNumber", lineNumber);
         params.put("SheetNumber", sheetNumber);
-        params.put("Size", size);
-        params.put("Quantity", quantity);
         params.put("Rework", rework);
         params.put("Notes", notes);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
-        return queryExecutor.executeNamedQueryForUpdate("UpdateBoltUp", params);
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePipeTrim", params);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -1238,24 +1241,32 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateMiscQuantity(Integer quantity, Integer rowId) {
+    public int executeUpdatePipeMiscQuantity(Integer quantity, Integer fieldActivityId) {
         Map params = new HashMap(2);
 
         params.put("Quantity", quantity);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
-        return queryExecutor.executeNamedQueryForUpdate("UpdateMiscQuantity", params);
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePipeMiscQuantity", params);
     }
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateWeldQuantity(Integer percentComplete, Integer rowId) {
-        Map params = new HashMap(2);
+    public int executeUpdatePipeBoltUp(String spool1, String spool2, String drawingNumber, String lineNumber, String sheetNumber, BigDecimal size, Integer quantity, Integer rework, String notes, Integer fieldActivityId) {
+        Map params = new HashMap(10);
 
-        params.put("PercentComplete", percentComplete);
-        params.put("RowID", rowId);
+        params.put("Spool1", spool1);
+        params.put("Spool2", spool2);
+        params.put("DrawingNumber", drawingNumber);
+        params.put("LineNumber", lineNumber);
+        params.put("SheetNumber", sheetNumber);
+        params.put("Size", size);
+        params.put("Quantity", quantity);
+        params.put("Rework", rework);
+        params.put("Notes", notes);
+        params.put("FieldActivityID", fieldActivityId);
 
-        return queryExecutor.executeNamedQueryForUpdate("UpdateWeldQuantity", params);
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePipeBoltUp", params);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -1280,15 +1291,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetSettingCivilPuch(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("GetSettingCivilPuch", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
     public Page<Object> executeGetSettingPipeHydroPercent(Pageable pageable) {
         Map params = new HashMap(0);
 
@@ -1308,11 +1310,11 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateCivilMiscQuantity(BigDecimal percent, Integer rowId) {
+    public int executeUpdateCivilMiscQuantity(BigDecimal percent, Integer fieldActivityId) {
         Map params = new HashMap(2);
 
         params.put("Percent", percent);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateCivilMiscQuantity", params);
     }
@@ -1328,28 +1330,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSS", params);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public int executeUpdateSupportsQuantity(Integer quantity, Integer rowId) {
-        Map params = new HashMap(2);
-
-        params.put("Quantity", quantity);
-        params.put("RowID", rowId);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateSupportsQuantity", params);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public int executeUpdateOverrideActivityQuantity(Integer newQuantity, Integer rowId) {
-        Map params = new HashMap(2);
-
-        params.put("NewQuantity", newQuantity);
-        params.put("RowID", rowId);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateOverrideActivityQuantity", params);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -1373,47 +1353,13 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateDemo(String drawingNumber, String lineNumber, String sheetNumber, Integer quantity, BigDecimal size, String notes, Integer rowId) {
-        Map params = new HashMap(7);
+    public int executeUpdatePipeTrimQuantity(String quantity, Integer fieldActivityId) {
+        Map params = new HashMap(2);
 
-        params.put("DrawingNumber", drawingNumber);
-        params.put("LineNumber", lineNumber);
-        params.put("SheetNumber", sheetNumber);
         params.put("Quantity", quantity);
-        params.put("Size", size);
-        params.put("Notes", notes);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
-        return queryExecutor.executeNamedQueryForUpdate("UpdateDemo", params);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public int executeUpdateWeld(String spool1, String spool2, String drawingNumber, String lineNumber, String sheetNumber, String lineSpec, String weldNumber, String stencil, BigDecimal size, String thickness, String weldType, String weldPosition, String material, String procedure, Byte complete, Byte shared, Integer percentComplete, Integer rework, String notes, Integer rowId) {
-        Map params = new HashMap(20);
-
-        params.put("Spool1", spool1);
-        params.put("Spool2", spool2);
-        params.put("DrawingNumber", drawingNumber);
-        params.put("LineNumber", lineNumber);
-        params.put("SheetNumber", sheetNumber);
-        params.put("LineSpec", lineSpec);
-        params.put("WeldNumber", weldNumber);
-        params.put("Stencil", stencil);
-        params.put("Size", size);
-        params.put("Thickness", thickness);
-        params.put("WeldType", weldType);
-        params.put("WeldPosition", weldPosition);
-        params.put("Material", material);
-        params.put("Procedure", procedure);
-        params.put("Complete", complete);
-        params.put("Shared", shared);
-        params.put("PercentComplete", percentComplete);
-        params.put("Rework", rework);
-        params.put("Notes", notes);
-        params.put("RowID", rowId);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateWeld", params);
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePipeTrimQuantity", params);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -1428,11 +1374,24 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateSteelSellQuantity(Integer quantity, Integer rowId) {
+    public int executeUpdatePipeTesting(String testPackageNumber, Integer rework, String notes, Integer fieldActivityId) {
+        Map params = new HashMap(4);
+
+        params.put("TestPackageNumber", testPackageNumber);
+        params.put("Rework", rework);
+        params.put("Notes", notes);
+        params.put("FieldActivityID", fieldActivityId);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePipeTesting", params);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public int executeUpdateSteelSellQuantity(Integer quantity, Float fieldActivityId) {
         Map params = new HashMap(2);
 
         params.put("Quantity", quantity);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelSellQuantity", params);
     }
@@ -1480,20 +1439,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetReportDPRByDate(Pageable pageable, String foremanId, String superId, String managerId, Date startDate, Date endDate) {
-        Map params = new HashMap(5);
-
-        params.put("ForemanID", foremanId);
-        params.put("SuperID", superId);
-        params.put("ManagerID", managerId);
-        params.put("StartDate", startDate);
-        params.put("EndDate", endDate);
-
-        return queryExecutor.executeNamedQuery("GetReportDPRByDate", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
     public Page<Object> executeGetActivityHistorySteelMisc(Pageable pageable, Integer rowId) {
         Map params = new HashMap(1);
 
@@ -1514,7 +1459,23 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateErection(String spool1, Integer spool1length, String spool2, Integer spool2length, String spool3, Integer spool3length, String spool4, Integer spool4length, String spool5, Integer spool5length, String spool6, Integer spool6length, Byte onCords, String drawingNumber, String lineNumber, String sheetNumber, BigDecimal size, Integer rework, String notes, Integer rowId) {
+    public int executeUpdatePipeDemo(String drawingNumber, String lineNumber, String sheetNumber, Integer quantity, BigDecimal size, String notes, Integer fieldActivityId) {
+        Map params = new HashMap(7);
+
+        params.put("DrawingNumber", drawingNumber);
+        params.put("LineNumber", lineNumber);
+        params.put("SheetNumber", sheetNumber);
+        params.put("Quantity", quantity);
+        params.put("Size", size);
+        params.put("Notes", notes);
+        params.put("FieldActivityID", fieldActivityId);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePipeDemo", params);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public int executeUpdatePipeErection(String spool1, Integer spool1length, String spool2, Integer spool2length, String spool3, Integer spool3length, String spool4, Integer spool4length, String spool5, Integer spool5length, String spool6, Integer spool6length, Byte onCords, String drawingNumber, String lineNumber, String sheetNumber, BigDecimal size, Integer rework, String notes, Integer fieldActivityId) {
         Map params = new HashMap(20);
 
         params.put("Spool1", spool1);
@@ -1536,9 +1497,9 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("Size", size);
         params.put("Rework", rework);
         params.put("Notes", notes);
-        params.put("RowID", rowId);
+        params.put("FieldActivityID", fieldActivityId);
 
-        return queryExecutor.executeNamedQueryForUpdate("UpdateErection", params);
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePipeErection", params);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")

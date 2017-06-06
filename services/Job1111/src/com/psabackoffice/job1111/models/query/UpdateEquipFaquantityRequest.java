@@ -15,12 +15,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UpdateEquipFaquantityRequest implements Serializable {
 
-    @NotNull
     @JsonProperty("Percent")
     private String percent;
     @NotNull
-    @JsonProperty("RowID")
-    private String rowId;
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public String getPercent() {
         return this.percent;
@@ -30,12 +29,12 @@ public class UpdateEquipFaquantityRequest implements Serializable {
         this.percent = percent;
     }
 
-    public String getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(String rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
@@ -44,12 +43,12 @@ public class UpdateEquipFaquantityRequest implements Serializable {
         if (!(o instanceof UpdateEquipFaquantityRequest)) return false;
         final UpdateEquipFaquantityRequest updateEquipFaquantityRequest = (UpdateEquipFaquantityRequest) o;
         return Objects.equals(getPercent(), updateEquipFaquantityRequest.getPercent()) &&
-                Objects.equals(getRowId(), updateEquipFaquantityRequest.getRowId());
+                Objects.equals(getFieldActivityId(), updateEquipFaquantityRequest.getFieldActivityId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getPercent(),
-                getRowId());
+                getFieldActivityId());
     }
 }

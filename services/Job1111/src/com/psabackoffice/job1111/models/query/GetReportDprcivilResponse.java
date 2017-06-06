@@ -21,8 +21,6 @@ public class GetReportDprcivilResponse implements Serializable {
     private Integer fieldActivityId;
     @ColumnAlias("ActivityType")
     private Short activityType;
-    @ColumnAlias("ActivityRowId")
-    private Integer activityRowId;
     @ColumnAlias("ActivityTypeName")
     private String activityTypeName;
     @ColumnAlias("Foundation")
@@ -58,14 +56,6 @@ public class GetReportDprcivilResponse implements Serializable {
 
     public void setActivityType(Short activityType) {
         this.activityType = activityType;
-    }
-
-    public Integer getActivityRowId() {
-        return this.activityRowId;
-    }
-
-    public void setActivityRowId(Integer activityRowId) {
-        this.activityRowId = activityRowId;
     }
 
     public String getActivityTypeName() {
@@ -155,7 +145,6 @@ public class GetReportDprcivilResponse implements Serializable {
         final GetReportDprcivilResponse getReportDprcivilResponse = (GetReportDprcivilResponse) o;
         return Objects.equals(getFieldActivityId(), getReportDprcivilResponse.getFieldActivityId()) &&
                 Objects.equals(getActivityType(), getReportDprcivilResponse.getActivityType()) &&
-                Objects.equals(getActivityRowId(), getReportDprcivilResponse.getActivityRowId()) &&
                 Objects.equals(getActivityTypeName(), getReportDprcivilResponse.getActivityTypeName()) &&
                 Objects.equals(getFoundation(), getReportDprcivilResponse.getFoundation()) &&
                 Objects.equals(getDescription(), getReportDprcivilResponse.getDescription()) &&
@@ -172,7 +161,6 @@ public class GetReportDprcivilResponse implements Serializable {
     public int hashCode() {
         return Objects.hash(getFieldActivityId(),
                 getActivityType(),
-                getActivityRowId(),
                 getActivityTypeName(),
                 getFoundation(),
                 getDescription(),

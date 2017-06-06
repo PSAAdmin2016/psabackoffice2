@@ -15,27 +15,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UpdateEquipFaRequest implements Serializable {
 
-    @NotNull
     @JsonProperty("TagNumber")
     private String tagNumber;
-    @NotNull
     @JsonProperty("Activity")
     private String activity;
-    @NotNull
     @JsonProperty("Quantity")
     private BigDecimal quantity;
-    @NotNull
     @JsonProperty("Percent")
     private String percent;
-    @NotNull
     @JsonProperty("Rework")
     private String rework;
-    @NotNull
     @JsonProperty("Notes")
     private String notes;
     @NotNull
-    @JsonProperty("RowID")
-    private String rowId;
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public String getTagNumber() {
         return this.tagNumber;
@@ -85,12 +79,12 @@ public class UpdateEquipFaRequest implements Serializable {
         this.notes = notes;
     }
 
-    public String getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(String rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
@@ -104,7 +98,7 @@ public class UpdateEquipFaRequest implements Serializable {
                 Objects.equals(getPercent(), updateEquipFaRequest.getPercent()) &&
                 Objects.equals(getRework(), updateEquipFaRequest.getRework()) &&
                 Objects.equals(getNotes(), updateEquipFaRequest.getNotes()) &&
-                Objects.equals(getRowId(), updateEquipFaRequest.getRowId());
+                Objects.equals(getFieldActivityId(), updateEquipFaRequest.getFieldActivityId());
     }
 
     @Override
@@ -115,6 +109,6 @@ public class UpdateEquipFaRequest implements Serializable {
                 getPercent(),
                 getRework(),
                 getNotes(),
-                getRowId());
+                getFieldActivityId());
     }
 }

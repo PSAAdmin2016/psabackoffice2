@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UpdateSteelWeldQuantityRequest implements Serializable {
@@ -17,8 +19,9 @@ public class UpdateSteelWeldQuantityRequest implements Serializable {
     private Integer quantity;
     @JsonProperty("Percent")
     private BigDecimal percent;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public Integer getQuantity() {
         return this.quantity;
@@ -36,12 +39,12 @@ public class UpdateSteelWeldQuantityRequest implements Serializable {
         this.percent = percent;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
@@ -51,13 +54,13 @@ public class UpdateSteelWeldQuantityRequest implements Serializable {
         final UpdateSteelWeldQuantityRequest updateSteelWeldQuantityRequest = (UpdateSteelWeldQuantityRequest) o;
         return Objects.equals(getQuantity(), updateSteelWeldQuantityRequest.getQuantity()) &&
                 Objects.equals(getPercent(), updateSteelWeldQuantityRequest.getPercent()) &&
-                Objects.equals(getRowId(), updateSteelWeldQuantityRequest.getRowId());
+                Objects.equals(getFieldActivityId(), updateSteelWeldQuantityRequest.getFieldActivityId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getQuantity(),
                 getPercent(),
-                getRowId());
+                getFieldActivityId());
     }
 }

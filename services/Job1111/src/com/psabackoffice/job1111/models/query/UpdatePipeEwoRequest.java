@@ -13,43 +13,40 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateBoltUpRequest implements Serializable {
+public class UpdatePipeEwoRequest implements Serializable {
 
-    @JsonProperty("Spool1")
-    private String spool1;
-    @JsonProperty("Spool2")
-    private String spool2;
+    @JsonProperty("EWONumber")
+    private String ewonumber;
+    @JsonProperty("EWOHours")
+    private Integer ewohours;
     @JsonProperty("DrawingNumber")
     private String drawingNumber;
     @JsonProperty("LineNumber")
     private String lineNumber;
     @JsonProperty("SheetNumber")
     private String sheetNumber;
-    @JsonProperty("Size")
-    private BigDecimal size;
-    @JsonProperty("Quantity")
-    private Integer quantity;
     @JsonProperty("Rework")
     private Integer rework;
     @JsonProperty("Notes")
     private String notes;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
-    public String getSpool1() {
-        return this.spool1;
+    public String getEwonumber() {
+        return this.ewonumber;
     }
 
-    public void setSpool1(String spool1) {
-        this.spool1 = spool1;
+    public void setEwonumber(String ewonumber) {
+        this.ewonumber = ewonumber;
     }
 
-    public String getSpool2() {
-        return this.spool2;
+    public Integer getEwohours() {
+        return this.ewohours;
     }
 
-    public void setSpool2(String spool2) {
-        this.spool2 = spool2;
+    public void setEwohours(Integer ewohours) {
+        this.ewohours = ewohours;
     }
 
     public String getDrawingNumber() {
@@ -76,22 +73,6 @@ public class UpdateBoltUpRequest implements Serializable {
         this.sheetNumber = sheetNumber;
     }
 
-    public BigDecimal getSize() {
-        return this.size;
-    }
-
-    public void setSize(BigDecimal size) {
-        this.size = size;
-    }
-
-    public Integer getQuantity() {
-        return this.quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
     public Integer getRework() {
         return this.rework;
     }
@@ -108,42 +89,38 @@ public class UpdateBoltUpRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UpdateBoltUpRequest)) return false;
-        final UpdateBoltUpRequest updateBoltUpRequest = (UpdateBoltUpRequest) o;
-        return Objects.equals(getSpool1(), updateBoltUpRequest.getSpool1()) &&
-                Objects.equals(getSpool2(), updateBoltUpRequest.getSpool2()) &&
-                Objects.equals(getDrawingNumber(), updateBoltUpRequest.getDrawingNumber()) &&
-                Objects.equals(getLineNumber(), updateBoltUpRequest.getLineNumber()) &&
-                Objects.equals(getSheetNumber(), updateBoltUpRequest.getSheetNumber()) &&
-                Objects.equals(getSize(), updateBoltUpRequest.getSize()) &&
-                Objects.equals(getQuantity(), updateBoltUpRequest.getQuantity()) &&
-                Objects.equals(getRework(), updateBoltUpRequest.getRework()) &&
-                Objects.equals(getNotes(), updateBoltUpRequest.getNotes()) &&
-                Objects.equals(getRowId(), updateBoltUpRequest.getRowId());
+        if (!(o instanceof UpdatePipeEwoRequest)) return false;
+        final UpdatePipeEwoRequest updatePipeEwoRequest = (UpdatePipeEwoRequest) o;
+        return Objects.equals(getEwonumber(), updatePipeEwoRequest.getEwonumber()) &&
+                Objects.equals(getEwohours(), updatePipeEwoRequest.getEwohours()) &&
+                Objects.equals(getDrawingNumber(), updatePipeEwoRequest.getDrawingNumber()) &&
+                Objects.equals(getLineNumber(), updatePipeEwoRequest.getLineNumber()) &&
+                Objects.equals(getSheetNumber(), updatePipeEwoRequest.getSheetNumber()) &&
+                Objects.equals(getRework(), updatePipeEwoRequest.getRework()) &&
+                Objects.equals(getNotes(), updatePipeEwoRequest.getNotes()) &&
+                Objects.equals(getFieldActivityId(), updatePipeEwoRequest.getFieldActivityId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getSpool1(),
-                getSpool2(),
+        return Objects.hash(getEwonumber(),
+                getEwohours(),
                 getDrawingNumber(),
                 getLineNumber(),
                 getSheetNumber(),
-                getSize(),
-                getQuantity(),
                 getRework(),
                 getNotes(),
-                getRowId());
+                getFieldActivityId());
     }
 }

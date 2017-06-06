@@ -9,9 +9,11 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateSupportsRequest implements Serializable {
+public class UpdatePipeSupportsRequest implements Serializable {
 
     @JsonProperty("PartNumber")
     private String partNumber;
@@ -33,8 +35,9 @@ public class UpdateSupportsRequest implements Serializable {
     private Integer rework;
     @JsonProperty("Notes")
     private String notes;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public String getPartNumber() {
         return this.partNumber;
@@ -116,30 +119,30 @@ public class UpdateSupportsRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UpdateSupportsRequest)) return false;
-        final UpdateSupportsRequest updateSupportsRequest = (UpdateSupportsRequest) o;
-        return Objects.equals(getPartNumber(), updateSupportsRequest.getPartNumber()) &&
-                Objects.equals(getQuantity(), updateSupportsRequest.getQuantity()) &&
-                Objects.equals(getDrawingNumber(), updateSupportsRequest.getDrawingNumber()) &&
-                Objects.equals(getLineNumber(), updateSupportsRequest.getLineNumber()) &&
-                Objects.equals(getSheet(), updateSupportsRequest.getSheet()) &&
-                Objects.equals(getComplete(), updateSupportsRequest.getComplete()) &&
-                Objects.equals(getShared(), updateSupportsRequest.getShared()) &&
-                Objects.equals(getPercentComplete(), updateSupportsRequest.getPercentComplete()) &&
-                Objects.equals(getRework(), updateSupportsRequest.getRework()) &&
-                Objects.equals(getNotes(), updateSupportsRequest.getNotes()) &&
-                Objects.equals(getRowId(), updateSupportsRequest.getRowId());
+        if (!(o instanceof UpdatePipeSupportsRequest)) return false;
+        final UpdatePipeSupportsRequest updatePipeSupportsRequest = (UpdatePipeSupportsRequest) o;
+        return Objects.equals(getPartNumber(), updatePipeSupportsRequest.getPartNumber()) &&
+                Objects.equals(getQuantity(), updatePipeSupportsRequest.getQuantity()) &&
+                Objects.equals(getDrawingNumber(), updatePipeSupportsRequest.getDrawingNumber()) &&
+                Objects.equals(getLineNumber(), updatePipeSupportsRequest.getLineNumber()) &&
+                Objects.equals(getSheet(), updatePipeSupportsRequest.getSheet()) &&
+                Objects.equals(getComplete(), updatePipeSupportsRequest.getComplete()) &&
+                Objects.equals(getShared(), updatePipeSupportsRequest.getShared()) &&
+                Objects.equals(getPercentComplete(), updatePipeSupportsRequest.getPercentComplete()) &&
+                Objects.equals(getRework(), updatePipeSupportsRequest.getRework()) &&
+                Objects.equals(getNotes(), updatePipeSupportsRequest.getNotes()) &&
+                Objects.equals(getFieldActivityId(), updatePipeSupportsRequest.getFieldActivityId());
     }
 
     @Override
@@ -154,6 +157,6 @@ public class UpdateSupportsRequest implements Serializable {
                 getPercentComplete(),
                 getRework(),
                 getNotes(),
-                getRowId());
+                getFieldActivityId());
     }
 }

@@ -31,8 +31,9 @@ public class UpdateCivilFaRequest implements Serializable {
     private Integer rework;
     @JsonProperty("Notes")
     private String notes;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public String getDescription() {
         return this.description;
@@ -98,12 +99,12 @@ public class UpdateCivilFaRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
@@ -119,7 +120,7 @@ public class UpdateCivilFaRequest implements Serializable {
                 Objects.equals(getQuantity(), updateCivilFaRequest.getQuantity()) &&
                 Objects.equals(getRework(), updateCivilFaRequest.getRework()) &&
                 Objects.equals(getNotes(), updateCivilFaRequest.getNotes()) &&
-                Objects.equals(getRowId(), updateCivilFaRequest.getRowId());
+                Objects.equals(getFieldActivityId(), updateCivilFaRequest.getFieldActivityId());
     }
 
     @Override
@@ -132,6 +133,6 @@ public class UpdateCivilFaRequest implements Serializable {
                 getQuantity(),
                 getRework(),
                 getNotes(),
-                getRowId());
+                getFieldActivityId());
     }
 }

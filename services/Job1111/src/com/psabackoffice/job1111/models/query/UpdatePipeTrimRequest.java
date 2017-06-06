@@ -9,9 +9,11 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateTrimRequest implements Serializable {
+public class UpdatePipeTrimRequest implements Serializable {
 
     @JsonProperty("Size")
     private BigDecimal size;
@@ -31,8 +33,9 @@ public class UpdateTrimRequest implements Serializable {
     private Integer rework;
     @JsonProperty("Notes")
     private String notes;
-    @JsonProperty("RowId")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public BigDecimal getSize() {
         return this.size;
@@ -106,29 +109,29 @@ public class UpdateTrimRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UpdateTrimRequest)) return false;
-        final UpdateTrimRequest updateTrimRequest = (UpdateTrimRequest) o;
-        return Objects.equals(getSize(), updateTrimRequest.getSize()) &&
-                Objects.equals(getPlugQuantity(), updateTrimRequest.getPlugQuantity()) &&
-                Objects.equals(getHandleType(), updateTrimRequest.getHandleType()) &&
-                Objects.equals(getInstType(), updateTrimRequest.getInstType()) &&
-                Objects.equals(getDrawingNumber(), updateTrimRequest.getDrawingNumber()) &&
-                Objects.equals(getLineNumber(), updateTrimRequest.getLineNumber()) &&
-                Objects.equals(getSheetNumber(), updateTrimRequest.getSheetNumber()) &&
-                Objects.equals(getRework(), updateTrimRequest.getRework()) &&
-                Objects.equals(getNotes(), updateTrimRequest.getNotes()) &&
-                Objects.equals(getRowId(), updateTrimRequest.getRowId());
+        if (!(o instanceof UpdatePipeTrimRequest)) return false;
+        final UpdatePipeTrimRequest updatePipeTrimRequest = (UpdatePipeTrimRequest) o;
+        return Objects.equals(getSize(), updatePipeTrimRequest.getSize()) &&
+                Objects.equals(getPlugQuantity(), updatePipeTrimRequest.getPlugQuantity()) &&
+                Objects.equals(getHandleType(), updatePipeTrimRequest.getHandleType()) &&
+                Objects.equals(getInstType(), updatePipeTrimRequest.getInstType()) &&
+                Objects.equals(getDrawingNumber(), updatePipeTrimRequest.getDrawingNumber()) &&
+                Objects.equals(getLineNumber(), updatePipeTrimRequest.getLineNumber()) &&
+                Objects.equals(getSheetNumber(), updatePipeTrimRequest.getSheetNumber()) &&
+                Objects.equals(getRework(), updatePipeTrimRequest.getRework()) &&
+                Objects.equals(getNotes(), updatePipeTrimRequest.getNotes()) &&
+                Objects.equals(getFieldActivityId(), updatePipeTrimRequest.getFieldActivityId());
     }
 
     @Override
@@ -142,6 +145,6 @@ public class UpdateTrimRequest implements Serializable {
                 getSheetNumber(),
                 getRework(),
                 getNotes(),
-                getRowId());
+                getFieldActivityId());
     }
 }

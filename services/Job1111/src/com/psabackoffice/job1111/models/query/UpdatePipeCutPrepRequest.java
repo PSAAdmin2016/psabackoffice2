@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateDemoRequest implements Serializable {
+public class UpdatePipeCutPrepRequest implements Serializable {
 
     @JsonProperty("DrawingNumber")
     private String drawingNumber;
@@ -21,14 +21,17 @@ public class UpdateDemoRequest implements Serializable {
     private String lineNumber;
     @JsonProperty("SheetNumber")
     private String sheetNumber;
-    @JsonProperty("Quantity")
-    private Integer quantity;
     @JsonProperty("Size")
     private BigDecimal size;
+    @JsonProperty("Thickness")
+    private String thickness;
+    @JsonProperty("Rework")
+    private Integer rework;
     @JsonProperty("Notes")
     private String notes;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public String getDrawingNumber() {
         return this.drawingNumber;
@@ -54,20 +57,28 @@ public class UpdateDemoRequest implements Serializable {
         this.sheetNumber = sheetNumber;
     }
 
-    public Integer getQuantity() {
-        return this.quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
     public BigDecimal getSize() {
         return this.size;
     }
 
     public void setSize(BigDecimal size) {
         this.size = size;
+    }
+
+    public String getThickness() {
+        return this.thickness;
+    }
+
+    public void setThickness(String thickness) {
+        this.thickness = thickness;
+    }
+
+    public Integer getRework() {
+        return this.rework;
+    }
+
+    public void setRework(Integer rework) {
+        this.rework = rework;
     }
 
     public String getNotes() {
@@ -78,26 +89,27 @@ public class UpdateDemoRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UpdateDemoRequest)) return false;
-        final UpdateDemoRequest updateDemoRequest = (UpdateDemoRequest) o;
-        return Objects.equals(getDrawingNumber(), updateDemoRequest.getDrawingNumber()) &&
-                Objects.equals(getLineNumber(), updateDemoRequest.getLineNumber()) &&
-                Objects.equals(getSheetNumber(), updateDemoRequest.getSheetNumber()) &&
-                Objects.equals(getQuantity(), updateDemoRequest.getQuantity()) &&
-                Objects.equals(getSize(), updateDemoRequest.getSize()) &&
-                Objects.equals(getNotes(), updateDemoRequest.getNotes()) &&
-                Objects.equals(getRowId(), updateDemoRequest.getRowId());
+        if (!(o instanceof UpdatePipeCutPrepRequest)) return false;
+        final UpdatePipeCutPrepRequest updatePipeCutPrepRequest = (UpdatePipeCutPrepRequest) o;
+        return Objects.equals(getDrawingNumber(), updatePipeCutPrepRequest.getDrawingNumber()) &&
+                Objects.equals(getLineNumber(), updatePipeCutPrepRequest.getLineNumber()) &&
+                Objects.equals(getSheetNumber(), updatePipeCutPrepRequest.getSheetNumber()) &&
+                Objects.equals(getSize(), updatePipeCutPrepRequest.getSize()) &&
+                Objects.equals(getThickness(), updatePipeCutPrepRequest.getThickness()) &&
+                Objects.equals(getRework(), updatePipeCutPrepRequest.getRework()) &&
+                Objects.equals(getNotes(), updatePipeCutPrepRequest.getNotes()) &&
+                Objects.equals(getFieldActivityId(), updatePipeCutPrepRequest.getFieldActivityId());
     }
 
     @Override
@@ -105,9 +117,10 @@ public class UpdateDemoRequest implements Serializable {
         return Objects.hash(getDrawingNumber(),
                 getLineNumber(),
                 getSheetNumber(),
-                getQuantity(),
                 getSize(),
+                getThickness(),
+                getRework(),
                 getNotes(),
-                getRowId());
+                getFieldActivityId());
     }
 }

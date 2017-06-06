@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UpdateCivilMiscRequest implements Serializable {
@@ -25,8 +27,9 @@ public class UpdateCivilMiscRequest implements Serializable {
     private Integer rework;
     @JsonProperty("Notes")
     private String notes;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public String getFoundation() {
         return this.foundation;
@@ -76,12 +79,12 @@ public class UpdateCivilMiscRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
@@ -95,7 +98,7 @@ public class UpdateCivilMiscRequest implements Serializable {
                 Objects.equals(getPercent(), updateCivilMiscRequest.getPercent()) &&
                 Objects.equals(getRework(), updateCivilMiscRequest.getRework()) &&
                 Objects.equals(getNotes(), updateCivilMiscRequest.getNotes()) &&
-                Objects.equals(getRowId(), updateCivilMiscRequest.getRowId());
+                Objects.equals(getFieldActivityId(), updateCivilMiscRequest.getFieldActivityId());
     }
 
     @Override
@@ -106,6 +109,6 @@ public class UpdateCivilMiscRequest implements Serializable {
                 getPercent(),
                 getRework(),
                 getNotes(),
-                getRowId());
+                getFieldActivityId());
     }
 }

@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateTestingRequest implements Serializable {
+public class UpdatePipeTestingRequest implements Serializable {
 
     @JsonProperty("TestPackageNumber")
     private String testPackageNumber;
@@ -21,8 +21,9 @@ public class UpdateTestingRequest implements Serializable {
     private Integer rework;
     @JsonProperty("Notes")
     private String notes;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public String getTestPackageNumber() {
         return this.testPackageNumber;
@@ -48,23 +49,23 @@ public class UpdateTestingRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UpdateTestingRequest)) return false;
-        final UpdateTestingRequest updateTestingRequest = (UpdateTestingRequest) o;
-        return Objects.equals(getTestPackageNumber(), updateTestingRequest.getTestPackageNumber()) &&
-                Objects.equals(getRework(), updateTestingRequest.getRework()) &&
-                Objects.equals(getNotes(), updateTestingRequest.getNotes()) &&
-                Objects.equals(getRowId(), updateTestingRequest.getRowId());
+        if (!(o instanceof UpdatePipeTestingRequest)) return false;
+        final UpdatePipeTestingRequest updatePipeTestingRequest = (UpdatePipeTestingRequest) o;
+        return Objects.equals(getTestPackageNumber(), updatePipeTestingRequest.getTestPackageNumber()) &&
+                Objects.equals(getRework(), updatePipeTestingRequest.getRework()) &&
+                Objects.equals(getNotes(), updatePipeTestingRequest.getNotes()) &&
+                Objects.equals(getFieldActivityId(), updatePipeTestingRequest.getFieldActivityId());
     }
 
     @Override
@@ -72,6 +73,6 @@ public class UpdateTestingRequest implements Serializable {
         return Objects.hash(getTestPackageNumber(),
                 getRework(),
                 getNotes(),
-                getRowId());
+                getFieldActivityId());
     }
 }

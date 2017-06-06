@@ -194,16 +194,6 @@ public class QueryExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/queries/UpdateTrim", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Update Job####.SubsTrim with data inputs")
-    public Integer executeUpdateTrim(@Valid @RequestBody UpdateTrimRequest updateTrimRequest) {
-        LOGGER.debug("Executing named query: UpdateTrim");
-        Integer _result = queryService.executeUpdateTrim(updateTrimRequest);
-        LOGGER.debug("got the result for named query: UpdateTrim, result:{}", _result);
-        return _result;
-    }
-
     @RequestMapping(value = "/queries/GetActivityHistoryPipeBoltup", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "No description is provided")
@@ -281,6 +271,35 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/UpdatePipeMisc", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Update Job####.SubsMisc table with data inputs")
+    public Integer executeUpdatePipeMisc(@Valid @RequestBody UpdatePipeMiscRequest updatePipeMiscRequest) {
+        LOGGER.debug("Executing named query: UpdatePipeMisc");
+        Integer _result = queryService.executeUpdatePipeMisc(updatePipeMiscRequest);
+        LOGGER.debug("got the result for named query: UpdatePipeMisc, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/GetReportDPRPipe", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Get the Daily Progress Report of given date range By Foreman")
+    public Page<GetReportDprpipeResponse> executeGetReportDPRPipe(@RequestParam(value = "ForemanID", required = false) String foremanId, @RequestParam(value = "SuperID", required = false) String superId, @RequestParam(value = "ManagerID", required = false) String managerId, @RequestParam(value = "StartDate", required = false) Date startDate, @RequestParam(value = "EndDate", required = false) Date endDate, Pageable pageable) {
+        LOGGER.debug("Executing named query: GetReportDPRPipe");
+        Page<GetReportDprpipeResponse> _result = queryService.executeGetReportDPRPipe(foremanId, superId, managerId, startDate, endDate, pageable);
+        LOGGER.debug("got the result for named query: GetReportDPRPipe, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetReportDPRPipe")
+    @RequestMapping(value = "/queries/GetReportDPRPipe/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetReportDPRPipe(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ForemanID", required = false) String foremanId, @RequestParam(value = "SuperID", required = false) String superId, @RequestParam(value = "ManagerID", required = false) String managerId, @RequestParam(value = "StartDate", required = false) Date startDate, @RequestParam(value = "EndDate", required = false) Date endDate, Pageable pageable) {
+        LOGGER.debug("Exporting named query: GetReportDPRPipe");
+
+        return queryService.exportGetReportDPRPipe(exportType, foremanId, superId, managerId, startDate, endDate, pageable);
+    }
+
     @RequestMapping(value = "/queries/GetActivityHistoryEquipFA", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
@@ -329,16 +348,6 @@ public class QueryExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/queries/UpdateMisc", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Update Job####.SubsMisc table with data inputs")
-    public Integer executeUpdateMisc(@Valid @RequestBody UpdateMiscRequest updateMiscRequest) {
-        LOGGER.debug("Executing named query: UpdateMisc");
-        Integer _result = queryService.executeUpdateMisc(updateMiscRequest);
-        LOGGER.debug("got the result for named query: UpdateMisc, result:{}", _result);
-        return _result;
-    }
-
     @RequestMapping(value = "/queries/UpdateSteelMisc", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
@@ -366,16 +375,6 @@ public class QueryExecutionController {
         LOGGER.debug("Executing named query: UpdateSteelDemo");
         Integer _result = queryService.executeUpdateSteelDemo(updateSteelDemoRequest);
         LOGGER.debug("got the result for named query: UpdateSteelDemo, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/UpdateBoltupQuantity", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "No description is provided")
-    public Integer executeUpdateBoltupQuantity(@Valid @RequestBody UpdateBoltupQuantityRequest updateBoltupQuantityRequest) {
-        LOGGER.debug("Executing named query: UpdateBoltupQuantity");
-        Integer _result = queryService.executeUpdateBoltupQuantity(updateBoltupQuantityRequest);
-        LOGGER.debug("got the result for named query: UpdateBoltupQuantity, result:{}", _result);
         return _result;
     }
 
@@ -446,25 +445,6 @@ public class QueryExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/queries/GetUniqueDrawingNumber", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "No description is provided")
-    public Page<GetUniqueDrawingNumberResponse> executeGetUniqueDrawingNumber(Pageable pageable) {
-        LOGGER.debug("Executing named query: GetUniqueDrawingNumber");
-        Page<GetUniqueDrawingNumberResponse> _result = queryService.executeGetUniqueDrawingNumber(pageable);
-        LOGGER.debug("got the result for named query: GetUniqueDrawingNumber, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetUniqueDrawingNumber")
-    @RequestMapping(value = "/queries/GetUniqueDrawingNumber/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetUniqueDrawingNumber(@PathVariable("exportType") ExportType exportType, Pageable pageable) {
-        LOGGER.debug("Exporting named query: GetUniqueDrawingNumber");
-
-        return queryService.exportGetUniqueDrawingNumber(exportType, pageable);
-    }
-
     @RequestMapping(value = "/queries/UpdateSubDetails", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Updates Job####.SubsDetails with Data inputs")
@@ -533,25 +513,6 @@ public class QueryExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/queries/GetPSAActivityByUid", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Get all activities pending Supervisor review BY SuperID")
-    public Page<GetPsaactivityByUidResponse> executeGetPSAActivityByUid(@RequestParam(value = "SuperID", required = false) Integer superId, Pageable pageable) {
-        LOGGER.debug("Executing named query: GetPSAActivityByUid");
-        Page<GetPsaactivityByUidResponse> _result = queryService.executeGetPSAActivityByUid(superId, pageable);
-        LOGGER.debug("got the result for named query: GetPSAActivityByUid, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetPSAActivityByUid")
-    @RequestMapping(value = "/queries/GetPSAActivityByUid/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetPSAActivityByUid(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "SuperID", required = false) Integer superId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: GetPSAActivityByUid");
-
-        return queryService.exportGetPSAActivityByUid(exportType, superId, pageable);
-    }
-
     @RequestMapping(value = "/queries/GetBidActivityQuantitiesPipe", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Gets the Bid estimate Quantity of a specified BidID")
@@ -569,25 +530,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetBidActivityQuantitiesPipe");
 
         return queryService.exportGetBidActivityQuantitiesPipe(exportType, bidId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetUniqueLineNumbers", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "No description is provided")
-    public Page<GetUniqueLineNumbersResponse> executeGetUniqueLineNumbers(Pageable pageable) {
-        LOGGER.debug("Executing named query: GetUniqueLineNumbers");
-        Page<GetUniqueLineNumbersResponse> _result = queryService.executeGetUniqueLineNumbers(pageable);
-        LOGGER.debug("got the result for named query: GetUniqueLineNumbers, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetUniqueLineNumbers")
-    @RequestMapping(value = "/queries/GetUniqueLineNumbers/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetUniqueLineNumbers(@PathVariable("exportType") ExportType exportType, Pageable pageable) {
-        LOGGER.debug("Exporting named query: GetUniqueLineNumbers");
-
-        return queryService.exportGetUniqueLineNumbers(exportType, pageable);
     }
 
     @RequestMapping(value = "/queries/GetQuantitiesTestPackageSteel", method = RequestMethod.GET)
@@ -675,35 +617,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetSettingSteelErectPercent");
 
         return queryService.exportGetSettingSteelErectPercent(exportType, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetPSAActivityByUidCount", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Gets the number of activities pending supervisor approval")
-    public Page<GetPsaactivityByUidCountResponse> executeGetPSAActivityByUidCount(@RequestParam(value = "SuperID", required = false) Integer superId, Pageable pageable) {
-        LOGGER.debug("Executing named query: GetPSAActivityByUidCount");
-        Page<GetPsaactivityByUidCountResponse> _result = queryService.executeGetPSAActivityByUidCount(superId, pageable);
-        LOGGER.debug("got the result for named query: GetPSAActivityByUidCount, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetPSAActivityByUidCount")
-    @RequestMapping(value = "/queries/GetPSAActivityByUidCount/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetPSAActivityByUidCount(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "SuperID", required = false) Integer superId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: GetPSAActivityByUidCount");
-
-        return queryService.exportGetPSAActivityByUidCount(exportType, superId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/UpdateTrimQuantity", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "No description is provided")
-    public Integer executeUpdateTrimQuantity(@Valid @RequestBody UpdateTrimQuantityRequest updateTrimQuantityRequest) {
-        LOGGER.debug("Executing named query: UpdateTrimQuantity");
-        Integer _result = queryService.executeUpdateTrimQuantity(updateTrimQuantityRequest);
-        LOGGER.debug("got the result for named query: UpdateTrimQuantity, result:{}", _result);
-        return _result;
     }
 
     @RequestMapping(value = "/queries/GetSettingCivilWork", method = RequestMethod.GET)
@@ -803,6 +716,16 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/UpdatePipeBoltupQuantity", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "No description is provided")
+    public Integer executeUpdatePipeBoltupQuantity(@Valid @RequestBody UpdatePipeBoltupQuantityRequest updatePipeBoltupQuantityRequest) {
+        LOGGER.debug("Executing named query: UpdatePipeBoltupQuantity");
+        Integer _result = queryService.executeUpdatePipeBoltupQuantity(updatePipeBoltupQuantityRequest);
+        LOGGER.debug("got the result for named query: UpdatePipeBoltupQuantity, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/UpdateSteelSell", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
@@ -830,16 +753,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetSettingPipeTestingPercent");
 
         return queryService.exportGetSettingPipeTestingPercent(exportType, pageable);
-    }
-
-    @RequestMapping(value = "/queries/UpdateErectionQuantity", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "No description is provided")
-    public Integer executeUpdateErectionQuantity(@Valid @RequestBody UpdateErectionQuantityRequest updateErectionQuantityRequest) {
-        LOGGER.debug("Executing named query: UpdateErectionQuantity");
-        Integer _result = queryService.executeUpdateErectionQuantity(updateErectionQuantityRequest);
-        LOGGER.debug("got the result for named query: UpdateErectionQuantity, result:{}", _result);
-        return _result;
     }
 
     @RequestMapping(value = "/queries/GetBidActivityMatchesCivil", method = RequestMethod.GET)
@@ -871,13 +784,13 @@ public class QueryExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/queries/UpdateSupports", method = RequestMethod.PUT)
+    @RequestMapping(value = "/queries/UpdatePipeEWO", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Update Job####.SubsSupports with Data inputs")
-    public Integer executeUpdateSupports(@Valid @RequestBody UpdateSupportsRequest updateSupportsRequest) {
-        LOGGER.debug("Executing named query: UpdateSupports");
-        Integer _result = queryService.executeUpdateSupports(updateSupportsRequest);
-        LOGGER.debug("got the result for named query: UpdateSupports, result:{}", _result);
+    @ApiOperation(value = "Update Job####.SubsEWO from input fields")
+    public Integer executeUpdatePipeEWO(@Valid @RequestBody UpdatePipeEwoRequest updatePipeEwoRequest) {
+        LOGGER.debug("Executing named query: UpdatePipeEWO");
+        Integer _result = queryService.executeUpdatePipeEWO(updatePipeEwoRequest);
+        LOGGER.debug("got the result for named query: UpdatePipeEWO, result:{}", _result);
         return _result;
     }
 
@@ -898,16 +811,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetQuantityLFInstalled");
 
         return queryService.exportGetQuantityLFInstalled(exportType, bidId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/UpdateDemoQuantity", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "No description is provided")
-    public Integer executeUpdateDemoQuantity(@Valid @RequestBody UpdateDemoQuantityRequest updateDemoQuantityRequest) {
-        LOGGER.debug("Executing named query: UpdateDemoQuantity");
-        Integer _result = queryService.executeUpdateDemoQuantity(updateDemoQuantityRequest);
-        LOGGER.debug("got the result for named query: UpdateDemoQuantity, result:{}", _result);
-        return _result;
     }
 
     @RequestMapping(value = "/queries/GetActivityHistorySteelSell", method = RequestMethod.GET)
@@ -936,16 +839,6 @@ public class QueryExecutionController {
         LOGGER.debug("Executing named query: UpdateSettingPipeRFTPercent");
         Integer _result = queryService.executeUpdateSettingPipeRFTPercent(updateSettingPipeRftpercentRequest);
         LOGGER.debug("got the result for named query: UpdateSettingPipeRFTPercent, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/UpdateCutPrep", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "No description is provided")
-    public Integer executeUpdateCutPrep(@Valid @RequestBody UpdateCutPrepRequest updateCutPrepRequest) {
-        LOGGER.debug("Executing named query: UpdateCutPrep");
-        Integer _result = queryService.executeUpdateCutPrep(updateCutPrepRequest);
-        LOGGER.debug("got the result for named query: UpdateCutPrep, result:{}", _result);
         return _result;
     }
 
@@ -1046,16 +939,6 @@ public class QueryExecutionController {
         return queryService.exportGetActivityHistoryPipeMisc(exportType, rowId, pageable);
     }
 
-    @RequestMapping(value = "/queries/UpdateTesting", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Update Job####.SubsTesting with input fields")
-    public Integer executeUpdateTesting(@Valid @RequestBody UpdateTestingRequest updateTestingRequest) {
-        LOGGER.debug("Executing named query: UpdateTesting");
-        Integer _result = queryService.executeUpdateTesting(updateTestingRequest);
-        LOGGER.debug("got the result for named query: UpdateTesting, result:{}", _result);
-        return _result;
-    }
-
     @RequestMapping(value = "/queries/UpdateCivilFA", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
@@ -1104,6 +987,16 @@ public class QueryExecutionController {
         return queryService.exportGetActivityHistorySteelImp(exportType, rowId, pageable);
     }
 
+    @RequestMapping(value = "/queries/UpdatePipeWeldQuantity", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "No description is provided")
+    public Integer executeUpdatePipeWeldQuantity(@Valid @RequestBody UpdatePipeWeldQuantityRequest updatePipeWeldQuantityRequest) {
+        LOGGER.debug("Executing named query: UpdatePipeWeldQuantity");
+        Integer _result = queryService.executeUpdatePipeWeldQuantity(updatePipeWeldQuantityRequest);
+        LOGGER.debug("got the result for named query: UpdatePipeWeldQuantity, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/GetQuantityMiscInstalled", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "No description is provided")
@@ -1123,6 +1016,35 @@ public class QueryExecutionController {
         return queryService.exportGetQuantityMiscInstalled(exportType, bidId, pageable);
     }
 
+    @RequestMapping(value = "/queries/UpdatePipeSupportsQuantity", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "No description is provided")
+    public Integer executeUpdatePipeSupportsQuantity(@Valid @RequestBody UpdatePipeSupportsQuantityRequest updatePipeSupportsQuantityRequest) {
+        LOGGER.debug("Executing named query: UpdatePipeSupportsQuantity");
+        Integer _result = queryService.executeUpdatePipeSupportsQuantity(updatePipeSupportsQuantityRequest);
+        LOGGER.debug("got the result for named query: UpdatePipeSupportsQuantity, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/GetSettingCivilPunch", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "name")
+    public Page<GetSettingCivilPunchResponse> executeGetSettingCivilPunch(Pageable pageable) {
+        LOGGER.debug("Executing named query: GetSettingCivilPunch");
+        Page<GetSettingCivilPunchResponse> _result = queryService.executeGetSettingCivilPunch(pageable);
+        LOGGER.debug("got the result for named query: GetSettingCivilPunch, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetSettingCivilPunch")
+    @RequestMapping(value = "/queries/GetSettingCivilPunch/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetSettingCivilPunch(@PathVariable("exportType") ExportType exportType, Pageable pageable) {
+        LOGGER.debug("Exporting named query: GetSettingCivilPunch");
+
+        return queryService.exportGetSettingCivilPunch(exportType, pageable);
+    }
+
     @RequestMapping(value = "/queries/GetQuantityDemoRemoved", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "...")
@@ -1140,6 +1062,25 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetQuantityDemoRemoved");
 
         return queryService.exportGetQuantityDemoRemoved(exportType, bidId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/GetActivitiesPendingReview", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Get all activities pending Supervisor review BY SuperID")
+    public Page<GetActivitiesPendingReviewResponse> executeGetActivitiesPendingReview(@RequestParam(value = "SuperID", required = false) Integer superId, Pageable pageable) {
+        LOGGER.debug("Executing named query: GetActivitiesPendingReview");
+        Page<GetActivitiesPendingReviewResponse> _result = queryService.executeGetActivitiesPendingReview(superId, pageable);
+        LOGGER.debug("got the result for named query: GetActivitiesPendingReview, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetActivitiesPendingReview")
+    @RequestMapping(value = "/queries/GetActivitiesPendingReview/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetActivitiesPendingReview(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "SuperID", required = false) Integer superId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: GetActivitiesPendingReview");
+
+        return queryService.exportGetActivitiesPendingReview(exportType, superId, pageable);
     }
 
     @RequestMapping(value = "/queries/GetDrawingByTestPackageSteel", method = RequestMethod.GET)
@@ -1178,6 +1119,16 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetActivityHistorySteelDemo");
 
         return queryService.exportGetActivityHistorySteelDemo(exportType, rowId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/UpdatePipeErectionQuantity", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "No description is provided")
+    public Integer executeUpdatePipeErectionQuantity(@Valid @RequestBody UpdatePipeErectionQuantityRequest updatePipeErectionQuantityRequest) {
+        LOGGER.debug("Executing named query: UpdatePipeErectionQuantity");
+        Integer _result = queryService.executeUpdatePipeErectionQuantity(updatePipeErectionQuantityRequest);
+        LOGGER.debug("got the result for named query: UpdatePipeErectionQuantity, result:{}", _result);
+        return _result;
     }
 
     @RequestMapping(value = "/queries/UpdateSteelSellPackage", method = RequestMethod.PUT)
@@ -1219,16 +1170,6 @@ public class QueryExecutionController {
         return queryService.exportGetBidWorkHistorySteel(exportType, bidId, pageable);
     }
 
-    @RequestMapping(value = "/queries/UpdateEWO", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Update Job####.SubsEWO from input fields")
-    public Integer executeUpdateEWO(@Valid @RequestBody UpdateEwoRequest updateEwoRequest) {
-        LOGGER.debug("Executing named query: UpdateEWO");
-        Integer _result = queryService.executeUpdateEWO(updateEwoRequest);
-        LOGGER.debug("got the result for named query: UpdateEWO, result:{}", _result);
-        return _result;
-    }
-
     @RequestMapping(value = "/queries/GetSettingProductivityIntervals", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
@@ -1246,6 +1187,16 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetSettingProductivityIntervals");
 
         return queryService.exportGetSettingProductivityIntervals(exportType, pageable);
+    }
+
+    @RequestMapping(value = "/queries/UpdatePipeSupports", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Update Job####.SubsSupports with Data inputs")
+    public Integer executeUpdatePipeSupports(@Valid @RequestBody UpdatePipeSupportsRequest updatePipeSupportsRequest) {
+        LOGGER.debug("Executing named query: UpdatePipeSupports");
+        Integer _result = queryService.executeUpdatePipeSupports(updatePipeSupportsRequest);
+        LOGGER.debug("got the result for named query: UpdatePipeSupports, result:{}", _result);
+        return _result;
     }
 
     @RequestMapping(value = "/queries/GetPSRecentActivities", method = RequestMethod.GET)
@@ -1534,6 +1485,16 @@ public class QueryExecutionController {
         return queryService.exportGetDrawingsByTestPackagePipe(exportType, testPackage, pageable);
     }
 
+    @RequestMapping(value = "/queries/UpdatePipeWeld", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Update Job####.SubsWeld with data inputs")
+    public Integer executeUpdatePipeWeld(@Valid @RequestBody UpdatePipeWeldRequest updatePipeWeldRequest) {
+        LOGGER.debug("Executing named query: UpdatePipeWeld");
+        Integer _result = queryService.executeUpdatePipeWeld(updatePipeWeldRequest);
+        LOGGER.debug("got the result for named query: UpdatePipeWeld, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/UpdateSettingSteelBoltout", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
@@ -1659,6 +1620,16 @@ public class QueryExecutionController {
         return queryService.exportGetActivityHistoryStatus(exportType, activityId, pageable);
     }
 
+    @RequestMapping(value = "/queries/UpdatePipeDemoQuantity", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "No description is provided")
+    public Integer executeUpdatePipeDemoQuantity(@Valid @RequestBody UpdatePipeDemoQuantityRequest updatePipeDemoQuantityRequest) {
+        LOGGER.debug("Executing named query: UpdatePipeDemoQuantity");
+        Integer _result = queryService.executeUpdatePipeDemoQuantity(updatePipeDemoQuantityRequest);
+        LOGGER.debug("got the result for named query: UpdatePipeDemoQuantity, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/GetSettingSteelShakePercent", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "SteelShakeHoursPercent")
@@ -1707,6 +1678,16 @@ public class QueryExecutionController {
         return queryService.exportGetBidActivityQuantitiesSteel(exportType, bidId, pageable);
     }
 
+    @RequestMapping(value = "/queries/UpdatePipeCutPrep", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "No description is provided")
+    public Integer executeUpdatePipeCutPrep(@Valid @RequestBody UpdatePipeCutPrepRequest updatePipeCutPrepRequest) {
+        LOGGER.debug("Executing named query: UpdatePipeCutPrep");
+        Integer _result = queryService.executeUpdatePipeCutPrep(updatePipeCutPrepRequest);
+        LOGGER.debug("got the result for named query: UpdatePipeCutPrep, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/UpdateSettingSteelSell", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
@@ -1717,13 +1698,13 @@ public class QueryExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/queries/UpdateBoltUp", method = RequestMethod.PUT)
+    @RequestMapping(value = "/queries/UpdatePipeTrim", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Updates the Job####.SubsBoltUp table with data from inputs")
-    public Integer executeUpdateBoltUp(@Valid @RequestBody UpdateBoltUpRequest updateBoltUpRequest) {
-        LOGGER.debug("Executing named query: UpdateBoltUp");
-        Integer _result = queryService.executeUpdateBoltUp(updateBoltUpRequest);
-        LOGGER.debug("got the result for named query: UpdateBoltUp, result:{}", _result);
+    @ApiOperation(value = "Update Job####.SubsTrim with data inputs")
+    public Integer executeUpdatePipeTrim(@Valid @RequestBody UpdatePipeTrimRequest updatePipeTrimRequest) {
+        LOGGER.debug("Executing named query: UpdatePipeTrim");
+        Integer _result = queryService.executeUpdatePipeTrim(updatePipeTrimRequest);
+        LOGGER.debug("got the result for named query: UpdatePipeTrim, result:{}", _result);
         return _result;
     }
 
@@ -1746,13 +1727,13 @@ public class QueryExecutionController {
         return queryService.exportGetActivityHistoryPipeTesting(exportType, rowId, pageable);
     }
 
-    @RequestMapping(value = "/queries/UpdateMiscQuantity", method = RequestMethod.PUT)
+    @RequestMapping(value = "/queries/UpdatePipeMiscQuantity", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "No description is provided")
-    public Integer executeUpdateMiscQuantity(@Valid @RequestBody UpdateMiscQuantityRequest updateMiscQuantityRequest) {
-        LOGGER.debug("Executing named query: UpdateMiscQuantity");
-        Integer _result = queryService.executeUpdateMiscQuantity(updateMiscQuantityRequest);
-        LOGGER.debug("got the result for named query: UpdateMiscQuantity, result:{}", _result);
+    public Integer executeUpdatePipeMiscQuantity(@Valid @RequestBody UpdatePipeMiscQuantityRequest updatePipeMiscQuantityRequest) {
+        LOGGER.debug("Executing named query: UpdatePipeMiscQuantity");
+        Integer _result = queryService.executeUpdatePipeMiscQuantity(updatePipeMiscQuantityRequest);
+        LOGGER.debug("got the result for named query: UpdatePipeMiscQuantity, result:{}", _result);
         return _result;
     }
 
@@ -1775,13 +1756,13 @@ public class QueryExecutionController {
         return queryService.exportGetBidActivityMatchesEquip(exportType, bidId, tagNumber, description, pageable);
     }
 
-    @RequestMapping(value = "/queries/UpdateWeldQuantity", method = RequestMethod.PUT)
+    @RequestMapping(value = "/queries/UpdatePipeBoltUp", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "No description is provided")
-    public Integer executeUpdateWeldQuantity(@Valid @RequestBody UpdateWeldQuantityRequest updateWeldQuantityRequest) {
-        LOGGER.debug("Executing named query: UpdateWeldQuantity");
-        Integer _result = queryService.executeUpdateWeldQuantity(updateWeldQuantityRequest);
-        LOGGER.debug("got the result for named query: UpdateWeldQuantity, result:{}", _result);
+    @ApiOperation(value = "Updates the Job####.SubsBoltUp table with data from inputs")
+    public Integer executeUpdatePipeBoltUp(@Valid @RequestBody UpdatePipeBoltUpRequest updatePipeBoltUpRequest) {
+        LOGGER.debug("Executing named query: UpdatePipeBoltUp");
+        Integer _result = queryService.executeUpdatePipeBoltUp(updatePipeBoltUpRequest);
+        LOGGER.debug("got the result for named query: UpdatePipeBoltUp, result:{}", _result);
         return _result;
     }
 
@@ -1821,25 +1802,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetActivitiesPendingApproval");
 
         return queryService.exportGetActivitiesPendingApproval(exportType, userId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetSettingCivilPuch", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "name")
-    public Page<GetSettingCivilPuchResponse> executeGetSettingCivilPuch(Pageable pageable) {
-        LOGGER.debug("Executing named query: GetSettingCivilPuch");
-        Page<GetSettingCivilPuchResponse> _result = queryService.executeGetSettingCivilPuch(pageable);
-        LOGGER.debug("got the result for named query: GetSettingCivilPuch, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetSettingCivilPuch")
-    @RequestMapping(value = "/queries/GetSettingCivilPuch/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetSettingCivilPuch(@PathVariable("exportType") ExportType exportType, Pageable pageable) {
-        LOGGER.debug("Exporting named query: GetSettingCivilPuch");
-
-        return queryService.exportGetSettingCivilPuch(exportType, pageable);
     }
 
     @RequestMapping(value = "/queries/GetSettingPipeHydroPercent", method = RequestMethod.GET)
@@ -1900,26 +1862,6 @@ public class QueryExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/queries/UpdateSupportsQuantity", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "No description is provided")
-    public Integer executeUpdateSupportsQuantity(@Valid @RequestBody UpdateSupportsQuantityRequest updateSupportsQuantityRequest) {
-        LOGGER.debug("Executing named query: UpdateSupportsQuantity");
-        Integer _result = queryService.executeUpdateSupportsQuantity(updateSupportsQuantityRequest);
-        LOGGER.debug("got the result for named query: UpdateSupportsQuantity, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/UpdateOverrideActivityQuantity", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "No description is provided")
-    public Integer executeUpdateOverrideActivityQuantity(@Valid @RequestBody UpdateOverrideActivityQuantityRequest updateOverrideActivityQuantityRequest) {
-        LOGGER.debug("Executing named query: UpdateOverrideActivityQuantity");
-        Integer _result = queryService.executeUpdateOverrideActivityQuantity(updateOverrideActivityQuantityRequest);
-        LOGGER.debug("got the result for named query: UpdateOverrideActivityQuantity, result:{}", _result);
-        return _result;
-    }
-
     @RequestMapping(value = "/queries/GetQuantitiesTestPackagePipe", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get testing quantities")
@@ -1958,23 +1900,13 @@ public class QueryExecutionController {
         return queryService.exportGetSettingSteelSellPercent(exportType, pageable);
     }
 
-    @RequestMapping(value = "/queries/UpdateDemo", method = RequestMethod.PUT)
+    @RequestMapping(value = "/queries/UpdatePipeTrimQuantity", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "No description is provided")
-    public Integer executeUpdateDemo(@Valid @RequestBody UpdateDemoRequest updateDemoRequest) {
-        LOGGER.debug("Executing named query: UpdateDemo");
-        Integer _result = queryService.executeUpdateDemo(updateDemoRequest);
-        LOGGER.debug("got the result for named query: UpdateDemo, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/UpdateWeld", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Update Job####.SubsWeld with data inputs")
-    public Integer executeUpdateWeld(@Valid @RequestBody UpdateWeldRequest updateWeldRequest) {
-        LOGGER.debug("Executing named query: UpdateWeld");
-        Integer _result = queryService.executeUpdateWeld(updateWeldRequest);
-        LOGGER.debug("got the result for named query: UpdateWeld, result:{}", _result);
+    public Integer executeUpdatePipeTrimQuantity(@Valid @RequestBody UpdatePipeTrimQuantityRequest updatePipeTrimQuantityRequest) {
+        LOGGER.debug("Executing named query: UpdatePipeTrimQuantity");
+        Integer _result = queryService.executeUpdatePipeTrimQuantity(updatePipeTrimQuantityRequest);
+        LOGGER.debug("got the result for named query: UpdatePipeTrimQuantity, result:{}", _result);
         return _result;
     }
 
@@ -1995,6 +1927,16 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetQuantityCutPrepInstalled");
 
         return queryService.exportGetQuantityCutPrepInstalled(exportType, bidId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/UpdatePipeTesting", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Update Job####.SubsTesting with input fields")
+    public Integer executeUpdatePipeTesting(@Valid @RequestBody UpdatePipeTestingRequest updatePipeTestingRequest) {
+        LOGGER.debug("Executing named query: UpdatePipeTesting");
+        Integer _result = queryService.executeUpdatePipeTesting(updatePipeTestingRequest);
+        LOGGER.debug("got the result for named query: UpdatePipeTesting, result:{}", _result);
+        return _result;
     }
 
     @RequestMapping(value = "/queries/UpdateSteelSellQuantity", method = RequestMethod.PUT)
@@ -2083,25 +2025,6 @@ public class QueryExecutionController {
         return queryService.exportGetActivityHistoryPipeTrim(exportType, rowId, pageable);
     }
 
-    @RequestMapping(value = "/queries/GetReportDPRByDate", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Get the Daily Progress Report of given date range By Foreman")
-    public Page<GetReportDprbyDateResponse> executeGetReportDPRByDate(@RequestParam(value = "ForemanID", required = false) String foremanId, @RequestParam(value = "SuperID", required = false) String superId, @RequestParam(value = "ManagerID", required = false) String managerId, @RequestParam(value = "StartDate", required = false) Date startDate, @RequestParam(value = "EndDate", required = false) Date endDate, Pageable pageable) {
-        LOGGER.debug("Executing named query: GetReportDPRByDate");
-        Page<GetReportDprbyDateResponse> _result = queryService.executeGetReportDPRByDate(foremanId, superId, managerId, startDate, endDate, pageable);
-        LOGGER.debug("got the result for named query: GetReportDPRByDate, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetReportDPRByDate")
-    @RequestMapping(value = "/queries/GetReportDPRByDate/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetReportDPRByDate(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ForemanID", required = false) String foremanId, @RequestParam(value = "SuperID", required = false) String superId, @RequestParam(value = "ManagerID", required = false) String managerId, @RequestParam(value = "StartDate", required = false) Date startDate, @RequestParam(value = "EndDate", required = false) Date endDate, Pageable pageable) {
-        LOGGER.debug("Exporting named query: GetReportDPRByDate");
-
-        return queryService.exportGetReportDPRByDate(exportType, foremanId, superId, managerId, startDate, endDate, pageable);
-    }
-
     @RequestMapping(value = "/queries/GetActivityHistorySteelMisc", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
@@ -2140,13 +2063,23 @@ public class QueryExecutionController {
         return queryService.exportGetActivityHistoryCivilFA(exportType, rowId, pageable);
     }
 
-    @RequestMapping(value = "/queries/UpdateErection", method = RequestMethod.PUT)
+    @RequestMapping(value = "/queries/UpdatePipeDemo", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "No description is provided")
+    public Integer executeUpdatePipeDemo(@Valid @RequestBody UpdatePipeDemoRequest updatePipeDemoRequest) {
+        LOGGER.debug("Executing named query: UpdatePipeDemo");
+        Integer _result = queryService.executeUpdatePipeDemo(updatePipeDemoRequest);
+        LOGGER.debug("got the result for named query: UpdatePipeDemo, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/UpdatePipeErection", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Updates Job####.SubsErection table with data inputs")
-    public Integer executeUpdateErection(@Valid @RequestBody UpdateErectionRequest updateErectionRequest) {
-        LOGGER.debug("Executing named query: UpdateErection");
-        Integer _result = queryService.executeUpdateErection(updateErectionRequest);
-        LOGGER.debug("got the result for named query: UpdateErection, result:{}", _result);
+    public Integer executeUpdatePipeErection(@Valid @RequestBody UpdatePipeErectionRequest updatePipeErectionRequest) {
+        LOGGER.debug("Executing named query: UpdatePipeErection");
+        Integer _result = queryService.executeUpdatePipeErection(updatePipeErectionRequest);
+        LOGGER.debug("got the result for named query: UpdatePipeErection, result:{}", _result);
         return _result;
     }
 

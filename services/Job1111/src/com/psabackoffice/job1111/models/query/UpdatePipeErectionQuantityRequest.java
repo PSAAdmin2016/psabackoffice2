@@ -9,14 +9,17 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateErectionQuantityRequest implements Serializable {
+public class UpdatePipeErectionQuantityRequest implements Serializable {
 
     @JsonProperty("Spool1Length")
     private Integer spool1length;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public Integer getSpool1length() {
         return this.spool1length;
@@ -26,26 +29,26 @@ public class UpdateErectionQuantityRequest implements Serializable {
         this.spool1length = spool1length;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UpdateErectionQuantityRequest)) return false;
-        final UpdateErectionQuantityRequest updateErectionQuantityRequest = (UpdateErectionQuantityRequest) o;
-        return Objects.equals(getSpool1length(), updateErectionQuantityRequest.getSpool1length()) &&
-                Objects.equals(getRowId(), updateErectionQuantityRequest.getRowId());
+        if (!(o instanceof UpdatePipeErectionQuantityRequest)) return false;
+        final UpdatePipeErectionQuantityRequest updatePipeErectionQuantityRequest = (UpdatePipeErectionQuantityRequest) o;
+        return Objects.equals(getSpool1length(), updatePipeErectionQuantityRequest.getSpool1length()) &&
+                Objects.equals(getFieldActivityId(), updatePipeErectionQuantityRequest.getFieldActivityId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getSpool1length(),
-                getRowId());
+                getFieldActivityId());
     }
 }

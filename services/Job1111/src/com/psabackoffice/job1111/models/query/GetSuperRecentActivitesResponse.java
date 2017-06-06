@@ -14,12 +14,12 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetSuperRecentActivitesResponse implements Serializable {
 
+    @JsonProperty("ActivityID")
+    @ColumnAlias("ActivityID")
+    private Integer activityId;
     @JsonProperty("ActivityType")
     @ColumnAlias("ActivityType")
     private String activityType;
-    @JsonProperty("PSAActivityID")
-    @ColumnAlias("PSAActivityID")
-    private Integer psaactivityId;
     @JsonProperty("Status")
     @ColumnAlias("Status")
     private String status;
@@ -27,20 +27,20 @@ public class GetSuperRecentActivitesResponse implements Serializable {
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
 
+    public Integer getActivityId() {
+        return this.activityId;
+    }
+
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
+    }
+
     public String getActivityType() {
         return this.activityType;
     }
 
     public void setActivityType(String activityType) {
         this.activityType = activityType;
-    }
-
-    public Integer getPsaactivityId() {
-        return this.psaactivityId;
-    }
-
-    public void setPsaactivityId(Integer psaactivityId) {
-        this.psaactivityId = psaactivityId;
     }
 
     public String getStatus() {
@@ -64,16 +64,16 @@ public class GetSuperRecentActivitesResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetSuperRecentActivitesResponse)) return false;
         final GetSuperRecentActivitesResponse getSuperRecentActivitesResponse = (GetSuperRecentActivitesResponse) o;
-        return Objects.equals(getActivityType(), getSuperRecentActivitesResponse.getActivityType()) &&
-                Objects.equals(getPsaactivityId(), getSuperRecentActivitesResponse.getPsaactivityId()) &&
+        return Objects.equals(getActivityId(), getSuperRecentActivitesResponse.getActivityId()) &&
+                Objects.equals(getActivityType(), getSuperRecentActivitesResponse.getActivityType()) &&
                 Objects.equals(getStatus(), getSuperRecentActivitesResponse.getStatus()) &&
                 Objects.equals(getTimeStamp(), getSuperRecentActivitesResponse.getTimeStamp());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getActivityType(),
-                getPsaactivityId(),
+        return Objects.hash(getActivityId(),
+                getActivityType(),
                 getStatus(),
                 getTimeStamp());
     }

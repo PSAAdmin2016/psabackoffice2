@@ -13,40 +13,23 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateEwoRequest implements Serializable {
+public class UpdatePipeMiscRequest implements Serializable {
 
-    @JsonProperty("EWONumber")
-    private String ewonumber;
-    @JsonProperty("EWOHours")
-    private Integer ewohours;
     @JsonProperty("DrawingNumber")
     private String drawingNumber;
     @JsonProperty("LineNumber")
     private String lineNumber;
     @JsonProperty("SheetNumber")
     private String sheetNumber;
+    @JsonProperty("Quantity")
+    private Integer quantity;
     @JsonProperty("Rework")
     private Integer rework;
     @JsonProperty("Notes")
     private String notes;
-    @JsonProperty("RowID")
-    private Integer rowId;
-
-    public String getEwonumber() {
-        return this.ewonumber;
-    }
-
-    public void setEwonumber(String ewonumber) {
-        this.ewonumber = ewonumber;
-    }
-
-    public Integer getEwohours() {
-        return this.ewohours;
-    }
-
-    public void setEwohours(Integer ewohours) {
-        this.ewohours = ewohours;
-    }
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public String getDrawingNumber() {
         return this.drawingNumber;
@@ -72,6 +55,14 @@ public class UpdateEwoRequest implements Serializable {
         this.sheetNumber = sheetNumber;
     }
 
+    public Integer getQuantity() {
+        return this.quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
     public Integer getRework() {
         return this.rework;
     }
@@ -88,38 +79,36 @@ public class UpdateEwoRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UpdateEwoRequest)) return false;
-        final UpdateEwoRequest updateEwoRequest = (UpdateEwoRequest) o;
-        return Objects.equals(getEwonumber(), updateEwoRequest.getEwonumber()) &&
-                Objects.equals(getEwohours(), updateEwoRequest.getEwohours()) &&
-                Objects.equals(getDrawingNumber(), updateEwoRequest.getDrawingNumber()) &&
-                Objects.equals(getLineNumber(), updateEwoRequest.getLineNumber()) &&
-                Objects.equals(getSheetNumber(), updateEwoRequest.getSheetNumber()) &&
-                Objects.equals(getRework(), updateEwoRequest.getRework()) &&
-                Objects.equals(getNotes(), updateEwoRequest.getNotes()) &&
-                Objects.equals(getRowId(), updateEwoRequest.getRowId());
+        if (!(o instanceof UpdatePipeMiscRequest)) return false;
+        final UpdatePipeMiscRequest updatePipeMiscRequest = (UpdatePipeMiscRequest) o;
+        return Objects.equals(getDrawingNumber(), updatePipeMiscRequest.getDrawingNumber()) &&
+                Objects.equals(getLineNumber(), updatePipeMiscRequest.getLineNumber()) &&
+                Objects.equals(getSheetNumber(), updatePipeMiscRequest.getSheetNumber()) &&
+                Objects.equals(getQuantity(), updatePipeMiscRequest.getQuantity()) &&
+                Objects.equals(getRework(), updatePipeMiscRequest.getRework()) &&
+                Objects.equals(getNotes(), updatePipeMiscRequest.getNotes()) &&
+                Objects.equals(getFieldActivityId(), updatePipeMiscRequest.getFieldActivityId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getEwonumber(),
-                getEwohours(),
-                getDrawingNumber(),
+        return Objects.hash(getDrawingNumber(),
                 getLineNumber(),
                 getSheetNumber(),
+                getQuantity(),
                 getRework(),
                 getNotes(),
-                getRowId());
+                getFieldActivityId());
     }
 }

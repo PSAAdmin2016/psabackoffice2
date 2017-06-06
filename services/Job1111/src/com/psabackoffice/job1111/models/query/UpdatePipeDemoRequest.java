@@ -9,9 +9,11 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateMiscRequest implements Serializable {
+public class UpdatePipeDemoRequest implements Serializable {
 
     @JsonProperty("DrawingNumber")
     private String drawingNumber;
@@ -21,12 +23,13 @@ public class UpdateMiscRequest implements Serializable {
     private String sheetNumber;
     @JsonProperty("Quantity")
     private Integer quantity;
-    @JsonProperty("Rework")
-    private Integer rework;
+    @JsonProperty("Size")
+    private BigDecimal size;
     @JsonProperty("Notes")
     private String notes;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public String getDrawingNumber() {
         return this.drawingNumber;
@@ -60,12 +63,12 @@ public class UpdateMiscRequest implements Serializable {
         this.quantity = quantity;
     }
 
-    public Integer getRework() {
-        return this.rework;
+    public BigDecimal getSize() {
+        return this.size;
     }
 
-    public void setRework(Integer rework) {
-        this.rework = rework;
+    public void setSize(BigDecimal size) {
+        this.size = size;
     }
 
     public String getNotes() {
@@ -76,26 +79,26 @@ public class UpdateMiscRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UpdateMiscRequest)) return false;
-        final UpdateMiscRequest updateMiscRequest = (UpdateMiscRequest) o;
-        return Objects.equals(getDrawingNumber(), updateMiscRequest.getDrawingNumber()) &&
-                Objects.equals(getLineNumber(), updateMiscRequest.getLineNumber()) &&
-                Objects.equals(getSheetNumber(), updateMiscRequest.getSheetNumber()) &&
-                Objects.equals(getQuantity(), updateMiscRequest.getQuantity()) &&
-                Objects.equals(getRework(), updateMiscRequest.getRework()) &&
-                Objects.equals(getNotes(), updateMiscRequest.getNotes()) &&
-                Objects.equals(getRowId(), updateMiscRequest.getRowId());
+        if (!(o instanceof UpdatePipeDemoRequest)) return false;
+        final UpdatePipeDemoRequest updatePipeDemoRequest = (UpdatePipeDemoRequest) o;
+        return Objects.equals(getDrawingNumber(), updatePipeDemoRequest.getDrawingNumber()) &&
+                Objects.equals(getLineNumber(), updatePipeDemoRequest.getLineNumber()) &&
+                Objects.equals(getSheetNumber(), updatePipeDemoRequest.getSheetNumber()) &&
+                Objects.equals(getQuantity(), updatePipeDemoRequest.getQuantity()) &&
+                Objects.equals(getSize(), updatePipeDemoRequest.getSize()) &&
+                Objects.equals(getNotes(), updatePipeDemoRequest.getNotes()) &&
+                Objects.equals(getFieldActivityId(), updatePipeDemoRequest.getFieldActivityId());
     }
 
     @Override
@@ -104,8 +107,8 @@ public class UpdateMiscRequest implements Serializable {
                 getLineNumber(),
                 getSheetNumber(),
                 getQuantity(),
-                getRework(),
+                getSize(),
                 getNotes(),
-                getRowId());
+                getFieldActivityId());
     }
 }

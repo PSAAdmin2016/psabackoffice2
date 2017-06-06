@@ -19,8 +19,9 @@ public class UpdateCivilFaquantityRequest implements Serializable {
     private BigDecimal percent;
     @JsonProperty("Quantity")
     private Integer quantity;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public BigDecimal getPercent() {
         return this.percent;
@@ -38,12 +39,12 @@ public class UpdateCivilFaquantityRequest implements Serializable {
         this.quantity = quantity;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
@@ -53,13 +54,13 @@ public class UpdateCivilFaquantityRequest implements Serializable {
         final UpdateCivilFaquantityRequest updateCivilFaquantityRequest = (UpdateCivilFaquantityRequest) o;
         return Objects.equals(getPercent(), updateCivilFaquantityRequest.getPercent()) &&
                 Objects.equals(getQuantity(), updateCivilFaquantityRequest.getQuantity()) &&
-                Objects.equals(getRowId(), updateCivilFaquantityRequest.getRowId());
+                Objects.equals(getFieldActivityId(), updateCivilFaquantityRequest.getFieldActivityId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getPercent(),
                 getQuantity(),
-                getRowId());
+                getFieldActivityId());
     }
 }

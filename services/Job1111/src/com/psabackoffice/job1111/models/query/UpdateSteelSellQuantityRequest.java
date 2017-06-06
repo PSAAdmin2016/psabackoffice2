@@ -17,8 +17,9 @@ public class UpdateSteelSellQuantityRequest implements Serializable {
 
     @JsonProperty("Quantity")
     private Integer quantity;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Float fieldActivityId;
 
     public Integer getQuantity() {
         return this.quantity;
@@ -28,12 +29,12 @@ public class UpdateSteelSellQuantityRequest implements Serializable {
         this.quantity = quantity;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Float getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Float fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
@@ -42,12 +43,12 @@ public class UpdateSteelSellQuantityRequest implements Serializable {
         if (!(o instanceof UpdateSteelSellQuantityRequest)) return false;
         final UpdateSteelSellQuantityRequest updateSteelSellQuantityRequest = (UpdateSteelSellQuantityRequest) o;
         return Objects.equals(getQuantity(), updateSteelSellQuantityRequest.getQuantity()) &&
-                Objects.equals(getRowId(), updateSteelSellQuantityRequest.getRowId());
+                Objects.equals(getFieldActivityId(), updateSteelSellQuantityRequest.getFieldActivityId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getQuantity(),
-                getRowId());
+                getFieldActivityId());
     }
 }

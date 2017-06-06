@@ -8,13 +8,14 @@ package com.psabackoffice.job1111.models.query;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class GetPsaactivityByUidResponse implements Serializable {
+public class GetActivitiesPendingReviewResponse implements Serializable {
 
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
@@ -196,24 +197,24 @@ public class GetPsaactivityByUidResponse implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GetPsaactivityByUidResponse)) return false;
-        final GetPsaactivityByUidResponse getPsaactivityByUidResponse = (GetPsaactivityByUidResponse) o;
-        return Objects.equals(getActivityId(), getPsaactivityByUidResponse.getActivityId()) &&
-                Objects.equals(getSubmissionId(), getPsaactivityByUidResponse.getSubmissionId()) &&
-                Objects.equals(getActivityType(), getPsaactivityByUidResponse.getActivityType()) &&
-                Objects.equals(getFkBidIdassigned(), getPsaactivityByUidResponse.getFkBidIdassigned()) &&
-                Objects.equals(getFkActivityStatus(), getPsaactivityByUidResponse.getFkActivityStatus()) &&
-                Objects.equals(getFkLastModifiedBy(), getPsaactivityByUidResponse.getFkLastModifiedBy()) &&
-                Objects.equals(getLockField(), getPsaactivityByUidResponse.getLockField()) &&
-                Objects.equals(getRev(), getPsaactivityByUidResponse.getRev()) &&
-                Objects.equals(getTimeStamp(), getPsaactivityByUidResponse.getTimeStamp()) &&
-                Objects.equals(getActivityTypeName(), getPsaactivityByUidResponse.getActivityTypeName()) &&
-                Objects.equals(getReceivedTime(), getPsaactivityByUidResponse.getReceivedTime()) &&
-                Objects.equals(getFirstName(), getPsaactivityByUidResponse.getFirstName()) &&
-                Objects.equals(getLastName(), getPsaactivityByUidResponse.getLastName()) &&
-                Objects.equals(getNameFull(), getPsaactivityByUidResponse.getNameFull()) &&
-                Objects.equals(getStatus(), getPsaactivityByUidResponse.getStatus()) &&
-                Objects.equals(getCraft(), getPsaactivityByUidResponse.getCraft());
+        if (!(o instanceof GetActivitiesPendingReviewResponse)) return false;
+        final GetActivitiesPendingReviewResponse getActivitiesPendingReviewResponse = (GetActivitiesPendingReviewResponse) o;
+        return Objects.equals(getActivityId(), getActivitiesPendingReviewResponse.getActivityId()) &&
+                Objects.equals(getSubmissionId(), getActivitiesPendingReviewResponse.getSubmissionId()) &&
+                Objects.equals(getActivityType(), getActivitiesPendingReviewResponse.getActivityType()) &&
+                Objects.equals(getFkBidIdassigned(), getActivitiesPendingReviewResponse.getFkBidIdassigned()) &&
+                Objects.equals(getFkActivityStatus(), getActivitiesPendingReviewResponse.getFkActivityStatus()) &&
+                Objects.equals(getFkLastModifiedBy(), getActivitiesPendingReviewResponse.getFkLastModifiedBy()) &&
+                Objects.equals(getLockField(), getActivitiesPendingReviewResponse.getLockField()) &&
+                Objects.equals(getRev(), getActivitiesPendingReviewResponse.getRev()) &&
+                Objects.equals(getTimeStamp(), getActivitiesPendingReviewResponse.getTimeStamp()) &&
+                Objects.equals(getActivityTypeName(), getActivitiesPendingReviewResponse.getActivityTypeName()) &&
+                Objects.equals(getReceivedTime(), getActivitiesPendingReviewResponse.getReceivedTime()) &&
+                Objects.equals(getFirstName(), getActivitiesPendingReviewResponse.getFirstName()) &&
+                Objects.equals(getLastName(), getActivitiesPendingReviewResponse.getLastName()) &&
+                Objects.equals(getNameFull(), getActivitiesPendingReviewResponse.getNameFull()) &&
+                Objects.equals(getStatus(), getActivitiesPendingReviewResponse.getStatus()) &&
+                Objects.equals(getCraft(), getActivitiesPendingReviewResponse.getCraft());
     }
 
     @Override

@@ -15,7 +15,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class GetReportDprbyDateResponse implements Serializable {
+public class GetReportDprpipeResponse implements Serializable {
 
     @JsonProperty("FieldActivityId")
     @ColumnAlias("FieldActivityId")
@@ -23,9 +23,6 @@ public class GetReportDprbyDateResponse implements Serializable {
     @JsonProperty("ActivityType")
     @ColumnAlias("ActivityType")
     private Short activityType;
-    @JsonProperty("ActivityRowId")
-    @ColumnAlias("ActivityRowId")
-    private Integer activityRowId;
     @JsonProperty("ActivityTypeName")
     @ColumnAlias("ActivityTypeName")
     private String activityTypeName;
@@ -74,14 +71,6 @@ public class GetReportDprbyDateResponse implements Serializable {
 
     public void setActivityType(Short activityType) {
         this.activityType = activityType;
-    }
-
-    public Integer getActivityRowId() {
-        return this.activityRowId;
-    }
-
-    public void setActivityRowId(Integer activityRowId) {
-        this.activityRowId = activityRowId;
     }
 
     public String getActivityTypeName() {
@@ -175,29 +164,27 @@ public class GetReportDprbyDateResponse implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GetReportDprbyDateResponse)) return false;
-        final GetReportDprbyDateResponse getReportDprbyDateResponse = (GetReportDprbyDateResponse) o;
-        return Objects.equals(getFieldActivityId(), getReportDprbyDateResponse.getFieldActivityId()) &&
-                Objects.equals(getActivityType(), getReportDprbyDateResponse.getActivityType()) &&
-                Objects.equals(getActivityRowId(), getReportDprbyDateResponse.getActivityRowId()) &&
-                Objects.equals(getActivityTypeName(), getReportDprbyDateResponse.getActivityTypeName()) &&
-                Objects.equals(getDrawingNumber(), getReportDprbyDateResponse.getDrawingNumber()) &&
-                Objects.equals(getSheetNumber(), getReportDprbyDateResponse.getSheetNumber()) &&
-                Objects.equals(getSpool1(), getReportDprbyDateResponse.getSpool1()) &&
-                Objects.equals(getSpool2(), getReportDprbyDateResponse.getSpool2()) &&
-                Objects.equals(getSize(), getReportDprbyDateResponse.getSize()) &&
-                Objects.equals(getQuantityInstalled(), getReportDprbyDateResponse.getQuantityInstalled()) &&
-                Objects.equals(getCurrentStatus(), getReportDprbyDateResponse.getCurrentStatus()) &&
-                Objects.equals(getNotes(), getReportDprbyDateResponse.getNotes()) &&
-                Objects.equals(getRework(), getReportDprbyDateResponse.getRework()) &&
-                Objects.equals(getDateSubmitted(), getReportDprbyDateResponse.getDateSubmitted());
+        if (!(o instanceof GetReportDprpipeResponse)) return false;
+        final GetReportDprpipeResponse getReportDprpipeResponse = (GetReportDprpipeResponse) o;
+        return Objects.equals(getFieldActivityId(), getReportDprpipeResponse.getFieldActivityId()) &&
+                Objects.equals(getActivityType(), getReportDprpipeResponse.getActivityType()) &&
+                Objects.equals(getActivityTypeName(), getReportDprpipeResponse.getActivityTypeName()) &&
+                Objects.equals(getDrawingNumber(), getReportDprpipeResponse.getDrawingNumber()) &&
+                Objects.equals(getSheetNumber(), getReportDprpipeResponse.getSheetNumber()) &&
+                Objects.equals(getSpool1(), getReportDprpipeResponse.getSpool1()) &&
+                Objects.equals(getSpool2(), getReportDprpipeResponse.getSpool2()) &&
+                Objects.equals(getSize(), getReportDprpipeResponse.getSize()) &&
+                Objects.equals(getQuantityInstalled(), getReportDprpipeResponse.getQuantityInstalled()) &&
+                Objects.equals(getCurrentStatus(), getReportDprpipeResponse.getCurrentStatus()) &&
+                Objects.equals(getNotes(), getReportDprpipeResponse.getNotes()) &&
+                Objects.equals(getRework(), getReportDprpipeResponse.getRework()) &&
+                Objects.equals(getDateSubmitted(), getReportDprpipeResponse.getDateSubmitted());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getFieldActivityId(),
                 getActivityType(),
-                getActivityRowId(),
                 getActivityTypeName(),
                 getDrawingNumber(),
                 getSheetNumber(),

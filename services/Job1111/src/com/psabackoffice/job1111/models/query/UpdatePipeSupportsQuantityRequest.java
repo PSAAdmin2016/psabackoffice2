@@ -13,12 +13,13 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateSupportsQuantityRequest implements Serializable {
+public class UpdatePipeSupportsQuantityRequest implements Serializable {
 
     @JsonProperty("Quantity")
     private Integer quantity;
-    @JsonProperty("RowID")
-    private Integer rowId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
     public Integer getQuantity() {
         return this.quantity;
@@ -28,26 +29,26 @@ public class UpdateSupportsQuantityRequest implements Serializable {
         this.quantity = quantity;
     }
 
-    public Integer getRowId() {
-        return this.rowId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UpdateSupportsQuantityRequest)) return false;
-        final UpdateSupportsQuantityRequest updateSupportsQuantityRequest = (UpdateSupportsQuantityRequest) o;
-        return Objects.equals(getQuantity(), updateSupportsQuantityRequest.getQuantity()) &&
-                Objects.equals(getRowId(), updateSupportsQuantityRequest.getRowId());
+        if (!(o instanceof UpdatePipeSupportsQuantityRequest)) return false;
+        final UpdatePipeSupportsQuantityRequest updatePipeSupportsQuantityRequest = (UpdatePipeSupportsQuantityRequest) o;
+        return Objects.equals(getQuantity(), updatePipeSupportsQuantityRequest.getQuantity()) &&
+                Objects.equals(getFieldActivityId(), updatePipeSupportsQuantityRequest.getFieldActivityId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getQuantity(),
-                getRowId());
+                getFieldActivityId());
     }
 }
