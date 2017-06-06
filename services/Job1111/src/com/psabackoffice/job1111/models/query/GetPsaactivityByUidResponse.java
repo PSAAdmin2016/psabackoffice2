@@ -16,160 +16,85 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetPsaactivityByUidResponse implements Serializable {
 
-    @JsonProperty("ActivityRowId")
-    @ColumnAlias("ActivityRowId")
-    private Integer activityRowId;
+    @JsonProperty("ActivityID")
+    @ColumnAlias("ActivityID")
+    private Integer activityId;
+    @JsonProperty("SubmissionID")
+    @ColumnAlias("SubmissionID")
+    private Integer submissionId;
     @JsonProperty("ActivityType")
     @ColumnAlias("ActivityType")
-    private Byte activityType;
-    @JsonProperty("ActivityTypeName")
-    @ColumnAlias("ActivityTypeName")
-    private String activityTypeName;
-    @JsonProperty("Craft")
-    @ColumnAlias("Craft")
-    private String craft;
-    @JsonProperty("LockField")
-    @ColumnAlias("LockField")
-    private String lockField;
-    @JsonProperty("NameFull")
-    @ColumnAlias("NameFull")
-    private String nameFull;
-    @JsonProperty("PSAActivityID")
-    @ColumnAlias("PSAActivityID")
-    private Integer psaactivityId;
-    @JsonProperty("ReceivedTime")
-    @ColumnAlias("ReceivedTime")
-    private Timestamp receivedTime;
-    @JsonProperty("Rev")
-    @ColumnAlias("Rev")
-    private Byte rev;
-    @JsonProperty("Status")
-    @ColumnAlias("Status")
-    private String status;
-    @JsonProperty("TimeStamp")
-    @ColumnAlias("TimeStamp")
-    private Timestamp timeStamp;
-    @JsonProperty("UserFirstName")
-    @ColumnAlias("UserFirstName")
-    private String userFirstName;
-    @JsonProperty("UserLastName")
-    @ColumnAlias("UserLastName")
-    private String userLastName;
+    private Short activityType;
+    @JsonProperty("fk_BidIDAssigned")
+    @ColumnAlias("fk_BidIDAssigned")
+    private Integer fkBidIdassigned;
     @JsonProperty("fk_ActivityStatus")
     @ColumnAlias("fk_ActivityStatus")
     private Integer fkActivityStatus;
-    @JsonProperty("fk_BidIDAssigned")
-    @ColumnAlias("fk_BidIDAssigned")
-    private String fkBidIdassigned;
     @JsonProperty("fk_LastModifiedBy")
     @ColumnAlias("fk_LastModifiedBy")
-    private String fkLastModifiedBy;
-    @JsonProperty("fk_SubmissionId")
-    @ColumnAlias("fk_SubmissionId")
-    private Integer fkSubmissionId;
+    private Integer fkLastModifiedBy;
+    @JsonProperty("LockField")
+    @ColumnAlias("LockField")
+    private Integer lockField;
+    @JsonProperty("Rev")
+    @ColumnAlias("Rev")
+    private Short rev;
+    @JsonProperty("TimeStamp")
+    @ColumnAlias("TimeStamp")
+    private Timestamp timeStamp;
+    @JsonProperty("ActivityTypeName")
+    @ColumnAlias("ActivityTypeName")
+    private String activityTypeName;
+    @JsonProperty("ReceivedTime")
+    @ColumnAlias("ReceivedTime")
+    private Timestamp receivedTime;
+    @JsonProperty("FirstName")
+    @ColumnAlias("FirstName")
+    private String firstName;
+    @JsonProperty("LastName")
+    @ColumnAlias("LastName")
+    private String lastName;
+    @JsonProperty("NameFull")
+    @ColumnAlias("NameFull")
+    private String nameFull;
+    @JsonProperty("Status")
+    @ColumnAlias("Status")
+    private String status;
+    @JsonProperty("Craft")
+    @ColumnAlias("Craft")
+    private String craft;
 
-    public Integer getActivityRowId() {
-        return this.activityRowId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setActivityRowId(Integer activityRowId) {
-        this.activityRowId = activityRowId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
-    public Byte getActivityType() {
+    public Integer getSubmissionId() {
+        return this.submissionId;
+    }
+
+    public void setSubmissionId(Integer submissionId) {
+        this.submissionId = submissionId;
+    }
+
+    public Short getActivityType() {
         return this.activityType;
     }
 
-    public void setActivityType(Byte activityType) {
+    public void setActivityType(Short activityType) {
         this.activityType = activityType;
     }
 
-    public String getActivityTypeName() {
-        return this.activityTypeName;
+    public Integer getFkBidIdassigned() {
+        return this.fkBidIdassigned;
     }
 
-    public void setActivityTypeName(String activityTypeName) {
-        this.activityTypeName = activityTypeName;
-    }
-
-    public String getCraft() {
-        return this.craft;
-    }
-
-    public void setCraft(String craft) {
-        this.craft = craft;
-    }
-
-    public String getLockField() {
-        return this.lockField;
-    }
-
-    public void setLockField(String lockField) {
-        this.lockField = lockField;
-    }
-
-    public String getNameFull() {
-        return this.nameFull;
-    }
-
-    public void setNameFull(String nameFull) {
-        this.nameFull = nameFull;
-    }
-
-    public Integer getPsaactivityId() {
-        return this.psaactivityId;
-    }
-
-    public void setPsaactivityId(Integer psaactivityId) {
-        this.psaactivityId = psaactivityId;
-    }
-
-    public Timestamp getReceivedTime() {
-        return this.receivedTime;
-    }
-
-    public void setReceivedTime(Timestamp receivedTime) {
-        this.receivedTime = receivedTime;
-    }
-
-    public Byte getRev() {
-        return this.rev;
-    }
-
-    public void setRev(Byte rev) {
-        this.rev = rev;
-    }
-
-    public String getStatus() {
-        return this.status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Timestamp getTimeStamp() {
-        return this.timeStamp;
-    }
-
-    public void setTimeStamp(Timestamp timeStamp) {
-        this.timeStamp = timeStamp;
-    }
-
-    public String getUserFirstName() {
-        return this.userFirstName;
-    }
-
-    public void setUserFirstName(String userFirstName) {
-        this.userFirstName = userFirstName;
-    }
-
-    public String getUserLastName() {
-        return this.userLastName;
-    }
-
-    public void setUserLastName(String userLastName) {
-        this.userLastName = userLastName;
+    public void setFkBidIdassigned(Integer fkBidIdassigned) {
+        this.fkBidIdassigned = fkBidIdassigned;
     }
 
     public Integer getFkActivityStatus() {
@@ -180,28 +105,92 @@ public class GetPsaactivityByUidResponse implements Serializable {
         this.fkActivityStatus = fkActivityStatus;
     }
 
-    public String getFkBidIdassigned() {
-        return this.fkBidIdassigned;
-    }
-
-    public void setFkBidIdassigned(String fkBidIdassigned) {
-        this.fkBidIdassigned = fkBidIdassigned;
-    }
-
-    public String getFkLastModifiedBy() {
+    public Integer getFkLastModifiedBy() {
         return this.fkLastModifiedBy;
     }
 
-    public void setFkLastModifiedBy(String fkLastModifiedBy) {
+    public void setFkLastModifiedBy(Integer fkLastModifiedBy) {
         this.fkLastModifiedBy = fkLastModifiedBy;
     }
 
-    public Integer getFkSubmissionId() {
-        return this.fkSubmissionId;
+    public Integer getLockField() {
+        return this.lockField;
     }
 
-    public void setFkSubmissionId(Integer fkSubmissionId) {
-        this.fkSubmissionId = fkSubmissionId;
+    public void setLockField(Integer lockField) {
+        this.lockField = lockField;
+    }
+
+    public Short getRev() {
+        return this.rev;
+    }
+
+    public void setRev(Short rev) {
+        this.rev = rev;
+    }
+
+    public Timestamp getTimeStamp() {
+        return this.timeStamp;
+    }
+
+    public void setTimeStamp(Timestamp timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    public String getActivityTypeName() {
+        return this.activityTypeName;
+    }
+
+    public void setActivityTypeName(String activityTypeName) {
+        this.activityTypeName = activityTypeName;
+    }
+
+    public Timestamp getReceivedTime() {
+        return this.receivedTime;
+    }
+
+    public void setReceivedTime(Timestamp receivedTime) {
+        this.receivedTime = receivedTime;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getNameFull() {
+        return this.nameFull;
+    }
+
+    public void setNameFull(String nameFull) {
+        this.nameFull = nameFull;
+    }
+
+    public String getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getCraft() {
+        return this.craft;
+    }
+
+    public void setCraft(String craft) {
+        this.craft = craft;
     }
 
     @Override
@@ -209,43 +198,41 @@ public class GetPsaactivityByUidResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetPsaactivityByUidResponse)) return false;
         final GetPsaactivityByUidResponse getPsaactivityByUidResponse = (GetPsaactivityByUidResponse) o;
-        return Objects.equals(getActivityRowId(), getPsaactivityByUidResponse.getActivityRowId()) &&
+        return Objects.equals(getActivityId(), getPsaactivityByUidResponse.getActivityId()) &&
+                Objects.equals(getSubmissionId(), getPsaactivityByUidResponse.getSubmissionId()) &&
                 Objects.equals(getActivityType(), getPsaactivityByUidResponse.getActivityType()) &&
-                Objects.equals(getActivityTypeName(), getPsaactivityByUidResponse.getActivityTypeName()) &&
-                Objects.equals(getCraft(), getPsaactivityByUidResponse.getCraft()) &&
-                Objects.equals(getLockField(), getPsaactivityByUidResponse.getLockField()) &&
-                Objects.equals(getNameFull(), getPsaactivityByUidResponse.getNameFull()) &&
-                Objects.equals(getPsaactivityId(), getPsaactivityByUidResponse.getPsaactivityId()) &&
-                Objects.equals(getReceivedTime(), getPsaactivityByUidResponse.getReceivedTime()) &&
-                Objects.equals(getRev(), getPsaactivityByUidResponse.getRev()) &&
-                Objects.equals(getStatus(), getPsaactivityByUidResponse.getStatus()) &&
-                Objects.equals(getTimeStamp(), getPsaactivityByUidResponse.getTimeStamp()) &&
-                Objects.equals(getUserFirstName(), getPsaactivityByUidResponse.getUserFirstName()) &&
-                Objects.equals(getUserLastName(), getPsaactivityByUidResponse.getUserLastName()) &&
-                Objects.equals(getFkActivityStatus(), getPsaactivityByUidResponse.getFkActivityStatus()) &&
                 Objects.equals(getFkBidIdassigned(), getPsaactivityByUidResponse.getFkBidIdassigned()) &&
+                Objects.equals(getFkActivityStatus(), getPsaactivityByUidResponse.getFkActivityStatus()) &&
                 Objects.equals(getFkLastModifiedBy(), getPsaactivityByUidResponse.getFkLastModifiedBy()) &&
-                Objects.equals(getFkSubmissionId(), getPsaactivityByUidResponse.getFkSubmissionId());
+                Objects.equals(getLockField(), getPsaactivityByUidResponse.getLockField()) &&
+                Objects.equals(getRev(), getPsaactivityByUidResponse.getRev()) &&
+                Objects.equals(getTimeStamp(), getPsaactivityByUidResponse.getTimeStamp()) &&
+                Objects.equals(getActivityTypeName(), getPsaactivityByUidResponse.getActivityTypeName()) &&
+                Objects.equals(getReceivedTime(), getPsaactivityByUidResponse.getReceivedTime()) &&
+                Objects.equals(getFirstName(), getPsaactivityByUidResponse.getFirstName()) &&
+                Objects.equals(getLastName(), getPsaactivityByUidResponse.getLastName()) &&
+                Objects.equals(getNameFull(), getPsaactivityByUidResponse.getNameFull()) &&
+                Objects.equals(getStatus(), getPsaactivityByUidResponse.getStatus()) &&
+                Objects.equals(getCraft(), getPsaactivityByUidResponse.getCraft());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getActivityRowId(),
+        return Objects.hash(getActivityId(),
+                getSubmissionId(),
                 getActivityType(),
-                getActivityTypeName(),
-                getCraft(),
-                getLockField(),
-                getNameFull(),
-                getPsaactivityId(),
-                getReceivedTime(),
-                getRev(),
-                getStatus(),
-                getTimeStamp(),
-                getUserFirstName(),
-                getUserLastName(),
-                getFkActivityStatus(),
                 getFkBidIdassigned(),
+                getFkActivityStatus(),
                 getFkLastModifiedBy(),
-                getFkSubmissionId());
+                getLockField(),
+                getRev(),
+                getTimeStamp(),
+                getActivityTypeName(),
+                getReceivedTime(),
+                getFirstName(),
+                getLastName(),
+                getNameFull(),
+                getStatus(),
+                getCraft());
     }
 }

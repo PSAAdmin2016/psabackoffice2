@@ -333,9 +333,6 @@ public interface Job1111QueryExecutorService_V1 {
     public int executeUpdateBoltUp(String spool1, String spool2, String drawingNumber, String lineNumber, String sheetNumber, BigDecimal size, Integer quantity, Integer rework, String notes, Integer rowId);
 
     @Deprecated
-    public Page<Object> executeGetQuantitiesTestPackage(Pageable pageable, String testPackage);
-
-    @Deprecated
     public Page<Object> executeGetActivityHistoryPipeTesting(Pageable pageable, Integer rowId);
 
     @Deprecated
@@ -370,6 +367,9 @@ public interface Job1111QueryExecutorService_V1 {
 
     @Deprecated
     public int executeUpdateOverrideActivityQuantity(Integer newQuantity, Integer rowId);
+
+    @Deprecated
+    public Page<Object> executeGetQuantitiesTestPackagePipe(Pageable pageable, String testPackage);
 
     @Deprecated
     public Page<Object> executeGetSettingSteelSellPercent(Pageable pageable);

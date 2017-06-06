@@ -1967,26 +1967,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<GetQuantitiesTestPackageResponse> executeGetQuantitiesTestPackage(String testPackage, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("TestPackage", testPackage);
-
-        return queryExecutor.executeNamedQuery("GetQuantitiesTestPackage", params, GetQuantitiesTestPackageResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Downloadable exportGetQuantitiesTestPackage(ExportType exportType, String testPackage, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("TestPackage", testPackage);
-
-        return queryExecutor.exportNamedQueryData("GetQuantitiesTestPackage", params, exportType, GetQuantitiesTestPackageResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
     public Page<GetActivityHistoryPipeTestingResponse> executeGetActivityHistoryPipeTesting(Integer rowId, Pageable pageable) {
         Map params = new HashMap(1);
 
@@ -2191,6 +2171,26 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         params.put("RowID", updateOverrideActivityQuantityRequest.getRowId());
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateOverrideActivityQuantity", params);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<GetQuantitiesTestPackagePipeResponse> executeGetQuantitiesTestPackagePipe(String testPackage, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("TestPackage", testPackage);
+
+        return queryExecutor.executeNamedQuery("GetQuantitiesTestPackagePipe", params, GetQuantitiesTestPackagePipeResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Downloadable exportGetQuantitiesTestPackagePipe(ExportType exportType, String testPackage, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("TestPackage", testPackage);
+
+        return queryExecutor.exportNamedQueryData("GetQuantitiesTestPackagePipe", params, exportType, GetQuantitiesTestPackagePipeResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")

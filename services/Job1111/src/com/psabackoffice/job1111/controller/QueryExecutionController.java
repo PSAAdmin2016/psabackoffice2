@@ -1727,25 +1727,6 @@ public class QueryExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/queries/GetQuantitiesTestPackage", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Get testing quantities")
-    public Page<GetQuantitiesTestPackageResponse> executeGetQuantitiesTestPackage(@RequestParam(value = "TestPackage", required = false) String testPackage, Pageable pageable) {
-        LOGGER.debug("Executing named query: GetQuantitiesTestPackage");
-        Page<GetQuantitiesTestPackageResponse> _result = queryService.executeGetQuantitiesTestPackage(testPackage, pageable);
-        LOGGER.debug("got the result for named query: GetQuantitiesTestPackage, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetQuantitiesTestPackage")
-    @RequestMapping(value = "/queries/GetQuantitiesTestPackage/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetQuantitiesTestPackage(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "TestPackage", required = false) String testPackage, Pageable pageable) {
-        LOGGER.debug("Exporting named query: GetQuantitiesTestPackage");
-
-        return queryService.exportGetQuantitiesTestPackage(exportType, testPackage, pageable);
-    }
-
     @RequestMapping(value = "/queries/GetActivityHistoryPipeTesting", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get the field activity history for testing activities BY RowID")
@@ -1937,6 +1918,25 @@ public class QueryExecutionController {
         Integer _result = queryService.executeUpdateOverrideActivityQuantity(updateOverrideActivityQuantityRequest);
         LOGGER.debug("got the result for named query: UpdateOverrideActivityQuantity, result:{}", _result);
         return _result;
+    }
+
+    @RequestMapping(value = "/queries/GetQuantitiesTestPackagePipe", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Get testing quantities")
+    public Page<GetQuantitiesTestPackagePipeResponse> executeGetQuantitiesTestPackagePipe(@RequestParam(value = "TestPackage", required = false) String testPackage, Pageable pageable) {
+        LOGGER.debug("Executing named query: GetQuantitiesTestPackagePipe");
+        Page<GetQuantitiesTestPackagePipeResponse> _result = queryService.executeGetQuantitiesTestPackagePipe(testPackage, pageable);
+        LOGGER.debug("got the result for named query: GetQuantitiesTestPackagePipe, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetQuantitiesTestPackagePipe")
+    @RequestMapping(value = "/queries/GetQuantitiesTestPackagePipe/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetQuantitiesTestPackagePipe(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "TestPackage", required = false) String testPackage, Pageable pageable) {
+        LOGGER.debug("Exporting named query: GetQuantitiesTestPackagePipe");
+
+        return queryService.exportGetQuantitiesTestPackagePipe(exportType, testPackage, pageable);
     }
 
     @RequestMapping(value = "/queries/GetSettingSteelSellPercent", method = RequestMethod.GET)

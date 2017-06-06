@@ -366,10 +366,6 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdateBoltUp(UpdateBoltUpRequest updateBoltUpRequest);
 
-    Page<GetQuantitiesTestPackageResponse> executeGetQuantitiesTestPackage(String testPackage, Pageable pageable);
-
-    Downloadable exportGetQuantitiesTestPackage(ExportType exportType, String testPackage, Pageable pageable);
-
     Page<GetActivityHistoryPipeTestingResponse> executeGetActivityHistoryPipeTesting(Integer rowId, Pageable pageable);
 
     Downloadable exportGetActivityHistoryPipeTesting(ExportType exportType, Integer rowId, Pageable pageable);
@@ -409,6 +405,10 @@ public interface Job1111QueryExecutorService {
     Integer executeUpdateSupportsQuantity(UpdateSupportsQuantityRequest updateSupportsQuantityRequest);
 
     Integer executeUpdateOverrideActivityQuantity(UpdateOverrideActivityQuantityRequest updateOverrideActivityQuantityRequest);
+
+    Page<GetQuantitiesTestPackagePipeResponse> executeGetQuantitiesTestPackagePipe(String testPackage, Pageable pageable);
+
+    Downloadable exportGetQuantitiesTestPackagePipe(ExportType exportType, String testPackage, Pageable pageable);
 
     Page<GetSettingSteelSellPercentResponse> executeGetSettingSteelSellPercent(Pageable pageable);
 

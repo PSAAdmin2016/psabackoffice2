@@ -3070,54 +3070,64 @@ WHERE `Label`='CivilWorkHoursPercent'
 
     <sql-query name="GetPSAActivityByUid">
         <![CDATA[
-        SELECT ss.*, at.ActivityType AS ActivityTypeName, sd.ReceivedTime, sd.UserFirstName, sd.UserLastName, CONCAT(sd.UserFirstName, " ", sd.UserLastName) AS NameFull, ats.Status,
-IF(ss.ActivityType IN (10,11,20,21,22,23,30,31,32,33,34,35,39,40,41,42,43,50,51,52,53,54,59,90,91,92,93),'PIPE',
-IF(ss.ActivityType IN (60,61,62,63,64,65,66,67,68,96),'STEEL',
-IF(ss.ActivityType IN (70,71,72,77,97),'CIVIL',
-IF(ss.ActivityType IN (80,81,82,83,84,85,98),'EQUIP.',''
+        SELECT sas.*, at.ActivityType AS ActivityTypeName, sd.ReceivedTime, u.FirstName, u.LastName, CONCAT(u.FirstName, " ", u.LastName) AS NameFull, ats.Status,
+IF(sas.ActivityType IN (10,11,20,21,22,23,30,31,32,33,34,35,39,40,41,42,43,50,51,52,53,54,59,90,91,92,93),'PIPE',
+IF(sas.ActivityType IN (60,61,62,63,64,65,66,67,68,96),'STEEL',
+IF(sas.ActivityType IN (70,71,72,77,97),'CIVIL',
+IF(sas.ActivityType IN (80,81,82,83,84,85,98),'EQUIP.',''
 )))) AS Craft
-FROM SubmissionStatus ss
-	left JOIN SubsDetails sd
-		ON sd.SubmissionId = ss.fk_SubmissionId
-	left JOIN PSA.tblCrews tc
-		ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-	left JOIN PSA.tblCrewsRev tcr
-		ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-	JOIN PSA.REF_ActivityTypes at
-		ON  at.ID = ss.ActivityType
-	JOIN PSA.REF_ActivityStatuses ats
-	    ON ats.ID = ss.fk_ActivityStatus
-WHERE ss.ActivityType != 0
-AND ss.fk_ActivityStatus in (1,4,6,8,10)
+FROM SubmissionActivityStatus sas
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+JOIN PSA.REF_ActivityTypes at
+	ON  at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+JOIN PSA.tblUserPSA u
+	ON u.ID = sd.UserID
+
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+
+
+WHERE sas.ActivityType != 0
+AND sas.fk_ActivityStatus in (1,4,6,8,10)
 AND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)
-ORDER BY ss.PSAActivityID DESC
+ORDER BY sas.ActivityID DESC
         ]]>
     <query-param name="SuperID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetPSAActivityByUid__count">
         <![CDATA[
-        select count(*) from (SELECT ss.*, at.ActivityType AS ActivityTypeName, sd.ReceivedTime, sd.UserFirstName, sd.UserLastName, CONCAT(sd.UserFirstName, " ", sd.UserLastName) AS NameFull, ats.Status,
-IF(ss.ActivityType IN (10,11,20,21,22,23,30,31,32,33,34,35,39,40,41,42,43,50,51,52,53,54,59,90,91,92,93),'PIPE',
-IF(ss.ActivityType IN (60,61,62,63,64,65,66,67,68,96),'STEEL',
-IF(ss.ActivityType IN (70,71,72,77,97),'CIVIL',
-IF(ss.ActivityType IN (80,81,82,83,84,85,98),'EQUIP.',''
+        select count(*) from (SELECT sas.*, at.ActivityType AS ActivityTypeName, sd.ReceivedTime, u.FirstName, u.LastName, CONCAT(u.FirstName, " ", u.LastName) AS NameFull, ats.Status,
+IF(sas.ActivityType IN (10,11,20,21,22,23,30,31,32,33,34,35,39,40,41,42,43,50,51,52,53,54,59,90,91,92,93),'PIPE',
+IF(sas.ActivityType IN (60,61,62,63,64,65,66,67,68,96),'STEEL',
+IF(sas.ActivityType IN (70,71,72,77,97),'CIVIL',
+IF(sas.ActivityType IN (80,81,82,83,84,85,98),'EQUIP.',''
 )))) AS Craft
-FROM SubmissionStatus ss
-	left JOIN SubsDetails sd
-		ON sd.SubmissionId = ss.fk_SubmissionId
-	left JOIN PSA.tblCrews tc
-		ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-	left JOIN PSA.tblCrewsRev tcr
-		ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-	JOIN PSA.REF_ActivityTypes at
-		ON  at.ID = ss.ActivityType
-	JOIN PSA.REF_ActivityStatuses ats
-	    ON ats.ID = ss.fk_ActivityStatus
-WHERE ss.ActivityType != 0
-AND ss.fk_ActivityStatus in (1,4,6,8,10)
+FROM SubmissionActivityStatus sas
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+JOIN PSA.REF_ActivityTypes at
+	ON  at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+JOIN PSA.tblUserPSA u
+	ON u.ID = sd.UserID
+
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+
+
+WHERE sas.ActivityType != 0
+AND sas.fk_ActivityStatus in (1,4,6,8,10)
 AND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)
-ORDER BY ss.PSAActivityID DESC) wmTempTable
+ORDER BY sas.ActivityID DESC) wmTempTable
         ]]>
     <query-param name="SuperID" type="java.lang.Integer"/>
     </sql-query>
@@ -3844,17 +3854,19 @@ WHERE Label = 'SteelErectHoursPercent') wmTempTable
     <sql-query name="GetPSAActivityByUidCount">
         <![CDATA[
         SELECT count(*) AS Count
-FROM SubmissionStatus ss
-	left JOIN SubsDetails sd
-		ON sd.SubmissionId = ss.fk_SubmissionId
-	left JOIN PSA.tblCrews tc
-		ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-	left JOIN PSA.tblCrewsRev tcr
-		ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-	left JOIN PSA.tblUserPSA u
-		ON u.ID = tc.Superintendent OR u.ID = tcr.Superintendent 
-WHERE ss.ActivityType != 0
-AND ss.fk_ActivityStatus in (1,4,6,8,10)
+
+FROM SubmissionActivityStatus sas
+JOIN SubsDetails sd
+	ON sd.SubmissionId = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+LEFT JOIN PSA.tblUserPSA u
+	ON u.ID = tc.Superintendent OR u.ID = tcr.Superintendent 
+
+WHERE sas.ActivityType != 0
+AND sas.fk_ActivityStatus in (1,4,6,8,10)
 AND u.ID = :SuperID
         ]]>
     <query-param name="SuperID" type="java.lang.Integer"/>
@@ -3863,17 +3875,19 @@ AND u.ID = :SuperID
     <sql-query name="GetPSAActivityByUidCount__count">
         <![CDATA[
         select count(*) from (SELECT count(*) AS Count
-FROM SubmissionStatus ss
-	left JOIN SubsDetails sd
-		ON sd.SubmissionId = ss.fk_SubmissionId
-	left JOIN PSA.tblCrews tc
-		ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-	left JOIN PSA.tblCrewsRev tcr
-		ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-	left JOIN PSA.tblUserPSA u
-		ON u.ID = tc.Superintendent OR u.ID = tcr.Superintendent 
-WHERE ss.ActivityType != 0
-AND ss.fk_ActivityStatus in (1,4,6,8,10)
+
+FROM SubmissionActivityStatus sas
+JOIN SubsDetails sd
+	ON sd.SubmissionId = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+LEFT JOIN PSA.tblUserPSA u
+	ON u.ID = tc.Superintendent OR u.ID = tcr.Superintendent 
+
+WHERE sas.ActivityType != 0
+AND sas.fk_ActivityStatus in (1,4,6,8,10)
 AND u.ID = :SuperID) wmTempTable
         ]]>
     <query-param name="SuperID" type="java.lang.Integer"/>
@@ -5080,34 +5094,36 @@ WHERE Label = 'ProductivityInterval1') wmTempTable
 
     <sql-query name="GetPSRecentActivities">
         <![CDATA[
-        SELECT ss.PSAActivityID, at.ActivityType, ats.Status, ss.TimeStamp
-FROM SubmissionStatus ss
-LEFT JOIN PSA.REF_ActivityTypes at
-	on at.ID = ss.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats 
-	on ats.ID = ss.fk_ActivityStatus
+        SELECT sas.ActivityID, at.ActivityType, ats.Status, sas.TimeStamp
 
-WHERE ss.TimeStamp BETWEEN now() - INTERVAL 2 DAY AND NOW()
-AND ss.fk_ActivityStatus IN (5,6,13)
-AND ss.fk_LastModifiedBy = :UserID
-ORDER BY ss.TimeStamp DESC
+FROM SubmissionActivityStatus sas
+LEFT JOIN PSA.REF_ActivityTypes at
+	on at.ID = sas.ActivityType
+LEFT JOIN PSA.REF_ActivityStatuses ats 
+	on ats.ID = sas.fk_ActivityStatus
+
+WHERE sas.TimeStamp BETWEEN now() - INTERVAL 2 DAY AND NOW()
+AND sas.fk_ActivityStatus IN (5,6,13)
+AND sas.fk_LastModifiedBy = :UserID
+ORDER BY sas.TimeStamp DESC
         ]]>
     <query-param name="UserID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetPSRecentActivities__count">
         <![CDATA[
-        select count(*) from (SELECT ss.PSAActivityID, at.ActivityType, ats.Status, ss.TimeStamp
-FROM SubmissionStatus ss
-LEFT JOIN PSA.REF_ActivityTypes at
-	on at.ID = ss.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats 
-	on ats.ID = ss.fk_ActivityStatus
+        select count(*) from (SELECT sas.ActivityID, at.ActivityType, ats.Status, sas.TimeStamp
 
-WHERE ss.TimeStamp BETWEEN now() - INTERVAL 2 DAY AND NOW()
-AND ss.fk_ActivityStatus IN (5,6,13)
-AND ss.fk_LastModifiedBy = :UserID
-ORDER BY ss.TimeStamp DESC) wmTempTable
+FROM SubmissionActivityStatus sas
+LEFT JOIN PSA.REF_ActivityTypes at
+	on at.ID = sas.ActivityType
+LEFT JOIN PSA.REF_ActivityStatuses ats 
+	on ats.ID = sas.fk_ActivityStatus
+
+WHERE sas.TimeStamp BETWEEN now() - INTERVAL 2 DAY AND NOW()
+AND sas.fk_ActivityStatus IN (5,6,13)
+AND sas.fk_LastModifiedBy = :UserID
+ORDER BY sas.TimeStamp DESC) wmTempTable
         ]]>
     <query-param name="UserID" type="java.lang.Integer"/>
     </sql-query>
@@ -6574,466 +6590,6 @@ WHERE ID= :RowID
     <query-param name="RowID" type="java.lang.Integer"/>
     </sql-query>
 
-    <sql-query name="GetQuantitiesTestPackage">
-        <![CDATA[
-        SELECT td.TestPackageNumber, 
-
-count(td.BidID) AS ItemsTotal, 
-
-TRUNCATE(sum(ste.ReadyForTestingHours),6) AS ReadyForTestingHours,
-TRUNCATE(sum(ste.HydroHours),6) AS HydroHours,
-TRUNCATE(sum(ste.ClientTurnoverHours),6) AS ClientTurnoverHours,
-
-SUM(ert.ReadyForTestingInstalled) AS ReadyForTestingInstalled, 
-SUM(ert.HydroInstalled) AS HydroInstalled, 
-SUM(ert.ClientTurnoverInstalled) AS ClientTurnoverInstalled,
-
-TRUNCATE(sum(ert.EarnedReadyForTestingHours),6) AS EarnedReadyForTestingHours, 
-TRUNCATE(sum(ert.EarnedHydroHours),6) AS EarnedHydroHours, 
-TRUNCATE(sum(ert.EarnedClientTurnoverHours),6) AS EarnedClientTurnoverHours,
-
-TRUNCATE(sum(COALESCE(td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/td.TakeOffQuantity *(td.TakeOffQuantity 
-- (COALESCE(er.InstalledFootage,0) 
-  + COALESCE(er.InstalledBoltUps,0)
-  + COALESCE(er.InstalledWelds,0)
-  + COALESCE(er.InstalledCuts,0)
-  + COALESCE(er.InstalledTrim,0)
-  + COALESCE(er.InstalledSupports,0)
-  + COALESCE(er.InstalledMisc,0)
-  + COALESCE(er.InstalledDemo,0))))),6) AS LooseHours
-
-FROM trackerDetails td
-
-	LEFT JOIN (SELECT min(td.ID) AS ID,
-    
-IF( sum(COALESCE(se.ErectionLengthSpool1,0) + COALESCE(se.ErectionLengthSpool2,0) + COALESCE(se.ErectionLengthSpool3,0) + COALESCE(se.ErectionLengthSpool4,0) + COALESCE(se.ErectionLengthSpool5,0) + COALESCE(se.ErectionLengthSpool6,0) + COALESCE(sme.MiscErectionInstalled,0)) 
-	> td.TakeOffQuantity, /*Is Installed Greater then TakeOff*/
-    /*TRUE*/ td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
-    /*FALSE*/ sum(COALESCE((td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/td.TakeOffQuantity*(COALESCE(se.ErectionLengthSpool1,0) + COALESCE(se.ErectionLengthSpool2,0) + COALESCE(se.ErectionLengthSpool3,0) + COALESCE(se.ErectionLengthSpool4,0) + COALESCE(se.ErectionLengthSpool5,0) + COALESCE(se.ErectionLengthSpool6,0) + COALESCE(sme.MiscErectionInstalled,0))),0))
-    ) AS EarnedErectionHours,
-
-IF(sum(COALESCE(sb.BoltUpInstalled,0) + COALESCE(smb.MiscBoltUpInstalled,0))
-	> td.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-    /*TRUE*/ td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
-    /*FALSE*/ sum(COALESCE((td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/td.TakeOffQuantity*(COALESCE(sb.BoltUpInstalled,0) + COALESCE(smb.MiscBoltUpInstalled,0))), 0))
-    ) AS EarnedBoltUpHours,
-
-IF(sum(COALESCE(sw.WeldInstalled,0) + COALESCE(smw.MiscWeldInstalled,0))
-	> td.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-    /*TRUE*/ td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
-    /*FALSE*/ sum(COALESCE((td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/td.TakeOffQuantity*(COALESCE(sw.WeldInstalled,0) + COALESCE(smw.MiscWeldInstalled,0))),0))
-    ) AS EarnedWeldHours,
-
-IF(sum(COALESCE(scut.CutInstalled,0) + COALESCE(smc.MiscCutInstalled,0))
-	> td.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-    /*TRUE*/ td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
-    /*FALSE*/ sum(COALESCE((td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/td.TakeOffQuantity*(COALESCE(scut.CutInstalled,0) + COALESCE(smc.MiscCutInstalled,0))),0))
-    ) AS EarnedCutHours,
-    
-IF(sum(COALESCE(st.TrimInstalled,0) + COALESCE(smt.MiscTrimInstalled,0))
-	> td.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-    /*TRUE*/ td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
-    /*FALSE*/ sum(COALESCE((td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/td.TakeOffQuantity*(COALESCE(st.TrimInstalled,0) + COALESCE(smt.MiscTrimInstalled,0))),0))
-    ) AS EarnedTrimHours,
-    
-IF(sum(COALESCE(ssu.SupportInstalled,0) + COALESCE(smssu.MiscSupportInstalled,0))
-	> td.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-    /*TRUE*/ td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
-    /*FALSE*/ sum(COALESCE((td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/td.TakeOffQuantity*(COALESCE(ssu.SupportInstalled,0) + COALESCE(smssu.MiscSupportInstalled,0))),0))
-    ) AS EarnedSupportHours,
-    
-IF(sum(COALESCE(IF(td.PipingActivityType = 'MISC' AND td.ECT != 'D', sm.MiscInstalled,0),0))
-	> td.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-    /*TRUE*/ td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
-    /*FALSE*/ sum(COALESCE((td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/td.TakeOffQuantity*COALESCE(IF(td.PipingActivityType = 'MISC' AND td.ECT != 'D', sm.MiscInstalled,0),0)),0))
-    ) AS EarnedMiscHours,
-    
-IF(sum(COALESCE(sd.DemoInstalled,0) + COALESCE(smd.MiscDemoInstalled,0))
-	> td.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-    /*TRUE*/ td.EstimatedHours,
-    /*FALSE*/ sum(COALESCE((td.EstimatedHours/td.TakeOffQuantity*(COALESCE(sd.DemoInstalled,0) + COALESCE(smd.MiscDemoInstalled,0))),0))
-    ) AS EarnedDemoHours,
-    
-
-sum(COALESCE(se.ErectionLengthSpool1,0) + COALESCE(se.ErectionLengthSpool2,0) + COALESCE(se.ErectionLengthSpool3,0) + COALESCE(se.ErectionLengthSpool4,0) + COALESCE(se.ErectionLengthSpool5,0) + COALESCE(se.ErectionLengthSpool6,0) + COALESCE(sme.MiscErectionInstalled,0)) AS InstalledFootage,
-sum(COALESCE(sb.BoltUpInstalled,0) + COALESCE(smb.MiscBoltUpInstalled,0)) AS InstalledBoltUps, 
-sum(COALESCE(sw.WeldInstalled,0) + COALESCE(smw.MiscWeldInstalled,0)) AS InstalledWelds,
-sum(COALESCE(scut.CutInstalled,0) + COALESCE(smc.MiscCutInstalled,0)) AS InstalledCuts,
-(sum(COALESCE(sb.BoltUpInstalled,0) + COALESCE(smb.MiscBoltUpInstalled,0)) + sum(COALESCE(sw.WeldInstalled,0) + COALESCE(smw.MiscWeldInstalled,0))) AS InstalledBasicConnections, 
-sum(COALESCE(st.TrimInstalled,0) + COALESCE(smt.MiscTrimInstalled,0)) AS InstalledTrim,
-sum(COALESCE(ssu.SupportInstalled,0) + COALESCE(smssu.MiscSupportInstalled,0)) AS InstalledSupports,
-sum(COALESCE(sm.MiscInstalled,0)) AS InstalledMisc,
-sum(COALESCE(sd.DemoInstalled,0) + COALESCE(smd.MiscDemoInstalled,0)) AS InstalledDemo,
-
-(sum(COALESCE(st.TrimInstalled,0)) + sum(COALESCE(sm.MiscInstalled,0)) + sum(COALESCE(ssu.SupportInstalled,0))) AS InstalledBasicTrim
-
-FROM SubmissionStatus ss
-	JOIN PSA.REF_ActivityTypes at
-		ON at.ID = ss.ActivityType
-        
-	LEFT JOIN SubsErection se
-		ON se.ID = ss.ActivityRowId AND ss.ActivityType = 11 AND se.ErectionRework = 0
-	
-    LEFT JOIN (SELECT sb.ID, sb.BoltUpQuantity AS BoltUpInstalled
-				FROM SubsBoltUp sb 
-                WHERE sb.BoltUpRework = 0) sb
-		ON sb.ID = ss.ActivityRowId AND ss.ActivityType = 21
-        
-	LEFT JOIN (SELECT sw.ID, COALESCE((sw.WeldPercentCompleted * .01),0) AS WeldInstalled
-				FROM SubsWeld sw 
-                WHERE sw.WeldRework = 0) sw
-		ON sw.ID = ss.ActivityRowId AND ss.ActivityType = 22
-        
-	LEFT JOIN (SELECT sw.ID, COALESCE((sw.WeldPercentCompleted * .01),0) AS CutInstalled
-				FROM SubsWeld sw 
-                WHERE sw.WeldRework = 0) scut
-		ON scut.ID = ss.ActivityRowId AND ss.ActivityType = 23
-        
-    LEFT JOIN (SELECT st.ID, st.TrimQuantity AS TrimInstalled
-				FROM SubsTrim st
-                WHERE st.TrimRework = 0) st
-		ON st.ID = ss.ActivityRowId AND ss.ActivityType IN (30,31,33,34,35,39)  
-        
-	LEFT JOIN (SELECT ssu.ID, IF(ssu.SupportComplete = 1, ssu.SupportQuantity, COALESCE((ssu.SupportPercentCompleted * .01),0)) AS SupportInstalled
-				FROM SubsSupports ssu
-                WHERE ssu.SupportRework = 0) ssu
-		ON ssu.ID = ss.ActivityRowId AND ss.ActivityType = 32 
-	
-    LEFT JOIN (SELECT sd.ID, sd.DemoQuantity AS DemoInstalled
-				FROM SubsDemo sd) sd
-		ON sd.ID = ss.ActivityRowId AND ss.ActivityType IN (51,52,53,59) 
-
-    LEFT JOIN (SELECT min(ID) AS ID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ECT, PipingActivityType
-				FROM`trackerDetails`
-				GROUP BY BidID)td
-		ON td.BidID = ss.fk_BidIDAssigned
-        
-
-	LEFT JOIN (SELECT sm.ID, sm.MiscQuantity AS MiscInstalled
-				FROM SubsMisc sm
-                WHERE sm.MiscRework = 0) sm
-		ON sm.ID = ss.ActivityRowId AND ss.ActivityType = 91 AND td.PipingActivityType = 'MISC'  AND td.ECT != 'D'
-        
-	
-    LEFT JOIN (SELECT sm.ID, sm.MiscQuantity AS MiscErectionInstalled
-				FROM SubsMisc sm
-                WHERE sm.MiscRework = 0) sme
-		ON sme.ID = ss.ActivityRowId AND ss.ActivityType = 91 AND td.PipingActivityType = 'PE'
-       
-	LEFT JOIN (SELECT sm.ID, sm.MiscQuantity AS MiscBoltUpInstalled
-				FROM SubsMisc sm
-                WHERE sm.MiscRework = 0) smb
-		ON smb.ID = ss.ActivityRowId AND ss.ActivityType = 91 AND td.PipingActivityType = 'BU'
-		
-	LEFT JOIN (SELECT sm.ID, sm.MiscQuantity AS MiscWeldInstalled
-				FROM SubsMisc sm
-                WHERE sm.MiscRework = 0) smw
-		ON smw.ID = ss.ActivityRowId AND ss.ActivityType = 91 AND td.PipingActivityType = 'W'
-	
-	LEFT JOIN (SELECT sm.ID, sm.MiscQuantity AS MiscCutInstalled
-				FROM SubsMisc sm
-                WHERE sm.MiscRework = 0) smc
-		ON smc.ID = ss.ActivityRowId AND ss.ActivityType = 91 AND td.ECT != 'D' AND td.PipingActivityType = 'CUT'
-        
-	LEFT JOIN (SELECT sm.ID, sm.MiscQuantity AS MiscTrimInstalled
-				FROM SubsMisc sm
-                WHERE sm.MiscRework = 0) smt
-		ON smt.ID = ss.ActivityRowId AND ss.ActivityType = 91 AND td.ECT = 'T' AND td.PipingActivityType IN ('V','Plug','HpLp','Other','Blind')
-        
-	LEFT JOIN (SELECT sm.ID, sm.MiscQuantity AS MiscSupportInstalled
-				FROM SubsMisc sm
-                WHERE sm.MiscRework = 0) smssu
-		ON smssu.ID = ss.ActivityRowId AND ss.ActivityType = 91 AND td.PipingActivityType = 'S'
-        
-	LEFT JOIN (SELECT sm.ID, sm.MiscQuantity AS MiscDemoInstalled
-				FROM SubsMisc sm
-                WHERE sm.MiscRework = 0) smd
-		ON smd.ID = ss.ActivityRowId AND ss.ActivityType = 91 AND td.ECT = 'D'
-        
-
-        
-WHERE fk_ActivityStatus IN (5,12)
-GROUP BY td.BidID) er
-		ON er.ID = td.ID
-
-LEFT JOIN (SELECT min(td.ID) AS ID,
-sum(COALESCE(steR.InstalledReadyForTesting, 0)) AS ReadyForTestingInstalled,
-sum(COALESCE(steH.InstalledHydro, 0)) AS HydroInstalled,
-sum(COALESCE(steC.InstalledClientTurnover, 0)) AS ClientTurnoverInstalled,
-
-sum(COALESCE(td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'CompleteForTestPercent') * steR.InstalledReadyForTesting, 0)) AS EarnedReadyForTestingHours,
-sum(COALESCE(td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'HydroHoursPercent') * steH.InstalledHydro, 0)) AS EarnedHydroHours,
-sum(COALESCE(td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'ClientTurnoverPercent') * steC.InstalledClientTurnover, 0)) AS EarnedClientTurnoverHours
-
-FROM trackerDetails td
-
-LEFT JOIN (SELECT ste.ActivityType, ste.TestingTestPackageNumber, 1 AS InstalledReadyForTesting
-			FROM SubsTesting ste
-            INNER JOIN SubmissionStatus ss
-				ON ss.ActivityRowId = ste.ID AND ss.ActivityType = 41 AND ss.fk_ActivityStatus IN (5,12)) steR
-	ON steR.TestingTestPackageNumber = td.TestPackageNumber AND steR.ActivityType = 41 AND td.ECT != 'D'
-    
-LEFT JOIN (SELECT ste.ActivityType, ste.TestingTestPackageNumber, 1 AS InstalledHydro
-			FROM SubsTesting ste
-            INNER JOIN SubmissionStatus ss
-				ON ss.ActivityRowId = ste.ID AND ss.ActivityType = 42 AND ss.fk_ActivityStatus IN (5,12)) steH
-	ON steH.TestingTestPackageNumber = td.TestPackageNumber AND steH.ActivityType = 42 AND td.ECT != 'D'
-    
-LEFT JOIN (SELECT ste.ActivityType, ste.TestingTestPackageNumber, 1 AS InstalledClientTurnover
-			FROM SubsTesting ste
-            INNER JOIN SubmissionStatus ss
-				ON ss.ActivityRowId = ste.ID AND ss.ActivityType = 43 AND ss.fk_ActivityStatus IN (5,12)) steC
-	ON steC.TestingTestPackageNumber = td.TestPackageNumber AND steC.ActivityType = 43 AND td.ECT != 'D'
-
-GROUP BY td.BidID) ert
-	ON ert.ID = td.ID
-    
-LEFT JOIN (SELECT td.ID,
-			COALESCE(td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent'),0) AS TestingHours,
-            COALESCE((td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'CompleteForTestPercent')),0) AS ReadyForTestingHours,
-            COALESCE((td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'HydroHoursPercent')),0) AS HydroHours,
-            COALESCE((td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'ClientTurnoverPercent')),0) AS ClientTurnoverHours
-			FROM `trackerDetails` td
-			WHERE td.ECT != 'D') ste
-	ON ste.ID = td.ID
-  
-    
-WHERE TestPackageNumber = :TestPackage
-GROUP BY TestPackageNumber
-        ]]>
-    <query-param name="TestPackage" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="GetQuantitiesTestPackage__count">
-        <![CDATA[
-        select count(*) from (SELECT td.TestPackageNumber, 
-
-count(td.BidID) AS ItemsTotal, 
-
-TRUNCATE(sum(ste.ReadyForTestingHours),6) AS ReadyForTestingHours,
-TRUNCATE(sum(ste.HydroHours),6) AS HydroHours,
-TRUNCATE(sum(ste.ClientTurnoverHours),6) AS ClientTurnoverHours,
-
-SUM(ert.ReadyForTestingInstalled) AS ReadyForTestingInstalled, 
-SUM(ert.HydroInstalled) AS HydroInstalled, 
-SUM(ert.ClientTurnoverInstalled) AS ClientTurnoverInstalled,
-
-TRUNCATE(sum(ert.EarnedReadyForTestingHours),6) AS EarnedReadyForTestingHours, 
-TRUNCATE(sum(ert.EarnedHydroHours),6) AS EarnedHydroHours, 
-TRUNCATE(sum(ert.EarnedClientTurnoverHours),6) AS EarnedClientTurnoverHours,
-
-TRUNCATE(sum(COALESCE(td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/td.TakeOffQuantity *(td.TakeOffQuantity 
-- (COALESCE(er.InstalledFootage,0) 
-  + COALESCE(er.InstalledBoltUps,0)
-  + COALESCE(er.InstalledWelds,0)
-  + COALESCE(er.InstalledCuts,0)
-  + COALESCE(er.InstalledTrim,0)
-  + COALESCE(er.InstalledSupports,0)
-  + COALESCE(er.InstalledMisc,0)
-  + COALESCE(er.InstalledDemo,0))))),6) AS LooseHours
-
-FROM trackerDetails td
-
-	LEFT JOIN (SELECT min(td.ID) AS ID,
-    
-IF( sum(COALESCE(se.ErectionLengthSpool1,0) + COALESCE(se.ErectionLengthSpool2,0) + COALESCE(se.ErectionLengthSpool3,0) + COALESCE(se.ErectionLengthSpool4,0) + COALESCE(se.ErectionLengthSpool5,0) + COALESCE(se.ErectionLengthSpool6,0) + COALESCE(sme.MiscErectionInstalled,0)) 
-	> td.TakeOffQuantity, /*Is Installed Greater then TakeOff*/
-    /*TRUE*/ td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
-    /*FALSE*/ sum(COALESCE((td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/td.TakeOffQuantity*(COALESCE(se.ErectionLengthSpool1,0) + COALESCE(se.ErectionLengthSpool2,0) + COALESCE(se.ErectionLengthSpool3,0) + COALESCE(se.ErectionLengthSpool4,0) + COALESCE(se.ErectionLengthSpool5,0) + COALESCE(se.ErectionLengthSpool6,0) + COALESCE(sme.MiscErectionInstalled,0))),0))
-    ) AS EarnedErectionHours,
-
-IF(sum(COALESCE(sb.BoltUpInstalled,0) + COALESCE(smb.MiscBoltUpInstalled,0))
-	> td.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-    /*TRUE*/ td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
-    /*FALSE*/ sum(COALESCE((td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/td.TakeOffQuantity*(COALESCE(sb.BoltUpInstalled,0) + COALESCE(smb.MiscBoltUpInstalled,0))), 0))
-    ) AS EarnedBoltUpHours,
-
-IF(sum(COALESCE(sw.WeldInstalled,0) + COALESCE(smw.MiscWeldInstalled,0))
-	> td.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-    /*TRUE*/ td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
-    /*FALSE*/ sum(COALESCE((td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/td.TakeOffQuantity*(COALESCE(sw.WeldInstalled,0) + COALESCE(smw.MiscWeldInstalled,0))),0))
-    ) AS EarnedWeldHours,
-
-IF(sum(COALESCE(scut.CutInstalled,0) + COALESCE(smc.MiscCutInstalled,0))
-	> td.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-    /*TRUE*/ td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
-    /*FALSE*/ sum(COALESCE((td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/td.TakeOffQuantity*(COALESCE(scut.CutInstalled,0) + COALESCE(smc.MiscCutInstalled,0))),0))
-    ) AS EarnedCutHours,
-    
-IF(sum(COALESCE(st.TrimInstalled,0) + COALESCE(smt.MiscTrimInstalled,0))
-	> td.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-    /*TRUE*/ td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
-    /*FALSE*/ sum(COALESCE((td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/td.TakeOffQuantity*(COALESCE(st.TrimInstalled,0) + COALESCE(smt.MiscTrimInstalled,0))),0))
-    ) AS EarnedTrimHours,
-    
-IF(sum(COALESCE(ssu.SupportInstalled,0) + COALESCE(smssu.MiscSupportInstalled,0))
-	> td.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-    /*TRUE*/ td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
-    /*FALSE*/ sum(COALESCE((td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/td.TakeOffQuantity*(COALESCE(ssu.SupportInstalled,0) + COALESCE(smssu.MiscSupportInstalled,0))),0))
-    ) AS EarnedSupportHours,
-    
-IF(sum(COALESCE(IF(td.PipingActivityType = 'MISC' AND td.ECT != 'D', sm.MiscInstalled,0),0))
-	> td.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-    /*TRUE*/ td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
-    /*FALSE*/ sum(COALESCE((td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/td.TakeOffQuantity*COALESCE(IF(td.PipingActivityType = 'MISC' AND td.ECT != 'D', sm.MiscInstalled,0),0)),0))
-    ) AS EarnedMiscHours,
-    
-IF(sum(COALESCE(sd.DemoInstalled,0) + COALESCE(smd.MiscDemoInstalled,0))
-	> td.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-    /*TRUE*/ td.EstimatedHours,
-    /*FALSE*/ sum(COALESCE((td.EstimatedHours/td.TakeOffQuantity*(COALESCE(sd.DemoInstalled,0) + COALESCE(smd.MiscDemoInstalled,0))),0))
-    ) AS EarnedDemoHours,
-    
-
-sum(COALESCE(se.ErectionLengthSpool1,0) + COALESCE(se.ErectionLengthSpool2,0) + COALESCE(se.ErectionLengthSpool3,0) + COALESCE(se.ErectionLengthSpool4,0) + COALESCE(se.ErectionLengthSpool5,0) + COALESCE(se.ErectionLengthSpool6,0) + COALESCE(sme.MiscErectionInstalled,0)) AS InstalledFootage,
-sum(COALESCE(sb.BoltUpInstalled,0) + COALESCE(smb.MiscBoltUpInstalled,0)) AS InstalledBoltUps, 
-sum(COALESCE(sw.WeldInstalled,0) + COALESCE(smw.MiscWeldInstalled,0)) AS InstalledWelds,
-sum(COALESCE(scut.CutInstalled,0) + COALESCE(smc.MiscCutInstalled,0)) AS InstalledCuts,
-(sum(COALESCE(sb.BoltUpInstalled,0) + COALESCE(smb.MiscBoltUpInstalled,0)) + sum(COALESCE(sw.WeldInstalled,0) + COALESCE(smw.MiscWeldInstalled,0))) AS InstalledBasicConnections, 
-sum(COALESCE(st.TrimInstalled,0) + COALESCE(smt.MiscTrimInstalled,0)) AS InstalledTrim,
-sum(COALESCE(ssu.SupportInstalled,0) + COALESCE(smssu.MiscSupportInstalled,0)) AS InstalledSupports,
-sum(COALESCE(sm.MiscInstalled,0)) AS InstalledMisc,
-sum(COALESCE(sd.DemoInstalled,0) + COALESCE(smd.MiscDemoInstalled,0)) AS InstalledDemo,
-
-(sum(COALESCE(st.TrimInstalled,0)) + sum(COALESCE(sm.MiscInstalled,0)) + sum(COALESCE(ssu.SupportInstalled,0))) AS InstalledBasicTrim
-
-FROM SubmissionStatus ss
-	JOIN PSA.REF_ActivityTypes at
-		ON at.ID = ss.ActivityType
-        
-	LEFT JOIN SubsErection se
-		ON se.ID = ss.ActivityRowId AND ss.ActivityType = 11 AND se.ErectionRework = 0
-	
-    LEFT JOIN (SELECT sb.ID, sb.BoltUpQuantity AS BoltUpInstalled
-				FROM SubsBoltUp sb 
-                WHERE sb.BoltUpRework = 0) sb
-		ON sb.ID = ss.ActivityRowId AND ss.ActivityType = 21
-        
-	LEFT JOIN (SELECT sw.ID, COALESCE((sw.WeldPercentCompleted * .01),0) AS WeldInstalled
-				FROM SubsWeld sw 
-                WHERE sw.WeldRework = 0) sw
-		ON sw.ID = ss.ActivityRowId AND ss.ActivityType = 22
-        
-	LEFT JOIN (SELECT sw.ID, COALESCE((sw.WeldPercentCompleted * .01),0) AS CutInstalled
-				FROM SubsWeld sw 
-                WHERE sw.WeldRework = 0) scut
-		ON scut.ID = ss.ActivityRowId AND ss.ActivityType = 23
-        
-    LEFT JOIN (SELECT st.ID, st.TrimQuantity AS TrimInstalled
-				FROM SubsTrim st
-                WHERE st.TrimRework = 0) st
-		ON st.ID = ss.ActivityRowId AND ss.ActivityType IN (30,31,33,34,35,39)  
-        
-	LEFT JOIN (SELECT ssu.ID, IF(ssu.SupportComplete = 1, ssu.SupportQuantity, COALESCE((ssu.SupportPercentCompleted * .01),0)) AS SupportInstalled
-				FROM SubsSupports ssu
-                WHERE ssu.SupportRework = 0) ssu
-		ON ssu.ID = ss.ActivityRowId AND ss.ActivityType = 32 
-	
-    LEFT JOIN (SELECT sd.ID, sd.DemoQuantity AS DemoInstalled
-				FROM SubsDemo sd) sd
-		ON sd.ID = ss.ActivityRowId AND ss.ActivityType IN (51,52,53,59) 
-
-    LEFT JOIN (SELECT min(ID) AS ID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ECT, PipingActivityType
-				FROM`trackerDetails`
-				GROUP BY BidID)td
-		ON td.BidID = ss.fk_BidIDAssigned
-        
-
-	LEFT JOIN (SELECT sm.ID, sm.MiscQuantity AS MiscInstalled
-				FROM SubsMisc sm
-                WHERE sm.MiscRework = 0) sm
-		ON sm.ID = ss.ActivityRowId AND ss.ActivityType = 91 AND td.PipingActivityType = 'MISC'  AND td.ECT != 'D'
-        
-	
-    LEFT JOIN (SELECT sm.ID, sm.MiscQuantity AS MiscErectionInstalled
-				FROM SubsMisc sm
-                WHERE sm.MiscRework = 0) sme
-		ON sme.ID = ss.ActivityRowId AND ss.ActivityType = 91 AND td.PipingActivityType = 'PE'
-       
-	LEFT JOIN (SELECT sm.ID, sm.MiscQuantity AS MiscBoltUpInstalled
-				FROM SubsMisc sm
-                WHERE sm.MiscRework = 0) smb
-		ON smb.ID = ss.ActivityRowId AND ss.ActivityType = 91 AND td.PipingActivityType = 'BU'
-		
-	LEFT JOIN (SELECT sm.ID, sm.MiscQuantity AS MiscWeldInstalled
-				FROM SubsMisc sm
-                WHERE sm.MiscRework = 0) smw
-		ON smw.ID = ss.ActivityRowId AND ss.ActivityType = 91 AND td.PipingActivityType = 'W'
-	
-	LEFT JOIN (SELECT sm.ID, sm.MiscQuantity AS MiscCutInstalled
-				FROM SubsMisc sm
-                WHERE sm.MiscRework = 0) smc
-		ON smc.ID = ss.ActivityRowId AND ss.ActivityType = 91 AND td.ECT != 'D' AND td.PipingActivityType = 'CUT'
-        
-	LEFT JOIN (SELECT sm.ID, sm.MiscQuantity AS MiscTrimInstalled
-				FROM SubsMisc sm
-                WHERE sm.MiscRework = 0) smt
-		ON smt.ID = ss.ActivityRowId AND ss.ActivityType = 91 AND td.ECT = 'T' AND td.PipingActivityType IN ('V','Plug','HpLp','Other','Blind')
-        
-	LEFT JOIN (SELECT sm.ID, sm.MiscQuantity AS MiscSupportInstalled
-				FROM SubsMisc sm
-                WHERE sm.MiscRework = 0) smssu
-		ON smssu.ID = ss.ActivityRowId AND ss.ActivityType = 91 AND td.PipingActivityType = 'S'
-        
-	LEFT JOIN (SELECT sm.ID, sm.MiscQuantity AS MiscDemoInstalled
-				FROM SubsMisc sm
-                WHERE sm.MiscRework = 0) smd
-		ON smd.ID = ss.ActivityRowId AND ss.ActivityType = 91 AND td.ECT = 'D'
-        
-
-        
-WHERE fk_ActivityStatus IN (5,12)
-GROUP BY td.BidID) er
-		ON er.ID = td.ID
-
-LEFT JOIN (SELECT min(td.ID) AS ID,
-sum(COALESCE(steR.InstalledReadyForTesting, 0)) AS ReadyForTestingInstalled,
-sum(COALESCE(steH.InstalledHydro, 0)) AS HydroInstalled,
-sum(COALESCE(steC.InstalledClientTurnover, 0)) AS ClientTurnoverInstalled,
-
-sum(COALESCE(td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'CompleteForTestPercent') * steR.InstalledReadyForTesting, 0)) AS EarnedReadyForTestingHours,
-sum(COALESCE(td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'HydroHoursPercent') * steH.InstalledHydro, 0)) AS EarnedHydroHours,
-sum(COALESCE(td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'ClientTurnoverPercent') * steC.InstalledClientTurnover, 0)) AS EarnedClientTurnoverHours
-
-FROM trackerDetails td
-
-LEFT JOIN (SELECT ste.ActivityType, ste.TestingTestPackageNumber, 1 AS InstalledReadyForTesting
-			FROM SubsTesting ste
-            INNER JOIN SubmissionStatus ss
-				ON ss.ActivityRowId = ste.ID AND ss.ActivityType = 41 AND ss.fk_ActivityStatus IN (5,12)) steR
-	ON steR.TestingTestPackageNumber = td.TestPackageNumber AND steR.ActivityType = 41 AND td.ECT != 'D'
-    
-LEFT JOIN (SELECT ste.ActivityType, ste.TestingTestPackageNumber, 1 AS InstalledHydro
-			FROM SubsTesting ste
-            INNER JOIN SubmissionStatus ss
-				ON ss.ActivityRowId = ste.ID AND ss.ActivityType = 42 AND ss.fk_ActivityStatus IN (5,12)) steH
-	ON steH.TestingTestPackageNumber = td.TestPackageNumber AND steH.ActivityType = 42 AND td.ECT != 'D'
-    
-LEFT JOIN (SELECT ste.ActivityType, ste.TestingTestPackageNumber, 1 AS InstalledClientTurnover
-			FROM SubsTesting ste
-            INNER JOIN SubmissionStatus ss
-				ON ss.ActivityRowId = ste.ID AND ss.ActivityType = 43 AND ss.fk_ActivityStatus IN (5,12)) steC
-	ON steC.TestingTestPackageNumber = td.TestPackageNumber AND steC.ActivityType = 43 AND td.ECT != 'D'
-
-GROUP BY td.BidID) ert
-	ON ert.ID = td.ID
-    
-LEFT JOIN (SELECT td.ID,
-			COALESCE(td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent'),0) AS TestingHours,
-            COALESCE((td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'CompleteForTestPercent')),0) AS ReadyForTestingHours,
-            COALESCE((td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'HydroHoursPercent')),0) AS HydroHours,
-            COALESCE((td.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'ClientTurnoverPercent')),0) AS ClientTurnoverHours
-			FROM `trackerDetails` td
-			WHERE td.ECT != 'D') ste
-	ON ste.ID = td.ID
-  
-    
-WHERE TestPackageNumber = :TestPackage
-GROUP BY TestPackageNumber) wmTempTable
-        ]]>
-    <query-param name="TestPackage" type="java.lang.String"/>
-    </sql-query>
-
     <sql-query name="GetActivityHistoryPipeTesting">
         <![CDATA[
         SELECT pt.* 
@@ -8324,6 +7880,400 @@ WHERE ID = :RowID
     <query-param name="RowID" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="GetQuantitiesTestPackagePipe">
+        <![CDATA[
+        SELECT ptd.TestPackageNumber, 
+
+count(ptd.BidID) AS ItemsTotal, 
+
+TRUNCATE(sum(ste.ReadyForTestingHours),6) AS ReadyForTestingHours,
+TRUNCATE(sum(ste.HydroHours),6) AS HydroHours,
+TRUNCATE(sum(ste.ClientTurnoverHours),6) AS ClientTurnoverHours,
+
+SUM(ert.ReadyForTestingInstalled) AS ReadyForTestingInstalled, 
+SUM(ert.HydroInstalled) AS HydroInstalled, 
+SUM(ert.ClientTurnoverInstalled) AS ClientTurnoverInstalled,
+
+TRUNCATE(sum(ert.EarnedReadyForTestingHours),6) AS EarnedReadyForTestingHours, 
+TRUNCATE(sum(ert.EarnedHydroHours),6) AS EarnedHydroHours, 
+TRUNCATE(sum(ert.EarnedClientTurnoverHours),6) AS EarnedClientTurnoverHours,
+
+TRUNCATE(sum(COALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/ptd.TakeOffQuantity *(ptd.TakeOffQuantity 
+- (COALESCE(er.InstalledFootage,0) 
+  + COALESCE(er.InstalledBoltUps,0)
+  + COALESCE(er.InstalledWelds,0)
+  + COALESCE(er.InstalledCuts,0)
+  + COALESCE(er.InstalledTrim,0)
+  + COALESCE(er.InstalledSupports,0)
+  + COALESCE(er.InstalledMisc,0)
+  + COALESCE(er.InstalledDemo,0))))),6) AS LooseHours
+
+FROM PipeTrackerDetails ptd
+
+LEFT JOIN (SELECT min(ptd.ID) AS ID,
+    
+IF( sum(COALESCE(pe.ErectionLengthSpool1,0) + COALESCE(pe.ErectionLengthSpool2,0) + COALESCE(pe.ErectionLengthSpool3,0) + COALESCE(pe.ErectionLengthSpool4,0) + COALESCE(pe.ErectionLengthSpool5,0) + COALESCE(pe.ErectionLengthSpool6,0) + COALESCE(pme.MiscQuantity,0)) 
+	> ptd.TakeOffQuantity, /*Is Installed Greater then TakeOff*/
+    /*TRUE*/ ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
+    /*FALSE*/ sum(COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/ptd.TakeOffQuantity*(COALESCE(pe.ErectionLengthSpool1,0) + COALESCE(pe.ErectionLengthSpool2,0) + COALESCE(pe.ErectionLengthSpool3,0) + COALESCE(pe.ErectionLengthSpool4,0) + COALESCE(pe.ErectionLengthSpool5,0) + COALESCE(pe.ErectionLengthSpool6,0) + COALESCE(pme.MiscQuantity,0))),0))
+    ) AS EarnedErectionHours,
+
+IF(sum(COALESCE(pb.BoltUpQuantity,0) + COALESCE(pmb.MiscQuantity,0))
+	> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+    /*TRUE*/ ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
+    /*FALSE*/ sum(COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/ptd.TakeOffQuantity*(COALESCE(pb.BoltUpQuantity,0) + COALESCE(pmb.MiscQuantity,0))), 0))
+    ) AS EarnedBoltUpHours,
+
+IF(sum(COALESCE(pw.WeldPercentCompleted * .01,0) + COALESCE(pmw.MiscQuantity,0))
+	> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+    /*TRUE*/ ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
+    /*FALSE*/ sum(COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/ptd.TakeOffQuantity*(COALESCE(pw.WeldPercentCompleted * .01,0) + COALESCE(pmw.MiscQuantity,0))),0))
+    ) AS EarnedWeldHours,
+
+IF(sum(COALESCE(pcut.WeldPercentCompleted * .01,0) + COALESCE(pmc.MiscQuantity,0))
+	> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+    /*TRUE*/ ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
+    /*FALSE*/ sum(COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/ptd.TakeOffQuantity*(COALESCE(pcut.WeldPercentCompleted * .01,0) + COALESCE(pmc.MiscQuantity,0))),0))
+    ) AS EarnedCutHours,
+    
+IF(sum(COALESCE(pt.TrimQuantity,0) + COALESCE(pmt.MiscQuantity,0))
+	> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+    /*TRUE*/ ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
+    /*FALSE*/ sum(COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/ptd.TakeOffQuantity*(COALESCE(pt.TrimQuantity,0) + COALESCE(pmt.MiscQuantity,0))),0))
+    ) AS EarnedTrimHours,
+    
+IF(sum(COALESCE((psu.SupportPercentCompleted * .01 * psu.SupportQuantity),0) + COALESCE(pmpsu.MiscQuantity,0))
+	> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+    /*TRUE*/ ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
+    /*FALSE*/ sum(COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/ptd.TakeOffQuantity*(COALESCE((psu.SupportPercentCompleted * .01 * psu.SupportQuantity),0) + COALESCE(pmpsu.MiscQuantity,0))),0))
+    ) AS EarnedSupportHours,
+    
+IF(sum(COALESCE(IF(ptd.PipingActivityType = 'MISC' AND ptd.ECT != 'D', pm.MiscQuantity,0),0))
+	> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+    /*TRUE*/ ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
+    /*FALSE*/ sum(COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/ptd.TakeOffQuantity*COALESCE(IF(ptd.PipingActivityType = 'MISC' AND ptd.ECT != 'D', pm.MiscQuantity,0),0)),0))
+    ) AS EarnedMiscHours,
+    
+IF(sum(COALESCE(pd.DemoQuantity,0) + COALESCE(pmd.MiscQuantity,0))
+	> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+    /*TRUE*/ ptd.EstimatedHours,
+    /*FALSE*/ sum(COALESCE((ptd.EstimatedHours/ptd.TakeOffQuantity*(COALESCE(pd.DemoQuantity,0) + COALESCE(pmd.MiscQuantity,0))),0))
+    ) AS EarnedDemoHours,
+    
+
+sum(COALESCE(pe.ErectionLengthSpool1,0) + COALESCE(pe.ErectionLengthSpool2,0) + COALESCE(pe.ErectionLengthSpool3,0) + COALESCE(pe.ErectionLengthSpool4,0) + COALESCE(pe.ErectionLengthSpool5,0) + COALESCE(pe.ErectionLengthSpool6,0) + COALESCE(pme.MiscQuantity,0)) AS InstalledFootage,
+sum(COALESCE(pb.BoltUpQuantity,0) + COALESCE(pmb.MiscQuantity,0)) AS InstalledBoltUps, 
+sum(COALESCE(pw.WeldPercentCompleted * .01,0) + COALESCE(pmw.MiscQuantity,0)) AS InstalledWelds,
+sum(COALESCE(pcut.WeldPercentCompleted * .01,0) + COALESCE(pmc.MiscQuantity,0)) AS InstalledCuts,
+sum(COALESCE(pt.TrimQuantity,0) + COALESCE(pmt.MiscQuantity,0)) AS InstalledTrim,
+sum(COALESCE((psu.SupportPercentCompleted * .01 * psu.SupportQuantity),0) + COALESCE(pmpsu.MiscQuantity,0)) AS InstalledSupports,
+sum(COALESCE(pm.MiscQuantity,0)) AS InstalledMisc,
+sum(COALESCE(pd.DemoQuantity,0) + COALESCE(pmd.MiscQuantity,0)) AS InstalledDemo
+
+FROM `Job1112`.SubmissionActivityStatus sas
+			JOIN PSA.REF_ActivityTypes at
+				ON at.ID = sas.ActivityType
+				
+			LEFT JOIN `Job1112`.PipeErection pe
+				ON pe.ActivityID = sas.ActivityID AND pe.ErectionRework = 0
+
+			LEFT JOIN `Job1112`.PipeBoltUp pb
+				ON pb.ActivityID = sas.ActivityID AND pb.BoltUpRework = 0
+		 
+			LEFT JOIN `Job1112`.PipeWeld pw
+				ON pw.ActivityID = sas.ActivityID AND sas.ActivityType = 22 AND  pw.WeldRework = 0
+		 
+			LEFT JOIN `Job1112`.PipeWeld pcut
+				ON pcut.ActivityID = sas.ActivityID AND sas.ActivityType = 23 AND pcut.WeldRework = 0
+				
+			LEFT JOIN `Job1112`.PipeTrim pt
+				ON pt.ActivityID = sas.ActivityID AND pt.TrimRework = 0
+			
+            LEFT JOIN `Job1112`.PipeSupports psu
+				ON psu.ActivityID = sas.ActivityID AND psu.SupportRework = 0
+				
+			LEFT JOIN `Job1112`.PipeDemo pd
+				ON pd.ActivityID = sas.ActivityID
+			
+			LEFT JOIN `Job1112`.`PipeTrackerDetails` ptd
+				ON ptd.BidID = sas.fk_BidIDAssigned
+
+		/* #### Begining of Misc activities assigned joins #### */	
+			LEFT JOIN `Job1112`.PipeMisc pm
+				ON pm.ActivityID = sas.ActivityID AND ptd.ECT != "D" AND ptd.PipingActivityType = "MISC"  AND pm.MiscRework = 0
+
+			LEFT JOIN `Job1112`.PipeMisc pme
+				ON pme.ActivityID = sas.ActivityID AND ptd.PipingActivityType = "PE" AND pme.MiscRework = 0
+			
+			LEFT JOIN `Job1112`.PipeMisc pmb
+				ON pmb.ActivityID = sas.ActivityID AND ptd.PipingActivityType = "BU" AND pmb.MiscRework = 0
+			
+			LEFT JOIN `Job1112`.PipeMisc pmw
+				ON pmw.ActivityID = sas.ActivityID AND ptd.PipingActivityType = "W" AND pmw.MiscRework = 0
+				
+			LEFT JOIN `Job1112`.PipeMisc pmc
+				ON pmc.ActivityID = sas.ActivityID AND ptd.ECT != "D" AND ptd.PipingActivityType = "CUT" AND pmc.MiscRework = 0
+
+			LEFT JOIN `Job1112`.PipeMisc pmt
+				ON pmt.ActivityID = sas.ActivityID AND ptd.ECT = "T" AND ptd.PipingActivityType IN ("V","Plug","HpLp","Other","Blind") AND pmt.MiscRework = 0
+			   
+			LEFT JOIN `Job1112`.PipeMisc pmpsu
+				ON pmpsu.ActivityID = sas.ActivityID AND ptd.PipingActivityType = "S" AND pmpsu.MiscRework = 0
+
+			LEFT JOIN `Job1112`.PipeMisc pmd
+				ON pmd.ActivityID = sas.ActivityID AND ptd.ECT = "D" AND pmd.MiscRework = 0
+        
+
+        
+WHERE fk_ActivityStatus IN (5,12)
+GROUP BY ptd.BidID) er
+		ON er.ID = ptd.ID
+
+LEFT JOIN (SELECT min(ptd.ID) AS ID,
+sum(COALESCE(steR.InstalledReadyForTesting, 0)) AS ReadyForTestingInstalled,
+sum(COALESCE(steH.InstalledHydro, 0)) AS HydroInstalled,
+sum(COALESCE(steC.InstalledClientTurnover, 0)) AS ClientTurnoverInstalled,
+
+sum(COALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'CompleteForTestPercent') * steR.InstalledReadyForTesting, 0)) AS EarnedReadyForTestingHours,
+sum(COALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'HydroHoursPercent') * steH.InstalledHydro, 0)) AS EarnedHydroHours,
+sum(COALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'ClientTurnoverPercent') * steC.InstalledClientTurnover, 0)) AS EarnedClientTurnoverHours
+
+FROM `Job1112`.`PipeTrackerDetails` ptd
+
+		LEFT JOIN (SELECT ste.ActivityType, ste.TestingTestPackageNumber, 1 AS InstalledReadyForTesting
+					FROM `Job1112`.PipeTesting ste
+					JOIN `Job1112`.SubmissionActivityStatus sas
+						ON sas.ActivityID = ste.ActivityID AND sas.ActivityType = 41 AND sas.fk_ActivityStatus IN (5,12) AND ste.TestingRework = 0) steR
+			ON steR.TestingTestPackageNumber = ptd.TestPackageNumber AND steR.ActivityType = 41 AND ptd.ECT != "D"
+			
+		LEFT JOIN (SELECT ste.ActivityType, ste.TestingTestPackageNumber, 1 AS InstalledHydro
+					FROM `Job1112`.PipeTesting ste
+					JOIN `Job1112`.SubmissionActivityStatus sas
+						ON sas.ActivityID = ste.ActivityID AND sas.ActivityType = 42 AND sas.fk_ActivityStatus IN (5,12) AND ste.TestingRework = 0) steH
+			ON steH.TestingTestPackageNumber = ptd.TestPackageNumber AND steH.ActivityType = 42 AND ptd.ECT != "D"
+			
+		LEFT JOIN (SELECT ste.ActivityType, ste.TestingTestPackageNumber, 1 AS InstalledClientTurnover
+					FROM `Job1112`.PipeTesting ste
+					JOIN `Job1112`.SubmissionActivityStatus sas
+						ON sas.ActivityID = ste.ActivityID AND sas.ActivityType = 43 AND sas.fk_ActivityStatus IN (5,12) AND ste.TestingRework = 0) steC
+			ON steC.TestingTestPackageNumber = ptd.TestPackageNumber AND steC.ActivityType = 43 AND ptd.ECT != "D"
+
+		GROUP BY ptd.BidID) ert
+	ON ert.ID = ptd.ID
+    
+LEFT JOIN (SELECT ptd.ID,
+			COALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent'),0) AS TestingHours,
+            COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'CompleteForTestPercent')),0) AS ReadyForTestingHours,
+            COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'HydroHoursPercent')),0) AS HydroHours,
+            COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'ClientTurnoverPercent')),0) AS ClientTurnoverHours
+			FROM PipeTrackerDetails ptd
+			WHERE ptd.ECT != 'D') ste
+	ON ste.ID = ptd.ID
+  
+    
+WHERE ptd.TestPackageNumber = :TestPackage
+GROUP BY ptd.TestPackageNumber
+        ]]>
+    <query-param name="TestPackage" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="GetQuantitiesTestPackagePipe__count">
+        <![CDATA[
+        select count(*) from (SELECT ptd.TestPackageNumber, 
+
+count(ptd.BidID) AS ItemsTotal, 
+
+TRUNCATE(sum(ste.ReadyForTestingHours),6) AS ReadyForTestingHours,
+TRUNCATE(sum(ste.HydroHours),6) AS HydroHours,
+TRUNCATE(sum(ste.ClientTurnoverHours),6) AS ClientTurnoverHours,
+
+SUM(ert.ReadyForTestingInstalled) AS ReadyForTestingInstalled, 
+SUM(ert.HydroInstalled) AS HydroInstalled, 
+SUM(ert.ClientTurnoverInstalled) AS ClientTurnoverInstalled,
+
+TRUNCATE(sum(ert.EarnedReadyForTestingHours),6) AS EarnedReadyForTestingHours, 
+TRUNCATE(sum(ert.EarnedHydroHours),6) AS EarnedHydroHours, 
+TRUNCATE(sum(ert.EarnedClientTurnoverHours),6) AS EarnedClientTurnoverHours,
+
+TRUNCATE(sum(COALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/ptd.TakeOffQuantity *(ptd.TakeOffQuantity 
+- (COALESCE(er.InstalledFootage,0) 
+  + COALESCE(er.InstalledBoltUps,0)
+  + COALESCE(er.InstalledWelds,0)
+  + COALESCE(er.InstalledCuts,0)
+  + COALESCE(er.InstalledTrim,0)
+  + COALESCE(er.InstalledSupports,0)
+  + COALESCE(er.InstalledMisc,0)
+  + COALESCE(er.InstalledDemo,0))))),6) AS LooseHours
+
+FROM PipeTrackerDetails ptd
+
+LEFT JOIN (SELECT min(ptd.ID) AS ID,
+    
+IF( sum(COALESCE(pe.ErectionLengthSpool1,0) + COALESCE(pe.ErectionLengthSpool2,0) + COALESCE(pe.ErectionLengthSpool3,0) + COALESCE(pe.ErectionLengthSpool4,0) + COALESCE(pe.ErectionLengthSpool5,0) + COALESCE(pe.ErectionLengthSpool6,0) + COALESCE(pme.MiscQuantity,0)) 
+	> ptd.TakeOffQuantity, /*Is Installed Greater then TakeOff*/
+    /*TRUE*/ ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
+    /*FALSE*/ sum(COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/ptd.TakeOffQuantity*(COALESCE(pe.ErectionLengthSpool1,0) + COALESCE(pe.ErectionLengthSpool2,0) + COALESCE(pe.ErectionLengthSpool3,0) + COALESCE(pe.ErectionLengthSpool4,0) + COALESCE(pe.ErectionLengthSpool5,0) + COALESCE(pe.ErectionLengthSpool6,0) + COALESCE(pme.MiscQuantity,0))),0))
+    ) AS EarnedErectionHours,
+
+IF(sum(COALESCE(pb.BoltUpQuantity,0) + COALESCE(pmb.MiscQuantity,0))
+	> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+    /*TRUE*/ ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
+    /*FALSE*/ sum(COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/ptd.TakeOffQuantity*(COALESCE(pb.BoltUpQuantity,0) + COALESCE(pmb.MiscQuantity,0))), 0))
+    ) AS EarnedBoltUpHours,
+
+IF(sum(COALESCE(pw.WeldPercentCompleted * .01,0) + COALESCE(pmw.MiscQuantity,0))
+	> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+    /*TRUE*/ ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
+    /*FALSE*/ sum(COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/ptd.TakeOffQuantity*(COALESCE(pw.WeldPercentCompleted * .01,0) + COALESCE(pmw.MiscQuantity,0))),0))
+    ) AS EarnedWeldHours,
+
+IF(sum(COALESCE(pcut.WeldPercentCompleted * .01,0) + COALESCE(pmc.MiscQuantity,0))
+	> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+    /*TRUE*/ ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
+    /*FALSE*/ sum(COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/ptd.TakeOffQuantity*(COALESCE(pcut.WeldPercentCompleted * .01,0) + COALESCE(pmc.MiscQuantity,0))),0))
+    ) AS EarnedCutHours,
+    
+IF(sum(COALESCE(pt.TrimQuantity,0) + COALESCE(pmt.MiscQuantity,0))
+	> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+    /*TRUE*/ ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
+    /*FALSE*/ sum(COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/ptd.TakeOffQuantity*(COALESCE(pt.TrimQuantity,0) + COALESCE(pmt.MiscQuantity,0))),0))
+    ) AS EarnedTrimHours,
+    
+IF(sum(COALESCE((psu.SupportPercentCompleted * .01 * psu.SupportQuantity),0) + COALESCE(pmpsu.MiscQuantity,0))
+	> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+    /*TRUE*/ ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
+    /*FALSE*/ sum(COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/ptd.TakeOffQuantity*(COALESCE((psu.SupportPercentCompleted * .01 * psu.SupportQuantity),0) + COALESCE(pmpsu.MiscQuantity,0))),0))
+    ) AS EarnedSupportHours,
+    
+IF(sum(COALESCE(IF(ptd.PipingActivityType = 'MISC' AND ptd.ECT != 'D', pm.MiscQuantity,0),0))
+	> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+    /*TRUE*/ ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent'),
+    /*FALSE*/ sum(COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'MechHoursPercent')/ptd.TakeOffQuantity*COALESCE(IF(ptd.PipingActivityType = 'MISC' AND ptd.ECT != 'D', pm.MiscQuantity,0),0)),0))
+    ) AS EarnedMiscHours,
+    
+IF(sum(COALESCE(pd.DemoQuantity,0) + COALESCE(pmd.MiscQuantity,0))
+	> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+    /*TRUE*/ ptd.EstimatedHours,
+    /*FALSE*/ sum(COALESCE((ptd.EstimatedHours/ptd.TakeOffQuantity*(COALESCE(pd.DemoQuantity,0) + COALESCE(pmd.MiscQuantity,0))),0))
+    ) AS EarnedDemoHours,
+    
+
+sum(COALESCE(pe.ErectionLengthSpool1,0) + COALESCE(pe.ErectionLengthSpool2,0) + COALESCE(pe.ErectionLengthSpool3,0) + COALESCE(pe.ErectionLengthSpool4,0) + COALESCE(pe.ErectionLengthSpool5,0) + COALESCE(pe.ErectionLengthSpool6,0) + COALESCE(pme.MiscQuantity,0)) AS InstalledFootage,
+sum(COALESCE(pb.BoltUpQuantity,0) + COALESCE(pmb.MiscQuantity,0)) AS InstalledBoltUps, 
+sum(COALESCE(pw.WeldPercentCompleted * .01,0) + COALESCE(pmw.MiscQuantity,0)) AS InstalledWelds,
+sum(COALESCE(pcut.WeldPercentCompleted * .01,0) + COALESCE(pmc.MiscQuantity,0)) AS InstalledCuts,
+sum(COALESCE(pt.TrimQuantity,0) + COALESCE(pmt.MiscQuantity,0)) AS InstalledTrim,
+sum(COALESCE((psu.SupportPercentCompleted * .01 * psu.SupportQuantity),0) + COALESCE(pmpsu.MiscQuantity,0)) AS InstalledSupports,
+sum(COALESCE(pm.MiscQuantity,0)) AS InstalledMisc,
+sum(COALESCE(pd.DemoQuantity,0) + COALESCE(pmd.MiscQuantity,0)) AS InstalledDemo
+
+FROM `Job1112`.SubmissionActivityStatus sas
+			JOIN PSA.REF_ActivityTypes at
+				ON at.ID = sas.ActivityType
+				
+			LEFT JOIN `Job1112`.PipeErection pe
+				ON pe.ActivityID = sas.ActivityID AND pe.ErectionRework = 0
+
+			LEFT JOIN `Job1112`.PipeBoltUp pb
+				ON pb.ActivityID = sas.ActivityID AND pb.BoltUpRework = 0
+		 
+			LEFT JOIN `Job1112`.PipeWeld pw
+				ON pw.ActivityID = sas.ActivityID AND sas.ActivityType = 22 AND  pw.WeldRework = 0
+		 
+			LEFT JOIN `Job1112`.PipeWeld pcut
+				ON pcut.ActivityID = sas.ActivityID AND sas.ActivityType = 23 AND pcut.WeldRework = 0
+				
+			LEFT JOIN `Job1112`.PipeTrim pt
+				ON pt.ActivityID = sas.ActivityID AND pt.TrimRework = 0
+			
+            LEFT JOIN `Job1112`.PipeSupports psu
+				ON psu.ActivityID = sas.ActivityID AND psu.SupportRework = 0
+				
+			LEFT JOIN `Job1112`.PipeDemo pd
+				ON pd.ActivityID = sas.ActivityID
+			
+			LEFT JOIN `Job1112`.`PipeTrackerDetails` ptd
+				ON ptd.BidID = sas.fk_BidIDAssigned
+
+		/* #### Begining of Misc activities assigned joins #### */	
+			LEFT JOIN `Job1112`.PipeMisc pm
+				ON pm.ActivityID = sas.ActivityID AND ptd.ECT != "D" AND ptd.PipingActivityType = "MISC"  AND pm.MiscRework = 0
+
+			LEFT JOIN `Job1112`.PipeMisc pme
+				ON pme.ActivityID = sas.ActivityID AND ptd.PipingActivityType = "PE" AND pme.MiscRework = 0
+			
+			LEFT JOIN `Job1112`.PipeMisc pmb
+				ON pmb.ActivityID = sas.ActivityID AND ptd.PipingActivityType = "BU" AND pmb.MiscRework = 0
+			
+			LEFT JOIN `Job1112`.PipeMisc pmw
+				ON pmw.ActivityID = sas.ActivityID AND ptd.PipingActivityType = "W" AND pmw.MiscRework = 0
+				
+			LEFT JOIN `Job1112`.PipeMisc pmc
+				ON pmc.ActivityID = sas.ActivityID AND ptd.ECT != "D" AND ptd.PipingActivityType = "CUT" AND pmc.MiscRework = 0
+
+			LEFT JOIN `Job1112`.PipeMisc pmt
+				ON pmt.ActivityID = sas.ActivityID AND ptd.ECT = "T" AND ptd.PipingActivityType IN ("V","Plug","HpLp","Other","Blind") AND pmt.MiscRework = 0
+			   
+			LEFT JOIN `Job1112`.PipeMisc pmpsu
+				ON pmpsu.ActivityID = sas.ActivityID AND ptd.PipingActivityType = "S" AND pmpsu.MiscRework = 0
+
+			LEFT JOIN `Job1112`.PipeMisc pmd
+				ON pmd.ActivityID = sas.ActivityID AND ptd.ECT = "D" AND pmd.MiscRework = 0
+        
+
+        
+WHERE fk_ActivityStatus IN (5,12)
+GROUP BY ptd.BidID) er
+		ON er.ID = ptd.ID
+
+LEFT JOIN (SELECT min(ptd.ID) AS ID,
+sum(COALESCE(steR.InstalledReadyForTesting, 0)) AS ReadyForTestingInstalled,
+sum(COALESCE(steH.InstalledHydro, 0)) AS HydroInstalled,
+sum(COALESCE(steC.InstalledClientTurnover, 0)) AS ClientTurnoverInstalled,
+
+sum(COALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'CompleteForTestPercent') * steR.InstalledReadyForTesting, 0)) AS EarnedReadyForTestingHours,
+sum(COALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'HydroHoursPercent') * steH.InstalledHydro, 0)) AS EarnedHydroHours,
+sum(COALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'ClientTurnoverPercent') * steC.InstalledClientTurnover, 0)) AS EarnedClientTurnoverHours
+
+FROM `Job1112`.`PipeTrackerDetails` ptd
+
+		LEFT JOIN (SELECT ste.ActivityType, ste.TestingTestPackageNumber, 1 AS InstalledReadyForTesting
+					FROM `Job1112`.PipeTesting ste
+					JOIN `Job1112`.SubmissionActivityStatus sas
+						ON sas.ActivityID = ste.ActivityID AND sas.ActivityType = 41 AND sas.fk_ActivityStatus IN (5,12) AND ste.TestingRework = 0) steR
+			ON steR.TestingTestPackageNumber = ptd.TestPackageNumber AND steR.ActivityType = 41 AND ptd.ECT != "D"
+			
+		LEFT JOIN (SELECT ste.ActivityType, ste.TestingTestPackageNumber, 1 AS InstalledHydro
+					FROM `Job1112`.PipeTesting ste
+					JOIN `Job1112`.SubmissionActivityStatus sas
+						ON sas.ActivityID = ste.ActivityID AND sas.ActivityType = 42 AND sas.fk_ActivityStatus IN (5,12) AND ste.TestingRework = 0) steH
+			ON steH.TestingTestPackageNumber = ptd.TestPackageNumber AND steH.ActivityType = 42 AND ptd.ECT != "D"
+			
+		LEFT JOIN (SELECT ste.ActivityType, ste.TestingTestPackageNumber, 1 AS InstalledClientTurnover
+					FROM `Job1112`.PipeTesting ste
+					JOIN `Job1112`.SubmissionActivityStatus sas
+						ON sas.ActivityID = ste.ActivityID AND sas.ActivityType = 43 AND sas.fk_ActivityStatus IN (5,12) AND ste.TestingRework = 0) steC
+			ON steC.TestingTestPackageNumber = ptd.TestPackageNumber AND steC.ActivityType = 43 AND ptd.ECT != "D"
+
+		GROUP BY ptd.BidID) ert
+	ON ert.ID = ptd.ID
+    
+LEFT JOIN (SELECT ptd.ID,
+			COALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent'),0) AS TestingHours,
+            COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'CompleteForTestPercent')),0) AS ReadyForTestingHours,
+            COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'HydroHoursPercent')),0) AS HydroHours,
+            COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'ClientTurnoverPercent')),0) AS ClientTurnoverHours
+			FROM PipeTrackerDetails ptd
+			WHERE ptd.ECT != 'D') ste
+	ON ste.ID = ptd.ID
+  
+    
+WHERE ptd.TestPackageNumber = :TestPackage
+GROUP BY ptd.TestPackageNumber) wmTempTable
+        ]]>
+    <query-param name="TestPackage" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="GetSettingSteelSellPercent">
         <![CDATA[
         SELECT * 
@@ -8511,30 +8461,30 @@ FROM CivilTrackerDetails ctd
 
 LEFT JOIN (SELECT min(ctd.UID) AS UID,
 ### Hours Earned ###
-IF(sum(COALESCE(IF(ss.ActivityType IN (70,97), ((COALESCE(cfa.FAPercentComplete,0) + COALESCE(cfm.MiscPercentComplete,0)) * ctd.TakeOffQuantity), COALESCE(cfa.FAQuantity,0)),0)) /*Nested IF convertes % to Quantity*/
+IF(sum(COALESCE(IF(sas.ActivityType IN (70,97), ((COALESCE(cfa.FAPercentComplete,0) + COALESCE(cfm.MiscPercentComplete,0)) * ctd.TakeOffQuantity), COALESCE(cfa.FAQuantity,0)),0)) /*Nested IF convertes % to Quantity*/
 	> ctd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
     /*TRUE*/ ctd.EstimatedHours*', CivilHoursPercent, ',
-    /*FALSE*/ sum(COALESCE((ctd.EstimatedHours*', CivilHoursPercent, '/ctd.TakeOffQuantity*(COALESCE(IF(ss.ActivityType IN (70,97), ((COALESCE(cfa.FAPercentComplete,0) + COALESCE(cfm.MiscPercentComplete,0)) * ctd.TakeOffQuantity), cfa.FAQuantity),0))), 0))
+    /*FALSE*/ sum(COALESCE((ctd.EstimatedHours*', CivilHoursPercent, '/ctd.TakeOffQuantity*(COALESCE(IF(sas.ActivityType IN (70,97), ((COALESCE(cfa.FAPercentComplete,0) + COALESCE(cfm.MiscPercentComplete,0)) * ctd.TakeOffQuantity), cfa.FAQuantity),0))), 0))
     ) AS EarnedFAHours
 
 ### SS Joins ###
-FROM SubmissionStatus ss
+FROM SubmissionActivityStatus sas
 	JOIN PSA.REF_ActivityTypes at
-		ON at.ID = ss.ActivityType
+		ON at.ID = sas.ActivityType
         
 	LEFT JOIN CivilFA cfa
-		ON cfa.ID = ss.ActivityRowId AND ss.ActivityType IN (70,71) AND cfa.FARework = 0
+		ON cfa.ActivityID = sas.ActivityID AND cfa.FARework = 0
 
 	LEFT JOIN CivilMisc cfm
-		ON cfm.ID = ss.ActivityRowId AND ss.ActivityType = 97 AND cfm.MiscRework = 0
+		ON cfm.ActivityID = sas.ActivityID AND cfm.MiscRework = 0
  
     LEFT JOIN (SELECT min(UID) AS UID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours
 				FROM`CivilTrackerDetails`
 				GROUP BY BidID) ctd
-		ON ctd.BidID = ss.fk_BidIDAssigned
+		ON ctd.BidID = sas.fk_BidIDAssigned
         
 WHERE fk_ActivityStatus IN (5,12)
-AND ss.ActivityType IN (70,71,97)
+AND sas.ActivityType IN (70,71,97)
 GROUP BY ctd.BidID) er
 		ON er.UID = ctd.UID
 
@@ -8542,10 +8492,10 @@ GROUP BY ctd.BidID) er
  ##### Earned Sell HOURS #####       
 LEFT JOIN (SELECT min(ctd.UID) AS UID, cs.InstalledSellPunch
 			FROM CivilTrackerDetails ctd
-			LEFT JOIN (SELECT ss.ActivityType, cs.SellTestPackageNumber, 1 AS InstalledSellPunch
+			LEFT JOIN (SELECT sas.ActivityType, cs.SellTestPackageNumber, 1 AS InstalledSellPunch
 						FROM CivilSellPackage cs 
-						INNER JOIN SubmissionStatus ss
-							ON ss.ActivityRowId = cs.ID AND ss.ActivityType = 72 AND ss.fk_ActivityStatus IN (5,12)) cs
+						INNER JOIN SubmissionActivityStatus sas
+							ON sas.ActivityID = sas.ActivityID AND sas.fk_ActivityStatus IN (5,12)) cs
 	ON cs.SellTestPackageNumber = ctd.TestPackageNumber AND ctd.ActivityType != "Demo"
 GROUP BY ctd.BidID) ers
 	On ers.UID = ctd.UID
@@ -8587,30 +8537,30 @@ FROM CivilTrackerDetails ctd
 
 LEFT JOIN (SELECT min(ctd.UID) AS UID,
 ### Hours Earned ###
-IF(sum(COALESCE(IF(ss.ActivityType IN (70,97), ((COALESCE(cfa.FAPercentComplete,0) + COALESCE(cfm.MiscPercentComplete,0)) * ctd.TakeOffQuantity), COALESCE(cfa.FAQuantity,0)),0)) /*Nested IF convertes % to Quantity*/
+IF(sum(COALESCE(IF(sas.ActivityType IN (70,97), ((COALESCE(cfa.FAPercentComplete,0) + COALESCE(cfm.MiscPercentComplete,0)) * ctd.TakeOffQuantity), COALESCE(cfa.FAQuantity,0)),0)) /*Nested IF convertes % to Quantity*/
 	> ctd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
     /*TRUE*/ ctd.EstimatedHours*', CivilHoursPercent, ',
-    /*FALSE*/ sum(COALESCE((ctd.EstimatedHours*', CivilHoursPercent, '/ctd.TakeOffQuantity*(COALESCE(IF(ss.ActivityType IN (70,97), ((COALESCE(cfa.FAPercentComplete,0) + COALESCE(cfm.MiscPercentComplete,0)) * ctd.TakeOffQuantity), cfa.FAQuantity),0))), 0))
+    /*FALSE*/ sum(COALESCE((ctd.EstimatedHours*', CivilHoursPercent, '/ctd.TakeOffQuantity*(COALESCE(IF(sas.ActivityType IN (70,97), ((COALESCE(cfa.FAPercentComplete,0) + COALESCE(cfm.MiscPercentComplete,0)) * ctd.TakeOffQuantity), cfa.FAQuantity),0))), 0))
     ) AS EarnedFAHours
 
 ### SS Joins ###
-FROM SubmissionStatus ss
+FROM SubmissionActivityStatus sas
 	JOIN PSA.REF_ActivityTypes at
-		ON at.ID = ss.ActivityType
+		ON at.ID = sas.ActivityType
         
 	LEFT JOIN CivilFA cfa
-		ON cfa.ID = ss.ActivityRowId AND ss.ActivityType IN (70,71) AND cfa.FARework = 0
+		ON cfa.ActivityID = sas.ActivityID AND cfa.FARework = 0
 
 	LEFT JOIN CivilMisc cfm
-		ON cfm.ID = ss.ActivityRowId AND ss.ActivityType = 97 AND cfm.MiscRework = 0
+		ON cfm.ActivityID = sas.ActivityID AND cfm.MiscRework = 0
  
     LEFT JOIN (SELECT min(UID) AS UID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours
 				FROM`CivilTrackerDetails`
 				GROUP BY BidID) ctd
-		ON ctd.BidID = ss.fk_BidIDAssigned
+		ON ctd.BidID = sas.fk_BidIDAssigned
         
 WHERE fk_ActivityStatus IN (5,12)
-AND ss.ActivityType IN (70,71,97)
+AND sas.ActivityType IN (70,71,97)
 GROUP BY ctd.BidID) er
 		ON er.UID = ctd.UID
 
@@ -8618,10 +8568,10 @@ GROUP BY ctd.BidID) er
  ##### Earned Sell HOURS #####       
 LEFT JOIN (SELECT min(ctd.UID) AS UID, cs.InstalledSellPunch
 			FROM CivilTrackerDetails ctd
-			LEFT JOIN (SELECT ss.ActivityType, cs.SellTestPackageNumber, 1 AS InstalledSellPunch
+			LEFT JOIN (SELECT sas.ActivityType, cs.SellTestPackageNumber, 1 AS InstalledSellPunch
 						FROM CivilSellPackage cs 
-						INNER JOIN SubmissionStatus ss
-							ON ss.ActivityRowId = cs.ID AND ss.ActivityType = 72 AND ss.fk_ActivityStatus IN (5,12)) cs
+						INNER JOIN SubmissionActivityStatus sas
+							ON sas.ActivityID = sas.ActivityID AND sas.fk_ActivityStatus IN (5,12)) cs
 	ON cs.SellTestPackageNumber = ctd.TestPackageNumber AND ctd.ActivityType != "Demo"
 GROUP BY ctd.BidID) ers
 	On ers.UID = ctd.UID

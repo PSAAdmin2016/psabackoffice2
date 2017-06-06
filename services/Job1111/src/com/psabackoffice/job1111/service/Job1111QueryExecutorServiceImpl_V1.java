@@ -1228,16 +1228,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetQuantitiesTestPackage(Pageable pageable, String testPackage) {
-        Map params = new HashMap(1);
-
-        params.put("TestPackage", testPackage);
-
-        return queryExecutor.executeNamedQuery("GetQuantitiesTestPackage", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
     public Page<Object> executeGetActivityHistoryPipeTesting(Pageable pageable, Integer rowId) {
         Map params = new HashMap(1);
 
@@ -1360,6 +1350,16 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("RowID", rowId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateOverrideActivityQuantity", params);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<Object> executeGetQuantitiesTestPackagePipe(Pageable pageable, String testPackage) {
+        Map params = new HashMap(1);
+
+        params.put("TestPackage", testPackage);
+
+        return queryExecutor.executeNamedQuery("GetQuantitiesTestPackagePipe", params, Object.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
