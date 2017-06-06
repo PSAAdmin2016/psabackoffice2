@@ -15,7 +15,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class GetNotesByPsaactivityIdResponse implements Serializable {
+public class GetNotesByFieldActivityIdResponse implements Serializable {
 
     @JsonProperty("Notes")
     @ColumnAlias("Notes")
@@ -54,11 +54,11 @@ public class GetNotesByPsaactivityIdResponse implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GetNotesByPsaactivityIdResponse)) return false;
-        final GetNotesByPsaactivityIdResponse getNotesByPsaactivityIdResponse = (GetNotesByPsaactivityIdResponse) o;
-        return Objects.equals(getNotes(), getNotesByPsaactivityIdResponse.getNotes()) &&
-                Objects.equals(getTimeStamp(), getNotesByPsaactivityIdResponse.getTimeStamp()) &&
-                Objects.equals(getEmail(), getNotesByPsaactivityIdResponse.getEmail());
+        if (!(o instanceof GetNotesByFieldActivityIdResponse)) return false;
+        final GetNotesByFieldActivityIdResponse getNotesByFieldActivityIdResponse = (GetNotesByFieldActivityIdResponse) o;
+        return Objects.equals(getNotes(), getNotesByFieldActivityIdResponse.getNotes()) &&
+                Objects.equals(getTimeStamp(), getNotesByFieldActivityIdResponse.getTimeStamp()) &&
+                Objects.equals(getEmail(), getNotesByFieldActivityIdResponse.getEmail());
     }
 
     @Override

@@ -523,7 +523,7 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
     public Integer executeUnLockSSActivity(UnLockSsactivityRequest unLockSsactivityRequest) {
         Map params = new HashMap(1);
 
-        params.put("PSAActivityID", unLockSsactivityRequest.getPsaactivityId());
+        params.put("FieldActivityID", unLockSsactivityRequest.getFieldActivityId());
 
         return queryExecutor.executeNamedQueryForUpdate("UnLockSSActivity", params);
     }
@@ -998,7 +998,7 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
     public Integer executeCreateSSNote(CreateSsnoteRequest createSsnoteRequest) {
         Map params = new HashMap(3);
 
-        params.put("ActivityID", createSsnoteRequest.getActivityId());
+        params.put("FieldActivityID", createSsnoteRequest.getFieldActivityId());
         params.put("CreatedBy", createSsnoteRequest.getCreatedBy());
         params.put("Note", createSsnoteRequest.getNote());
 
@@ -1599,20 +1599,20 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<CheckSaslockResponse> executeCheckSASLock(String activityId, Pageable pageable) {
+    public Page<CheckSaslockResponse> executeCheckSASLock(String fieldActivityId, Pageable pageable) {
         Map params = new HashMap(1);
 
-        params.put("ActivityID", activityId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQuery("CheckSASLock", params, CheckSaslockResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Downloadable exportCheckSASLock(ExportType exportType, String activityId, Pageable pageable) {
+    public Downloadable exportCheckSASLock(ExportType exportType, String fieldActivityId, Pageable pageable) {
         Map params = new HashMap(1);
 
-        params.put("ActivityID", activityId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.exportNamedQueryData("CheckSASLock", params, exportType, CheckSaslockResponse.class, pageable);
     }
@@ -1722,26 +1722,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         params.put("Value1", updateSettingSteelBoltoutRequest.getValue1());
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSettingSteelBoltout", params);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<GetNotesByPsaactivityIdResponse> executeGetNotesByPSAActivityID(String psaactivityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("PSAActivityID", psaactivityId);
-
-        return queryExecutor.executeNamedQuery("GetNotesByPSAActivityID", params, GetNotesByPsaactivityIdResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Downloadable exportGetNotesByPSAActivityID(ExportType exportType, String psaactivityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("PSAActivityID", psaactivityId);
-
-        return queryExecutor.exportNamedQueryData("GetNotesByPSAActivityID", params, exportType, GetNotesByPsaactivityIdResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -2177,6 +2157,26 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         return queryExecutor.exportNamedQueryData("GetSettingSteelSellPercent", params, exportType, GetSettingSteelSellPercentResponse.class, pageable);
     }
 
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<GetNotesByFieldActivityIdResponse> executeGetNotesByFieldActivityID(Integer fieldActivityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("FieldActivityID", fieldActivityId);
+
+        return queryExecutor.executeNamedQuery("GetNotesByFieldActivityID", params, GetNotesByFieldActivityIdResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Downloadable exportGetNotesByFieldActivityID(ExportType exportType, Integer fieldActivityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("FieldActivityID", fieldActivityId);
+
+        return queryExecutor.exportNamedQueryData("GetNotesByFieldActivityID", params, exportType, GetNotesByFieldActivityIdResponse.class, pageable);
+    }
+
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public Integer executeUpdatePipeTrimQuantity(UpdatePipeTrimQuantityRequest updatePipeTrimQuantityRequest) {
@@ -2276,20 +2276,20 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<GetNoteCountResponse> executeGetNoteCount(Integer psaactivityId, Pageable pageable) {
+    public Page<GetNoteCountResponse> executeGetNoteCount(Integer fieldActivityId, Pageable pageable) {
         Map params = new HashMap(1);
 
-        params.put("PSAActivityID", psaactivityId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.executeNamedQuery("GetNoteCount", params, GetNoteCountResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Downloadable exportGetNoteCount(ExportType exportType, Integer psaactivityId, Pageable pageable) {
+    public Downloadable exportGetNoteCount(ExportType exportType, Integer fieldActivityId, Pageable pageable) {
         Map params = new HashMap(1);
 
-        params.put("PSAActivityID", psaactivityId);
+        params.put("FieldActivityID", fieldActivityId);
 
         return queryExecutor.exportNamedQueryData("GetNoteCount", params, exportType, GetNoteCountResponse.class, pageable);
     }

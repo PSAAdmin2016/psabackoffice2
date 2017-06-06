@@ -302,9 +302,9 @@ public interface Job1111QueryExecutorService {
 
     Downloadable exportGetBidWorkHistoryEquip(ExportType exportType, String bidId, Pageable pageable);
 
-    Page<CheckSaslockResponse> executeCheckSASLock(String activityId, Pageable pageable);
+    Page<CheckSaslockResponse> executeCheckSASLock(String fieldActivityId, Pageable pageable);
 
-    Downloadable exportCheckSASLock(ExportType exportType, String activityId, Pageable pageable);
+    Downloadable exportCheckSASLock(ExportType exportType, String fieldActivityId, Pageable pageable);
 
     Integer executeUpdateSteelBoltoutQuantity(UpdateSteelBoltoutQuantityRequest updateSteelBoltoutQuantityRequest);
 
@@ -319,10 +319,6 @@ public interface Job1111QueryExecutorService {
     Integer executeUpdatePipeWeld(UpdatePipeWeldRequest updatePipeWeldRequest);
 
     Integer executeUpdateSettingSteelBoltout(UpdateSettingSteelBoltoutRequest updateSettingSteelBoltoutRequest);
-
-    Page<GetNotesByPsaactivityIdResponse> executeGetNotesByPSAActivityID(String psaactivityId, Pageable pageable);
-
-    Downloadable exportGetNotesByPSAActivityID(ExportType exportType, String psaactivityId, Pageable pageable);
 
     Page<GetReportDprcivilResponse> executeGetReportDPRCivil(String foremanId, String superId, String managerId, Date startDate, Date endDate, Pageable pageable);
 
@@ -402,6 +398,10 @@ public interface Job1111QueryExecutorService {
 
     Downloadable exportGetSettingSteelSellPercent(ExportType exportType, Pageable pageable);
 
+    Page<GetNotesByFieldActivityIdResponse> executeGetNotesByFieldActivityID(Integer fieldActivityId, Pageable pageable);
+
+    Downloadable exportGetNotesByFieldActivityID(ExportType exportType, Integer fieldActivityId, Pageable pageable);
+
     Integer executeUpdatePipeTrimQuantity(UpdatePipeTrimQuantityRequest updatePipeTrimQuantityRequest);
 
     Page<GetQuantityCutPrepInstalledResponse> executeGetQuantityCutPrepInstalled(Integer bidId, Pageable pageable);
@@ -420,9 +420,9 @@ public interface Job1111QueryExecutorService {
 
     Downloadable exportGetReportDWRByDate(ExportType exportType, Date beginDate, Date endDate, Pageable pageable);
 
-    Page<GetNoteCountResponse> executeGetNoteCount(Integer psaactivityId, Pageable pageable);
+    Page<GetNoteCountResponse> executeGetNoteCount(Integer fieldActivityId, Pageable pageable);
 
-    Downloadable exportGetNoteCount(ExportType exportType, Integer psaactivityId, Pageable pageable);
+    Downloadable exportGetNoteCount(ExportType exportType, Integer fieldActivityId, Pageable pageable);
 
     Page<GetActivityHistoryPipeTrimResponse> executeGetActivityHistoryPipeTrim(Integer rowId, Pageable pageable);
 

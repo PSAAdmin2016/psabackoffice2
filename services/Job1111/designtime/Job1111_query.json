@@ -3,13 +3,13 @@
     "name" : "CheckSASLock",
     "description" : "No description is provided",
     "version" : "V1",
-    "queryString" : "SELECT sas.LockField \nFROM SubmissionActivityStatus sas\nWHERE ActivityID = :ActivityID",
-    "countQueryString" : "select count(*) from (SELECT sas.LockField \nFROM SubmissionActivityStatus sas\nWHERE ActivityID = :ActivityID) wmTempTable",
+    "queryString" : "SELECT sas.LockField \nFROM SubmissionActivityStatus sas\nWHERE ActivityID = :FieldActivityID",
+    "countQueryString" : "select count(*) from (SELECT sas.LockField \nFROM SubmissionActivityStatus sas\nWHERE ActivityID = :FieldActivityID) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "ActivityID",
+      "name" : "FieldActivityID",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
@@ -41,13 +41,13 @@
     "name" : "CreateSSNote",
     "description" : "Creates a Submission Note",
     "version" : "V1",
-    "queryString" : "INSERT INTO SASNotes (`ActivityID`, `UserID` ,`Notes`) \nVALUES (:ActivityID, :CreatedBy ,:Note)",
+    "queryString" : "INSERT INTO SASNotes (`ActivityID`, `UserID` ,`Notes`) \nVALUES (:FieldActivityID, :CreatedBy ,:Note)",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
     "type" : "INSERT",
     "parameters" : [ {
-      "name" : "ActivityID",
+      "name" : "FieldActivityID",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
@@ -8209,18 +8209,18 @@
     "name" : "GetNoteCount",
     "description" : "Gets the number of notes BY PSAActivityID",
     "version" : "V1",
-    "queryString" : "SELECT count(sasn.ID) AS NoteCount\nFROM SASNotes sasn\nWHERE sasn.ActivityID = :PSAActivityID",
-    "countQueryString" : "select count(*) from (SELECT count(sasn.ID) AS NoteCount\nFROM SASNotes sasn\nWHERE sasn.ActivityID = :PSAActivityID) wmTempTable",
+    "queryString" : "SELECT count(sasn.ID) AS NoteCount\nFROM SASNotes sasn\nWHERE sasn.ActivityID = :FieldActivityID",
+    "countQueryString" : "select count(*) from (SELECT count(sasn.ID) AS NoteCount\nFROM SASNotes sasn\nWHERE sasn.ActivityID = :FieldActivityID) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "PSAActivityID",
+      "name" : "FieldActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -8243,18 +8243,18 @@
       } ]
     }
   },
-  "GetNotesByPSAActivityID" : {
-    "name" : "GetNotesByPSAActivityID",
+  "GetNotesByFieldActivityID" : {
+    "name" : "GetNotesByFieldActivityID",
     "description" : "Gets all notes tied to a specified ID",
     "version" : "V1",
-    "queryString" : "SELECT sasn.Notes, sasn.TimeStamp, u.Email\nFROM SASNotes sasn\n\tJOIN PSA.tblUserPSA u\n\t\tON u.ID = sasn.UserID\nWHERE sasn.ActivityID = :PSAActivityID",
-    "countQueryString" : "select count(*) from (SELECT sasn.Notes, sasn.TimeStamp, u.Email\nFROM SASNotes sasn\n\tJOIN PSA.tblUserPSA u\n\t\tON u.ID = sasn.UserID\nWHERE sasn.ActivityID = :PSAActivityID) wmTempTable",
+    "queryString" : "SELECT sasn.Notes, sasn.TimeStamp, u.Email\nFROM SASNotes sasn\n\tJOIN PSA.tblUserPSA u\n\t\tON u.ID = sasn.UserID\nWHERE sasn.ActivityID = :FieldActivityID",
+    "countQueryString" : "select count(*) from (SELECT sasn.Notes, sasn.TimeStamp, u.Email\nFROM SASNotes sasn\n\tJOIN PSA.tblUserPSA u\n\t\tON u.ID = sasn.UserID\nWHERE sasn.ActivityID = :FieldActivityID) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "PSAActivityID",
-      "type" : "string",
+      "name" : "FieldActivityID",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
@@ -8266,7 +8266,7 @@
       "method" : "GET"
     },
     "response" : {
-      "typeRef" : "com.psabackoffice.job1111.models.query.GetNotesByPsaactivityIdResponse",
+      "typeRef" : "com.psabackoffice.job1111.models.query.GetNotesByFieldActivityIdResponse",
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
@@ -10790,18 +10790,18 @@
     "name" : "UnLockSSActivity",
     "description" : "No description is provided",
     "version" : "V1",
-    "queryString" : "UPDATE SubmissionActivityStatus sas\nSET sas.LockField = null\nWHERE sas.ActivityID = :PSAActivityID",
+    "queryString" : "UPDATE SubmissionActivityStatus sas\nSET sas.LockField = null\nWHERE sas.ActivityID = :FieldActivityID",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
     "type" : "UPDATE",
     "parameters" : [ {
-      "name" : "PSAActivityID",
+      "name" : "FieldActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false
+      "required" : true
     } ],
     "request" : {
       "wrapped" : true,

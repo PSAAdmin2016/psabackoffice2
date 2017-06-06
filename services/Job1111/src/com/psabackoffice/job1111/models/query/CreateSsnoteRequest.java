@@ -16,19 +16,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class CreateSsnoteRequest implements Serializable {
 
     @NotNull
-    @JsonProperty("ActivityID")
-    private String activityId;
+    @JsonProperty("FieldActivityID")
+    private String fieldActivityId;
     @JsonProperty("CreatedBy")
     private Integer createdBy;
     @JsonProperty("Note")
     private String note;
 
-    public String getActivityId() {
-        return this.activityId;
+    public String getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setActivityId(String activityId) {
-        this.activityId = activityId;
+    public void setFieldActivityId(String fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     public Integer getCreatedBy() {
@@ -52,14 +52,14 @@ public class CreateSsnoteRequest implements Serializable {
         if (this == o) return true;
         if (!(o instanceof CreateSsnoteRequest)) return false;
         final CreateSsnoteRequest createSsnoteRequest = (CreateSsnoteRequest) o;
-        return Objects.equals(getActivityId(), createSsnoteRequest.getActivityId()) &&
+        return Objects.equals(getFieldActivityId(), createSsnoteRequest.getFieldActivityId()) &&
                 Objects.equals(getCreatedBy(), createSsnoteRequest.getCreatedBy()) &&
                 Objects.equals(getNote(), createSsnoteRequest.getNote());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getActivityId(),
+        return Objects.hash(getFieldActivityId(),
                 getCreatedBy(),
                 getNote());
     }

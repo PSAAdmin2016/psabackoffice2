@@ -15,15 +15,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UnLockSsactivityRequest implements Serializable {
 
-    @JsonProperty("PSAActivityID")
-    private Integer psaactivityId;
+    @NotNull
+    @JsonProperty("FieldActivityID")
+    private Integer fieldActivityId;
 
-    public Integer getPsaactivityId() {
-        return this.psaactivityId;
+    public Integer getFieldActivityId() {
+        return this.fieldActivityId;
     }
 
-    public void setPsaactivityId(Integer psaactivityId) {
-        this.psaactivityId = psaactivityId;
+    public void setFieldActivityId(Integer fieldActivityId) {
+        this.fieldActivityId = fieldActivityId;
     }
 
     @Override
@@ -31,11 +32,11 @@ public class UnLockSsactivityRequest implements Serializable {
         if (this == o) return true;
         if (!(o instanceof UnLockSsactivityRequest)) return false;
         final UnLockSsactivityRequest unLockSsactivityRequest = (UnLockSsactivityRequest) o;
-        return Objects.equals(getPsaactivityId(), unLockSsactivityRequest.getPsaactivityId());
+        return Objects.equals(getFieldActivityId(), unLockSsactivityRequest.getFieldActivityId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPsaactivityId());
+        return Objects.hash(getFieldActivityId());
     }
 }

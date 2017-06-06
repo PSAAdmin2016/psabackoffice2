@@ -3599,9 +3599,9 @@ WHERE SubmissionID = :SubmissionID
         <![CDATA[
         UPDATE SubmissionActivityStatus sas
 SET sas.LockField = null
-WHERE sas.ActivityID = :PSAActivityID
+WHERE sas.ActivityID = :FieldActivityID
         ]]>
-    <query-param name="PSAActivityID" type="java.lang.Integer"/>
+    <query-param name="FieldActivityID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetSettingSteelImpPercent">
@@ -4980,9 +4980,9 @@ AND fk_BidIDAssigned = :BidID) wmTempTable
     <sql-query name="CreateSSNote">
         <![CDATA[
         INSERT INTO SASNotes (`ActivityID`, `UserID` ,`Notes`) 
-VALUES (:ActivityID, :CreatedBy ,:Note)
+VALUES (:FieldActivityID, :CreatedBy ,:Note)
         ]]>
-    <query-param name="ActivityID" type="java.lang.String"/>
+    <query-param name="FieldActivityID" type="java.lang.String"/>
     <query-param name="CreatedBy" type="java.lang.Integer"/>
     <query-param name="Note" type="java.lang.String"/>
     </sql-query>
@@ -6261,18 +6261,18 @@ GROUP BY sas.ActivityID) wmTempTable
         <![CDATA[
         SELECT sas.LockField 
 FROM SubmissionActivityStatus sas
-WHERE ActivityID = :ActivityID
+WHERE ActivityID = :FieldActivityID
         ]]>
-    <query-param name="ActivityID" type="java.lang.String"/>
+    <query-param name="FieldActivityID" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="CheckSASLock__count">
         <![CDATA[
         select count(*) from (SELECT sas.LockField 
 FROM SubmissionActivityStatus sas
-WHERE ActivityID = :ActivityID) wmTempTable
+WHERE ActivityID = :FieldActivityID) wmTempTable
         ]]>
-    <query-param name="ActivityID" type="java.lang.String"/>
+    <query-param name="FieldActivityID" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="UpdateSteelBoltoutQuantity">
@@ -6539,28 +6539,6 @@ SET `Value1`= :Value1
 WHERE `Label`='SteelBoltoutHoursPercent'
         ]]>
     <query-param name="Value1" type="java.math.BigDecimal"/>
-    </sql-query>
-
-    <sql-query name="GetNotesByPSAActivityID">
-        <![CDATA[
-        SELECT sasn.Notes, sasn.TimeStamp, u.Email
-FROM SASNotes sasn
-	JOIN PSA.tblUserPSA u
-		ON u.ID = sasn.UserID
-WHERE sasn.ActivityID = :PSAActivityID
-        ]]>
-    <query-param name="PSAActivityID" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="GetNotesByPSAActivityID__count">
-        <![CDATA[
-        select count(*) from (SELECT sasn.Notes, sasn.TimeStamp, u.Email
-FROM SASNotes sasn
-	JOIN PSA.tblUserPSA u
-		ON u.ID = sasn.UserID
-WHERE sasn.ActivityID = :PSAActivityID) wmTempTable
-        ]]>
-    <query-param name="PSAActivityID" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="GetReportDPRCivil">
@@ -8801,6 +8779,28 @@ WHERE Label = 'SteelSellHoursPercent') wmTempTable
         ]]>
     </sql-query>
 
+    <sql-query name="GetNotesByFieldActivityID">
+        <![CDATA[
+        SELECT sasn.Notes, sasn.TimeStamp, u.Email
+FROM SASNotes sasn
+	JOIN PSA.tblUserPSA u
+		ON u.ID = sasn.UserID
+WHERE sasn.ActivityID = :FieldActivityID
+        ]]>
+    <query-param name="FieldActivityID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetNotesByFieldActivityID__count">
+        <![CDATA[
+        select count(*) from (SELECT sasn.Notes, sasn.TimeStamp, u.Email
+FROM SASNotes sasn
+	JOIN PSA.tblUserPSA u
+		ON u.ID = sasn.UserID
+WHERE sasn.ActivityID = :FieldActivityID) wmTempTable
+        ]]>
+    <query-param name="FieldActivityID" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="UpdatePipeTrimQuantity">
         <![CDATA[
         UPDATE PipeTrim
@@ -9091,18 +9091,18 @@ ORDER BY sd.ReceivedTime) wmTempTable
         <![CDATA[
         SELECT count(sasn.ID) AS NoteCount
 FROM SASNotes sasn
-WHERE sasn.ActivityID = :PSAActivityID
+WHERE sasn.ActivityID = :FieldActivityID
         ]]>
-    <query-param name="PSAActivityID" type="java.lang.Integer"/>
+    <query-param name="FieldActivityID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetNoteCount__count">
         <![CDATA[
         select count(*) from (SELECT count(sasn.ID) AS NoteCount
 FROM SASNotes sasn
-WHERE sasn.ActivityID = :PSAActivityID) wmTempTable
+WHERE sasn.ActivityID = :FieldActivityID) wmTempTable
         ]]>
-    <query-param name="PSAActivityID" type="java.lang.Integer"/>
+    <query-param name="FieldActivityID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetActivityHistoryPipeTrim">

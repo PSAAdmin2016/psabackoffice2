@@ -1421,9 +1421,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/CheckSASLock", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "No description is provided")
-    public Page<CheckSaslockResponse> executeCheckSASLock(@RequestParam(value = "ActivityID") String activityId, Pageable pageable) {
+    public Page<CheckSaslockResponse> executeCheckSASLock(@RequestParam(value = "FieldActivityID") String fieldActivityId, Pageable pageable) {
         LOGGER.debug("Executing named query: CheckSASLock");
-        Page<CheckSaslockResponse> _result = queryService.executeCheckSASLock(activityId, pageable);
+        Page<CheckSaslockResponse> _result = queryService.executeCheckSASLock(fieldActivityId, pageable);
         LOGGER.debug("got the result for named query: CheckSASLock, result:{}", _result);
         return _result;
     }
@@ -1431,10 +1431,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query CheckSASLock")
     @RequestMapping(value = "/queries/CheckSASLock/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportCheckSASLock(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ActivityID") String activityId, Pageable pageable) {
+    public Downloadable exportCheckSASLock(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "FieldActivityID") String fieldActivityId, Pageable pageable) {
         LOGGER.debug("Exporting named query: CheckSASLock");
 
-        return queryService.exportCheckSASLock(exportType, activityId, pageable);
+        return queryService.exportCheckSASLock(exportType, fieldActivityId, pageable);
     }
 
     @RequestMapping(value = "/queries/UpdateSteelBoltoutQuantity", method = RequestMethod.PUT)
@@ -1503,25 +1503,6 @@ public class QueryExecutionController {
         Integer _result = queryService.executeUpdateSettingSteelBoltout(updateSettingSteelBoltoutRequest);
         LOGGER.debug("got the result for named query: UpdateSettingSteelBoltout, result:{}", _result);
         return _result;
-    }
-
-    @RequestMapping(value = "/queries/GetNotesByPSAActivityID", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Gets all notes tied to a specified ID")
-    public Page<GetNotesByPsaactivityIdResponse> executeGetNotesByPSAActivityID(@RequestParam(value = "PSAActivityID") String psaactivityId, Pageable pageable) {
-        LOGGER.debug("Executing named query: GetNotesByPSAActivityID");
-        Page<GetNotesByPsaactivityIdResponse> _result = queryService.executeGetNotesByPSAActivityID(psaactivityId, pageable);
-        LOGGER.debug("got the result for named query: GetNotesByPSAActivityID, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetNotesByPSAActivityID")
-    @RequestMapping(value = "/queries/GetNotesByPSAActivityID/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetNotesByPSAActivityID(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "PSAActivityID") String psaactivityId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: GetNotesByPSAActivityID");
-
-        return queryService.exportGetNotesByPSAActivityID(exportType, psaactivityId, pageable);
     }
 
     @RequestMapping(value = "/queries/GetReportDPRCivil", method = RequestMethod.GET)
@@ -1900,6 +1881,25 @@ public class QueryExecutionController {
         return queryService.exportGetSettingSteelSellPercent(exportType, pageable);
     }
 
+    @RequestMapping(value = "/queries/GetNotesByFieldActivityID", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Gets all notes tied to a specified ID")
+    public Page<GetNotesByFieldActivityIdResponse> executeGetNotesByFieldActivityID(@RequestParam(value = "FieldActivityID") Integer fieldActivityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: GetNotesByFieldActivityID");
+        Page<GetNotesByFieldActivityIdResponse> _result = queryService.executeGetNotesByFieldActivityID(fieldActivityId, pageable);
+        LOGGER.debug("got the result for named query: GetNotesByFieldActivityID, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetNotesByFieldActivityID")
+    @RequestMapping(value = "/queries/GetNotesByFieldActivityID/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetNotesByFieldActivityID(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "FieldActivityID") Integer fieldActivityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: GetNotesByFieldActivityID");
+
+        return queryService.exportGetNotesByFieldActivityID(exportType, fieldActivityId, pageable);
+    }
+
     @RequestMapping(value = "/queries/UpdatePipeTrimQuantity", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "No description is provided")
@@ -1990,9 +1990,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetNoteCount", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Gets the number of notes BY PSAActivityID")
-    public Page<GetNoteCountResponse> executeGetNoteCount(@RequestParam(value = "PSAActivityID", required = false) Integer psaactivityId, Pageable pageable) {
+    public Page<GetNoteCountResponse> executeGetNoteCount(@RequestParam(value = "FieldActivityID") Integer fieldActivityId, Pageable pageable) {
         LOGGER.debug("Executing named query: GetNoteCount");
-        Page<GetNoteCountResponse> _result = queryService.executeGetNoteCount(psaactivityId, pageable);
+        Page<GetNoteCountResponse> _result = queryService.executeGetNoteCount(fieldActivityId, pageable);
         LOGGER.debug("got the result for named query: GetNoteCount, result:{}", _result);
         return _result;
     }
@@ -2000,10 +2000,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetNoteCount")
     @RequestMapping(value = "/queries/GetNoteCount/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetNoteCount(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "PSAActivityID", required = false) Integer psaactivityId, Pageable pageable) {
+    public Downloadable exportGetNoteCount(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "FieldActivityID") Integer fieldActivityId, Pageable pageable) {
         LOGGER.debug("Exporting named query: GetNoteCount");
 
-        return queryService.exportGetNoteCount(exportType, psaactivityId, pageable);
+        return queryService.exportGetNoteCount(exportType, fieldActivityId, pageable);
     }
 
     @RequestMapping(value = "/queries/GetActivityHistoryPipeTrim", method = RequestMethod.GET)

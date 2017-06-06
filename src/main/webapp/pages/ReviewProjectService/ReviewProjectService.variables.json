@@ -290,10 +290,10 @@
       "value" : "bind:Widgets.gridApprovalReview.selecteditem.PSAActivityID",
       "type" : "integer"
     } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetNotesByPsaactivityIdResponse",
+    "type" : "com.psabackoffice.job1111.models.query.GetNotesByFieldActivityIdResponse",
     "service" : "Job1111",
-    "operation" : "executeGetNotesByPSAActivityID",
-    "operationId" : "QueryExecutionController_executeGetNotesByPSAActivityID",
+    "operation" : "executeGetNotesByFieldActivityID",
+    "operationId" : "QueryExecutionController_executeGetNotesByFieldActivityID",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : {

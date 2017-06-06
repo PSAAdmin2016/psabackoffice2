@@ -96,7 +96,7 @@ public interface Job1111QueryExecutorService_V1 {
     public int executeUpdateSubDetails(String temp, String precipitation, String wind, Integer submissionId);
 
     @Deprecated
-    public int executeUnLockSSActivity(Integer psaactivityId);
+    public int executeUnLockSSActivity(Integer fieldActivityId);
 
     @Deprecated
     public Page<Object> executeGetSettingSteelImpPercent(Pageable pageable);
@@ -183,7 +183,7 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetQuantitySupportsInstalled(Pageable pageable, Integer bidId);
 
     @Deprecated
-    public int executeCreateSSNote(String activityId, Integer createdBy, String note);
+    public int executeCreateSSNote(String fieldActivityId, Integer createdBy, String note);
 
     @Deprecated
     public int executeUpdateSettingPipeMechPercent(BigDecimal value1);
@@ -273,7 +273,7 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetActivityHistoryPipeErection(Pageable pageable, Integer rowId);
 
     @Deprecated
-    public Page<Object> executeCheckSASLock(Pageable pageable, String activityId);
+    public Page<Object> executeCheckSASLock(Pageable pageable, String fieldActivityId);
 
     @Deprecated
     public int executeUpdateSteelBoltoutQuantity(Integer quantity, BigDecimal percent, Integer fieldActivityId);
@@ -289,9 +289,6 @@ public interface Job1111QueryExecutorService_V1 {
 
     @Deprecated
     public int executeUpdateSettingSteelBoltout(BigDecimal value1);
-
-    @Deprecated
-    public Page<Object> executeGetNotesByPSAActivityID(Pageable pageable, String psaactivityId);
 
     @Deprecated
     public Page<Object> executeGetBidActivityMatchesSteel(Pageable pageable, String area, String pieceMark, String bidActivityType, String steelType);
@@ -363,6 +360,9 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetSettingSteelSellPercent(Pageable pageable);
 
     @Deprecated
+    public Page<Object> executeGetNotesByFieldActivityID(Pageable pageable, Integer fieldActivityId);
+
+    @Deprecated
     public int executeUpdatePipeTrimQuantity(String quantity, Integer fieldActivityId);
 
     @Deprecated
@@ -381,7 +381,7 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetReportDWRByDate(Pageable pageable, Date beginDate, Date endDate);
 
     @Deprecated
-    public Page<Object> executeGetNoteCount(Pageable pageable, Integer psaactivityId);
+    public Page<Object> executeGetNoteCount(Pageable pageable, Integer fieldActivityId);
 
     @Deprecated
     public Page<Object> executeGetActivityHistoryPipeTrim(Pageable pageable, Integer rowId);
