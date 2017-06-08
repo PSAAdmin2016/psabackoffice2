@@ -79,7 +79,7 @@ public class PipeTrimServiceImpl implements PipeTrimService {
         LOGGER.debug("Updating PipeTrim with information: {}", pipeTrim);
         this.wmGenericDao.update(pipeTrim);
 
-        Integer pipetrimId = pipeTrim.getId();
+        Integer pipetrimId = pipeTrim.getActivityId();
 
         return this.wmGenericDao.findById(pipetrimId);
     }

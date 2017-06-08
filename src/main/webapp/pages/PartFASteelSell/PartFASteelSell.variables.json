@@ -25,11 +25,11 @@
       "value" : "bind:Widgets.textareaNotes.datavalue",
       "type" : "string"
     }, {
-      "target" : "RowID",
-      "value" : "bind:$parent.Variables.liveGetSteelSell.dataSet.data[$i].id",
+      "target" : "FieldActivityID",
+      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityID",
       "type" : "integer"
     } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "type" : "integer",
     "service" : "Job1111",
     "operation" : "executeUpdateSteelSell",
     "operationId" : "QueryExecutionController_executeUpdateSteelSell",

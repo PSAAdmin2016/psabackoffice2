@@ -80,9 +80,9 @@ public class SteelShakeController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public SteelShake editSteelShake(@PathVariable("id") Integer id, @RequestBody SteelShake steelShake) throws EntityNotFoundException {
-        LOGGER.debug("Editing SteelShake with id: {}" , steelShake.getId());
+        LOGGER.debug("Editing SteelShake with id: {}" , steelShake.getActivityId());
 
-        steelShake.setId(id);
+        steelShake.setActivityId(id);
         steelShake = steelShakeService.update(steelShake);
         LOGGER.debug("SteelShake details with id: {}" , steelShake);
 

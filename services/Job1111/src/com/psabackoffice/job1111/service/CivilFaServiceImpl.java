@@ -79,7 +79,7 @@ public class CivilFaServiceImpl implements CivilFaService {
         LOGGER.debug("Updating CivilFa with information: {}", civilFa);
         this.wmGenericDao.update(civilFa);
 
-        Integer civilfaId = civilFa.getId();
+        Integer civilfaId = civilFa.getActivityId();
 
         return this.wmGenericDao.findById(civilfaId);
     }

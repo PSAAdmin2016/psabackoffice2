@@ -20,6 +20,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -42,20 +43,30 @@ public class SubmissionActivityStatus implements Serializable {
     private short rev;
     private Timestamp timeStamp;
     private SubsDetails subsDetails;
-    private List<CivilFa> civilFas;
-    private List<CivilMisc> civilMiscs;
-    private List<CivilSellPackage> civilSellPackages;
-    private List<EquipFa> equipFas;
-    private List<PipeBoltUp> pipeBoltUps;
-    private List<PipeWeld> pipeWelds;
-    private List<SteelBoltOut> steelBoltOuts;
-    private List<SteelDemo> steelDemos;
-    private List<SteelErect> steelErects;
-    private List<SteelImp> steelImps;
-    private List<SteelMisc> steelMiscs;
-    private List<SteelSell> steelSells;
-    private List<SteelSellPackage> steelSellPackages;
-    private List<SteelShake> steelShakes;
+    private CivilFa civilFa;
+    private CivilMisc civilMisc;
+    private CivilSellPackage civilSellPackage;
+    private EquipFa equipFa;
+    private PipeBoltUp pipeBoltUp;
+    private PipeDelay pipeDelay;
+    private PipeDemo pipeDemo;
+    private PipeEwo pipeEwo;
+    private PipeErection pipeErection;
+    private PipeMisc pipeMisc;
+    private PipeSupports pipeSupports;
+    private PipeTesting pipeTesting;
+    private PipeTrim pipeTrim;
+    private PipeWeld pipeWeld;
+    private List<Sasnotes> sasnoteses;
+    private SteelBoltOut steelBoltOut;
+    private SteelDemo steelDemo;
+    private SteelErect steelErect;
+    private SteelImp steelImp;
+    private SteelMisc steelMisc;
+    private SteelSell steelSell;
+    private SteelSellPackage steelSellPackage;
+    private SteelShake steelShake;
+    private SteelWeld steelWeld;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -154,144 +165,221 @@ public class SubmissionActivityStatus implements Serializable {
         this.subsDetails = subsDetails;
     }
 
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "submissionActivityStatus")
-    public List<CivilFa> getCivilFas() {
-        return this.civilFas;
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public CivilFa getCivilFa() {
+        return this.civilFa;
     }
 
-    public void setCivilFas(List<CivilFa> civilFas) {
-        this.civilFas = civilFas;
+    public void setCivilFa(CivilFa civilFa) {
+        this.civilFa = civilFa;
     }
 
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "submissionActivityStatus")
-    public List<CivilMisc> getCivilMiscs() {
-        return this.civilMiscs;
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public CivilMisc getCivilMisc() {
+        return this.civilMisc;
     }
 
-    public void setCivilMiscs(List<CivilMisc> civilMiscs) {
-        this.civilMiscs = civilMiscs;
+    public void setCivilMisc(CivilMisc civilMisc) {
+        this.civilMisc = civilMisc;
     }
 
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "submissionActivityStatus")
-    public List<CivilSellPackage> getCivilSellPackages() {
-        return this.civilSellPackages;
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public CivilSellPackage getCivilSellPackage() {
+        return this.civilSellPackage;
     }
 
-    public void setCivilSellPackages(List<CivilSellPackage> civilSellPackages) {
-        this.civilSellPackages = civilSellPackages;
+    public void setCivilSellPackage(CivilSellPackage civilSellPackage) {
+        this.civilSellPackage = civilSellPackage;
     }
 
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "submissionActivityStatus")
-    public List<EquipFa> getEquipFas() {
-        return this.equipFas;
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public EquipFa getEquipFa() {
+        return this.equipFa;
     }
 
-    public void setEquipFas(List<EquipFa> equipFas) {
-        this.equipFas = equipFas;
+    public void setEquipFa(EquipFa equipFa) {
+        this.equipFa = equipFa;
     }
 
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "submissionActivityStatus")
-    public List<PipeBoltUp> getPipeBoltUps() {
-        return this.pipeBoltUps;
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public PipeBoltUp getPipeBoltUp() {
+        return this.pipeBoltUp;
     }
 
-    public void setPipeBoltUps(List<PipeBoltUp> pipeBoltUps) {
-        this.pipeBoltUps = pipeBoltUps;
+    public void setPipeBoltUp(PipeBoltUp pipeBoltUp) {
+        this.pipeBoltUp = pipeBoltUp;
     }
 
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "submissionActivityStatus")
-    public List<PipeWeld> getPipeWelds() {
-        return this.pipeWelds;
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public PipeDelay getPipeDelay() {
+        return this.pipeDelay;
     }
 
-    public void setPipeWelds(List<PipeWeld> pipeWelds) {
-        this.pipeWelds = pipeWelds;
+    public void setPipeDelay(PipeDelay pipeDelay) {
+        this.pipeDelay = pipeDelay;
     }
 
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "submissionActivityStatus")
-    public List<SteelBoltOut> getSteelBoltOuts() {
-        return this.steelBoltOuts;
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public PipeDemo getPipeDemo() {
+        return this.pipeDemo;
     }
 
-    public void setSteelBoltOuts(List<SteelBoltOut> steelBoltOuts) {
-        this.steelBoltOuts = steelBoltOuts;
+    public void setPipeDemo(PipeDemo pipeDemo) {
+        this.pipeDemo = pipeDemo;
     }
 
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "submissionActivityStatus")
-    public List<SteelDemo> getSteelDemos() {
-        return this.steelDemos;
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public PipeEwo getPipeEwo() {
+        return this.pipeEwo;
     }
 
-    public void setSteelDemos(List<SteelDemo> steelDemos) {
-        this.steelDemos = steelDemos;
+    public void setPipeEwo(PipeEwo pipeEwo) {
+        this.pipeEwo = pipeEwo;
     }
 
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "submissionActivityStatus")
-    public List<SteelErect> getSteelErects() {
-        return this.steelErects;
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public PipeErection getPipeErection() {
+        return this.pipeErection;
     }
 
-    public void setSteelErects(List<SteelErect> steelErects) {
-        this.steelErects = steelErects;
+    public void setPipeErection(PipeErection pipeErection) {
+        this.pipeErection = pipeErection;
     }
 
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "submissionActivityStatus")
-    public List<SteelImp> getSteelImps() {
-        return this.steelImps;
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public PipeMisc getPipeMisc() {
+        return this.pipeMisc;
     }
 
-    public void setSteelImps(List<SteelImp> steelImps) {
-        this.steelImps = steelImps;
+    public void setPipeMisc(PipeMisc pipeMisc) {
+        this.pipeMisc = pipeMisc;
     }
 
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "submissionActivityStatus")
-    public List<SteelMisc> getSteelMiscs() {
-        return this.steelMiscs;
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public PipeSupports getPipeSupports() {
+        return this.pipeSupports;
     }
 
-    public void setSteelMiscs(List<SteelMisc> steelMiscs) {
-        this.steelMiscs = steelMiscs;
+    public void setPipeSupports(PipeSupports pipeSupports) {
+        this.pipeSupports = pipeSupports;
     }
 
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "submissionActivityStatus")
-    public List<SteelSell> getSteelSells() {
-        return this.steelSells;
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public PipeTesting getPipeTesting() {
+        return this.pipeTesting;
     }
 
-    public void setSteelSells(List<SteelSell> steelSells) {
-        this.steelSells = steelSells;
+    public void setPipeTesting(PipeTesting pipeTesting) {
+        this.pipeTesting = pipeTesting;
     }
 
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "submissionActivityStatus")
-    public List<SteelSellPackage> getSteelSellPackages() {
-        return this.steelSellPackages;
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public PipeTrim getPipeTrim() {
+        return this.pipeTrim;
     }
 
-    public void setSteelSellPackages(List<SteelSellPackage> steelSellPackages) {
-        this.steelSellPackages = steelSellPackages;
+    public void setPipeTrim(PipeTrim pipeTrim) {
+        this.pipeTrim = pipeTrim;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public PipeWeld getPipeWeld() {
+        return this.pipeWeld;
+    }
+
+    public void setPipeWeld(PipeWeld pipeWeld) {
+        this.pipeWeld = pipeWeld;
     }
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "submissionActivityStatus")
-    public List<SteelShake> getSteelShakes() {
-        return this.steelShakes;
+    public List<Sasnotes> getSasnoteses() {
+        return this.sasnoteses;
     }
 
-    public void setSteelShakes(List<SteelShake> steelShakes) {
-        this.steelShakes = steelShakes;
+    public void setSasnoteses(List<Sasnotes> sasnoteses) {
+        this.sasnoteses = sasnoteses;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public SteelBoltOut getSteelBoltOut() {
+        return this.steelBoltOut;
+    }
+
+    public void setSteelBoltOut(SteelBoltOut steelBoltOut) {
+        this.steelBoltOut = steelBoltOut;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public SteelDemo getSteelDemo() {
+        return this.steelDemo;
+    }
+
+    public void setSteelDemo(SteelDemo steelDemo) {
+        this.steelDemo = steelDemo;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public SteelErect getSteelErect() {
+        return this.steelErect;
+    }
+
+    public void setSteelErect(SteelErect steelErect) {
+        this.steelErect = steelErect;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public SteelImp getSteelImp() {
+        return this.steelImp;
+    }
+
+    public void setSteelImp(SteelImp steelImp) {
+        this.steelImp = steelImp;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public SteelMisc getSteelMisc() {
+        return this.steelMisc;
+    }
+
+    public void setSteelMisc(SteelMisc steelMisc) {
+        this.steelMisc = steelMisc;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public SteelSell getSteelSell() {
+        return this.steelSell;
+    }
+
+    public void setSteelSell(SteelSell steelSell) {
+        this.steelSell = steelSell;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public SteelSellPackage getSteelSellPackage() {
+        return this.steelSellPackage;
+    }
+
+    public void setSteelSellPackage(SteelSellPackage steelSellPackage) {
+        this.steelSellPackage = steelSellPackage;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public SteelShake getSteelShake() {
+        return this.steelShake;
+    }
+
+    public void setSteelShake(SteelShake steelShake) {
+        this.steelShake = steelShake;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    public SteelWeld getSteelWeld() {
+        return this.steelWeld;
+    }
+
+    public void setSteelWeld(SteelWeld steelWeld) {
+        this.steelWeld = steelWeld;
     }
 
     @Override

@@ -75,10 +75,6 @@
   "type" : "PAGE",
   "params" : [ ]
 }, {
-  "name" : "PartFABoltUp",
-  "type" : "PARTIAL",
-  "params" : [ ]
-}, {
   "name" : "PartFACivilMisc",
   "type" : "PARTIAL",
   "params" : [ ]
@@ -91,23 +87,43 @@
   "type" : "PARTIAL",
   "params" : [ ]
 }, {
-  "name" : "PartFADemo",
-  "type" : "PARTIAL",
-  "params" : [ ]
-}, {
-  "name" : "PartFAEWO",
-  "type" : "PARTIAL",
-  "params" : [ ]
-}, {
   "name" : "PartFAEquipStandard",
   "type" : "PARTIAL",
   "params" : [ ]
 }, {
-  "name" : "PartFAErection",
+  "name" : "PartFAPipeBoltUp",
   "type" : "PARTIAL",
   "params" : [ ]
 }, {
-  "name" : "PartFAMisc",
+  "name" : "PartFAPipeDemo",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFAPipeEWO",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFAPipeErection",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFAPipeMisc",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFAPipeSupport",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFAPipeTesting",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFAPipeTrim",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFAPipeWeld",
   "type" : "PARTIAL",
   "params" : [ ]
 }, {
@@ -144,22 +160,6 @@
   "params" : [ ]
 }, {
   "name" : "PartFASteelWeld",
-  "type" : "PARTIAL",
-  "params" : [ ]
-}, {
-  "name" : "PartFASupports",
-  "type" : "PARTIAL",
-  "params" : [ ]
-}, {
-  "name" : "PartFATesting",
-  "type" : "PARTIAL",
-  "params" : [ ]
-}, {
-  "name" : "PartFATrim",
-  "type" : "PARTIAL",
-  "params" : [ ]
-}, {
-  "name" : "PartFAWeld",
   "type" : "PARTIAL",
   "params" : [ ]
 }, {

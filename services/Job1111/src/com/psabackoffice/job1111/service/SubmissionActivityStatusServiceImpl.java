@@ -28,7 +28,16 @@ import com.psabackoffice.job1111.CivilMisc;
 import com.psabackoffice.job1111.CivilSellPackage;
 import com.psabackoffice.job1111.EquipFa;
 import com.psabackoffice.job1111.PipeBoltUp;
+import com.psabackoffice.job1111.PipeDelay;
+import com.psabackoffice.job1111.PipeDemo;
+import com.psabackoffice.job1111.PipeErection;
+import com.psabackoffice.job1111.PipeEwo;
+import com.psabackoffice.job1111.PipeMisc;
+import com.psabackoffice.job1111.PipeSupports;
+import com.psabackoffice.job1111.PipeTesting;
+import com.psabackoffice.job1111.PipeTrim;
 import com.psabackoffice.job1111.PipeWeld;
+import com.psabackoffice.job1111.Sasnotes;
 import com.psabackoffice.job1111.SteelBoltOut;
 import com.psabackoffice.job1111.SteelDemo;
 import com.psabackoffice.job1111.SteelErect;
@@ -37,6 +46,7 @@ import com.psabackoffice.job1111.SteelMisc;
 import com.psabackoffice.job1111.SteelSell;
 import com.psabackoffice.job1111.SteelSellPackage;
 import com.psabackoffice.job1111.SteelShake;
+import com.psabackoffice.job1111.SteelWeld;
 import com.psabackoffice.job1111.SubmissionActivityStatus;
 
 
@@ -51,6 +61,18 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
     private static final Logger LOGGER = LoggerFactory.getLogger(SubmissionActivityStatusServiceImpl.class);
 
     @Autowired
+	@Qualifier("Job1111.PipeDelayService")
+	private PipeDelayService pipeDelayService;
+
+    @Autowired
+	@Qualifier("Job1111.PipeEwoService")
+	private PipeEwoService pipeEwoService;
+
+    @Autowired
+	@Qualifier("Job1111.PipeMiscService")
+	private PipeMiscService pipeMiscService;
+
+    @Autowired
 	@Qualifier("Job1111.SteelSellPackageService")
 	private SteelSellPackageService steelSellPackageService;
 
@@ -63,12 +85,16 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
 	private SteelBoltOutService steelBoltOutService;
 
     @Autowired
-	@Qualifier("Job1111.EquipFaService")
-	private EquipFaService equipFaService;
+	@Qualifier("Job1111.SasnotesService")
+	private SasnotesService sasnotesService;
 
     @Autowired
 	@Qualifier("Job1111.SteelMiscService")
 	private SteelMiscService steelMiscService;
+
+    @Autowired
+	@Qualifier("Job1111.EquipFaService")
+	private EquipFaService equipFaService;
 
     @Autowired
 	@Qualifier("Job1111.SteelSellService")
@@ -77,6 +103,10 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
     @Autowired
 	@Qualifier("Job1111.SteelErectService")
 	private SteelErectService steelErectService;
+
+    @Autowired
+	@Qualifier("Job1111.PipeTrimService")
+	private PipeTrimService pipeTrimService;
 
     @Autowired
 	@Qualifier("Job1111.PipeBoltUpService")
@@ -95,12 +125,32 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
 	private SteelShakeService steelShakeService;
 
     @Autowired
+	@Qualifier("Job1111.PipeDemoService")
+	private PipeDemoService pipeDemoService;
+
+    @Autowired
+	@Qualifier("Job1111.PipeErectionService")
+	private PipeErectionService pipeErectionService;
+
+    @Autowired
+	@Qualifier("Job1111.PipeTestingService")
+	private PipeTestingService pipeTestingService;
+
+    @Autowired
 	@Qualifier("Job1111.CivilFaService")
 	private CivilFaService civilFaService;
 
     @Autowired
 	@Qualifier("Job1111.CivilMiscService")
 	private CivilMiscService civilMiscService;
+
+    @Autowired
+	@Qualifier("Job1111.SteelWeldService")
+	private SteelWeldService steelWeldService;
+
+    @Autowired
+	@Qualifier("Job1111.PipeSupportsService")
+	private PipeSupportsService pipeSupportsService;
 
     @Autowired
 	@Qualifier("Job1111.SteelDemoService")
@@ -119,116 +169,173 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
 	public SubmissionActivityStatus create(SubmissionActivityStatus submissionActivityStatus) {
         LOGGER.debug("Creating a new SubmissionActivityStatus with information: {}", submissionActivityStatus);
         SubmissionActivityStatus submissionActivityStatusCreated = this.wmGenericDao.create(submissionActivityStatus);
-        if(submissionActivityStatusCreated.getCivilFas() != null) {
-            for(CivilFa civilFa : submissionActivityStatusCreated.getCivilFas()) {
-                civilFa.setSubmissionActivityStatus(submissionActivityStatusCreated);
-                LOGGER.debug("Creating a new child CivilFa with information: {}", civilFa);
-                civilFaService.create(civilFa);
+        if(submissionActivityStatusCreated.getCivilFa() != null) {
+            CivilFa civilFa = submissionActivityStatusCreated.getCivilFa();
+            LOGGER.debug("Creating a new child CivilFa with information: {}", civilFa);
+            civilFa.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            civilFaService.create(civilFa);
+        }
+
+        if(submissionActivityStatusCreated.getCivilMisc() != null) {
+            CivilMisc civilMisc = submissionActivityStatusCreated.getCivilMisc();
+            LOGGER.debug("Creating a new child CivilMisc with information: {}", civilMisc);
+            civilMisc.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            civilMiscService.create(civilMisc);
+        }
+
+        if(submissionActivityStatusCreated.getCivilSellPackage() != null) {
+            CivilSellPackage civilSellPackage = submissionActivityStatusCreated.getCivilSellPackage();
+            LOGGER.debug("Creating a new child CivilSellPackage with information: {}", civilSellPackage);
+            civilSellPackage.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            civilSellPackageService.create(civilSellPackage);
+        }
+
+        if(submissionActivityStatusCreated.getEquipFa() != null) {
+            EquipFa equipFa = submissionActivityStatusCreated.getEquipFa();
+            LOGGER.debug("Creating a new child EquipFa with information: {}", equipFa);
+            equipFa.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            equipFaService.create(equipFa);
+        }
+
+        if(submissionActivityStatusCreated.getPipeBoltUp() != null) {
+            PipeBoltUp pipeBoltUp = submissionActivityStatusCreated.getPipeBoltUp();
+            LOGGER.debug("Creating a new child PipeBoltUp with information: {}", pipeBoltUp);
+            pipeBoltUp.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            pipeBoltUpService.create(pipeBoltUp);
+        }
+
+        if(submissionActivityStatusCreated.getPipeDelay() != null) {
+            PipeDelay pipeDelay = submissionActivityStatusCreated.getPipeDelay();
+            LOGGER.debug("Creating a new child PipeDelay with information: {}", pipeDelay);
+            pipeDelay.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            pipeDelayService.create(pipeDelay);
+        }
+
+        if(submissionActivityStatusCreated.getPipeDemo() != null) {
+            PipeDemo pipeDemo = submissionActivityStatusCreated.getPipeDemo();
+            LOGGER.debug("Creating a new child PipeDemo with information: {}", pipeDemo);
+            pipeDemo.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            pipeDemoService.create(pipeDemo);
+        }
+
+        if(submissionActivityStatusCreated.getPipeEwo() != null) {
+            PipeEwo pipeEwo = submissionActivityStatusCreated.getPipeEwo();
+            LOGGER.debug("Creating a new child PipeEwo with information: {}", pipeEwo);
+            pipeEwo.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            pipeEwoService.create(pipeEwo);
+        }
+
+        if(submissionActivityStatusCreated.getPipeErection() != null) {
+            PipeErection pipeErection = submissionActivityStatusCreated.getPipeErection();
+            LOGGER.debug("Creating a new child PipeErection with information: {}", pipeErection);
+            pipeErection.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            pipeErectionService.create(pipeErection);
+        }
+
+        if(submissionActivityStatusCreated.getPipeMisc() != null) {
+            PipeMisc pipeMisc = submissionActivityStatusCreated.getPipeMisc();
+            LOGGER.debug("Creating a new child PipeMisc with information: {}", pipeMisc);
+            pipeMisc.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            pipeMiscService.create(pipeMisc);
+        }
+
+        if(submissionActivityStatusCreated.getPipeSupports() != null) {
+            PipeSupports pipeSupports = submissionActivityStatusCreated.getPipeSupports();
+            LOGGER.debug("Creating a new child PipeSupports with information: {}", pipeSupports);
+            pipeSupports.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            pipeSupportsService.create(pipeSupports);
+        }
+
+        if(submissionActivityStatusCreated.getPipeTesting() != null) {
+            PipeTesting pipeTesting = submissionActivityStatusCreated.getPipeTesting();
+            LOGGER.debug("Creating a new child PipeTesting with information: {}", pipeTesting);
+            pipeTesting.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            pipeTestingService.create(pipeTesting);
+        }
+
+        if(submissionActivityStatusCreated.getPipeTrim() != null) {
+            PipeTrim pipeTrim = submissionActivityStatusCreated.getPipeTrim();
+            LOGGER.debug("Creating a new child PipeTrim with information: {}", pipeTrim);
+            pipeTrim.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            pipeTrimService.create(pipeTrim);
+        }
+
+        if(submissionActivityStatusCreated.getPipeWeld() != null) {
+            PipeWeld pipeWeld = submissionActivityStatusCreated.getPipeWeld();
+            LOGGER.debug("Creating a new child PipeWeld with information: {}", pipeWeld);
+            pipeWeld.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            pipeWeldService.create(pipeWeld);
+        }
+
+        if(submissionActivityStatusCreated.getSasnoteses() != null) {
+            for(Sasnotes sasnotese : submissionActivityStatusCreated.getSasnoteses()) {
+                sasnotese.setSubmissionActivityStatus(submissionActivityStatusCreated);
+                LOGGER.debug("Creating a new child Sasnotes with information: {}", sasnotese);
+                sasnotesService.create(sasnotese);
             }
         }
 
-        if(submissionActivityStatusCreated.getCivilMiscs() != null) {
-            for(CivilMisc civilMisc : submissionActivityStatusCreated.getCivilMiscs()) {
-                civilMisc.setSubmissionActivityStatus(submissionActivityStatusCreated);
-                LOGGER.debug("Creating a new child CivilMisc with information: {}", civilMisc);
-                civilMiscService.create(civilMisc);
-            }
+        if(submissionActivityStatusCreated.getSteelBoltOut() != null) {
+            SteelBoltOut steelBoltOut = submissionActivityStatusCreated.getSteelBoltOut();
+            LOGGER.debug("Creating a new child SteelBoltOut with information: {}", steelBoltOut);
+            steelBoltOut.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            steelBoltOutService.create(steelBoltOut);
         }
 
-        if(submissionActivityStatusCreated.getCivilSellPackages() != null) {
-            for(CivilSellPackage civilSellPackage : submissionActivityStatusCreated.getCivilSellPackages()) {
-                civilSellPackage.setSubmissionActivityStatus(submissionActivityStatusCreated);
-                LOGGER.debug("Creating a new child CivilSellPackage with information: {}", civilSellPackage);
-                civilSellPackageService.create(civilSellPackage);
-            }
+        if(submissionActivityStatusCreated.getSteelDemo() != null) {
+            SteelDemo steelDemo = submissionActivityStatusCreated.getSteelDemo();
+            LOGGER.debug("Creating a new child SteelDemo with information: {}", steelDemo);
+            steelDemo.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            steelDemoService.create(steelDemo);
         }
 
-        if(submissionActivityStatusCreated.getEquipFas() != null) {
-            for(EquipFa equipFa : submissionActivityStatusCreated.getEquipFas()) {
-                equipFa.setSubmissionActivityStatus(submissionActivityStatusCreated);
-                LOGGER.debug("Creating a new child EquipFa with information: {}", equipFa);
-                equipFaService.create(equipFa);
-            }
+        if(submissionActivityStatusCreated.getSteelErect() != null) {
+            SteelErect steelErect = submissionActivityStatusCreated.getSteelErect();
+            LOGGER.debug("Creating a new child SteelErect with information: {}", steelErect);
+            steelErect.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            steelErectService.create(steelErect);
         }
 
-        if(submissionActivityStatusCreated.getPipeBoltUps() != null) {
-            for(PipeBoltUp pipeBoltUp : submissionActivityStatusCreated.getPipeBoltUps()) {
-                pipeBoltUp.setSubmissionActivityStatus(submissionActivityStatusCreated);
-                LOGGER.debug("Creating a new child PipeBoltUp with information: {}", pipeBoltUp);
-                pipeBoltUpService.create(pipeBoltUp);
-            }
+        if(submissionActivityStatusCreated.getSteelImp() != null) {
+            SteelImp steelImp = submissionActivityStatusCreated.getSteelImp();
+            LOGGER.debug("Creating a new child SteelImp with information: {}", steelImp);
+            steelImp.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            steelImpService.create(steelImp);
         }
 
-        if(submissionActivityStatusCreated.getPipeWelds() != null) {
-            for(PipeWeld pipeWeld : submissionActivityStatusCreated.getPipeWelds()) {
-                pipeWeld.setSubmissionActivityStatus(submissionActivityStatusCreated);
-                LOGGER.debug("Creating a new child PipeWeld with information: {}", pipeWeld);
-                pipeWeldService.create(pipeWeld);
-            }
+        if(submissionActivityStatusCreated.getSteelMisc() != null) {
+            SteelMisc steelMisc = submissionActivityStatusCreated.getSteelMisc();
+            LOGGER.debug("Creating a new child SteelMisc with information: {}", steelMisc);
+            steelMisc.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            steelMiscService.create(steelMisc);
         }
 
-        if(submissionActivityStatusCreated.getSteelBoltOuts() != null) {
-            for(SteelBoltOut steelBoltOut : submissionActivityStatusCreated.getSteelBoltOuts()) {
-                steelBoltOut.setSubmissionActivityStatus(submissionActivityStatusCreated);
-                LOGGER.debug("Creating a new child SteelBoltOut with information: {}", steelBoltOut);
-                steelBoltOutService.create(steelBoltOut);
-            }
+        if(submissionActivityStatusCreated.getSteelSell() != null) {
+            SteelSell steelSell = submissionActivityStatusCreated.getSteelSell();
+            LOGGER.debug("Creating a new child SteelSell with information: {}", steelSell);
+            steelSell.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            steelSellService.create(steelSell);
         }
 
-        if(submissionActivityStatusCreated.getSteelDemos() != null) {
-            for(SteelDemo steelDemo : submissionActivityStatusCreated.getSteelDemos()) {
-                steelDemo.setSubmissionActivityStatus(submissionActivityStatusCreated);
-                LOGGER.debug("Creating a new child SteelDemo with information: {}", steelDemo);
-                steelDemoService.create(steelDemo);
-            }
+        if(submissionActivityStatusCreated.getSteelSellPackage() != null) {
+            SteelSellPackage steelSellPackage = submissionActivityStatusCreated.getSteelSellPackage();
+            LOGGER.debug("Creating a new child SteelSellPackage with information: {}", steelSellPackage);
+            steelSellPackage.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            steelSellPackageService.create(steelSellPackage);
         }
 
-        if(submissionActivityStatusCreated.getSteelErects() != null) {
-            for(SteelErect steelErect : submissionActivityStatusCreated.getSteelErects()) {
-                steelErect.setSubmissionActivityStatus(submissionActivityStatusCreated);
-                LOGGER.debug("Creating a new child SteelErect with information: {}", steelErect);
-                steelErectService.create(steelErect);
-            }
+        if(submissionActivityStatusCreated.getSteelShake() != null) {
+            SteelShake steelShake = submissionActivityStatusCreated.getSteelShake();
+            LOGGER.debug("Creating a new child SteelShake with information: {}", steelShake);
+            steelShake.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            steelShakeService.create(steelShake);
         }
 
-        if(submissionActivityStatusCreated.getSteelImps() != null) {
-            for(SteelImp steelImp : submissionActivityStatusCreated.getSteelImps()) {
-                steelImp.setSubmissionActivityStatus(submissionActivityStatusCreated);
-                LOGGER.debug("Creating a new child SteelImp with information: {}", steelImp);
-                steelImpService.create(steelImp);
-            }
-        }
-
-        if(submissionActivityStatusCreated.getSteelMiscs() != null) {
-            for(SteelMisc steelMisc : submissionActivityStatusCreated.getSteelMiscs()) {
-                steelMisc.setSubmissionActivityStatus(submissionActivityStatusCreated);
-                LOGGER.debug("Creating a new child SteelMisc with information: {}", steelMisc);
-                steelMiscService.create(steelMisc);
-            }
-        }
-
-        if(submissionActivityStatusCreated.getSteelSells() != null) {
-            for(SteelSell steelSell : submissionActivityStatusCreated.getSteelSells()) {
-                steelSell.setSubmissionActivityStatus(submissionActivityStatusCreated);
-                LOGGER.debug("Creating a new child SteelSell with information: {}", steelSell);
-                steelSellService.create(steelSell);
-            }
-        }
-
-        if(submissionActivityStatusCreated.getSteelSellPackages() != null) {
-            for(SteelSellPackage steelSellPackage : submissionActivityStatusCreated.getSteelSellPackages()) {
-                steelSellPackage.setSubmissionActivityStatus(submissionActivityStatusCreated);
-                LOGGER.debug("Creating a new child SteelSellPackage with information: {}", steelSellPackage);
-                steelSellPackageService.create(steelSellPackage);
-            }
-        }
-
-        if(submissionActivityStatusCreated.getSteelShakes() != null) {
-            for(SteelShake steelShake : submissionActivityStatusCreated.getSteelShakes()) {
-                steelShake.setSubmissionActivityStatus(submissionActivityStatusCreated);
-                LOGGER.debug("Creating a new child SteelShake with information: {}", steelShake);
-                steelShakeService.create(steelShake);
-            }
+        if(submissionActivityStatusCreated.getSteelWeld() != null) {
+            SteelWeld steelWeld = submissionActivityStatusCreated.getSteelWeld();
+            LOGGER.debug("Creating a new child SteelWeld with information: {}", steelWeld);
+            steelWeld.setSubmissionActivityStatus(submissionActivityStatusCreated);
+            steelWeldService.create(steelWeld);
         }
         return submissionActivityStatusCreated;
     }
@@ -312,156 +419,40 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<CivilFa> findAssociatedCivilFas(Integer activityId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated civilFas");
+    public Page<Sasnotes> findAssociatedSasnoteses(Integer activityId, Pageable pageable) {
+        LOGGER.debug("Fetching all associated sasnoteses");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("submissionActivityStatus.activityId = '" + activityId + "'");
 
-        return civilFaService.findAll(queryBuilder.toString(), pageable);
+        return sasnotesService.findAll(queryBuilder.toString(), pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<CivilMisc> findAssociatedCivilMiscs(Integer activityId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated civilMiscs");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("submissionActivityStatus.activityId = '" + activityId + "'");
-
-        return civilMiscService.findAll(queryBuilder.toString(), pageable);
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service PipeDelayService instance
+	 */
+	protected void setPipeDelayService(PipeDelayService service) {
+        this.pipeDelayService = service;
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<CivilSellPackage> findAssociatedCivilSellPackages(Integer activityId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated civilSellPackages");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("submissionActivityStatus.activityId = '" + activityId + "'");
-
-        return civilSellPackageService.findAll(queryBuilder.toString(), pageable);
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service PipeEwoService instance
+	 */
+	protected void setPipeEwoService(PipeEwoService service) {
+        this.pipeEwoService = service;
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<EquipFa> findAssociatedEquipFas(Integer activityId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated equipFas");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("submissionActivityStatus.activityId = '" + activityId + "'");
-
-        return equipFaService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<PipeBoltUp> findAssociatedPipeBoltUps(Integer activityId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated pipeBoltUps");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("submissionActivityStatus.activityId = '" + activityId + "'");
-
-        return pipeBoltUpService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<PipeWeld> findAssociatedPipeWelds(Integer activityId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated pipeWelds");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("submissionActivityStatus.activityId = '" + activityId + "'");
-
-        return pipeWeldService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelBoltOut> findAssociatedSteelBoltOuts(Integer activityId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelBoltOuts");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("submissionActivityStatus.activityId = '" + activityId + "'");
-
-        return steelBoltOutService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelDemo> findAssociatedSteelDemos(Integer activityId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelDemos");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("submissionActivityStatus.activityId = '" + activityId + "'");
-
-        return steelDemoService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelErect> findAssociatedSteelErects(Integer activityId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelErects");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("submissionActivityStatus.activityId = '" + activityId + "'");
-
-        return steelErectService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelImp> findAssociatedSteelImps(Integer activityId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelImps");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("submissionActivityStatus.activityId = '" + activityId + "'");
-
-        return steelImpService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelMisc> findAssociatedSteelMiscs(Integer activityId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelMiscs");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("submissionActivityStatus.activityId = '" + activityId + "'");
-
-        return steelMiscService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelSell> findAssociatedSteelSells(Integer activityId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelSells");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("submissionActivityStatus.activityId = '" + activityId + "'");
-
-        return steelSellService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelSellPackage> findAssociatedSteelSellPackages(Integer activityId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelSellPackages");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("submissionActivityStatus.activityId = '" + activityId + "'");
-
-        return steelSellPackageService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelShake> findAssociatedSteelShakes(Integer activityId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelShakes");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("submissionActivityStatus.activityId = '" + activityId + "'");
-
-        return steelShakeService.findAll(queryBuilder.toString(), pageable);
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service PipeMiscService instance
+	 */
+	protected void setPipeMiscService(PipeMiscService service) {
+        this.pipeMiscService = service;
     }
 
     /**
@@ -494,10 +485,10 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service EquipFaService instance
+	 * @param service SasnotesService instance
 	 */
-	protected void setEquipFaService(EquipFaService service) {
-        this.equipFaService = service;
+	protected void setSasnotesService(SasnotesService service) {
+        this.sasnotesService = service;
     }
 
     /**
@@ -507,6 +498,15 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
 	 */
 	protected void setSteelMiscService(SteelMiscService service) {
         this.steelMiscService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service EquipFaService instance
+	 */
+	protected void setEquipFaService(EquipFaService service) {
+        this.equipFaService = service;
     }
 
     /**
@@ -525,6 +525,15 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
 	 */
 	protected void setSteelErectService(SteelErectService service) {
         this.steelErectService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service PipeTrimService instance
+	 */
+	protected void setPipeTrimService(PipeTrimService service) {
+        this.pipeTrimService = service;
     }
 
     /**
@@ -566,6 +575,33 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service PipeDemoService instance
+	 */
+	protected void setPipeDemoService(PipeDemoService service) {
+        this.pipeDemoService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service PipeErectionService instance
+	 */
+	protected void setPipeErectionService(PipeErectionService service) {
+        this.pipeErectionService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service PipeTestingService instance
+	 */
+	protected void setPipeTestingService(PipeTestingService service) {
+        this.pipeTestingService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service CivilFaService instance
 	 */
 	protected void setCivilFaService(CivilFaService service) {
@@ -579,6 +615,24 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
 	 */
 	protected void setCivilMiscService(CivilMiscService service) {
         this.civilMiscService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SteelWeldService instance
+	 */
+	protected void setSteelWeldService(SteelWeldService service) {
+        this.steelWeldService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service PipeSupportsService instance
+	 */
+	protected void setPipeSupportsService(PipeSupportsService service) {
+        this.pipeSupportsService = service;
     }
 
     /**

@@ -79,7 +79,7 @@ public class PipeErectionServiceImpl implements PipeErectionService {
         LOGGER.debug("Updating PipeErection with information: {}", pipeErection);
         this.wmGenericDao.update(pipeErection);
 
-        Integer pipeerectionId = pipeErection.getId();
+        Integer pipeerectionId = pipeErection.getActivityId();
 
         return this.wmGenericDao.findById(pipeerectionId);
     }

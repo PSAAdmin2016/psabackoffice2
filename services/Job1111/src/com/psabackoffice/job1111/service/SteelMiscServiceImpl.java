@@ -79,7 +79,7 @@ public class SteelMiscServiceImpl implements SteelMiscService {
         LOGGER.debug("Updating SteelMisc with information: {}", steelMisc);
         this.wmGenericDao.update(steelMisc);
 
-        Integer steelmiscId = steelMisc.getId();
+        Integer steelmiscId = steelMisc.getActivityId();
 
         return this.wmGenericDao.findById(steelmiscId);
     }

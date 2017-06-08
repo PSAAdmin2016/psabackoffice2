@@ -79,7 +79,7 @@ public class PipeBoltUpServiceImpl implements PipeBoltUpService {
         LOGGER.debug("Updating PipeBoltUp with information: {}", pipeBoltUp);
         this.wmGenericDao.update(pipeBoltUp);
 
-        Integer pipeboltupId = pipeBoltUp.getId();
+        Integer pipeboltupId = pipeBoltUp.getActivityId();
 
         return this.wmGenericDao.findById(pipeboltupId);
     }

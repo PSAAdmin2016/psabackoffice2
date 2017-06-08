@@ -1,0 +1,160 @@
+{
+  "serviceUpdateCutPrep" : {
+    "_id" : "wm-serviceUpdateCutPrep-wm.ServiceVariable-1476111880136",
+    "name" : "serviceUpdateCutPrep",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "DrawingNumber",
+      "value" : "bind:Widgets.textWeldDrawing.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "LineNumber",
+      "value" : "bind:Widgets.textWeldLine.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "SheetNumber",
+      "value" : "bind:Widgets.textWeldSheet.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Size",
+      "value" : "bind:Widgets.selectWeldSize.datavalue",
+      "type" : "number"
+    }, {
+      "target" : "Thickness",
+      "value" : "bind:Widgets.selectWeldThickness.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Rework",
+      "value" : "bind:Widgets.checkboxWeldRework.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "Notes",
+      "value" : "bind:Widgets.textareaWeldNotes.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "FieldActivityID",
+      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityID",
+      "type" : "integer"
+    } ],
+    "type" : "integer",
+    "service" : "Job1111",
+    "operation" : "executeUpdatePipeCutPrep",
+    "operationId" : "QueryExecutionController_executeUpdatePipeCutPrep",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 3,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "serviceUpdateWeld" : {
+    "_id" : "wm-serviceUpdateWeld-wm.ServiceVariable-1476111843952",
+    "name" : "serviceUpdateWeld",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "Spool1",
+      "value" : "bind:Widgets.textWeldSpool1.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Spool2",
+      "value" : "bind:Widgets.textWeldSpool2.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "DrawingNumber",
+      "value" : "bind:Widgets.textWeldDrawing.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "LineNumber",
+      "value" : "bind:Widgets.textWeldLine.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "SheetNumber",
+      "value" : "bind:Widgets.textWeldSheet.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "LineSpec",
+      "value" : "bind:Widgets.selectWeldSpec.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "WeldNumber",
+      "value" : "bind:Widgets.textWeldNumber.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Stencil",
+      "value" : "bind:Widgets.textWeldStencil.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Size",
+      "value" : "bind:Widgets.selectWeldSize.datavalue",
+      "type" : "number"
+    }, {
+      "target" : "Thickness",
+      "value" : "bind:Widgets.selectWeldThickness.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "WeldType",
+      "value" : "bind:Widgets.selectWeldType.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "WeldPosition",
+      "value" : "bind:Widgets.selectWeldPosition.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Material",
+      "value" : "bind:Widgets.selectWeldMaterial.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Procedure",
+      "value" : "bind:Widgets.selectWeldProcedure.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Complete",
+      "value" : "bind:Widgets.checkboxWeldShared.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Shared",
+      "value" : "bind:Widgets.checkboxWeldShared.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "PercentComplete",
+      "value" : "bind:Widgets.selectWeldPercentComplete.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "Rework",
+      "value" : "bind:Widgets.checkboxWeldRework.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "Notes",
+      "value" : "bind:Widgets.textareaWeldNotes.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "FieldActivityID",
+      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityID",
+      "type" : "integer"
+    } ],
+    "type" : "integer",
+    "service" : "Job1111",
+    "operation" : "executeUpdatePipeWeld",
+    "operationId" : "QueryExecutionController_executeUpdatePipeWeld",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 3,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  }
+}

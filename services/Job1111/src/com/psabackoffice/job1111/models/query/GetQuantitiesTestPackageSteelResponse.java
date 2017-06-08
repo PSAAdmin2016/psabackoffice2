@@ -20,24 +20,24 @@ public class GetQuantitiesTestPackageSteelResponse implements Serializable {
     @JsonProperty("BidID")
     @ColumnAlias("BidID")
     private Integer bidId;
-    @JsonProperty("EarnedSellPunchHours")
-    @ColumnAlias("EarnedSellPunchHours")
-    private BigDecimal earnedSellPunchHours;
-    @JsonProperty("InstalledSell")
-    @ColumnAlias("InstalledSell")
-    private BigDecimal installedSell;
-    @JsonProperty("LooseHours")
-    @ColumnAlias("LooseHours")
-    private BigDecimal looseHours;
-    @JsonProperty("SellPunchCount")
-    @ColumnAlias("SellPunchCount")
-    private BigDecimal sellPunchCount;
-    @JsonProperty("SellPunchHours")
-    @ColumnAlias("SellPunchHours")
-    private BigDecimal sellPunchHours;
     @JsonProperty("TestPackageNumber")
     @ColumnAlias("TestPackageNumber")
     private String testPackageNumber;
+    @JsonProperty("SellPunchCount")
+    @ColumnAlias("SellPunchCount")
+    private Long sellPunchCount;
+    @JsonProperty("SellPunchHours")
+    @ColumnAlias("SellPunchHours")
+    private Double sellPunchHours;
+    @JsonProperty("InstalledSell")
+    @ColumnAlias("InstalledSell")
+    private BigInteger installedSell;
+    @JsonProperty("EarnedSellPunchHours")
+    @ColumnAlias("EarnedSellPunchHours")
+    private Double earnedSellPunchHours;
+    @JsonProperty("LooseHours")
+    @ColumnAlias("LooseHours")
+    private Double looseHours;
 
     public Integer getBidId() {
         return this.bidId;
@@ -45,46 +45,6 @@ public class GetQuantitiesTestPackageSteelResponse implements Serializable {
 
     public void setBidId(Integer bidId) {
         this.bidId = bidId;
-    }
-
-    public BigDecimal getEarnedSellPunchHours() {
-        return this.earnedSellPunchHours;
-    }
-
-    public void setEarnedSellPunchHours(BigDecimal earnedSellPunchHours) {
-        this.earnedSellPunchHours = earnedSellPunchHours;
-    }
-
-    public BigDecimal getInstalledSell() {
-        return this.installedSell;
-    }
-
-    public void setInstalledSell(BigDecimal installedSell) {
-        this.installedSell = installedSell;
-    }
-
-    public BigDecimal getLooseHours() {
-        return this.looseHours;
-    }
-
-    public void setLooseHours(BigDecimal looseHours) {
-        this.looseHours = looseHours;
-    }
-
-    public BigDecimal getSellPunchCount() {
-        return this.sellPunchCount;
-    }
-
-    public void setSellPunchCount(BigDecimal sellPunchCount) {
-        this.sellPunchCount = sellPunchCount;
-    }
-
-    public BigDecimal getSellPunchHours() {
-        return this.sellPunchHours;
-    }
-
-    public void setSellPunchHours(BigDecimal sellPunchHours) {
-        this.sellPunchHours = sellPunchHours;
     }
 
     public String getTestPackageNumber() {
@@ -95,28 +55,68 @@ public class GetQuantitiesTestPackageSteelResponse implements Serializable {
         this.testPackageNumber = testPackageNumber;
     }
 
+    public Long getSellPunchCount() {
+        return this.sellPunchCount;
+    }
+
+    public void setSellPunchCount(Long sellPunchCount) {
+        this.sellPunchCount = sellPunchCount;
+    }
+
+    public Double getSellPunchHours() {
+        return this.sellPunchHours;
+    }
+
+    public void setSellPunchHours(Double sellPunchHours) {
+        this.sellPunchHours = sellPunchHours;
+    }
+
+    public BigInteger getInstalledSell() {
+        return this.installedSell;
+    }
+
+    public void setInstalledSell(BigInteger installedSell) {
+        this.installedSell = installedSell;
+    }
+
+    public Double getEarnedSellPunchHours() {
+        return this.earnedSellPunchHours;
+    }
+
+    public void setEarnedSellPunchHours(Double earnedSellPunchHours) {
+        this.earnedSellPunchHours = earnedSellPunchHours;
+    }
+
+    public Double getLooseHours() {
+        return this.looseHours;
+    }
+
+    public void setLooseHours(Double looseHours) {
+        this.looseHours = looseHours;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof GetQuantitiesTestPackageSteelResponse)) return false;
         final GetQuantitiesTestPackageSteelResponse getQuantitiesTestPackageSteelResponse = (GetQuantitiesTestPackageSteelResponse) o;
         return Objects.equals(getBidId(), getQuantitiesTestPackageSteelResponse.getBidId()) &&
-                Objects.equals(getEarnedSellPunchHours(), getQuantitiesTestPackageSteelResponse.getEarnedSellPunchHours()) &&
-                Objects.equals(getInstalledSell(), getQuantitiesTestPackageSteelResponse.getInstalledSell()) &&
-                Objects.equals(getLooseHours(), getQuantitiesTestPackageSteelResponse.getLooseHours()) &&
+                Objects.equals(getTestPackageNumber(), getQuantitiesTestPackageSteelResponse.getTestPackageNumber()) &&
                 Objects.equals(getSellPunchCount(), getQuantitiesTestPackageSteelResponse.getSellPunchCount()) &&
                 Objects.equals(getSellPunchHours(), getQuantitiesTestPackageSteelResponse.getSellPunchHours()) &&
-                Objects.equals(getTestPackageNumber(), getQuantitiesTestPackageSteelResponse.getTestPackageNumber());
+                Objects.equals(getInstalledSell(), getQuantitiesTestPackageSteelResponse.getInstalledSell()) &&
+                Objects.equals(getEarnedSellPunchHours(), getQuantitiesTestPackageSteelResponse.getEarnedSellPunchHours()) &&
+                Objects.equals(getLooseHours(), getQuantitiesTestPackageSteelResponse.getLooseHours());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getBidId(),
-                getEarnedSellPunchHours(),
-                getInstalledSell(),
-                getLooseHours(),
+                getTestPackageNumber(),
                 getSellPunchCount(),
                 getSellPunchHours(),
-                getTestPackageNumber());
+                getInstalledSell(),
+                getEarnedSellPunchHours(),
+                getLooseHours());
     }
 }

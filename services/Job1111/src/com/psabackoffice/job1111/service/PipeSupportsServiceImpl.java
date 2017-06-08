@@ -79,7 +79,7 @@ public class PipeSupportsServiceImpl implements PipeSupportsService {
         LOGGER.debug("Updating PipeSupports with information: {}", pipeSupports);
         this.wmGenericDao.update(pipeSupports);
 
-        Integer pipesupportsId = pipeSupports.getId();
+        Integer pipesupportsId = pipeSupports.getActivityId();
 
         return this.wmGenericDao.findById(pipesupportsId);
     }

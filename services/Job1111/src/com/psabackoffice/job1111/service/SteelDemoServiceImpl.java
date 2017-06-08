@@ -79,7 +79,7 @@ public class SteelDemoServiceImpl implements SteelDemoService {
         LOGGER.debug("Updating SteelDemo with information: {}", steelDemo);
         this.wmGenericDao.update(steelDemo);
 
-        Integer steeldemoId = steelDemo.getId();
+        Integer steeldemoId = steelDemo.getActivityId();
 
         return this.wmGenericDao.findById(steeldemoId);
     }

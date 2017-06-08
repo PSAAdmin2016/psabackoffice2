@@ -80,9 +80,9 @@ public class SteelErectController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public SteelErect editSteelErect(@PathVariable("id") Integer id, @RequestBody SteelErect steelErect) throws EntityNotFoundException {
-        LOGGER.debug("Editing SteelErect with id: {}" , steelErect.getId());
+        LOGGER.debug("Editing SteelErect with id: {}" , steelErect.getActivityId());
 
-        steelErect.setId(id);
+        steelErect.setActivityId(id);
         steelErect = steelErectService.update(steelErect);
         LOGGER.debug("SteelErect details with id: {}" , steelErect);
 

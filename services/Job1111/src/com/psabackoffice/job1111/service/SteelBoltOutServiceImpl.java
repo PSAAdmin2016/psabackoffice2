@@ -79,7 +79,7 @@ public class SteelBoltOutServiceImpl implements SteelBoltOutService {
         LOGGER.debug("Updating SteelBoltOut with information: {}", steelBoltOut);
         this.wmGenericDao.update(steelBoltOut);
 
-        Integer steelboltoutId = steelBoltOut.getId();
+        Integer steelboltoutId = steelBoltOut.getActivityId();
 
         return this.wmGenericDao.findById(steelboltoutId);
     }

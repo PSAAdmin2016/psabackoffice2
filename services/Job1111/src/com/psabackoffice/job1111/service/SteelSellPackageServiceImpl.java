@@ -79,7 +79,7 @@ public class SteelSellPackageServiceImpl implements SteelSellPackageService {
         LOGGER.debug("Updating SteelSellPackage with information: {}", steelSellPackage);
         this.wmGenericDao.update(steelSellPackage);
 
-        Integer steelsellpackageId = steelSellPackage.getId();
+        Integer steelsellpackageId = steelSellPackage.getActivityId();
 
         return this.wmGenericDao.findById(steelsellpackageId);
     }

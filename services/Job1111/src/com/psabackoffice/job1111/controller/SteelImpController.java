@@ -80,9 +80,9 @@ public class SteelImpController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public SteelImp editSteelImp(@PathVariable("id") Integer id, @RequestBody SteelImp steelImp) throws EntityNotFoundException {
-        LOGGER.debug("Editing SteelImp with id: {}" , steelImp.getId());
+        LOGGER.debug("Editing SteelImp with id: {}" , steelImp.getActivityId());
 
-        steelImp.setId(id);
+        steelImp.setActivityId(id);
         steelImp = steelImpService.update(steelImp);
         LOGGER.debug("SteelImp details with id: {}" , steelImp);
 

@@ -32,20 +32,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
-import com.psabackoffice.job1111.CivilFa;
-import com.psabackoffice.job1111.CivilMisc;
-import com.psabackoffice.job1111.CivilSellPackage;
-import com.psabackoffice.job1111.EquipFa;
-import com.psabackoffice.job1111.PipeBoltUp;
-import com.psabackoffice.job1111.PipeWeld;
-import com.psabackoffice.job1111.SteelBoltOut;
-import com.psabackoffice.job1111.SteelDemo;
-import com.psabackoffice.job1111.SteelErect;
-import com.psabackoffice.job1111.SteelImp;
-import com.psabackoffice.job1111.SteelMisc;
-import com.psabackoffice.job1111.SteelSell;
-import com.psabackoffice.job1111.SteelSellPackage;
-import com.psabackoffice.job1111.SteelShake;
+import com.psabackoffice.job1111.Sasnotes;
 import com.psabackoffice.job1111.SubmissionActivityStatus;
 import com.psabackoffice.job1111.service.SubmissionActivityStatusService;
 
@@ -165,130 +152,13 @@ public class SubmissionActivityStatusController {
         return submissionActivityStatusService.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/civilFas", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the civilFas instance associated with the given id.")
+    @RequestMapping(value="/{id:.+}/sasnoteses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the sasnoteses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<CivilFa> findAssociatedCivilFas(@PathVariable("id") Integer id, Pageable pageable) {
+    public Page<Sasnotes> findAssociatedSasnoteses(@PathVariable("id") Integer id, Pageable pageable) {
 
-        LOGGER.debug("Fetching all associated civilFas");
-        return submissionActivityStatusService.findAssociatedCivilFas(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/civilMiscs", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the civilMiscs instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<CivilMisc> findAssociatedCivilMiscs(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated civilMiscs");
-        return submissionActivityStatusService.findAssociatedCivilMiscs(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/civilSellPackages", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the civilSellPackages instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<CivilSellPackage> findAssociatedCivilSellPackages(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated civilSellPackages");
-        return submissionActivityStatusService.findAssociatedCivilSellPackages(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/equipFas", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the equipFas instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<EquipFa> findAssociatedEquipFas(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated equipFas");
-        return submissionActivityStatusService.findAssociatedEquipFas(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/pipeBoltUps", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the pipeBoltUps instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<PipeBoltUp> findAssociatedPipeBoltUps(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated pipeBoltUps");
-        return submissionActivityStatusService.findAssociatedPipeBoltUps(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/pipeWelds", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the pipeWelds instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<PipeWeld> findAssociatedPipeWelds(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated pipeWelds");
-        return submissionActivityStatusService.findAssociatedPipeWelds(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/steelBoltOuts", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the steelBoltOuts instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SteelBoltOut> findAssociatedSteelBoltOuts(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated steelBoltOuts");
-        return submissionActivityStatusService.findAssociatedSteelBoltOuts(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/steelDemos", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the steelDemos instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SteelDemo> findAssociatedSteelDemos(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated steelDemos");
-        return submissionActivityStatusService.findAssociatedSteelDemos(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/steelErects", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the steelErects instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SteelErect> findAssociatedSteelErects(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated steelErects");
-        return submissionActivityStatusService.findAssociatedSteelErects(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/steelImps", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the steelImps instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SteelImp> findAssociatedSteelImps(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated steelImps");
-        return submissionActivityStatusService.findAssociatedSteelImps(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/steelMiscs", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the steelMiscs instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SteelMisc> findAssociatedSteelMiscs(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated steelMiscs");
-        return submissionActivityStatusService.findAssociatedSteelMiscs(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/steelSells", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the steelSells instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SteelSell> findAssociatedSteelSells(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated steelSells");
-        return submissionActivityStatusService.findAssociatedSteelSells(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/steelSellPackages", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the steelSellPackages instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SteelSellPackage> findAssociatedSteelSellPackages(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated steelSellPackages");
-        return submissionActivityStatusService.findAssociatedSteelSellPackages(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/steelShakes", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the steelShakes instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<SteelShake> findAssociatedSteelShakes(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated steelShakes");
-        return submissionActivityStatusService.findAssociatedSteelShakes(id, pageable);
+        LOGGER.debug("Fetching all associated sasnoteses");
+        return submissionActivityStatusService.findAssociatedSasnoteses(id, pageable);
     }
 
     /**

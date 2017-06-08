@@ -26,8 +26,6 @@ Application.$controller("ReviewLandingPageController", ["$scope", function($scop
         $scope.Variables.PSARefActivityTypesData.listRecords();
         $scope.Variables.PSARefActivityStatusesData.listRecords();
         $scope.Variables.PSARefActivityRejectionsData.listRecords();
-        $scope.Variables.Job1111RefWeldProcedures.listRecords();
-        $scope.Variables.Job1111RefLineSpecs.listRecords();
 
         $scope.Variables.serviceGetRefPrecip.invoke();
         $scope.Variables.serviceGetRefTemps.invoke();

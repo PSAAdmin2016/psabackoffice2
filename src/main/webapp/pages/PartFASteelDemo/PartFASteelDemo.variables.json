@@ -80,15 +80,15 @@
       "value" : "bind:Widgets.selectSteelType.datavalue",
       "type" : "integer"
     }, {
-      "target" : "RowID",
-      "value" : "bind:$parent.Variables.liveGetSteelDemo.dataSet.data[$i].id",
-      "type" : "integer"
-    }, {
       "target" : "Quantity",
       "value" : "bind:Widgets.textQuantity.datavalue",
       "type" : "integer"
+    }, {
+      "target" : "FieldActivityID",
+      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityID",
+      "type" : "integer"
     } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "type" : "integer",
     "service" : "Job1111",
     "operation" : "executeUpdateSteelDemo",
     "operationId" : "QueryExecutionController_executeUpdateSteelDemo",

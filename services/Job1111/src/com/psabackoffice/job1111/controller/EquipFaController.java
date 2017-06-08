@@ -80,9 +80,9 @@ public class EquipFaController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public EquipFa editEquipFa(@PathVariable("id") Integer id, @RequestBody EquipFa equipFa) throws EntityNotFoundException {
-        LOGGER.debug("Editing EquipFa with id: {}" , equipFa.getId());
+        LOGGER.debug("Editing EquipFa with id: {}" , equipFa.getActivityId());
 
-        equipFa.setId(id);
+        equipFa.setActivityId(id);
         equipFa = equipFaService.update(equipFa);
         LOGGER.debug("EquipFa details with id: {}" , equipFa);
 

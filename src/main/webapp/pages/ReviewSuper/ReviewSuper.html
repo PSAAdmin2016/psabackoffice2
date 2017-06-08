@@ -31,8 +31,8 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                     <wm-gridcolumn columnwidth="1" name="gridcolumn13">
                         <wm-composite horizontalalign="right" padding="2% unset unset 2%" name="composite2">
                             <wm-label class="col-md-3" caption="Total Activities:" width="40%" padding="unset 1% unset unset" name="label3"></wm-label>
-                            <wm-container class="col-md-9" horizontalalign="right" width="40%" padding="unset unset unset 1%" name="container2">
-                                <wm-text type="number" placeholder="" width="100%" readonly="true" autocomplete="false" readonlygrid="true" datavalue="bind:Variables.serviceGetFieldActivitiesCount.dataSet[$i].Count" name="text1"></wm-text>
+                            <wm-container class="col-md-9" horizontalalign="right" width="50%" padding="unset unset unset 1%" name="container2">
+                                <wm-text type="number" placeholder="" width="100%" readonly="true" autocomplete="false" readonlygrid="true" datavalue="bind:Variables.serviceGetFieldActivities.dataSet.totalElements" name="text1"></wm-text>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -42,13 +42,14 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                     <wm-gridcolumn columnwidth="10" name="gridcolumn4">
                         <wm-grid shownavigation="false" gridfirstrowselect="true" dataset="bind:Variables.serviceGetFieldActivities.dataSet" on-select="gridSuperReviewActivitiesSelect($event, $rowData)" class="panel-default" height="250px" name="gridSuperReviewActivities"
                         filtermode="multicolumn" navigation="None" spacing="condensed" on-datarender="gridSuperReviewActivitiesDatarender($scope, $data)">
-                            <wm-grid-column binding="PSAActivityID" caption="Field Activity Id" type="string" width="10%" readonly="true" show="true" filterwidget="number" filterplaceholder="Search Activity ID..."></wm-grid-column>
+                            <wm-grid-column binding="ActivityID" caption="Field Activity ID" width="10%" readonly="true" show="true" filterwidget="number" filterplaceholder="Search Activity ID..."></wm-grid-column>
                             <wm-grid-column binding="Status" caption="Status" type="string" width="15%" readonly="true" col-ng-class="{'yellow':row.Status == 'Progress Returned', 'orange':row.Status == 'Supervisor Modified' || row.Status == 'Progress Returned Mod', 'blue':row.Status == 'Returned To List'}"
-                            show="true" filterwidget="select"></wm-grid-column>
-                            <wm-grid-column binding="Craft" caption="Craft" width="15%" readonly="true" show="true" filterwidget="select"></wm-grid-column>
-                            <wm-grid-column binding="ActivityTypeName" caption="Activity Type" type="string" width="15%" readonly="true" show="true" filterwidget="select"></wm-grid-column>
-                            <wm-grid-column binding="NameFull" caption="Foreman Name" type="string" width="25%" readonly="true" show="true" filterwidget="select"></wm-grid-column>
-                            <wm-grid-column binding="ReceivedTime" caption="Received Time" type="string" width="19%" textalignment="center" readonly="true" datepattern="MM-dd-yy hh:mm a" formatpattern="toDate" searchable="false" show="true"></wm-grid-column>
+                            edit-widget-type="text" show="true" filterwidget="select"></wm-grid-column>
+                            <wm-grid-column binding="Craft" caption="Craft" type="string" width="15%" readonly="true" edit-widget-type="text" show="true" filterwidget="select"></wm-grid-column>
+                            <wm-grid-column binding="ActivityTypeName" caption="Activity Type" type="string" width="15%" readonly="true" edit-widget-type="text" show="true" filterwidget="select"></wm-grid-column>
+                            <wm-grid-column binding="NameFull" caption="Foreman Name" type="string" width="25%" readonly="true" edit-widget-type="text" show="true" filterwidget="select"></wm-grid-column>
+                            <wm-grid-column binding="ReceivedTime" caption="Received Time" type="string" width="19%" textalignment="center" readonly="true" datepattern="MM-dd-yy hh:mm a" formatpattern="toDate" edit-widget-type="text"
+                            searchable="false" show="true"></wm-grid-column>
                         </wm-grid>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="2" name="gridcolumn44">
@@ -68,7 +69,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                             <wm-gridrow name="gridrow21">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn49">
                                     <wm-button class="btn-default" caption="View/Add Notes" type="button" show="bind:Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus == 6 || Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus == 4  || Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus == 8  || Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus == 10 || Variables.EditMode.dataSet.dataValue"
-                                    backgroundcolor="#e7dd51" marginunit="%" on-click="Variables.serviceGetNotesByPSAActivityID.invoke();Widgets.dialogNotes.open()" iconclass="glyphicon glyphicon-list-alt" animation="slideInRight" hint="Add a note for project services, or view a note sent to you."
+                                    backgroundcolor="#e7dd51" marginunit="%" on-click="Variables.serviceGetNotesByActivityID.invoke();Widgets.dialogNotes.open()" iconclass="glyphicon glyphicon-list-alt" animation="slideInRight" hint="Add a note for project services, or view a note sent to you."
                                     name="btnReviewNotes" width="50%" margin="unset unset 5% 2%"></wm-button>
                                 </wm-gridcolumn>
                             </wm-gridrow>
@@ -98,68 +99,54 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                             </wm-gridrow>
                         </wm-layoutgrid>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn6">
-                        <wm-layoutgrid name="layoutgrid3">
-                            <wm-gridrow name="gridrow7">
-                                <wm-gridcolumn columnwidth="4" name="gridcolumn17">
-                                    <wm-composite captionposition="top" name="composite3">
-                                        <wm-label class="col-md-3 control-label" caption="Temperature" name="label4"></wm-label>
-                                        <wm-container class="col-md-9" name="container3">
-                                            <wm-select datavalue="bind:Variables.liveGetSubsDetails.dataSet.data[$i].temperature" dataset="bind:Variables.serviceGetRefTemps.dataSet" datafield="Value" disabled="bind:Variables.staticEditMode.dataSet.dataValue == false"
-                                            name="selectSDTemperature" displayfield="Value" orderby="Value:desc"></wm-select>
-                                        </wm-container>
-                                    </wm-composite>
-                                </wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="4" name="gridcolumn18">
-                                    <wm-composite captionposition="top" name="composite4">
-                                        <wm-label class="col-md-3 control-label" caption="Precipitation" name="label5"></wm-label>
-                                        <wm-container class="col-md-9" name="container4">
-                                            <wm-select datavalue="bind:Variables.liveGetSubsDetails.dataSet.data[$i].precipitation" dataset="bind:Variables.serviceGetRefPrecip.dataSet" datafield="Value" displayfield="Value" disabled="bind:Variables.staticEditMode.dataSet.dataValue == false"
-                                            name="selectSDPrecipitation" orderby="Value:desc"></wm-select>
-                                        </wm-container>
-                                    </wm-composite>
-                                </wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="4" name="gridcolumn19">
-                                    <wm-composite captionposition="top" name="composite5">
-                                        <wm-label class="col-md-3 control-label" caption="Wind" name="label6"></wm-label>
-                                        <wm-container class="col-md-9" name="container5">
-                                            <wm-select datavalue="bind:Variables.liveGetSubsDetails.dataSet.data[$i].wind" dataset="bind:Variables.serviceGetRefWind.dataSet" datafield="Value" displayfield="Value" disabled="bind:Variables.staticEditMode.dataSet.dataValue == false"
-                                            name="selectSDWind" orderby="Value:desc"></wm-select>
-                                        </wm-container>
-                                    </wm-composite>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                        </wm-layoutgrid>
-                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn6"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn7">
-                        <wm-layoutgrid padding="unset unset unset 2%" name="layoutgrid4">
-                            <wm-gridrow name="gridrow8">
-                                <wm-gridcolumn columnwidth="4" name="gridcolumn20"></wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="4" horizontalalign="center" name="gridcolumn21"></wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="4" name="gridcolumn22">
-                                    <wm-composite captionposition="top" paddingunit="%" name="composite6" show="false">
-                                        <wm-label class="col-md-3 control-label" caption="Field Activity ID" name="label8"></wm-label>
-                                        <wm-container class="col-md-9" name="container6">
-                                            <wm-text width="80%" datavalue="bind:Widgets.gridSuperReviewActivities.selecteditem.PSAActivityID" readonly="true" show="true" disabled="false" readonlygrid="true" name="text2"></wm-text>
-                                        </wm-container>
-                                    </wm-composite>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                        </wm-layoutgrid>
+                        <wm-container name="container1" class="bg-info" padding="1%" width="80%">
+                            <wm-layoutgrid name="layoutgrid5">
+                                <wm-gridrow name="gridrow12" padding="0px unset">
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn26" horizontalalign="center">
+                                        <wm-icon name="icon4" iconsize="2em" iconposition="left" iconclass="wi wi-weather-sun"></wm-icon>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn31" horizontalalign="center">
+                                        <wm-icon iconsize="2em" iconposition="left" name="icon5" iconclass="wi wi-compass"></wm-icon>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn27" horizontalalign="center">
+                                        <wm-icon iconsize="2em" iconposition="left" name="icon6" iconclass="wi wi-weather-rain"></wm-icon>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn35" horizontalalign="center">
+                                        <wm-icon iconsize="2em" iconposition="left" name="icon7" iconclass="wi wi-weather-thunder"></wm-icon>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow13" padding="0px unset">
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn28" horizontalalign="center">
+                                        <wm-label padding="unset 0.5em" name="label8" class="p" fontsize="2" fontunit="em" caption="70 F"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn29" horizontalalign="center">
+                                        <wm-label padding="unset 0.5em" class="p" fontsize="1.5" fontunit="em" caption="24 mph" name="label9" margin="5% unset unset unset"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn32" horizontalalign="center">
+                                        <wm-label padding="unset 0.5em" class="p" fontsize="1.5" fontunit="em" caption=".75&quot;" margin="5% unset unset unset" name="label10"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn36" horizontalalign="center">
+                                        <wm-label padding="unset 0.5em" class="p" fontsize="1.5" fontunit="em" caption="15%" margin="5% unset unset unset" name="label11"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-container>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow5">
                     <wm-gridcolumn columnwidth="8" name="gridcolumn11_1">
                         <wm-container name="containerFADetails"></wm-container>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn13_1">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn13_1" padding="1.25% unset unset unset">
                         <wm-layoutgrid name="layoutgrid6">
                             <wm-gridrow name="gridrow11">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn26">
                                     <wm-composite padding="unset unset unset 2%" name="composite7">
                                         <wm-label class="col-md-3" caption="Submission Started" name="label9"></wm-label>
                                         <wm-container class="col-md-9" name="container7">
-                                            <wm-datetime datavalue="bind:Variables.liveGetSubsDetails.dataSet.data[$i].startTime" width="60%" readonly="true" readonlygrid="true" name="datetime1"></wm-datetime>
+                                            <wm-datetime datavalue="bind:Variables.liveGetSubsDetails.dataSet.data[$i].startTime" width="60%" readonly="true" readonlygrid="true" name="datetime1" showbuttonbar="false"></wm-datetime>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -169,7 +156,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                     <wm-composite padding="unset unset unset 2%" name="composite8">
                                         <wm-label class="col-md-3" caption="Submission Completed" name="label10"></wm-label>
                                         <wm-container class="col-md-9" name="container8">
-                                            <wm-datetime datavalue="bind:Variables.liveGetSubsDetails.dataSet.data[$i].completeTime" width="60%" readonly="true" name="datetime2"></wm-datetime>
+                                            <wm-datetime datavalue="bind:Variables.liveGetSubsDetails.dataSet.data[$i].completeTime" width="60%" readonly="true" name="datetime2" showbuttonbar="false"></wm-datetime>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -179,7 +166,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                     <wm-composite padding="unset unset unset 2%" name="composite9">
                                         <wm-label class="col-md-3" caption="Submission Recieved" name="label11"></wm-label>
                                         <wm-container class="col-md-9" name="container9">
-                                            <wm-datetime datavalue="bind:Variables.liveGetSubsDetails.dataSet.data[$i].receivedTime | toDate: 'timestamp'" width="60%" readonly="true" name="datetime3" outputformat="timestamp"></wm-datetime>
+                                            <wm-datetime datavalue="bind:Variables.liveGetSubsDetails.dataSet.data[$i].receivedTime | toDate: 'timestamp'" width="60%" readonly="true" name="datetime3" outputformat="timestamp" showbuttonbar="false"></wm-datetime>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -187,24 +174,31 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                         </wm-layoutgrid>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow9">
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn23" padding="5% unset unset unset">
-                        <wm-composite captionposition="top" margin="unset unset 1px unset" name="composite11">
-                            <wm-label class="col-md-3 control-label" caption="Name" width="11%" name="label13"></wm-label>
-                            <wm-container class="col-md-9" width="90%" name="container11">
-                                <wm-text datavalue="bind:Variables.liveGetSubsDetails.dataSet.data[$i].userFirstName + ' ' + Variables.liveGetSubsDetails.dataSet.data[$i].userLastName
-
-" width="65%" readonly="true" disabled="false" name="text4"></wm-text>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn24" padding="5% unset unset unset">
-                        <wm-composite captionposition="top" margin="unset unset 1px unset" name="composite12">
-                            <wm-label class="col-md-3 control-label" caption="Email" width="11%" name="label14"></wm-label>
-                            <wm-container class="col-md-9" width="90%" name="container12">
-                                <wm-text datavalue="bind:Variables.liveGetSubsDetails.dataSet.data[$i].userEmail" width="85%" type="email" readonly="true" readonlygrid="true" name="text5"></wm-text>
-                            </wm-container>
-                        </wm-composite>
+                <wm-gridrow name="gridrow9" padding="2% unset unset unset">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn23">
+                        <wm-layoutgrid name="layoutgrid11">
+                            <wm-gridrow name="gridrow22">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn49_1">
+                                    <wm-composite captionposition="top" margin="unset unset 1px unset" name="composite11">
+                                        <wm-label class="col-md-3 control-label" caption="Name" width="11%" name="label13"></wm-label>
+                                        <wm-container class="col-md-9" width="90%" name="container11">
+                                            <wm-text datavalue="bind:Variables.liveGetUser.firstRecord.firstName + ' ' + Variables.liveGetUser.firstRecord.lastName
+" width="80%" readonly="true" disabled="false" name="text4" placeholder=""></wm-text>
+                                        </wm-container>
+                                    </wm-composite>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                            <wm-gridrow name="gridrow23">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn51">
+                                    <wm-composite captionposition="top" margin="unset unset 1px unset" name="composite12">
+                                        <wm-label class="col-md-3 control-label" caption="Email" width="11%" name="label14"></wm-label>
+                                        <wm-container class="col-md-9" width="90%" name="container12">
+                                            <wm-text datavalue="bind:Variables.liveGetUser.firstRecord.email" width="80%" type="email" readonly="true" readonlygrid="true" name="text5" placeholder=""></wm-text>
+                                        </wm-container>
+                                    </wm-composite>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                        </wm-layoutgrid>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn25">
                         <wm-layoutgrid padding="unset unset unset 4%" name="layoutgrid7">
@@ -215,12 +209,12 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                             </wm-gridrow>
                             <wm-gridrow name="gridrow17">
                                 <wm-gridcolumn columnwidth="12" padding="0% unset unset unset" name="gridcolumn36">
-                                    <wm-picture picturesource="bind:&quot;https://secure.appenate.com/api/v1/mediafile?EntryId=&quot; + Variables.liveGetSubsDetails.dataSet.data[$i].submissionGuid + &quot;&amp;FileName=&quot; + Variables.liveGetSubsDetails.dataSet.data[$i].signature + &quot;&amp;integrationkey=&quot; + Variables.liveGetIntegrationKey.dataSet.data[$i].value1 + &quot;&amp;providerid=39400&quot;"
-                                    pictureaspect="H" width="60%" borderstyle="solid" bordercolor="#555555" disabled="false" borderwidth="1px" padding="0% unset unset unset" name="picture1" encodeurl="false"></wm-picture>
+                                    <wm-label caption="Future New Signature Widget" class="col-md-3 control-label" name="label19" width="100%"></wm-label>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                         </wm-layoutgrid>
                     </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn53"></wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
         </wm-page-content>
@@ -228,7 +222,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="viewNotes" show="false">
         <wm-dialog dialogtype="design-dialog" modal="true" name="dialogNotes" title="Notes" iconclass="glyphicon glyphicon-edit">
-            <wm-grid readonlygrid="true" insertrow="false" updaterow="false" deleterow="false" dataset="bind:Variables.serviceGetNotesByPSAActivityID.dataSet" name="gridNotes" showheader="false" enablesort="false" shownavigation="false" class="panel-default">
+            <wm-grid readonlygrid="true" insertrow="false" updaterow="false" deleterow="false" dataset="bind:Variables.serviceGetNotesByActivityID.dataSet" name="gridNotes" showheader="false" enablesort="false" shownavigation="false" class="panel-default">
                 <wm-grid-column binding="Notes" caption="Notes" type="string" readonly="true" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
                 <wm-grid-column binding="Email" caption="Email" type="string" readonly="true" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
             </wm-grid>
@@ -254,7 +248,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
             <wm-layoutgrid name="layoutgrid32">
                 <wm-gridrow name="gridrow57">
                     <wm-gridcolumn columnwidth="2" name="gridcolumn116_1" horizontalalign="center">
-                        <wm-label width="100%" caption="Activity ID" name="label114_2" fontweight="bold"></wm-label>
+                        <wm-label width="100%" caption="Field Activity ID" name="label114_2" fontweight="bold"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="2" name="gridcolumn125_1" horizontalalign="center">
                         <wm-label width="100%" caption="Activity Type" fontweight="bold" name="label115_1"></wm-label>
@@ -274,7 +268,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                     <wm-layoutgrid class="gridlayout" name="layoutgrid31">
                                         <wm-gridrow name="gridrow56">
                                             <wm-gridcolumn class="col-xs-6" columnwidth="2" name="gridcolumn111_1" horizontalalign="center">
-                                                <wm-label width="100%" caption="bind:Variables.serviceGetSuperRecentActivities.dataSet.PSAActivityID" name="label114_1" fontsize="11"></wm-label>
+                                                <wm-label width="100%" caption="bind:Variables.serviceGetSuperRecentActivities.dataSet.ActivityID" name="label114_1" fontsize="11"></wm-label>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn class="col-xs-6" columnwidth="2" name="gridcolumn112_1" horizontalalign="center">
                                                 <wm-label width="100%" caption="bind:Variables.serviceGetSuperRecentActivities.dataSet.ActivityType" name="label113_2" fontsize="11"></wm-label>

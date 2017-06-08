@@ -79,7 +79,7 @@ public class PipeEwoServiceImpl implements PipeEwoService {
         LOGGER.debug("Updating PipeEwo with information: {}", pipeEwo);
         this.wmGenericDao.update(pipeEwo);
 
-        Integer pipeewoId = pipeEwo.getId();
+        Integer pipeewoId = pipeEwo.getActivityId();
 
         return this.wmGenericDao.findById(pipeewoId);
     }

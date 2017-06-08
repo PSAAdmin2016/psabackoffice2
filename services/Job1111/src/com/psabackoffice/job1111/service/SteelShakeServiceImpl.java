@@ -79,7 +79,7 @@ public class SteelShakeServiceImpl implements SteelShakeService {
         LOGGER.debug("Updating SteelShake with information: {}", steelShake);
         this.wmGenericDao.update(steelShake);
 
-        Integer steelshakeId = steelShake.getId();
+        Integer steelshakeId = steelShake.getActivityId();
 
         return this.wmGenericDao.findById(steelshakeId);
     }

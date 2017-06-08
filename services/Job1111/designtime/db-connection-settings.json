@@ -120,6 +120,9 @@
     "table" : "REF_WeldSpecProcedures",
     "schema" : null
   }, {
+    "table" : "SASNotes",
+    "schema" : null
+  }, {
     "table" : "SETTINGS",
     "schema" : null
   }, {

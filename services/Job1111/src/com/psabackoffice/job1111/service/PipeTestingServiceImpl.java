@@ -79,7 +79,7 @@ public class PipeTestingServiceImpl implements PipeTestingService {
         LOGGER.debug("Updating PipeTesting with information: {}", pipeTesting);
         this.wmGenericDao.update(pipeTesting);
 
-        Integer pipetestingId = pipeTesting.getId();
+        Integer pipetestingId = pipeTesting.getActivityId();
 
         return this.wmGenericDao.findById(pipetestingId);
     }

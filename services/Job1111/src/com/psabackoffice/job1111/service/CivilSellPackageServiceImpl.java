@@ -79,7 +79,7 @@ public class CivilSellPackageServiceImpl implements CivilSellPackageService {
         LOGGER.debug("Updating CivilSellPackage with information: {}", civilSellPackage);
         this.wmGenericDao.update(civilSellPackage);
 
-        Integer civilsellpackageId = civilSellPackage.getId();
+        Integer civilsellpackageId = civilSellPackage.getActivityId();
 
         return this.wmGenericDao.findById(civilsellpackageId);
     }

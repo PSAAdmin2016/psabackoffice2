@@ -79,7 +79,7 @@ public class EquipFaServiceImpl implements EquipFaService {
         LOGGER.debug("Updating EquipFa with information: {}", equipFa);
         this.wmGenericDao.update(equipFa);
 
-        Integer equipfaId = equipFa.getId();
+        Integer equipfaId = equipFa.getActivityId();
 
         return this.wmGenericDao.findById(equipfaId);
     }

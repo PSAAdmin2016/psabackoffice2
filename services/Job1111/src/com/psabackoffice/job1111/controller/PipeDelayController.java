@@ -80,9 +80,9 @@ public class PipeDelayController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public PipeDelay editPipeDelay(@PathVariable("id") Integer id, @RequestBody PipeDelay pipeDelay) throws EntityNotFoundException {
-        LOGGER.debug("Editing PipeDelay with id: {}" , pipeDelay.getId());
+        LOGGER.debug("Editing PipeDelay with id: {}" , pipeDelay.getActivityId());
 
-        pipeDelay.setId(id);
+        pipeDelay.setActivityId(id);
         pipeDelay = pipeDelayService.update(pipeDelay);
         LOGGER.debug("PipeDelay details with id: {}" , pipeDelay);
 

@@ -79,7 +79,7 @@ public class PipeWeldServiceImpl implements PipeWeldService {
         LOGGER.debug("Updating PipeWeld with information: {}", pipeWeld);
         this.wmGenericDao.update(pipeWeld);
 
-        Integer pipeweldId = pipeWeld.getId();
+        Integer pipeweldId = pipeWeld.getActivityId();
 
         return this.wmGenericDao.findById(pipeweldId);
     }

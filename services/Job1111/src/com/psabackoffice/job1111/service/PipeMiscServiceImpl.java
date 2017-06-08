@@ -79,7 +79,7 @@ public class PipeMiscServiceImpl implements PipeMiscService {
         LOGGER.debug("Updating PipeMisc with information: {}", pipeMisc);
         this.wmGenericDao.update(pipeMisc);
 
-        Integer pipemiscId = pipeMisc.getId();
+        Integer pipemiscId = pipeMisc.getActivityId();
 
         return this.wmGenericDao.findById(pipemiscId);
     }

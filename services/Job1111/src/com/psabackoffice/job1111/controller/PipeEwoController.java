@@ -80,9 +80,9 @@ public class PipeEwoController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public PipeEwo editPipeEwo(@PathVariable("id") Integer id, @RequestBody PipeEwo pipeEwo) throws EntityNotFoundException {
-        LOGGER.debug("Editing PipeEwo with id: {}" , pipeEwo.getId());
+        LOGGER.debug("Editing PipeEwo with id: {}" , pipeEwo.getActivityId());
 
-        pipeEwo.setId(id);
+        pipeEwo.setActivityId(id);
         pipeEwo = pipeEwoService.update(pipeEwo);
         LOGGER.debug("PipeEwo details with id: {}" , pipeEwo);
 

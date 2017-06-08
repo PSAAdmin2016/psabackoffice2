@@ -80,9 +80,9 @@ public class SteelBoltOutController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public SteelBoltOut editSteelBoltOut(@PathVariable("id") Integer id, @RequestBody SteelBoltOut steelBoltOut) throws EntityNotFoundException {
-        LOGGER.debug("Editing SteelBoltOut with id: {}" , steelBoltOut.getId());
+        LOGGER.debug("Editing SteelBoltOut with id: {}" , steelBoltOut.getActivityId());
 
-        steelBoltOut.setId(id);
+        steelBoltOut.setActivityId(id);
         steelBoltOut = steelBoltOutService.update(steelBoltOut);
         LOGGER.debug("SteelBoltOut details with id: {}" , steelBoltOut);
 

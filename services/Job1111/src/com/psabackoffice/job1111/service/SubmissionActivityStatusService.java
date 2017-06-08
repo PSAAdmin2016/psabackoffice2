@@ -16,20 +16,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.psabackoffice.job1111.CivilFa;
-import com.psabackoffice.job1111.CivilMisc;
-import com.psabackoffice.job1111.CivilSellPackage;
-import com.psabackoffice.job1111.EquipFa;
-import com.psabackoffice.job1111.PipeBoltUp;
-import com.psabackoffice.job1111.PipeWeld;
-import com.psabackoffice.job1111.SteelBoltOut;
-import com.psabackoffice.job1111.SteelDemo;
-import com.psabackoffice.job1111.SteelErect;
-import com.psabackoffice.job1111.SteelImp;
-import com.psabackoffice.job1111.SteelMisc;
-import com.psabackoffice.job1111.SteelSell;
-import com.psabackoffice.job1111.SteelSellPackage;
-import com.psabackoffice.job1111.SteelShake;
+import com.psabackoffice.job1111.Sasnotes;
 import com.psabackoffice.job1111.SubmissionActivityStatus;
 
 /**
@@ -155,172 +142,16 @@ public interface SubmissionActivityStatusService {
 	Page<Map<String, Object>> getAggregatedValues(AggregationInfo aggregationInfo, Pageable pageable);
 
     /*
-     * Returns the associated civilFas for given SubmissionActivityStatus id.
+     * Returns the associated sasnoteses for given SubmissionActivityStatus id.
      *
      * @param activityId value of activityId; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated CivilFa instances.
+     * @return Paginated list of associated Sasnotes instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<CivilFa> findAssociatedCivilFas(Integer activityId, Pageable pageable);
-
-    /*
-     * Returns the associated civilMiscs for given SubmissionActivityStatus id.
-     *
-     * @param activityId value of activityId; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated CivilMisc instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<CivilMisc> findAssociatedCivilMiscs(Integer activityId, Pageable pageable);
-
-    /*
-     * Returns the associated civilSellPackages for given SubmissionActivityStatus id.
-     *
-     * @param activityId value of activityId; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated CivilSellPackage instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<CivilSellPackage> findAssociatedCivilSellPackages(Integer activityId, Pageable pageable);
-
-    /*
-     * Returns the associated equipFas for given SubmissionActivityStatus id.
-     *
-     * @param activityId value of activityId; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated EquipFa instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<EquipFa> findAssociatedEquipFas(Integer activityId, Pageable pageable);
-
-    /*
-     * Returns the associated pipeBoltUps for given SubmissionActivityStatus id.
-     *
-     * @param activityId value of activityId; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated PipeBoltUp instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<PipeBoltUp> findAssociatedPipeBoltUps(Integer activityId, Pageable pageable);
-
-    /*
-     * Returns the associated pipeWelds for given SubmissionActivityStatus id.
-     *
-     * @param activityId value of activityId; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated PipeWeld instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<PipeWeld> findAssociatedPipeWelds(Integer activityId, Pageable pageable);
-
-    /*
-     * Returns the associated steelBoltOuts for given SubmissionActivityStatus id.
-     *
-     * @param activityId value of activityId; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SteelBoltOut instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SteelBoltOut> findAssociatedSteelBoltOuts(Integer activityId, Pageable pageable);
-
-    /*
-     * Returns the associated steelDemos for given SubmissionActivityStatus id.
-     *
-     * @param activityId value of activityId; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SteelDemo instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SteelDemo> findAssociatedSteelDemos(Integer activityId, Pageable pageable);
-
-    /*
-     * Returns the associated steelErects for given SubmissionActivityStatus id.
-     *
-     * @param activityId value of activityId; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SteelErect instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SteelErect> findAssociatedSteelErects(Integer activityId, Pageable pageable);
-
-    /*
-     * Returns the associated steelImps for given SubmissionActivityStatus id.
-     *
-     * @param activityId value of activityId; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SteelImp instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SteelImp> findAssociatedSteelImps(Integer activityId, Pageable pageable);
-
-    /*
-     * Returns the associated steelMiscs for given SubmissionActivityStatus id.
-     *
-     * @param activityId value of activityId; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SteelMisc instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SteelMisc> findAssociatedSteelMiscs(Integer activityId, Pageable pageable);
-
-    /*
-     * Returns the associated steelSells for given SubmissionActivityStatus id.
-     *
-     * @param activityId value of activityId; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SteelSell instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SteelSell> findAssociatedSteelSells(Integer activityId, Pageable pageable);
-
-    /*
-     * Returns the associated steelSellPackages for given SubmissionActivityStatus id.
-     *
-     * @param activityId value of activityId; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SteelSellPackage instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SteelSellPackage> findAssociatedSteelSellPackages(Integer activityId, Pageable pageable);
-
-    /*
-     * Returns the associated steelShakes for given SubmissionActivityStatus id.
-     *
-     * @param activityId value of activityId; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SteelShake instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<SteelShake> findAssociatedSteelShakes(Integer activityId, Pageable pageable);
+    Page<Sasnotes> findAssociatedSasnoteses(Integer activityId, Pageable pageable);
 
 }
 

@@ -80,9 +80,9 @@ public class SteelSellController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public SteelSell editSteelSell(@PathVariable("id") Integer id, @RequestBody SteelSell steelSell) throws EntityNotFoundException {
-        LOGGER.debug("Editing SteelSell with id: {}" , steelSell.getId());
+        LOGGER.debug("Editing SteelSell with id: {}" , steelSell.getActivityId());
 
-        steelSell.setId(id);
+        steelSell.setActivityId(id);
         steelSell = steelSellService.update(steelSell);
         LOGGER.debug("SteelSell details with id: {}" , steelSell);
 

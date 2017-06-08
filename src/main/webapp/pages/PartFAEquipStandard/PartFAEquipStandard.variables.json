@@ -29,9 +29,9 @@
       "value" : "bind:Widgets.textQuantity.datavalue",
       "type" : "number"
     }, {
-      "target" : "RowID",
-      "value" : "bind:$parent.Variables.liveGetEquipFA.dataSet.data[$i].id",
-      "type" : "string"
+      "target" : "FieldActivityID",
+      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityID",
+      "type" : "integer"
     } ],
     "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "Job1111",

@@ -79,7 +79,7 @@ public class SteelErectServiceImpl implements SteelErectService {
         LOGGER.debug("Updating SteelErect with information: {}", steelErect);
         this.wmGenericDao.update(steelErect);
 
-        Integer steelerectId = steelErect.getId();
+        Integer steelerectId = steelErect.getActivityId();
 
         return this.wmGenericDao.findById(steelerectId);
     }

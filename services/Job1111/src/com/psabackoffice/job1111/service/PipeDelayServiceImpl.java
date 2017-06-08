@@ -79,7 +79,7 @@ public class PipeDelayServiceImpl implements PipeDelayService {
         LOGGER.debug("Updating PipeDelay with information: {}", pipeDelay);
         this.wmGenericDao.update(pipeDelay);
 
-        Integer pipedelayId = pipeDelay.getId();
+        Integer pipedelayId = pipeDelay.getActivityId();
 
         return this.wmGenericDao.findById(pipedelayId);
     }

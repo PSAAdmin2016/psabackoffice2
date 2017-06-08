@@ -79,7 +79,7 @@ public class CivilMiscServiceImpl implements CivilMiscService {
         LOGGER.debug("Updating CivilMisc with information: {}", civilMisc);
         this.wmGenericDao.update(civilMisc);
 
-        Integer civilmiscId = civilMisc.getId();
+        Integer civilmiscId = civilMisc.getActivityId();
 
         return this.wmGenericDao.findById(civilmiscId);
     }

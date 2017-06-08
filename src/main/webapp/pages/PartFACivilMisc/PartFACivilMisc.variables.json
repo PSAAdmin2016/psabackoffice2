@@ -19,7 +19,7 @@
     }, {
       "target" : "Percent",
       "value" : "bind:Widgets.selectPercentComplete.datavalue",
-      "type" : "integer"
+      "type" : "number"
     }, {
       "target" : "Rework",
       "value" : "bind:Widgets.checkboxRework.datavalue",
@@ -29,11 +29,11 @@
       "value" : "bind:Widgets.textareaNotes.datavalue",
       "type" : "string"
     }, {
-      "target" : "RowID",
-      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityRowId",
+      "target" : "FieldActivityID",
+      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityID",
       "type" : "integer"
     } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "type" : "integer",
     "service" : "Job1111",
     "operation" : "executeUpdateCivilMisc",
     "operationId" : "QueryExecutionController_executeUpdateCivilMisc",

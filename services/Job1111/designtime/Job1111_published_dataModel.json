@@ -9366,32 +9366,6 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
       "fieldName" : "activityId",
       "foreignKey" : true,
       "generatorType" : "assigned",
@@ -9403,14 +9377,14 @@
       "oldName" : "ActivityID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
       "precision" : 10,
-      "primaryKey" : false,
+      "primaryKey" : true,
       "scale" : 0,
       "sequenceSchema" : null,
       "sqlType" : "number",
-      "unique" : false
+      "unique" : true
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -9756,10 +9730,10 @@
     "name" : "CivilFA",
     "oldName" : "CivilFA",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
@@ -9767,7 +9741,7 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "ManyToOne",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "submissionActivityStatus",
@@ -9795,32 +9769,6 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
       "fieldName" : "activityId",
       "foreignKey" : true,
       "generatorType" : "assigned",
@@ -9832,14 +9780,14 @@
       "oldName" : "ActivityID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
       "precision" : 10,
-      "primaryKey" : false,
+      "primaryKey" : true,
       "scale" : 0,
       "sequenceSchema" : null,
       "sqlType" : "number",
-      "unique" : false
+      "unique" : true
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -10107,10 +10055,10 @@
     "name" : "CivilMisc",
     "oldName" : "CivilMisc",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
@@ -10118,7 +10066,7 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "ManyToOne",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "submissionActivityStatus",
@@ -10146,32 +10094,6 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
       "fieldName" : "activityId",
       "foreignKey" : true,
       "generatorType" : "assigned",
@@ -10183,14 +10105,14 @@
       "oldName" : "ActivityID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
       "precision" : 10,
-      "primaryKey" : false,
+      "primaryKey" : true,
       "scale" : 0,
       "sequenceSchema" : null,
       "sqlType" : "number",
-      "unique" : false
+      "unique" : true
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -10354,10 +10276,10 @@
     "name" : "CivilSellPackage",
     "oldName" : "CivilSellPackage",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
@@ -10365,7 +10287,7 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "ManyToOne",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "submissionActivityStatus",
@@ -12803,32 +12725,6 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
       "fieldName" : "activityId",
       "foreignKey" : true,
       "generatorType" : "assigned",
@@ -12840,14 +12736,14 @@
       "oldName" : "ActivityID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
       "precision" : 10,
-      "primaryKey" : false,
+      "primaryKey" : true,
       "scale" : 0,
       "sequenceSchema" : null,
       "sqlType" : "number",
-      "unique" : false
+      "unique" : true
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -13141,10 +13037,10 @@
     "name" : "EquipFA",
     "oldName" : "EquipFA",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
@@ -13152,7 +13048,7 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "ManyToOne",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "submissionActivityStatus",
@@ -20428,32 +20324,6 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
       "fieldName" : "activityId",
       "foreignKey" : true,
       "generatorType" : "assigned",
@@ -20465,14 +20335,14 @@
       "oldName" : "ActivityID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
       "precision" : 10,
-      "primaryKey" : false,
+      "primaryKey" : true,
       "scale" : 0,
       "sequenceSchema" : null,
       "sqlType" : "number",
-      "unique" : false
+      "unique" : true
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -20818,10 +20688,10 @@
     "name" : "PipeBoltUp",
     "oldName" : "PipeBoltUp",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
@@ -20829,7 +20699,7 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "ManyToOne",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "submissionActivityStatus",
@@ -20857,17 +20727,17 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
+      "fieldName" : "activityId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "integer",
       "length" : 0,
-      "name" : "ID",
+      "name" : "ActivityID",
       "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
+      "oldName" : "ActivityID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
       "precision" : 10,
@@ -20876,32 +20746,6 @@
       "sequenceSchema" : null,
       "sqlType" : "number",
       "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
-      "fieldName" : "activityId",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ActivityID",
-      "nullable" : false,
-      "oldName" : "ActivityID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : false
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -21117,17 +20961,34 @@
     "name" : "PipeDelay",
     "oldName" : "PipeDelay",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ ],
+    "relations" : [ {
+      "cardinality" : "OneToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "submissionActivityStatus",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "PipeDelay_ActivityID_to_SASActivityID",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "PipeDelay",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SubmissionActivityStatus",
+      "virtual" : false
+    } ],
     "schema" : null,
     "type" : "TABLE"
   }, {
@@ -21139,17 +21000,17 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
+      "fieldName" : "activityId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "integer",
       "length" : 0,
-      "name" : "ID",
+      "name" : "ActivityID",
       "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
+      "oldName" : "ActivityID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
       "precision" : 10,
@@ -21158,32 +21019,6 @@
       "sequenceSchema" : null,
       "sqlType" : "number",
       "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
-      "fieldName" : "activityId",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ActivityID",
-      "nullable" : false,
-      "oldName" : "ActivityID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : false
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -21451,17 +21286,34 @@
     "name" : "PipeDemo",
     "oldName" : "PipeDemo",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ ],
+    "relations" : [ {
+      "cardinality" : "OneToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "submissionActivityStatus",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "PipeDemo_ActivityID_to_SASActivityID",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "PipeDemo",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SubmissionActivityStatus",
+      "virtual" : false
+    } ],
     "schema" : null,
     "type" : "TABLE"
   }, {
@@ -21473,17 +21325,17 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
+      "fieldName" : "activityId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "integer",
       "length" : 0,
-      "name" : "ID",
+      "name" : "ActivityID",
       "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
+      "oldName" : "ActivityID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
       "precision" : 10,
@@ -21492,32 +21344,6 @@
       "sequenceSchema" : null,
       "sqlType" : "number",
       "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
-      "fieldName" : "activityId",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ActivityID",
-      "nullable" : false,
-      "oldName" : "ActivityID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : false
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -21811,17 +21637,34 @@
     "name" : "PipeEWO",
     "oldName" : "PipeEWO",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ ],
+    "relations" : [ {
+      "cardinality" : "OneToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "submissionActivityStatus",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "PipeEWO_ActivityID_to_SASActivityID",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "PipeEWO",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SubmissionActivityStatus",
+      "virtual" : false
+    } ],
     "schema" : null,
     "type" : "TABLE"
   }, {
@@ -21833,17 +21676,17 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
+      "fieldName" : "activityId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "integer",
       "length" : 0,
-      "name" : "ID",
+      "name" : "ActivityID",
       "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
+      "oldName" : "ActivityID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
       "precision" : 10,
@@ -21852,32 +21695,6 @@
       "sequenceSchema" : null,
       "sqlType" : "number",
       "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
-      "fieldName" : "activityId",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ActivityID",
-      "nullable" : false,
-      "oldName" : "ActivityID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : false
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -22483,17 +22300,34 @@
     "name" : "PipeErection",
     "oldName" : "PipeErection",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ ],
+    "relations" : [ {
+      "cardinality" : "OneToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "submissionActivityStatus",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "PipeErection_ActivityID_to_SASActivityID",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "PipeErection",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SubmissionActivityStatus",
+      "virtual" : false
+    } ],
     "schema" : null,
     "type" : "TABLE"
   }, {
@@ -22505,17 +22339,17 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
+      "fieldName" : "activityId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "integer",
       "length" : 0,
-      "name" : "ID",
+      "name" : "ActivityID",
       "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
+      "oldName" : "ActivityID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
       "precision" : 10,
@@ -22524,32 +22358,6 @@
       "sequenceSchema" : null,
       "sqlType" : "number",
       "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
-      "fieldName" : "activityId",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ActivityID",
-      "nullable" : false,
-      "oldName" : "ActivityID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : false
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -22817,17 +22625,34 @@
     "name" : "PipeMisc",
     "oldName" : "PipeMisc",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ ],
+    "relations" : [ {
+      "cardinality" : "OneToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "submissionActivityStatus",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "PipeMisc_ActivityID_to_SASActivityID",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "PipeMisc",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SubmissionActivityStatus",
+      "virtual" : false
+    } ],
     "schema" : null,
     "type" : "TABLE"
   }, {
@@ -22839,17 +22664,17 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
+      "fieldName" : "activityId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "integer",
       "length" : 0,
-      "name" : "ID",
+      "name" : "ActivityID",
       "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
+      "oldName" : "ActivityID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
       "precision" : 10,
@@ -22858,32 +22683,6 @@
       "sequenceSchema" : null,
       "sqlType" : "number",
       "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
-      "fieldName" : "activityId",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ActivityID",
-      "nullable" : false,
-      "oldName" : "ActivityID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : false
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -23281,17 +23080,34 @@
     "name" : "PipeSupports",
     "oldName" : "PipeSupports",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ ],
+    "relations" : [ {
+      "cardinality" : "OneToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "submissionActivityStatus",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "PipeSupports_ActivityID_to_SASActivityID",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "PipeSupports",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SubmissionActivityStatus",
+      "virtual" : false
+    } ],
     "schema" : null,
     "type" : "TABLE"
   }, {
@@ -23303,17 +23119,17 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
+      "fieldName" : "activityId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "integer",
       "length" : 0,
-      "name" : "ID",
+      "name" : "ActivityID",
       "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
+      "oldName" : "ActivityID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
       "precision" : 10,
@@ -23322,32 +23138,6 @@
       "sequenceSchema" : null,
       "sqlType" : "number",
       "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
-      "fieldName" : "activityId",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ActivityID",
-      "nullable" : false,
-      "oldName" : "ActivityID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : false
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -23537,17 +23327,34 @@
     "name" : "PipeTesting",
     "oldName" : "PipeTesting",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ ],
+    "relations" : [ {
+      "cardinality" : "OneToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "submissionActivityStatus",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "PipeTesting_ActivityID_to_SASActivityID",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "PipeTesting",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SubmissionActivityStatus",
+      "virtual" : false
+    } ],
     "schema" : null,
     "type" : "TABLE"
   }, {
@@ -26151,17 +25958,17 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
+      "fieldName" : "activityId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "integer",
       "length" : 0,
-      "name" : "ID",
+      "name" : "ActivityID",
       "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
+      "oldName" : "ActivityID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
       "precision" : 10,
@@ -26170,32 +25977,6 @@
       "sequenceSchema" : null,
       "sqlType" : "number",
       "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
-      "fieldName" : "activityId",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ActivityID",
-      "nullable" : false,
-      "oldName" : "ActivityID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : false
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -26567,48 +26348,39 @@
     "name" : "PipeTrim",
     "oldName" : "PipeTrim",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ ],
+    "relations" : [ {
+      "cardinality" : "OneToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "submissionActivityStatus",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "PipeTrim_ActivityID_to_SASActivityID",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "PipeTrim",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SubmissionActivityStatus",
+      "virtual" : false
+    } ],
     "schema" : null,
     "type" : "TABLE"
   }, {
     "catalog" : "Job1112",
     "columns" : [ {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
       "columnValue" : {
         "type" : "user-defined",
         "insertable" : true,
@@ -26626,14 +26398,14 @@
       "oldName" : "ActivityID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
       "precision" : 10,
-      "primaryKey" : false,
+      "primaryKey" : true,
       "scale" : 0,
       "sequenceSchema" : null,
       "sqlType" : "number",
-      "unique" : false
+      "unique" : true
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -27265,10 +27037,10 @@
     "name" : "PipeWeld",
     "oldName" : "PipeWeld",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
@@ -27276,7 +27048,7 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "ManyToOne",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "submissionActivityStatus",
@@ -27556,6 +27328,175 @@
         "updatable" : true,
         "defaultValue" : null
       },
+      "fieldName" : "id",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "ID",
+      "nullable" : false,
+      "oldName" : "ID",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null
+      },
+      "fieldName" : "activityId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "ActivityID",
+      "nullable" : true,
+      "oldName" : "ActivityID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null
+      },
+      "fieldName" : "userId",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "UserID",
+      "nullable" : true,
+      "oldName" : "UserID",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null
+      },
+      "fieldName" : "notes",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "Notes",
+      "nullable" : true,
+      "oldName" : "Notes",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null
+      },
+      "fieldName" : "timeStamp",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "timestamp",
+      "length" : 0,
+      "name" : "TimeStamp",
+      "nullable" : true,
+      "oldName" : "TimeStamp",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "timestamp",
+      "unique" : false
+    } ],
+    "constraints" : [ ],
+    "entityName" : "Sasnotes",
+    "fullyQualifiedName" : "com.psabackoffice.job1111.Sasnotes",
+    "name" : "SASNotes",
+    "oldName" : "SASNotes",
+    "primaryKey" : {
+      "columns" : [ "ID" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null,
+        "schemaName" : null
+      },
+      "name" : "PRIMARY",
+      "virtual" : false
+    },
+    "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "submissionActivityStatus",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "SASNotes_ActivityID_to_SASActivityID",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "SASNotes",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SubmissionActivityStatus",
+      "virtual" : false
+    } ],
+    "schema" : null,
+    "type" : "TABLE"
+  }, {
+    "catalog" : "Job1112",
+    "columns" : [ {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null
+      },
       "fieldName" : "label",
       "foreignKey" : false,
       "generatorType" : "assigned",
@@ -27656,32 +27597,6 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
       "fieldName" : "activityId",
       "foreignKey" : true,
       "generatorType" : "assigned",
@@ -27693,14 +27608,14 @@
       "oldName" : "ActivityID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
       "precision" : 10,
-      "primaryKey" : false,
+      "primaryKey" : true,
       "scale" : 0,
       "sequenceSchema" : null,
       "sqlType" : "number",
-      "unique" : false
+      "unique" : true
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -27968,10 +27883,10 @@
     "name" : "SteelBoltOut",
     "oldName" : "SteelBoltOut",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
@@ -27979,7 +27894,7 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "ManyToOne",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "submissionActivityStatus",
@@ -28007,32 +27922,6 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
       "fieldName" : "activityId",
       "foreignKey" : true,
       "generatorType" : "assigned",
@@ -28044,14 +27933,14 @@
       "oldName" : "ActivityID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
       "precision" : 10,
-      "primaryKey" : false,
+      "primaryKey" : true,
       "scale" : 0,
       "sequenceSchema" : null,
       "sqlType" : "number",
-      "unique" : false
+      "unique" : true
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -28293,10 +28182,10 @@
     "name" : "SteelDemo",
     "oldName" : "SteelDemo",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
@@ -28304,7 +28193,7 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "ManyToOne",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "submissionActivityStatus",
@@ -28332,32 +28221,6 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
       "fieldName" : "activityId",
       "foreignKey" : true,
       "generatorType" : "assigned",
@@ -28369,14 +28232,14 @@
       "oldName" : "ActivityID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
       "precision" : 10,
-      "primaryKey" : false,
+      "primaryKey" : true,
       "scale" : 0,
       "sequenceSchema" : null,
       "sqlType" : "number",
-      "unique" : false
+      "unique" : true
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -28644,10 +28507,10 @@
     "name" : "SteelErect",
     "oldName" : "SteelErect",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
@@ -28655,7 +28518,7 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "ManyToOne",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "submissionActivityStatus",
@@ -28683,32 +28546,6 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
       "fieldName" : "activityId",
       "foreignKey" : true,
       "generatorType" : "assigned",
@@ -28720,14 +28557,14 @@
       "oldName" : "ActivityID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
       "precision" : 10,
-      "primaryKey" : false,
+      "primaryKey" : true,
       "scale" : 0,
       "sequenceSchema" : null,
       "sqlType" : "number",
-      "unique" : false
+      "unique" : true
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -28995,10 +28832,10 @@
     "name" : "SteelImp",
     "oldName" : "SteelImp",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
@@ -29006,7 +28843,7 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "ManyToOne",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "submissionActivityStatus",
@@ -29034,32 +28871,6 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
       "fieldName" : "activityId",
       "foreignKey" : true,
       "generatorType" : "assigned",
@@ -29071,14 +28882,14 @@
       "oldName" : "ActivityID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
       "precision" : 10,
-      "primaryKey" : false,
+      "primaryKey" : true,
       "scale" : 0,
       "sequenceSchema" : null,
       "sqlType" : "number",
-      "unique" : false
+      "unique" : true
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -29320,10 +29131,10 @@
     "name" : "SteelMisc",
     "oldName" : "SteelMisc",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
@@ -29331,7 +29142,7 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "ManyToOne",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "submissionActivityStatus",
@@ -29359,32 +29170,6 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
       "fieldName" : "activityId",
       "foreignKey" : true,
       "generatorType" : "assigned",
@@ -29396,14 +29181,14 @@
       "oldName" : "ActivityID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
       "precision" : 10,
-      "primaryKey" : false,
+      "primaryKey" : true,
       "scale" : 0,
       "sequenceSchema" : null,
       "sqlType" : "number",
-      "unique" : false
+      "unique" : true
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -29645,10 +29430,10 @@
     "name" : "SteelSell",
     "oldName" : "SteelSell",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
@@ -29656,7 +29441,7 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "ManyToOne",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "submissionActivityStatus",
@@ -29684,32 +29469,6 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
       "fieldName" : "activityId",
       "foreignKey" : true,
       "generatorType" : "assigned",
@@ -29721,14 +29480,14 @@
       "oldName" : "ActivityID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
       "precision" : 10,
-      "primaryKey" : false,
+      "primaryKey" : true,
       "scale" : 0,
       "sequenceSchema" : null,
       "sqlType" : "number",
-      "unique" : false
+      "unique" : true
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -29892,10 +29651,10 @@
     "name" : "SteelSellPackage",
     "oldName" : "SteelSellPackage",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
@@ -29903,7 +29662,7 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "ManyToOne",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "submissionActivityStatus",
@@ -29931,32 +29690,6 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
       "fieldName" : "activityId",
       "foreignKey" : true,
       "generatorType" : "assigned",
@@ -29968,14 +29701,14 @@
       "oldName" : "ActivityID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
       "precision" : 10,
-      "primaryKey" : false,
+      "primaryKey" : true,
       "scale" : 0,
       "sequenceSchema" : null,
       "sqlType" : "number",
-      "unique" : false
+      "unique" : true
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -30217,10 +29950,10 @@
     "name" : "SteelShake",
     "oldName" : "SteelShake",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
@@ -30228,7 +29961,7 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "ManyToOne",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
       "fieldName" : "submissionActivityStatus",
@@ -33134,17 +32867,17 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
+      "fieldName" : "activityId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "integer",
       "length" : 0,
-      "name" : "ID",
+      "name" : "ActivityID",
       "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
+      "oldName" : "ActivityID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
       "precision" : 10,
@@ -33153,32 +32886,6 @@
       "sequenceSchema" : null,
       "sqlType" : "number",
       "unique" : true
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
-      "fieldName" : "activityId",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ActivityID",
-      "nullable" : false,
-      "oldName" : "ActivityID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : false
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -33446,17 +33153,34 @@
     "name" : "SteelWeld",
     "oldName" : "SteelWeld",
     "primaryKey" : {
-      "columns" : [ "ID" ],
+      "columns" : [ "ActivityID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ ],
+    "relations" : [ {
+      "cardinality" : "OneToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "submissionActivityStatus",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "SteelWeld_ActivityID_to_SASActivityID",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "SteelWeld",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SubmissionActivityStatus",
+      "virtual" : false
+    } ],
     "schema" : null,
     "type" : "TABLE"
   }, {
@@ -33730,10 +33454,10 @@
       "targetTable" : "SubsDetails",
       "virtual" : false
     }, {
-      "cardinality" : "OneToMany",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "civilFas",
+      "fieldName" : "civilFa",
       "mappings" : [ {
         "sourceColumn" : "ActivityID",
         "targetColumn" : "ActivityID"
@@ -33747,10 +33471,10 @@
       "targetTable" : "CivilFA",
       "virtual" : false
     }, {
-      "cardinality" : "OneToMany",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "civilMiscs",
+      "fieldName" : "civilMisc",
       "mappings" : [ {
         "sourceColumn" : "ActivityID",
         "targetColumn" : "ActivityID"
@@ -33764,10 +33488,10 @@
       "targetTable" : "CivilMisc",
       "virtual" : false
     }, {
-      "cardinality" : "OneToMany",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "civilSellPackages",
+      "fieldName" : "civilSellPackage",
       "mappings" : [ {
         "sourceColumn" : "ActivityID",
         "targetColumn" : "ActivityID"
@@ -33781,10 +33505,10 @@
       "targetTable" : "CivilSellPackage",
       "virtual" : false
     }, {
-      "cardinality" : "OneToMany",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "equipFas",
+      "fieldName" : "equipFa",
       "mappings" : [ {
         "sourceColumn" : "ActivityID",
         "targetColumn" : "ActivityID"
@@ -33798,10 +33522,10 @@
       "targetTable" : "EquipFA",
       "virtual" : false
     }, {
-      "cardinality" : "OneToMany",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "pipeBoltUps",
+      "fieldName" : "pipeBoltUp",
       "mappings" : [ {
         "sourceColumn" : "ActivityID",
         "targetColumn" : "ActivityID"
@@ -33815,10 +33539,146 @@
       "targetTable" : "PipeBoltUp",
       "virtual" : false
     }, {
-      "cardinality" : "OneToMany",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "pipeWelds",
+      "fieldName" : "pipeDelay",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "PipeDelay_ActivityID_to_SASActivityID",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "SubmissionActivityStatus",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "PipeDelay",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "pipeDemo",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "PipeDemo_ActivityID_to_SASActivityID",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "SubmissionActivityStatus",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "PipeDemo",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "pipeEwo",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "PipeEWO_ActivityID_to_SASActivityID",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "SubmissionActivityStatus",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "PipeEWO",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "pipeErection",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "PipeErection_ActivityID_to_SASActivityID",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "SubmissionActivityStatus",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "PipeErection",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "pipeMisc",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "PipeMisc_ActivityID_to_SASActivityID",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "SubmissionActivityStatus",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "PipeMisc",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "pipeSupports",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "PipeSupports_ActivityID_to_SASActivityID",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "SubmissionActivityStatus",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "PipeSupports",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "pipeTesting",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "PipeTesting_ActivityID_to_SASActivityID",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "SubmissionActivityStatus",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "PipeTesting",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "pipeTrim",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "PipeTrim_ActivityID_to_SASActivityID",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "SubmissionActivityStatus",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "PipeTrim",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "pipeWeld",
       "mappings" : [ {
         "sourceColumn" : "ActivityID",
         "targetColumn" : "ActivityID"
@@ -33835,7 +33695,24 @@
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "steelBoltOuts",
+      "fieldName" : "sasnoteses",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "SASNotes_ActivityID_to_SASActivityID",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "SubmissionActivityStatus",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SASNotes",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "steelBoltOut",
       "mappings" : [ {
         "sourceColumn" : "ActivityID",
         "targetColumn" : "ActivityID"
@@ -33849,10 +33726,10 @@
       "targetTable" : "SteelBoltOut",
       "virtual" : false
     }, {
-      "cardinality" : "OneToMany",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "steelDemos",
+      "fieldName" : "steelDemo",
       "mappings" : [ {
         "sourceColumn" : "ActivityID",
         "targetColumn" : "ActivityID"
@@ -33866,10 +33743,10 @@
       "targetTable" : "SteelDemo",
       "virtual" : false
     }, {
-      "cardinality" : "OneToMany",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "steelErects",
+      "fieldName" : "steelErect",
       "mappings" : [ {
         "sourceColumn" : "ActivityID",
         "targetColumn" : "ActivityID"
@@ -33883,10 +33760,10 @@
       "targetTable" : "SteelErect",
       "virtual" : false
     }, {
-      "cardinality" : "OneToMany",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "steelImps",
+      "fieldName" : "steelImp",
       "mappings" : [ {
         "sourceColumn" : "ActivityID",
         "targetColumn" : "ActivityID"
@@ -33900,10 +33777,10 @@
       "targetTable" : "SteelImp",
       "virtual" : false
     }, {
-      "cardinality" : "OneToMany",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "steelMiscs",
+      "fieldName" : "steelMisc",
       "mappings" : [ {
         "sourceColumn" : "ActivityID",
         "targetColumn" : "ActivityID"
@@ -33917,10 +33794,10 @@
       "targetTable" : "SteelMisc",
       "virtual" : false
     }, {
-      "cardinality" : "OneToMany",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "steelSells",
+      "fieldName" : "steelSell",
       "mappings" : [ {
         "sourceColumn" : "ActivityID",
         "targetColumn" : "ActivityID"
@@ -33934,10 +33811,10 @@
       "targetTable" : "SteelSell",
       "virtual" : false
     }, {
-      "cardinality" : "OneToMany",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "steelSellPackages",
+      "fieldName" : "steelSellPackage",
       "mappings" : [ {
         "sourceColumn" : "ActivityID",
         "targetColumn" : "ActivityID"
@@ -33951,10 +33828,10 @@
       "targetTable" : "SteelSellPackage",
       "virtual" : false
     }, {
-      "cardinality" : "OneToMany",
+      "cardinality" : "OneToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "steelShakes",
+      "fieldName" : "steelShake",
       "mappings" : [ {
         "sourceColumn" : "ActivityID",
         "targetColumn" : "ActivityID"
@@ -33966,6 +33843,23 @@
       "sourceTable" : "SubmissionActivityStatus",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "SteelShake",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "steelWeld",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "SteelWeld_ActivityID_to_SASActivityID",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "SubmissionActivityStatus",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SteelWeld",
       "virtual" : false
     } ],
     "schema" : null,

@@ -79,7 +79,7 @@ public class SteelWeldServiceImpl implements SteelWeldService {
         LOGGER.debug("Updating SteelWeld with information: {}", steelWeld);
         this.wmGenericDao.update(steelWeld);
 
-        Integer steelweldId = steelWeld.getId();
+        Integer steelweldId = steelWeld.getActivityId();
 
         return this.wmGenericDao.findById(steelweldId);
     }
