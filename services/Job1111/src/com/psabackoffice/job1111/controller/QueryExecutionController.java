@@ -1237,25 +1237,6 @@ public class QueryExecutionController {
         return queryService.exportGetBidActivityQuantitiesCivil(exportType, bidId, pageable);
     }
 
-    @RequestMapping(value = "/queries/GetActivitiesPendingApprovalCount", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Gets the count of activities pending approval, since the _.size method on a dataGrid maxes out at request size.")
-    public Page<GetActivitiesPendingApprovalCountResponse> executeGetActivitiesPendingApprovalCount(@RequestParam(value = "UserID", required = false) Integer userId, Pageable pageable) {
-        LOGGER.debug("Executing named query: GetActivitiesPendingApprovalCount");
-        Page<GetActivitiesPendingApprovalCountResponse> _result = queryService.executeGetActivitiesPendingApprovalCount(userId, pageable);
-        LOGGER.debug("got the result for named query: GetActivitiesPendingApprovalCount, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetActivitiesPendingApprovalCount")
-    @RequestMapping(value = "/queries/GetActivitiesPendingApprovalCount/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetActivitiesPendingApprovalCount(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "UserID", required = false) Integer userId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: GetActivitiesPendingApprovalCount");
-
-        return queryService.exportGetActivitiesPendingApprovalCount(exportType, userId, pageable);
-    }
-
     @RequestMapping(value = "/queries/GetReportDPREquip", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")

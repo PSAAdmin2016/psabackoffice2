@@ -1400,26 +1400,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<GetActivitiesPendingApprovalCountResponse> executeGetActivitiesPendingApprovalCount(Integer userId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("UserID", userId);
-
-        return queryExecutor.executeNamedQuery("GetActivitiesPendingApprovalCount", params, GetActivitiesPendingApprovalCountResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Downloadable exportGetActivitiesPendingApprovalCount(ExportType exportType, Integer userId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("UserID", userId);
-
-        return queryExecutor.exportNamedQueryData("GetActivitiesPendingApprovalCount", params, exportType, GetActivitiesPendingApprovalCountResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
     public Page<GetReportDprequipResponse> executeGetReportDPREquip(String foremanId, String superId, String managerId, Date startDate, Date endDate, Pageable pageable) {
         Map params = new HashMap(5);
 

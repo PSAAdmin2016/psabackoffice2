@@ -398,7 +398,7 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
         //Logic to update only approriate live variable based on gridApproval selected item activity type. 
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 11 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 10) {
             //Set Live Variable Data Filter.
-            $scope.Variables.liveApprovalErection.setFilter('id', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityRowId);
+            $scope.Variables.liveApprovalErection.setFilter('ActivityID', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID);
             $scope.Variables.serviceGetBidActivityMatches.invoke();
             //Set ECT and ECTType
             $scope.Variables.staticECT.dataSet.dataValue = "E";
@@ -406,14 +406,14 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
         }
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 20) {
             //Set Live Variable Data Filter.
-            //$scope.Variables.liveApprovalConnectionBasic.setFilter('id', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityRowId);
+            //$scope.Variables.liveApprovalConnectionBasic.setFilter('ActivityID', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID);
             //$scope.Variables.liveApprovalConnectionBasic.invoke();
             //Set ECT and ECTType
             //$scope.Variables.staticECT.dataSet.dataValue = "C";
         }
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 21) {
             //Set Live Variable Data Filter.
-            $scope.Variables.liveApprovalBoltUp.setFilter('id', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityRowId);
+            $scope.Variables.liveApprovalBoltUp.setFilter('ActivityID', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID);
             $scope.Variables.serviceGetBidActivityMatches.invoke();
             //Set ECT and ECTType
             $scope.Variables.staticECT.dataSet.dataValue = "C";
@@ -421,7 +421,7 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
         }
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22) {
             //Set Live Variable Data Filter.
-            $scope.Variables.liveApprovalWeld.setFilter('id', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityRowId);
+            $scope.Variables.liveApprovalWeld.setFilter('ActivityID', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID);
             $scope.Variables.serviceGetBidActivityMatches.invoke();
             //Set ECT and ECTType
             $scope.Variables.staticECT.dataSet.dataValue = "C";
@@ -429,7 +429,7 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
         }
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 23) {
             //Set Live Variable Data Filter.
-            $scope.Variables.liveApprovalWeld.setFilter('id', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityRowId);
+            $scope.Variables.liveApprovalWeld.setFilter('ActivityID', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID);
             $scope.Variables.serviceGetBidActivityMatches.invoke();
             //Set ECT and ECTType
             $scope.Variables.staticECT.dataSet.dataValue = "C";
@@ -437,14 +437,14 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
         }
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 30) {
             //Set Live Variable Data Filter.
-            //$scope.Variables.liveApprovalTrimBasic.setFilter('id', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityRowId);
+            //$scope.Variables.liveApprovalTrimBasic.setFilter('ActivityID', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID);
             //$scope.Variables.liveApprovalTrimBasic.invoke();
             //Set ECT and ECTType
             //$scope.Variables.staticECT.dataSet.dataValue = "T";
         }
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 31) {
             //Set Live Variable Data Filter.
-            $scope.Variables.liveApprovalTrim.setFilter('id', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityRowId);
+            $scope.Variables.liveApprovalTrim.setFilter('ActivityID', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID);
             $scope.Variables.serviceGetBidActivityMatches.invoke();
             //Set ECT and ECTType
             $scope.Variables.staticECT.dataSet.dataValue = "T";
@@ -452,7 +452,7 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
         }
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 32) {
             //Set Live Variable Data Filter.
-            $scope.Variables.liveApprovalSupports.setFilter('id', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityRowId);
+            $scope.Variables.liveApprovalSupports.setFilter('ActivityID', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID);
             $scope.Variables.serviceGetBidActivityMatches.invoke();
             //Set ECT and ECTType
             $scope.Variables.staticECT.dataSet.dataValue = "T";
@@ -460,7 +460,7 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
         }
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 33) {
             //Set Live Variable Data Filter.
-            $scope.Variables.liveApprovalTrim.setFilter('id', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityRowId);
+            $scope.Variables.liveApprovalTrim.setFilter('ActivityID', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID);
             $scope.Variables.serviceGetBidActivityMatches.invoke();
             //Set ECT and ECTType
             $scope.Variables.staticECT.dataSet.dataValue = "T";
@@ -468,7 +468,7 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
         }
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 34) {
             //Set Live Variable Data Filter.
-            $scope.Variables.liveApprovalTrim.setFilter('id', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityRowId);
+            $scope.Variables.liveApprovalTrim.setFilter('ActivityID', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID);
             $scope.Variables.serviceGetBidActivityMatches.invoke();
             //Set ECT and ECTType
             $scope.Variables.staticECT.dataSet.dataValue = "T";
@@ -476,7 +476,7 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
         }
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 35) {
             //Set Live Variable Data Filter.
-            $scope.Variables.liveApprovalTrim.setFilter('id', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityRowId);
+            $scope.Variables.liveApprovalTrim.setFilter('ActivityID', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID);
             $scope.Variables.serviceGetBidActivityMatches.invoke();
             //Set ECT and ECTType
             $scope.Variables.staticECT.dataSet.dataValue = "T";
@@ -484,7 +484,7 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
         }
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 39) {
             //Set Live Variable Data Filter.
-            $scope.Variables.liveApprovalTrim.setFilter('id', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityRowId);
+            $scope.Variables.liveApprovalTrim.setFilter('ActivityID', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID);
             $scope.Variables.serviceGetBidActivityMatches.invoke();
             //Set ECT and ECTType
             $scope.Variables.staticECT.dataSet.dataValue = "T";
@@ -496,7 +496,7 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
         }
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 51) {
             //Set Live Variable Data Filter.
-            $scope.Variables.liveApprovalDemo.setFilter('id', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityRowId);
+            $scope.Variables.liveApprovalDemo.setFilter('ActivityID', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID);
             $scope.Variables.serviceGetBidActivityMatches.invoke();
             //Set ECT and ECTType
             $scope.Variables.staticECT.dataSet.dataValue = "D";
@@ -504,7 +504,7 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
         }
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 52) {
             //Set Live Variable Data Filter.
-            $scope.Variables.liveApprovalDemo.setFilter('id', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityRowId);
+            $scope.Variables.liveApprovalDemo.setFilter('ActivityID', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID);
             $scope.Variables.serviceGetBidActivityMatches.invoke();
             //Set ECT and ECTType
             $scope.Variables.staticECT.dataSet.dataValue = "D";
@@ -512,7 +512,7 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
         }
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 53) {
             //Set Live Variable Data Filter.
-            $scope.Variables.liveApprovalDemo.setFilter('id', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityRowId);
+            $scope.Variables.liveApprovalDemo.setFilter('ActivityID', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID);
             $scope.Variables.serviceGetBidActivityMatches.invoke();
             //Set ECT and ECTType
             $scope.Variables.staticECT.dataSet.dataValue = "D";
@@ -520,7 +520,7 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
         }
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 59) {
             //Set Live Variable Data Filter.
-            $scope.Variables.liveApprovalDemo.setFilter('id', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityRowId);
+            $scope.Variables.liveApprovalDemo.setFilter('ActivityID', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID);
             $scope.Variables.serviceGetBidActivityMatches.invoke();
             //Set ECT and ECTType
             $scope.Variables.staticECT.dataSet.dataValue = "D";
@@ -528,7 +528,7 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
         }
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 90 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 91) {
             //Set Live Variable Data Filter.
-            $scope.Variables.liveApprovalMisc.setFilter('id', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityRowId);
+            $scope.Variables.liveApprovalMisc.setFilter('ActivityID', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID);
             $scope.Variables.serviceGetBidActivityMatches.invoke();
             //Set ECT and ECTType
             $scope.Variables.staticECT.dataSet.dataValue = "T";
@@ -536,7 +536,7 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
         }
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 93) {
             //Set Live Variable Data Filter.
-            $scope.Variables.liveApprovalEWO.setFilter('id', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityRowId);
+            $scope.Variables.liveApprovalEWO.setFilter('ActivityID', $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID);
             $scope.Variables.serviceGetBidActivityMatches.invoke();
             //Set ECT and ECTType
             $scope.Variables.staticECT.dataSet.dataValue = "Field EWO";
@@ -679,6 +679,7 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
 
 
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22) {
+
             if ($scope.Widgets.toggleFilterECT.datavalue == '1') {
                 data.ECT = 'C';
             } else {
@@ -690,6 +691,7 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
             } else {
                 data.ECTType = '%';
             }
+
         }
 
 
@@ -911,15 +913,15 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
 
 
     $scope.buttonReviewNotesClick = function($event, $isolateScope) {
-        $scope.$parent.Variables.serviceGetNotesByPSAActivityID.dataBinding.ActivityID = $scope.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID;
-        $scope.$parent.Variables.serviceGetNotesByPSAActivityID.invoke();
+        //$scope.$parent.Variables.serviceGetNotesByFieldActivityID.dataBinding.ActivityID = $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID;
+        //$scope.$parent.Variables.serviceGetNotesByFieldActivityID.invoke();
         DialogService.open('dialogNotes', $scope.$parent);
     };
 
 
     $scope.serviceLockSSActivityonResult = function(variable, data) {
         if (data[0].ReturnStatus) {
-            //console.log("Secured Lock on Activity: " + $scope.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID);
+            //console.log("Secured Lock on Activity: " + $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID);
             //Open different dialog for Testing activities
             if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 40 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43) {
                 $scope.Variables.timerAssignDelay.invoke();
@@ -937,7 +939,6 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
     };
 
 
-
 }]);
 
 
@@ -951,10 +952,10 @@ Application.$controller("dialogRejectionController", ["$scope",
             $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.BidID = '';
             $scope.$parent.$parent.Variables.serviceUpdateSSApproval.invoke(); //Updates GetActivitiesPendingApproval
 
-            $scope.$parent.$parent.Variables.serviceCreateSSNote.dataBinding.PSAActivityID = $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID;
+            $scope.$parent.$parent.Variables.serviceCreateSSNote.dataBinding.ActivityID = $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID;
             $scope.$parent.$parent.Variables.serviceCreateSSNote.dataBinding.CreatedBy = $scope.Variables.loggedInUser.dataSet.id;
             $scope.$parent.$parent.Variables.serviceCreateSSNote.dataBinding.Note = $scope.Widgets.textareaSSNoteReject.datavalue;
-            $scope.$parent.$parent.Variables.serviceCreateSSNote.invoke(); //Updates GetNotesByPSAActivityID
+            $scope.$parent.$parent.Variables.serviceCreateSSNote.invoke(); //Updates serviceGetNotesByFieldActivityID
         };
 
 
@@ -977,7 +978,7 @@ Application.$controller("dialogRejectionController", ["$scope",
 ]);
 
 
-Application.$controller("dialogPSAActivityDetailsController", ["$scope",
+Application.$controller("dialogFielActivityDetailsController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;

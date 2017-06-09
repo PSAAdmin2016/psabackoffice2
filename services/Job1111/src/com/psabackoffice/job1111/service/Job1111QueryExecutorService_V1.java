@@ -252,9 +252,6 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetBidActivityQuantitiesCivil(Pageable pageable, Integer bidId);
 
     @Deprecated
-    public Page<Object> executeGetActivitiesPendingApprovalCount(Pageable pageable, Integer userId);
-
-    @Deprecated
     public Page<Object> executeGetActivityHistorySteelBoltout(Pageable pageable, Integer rowId);
 
     @Deprecated

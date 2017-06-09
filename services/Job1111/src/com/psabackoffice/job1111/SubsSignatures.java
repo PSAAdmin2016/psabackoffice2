@@ -31,7 +31,6 @@ public class SubsSignatures implements Serializable {
 
     private Integer id;
     private String signatureData;
-    private String signatureLink;
     private List<SubsDetails> subsDetailses;
 
     @Id
@@ -52,15 +51,6 @@ public class SubsSignatures implements Serializable {
 
     public void setSignatureData(String signatureData) {
         this.signatureData = signatureData;
-    }
-
-    @Column(name = "`SignatureLink`", nullable = true, length = 255)
-    public String getSignatureLink() {
-        return this.signatureLink;
-    }
-
-    public void setSignatureLink(String signatureLink) {
-        this.signatureLink = signatureLink;
     }
 
     @JsonInclude(Include.NON_EMPTY)

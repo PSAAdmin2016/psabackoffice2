@@ -264,10 +264,6 @@ public interface Job1111QueryExecutorService {
 
     Downloadable exportGetBidActivityQuantitiesCivil(ExportType exportType, Integer bidId, Pageable pageable);
 
-    Page<GetActivitiesPendingApprovalCountResponse> executeGetActivitiesPendingApprovalCount(Integer userId, Pageable pageable);
-
-    Downloadable exportGetActivitiesPendingApprovalCount(ExportType exportType, Integer userId, Pageable pageable);
-
     Page<GetReportDprequipResponse> executeGetReportDPREquip(String foremanId, String superId, String managerId, Date startDate, Date endDate, Pageable pageable);
 
     Downloadable exportGetReportDPREquip(ExportType exportType, String foremanId, String superId, String managerId, Date startDate, Date endDate, Pageable pageable);

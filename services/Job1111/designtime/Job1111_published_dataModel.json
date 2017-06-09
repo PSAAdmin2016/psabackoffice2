@@ -34381,32 +34381,6 @@
       "sequenceSchema" : null,
       "sqlType" : "string",
       "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
-      "fieldName" : "signatureLink",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "string",
-      "length" : 255,
-      "name" : "SignatureLink",
-      "nullable" : true,
-      "oldName" : "SignatureLink",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "string",
-      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "SubsSignatures",

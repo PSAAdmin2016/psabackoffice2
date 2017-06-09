@@ -35,9 +35,6 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
     @JsonProperty("Craft")
     @ColumnAlias("Craft")
     private String craft;
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
     @JsonProperty("Spool1")
     @ColumnAlias("Spool1")
     private String spool1;
@@ -127,14 +124,6 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
 
     public void setCraft(String craft) {
         this.craft = craft;
-    }
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getSpool1() {
@@ -260,7 +249,6 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
                 Objects.equals(getActivityTypeName(), getActivitiesPendingApprovalResponse.getActivityTypeName()) &&
                 Objects.equals(getStatus(), getActivitiesPendingApprovalResponse.getStatus()) &&
                 Objects.equals(getCraft(), getActivitiesPendingApprovalResponse.getCraft()) &&
-                Objects.equals(getId(), getActivitiesPendingApprovalResponse.getId()) &&
                 Objects.equals(getSpool1(), getActivitiesPendingApprovalResponse.getSpool1()) &&
                 Objects.equals(getSpool2(), getActivitiesPendingApprovalResponse.getSpool2()) &&
                 Objects.equals(getLine1(), getActivitiesPendingApprovalResponse.getLine1()) &&
@@ -285,7 +273,6 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
                 getActivityTypeName(),
                 getStatus(),
                 getCraft(),
-                getId(),
                 getSpool1(),
                 getSpool2(),
                 getLine1(),

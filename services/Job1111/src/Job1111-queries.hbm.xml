@@ -5760,28 +5760,6 @@ GROUP BY ctd.BidID) wmTempTable
     <query-param name="BidID" type="java.lang.Integer"/>
     </sql-query>
 
-    <sql-query name="GetActivitiesPendingApprovalCount">
-        <![CDATA[
-        SELECT count(*) AS Count 
-FROM SubmissionActivityStatus sas
-
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
-        ]]>
-    <query-param name="UserID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetActivitiesPendingApprovalCount__count">
-        <![CDATA[
-        select count(*) from (SELECT count(*) AS Count 
-FROM SubmissionActivityStatus sas
-
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)) wmTempTable
-        ]]>
-    <query-param name="UserID" type="java.lang.Integer"/>
-    </sql-query>
-
     <sql-query name="GetReportDPREquip">
         <![CDATA[
         SELECT 
@@ -7338,7 +7316,7 @@ GROUP BY sas.ActivityID) wmTempTable
     <sql-query name="GetActivitiesPendingApproval">
         <![CDATA[
         SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pe.ID,pe.ErectionSpool1 AS Spool1,COALESCE(pe.ErectionSpool2, 'N/A') AS Spool2, 
+pe.ErectionSpool1 AS Spool1,COALESCE(pe.ErectionSpool2, 'N/A') AS Spool2, 
 pe.ErectionLineNumber AS Line1, pe.ErectionDrawingNumber AS Drawing1, pe.ErectionSheetNumber AS Sheet1, 
 pe.ErectionLineNumber AS Line2, pe.ErectionDrawingNumber AS Drawing2, pe.ErectionSheetNumber AS Sheet2, 
 pe.ErectionPipeSize AS Size, pe.ErectionNotes AS Notes,
@@ -7362,7 +7340,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pb.ID, pb.BoltUpSpool1, pb.BoltUpSpool2, 
+pb.BoltUpSpool1, pb.BoltUpSpool2, 
 pb.BoltUpLineNumber AS Line1, pb.BoltUpDrawingNumber AS DWG1, pb.BoltUpSheetNumber AS Sheet1,
 COALESCE(sl.LineNumber,'N/A') AS Line2, COALESCE(sl.DrawingNumber,'N/A') AS DWG2, COALESCE(sl.Sheetnumber,'N/A') AS Sheet2,
 pb.BoltUpSize , pb.BoltUpNotes, 1 AS BoltUpInstalled
@@ -7386,7 +7364,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pw.ID, pw.WeldSpool1, pw.WeldSpool2, 
+pw.WeldSpool1, pw.WeldSpool2, 
 pw.WeldLineNumber, pw.WeldDrawingNumber, pw.WeldSheetNumber, 
 COALESCE(sl.LineNumber,'N/A') AS Line2, COALESCE(sl.DrawingNumber,'N/A') AS DWG2, COALESCE(sl.Sheetnumber,'N/A') AS Sheet2,
 pw.WeldSize , pw.WeldNotes, COALESCE((pw.WeldPercentCompleted * .01),0) AS WeldInstalled
@@ -7410,7 +7388,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pt.ID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
+'N/A' AS Spool1, 'N/A' AS Spool2, 
 pt.TrimLineNumber, pt.TrimDrawingNumber, pt.TrimSheetNumber, 
 pt.TrimLineNumber AS Line2, pt.TrimDrawingNumber AS DWG2, pt.TrimSheetNumber AS Sheet2,
 pt.TrimSize , pt.TrimNotes, pt.TrimQuantity
@@ -7430,7 +7408,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-psu.ID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
+'N/A' AS Spool1, 'N/A' AS Spool2, 
 psu.SupportLineNumber, psu.SupportDrawingNumber, psu.SupportSheetNumber, 
 psu.SupportLineNumber AS Line2, psu.SupportDrawingNumber AS DWG2, psu.SupportSheetNumber AS Sheet2,
 'N/A' AS SupportSize , psu.SupportNotes, COALESCE((psu.SupportPercentCompleted * .01),0) AS SupportInstalled
@@ -7451,7 +7429,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pte.ID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
+'N/A' AS Spool1, 'N/A' AS Spool2, 
 pte.TestingTestPackageNumber, 'N/A' AS DrawingNumber, pte.TestingRework AS SheetNumber, 
 pte.TestingTestPackageNumber AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2,
 'N/A' AS Size , pte.TestingNotes, 1 AS TestingQuantity, 
@@ -7472,7 +7450,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pd.ID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
+'N/A' AS Spool1, 'N/A' AS Spool2, 
 pd.DemoLineNumber, pd.DemoDrawingNumber, pd.DemoSheetNumber, 
 pd.DemoLineNumber AS Line2, pd.DemoDrawingNumber AS DWG2, pd.DemoSheetNumber AS Sheet2,
 'N/A' AS DemoSize , pd.DemoNotes, COALESCE(pd.DemoQuantity,0) AS DemoQuantity,
@@ -7493,7 +7471,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pm.ID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
+'N/A' AS Spool1, 'N/A' AS Spool2, 
 pm.MiscLineNumber, pm.MiscDrawingNumber, pm.MiscSheetNumber, 
 pm.MiscLineNumber AS Line2, pm.MiscDrawingNumber AS DWG2, pm.MiscSheetNumber AS Sheet2,
 'N/A' AS MiscSize , pm.MiscNotes, pm.MiscQuantity AS MiscInstalled,
@@ -7514,7 +7492,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pEWO.ID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
+'N/A' AS Spool1, 'N/A' AS Spool2, 
 pEWO.EWOLineNumber, pEWO.EWODrawingNumber, pEWO.EWOSheetNumber, 
 pEWO.EWOLineNumber AS Line2, pEWO.EWODrawingNumber AS DWG2, pEWO.EWOSheetNumber AS Sheet2,
 'N/A' AS EWOSize , pEWO.EWONotes, 'N/A' AS TestingEarned,
@@ -7535,7 +7513,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stls.ID, stls.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
+stls.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 stls.FANotes, stls.FAShakeQuantity, stls.FAArea, 1.00 AS PercentClaim, stls.FARework AS Rework
@@ -7556,7 +7534,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stle.ID, stle.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
+stle.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 stle.FANotes, stle.FAErectQuantity, stle.FAArea, stle.FAErectPercent, stle.FARework AS Rework
@@ -7577,7 +7555,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stlb.ID, stlb.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
+stlb.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 stlb.FANotes, stlb.FABoltOutQuantity, stlb.FAArea, stlb.FABoltOutPercent , stlb.FARework AS Rework
@@ -7599,7 +7577,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stli.ID, stli.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
+stli.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 stli.FANotes, stli.FAImpQuantity, stli.FAArea, stli.FAImpPercent , stli.FARework AS Rework
@@ -7621,7 +7599,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stlw.ID, stlw.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
+stlw.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 stlw.FANotes, stlw.FAWeldQuantity, stlw.FAArea, stlw.FAWeldPercent , stlw.FARework AS Rework
@@ -7643,7 +7621,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stlsell.ID, stlsell.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
+stlsell.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 stlsell.FANotes, stlsell.FASellQuantity, stlsell.FAArea, 1.00 AS PercentClaim , stlsell.FARework AS Rework
@@ -7665,7 +7643,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stld.ID, rst.SteelName AS Spool1, 'N/A' AS Spool2, 
+rst.SteelName AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, DemoSize AS Size , 
 stld.DemoNotes, stld.DemoQuantity, stld.DemoArea, 1.00 AS PercentClaim, 0 AS Rework
@@ -7689,7 +7667,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stlsp.ID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
+'N/A' AS Spool1, 'N/A' AS Spool2, 
 stlsp.SellTestPackageNumber AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 stlsp.SellTestPackageNumber AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 stlsp.SellNotes, 1, 'N/A', 1.00 AS PercentClaim, 0 AS Rework
@@ -7711,7 +7689,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stlm.ID, stlm.MiscPieceNumber AS Spool1, 'N/A' AS Spool2, 
+stlm.MiscPieceNumber AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 stlm.MiscNotes, stlm.MiscQuantity, stlm.MiscArea, 1.00 AS PercentClaim, stlm.MiscRework AS Rework
@@ -7733,7 +7711,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'CIVIL' AS Craft, 
-cfa.ID, cfa.FAFoundation AS Spool1, cfa.FABidID AS Spool2, 
+cfa.FAFoundation AS Spool1, cfa.FABidID AS Spool2, 
 cfa.FADrawingNumber AS LineNumber, cfa.FADetailDrawingNumber AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 cfa.FANotes, IF(cfa.ActivityType = 70, (cfa.FAPercentComplete * ctd.TakeOffQuantity), cfa.FAQuantity) AS Quantity, 'N/A' AS Area, cfa.FAPercentComplete AS PercentClaim, cfa.FARework AS Rework
@@ -7758,7 +7736,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'CIVIL' AS Craft, 
-csp.ID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
+'N/A' AS Spool1, 'N/A' AS Spool2, 
 csp.SellTestPackageNumber AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 csp.SellTestPackageNumber AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 csp.SellNotes, 'N/A' AS Quantity, 'N/A' AS Area, 'N/A' PercentClaim, 0 AS Rework
@@ -7780,7 +7758,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'CIVIL' AS Craft, 
-cm.ID, cm.MiscFoundation AS Spool1, 'N/A' AS Spool2, 
+cm.MiscFoundation AS Spool1, 'N/A' AS Spool2, 
 cm.MiscDrawingNumber AS LineNumber, cm.MiscDetailDrawingNumber AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 cm.MiscNotes, 0 AS Quantity, 'N/A' AS Area, cm.MiscPercentComplete AS PercentClaim, cm.MiscRework AS Rework
@@ -7802,7 +7780,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'EQUIP' AS Craft,
-efa.ID, efa.FATagNumber AS Spool1, efa.FABidID AS Spool2, 
+efa.FATagNumber AS Spool1, efa.FABidID AS Spool2, 
 efa.FAActivitySelect AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 efa.FANotes, efa.FAQuantity AS Quantity, 'N/A' AS Area, efa.FAPercentComplete AS PercentClaim, efa.FARework AS Rework
@@ -7823,7 +7801,7 @@ AND (sas.LockField IS NULL OR sas.LockField = :UserID)
     <sql-query name="GetActivitiesPendingApproval__count">
         <![CDATA[
         select count(*) from (SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pe.ID,pe.ErectionSpool1 AS Spool1,COALESCE(pe.ErectionSpool2, 'N/A') AS Spool2, 
+pe.ErectionSpool1 AS Spool1,COALESCE(pe.ErectionSpool2, 'N/A') AS Spool2, 
 pe.ErectionLineNumber AS Line1, pe.ErectionDrawingNumber AS Drawing1, pe.ErectionSheetNumber AS Sheet1, 
 pe.ErectionLineNumber AS Line2, pe.ErectionDrawingNumber AS Drawing2, pe.ErectionSheetNumber AS Sheet2, 
 pe.ErectionPipeSize AS Size, pe.ErectionNotes AS Notes,
@@ -7847,7 +7825,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pb.ID, pb.BoltUpSpool1, pb.BoltUpSpool2, 
+pb.BoltUpSpool1, pb.BoltUpSpool2, 
 pb.BoltUpLineNumber AS Line1, pb.BoltUpDrawingNumber AS DWG1, pb.BoltUpSheetNumber AS Sheet1,
 COALESCE(sl.LineNumber,'N/A') AS Line2, COALESCE(sl.DrawingNumber,'N/A') AS DWG2, COALESCE(sl.Sheetnumber,'N/A') AS Sheet2,
 pb.BoltUpSize , pb.BoltUpNotes, 1 AS BoltUpInstalled
@@ -7871,7 +7849,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pw.ID, pw.WeldSpool1, pw.WeldSpool2, 
+pw.WeldSpool1, pw.WeldSpool2, 
 pw.WeldLineNumber, pw.WeldDrawingNumber, pw.WeldSheetNumber, 
 COALESCE(sl.LineNumber,'N/A') AS Line2, COALESCE(sl.DrawingNumber,'N/A') AS DWG2, COALESCE(sl.Sheetnumber,'N/A') AS Sheet2,
 pw.WeldSize , pw.WeldNotes, COALESCE((pw.WeldPercentCompleted * .01),0) AS WeldInstalled
@@ -7895,7 +7873,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pt.ID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
+'N/A' AS Spool1, 'N/A' AS Spool2, 
 pt.TrimLineNumber, pt.TrimDrawingNumber, pt.TrimSheetNumber, 
 pt.TrimLineNumber AS Line2, pt.TrimDrawingNumber AS DWG2, pt.TrimSheetNumber AS Sheet2,
 pt.TrimSize , pt.TrimNotes, pt.TrimQuantity
@@ -7915,7 +7893,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-psu.ID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
+'N/A' AS Spool1, 'N/A' AS Spool2, 
 psu.SupportLineNumber, psu.SupportDrawingNumber, psu.SupportSheetNumber, 
 psu.SupportLineNumber AS Line2, psu.SupportDrawingNumber AS DWG2, psu.SupportSheetNumber AS Sheet2,
 'N/A' AS SupportSize , psu.SupportNotes, COALESCE((psu.SupportPercentCompleted * .01),0) AS SupportInstalled
@@ -7936,7 +7914,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pte.ID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
+'N/A' AS Spool1, 'N/A' AS Spool2, 
 pte.TestingTestPackageNumber, 'N/A' AS DrawingNumber, pte.TestingRework AS SheetNumber, 
 pte.TestingTestPackageNumber AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2,
 'N/A' AS Size , pte.TestingNotes, 1 AS TestingQuantity, 
@@ -7957,7 +7935,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pd.ID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
+'N/A' AS Spool1, 'N/A' AS Spool2, 
 pd.DemoLineNumber, pd.DemoDrawingNumber, pd.DemoSheetNumber, 
 pd.DemoLineNumber AS Line2, pd.DemoDrawingNumber AS DWG2, pd.DemoSheetNumber AS Sheet2,
 'N/A' AS DemoSize , pd.DemoNotes, COALESCE(pd.DemoQuantity,0) AS DemoQuantity,
@@ -7978,7 +7956,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pm.ID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
+'N/A' AS Spool1, 'N/A' AS Spool2, 
 pm.MiscLineNumber, pm.MiscDrawingNumber, pm.MiscSheetNumber, 
 pm.MiscLineNumber AS Line2, pm.MiscDrawingNumber AS DWG2, pm.MiscSheetNumber AS Sheet2,
 'N/A' AS MiscSize , pm.MiscNotes, pm.MiscQuantity AS MiscInstalled,
@@ -7999,7 +7977,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pEWO.ID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
+'N/A' AS Spool1, 'N/A' AS Spool2, 
 pEWO.EWOLineNumber, pEWO.EWODrawingNumber, pEWO.EWOSheetNumber, 
 pEWO.EWOLineNumber AS Line2, pEWO.EWODrawingNumber AS DWG2, pEWO.EWOSheetNumber AS Sheet2,
 'N/A' AS EWOSize , pEWO.EWONotes, 'N/A' AS TestingEarned,
@@ -8020,7 +7998,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stls.ID, stls.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
+stls.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 stls.FANotes, stls.FAShakeQuantity, stls.FAArea, 1.00 AS PercentClaim, stls.FARework AS Rework
@@ -8041,7 +8019,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stle.ID, stle.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
+stle.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 stle.FANotes, stle.FAErectQuantity, stle.FAArea, stle.FAErectPercent, stle.FARework AS Rework
@@ -8062,7 +8040,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stlb.ID, stlb.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
+stlb.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 stlb.FANotes, stlb.FABoltOutQuantity, stlb.FAArea, stlb.FABoltOutPercent , stlb.FARework AS Rework
@@ -8084,7 +8062,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stli.ID, stli.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
+stli.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 stli.FANotes, stli.FAImpQuantity, stli.FAArea, stli.FAImpPercent , stli.FARework AS Rework
@@ -8106,7 +8084,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stlw.ID, stlw.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
+stlw.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 stlw.FANotes, stlw.FAWeldQuantity, stlw.FAArea, stlw.FAWeldPercent , stlw.FARework AS Rework
@@ -8128,7 +8106,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stlsell.ID, stlsell.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
+stlsell.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 stlsell.FANotes, stlsell.FASellQuantity, stlsell.FAArea, 1.00 AS PercentClaim , stlsell.FARework AS Rework
@@ -8150,7 +8128,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stld.ID, rst.SteelName AS Spool1, 'N/A' AS Spool2, 
+rst.SteelName AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, DemoSize AS Size , 
 stld.DemoNotes, stld.DemoQuantity, stld.DemoArea, 1.00 AS PercentClaim, 0 AS Rework
@@ -8174,7 +8152,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stlsp.ID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
+'N/A' AS Spool1, 'N/A' AS Spool2, 
 stlsp.SellTestPackageNumber AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 stlsp.SellTestPackageNumber AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 stlsp.SellNotes, 1, 'N/A', 1.00 AS PercentClaim, 0 AS Rework
@@ -8196,7 +8174,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stlm.ID, stlm.MiscPieceNumber AS Spool1, 'N/A' AS Spool2, 
+stlm.MiscPieceNumber AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 stlm.MiscNotes, stlm.MiscQuantity, stlm.MiscArea, 1.00 AS PercentClaim, stlm.MiscRework AS Rework
@@ -8218,7 +8196,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'CIVIL' AS Craft, 
-cfa.ID, cfa.FAFoundation AS Spool1, cfa.FABidID AS Spool2, 
+cfa.FAFoundation AS Spool1, cfa.FABidID AS Spool2, 
 cfa.FADrawingNumber AS LineNumber, cfa.FADetailDrawingNumber AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 cfa.FANotes, IF(cfa.ActivityType = 70, (cfa.FAPercentComplete * ctd.TakeOffQuantity), cfa.FAQuantity) AS Quantity, 'N/A' AS Area, cfa.FAPercentComplete AS PercentClaim, cfa.FARework AS Rework
@@ -8243,7 +8221,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'CIVIL' AS Craft, 
-csp.ID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
+'N/A' AS Spool1, 'N/A' AS Spool2, 
 csp.SellTestPackageNumber AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 csp.SellTestPackageNumber AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 csp.SellNotes, 'N/A' AS Quantity, 'N/A' AS Area, 'N/A' PercentClaim, 0 AS Rework
@@ -8265,7 +8243,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'CIVIL' AS Craft, 
-cm.ID, cm.MiscFoundation AS Spool1, 'N/A' AS Spool2, 
+cm.MiscFoundation AS Spool1, 'N/A' AS Spool2, 
 cm.MiscDrawingNumber AS LineNumber, cm.MiscDetailDrawingNumber AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 cm.MiscNotes, 0 AS Quantity, 'N/A' AS Area, cm.MiscPercentComplete AS PercentClaim, cm.MiscRework AS Rework
@@ -8287,7 +8265,7 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'EQUIP' AS Craft,
-efa.ID, efa.FATagNumber AS Spool1, efa.FABidID AS Spool2, 
+efa.FATagNumber AS Spool1, efa.FABidID AS Spool2, 
 efa.FAActivitySelect AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 efa.FANotes, efa.FAQuantity AS Quantity, 'N/A' AS Area, efa.FAPercentComplete AS PercentClaim, efa.FARework AS Rework
