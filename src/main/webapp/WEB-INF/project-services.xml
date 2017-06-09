@@ -12,6 +12,7 @@
     <import resource="classpath:PSA.spring.xml"/>
     <import resource="classpath:SHA256Encryption.spring.xml"/>
     <import resource="classpath:Safety.spring.xml"/>
+    <import resource="classpath:WeatherHistory.spring.xml"/>
     <import resource="classpath:appenateCreateUsers.spring.xml"/>
     <import resource="classpath:appenateDeleteUser.spring.xml"/>
     <import resource="classpath:appenateGetAllUsers.spring.xml"/>

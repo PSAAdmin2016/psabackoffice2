@@ -8,10 +8,6 @@ package com.psabackoffice.job1111.controller;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.hibernate.TypeMismatchException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,16 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
-import com.wavemaker.runtime.file.model.DownloadResponse;
 import com.wavemaker.runtime.file.model.Downloadable;
-import com.wavemaker.runtime.util.WMMultipartUtils;
-import com.wavemaker.runtime.util.WMRuntimeUtils;
 import com.wavemaker.tools.api.core.annotations.WMAccessVisibility;
 import com.wavemaker.tools.api.core.models.AccessSpecifier;
 import com.wordnik.swagger.annotations.Api;
@@ -72,15 +64,6 @@ public class SubsSignaturesController {
 	    return subsSignatures;
 	}
 
-	@ApiOperation(value = "Creates a new SubsSignatures instance.This API should be used when the SubsSignatures instance has fields that requires multipart data.")
-	@RequestMapping(method = RequestMethod.POST, consumes = {"multipart/form-data"})
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SubsSignatures createSubsSignatures(MultipartHttpServletRequest multipartHttpServletRequest) {
-    	SubsSignatures subsSignatures = WMMultipartUtils.toObject(multipartHttpServletRequest, SubsSignatures.class, "Job1111"); 
-        LOGGER.debug("Creating a new SubsSignatures with information: {}" , subsSignatures);
-        return subsSignaturesService.create(subsSignatures);
-    }
-
 
     @ApiOperation(value = "Returns the SubsSignatures instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -94,21 +77,6 @@ public class SubsSignaturesController {
         return foundSubsSignatures;
     }
 
-    @ApiOperation(value = "Retrieves content for the given BLOB field in SubsSignatures instance" )
-    @RequestMapping(value = "/{id}/content/{fieldName}", method = RequestMethod.GET, produces="application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public DownloadResponse getSubsSignaturesBLOBContent(@PathVariable("id") Integer id, @PathVariable("fieldName") String fieldName, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestParam(value="download", defaultValue = "false") boolean download) {
-
-        LOGGER.debug("Retrieves content for the given BLOB field {} in SubsSignatures instance" , fieldName);
-
-        if(!WMRuntimeUtils.isLob(SubsSignatures.class, fieldName)) {
-            throw new TypeMismatchException("Given field " + fieldName + " is not a valid BLOB type");
-        }
-        SubsSignatures subsSignatures = subsSignaturesService.getById(id);
-
-        return WMMultipartUtils.buildDownloadResponseForBlob(subsSignatures, fieldName, httpServletRequest, download);
-    }
-
     @ApiOperation(value = "Updates the SubsSignatures instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -120,20 +88,6 @@ public class SubsSignaturesController {
         LOGGER.debug("SubsSignatures details with id: {}" , subsSignatures);
 
         return subsSignatures;
-    }
-
-    @ApiOperation(value = "Updates the SubsSignatures instance associated with the given id.This API should be used when SubsSignatures instance fields that require multipart data.") 
-    @RequestMapping(value = "/{id:.+}", method = RequestMethod.POST, consumes = {"multipart/form-data"})
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SubsSignatures editSubsSignatures(@PathVariable("id") Integer id, MultipartHttpServletRequest multipartHttpServletRequest) throws EntityNotFoundException {
-        SubsSignatures newSubsSignatures = WMMultipartUtils.toObject(multipartHttpServletRequest, SubsSignatures.class, "Job1111");
-        newSubsSignatures.setId(id);
-
-        SubsSignatures oldSubsSignatures = subsSignaturesService.getById(id);
-        WMMultipartUtils.updateLobsContent(oldSubsSignatures, newSubsSignatures);
-        LOGGER.debug("Updating SubsSignatures with information: {}" , newSubsSignatures);
-
-        return subsSignaturesService.update(newSubsSignatures);
     }
 
     @ApiOperation(value = "Deletes the SubsSignatures instance associated with the given id.")

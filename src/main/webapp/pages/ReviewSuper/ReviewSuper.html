@@ -40,16 +40,15 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="10" name="gridcolumn4">
-                        <wm-grid shownavigation="false" gridfirstrowselect="true" dataset="bind:Variables.serviceGetFieldActivities.dataSet" on-select="gridSuperReviewActivitiesSelect($event, $rowData)" class="panel-default" height="250px" name="gridSuperReviewActivities"
-                        filtermode="multicolumn" navigation="None" spacing="condensed" on-datarender="gridSuperReviewActivitiesDatarender($scope, $data)">
+                        <wm-grid shownavigation="false" gridfirstrowselect="true" dataset="bind:Variables.serviceGetFieldActivities.dataSet" on-select="gridSuperReviewActivitiesSelect($event, $rowData)" class="panel-default" height="250px" name="gridSuperReviewActivities" filtermode="multicolumn"
+                        navigation="None" spacing="condensed" on-datarender="gridSuperReviewActivitiesDatarender($scope, $data)">
                             <wm-grid-column binding="ActivityID" caption="Field Activity ID" width="10%" readonly="true" show="true" filterwidget="number" filterplaceholder="Search Activity ID..."></wm-grid-column>
                             <wm-grid-column binding="Status" caption="Status" type="string" width="15%" readonly="true" col-ng-class="{'yellow':row.Status == 'Progress Returned', 'orange':row.Status == 'Supervisor Modified' || row.Status == 'Progress Returned Mod', 'blue':row.Status == 'Returned To List'}"
                             edit-widget-type="text" show="true" filterwidget="select"></wm-grid-column>
                             <wm-grid-column binding="Craft" caption="Craft" type="string" width="15%" readonly="true" edit-widget-type="text" show="true" filterwidget="select"></wm-grid-column>
                             <wm-grid-column binding="ActivityTypeName" caption="Activity Type" type="string" width="15%" readonly="true" edit-widget-type="text" show="true" filterwidget="select"></wm-grid-column>
                             <wm-grid-column binding="NameFull" caption="Foreman Name" type="string" width="25%" readonly="true" edit-widget-type="text" show="true" filterwidget="select"></wm-grid-column>
-                            <wm-grid-column binding="ReceivedTime" caption="Received Time" type="string" width="19%" textalignment="center" readonly="true" datepattern="MM-dd-yy hh:mm a" formatpattern="toDate" edit-widget-type="text"
-                            searchable="false" show="true"></wm-grid-column>
+                            <wm-grid-column binding="ReceivedTime" caption="Received Time" type="string" width="19%" textalignment="center" readonly="true" datepattern="MM-dd-yy hh:mm a" formatpattern="toDate" edit-widget-type="text" searchable="false" show="true"></wm-grid-column>
                         </wm-grid>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="2" name="gridcolumn44">
@@ -62,8 +61,8 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                             </wm-gridrow>
                             <wm-gridrow name="gridrow20">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn47">
-                                    <wm-button class="btn-raised" caption="Research" type="button" margin="unset unset 5% 2%" backgroundcolor="#40E0D0" hint="Jump to Classic Tracker, Filtered to This Dwg, Sheet" on-click="buttonResearchClick($event, $scope)"
-                                    accessroles="Everyone" name="buttonResearch" width="50%" iconclass="fa fa-search" disabled="bind:Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 93"></wm-button>
+                                    <wm-button class="btn-raised" caption="Research" type="button" margin="unset unset 5% 2%" backgroundcolor="#40E0D0" hint="Jump to Classic Tracker, Filtered to This Dwg, Sheet" on-click="buttonResearchClick($event, $scope)" accessroles="Everyone" name="buttonResearch"
+                                    width="50%" iconclass="fa fa-search" disabled="bind:Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 93"></wm-button>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                             <wm-gridrow name="gridrow21">
@@ -85,16 +84,15 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                     backgroundcolor="#0B9642" iconclass="glyphicon glyphicon-thumbs-up" shortcutkey="a" name="btnAccept"></wm-button>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="4" name="gridcolumn15">
-                                    <wm-button class="btn-default" caption="Modify" type="button" hint="Modify this activity." readonlygrid="true" on-click="btnModifyClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == false" backgroundcolor="#ff6500"
-                                    iconclass="glyphicon glyphicon-edit" shortcutkey="m" name="btnModify"></wm-button>
-                                    <wm-button class="btn-default" caption="Cancel" type="button" hint="Cancel." on-click="btnCancelClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == true" backgroundcolor="#a07d7d"
-                                    iconclass="glyphicon glyphicon-remove" name="btnCancel"></wm-button>
+                                    <wm-button class="btn-default" caption="Modify" type="button" hint="Modify this activity." readonlygrid="true" on-click="btnModifyClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == false" backgroundcolor="#ff6500" iconclass="glyphicon glyphicon-edit"
+                                    shortcutkey="m" name="btnModify"></wm-button>
+                                    <wm-button class="btn-default" caption="Cancel" type="button" hint="Cancel." on-click="btnCancelClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == true" backgroundcolor="#a07d7d" iconclass="glyphicon glyphicon-remove" name="btnCancel"></wm-button>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="4" name="gridcolumn16">
-                                    <wm-button class="btn-default" caption="Reject" type="button" hint="Reject this activity and remove it from the list." on-click="btnRejectClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == false"
-                                    backgroundcolor="#dc0000" iconclass="glyphicon glyphicon-thumbs-down" shortcutkey="r" name="btnReject"></wm-button>
-                                    <wm-button class="btn-default" caption="Save" type="button" hint="Save your changes." readonlygrid="true" show="bind:Variables.staticEditMode.dataSet.dataValue == true" backgroundcolor="#0B9642" on-click="btnSaveClick($event, $scope)"
-                                    iconclass="glyphicon glyphicon-ok" name="btnSave"></wm-button>
+                                    <wm-button class="btn-default" caption="Reject" type="button" hint="Reject this activity and remove it from the list." on-click="btnRejectClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == false" backgroundcolor="#dc0000"
+                                    iconclass="glyphicon glyphicon-thumbs-down" shortcutkey="r" name="btnReject"></wm-button>
+                                    <wm-button class="btn-default" caption="Save" type="button" hint="Save your changes." readonlygrid="true" show="bind:Variables.staticEditMode.dataSet.dataValue == true" backgroundcolor="#0B9642" on-click="btnSaveClick($event, $scope)" iconclass="glyphicon glyphicon-ok"
+                                    name="btnSave"></wm-button>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                         </wm-layoutgrid>
@@ -165,46 +163,46 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                     </wm-composite>
                                 </wm-gridcolumn>
                             </wm-gridrow>
+                            <wm-gridrow name="gridrow23_1">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn49_2" padding="2% unset unset unset">
+                                    <wm-composite captionposition="top" margin="unset unset 1px unset" name="composite11" padding="unset unset unset 2%">
+                                        <wm-label class="col-md-3 control-label" caption="Name" width="11%" name="label13" fontweight="bold" textdecoration="underline"></wm-label>
+                                        <wm-label caption="bind:Variables.liveGetUser.firstRecord.firstName + ' ' + Variables.liveGetUser.firstRecord.lastName" class="col-md-3" name="labelName" fontsize="17" height="12px"></wm-label>
+                                    </wm-composite>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                            <wm-gridrow name="gridrow24">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn50" padding="1% unset unset unset">
+                                    <wm-composite captionposition="top" margin="unset unset 1px unset" name="composite12" padding="unset unset unset 2%">
+                                        <wm-label class="col-md-3 control-label" caption="Email" width="11%" name="label14" fontweight="bold" textdecoration="underline"></wm-label>
+                                        <wm-label caption="bind:Variables.liveGetUser.firstRecord.email" class="col-md-3" fontsize="17" height="12px" name="labelEmail"></wm-label>
+                                    </wm-composite>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                            <wm-gridrow name="gridrow25">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn51_1" padding="1% unset unset 2%">
+                                    <wm-label caption="Signature:" textdecoration="underline" class="col-md-3 control-label" name="label15"></wm-label>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                            <wm-gridrow name="gridrow26">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn52" padding="unset unset unset 2%">
+                                    <wm-container name="containerSignatureBox" width="352px" height="102px" backgroundcolor="#f6f6f6" bordercolor="#000000" borderstyle="solid" borderwidth="1px">
+                                        <canvas id="signature-pad" width="350px" height="100px" readonly="true"></canvas>
+                                    </wm-container>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
                         </wm-layoutgrid>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow9" padding="2% unset unset unset">
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn23">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn23" padding="1% unset unset unset"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn25" padding="1% unset unset unset">
                         <wm-layoutgrid name="layoutgrid11">
                             <wm-gridrow name="gridrow22">
-                                <wm-gridcolumn columnwidth="12" name="gridcolumn49_1">
-                                    <wm-composite captionposition="top" margin="unset unset 1px unset" name="composite11">
-                                        <wm-label class="col-md-3 control-label" caption="Name" width="11%" name="label13"></wm-label>
-                                        <wm-container class="col-md-9" width="90%" name="container11">
-                                            <wm-text datavalue="bind:Variables.liveGetUser.firstRecord.firstName + ' ' + Variables.liveGetUser.firstRecord.lastName
-" width="80%" readonly="true" disabled="false" name="text4" placeholder=""></wm-text>
-                                        </wm-container>
-                                    </wm-composite>
-                                </wm-gridcolumn>
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn49_1"></wm-gridcolumn>
                             </wm-gridrow>
                             <wm-gridrow name="gridrow23">
-                                <wm-gridcolumn columnwidth="12" name="gridcolumn51">
-                                    <wm-composite captionposition="top" margin="unset unset 1px unset" name="composite12">
-                                        <wm-label class="col-md-3 control-label" caption="Email" width="11%" name="label14"></wm-label>
-                                        <wm-container class="col-md-9" width="90%" name="container12">
-                                            <wm-text datavalue="bind:Variables.liveGetUser.firstRecord.email" width="80%" type="email" readonly="true" readonlygrid="true" name="text5" placeholder=""></wm-text>
-                                        </wm-container>
-                                    </wm-composite>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                        </wm-layoutgrid>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn25">
-                        <wm-layoutgrid padding="unset unset unset 4%" name="layoutgrid7">
-                            <wm-gridrow padding="unset unset 0% unset" name="gridrow16">
-                                <wm-gridcolumn columnwidth="4" padding="unset unset 0% unset" name="gridcolumn35">
-                                    <wm-label caption="Signature:" textdecoration="underline" class="col-md-3 control-label" name="label15"></wm-label>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                            <wm-gridrow name="gridrow17">
-                                <wm-gridcolumn columnwidth="12" padding="0% unset unset unset" name="gridcolumn36">
-                                    <wm-label caption="Future New Signature Widget" class="col-md-3 control-label" name="label19" width="100%"></wm-label>
-                                </wm-gridcolumn>
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn51"></wm-gridcolumn>
                             </wm-gridrow>
                         </wm-layoutgrid>
                     </wm-gridcolumn>

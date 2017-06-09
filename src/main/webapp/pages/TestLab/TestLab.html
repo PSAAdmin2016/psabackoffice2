@@ -6,16 +6,37 @@
             <wm-layoutgrid name="layoutgrid1">
                 <wm-gridrow name="gridrow1">
                     <wm-gridcolumn columnwidth="1" name="gridcolumn1">
-                        <wm-button class="btn-default" caption="Button" type="button" margin="unset 0.5em" name="button3" iconclass="wi wi-strong-wind" iconwidth="3em" iconheight="3em"></wm-button>
-                        <i class="wi wi-day-sunny"></i>
+                        <wm-button class="btn-default" caption="Button" type="button" margin="unset 0.5em" name="button3" iconclass="wi wi-strong-wind" iconwidth="3em" iconheight="3em"></wm-button><i class="wi wi-day-sunny"></i>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="11" name="gridcolumn2"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn17"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn18"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn2">
+                        <wm-form errormessage="" captionposition="top" title="Pull Weather" enctype="application/x-www-form-urlencoded" method="get" captionalign="left" name="formPullWeather" dataset="bind:Variables.servicePullWeather.dataSet">
+                            <wm-layoutgrid columns="3" name="layoutgrid3">
+                                <wm-gridrow name="gridrow9">
+                                    <wm-gridcolumn name="gridcolumn19">
+                                        <wm-form-field name="State" key="State" displayname="State" show="true" type="string" widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn name="gridcolumn2" columnwidth="4">
+                                        <wm-form-field name="City" key="City" displayname="City" show="true" type="string" widget="text"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn name="gridcolumn3" columnwidth="4">
+                                        <wm-form-field name="Date" key="Date" displayname="Date" show="true" type="date" widget="date"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                            <wm-buttongroup horizontalalign="right" class="form-action col-md-12" name="buttongroup2">
+                                <wm-button caption="Reset" type="reset" class="btn-secondary" name="button5"></wm-button>
+                                <wm-button caption="Pull" type="submit" class="btn-primary" name="button7"></wm-button>
+                            </wm-buttongroup>
+                        </wm-form>
+                    </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="1" name="gridcolumn3"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="7" name="gridcolumn8">
-                        <wm-form errormessage="bind:Variables.serviceSendEmailSMTP.dataSet.value" captionposition="top" title="Email" enctype="application/x-www-form-urlencoded" method="get" dataset="bind:Variables.serviceSendEmailSMTP.dataSet" captionalign="left" name="formEmail"
-                        postmessage="Email Sent.">
+                        <wm-form errormessage="bind:Variables.serviceSendEmailSMTP.dataSet.value" captionposition="top" title="Email" enctype="application/x-www-form-urlencoded" method="get" dataset="bind:Variables.serviceSendEmailSMTP.dataSet" captionalign="left"
+                        name="formEmail" postmessage="Email Sent.">
                             <wm-layoutgrid columns="2" name="layoutgrid2">
                                 <wm-gridrow name="gridrow5">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn9">

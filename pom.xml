@@ -97,6 +97,13 @@
             </resource>
             <resource>
                 <filtering>true</filtering>
+                <directory>services/WeatherHistory/src</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
                 <directory>services/appenateCreateUsers/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
@@ -223,6 +230,7 @@
                                 <source>services/PSA/src</source>
                                 <source>services/SHA256Encryption/src</source>
                                 <source>services/Safety/src</source>
+                                <source>services/WeatherHistory/src</source>
                                 <source>services/appenateCreateUsers/src</source>
                                 <source>services/appenateDeleteUser/src</source>
                                 <source>services/appenateGetAllUsers/src</source>

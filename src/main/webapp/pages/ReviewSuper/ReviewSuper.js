@@ -8,6 +8,14 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
         //$scope.Variables..listRecords();
         //$scope.Variables..listRecords();
         //$scope.Variables..listRecords();
+
+        //Initialize Signiture pad canvas
+        var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
+            backgroundColor: 'rgb(255, 255, 255)',
+            penColor: 'rgb(0, 0, 0)'
+        });
+        $scope.signaturePad = signaturePad;
+        $scope.signaturePad.off();
     };
 
 
@@ -202,6 +210,12 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
             $scope.Variables.liveGetCivilMisc.listRecords();
             $scope.Widgets.containerFADetails.content = 'PartFACivilMisc';
         }
+    };
+
+
+    $scope.liveGetSubsDetailsonSuccess = function(variable, data) { //SubsDetails Called by Update data on input change even in SubsDetails variable
+        $scope.signaturePad.fromDataURL(data[0].subsSignatures.signatureData);
+
     };
 
 
@@ -401,6 +415,7 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
             $scope.Variables.navigationToClassicEquip.invoke();
         }
     };
+
 
 }]);
 
