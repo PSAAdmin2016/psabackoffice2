@@ -62,26 +62,28 @@
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn162_2">
                 <wm-label caption="Line #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label222_2"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Line1" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool1' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0" name="labelLineNumberSpool1"
-                hint="This is the selected activity." color="#000000"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Line2" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool2' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0" name="labelLineNumberSpool2"
-                color="#000000"></wm-label>
-                <wm-text name="textLineNumberSearch" width="95%" datavalue="bind:$parent.Widgets.gridApprovalReview.selecteditem.Line1" placeholder="Enter Line Number" backgroundcolor="#96c6bd" color="#000000" type="text" updateon="default" show="bind:Widgets.toggleManualSearch.datavalue == 1"
-                margin="unset unset unset 0px" textalign="left"></wm-text>
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Line1" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool1' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0"
+                name="labelLineNumberSpool1" hint="This is the selected activity." color="#000000"></wm-label>
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Line2" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool2' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0"
+                name="labelLineNumberSpool2" color="#000000"></wm-label>
+                <wm-text name="textLineNumberSearch" width="95%" datavalue="bind:$parent.Widgets.gridApprovalReview.selecteditem.Line1" placeholder="Enter Line Number" backgroundcolor="#96c6bd" color="#000000" type="text" updateon="default"
+                show="bind:Widgets.toggleManualSearch.datavalue == 1" margin="unset unset unset 0px" textalign="left"></wm-text>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="2" name="gridcolumn163">
                 <wm-label caption="Drawing #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label223_2" hint="This is the selected activity."></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Drawing1" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool1' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0" name="labelDrawingSpool1" hint="This is the selected activity."
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Drawing1" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool1' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0" name="labelDrawingSpool1"
+                hint="This is the selected activity." color="#000000"></wm-label>
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Drawing2" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool2' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0" name="labelDrawingSpool2"
                 color="#000000"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Drawing2" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool2' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0" name="labelDrawingSpool2" color="#000000"></wm-label>
                 <wm-text width="95%" datavalue="bind:$parent.Widgets.gridApprovalReview.selecteditem.Drawing1" placeholder="Enter Drawing Number" backgroundcolor="#96c6bd" color="#000000" type="text" updateon="default" show="bind:Widgets.toggleManualSearch.datavalue == 1"
                 margin="unset unset unset 0px" textalign="left" name="textDrawingNumberSearch"></wm-text>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn164">
                 <wm-label caption="Sheet #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label224_1" hint="This is the selected activity."></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Sheet1" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool1' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0" name="label232" hint="This is the selected activity."
-                color="#000000"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Sheet2" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool2' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0" name="label238_1" color="#000000"></wm-label>
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Sheet1" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool1' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0"
+                name="label232" hint="This is the selected activity." color="#000000"></wm-label>
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Sheet2" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool2' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0"
+                name="label238_1" color="#000000"></wm-label>
                 <wm-text width="95%" datavalue="bind:$parent.Widgets.gridApprovalReview.selecteditem.Sheet1" placeholder="Enter Sheet Number" backgroundcolor="#96c6bd" color="#000000" type="text" updateon="default" show="bind:Widgets.toggleManualSearch.datavalue == 1"
                 margin="unset unset unset 0px" textalign="left" name="textSheetNumberSearch"></wm-text>
             </wm-gridcolumn>
@@ -105,13 +107,14 @@
                 <wm-layoutgrid name="layoutgrid37">
                     <wm-gridrow name="gridrow98" padding="unset 0px">
                         <wm-gridcolumn columnwidth="3" name="gridcolumn243_1" padding="unset 0px">
-                            <wm-label width="100%" caption="Notes" show="bind:$parent.Variables.serviceGetNotesByFieldActivityID.dataSet.totalElements > 0" name="label237_2" fontweight="bold" textdecoration="underline" padding="unset 0px" margin="unset 0px" hint="Notes added during the Supervisor &amp; Project Services Review Process"></wm-label>
-                            <wm-button class="btn-default" caption="View" type="button" show="bind:$parent.Variables.serviceGetNotesByFieldActivityID.dataSet.totalElements > 0" backgroundcolor="#e7dd51" marginunit="%" on-click="buttonReviewNotesClick($event, $scope)" name="buttonReviewNotes"
-                            iconclass="glyphicon glyphicon-list-alt" hint="Review notes from the Superintendent." width="95%" margin="unset unset 2% unset" animation="slideInRight"></wm-button>
+                            <wm-label width="100%" caption="Notes" show="bind:$parent.Variables.serviceGetNotesByFieldActivityID.dataSet.totalElements > 0" name="label237_2" fontweight="bold" textdecoration="underline" padding="unset 0px" margin="unset 0px"
+                            hint="Notes added during the Supervisor &amp; Project Services Review Process"></wm-label>
+                            <wm-button class="btn-default" caption="View" type="button" show="bind:$parent.Variables.serviceGetNotesByFieldActivityID.dataSet.totalElements > 0" backgroundcolor="#e7dd51" marginunit="%" on-click="buttonReviewNotesClick($event, $scope)"
+                            name="buttonReviewNotes" iconclass="glyphicon glyphicon-list-alt" hint="Review notes from the Superintendent." width="95%" margin="unset unset 2% unset" animation="slideInRight"></wm-button>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn244">
-                            <wm-button class="btn-raised" caption="Research" type="button" margin="22% unset unset unset" backgroundcolor="#40E0D0" hint="Jump to Classic Tracker, Filtered to This Dwg, Sheet, ECT, &amp; ECT SubType" accessroles="Everyone" name="Research" width="95%"
-                            on-click="ResearchClick($event, $scope)"></wm-button>
+                            <wm-button class="btn-raised" caption="Research" type="button" margin="22% unset unset unset" backgroundcolor="#40E0D0" hint="Jump to Classic Tracker, Filtered to This Dwg, Sheet, ECT, &amp; ECT SubType" accessroles="Everyone"
+                            name="Research" width="95%" on-click="ResearchClick($event, $scope)"></wm-button>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn247_1">
                             <wm-button class="btn-default" caption="Details" type="button" name="buttonDetail1" backgroundcolor="#5fb4ff" opacity="1" width="95%" iconclass="glyphicon glyphicon-asterisk" on-click="buttonDetail1Click($event, $scope);Widgets.dialogFielActivityDetails.open()"
@@ -155,8 +158,8 @@
         </wm-gridrow>
         <wm-gridrow name="gridrow11">
             <wm-gridcolumn columnwidth="12" name="gridcolumn42">
-                <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" dataset="bind:Variables.serviceGetBidActivityMatches.dataSet" name="livelistBidActivities" itemsperrow="1" readonlygrid="true" selectionlimit="1" selectfirstitem="true" enablereorder="true"
-                margin="unset 0%" padding="unset 0%">
+                <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" dataset="bind:Variables.serviceGetBidActivityMatches.dataSet" name="livelistBidActivities" itemsperrow="1" readonlygrid="true" selectionlimit="1" selectfirstitem="true"
+                enablereorder="true" margin="unset 0%" padding="unset 0%">
                     <wm-listtemplate layout="blank" name="listtemplate2">
                         <wm-container class="blank" data-template-ctr="true" name="container98_1" margin="unset 0%" padding="unset 0%">
                             <wm-layoutgrid class="gridlayout" name="layoutgrid33" margin="unset 0%" padding="unset 0px"></wm-layoutgrid>
@@ -204,8 +207,8 @@ Variables.serviceGetBidActivityMatches.dataSet[$i].PipingActivityType == Variabl
 
 
 Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" iconclass="glyphicon glyphicon-ok-sign" disabled="false" name="buttonAssign" width="50%" padding="unset 1%"></wm-button>
-                                    <wm-button class="btn-default" caption="Details" type="button" name="buttonDetail2" iconclass="glyphicon glyphicon-asterisk" width="50%" backgroundcolor="#5fb4ff" borderstyle="outset" opacity="0.8" on-click="Widgets.dialogBidActivityDetails.open()" margin="unset 0% unset unset"
-                                    padding="unset 1%" hint="View the tracker details for this line item."></wm-button>
+                                    <wm-button class="btn-default" caption="Details" type="button" name="buttonDetail2" iconclass="glyphicon glyphicon-asterisk" width="50%" backgroundcolor="#5fb4ff" borderstyle="outset" opacity="0.8" on-click="Widgets.dialogBidActivityDetails.open()"
+                                    margin="unset 0% unset unset" padding="unset 1%" hint="View the tracker details for this line item."></wm-button>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                         </wm-container>
@@ -237,13 +240,13 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn205_2">
                 <wm-label caption="Test Package" fontweight="bold" textdecoration="underline" borderstyle="none" name="label232_1"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Line1" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool1' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0" hint="This is the selected activity."
-                color="#000000" name="label233_3"></wm-label>
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Line1" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool1' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0"
+                hint="This is the selected activity." color="#000000" name="label233_3"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn232_1">
                 <wm-label caption="Testing Activity" fontweight="bold" textdecoration="underline" borderstyle="none" name="label259_3"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityTypeName" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool1' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0" hint="This is the selected activity."
-                color="#000000" name="label260_2"></wm-label>
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityTypeName" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool1' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0"
+                hint="This is the selected activity." color="#000000" name="label260_2"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="2" name="gridcolumn215_1" padding="unset unset unset 0px">
                 <wm-label caption="Notes" fontweight="bold" textdecoration="underline" borderstyle="none" name="label237_3"></wm-label>
@@ -379,8 +382,8 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                             <wm-composite captionposition="top" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 23" margin="0px unset" name="composite92_1">
                                 <wm-label class="col-md-3" caption="Cuts Completed" hint="The amount installed by this activity" fontweight="bold" name="label220_3"></wm-label>
                             </wm-composite>
-                            <wm-text name="textInstalled" hint="The amount installed by this activity" datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.Quantity" type="number" updateon="default" backgroundcolor="#b1efe4" readonly="true" width="80%" disabled="false"
-                            placeholder="Enter Quantity" scopedatavalue="textInstalled" margin="unset unset 0px unset" color="#000000"></wm-text>
+                            <wm-text name="textInstalled" hint="The amount installed by this activity" datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.Quantity" type="number" updateon="default" backgroundcolor="#b1efe4" readonly="true"
+                            width="80%" disabled="false" placeholder="Enter Quantity" scopedatavalue="textInstalled" margin="unset unset 0px unset" color="#000000"></wm-text>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="9" name="gridcolumn122_2" padding="0% unset">
                             <wm-container name="container120" borderstyle="solid" borderwidth="5px 5px 0px 5px" padding="3% unset unset 4%" margin="0% unset 0% 1%" height="90px" bordercolor="#c1c1c1">
@@ -416,17 +419,21 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                                                     <wm-label name="labelTrimRemaining" caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityTrimInstalled.dataSet[$i].Total | toNumber" hint="Remaining quantity BEFORE pending activity is added"></wm-label>
                                                 </wm-container>
                                                 <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 32" name="container186">
-                                                    <wm-label name="labelSupportsRemaining" caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantitySupportsInstalled.dataSet[$i].Total | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"></wm-label>
+                                                    <wm-label name="labelSupportsRemaining" caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantitySupportsInstalled.dataSet[$i].Total | toNumber: '2'"
+                                                    hint="Remaining quantity BEFORE current activity is added"></wm-label>
                                                 </wm-container>
                                                 <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 51 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 52 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 53 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 59"
                                                 name="container87">
-                                                    <wm-label caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityDemoRem.dataSet[$i].Total | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added" name="labelDemoRemaining"></wm-label>
+                                                    <wm-label caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityDemoRem.dataSet[$i].Total | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"
+                                                    name="labelDemoRemaining"></wm-label>
                                                 </wm-container>
                                                 <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 23" name="container101_1">
-                                                    <wm-label caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityCutPrepInstalled.dataSet[$i].Total | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added" name="labelCutPrepRemaining"></wm-label>
+                                                    <wm-label caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityCutPrepInstalled.dataSet[$i].Total | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"
+                                                    name="labelCutPrepRemaining"></wm-label>
                                                 </wm-container>
                                                 <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 91" name="container104_1">
-                                                    <wm-label caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityMiscInstalled.dataSet[$i].Total | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added" name="labelMiscRemaining"></wm-label>
+                                                    <wm-label caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityMiscInstalled.dataSet[$i].Total | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"
+                                                    name="labelMiscRemaining"></wm-label>
                                                 </wm-container>
                                             </wm-composite>
                                         </wm-gridcolumn>
@@ -441,8 +448,8 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                                 <wm-label class="col-md-3 control-label" name="label236_1" caption="Hour Value" fontweight="bold"></wm-label>
                             </wm-composite>
                             <wm-container class="col-md-9" name="containerErectionHrsEarned" show="true">
-                                <wm-text hint="The hours to be earned by this activity" datavalue="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity * textInstalled | toNumber: '2'" type="number"
-                                updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" name="textHrsEarned" color="#000000"></wm-text>
+                                <wm-text hint="The hours to be earned by this activity" datavalue="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity * textInstalled | toNumber: '2'"
+                                type="number" updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" name="textHrsEarned" color="#000000"></wm-text>
                             </wm-container>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="9" name="gridcolumn125_1" padding="0% unset 1% unset">
@@ -460,7 +467,8 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn226_3">
                                             <wm-composite name="composite184_1" captionposition="top">
                                                 <wm-label class="col-md-3 control-label" name="label237_1" caption="Remaining Hours" hint="Remaining hours BEFORE current activity is added" fontweight="bold"></wm-label>
-                                                <wm-container class="col-md-9" name="container176_1" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 10 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 11" height="20px">
+                                                <wm-container class="col-md-9" name="container176_1" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 10 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 11"
+                                                height="20px">
                                                     <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity) * (Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityLFInstalled.dataSet[$i].Total) | toNumber: '2'"
                                                     show="true" hint="Remaining hours BEFORE current activity is added" name="labelErectionHoursRemaining"></wm-label>
                                                 </wm-container>
@@ -548,12 +556,13 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
             <wm-dialogactions name="dialogactions1">
                 <wm-button class="btn-default" caption="Reject" type="button" show="true" backgroundcolor="#dc0000" iconclass="glyphicon glyphicon-thumbs-down" shortcutkey="r" on-click="Widgets.dialogRejection.open()" name="buttonRejectQuantity" hint="Return to Superintendent for further review."></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="Widgets.dialogAssignQuantities.close();Variables.serviceUnLockSSActivity.invoke();buttonDialogAssignCancelClick($event, $scope)" name="buttonDialogAssignCancel" tabindex="1"></wm-button>
-                <wm-button class="btn-primary" caption="Update" name="buttonQuantitiesUpdate" type="button" on-click="buttonQuantitiesUpdateClick($event, $scope);Widgets.dialogAssignQuantities.close();Variables.serviceUnLockSSActivity.invoke()" hint="Commit this entry to the tracker."></wm-button>
+                <wm-button class="btn-primary" caption="Update" name="buttonQuantitiesUpdate" type="button" on-click="buttonQuantitiesUpdateClick($event, $scope);Widgets.dialogAssignQuantities.close();Variables.serviceUnLockSSActivity.invoke()"
+                hint="Commit this entry to the tracker."></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewAssignTestingQuantities" show="false">
-        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogAssignTestingQuantities" tabindex="1" closable="true" animation="zoomInUp" width="30%" on-close="Variables.serviceUnLockSSActivity.invoke()" title="bind:'Update Quantities, Test Package: ' + $parent.Widgets.gridApprovalReview.selecteditem.Line1"
+        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogAssignTestingQuantities" tabindex="1" closable="true" animation="zoomInUp" width="30%" on-close="Variables.serviceUnLockSSActivity.invoke()" title="bind:'Update Quantities, Test Package'"
         iconclass="glyphicon glyphicon-edit" on-opened="dialogAssignTestingQuantitiesOpened($event, $scope)">
             <wm-form class="app-dialog-form" name="formQuantities" show="true">
                 <wm-layoutgrid name="layoutgrid34">
@@ -572,8 +581,9 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                             <wm-composite name="composite109_1" captionposition="top" show="true" margin="0px unset">
                                 <wm-label class="col-md-3" caption="Bid Items claimed" hint="The amount installed by this current Activity" fontweight="bold" name="label311"></wm-label>
                             </wm-composite>
-                            <wm-text name="textInstalled" hint="The amount installed by this current Activity" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ItemsTotal" type="number" updateon="default" backgroundcolor="#b1efe4" readonly="bind:Widgets.gridApprovalReview.selecteditem.ActivityType != 22 || Widgets.gridApprovalReview.selecteditem.ActivityType == 32"
-                            width="80%" disabled="false" placeholder="Enter Quantity" scopedatavalue="textInstalled" margin="unset unset 0px unset" color="#000000"></wm-text>
+                            <wm-text name="textInstalled" hint="The amount installed by this current Activity" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ItemsTotal" type="number" updateon="default" backgroundcolor="#b1efe4"
+                            readonly="bind:Widgets.gridApprovalReview.selecteditem.ActivityType != 22 || Widgets.gridApprovalReview.selecteditem.ActivityType == 32" width="80%" disabled="false" placeholder="Enter Quantity" scopedatavalue="textInstalled"
+                            margin="unset unset 0px unset" color="#000000"></wm-text>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn122_2" padding="2% unset 1% 5%"></wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn123_2" padding="2% unset 1% unset">
@@ -587,10 +597,12 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                                     name="text126"></wm-text>
                                 </wm-container>
                                 <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42" name="container141">
-                                    <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ItemsTotal - Variables.serviceGetQuantitiesTestPackage.dataSet[$i].HydroInstalled" hint="Remaining quantity BEFORE current activity is added" name="label318"></wm-label>
+                                    <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ItemsTotal - Variables.serviceGetQuantitiesTestPackage.dataSet[$i].HydroInstalled" hint="Remaining quantity BEFORE current activity is added"
+                                    name="label318"></wm-label>
                                 </wm-container>
                                 <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43" name="container142">
-                                    <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ItemsTotal - Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ClientTurnoverInstalled" hint="Remaining quantity BEFORE current activity is added" name="label319"></wm-label>
+                                    <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ItemsTotal - Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ClientTurnoverInstalled" hint="Remaining quantity BEFORE current activity is added"
+                                    name="label319"></wm-label>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
@@ -601,18 +613,18 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                                 <wm-label class="col-md-3 control-label" caption="Hours Earned" fontweight="bold" name="label308"></wm-label>
                             </wm-composite>
                             <wm-container class="col-md-9" name="containerErectionHrsEarned" show="true">
-                                <wm-text hint="The amount installed by this current Activity" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ReadyForTestingHours.toFixed(2)" type="number" updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false"
-                                placeholder="Enter Quantity" name="textReadyForTestHrsEarned" color="#000000" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41"></wm-text>
-                                <wm-text hint="The amount installed by this current Activity" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].HydroHours.toFixed(2)" type="number" updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity"
-                                color="#000000" name="textHydroHrsEarned" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42"></wm-text>
-                                <wm-text hint="The amount installed by this current Activity" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ClientTurnoverHours.toFixed(2)" type="number" updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false"
-                                placeholder="Enter Quantity" color="#000000" name="textClientTurnoverHrsEarned" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43"></wm-text>
+                                <wm-text hint="The amount installed by this current Activity" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ReadyForTestingHours.toFixed(2)" type="number" updateon="default" backgroundcolor="#b1efe4"
+                                readonly="true" disabled="false" placeholder="Enter Quantity" name="textReadyForTestHrsEarned" color="#000000" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41"></wm-text>
+                                <wm-text hint="The amount installed by this current Activity" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].HydroHours.toFixed(2)" type="number" updateon="default" backgroundcolor="#b1efe4"
+                                readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textHydroHrsEarned" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42"></wm-text>
+                                <wm-text hint="The amount installed by this current Activity" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ClientTurnoverHours.toFixed(2)" type="number" updateon="default" backgroundcolor="#b1efe4"
+                                readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textClientTurnoverHrsEarned" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43"></wm-text>
                             </wm-container>
                             <wm-composite captionposition="top" margin="unset unset 0px unset" show="true" name="composite113">
                                 <wm-label class="col-md-3 control-label" caption="Loose Hours Earned" fontweight="bold" name="label326" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41"></wm-label>
                                 <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41" name="container147">
-                                    <wm-text hint="Number of hours that will be earned by taking all items in this test package to 100%" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].LooseHours.toFixed(2)" type="number" updateon="default" backgroundcolor="#b1efe4"
-                                    readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="text69"></wm-text>
+                                    <wm-text hint="Number of hours that will be earned by taking all items in this test package to 100%" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].LooseHours.toFixed(2)" type="number" updateon="default"
+                                    backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="text69"></wm-text>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
@@ -625,7 +637,8 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                                     name="labelRFTHoursRemaining"></wm-label>
                                 </wm-container>
                                 <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42" name="container143" height="20px">
-                                    <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].HydroHours - Variables.serviceGetQuantitiesTestPackage.dataSet[$i].EarnedHydroHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelHydroHoursRemaining"></wm-label>
+                                    <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].HydroHours - Variables.serviceGetQuantitiesTestPackage.dataSet[$i].EarnedHydroHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added"
+                                    name="labelHydroHoursRemaining"></wm-label>
                                 </wm-container>
                                 <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43" name="container144" height="20px">
                                     <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ClientTurnoverHours - Variables.serviceGetQuantitiesTestPackage.dataSet[$i].EarnedClientTurnoverHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added"
@@ -640,11 +653,12 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                         <wm-gridcolumn columnwidth="4" name="gridcolumn202_1">
                             <wm-composite name="composite186_1" captionposition="top" horizontalalign="left">
                                 <wm-container class="col-md-9" show="true" name="container121_1">
-                                    <wm-label class="col-md-3 control-label" caption="Percent Complete" textalign="left" hint="Percent of test package complete BEFORE current activity is added" fontweight="bold" width="100%" margin="unset unset 0px unset" name="label284_1"></wm-label>
+                                    <wm-label class="col-md-3 control-label" caption="Percent Complete" textalign="left" hint="Percent of test package complete BEFORE current activity is added" fontweight="bold" width="100%" margin="unset unset 0px unset"
+                                    name="label284_1"></wm-label>
                                 </wm-container>
                                 <wm-container class="col-md-9" name="container178_1" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41">
-                                    <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].EarnedReadyForTestingHours / Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ReadyForTestingHours * 100 | toNumber: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added"
-                                    name="labelRFTPercentComplete"></wm-label>
+                                    <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].EarnedReadyForTestingHours / Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ReadyForTestingHours * 100 | toNumber: '2' | suffix: '%'"
+                                    hint="Percent complete BEFORE current activity is added" name="labelRFTPercentComplete"></wm-label>
                                 </wm-container>
                                 <wm-container class="col-md-9" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42" name="container145">
                                     <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].EarnedHydroHours / Variables.serviceGetQuantitiesTestPackage.dataSet[$i].HydroHours * 100 | toNumber: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added"
@@ -662,7 +676,8 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
             <wm-dialogactions name="dialogactions1">
                 <wm-button class="btn-default" caption="Reject" type="button" show="true" backgroundcolor="#dc0000" iconclass="glyphicon glyphicon-thumbs-down" shortcutkey="r" on-click="Widgets.dialogRejection.open()" name="buttonRejectQuantity" hint="Return to Superintendent for further review."></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog();Variables.serviceUnLockSSActivity.invoke();buttonDialogAssignTestCancelClick($event, $scope)" name="buttonDialogAssignTestCancel" tabindex="1"></wm-button>
-                <wm-button class="btn-primary" caption="Update" name="buttonQuantitiesUpdate2" type="button" on-click="buttonQuantitiesUpdate2Click($event, $scope);Widgets.dialogAssignTestingQuantities.close();Variables.serviceUnLockSSActivity.invoke()" hint="Commit this entry to the tracker."></wm-button>
+                <wm-button class="btn-primary" caption="Update" name="buttonQuantitiesUpdate2" type="button" on-click="buttonQuantitiesUpdate2Click($event, $scope);Widgets.dialogAssignTestingQuantities.close();Variables.serviceUnLockSSActivity.invoke()"
+                hint="Commit this entry to the tracker."></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
@@ -727,8 +742,8 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                                 <wm-text width="30%" type="number" disabled="true" readonlygrid="true" name="text77_1" datavalue="bind:Variables.liveApprovalBoltUp.dataSet.data[$i].boltUpSize"></wm-text>
                             </wm-container>
                         </wm-composite>
-                        <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalBoltUp.dataSet.data[$i].boltUpRework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)" padding="unset unset unset 0px"
-                        show="true" name="checkbox6_1"></wm-checkbox>
+                        <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalBoltUp.dataSet.data[$i].boltUpRework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)"
+                        padding="unset unset unset 0px" show="true" name="checkbox6_1"></wm-checkbox>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn231_2">
                         <wm-composite captionposition="top" name="composite121_1">
@@ -784,7 +799,8 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                             </wm-gridrow>
                             <wm-gridrow paddingunit="%" name="gridrow69_1">
                                 <wm-gridcolumn columnwidth="7" name="gridcolumn178_1">
-                                    <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool3 != '' &amp;&amp; Variables.liveApprovalErection.dataSet.data[$i].erectionSpool3 != NULL" name="composite130">
+                                    <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool3 != '' &amp;&amp; Variables.liveApprovalErection.dataSet.data[$i].erectionSpool3 != NULL"
+                                    name="composite130">
                                         <wm-label class="col-md-3 control-label" caption="Spool 3" name="label177"></wm-label>
                                         <wm-container class="col-md-9" name="container125">
                                             <wm-text datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool3" disabled="true" readonlygrid="true" name="text86"></wm-text>
@@ -802,7 +818,8 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                             </wm-gridrow>
                             <wm-gridrow paddingunit="%" name="gridrow70_1">
                                 <wm-gridcolumn columnwidth="7" name="gridcolumn180_1">
-                                    <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool4 != '' &amp;&amp; Variables.liveApprovalErection.dataSet.data[$i].erectionSpool4 != NULL" name="composite132">
+                                    <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool4 != '' &amp;&amp; Variables.liveApprovalErection.dataSet.data[$i].erectionSpool4 != NULL"
+                                    name="composite132">
                                         <wm-label class="col-md-3 control-label" caption="Spool 4" name="label179"></wm-label>
                                         <wm-container class="col-md-9" name="container127">
                                             <wm-text datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool4" disabled="true" name="text88"></wm-text>
@@ -820,7 +837,8 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                             </wm-gridrow>
                             <wm-gridrow paddingunit="%" name="gridrow71">
                                 <wm-gridcolumn columnwidth="7" name="gridcolumn182_1">
-                                    <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool5 != '' &amp;&amp; Variables.liveApprovalErection.dataSet.data[$i].erectionSpool5 != NULL" name="composite134">
+                                    <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool5 != '' &amp;&amp; Variables.liveApprovalErection.dataSet.data[$i].erectionSpool5 != NULL"
+                                    name="composite134">
                                         <wm-label class="col-md-3 control-label" caption="Spool 5" name="label181"></wm-label>
                                         <wm-container class="col-md-9" name="container129">
                                             <wm-text datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool5" disabled="true" name="text90"></wm-text>
@@ -838,7 +856,8 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                             </wm-gridrow>
                             <wm-gridrow paddingunit="%" name="gridrow72">
                                 <wm-gridcolumn columnwidth="7" name="gridcolumn184_1">
-                                    <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool6 != '' &amp;&amp; Variables.liveApprovalErection.dataSet.data[$i].erectionSpool6 != NULL" name="composite136">
+                                    <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool6 != '' &amp;&amp; Variables.liveApprovalErection.dataSet.data[$i].erectionSpool6 != NULL"
+                                    name="composite136">
                                         <wm-label class="col-md-3 control-label" caption="Spool 6" name="label183"></wm-label>
                                         <wm-container class="col-md-9" name="container131">
                                             <wm-text datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionSpool6" disabled="true" readonlygrid="true" name="text92"></wm-text>
@@ -875,8 +894,8 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                             <wm-gridrow name="gridrow95_2">
                                 <wm-gridcolumn columnwidth="7" name="gridcolumn226_4" padding="unset unset unset 0px">
                                     <wm-checkbox caption="On Coordinates" class="checkbox-custom" name="checkbox6" datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionOnCords" checkedvalue="1" uncheckedvalue="0" disabled="true"></wm-checkbox>
-                                    <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionRework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)" padding="unset unset unset 0px"
-                                    show="true" name="checkbox7"></wm-checkbox>
+                                    <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalErection.dataSet.data[$i].erectionRework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)"
+                                    padding="unset unset unset 0px" show="true" name="checkbox7"></wm-checkbox>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="3" name="gridcolumn227_2"></wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="4" name="gridcolumn228_2"></wm-gridcolumn>
@@ -1074,18 +1093,19 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                 </wm-gridrow>
                 <wm-gridrow name="gridrow98_1">
                     <wm-gridcolumn columnwidth="3" name="gridcolumn232_2">
-                        <wm-checkbox caption="Weld Complete" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldComplete" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)" name="checkbox13"
-                        margin="unset unset 0px unset"></wm-checkbox>
-                        <wm-checkbox caption="Shared Weld" class="checkbox-custom" hint="Check if this weld was worked on by welders other then the ones named in Welder Stencil." disabled="true" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldShared" checkedvalue="1"
-                        uncheckedvalue="0" readonlygrid="true" name="checkbox14"></wm-checkbox>
-                        <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldRework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)" padding="unset unset unset 0px"
-                        show="true" name="checkbox8"></wm-checkbox>
+                        <wm-checkbox caption="Weld Complete" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldComplete" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)"
+                        name="checkbox13" margin="unset unset 0px unset"></wm-checkbox>
+                        <wm-checkbox caption="Shared Weld" class="checkbox-custom" hint="Check if this weld was worked on by welders other then the ones named in Welder Stencil." disabled="true" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldShared"
+                        checkedvalue="1" uncheckedvalue="0" readonlygrid="true" name="checkbox14"></wm-checkbox>
+                        <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldRework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)"
+                        padding="unset unset unset 0px" show="true" name="checkbox8"></wm-checkbox>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="3" name="gridcolumn233">
                         <wm-composite captionposition="top" hint="Percentage of the Entire weld did the above listed welders complete in this Activity?" name="composite215" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22">
                             <wm-label class="col-md-3 control-label" caption="Percent Completed" name="label266"></wm-label>
                             <wm-container class="col-md-9" name="container206">
-                                <wm-select disabled="true" datafield="value" dataset="bind:Variables.PSARefPercentListData.dataSet" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldPercentCompleted" readonlygrid="true" displayfield="label" name="select23"></wm-select>
+                                <wm-select disabled="true" datafield="value" dataset="bind:Variables.PSARefPercentListData.dataSet" datavalue="bind:Variables.liveApprovalWeld.dataSet.data[$i].weldPercentCompleted" readonlygrid="true" displayfield="label"
+                                name="select23"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -1125,8 +1145,8 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                                     readonlygrid="true" on-change="checkboxSupportCompleteChange($event, $scope)" name="checkbox9" padding="unset unset unset 0%"></wm-checkbox>
                                     <wm-checkbox caption="Shared Support" class="checkbox-custom" hint="Check if this weld was worked on by welders other then the ones named in Welder Stencil." disabled="true" datavalue="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportShared"
                                     checkedvalue="1" uncheckedvalue="0" readonlygrid="true" show="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportType == 1" name="checkbox10" padding="unset unset unset 0px"></wm-checkbox>
-                                    <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportRework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)" padding="unset unset unset 0px"
-                                    show="true" name="checkbox9_1"></wm-checkbox>
+                                    <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportRework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)"
+                                    padding="unset unset unset 0px" show="true" name="checkbox9_1"></wm-checkbox>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="5" name="gridcolumn219">
                                     <wm-composite captionposition="top" hint="Percentage of the Entire weld did the above listed welders complete in this Activity?" show="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportType == 1
@@ -1136,7 +1156,8 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
 " name="composite161">
                                         <wm-label class="col-md-3 control-label" caption="Percent Completed" name="label210"></wm-label>
                                         <wm-container class="col-md-9" name="container156">
-                                            <wm-select disabled="true" datafield="value" displayfield="label" dataset="bind:Variables.PSARefPercentListData.dataSet" datavalue="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportPercentCompleted" readonlygrid="true" name="select14"></wm-select>
+                                            <wm-select disabled="true" datafield="value" displayfield="label" dataset="bind:Variables.PSARefPercentListData.dataSet" datavalue="bind:Variables.liveApprovalSupports.dataSet.data[$i].supportPercentCompleted" readonlygrid="true"
+                                            name="select14"></wm-select>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -1218,7 +1239,8 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                             </wm-gridrow>
                             <wm-gridrow name="gridrow89">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn228">
-                                    <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimActivitySelect == &quot;Plug&quot; || Variables.liveApprovalTrim.dataSet.data[$i].trimActivitySelect == &quot;Blind&quot;" name="composite173">
+                                    <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimActivitySelect == &quot;Plug&quot; || Variables.liveApprovalTrim.dataSet.data[$i].trimActivitySelect == &quot;Blind&quot;"
+                                    name="composite173">
                                         <wm-label class="col-md-3 control-label" caption="Installed Quantity" name="label227"></wm-label>
                                         <wm-container class="col-md-9" name="container168">
                                             <wm-text disabled="false" readonlygrid="true" width="40%" type="number" datavalue="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimQuantity" name="text117" readonly="true"></wm-text>
@@ -1227,7 +1249,8 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                                     <wm-composite captionposition="top" show="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimActivitySelect == &quot;ValveHandle&quot;" name="composite174">
                                         <wm-label class="col-md-3 control-label" caption="Handle Type" name="label228"></wm-label>
                                         <wm-container class="col-md-9" name="container169">
-                                            <wm-select datavalue="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimHandleType" disabled="true" dataset="bind:Variables.PSARefHandleTypesData.dataSet" datafield="value" width="50%" readonlygrid="true" name="select18" displayfield="label"></wm-select>
+                                            <wm-select datavalue="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimHandleType" disabled="true" dataset="bind:Variables.PSARefHandleTypesData.dataSet" datafield="value" width="50%" readonlygrid="true" name="select18"
+                                            displayfield="label"></wm-select>
                                         </wm-container>
                                     </wm-composite>
                                     <wm-composite captionposition="top" show="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimActivitySelect == &quot;InstEquip&quot;" name="composite175">
@@ -1240,8 +1263,8 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                             </wm-gridrow>
                             <wm-gridrow name="gridrow99">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn236_1">
-                                    <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimRework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)" padding="unset unset unset 0px"
-                                    show="true" name="checkbox10_1"></wm-checkbox>
+                                    <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalTrim.dataSet.data[$i].trimRework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)"
+                                    padding="unset unset unset 0px" show="true" name="checkbox10_1"></wm-checkbox>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                         </wm-layoutgrid>
@@ -1312,8 +1335,8 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                             </wm-gridrow>
                             <wm-gridrow name="gridrow100_1">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn237_2">
-                                    <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalMisc.dataSet.data[$i].miscRework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)" padding="unset unset unset 0px"
-                                    show="true" name="checkbox11"></wm-checkbox>
+                                    <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalMisc.dataSet.data[$i].miscRework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)"
+                                    padding="unset unset unset 0px" show="true" name="checkbox11"></wm-checkbox>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                         </wm-layoutgrid>
@@ -1471,8 +1494,8 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                             </wm-gridrow>
                             <wm-gridrow name="gridrow102">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn239_1">
-                                    <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalEWO.dataSet.data[$i].eworework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)" padding="unset unset unset 0px"
-                                    show="true" name="checkbox13_1"></wm-checkbox>
+                                    <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveApprovalEWO.dataSet.data[$i].eworework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)"
+                                    padding="unset unset unset 0px" show="true" name="checkbox13_1"></wm-checkbox>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                         </wm-layoutgrid>

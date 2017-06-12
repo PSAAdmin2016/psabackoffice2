@@ -140,7 +140,7 @@ public class PipeSupports implements Serializable {
         this.supportShared = supportShared;
     }
 
-    @Column(name = "`SupportPercentCompleted`", nullable = true, scale = 0, precision = 10)
+    @Column(name = "`SupportPercentCompleted`", nullable = true, scale = 2, precision = 3)
     public Integer getSupportPercentCompleted() {
         return this.supportPercentCompleted;
     }

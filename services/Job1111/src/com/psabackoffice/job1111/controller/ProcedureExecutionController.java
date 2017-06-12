@@ -208,7 +208,7 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/LockSSActivity", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Locks a SS Activity for approval.  Returns True if lock achieved, False if not.")
-    public List<LockSsactivityResponse> executeLockSSActivity(@RequestParam(value = "UserID", required = false) Integer userId, @RequestParam(value = "FieldActivityID", required = false) Integer fieldActivityId) {
+    public List<LockSsactivityResponse> executeLockSSActivity(@RequestParam(value = "UserID") Integer userId, @RequestParam(value = "FieldActivityID") Integer fieldActivityId) {
         LOGGER.debug("Executing named procedure: LockSSActivity");
         LockSsactivityResponse _result = procedureService.executeLockSSActivity(userId, fieldActivityId);
         LOGGER.debug("got the result for v1 named procedure: LockSSActivity, result:{}", _result);

@@ -7379,30 +7379,38 @@
     "name" : "LockSSActivity",
     "description" : "Locks a SS Activity for approval.  Returns True if lock achieved, False if not.",
     "version" : "V1",
-    "procedureString" : "call LockSSActivity(:UserID, :FieldActivityID, :ReturnStatus)",
+    "procedureString" : "call LockSSActivity(:UserID, :FieldActivityID, :ReturnStatus, :ErrorText)",
     "parameters" : [ {
       "name" : "UserID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "2",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "FieldActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "647",
-      "required" : false,
+      "testValue" : "1",
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "ReturnStatus",
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "",
-      "required" : false,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
       "parameterType" : "OUT"
     } ],
     "request" : {
@@ -7415,12 +7423,40 @@
       "returns" : "CUSTOM",
       "responseType" : "SINGLE",
       "properties" : [ {
+        "name" : "content",
+        "fieldName" : "content",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "CUSTOM",
+          "typeRef" : "com.psabackoffice.job1111.models.procedure.LockSsactivityResponseContent",
+          "list" : true,
+          "properties" : [ {
+            "name" : "LockField",
+            "fieldName" : "lockField",
+            "optional" : false,
+            "fieldType" : {
+              "type" : "PRIMITIVE",
+              "typeRef" : "java.lang.Integer",
+              "list" : false
+            }
+          } ]
+        }
+      }, {
         "name" : "ReturnStatus",
         "fieldName" : "returnStatus",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "ErrorText",
+        "fieldName" : "errorText",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
           "list" : false
         }
       } ]

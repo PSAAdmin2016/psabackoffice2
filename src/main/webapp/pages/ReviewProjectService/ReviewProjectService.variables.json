@@ -1,44 +1,4 @@
 {
-  "Job1111ExecuteUpdateSSReturnToListPS" : {
-    "_id" : "wm-Job1111ExecuteUpdateSSReturnToListPS-wm.ServiceVariable-1464297686390",
-    "name" : "Job1111ExecuteUpdateSSReturnToListPS",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "ActivityStatus",
-      "value" : "11",
-      "type" : "integer"
-    }, {
-      "target" : "UserID",
-      "value" : "bind:Variables.loggedInUser.dataSet.id",
-      "type" : "integer"
-    }, {
-      "target" : "FieldActivityID",
-      "value" : "bind:Widgets.livelistRecentActivities.selecteditem.PSAActivityID",
-      "type" : "integer"
-    } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
-    "service" : "Job1111",
-    "operation" : "executeUpdateSS",
-    "operationId" : "QueryExecutionController_executeUpdateSS",
-    "operationType" : "put",
-    "serviceType" : "DataService",
-    "dataSet" : {
-      "dataValue" : ""
-    },
-    "isList" : false,
-    "firstRow" : 0,
-    "maxResults" : 3,
-    "designMaxResults" : 10,
-    "onSuccess" : "Variables.serviceGetPSRecentActivities.invoke();Variables.ServiceGetActivitiesPendingApproval.invoke()",
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "isDefault" : true,
-    "controller" : "QueryExecution"
-  },
   "navigationToClassicCivil" : {
     "_id" : "wm-navigationToClassicCivil-wm.NavigationVariable-1483028170791",
     "name" : "navigationToClassicCivil",
@@ -101,10 +61,6 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "PSAActivityID",
-      "value" : "bind:Widgets.gridApprovalReview.selecteditem.PSAActivityID",
-      "type" : "integer"
-    }, {
       "target" : "CreatedBy",
       "value" : "bind:Variables.loggedInUser.dataSet.id",
       "type" : "integer"
@@ -112,8 +68,12 @@
       "target" : "Note",
       "value" : "bind:Widgets.textareaSSNoteNew.datavalue",
       "type" : "string"
+    }, {
+      "target" : "FieldActivityID",
+      "value" : "bind:Widgets.gridApprovalReview.selecteditem.ActivityID",
+      "type" : "string"
     } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "type" : "integer",
     "service" : "Job1111",
     "operation" : "executeCreateSSNote",
     "operationId" : "QueryExecutionController_executeCreateSSNote",
@@ -135,9 +95,9 @@
     "isDefault" : true,
     "controller" : "QueryExecution"
   },
-  "ServiceGetActivitiesPendingApproval" : {
+  "serviceGetActivitiesPendingApproval" : {
     "_id" : "wm-Job1111ExecuteGetActivitiesPendingApproval-wm.ServiceVariable-1460641646816",
-    "name" : "ServiceGetActivitiesPendingApproval",
+    "name" : "serviceGetActivitiesPendingApproval",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
@@ -303,7 +263,7 @@
     "firstRow" : 0,
     "maxResults" : 3,
     "designMaxResults" : 10,
-    "onResult" : "Variables.ServiceGetActivitiesPendingApproval.invoke()",
+    "onResult" : "Variables.serviceGetActivitiesPendingApproval.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -313,5 +273,58 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page",
     "spinnerMessage" : "Updating..."
+  },
+  "serviceUpdateSSReturnToListPS" : {
+    "_id" : "wm-Job1111ExecuteUpdateSSReturnToListPS-wm.ServiceVariable-1464297686390",
+    "name" : "serviceUpdateSSReturnToListPS",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "ActivityStatus",
+      "value" : "11",
+      "type" : "integer"
+    }, {
+      "target" : "UserID",
+      "value" : "bind:Variables.loggedInUser.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "FieldActivityID",
+      "value" : "bind:Widgets.livelistRecentActivities.selecteditem.ActivityID",
+      "type" : "integer"
+    } ],
+    "type" : "integer",
+    "service" : "Job1111",
+    "operation" : "executeUpdateSS",
+    "operationId" : "QueryExecutionController_executeUpdateSS",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "isList" : false,
+    "firstRow" : 0,
+    "maxResults" : 3,
+    "designMaxResults" : 10,
+    "onSuccess" : "Variables.serviceGetPSRecentActivities.invoke();Variables.serviceGetActivitiesPendingApproval.invoke()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "QueryExecution"
+  },
+  "staticRecordLockedMessage" : {
+    "_id" : "wm-staticRecordLockedMessage-wm.Variable-1497282777613",
+    "name" : "staticRecordLockedMessage",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "type" : "string",
+    "isList" : false,
+    "saveInPhonegap" : false
   }
 }

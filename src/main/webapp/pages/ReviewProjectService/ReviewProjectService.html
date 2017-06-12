@@ -17,7 +17,7 @@
                         <wm-composite horizontalalign="right" name="composite182_1" margin="0% unset" padding="2% unset unset 2%">
                             <wm-label class="col-md-3" caption="Total Activities:" name="label237" width="40%" padding="unset 1% unset unset"></wm-label>
                             <wm-container class="col-md-9" horizontalalign="right" paddingunit="%" name="container177" width="40%">
-                                <wm-text type="number" placeholder="" width="100%" readonly="true" autocomplete="false" readonlygrid="true" name="textApprovalActivityCount" datavalue="bind:Variables.ServiceGetActivitiesPendingApproval.dataSet.totalElements"></wm-text>
+                                <wm-text type="number" placeholder="" width="100%" readonly="true" autocomplete="false" readonlygrid="true" name="textApprovalActivityCount" datavalue="bind:Variables.serviceGetActivitiesPendingApproval.dataSet.totalElements"></wm-text>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -28,7 +28,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn4">
-                        <wm-grid dataset="bind:Variables.ServiceGetActivitiesPendingApproval.dataSet" name="gridApprovalReview" gridfirstrowselect="true" shownavigation="false" height="250px" on-select="gridApprovalReviewSelect($event, $data)" on-deselect="gridApprovalReviewDeselect($event, $rowData)"
+                        <wm-grid dataset="bind:Variables.serviceGetActivitiesPendingApproval.dataSet" name="gridApprovalReview" gridfirstrowselect="true" shownavigation="false" height="250px" on-select="gridApprovalReviewSelect($event, $data)" on-deselect="gridApprovalReviewDeselect($event, $rowData)"
                         class="panel-default" filtermode="multicolumn" on-datarender="gridApprovalReviewDatarender($scope, $data)" spacing="condensed">
                             <wm-grid-column binding="ActivityID" caption="Field Activity ID" width="20%" readonly="true" show="true" filterwidget="number" filterplaceholder="Search Field Activity ID..."></wm-grid-column>
                             <wm-grid-column binding="Craft" caption="Craft" type="string" width="20%" readonly="true" edit-widget-type="text" show="true" filterwidget="select"></wm-grid-column>
@@ -75,7 +75,7 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view11" show="false">
-        <wm-alertdialog name="alertRecordLocked" message="Record in use by another user." alerttype="information" title="Info" on-ok="Variables.ServiceGetActivitiesPendingApproval.invoke();Widgets.alertRecordLocked.close()"></wm-alertdialog>
+        <wm-alertdialog name="alertRecordLocked" message="bind:Variables.staticRecordLockedMessage.dataSet.dataValue" alerttype="information" title="Info" on-ok="Variables.serviceGetActivitiesPendingApproval.invoke();Widgets.alertRecordLocked.close()"></wm-alertdialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewRecentActivities" show="false">
         <wm-dialog dialogtype="design-dialog" modal="true" name="dialogRecentActivities" title="Recent Activities" iconclass="wi wi-edit">
@@ -118,7 +118,7 @@
                                                 <wm-gridcolumn columnwidth="2" name="gridcolumn171"></wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="2" name="gridcolumn172">
                                                     <wm-button class="btn-default" caption="Return" type="button" hint="Return this activity to Superintendent Review List" height="24" name="button23" show="bind:Variables.serviceGetPSRecentActivities.dataSet.Status == 'Progress Approved' || Variables.serviceGetPSRecentActivities.dataSet.Status == 'Dismissed'"
-                                                    on-click="Variables.Job1111ExecuteUpdateSSReturnToListPS.invoke()"></wm-button>
+                                                    on-click="Variables.serviceUpdateSSReturnToListPS.invoke()"></wm-button>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>

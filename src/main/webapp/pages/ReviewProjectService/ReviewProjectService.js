@@ -65,7 +65,7 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
 
 
     $scope.buttonRefreshClick = function($event, $isolateScope) {
-        $scope.Variables.ServiceGetActivitiesPendingApproval.invoke();
+        $scope.Variables.serviceGetActivitiesPendingApproval.invoke();
     };
 
 

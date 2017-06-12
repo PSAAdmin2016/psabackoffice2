@@ -19,9 +19,23 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class LockSsactivityResponse implements Serializable {
 
+    @JsonProperty("content")
+    @ColumnAlias("content")
+    private List<LockSsactivityResponseContent> content;
     @JsonProperty("ReturnStatus")
     @ColumnAlias("ReturnStatus")
     private Boolean returnStatus;
+    @JsonProperty("ErrorText")
+    @ColumnAlias("ErrorText")
+    private String errorText;
+
+    public List<LockSsactivityResponseContent> getContent() {
+        return this.content;
+    }
+
+    public void setContent(List<LockSsactivityResponseContent> content) {
+        this.content = content;
+    }
 
     public Boolean getReturnStatus() {
         return this.returnStatus;
@@ -31,16 +45,28 @@ public class LockSsactivityResponse implements Serializable {
         this.returnStatus = returnStatus;
     }
 
+    public String getErrorText() {
+        return this.errorText;
+    }
+
+    public void setErrorText(String errorText) {
+        this.errorText = errorText;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof LockSsactivityResponse)) return false;
         final LockSsactivityResponse lockSsactivityResponse = (LockSsactivityResponse) o;
-        return Objects.equals(getReturnStatus(), lockSsactivityResponse.getReturnStatus());
+        return Objects.equals(getContent(), lockSsactivityResponse.getContent()) &&
+                Objects.equals(getReturnStatus(), lockSsactivityResponse.getReturnStatus()) &&
+                Objects.equals(getErrorText(), lockSsactivityResponse.getErrorText());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getReturnStatus());
+        return Objects.hash(getContent(),
+                getReturnStatus(),
+                getErrorText());
     }
 }

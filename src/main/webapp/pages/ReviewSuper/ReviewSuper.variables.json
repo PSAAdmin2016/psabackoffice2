@@ -3336,10 +3336,10 @@
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 0,
-        "precision" : 10,
+        "precision" : 3,
         "generator" : "assigned",
         "isRelated" : false,
-        "scale" : 0
+        "scale" : 2
       }, {
         "fieldName" : "supportRework",
         "type" : "short",
@@ -4364,18 +4364,6 @@
         "isRelated" : false,
         "scale" : 0
       }, {
-        "fieldName" : "weldPercentCompleteChoice",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "WeldPercentCompleteChoice",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 8,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "scale" : 0
-      }, {
         "fieldName" : "weldPercentCompleted",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
@@ -4383,10 +4371,10 @@
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 0,
-        "precision" : 10,
+        "precision" : 3,
         "generator" : "assigned",
         "isRelated" : false,
-        "scale" : 0
+        "scale" : 2
       }, {
         "fieldName" : "weldRework",
         "type" : "short",
@@ -7035,18 +7023,6 @@
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 65535,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "scale" : 0
-        }, {
-          "fieldName" : "signatureLink",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "SignatureLink",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 255,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,

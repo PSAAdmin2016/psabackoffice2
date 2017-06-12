@@ -46,7 +46,6 @@ public class PipeWeld implements Serializable {
     private String weldProcedure;
     private Short weldComplete;
     private Short weldShared;
-    private String weldPercentCompleteChoice;
     private Integer weldPercentCompleted;
     private Short weldRework;
     private String weldNotes;
@@ -221,16 +220,7 @@ public class PipeWeld implements Serializable {
         this.weldShared = weldShared;
     }
 
-    @Column(name = "`WeldPercentCompleteChoice`", nullable = true, length = 8)
-    public String getWeldPercentCompleteChoice() {
-        return this.weldPercentCompleteChoice;
-    }
-
-    public void setWeldPercentCompleteChoice(String weldPercentCompleteChoice) {
-        this.weldPercentCompleteChoice = weldPercentCompleteChoice;
-    }
-
-    @Column(name = "`WeldPercentCompleted`", nullable = true, scale = 0, precision = 10)
+    @Column(name = "`WeldPercentCompleted`", nullable = true, scale = 2, precision = 3)
     public Integer getWeldPercentCompleted() {
         return this.weldPercentCompleted;
     }

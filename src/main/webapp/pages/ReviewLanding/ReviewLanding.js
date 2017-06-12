@@ -27,9 +27,9 @@ Application.$controller("ReviewLandingPageController", ["$scope", function($scop
         $scope.Variables.PSARefActivityStatusesData.listRecords();
         $scope.Variables.PSARefActivityRejectionsData.listRecords();
 
-        $scope.Variables.serviceGetRefPrecip.invoke();
-        $scope.Variables.serviceGetRefTemps.invoke();
-        $scope.Variables.serviceGetRefWind.invoke();
+        //$scope.Variables.serviceGetRefPrecip.invoke();
+        //$scope.Variables.serviceGetRefTemps.invoke();
+        //$scope.Variables.serviceGetRefWind.invoke();
     };
 
 

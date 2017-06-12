@@ -808,30 +808,38 @@
     } ]
   },
   "LockSSActivity" : {
-    "procedureString" : "call LockSSActivity(?, ?, ?)",
+    "procedureString" : "call LockSSActivity(?, ?, ?, ?)",
     "parameters" : [ {
       "name" : "UserID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "2",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "FieldActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "647",
-      "required" : false,
+      "testValue" : "1",
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "ReturnStatus",
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "",
-      "required" : false,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
       "parameterType" : "OUT"
     } ]
   },

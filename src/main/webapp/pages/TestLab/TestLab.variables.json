@@ -220,7 +220,7 @@
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 0,
-        "precision" : 3,
+        "precision" : 5,
         "generator" : "assigned",
         "isRelated" : false,
         "scale" : 0

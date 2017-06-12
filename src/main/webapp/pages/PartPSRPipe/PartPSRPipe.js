@@ -913,15 +913,12 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
 
 
     $scope.buttonReviewNotesClick = function($event, $isolateScope) {
-        //$scope.$parent.Variables.serviceGetNotesByFieldActivityID.dataBinding.ActivityID = $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID;
-        //$scope.$parent.Variables.serviceGetNotesByFieldActivityID.invoke();
         DialogService.open('dialogNotes', $scope.$parent);
     };
 
 
     $scope.serviceLockSSActivityonResult = function(variable, data) {
         if (data[0].ReturnStatus) {
-            //console.log("Secured Lock on Activity: " + $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID);
             //Open different dialog for Testing activities
             if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 40 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43) {
                 $scope.Variables.timerAssignDelay.invoke();
@@ -930,12 +927,13 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
                 $scope.Variables.serviceGetBidActivityQuantity.invoke(); // This variable is not used for Testing Activities
                 $scope.Variables.timerAssignDelay.invoke();
                 DialogService.open('dialogAssignQuantities', $scope);
-            }
 
+            }
         } else {
-            //console.log("Field Activity is Locked by other user.");
+            $scope.$parent.Variables.staticRecordLockedMessage.dataSet.dataValue = data[0].ErrorText;
             DialogService.open('alertRecordLocked', $scope.$parent);
         }
+
     };
 
 
@@ -952,21 +950,18 @@ Application.$controller("dialogRejectionController", ["$scope",
             $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.BidID = '';
             $scope.$parent.$parent.Variables.serviceUpdateSSApproval.invoke(); //Updates GetActivitiesPendingApproval
 
-            $scope.$parent.$parent.Variables.serviceCreateSSNote.dataBinding.ActivityID = $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID;
             $scope.$parent.$parent.Variables.serviceCreateSSNote.dataBinding.CreatedBy = $scope.Variables.loggedInUser.dataSet.id;
             $scope.$parent.$parent.Variables.serviceCreateSSNote.dataBinding.Note = $scope.Widgets.textareaSSNoteReject.datavalue;
             $scope.$parent.$parent.Variables.serviceCreateSSNote.invoke(); //Updates serviceGetNotesByFieldActivityID
         };
 
 
-
         $scope.textareaSSNoteRejectKeyup = function($event, $isolateScope) {
-            if ((Date.now() - $scope.Variables.staticVariableMachineStateTimer.dataValue) > 300) {
+            if ((Date.now() - $scope.Variables.staticVariableMachineStateTimer.dataValue) > 300 && $scope.Widgets.textareaSSNoteReject.datavalue) {
                 $scope.Variables.staticVariableMachineStateTimer.dataValue = Date.now();
                 $scope.Widgets.labelRejectTextCount.caption = 252 - $scope.Widgets.textareaSSNoteReject.datavalue.length;
             }
         };
-
 
 
         $scope.buttonDialogRejectionSaveClick = function($event, $isolateScope) {
@@ -1005,7 +1000,6 @@ Application.$controller("dialogAssignQuantitiesController", ["$scope",
             $scope.$parent.$parent.Variables.serviceUpdateSSApproval.invoke();
             $scope.Variables.timerLabelFlasher.cancel();
         };
-
 
 
         $scope.dialogAssignQuantitiesOpened = function($event, $isolateScope) {
