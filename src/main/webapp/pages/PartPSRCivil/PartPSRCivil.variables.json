@@ -335,7 +335,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "SubmissionId",
-      "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.fk_SubmissionId",
+      "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.SubmissionID",
       "type" : "integer"
     }, {
       "target" : "UserId",
