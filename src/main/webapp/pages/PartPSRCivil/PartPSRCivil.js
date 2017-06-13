@@ -159,15 +159,15 @@ Application.$controller("PartPSRCivilPageController", ["$scope", "$rootScope", "
 
 
     $scope.buttonReviewNotes1Click = function($event, $isolateScope) {
-        $scope.$parent.Variables.serviceGetNotesByPSAActivityID.dataBinding.ActivityID = $scope.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID;
-        $scope.$parent.Variables.serviceGetNotesByPSAActivityID.invoke();
+        $scope.$parent.Variables.serviceGetNotesByFieldActivityID.dataBinding.ActivityID = $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID;
+        $scope.$parent.Variables.serviceGetNotesByFieldActivityID.invoke();
         DialogService.open('dialogNotes', $scope.$parent);
     };
 
 
     $scope.buttonReviewNotes2Click = function($event, $isolateScope) {
-        $scope.$parent.Variables.serviceGetNotesByPSAActivityID.dataBinding.ActivityID = $scope.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID;
-        $scope.$parent.Variables.serviceGetNotesByPSAActivityID.invoke();
+        $scope.$parent.Variables.serviceGetNotesByFieldActivityID.dataBinding.ActivityID = $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID;
+        $scope.$parent.Variables.serviceGetNotesByFieldActivityID.invoke();
         DialogService.open('dialogNotes', $scope.$parent);
     };
 
@@ -275,7 +275,7 @@ Application.$controller("dialogAssignQuantitiesController", ["$scope",
 
         $scope.buttonQuantitiesUpdateClick = function($event, $isolateScope) {
             $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.ActivityStatus = '5';
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.PSAActivityID = $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID;
+            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.ActivityID = $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID;
             $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.BidID = $scope.Widgets.livelistBidActivities.selecteditem.BidID;
             $scope.$parent.$parent.Variables.serviceUpdateSSApproval.invoke();
             $scope.Variables.timerLabelFlasher.cancel();
@@ -331,14 +331,14 @@ Application.$controller("dialogRejectionController", ["$scope",
 
         $scope.formRejectSubmit = function($event, $isolateScope, $formData) {
             $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.ActivityStatus = '6';
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.PSAActivityID = $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID;
+            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.ActivityID = $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID;
             $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.BidID = $scope.Widgets.livelistBidActivities.selecteditem.BidID;
             $scope.$parent.$parent.Variables.serviceUpdateSSApproval.invoke(); //Updates GetActivitiesPendingApproval
 
-            $scope.$parent.$parent.Variables.serviceCreateSSNote.dataBinding.PSAActivityID = $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID;
+            $scope.$parent.$parent.Variables.serviceCreateSSNote.dataBinding.ActivityID = $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID;
             $scope.$parent.$parent.Variables.serviceCreateSSNote.dataBinding.CreatedBy = $scope.Variables.loggedInUser.dataSet.id;
             $scope.$parent.$parent.Variables.serviceCreateSSNote.dataBinding.Note = $scope.Widgets.textareaSSNoteReject.datavalue;
-            $scope.$parent.$parent.Variables.serviceCreateSSNote.invoke(); //Updates GetNotesByPSAActivityID
+            $scope.$parent.$parent.Variables.serviceCreateSSNote.invoke(); //Updates GetNotesByFieldActivityID
         };
 
 

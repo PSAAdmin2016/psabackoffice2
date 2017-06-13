@@ -1,7 +1,7 @@
 <wm-partial data-ng-controller="PartPSREquipPageController" name="partial1">
     <wm-layoutgrid show="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 72" name="layoutgrid1">
         <wm-gridrow name="gridrow1">
-            <wm-gridcolumn columnwidth="1" name="gridcolumn1">
+            <wm-gridcolumn columnwidth="1" name="gridcolumn1" padding="unset unset 1% unset">
                 <wm-button class="btn-default" caption="Return" type="button" hint="Return to Superintendent for further review." show="true" backgroundcolor="#dc0000" iconclass="wi wi-backward" on-click="Widgets.dialogRejection.open()" name="buttonReturn1"></wm-button>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="11" name="gridcolumn2"></wm-gridcolumn>
@@ -9,7 +9,7 @@
         <wm-gridrow backgroundcolor="#b1efe4" bordercolor="#a0a0a0" borderstyle="groove" borderwidth="0px 0px 8px 0px" padding="1% 1% unset 1%" name="gridrow5">
             <wm-gridcolumn columnwidth="1" name="gridcolumn17">
                 <wm-label caption="Field ActivityID" fontweight="bold" textdecoration="underline" hint="This is the selected activity." name="label3"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID" hint="This is the selected activity." color="#000000" name="label4"></wm-label>
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityID" hint="This is the selected activity." color="#000000" name="label4"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn18">
                 <wm-label caption="Tag #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label5"></wm-label>
@@ -27,15 +27,15 @@
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn23">
                 <wm-label caption="Percent Claimed" fontweight="bold" textdecoration="underline" borderstyle="none" hint="This is the selected activity." show="true" width="100%" name="label14"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.SteelPercentClaim * 100 | suffix: '%'" readonlygrid="true" show="true" hint="This is the selected activity." color="#000000" name="label16"></wm-label>
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.PercentClaim * 100 | suffix: '%'" readonlygrid="true" show="true" hint="This is the selected activity." color="#000000" name="label16"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="2" padding="unset 0px" name="gridcolumn24">
                 <wm-layoutgrid name="layoutgrid3">
                     <wm-gridrow padding="unset 0px" name="gridrow6">
                         <wm-gridcolumn columnwidth="3" padding="unset 0px" name="gridcolumn25">
-                            <wm-label width="100%" caption="Notes" show="bind:$parent.Variables.serviceGetNoteCount.dataSet.content[$i].NoteCount > 0" fontweight="bold" textdecoration="underline" padding="unset 0px" margin="unset 0px" hint="Notes added during the Supervisor &amp; Project Services Review Process"
+                            <wm-label width="100%" caption="Notes" show="bind:$parent.Variables.serviceGetNotesByFieldActivityID.dataSet.totalElements > 0" fontweight="bold" textdecoration="underline" padding="unset 0px" margin="unset 0px" hint="Notes added during the Supervisor &amp; Project Services Review Process"
                             name="label17"></wm-label>
-                            <wm-button class="btn-default" caption="View" type="button" show="bind:$parent.Variables.serviceGetNoteCount.dataSet.content[$i].NoteCount > 0" backgroundcolor="#e7dd51" marginunit="%" on-click="buttonReviewNotes1Click($event, $scope)"
+                            <wm-button class="btn-default" caption="View" type="button" show="bind:$parent.Variables.serviceGetNotesByFieldActivityID.dataSet.totalElements > 0" backgroundcolor="#e7dd51" marginunit="%" on-click="buttonReviewNotes1Click($event, $scope)"
                             iconclass="glyphicon glyphicon-list-alt" hint="Review notes from the Superintendent." width="95%" margin="unset unset 2% unset" name="buttonReviewNotes1"></wm-button>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn26">
@@ -283,7 +283,7 @@
             <wm-layoutgrid name="layoutgrid33">
                 <wm-gridrow name="gridrow100">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn161_1">
-                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 80  &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID != null" name="layoutgrid37_1" margin="unset unset 1px unset">
+                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 80  &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID != null" name="layoutgrid37_1" margin="unset unset 1px unset">
                             <wm-gridrow name="gridrow63_1">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn167_1">
                                     <wm-layoutgrid name="layoutgrid30_1">
@@ -298,7 +298,7 @@
                                                 <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite115_1">
                                                     <wm-label class="col-md-3 control-label" caption="Field Activity ID" name="label161_1"></wm-label>
                                                     <wm-container class="col-md-9" name="container110_1" width="40%">
-                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text75_1"></wm-text>
+                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text75_1"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>

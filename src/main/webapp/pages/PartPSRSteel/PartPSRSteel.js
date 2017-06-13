@@ -29,7 +29,7 @@ Application.$controller("PartPSRSteelPageController", ["$scope", "$rootScope", "
 
     $rootScope.gridApprovalReviewDeselectSteel = function() {
         $scope.Variables.serviceGetMatches.setInput('Area', "");
-        $scope.Variables.serviceGetMatches.setInput('PieceMakr', "");
+        $scope.Variables.serviceGetMatches.setInput('PieceMark', "");
         $scope.Variables.serviceGetMatches.invoke();
     };
 
@@ -59,7 +59,7 @@ Application.$controller("PartPSRSteelPageController", ["$scope", "$rootScope", "
             }
         } else {
             if ($scope.Widgets.toggleFilterArea.datavalue == '1') {
-                data.Area = "%" + $scope.$parent.Widgets.gridApprovalReview.selecteditem.SteelArea + "%";
+                data.Area = "%" + $scope.$parent.Widgets.gridApprovalReview.selecteditem.Area + "%";
             } else {
                 data.Area = "%";
             }
@@ -300,7 +300,7 @@ Application.$controller("PartPSRSteelPageController", ["$scope", "$rootScope", "
 
     $scope.ResearchClick = function($event, $isolateScope) {
         $scope.$parent.Variables.navigationToClassicSteel.setData({
-            'PageLoadArea': $scope.$parent.Widgets.gridApprovalReview.selecteditem.SteelArea,
+            'PageLoadArea': $scope.$parent.Widgets.gridApprovalReview.selecteditem.Area,
             'PageLoadPieceMark': $scope.$parent.Widgets.gridApprovalReview.selecteditem.Spool1,
             'PageLoadFiltered': true
         });
@@ -311,7 +311,7 @@ Application.$controller("PartPSRSteelPageController", ["$scope", "$rootScope", "
 
     $scope.buttonDissmissClick = function($event, $isolateScope) {
         $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.ActivityStatus = '13';
-        $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.PSAActivityID = $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID;
+        $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.ActivityID = $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID;
         $scope.$parent.$parent.Variables.serviceUpdateSSApproval.invoke();
     };
 
@@ -322,15 +322,15 @@ Application.$controller("PartPSRSteelPageController", ["$scope", "$rootScope", "
 
 
     $scope.buttonReviewNotes1Click = function($event, $isolateScope) {
-        $scope.$parent.Variables.serviceGetNotesByPSAActivityID.dataBinding.ActivityID = $scope.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID;
-        $scope.$parent.Variables.serviceGetNotesByPSAActivityID.invoke();
+        $scope.$parent.Variables.serviceGetNotesByFieldActivityID.dataBinding.ActivityID = $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID;
+        $scope.$parent.Variables.serviceGetNotesByFieldActivityID.invoke();
         DialogService.open('dialogNotes', $scope.$parent);
     };
 
 
     $scope.buttonReviewNotes2Click = function($event, $isolateScope) {
-        $scope.$parent.Variables.serviceGetNotesByPSAActivityID.dataBinding.ActivityID = $scope.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID;
-        $scope.$parent.Variables.serviceGetNotesByPSAActivityID.invoke();
+        $scope.$parent.Variables.serviceGetNotesByFieldActivityID.dataBinding.ActivityID = $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID;
+        $scope.$parent.Variables.serviceGetNotesByFieldActivityID.invoke();
         DialogService.open('dialogNotes', $scope.$parent);
     };
 
@@ -360,7 +360,7 @@ Application.$controller("dialogAssignQuantitiesController", ["$scope",
 
         $scope.buttonQuantitiesUpdateClick = function($event, $isolateScope) {
             $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.ActivityStatus = '5';
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.PSAActivityID = $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID;
+            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.ActivityID = $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID;
             $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.BidID = $scope.Widgets.livelistBidActivities.selecteditem.BidID;
             $scope.$parent.$parent.Variables.serviceUpdateSSApproval.invoke();
             $scope.Variables.timerLabelFlasher.cancel();
@@ -393,15 +393,16 @@ Application.$controller("dialogRejectionController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.formRejectSubmit = function($event, $isolateScope, $formData) {
+            $scope.Variables.serviceUnLockSSActivity.invoke();
             $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.ActivityStatus = '6';
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.PSAActivityID = $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID;
+            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.ActivityID = $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID;
             $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.BidID = $scope.Widgets.livelistBidActivities.selecteditem.BidID;
             $scope.$parent.$parent.Variables.serviceUpdateSSApproval.invoke(); //Updates GetActivitiesPendingApproval
 
-            $scope.$parent.$parent.Variables.serviceCreateSSNote.dataBinding.PSAActivityID = $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID;
+            $scope.$parent.$parent.Variables.serviceCreateSSNote.dataBinding.ActivityID = $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID;
             $scope.$parent.$parent.Variables.serviceCreateSSNote.dataBinding.CreatedBy = $scope.Variables.loggedInUser.dataSet.id;
             $scope.$parent.$parent.Variables.serviceCreateSSNote.dataBinding.Note = $scope.Widgets.textareaSSNoteReject.datavalue;
-            $scope.$parent.$parent.Variables.serviceCreateSSNote.invoke(); //Updates GetNotesByPSAActivityID
+            $scope.$parent.$parent.Variables.serviceCreateSSNote.invoke(); //Updates GetNotesByActivityID
         };
 
 

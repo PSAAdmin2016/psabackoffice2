@@ -47,13 +47,12 @@
         <wm-gridrow backgroundcolor="#b1efe4" bordercolor="#a0a0a0" borderstyle="groove" borderwidth="0px 0px 8px 0px" padding="1% 1% unset 1%" name="gridrow5">
             <wm-gridcolumn columnwidth="1" name="gridcolumn15">
                 <wm-label caption="Field ActivityID" fontweight="bold" textdecoration="underline" hint="This is the selected activity." name="label3"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID" hint="This is the selected activity." color="#000000" name="label4"></wm-label>
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityID" hint="This is the selected activity." color="#000000" name="label4"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn16">
                 <wm-label caption="Area" fontweight="bold" textdecoration="underline" borderstyle="none" name="label5"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.SteelArea" readonlygrid="true" show="bind:Widgets.toggleManualSearch.datavalue == 0" hint="This is the selected activity." color="#000000"
-                name="label6"></wm-label>
-                <wm-text width="95%" datavalue="bind:$parent.Widgets.gridApprovalReview.selecteditem.SteelArea" placeholder="Enter Line Number" backgroundcolor="#96c6bd" color="#000000" type="text" updateon="default" show="bind:Widgets.toggleManualSearch.datavalue == 1"
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Area" readonlygrid="true" show="bind:Widgets.toggleManualSearch.datavalue == 0" hint="This is the selected activity." color="#000000" name="label6"></wm-label>
+                <wm-text width="95%" datavalue="bind:$parent.Widgets.gridApprovalReview.selecteditem.Area" placeholder="Enter Line Number" backgroundcolor="#96c6bd" color="#000000" type="text" updateon="default" show="bind:Widgets.toggleManualSearch.datavalue == 1"
                 margin="unset unset unset 0px" textalign="left" name="textAreaSearch"></wm-text>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="2" name="gridcolumn17">
@@ -69,7 +68,7 @@
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn21">
                 <wm-label caption="Percent Claimed" fontweight="bold" textdecoration="underline" borderstyle="none" hint="This is the selected activity." name="label14" show="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 67"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.SteelPercentClaim * 100 | suffix: '%'" hint="This is the selected activity." color="#000000" name="label15" show="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 67"></wm-label>
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.PercentClaim * 100 | suffix: '%'" hint="This is the selected activity." color="#000000" name="label15" show="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 67"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn22">
                 <wm-label caption="Quantity" fontweight="bold" textdecoration="underline" borderstyle="none" hint="This is the selected activity." name="label11" width="100%" show="true"></wm-label>
@@ -79,9 +78,9 @@
                 <wm-layoutgrid name="layoutgrid3">
                     <wm-gridrow padding="unset 0px" name="gridrow6">
                         <wm-gridcolumn columnwidth="3" padding="unset 0px" name="gridcolumn24">
-                            <wm-label width="100%" caption="Notes" show="bind:$parent.Variables.serviceGetNoteCount.dataSet.content[$i].NoteCount > 0" fontweight="bold" textdecoration="underline" padding="unset 0px" margin="unset 0px" hint="Notes added during the Supervisor &amp; Project Services Review Process"
+                            <wm-label width="100%" caption="Notes" show="bind:$parent.Variables.serviceGetNotesByFieldActivityID.dataSet.totalElements > 0" fontweight="bold" textdecoration="underline" padding="unset 0px" margin="unset 0px" hint="Notes added during the Supervisor &amp; Project Services Review Process"
                             name="label22"></wm-label>
-                            <wm-button class="btn-default" caption="View" type="button" show="bind:$parent.Variables.serviceGetNoteCount.dataSet.content[$i].NoteCount > 0" backgroundcolor="#e7dd51" marginunit="%" on-click="buttonReviewNotes1Click($event, $scope)"
+                            <wm-button class="btn-default" caption="View" type="button" show="bind:$parent.Variables.serviceGetNotesByFieldActivityID.dataSet.totalElements > 0" backgroundcolor="#e7dd51" marginunit="%" on-click="buttonReviewNotes1Click($event, $scope)"
                             iconclass="glyphicon glyphicon-list-alt" hint="Review notes from the Superintendent." width="95%" margin="unset unset 2% unset" name="buttonReviewNotes1"></wm-button>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn25">
@@ -288,7 +287,7 @@
             <wm-layoutgrid name="layoutgrid33">
                 <wm-gridrow name="gridrow100">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn161_1">
-                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 61 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID != null" name="layoutgrid37_1" margin="unset unset 1px unset">
+                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 61 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID != null" name="layoutgrid37_1" margin="unset unset 1px unset">
                             <wm-gridrow name="gridrow63_1">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn167_1">
                                     <wm-layoutgrid name="layoutgrid30_1">
@@ -302,7 +301,7 @@
                                                 <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite115_1">
                                                     <wm-label class="col-md-3 control-label" caption="Field Activity ID" name="label161_1"></wm-label>
                                                     <wm-container class="col-md-9" name="container110_1" width="50%">
-                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text75_1"></wm-text>
+                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text75_1"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -312,7 +311,7 @@
                                                 <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite116_1">
                                                     <wm-label class="col-md-3 control-label" caption="Area" name="label162_1"></wm-label>
                                                     <wm-container class="col-md-9" name="container111_1" width="70%">
-                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.SteelArea" disabled="true" readonlygrid="true" name="text76_1"></wm-text>
+                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.Area" disabled="true" readonlygrid="true" name="text76_1"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -366,7 +365,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow101">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn163">
-                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 62 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID != null" margin="unset unset 1px unset" name="layoutgrid55">
+                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 62 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID != null" margin="unset unset 1px unset" name="layoutgrid55">
                             <wm-gridrow name="gridrow172">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn251">
                                     <wm-layoutgrid name="layoutgrid56">
@@ -380,7 +379,7 @@
                                                 <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite97">
                                                     <wm-label class="col-md-3 control-label" caption="Field Activity ID" name="label178"></wm-label>
                                                     <wm-container class="col-md-9" width="50%" name="container98">
-                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text83"></wm-text>
+                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text83"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -390,7 +389,7 @@
                                                 <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite98">
                                                     <wm-label class="col-md-3 control-label" caption="Area" name="label179"></wm-label>
                                                     <wm-container class="col-md-9" width="70%" name="container99">
-                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.SteelArea" disabled="true" readonlygrid="true" name="text84"></wm-text>
+                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.Area" disabled="true" readonlygrid="true" name="text84"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -431,7 +430,7 @@
                                                 <wm-composite captionposition="top" name="composite101">
                                                     <wm-label class="col-md-3 control-label" caption="% Claimed" name="label182"></wm-label>
                                                     <wm-container class="col-md-9" width="50%" name="container102">
-                                                        <wm-text type="text" datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.SteelPercentClaim * 100 | suffix: '%'" disabled="true" name="text87"></wm-text>
+                                                        <wm-text type="text" datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.PercentClaim * 100 | suffix: '%'" disabled="true" name="text87"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -454,7 +453,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow102">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn165">
-                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 63 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID != null" margin="unset unset 1px unset" name="layoutgrid52">
+                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 63 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID != null" margin="unset unset 1px unset" name="layoutgrid52">
                             <wm-gridrow name="gridrow163">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn241_1">
                                     <wm-layoutgrid name="layoutgrid53">
@@ -468,7 +467,7 @@
                                                 <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite91">
                                                     <wm-label class="col-md-3 control-label" caption="Field Activity ID" name="label171"></wm-label>
                                                     <wm-container class="col-md-9" width="50%" name="container92">
-                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text78"></wm-text>
+                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text78"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -478,7 +477,7 @@
                                                 <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite92">
                                                     <wm-label class="col-md-3 control-label" caption="Area" name="label172"></wm-label>
                                                     <wm-container class="col-md-9" width="70%" name="container93">
-                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.SteelArea" disabled="true" readonlygrid="true" name="text79"></wm-text>
+                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.Area" disabled="true" readonlygrid="true" name="text79"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -519,7 +518,7 @@
                                                 <wm-composite captionposition="top" name="composite95">
                                                     <wm-label class="col-md-3 control-label" caption="% Claimed" name="label175"></wm-label>
                                                     <wm-container class="col-md-9" width="50%" name="container96">
-                                                        <wm-text type="text" datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.SteelPercentClaim * 100 | suffix: '%'" disabled="true" name="text82"></wm-text>
+                                                        <wm-text type="text" datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.PercentClaim * 100 | suffix: '%'" disabled="true" name="text82"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -542,7 +541,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow103">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn166">
-                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 64 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID != null" margin="unset unset 1px unset" name="layoutgrid49">
+                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 64 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID != null" margin="unset unset 1px unset" name="layoutgrid49">
                             <wm-gridrow name="gridrow154">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn231">
                                     <wm-layoutgrid name="layoutgrid50">
@@ -556,7 +555,7 @@
                                                 <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite85">
                                                     <wm-label class="col-md-3 control-label" caption="Field Activity ID" name="label164"></wm-label>
                                                     <wm-container class="col-md-9" width="50%" name="container86">
-                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text73"></wm-text>
+                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text73"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -566,7 +565,7 @@
                                                 <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite86">
                                                     <wm-label class="col-md-3 control-label" caption="Area" name="label165"></wm-label>
                                                     <wm-container class="col-md-9" width="70%" name="container87">
-                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.SteelArea" disabled="true" readonlygrid="true" name="text74"></wm-text>
+                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.Area" disabled="true" readonlygrid="true" name="text74"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -607,7 +606,7 @@
                                                 <wm-composite captionposition="top" name="composite89">
                                                     <wm-label class="col-md-3 control-label" caption="% Claimed" name="label168"></wm-label>
                                                     <wm-container class="col-md-9" width="50%" name="container90">
-                                                        <wm-text type="text" datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.SteelPercentClaim * 100 | suffix: '%'" disabled="true" name="text77"></wm-text>
+                                                        <wm-text type="text" datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.PercentClaim * 100 | suffix: '%'" disabled="true" name="text77"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -630,7 +629,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow104">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn167">
-                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 68 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID != null" margin="unset unset 1px unset" name="layoutgrid46">
+                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 68 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID != null" margin="unset unset 1px unset" name="layoutgrid46">
                             <wm-gridrow name="gridrow145">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn221">
                                     <wm-layoutgrid name="layoutgrid47">
@@ -644,7 +643,7 @@
                                                 <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite79">
                                                     <wm-label class="col-md-3 control-label" caption="Field Activity ID" name="label157"></wm-label>
                                                     <wm-container class="col-md-9" width="50%" name="container80">
-                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text68"></wm-text>
+                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text68"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -654,7 +653,7 @@
                                                 <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite80">
                                                     <wm-label class="col-md-3 control-label" caption="Area" name="label158"></wm-label>
                                                     <wm-container class="col-md-9" width="70%" name="container81">
-                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.SteelArea" disabled="true" readonlygrid="true" name="text69"></wm-text>
+                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.Area" disabled="true" readonlygrid="true" name="text69"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -695,7 +694,7 @@
                                                 <wm-composite captionposition="top" name="composite83">
                                                     <wm-label class="col-md-3 control-label" caption="% Claimed" name="label161"></wm-label>
                                                     <wm-container class="col-md-9" width="50%" name="container84">
-                                                        <wm-text type="text" datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.SteelPercentClaim * 100 | suffix: '%'" disabled="true" name="text72"></wm-text>
+                                                        <wm-text type="text" datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.PercentClaim * 100 | suffix: '%'" disabled="true" name="text72"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -718,7 +717,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow105">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn168">
-                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 65 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID != null" margin="unset unset 1px unset" name="layoutgrid43">
+                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 65 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID != null" margin="unset unset 1px unset" name="layoutgrid43">
                             <wm-gridrow name="gridrow136">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn211">
                                     <wm-layoutgrid name="layoutgrid44">
@@ -732,7 +731,7 @@
                                                 <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite73">
                                                     <wm-label class="col-md-3 control-label" caption="Field Activity ID" name="label150"></wm-label>
                                                     <wm-container class="col-md-9" width="50%" name="container74">
-                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text63"></wm-text>
+                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text63"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -742,7 +741,7 @@
                                                 <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite74">
                                                     <wm-label class="col-md-3 control-label" caption="Area" name="label151"></wm-label>
                                                     <wm-container class="col-md-9" width="70%" name="container75_1">
-                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.SteelArea" disabled="true" readonlygrid="true" name="text64"></wm-text>
+                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.Area" disabled="true" readonlygrid="true" name="text64"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -796,7 +795,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow106">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn169_2">
-                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 96 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID != null" margin="unset unset 1px unset" name="layoutgrid40">
+                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 96 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID != null" margin="unset unset 1px unset" name="layoutgrid40">
                             <wm-gridrow name="gridrow127">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn201">
                                     <wm-layoutgrid name="layoutgrid41">
@@ -810,7 +809,7 @@
                                                 <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite67">
                                                     <wm-label class="col-md-3 control-label" caption="Field Activity ID" name="label143"></wm-label>
                                                     <wm-container class="col-md-9" width="50%" name="container68">
-                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text58"></wm-text>
+                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text58"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -820,7 +819,7 @@
                                                 <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite68">
                                                     <wm-label class="col-md-3 control-label" caption="Area" name="label144"></wm-label>
                                                     <wm-container class="col-md-9" width="70%" name="container69">
-                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.SteelArea" disabled="true" readonlygrid="true" name="text59"></wm-text>
+                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.Area" disabled="true" readonlygrid="true" name="text59"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -861,7 +860,7 @@
                                                 <wm-composite captionposition="top" name="composite71">
                                                     <wm-label class="col-md-3 control-label" caption="% Claimed" name="label147"></wm-label>
                                                     <wm-container class="col-md-9" width="50%" name="container72">
-                                                        <wm-text type="text" datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.SteelPercentClaim * 100 | suffix: '%'" disabled="true" name="text62"></wm-text>
+                                                        <wm-text type="text" datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.PercentClaim * 100 | suffix: '%'" disabled="true" name="text62"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -884,7 +883,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow107">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn170_1">
-                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 67 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID != null" margin="unset unset 1px unset" name="layoutgrid37">
+                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 67 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID != null" margin="unset unset 1px unset" name="layoutgrid37">
                             <wm-gridrow name="gridrow118">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn191">
                                     <wm-layoutgrid name="layoutgrid38">
@@ -898,7 +897,7 @@
                                                 <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite61">
                                                     <wm-label class="col-md-3 control-label" caption="Field Activity ID" name="label136"></wm-label>
                                                     <wm-container class="col-md-9" width="50%" name="container62">
-                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text53"></wm-text>
+                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text53"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -908,7 +907,7 @@
                                                 <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite62">
                                                     <wm-label class="col-md-3 control-label" caption="Area" name="label137"></wm-label>
                                                     <wm-container class="col-md-9" width="70%" name="container63">
-                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.SteelArea" disabled="true" readonlygrid="true" name="text54"></wm-text>
+                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.Area" disabled="true" readonlygrid="true" name="text54"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -965,7 +964,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow108">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn171_1">
-                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 66 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID != null" margin="unset unset 1px unset" name="layoutgrid34">
+                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 66 &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID != null" margin="unset unset 1px unset" name="layoutgrid34">
                             <wm-gridrow name="gridrow109">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn181">
                                     <wm-layoutgrid name="layoutgrid35">
@@ -979,7 +978,7 @@
                                                 <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite55">
                                                     <wm-label class="col-md-3 control-label" caption="Field Activity ID" name="label129"></wm-label>
                                                     <wm-container class="col-md-9" width="50%" name="container56">
-                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text48"></wm-text>
+                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text48"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -989,7 +988,7 @@
                                                 <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite56">
                                                     <wm-label class="col-md-3 control-label" caption="Test Package Number" name="label130"></wm-label>
                                                     <wm-container class="col-md-9" width="70%" name="container57">
-                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.SteelArea" disabled="true" readonlygrid="true" name="text49"></wm-text>
+                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.Area" disabled="true" readonlygrid="true" name="text49"></wm-text>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
@@ -1063,7 +1062,7 @@
                                             <wm-composite captionposition="top" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 96" margin="0px unset" name="composite71_1">
                                                 <wm-label class="col-md-3" caption="Misc" hint="The amount installed by this current Activity" fontweight="bold" name="label188"></wm-label>
                                             </wm-composite>
-                                            <wm-text name="textInstalled" hint="The amount installed by this current Activity" datavalue="bind:($parent.$parent.Widgets.gridApprovalReview.selecteditem.Quantity * $parent.$parent.Widgets.gridApprovalReview.selecteditem.SteelPercentClaim) | numberToString: '2'"
+                                            <wm-text name="textInstalled" hint="The amount installed by this current Activity" datavalue="bind:($parent.$parent.Widgets.gridApprovalReview.selecteditem.Quantity * $parent.$parent.Widgets.gridApprovalReview.selecteditem.PercentClaim) | numberToString: '2'"
                                             type="number" updateon="default" backgroundcolor="#b1efe4" readonly="true" width="80%" disabled="false" placeholder="Enter Quantity" scopedatavalue="textInstalled" margin="unset unset 0px unset" color="#000000"></wm-text>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
@@ -1454,7 +1453,7 @@
         <wm-gridrow backgroundcolor="#b1efe4" padding="1% 1% unset 1%" name="gridrow118_1">
             <wm-gridcolumn columnwidth="1" name="gridcolumn194_1">
                 <wm-label caption="Field ActivityID" fontweight="bold" textdecoration="underline" hint="This is the selected activity." name="label193"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID" hint="This is the selected activity." color="#000000" name="label194"></wm-label>
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityID" hint="This is the selected activity." color="#000000" name="label194"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn195_2">
                 <wm-label caption="Test Package" fontweight="bold" textdecoration="underline" borderstyle="none" name="label195"></wm-label>
@@ -1467,8 +1466,8 @@
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="4" name="gridcolumn198_2"></wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn199">
-                <wm-label width="100%" caption="Review Notes" show="bind:$parent.Variables.serviceGetNoteCount.dataSet.content[$i].NoteCount > 0" fontweight="bold" textdecoration="underline" name="label199"></wm-label>
-                <wm-button class="btn-default" caption="View" type="button" show="bind:$parent.Variables.serviceGetNoteCount.dataSet.content[$i].NoteCount > 0" backgroundcolor="#e7dd51" marginunit="%" on-click="buttonReviewNotes2Click($event, $scope)"
+                <wm-label width="100%" caption="Review Notes" show="bind:$parent.Variables.serviceGetNotesByFieldActivityID.dataSet.totalElements > 0" fontweight="bold" textdecoration="underline" name="label199"></wm-label>
+                <wm-button class="btn-default" caption="View" type="button" show="bind:$parent.Variables.serviceGetNotesByFieldActivityID.dataSet.totalElements > 0" backgroundcolor="#e7dd51" marginunit="%" on-click="buttonReviewNotes2Click($event, $scope)"
                 iconclass="glyphicon glyphicon-list-alt" hint="Review notes from the Superintendent." name="buttonReviewNotes2"></wm-button>
             </wm-gridcolumn>
         </wm-gridrow>
