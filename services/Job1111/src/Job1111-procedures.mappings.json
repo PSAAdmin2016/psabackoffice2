@@ -1168,75 +1168,107 @@
     } ]
   },
   "CreateLooseHoursActivitiesPipe" : {
-    "procedureString" : "call CreateLooseHoursActivityPipe(?, ?, ?, ?)",
+    "procedureString" : "call CreateLooseHoursActivityPipe(?, ?, ?, ?, ?, ?)",
     "parameters" : [ {
       "name" : "SubmissionId",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "306",
-      "required" : false,
+      "testValue" : "1",
+      "required" : true,
       "parameterType" : "IN"
     }, {
-      "name" : "PSAActivityId",
+      "name" : "ActivityId",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "673",
-      "required" : false,
+      "testValue" : "6",
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "UserId",
       "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false,
-      "parameterType" : "IN"
-    }, {
-      "name" : "TestPackage",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "3",
-      "required" : false,
-      "parameterType" : "IN"
-    } ]
-  },
-  "CreateLooseHoursActivityCivil" : {
-    "procedureString" : "call CreateLooseHoursActivityCivil(?, ?, ?, ?)",
-    "parameters" : [ {
-      "name" : "SubmissionId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "584",
-      "required" : false,
-      "parameterType" : "IN"
-    }, {
-      "name" : "PSAActivityId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "2521",
-      "required" : false,
-      "parameterType" : "IN"
-    }, {
-      "name" : "UserId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false,
-      "parameterType" : "IN"
-    }, {
-      "name" : "TestPackage",
-      "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "2",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
+    }, {
+      "name" : "TestPackage",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "CreateLooseHoursActivityCivil" : {
+    "procedureString" : "call CreateLooseHoursActivityCivil(?, ?, ?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "SubmissionId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ActivityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "8",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "UserId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "TestPackage",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
     } ]
   },
   "GetSteelPCOT" : {

@@ -331,10 +331,10 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public CreateLooseHoursActivitiesPipeResponse executeCreateLooseHoursActivitiesPipe(CreateLooseHoursActivitiesPipeRequest createLooseHoursActivitiesPipeRequest) {
-        Map params = new HashMap(4);
+        Map params = new HashMap(6);
 
         params.put("SubmissionId", createLooseHoursActivitiesPipeRequest.getSubmissionId());
-        params.put("PSAActivityId", createLooseHoursActivitiesPipeRequest.getPsaactivityId());
+        params.put("ActivityId", createLooseHoursActivitiesPipeRequest.getActivityId());
         params.put("UserId", createLooseHoursActivitiesPipeRequest.getUserId());
         params.put("TestPackage", createLooseHoursActivitiesPipeRequest.getTestPackage());
 
@@ -344,10 +344,10 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public CreateLooseHoursActivityCivilResponse executeCreateLooseHoursActivityCivil(CreateLooseHoursActivityCivilRequest createLooseHoursActivityCivilRequest) {
-        Map params = new HashMap(4);
+        Map params = new HashMap(6);
 
         params.put("SubmissionId", createLooseHoursActivityCivilRequest.getSubmissionId());
-        params.put("PSAActivityId", createLooseHoursActivityCivilRequest.getPsaactivityId());
+        params.put("ActivityId", createLooseHoursActivityCivilRequest.getActivityId());
         params.put("UserId", createLooseHoursActivityCivilRequest.getUserId());
         params.put("TestPackage", createLooseHoursActivityCivilRequest.getTestPackage());
 

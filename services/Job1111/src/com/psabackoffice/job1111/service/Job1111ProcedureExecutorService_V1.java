@@ -58,10 +58,10 @@ public interface Job1111ProcedureExecutorService_V1 {
     List<Object> executeCreateLooseHoursActivitySteel(Integer submissionId, Integer psaactivityId, Integer userId, String testPackage);
 
     @Deprecated
-    List<Object> executeCreateLooseHoursActivitiesPipe(Integer submissionId, Integer psaactivityId, Integer userId, String testPackage);
+    List<Object> executeCreateLooseHoursActivitiesPipe(Integer submissionId, Integer activityId, Integer userId, String testPackage);
 
     @Deprecated
-    List<Object> executeCreateLooseHoursActivityCivil(Integer submissionId, Integer psaactivityId, Integer userId, String testPackage);
+    List<Object> executeCreateLooseHoursActivityCivil(Integer submissionId, Integer activityId, Integer userId, String testPackage);
 
     @Deprecated
     List<Object> executeGetSteelPCOT(Integer runMode);

@@ -19,18 +19,41 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class CreateLooseHoursActivityCivilResponse implements Serializable {
 
+    @JsonProperty("ReturnStatus")
+    @ColumnAlias("ReturnStatus")
+    private Boolean returnStatus;
+    @JsonProperty("ErrorText")
+    @ColumnAlias("ErrorText")
+    private String errorText;
 
+    public Boolean getReturnStatus() {
+        return this.returnStatus;
+    }
+
+    public void setReturnStatus(Boolean returnStatus) {
+        this.returnStatus = returnStatus;
+    }
+
+    public String getErrorText() {
+        return this.errorText;
+    }
+
+    public void setErrorText(String errorText) {
+        this.errorText = errorText;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof CreateLooseHoursActivityCivilResponse)) return false;
         final CreateLooseHoursActivityCivilResponse createLooseHoursActivityCivilResponse = (CreateLooseHoursActivityCivilResponse) o;
-        return true;
+        return Objects.equals(getReturnStatus(), createLooseHoursActivityCivilResponse.getReturnStatus()) &&
+                Objects.equals(getErrorText(), createLooseHoursActivityCivilResponse.getErrorText());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash();
+        return Objects.hash(getReturnStatus(),
+                getErrorText());
     }
 }

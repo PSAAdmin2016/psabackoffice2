@@ -8933,7 +8933,7 @@ LEFT JOIN (SELECT min(ctd.UID) AS UID, cs.InstalledSellPunch
 			LEFT JOIN (SELECT sas.ActivityType, cs.SellTestPackageNumber, 1 AS InstalledSellPunch
 						FROM CivilSellPackage cs 
 						INNER JOIN SubmissionActivityStatus sas
-							ON sas.ActivityID = sas.ActivityID AND sas.fk_ActivityStatus IN (5,12)) cs
+							ON sas.ActivityID = cs.ActivityID AND sas.fk_ActivityStatus IN (5,12)) cs
 	ON cs.SellTestPackageNumber = ctd.TestPackageNumber AND ctd.ActivityType != "Demo"
 GROUP BY ctd.BidID) ers
 	On ers.UID = ctd.UID
@@ -9009,7 +9009,7 @@ LEFT JOIN (SELECT min(ctd.UID) AS UID, cs.InstalledSellPunch
 			LEFT JOIN (SELECT sas.ActivityType, cs.SellTestPackageNumber, 1 AS InstalledSellPunch
 						FROM CivilSellPackage cs 
 						INNER JOIN SubmissionActivityStatus sas
-							ON sas.ActivityID = sas.ActivityID AND sas.fk_ActivityStatus IN (5,12)) cs
+							ON sas.ActivityID = cs.ActivityID AND sas.fk_ActivityStatus IN (5,12)) cs
 	ON cs.SellTestPackageNumber = ctd.TestPackageNumber AND ctd.ActivityType != "Demo"
 GROUP BY ctd.BidID) ers
 	On ers.UID = ctd.UID

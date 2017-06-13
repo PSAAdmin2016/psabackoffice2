@@ -15,12 +15,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CreateLooseHoursActivitiesPipeRequest implements Serializable {
 
+    @NotNull
     @JsonProperty("SubmissionId")
     private Integer submissionId;
-    @JsonProperty("PSAActivityId")
-    private Integer psaactivityId;
+    @NotNull
+    @JsonProperty("ActivityId")
+    private Integer activityId;
+    @NotNull
     @JsonProperty("UserId")
     private Integer userId;
+    @NotNull
     @JsonProperty("TestPackage")
     private String testPackage;
 
@@ -32,12 +36,12 @@ public class CreateLooseHoursActivitiesPipeRequest implements Serializable {
         this.submissionId = submissionId;
     }
 
-    public Integer getPsaactivityId() {
-        return this.psaactivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setPsaactivityId(Integer psaactivityId) {
-        this.psaactivityId = psaactivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     public Integer getUserId() {
@@ -62,7 +66,7 @@ public class CreateLooseHoursActivitiesPipeRequest implements Serializable {
         if (!(o instanceof CreateLooseHoursActivitiesPipeRequest)) return false;
         final CreateLooseHoursActivitiesPipeRequest createLooseHoursActivitiesPipeRequest = (CreateLooseHoursActivitiesPipeRequest) o;
         return Objects.equals(getSubmissionId(), createLooseHoursActivitiesPipeRequest.getSubmissionId()) &&
-                Objects.equals(getPsaactivityId(), createLooseHoursActivitiesPipeRequest.getPsaactivityId()) &&
+                Objects.equals(getActivityId(), createLooseHoursActivitiesPipeRequest.getActivityId()) &&
                 Objects.equals(getUserId(), createLooseHoursActivitiesPipeRequest.getUserId()) &&
                 Objects.equals(getTestPackage(), createLooseHoursActivitiesPipeRequest.getTestPackage());
     }
@@ -70,7 +74,7 @@ public class CreateLooseHoursActivitiesPipeRequest implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getSubmissionId(),
-                getPsaactivityId(),
+                getActivityId(),
                 getUserId(),
                 getTestPackage());
     }

@@ -1718,39 +1718,55 @@
     "name" : "CreateLooseHoursActivitiesPipe",
     "description" : "name",
     "version" : "V1",
-    "procedureString" : "call CreateLooseHoursActivityPipe(:SubmissionId, :PSAActivityId, :UserId, :TestPackage)",
+    "procedureString" : "call CreateLooseHoursActivityPipe(:SubmissionId, :ActivityId, :UserId, :TestPackage, :ReturnStatus, :ErrorText)",
     "parameters" : [ {
       "name" : "SubmissionId",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "306",
-      "required" : false,
+      "testValue" : "1",
+      "required" : true,
       "parameterType" : "IN"
     }, {
-      "name" : "PSAActivityId",
+      "name" : "ActivityId",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "673",
-      "required" : false,
+      "testValue" : "6",
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "UserId",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false,
+      "testValue" : "2",
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "TestPackage",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "3",
-      "required" : false,
+      "testValue" : "1",
+      "required" : true,
       "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
     } ],
     "request" : {
       "wrapped" : true,
@@ -1760,46 +1776,81 @@
     "response" : {
       "typeRef" : "com.psabackoffice.job1111.models.procedure.CreateLooseHoursActivitiesPipeResponse",
       "returns" : "CUSTOM",
-      "responseType" : "SINGLE"
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "ReturnStatus",
+        "fieldName" : "returnStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "ErrorText",
+        "fieldName" : "errorText",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
     }
   },
   "CreateLooseHoursActivityCivil" : {
     "name" : "CreateLooseHoursActivityCivil",
     "description" : "Name",
     "version" : "V1",
-    "procedureString" : "call CreateLooseHoursActivityCivil(:SubmissionId, :PSAActivityId, :UserId, :TestPackage)",
+    "procedureString" : "call CreateLooseHoursActivityCivil(:SubmissionId, :ActivityId, :UserId, :TestPackage, :ReturnStatus, :ErrorText)",
     "parameters" : [ {
       "name" : "SubmissionId",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "584",
-      "required" : false,
+      "testValue" : "1",
+      "required" : true,
       "parameterType" : "IN"
     }, {
-      "name" : "PSAActivityId",
+      "name" : "ActivityId",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "2521",
-      "required" : false,
+      "testValue" : "8",
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "UserId",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false,
+      "testValue" : "2",
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "TestPackage",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "2",
-      "required" : false,
+      "testValue" : "1",
+      "required" : true,
       "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
     } ],
     "request" : {
       "wrapped" : true,
@@ -1809,7 +1860,26 @@
     "response" : {
       "typeRef" : "com.psabackoffice.job1111.models.procedure.CreateLooseHoursActivityCivilResponse",
       "returns" : "CUSTOM",
-      "responseType" : "SINGLE"
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "ReturnStatus",
+        "fieldName" : "returnStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "ErrorText",
+        "fieldName" : "errorText",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
     }
   },
   "CreateLooseHoursActivitySteel" : {

@@ -338,10 +338,6 @@
       "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.fk_SubmissionId",
       "type" : "integer"
     }, {
-      "target" : "PSAActivityId",
-      "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.PSAActivityID",
-      "type" : "integer"
-    }, {
       "target" : "UserId",
       "value" : "bind:Variables.loggedInUser.dataSet.id",
       "type" : "integer"
@@ -349,6 +345,10 @@
       "target" : "TestPackage",
       "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.Line1",
       "type" : "string"
+    }, {
+      "target" : "ActivityId",
+      "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityID",
+      "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.procedure.CreateLooseHoursActivityCivilResponse",
     "service" : "Job1111",
