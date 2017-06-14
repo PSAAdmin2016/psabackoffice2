@@ -365,7 +365,9 @@
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
-    "controller" : "ProcedureExecution"
+    "controller" : "ProcedureExecution",
+    "spinnerContext" : "page",
+    "spinnerMessage" : "Claiming Loose Hours..."
   },
   "serviceGetBidActivityMatchesByTestPackage" : {
     "_id" : "wm-serviceGetBidActivityMatchesByTestPackage-wm.ServiceVariable-1484165892918",

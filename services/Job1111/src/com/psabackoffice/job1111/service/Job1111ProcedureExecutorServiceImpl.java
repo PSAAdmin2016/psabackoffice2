@@ -266,15 +266,15 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public Void executeCreateLooseHoursActivitySteel(CreateLooseHoursActivitySteelRequest createLooseHoursActivitySteelRequest) {
-        Map params = new HashMap(4);
+    public CreateLooseHoursActivitySteelResponse executeCreateLooseHoursActivitySteel(CreateLooseHoursActivitySteelRequest createLooseHoursActivitySteelRequest) {
+        Map params = new HashMap(6);
 
         params.put("SubmissionId", createLooseHoursActivitySteelRequest.getSubmissionId());
-        params.put("PSAActivityId", createLooseHoursActivitySteelRequest.getPsaactivityId());
+        params.put("ActivityId", createLooseHoursActivitySteelRequest.getActivityId());
         params.put("UserId", createLooseHoursActivitySteelRequest.getUserId());
         params.put("TestPackage", createLooseHoursActivitySteelRequest.getTestPackage());
 
-        return procedureExecutor.executeNamedProcedure("CreateLooseHoursActivitySteel", params, Void.class);
+        return procedureExecutor.executeNamedProcedure("CreateLooseHoursActivitySteel", params, CreateLooseHoursActivitySteelResponse.class);
     }
 
     @Transactional(value = "Job1111TransactionManager")

@@ -228,9 +228,9 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/CreateLooseHoursActivitySteel", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
-    public List<Void> executeCreateLooseHoursActivitySteel(@Valid @RequestBody CreateLooseHoursActivitySteelRequest createLooseHoursActivitySteelRequest) {
+    public List<CreateLooseHoursActivitySteelResponse> executeCreateLooseHoursActivitySteel(@Valid @RequestBody CreateLooseHoursActivitySteelRequest createLooseHoursActivitySteelRequest) {
         LOGGER.debug("Executing named procedure: CreateLooseHoursActivitySteel");
-        Void _result = procedureService.executeCreateLooseHoursActivitySteel(createLooseHoursActivitySteelRequest);
+        CreateLooseHoursActivitySteelResponse _result = procedureService.executeCreateLooseHoursActivitySteel(createLooseHoursActivitySteelRequest);
         LOGGER.debug("got the result for v1 named procedure: CreateLooseHoursActivitySteel, result:{}", _result);
         return Collections.singletonList(_result);
     }

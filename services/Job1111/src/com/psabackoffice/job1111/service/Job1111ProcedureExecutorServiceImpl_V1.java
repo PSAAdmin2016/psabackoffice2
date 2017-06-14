@@ -175,11 +175,11 @@ public class Job1111ProcedureExecutorServiceImpl_V1 implements Job1111ProcedureE
 
     }
 
-    public List<Object> executeCreateLooseHoursActivitySteel(Integer submissionId, Integer psaactivityId, Integer userId, String testPackage) {
-        Map params = new HashMap(4);
+    public List<Object> executeCreateLooseHoursActivitySteel(Integer submissionId, Integer activityId, Integer userId, String testPackage) {
+        Map params = new HashMap(6);
 
         params.put("SubmissionId", submissionId);
-        params.put("PSAActivityId", psaactivityId);
+        params.put("ActivityId", activityId);
         params.put("UserId", userId);
         params.put("TestPackage", testPackage);
 

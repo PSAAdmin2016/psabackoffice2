@@ -55,7 +55,7 @@ public interface Job1111ProcedureExecutorService_V1 {
     List<Object> executeGetCivilStats(String groupedBy, Integer runMode);
 
     @Deprecated
-    List<Object> executeCreateLooseHoursActivitySteel(Integer submissionId, Integer psaactivityId, Integer userId, String testPackage);
+    List<Object> executeCreateLooseHoursActivitySteel(Integer submissionId, Integer activityId, Integer userId, String testPackage);
 
     @Deprecated
     List<Object> executeCreateLooseHoursActivitiesPipe(Integer submissionId, Integer activityId, Integer userId, String testPackage);

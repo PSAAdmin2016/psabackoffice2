@@ -10,7 +10,7 @@
       "type" : "integer"
     }, {
       "target" : "SubmissionId",
-      "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.fk_SubmissionId",
+      "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.SubmissionID",
       "type" : "integer"
     }, {
       "target" : "ActivityId",
@@ -21,7 +21,7 @@
       "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.Line1",
       "type" : "string"
     } ],
-    "type" : "java.lang.Void",
+    "type" : "com.psabackoffice.job1111.models.procedure.CreateLooseHoursActivitySteelResponse",
     "service" : "Job1111",
     "operation" : "executeCreateLooseHoursActivitySteel",
     "operationId" : "ProcedureExecutionController_executeCreateLooseHoursActivitySteel",
@@ -36,7 +36,9 @@
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
-    "controller" : "ProcedureExecution"
+    "controller" : "ProcedureExecution",
+    "spinnerContext" : "page",
+    "spinnerMessage" : "Claiming Loose Hours..."
   },
   "serviceGetBidActivityMatchesByTestPackage" : {
     "_id" : "wm-serviceGetBidActivityMatchesByTestPackage-wm.ServiceVariable-1484241758671",

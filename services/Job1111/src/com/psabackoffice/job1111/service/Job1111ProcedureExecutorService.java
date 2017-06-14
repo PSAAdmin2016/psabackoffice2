@@ -48,7 +48,7 @@ public interface Job1111ProcedureExecutorService {
 
     GetCivilStatsResponse executeGetCivilStats(String groupedBy, Integer runMode);
 
-    Void executeCreateLooseHoursActivitySteel(CreateLooseHoursActivitySteelRequest createLooseHoursActivitySteelRequest);
+    CreateLooseHoursActivitySteelResponse executeCreateLooseHoursActivitySteel(CreateLooseHoursActivitySteelRequest createLooseHoursActivitySteelRequest);
 
     GetEquipEarnedHoursResponse executeGetEquipEarnedHours(String groupedBy, String crewId, String crewRev, String foremanId, String superintendentId, String projectManagerId, String constructionManagerId, String siteManagerId, String areaManagerId, Date inputDate, Integer runMode);
 

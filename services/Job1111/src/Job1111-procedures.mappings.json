@@ -880,39 +880,55 @@
     } ]
   },
   "CreateLooseHoursActivitySteel" : {
-    "procedureString" : "call CreateLooseHoursActivitySteel(?, ?, ?, ?)",
+    "procedureString" : "call CreateLooseHoursActivitySteel(?, ?, ?, ?, ?, ?)",
     "parameters" : [ {
       "name" : "SubmissionId",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
-      "name" : "PSAActivityId",
+      "name" : "ActivityId",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false,
+      "testValue" : "9",
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "UserId",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false,
+      "testValue" : "2",
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "TestPackage",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "0",
-      "required" : false,
+      "testValue" : "1",
+      "required" : true,
       "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
     } ]
   },
   "GetEquipEarnedHours" : {
