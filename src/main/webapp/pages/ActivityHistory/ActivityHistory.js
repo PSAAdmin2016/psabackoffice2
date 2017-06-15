@@ -74,10 +74,10 @@ Application.$controller("ActivityHistoryPageController", ["$scope", function($sc
 
     $scope.tabpane2Select = function($event, $isolateScope) {
         if ($scope.$parent.$parent.$parent.$parent.Widgets.livelistBidWorkHistory.selecteditem.activityType == 'Equip FA') {
-            $scope.Variables.GetActivityStatusHistory.setInput("PSAActivityID", $scope.$parent.$parent.$parent.$parent.Widgets.livelistBidWorkHistory.selecteditem.psaactivityId);
+            $scope.Variables.GetActivityStatusHistory.setInput("ActivityID", $scope.$parent.$parent.$parent.$parent.Widgets.livelistBidWorkHistory.selecteditem.ActivityID);
             $scope.Variables.GetActivityStatusHistory.invoke();
         } else {
-            $scope.Variables.GetActivityStatusHistory.setInput("PSAActivityID", $scope.$parent.$parent.$parent.$parent.Widgets.livelistBidWorkHistory.selecteditem.PSAActivityID);
+            $scope.Variables.GetActivityStatusHistory.setInput("ActivityID", $scope.$parent.$parent.$parent.$parent.Widgets.livelistBidWorkHistory.selecteditem.ActivityID);
             $scope.Variables.GetActivityStatusHistory.invoke();
         }
 

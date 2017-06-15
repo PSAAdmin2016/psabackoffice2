@@ -2145,7 +2145,7 @@ UNION ALL
 
 SELECT sas.ActivityID, at.ActivityType,  
  
-COALESCE((pw.WeldPercentCompleted * .01),0) AS Quantity,
+COALESCE((pw.WeldPercentCompleted),0) AS Quantity,
 pw.WeldNotes AS Notes,
 pw.Rev,
 pw.WeldRework,
@@ -2223,7 +2223,7 @@ UNION ALL
 
 SELECT sas.ActivityID, at.ActivityType,  
  
-IF(psu.SupportComplete = 1, psu.SupportQuantity, COALESCE((psu.SupportPercentCompleted * .01),0)) AS Quantity,
+IF(psu.SupportComplete = 1, psu.SupportQuantity, COALESCE((psu.SupportPercentCompleted),0)) AS Quantity,
 psu.SupportNotes AS Notes,  
 psu.Rev,
 psu.SupportRework,
@@ -2555,7 +2555,7 @@ UNION ALL
 
 SELECT sas.ActivityID, at.ActivityType,  
  
-COALESCE((pw.WeldPercentCompleted * .01),0) AS Quantity,
+COALESCE((pw.WeldPercentCompleted),0) AS Quantity,
 pw.WeldNotes AS Notes,
 pw.Rev,
 pw.WeldRework,
@@ -2633,7 +2633,7 @@ UNION ALL
 
 SELECT sas.ActivityID, at.ActivityType,  
  
-IF(psu.SupportComplete = 1, psu.SupportQuantity, COALESCE((psu.SupportPercentCompleted * .01),0)) AS Quantity,
+IF(psu.SupportComplete = 1, psu.SupportQuantity, COALESCE((psu.SupportPercentCompleted),0)) AS Quantity,
 psu.SupportNotes AS Notes,  
 psu.Rev,
 psu.SupportRework,

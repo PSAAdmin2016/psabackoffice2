@@ -187,7 +187,7 @@
                 </wm-tabpane>
                 <wm-tabpane name="tabpane2" heading="Status History" isdefaulttab="false" title="Field Activity Status History" on-select="tabpane2Select($event, $scope)">
                     <wm-grid navigation="Classic" name="gridStatusChangeLog" class="panel-default" dataset="bind:Variables.GetActivityStatusHistory.dataSet" spacing="condensed">
-                        <wm-grid-column binding="PSAActivityID" caption="Field Activity ID" type="string" readonly="true" edit-widget-type="text" sortable="false" show="true"></wm-grid-column>
+                        <wm-grid-column binding="ActivityID" caption="Field Activity ID" type="string" readonly="true" edit-widget-type="text" sortable="false" show="true"></wm-grid-column>
                         <wm-grid-column binding="Status" caption="Status" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                         <wm-grid-column binding="LastModifiedBy" caption="Last Modified By" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                         <wm-grid-column binding="TimeStamp" caption="Time Stamp" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" edit-widget-type="text" show="true"></wm-grid-column>
