@@ -63,7 +63,7 @@ Variables.serviceGetStatsEquip.dataSet.content[0].hoursAll
                                 </wm-gridrow>
                                 <wm-gridrow horizontalalign="center" name="gridrow8">
                                     <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn17">
-                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: (Variables.serviceGetStatsCivil.firstRecord.content[0].RemainingAllCivilHours) },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: Variables.serviceGetStatsCivil.firstRecord.content[0].EarnedAllCivilHours + Variables.serviceGetStatsCivil.firstRecord.content[0].EarnedTestingHours }]);"
+                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: (Variables.serviceGetStatsCivil.firstRecord.content[0].RemainingAllCivilHours) },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: Variables.serviceGetStatsCivil.firstRecord.content[0].EarnedAllCivilHours + Variables.serviceGetStatsCivil.firstRecord.content[0].EarnedSellPunchHours }]);"
                                         xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart2"></wm-chart>
                                     </wm-gridcolumn>
                                 </wm-gridrow>

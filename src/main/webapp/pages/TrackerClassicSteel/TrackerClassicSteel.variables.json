@@ -898,8 +898,8 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:inItem.ActivityRowId",
+      "target" : "ActivityID",
+      "value" : "bind:inItem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivityHistorySteelBoltoutResponse",
@@ -925,8 +925,8 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:inItem.ActivityRowId",
+      "target" : "ActivityID",
+      "value" : "bind:inItem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivityHistorySteelDemoResponse",
@@ -952,8 +952,8 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:inItem.ActivityRowId",
+      "target" : "ActivityID",
+      "value" : "bind:inItem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivityHistorySteelErectResponse",
@@ -979,8 +979,8 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:inItem.ActivityRowId",
+      "target" : "ActivityID",
+      "value" : "bind:inItem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivityHistorySteelImpResponse",
@@ -1006,8 +1006,8 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:inItem.ActivityRowId",
+      "target" : "ActivityID",
+      "value" : "bind:inItem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivityHistorySteelMiscResponse",
@@ -1033,8 +1033,8 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:inItem.ActivityRowId",
+      "target" : "ActivityID",
+      "value" : "bind:inItem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivityHistorySteelSellResponse",
@@ -1060,8 +1060,8 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:inItem.ActivityRowId",
+      "target" : "ActivityID",
+      "value" : "bind:inItem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivityHistorySteelShakeResponse",
@@ -1087,8 +1087,8 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:inItem.ActivityRowId",
+      "target" : "ActivityID",
+      "value" : "bind:inItem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivityHistorySteelWeldResponse",
@@ -1114,8 +1114,8 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "PSAActivityID",
-      "value" : "bind:inItem.PSAActivityID",
+      "target" : "ActivityID",
+      "value" : "bind:inItem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryStatusResponse",
@@ -1196,7 +1196,7 @@
       "type" : "integer"
     }, {
       "target" : "SubID",
-      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.fk_SubmissionId",
+      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.SubmissionID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetBidWorkHistorySteelExpandedResponse",
@@ -1228,13 +1228,13 @@
     }, {
       "target" : "Percent",
       "value" : "bind:Widgets.formNewQuantity.formWidgets.selectNewPercent.datavalue",
-      "type" : "integer"
+      "type" : "number"
     }, {
-      "target" : "RowID",
-      "value" : "bind:inItem.ActivityRowId",
+      "target" : "FieldActivityID",
+      "value" : "bind:inItem.ActivityID",
       "type" : "integer"
     } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "type" : "integer",
     "service" : "Job1111",
     "operation" : "executeUpdateSteelBoltoutQuantity",
     "operationId" : "QueryExecutionController_executeUpdateSteelBoltoutQuantity",
@@ -1323,15 +1323,15 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:inItem.ActivityRowId",
-      "type" : "integer"
-    }, {
       "target" : "Quantity",
       "value" : "bind:Widgets.formNewQuantity.formWidgets.textOverrideQuantity.datavalue",
       "type" : "integer"
+    }, {
+      "target" : "FieldActivityID",
+      "value" : "bind:inItem.ActivityID",
+      "type" : "integer"
     } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "type" : "integer",
     "service" : "Job1111",
     "operation" : "executeUpdateSteelDemoQuantity",
     "operationId" : "QueryExecutionController_executeUpdateSteelDemoQuantity",
@@ -1361,13 +1361,13 @@
     }, {
       "target" : "Percent",
       "value" : "bind:Widgets.formNewQuantity.formWidgets.selectNewPercent.datavalue",
-      "type" : "integer"
+      "type" : "number"
     }, {
-      "target" : "RowID",
-      "value" : "bind:inItem.ActivityRowId",
+      "target" : "FieldActivityID",
+      "value" : "bind:inItem.ActivityID",
       "type" : "integer"
     } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "type" : "integer",
     "service" : "Job1111",
     "operation" : "executeUpdateSteelErectQuantity",
     "operationId" : "QueryExecutionController_executeUpdateSteelErectQuantity",
@@ -1397,13 +1397,13 @@
     }, {
       "target" : "Percent",
       "value" : "bind:Widgets.formNewQuantity.formWidgets.selectNewPercent.datavalue",
-      "type" : "integer"
+      "type" : "number"
     }, {
-      "target" : "RowID",
-      "value" : "bind:inItem.ActivityRowId",
+      "target" : "FieldActivityID",
+      "value" : "bind:inItem.ActivityID",
       "type" : "integer"
     } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "type" : "integer",
     "service" : "Job1111",
     "operation" : "executeUpdateSteelImpQuantity",
     "operationId" : "QueryExecutionController_executeUpdateSteelImpQuantity",
@@ -1431,11 +1431,11 @@
       "value" : "bind:Widgets.formNewQuantity.formWidgets.textOverrideQuantity.datavalue",
       "type" : "integer"
     }, {
-      "target" : "RowID",
-      "value" : "bind:inItem.ActivityRowId",
-      "type" : "integer"
+      "target" : "FieldActivityID",
+      "value" : "bind:inItem.ActivityID",
+      "type" : "number"
     } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "type" : "integer",
     "service" : "Job1111",
     "operation" : "executeUpdateSteelMiscQuantity",
     "operationId" : "QueryExecutionController_executeUpdateSteelMiscQuantity",
@@ -1463,11 +1463,11 @@
       "value" : "bind:Widgets.formNewQuantity.formWidgets.textOverrideQuantity.datavalue",
       "type" : "integer"
     }, {
-      "target" : "RowID",
-      "value" : "bind:inItem.ActivityRowId",
-      "type" : "integer"
+      "target" : "FieldActivityID",
+      "value" : "bind:inItem.ActivityID",
+      "type" : "number"
     } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "type" : "integer",
     "service" : "Job1111",
     "operation" : "executeUpdateSteelSellQuantity",
     "operationId" : "QueryExecutionController_executeUpdateSteelSellQuantity",
@@ -1495,11 +1495,11 @@
       "value" : "bind:Widgets.formNewQuantity.formWidgets.textOverrideQuantity.datavalue",
       "type" : "integer"
     }, {
-      "target" : "RowID",
-      "value" : "bind:inItem.ActivityRowId",
+      "target" : "FieldActivityID",
+      "value" : "bind:inItem.ActivityID",
       "type" : "integer"
     } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "type" : "integer",
     "service" : "Job1111",
     "operation" : "executeUpdateSteelShakeQuantity",
     "operationId" : "QueryExecutionController_executeUpdateSteelShakeQuantity",
