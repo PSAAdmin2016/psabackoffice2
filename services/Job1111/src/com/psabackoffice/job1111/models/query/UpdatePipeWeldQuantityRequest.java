@@ -16,16 +16,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UpdatePipeWeldQuantityRequest implements Serializable {
 
     @JsonProperty("PercentComplete")
-    private Integer percentComplete;
+    private BigDecimal percentComplete;
     @NotNull
     @JsonProperty("FieldActivityID")
     private Integer fieldActivityId;
 
-    public Integer getPercentComplete() {
+    public BigDecimal getPercentComplete() {
         return this.percentComplete;
     }
 
-    public void setPercentComplete(Integer percentComplete) {
+    public void setPercentComplete(BigDecimal percentComplete) {
         this.percentComplete = percentComplete;
     }
 

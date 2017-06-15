@@ -12082,7 +12082,7 @@
       "required" : false
     }, {
       "name" : "PercentComplete",
-      "type" : "integer",
+      "type" : "big_integer",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
@@ -12131,17 +12131,17 @@
     "type" : "UPDATE",
     "parameters" : [ {
       "name" : "PercentComplete",
-      "type" : "integer",
+      "type" : "big_decimal",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "1",
+      "testValue" : ".4",
       "required" : false
     }, {
       "name" : "FieldActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "1",
+      "testValue" : "7",
       "required" : true
     } ],
     "request" : {

@@ -7,6 +7,7 @@ package com.psabackoffice.job1111.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
@@ -48,7 +49,7 @@ public class UpdatePipeWeldRequest implements Serializable {
     @JsonProperty("Shared")
     private Byte shared;
     @JsonProperty("PercentComplete")
-    private Integer percentComplete;
+    private BigInteger percentComplete;
     @JsonProperty("Rework")
     private Byte rework;
     @JsonProperty("Notes")
@@ -185,11 +186,11 @@ public class UpdatePipeWeldRequest implements Serializable {
         this.shared = shared;
     }
 
-    public Integer getPercentComplete() {
+    public BigInteger getPercentComplete() {
         return this.percentComplete;
     }
 
-    public void setPercentComplete(Integer percentComplete) {
+    public void setPercentComplete(BigInteger percentComplete) {
         this.percentComplete = percentComplete;
     }
 

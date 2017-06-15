@@ -5151,7 +5151,7 @@ SET
 WeldPercentCompleted = :PercentComplete
 WHERE ActivityID = :FieldActivityID
         ]]>
-    <query-param name="PercentComplete" type="java.lang.Integer"/>
+    <query-param name="PercentComplete" type="java.math.BigDecimal"/>
     <query-param name="FieldActivityID" type="java.lang.Integer"/>
     </sql-query>
 
@@ -6502,7 +6502,7 @@ WHERE ActivityID = :FieldActivityID
     <query-param name="Procedure" type="java.lang.String"/>
     <query-param name="Complete" type="java.lang.Byte"/>
     <query-param name="Shared" type="java.lang.Byte"/>
-    <query-param name="PercentComplete" type="java.lang.Integer"/>
+    <query-param name="PercentComplete" type="java.math.BigInteger"/>
     <query-param name="Rework" type="java.lang.Byte"/>
     <query-param name="Notes" type="java.lang.String"/>
     <query-param name="FieldActivityID" type="java.lang.Integer"/>

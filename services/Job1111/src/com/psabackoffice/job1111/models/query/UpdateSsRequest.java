@@ -7,6 +7,7 @@ package com.psabackoffice.job1111.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
