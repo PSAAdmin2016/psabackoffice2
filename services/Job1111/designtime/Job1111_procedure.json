@@ -2466,14 +2466,14 @@
     "name" : "CreateManualActivityCivil",
     "description" : "name",
     "version" : "V1",
-    "procedureString" : "call CreateManualActivityCivil(:varFoundation, :varDrawingNumber, :varDetailDrawingNumber, :varPercentComplete, :varNotes, :varUserId, :varBidID, :ReturnStatus)",
+    "procedureString" : "call CreateManualActivityCivil(:varFoundation, :varDrawingNumber, :varDetailDrawingNumber, :varPercentComplete, :varNotes, :varUserId, :varBidID, :ReturnStatus, :ErrorText)",
     "parameters" : [ {
       "name" : "varFoundation",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "varDrawingNumber",
@@ -2481,7 +2481,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "varDetailDrawingNumber",
@@ -2489,7 +2489,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "varPercentComplete",
@@ -2497,7 +2497,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : ".9",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "varNotes",
@@ -2505,7 +2505,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "Test Notes",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "varUserId",
@@ -2513,7 +2513,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "varBidID",
@@ -2521,7 +2521,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "ReturnStatus",
@@ -2529,7 +2529,15 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "false",
-      "required" : false,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
       "parameterType" : "OUT"
     } ],
     "request" : {
@@ -2550,6 +2558,15 @@
           "typeRef" : "java.lang.Integer",
           "list" : false
         }
+      }, {
+        "name" : "ErrorText",
+        "fieldName" : "errorText",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
       } ]
     }
   },
@@ -2557,7 +2574,7 @@
     "name" : "CreateManualActivityEquip",
     "description" : "name",
     "version" : "V2",
-    "procedureString" : "call Job1111.CreateManualActivityEquip(:varTagNumber, :varActivitySelect, :varPercentComplete, :varNotes, :varUserId, :varBidID, :ReturnStatus)",
+    "procedureString" : "call CreateManualActivityEquip(:varTagNumber, :varActivitySelect, :varPercentComplete, :varNotes, :varUserId, :varBidID, :ReturnStatus, :ErrorText)",
     "parameters" : [ {
       "name" : "varTagNumber",
       "type" : "string",
@@ -2595,7 +2612,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "1",
+      "testValue" : "2",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -2609,6 +2626,14 @@
     }, {
       "name" : "ReturnStatus",
       "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : null,
@@ -2633,6 +2658,15 @@
           "typeRef" : "java.lang.Integer",
           "list" : false
         }
+      }, {
+        "name" : "ErrorText",
+        "fieldName" : "errorText",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
       } ]
     }
   },
@@ -2640,14 +2674,14 @@
     "name" : "CreateManualActivityPipe",
     "description" : "Create Miscs manual activities.",
     "version" : "V1",
-    "procedureString" : "call CreateManualActivityPipe(:MiscDrawingNumber, :MiscLineNumber, :MiscSheetNumber, :MiscQuantity, :MiscNotes, :UserId, :BidID)",
+    "procedureString" : "call CreateManualActivityPipe(:MiscDrawingNumber, :MiscLineNumber, :MiscSheetNumber, :MiscQuantity, :MiscNotes, :UserId, :BidID, :ReturnStatus, :ErrorText)",
     "parameters" : [ {
       "name" : "MiscDrawingNumber",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "BobDwg",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "MiscLineNumber",
@@ -2655,7 +2689,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "BobLine",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "MiscSheetNumber",
@@ -2663,7 +2697,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "2",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "MiscQuantity",
@@ -2671,7 +2705,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "3",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "MiscNotes",
@@ -2679,7 +2713,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "BobNote",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "UserId",
@@ -2687,7 +2721,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "BidID",
@@ -2695,8 +2729,24 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "7",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
     } ],
     "request" : {
       "wrapped" : true,
@@ -2706,21 +2756,40 @@
     "response" : {
       "typeRef" : "com.psabackoffice.job1111.models.procedure.CreateManualActivityPipeResponse",
       "returns" : "CUSTOM",
-      "responseType" : "SINGLE"
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "ReturnStatus",
+        "fieldName" : "returnStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "ErrorText",
+        "fieldName" : "errorText",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
     }
   },
   "CreateManualActivitySteel" : {
     "name" : "CreateManualActivitySteel",
     "description" : "Name",
     "version" : "V1",
-    "procedureString" : "call CreateManualActivitySteel(:ActivityType, :Area, :PieceNumber, :Quantity, :Percent, :Notes, :UserId, :BidID, :ReturnStatus)",
+    "procedureString" : "call CreateManualActivitySteel(:ActivityType, :Area, :PieceNumber, :Quantity, :Percent, :Notes, :UserId, :BidID, :ReturnStatus, :ErrorText)",
     "parameters" : [ {
       "name" : "ActivityType",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "61",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "Area",
@@ -2728,7 +2797,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "Area",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "PieceNumber",
@@ -2736,7 +2805,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "Piece",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "Quantity",
@@ -2744,15 +2813,15 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "8",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "Percent",
-      "type" : "big_decimal",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "Notes",
@@ -2760,7 +2829,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "Test 2",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "UserId",
@@ -2768,7 +2837,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "BidID",
@@ -2776,7 +2845,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "ReturnStatus",
@@ -2784,7 +2853,15 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "false",
-      "required" : false,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
       "parameterType" : "OUT"
     } ],
     "request" : {
@@ -2803,6 +2880,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "ErrorText",
+        "fieldName" : "errorText",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
           "list" : false
         }
       } ]

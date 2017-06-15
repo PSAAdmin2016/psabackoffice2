@@ -98,6 +98,11 @@ Application.$controller("PartPSREquipPageController", ["$scope", "$rootScope", "
         }
     };
 
+
+    $scope.buttonReviewNotesClick = function($event, $isolateScope) {
+        DialogService.open('dialogNotes', $scope.$parent);
+    };
+
 }]);
 
 

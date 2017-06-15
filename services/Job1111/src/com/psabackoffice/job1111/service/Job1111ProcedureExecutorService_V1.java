@@ -22,7 +22,7 @@ public interface Job1111ProcedureExecutorService_V1 {
     List<Object> executeCreateManualActivityPipe(String miscDrawingNumber, String miscLineNumber, String miscSheetNumber, Integer miscQuantity, String miscNotes, Integer userId, Integer bidId);
 
     @Deprecated
-    List<Object> executeCreateManualActivitySteel(Integer activityType, String area, String pieceNumber, Integer quantity, BigDecimal percent, String notes, Integer userId, Integer bidId);
+    List<Object> executeCreateManualActivitySteel(Integer activityType, String area, String pieceNumber, Integer quantity, Integer percent, String notes, Integer userId, Integer bidId);
 
     @Deprecated
     List<Object> executeGetPipePCOT(Integer runMode);

@@ -222,8 +222,8 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "PercentComplete",
-      "value" : "bind:Widgets.textOverrideQuantityWeld.datavalue * .01",
-      "type" : "integer"
+      "value" : "bind:Widgets.formNewQuantity.formWidgets.form_fieldOverridePercent.datavalue",
+      "type" : "number"
     }, {
       "target" : "FieldActivityID",
       "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityID",

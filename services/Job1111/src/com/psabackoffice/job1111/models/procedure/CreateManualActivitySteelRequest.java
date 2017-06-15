@@ -9,24 +9,34 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CreateManualActivitySteelRequest implements Serializable {
 
+    @NotNull
     @JsonProperty("ActivityType")
     private Integer activityType;
+    @NotNull
     @JsonProperty("Area")
     private String area;
+    @NotNull
     @JsonProperty("PieceNumber")
     private String pieceNumber;
+    @NotNull
     @JsonProperty("Quantity")
     private Integer quantity;
+    @NotNull
     @JsonProperty("Percent")
-    private BigDecimal percent;
+    private Integer percent;
+    @NotNull
     @JsonProperty("Notes")
     private String notes;
+    @NotNull
     @JsonProperty("UserId")
     private Integer userId;
+    @NotNull
     @JsonProperty("BidID")
     private Integer bidId;
 
@@ -62,11 +72,11 @@ public class CreateManualActivitySteelRequest implements Serializable {
         this.quantity = quantity;
     }
 
-    public BigDecimal getPercent() {
+    public Integer getPercent() {
         return this.percent;
     }
 
-    public void setPercent(BigDecimal percent) {
+    public void setPercent(Integer percent) {
         this.percent = percent;
     }
 

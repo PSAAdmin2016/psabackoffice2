@@ -1,13 +1,13 @@
 {
   "CreateManualActivityCivil" : {
-    "procedureString" : "call CreateManualActivityCivil(?, ?, ?, ?, ?, ?, ?, ?)",
+    "procedureString" : "call CreateManualActivityCivil(?, ?, ?, ?, ?, ?, ?, ?, ?)",
     "parameters" : [ {
       "name" : "varFoundation",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "varDrawingNumber",
@@ -15,7 +15,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "varDetailDrawingNumber",
@@ -23,7 +23,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "varPercentComplete",
@@ -31,7 +31,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : ".9",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "varNotes",
@@ -39,7 +39,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "Test Notes",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "varUserId",
@@ -47,7 +47,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "varBidID",
@@ -55,7 +55,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "ReturnStatus",
@@ -63,19 +63,27 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "false",
-      "required" : false,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
       "parameterType" : "OUT"
     } ]
   },
   "CreateManualActivityPipe" : {
-    "procedureString" : "call CreateManualActivityPipe(?, ?, ?, ?, ?, ?, ?)",
+    "procedureString" : "call CreateManualActivityPipe(?, ?, ?, ?, ?, ?, ?, ?, ?)",
     "parameters" : [ {
       "name" : "MiscDrawingNumber",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "BobDwg",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "MiscLineNumber",
@@ -83,7 +91,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "BobLine",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "MiscSheetNumber",
@@ -91,7 +99,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "2",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "MiscQuantity",
@@ -99,7 +107,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "3",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "MiscNotes",
@@ -107,7 +115,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "BobNote",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "UserId",
@@ -115,7 +123,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "BidID",
@@ -123,8 +131,24 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "7",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
     } ]
   },
   "GetEquipPCOT" : {
@@ -264,14 +288,14 @@
     } ]
   },
   "CreateManualActivitySteel" : {
-    "procedureString" : "call CreateManualActivitySteel(?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    "procedureString" : "call CreateManualActivitySteel(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
     "parameters" : [ {
       "name" : "ActivityType",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "61",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "Area",
@@ -279,7 +303,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "Area",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "PieceNumber",
@@ -287,7 +311,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "Piece",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "Quantity",
@@ -295,15 +319,15 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "8",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "Percent",
-      "type" : "big_decimal",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "Notes",
@@ -311,7 +335,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "Test 2",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "UserId",
@@ -319,7 +343,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "BidID",
@@ -327,7 +351,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "1",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "ReturnStatus",
@@ -335,7 +359,15 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "false",
-      "required" : false,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
       "parameterType" : "OUT"
     } ]
   },
@@ -476,7 +508,7 @@
     } ]
   },
   "CreateManualActivityEquip" : {
-    "procedureString" : "call Job1111.CreateManualActivityEquip(?, ?, ?, ?, ?, ?, ?)",
+    "procedureString" : "call CreateManualActivityEquip(?, ?, ?, ?, ?, ?, ?, ?)",
     "parameters" : [ {
       "name" : "varTagNumber",
       "type" : "string",
@@ -514,7 +546,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "1",
+      "testValue" : "2",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -528,6 +560,14 @@
     }, {
       "name" : "ReturnStatus",
       "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : null,

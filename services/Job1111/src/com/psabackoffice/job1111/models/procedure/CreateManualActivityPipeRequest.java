@@ -9,22 +9,31 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CreateManualActivityPipeRequest implements Serializable {
 
+    @NotNull
     @JsonProperty("MiscDrawingNumber")
     private String miscDrawingNumber;
+    @NotNull
     @JsonProperty("MiscLineNumber")
     private String miscLineNumber;
+    @NotNull
     @JsonProperty("MiscSheetNumber")
     private String miscSheetNumber;
+    @NotNull
     @JsonProperty("MiscQuantity")
     private Integer miscQuantity;
+    @NotNull
     @JsonProperty("MiscNotes")
     private String miscNotes;
+    @NotNull
     @JsonProperty("UserId")
     private Integer userId;
+    @NotNull
     @JsonProperty("BidID")
     private Integer bidId;
 

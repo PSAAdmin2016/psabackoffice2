@@ -13,18 +13,41 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class CreateManualActivityPipeResponse implements Serializable {
 
+    @JsonProperty("ReturnStatus")
+    @ColumnAlias("ReturnStatus")
+    private Integer returnStatus;
+    @JsonProperty("ErrorText")
+    @ColumnAlias("ErrorText")
+    private String errorText;
 
+    public Integer getReturnStatus() {
+        return this.returnStatus;
+    }
+
+    public void setReturnStatus(Integer returnStatus) {
+        this.returnStatus = returnStatus;
+    }
+
+    public String getErrorText() {
+        return this.errorText;
+    }
+
+    public void setErrorText(String errorText) {
+        this.errorText = errorText;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof CreateManualActivityPipeResponse)) return false;
         final CreateManualActivityPipeResponse createManualActivityPipeResponse = (CreateManualActivityPipeResponse) o;
-        return true;
+        return Objects.equals(getReturnStatus(), createManualActivityPipeResponse.getReturnStatus()) &&
+                Objects.equals(getErrorText(), createManualActivityPipeResponse.getErrorText());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash();
+        return Objects.hash(getReturnStatus(),
+                getErrorText());
     }
 }

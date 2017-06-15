@@ -9,22 +9,31 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CreateManualActivityCivilRequest implements Serializable {
 
+    @NotNull
     @JsonProperty("varFoundation")
     private String varFoundation;
+    @NotNull
     @JsonProperty("varDrawingNumber")
     private String varDrawingNumber;
+    @NotNull
     @JsonProperty("varDetailDrawingNumber")
     private String varDetailDrawingNumber;
+    @NotNull
     @JsonProperty("varPercentComplete")
     private BigDecimal varPercentComplete;
+    @NotNull
     @JsonProperty("varNotes")
     private String varNotes;
+    @NotNull
     @JsonProperty("varUserId")
     private Integer varUserId;
+    @NotNull
     @JsonProperty("varBidID")
     private Integer varBidId;
 

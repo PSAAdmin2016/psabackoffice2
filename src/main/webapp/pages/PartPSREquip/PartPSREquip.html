@@ -35,8 +35,8 @@
                         <wm-gridcolumn columnwidth="3" padding="unset 0px" name="gridcolumn25">
                             <wm-label width="100%" caption="Notes" show="bind:$parent.Variables.serviceGetNotesByFieldActivityID.dataSet.totalElements > 0" fontweight="bold" textdecoration="underline" padding="unset 0px" margin="unset 0px" hint="Notes added during the Supervisor &amp; Project Services Review Process"
                             name="label17"></wm-label>
-                            <wm-button class="btn-default" caption="View" type="button" show="bind:$parent.Variables.serviceGetNotesByFieldActivityID.dataSet.totalElements > 0" backgroundcolor="#e7dd51" marginunit="%" on-click="buttonReviewNotes1Click($event, $scope)"
-                            iconclass="glyphicon glyphicon-list-alt" hint="Review notes from the Superintendent." width="95%" margin="unset unset 2% unset" name="buttonReviewNotes1"></wm-button>
+                            <wm-button class="btn-default" caption="View" type="button" show="bind:$parent.Variables.serviceGetNotesByFieldActivityID.dataSet.totalElements > 0" backgroundcolor="#e7dd51" marginunit="%" on-click="buttonReviewNotesClick($event, $scope)"
+                            iconclass="glyphicon glyphicon-list-alt" hint="Review notes from the Superintendent." width="95%" margin="unset unset 2% unset" name="buttonReviewNotes"></wm-button>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn26">
                             <wm-button class="btn-raised" caption="Research" type="button" margin="22% unset unset unset" backgroundcolor="#40E0D0" hint="Jump to Classic Tracker, Filtered to This Activities BidID" accessroles="Everyone" width="95%" on-click="buttonResearchClick($event, $scope)"

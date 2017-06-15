@@ -19,6 +19,8 @@ public class CreateManualActivityEquipResponse implements Serializable {
 
     @ColumnAlias("ReturnStatus")
     private Integer returnStatus;
+    @ColumnAlias("ErrorText")
+    private String errorText;
 
     public Integer getReturnStatus() {
         return this.returnStatus;
@@ -28,16 +30,26 @@ public class CreateManualActivityEquipResponse implements Serializable {
         this.returnStatus = returnStatus;
     }
 
+    public String getErrorText() {
+        return this.errorText;
+    }
+
+    public void setErrorText(String errorText) {
+        this.errorText = errorText;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof CreateManualActivityEquipResponse)) return false;
         final CreateManualActivityEquipResponse createManualActivityEquipResponse = (CreateManualActivityEquipResponse) o;
-        return Objects.equals(getReturnStatus(), createManualActivityEquipResponse.getReturnStatus());
+        return Objects.equals(getReturnStatus(), createManualActivityEquipResponse.getReturnStatus()) &&
+                Objects.equals(getErrorText(), createManualActivityEquipResponse.getErrorText());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getReturnStatus());
+        return Objects.hash(getReturnStatus(),
+                getErrorText());
     }
 }

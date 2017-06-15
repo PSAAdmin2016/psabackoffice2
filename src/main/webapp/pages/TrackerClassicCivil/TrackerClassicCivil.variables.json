@@ -177,6 +177,18 @@
         "isRelated" : false,
         "scale" : 0
       }, {
+        "fieldName" : "cu",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "CU",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 45,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
         "fieldName" : "grouping",
         "type" : "string",
         "fullyQualifiedType" : "string",
@@ -193,18 +205,6 @@
         "type" : "string",
         "fullyQualifiedType" : "string",
         "columnName" : "FoundationDescription",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 45,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "scale" : 0
-      }, {
-        "fieldName" : "cu",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "CU",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 45,
@@ -772,11 +772,11 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
+      "target" : "FieldActivityID",
+      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityID",
       "type" : "integer"
     } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "type" : "integer",
     "service" : "Job1111",
     "operation" : "executeUpdateCivilFAQuantity",
     "operationId" : "QueryExecutionController_executeUpdateCivilFAQuantity",
@@ -802,13 +802,13 @@
     "dataBinding" : [ {
       "target" : "Percent",
       "value" : "bind:Widgets.formNewQuantity.formWidgets.selectPercentComplete.datavalue",
-      "type" : "integer"
+      "type" : "number"
     }, {
-      "target" : "RowID",
-      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
+      "target" : "FieldActivityID",
+      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityID",
       "type" : "integer"
     } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "type" : "integer",
     "service" : "Job1111",
     "operation" : "executeUpdateCivilMiscQuantity",
     "operationId" : "QueryExecutionController_executeUpdateCivilMiscQuantity",
@@ -841,7 +841,7 @@
       "type" : "integer"
     }, {
       "target" : "FieldActivityID",
-      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.PSAActivityID",
+      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityID",
       "type" : "integer"
     }, {
       "target" : "BidID",
@@ -883,7 +883,7 @@
       "type" : "integer"
     }, {
       "target" : "FieldActivityID",
-      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.PSAActivityID",
+      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityID",
       "type" : "integer"
     }, {
       "target" : "BidID",

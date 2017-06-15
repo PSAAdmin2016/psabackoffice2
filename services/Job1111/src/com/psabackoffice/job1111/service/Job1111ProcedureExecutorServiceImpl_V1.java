@@ -33,7 +33,7 @@ public class Job1111ProcedureExecutorServiceImpl_V1 implements Job1111ProcedureE
     private WMProcedureExecutor procedureExecutor;
 
     public List<Object> executeCreateManualActivityCivil(String varFoundation, String varDrawingNumber, String varDetailDrawingNumber, BigDecimal varPercentComplete, String varNotes, Integer varUserId, Integer varBidId) {
-        Map params = new HashMap(8);
+        Map params = new HashMap(9);
 
         params.put("varFoundation", varFoundation);
         params.put("varDrawingNumber", varDrawingNumber);
@@ -48,7 +48,7 @@ public class Job1111ProcedureExecutorServiceImpl_V1 implements Job1111ProcedureE
     }
 
     public List<Object> executeCreateManualActivityPipe(String miscDrawingNumber, String miscLineNumber, String miscSheetNumber, Integer miscQuantity, String miscNotes, Integer userId, Integer bidId) {
-        Map params = new HashMap(7);
+        Map params = new HashMap(9);
 
         params.put("MiscDrawingNumber", miscDrawingNumber);
         params.put("MiscLineNumber", miscLineNumber);
@@ -62,8 +62,8 @@ public class Job1111ProcedureExecutorServiceImpl_V1 implements Job1111ProcedureE
 
     }
 
-    public List<Object> executeCreateManualActivitySteel(Integer activityType, String area, String pieceNumber, Integer quantity, BigDecimal percent, String notes, Integer userId, Integer bidId) {
-        Map params = new HashMap(9);
+    public List<Object> executeCreateManualActivitySteel(Integer activityType, String area, String pieceNumber, Integer quantity, Integer percent, String notes, Integer userId, Integer bidId) {
+        Map params = new HashMap(10);
 
         params.put("ActivityType", activityType);
         params.put("Area", area);
