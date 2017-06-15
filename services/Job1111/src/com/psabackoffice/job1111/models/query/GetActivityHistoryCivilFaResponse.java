@@ -17,9 +17,6 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistoryCivilFaResponse implements Serializable {
 
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
@@ -62,14 +59,6 @@ public class GetActivityHistoryCivilFaResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -188,8 +177,7 @@ public class GetActivityHistoryCivilFaResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistoryCivilFaResponse)) return false;
         final GetActivityHistoryCivilFaResponse getActivityHistoryCivilFaResponse = (GetActivityHistoryCivilFaResponse) o;
-        return Objects.equals(getId(), getActivityHistoryCivilFaResponse.getId()) &&
-                Objects.equals(getActivityId(), getActivityHistoryCivilFaResponse.getActivityId()) &&
+        return Objects.equals(getActivityId(), getActivityHistoryCivilFaResponse.getActivityId()) &&
                 Objects.equals(getFabidId(), getActivityHistoryCivilFaResponse.getFabidId()) &&
                 Objects.equals(getFafoundation(), getActivityHistoryCivilFaResponse.getFafoundation()) &&
                 Objects.equals(getFadescription(), getActivityHistoryCivilFaResponse.getFadescription()) &&
@@ -207,8 +195,7 @@ public class GetActivityHistoryCivilFaResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getActivityId(),
+        return Objects.hash(getActivityId(),
                 getFabidId(),
                 getFafoundation(),
                 getFadescription(),

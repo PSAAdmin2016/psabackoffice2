@@ -17,9 +17,6 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistoryPipeTestingResponse implements Serializable {
 
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
@@ -44,14 +41,6 @@ public class GetActivityHistoryPipeTestingResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -122,8 +111,7 @@ public class GetActivityHistoryPipeTestingResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistoryPipeTestingResponse)) return false;
         final GetActivityHistoryPipeTestingResponse getActivityHistoryPipeTestingResponse = (GetActivityHistoryPipeTestingResponse) o;
-        return Objects.equals(getId(), getActivityHistoryPipeTestingResponse.getId()) &&
-                Objects.equals(getActivityId(), getActivityHistoryPipeTestingResponse.getActivityId()) &&
+        return Objects.equals(getActivityId(), getActivityHistoryPipeTestingResponse.getActivityId()) &&
                 Objects.equals(getTestingTestPackageNumber(), getActivityHistoryPipeTestingResponse.getTestingTestPackageNumber()) &&
                 Objects.equals(getTestingRework(), getActivityHistoryPipeTestingResponse.getTestingRework()) &&
                 Objects.equals(getTestingNotes(), getActivityHistoryPipeTestingResponse.getTestingNotes()) &&
@@ -135,8 +123,7 @@ public class GetActivityHistoryPipeTestingResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getActivityId(),
+        return Objects.hash(getActivityId(),
                 getTestingTestPackageNumber(),
                 getTestingRework(),
                 getTestingNotes(),

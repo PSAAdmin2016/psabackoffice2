@@ -16,9 +16,6 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistorySteelShakeResponse implements Serializable {
 
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
@@ -49,14 +46,6 @@ public class GetActivityHistorySteelShakeResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -143,8 +132,7 @@ public class GetActivityHistorySteelShakeResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistorySteelShakeResponse)) return false;
         final GetActivityHistorySteelShakeResponse getActivityHistorySteelShakeResponse = (GetActivityHistorySteelShakeResponse) o;
-        return Objects.equals(getId(), getActivityHistorySteelShakeResponse.getId()) &&
-                Objects.equals(getActivityId(), getActivityHistorySteelShakeResponse.getActivityId()) &&
+        return Objects.equals(getActivityId(), getActivityHistorySteelShakeResponse.getActivityId()) &&
                 Objects.equals(getFaarea(), getActivityHistorySteelShakeResponse.getFaarea()) &&
                 Objects.equals(getFapieceNumber(), getActivityHistorySteelShakeResponse.getFapieceNumber()) &&
                 Objects.equals(getFashakeQuantity(), getActivityHistorySteelShakeResponse.getFashakeQuantity()) &&
@@ -158,8 +146,7 @@ public class GetActivityHistorySteelShakeResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getActivityId(),
+        return Objects.hash(getActivityId(),
                 getFaarea(),
                 getFapieceNumber(),
                 getFashakeQuantity(),

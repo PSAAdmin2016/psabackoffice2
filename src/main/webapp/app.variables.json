@@ -628,8 +628,8 @@
     "owner" : "App",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
+      "target" : "ActivityID",
+      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryPipeBoltupResponse",
@@ -659,8 +659,8 @@
     "owner" : "App",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
+      "target" : "ActivityID",
+      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryPipeDemoResponse",
@@ -690,8 +690,8 @@
     "owner" : "App",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
+      "target" : "ActivityID",
+      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryPipeErectionResponse",
@@ -721,8 +721,8 @@
     "owner" : "App",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
+      "target" : "ActivityID",
+      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryPipeMiscResponse",
@@ -746,45 +746,14 @@
     "isDefault" : true,
     "controller" : "QueryExecution"
   },
-  "Job1111ExecuteGetActivityHistoryOverride" : {
-    "_id" : "wm-Job1111ExecuteGetActivityHistoryOverride-wm.ServiceVariable-1464813287392",
-    "name" : "Job1111ExecuteGetActivityHistoryOverride",
-    "owner" : "App",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
-      "type" : "integer"
-    } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryOverrideResponse",
-    "service" : "Job1111",
-    "operation" : "executeGetActivityHistoryOverride",
-    "operationId" : "QueryExecutionController_executeGetActivityHistoryOverride",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : {
-      "dataValue" : ""
-    },
-    "isList" : true,
-    "firstRow" : 0,
-    "maxResults" : 125,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "isDefault" : true,
-    "controller" : "QueryExecution"
-  },
   "Job1111ExecuteGetActivityHistorySupport" : {
     "_id" : "wm-Job1111ExecuteGetActivityHistorySupport-wm.ServiceVariable-1464635467188",
     "name" : "Job1111ExecuteGetActivityHistorySupport",
     "owner" : "App",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
+      "target" : "ActivityID",
+      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryPipeSupportResponse",
@@ -814,8 +783,8 @@
     "owner" : "App",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
+      "target" : "ActivityID",
+      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryPipeTestingResponse",
@@ -841,8 +810,8 @@
     "owner" : "App",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
+      "target" : "ActivityID",
+      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryPipeTrimResponse",
@@ -872,8 +841,8 @@
     "owner" : "App",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
+      "target" : "ActivityID",
+      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryPipeWeldResponse",
@@ -3833,8 +3802,8 @@
     "owner" : "App",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
+      "target" : "ActivityID",
+      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryCivilFaResponse",
@@ -3860,8 +3829,8 @@
     "owner" : "App",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityRowId",
+      "target" : "ActivityID",
+      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryCivilMiscResponse",
@@ -3887,9 +3856,9 @@
     "owner" : "App",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "RowID",
-      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.activityRowId\n",
-      "type" : "string"
+      "target" : "ActivityID",
+      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityID",
+      "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivityHistoryEquipFaResponse",
     "service" : "Job1111",

@@ -17,9 +17,6 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistoryPipeMiscResponse implements Serializable {
 
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
@@ -53,14 +50,6 @@ public class GetActivityHistoryPipeMiscResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -155,8 +144,7 @@ public class GetActivityHistoryPipeMiscResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistoryPipeMiscResponse)) return false;
         final GetActivityHistoryPipeMiscResponse getActivityHistoryPipeMiscResponse = (GetActivityHistoryPipeMiscResponse) o;
-        return Objects.equals(getId(), getActivityHistoryPipeMiscResponse.getId()) &&
-                Objects.equals(getActivityId(), getActivityHistoryPipeMiscResponse.getActivityId()) &&
+        return Objects.equals(getActivityId(), getActivityHistoryPipeMiscResponse.getActivityId()) &&
                 Objects.equals(getMiscDrawingNumber(), getActivityHistoryPipeMiscResponse.getMiscDrawingNumber()) &&
                 Objects.equals(getMiscLineNumber(), getActivityHistoryPipeMiscResponse.getMiscLineNumber()) &&
                 Objects.equals(getMiscSheetNumber(), getActivityHistoryPipeMiscResponse.getMiscSheetNumber()) &&
@@ -171,8 +159,7 @@ public class GetActivityHistoryPipeMiscResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getActivityId(),
+        return Objects.hash(getActivityId(),
                 getMiscDrawingNumber(),
                 getMiscLineNumber(),
                 getMiscSheetNumber(),

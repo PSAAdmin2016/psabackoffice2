@@ -17,12 +17,23 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class ClassicTrackerPipeUpdateResponse implements Serializable {
 
+    @JsonProperty("content")
+    @ColumnAlias("content")
+    private List<ClassicTrackerPipeUpdateResponseContent> content;
     @JsonProperty("ReturnStatus")
     @ColumnAlias("ReturnStatus")
     private Boolean returnStatus;
     @JsonProperty("ErrorText")
     @ColumnAlias("ErrorText")
     private String errorText;
+
+    public List<ClassicTrackerPipeUpdateResponseContent> getContent() {
+        return this.content;
+    }
+
+    public void setContent(List<ClassicTrackerPipeUpdateResponseContent> content) {
+        this.content = content;
+    }
 
     public Boolean getReturnStatus() {
         return this.returnStatus;
@@ -45,13 +56,15 @@ public class ClassicTrackerPipeUpdateResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof ClassicTrackerPipeUpdateResponse)) return false;
         final ClassicTrackerPipeUpdateResponse classicTrackerPipeUpdateResponse = (ClassicTrackerPipeUpdateResponse) o;
-        return Objects.equals(getReturnStatus(), classicTrackerPipeUpdateResponse.getReturnStatus()) &&
+        return Objects.equals(getContent(), classicTrackerPipeUpdateResponse.getContent()) &&
+                Objects.equals(getReturnStatus(), classicTrackerPipeUpdateResponse.getReturnStatus()) &&
                 Objects.equals(getErrorText(), classicTrackerPipeUpdateResponse.getErrorText());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getReturnStatus(),
+        return Objects.hash(getContent(),
+                getReturnStatus(),
                 getErrorText());
     }
 }

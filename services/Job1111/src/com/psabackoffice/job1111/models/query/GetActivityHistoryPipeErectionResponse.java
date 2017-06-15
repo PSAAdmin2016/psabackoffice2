@@ -17,9 +17,6 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistoryPipeErectionResponse implements Serializable {
 
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
@@ -92,14 +89,6 @@ public class GetActivityHistoryPipeErectionResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -298,8 +287,7 @@ public class GetActivityHistoryPipeErectionResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistoryPipeErectionResponse)) return false;
         final GetActivityHistoryPipeErectionResponse getActivityHistoryPipeErectionResponse = (GetActivityHistoryPipeErectionResponse) o;
-        return Objects.equals(getId(), getActivityHistoryPipeErectionResponse.getId()) &&
-                Objects.equals(getActivityId(), getActivityHistoryPipeErectionResponse.getActivityId()) &&
+        return Objects.equals(getActivityId(), getActivityHistoryPipeErectionResponse.getActivityId()) &&
                 Objects.equals(getErectionSpool1(), getActivityHistoryPipeErectionResponse.getErectionSpool1()) &&
                 Objects.equals(getErectionLengthSpool1(), getActivityHistoryPipeErectionResponse.getErectionLengthSpool1()) &&
                 Objects.equals(getErectionSpool2(), getActivityHistoryPipeErectionResponse.getErectionSpool2()) &&
@@ -327,8 +315,7 @@ public class GetActivityHistoryPipeErectionResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getActivityId(),
+        return Objects.hash(getActivityId(),
                 getErectionSpool1(),
                 getErectionLengthSpool1(),
                 getErectionSpool2(),

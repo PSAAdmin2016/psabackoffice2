@@ -17,10 +17,8 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistoryEquipFaResponse implements Serializable {
 
-    @ColumnAlias("ID")
-    private Integer id;
-    @ColumnAlias("fk_SubmissionID")
-    private Integer fkSubmissionId;
+    @ColumnAlias("ActivityID")
+    private Integer activityId;
     @ColumnAlias("FABidID")
     private Integer fabidId;
     @ColumnAlias("FATagNumber")
@@ -28,7 +26,7 @@ public class GetActivityHistoryEquipFaResponse implements Serializable {
     @ColumnAlias("FAActivitySelect")
     private String faactivitySelect;
     @ColumnAlias("FAQuantity")
-    private Short faquantity;
+    private Integer faquantity;
     @ColumnAlias("FAPercentComplete")
     private Float fapercentComplete;
     @ColumnAlias("FARework")
@@ -44,20 +42,12 @@ public class GetActivityHistoryEquipFaResponse implements Serializable {
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
 
-    public Integer getId() {
-        return this.id;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getFkSubmissionId() {
-        return this.fkSubmissionId;
-    }
-
-    public void setFkSubmissionId(Integer fkSubmissionId) {
-        this.fkSubmissionId = fkSubmissionId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     public Integer getFabidId() {
@@ -84,11 +74,11 @@ public class GetActivityHistoryEquipFaResponse implements Serializable {
         this.faactivitySelect = faactivitySelect;
     }
 
-    public Short getFaquantity() {
+    public Integer getFaquantity() {
         return this.faquantity;
     }
 
-    public void setFaquantity(Short faquantity) {
+    public void setFaquantity(Integer faquantity) {
         this.faquantity = faquantity;
     }
 
@@ -153,8 +143,7 @@ public class GetActivityHistoryEquipFaResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistoryEquipFaResponse)) return false;
         final GetActivityHistoryEquipFaResponse getActivityHistoryEquipFaResponse = (GetActivityHistoryEquipFaResponse) o;
-        return Objects.equals(getId(), getActivityHistoryEquipFaResponse.getId()) &&
-                Objects.equals(getFkSubmissionId(), getActivityHistoryEquipFaResponse.getFkSubmissionId()) &&
+        return Objects.equals(getActivityId(), getActivityHistoryEquipFaResponse.getActivityId()) &&
                 Objects.equals(getFabidId(), getActivityHistoryEquipFaResponse.getFabidId()) &&
                 Objects.equals(getFatagNumber(), getActivityHistoryEquipFaResponse.getFatagNumber()) &&
                 Objects.equals(getFaactivitySelect(), getActivityHistoryEquipFaResponse.getFaactivitySelect()) &&
@@ -170,8 +159,7 @@ public class GetActivityHistoryEquipFaResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getFkSubmissionId(),
+        return Objects.hash(getActivityId(),
                 getFabidId(),
                 getFatagNumber(),
                 getFaactivitySelect(),

@@ -17,9 +17,6 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistoryPipeDemoResponse implements Serializable {
 
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
@@ -53,14 +50,6 @@ public class GetActivityHistoryPipeDemoResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -155,8 +144,7 @@ public class GetActivityHistoryPipeDemoResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistoryPipeDemoResponse)) return false;
         final GetActivityHistoryPipeDemoResponse getActivityHistoryPipeDemoResponse = (GetActivityHistoryPipeDemoResponse) o;
-        return Objects.equals(getId(), getActivityHistoryPipeDemoResponse.getId()) &&
-                Objects.equals(getActivityId(), getActivityHistoryPipeDemoResponse.getActivityId()) &&
+        return Objects.equals(getActivityId(), getActivityHistoryPipeDemoResponse.getActivityId()) &&
                 Objects.equals(getDemoDrawingNumber(), getActivityHistoryPipeDemoResponse.getDemoDrawingNumber()) &&
                 Objects.equals(getDemoLineNumber(), getActivityHistoryPipeDemoResponse.getDemoLineNumber()) &&
                 Objects.equals(getDemoSheetNumber(), getActivityHistoryPipeDemoResponse.getDemoSheetNumber()) &&
@@ -171,8 +159,7 @@ public class GetActivityHistoryPipeDemoResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getActivityId(),
+        return Objects.hash(getActivityId(),
                 getDemoDrawingNumber(),
                 getDemoLineNumber(),
                 getDemoSheetNumber(),

@@ -14,9 +14,6 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistorySteelErectResponse implements Serializable {
 
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
@@ -50,14 +47,6 @@ public class GetActivityHistorySteelErectResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -152,8 +141,7 @@ public class GetActivityHistorySteelErectResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistorySteelErectResponse)) return false;
         final GetActivityHistorySteelErectResponse getActivityHistorySteelErectResponse = (GetActivityHistorySteelErectResponse) o;
-        return Objects.equals(getId(), getActivityHistorySteelErectResponse.getId()) &&
-                Objects.equals(getActivityId(), getActivityHistorySteelErectResponse.getActivityId()) &&
+        return Objects.equals(getActivityId(), getActivityHistorySteelErectResponse.getActivityId()) &&
                 Objects.equals(getFaarea(), getActivityHistorySteelErectResponse.getFaarea()) &&
                 Objects.equals(getFapieceNumber(), getActivityHistorySteelErectResponse.getFapieceNumber()) &&
                 Objects.equals(getFaerectQuantity(), getActivityHistorySteelErectResponse.getFaerectQuantity()) &&
@@ -168,8 +156,7 @@ public class GetActivityHistorySteelErectResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getActivityId(),
+        return Objects.hash(getActivityId(),
                 getFaarea(),
                 getFapieceNumber(),
                 getFaerectQuantity(),

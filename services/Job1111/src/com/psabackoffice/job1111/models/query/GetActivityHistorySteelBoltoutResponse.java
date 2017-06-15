@@ -17,9 +17,6 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistorySteelBoltoutResponse implements Serializable {
 
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
@@ -53,14 +50,6 @@ public class GetActivityHistorySteelBoltoutResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -155,8 +144,7 @@ public class GetActivityHistorySteelBoltoutResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistorySteelBoltoutResponse)) return false;
         final GetActivityHistorySteelBoltoutResponse getActivityHistorySteelBoltoutResponse = (GetActivityHistorySteelBoltoutResponse) o;
-        return Objects.equals(getId(), getActivityHistorySteelBoltoutResponse.getId()) &&
-                Objects.equals(getActivityId(), getActivityHistorySteelBoltoutResponse.getActivityId()) &&
+        return Objects.equals(getActivityId(), getActivityHistorySteelBoltoutResponse.getActivityId()) &&
                 Objects.equals(getFaarea(), getActivityHistorySteelBoltoutResponse.getFaarea()) &&
                 Objects.equals(getFapieceNumber(), getActivityHistorySteelBoltoutResponse.getFapieceNumber()) &&
                 Objects.equals(getFaboltOutQuantity(), getActivityHistorySteelBoltoutResponse.getFaboltOutQuantity()) &&
@@ -171,8 +159,7 @@ public class GetActivityHistorySteelBoltoutResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getActivityId(),
+        return Objects.hash(getActivityId(),
                 getFaarea(),
                 getFapieceNumber(),
                 getFaboltOutQuantity(),

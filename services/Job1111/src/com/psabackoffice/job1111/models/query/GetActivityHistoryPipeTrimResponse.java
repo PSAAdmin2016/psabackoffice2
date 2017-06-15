@@ -17,9 +17,6 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistoryPipeTrimResponse implements Serializable {
 
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
@@ -65,14 +62,6 @@ public class GetActivityHistoryPipeTrimResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -199,8 +188,7 @@ public class GetActivityHistoryPipeTrimResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistoryPipeTrimResponse)) return false;
         final GetActivityHistoryPipeTrimResponse getActivityHistoryPipeTrimResponse = (GetActivityHistoryPipeTrimResponse) o;
-        return Objects.equals(getId(), getActivityHistoryPipeTrimResponse.getId()) &&
-                Objects.equals(getActivityId(), getActivityHistoryPipeTrimResponse.getActivityId()) &&
+        return Objects.equals(getActivityId(), getActivityHistoryPipeTrimResponse.getActivityId()) &&
                 Objects.equals(getTrimActivitySelect(), getActivityHistoryPipeTrimResponse.getTrimActivitySelect()) &&
                 Objects.equals(getTrimSize(), getActivityHistoryPipeTrimResponse.getTrimSize()) &&
                 Objects.equals(getTrimQuantity(), getActivityHistoryPipeTrimResponse.getTrimQuantity()) &&
@@ -219,8 +207,7 @@ public class GetActivityHistoryPipeTrimResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getActivityId(),
+        return Objects.hash(getActivityId(),
                 getTrimActivitySelect(),
                 getTrimSize(),
                 getTrimQuantity(),

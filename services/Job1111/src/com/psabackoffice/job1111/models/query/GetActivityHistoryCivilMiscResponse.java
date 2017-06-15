@@ -17,9 +17,6 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistoryCivilMiscResponse implements Serializable {
 
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
@@ -53,14 +50,6 @@ public class GetActivityHistoryCivilMiscResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -155,8 +144,7 @@ public class GetActivityHistoryCivilMiscResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistoryCivilMiscResponse)) return false;
         final GetActivityHistoryCivilMiscResponse getActivityHistoryCivilMiscResponse = (GetActivityHistoryCivilMiscResponse) o;
-        return Objects.equals(getId(), getActivityHistoryCivilMiscResponse.getId()) &&
-                Objects.equals(getActivityId(), getActivityHistoryCivilMiscResponse.getActivityId()) &&
+        return Objects.equals(getActivityId(), getActivityHistoryCivilMiscResponse.getActivityId()) &&
                 Objects.equals(getMiscFoundation(), getActivityHistoryCivilMiscResponse.getMiscFoundation()) &&
                 Objects.equals(getMiscDrawingNumber(), getActivityHistoryCivilMiscResponse.getMiscDrawingNumber()) &&
                 Objects.equals(getMiscDetailDrawingNumber(), getActivityHistoryCivilMiscResponse.getMiscDetailDrawingNumber()) &&
@@ -171,8 +159,7 @@ public class GetActivityHistoryCivilMiscResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getActivityId(),
+        return Objects.hash(getActivityId(),
                 getMiscFoundation(),
                 getMiscDrawingNumber(),
                 getMiscDetailDrawingNumber(),

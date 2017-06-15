@@ -17,9 +17,6 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistoryPipeWeldResponse implements Serializable {
 
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
@@ -74,12 +71,9 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
     @JsonProperty("WeldShared")
     @ColumnAlias("WeldShared")
     private Short weldShared;
-    @JsonProperty("WeldPercentCompleteChoice")
-    @ColumnAlias("WeldPercentCompleteChoice")
-    private String weldPercentCompleteChoice;
     @JsonProperty("WeldPercentCompleted")
     @ColumnAlias("WeldPercentCompleted")
-    private Integer weldPercentCompleted;
+    private Float weldPercentCompleted;
     @JsonProperty("WeldRework")
     @ColumnAlias("WeldRework")
     private Short weldRework;
@@ -95,14 +89,6 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -248,19 +234,11 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
         this.weldShared = weldShared;
     }
 
-    public String getWeldPercentCompleteChoice() {
-        return this.weldPercentCompleteChoice;
-    }
-
-    public void setWeldPercentCompleteChoice(String weldPercentCompleteChoice) {
-        this.weldPercentCompleteChoice = weldPercentCompleteChoice;
-    }
-
-    public Integer getWeldPercentCompleted() {
+    public Float getWeldPercentCompleted() {
         return this.weldPercentCompleted;
     }
 
-    public void setWeldPercentCompleted(Integer weldPercentCompleted) {
+    public void setWeldPercentCompleted(Float weldPercentCompleted) {
         this.weldPercentCompleted = weldPercentCompleted;
     }
 
@@ -309,8 +287,7 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistoryPipeWeldResponse)) return false;
         final GetActivityHistoryPipeWeldResponse getActivityHistoryPipeWeldResponse = (GetActivityHistoryPipeWeldResponse) o;
-        return Objects.equals(getId(), getActivityHistoryPipeWeldResponse.getId()) &&
-                Objects.equals(getActivityId(), getActivityHistoryPipeWeldResponse.getActivityId()) &&
+        return Objects.equals(getActivityId(), getActivityHistoryPipeWeldResponse.getActivityId()) &&
                 Objects.equals(getWeldSpool1(), getActivityHistoryPipeWeldResponse.getWeldSpool1()) &&
                 Objects.equals(getWeldSpool2(), getActivityHistoryPipeWeldResponse.getWeldSpool2()) &&
                 Objects.equals(getWeldDrawingNumber(), getActivityHistoryPipeWeldResponse.getWeldDrawingNumber()) &&
@@ -328,7 +305,6 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
                 Objects.equals(getWeldProcedure(), getActivityHistoryPipeWeldResponse.getWeldProcedure()) &&
                 Objects.equals(getWeldComplete(), getActivityHistoryPipeWeldResponse.getWeldComplete()) &&
                 Objects.equals(getWeldShared(), getActivityHistoryPipeWeldResponse.getWeldShared()) &&
-                Objects.equals(getWeldPercentCompleteChoice(), getActivityHistoryPipeWeldResponse.getWeldPercentCompleteChoice()) &&
                 Objects.equals(getWeldPercentCompleted(), getActivityHistoryPipeWeldResponse.getWeldPercentCompleted()) &&
                 Objects.equals(getWeldRework(), getActivityHistoryPipeWeldResponse.getWeldRework()) &&
                 Objects.equals(getWeldNotes(), getActivityHistoryPipeWeldResponse.getWeldNotes()) &&
@@ -339,8 +315,7 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getActivityId(),
+        return Objects.hash(getActivityId(),
                 getWeldSpool1(),
                 getWeldSpool2(),
                 getWeldDrawingNumber(),
@@ -358,7 +333,6 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
                 getWeldProcedure(),
                 getWeldComplete(),
                 getWeldShared(),
-                getWeldPercentCompleteChoice(),
                 getWeldPercentCompleted(),
                 getWeldRework(),
                 getWeldNotes(),

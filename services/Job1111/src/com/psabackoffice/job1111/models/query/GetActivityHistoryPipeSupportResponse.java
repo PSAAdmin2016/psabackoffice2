@@ -17,9 +17,6 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistoryPipeSupportResponse implements Serializable {
 
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
@@ -52,7 +49,7 @@ public class GetActivityHistoryPipeSupportResponse implements Serializable {
     private Short supportShared;
     @JsonProperty("SupportPercentCompleted")
     @ColumnAlias("SupportPercentCompleted")
-    private Integer supportPercentCompleted;
+    private Float supportPercentCompleted;
     @JsonProperty("SupportRework")
     @ColumnAlias("SupportRework")
     private Short supportRework;
@@ -68,14 +65,6 @@ public class GetActivityHistoryPipeSupportResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -157,11 +146,11 @@ public class GetActivityHistoryPipeSupportResponse implements Serializable {
         this.supportShared = supportShared;
     }
 
-    public Integer getSupportPercentCompleted() {
+    public Float getSupportPercentCompleted() {
         return this.supportPercentCompleted;
     }
 
-    public void setSupportPercentCompleted(Integer supportPercentCompleted) {
+    public void setSupportPercentCompleted(Float supportPercentCompleted) {
         this.supportPercentCompleted = supportPercentCompleted;
     }
 
@@ -210,8 +199,7 @@ public class GetActivityHistoryPipeSupportResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistoryPipeSupportResponse)) return false;
         final GetActivityHistoryPipeSupportResponse getActivityHistoryPipeSupportResponse = (GetActivityHistoryPipeSupportResponse) o;
-        return Objects.equals(getId(), getActivityHistoryPipeSupportResponse.getId()) &&
-                Objects.equals(getActivityId(), getActivityHistoryPipeSupportResponse.getActivityId()) &&
+        return Objects.equals(getActivityId(), getActivityHistoryPipeSupportResponse.getActivityId()) &&
                 Objects.equals(getSupportType(), getActivityHistoryPipeSupportResponse.getSupportType()) &&
                 Objects.equals(getSupportPartNumber(), getActivityHistoryPipeSupportResponse.getSupportPartNumber()) &&
                 Objects.equals(getSupportQuantity(), getActivityHistoryPipeSupportResponse.getSupportQuantity()) &&
@@ -231,8 +219,7 @@ public class GetActivityHistoryPipeSupportResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getActivityId(),
+        return Objects.hash(getActivityId(),
                 getSupportType(),
                 getSupportPartNumber(),
                 getSupportQuantity(),

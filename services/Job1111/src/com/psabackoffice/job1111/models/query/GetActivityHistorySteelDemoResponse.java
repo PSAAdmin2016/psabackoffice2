@@ -17,9 +17,6 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistorySteelDemoResponse implements Serializable {
 
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
@@ -50,14 +47,6 @@ public class GetActivityHistorySteelDemoResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -144,8 +133,7 @@ public class GetActivityHistorySteelDemoResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistorySteelDemoResponse)) return false;
         final GetActivityHistorySteelDemoResponse getActivityHistorySteelDemoResponse = (GetActivityHistorySteelDemoResponse) o;
-        return Objects.equals(getId(), getActivityHistorySteelDemoResponse.getId()) &&
-                Objects.equals(getActivityId(), getActivityHistorySteelDemoResponse.getActivityId()) &&
+        return Objects.equals(getActivityId(), getActivityHistorySteelDemoResponse.getActivityId()) &&
                 Objects.equals(getDemoArea(), getActivityHistorySteelDemoResponse.getDemoArea()) &&
                 Objects.equals(getDemoSteelType(), getActivityHistorySteelDemoResponse.getDemoSteelType()) &&
                 Objects.equals(getDemoSize(), getActivityHistorySteelDemoResponse.getDemoSize()) &&
@@ -159,8 +147,7 @@ public class GetActivityHistorySteelDemoResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getActivityId(),
+        return Objects.hash(getActivityId(),
                 getDemoArea(),
                 getDemoSteelType(),
                 getDemoSize(),

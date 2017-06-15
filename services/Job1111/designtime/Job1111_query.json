@@ -465,18 +465,18 @@
     "name" : "GetActivityHistoryCivilFA",
     "description" : "name",
     "version" : "V1",
-    "queryString" : "SELECT cfa.* \nFROM CivilFA cfa\nWHERE ID = :RowID\n\nUNION\n\nSELECT cfar.fk_OrgActivityId, cfar.ActivityID, cfar.FABidID, cfar.FAFoundation, cfar.FADescription, cfar.FADrawingNumber, cfar.FADetailDrawingNumber, cfar.FAPercentComplete, cfar.FAQuantity, cfar.FARework, \ncfar.FANotes, cfar.ActivityType, cfar.FATimeInForm, cfar.Rev, cfar.TimeStamp\nFROM CivilFAREV cfar\nWHERE cfar.fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT cfa.* \nFROM CivilFA cfa\nWHERE ID = :RowID\n\nUNION\n\nSELECT cfar.fk_OrgActivityId, cfar.ActivityID, cfar.FABidID, cfar.FAFoundation, cfar.FADescription, cfar.FADrawingNumber, cfar.FADetailDrawingNumber, cfar.FAPercentComplete, cfar.FAQuantity, cfar.FARework, \ncfar.FANotes, cfar.ActivityType, cfar.FATimeInForm, cfar.Rev, cfar.TimeStamp\nFROM CivilFAREV cfar\nWHERE cfar.fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT cfa.* \nFROM CivilFA cfa\nWHERE ActivityID = :ActivityID\n\nUNION\n\nSELECT cfar.fk_OrgActivityId, cfar.FABidID, cfar.FAFoundation, cfar.FADescription, cfar.FADrawingNumber, cfar.FADetailDrawingNumber, cfar.FAPercentComplete, cfar.FAQuantity, cfar.FARework, \ncfar.FANotes, cfar.ActivityType, cfar.FATimeInForm, cfar.Rev, cfar.TimeStamp\nFROM CivilFAREV cfar\nWHERE cfar.fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT cfa.* \nFROM CivilFA cfa\nWHERE ActivityID = :ActivityID\n\nUNION\n\nSELECT cfar.fk_OrgActivityId, cfar.FABidID, cfar.FAFoundation, cfar.FADescription, cfar.FADrawingNumber, cfar.FADetailDrawingNumber, cfar.FAPercentComplete, cfar.FAQuantity, cfar.FARework, \ncfar.FANotes, cfar.ActivityType, cfar.FATimeInForm, cfar.Rev, cfar.TimeStamp\nFROM CivilFAREV cfar\nWHERE cfar.fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "RowID",
+      "name" : "ActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "24",
-      "required" : false
+      "testValue" : "2",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -488,15 +488,6 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
         "name" : "ActivityID",
         "fieldName" : "activityId",
         "optional" : false,
@@ -629,18 +620,18 @@
     "name" : "GetActivityHistoryCivilMisc",
     "description" : "Name",
     "version" : "V1",
-    "queryString" : "SELECT cm.* \nFROM CivilMisc cm\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT cmr.fk_OrgActivityId, cmr.ActivityID, cmr.MiscFoundation, cmr.MiscDrawingNumber, cmr.MiscDetailDrawingNumber, cmr.MiscPercentComplete, cmr.MiscRework, cmr.MiscNotes, cmr.ActivityType, \ncmr.MiscTimeInForm, cmr.Rev, cmr.TimeStamp\nFROM CivilMiscREV cmr\nWHERE cmr.fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT cm.* \nFROM CivilMisc cm\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT cmr.fk_OrgActivityId, cmr.ActivityID, cmr.MiscFoundation, cmr.MiscDrawingNumber, cmr.MiscDetailDrawingNumber, cmr.MiscPercentComplete, cmr.MiscRework, cmr.MiscNotes, cmr.ActivityType, \ncmr.MiscTimeInForm, cmr.Rev, cmr.TimeStamp\nFROM CivilMiscREV cmr\nWHERE cmr.fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT cm.* \nFROM CivilMisc cm\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT cmr.fk_OrgActivityId, cmr.MiscFoundation, cmr.MiscDrawingNumber, cmr.MiscDetailDrawingNumber, cmr.MiscPercentComplete, cmr.MiscRework, cmr.MiscNotes, cmr.ActivityType, \ncmr.MiscTimeInForm, cmr.Rev, cmr.TimeStamp\nFROM CivilMiscREV cmr\nWHERE cmr.fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT cm.* \nFROM CivilMisc cm\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT cmr.fk_OrgActivityId, cmr.MiscFoundation, cmr.MiscDrawingNumber, cmr.MiscDetailDrawingNumber, cmr.MiscPercentComplete, cmr.MiscRework, cmr.MiscNotes, cmr.ActivityType, \ncmr.MiscTimeInForm, cmr.Rev, cmr.TimeStamp\nFROM CivilMiscREV cmr\nWHERE cmr.fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "RowID",
+      "name" : "ActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "18",
-      "required" : false
+      "testValue" : "21",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -652,15 +643,6 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
         "name" : "ActivityID",
         "fieldName" : "activityId",
         "optional" : false,
@@ -766,17 +748,17 @@
     "name" : "GetActivityHistoryEquipFA",
     "description" : "name",
     "version" : "V2",
-    "queryString" : "SELECT efa.* \nFROM EquipFA efa\nWHERE ID = :RowID\n\nUNION\n\nSELECT efar.fk_OrgID, efar.SubmissionID, efar.FABidID, efar.FATagNumber, efar.FAActivitySelect, efar.FAQuantity, efar.FAPercentComplete, efar.FARework, efar.FANotes, efar.ActivityType, efar.FATimeInForm, efar.Rev, efar.TimeStamp\nFROM EquipFAREV efar\nWHERE efar.fk_OrgID = :RowID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT efa.* \nFROM EquipFA efa\nWHERE ID = :RowID\n\nUNION\n\nSELECT efar.fk_OrgID, efar.SubmissionID, efar.FABidID, efar.FATagNumber, efar.FAActivitySelect, efar.FAQuantity, efar.FAPercentComplete, efar.FARework, efar.FANotes, efar.ActivityType, efar.FATimeInForm, efar.Rev, efar.TimeStamp\nFROM EquipFAREV efar\nWHERE efar.fk_OrgID = :RowID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT efa.* \nFROM EquipFA efa\nWHERE ActivityID = :ActivityID\n\nUNION\n\nSELECT efar.fk_OrgActivityID, efar.FABidID, efar.FATagNumber, efar.FAActivitySelect, efar.FAQuantity, efar.FAPercentComplete, efar.FARework, efar.FANotes, efar.ActivityType, efar.FATimeInForm, efar.Rev, efar.TimeStamp\nFROM EquipFAREV efar\nWHERE efar.fk_OrgActivityID = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT efa.* \nFROM EquipFA efa\nWHERE ActivityID = :ActivityID\n\nUNION\n\nSELECT efar.fk_OrgActivityID, efar.FABidID, efar.FATagNumber, efar.FAActivitySelect, efar.FAQuantity, efar.FAPercentComplete, efar.FARework, efar.FANotes, efar.ActivityType, efar.FATimeInForm, efar.Rev, efar.TimeStamp\nFROM EquipFAREV efar\nWHERE efar.fk_OrgActivityID = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "RowID",
-      "type" : "string",
+      "name" : "ActivityID",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "9",
+      "testValue" : "3",
       "required" : true
     } ],
     "request" : {
@@ -789,17 +771,8 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "fk_SubmissionID",
-        "fieldName" : "fkSubmissionId",
+        "name" : "ActivityID",
+        "fieldName" : "activityId",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -839,7 +812,7 @@
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
+          "typeRef" : "java.lang.Integer",
           "list" : false
         }
       }, {
@@ -912,18 +885,18 @@
     "name" : "GetActivityHistoryPipeBoltup",
     "description" : "No description is provided",
     "version" : "V1",
-    "queryString" : "SELECT pb.* \nFROM PipeBoltUp pb\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT pbr.fk_OrgActivityId, pbr.ActivityID, pbr.BoltUpSpool1, pbr.BoltUpSpool2, pbr.BoltUpDrawingNumber, pbr.BoltUpLineNumber, pbr.BoltUpSheetNumber, pbr.BoltUpTimeInForm, \npbr.BoltUpSize, pbr.BoltUpQuantity, pbr.BoltUpRework, pbr.BoltUpNotes, pbr.ActivityType, pbr.Rev, pbr.TimeStamp\nFROM PipeBoltUpREV pbr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT pb.* \nFROM PipeBoltUp pb\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT pbr.fk_OrgActivityId, pbr.ActivityID, pbr.BoltUpSpool1, pbr.BoltUpSpool2, pbr.BoltUpDrawingNumber, pbr.BoltUpLineNumber, pbr.BoltUpSheetNumber, pbr.BoltUpTimeInForm, \npbr.BoltUpSize, pbr.BoltUpQuantity, pbr.BoltUpRework, pbr.BoltUpNotes, pbr.ActivityType, pbr.Rev, pbr.TimeStamp\nFROM PipeBoltUpREV pbr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT pb.* \nFROM PipeBoltUp pb\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT pbr.fk_OrgActivityId, pbr.BoltUpSpool1, pbr.BoltUpSpool2, pbr.BoltUpDrawingNumber, pbr.BoltUpLineNumber, pbr.BoltUpSheetNumber, pbr.BoltUpTimeInForm, \npbr.BoltUpSize, pbr.BoltUpQuantity, pbr.BoltUpRework, pbr.BoltUpNotes, pbr.ActivityType, pbr.Rev, pbr.TimeStamp\nFROM PipeBoltUpREV pbr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT pb.* \nFROM PipeBoltUp pb\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT pbr.fk_OrgActivityId, pbr.BoltUpSpool1, pbr.BoltUpSpool2, pbr.BoltUpDrawingNumber, pbr.BoltUpLineNumber, pbr.BoltUpSheetNumber, pbr.BoltUpTimeInForm, \npbr.BoltUpSize, pbr.BoltUpQuantity, pbr.BoltUpRework, pbr.BoltUpNotes, pbr.ActivityType, pbr.Rev, pbr.TimeStamp\nFROM PipeBoltUpREV pbr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "RowID",
+      "name" : "ActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false
+      "testValue" : "10",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -935,15 +908,6 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
         "name" : "ActivityID",
         "fieldName" : "activityId",
         "optional" : false,
@@ -1076,18 +1040,18 @@
     "name" : "GetActivityHistoryPipeDemo",
     "description" : "No description is provided",
     "version" : "V1",
-    "queryString" : "SELECT pd.* \nFROM PipeDemo pd\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT  pdr.fk_OrgActivityId, pdr.ActivityID, \npdr.DemoDrawingNumber, pdr.DemoLineNumber, pdr.DemoSheetNumber, pdr.DemoQuantity, pdr.DemoSize, pdr.DemoNotes,\npdr.ActivityType, pdr.DemoTimeInForm, pdr.Rev, pdr.TimeStamp\nFROM PipeDemoREV pdr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT pd.* \nFROM PipeDemo pd\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT  pdr.fk_OrgActivityId, pdr.ActivityID, \npdr.DemoDrawingNumber, pdr.DemoLineNumber, pdr.DemoSheetNumber, pdr.DemoQuantity, pdr.DemoSize, pdr.DemoNotes,\npdr.ActivityType, pdr.DemoTimeInForm, pdr.Rev, pdr.TimeStamp\nFROM PipeDemoREV pdr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT pd.* \nFROM PipeDemo pd\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT  pdr.fk_OrgActivityId,\npdr.DemoDrawingNumber, pdr.DemoLineNumber, pdr.DemoSheetNumber, pdr.DemoQuantity, pdr.DemoSize, pdr.DemoNotes,\npdr.ActivityType, pdr.DemoTimeInForm, pdr.Rev, pdr.TimeStamp\nFROM PipeDemoREV pdr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT pd.* \nFROM PipeDemo pd\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT  pdr.fk_OrgActivityId,\npdr.DemoDrawingNumber, pdr.DemoLineNumber, pdr.DemoSheetNumber, pdr.DemoQuantity, pdr.DemoSize, pdr.DemoNotes,\npdr.ActivityType, pdr.DemoTimeInForm, pdr.Rev, pdr.TimeStamp\nFROM PipeDemoREV pdr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "RowID",
+      "name" : "ActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "16",
-      "required" : false
+      "testValue" : "11",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -1099,15 +1063,6 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
         "name" : "ActivityID",
         "fieldName" : "activityId",
         "optional" : false,
@@ -1213,18 +1168,18 @@
     "name" : "GetActivityHistoryPipeErection",
     "description" : "No description is provided",
     "version" : "V1",
-    "queryString" : "SELECT pe.* \nFROM PipeErection pe\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT per.* \nFROM (SELECT  per.fk_OrgActivityId, per.ActivityID, \nper.ErectionSpool1, per.ErectionLengthSpool1, per.ErectionSpool2, per.ErectionLengthSpool2, per.ErectionSpool3, per.ErectionLengthSpool3, per.ErectionSpool4, per.ErectionLengthSpool4 , per.ErectionSpool5, per.ErectionLengthSpool5, per.ErectionSpool6, per.ErectionLengthSpool6,\nper.ErectionOnCords, per.ErectionDrawingNumber, per.ErectionLineNumber, per.ErectionSheetNumber, per.ErectionTimeInForm, per.ErectionPipeSize, per.ErectionRework, per.ErectionNotes,\nper.ActivityType, per.Rev, per.TimeStamp\nFROM PipeErectionREV per\nWHERE fk_OrgActivityId = :RowID\nORDER BY per.TimeStamp DESC) per",
-    "countQueryString" : "select count(*) from (SELECT pe.* \nFROM PipeErection pe\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT per.* \nFROM (SELECT  per.fk_OrgActivityId, per.ActivityID, \nper.ErectionSpool1, per.ErectionLengthSpool1, per.ErectionSpool2, per.ErectionLengthSpool2, per.ErectionSpool3, per.ErectionLengthSpool3, per.ErectionSpool4, per.ErectionLengthSpool4 , per.ErectionSpool5, per.ErectionLengthSpool5, per.ErectionSpool6, per.ErectionLengthSpool6,\nper.ErectionOnCords, per.ErectionDrawingNumber, per.ErectionLineNumber, per.ErectionSheetNumber, per.ErectionTimeInForm, per.ErectionPipeSize, per.ErectionRework, per.ErectionNotes,\nper.ActivityType, per.Rev, per.TimeStamp\nFROM PipeErectionREV per\nWHERE fk_OrgActivityId = :RowID\nORDER BY per.TimeStamp DESC) per) wmTempTable",
+    "queryString" : "SELECT pe.* \nFROM PipeErection pe\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT per.* \nFROM (SELECT  per.fk_OrgActivityId,\nper.ErectionSpool1, per.ErectionLengthSpool1, per.ErectionSpool2, per.ErectionLengthSpool2, per.ErectionSpool3, per.ErectionLengthSpool3, per.ErectionSpool4, per.ErectionLengthSpool4 , per.ErectionSpool5, per.ErectionLengthSpool5, per.ErectionSpool6, per.ErectionLengthSpool6,\nper.ErectionOnCords, per.ErectionDrawingNumber, per.ErectionLineNumber, per.ErectionSheetNumber, per.ErectionTimeInForm, per.ErectionPipeSize, per.ErectionRework, per.ErectionNotes,\nper.ActivityType, per.Rev, per.TimeStamp\nFROM PipeErectionREV per\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY per.TimeStamp DESC) per",
+    "countQueryString" : "select count(*) from (SELECT pe.* \nFROM PipeErection pe\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT per.* \nFROM (SELECT  per.fk_OrgActivityId,\nper.ErectionSpool1, per.ErectionLengthSpool1, per.ErectionSpool2, per.ErectionLengthSpool2, per.ErectionSpool3, per.ErectionLengthSpool3, per.ErectionSpool4, per.ErectionLengthSpool4 , per.ErectionSpool5, per.ErectionLengthSpool5, per.ErectionSpool6, per.ErectionLengthSpool6,\nper.ErectionOnCords, per.ErectionDrawingNumber, per.ErectionLineNumber, per.ErectionSheetNumber, per.ErectionTimeInForm, per.ErectionPipeSize, per.ErectionRework, per.ErectionNotes,\nper.ActivityType, per.Rev, per.TimeStamp\nFROM PipeErectionREV per\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY per.TimeStamp DESC) per) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "RowID",
+      "name" : "ActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "28",
-      "required" : false
+      "testValue" : "5",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -1236,15 +1191,6 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
         "name" : "ActivityID",
         "fieldName" : "activityId",
         "optional" : false,
@@ -1467,18 +1413,18 @@
     "name" : "GetActivityHistoryPipeMisc",
     "description" : "No description is provided",
     "version" : "V1",
-    "queryString" : "SELECT pm.* \nFROM PipeMisc pm\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT  pmr.fk_OrgActivityId, pmr.ActivityID, \npmr.MiscDrawingNumber, pmr.MiscLineNumber, pmr.MiscSheetNumber, pmr.MiscTimeInForm, pmr.MiscQuantity, pmr.MiscRework, pmr.MiscNotes,\npmr.ActivityType, pmr.Rev, pmr.TimeStamp\nFROM PipeMiscREV pmr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT pm.* \nFROM PipeMisc pm\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT  pmr.fk_OrgActivityId, pmr.ActivityID, \npmr.MiscDrawingNumber, pmr.MiscLineNumber, pmr.MiscSheetNumber, pmr.MiscTimeInForm, pmr.MiscQuantity, pmr.MiscRework, pmr.MiscNotes,\npmr.ActivityType, pmr.Rev, pmr.TimeStamp\nFROM PipeMiscREV pmr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT pm.* \nFROM PipeMisc pm\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT  pmr.fk_OrgActivityId,\npmr.MiscDrawingNumber, pmr.MiscLineNumber, pmr.MiscSheetNumber, pmr.MiscTimeInForm, pmr.MiscQuantity, pmr.MiscRework, pmr.MiscNotes,\npmr.ActivityType, pmr.Rev, pmr.TimeStamp\nFROM PipeMiscREV pmr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT pm.* \nFROM PipeMisc pm\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT  pmr.fk_OrgActivityId,\npmr.MiscDrawingNumber, pmr.MiscLineNumber, pmr.MiscSheetNumber, pmr.MiscTimeInForm, pmr.MiscQuantity, pmr.MiscRework, pmr.MiscNotes,\npmr.ActivityType, pmr.Rev, pmr.TimeStamp\nFROM PipeMiscREV pmr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "RowID",
+      "name" : "ActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "6",
-      "required" : false
+      "testValue" : "12",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -1490,15 +1436,6 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
         "name" : "ActivityID",
         "fieldName" : "activityId",
         "optional" : false,
@@ -1604,18 +1541,18 @@
     "name" : "GetActivityHistoryPipeSupport",
     "description" : "No description is provided",
     "version" : "V1",
-    "queryString" : "SELECT psu.* \nFROM PipeSupports psu\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT  psur.fk_OrgActivityId, psur.ActivityID, \npsur.SupportType, psur.SupportPartNumber, psur.SupportQuantity, psur.SupportDrawingNumber, psur.SupportLineNumber, psur.SupportSheetNumber, psur.SupportTimeInForm, psur.SupportComplete, psur.SupportShared, psur.SupportPercentCompleted, psur.SupportRework, psur.SupportNotes,\npsur.ActivityType, psur.Rev, psur.TimeStamp\nFROM PipeSupportsREV psur\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT psu.* \nFROM PipeSupports psu\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT  psur.fk_OrgActivityId, psur.ActivityID, \npsur.SupportType, psur.SupportPartNumber, psur.SupportQuantity, psur.SupportDrawingNumber, psur.SupportLineNumber, psur.SupportSheetNumber, psur.SupportTimeInForm, psur.SupportComplete, psur.SupportShared, psur.SupportPercentCompleted, psur.SupportRework, psur.SupportNotes,\npsur.ActivityType, psur.Rev, psur.TimeStamp\nFROM PipeSupportsREV psur\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT psu.* \nFROM PipeSupports psu\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT  psur.fk_OrgActivityId, \npsur.SupportType, psur.SupportPartNumber, psur.SupportQuantity, psur.SupportDrawingNumber, psur.SupportLineNumber, psur.SupportSheetNumber, psur.SupportTimeInForm, psur.SupportComplete, psur.SupportShared, psur.SupportPercentCompleted, psur.SupportRework, psur.SupportNotes,\npsur.ActivityType, psur.Rev, psur.TimeStamp\nFROM PipeSupportsREV psur\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT psu.* \nFROM PipeSupports psu\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT  psur.fk_OrgActivityId, \npsur.SupportType, psur.SupportPartNumber, psur.SupportQuantity, psur.SupportDrawingNumber, psur.SupportLineNumber, psur.SupportSheetNumber, psur.SupportTimeInForm, psur.SupportComplete, psur.SupportShared, psur.SupportPercentCompleted, psur.SupportRework, psur.SupportNotes,\npsur.ActivityType, psur.Rev, psur.TimeStamp\nFROM PipeSupportsREV psur\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "RowID",
+      "name" : "ActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "2",
-      "required" : false
+      "testValue" : "13",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -1627,15 +1564,6 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
         "name" : "ActivityID",
         "fieldName" : "activityId",
         "optional" : false,
@@ -1731,7 +1659,7 @@
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
+          "typeRef" : "java.lang.Float",
           "list" : false
         }
       }, {
@@ -1786,18 +1714,18 @@
     "name" : "GetActivityHistoryPipeTesting",
     "description" : "Get the field activity history for testing activities BY RowID",
     "version" : "V1",
-    "queryString" : "SELECT pt.* \nFROM PipeTesting pt\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT ptr.fk_OrgActivityId, ptr.ActivityID, ptr.TestingTestPackageNumber, ptr.TestingRework, ptr.TestingNotes, ptr.TestingTimeInForm, \nptr.ActivityType, ptr.Rev, ptr.TimeStamp\nFROM PipeTestingREV ptr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT pt.* \nFROM PipeTesting pt\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT ptr.fk_OrgActivityId, ptr.ActivityID, ptr.TestingTestPackageNumber, ptr.TestingRework, ptr.TestingNotes, ptr.TestingTimeInForm, \nptr.ActivityType, ptr.Rev, ptr.TimeStamp\nFROM PipeTestingREV ptr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT pt.* \nFROM PipeTesting pt\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT ptr.fk_OrgActivityId, ptr.TestingTestPackageNumber, ptr.TestingRework, ptr.TestingNotes, ptr.TestingTimeInForm, \nptr.ActivityType, ptr.Rev, ptr.TimeStamp\nFROM PipeTestingREV ptr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT pt.* \nFROM PipeTesting pt\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT ptr.fk_OrgActivityId, ptr.TestingTestPackageNumber, ptr.TestingRework, ptr.TestingNotes, ptr.TestingTimeInForm, \nptr.ActivityType, ptr.Rev, ptr.TimeStamp\nFROM PipeTestingREV ptr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "RowID",
+      "name" : "ActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false
+      "testValue" : "6",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -1809,15 +1737,6 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
         "name" : "ActivityID",
         "fieldName" : "activityId",
         "optional" : false,
@@ -1896,18 +1815,18 @@
     "name" : "GetActivityHistoryPipeTrim",
     "description" : "No description is provided",
     "version" : "V1",
-    "queryString" : "SELECT pt.* \nFROM PipeTrim pt\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT  ptr.fk_OrgActivityId, ptr.ActivityID, \nptr.TrimActivitySelect, ptr.TrimSize, ptr.TrimQuantity, ptr.TrimHandleType, ptr.TrimInstrumentType, ptr.TrimDrawingNumber, ptr.TrimLineNumber, ptr.TrimSheetNumber, ptr.TrimTimeInForm, ptr.TrimRework, ptr.TrimNotes ,\n\nptr.ActivityType, ptr.Rev, ptr.TimeStamp\nFROM PipeTrimREV ptr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT pt.* \nFROM PipeTrim pt\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT  ptr.fk_OrgActivityId, ptr.ActivityID, \nptr.TrimActivitySelect, ptr.TrimSize, ptr.TrimQuantity, ptr.TrimHandleType, ptr.TrimInstrumentType, ptr.TrimDrawingNumber, ptr.TrimLineNumber, ptr.TrimSheetNumber, ptr.TrimTimeInForm, ptr.TrimRework, ptr.TrimNotes ,\n\nptr.ActivityType, ptr.Rev, ptr.TimeStamp\nFROM PipeTrimREV ptr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT pt.* \nFROM PipeTrim pt\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT  ptr.fk_OrgActivityId, \nptr.TrimActivitySelect, ptr.TrimSize, ptr.TrimQuantity, ptr.TrimHandleType, ptr.TrimInstrumentType, ptr.TrimDrawingNumber, ptr.TrimLineNumber, ptr.TrimSheetNumber, ptr.TrimTimeInForm, ptr.TrimRework, ptr.TrimNotes ,\n\nptr.ActivityType, ptr.Rev, ptr.TimeStamp\nFROM PipeTrimREV ptr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT pt.* \nFROM PipeTrim pt\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT  ptr.fk_OrgActivityId, \nptr.TrimActivitySelect, ptr.TrimSize, ptr.TrimQuantity, ptr.TrimHandleType, ptr.TrimInstrumentType, ptr.TrimDrawingNumber, ptr.TrimLineNumber, ptr.TrimSheetNumber, ptr.TrimTimeInForm, ptr.TrimRework, ptr.TrimNotes ,\n\nptr.ActivityType, ptr.Rev, ptr.TimeStamp\nFROM PipeTrimREV ptr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "RowID",
+      "name" : "ActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "19",
-      "required" : false
+      "testValue" : "14",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -1919,15 +1838,6 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
         "name" : "ActivityID",
         "fieldName" : "activityId",
         "optional" : false,
@@ -2069,18 +1979,18 @@
     "name" : "GetActivityHistoryPipeWeld",
     "description" : "No description is provided",
     "version" : "V1",
-    "queryString" : "SELECT pw.* \nFROM PipeWeld pw\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT  pwr.fk_OrgActivityId, pwr.ActivityID, \npwr.WeldSpool1, pwr.WeldSpool2, pwr.WeldDrawingNumber, pwr.WeldLineNumber, pwr.WeldSheetNumber, pwr.WeldTimeInForm, pwr.WeldLineSpec, pwr.WeldNumber, pwr.WeldStencil, pwr.WeldSize, pwr.WeldThickness, \npwr.WeldType, pwr.WeldPosition, pwr.WeldMaterial, pwr.WeldProcedure, pwr.WeldComplete, pwr.WeldShared, pwr.WeldPercentCompleteChoice, pwr.WeldPercentCompleted, pwr.WeldRework, pwr.WeldNotes, \npwr.ActivityType, pwr.Rev, pwr.TimeStamp\nFROM PipeWeldREV pwr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT pw.* \nFROM PipeWeld pw\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT  pwr.fk_OrgActivityId, pwr.ActivityID, \npwr.WeldSpool1, pwr.WeldSpool2, pwr.WeldDrawingNumber, pwr.WeldLineNumber, pwr.WeldSheetNumber, pwr.WeldTimeInForm, pwr.WeldLineSpec, pwr.WeldNumber, pwr.WeldStencil, pwr.WeldSize, pwr.WeldThickness, \npwr.WeldType, pwr.WeldPosition, pwr.WeldMaterial, pwr.WeldProcedure, pwr.WeldComplete, pwr.WeldShared, pwr.WeldPercentCompleteChoice, pwr.WeldPercentCompleted, pwr.WeldRework, pwr.WeldNotes, \npwr.ActivityType, pwr.Rev, pwr.TimeStamp\nFROM PipeWeldREV pwr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT pw.* \nFROM PipeWeld pw\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT  pwr.fk_OrgActivityId, \npwr.WeldSpool1, pwr.WeldSpool2, pwr.WeldDrawingNumber, pwr.WeldLineNumber, pwr.WeldSheetNumber, pwr.WeldTimeInForm, pwr.WeldLineSpec, pwr.WeldNumber, pwr.WeldStencil, pwr.WeldSize, pwr.WeldThickness, \npwr.WeldType, pwr.WeldPosition, pwr.WeldMaterial, pwr.WeldProcedure, pwr.WeldComplete, pwr.WeldShared, pwr.WeldPercentCompleted, pwr.WeldRework, pwr.WeldNotes, \npwr.ActivityType, pwr.Rev, pwr.TimeStamp\nFROM PipeWeldREV pwr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT pw.* \nFROM PipeWeld pw\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT  pwr.fk_OrgActivityId, \npwr.WeldSpool1, pwr.WeldSpool2, pwr.WeldDrawingNumber, pwr.WeldLineNumber, pwr.WeldSheetNumber, pwr.WeldTimeInForm, pwr.WeldLineSpec, pwr.WeldNumber, pwr.WeldStencil, pwr.WeldSize, pwr.WeldThickness, \npwr.WeldType, pwr.WeldPosition, pwr.WeldMaterial, pwr.WeldProcedure, pwr.WeldComplete, pwr.WeldShared, pwr.WeldPercentCompleted, pwr.WeldRework, pwr.WeldNotes, \npwr.ActivityType, pwr.Rev, pwr.TimeStamp\nFROM PipeWeldREV pwr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "RowID",
+      "name" : "ActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "30",
-      "required" : false
+      "testValue" : "1",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -2092,15 +2002,6 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
         "name" : "ActivityID",
         "fieldName" : "activityId",
         "optional" : false,
@@ -2263,21 +2164,12 @@
           "list" : false
         }
       }, {
-        "name" : "WeldPercentCompleteChoice",
-        "fieldName" : "weldPercentCompleteChoice",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
         "name" : "WeldPercentCompleted",
         "fieldName" : "weldPercentCompleted",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
+          "typeRef" : "java.lang.Float",
           "list" : false
         }
       }, {
@@ -2397,18 +2289,18 @@
     "name" : "GetActivityHistorySteelBoltout",
     "description" : "name",
     "version" : "V1",
-    "queryString" : "SELECT stlb.* \nFROM SteelBoltOut stlb\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT stlbr.fk_OrgActivityId, stlbr.ActivityID, stlbr.FAArea, stlbr.FAPieceNumber, stlbr.FABoltoutQuantity, stlbr.FABoltoutPercent, stlbr.FARework, stlbr.FANotes, stlbr.ActivityType, stlbr.FATimeInForm, stlbr.Rev, stlbr.TimeStamp\nFROM SteelBoltOutREV stlbr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT stlb.* \nFROM SteelBoltOut stlb\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT stlbr.fk_OrgActivityId, stlbr.ActivityID, stlbr.FAArea, stlbr.FAPieceNumber, stlbr.FABoltoutQuantity, stlbr.FABoltoutPercent, stlbr.FARework, stlbr.FANotes, stlbr.ActivityType, stlbr.FATimeInForm, stlbr.Rev, stlbr.TimeStamp\nFROM SteelBoltOutREV stlbr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT stlb.* \nFROM SteelBoltOut stlb\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlbr.fk_OrgActivityId, stlbr.FAArea, stlbr.FAPieceNumber, stlbr.FABoltoutQuantity, stlbr.FABoltoutPercent, stlbr.FARework, stlbr.FANotes, stlbr.ActivityType, stlbr.FATimeInForm, stlbr.Rev, stlbr.TimeStamp\nFROM SteelBoltOutREV stlbr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT stlb.* \nFROM SteelBoltOut stlb\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlbr.fk_OrgActivityId, stlbr.FAArea, stlbr.FAPieceNumber, stlbr.FABoltoutQuantity, stlbr.FABoltoutPercent, stlbr.FARework, stlbr.FANotes, stlbr.ActivityType, stlbr.FATimeInForm, stlbr.Rev, stlbr.TimeStamp\nFROM SteelBoltOutREV stlbr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "RowID",
+      "name" : "ActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "27",
-      "required" : false
+      "testValue" : "15",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -2420,15 +2312,6 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
         "name" : "ActivityID",
         "fieldName" : "activityId",
         "optional" : false,
@@ -2534,18 +2417,18 @@
     "name" : "GetActivityHistorySteelDemo",
     "description" : "name",
     "version" : "V1",
-    "queryString" : "SELECT stld.* \nFROM SteelDemo stld\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT stldr.fk_OrgActivityId, stldr.ActivityID, stldr.DemoArea, stldr.DemoSteelType, stldr.DemoSize, stldr.DemoQuantity, stldr.DemoNotes, stldr.ActivityType, stldr.DemoTimeInForm, stldr.Rev, stldr.TimeStamp\nFROM SteelDemoREV stldr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT stld.* \nFROM SteelDemo stld\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT stldr.fk_OrgActivityId, stldr.ActivityID, stldr.DemoArea, stldr.DemoSteelType, stldr.DemoSize, stldr.DemoQuantity, stldr.DemoNotes, stldr.ActivityType, stldr.DemoTimeInForm, stldr.Rev, stldr.TimeStamp\nFROM SteelDemoREV stldr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT stld.* \nFROM SteelDemo stld\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stldr.fk_OrgActivityId, stldr.DemoArea, stldr.DemoSteelType, stldr.DemoSize, stldr.DemoQuantity, stldr.DemoNotes, stldr.ActivityType, stldr.DemoTimeInForm, stldr.Rev, stldr.TimeStamp\nFROM SteelDemoREV stldr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT stld.* \nFROM SteelDemo stld\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stldr.fk_OrgActivityId, stldr.DemoArea, stldr.DemoSteelType, stldr.DemoSize, stldr.DemoQuantity, stldr.DemoNotes, stldr.ActivityType, stldr.DemoTimeInForm, stldr.Rev, stldr.TimeStamp\nFROM SteelDemoREV stldr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "RowID",
+      "name" : "ActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "22",
-      "required" : false
+      "testValue" : "16",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -2557,15 +2440,6 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
         "name" : "ActivityID",
         "fieldName" : "activityId",
         "optional" : false,
@@ -2662,18 +2536,18 @@
     "name" : "GetActivityHistorySteelErect",
     "description" : "name",
     "version" : "V1",
-    "queryString" : "SELECT stle.* \nFROM SteelErect stle\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT stler.fk_OrgActivityId, stler.ActivityID, stler.FAArea, stler.FAPieceNumber, stler.FAErectQuantity, stler.FAErectPercent, stler.FARework, stler.FANotes, stler.ActivityType, stler.FATimeInForm, stler.Rev, stler.TimeStamp\nFROM SteelErectREV stler\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT stle.* \nFROM SteelErect stle\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT stler.fk_OrgActivityId, stler.ActivityID, stler.FAArea, stler.FAPieceNumber, stler.FAErectQuantity, stler.FAErectPercent, stler.FARework, stler.FANotes, stler.ActivityType, stler.FATimeInForm, stler.Rev, stler.TimeStamp\nFROM SteelErectREV stler\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT stle.* \nFROM SteelErect stle\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stler.fk_OrgActivityId, stler.FAArea, stler.FAPieceNumber, stler.FAErectQuantity, stler.FAErectPercent, stler.FARework, stler.FANotes, stler.ActivityType, stler.FATimeInForm, stler.Rev, stler.TimeStamp\nFROM SteelErectREV stler\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT stle.* \nFROM SteelErect stle\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stler.fk_OrgActivityId, stler.FAArea, stler.FAPieceNumber, stler.FAErectQuantity, stler.FAErectPercent, stler.FARework, stler.FANotes, stler.ActivityType, stler.FATimeInForm, stler.Rev, stler.TimeStamp\nFROM SteelErectREV stler\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "RowID",
+      "name" : "ActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "27",
-      "required" : false
+      "testValue" : "17",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -2685,15 +2559,6 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
         "name" : "ActivityID",
         "fieldName" : "activityId",
         "optional" : false,
@@ -2799,18 +2664,18 @@
     "name" : "GetActivityHistorySteelImp",
     "description" : "name",
     "version" : "V1",
-    "queryString" : "SELECT stli.* \nFROM SteelImp stli\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT stlir.fk_OrgActivityId, stlir.ActivityID, stlir.FAArea, stlir.FAPieceNumber, stlir.FAImpQuantity, stlir.FAImpPercent, stlir.FARework, stlir.FANotes, stlir.ActivityType, stlir.FATimeInForm, stlir.Rev, stlir.TimeStamp\nFROM SteelImpREV stlir\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT stli.* \nFROM SteelImp stli\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT stlir.fk_OrgActivityId, stlir.ActivityID, stlir.FAArea, stlir.FAPieceNumber, stlir.FAImpQuantity, stlir.FAImpPercent, stlir.FARework, stlir.FANotes, stlir.ActivityType, stlir.FATimeInForm, stlir.Rev, stlir.TimeStamp\nFROM SteelImpREV stlir\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT stli.* \nFROM SteelImp stli\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlir.fk_OrgActivityId, stlir.FAArea, stlir.FAPieceNumber, stlir.FAImpQuantity, stlir.FAImpPercent, stlir.FARework, stlir.FANotes, stlir.ActivityType, stlir.FATimeInForm, stlir.Rev, stlir.TimeStamp\nFROM SteelImpREV stlir\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT stli.* \nFROM SteelImp stli\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlir.fk_OrgActivityId, stlir.FAArea, stlir.FAPieceNumber, stlir.FAImpQuantity, stlir.FAImpPercent, stlir.FARework, stlir.FANotes, stlir.ActivityType, stlir.FATimeInForm, stlir.Rev, stlir.TimeStamp\nFROM SteelImpREV stlir\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "RowID",
+      "name" : "ActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "12",
-      "required" : false
+      "testValue" : "18",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -2822,15 +2687,6 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
         "name" : "ActivityID",
         "fieldName" : "activityId",
         "optional" : false,
@@ -2936,18 +2792,18 @@
     "name" : "GetActivityHistorySteelMisc",
     "description" : "name",
     "version" : "V1",
-    "queryString" : "SELECT stlm.* \nFROM SteelMisc stlm\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT stlmr.fk_OrgActivityId, stlmr.ActivityID, stlmr.MiscArea, stlmr.MiscPieceNumber, stlmr.MiscQuantity, stlmr.MiscRework, stlmr.MiscNotes, stlmr.ActivityType, stlmr.MiscTimeInForm, stlmr.Rev, stlmr.TimeStamp\nFROM SteelMiscREV stlmr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT stlm.* \nFROM SteelMisc stlm\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT stlmr.fk_OrgActivityId, stlmr.ActivityID, stlmr.MiscArea, stlmr.MiscPieceNumber, stlmr.MiscQuantity, stlmr.MiscRework, stlmr.MiscNotes, stlmr.ActivityType, stlmr.MiscTimeInForm, stlmr.Rev, stlmr.TimeStamp\nFROM SteelMiscREV stlmr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT stlm.* \nFROM SteelMisc stlm\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlmr.fk_OrgActivityId, stlmr.MiscArea, stlmr.MiscPieceNumber, stlmr.MiscQuantity, stlmr.MiscRework, stlmr.MiscNotes, stlmr.ActivityType, stlmr.MiscTimeInForm, stlmr.Rev, stlmr.TimeStamp\nFROM SteelMiscREV stlmr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT stlm.* \nFROM SteelMisc stlm\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlmr.fk_OrgActivityId, stlmr.MiscArea, stlmr.MiscPieceNumber, stlmr.MiscQuantity, stlmr.MiscRework, stlmr.MiscNotes, stlmr.ActivityType, stlmr.MiscTimeInForm, stlmr.Rev, stlmr.TimeStamp\nFROM SteelMiscREV stlmr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "RowID",
+      "name" : "ActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "36",
-      "required" : false
+      "testValue" : "19",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -2959,15 +2815,6 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
         "name" : "ActivityID",
         "fieldName" : "activityId",
         "optional" : false,
@@ -3064,18 +2911,18 @@
     "name" : "GetActivityHistorySteelSell",
     "description" : "name",
     "version" : "V1",
-    "queryString" : "SELECT stlsell.* \nFROM SteelSell stlsell\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT stlsellr.fk_OrgActivityId, stlsellr.ActivityID, stlsellr.FAArea, stlsellr.FAPieceNumber, stlsellr.FASellQuantity, stlsellr.FARework, stlsellr.FANotes, stlsellr.ActivityType, stlsellr.FATimeInForm, stlsellr.Rev, stlsellr.TimeStamp\nFROM SteelSellREV stlsellr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT stlsell.* \nFROM SteelSell stlsell\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT stlsellr.fk_OrgActivityId, stlsellr.ActivityID, stlsellr.FAArea, stlsellr.FAPieceNumber, stlsellr.FASellQuantity, stlsellr.FARework, stlsellr.FANotes, stlsellr.ActivityType, stlsellr.FATimeInForm, stlsellr.Rev, stlsellr.TimeStamp\nFROM SteelSellREV stlsellr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT stlsell.* \nFROM SteelSell stlsell\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlsellr.fk_OrgActivityId, stlsellr.FAArea, stlsellr.FAPieceNumber, stlsellr.FASellQuantity, stlsellr.FARework, stlsellr.FANotes, stlsellr.ActivityType, stlsellr.FATimeInForm, stlsellr.Rev, stlsellr.TimeStamp\nFROM SteelSellREV stlsellr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT stlsell.* \nFROM SteelSell stlsell\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlsellr.fk_OrgActivityId, stlsellr.FAArea, stlsellr.FAPieceNumber, stlsellr.FASellQuantity, stlsellr.FARework, stlsellr.FANotes, stlsellr.ActivityType, stlsellr.FATimeInForm, stlsellr.Rev, stlsellr.TimeStamp\nFROM SteelSellREV stlsellr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "RowID",
+      "name" : "ActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "25",
-      "required" : false
+      "testValue" : "20",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -3087,15 +2934,6 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
         "name" : "ActivityID",
         "fieldName" : "activityId",
         "optional" : false,
@@ -3192,18 +3030,18 @@
     "name" : "GetActivityHistorySteelShake",
     "description" : "name",
     "version" : "V1",
-    "queryString" : "SELECT stls.* \nFROM SteelShake stls\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT stlsr.fk_OrgActivityId, stlsr.ActivityID, stlsr.FAArea, stlsr.FAPieceNumber, stlsr.FAShakeQuantity, stlsr.FARework, stlsr.FANotes, stlsr.ActivityType, stlsr.FATimeInForm, stlsr.Rev, stlsr.TimeStamp\nFROM SteelShakeREV stlsr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT stls.* \nFROM SteelShake stls\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT stlsr.fk_OrgActivityId, stlsr.ActivityID, stlsr.FAArea, stlsr.FAPieceNumber, stlsr.FAShakeQuantity, stlsr.FARework, stlsr.FANotes, stlsr.ActivityType, stlsr.FATimeInForm, stlsr.Rev, stlsr.TimeStamp\nFROM SteelShakeREV stlsr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT stls.* \nFROM SteelShake stls\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlsr.fk_OrgActivityId, stlsr.FAArea, stlsr.FAPieceNumber, stlsr.FAShakeQuantity, stlsr.FARework, stlsr.FANotes, stlsr.ActivityType, stlsr.FATimeInForm, stlsr.Rev, stlsr.TimeStamp\nFROM SteelShakeREV stlsr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT stls.* \nFROM SteelShake stls\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlsr.fk_OrgActivityId, stlsr.FAArea, stlsr.FAPieceNumber, stlsr.FAShakeQuantity, stlsr.FARework, stlsr.FANotes, stlsr.ActivityType, stlsr.FATimeInForm, stlsr.Rev, stlsr.TimeStamp\nFROM SteelShakeREV stlsr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "RowID",
+      "name" : "ActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "28",
-      "required" : false
+      "testValue" : "4",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -3215,15 +3053,6 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
         "name" : "ActivityID",
         "fieldName" : "activityId",
         "optional" : false,
@@ -3320,18 +3149,18 @@
     "name" : "GetActivityHistorySteelWeld",
     "description" : "name",
     "version" : "V1",
-    "queryString" : "SELECT stlw.* \nFROM SteelWeld stlw\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT stlwr.fk_OrgActivityId, stlwr.ActivityID, stlwr.FAArea, stlwr.FAPieceNumber, stlwr.FAWeldQuantity, stlwr.FAWeldPercent, stlwr.FARework, stlwr.FANotes, stlwr.ActivityType, stlwr.FATimeInForm, stlwr.Rev, stlwr.TimeStamp\nFROM SteelWeldREV stlwr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT stlw.* \nFROM SteelWeld stlw\nWHERE ID = :RowID\n\nUNION ALL\n\nSELECT stlwr.fk_OrgActivityId, stlwr.ActivityID, stlwr.FAArea, stlwr.FAPieceNumber, stlwr.FAWeldQuantity, stlwr.FAWeldPercent, stlwr.FARework, stlwr.FANotes, stlwr.ActivityType, stlwr.FATimeInForm, stlwr.Rev, stlwr.TimeStamp\nFROM SteelWeldREV stlwr\nWHERE fk_OrgActivityId = :RowID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT stlw.* \nFROM SteelWeld stlw\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlwr.fk_OrgActivityId, stlwr.FAArea, stlwr.FAPieceNumber, stlwr.FAWeldQuantity, stlwr.FAWeldPercent, stlwr.FARework, stlwr.FANotes, stlwr.ActivityType, stlwr.FATimeInForm, stlwr.Rev, stlwr.TimeStamp\nFROM SteelWeldREV stlwr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT stlw.* \nFROM SteelWeld stlw\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlwr.fk_OrgActivityId, stlwr.FAArea, stlwr.FAPieceNumber, stlwr.FAWeldQuantity, stlwr.FAWeldPercent, stlwr.FARework, stlwr.FANotes, stlwr.ActivityType, stlwr.FATimeInForm, stlwr.Rev, stlwr.TimeStamp\nFROM SteelWeldREV stlwr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "RowID",
+      "name" : "ActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "10",
-      "required" : false
+      "testValue" : "22",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -3343,15 +3172,6 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
         "name" : "ActivityID",
         "fieldName" : "activityId",
         "optional" : false,

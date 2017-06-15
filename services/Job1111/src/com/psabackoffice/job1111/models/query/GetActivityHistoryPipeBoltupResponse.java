@@ -15,9 +15,6 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistoryPipeBoltupResponse implements Serializable {
 
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
@@ -60,14 +57,6 @@ public class GetActivityHistoryPipeBoltupResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -186,8 +175,7 @@ public class GetActivityHistoryPipeBoltupResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistoryPipeBoltupResponse)) return false;
         final GetActivityHistoryPipeBoltupResponse getActivityHistoryPipeBoltupResponse = (GetActivityHistoryPipeBoltupResponse) o;
-        return Objects.equals(getId(), getActivityHistoryPipeBoltupResponse.getId()) &&
-                Objects.equals(getActivityId(), getActivityHistoryPipeBoltupResponse.getActivityId()) &&
+        return Objects.equals(getActivityId(), getActivityHistoryPipeBoltupResponse.getActivityId()) &&
                 Objects.equals(getBoltUpSpool1(), getActivityHistoryPipeBoltupResponse.getBoltUpSpool1()) &&
                 Objects.equals(getBoltUpSpool2(), getActivityHistoryPipeBoltupResponse.getBoltUpSpool2()) &&
                 Objects.equals(getBoltUpDrawingNumber(), getActivityHistoryPipeBoltupResponse.getBoltUpDrawingNumber()) &&
@@ -205,8 +193,7 @@ public class GetActivityHistoryPipeBoltupResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getActivityId(),
+        return Objects.hash(getActivityId(),
                 getBoltUpSpool1(),
                 getBoltUpSpool2(),
                 getBoltUpDrawingNumber(),

@@ -17,9 +17,6 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistorySteelWeldResponse implements Serializable {
 
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
@@ -53,14 +50,6 @@ public class GetActivityHistorySteelWeldResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -155,8 +144,7 @@ public class GetActivityHistorySteelWeldResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistorySteelWeldResponse)) return false;
         final GetActivityHistorySteelWeldResponse getActivityHistorySteelWeldResponse = (GetActivityHistorySteelWeldResponse) o;
-        return Objects.equals(getId(), getActivityHistorySteelWeldResponse.getId()) &&
-                Objects.equals(getActivityId(), getActivityHistorySteelWeldResponse.getActivityId()) &&
+        return Objects.equals(getActivityId(), getActivityHistorySteelWeldResponse.getActivityId()) &&
                 Objects.equals(getFaarea(), getActivityHistorySteelWeldResponse.getFaarea()) &&
                 Objects.equals(getFapieceNumber(), getActivityHistorySteelWeldResponse.getFapieceNumber()) &&
                 Objects.equals(getFaweldQuantity(), getActivityHistorySteelWeldResponse.getFaweldQuantity()) &&
@@ -171,8 +159,7 @@ public class GetActivityHistorySteelWeldResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getActivityId(),
+        return Objects.hash(getActivityId(),
                 getFaarea(),
                 getFapieceNumber(),
                 getFaweldQuantity(),

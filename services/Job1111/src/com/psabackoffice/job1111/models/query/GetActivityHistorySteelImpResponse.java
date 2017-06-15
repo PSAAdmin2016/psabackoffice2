@@ -17,9 +17,6 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistorySteelImpResponse implements Serializable {
 
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
@@ -53,14 +50,6 @@ public class GetActivityHistorySteelImpResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -155,8 +144,7 @@ public class GetActivityHistorySteelImpResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistorySteelImpResponse)) return false;
         final GetActivityHistorySteelImpResponse getActivityHistorySteelImpResponse = (GetActivityHistorySteelImpResponse) o;
-        return Objects.equals(getId(), getActivityHistorySteelImpResponse.getId()) &&
-                Objects.equals(getActivityId(), getActivityHistorySteelImpResponse.getActivityId()) &&
+        return Objects.equals(getActivityId(), getActivityHistorySteelImpResponse.getActivityId()) &&
                 Objects.equals(getFaarea(), getActivityHistorySteelImpResponse.getFaarea()) &&
                 Objects.equals(getFapieceNumber(), getActivityHistorySteelImpResponse.getFapieceNumber()) &&
                 Objects.equals(getFaimpQuantity(), getActivityHistorySteelImpResponse.getFaimpQuantity()) &&
@@ -171,8 +159,7 @@ public class GetActivityHistorySteelImpResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getActivityId(),
+        return Objects.hash(getActivityId(),
                 getFaarea(),
                 getFapieceNumber(),
                 getFaimpQuantity(),

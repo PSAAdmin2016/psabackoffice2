@@ -17,9 +17,6 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetActivityHistorySteelMiscResponse implements Serializable {
 
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
@@ -50,14 +47,6 @@ public class GetActivityHistorySteelMiscResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -144,8 +133,7 @@ public class GetActivityHistorySteelMiscResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistorySteelMiscResponse)) return false;
         final GetActivityHistorySteelMiscResponse getActivityHistorySteelMiscResponse = (GetActivityHistorySteelMiscResponse) o;
-        return Objects.equals(getId(), getActivityHistorySteelMiscResponse.getId()) &&
-                Objects.equals(getActivityId(), getActivityHistorySteelMiscResponse.getActivityId()) &&
+        return Objects.equals(getActivityId(), getActivityHistorySteelMiscResponse.getActivityId()) &&
                 Objects.equals(getMiscArea(), getActivityHistorySteelMiscResponse.getMiscArea()) &&
                 Objects.equals(getMiscPieceNumber(), getActivityHistorySteelMiscResponse.getMiscPieceNumber()) &&
                 Objects.equals(getMiscQuantity(), getActivityHistorySteelMiscResponse.getMiscQuantity()) &&
@@ -159,8 +147,7 @@ public class GetActivityHistorySteelMiscResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getActivityId(),
+        return Objects.hash(getActivityId(),
                 getMiscArea(),
                 getMiscPieceNumber(),
                 getMiscQuantity(),
