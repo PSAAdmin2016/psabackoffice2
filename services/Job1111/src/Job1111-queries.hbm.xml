@@ -9021,7 +9021,7 @@ WHERE ctd.TestPackageNumber = :TestPackage) wmTempTable
 
     <sql-query name="GetReportDWRByDate">
         <![CDATA[
-        SELECT sas.ActivityID AS FieldActivityID, pw.ID AS RowID,
+        SELECT sas.ActivityID AS FieldActivityID, 
 pw.WeldSpool1, pw.WeldSpool2, pw.WeldLineNumber, pw.WeldDrawingNumber, pw.WeldSheetNumber, pw.WeldNumber,
 pw.WeldStencil, pw.WeldSize, pw.WeldThickness, pw.WeldMaterial, pw.WeldType, pw.WeldLineSpec, pw.WeldProcedure, pw.WeldNotes,
 sd.ReceivedTime
@@ -9043,7 +9043,7 @@ ORDER BY sd.ReceivedTime
 
     <sql-query name="GetReportDWRByDate__count">
         <![CDATA[
-        select count(*) from (SELECT sas.ActivityID AS FieldActivityID, pw.ID AS RowID,
+        select count(*) from (SELECT sas.ActivityID AS FieldActivityID, 
 pw.WeldSpool1, pw.WeldSpool2, pw.WeldLineNumber, pw.WeldDrawingNumber, pw.WeldSheetNumber, pw.WeldNumber,
 pw.WeldStencil, pw.WeldSize, pw.WeldThickness, pw.WeldMaterial, pw.WeldType, pw.WeldLineSpec, pw.WeldProcedure, pw.WeldNotes,
 sd.ReceivedTime

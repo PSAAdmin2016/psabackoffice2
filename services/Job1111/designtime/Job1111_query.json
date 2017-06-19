@@ -9656,8 +9656,8 @@
     "name" : "GetReportDWRByDate",
     "description" : "Get Daily Weld Report BY Date Range",
     "version" : "V1",
-    "queryString" : "SELECT sas.ActivityID AS FieldActivityID, pw.ID AS RowID,\npw.WeldSpool1, pw.WeldSpool2, pw.WeldLineNumber, pw.WeldDrawingNumber, pw.WeldSheetNumber, pw.WeldNumber,\npw.WeldStencil, pw.WeldSize, pw.WeldThickness, pw.WeldMaterial, pw.WeldType, pw.WeldLineSpec, pw.WeldProcedure, pw.WeldNotes,\nsd.ReceivedTime\nFROM SubmissionActivityStatus sas\n\nJOIN PipeWeld pw\n\tON pw.ActivityID = sas.ActivityID AND pw.ActivityType = 22\n\nJOIN SubsDetails sd\n\tON sd.SubmissionId = sas.SubmissionID\n    \nWHERE sd.ReceivedTime BETWEEN :BeginDate and :EndDate\n\nORDER BY sd.ReceivedTime",
-    "countQueryString" : "select count(*) from (SELECT sas.ActivityID AS FieldActivityID, pw.ID AS RowID,\npw.WeldSpool1, pw.WeldSpool2, pw.WeldLineNumber, pw.WeldDrawingNumber, pw.WeldSheetNumber, pw.WeldNumber,\npw.WeldStencil, pw.WeldSize, pw.WeldThickness, pw.WeldMaterial, pw.WeldType, pw.WeldLineSpec, pw.WeldProcedure, pw.WeldNotes,\nsd.ReceivedTime\nFROM SubmissionActivityStatus sas\n\nJOIN PipeWeld pw\n\tON pw.ActivityID = sas.ActivityID AND pw.ActivityType = 22\n\nJOIN SubsDetails sd\n\tON sd.SubmissionId = sas.SubmissionID\n    \nWHERE sd.ReceivedTime BETWEEN :BeginDate and :EndDate\n\nORDER BY sd.ReceivedTime) wmTempTable",
+    "queryString" : "SELECT sas.ActivityID AS FieldActivityID, \npw.WeldSpool1, pw.WeldSpool2, pw.WeldLineNumber, pw.WeldDrawingNumber, pw.WeldSheetNumber, pw.WeldNumber,\npw.WeldStencil, pw.WeldSize, pw.WeldThickness, pw.WeldMaterial, pw.WeldType, pw.WeldLineSpec, pw.WeldProcedure, pw.WeldNotes,\nsd.ReceivedTime\nFROM SubmissionActivityStatus sas\n\nJOIN PipeWeld pw\n\tON pw.ActivityID = sas.ActivityID AND pw.ActivityType = 22\n\nJOIN SubsDetails sd\n\tON sd.SubmissionId = sas.SubmissionID\n    \nWHERE sd.ReceivedTime BETWEEN :BeginDate and :EndDate\n\nORDER BY sd.ReceivedTime",
+    "countQueryString" : "select count(*) from (SELECT sas.ActivityID AS FieldActivityID, \npw.WeldSpool1, pw.WeldSpool2, pw.WeldLineNumber, pw.WeldDrawingNumber, pw.WeldSheetNumber, pw.WeldNumber,\npw.WeldStencil, pw.WeldSize, pw.WeldThickness, pw.WeldMaterial, pw.WeldType, pw.WeldLineSpec, pw.WeldProcedure, pw.WeldNotes,\nsd.ReceivedTime\nFROM SubmissionActivityStatus sas\n\nJOIN PipeWeld pw\n\tON pw.ActivityID = sas.ActivityID AND pw.ActivityType = 22\n\nJOIN SubsDetails sd\n\tON sd.SubmissionId = sas.SubmissionID\n    \nWHERE sd.ReceivedTime BETWEEN :BeginDate and :EndDate\n\nORDER BY sd.ReceivedTime) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -9688,15 +9688,6 @@
       "properties" : [ {
         "name" : "FieldActivityID",
         "fieldName" : "fieldActivityId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "RowID",
-        "fieldName" : "rowId",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",

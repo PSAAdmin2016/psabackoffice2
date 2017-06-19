@@ -20,9 +20,6 @@ public class GetReportDwrbyDateResponse implements Serializable {
     @JsonProperty("FieldActivityID")
     @ColumnAlias("FieldActivityID")
     private Integer fieldActivityId;
-    @JsonProperty("RowID")
-    @ColumnAlias("RowID")
-    private Integer rowId;
     @JsonProperty("WeldSpool1")
     @ColumnAlias("WeldSpool1")
     private String weldSpool1;
@@ -75,14 +72,6 @@ public class GetReportDwrbyDateResponse implements Serializable {
 
     public void setFieldActivityId(Integer fieldActivityId) {
         this.fieldActivityId = fieldActivityId;
-    }
-
-    public Integer getRowId() {
-        return this.rowId;
-    }
-
-    public void setRowId(Integer rowId) {
-        this.rowId = rowId;
     }
 
     public String getWeldSpool1() {
@@ -211,7 +200,6 @@ public class GetReportDwrbyDateResponse implements Serializable {
         if (!(o instanceof GetReportDwrbyDateResponse)) return false;
         final GetReportDwrbyDateResponse getReportDwrbyDateResponse = (GetReportDwrbyDateResponse) o;
         return Objects.equals(getFieldActivityId(), getReportDwrbyDateResponse.getFieldActivityId()) &&
-                Objects.equals(getRowId(), getReportDwrbyDateResponse.getRowId()) &&
                 Objects.equals(getWeldSpool1(), getReportDwrbyDateResponse.getWeldSpool1()) &&
                 Objects.equals(getWeldSpool2(), getReportDwrbyDateResponse.getWeldSpool2()) &&
                 Objects.equals(getWeldLineNumber(), getReportDwrbyDateResponse.getWeldLineNumber()) &&
@@ -232,7 +220,6 @@ public class GetReportDwrbyDateResponse implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getFieldActivityId(),
-                getRowId(),
                 getWeldSpool1(),
                 getWeldSpool2(),
                 getWeldLineNumber(),
