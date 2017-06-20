@@ -25,6 +25,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SubmissionActivityStatus;
 import com.psabackoffice.job1111.SubsDetails;
+import com.psabackoffice.job1111.SubsSignatures;
 
 
 /**
@@ -36,6 +37,10 @@ import com.psabackoffice.job1111.SubsDetails;
 public class SubsDetailsServiceImpl implements SubsDetailsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SubsDetailsServiceImpl.class);
+
+    @Autowired
+	@Qualifier("Job1111.SubsSignaturesService")
+	private SubsSignaturesService subsSignaturesService;
 
     @Autowired
 	@Qualifier("Job1111.SubmissionActivityStatusService")
@@ -59,6 +64,14 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
                 submissionActivityStatuse.setSubsDetails(subsDetailsCreated);
                 LOGGER.debug("Creating a new child SubmissionActivityStatus with information: {}", submissionActivityStatuse);
                 submissionActivityStatusService.create(submissionActivityStatuse);
+            }
+        }
+
+        if(subsDetailsCreated.getSubsSignatureses() != null) {
+            for(SubsSignatures subsSignaturese : subsDetailsCreated.getSubsSignatureses()) {
+                subsSignaturese.setSubsDetails(subsDetailsCreated);
+                LOGGER.debug("Creating a new child SubsSignatures with information: {}", subsSignaturese);
+                subsSignaturesService.create(subsSignaturese);
             }
         }
         return subsDetailsCreated;
@@ -150,6 +163,26 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
         queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
 
         return submissionActivityStatusService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<SubsSignatures> findAssociatedSubsSignatureses(Integer submissionId, Pageable pageable) {
+        LOGGER.debug("Fetching all associated subsSignatureses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
+
+        return subsSignaturesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SubsSignaturesService instance
+	 */
+	protected void setSubsSignaturesService(SubsSignaturesService service) {
+        this.subsSignaturesService = service;
     }
 
     /**

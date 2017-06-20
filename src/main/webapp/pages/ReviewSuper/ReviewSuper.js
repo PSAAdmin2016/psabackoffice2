@@ -19,6 +19,10 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
     };
 
 
+    $scope.liveGetSubsSignaturesonSuccess = function(variable, data) { //SubsSignatures Called by Update data on input change even in SubsDetails variable
+        $scope.signaturePad.fromDataURL(data[0].signatureData);
+    };
+
 
     $scope.buttonRefreshClick = function($event, $isolateScope) {
         $scope.Variables.serviceGetFieldActivities.invoke();
@@ -210,12 +214,6 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
             $scope.Variables.liveGetCivilMisc.listRecords();
             $scope.Widgets.containerFADetails.content = 'PartFACivilMisc';
         }
-    };
-
-
-    $scope.liveGetSubsDetailsonSuccess = function(variable, data) { //SubsDetails Called by Update data on input change even in SubsDetails variable
-        $scope.signaturePad.fromDataURL(data[0].subsSignatures.signatureData);
-
     };
 
 

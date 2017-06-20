@@ -34,6 +34,7 @@ import com.wordnik.swagger.annotations.ApiParam;
 
 import com.psabackoffice.job1111.SubmissionActivityStatus;
 import com.psabackoffice.job1111.SubsDetails;
+import com.psabackoffice.job1111.SubsSignatures;
 import com.psabackoffice.job1111.service.SubsDetailsService;
 
 
@@ -159,6 +160,15 @@ public class SubsDetailsController {
 
         LOGGER.debug("Fetching all associated submissionActivityStatuses");
         return subsDetailsService.findAssociatedSubmissionActivityStatuses(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/subsSignatureses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the subsSignatureses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<SubsSignatures> findAssociatedSubsSignatureses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated subsSignatureses");
+        return subsDetailsService.findAssociatedSubsSignatureses(id, pageable);
     }
 
     /**

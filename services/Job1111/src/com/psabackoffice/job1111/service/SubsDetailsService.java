@@ -18,6 +18,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SubmissionActivityStatus;
 import com.psabackoffice.job1111.SubsDetails;
+import com.psabackoffice.job1111.SubsSignatures;
 
 /**
  * Service object for domain model class {@link SubsDetails}.
@@ -152,6 +153,18 @@ public interface SubsDetailsService {
      * @see Page
      */
     Page<SubmissionActivityStatus> findAssociatedSubmissionActivityStatuses(Integer submissionId, Pageable pageable);
+
+    /*
+     * Returns the associated subsSignatureses for given SubsDetails id.
+     *
+     * @param submissionId value of submissionId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated SubsSignatures instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<SubsSignatures> findAssociatedSubsSignatureses(Integer submissionId, Pageable pageable);
 
 }
 

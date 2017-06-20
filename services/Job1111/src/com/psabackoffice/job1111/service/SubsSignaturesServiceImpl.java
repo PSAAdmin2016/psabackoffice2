@@ -23,7 +23,6 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.psabackoffice.job1111.SubsDetails;
 import com.psabackoffice.job1111.SubsSignatures;
 
 
@@ -37,9 +36,6 @@ public class SubsSignaturesServiceImpl implements SubsSignaturesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SubsSignaturesServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.SubsDetailsService")
-	private SubsDetailsService subsDetailsService;
 
     @Autowired
     @Qualifier("Job1111.SubsSignaturesDao")
@@ -54,13 +50,6 @@ public class SubsSignaturesServiceImpl implements SubsSignaturesService {
 	public SubsSignatures create(SubsSignatures subsSignatures) {
         LOGGER.debug("Creating a new SubsSignatures with information: {}", subsSignatures);
         SubsSignatures subsSignaturesCreated = this.wmGenericDao.create(subsSignatures);
-        if(subsSignaturesCreated.getSubsDetailses() != null) {
-            for(SubsDetails subsDetailse : subsSignaturesCreated.getSubsDetailses()) {
-                subsDetailse.setSubsSignatures(subsSignaturesCreated);
-                LOGGER.debug("Creating a new child SubsDetails with information: {}", subsDetailse);
-                subsDetailsService.create(subsDetailse);
-            }
-        }
         return subsSignaturesCreated;
     }
 
@@ -141,25 +130,7 @@ public class SubsSignaturesServiceImpl implements SubsSignaturesService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SubsDetails> findAssociatedSubsDetailses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated subsDetailses");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsSignatures.id = '" + id + "'");
-
-        return subsDetailsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SubsDetailsService instance
-	 */
-	protected void setSubsDetailsService(SubsDetailsService service) {
-        this.subsDetailsService = service;
-    }
 
 }
 

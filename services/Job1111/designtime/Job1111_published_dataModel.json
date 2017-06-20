@@ -34133,58 +34133,6 @@
         "updatable" : true,
         "defaultValue" : null
       },
-      "fieldName" : "weatherDetailsId",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "WeatherDetailsID",
-      "nullable" : true,
-      "oldName" : "WeatherDetailsID",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
-      "fieldName" : "signatureId",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "SignatureID",
-      "nullable" : true,
-      "oldName" : "SignatureID",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null
-      },
       "fieldName" : "rev",
       "foreignKey" : false,
       "generatorType" : "assigned",
@@ -34192,7 +34140,7 @@
       "javaType" : "short",
       "length" : 0,
       "name" : "Rev",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "Rev",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
@@ -34248,40 +34196,6 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "subsSignatures",
-      "mappings" : [ {
-        "sourceColumn" : "SignatureID",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "SubsDetails_SignatureID_to_SubsSignatures",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "SubsDetails",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "SubsSignatures",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "subsWeatherDetails",
-      "mappings" : [ {
-        "sourceColumn" : "WeatherDetailsID",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "SubsDetails_WeatherID_to_SubsWeatherDetails",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "SubsDetails",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "SubsWeatherDetails",
-      "virtual" : false
-    }, {
       "cardinality" : "OneToMany",
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -34297,6 +34211,23 @@
       "sourceTable" : "SubsDetails",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "SubmissionActivityStatus",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "subsSignatureses",
+      "mappings" : [ {
+        "sourceColumn" : "SubmissionID",
+        "targetColumn" : "SubmissionID"
+      } ],
+      "name" : "SubsSigs_SubmissionID_to_SD_SubmissionID",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "SubsDetails",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SubsSignatures",
       "virtual" : false
     } ],
     "schema" : null,
@@ -34319,7 +34250,7 @@
       "name" : "ID",
       "nullable" : false,
       "oldName" : "ID",
-      "partOfAnyRelation" : true,
+      "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
@@ -34329,6 +34260,32 @@
       "sequenceSchema" : null,
       "sqlType" : "number",
       "unique" : true
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null
+      },
+      "fieldName" : "submissionId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "SubmissionID",
+      "nullable" : true,
+      "oldName" : "SubmissionID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "number",
+      "unique" : false
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -34373,16 +34330,16 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "OneToMany",
+      "cardinality" : "ManyToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "subsDetailses",
+      "fieldName" : "subsDetails",
       "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "SignatureID"
+        "sourceColumn" : "SubmissionID",
+        "targetColumn" : "SubmissionID"
       } ],
-      "name" : "SubsDetails_SignatureID_to_SubsSignatures",
-      "primary" : false,
+      "name" : "SubsSigs_SubmissionID_to_SD_SubmissionID",
+      "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "SubsSignatures",
@@ -34410,7 +34367,7 @@
       "name" : "ID",
       "nullable" : false,
       "oldName" : "ID",
-      "partOfAnyRelation" : true,
+      "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
@@ -34645,24 +34602,7 @@
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "subsDetailses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "WeatherDetailsID"
-      } ],
-      "name" : "SubsDetails_WeatherID_to_SubsWeatherDetails",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "SubsWeatherDetails",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "SubsDetails",
-      "virtual" : false
-    } ],
+    "relations" : [ ],
     "schema" : null,
     "type" : "TABLE"
   } ]

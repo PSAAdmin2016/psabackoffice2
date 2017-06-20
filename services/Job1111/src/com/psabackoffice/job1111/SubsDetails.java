@@ -17,8 +17,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -43,13 +41,10 @@ public class SubsDetails implements Serializable {
     private Timestamp startTime;
     private Timestamp completeTime;
     private Timestamp receivedTime;
-    private Integer weatherDetailsId;
-    private Integer signatureId;
-    private Short rev;
+    private short rev;
     private Timestamp timeStamp;
-    private SubsSignatures subsSignatures;
-    private SubsWeatherDetails subsWeatherDetails;
     private List<SubmissionActivityStatus> submissionActivityStatuses;
+    private List<SubsSignatures> subsSignatureses;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -152,30 +147,12 @@ public class SubsDetails implements Serializable {
         this.receivedTime = receivedTime;
     }
 
-    @Column(name = "`WeatherDetailsID`", nullable = true, scale = 0, precision = 10)
-    public Integer getWeatherDetailsId() {
-        return this.weatherDetailsId;
-    }
-
-    public void setWeatherDetailsId(Integer weatherDetailsId) {
-        this.weatherDetailsId = weatherDetailsId;
-    }
-
-    @Column(name = "`SignatureID`", nullable = true, scale = 0, precision = 10)
-    public Integer getSignatureId() {
-        return this.signatureId;
-    }
-
-    public void setSignatureId(Integer signatureId) {
-        this.signatureId = signatureId;
-    }
-
-    @Column(name = "`Rev`", nullable = true, scale = 0, precision = 3)
-    public Short getRev() {
+    @Column(name = "`Rev`", nullable = false, scale = 0, precision = 3)
+    public short getRev() {
         return this.rev;
     }
 
-    public void setRev(Short rev) {
+    public void setRev(short rev) {
         this.rev = rev;
     }
 
@@ -188,34 +165,6 @@ public class SubsDetails implements Serializable {
         this.timeStamp = timeStamp;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`SignatureID`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public SubsSignatures getSubsSignatures() {
-        return this.subsSignatures;
-    }
-
-    public void setSubsSignatures(SubsSignatures subsSignatures) {
-        if(subsSignatures != null) {
-            this.signatureId = subsSignatures.getId();
-        }
-
-        this.subsSignatures = subsSignatures;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`WeatherDetailsID`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public SubsWeatherDetails getSubsWeatherDetails() {
-        return this.subsWeatherDetails;
-    }
-
-    public void setSubsWeatherDetails(SubsWeatherDetails subsWeatherDetails) {
-        if(subsWeatherDetails != null) {
-            this.weatherDetailsId = subsWeatherDetails.getId();
-        }
-
-        this.subsWeatherDetails = subsWeatherDetails;
-    }
-
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
     public List<SubmissionActivityStatus> getSubmissionActivityStatuses() {
@@ -224,6 +173,16 @@ public class SubsDetails implements Serializable {
 
     public void setSubmissionActivityStatuses(List<SubmissionActivityStatus> submissionActivityStatuses) {
         this.submissionActivityStatuses = submissionActivityStatuses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
+    public List<SubsSignatures> getSubsSignatureses() {
+        return this.subsSignatureses;
+    }
+
+    public void setSubsSignatureses(List<SubsSignatures> subsSignatureses) {
+        this.subsSignatureses = subsSignatureses;
     }
 
     @Override

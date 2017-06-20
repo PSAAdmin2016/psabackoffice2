@@ -23,7 +23,6 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.psabackoffice.job1111.SubsDetails;
 import com.psabackoffice.job1111.SubsWeatherDetails;
 
 
@@ -37,9 +36,6 @@ public class SubsWeatherDetailsServiceImpl implements SubsWeatherDetailsService 
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SubsWeatherDetailsServiceImpl.class);
 
-    @Autowired
-	@Qualifier("Job1111.SubsDetailsService")
-	private SubsDetailsService subsDetailsService;
 
     @Autowired
     @Qualifier("Job1111.SubsWeatherDetailsDao")
@@ -54,13 +50,6 @@ public class SubsWeatherDetailsServiceImpl implements SubsWeatherDetailsService 
 	public SubsWeatherDetails create(SubsWeatherDetails subsWeatherDetails) {
         LOGGER.debug("Creating a new SubsWeatherDetails with information: {}", subsWeatherDetails);
         SubsWeatherDetails subsWeatherDetailsCreated = this.wmGenericDao.create(subsWeatherDetails);
-        if(subsWeatherDetailsCreated.getSubsDetailses() != null) {
-            for(SubsDetails subsDetailse : subsWeatherDetailsCreated.getSubsDetailses()) {
-                subsDetailse.setSubsWeatherDetails(subsWeatherDetailsCreated);
-                LOGGER.debug("Creating a new child SubsDetails with information: {}", subsDetailse);
-                subsDetailsService.create(subsDetailse);
-            }
-        }
         return subsWeatherDetailsCreated;
     }
 
@@ -141,25 +130,7 @@ public class SubsWeatherDetailsServiceImpl implements SubsWeatherDetailsService 
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SubsDetails> findAssociatedSubsDetailses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated subsDetailses");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsWeatherDetails.id = '" + id + "'");
-
-        return subsDetailsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SubsDetailsService instance
-	 */
-	protected void setSubsDetailsService(SubsDetailsService service) {
-        this.subsDetailsService = service;
-    }
 
 }
 
