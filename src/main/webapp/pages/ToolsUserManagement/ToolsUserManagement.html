@@ -8,14 +8,14 @@
                     <wm-gridcolumn columnwidth="9" name="gridcolumn28_1">
                         <wm-grid dataset="bind:Variables.PSAExecuteGetPSAUsers.dataSet" name="gridPSAUsers" shownavigation="false" showrecordcount="false" spacing="condensed" on-select="gridPSAUsersSelect($event, $data)" height="300px" class="panel-default"
                         ng-class="{'disable-grid': !Variables.ModifyDisabled.dataSet.dataValue}" margin="unset unset 0% unset" filtermode="multicolumn">
-                            <wm-grid-column binding="FirstName" caption="First Name" type="string" width="12%" readonly="true" show="true" filterwidget="autocomplete"></wm-grid-column>
-                            <wm-grid-column binding="LastName" caption="Last Name" type="string" width="12%" readonly="true" show="true" filterwidget="autocomplete"></wm-grid-column>
-                            <wm-grid-column binding="Email" caption="Email" type="string" width="24%" readonly="true" show="true" filterwidget="autocomplete"></wm-grid-column>
-                            <wm-grid-column binding="Discipline" caption="Discipline" type="string" width="12%" readonly="true" show="true" filterwidget="select"></wm-grid-column>
-                            <wm-grid-column binding="fk_DefaultJobNumberId" caption="Job Number" type="string" width="9%" readonly="true" show="true" filterwidget="autocomplete"></wm-grid-column>
-                            <wm-grid-column binding="pciEmployeeId" caption="Performance Employee ID" type="string" width="11%" readonly="true" sortable="false" show="true" filterwidget="number"></wm-grid-column>
-                            <wm-grid-column binding="Active" caption="Active Status" type="string" widget-type="checkbox" width="10%" readonly="true" show="true" filterwidget="select">
-                                <wm-checkbox scopedatavalue="row['Active']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox>
+                            <wm-grid-column binding="FirstName" caption="First Name" type="string" width="12%" readonly="true" edit-widget-type="text" show="true" filterwidget="autocomplete"></wm-grid-column>
+                            <wm-grid-column binding="LastName" caption="Last Name" type="string" width="12%" readonly="true" edit-widget-type="text" show="true" filterwidget="autocomplete"></wm-grid-column>
+                            <wm-grid-column binding="Email" caption="Email" type="string" width="24%" readonly="true" edit-widget-type="text" show="true" filterwidget="autocomplete"></wm-grid-column>
+                            <wm-grid-column binding="Discipline" caption="Discipline" type="string" width="12%" readonly="true" edit-widget-type="text" show="true" filterwidget="select"></wm-grid-column>
+                            <wm-grid-column binding="fk_DefaultJobNumberId" caption="Job Number" type="string" width="9%" readonly="true" edit-widget-type="text" show="true" filterwidget="autocomplete"></wm-grid-column>
+                            <wm-grid-column binding="pciEmployeeId" caption="Performance Employee ID" type="string" width="11%" readonly="true" edit-widget-type="text" sortable="false" show="true" filterwidget="number"></wm-grid-column>
+                            <wm-grid-column binding="Active" caption="Active Status" type="string" widget-type="checkbox" width="10%" readonly="true" edit-widget-type="text" show="true" filterwidget="select">
+                                <wm-checkbox scopedatavalue="row['Active']" checkedvalue="1" uncheckedvalue="0" disabled="true" class="checkbox-custom" data-ng-class=""></wm-checkbox>
                             </wm-grid-column>
                         </wm-grid>
                     </wm-gridcolumn>
@@ -25,7 +25,7 @@
                         <wm-form title="Details" class="panel-primary" name="formPSAUsers" novalidate="false" on-submit="formPSAUsersSubmit($event, $scope, $formData)" margin="0px unset unset unset">
                             <wm-layoutgrid name="layoutgrid4" padding="1% 1% unset 1%">
                                 <wm-gridrow name="gridrow6">
-                                    <wm-gridcolumn name="gridcolumn15" columnwidth="4">
+                                    <wm-gridcolumn name="gridcolumn15" columnwidth="5">
                                         <wm-layoutgrid name="layoutgrid8">
                                             <wm-gridrow name="gridrow27_1">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn34_1">
@@ -90,7 +90,7 @@
                                                                 <wm-composite name="composite10" captionposition="top">
                                                                     <wm-label class="col-md-3" name="label8" caption="Discipline" fontweight="bold"></wm-label>
                                                                     <wm-container class="col-md-9" name="container8" width="95%">
-                                                                        <wm-select name="selectDiscipline" tabindex="1" datavalue="bind:Widgets.gridPSAUsers.selecteditem.fk_DisciplineId" dataset="bind:Variables.liveRefDisciplines.dataSet" datafield="id" displayfield="discipline"
+                                                                        <wm-select name="selectDiscipline" tabindex="1" datavalue="bind:Widgets.gridPSAUsers.selecteditem.fk_DisciplineId" dataset="bind:Variables.liveREFDisciplines.dataSet" datafield="id" displayfield="discipline"
                                                                         disabled="bind:Variables.ModifyDisabled.dataSet.dataValue" required="true" width="75%" orderby="id:desc"></wm-select>
                                                                     </wm-container>
                                                                 </wm-composite>
@@ -102,8 +102,7 @@
                                                                         <wm-select name="selectPSARole" tabindex="1" datavalue="bind:Widgets.gridPSAUsers.selecteditem.fk_RoleId" dataset="bind:Variables.serviceGetRolesByDiscipline.dataSet" datafield="ID" displayfield="RoleName"
                                                                         disabled="bind:Variables.ModifyDisabled.dataSet.dataValue" required="true" width="75%" orderby="RoleName:asc" on-change="selectPSARoleChange($event, $scope, newVal, oldVal)"></wm-select>
                                                                     </wm-container>
-                                                                    <wm-popover popoverwidth="25%" popoverheight="6%" margin="1% unset unset unset" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff"
-                                                                    name="popover3">
+                                                                    <wm-popover popoverwidth="25%" popoverheight="6%" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" name="popover3">
                                                                         <wm-label padding="unset 0.5em" caption="PSA Role defines what privileges the user has within PSA Back Office." color="#000000" fontweight="bold" fontstyle="italic" name="label21"></wm-label>
                                                                     </wm-popover>
                                                                 </wm-composite>
@@ -120,7 +119,7 @@
                                                                 <wm-composite captionposition="top" name="composite13" show="bind:Widgets.selectPSARole.datavalue == 3 || Widgets.selectPSARole.datavalue == 9 || Widgets.selectPSARole.datavalue == 15 || Widgets.selectPSARole.datavalue == 21 || Widgets.selectPSARole.datavalue == 4 || Widgets.selectPSARole.datavalue == 10 || Widgets.selectPSARole.datavalue == 16 || Widgets.selectPSARole.datavalue == 22">
                                                                     <wm-label class="col-md-3" caption="Craft" fontweight="bold" name="label14"></wm-label>
                                                                     <wm-container class="col-md-9" name="container12_1" width="95%">
-                                                                        <wm-select tabindex="1" datavalue="bind:Widgets.gridPSAUsers.selecteditem.fk_CraftId" dataset="bind:Variables.liveRefCrafts.dataSet" datafield="id" displayfield="craft" disabled="bind:Variables.ModifyDisabled.dataSet.dataValue"
+                                                                        <wm-select tabindex="1" datavalue="bind:Widgets.gridPSAUsers.selecteditem.fk_CraftId" dataset="bind:Variables.liveREFCrafts.dataSet" datafield="id" displayfield="craft" disabled="bind:Variables.ModifyDisabled.dataSet.dataValue"
                                                                         required="bind:Widgets.selectPSARole.datavalue == 3 || Widgets.selectPSARole.datavalue == 9 || Widgets.selectPSARole.datavalue == 15 || Widgets.selectPSARole.datavalue == 21 || Widgets.selectPSARole.datavalue == 4 || Widgets.selectPSARole.datavalue == 10 || Widgets.selectPSARole.datavalue == 16 || Widgets.selectPSARole.datavalue == 22"
                                                                         width="75%" name="selectCraft" orderby="subTypeName:desc"></wm-select>
                                                                     </wm-container>
@@ -130,7 +129,7 @@
                                                                 <wm-composite captionposition="top" name="composite14_1" show="bind:Widgets.selectPSARole.datavalue == 3 || Widgets.selectPSARole.datavalue == 9 || Widgets.selectPSARole.datavalue == 15 || Widgets.selectPSARole.datavalue == 21 || Widgets.selectPSARole.datavalue == 4 || Widgets.selectPSARole.datavalue == 10 || Widgets.selectPSARole.datavalue == 16 || Widgets.selectPSARole.datavalue == 22">
                                                                     <wm-label class="col-md-3" caption="Class" fontweight="bold" name="label15_1"></wm-label>
                                                                     <wm-container class="col-md-9" name="container13_2" width="95%">
-                                                                        <wm-select tabindex="1" datavalue="bind:Widgets.gridPSAUsers.selecteditem.fk_CraftClassId" dataset="bind:Variables.liveRefCraftClasses.dataSet" datafield="id" displayfield="className"
+                                                                        <wm-select tabindex="1" datavalue="bind:Widgets.gridPSAUsers.selecteditem.fk_CraftClassId" dataset="bind:Variables.liveREFCraftClasses.dataSet" datafield="id" displayfield="className"
                                                                         disabled="bind:Variables.ModifyDisabled.dataSet.dataValue" required="bind:Widgets.selectPSARole.datavalue == 3 || Widgets.selectPSARole.datavalue == 9 || Widgets.selectPSARole.datavalue == 15 || Widgets.selectPSARole.datavalue == 21 || Widgets.selectPSARole.datavalue == 4 || Widgets.selectPSARole.datavalue == 10 || Widgets.selectPSARole.datavalue == 16 || Widgets.selectPSARole.datavalue == 22"
                                                                         width="75%" name="selectClass" orderby="id:desc"></wm-select>
                                                                     </wm-container>
@@ -142,18 +141,18 @@
                                             </wm-gridrow>
                                         </wm-layoutgrid>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="3" name="gridcolumn20_1">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn20_1">
                                         <wm-layoutgrid name="layoutgrid6">
                                             <wm-gridrow name="gridrow37">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn57">
+                                                <wm-gridcolumn columnwidth="7" name="gridcolumn57">
                                                     <wm-composite name="composite15_1" captionposition="top">
                                                         <wm-label class="col-md-3 control-label" name="label13_2" fontweight="bold" caption="Default Job Number" hint="This is the users Default Job number.  Also the Job number that is assigned to their Mobile User if they have one."
                                                         width="auto"></wm-label>
                                                         <wm-container class="col-md-9" name="container13_1" width="100%">
                                                             <wm-select name="selectDefaultJobNumber" disabled="bind:Variables.ModifyDisabled.dataSet.dataValue" dataset="bind:Variables.PSATblJobNumbersData.dataSet" datafield="jobNumber" datavalue="bind:Widgets.gridPSAUsers.selecteditem.fk_DefaultJobNumberId"
-                                                            displayexpression="bind:$[data[$i].jobNumber] + &quot; - &quot; + $[data[$i].tblJobSites.siteCity] + &quot;, &quot; + $[data[$i].tblJobSites.siteName]" required="true" width="60%"></wm-select>
+                                                            displayexpression="bind:$[data[$i].jobNumber] + &quot; - &quot; + $[data[$i].tblJobSites.siteCity] + &quot;, &quot; + $[data[$i].tblJobSites.siteName]" required="true"></wm-select>
                                                         </wm-container>
-                                                        <wm-popover popoverwidth="25%" popoverheight="6%" margin="2% unset unset unset" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" name="popover2">
+                                                        <wm-popover popoverwidth="25%" popoverheight="6%" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" name="popover2">
                                                             <wm-label padding="unset 0.5em" caption="“Default Job Number” does 2 things.  
 
 </br>1. It controls what job number a PSA Back Office user defaults to on log in.  
@@ -162,6 +161,10 @@
                                                         </wm-popover>
                                                     </wm-composite>
                                                 </wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="5" name="gridcolumn36_2" horizontalalign="center" padding="6% unset unset unset">
+                                                    <wm-checkbox caption="Active User" class="checkbox-custom" name="checkboxActiveUser" tabindex="2" checkedvalue="1" uncheckedvalue="0" disabled="bind:Variables.ModifyDisabled.dataSet.dataValue" fontweight="bold"
+                                                    show="true" on-change="checkboxActiveUserChange($event, $scope, newVal, oldVal)"></wm-checkbox>
+                                                </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow6_1">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn14">
@@ -169,8 +172,7 @@
                                                         <wm-gridrow name="gridrow10">
                                                             <wm-gridcolumn columnwidth="10" name="gridcolumn24">
                                                                 <wm-label class="col-md-3 control-label" name="label13_1" caption="Job Number Access" fontweight="bold" hint="All job numbers accessible by this user." width="auto"></wm-label>
-                                                                <wm-popover popoverwidth="25%" popoverheight="6%" margin="2% unset unset unset" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right"
-                                                                color="#0069ff" name="popover1">
+                                                                <wm-popover popoverwidth="25%" popoverheight="6%" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" name="popover1">
                                                                     <wm-label padding="unset 0.5em" caption="Default job number is added automatically on save.  To add additional job numbers to a new user, first save the user, then modify the user and add job numbers as needed."
                                                                     color="#000000" fontweight="bold" fontstyle="italic" name="label20_2"></wm-label>
                                                                 </wm-popover>
@@ -233,31 +235,11 @@
                                             </wm-gridrow>
                                         </wm-layoutgrid>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="3" name="gridcolumn51" padding="unset unset unset 2%">
-                                        <wm-layoutgrid name="layoutgrid11">
-                                            <wm-gridrow name="gridrow34">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn52">
-                                                    <wm-checkbox caption="Active User" class="checkbox-custom" name="checkboxActiveUser" tabindex="2" checkedvalue="1" uncheckedvalue="0" disabled="bind:Variables.ModifyDisabled.dataSet.dataValue" fontweight="bold"
-                                                    show="true" on-change="checkboxActiveUserChange($event, $scope, newVal, oldVal)"></wm-checkbox>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow35">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn54">
-                                                    <wm-checkbox caption="Mobile User" class="checkbox-custom" name="checkboxMobileUser" tabindex="2" checkedvalue="1" uncheckedvalue="0" disabled="bind:Variables.ModifyDisabled.dataSet.dataValue || (Widgets.selectPSARole.datavalue == 3 || Widgets.selectPSARole.datavalue == 9 || Widgets.selectPSARole.datavalue == 15 || Widgets.selectPSARole.datavalue == 21 || Widgets.selectPSARole.datavalue == 4 || Widgets.selectPSARole.datavalue == 10 || Widgets.selectPSARole.datavalue == 16 || Widgets.selectPSARole.datavalue == 22)"
-                                                    fontweight="bold" show="true" hint="Craftsmen currently can NOT be Mobile Users" on-change="checkboxMobileUserChange($event, $scope, newVal, oldVal)"></wm-checkbox>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow36">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn56">
-                                                    <wm-form-field displayname="Mobile Apps" widget="checkboxset" show="bind:Widgets.formPSAUsers.formWidgets.checkboxMobileUser.datavalue == 1" type="custom" name="checkBoxSetAppGroups" layout="stacked" width="90%"
-                                                    dataset="bind:Variables.liveAppGroups.dataSet" datafield="id" displayfield="appGroupName" height="225" usekeys="false" disabled="bind:Variables.ModifyDisabled.dataSet.dataValue" defaultvalue="bind:buildAssignedAppsIDArray(Variables.liveAssignedApps.dataSet)"
-                                                    on-change="checkBoxSetAppGroupsChange($event, $scope, newVal, oldVal)" deferload="false"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                        </wm-layoutgrid>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="2" name="gridcolumn21_1">
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn21_1" padding="unset unset unset 3%">
                                         <wm-layoutgrid name="layoutgrid5">
+                                            <wm-gridrow name="gridrow27_2">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn37_2"></wm-gridcolumn>
+                                            </wm-gridrow>
                                             <wm-gridrow name="gridrow13">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn24_1">
                                                     <wm-composite name="composite16_1">
@@ -283,8 +265,8 @@
                                                     <wm-composite captionposition="top" name="composite16">
                                                         <wm-label class="col-md-3" caption="Last Modified By" fontweight="bold" name="label17"></wm-label>
                                                         <wm-container class="col-md-9" name="container15" width="100%" padding="unset unset unset 5%">
-                                                            <wm-select tabindex="1" datavalue="bind:Widgets.gridPSAUsers.selecteditem.LastModifiedBy" dataset="bind:Variables.PSAExecuteGetPSAUsers.dataSet" datafield="ID" disabled="true" required="false" width="100%"
-                                                            on-change="selectPSARoleChange($event, $scope, newVal, oldVal)" name="select7" readonly="true" displayexpression="bind:$[FirstName] + ' ' + $[LastName] + ' - ' + $[Email]"></wm-select>
+                                                            <wm-label padding="unset 0.5em" caption="bind:Variables.liveGetModifyUser.firstRecord.firstName + ' ' + Variables.liveGetModifyUser.firstRecord.lastName + ' - ' + Variables.liveGetModifyUser.firstRecord.email"
+                                                            name="label23"></wm-label>
                                                         </wm-container>
                                                     </wm-composite>
                                                 </wm-gridcolumn>
@@ -322,7 +304,87 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow19">
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn34"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn34">
+                        <wm-liveform errormessage="" title="Details" iconclass="wi wi-edit" defaultmode="Edit" dataset="bind:Variables.liveGetUsers.dataSet" captionalign="left" captionposition="top" name="liveformUser" class="panel-primary" insertmessage="User added..."
+                        updatemessage="User updated..." deletemessage="User Deleted...">
+                            <wm-layoutgrid columns="3" name="layoutgrid11">
+                                <wm-gridrow name="gridrow27_3">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn37_3">
+                                        <wm-form-field name="pciEmployeeId" displayname="Pci Employee Id" show="true" primary-key="false" generator="assigned" key="pciEmployeeId" type="string" readonly="false" required="false" widget="text" maxchars="8" inputtype="text"
+                                        placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn38_3">
+                                        <wm-form-field name="tblJobNumbers" displayname="Tbl Job Numbers" show="true" primary-key="false" generator="assigned" key="tblJobNumbers" type="list" is-related="true" readonly="false" required="false" widget="select"
+                                        placeholder="Select value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn39">
+                                        <wm-form-field name="createdDate" displayname="Created Date" show="true" primary-key="false" generator="assigned" key="createdDate" type="datetime" readonly="false" required="false" widget="text" inputtype="text" placeholder="Enter value"
+                                        outputformat="yyyy-MM-ddTHH:mm:ss"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow28_2">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn40_2">
+                                        <wm-form-field name="firstName" displayname="First Name" show="true" primary-key="false" generator="assigned" key="firstName" type="string" readonly="false" required="false" widget="text" maxchars="32" inputtype="text"
+                                        placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn41_1">
+                                        <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="short" readonly="false" required="false" step="0" widget="checkboxset" placeholder="" dataset="bind:Variables.staticYesNo.dataSet"
+                                        layout="inline" datafield="value" displayfield="label"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn42_2">
+                                        <wm-form-field name="timeStamp" displayname="Time Stamp" show="true" primary-key="false" generator="assigned" key="timeStamp" type="timestamp" readonly="false" required="false" widget="text" inputtype="text" placeholder="Enter value"
+                                        outputformat="timestamp"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow29_3">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn43_1">
+                                        <wm-form-field name="lastName" displayname="Last Name" show="true" primary-key="false" generator="assigned" key="lastName" type="string" readonly="false" required="false" widget="text" maxchars="32" inputtype="text"
+                                        placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn45">
+                                        <wm-form-field name="lastModifiedBy" displayname="Last Modified By" show="true" primary-key="false" generator="assigned" key="lastModifiedBy" type="integer" readonly="false" required="false" step="0" widget="text" inputtype="text"
+                                        placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow30_2">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn46">
+                                        <wm-form-field name="nickname" displayname="Nickname" show="true" primary-key="false" generator="assigned" key="nickname" type="string" readonly="false" required="false" widget="text" maxchars="32" inputtype="text"
+                                        placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow31">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn49">
+                                        <wm-form-field name="email" displayname="Email" show="true" primary-key="false" generator="assigned" key="email" type="string" readonly="false" required="false" widget="text" maxchars="120" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow32_1">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn52">
+                                        <wm-form-field name="refDisciplines" displayname="Ref Disciplines" show="true" primary-key="false" generator="assigned" key="refDisciplines" type="list" is-related="true" readonly="false" required="false" widget="select"
+                                        placeholder="Select value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow33">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn55">
+                                        <wm-form-field name="refRoles" displayname="Ref Roles" show="true" primary-key="false" generator="assigned" key="refRoles" type="list" is-related="true" readonly="false" required="false" widget="select" placeholder="Select value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow34">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn58">
+                                        <wm-form-field name="refCraftClasses" displayname="Ref Craft Classes" show="true" primary-key="false" generator="assigned" key="refCraftClasses" type="list" is-related="true" readonly="false" required="false" widget="select"
+                                        placeholder="Select value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow35">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn61">
+                                        <wm-form-field name="refCrafts" displayname="Ref Crafts" show="true" primary-key="false" generator="assigned" key="refCrafts" type="list" is-related="true" readonly="false" required="false" widget="select" placeholder="Select value"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                            <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
+                            <wm-form-action key="reset" display-name="Reset" show="true" class="form-reset btn-secondary" iconclass="wi wi-refresh" title="Reset" action="reset()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                            <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                        </wm-liveform>
+                    </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
         </wm-page-content>

@@ -137,16 +137,6 @@ VALUES (:UserID, :MobileAppGroupID)
     <query-param name="MobileAppGroupID" type="java.lang.Integer"/>
     </sql-query>
 
-    <sql-query name="PoolLockInactiveMobile">
-        <![CDATA[
-        UPDATE `PSA`.`Pool_InactiveMobileAccounts` 
-SET `LockedBy`= :UserId
-WHERE  LockedBy = '0'
-LIMIT 1
-        ]]>
-    <query-param name="UserId" type="java.lang.String"/>
-    </sql-query>
-
     <sql-query name="InsertFeedbackTicketNotes">
         <![CDATA[
         INSERT INTO `PSA`.`FeedBackNotes` 
@@ -254,7 +244,6 @@ FirstName = :FirstName,
 LastName = :LastName,
 Nickname = :Nickname,
 Email = :Email,
-MobileUser = :MobileUser,
 Active = :ActiveUser,
 LastModifiedBy = :ModifiedBy,
 fk_DisciplineId = :DisciplineId,
@@ -269,7 +258,6 @@ WHERE ID= :UserID
     <query-param name="LastName" type="java.lang.String"/>
     <query-param name="Nickname" type="java.lang.String"/>
     <query-param name="Email" type="java.lang.String"/>
-    <query-param name="MobileUser" type="java.lang.Byte"/>
     <query-param name="ActiveUser" type="java.lang.Byte"/>
     <query-param name="ModifiedBy" type="java.lang.Integer"/>
     <query-param name="DisciplineId" type="java.lang.Integer"/>
@@ -384,24 +372,6 @@ WHERE ID = :UserID) wmTempTable
     <query-param name="UserID" type="java.lang.Integer"/>
     </sql-query>
 
-    <sql-query name="PoolGetLockedInactiveMobile">
-        <![CDATA[
-        SELECT AccountID 
-FROM PSA.Pool_InactiveMobileAccounts
-WHERE LockedBy = :UserId
-        ]]>
-    <query-param name="UserId" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="PoolGetLockedInactiveMobile__count">
-        <![CDATA[
-        select count(*) from (SELECT AccountID 
-FROM PSA.Pool_InactiveMobileAccounts
-WHERE LockedBy = :UserId) wmTempTable
-        ]]>
-    <query-param name="UserId" type="java.lang.String"/>
-    </sql-query>
-
     <sql-query name="UpdateUserCreds">
         <![CDATA[
         UPDATE `PSA`.`tblUserCreds` 
@@ -412,14 +382,6 @@ WHERE `UserID`= :UserID
     <query-param name="UserName" type="java.lang.String"/>
     <query-param name="Password" type="java.lang.String"/>
     <query-param name="UserID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="PoolDeleteInactiveMobile">
-        <![CDATA[
-        DELETE FROM `PSA`.`Pool_InactiveMobileAccounts` 
-WHERE `AccountID`= :AccountID
-        ]]>
-    <query-param name="AccountID" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="GetChatAllLastRead">
@@ -766,14 +728,6 @@ WHERE tc.Superintendent = :SuperID) wmTempTable
     <query-param name="SuperID" type="java.lang.Integer"/>
     </sql-query>
 
-    <sql-query name="PoolInsertInactiveMobile">
-        <![CDATA[
-        INSERT INTO `PSA`.`Pool_InactiveMobileAccounts` (`AccountID`) 
-VALUES (:AccountID);
-        ]]>
-    <query-param name="AccountID" type="java.lang.String"/>
-    </sql-query>
-
     <sql-query name="GetPSAUsers">
         <![CDATA[
         SELECT u.*, rd.Discipline
@@ -792,15 +746,6 @@ LEFT JOIN REF_Disciplines rd
     ON rd.ID = u.fk_DisciplineId
 WHERE u.Id != 1) wmTempTable
         ]]>
-    </sql-query>
-
-    <sql-query name="PoolUNLockInactiveMobile">
-        <![CDATA[
-        UPDATE `PSA`.`Pool_InactiveMobileAccounts` 
-SET `LockedBy`= '0'
-WHERE  LockedBy = :UserId
-        ]]>
-    <query-param name="UserId" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="InsertLoginFailure">

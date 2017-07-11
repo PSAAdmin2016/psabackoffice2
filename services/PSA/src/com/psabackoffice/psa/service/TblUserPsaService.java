@@ -21,10 +21,8 @@ import com.psabackoffice.psa.ChatMessages;
 import com.psabackoffice.psa.FeedBack;
 import com.psabackoffice.psa.FeedBackNotes;
 import com.psabackoffice.psa.TblCrews;
-import com.psabackoffice.psa.TblUserAssignedApps;
 import com.psabackoffice.psa.TblUserJobNumbers;
 import com.psabackoffice.psa.TblUserPsa;
-import com.psabackoffice.psa.TblUserPsarev;
 
 /**
  * Service object for domain model class {@link TblUserPsa}.
@@ -214,7 +212,7 @@ public interface TblUserPsaService {
     Page<FeedBackNotes> findAssociatedFeedBackNoteses(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated tblCrewsesForForeman for given TblUserPsa id.
+     * Returns the associated tblCrewsesForConstructionManager for given TblUserPsa id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
@@ -223,19 +221,7 @@ public interface TblUserPsaService {
      * @see Pageable
      * @see Page
      */
-    Page<TblCrews> findAssociatedTblCrewsesForForeman(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated tblCrewsesForGf for given TblUserPsa id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated TblCrews instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<TblCrews> findAssociatedTblCrewsesForGf(Integer id, Pageable pageable);
+    Page<TblCrews> findAssociatedTblCrewsesForConstructionManager(Integer id, Pageable pageable);
 
     /*
      * Returns the associated tblCrewsesForSuperintendent for given TblUserPsa id.
@@ -250,7 +236,7 @@ public interface TblUserPsaService {
     Page<TblCrews> findAssociatedTblCrewsesForSuperintendent(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated tblCrewsesForAreaManager for given TblUserPsa id.
+     * Returns the associated tblCrewsesForLeadman for given TblUserPsa id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
@@ -259,31 +245,7 @@ public interface TblUserPsaService {
      * @see Pageable
      * @see Page
      */
-    Page<TblCrews> findAssociatedTblCrewsesForAreaManager(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated tblCrewsesForSiteManager for given TblUserPsa id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated TblCrews instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<TblCrews> findAssociatedTblCrewsesForSiteManager(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated tblCrewsesForConstructionManager for given TblUserPsa id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated TblCrews instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<TblCrews> findAssociatedTblCrewsesForConstructionManager(Integer id, Pageable pageable);
+    Page<TblCrews> findAssociatedTblCrewsesForLeadman(Integer id, Pageable pageable);
 
     /*
      * Returns the associated tblCrewsesForProjectManager for given TblUserPsa id.
@@ -298,7 +260,7 @@ public interface TblUserPsaService {
     Page<TblCrews> findAssociatedTblCrewsesForProjectManager(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated tblCrewsesForLeadman for given TblUserPsa id.
+     * Returns the associated tblCrewsesForAreaManager for given TblUserPsa id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
@@ -307,19 +269,43 @@ public interface TblUserPsaService {
      * @see Pageable
      * @see Page
      */
-    Page<TblCrews> findAssociatedTblCrewsesForLeadman(Integer id, Pageable pageable);
+    Page<TblCrews> findAssociatedTblCrewsesForAreaManager(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated tblUserAssignedAppses for given TblUserPsa id.
+     * Returns the associated tblCrewsesForForeman for given TblUserPsa id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated TblUserAssignedApps instances.
+     * @return Paginated list of associated TblCrews instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<TblUserAssignedApps> findAssociatedTblUserAssignedAppses(Integer id, Pageable pageable);
+    Page<TblCrews> findAssociatedTblCrewsesForForeman(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated tblCrewsesForSiteManager for given TblUserPsa id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated TblCrews instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<TblCrews> findAssociatedTblCrewsesForSiteManager(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated tblCrewsesForGf for given TblUserPsa id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated TblCrews instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<TblCrews> findAssociatedTblCrewsesForGf(Integer id, Pageable pageable);
 
     /*
      * Returns the associated tblUserJobNumberses for given TblUserPsa id.
@@ -332,18 +318,6 @@ public interface TblUserPsaService {
      * @see Page
      */
     Page<TblUserJobNumbers> findAssociatedTblUserJobNumberses(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated tblUserPsarevs for given TblUserPsa id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated TblUserPsarev instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<TblUserPsarev> findAssociatedTblUserPsarevs(Integer id, Pageable pageable);
 
 }
 

@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -46,7 +47,7 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/ImportInstalledQuantitiesEquip", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "create FAs for progress claimed in the imported tracker")
-    public Void executeImportInstalledQuantitiesEquip(@RequestParam(value = "jobNumber") String jobNumber) {
+    public Void executeImportInstalledQuantitiesEquip(@RequestParam(value = "jobNumber") String jobNumber, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: ImportInstalledQuantitiesEquip");
         Void _result = procedureService.executeImportInstalledQuantitiesEquip(jobNumber);
         LOGGER.debug("got the result for named procedure: ImportInstalledQuantitiesEquip, result:{}", _result);
@@ -56,7 +57,7 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/CompareColumns", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "compares the column names of the imported data in the landing table to the column names of the landing table.")
-    public CompareColumnsResponse executeCompareColumns(@RequestParam(value = "tableName") String tableName, @RequestParam(value = "jobNumber") String jobNumber) {
+    public CompareColumnsResponse executeCompareColumns(@RequestParam(value = "tableName") String tableName, @RequestParam(value = "jobNumber") String jobNumber, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: CompareColumns");
         CompareColumnsResponse _result = procedureService.executeCompareColumns(tableName, jobNumber);
         LOGGER.debug("got the result for named procedure: CompareColumns, result:{}", _result);
@@ -66,7 +67,7 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/GetImportTotals", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get all calculated totals for the new import table in Landing")
-    public List<GetImportTotalsResponse> executeGetImportTotals(@RequestParam(value = "tableNameLanding", required = false) String tableNameLanding, @RequestParam(value = "tableNameDestination", required = false) String tableNameDestination, @RequestParam(value = "jobNumber", required = false) String jobNumber) {
+    public List<GetImportTotalsResponse> executeGetImportTotals(@RequestParam(value = "tableNameLanding", required = false) String tableNameLanding, @RequestParam(value = "tableNameDestination", required = false) String tableNameDestination, @RequestParam(value = "jobNumber", required = false) String jobNumber, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: GetImportTotals");
         GetImportTotalsResponse _result = procedureService.executeGetImportTotals(tableNameLanding, tableNameDestination, jobNumber);
         LOGGER.debug("got the result for v1 named procedure: GetImportTotals, result:{}", _result);
@@ -76,7 +77,7 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/LandingToWeldSpecProcedures", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Copy rows from LandingWeldSpecProcedures to REF_WeldSpecProcedures")
-    public LandingToWeldSpecProceduresResponse executeLandingToWeldSpecProcedures(@RequestParam(value = "jobNumber") String jobNumber) {
+    public LandingToWeldSpecProceduresResponse executeLandingToWeldSpecProcedures(@RequestParam(value = "jobNumber") String jobNumber, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: LandingToWeldSpecProcedures");
         LandingToWeldSpecProceduresResponse _result = procedureService.executeLandingToWeldSpecProcedures(jobNumber);
         LOGGER.debug("got the result for named procedure: LandingToWeldSpecProcedures, result:{}", _result);
@@ -86,7 +87,7 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/LandingToTrackerCivil", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Copies all rows from Civil Landing table to Civil Tracker")
-    public LandingToTrackerCivilResponse executeLandingToTrackerCivil(@RequestParam(value = "jobNumber") String jobNumber) {
+    public LandingToTrackerCivilResponse executeLandingToTrackerCivil(@RequestParam(value = "jobNumber") String jobNumber, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: LandingToTrackerCivil");
         LandingToTrackerCivilResponse _result = procedureService.executeLandingToTrackerCivil(jobNumber);
         LOGGER.debug("got the result for named procedure: LandingToTrackerCivil, result:{}", _result);
@@ -96,7 +97,7 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/ImportInstalledQuantitiesPipe", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "create FAs for progress claimed in the imported tracker")
-    public Void executeImportInstalledQuantitiesPipe(@RequestParam(value = "jobNumber") String jobNumber) {
+    public Void executeImportInstalledQuantitiesPipe(@RequestParam(value = "jobNumber") String jobNumber, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: ImportInstalledQuantitiesPipe");
         Void _result = procedureService.executeImportInstalledQuantitiesPipe(jobNumber);
         LOGGER.debug("got the result for named procedure: ImportInstalledQuantitiesPipe, result:{}", _result);
@@ -106,7 +107,7 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/CreateNewJobDB", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Creates a new Job#### Schema, Tables, Indexes, FK Constraints.")
-    public List<CreateNewJobDbResponse> executeCreateNewJobDB(@Valid @RequestBody CreateNewJobDbRequest createNewJobDbRequest) {
+    public List<CreateNewJobDbResponse> executeCreateNewJobDB(@Valid @RequestBody CreateNewJobDbRequest createNewJobDbRequest, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: CreateNewJobDB");
         CreateNewJobDbResponse _result = procedureService.executeCreateNewJobDB(createNewJobDbRequest);
         LOGGER.debug("got the result for v1 named procedure: CreateNewJobDB, result:{}", _result);
@@ -116,7 +117,7 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/CreateNewJobSeeds", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Seeds all the needed tables of a new Job DB")
-    public List<CreateNewJobSeedsResponse> executeCreateNewJobSeeds(@Valid @RequestBody CreateNewJobSeedsRequest createNewJobSeedsRequest) {
+    public List<CreateNewJobSeedsResponse> executeCreateNewJobSeeds(@Valid @RequestBody CreateNewJobSeedsRequest createNewJobSeedsRequest, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: CreateNewJobSeeds");
         CreateNewJobSeedsResponse _result = procedureService.executeCreateNewJobSeeds(createNewJobSeedsRequest);
         LOGGER.debug("got the result for v1 named procedure: CreateNewJobSeeds, result:{}", _result);
@@ -126,7 +127,7 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/ImportInstalledQuantitiesSteel", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "create FAs for progress claimed in the imported tracker")
-    public Void executeImportInstalledQuantitiesSteel(@RequestParam(value = "jobNumber") String jobNumber) {
+    public Void executeImportInstalledQuantitiesSteel(@RequestParam(value = "jobNumber") String jobNumber, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: ImportInstalledQuantitiesSteel");
         Void _result = procedureService.executeImportInstalledQuantitiesSteel(jobNumber);
         LOGGER.debug("got the result for named procedure: ImportInstalledQuantitiesSteel, result:{}", _result);
@@ -136,7 +137,7 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/LandingToTrackerEquip", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Inserts records from LandingTrackerEquip into EquipTrackerDetails")
-    public LandingToTrackerEquipResponse executeLandingToTrackerEquip(@RequestParam(value = "jobNumber") String jobNumber) {
+    public LandingToTrackerEquipResponse executeLandingToTrackerEquip(@RequestParam(value = "jobNumber") String jobNumber, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: LandingToTrackerEquip");
         LandingToTrackerEquipResponse _result = procedureService.executeLandingToTrackerEquip(jobNumber);
         LOGGER.debug("got the result for named procedure: LandingToTrackerEquip, result:{}", _result);
@@ -146,7 +147,7 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/CreateNewConversation", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
-    public List<CreateNewConversationResponse> executeCreateNewConversation(@Valid @RequestBody CreateNewConversationRequest createNewConversationRequest) {
+    public List<CreateNewConversationResponse> executeCreateNewConversation(@Valid @RequestBody CreateNewConversationRequest createNewConversationRequest, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: CreateNewConversation");
         CreateNewConversationResponse _result = procedureService.executeCreateNewConversation(createNewConversationRequest);
         LOGGER.debug("got the result for v1 named procedure: CreateNewConversation, result:{}", _result);
@@ -156,7 +157,7 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/ValidateLandingData", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Validate the data in the landing table for bad fields   (eg. single and double quotes)")
-    public List<ValidateLandingDataResponse> executeValidateLandingData(@RequestParam(value = "tableName", required = false) String tableName, @RequestParam(value = "jobNumber", required = false) String jobNumber) {
+    public List<ValidateLandingDataResponse> executeValidateLandingData(@RequestParam(value = "tableName", required = false) String tableName, @RequestParam(value = "jobNumber", required = false) String jobNumber, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: ValidateLandingData");
         ValidateLandingDataResponse _result = procedureService.executeValidateLandingData(tableName, jobNumber);
         LOGGER.debug("got the result for v1 named procedure: ValidateLandingData, result:{}", _result);
@@ -166,7 +167,7 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/ImportInstalledQuantitiesCivil", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "create FAs for progress claimed in the imported tracker")
-    public Void executeImportInstalledQuantitiesCivil(@RequestParam(value = "jobNumber") String jobNumber) {
+    public Void executeImportInstalledQuantitiesCivil(@RequestParam(value = "jobNumber") String jobNumber, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: ImportInstalledQuantitiesCivil");
         Void _result = procedureService.executeImportInstalledQuantitiesCivil(jobNumber);
         LOGGER.debug("got the result for named procedure: ImportInstalledQuantitiesCivil, result:{}", _result);
@@ -176,7 +177,7 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/LandingToTrackerPipe", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Inserts data from Landing table into trackerDetails")
-    public LandingToTrackerPipeResponse executeLandingToTrackerPipe(@RequestParam(value = "JobNumber") String jobNumber) {
+    public LandingToTrackerPipeResponse executeLandingToTrackerPipe(@RequestParam(value = "JobNumber") String jobNumber, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: LandingToTrackerPipe");
         LandingToTrackerPipeResponse _result = procedureService.executeLandingToTrackerPipe(jobNumber);
         LOGGER.debug("got the result for named procedure: LandingToTrackerPipe, result:{}", _result);
@@ -186,7 +187,7 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/LandingToPipeSpools", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Moves data in SpoolListLanding to REF_SpoolList")
-    public LandingToPipeSpoolsResponse executeLandingToPipeSpools(@RequestParam(value = "jobNumber") String jobNumber) {
+    public LandingToPipeSpoolsResponse executeLandingToPipeSpools(@RequestParam(value = "jobNumber") String jobNumber, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: LandingToPipeSpools");
         LandingToPipeSpoolsResponse _result = procedureService.executeLandingToPipeSpools(jobNumber);
         LOGGER.debug("got the result for named procedure: LandingToPipeSpools, result:{}", _result);
@@ -196,7 +197,7 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/LandingToTrackerSteel", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Copies all rows from SteelLanding table to Steel Tracker")
-    public LandingToTrackerSteelResponse executeLandingToTrackerSteel(@RequestParam(value = "jobNumber") String jobNumber) {
+    public LandingToTrackerSteelResponse executeLandingToTrackerSteel(@RequestParam(value = "jobNumber") String jobNumber, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: LandingToTrackerSteel");
         LandingToTrackerSteelResponse _result = procedureService.executeLandingToTrackerSteel(jobNumber);
         LOGGER.debug("got the result for named procedure: LandingToTrackerSteel, result:{}", _result);

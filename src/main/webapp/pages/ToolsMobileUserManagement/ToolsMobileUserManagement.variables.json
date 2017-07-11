@@ -210,38 +210,6 @@
     "saveInPhonegap" : false,
     "controller" : "RestServiceVirtual"
   },
-  "serviceGetMobileUsers" : {
-    "_id" : "wm-AppenateGetUsersInvoke-wm.ServiceVariable-1486056891972",
-    "name" : "serviceGetMobileUsers",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "CompanyId",
-      "value" : "bind:Variables.liveGetCompanyID.dataSet.data[$i].value1",
-      "type" : "string"
-    }, {
-      "target" : "IntegrationKey",
-      "value" : "bind:Variables.liveGetIntegrationKey.dataSet.data[$i].value1",
-      "type" : "string"
-    } ],
-    "type" : "appenateGetAllUsers.RootResponse",
-    "service" : "appenateGetAllUsers",
-    "operation" : "invoke",
-    "operationId" : "appenateGetAllUsers_RestServiceVirtualController-invoke",
-    "operationType" : "get",
-    "serviceType" : "RestService",
-    "dataSet" : [ ],
-    "isList" : false,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "isDefault" : true,
-    "controller" : "RestServiceVirtual"
-  },
   "serviceUpdateMobileUser" : {
     "_id" : "wm-serviceDeleteMobileUser-wm.ServiceVariable-1486065852348",
     "name" : "serviceUpdateMobileUser",

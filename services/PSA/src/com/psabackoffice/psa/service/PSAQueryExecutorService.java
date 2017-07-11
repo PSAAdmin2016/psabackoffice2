@@ -41,8 +41,6 @@ public interface PSAQueryExecutorService {
 
     Integer executeInsertUserAssignedApps(InsertUserAssignedAppsRequest insertUserAssignedAppsRequest);
 
-    Integer executePoolLockInactiveMobile(PoolLockInactiveMobileRequest poolLockInactiveMobileRequest);
-
     Integer executeInsertFeedbackTicketNotes(InsertFeedbackTicketNotesRequest insertFeedbackTicketNotesRequest);
 
     Page<GetUsersForemenResponse> executeGetUsersForemen(Integer jobNumber, String disciplineId, String pm, String constM, String siteM, String areaM, String super_, Pageable pageable);
@@ -77,13 +75,7 @@ public interface PSAQueryExecutorService {
 
     Downloadable exportGetDefaultJobNumber(ExportType exportType, Integer userId, Pageable pageable);
 
-    Page<PoolGetLockedInactiveMobileResponse> executePoolGetLockedInactiveMobile(String userId, Pageable pageable);
-
-    Downloadable exportPoolGetLockedInactiveMobile(ExportType exportType, String userId, Pageable pageable);
-
     Integer executeUpdateUserCreds(UpdateUserCredsRequest updateUserCredsRequest);
-
-    Integer executePoolDeleteInactiveMobile(String accountId);
 
     Page<GetChatAllLastReadResponse> executeGetChatAllLastRead(String userId, Pageable pageable);
 
@@ -145,13 +137,9 @@ public interface PSAQueryExecutorService {
 
     Downloadable exportGetForemenBySuper(ExportType exportType, Integer superId, Pageable pageable);
 
-    Integer executePoolInsertInactiveMobile(PoolInsertInactiveMobileRequest poolInsertInactiveMobileRequest);
-
     Page<GetPsausersResponse> executeGetPSAUsers(Pageable pageable);
 
     Downloadable exportGetPSAUsers(ExportType exportType, Pageable pageable);
-
-    Integer executePoolUNLockInactiveMobile(PoolUnlockInactiveMobileRequest poolUnlockInactiveMobileRequest);
 
     Integer executeInsertLoginFailure(InsertLoginFailureRequest insertLoginFailureRequest);
 

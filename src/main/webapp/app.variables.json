@@ -15,31 +15,6 @@
     "isList" : false,
     "saveInPhonegap" : false
   },
-  "EmailSampleJavaOperation" : {
-    "_id" : "wm-EmailSampleJavaOperation-wm.ServiceVariable-1460412648728",
-    "name" : "EmailSampleJavaOperation",
-    "owner" : "App",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ ],
-    "type" : "string",
-    "service" : "Email",
-    "operation" : "sampleJavaOperation",
-    "operationId" : "EmailController_sampleJavaOperation",
-    "serviceType" : "JavaService",
-    "dataSet" : {
-      "dataValue" : ""
-    },
-    "isList" : false,
-    "firstRow" : 0,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "isDefault" : true
-  },
   "FileServiceUploadHelpVideos" : {
     "_id" : "wm-FileServiceUploadFile-wm.ServiceVariable-1480711094572",
     "name" : "FileServiceUploadHelpVideos",
@@ -3074,34 +3049,6 @@
         "targetTable" : "tblUserPSA",
         "scale" : 0,
         "columns" : [ {
-          "fieldName" : "tblJobNumbers",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "fk_DefaultJobNumberId",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 10,
-          "generator" : "assigned",
-          "isRelated" : true,
-          "relatedColumnName" : "fkDefaultJobNumberId",
-          "targetTable" : "tblJobNumbers",
-          "scale" : 0
-        }, {
-          "fieldName" : "refRoles",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "fk_RoleId",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 10,
-          "generator" : "assigned",
-          "isRelated" : true,
-          "relatedColumnName" : "fkRoleId",
-          "targetTable" : "REF_Roles",
-          "scale" : 0
-        }, {
           "fieldName" : "refCraftClasses",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
@@ -3130,6 +3077,20 @@
           "targetTable" : "REF_Crafts",
           "scale" : 0
         }, {
+          "fieldName" : "tblJobNumbers",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "fk_DefaultJobNumberId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "relatedColumnName" : "fkDefaultJobNumberId",
+          "targetTable" : "tblJobNumbers",
+          "scale" : 0
+        }, {
           "fieldName" : "refDisciplines",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
@@ -3142,6 +3103,20 @@
           "isRelated" : true,
           "relatedColumnName" : "fkDisciplineId",
           "targetTable" : "REF_Disciplines",
+          "scale" : 0
+        }, {
+          "fieldName" : "refRoles",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "fk_RoleId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "relatedColumnName" : "fkRoleId",
+          "targetTable" : "REF_Roles",
           "scale" : 0
         }, {
           "fieldName" : "id",
@@ -3212,18 +3187,6 @@
           "notNull" : false,
           "length" : 120,
           "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "scale" : 0
-        }, {
-          "fieldName" : "mobileUser",
-          "type" : "short",
-          "fullyQualifiedType" : "short",
-          "columnName" : "MobileUser",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 3,
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
@@ -3351,106 +3314,6 @@
     "matchMode" : "start",
     "propertiesMap" : {
       "columns" : [ {
-        "fieldName" : "tblJobNumbers",
-        "type" : "integer",
-        "fullyQualifiedType" : "integer",
-        "columnName" : "fk_DefaultJobNumberId",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 0,
-        "precision" : 10,
-        "generator" : "assigned",
-        "isRelated" : true,
-        "relatedTableName" : "tblJobNumbers",
-        "relatedEntityName" : "TblJobNumbers",
-        "relatedColumnName" : "fkDefaultJobNumberId",
-        "relatedFieldName" : "tblJobNumbers.jobNumber",
-        "isList" : false,
-        "targetTable" : "tblJobNumbers",
-        "scale" : 0,
-        "columns" : [ {
-          "fieldName" : "tblJobSites",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "fk_JobSiteId",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 10,
-          "generator" : "assigned",
-          "isRelated" : true,
-          "relatedColumnName" : "fkJobSiteId",
-          "targetTable" : "tblJobSites",
-          "scale" : 0
-        }, {
-          "fieldName" : "jobNumber",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "JobNumber",
-          "isPrimaryKey" : true,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 10,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "scale" : 0
-        }, {
-          "fieldName" : "status",
-          "type" : "short",
-          "fullyQualifiedType" : "short",
-          "columnName" : "Status",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 3,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "scale" : 0
-        } ]
-      }, {
-        "fieldName" : "refRoles",
-        "type" : "integer",
-        "fullyQualifiedType" : "integer",
-        "columnName" : "fk_RoleId",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 0,
-        "precision" : 10,
-        "generator" : "assigned",
-        "isRelated" : true,
-        "relatedTableName" : "REF_Roles",
-        "relatedEntityName" : "RefRoles",
-        "relatedColumnName" : "fkRoleId",
-        "relatedFieldName" : "refRoles.id",
-        "isList" : false,
-        "targetTable" : "REF_Roles",
-        "scale" : 0,
-        "columns" : [ {
-          "fieldName" : "id",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "ID",
-          "isPrimaryKey" : true,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 10,
-          "generator" : "identity",
-          "isRelated" : false,
-          "scale" : 0
-        }, {
-          "fieldName" : "roleName",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "RoleName",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 45,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "scale" : 0
-        } ]
-      }, {
         "fieldName" : "refCraftClasses",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
@@ -3537,6 +3400,63 @@
           "scale" : 0
         } ]
       }, {
+        "fieldName" : "tblJobNumbers",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "fk_DefaultJobNumberId",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : true,
+        "relatedTableName" : "tblJobNumbers",
+        "relatedEntityName" : "TblJobNumbers",
+        "relatedColumnName" : "fkDefaultJobNumberId",
+        "relatedFieldName" : "tblJobNumbers.jobNumber",
+        "isList" : false,
+        "targetTable" : "tblJobNumbers",
+        "scale" : 0,
+        "columns" : [ {
+          "fieldName" : "tblJobSites",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "fk_JobSiteId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "relatedColumnName" : "fkJobSiteId",
+          "targetTable" : "tblJobSites",
+          "scale" : 0
+        }, {
+          "fieldName" : "jobNumber",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "JobNumber",
+          "isPrimaryKey" : true,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
+        }, {
+          "fieldName" : "status",
+          "type" : "short",
+          "fullyQualifiedType" : "short",
+          "columnName" : "Status",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 3,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
+        } ]
+      }, {
         "fieldName" : "refDisciplines",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
@@ -3571,6 +3491,49 @@
           "type" : "string",
           "fullyQualifiedType" : "string",
           "columnName" : "Discipline",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 45,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
+        } ]
+      }, {
+        "fieldName" : "refRoles",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "fk_RoleId",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : true,
+        "relatedTableName" : "REF_Roles",
+        "relatedEntityName" : "RefRoles",
+        "relatedColumnName" : "fkRoleId",
+        "relatedFieldName" : "refRoles.id",
+        "isList" : false,
+        "targetTable" : "REF_Roles",
+        "scale" : 0,
+        "columns" : [ {
+          "fieldName" : "id",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ID",
+          "isPrimaryKey" : true,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "identity",
+          "isRelated" : false,
+          "scale" : 0
+        }, {
+          "fieldName" : "roleName",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "RoleName",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 45,
@@ -3652,18 +3615,6 @@
         "isRelated" : false,
         "scale" : 0
       }, {
-        "fieldName" : "mobileUser",
-        "type" : "short",
-        "fullyQualifiedType" : "short",
-        "columnName" : "MobileUser",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 0,
-        "precision" : 3,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "scale" : 0
-      }, {
         "fieldName" : "active",
         "type" : "short",
         "fullyQualifiedType" : "short",
@@ -3734,20 +3685,8 @@
     "tableName" : "tblUserPSA",
     "tableType" : "TABLE",
     "dbSystem" : "MySQL",
-    "properties" : [ "tblJobNumbers", "refRoles", "refCraftClasses", "refCrafts", "refDisciplines" ],
+    "properties" : [ "refCraftClasses", "refCrafts", "tblJobNumbers", "refDisciplines", "refRoles" ],
     "relatedTables" : [ {
-      "columnName" : "tblJobNumbers",
-      "relationName" : "tblJobNumbers",
-      "type" : "TblJobNumbers",
-      "watchOn" : "PSATblJobNumbersData",
-      "package" : "com.psabackoffice.psa.TblUserPsa"
-    }, {
-      "columnName" : "refRoles",
-      "relationName" : "refRoles",
-      "type" : "RefRoles",
-      "watchOn" : "PSARefRolesData",
-      "package" : "com.psabackoffice.psa.TblUserPsa"
-    }, {
       "columnName" : "refCraftClasses",
       "relationName" : "refCraftClasses",
       "type" : "RefCraftClasses",
@@ -3760,10 +3699,22 @@
       "watchOn" : "PSARefCraftsData",
       "package" : "com.psabackoffice.psa.TblUserPsa"
     }, {
+      "columnName" : "tblJobNumbers",
+      "relationName" : "tblJobNumbers",
+      "type" : "TblJobNumbers",
+      "watchOn" : "PSATblJobNumbersData",
+      "package" : "com.psabackoffice.psa.TblUserPsa"
+    }, {
       "columnName" : "refDisciplines",
       "relationName" : "refDisciplines",
       "type" : "RefDisciplines",
       "watchOn" : "PSARefDisciplinesData",
+      "package" : "com.psabackoffice.psa.TblUserPsa"
+    }, {
+      "columnName" : "refRoles",
+      "relationName" : "refRoles",
+      "type" : "RefRoles",
+      "watchOn" : "PSARefRolesData",
       "package" : "com.psabackoffice.psa.TblUserPsa"
     } ],
     "filterFields" : { },

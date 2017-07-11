@@ -79,11 +79,6 @@
   "roles" : [ "SuperUser", "Site Office-Project Services", "Corp. Office-Site Admin", "Corp. Office-Project Services" ],
   "httpMethod" : null
 }, {
-  "urlPattern" : "/services/appenateDeleteUser/invoke/v2/user/**",
-  "permission" : "Role",
-  "roles" : [ "SuperUser" ],
-  "httpMethod" : null
-}, {
   "urlPattern" : "/services/PSA/queryExecutor/queries/InsertLoginFailure",
   "permission" : "PermitAll",
   "roles" : [ ],

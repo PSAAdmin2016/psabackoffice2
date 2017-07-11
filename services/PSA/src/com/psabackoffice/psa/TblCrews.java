@@ -46,16 +46,16 @@ public class TblCrews implements Serializable {
     private Integer disciplineId;
     private Short rev;
     private Timestamp timeStamp;
-    private TblUserPsa tblUserPsaByForeman;
-    private TblUserPsa tblUserPsaByGf;
-    private TblUserPsa tblUserPsaBySuperintendent;
-    private TblUserPsa tblUserPsaByAreaManager;
-    private TblUserPsa tblUserPsaBySiteManager;
     private TblUserPsa tblUserPsaByConstructionManager;
-    private TblUserPsa tblUserPsaByProjectManager;
-    private TblJobNumbers tblJobNumbers;
-    private RefDisciplines refDisciplines;
+    private TblUserPsa tblUserPsaBySuperintendent;
     private TblUserPsa tblUserPsaByLeadman;
+    private TblUserPsa tblUserPsaByProjectManager;
+    private TblUserPsa tblUserPsaByAreaManager;
+    private TblUserPsa tblUserPsaByForeman;
+    private TblJobNumbers tblJobNumbers;
+    private TblUserPsa tblUserPsaBySiteManager;
+    private TblUserPsa tblUserPsaByGf;
+    private RefDisciplines refDisciplines;
     private List<TblCrewsRev> tblCrewsRevs;
 
     @Id
@@ -187,31 +187,17 @@ public class TblCrews implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`Foreman`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public TblUserPsa getTblUserPsaByForeman() {
-        return this.tblUserPsaByForeman;
+    @JoinColumn(name = "`ConstructionManager`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public TblUserPsa getTblUserPsaByConstructionManager() {
+        return this.tblUserPsaByConstructionManager;
     }
 
-    public void setTblUserPsaByForeman(TblUserPsa tblUserPsaByForeman) {
-        if(tblUserPsaByForeman != null) {
-            this.foreman = tblUserPsaByForeman.getId();
+    public void setTblUserPsaByConstructionManager(TblUserPsa tblUserPsaByConstructionManager) {
+        if(tblUserPsaByConstructionManager != null) {
+            this.constructionManager = tblUserPsaByConstructionManager.getId();
         }
 
-        this.tblUserPsaByForeman = tblUserPsaByForeman;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`GF`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public TblUserPsa getTblUserPsaByGf() {
-        return this.tblUserPsaByGf;
-    }
-
-    public void setTblUserPsaByGf(TblUserPsa tblUserPsaByGf) {
-        if(tblUserPsaByGf != null) {
-            this.gf = tblUserPsaByGf.getId();
-        }
-
-        this.tblUserPsaByGf = tblUserPsaByGf;
+        this.tblUserPsaByConstructionManager = tblUserPsaByConstructionManager;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -229,45 +215,17 @@ public class TblCrews implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`AreaManager`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public TblUserPsa getTblUserPsaByAreaManager() {
-        return this.tblUserPsaByAreaManager;
+    @JoinColumn(name = "`Leadman`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public TblUserPsa getTblUserPsaByLeadman() {
+        return this.tblUserPsaByLeadman;
     }
 
-    public void setTblUserPsaByAreaManager(TblUserPsa tblUserPsaByAreaManager) {
-        if(tblUserPsaByAreaManager != null) {
-            this.areaManager = tblUserPsaByAreaManager.getId();
+    public void setTblUserPsaByLeadman(TblUserPsa tblUserPsaByLeadman) {
+        if(tblUserPsaByLeadman != null) {
+            this.leadman = tblUserPsaByLeadman.getId();
         }
 
-        this.tblUserPsaByAreaManager = tblUserPsaByAreaManager;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`SiteManager`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public TblUserPsa getTblUserPsaBySiteManager() {
-        return this.tblUserPsaBySiteManager;
-    }
-
-    public void setTblUserPsaBySiteManager(TblUserPsa tblUserPsaBySiteManager) {
-        if(tblUserPsaBySiteManager != null) {
-            this.siteManager = tblUserPsaBySiteManager.getId();
-        }
-
-        this.tblUserPsaBySiteManager = tblUserPsaBySiteManager;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`ConstructionManager`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public TblUserPsa getTblUserPsaByConstructionManager() {
-        return this.tblUserPsaByConstructionManager;
-    }
-
-    public void setTblUserPsaByConstructionManager(TblUserPsa tblUserPsaByConstructionManager) {
-        if(tblUserPsaByConstructionManager != null) {
-            this.constructionManager = tblUserPsaByConstructionManager.getId();
-        }
-
-        this.tblUserPsaByConstructionManager = tblUserPsaByConstructionManager;
+        this.tblUserPsaByLeadman = tblUserPsaByLeadman;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -285,6 +243,34 @@ public class TblCrews implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`AreaManager`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public TblUserPsa getTblUserPsaByAreaManager() {
+        return this.tblUserPsaByAreaManager;
+    }
+
+    public void setTblUserPsaByAreaManager(TblUserPsa tblUserPsaByAreaManager) {
+        if(tblUserPsaByAreaManager != null) {
+            this.areaManager = tblUserPsaByAreaManager.getId();
+        }
+
+        this.tblUserPsaByAreaManager = tblUserPsaByAreaManager;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`Foreman`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public TblUserPsa getTblUserPsaByForeman() {
+        return this.tblUserPsaByForeman;
+    }
+
+    public void setTblUserPsaByForeman(TblUserPsa tblUserPsaByForeman) {
+        if(tblUserPsaByForeman != null) {
+            this.foreman = tblUserPsaByForeman.getId();
+        }
+
+        this.tblUserPsaByForeman = tblUserPsaByForeman;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`JobNumber`", referencedColumnName = "`JobNumber`", insertable = false, updatable = false)
     public TblJobNumbers getTblJobNumbers() {
         return this.tblJobNumbers;
@@ -299,6 +285,34 @@ public class TblCrews implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`SiteManager`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public TblUserPsa getTblUserPsaBySiteManager() {
+        return this.tblUserPsaBySiteManager;
+    }
+
+    public void setTblUserPsaBySiteManager(TblUserPsa tblUserPsaBySiteManager) {
+        if(tblUserPsaBySiteManager != null) {
+            this.siteManager = tblUserPsaBySiteManager.getId();
+        }
+
+        this.tblUserPsaBySiteManager = tblUserPsaBySiteManager;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`GF`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public TblUserPsa getTblUserPsaByGf() {
+        return this.tblUserPsaByGf;
+    }
+
+    public void setTblUserPsaByGf(TblUserPsa tblUserPsaByGf) {
+        if(tblUserPsaByGf != null) {
+            this.gf = tblUserPsaByGf.getId();
+        }
+
+        this.tblUserPsaByGf = tblUserPsaByGf;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`DisciplineId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public RefDisciplines getRefDisciplines() {
         return this.refDisciplines;
@@ -310,20 +324,6 @@ public class TblCrews implements Serializable {
         }
 
         this.refDisciplines = refDisciplines;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`Leadman`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public TblUserPsa getTblUserPsaByLeadman() {
-        return this.tblUserPsaByLeadman;
-    }
-
-    public void setTblUserPsaByLeadman(TblUserPsa tblUserPsaByLeadman) {
-        if(tblUserPsaByLeadman != null) {
-            this.leadman = tblUserPsaByLeadman.getId();
-        }
-
-        this.tblUserPsaByLeadman = tblUserPsaByLeadman;
     }
 
     @JsonInclude(Include.NON_EMPTY)

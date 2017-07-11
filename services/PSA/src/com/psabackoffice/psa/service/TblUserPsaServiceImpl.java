@@ -29,11 +29,9 @@ import com.psabackoffice.psa.ChatMessages;
 import com.psabackoffice.psa.FeedBack;
 import com.psabackoffice.psa.FeedBackNotes;
 import com.psabackoffice.psa.TblCrews;
-import com.psabackoffice.psa.TblUserAssignedApps;
 import com.psabackoffice.psa.TblUserCreds;
 import com.psabackoffice.psa.TblUserJobNumbers;
 import com.psabackoffice.psa.TblUserPsa;
-import com.psabackoffice.psa.TblUserPsarev;
 
 
 /**
@@ -55,20 +53,12 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
 	private ChatConversationMembersService chatConversationMembersService;
 
     @Autowired
-	@Qualifier("PSA.TblUserAssignedAppsService")
-	private TblUserAssignedAppsService tblUserAssignedAppsService;
-
-    @Autowired
 	@Qualifier("PSA.TblUserCredsService")
 	private TblUserCredsService tblUserCredsService;
 
     @Autowired
 	@Qualifier("PSA.ChatMessagesService")
 	private ChatMessagesService chatMessagesService;
-
-    @Autowired
-	@Qualifier("PSA.TblUserPsarevService")
-	private TblUserPsarevService tblUserPsarevService;
 
     @Autowired
 	@Qualifier("PSA.FeedBackNotesService")
@@ -127,19 +117,11 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
             }
         }
 
-        if(tblUserPsaCreated.getTblCrewsesForForeman() != null) {
-            for(TblCrews tblCrewsesForForeman : tblUserPsaCreated.getTblCrewsesForForeman()) {
-                tblCrewsesForForeman.setTblUserPsaByForeman(tblUserPsaCreated);
-                LOGGER.debug("Creating a new child TblCrews with information: {}", tblCrewsesForForeman);
-                tblCrewsService.create(tblCrewsesForForeman);
-            }
-        }
-
-        if(tblUserPsaCreated.getTblCrewsesForGf() != null) {
-            for(TblCrews tblCrewsesForGf : tblUserPsaCreated.getTblCrewsesForGf()) {
-                tblCrewsesForGf.setTblUserPsaByGf(tblUserPsaCreated);
-                LOGGER.debug("Creating a new child TblCrews with information: {}", tblCrewsesForGf);
-                tblCrewsService.create(tblCrewsesForGf);
+        if(tblUserPsaCreated.getTblCrewsesForConstructionManager() != null) {
+            for(TblCrews tblCrewsesForConstructionManager : tblUserPsaCreated.getTblCrewsesForConstructionManager()) {
+                tblCrewsesForConstructionManager.setTblUserPsaByConstructionManager(tblUserPsaCreated);
+                LOGGER.debug("Creating a new child TblCrews with information: {}", tblCrewsesForConstructionManager);
+                tblCrewsService.create(tblCrewsesForConstructionManager);
             }
         }
 
@@ -151,27 +133,11 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
             }
         }
 
-        if(tblUserPsaCreated.getTblCrewsesForAreaManager() != null) {
-            for(TblCrews tblCrewsesForAreaManager : tblUserPsaCreated.getTblCrewsesForAreaManager()) {
-                tblCrewsesForAreaManager.setTblUserPsaByAreaManager(tblUserPsaCreated);
-                LOGGER.debug("Creating a new child TblCrews with information: {}", tblCrewsesForAreaManager);
-                tblCrewsService.create(tblCrewsesForAreaManager);
-            }
-        }
-
-        if(tblUserPsaCreated.getTblCrewsesForSiteManager() != null) {
-            for(TblCrews tblCrewsesForSiteManager : tblUserPsaCreated.getTblCrewsesForSiteManager()) {
-                tblCrewsesForSiteManager.setTblUserPsaBySiteManager(tblUserPsaCreated);
-                LOGGER.debug("Creating a new child TblCrews with information: {}", tblCrewsesForSiteManager);
-                tblCrewsService.create(tblCrewsesForSiteManager);
-            }
-        }
-
-        if(tblUserPsaCreated.getTblCrewsesForConstructionManager() != null) {
-            for(TblCrews tblCrewsesForConstructionManager : tblUserPsaCreated.getTblCrewsesForConstructionManager()) {
-                tblCrewsesForConstructionManager.setTblUserPsaByConstructionManager(tblUserPsaCreated);
-                LOGGER.debug("Creating a new child TblCrews with information: {}", tblCrewsesForConstructionManager);
-                tblCrewsService.create(tblCrewsesForConstructionManager);
+        if(tblUserPsaCreated.getTblCrewsesForLeadman() != null) {
+            for(TblCrews tblCrewsesForLeadman : tblUserPsaCreated.getTblCrewsesForLeadman()) {
+                tblCrewsesForLeadman.setTblUserPsaByLeadman(tblUserPsaCreated);
+                LOGGER.debug("Creating a new child TblCrews with information: {}", tblCrewsesForLeadman);
+                tblCrewsService.create(tblCrewsesForLeadman);
             }
         }
 
@@ -183,19 +149,35 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
             }
         }
 
-        if(tblUserPsaCreated.getTblCrewsesForLeadman() != null) {
-            for(TblCrews tblCrewsesForLeadman : tblUserPsaCreated.getTblCrewsesForLeadman()) {
-                tblCrewsesForLeadman.setTblUserPsaByLeadman(tblUserPsaCreated);
-                LOGGER.debug("Creating a new child TblCrews with information: {}", tblCrewsesForLeadman);
-                tblCrewsService.create(tblCrewsesForLeadman);
+        if(tblUserPsaCreated.getTblCrewsesForAreaManager() != null) {
+            for(TblCrews tblCrewsesForAreaManager : tblUserPsaCreated.getTblCrewsesForAreaManager()) {
+                tblCrewsesForAreaManager.setTblUserPsaByAreaManager(tblUserPsaCreated);
+                LOGGER.debug("Creating a new child TblCrews with information: {}", tblCrewsesForAreaManager);
+                tblCrewsService.create(tblCrewsesForAreaManager);
             }
         }
 
-        if(tblUserPsaCreated.getTblUserAssignedAppses() != null) {
-            for(TblUserAssignedApps tblUserAssignedAppse : tblUserPsaCreated.getTblUserAssignedAppses()) {
-                tblUserAssignedAppse.setTblUserPsa(tblUserPsaCreated);
-                LOGGER.debug("Creating a new child TblUserAssignedApps with information: {}", tblUserAssignedAppse);
-                tblUserAssignedAppsService.create(tblUserAssignedAppse);
+        if(tblUserPsaCreated.getTblCrewsesForForeman() != null) {
+            for(TblCrews tblCrewsesForForeman : tblUserPsaCreated.getTblCrewsesForForeman()) {
+                tblCrewsesForForeman.setTblUserPsaByForeman(tblUserPsaCreated);
+                LOGGER.debug("Creating a new child TblCrews with information: {}", tblCrewsesForForeman);
+                tblCrewsService.create(tblCrewsesForForeman);
+            }
+        }
+
+        if(tblUserPsaCreated.getTblCrewsesForSiteManager() != null) {
+            for(TblCrews tblCrewsesForSiteManager : tblUserPsaCreated.getTblCrewsesForSiteManager()) {
+                tblCrewsesForSiteManager.setTblUserPsaBySiteManager(tblUserPsaCreated);
+                LOGGER.debug("Creating a new child TblCrews with information: {}", tblCrewsesForSiteManager);
+                tblCrewsService.create(tblCrewsesForSiteManager);
+            }
+        }
+
+        if(tblUserPsaCreated.getTblCrewsesForGf() != null) {
+            for(TblCrews tblCrewsesForGf : tblUserPsaCreated.getTblCrewsesForGf()) {
+                tblCrewsesForGf.setTblUserPsaByGf(tblUserPsaCreated);
+                LOGGER.debug("Creating a new child TblCrews with information: {}", tblCrewsesForGf);
+                tblCrewsService.create(tblCrewsesForGf);
             }
         }
 
@@ -211,14 +193,6 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
                 tblUserJobNumberse.setTblUserPsa(tblUserPsaCreated);
                 LOGGER.debug("Creating a new child TblUserJobNumbers with information: {}", tblUserJobNumberse);
                 tblUserJobNumbersService.create(tblUserJobNumberse);
-            }
-        }
-
-        if(tblUserPsaCreated.getTblUserPsarevs() != null) {
-            for(TblUserPsarev tblUserPsarev : tblUserPsaCreated.getTblUserPsarevs()) {
-                tblUserPsarev.setTblUserPsa(tblUserPsaCreated);
-                LOGGER.debug("Creating a new child TblUserPsarev with information: {}", tblUserPsarev);
-                tblUserPsarevService.create(tblUserPsarev);
             }
         }
         return tblUserPsaCreated;
@@ -380,22 +354,11 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Page<TblCrews> findAssociatedTblCrewsesForForeman(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated tblCrewsesForForeman");
+    public Page<TblCrews> findAssociatedTblCrewsesForConstructionManager(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated tblCrewsesForConstructionManager");
 
         StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("tblUserPsaByForeman.id = '" + id + "'");
-
-        return tblCrewsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<TblCrews> findAssociatedTblCrewsesForGf(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated tblCrewsesForGf");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("tblUserPsaByGf.id = '" + id + "'");
+        queryBuilder.append("tblUserPsaByConstructionManager.id = '" + id + "'");
 
         return tblCrewsService.findAll(queryBuilder.toString(), pageable);
     }
@@ -413,33 +376,11 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Page<TblCrews> findAssociatedTblCrewsesForAreaManager(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated tblCrewsesForAreaManager");
+    public Page<TblCrews> findAssociatedTblCrewsesForLeadman(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated tblCrewsesForLeadman");
 
         StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("tblUserPsaByAreaManager.id = '" + id + "'");
-
-        return tblCrewsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<TblCrews> findAssociatedTblCrewsesForSiteManager(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated tblCrewsesForSiteManager");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("tblUserPsaBySiteManager.id = '" + id + "'");
-
-        return tblCrewsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<TblCrews> findAssociatedTblCrewsesForConstructionManager(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated tblCrewsesForConstructionManager");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("tblUserPsaByConstructionManager.id = '" + id + "'");
+        queryBuilder.append("tblUserPsaByLeadman.id = '" + id + "'");
 
         return tblCrewsService.findAll(queryBuilder.toString(), pageable);
     }
@@ -457,24 +398,46 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Page<TblCrews> findAssociatedTblCrewsesForLeadman(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated tblCrewsesForLeadman");
+    public Page<TblCrews> findAssociatedTblCrewsesForAreaManager(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated tblCrewsesForAreaManager");
 
         StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("tblUserPsaByLeadman.id = '" + id + "'");
+        queryBuilder.append("tblUserPsaByAreaManager.id = '" + id + "'");
 
         return tblCrewsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Page<TblUserAssignedApps> findAssociatedTblUserAssignedAppses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated tblUserAssignedAppses");
+    public Page<TblCrews> findAssociatedTblCrewsesForForeman(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated tblCrewsesForForeman");
 
         StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("tblUserPsa.id = '" + id + "'");
+        queryBuilder.append("tblUserPsaByForeman.id = '" + id + "'");
 
-        return tblUserAssignedAppsService.findAll(queryBuilder.toString(), pageable);
+        return tblCrewsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Page<TblCrews> findAssociatedTblCrewsesForSiteManager(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated tblCrewsesForSiteManager");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("tblUserPsaBySiteManager.id = '" + id + "'");
+
+        return tblCrewsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Page<TblCrews> findAssociatedTblCrewsesForGf(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated tblCrewsesForGf");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("tblUserPsaByGf.id = '" + id + "'");
+
+        return tblCrewsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
@@ -486,17 +449,6 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
         queryBuilder.append("tblUserPsa.id = '" + id + "'");
 
         return tblUserJobNumbersService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<TblUserPsarev> findAssociatedTblUserPsarevs(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated tblUserPsarevs");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("tblUserPsa.id = '" + id + "'");
-
-        return tblUserPsarevService.findAll(queryBuilder.toString(), pageable);
     }
 
     /**
@@ -520,15 +472,6 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service TblUserAssignedAppsService instance
-	 */
-	protected void setTblUserAssignedAppsService(TblUserAssignedAppsService service) {
-        this.tblUserAssignedAppsService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
 	 * @param service TblUserCredsService instance
 	 */
 	protected void setTblUserCredsService(TblUserCredsService service) {
@@ -542,15 +485,6 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
 	 */
 	protected void setChatMessagesService(ChatMessagesService service) {
         this.chatMessagesService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service TblUserPsarevService instance
-	 */
-	protected void setTblUserPsarevService(TblUserPsarevService service) {
-        this.tblUserPsarevService = service;
     }
 
     /**

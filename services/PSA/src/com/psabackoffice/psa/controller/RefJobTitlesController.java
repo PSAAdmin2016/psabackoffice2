@@ -102,6 +102,7 @@ public class RefJobTitlesController {
 
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching RefJobTitles with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public RefJobTitles getByUniqueKeyId(@PathVariable("id") int id) {
         LOGGER.debug("Getting RefJobTitles with uniques key UniqueKeyId");
         return refJobTitlesService.getByUniqueKeyId(id);

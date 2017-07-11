@@ -39,11 +39,11 @@ public class FeedBack implements Serializable {
     private Integer fkSeverity;
     private Integer fkStatus;
     private Timestamp timeStamp;
+    private RefFbTypes refFbTypes;
     private RefFbStatuses refFbStatuses;
+    private TblUserPsa tblUserPsa;
     private RefFbSeverity refFbSeverity;
     private RefFbSubTypes refFbSubTypes;
-    private RefFbTypes refFbTypes;
-    private TblUserPsa tblUserPsa;
     private List<FeedBackNotes> feedBackNoteses;
 
     @Id
@@ -112,6 +112,20 @@ public class FeedBack implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`fk_FeedBackType`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public RefFbTypes getRefFbTypes() {
+        return this.refFbTypes;
+    }
+
+    public void setRefFbTypes(RefFbTypes refFbTypes) {
+        if(refFbTypes != null) {
+            this.fkFeedBackType = refFbTypes.getId();
+        }
+
+        this.refFbTypes = refFbTypes;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`fk_Status`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public RefFbStatuses getRefFbStatuses() {
         return this.refFbStatuses;
@@ -123,6 +137,20 @@ public class FeedBack implements Serializable {
         }
 
         this.refFbStatuses = refFbStatuses;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`fk_UserID`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public TblUserPsa getTblUserPsa() {
+        return this.tblUserPsa;
+    }
+
+    public void setTblUserPsa(TblUserPsa tblUserPsa) {
+        if(tblUserPsa != null) {
+            this.fkUserId = tblUserPsa.getId();
+        }
+
+        this.tblUserPsa = tblUserPsa;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -151,34 +179,6 @@ public class FeedBack implements Serializable {
         }
 
         this.refFbSubTypes = refFbSubTypes;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_FeedBackType`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public RefFbTypes getRefFbTypes() {
-        return this.refFbTypes;
-    }
-
-    public void setRefFbTypes(RefFbTypes refFbTypes) {
-        if(refFbTypes != null) {
-            this.fkFeedBackType = refFbTypes.getId();
-        }
-
-        this.refFbTypes = refFbTypes;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_UserID`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public TblUserPsa getTblUserPsa() {
-        return this.tblUserPsa;
-    }
-
-    public void setTblUserPsa(TblUserPsa tblUserPsa) {
-        if(tblUserPsa != null) {
-            this.fkUserId = tblUserPsa.getId();
-        }
-
-        this.tblUserPsa = tblUserPsa;
     }
 
     @JsonInclude(Include.NON_EMPTY)

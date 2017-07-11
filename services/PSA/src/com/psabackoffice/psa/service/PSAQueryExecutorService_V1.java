@@ -43,9 +43,6 @@ public interface PSAQueryExecutorService_V1 {
     public int executeInsertUserAssignedApps(Integer userId, Integer mobileAppGroupId);
 
     @Deprecated
-    public int executePoolLockInactiveMobile(String userId);
-
-    @Deprecated
     public int executeInsertFeedbackTicketNotes(Integer ticketId, Integer userId, String note);
 
     @Deprecated
@@ -58,7 +55,7 @@ public interface PSAQueryExecutorService_V1 {
     public int executeInsertFeedbackNotes(Integer userId, String notes);
 
     @Deprecated
-    public int executeUpdateUserPSA(Integer performanceEmployeeId, String firstName, String lastName, String nickname, String email, Byte mobileUser, Byte activeUser, Integer modifiedBy, Integer disciplineId, Integer craftId, Integer craftClassId, Integer roleId, Integer defaultJobNumberId, Integer userId);
+    public int executeUpdateUserPSA(Integer performanceEmployeeId, String firstName, String lastName, String nickname, String email, Byte activeUser, Integer modifiedBy, Integer disciplineId, Integer craftId, Integer craftClassId, Integer roleId, Integer defaultJobNumberId, Integer userId);
 
     @Deprecated
     public int executeDeleteAssignedJobNumber(Integer userId, String jobNumber);
@@ -79,13 +76,7 @@ public interface PSAQueryExecutorService_V1 {
     public Page<Object> executeGetDefaultJobNumber(Pageable pageable, Integer userId);
 
     @Deprecated
-    public Page<Object> executePoolGetLockedInactiveMobile(Pageable pageable, String userId);
-
-    @Deprecated
     public int executeUpdateUserCreds(String userName, String password, Integer userId);
-
-    @Deprecated
-    public int executePoolDeleteInactiveMobile(String accountId);
 
     @Deprecated
     public Page<Object> executeSuperintendents(Pageable pageable, Integer jobNumber);
@@ -130,13 +121,7 @@ public interface PSAQueryExecutorService_V1 {
     public Page<Object> executeGetForemenBySuper(Pageable pageable, Integer superId);
 
     @Deprecated
-    public int executePoolInsertInactiveMobile(String accountId);
-
-    @Deprecated
     public Page<Object> executeGetPSAUsers(Pageable pageable);
-
-    @Deprecated
-    public int executePoolUNLockInactiveMobile(String userId);
 
     @Deprecated
     public int executeInsertLoginFailure(String enteredUsername, String enteredPassword);

@@ -45,7 +45,6 @@ public class TblUserPsa implements Serializable {
     private String lastName;
     private String nickname;
     private String email;
-    private Short mobileUser;
     private Short active;
     @Type(type = "DateTime")
     private LocalDateTime createdDate;
@@ -57,27 +56,25 @@ public class TblUserPsa implements Serializable {
     private Integer fkDefaultJobNumberId;
     private short rev;
     private Timestamp timeStamp;
-    private TblJobNumbers tblJobNumbers;
-    private RefRoles refRoles;
     private RefCraftClasses refCraftClasses;
     private RefCrafts refCrafts;
+    private TblJobNumbers tblJobNumbers;
     private RefDisciplines refDisciplines;
+    private RefRoles refRoles;
     private List<ChatConversationMembers> chatConversationMemberses;
     private List<ChatMessages> chatMessageses;
     private List<FeedBack> feedBacks;
     private List<FeedBackNotes> feedBackNoteses;
-    private List<TblCrews> tblCrewsesForForeman;
-    private List<TblCrews> tblCrewsesForGf;
-    private List<TblCrews> tblCrewsesForSuperintendent;
-    private List<TblCrews> tblCrewsesForAreaManager;
-    private List<TblCrews> tblCrewsesForSiteManager;
     private List<TblCrews> tblCrewsesForConstructionManager;
-    private List<TblCrews> tblCrewsesForProjectManager;
+    private List<TblCrews> tblCrewsesForSuperintendent;
     private List<TblCrews> tblCrewsesForLeadman;
-    private List<TblUserAssignedApps> tblUserAssignedAppses;
+    private List<TblCrews> tblCrewsesForProjectManager;
+    private List<TblCrews> tblCrewsesForAreaManager;
+    private List<TblCrews> tblCrewsesForForeman;
+    private List<TblCrews> tblCrewsesForSiteManager;
+    private List<TblCrews> tblCrewsesForGf;
     private TblUserCreds tblUserCreds;
     private List<TblUserJobNumbers> tblUserJobNumberses;
-    private List<TblUserPsarev> tblUserPsarevs;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -133,15 +130,6 @@ public class TblUserPsa implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    @Column(name = "`MobileUser`", nullable = true, scale = 0, precision = 3)
-    public Short getMobileUser() {
-        return this.mobileUser;
-    }
-
-    public void setMobileUser(Short mobileUser) {
-        this.mobileUser = mobileUser;
     }
 
     @Column(name = "`Active`", nullable = true, scale = 0, precision = 3)
@@ -235,34 +223,6 @@ public class TblUserPsa implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_DefaultJobNumberId`", referencedColumnName = "`JobNumber`", insertable = false, updatable = false)
-    public TblJobNumbers getTblJobNumbers() {
-        return this.tblJobNumbers;
-    }
-
-    public void setTblJobNumbers(TblJobNumbers tblJobNumbers) {
-        if(tblJobNumbers != null) {
-            this.fkDefaultJobNumberId = tblJobNumbers.getJobNumber();
-        }
-
-        this.tblJobNumbers = tblJobNumbers;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_RoleId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public RefRoles getRefRoles() {
-        return this.refRoles;
-    }
-
-    public void setRefRoles(RefRoles refRoles) {
-        if(refRoles != null) {
-            this.fkRoleId = refRoles.getId();
-        }
-
-        this.refRoles = refRoles;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`fk_CraftClassId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public RefCraftClasses getRefCraftClasses() {
         return this.refCraftClasses;
@@ -291,6 +251,20 @@ public class TblUserPsa implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`fk_DefaultJobNumberId`", referencedColumnName = "`JobNumber`", insertable = false, updatable = false)
+    public TblJobNumbers getTblJobNumbers() {
+        return this.tblJobNumbers;
+    }
+
+    public void setTblJobNumbers(TblJobNumbers tblJobNumbers) {
+        if(tblJobNumbers != null) {
+            this.fkDefaultJobNumberId = tblJobNumbers.getJobNumber();
+        }
+
+        this.tblJobNumbers = tblJobNumbers;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`fk_DisciplineId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public RefDisciplines getRefDisciplines() {
         return this.refDisciplines;
@@ -302,6 +276,20 @@ public class TblUserPsa implements Serializable {
         }
 
         this.refDisciplines = refDisciplines;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`fk_RoleId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public RefRoles getRefRoles() {
+        return this.refRoles;
+    }
+
+    public void setRefRoles(RefRoles refRoles) {
+        if(refRoles != null) {
+            this.fkRoleId = refRoles.getId();
+        }
+
+        this.refRoles = refRoles;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -345,23 +333,13 @@ public class TblUserPsa implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsaByForeman")
-    public List<TblCrews> getTblCrewsesForForeman() {
-        return this.tblCrewsesForForeman;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsaByConstructionManager")
+    public List<TblCrews> getTblCrewsesForConstructionManager() {
+        return this.tblCrewsesForConstructionManager;
     }
 
-    public void setTblCrewsesForForeman(List<TblCrews> tblCrewsesForForeman) {
-        this.tblCrewsesForForeman = tblCrewsesForForeman;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsaByGf")
-    public List<TblCrews> getTblCrewsesForGf() {
-        return this.tblCrewsesForGf;
-    }
-
-    public void setTblCrewsesForGf(List<TblCrews> tblCrewsesForGf) {
-        this.tblCrewsesForGf = tblCrewsesForGf;
+    public void setTblCrewsesForConstructionManager(List<TblCrews> tblCrewsesForConstructionManager) {
+        this.tblCrewsesForConstructionManager = tblCrewsesForConstructionManager;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -375,33 +353,13 @@ public class TblUserPsa implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsaByAreaManager")
-    public List<TblCrews> getTblCrewsesForAreaManager() {
-        return this.tblCrewsesForAreaManager;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsaByLeadman")
+    public List<TblCrews> getTblCrewsesForLeadman() {
+        return this.tblCrewsesForLeadman;
     }
 
-    public void setTblCrewsesForAreaManager(List<TblCrews> tblCrewsesForAreaManager) {
-        this.tblCrewsesForAreaManager = tblCrewsesForAreaManager;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsaBySiteManager")
-    public List<TblCrews> getTblCrewsesForSiteManager() {
-        return this.tblCrewsesForSiteManager;
-    }
-
-    public void setTblCrewsesForSiteManager(List<TblCrews> tblCrewsesForSiteManager) {
-        this.tblCrewsesForSiteManager = tblCrewsesForSiteManager;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsaByConstructionManager")
-    public List<TblCrews> getTblCrewsesForConstructionManager() {
-        return this.tblCrewsesForConstructionManager;
-    }
-
-    public void setTblCrewsesForConstructionManager(List<TblCrews> tblCrewsesForConstructionManager) {
-        this.tblCrewsesForConstructionManager = tblCrewsesForConstructionManager;
+    public void setTblCrewsesForLeadman(List<TblCrews> tblCrewsesForLeadman) {
+        this.tblCrewsesForLeadman = tblCrewsesForLeadman;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -415,23 +373,43 @@ public class TblUserPsa implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsaByLeadman")
-    public List<TblCrews> getTblCrewsesForLeadman() {
-        return this.tblCrewsesForLeadman;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsaByAreaManager")
+    public List<TblCrews> getTblCrewsesForAreaManager() {
+        return this.tblCrewsesForAreaManager;
     }
 
-    public void setTblCrewsesForLeadman(List<TblCrews> tblCrewsesForLeadman) {
-        this.tblCrewsesForLeadman = tblCrewsesForLeadman;
+    public void setTblCrewsesForAreaManager(List<TblCrews> tblCrewsesForAreaManager) {
+        this.tblCrewsesForAreaManager = tblCrewsesForAreaManager;
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsa")
-    public List<TblUserAssignedApps> getTblUserAssignedAppses() {
-        return this.tblUserAssignedAppses;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsaByForeman")
+    public List<TblCrews> getTblCrewsesForForeman() {
+        return this.tblCrewsesForForeman;
     }
 
-    public void setTblUserAssignedAppses(List<TblUserAssignedApps> tblUserAssignedAppses) {
-        this.tblUserAssignedAppses = tblUserAssignedAppses;
+    public void setTblCrewsesForForeman(List<TblCrews> tblCrewsesForForeman) {
+        this.tblCrewsesForForeman = tblCrewsesForForeman;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsaBySiteManager")
+    public List<TblCrews> getTblCrewsesForSiteManager() {
+        return this.tblCrewsesForSiteManager;
+    }
+
+    public void setTblCrewsesForSiteManager(List<TblCrews> tblCrewsesForSiteManager) {
+        this.tblCrewsesForSiteManager = tblCrewsesForSiteManager;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsaByGf")
+    public List<TblCrews> getTblCrewsesForGf() {
+        return this.tblCrewsesForGf;
+    }
+
+    public void setTblCrewsesForGf(List<TblCrews> tblCrewsesForGf) {
+        this.tblCrewsesForGf = tblCrewsesForGf;
     }
 
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "tblUserPsa")
@@ -451,16 +429,6 @@ public class TblUserPsa implements Serializable {
 
     public void setTblUserJobNumberses(List<TblUserJobNumbers> tblUserJobNumberses) {
         this.tblUserJobNumberses = tblUserJobNumberses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsa")
-    public List<TblUserPsarev> getTblUserPsarevs() {
-        return this.tblUserPsarevs;
-    }
-
-    public void setTblUserPsarevs(List<TblUserPsarev> tblUserPsarevs) {
-        this.tblUserPsarevs = tblUserPsarevs;
     }
 
     @Override

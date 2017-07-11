@@ -118,16 +118,6 @@ public class PSAQueryExecutorServiceImpl_V1 implements PSAQueryExecutorService_V
 
     @Transactional(value = "PSATransactionManager")
     @Override
-    public int executePoolLockInactiveMobile(String userId) {
-        Map params = new HashMap(1);
-
-        params.put("UserId", userId);
-
-        return queryExecutor.executeNamedQueryForUpdate("PoolLockInactiveMobile", params);
-    }
-
-    @Transactional(value = "PSATransactionManager")
-    @Override
     public int executeInsertFeedbackTicketNotes(Integer ticketId, Integer userId, String note) {
         Map params = new HashMap(3);
 
@@ -176,15 +166,14 @@ public class PSAQueryExecutorServiceImpl_V1 implements PSAQueryExecutorService_V
 
     @Transactional(value = "PSATransactionManager")
     @Override
-    public int executeUpdateUserPSA(Integer performanceEmployeeId, String firstName, String lastName, String nickname, String email, Byte mobileUser, Byte activeUser, Integer modifiedBy, Integer disciplineId, Integer craftId, Integer craftClassId, Integer roleId, Integer defaultJobNumberId, Integer userId) {
-        Map params = new HashMap(14);
+    public int executeUpdateUserPSA(Integer performanceEmployeeId, String firstName, String lastName, String nickname, String email, Byte activeUser, Integer modifiedBy, Integer disciplineId, Integer craftId, Integer craftClassId, Integer roleId, Integer defaultJobNumberId, Integer userId) {
+        Map params = new HashMap(13);
 
         params.put("PerformanceEmployeeId", performanceEmployeeId);
         params.put("FirstName", firstName);
         params.put("LastName", lastName);
         params.put("Nickname", nickname);
         params.put("Email", email);
-        params.put("MobileUser", mobileUser);
         params.put("ActiveUser", activeUser);
         params.put("ModifiedBy", modifiedBy);
         params.put("DisciplineId", disciplineId);
@@ -268,16 +257,6 @@ public class PSAQueryExecutorServiceImpl_V1 implements PSAQueryExecutorService_V
         return queryExecutor.executeNamedQuery("GetDefaultJobNumber", params, Object.class, pageable);
     }
 
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<Object> executePoolGetLockedInactiveMobile(Pageable pageable, String userId) {
-        Map params = new HashMap(1);
-
-        params.put("UserId", userId);
-
-        return queryExecutor.executeNamedQuery("PoolGetLockedInactiveMobile", params, Object.class, pageable);
-    }
-
     @Transactional(value = "PSATransactionManager")
     @Override
     public int executeUpdateUserCreds(String userName, String password, Integer userId) {
@@ -288,16 +267,6 @@ public class PSAQueryExecutorServiceImpl_V1 implements PSAQueryExecutorService_V
         params.put("UserID", userId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateUserCreds", params);
-    }
-
-    @Transactional(value = "PSATransactionManager")
-    @Override
-    public int executePoolDeleteInactiveMobile(String accountId) {
-        Map params = new HashMap(1);
-
-        params.put("AccountID", accountId);
-
-        return queryExecutor.executeNamedQueryForUpdate("PoolDeleteInactiveMobile", params);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
@@ -453,16 +422,6 @@ public class PSAQueryExecutorServiceImpl_V1 implements PSAQueryExecutorService_V
         return queryExecutor.executeNamedQuery("GetForemenBySuper", params, Object.class, pageable);
     }
 
-    @Transactional(value = "PSATransactionManager")
-    @Override
-    public int executePoolInsertInactiveMobile(String accountId) {
-        Map params = new HashMap(1);
-
-        params.put("AccountID", accountId);
-
-        return queryExecutor.executeNamedQueryForUpdate("PoolInsertInactiveMobile", params);
-    }
-
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
     public Page<Object> executeGetPSAUsers(Pageable pageable) {
@@ -470,16 +429,6 @@ public class PSAQueryExecutorServiceImpl_V1 implements PSAQueryExecutorService_V
 
 
         return queryExecutor.executeNamedQuery("GetPSAUsers", params, Object.class, pageable);
-    }
-
-    @Transactional(value = "PSATransactionManager")
-    @Override
-    public int executePoolUNLockInactiveMobile(String userId) {
-        Map params = new HashMap(1);
-
-        params.put("UserId", userId);
-
-        return queryExecutor.executeNamedQueryForUpdate("PoolUNLockInactiveMobile", params);
     }
 
     @Transactional(value = "PSATransactionManager")

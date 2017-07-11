@@ -1,13 +1,13 @@
 {
   "username" : "PSAAdmin",
   "password" : "7b6a43524a151e3b4a686a7511507770477c612a43",
-  "url" : "jdbc:mysql://130.211.120.98:3306/PSA?useUnicode=yes&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull",
+  "url" : "jdbc:mysql://35.188.112.35:3306/PSA?useUnicode=yes&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull",
   "driverClass" : "com.mysql.jdbc.Driver",
   "dialect" : "com.wavemaker.runtime.data.dialect.MySQLDialect",
   "serviceId" : "PSA",
   "packageName" : "com.psabackoffice.psa",
   "dbType" : "MySQL",
-  "host" : "130.211.120.98",
+  "host" : "35.188.112.35",
   "dbName" : "PSA",
   "port" : "3306",
   "schemaName" : null,
@@ -36,9 +36,6 @@
     "table" : "MenuSubHelpVideos",
     "schema" : null
   }, {
-    "table" : "Pool_InactiveMobileAccounts",
-    "schema" : null
-  }, {
     "table" : "REF_ActivityRejections",
     "schema" : null
   }, {
@@ -55,6 +52,9 @@
     "schema" : null
   }, {
     "table" : "REF_Crafts",
+    "schema" : null
+  }, {
+    "table" : "REF_DelayTypes",
     "schema" : null
   }, {
     "table" : "REF_Disciplines",
@@ -87,10 +87,10 @@
     "table" : "REF_JobTitles",
     "schema" : null
   }, {
-    "table" : "REF_MobileApps",
+    "table" : "REF_PercentList",
     "schema" : null
   }, {
-    "table" : "REF_PercentList",
+    "table" : "REF_PipeDemoTypes",
     "schema" : null
   }, {
     "table" : "REF_PipeSchedules",
@@ -144,9 +144,6 @@
     "table" : "tblJobSites",
     "schema" : null
   }, {
-    "table" : "tblUserAssignedApps",
-    "schema" : null
-  }, {
     "table" : "tblUserCreds",
     "schema" : null
   }, {
@@ -157,12 +154,6 @@
     "schema" : null
   }, {
     "table" : "tblUserPSA",
-    "schema" : null
-  }, {
-    "table" : "tblUserPSARev",
-    "schema" : null
-  }, {
-    "table" : "UpdateTracker",
     "schema" : null
   } ],
   "schemaFilter" : [ ".*" ],

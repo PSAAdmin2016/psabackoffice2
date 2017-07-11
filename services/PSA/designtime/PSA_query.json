@@ -28,6 +28,7 @@
       "typeRef" : null,
       "method" : "DELETE"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "java.lang.Integer",
       "returns" : "PRIMITIVE",
@@ -63,6 +64,7 @@
       "typeRef" : null,
       "method" : "DELETE"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "java.lang.Integer",
       "returns" : "PRIMITIVE",
@@ -91,6 +93,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetAssignedJobNumbersResponse",
       "returns" : "CUSTOM",
@@ -174,6 +177,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetChatAllLastReadResponse",
       "returns" : "CUSTOM",
@@ -212,6 +216,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetChatAllLatestTimeStampResponse",
       "returns" : "CUSTOM",
@@ -250,6 +255,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetChatConversationsByLoggedInUserResponse",
       "returns" : "CUSTOM",
@@ -360,6 +366,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetChatMessagesByConversationIdResponse",
       "returns" : "CUSTOM",
@@ -468,6 +475,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetChatRecipientNameResponse",
       "returns" : "CUSTOM",
@@ -533,6 +541,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetDefaultJobNumberResponse",
       "returns" : "CUSTOM",
@@ -571,6 +580,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetFbnotesByFbidResponse",
       "returns" : "CUSTOM",
@@ -636,6 +646,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetFbsubTypeByTypeResponse",
       "returns" : "CUSTOM",
@@ -692,6 +703,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetForemenBySuperResponse",
       "returns" : "CUSTOM",
@@ -759,6 +771,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetHelpMenuVideosResponse",
       "returns" : "CUSTOM",
@@ -842,6 +855,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetJobNumberCountByJobNumberResponse",
       "returns" : "CUSTOM",
@@ -894,6 +908,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetJobSitesResponse",
       "returns" : "CUSTOM",
@@ -952,6 +967,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetPsausersResponse",
       "returns" : "CUSTOM",
@@ -1145,6 +1161,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetRefPrecipitationResponse",
       "returns" : "CUSTOM",
@@ -1194,6 +1211,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetRefTemperaturesResponse",
       "returns" : "CUSTOM",
@@ -1243,6 +1261,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetRefWindResponse",
       "returns" : "CUSTOM",
@@ -1299,6 +1318,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetRolesByDisciplineResponse",
       "returns" : "CUSTOM",
@@ -1339,6 +1359,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetSettingDashUpdateIntResponse",
       "returns" : "CUSTOM",
@@ -1379,6 +1400,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetSteelActivityTypesResponse",
       "returns" : "CUSTOM",
@@ -1468,6 +1490,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetUsersForemenResponse",
       "returns" : "CUSTOM",
@@ -1767,6 +1790,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetUsersManagersResponse",
       "returns" : "CUSTOM",
@@ -1867,6 +1891,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.GetUsersSupersResponse",
       "returns" : "CUSTOM",
@@ -1939,6 +1964,7 @@
       "typeRef" : "com.psabackoffice.psa.models.query.InsertAssignedJobNumberRequest",
       "method" : "POST"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "java.lang.Integer",
       "returns" : "PRIMITIVE",
@@ -1981,6 +2007,7 @@
       "typeRef" : "com.psabackoffice.psa.models.query.InsertChatMessageRequest",
       "method" : "POST"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "java.lang.Integer",
       "returns" : "PRIMITIVE",
@@ -2016,6 +2043,7 @@
       "typeRef" : "com.psabackoffice.psa.models.query.InsertFeedbackNotesRequest",
       "method" : "POST"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "java.lang.Integer",
       "returns" : "PRIMITIVE",
@@ -2065,6 +2093,7 @@
       "typeRef" : "com.psabackoffice.psa.models.query.InsertFeedbackTicketRequest",
       "method" : "POST"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "java.lang.Integer",
       "returns" : "PRIMITIVE",
@@ -2107,6 +2136,7 @@
       "typeRef" : "com.psabackoffice.psa.models.query.InsertFeedbackTicketNotesRequest",
       "method" : "POST"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "java.lang.Integer",
       "returns" : "PRIMITIVE",
@@ -2142,6 +2172,7 @@
       "typeRef" : "com.psabackoffice.psa.models.query.InsertLoginFailureRequest",
       "method" : "POST"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "java.lang.Integer",
       "returns" : "PRIMITIVE",
@@ -2170,6 +2201,7 @@
       "typeRef" : "com.psabackoffice.psa.models.query.InsertLoginSuccessRequest",
       "method" : "POST"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "java.lang.Integer",
       "returns" : "PRIMITIVE",
@@ -2205,6 +2237,7 @@
       "typeRef" : "com.psabackoffice.psa.models.query.InsertUserAssignedAppsRequest",
       "method" : "POST"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "java.lang.Integer",
       "returns" : "PRIMITIVE",
@@ -2247,6 +2280,7 @@
       "typeRef" : "com.psabackoffice.psa.models.query.InsertUserCredsRequest",
       "method" : "POST"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "java.lang.Integer",
       "returns" : "PRIMITIVE",
@@ -2359,6 +2393,7 @@
       "typeRef" : "com.psabackoffice.psa.models.query.InsertUserPsaRequest",
       "method" : "POST"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "java.lang.Integer",
       "returns" : "PRIMITIVE",
@@ -2387,6 +2422,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.ManagersResponse",
       "returns" : "CUSTOM",
@@ -2430,156 +2466,6 @@
       } ]
     }
   },
-  "PoolDeleteInactiveMobile" : {
-    "name" : "PoolDeleteInactiveMobile",
-    "description" : "Deletes an Account from the Inactive Pool",
-    "version" : "V1",
-    "queryString" : "DELETE FROM `PSA`.`Pool_InactiveMobileAccounts` \nWHERE `AccountID`= :AccountID",
-    "countQueryString" : null,
-    "nativeSql" : true,
-    "fetchCount" : false,
-    "type" : "DELETE",
-    "parameters" : [ {
-      "name" : "AccountID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "bob",
-      "required" : false
-    } ],
-    "request" : {
-      "wrapped" : false,
-      "typeRef" : null,
-      "method" : "DELETE"
-    },
-    "response" : {
-      "typeRef" : "java.lang.Integer",
-      "returns" : "PRIMITIVE",
-      "responseType" : "SINGLE"
-    }
-  },
-  "PoolGetLockedInactiveMobile" : {
-    "name" : "PoolGetLockedInactiveMobile",
-    "description" : "Gets 1 row locked by the current UserID from the inactive mobile table",
-    "version" : "V1",
-    "queryString" : "SELECT AccountID \nFROM PSA.Pool_InactiveMobileAccounts\nWHERE LockedBy = :UserId",
-    "countQueryString" : "select count(*) from (SELECT AccountID \nFROM PSA.Pool_InactiveMobileAccounts\nWHERE LockedBy = :UserId) wmTempTable",
-    "nativeSql" : true,
-    "fetchCount" : true,
-    "type" : "SELECT",
-    "parameters" : [ {
-      "name" : "UserId",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "someone",
-      "required" : false
-    } ],
-    "request" : {
-      "wrapped" : false,
-      "typeRef" : null,
-      "method" : "GET"
-    },
-    "response" : {
-      "typeRef" : "com.psabackoffice.psa.models.query.PoolGetLockedInactiveMobileResponse",
-      "returns" : "CUSTOM",
-      "responseType" : "PAGINATED",
-      "properties" : [ {
-        "name" : "AccountID",
-        "fieldName" : "accountId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      } ]
-    }
-  },
-  "PoolInsertInactiveMobile" : {
-    "name" : "PoolInsertInactiveMobile",
-    "description" : "Inserts new Inactive Mobile Account into pool",
-    "version" : "V1",
-    "queryString" : "INSERT INTO `PSA`.`Pool_InactiveMobileAccounts` (`AccountID`) \nVALUES (:AccountID);",
-    "countQueryString" : null,
-    "nativeSql" : true,
-    "fetchCount" : false,
-    "type" : "INSERT",
-    "parameters" : [ {
-      "name" : "AccountID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "bob",
-      "required" : false
-    } ],
-    "request" : {
-      "wrapped" : true,
-      "typeRef" : "com.psabackoffice.psa.models.query.PoolInsertInactiveMobileRequest",
-      "method" : "POST"
-    },
-    "response" : {
-      "typeRef" : "java.lang.Integer",
-      "returns" : "PRIMITIVE",
-      "responseType" : "SINGLE"
-    }
-  },
-  "PoolLockInactiveMobile" : {
-    "name" : "PoolLockInactiveMobile",
-    "description" : "Sets one account in the PoolInactiveMobileAccounts with a LockedBy",
-    "version" : "V1",
-    "queryString" : "UPDATE `PSA`.`Pool_InactiveMobileAccounts` \nSET `LockedBy`= :UserId\nWHERE  LockedBy = '0'\nLIMIT 1",
-    "countQueryString" : null,
-    "nativeSql" : true,
-    "fetchCount" : false,
-    "type" : "UPDATE",
-    "parameters" : [ {
-      "name" : "UserId",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "someone",
-      "required" : false
-    } ],
-    "request" : {
-      "wrapped" : true,
-      "typeRef" : "com.psabackoffice.psa.models.query.PoolLockInactiveMobileRequest",
-      "method" : "PUT"
-    },
-    "response" : {
-      "typeRef" : "java.lang.Integer",
-      "returns" : "PRIMITIVE",
-      "responseType" : "SINGLE"
-    }
-  },
-  "PoolUNLockInactiveMobile" : {
-    "name" : "PoolUNLockInactiveMobile",
-    "description" : "Unlocks all pool accounts locked by current user.",
-    "version" : "V1",
-    "queryString" : "UPDATE `PSA`.`Pool_InactiveMobileAccounts` \nSET `LockedBy`= '0'\nWHERE  LockedBy = :UserId",
-    "countQueryString" : null,
-    "nativeSql" : true,
-    "fetchCount" : false,
-    "type" : "UPDATE",
-    "parameters" : [ {
-      "name" : "UserId",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false
-    } ],
-    "request" : {
-      "wrapped" : true,
-      "typeRef" : "com.psabackoffice.psa.models.query.PoolUnlockInactiveMobileRequest",
-      "method" : "PUT"
-    },
-    "response" : {
-      "typeRef" : "java.lang.Integer",
-      "returns" : "PRIMITIVE",
-      "responseType" : "SINGLE"
-    }
-  },
   "Superintendents" : {
     "name" : "Superintendents",
     "description" : "List of all Superintendents on specified JobNumber",
@@ -2602,6 +2488,7 @@
       "typeRef" : null,
       "method" : "GET"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "com.psabackoffice.psa.models.query.SuperintendentsResponse",
       "returns" : "CUSTOM",
@@ -2667,6 +2554,7 @@
       "typeRef" : "com.psabackoffice.psa.models.query.UpdateChatAllLastReadRequest",
       "method" : "POST"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "java.lang.Integer",
       "returns" : "ENTITY",
@@ -2702,6 +2590,7 @@
       "typeRef" : "com.psabackoffice.psa.models.query.UpdateChatMessageStatusRequest",
       "method" : "PUT"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "java.lang.Integer",
       "returns" : "ENTITY",
@@ -2744,6 +2633,7 @@
       "typeRef" : "com.psabackoffice.psa.models.query.UpdateUserCredsRequest",
       "method" : "PUT"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "java.lang.Integer",
       "returns" : "PRIMITIVE",
@@ -2779,6 +2669,7 @@
       "typeRef" : "com.psabackoffice.psa.models.query.UpdateUserCredsUserNameRequest",
       "method" : "PUT"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "java.lang.Integer",
       "returns" : "PRIMITIVE",
@@ -2789,7 +2680,7 @@
     "name" : "UpdateUserPSA",
     "description" : "Updates the User PSA table with supplied Inputs",
     "version" : "V1",
-    "queryString" : "UPDATE tblUserPSA\nSET \npciEmployeeId = :PerformanceEmployeeId,\nFirstName = :FirstName,\nLastName = :LastName,\nNickname = :Nickname,\nEmail = :Email,\nMobileUser = :MobileUser,\nActive = :ActiveUser,\nLastModifiedBy = :ModifiedBy,\nfk_DisciplineId = :DisciplineId,\nfk_CraftId = :CraftId,\nfk_CraftClassId = :CraftClassId,\nfk_RoleId = :RoleId,\nfk_DefaultJobNumberId = :DefaultJobNumberId\nWHERE ID= :UserID",
+    "queryString" : "UPDATE tblUserPSA\nSET \npciEmployeeId = :PerformanceEmployeeId,\nFirstName = :FirstName,\nLastName = :LastName,\nNickname = :Nickname,\nEmail = :Email,\nActive = :ActiveUser,\nLastModifiedBy = :ModifiedBy,\nfk_DisciplineId = :DisciplineId,\nfk_CraftId = :CraftId,\nfk_CraftClassId = :CraftClassId,\nfk_RoleId = :RoleId,\nfk_DefaultJobNumberId = :DefaultJobNumberId\nWHERE ID= :UserID",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -2828,13 +2719,6 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "no@nope.com",
-      "required" : false
-    }, {
-      "name" : "MobileUser",
-      "type" : "byte",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
       "required" : false
     }, {
       "name" : "ActiveUser",
@@ -2898,9 +2782,10 @@
       "typeRef" : "com.psabackoffice.psa.models.query.UpdateUserPsaRequest",
       "method" : "PUT"
     },
+    "identifiers" : [ ],
     "response" : {
       "typeRef" : "java.lang.Integer",
-      "returns" : "PRIMITIVE",
+      "returns" : "ENTITY",
       "responseType" : "SINGLE"
     }
   }
