@@ -74,6 +74,7 @@ Application.$controller("GoogleOAuthController", ["$scope", function ($scope) {
             if ($scope.loginsuccessmessage) {
                 $scope.Variables.loginSuccess.invoke();
             }
+            Utils.triggerFn($scope.onLoginsuccess);
         } else {
             if ($scope.isInsideIframe) {
                 callbackParams = JSON.stringify({

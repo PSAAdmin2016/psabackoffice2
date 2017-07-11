@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
-
-    <context:component-scan base-package="com.psabackoffice.job1111.controller,com.psabackoffice.job1111.service,com.psabackoffice.job1111.dao"/>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<beans xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd" xmlns="http://www.springframework.org/schema/beans" xmlns:security="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <context:component-scan base-package="com.psabackoffice.job1111.controller,com.psabackoffice.job1111.service,com.psabackoffice.job1111.dao" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"/>
     <bean class="com.wavemaker.runtime.data.spring.WMPropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
@@ -12,29 +11,26 @@
         </property>
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
     </bean>
-    <bean id="Job1111WMManagedDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" depends-on="systemPropertyInitializer" lazy-init="true"
-          p:driverClass="${Job1111.driverClass}"
-          p:jdbcUrl="${Job1111.url}"
-          p:user="${Job1111.username}"
-          p:password="${Job1111.password}"
-          p:maxPoolSize="${Job1111.maxPoolSize}"
-          p:minPoolSize="${Job1111.minPoolSize}"
-          p:maxIdleTime="600"
-          p:maxStatements="50"
-          p:maxStatementsPerConnection="20"
-          p:checkoutTimeout="30000"
-          p:idleConnectionTestPeriod="300"
-          p:unreturnedConnectionTimeout="300"
-          p:debugUnreturnedConnectionStackTraces="true"
-          p:acquireRetryAttempts="3"
-          p:acquireRetryDelay="1000"
-          p:contextClassLoaderSource="library"
-          p:privilegeSpawnedThreads="true"
-            />
-
-    <bean id="Job1111EntityInterceptor" class="com.wavemaker.runtime.data.interceptors.WMEntityInterceptor"/>
-
-    <bean id="Job1111SessionFactory" class="com.wavemaker.runtime.data.factory.TypeResolverSessionFactoryBean">
+    <bean class="com.zaxxer.hikari.HikariConfig" id="Job1111HikariConfig">
+        <property name="jdbcUrl" value="${Job1111.url}"/>
+        <property name="driverClassName" value="${Job1111.driverClass}"/>
+        <property name="username" value="${Job1111.username}"/>
+        <property name="password" value="${Job1111.password}"/>
+        <property name="maximumPoolSize" value="${Job1111.maxPoolSize}"/>
+        <property name="minimumIdle" value="${Job1111.minPoolSize}"/>
+        <property name="connectionTimeout" value="30000"/>
+        <property name="validationTimeout" value="5000"/>
+        <property name="idleTimeout" value="600000"/>
+        <property name="maxLifetime" value="1800000"/>
+        <property name="initializationFailTimeout" value="-1"/>
+        <property name="leakDetectionThreshold" value="120000"/>
+        <property name="registerMbeans" value="false"/>
+    </bean>
+    <bean class="com.zaxxer.hikari.HikariDataSource" lazy-init="true" destroy-method="close" id="Job1111WMManagedDataSource">
+        <constructor-arg ref="Job1111HikariConfig"/>
+    </bean>
+    <bean class="com.wavemaker.runtime.data.interceptors.WMEntityInterceptor" id="Job1111EntityInterceptor"/>
+    <bean class="com.wavemaker.runtime.data.factory.TypeResolverSessionFactoryBean" id="Job1111SessionFactory">
         <property name="dataSource" ref="Job1111DataSource"/>
         <property name="packagesToScan" value="com.psabackoffice.job1111"/>
         <property name="entityInterceptor" ref="Job1111EntityInterceptor"/>
@@ -45,9 +41,8 @@
                 </value>
             </list>
         </property>
-
         <property name="customTypes">
-            <array value-type="com.wavemaker.runtime.data.CustomType">
+            <array value-type="com.wavemaker.runtime.data.CustomType" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context">
                 <ref bean="dateTimeCustomType"/>
             </array>
         </property>
@@ -77,22 +72,21 @@
             </props>
         </property>
     </bean>
-    <bean id="Job1111TransactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+    <bean class="org.springframework.orm.hibernate4.HibernateTransactionManager" id="Job1111TransactionManager">
         <property name="sessionFactory" ref="Job1111SessionFactory"/>
     </bean>
-    <bean id="Job1111Template" class="org.springframework.orm.hibernate4.HibernateTemplate">
+    <bean class="org.springframework.orm.hibernate4.HibernateTemplate" id="Job1111Template">
         <property name="sessionFactory" ref="Job1111SessionFactory"/>
     </bean>
-    <bean id="Job1111WMQueryExecutor" class="com.wavemaker.runtime.data.dao.query.WMQueryExecutorImpl">
+    <bean class="com.wavemaker.runtime.data.dao.query.WMQueryExecutorImpl" id="Job1111WMQueryExecutor">
         <property name="template" ref="Job1111Template"/>
     </bean>
-    <bean id="Job1111WMProcedureExecutor" class="com.wavemaker.runtime.data.dao.procedure.WMProcedureExecutorImpl">
+    <bean class="com.wavemaker.runtime.data.dao.procedure.WMProcedureExecutorImpl" id="Job1111WMProcedureExecutor">
         <property name="template" ref="Job1111Template"/>
-        <property name="serviceId" value="Job1111" />
+        <property name="serviceId" value="Job1111"/>
     </bean>
-
-    <bean id="persistentLocalDateTimeType" class="com.wavemaker.commons.data.type.WMPersistentLocalDateTime"/>
-    <bean id="dateTimeCustomType" class="com.wavemaker.runtime.data.CustomType">
+    <bean class="com.wavemaker.commons.data.type.WMPersistentLocalDateTime" id="persistentLocalDateTimeType"/>
+    <bean class="com.wavemaker.runtime.data.CustomType" id="dateTimeCustomType">
         <property name="type" ref="persistentLocalDateTimeType"/>
         <property name="keys">
             <list>
@@ -101,27 +95,22 @@
             </list>
         </property>
     </bean>
-    <bean id="Job1111PageableHandlerMethodResolver" class="com.wavemaker.runtime.resolver.WMPageableHandlerMethodArgumentResolver" >
+    <bean class="com.wavemaker.runtime.resolver.WMPageableHandlerMethodArgumentResolver" id="Job1111PageableHandlerMethodResolver">
         <property name="pageParameterName" value="page"/>
         <property name="sizeParameterName" value="size"/>
         <property name="oneIndexedParameters" value="true"/>
         <property name="maxPageSize" value="${Job1111.maxPageSize}"/>
         <property name="fallbackPageable">
-            <bean  class="org.springframework.data.domain.PageRequest">
-                <constructor-arg  value="0"/>
-                <constructor-arg  value="20"/>
+            <bean class="org.springframework.data.domain.PageRequest">
+                <constructor-arg value="0"/>
+                <constructor-arg value="20"/>
             </bean>
         </property>
     </bean>
-
-    <bean id="Job1111DataSource" class="com.wavemaker.runtime.data.datasource.WMDataSource">
+    <bean class="com.wavemaker.runtime.data.datasource.WMDataSource" id="Job1111DataSource">
         <property name="dataSourceType" value="${Job1111.dataSourceType}"/>
         <property name="jndiName" value="${Job1111.jndiName}"/>
         <property name="serviceId" value="Job1111"/>
     </bean>
-
-
-    <tx:annotation-driven/>
-
+    <tx:annotation-driven xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"/>
 </beans>
-
