@@ -1142,12 +1142,25 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 2,
+    "bindCount" : 3,
     "tableName" : "REF_Roles",
     "tableType" : "TABLE",
     "properties" : [ ],
     "relatedTables" : [ ],
     "filterFields" : { },
     "package" : "com.psabackoffice.psa.RefRoles"
+  },
+  "staticResetPassword" : {
+    "_id" : "wm-staticResetPassword-wm.Variable-1499882539270",
+    "name" : "staticResetPassword",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : false
+    },
+    "type" : "boolean",
+    "isList" : false,
+    "saveInPhonegap" : false
   }
 }

@@ -23,7 +23,7 @@
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
                         <wm-liveform errormessage="" title="Details" iconclass="wi wi-edit" defaultmode="View" dataset="bind:Variables.liveGetUsers.dataSet" captionalign="left" captionposition="top" formdata="bind:Widgets.gridUser.selecteditem" name="liveformUsers"
-                        class="panel-primary">
+                        class="panel-primary" on-beforeservicecall="liveformUsersBeforeservicecall($event, $operation, $data)">
                             <wm-layoutgrid columns="3" name="layoutgrid2">
                                 <wm-gridrow name="gridrow3">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn3_1">
@@ -38,7 +38,6 @@
                                         <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="short" readonly="false" required="true" step="0" widget="radioset" layout="inline" dataset="bind:Variables.staticYesNo.dataSet"
                                         datafield="value" displayfield="label" placeholder=""></wm-form-field>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="4" name="gridcolumn5"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow4">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn6">
@@ -55,21 +54,18 @@
                                             <wm-grid-row-action key="deleterow" display-name="Remove" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                         </wm-grid>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="4" name="gridcolumn8"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow5">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn9">
                                         <wm-form-field name="lastName" displayname="Last Name" show="true" primary-key="false" generator="assigned" key="lastName" type="string" readonly="false" required="true" widget="text" maxchars="32" inputtype="text"
                                         placeholder="Enter last name..."></wm-form-field>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="4" name="gridcolumn11"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow6">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn12">
                                         <wm-form-field name="nickname" displayname="Nickname" show="true" primary-key="false" generator="assigned" key="nickname" type="string" readonly="false" required="false" widget="text" maxchars="32" inputtype="text"
                                         placeholder="Enter Nick Name if applicable..."></wm-form-field>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="4" name="gridcolumn30"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow7">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn15">
@@ -84,8 +80,8 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow12">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn23">
-                                        <wm-form-field name="refRoles" displayname="Role" show="true" primary-key="false" generator="assigned" key="refRoles" type="list" is-related="true" readonly="false" required="true" widget="select" dataset="bind:Variables.liveREFRolesFILTERED.dataSet"
-                                        datafield="id" displayfield="roleName" placeholder="Select..."></wm-form-field>
+                                        <wm-form-field name="refRoles" displayname="Role" show="true" primary-key="false" generator="assigned" key="refRoles" type="list" is-related="true" readonly="false" widget="select" defaultvalue="bind:Widgets.gridUser.selecteditem.refRoles.id"
+                                        displayexpression="roleName" placeholder="Select value" dataset="bind:Variables.liveREFRolesFILTERED.dataSet" datafield="id" displayfield="roleName"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow13">
@@ -108,6 +104,7 @@
                             <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                             <wm-form-action key="edit" display-name="Modify" show="true" class="form-update btn-secondary" iconclass="wi wi-pencil" title="Modify" action="edit()" shortcutkey="" disabled="false" type="button" update-mode="false"></wm-form-action>
                             <wm-form-action key="new" display-name="New" show="true" class="form-new btn-success" iconclass="wi wi-plus" title="New" action="new()" shortcutkey="" disabled="false" type="button" update-mode="false"></wm-form-action>
+                            <wm-form-action key="custom" display-name="Cancel" show="true" type="button" update-mode="false" shortcutkey="" class="btn-secondary" action="cancel()"></wm-form-action>
                         </wm-liveform>
                     </wm-gridcolumn>
                 </wm-gridrow>
