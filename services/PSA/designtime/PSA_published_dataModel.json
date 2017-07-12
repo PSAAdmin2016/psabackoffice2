@@ -6575,7 +6575,7 @@
         "defaultValue" : null
       },
       "fieldName" : "lastModifiedBy",
-      "foreignKey" : false,
+      "foreignKey" : true,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "javaType" : "integer",
@@ -6583,8 +6583,8 @@
       "name" : "LastModifiedBy",
       "nullable" : true,
       "oldName" : "LastModifiedBy",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
       "partOfUniqueKey" : false,
       "precision" : 10,
@@ -6810,23 +6810,6 @@
       "cardinality" : "ManyToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
-      "fieldName" : "refCraftClasses",
-      "mappings" : [ {
-        "sourceColumn" : "fk_CraftClassId",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "fk_CraftClassTO_REFCraftClass",
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblUserPSA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "REF_CraftClasses",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
       "fieldName" : "refCrafts",
       "mappings" : [ {
         "sourceColumn" : "fk_CraftId",
@@ -6890,6 +6873,40 @@
       "sourceTable" : "tblUserPSA",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "REF_Roles",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "tblUserPsaByLastModifiedBy",
+      "mappings" : [ {
+        "sourceColumn" : "LastModifiedBy",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "fk_LastModifiedBy_to_tblUserPSA",
+      "primary" : true,
+      "selfRelation" : true,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "tblUserPSA",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "tblUserPSA",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "refCraftClasses",
+      "mappings" : [ {
+        "sourceColumn" : "fk_CraftClassId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "fk_CraftClassTO_REFCraftClass",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "tblUserPSA",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "REF_CraftClasses",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
@@ -7128,6 +7145,23 @@
       "sourceTable" : "tblUserPSA",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "tblUserJobNumbers",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "tblUserPsasForLastModifiedBy",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "LastModifiedBy"
+      } ],
+      "name" : "fk_LastModifiedBy_to_tblUserPSA",
+      "primary" : false,
+      "selfRelation" : true,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "tblUserPSA",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "tblUserPSA",
       "virtual" : false
     } ],
     "schema" : null,

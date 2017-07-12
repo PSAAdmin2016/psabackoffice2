@@ -494,6 +494,17 @@
     "dataSet" : [ ],
     "pageTransitions" : "none"
   },
+  "goToPage_ToolsUserManagement2" : {
+    "_id" : "wm-goToPage_ToolsUserManagement2-wm.NavigationVariable-1499869052829",
+    "name" : "goToPage_ToolsUserManagement2",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ ],
+    "operation" : "gotoPage",
+    "pageName" : "ToolsUserManagement2",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
   "goToPage_ToolsUserManagementLanding" : {
     "_id" : "wm-goToPage_ToolsUserManagementLanding-wm.NavigationVariable-1481047104762",
     "name" : "goToPage_ToolsUserManagementLanding",

@@ -290,6 +290,15 @@ public class TblUserPsaController {
         return tblUserPsaService.findAssociatedTblUserJobNumberses(id, pageable);
     }
 
+    @RequestMapping(value="/{id:.+}/tblUserPsasForLastModifiedBy", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the tblUserPsasForLastModifiedBy instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<TblUserPsa> findAssociatedTblUserPsasForLastModifiedBy(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated tblUserPsasForLastModifiedBy");
+        return tblUserPsaService.findAssociatedTblUserPsasForLastModifiedBy(id, pageable);
+    }
+
     /**
 	 * This setter method should only be used by unit tests
 	 *

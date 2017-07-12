@@ -195,6 +195,14 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
                 tblUserJobNumbersService.create(tblUserJobNumberse);
             }
         }
+
+        if(tblUserPsaCreated.getTblUserPsasForLastModifiedBy() != null) {
+            for(TblUserPsa tblUserPsasForLastModifiedBy : tblUserPsaCreated.getTblUserPsasForLastModifiedBy()) {
+                tblUserPsasForLastModifiedBy.setTblUserPsaByLastModifiedBy(tblUserPsaCreated);
+                LOGGER.debug("Creating a new child TblUserPsa with information: {}", tblUserPsasForLastModifiedBy);
+                create(tblUserPsasForLastModifiedBy);
+            }
+        }
         return tblUserPsaCreated;
     }
 
@@ -449,6 +457,17 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
         queryBuilder.append("tblUserPsa.id = '" + id + "'");
 
         return tblUserJobNumbersService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Page<TblUserPsa> findAssociatedTblUserPsasForLastModifiedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated tblUserPsasForLastModifiedBy");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("tblUserPsaByLastModifiedBy.id = '" + id + "'");
+
+        return findAll(queryBuilder.toString(), pageable);
     }
 
     /**

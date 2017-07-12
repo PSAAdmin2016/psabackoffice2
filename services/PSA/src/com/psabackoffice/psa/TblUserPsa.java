@@ -27,6 +27,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -56,11 +57,12 @@ public class TblUserPsa implements Serializable {
     private Integer fkDefaultJobNumberId;
     private short rev;
     private Timestamp timeStamp;
-    private RefCraftClasses refCraftClasses;
     private RefCrafts refCrafts;
     private TblJobNumbers tblJobNumbers;
     private RefDisciplines refDisciplines;
     private RefRoles refRoles;
+    private TblUserPsa tblUserPsaByLastModifiedBy;
+    private RefCraftClasses refCraftClasses;
     private List<ChatConversationMembers> chatConversationMemberses;
     private List<ChatMessages> chatMessageses;
     private List<FeedBack> feedBacks;
@@ -75,6 +77,7 @@ public class TblUserPsa implements Serializable {
     private List<TblCrews> tblCrewsesForGf;
     private TblUserCreds tblUserCreds;
     private List<TblUserJobNumbers> tblUserJobNumberses;
+    private List<TblUserPsa> tblUserPsasForLastModifiedBy;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -223,20 +226,6 @@ public class TblUserPsa implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_CraftClassId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public RefCraftClasses getRefCraftClasses() {
-        return this.refCraftClasses;
-    }
-
-    public void setRefCraftClasses(RefCraftClasses refCraftClasses) {
-        if(refCraftClasses != null) {
-            this.fkCraftClassId = refCraftClasses.getId();
-        }
-
-        this.refCraftClasses = refCraftClasses;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`fk_CraftId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
     public RefCrafts getRefCrafts() {
         return this.refCrafts;
@@ -290,6 +279,36 @@ public class TblUserPsa implements Serializable {
         }
 
         this.refRoles = refRoles;
+    }
+
+    // ignoring self relation properties to avoid circular loops.
+    @JsonIgnoreProperties({"tblUserPsaByLastModifiedBy", "tblUserPsasForLastModifiedBy"})
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`LastModifiedBy`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public TblUserPsa getTblUserPsaByLastModifiedBy() {
+        return this.tblUserPsaByLastModifiedBy;
+    }
+
+    public void setTblUserPsaByLastModifiedBy(TblUserPsa tblUserPsaByLastModifiedBy) {
+        if(tblUserPsaByLastModifiedBy != null) {
+            this.lastModifiedBy = tblUserPsaByLastModifiedBy.getId();
+        }
+
+        this.tblUserPsaByLastModifiedBy = tblUserPsaByLastModifiedBy;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`fk_CraftClassId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public RefCraftClasses getRefCraftClasses() {
+        return this.refCraftClasses;
+    }
+
+    public void setRefCraftClasses(RefCraftClasses refCraftClasses) {
+        if(refCraftClasses != null) {
+            this.fkCraftClassId = refCraftClasses.getId();
+        }
+
+        this.refCraftClasses = refCraftClasses;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -429,6 +448,18 @@ public class TblUserPsa implements Serializable {
 
     public void setTblUserJobNumberses(List<TblUserJobNumbers> tblUserJobNumberses) {
         this.tblUserJobNumberses = tblUserJobNumberses;
+    }
+
+    // ignoring self relation properties to avoid circular loops.
+    @JsonIgnoreProperties({"tblUserPsaByLastModifiedBy", "tblUserPsasForLastModifiedBy"})
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsaByLastModifiedBy")
+    public List<TblUserPsa> getTblUserPsasForLastModifiedBy() {
+        return this.tblUserPsasForLastModifiedBy;
+    }
+
+    public void setTblUserPsasForLastModifiedBy(List<TblUserPsa> tblUserPsasForLastModifiedBy) {
+        this.tblUserPsasForLastModifiedBy = tblUserPsasForLastModifiedBy;
     }
 
     @Override
