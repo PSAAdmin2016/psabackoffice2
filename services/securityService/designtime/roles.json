@@ -143,18 +143,6 @@
     "landingPage" : "Main"
   }
 }, {
-  "name" : "Iron-GF",
-  "description" : null,
-  "roleConfig" : {
-    "landingPage" : "Main"
-  }
-}, {
-  "name" : "Iron-Foreman",
-  "description" : null,
-  "roleConfig" : {
-    "landingPage" : "Main"
-  }
-}, {
   "name" : "Civil-GF",
   "description" : null,
   "roleConfig" : {
@@ -203,18 +191,6 @@
     "landingPage" : "Main"
   }
 }, {
-  "name" : "Iron-Superintendent Staff",
-  "description" : null,
-  "roleConfig" : {
-    "landingPage" : "Main"
-  }
-}, {
-  "name" : "Iron-Superintendent Non-Staff",
-  "description" : null,
-  "roleConfig" : {
-    "landingPage" : "Main"
-  }
-}, {
   "name" : "Civil-Superintendent Staff",
   "description" : null,
   "roleConfig" : {
@@ -234,6 +210,30 @@
   }
 }, {
   "name" : "Millwright-Superintendent Non-Staff",
+  "description" : null,
+  "roleConfig" : {
+    "landingPage" : "Main"
+  }
+}, {
+  "name" : "Steel-Superintendent Staff",
+  "description" : null,
+  "roleConfig" : {
+    "landingPage" : "Main"
+  }
+}, {
+  "name" : "Steel-Superintendent Non-Staff",
+  "description" : null,
+  "roleConfig" : {
+    "landingPage" : "Main"
+  }
+}, {
+  "name" : "Steel-GF",
+  "description" : null,
+  "roleConfig" : {
+    "landingPage" : "Main"
+  }
+}, {
+  "name" : "Steel-Foreman",
   "description" : null,
   "roleConfig" : {
     "landingPage" : "Main"

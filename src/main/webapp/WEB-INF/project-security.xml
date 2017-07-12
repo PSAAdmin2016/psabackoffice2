@@ -4,6 +4,16 @@
     <bean class="com.wavemaker.runtime.security.controller.SecurityController" id="securityController"/>
     <bean class="com.wavemaker.runtime.web.filter.SSLSecureFilter" id="sslSecureFilter"/>
     <bean class="com.wavemaker.runtime.security.xss.filter.WMXSSFilter" id="wmXSSFilter"/>
+    <bean class="com.wavemaker.runtime.security.filter.WMXFrameOptionsHeaderFilter" id="wmXFrameOptionsFilter">
+        <property name="xFrameOptionsMode" value="${general.xFrameOptions.mode}"/>
+        <property name="allowFromUrl" value="${general.xFrameOptions.allowFromUrl}"/>
+    </bean>
+    <bean class="com.wavemaker.runtime.security.filter.WMXContentTypeOptionsFilter" id="wmXContentTypeOptionsFilter"/>
+    <bean class="org.springframework.security.web.FilterChainProxy" id="wmCompositeSecurityFilter">
+        <constructor-arg>
+            <security:filter-chain pattern="/**" filters="sslSecureFilter, wmXSSFilter, wmXFrameOptionsFilter, wmXContentTypeOptionsFilter"/>
+        </constructor-arg>
+    </bean>
     <bean class="com.wavemaker.runtime.data.spring.WMPropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
@@ -22,13 +32,14 @@
         </property>
         <property name="loginConfig" ref="loginConfig"/>
         <property name="rememberMeConfig" ref="rememberMeConfig"/>
+        <property name="tokenAuthConfig" ref="tokenAuthConfig"/>
         <property name="csrfConfig" ref="csrfConfig"/>
         <property name="rolesConfig" ref="rolesConfig"/>
-        <property name="tokenAuthConfig" ref="tokenAuthConfig"/>
     </bean>
     <bean class="com.wavemaker.commons.model.security.SSLConfig" id="sslConfig">
         <property name="useSSL" value="${general.ssl.enabled}"/>
         <property name="sslPort" value="${general.ssl.port}"/>
+        <property name="excludedUrls" value="#{null}"/>
     </bean>
     <bean class="com.wavemaker.commons.model.security.XSSConfig" id="xssConfig">
         <property name="enforceXssSecurity" value="${general.xss.enabled}"/>
@@ -73,7 +84,6 @@
         <security:intercept-url pattern="/services/PSA/TblUserPsa/*" access="isAuthenticated()" method="DELETE"/>
         <security:intercept-url pattern="/services/PSA/queryExecutor/queries/InsertLoginFailure" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/PSA/queryExecutor/queries/InsertLoginSuccess" access="isAuthenticated()" method="POST"/>
-        <security:intercept-url pattern="/services/appenateDeleteUser/invoke/v2/user/**" access="hasAnyRole('ROLE_SuperUser')"/>
         <security:intercept-url pattern="/services/fileImporter/**" access="hasAnyRole('ROLE_SuperUser','ROLE_Site Office-Project Services','ROLE_Corp. Office-Site Admin','ROLE_Corp. Office-Project Services')"/>
         <security:intercept-url pattern="/services/prefabs/**/servicedefs" access="permitAll"/>
         <security:intercept-url pattern="/services/sHA256Encryption/**" access="permitAll"/>
@@ -302,16 +312,6 @@
                         <property name="landingPage" value="Main"/>
                     </bean>
                 </entry>
-                <entry key="Iron-GF">
-                    <bean class="com.wavemaker.commons.model.security.RoleConfig">
-                        <property name="landingPage" value="Main"/>
-                    </bean>
-                </entry>
-                <entry key="Iron-Foreman">
-                    <bean class="com.wavemaker.commons.model.security.RoleConfig">
-                        <property name="landingPage" value="Main"/>
-                    </bean>
-                </entry>
                 <entry key="Civil-GF">
                     <bean class="com.wavemaker.commons.model.security.RoleConfig">
                         <property name="landingPage" value="Main"/>
@@ -352,16 +352,6 @@
                         <property name="landingPage" value="Main"/>
                     </bean>
                 </entry>
-                <entry key="Iron-Superintendent Staff">
-                    <bean class="com.wavemaker.commons.model.security.RoleConfig">
-                        <property name="landingPage" value="Main"/>
-                    </bean>
-                </entry>
-                <entry key="Iron-Superintendent Non-Staff">
-                    <bean class="com.wavemaker.commons.model.security.RoleConfig">
-                        <property name="landingPage" value="Main"/>
-                    </bean>
-                </entry>
                 <entry key="Civil-Superintendent Staff">
                     <bean class="com.wavemaker.commons.model.security.RoleConfig">
                         <property name="landingPage" value="Main"/>
@@ -382,8 +372,33 @@
                         <property name="landingPage" value="Main"/>
                     </bean>
                 </entry>
+                <entry key="Steel-Superintendent Staff">
+                    <bean class="com.wavemaker.commons.model.security.RoleConfig">
+                        <property name="landingPage" value="Main"/>
+                    </bean>
+                </entry>
+                <entry key="Steel-Superintendent Non-Staff">
+                    <bean class="com.wavemaker.commons.model.security.RoleConfig">
+                        <property name="landingPage" value="Main"/>
+                    </bean>
+                </entry>
+                <entry key="Steel-GF">
+                    <bean class="com.wavemaker.commons.model.security.RoleConfig">
+                        <property name="landingPage" value="Main"/>
+                    </bean>
+                </entry>
+                <entry key="Steel-Foreman">
+                    <bean class="com.wavemaker.commons.model.security.RoleConfig">
+                        <property name="landingPage" value="Main"/>
+                    </bean>
+                </entry>
             </map>
         </property>
+    </bean>
+    <bean class="com.wavemaker.commons.model.security.TokenAuthConfig" id="tokenAuthConfig">
+        <property name="enabled" value="${general.tokenService.enabled}"/>
+        <property name="parameter" value="${general.tokenService.parameter}"/>
+        <property name="tokenValiditySeconds" value="${general.tokenService.tokenValiditySeconds}"/>
     </bean>
     <bean class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter" id="WMSecAuthFilter">
         <property name="authenticationSuccessHandler" ref="successHandler"/>
@@ -450,19 +465,5 @@ WHERE Email = :LOGGED_IN_USERNAME</value>
         <property name="authoritiesProvider">
             <ref bean="defaultAuthoritiesProvider"/>
         </property>
-    </bean>
-    <bean class="com.wavemaker.commons.model.security.TokenAuthConfig" id="tokenAuthConfig">
-        <property name="enabled" value="${general.tokenService.enabled}"/>
-        <property name="parameter" value="${general.tokenService.parameter}"/>
-        <property name="tokenValiditySeconds" value="${general.tokenService.tokenValiditySeconds}"/>
-    </bean>
-    <bean class="com.wavemaker.runtime.security.filter.WMXFrameOptionsHeaderFilter" id="wmXFrameOptionsFilter">
-        <property name="xFrameOptionsMode" value="SAMEORIGIN"/>
-    </bean>
-    <bean class="com.wavemaker.runtime.security.filter.WMXContentTypeOptionsFilter" id="wmXContentTypeOptionsFilter"/>
-    <bean class="org.springframework.security.web.FilterChainProxy" id="wmCompositeSecurityFilter">
-        <constructor-arg>
-            <security:filter-chain pattern="/**" filters="sslSecureFilter, wmXSSFilter, wmXFrameOptionsFilter, wmXContentTypeOptionsFilter"/>
-        </constructor-arg>
     </bean>
 </beans>

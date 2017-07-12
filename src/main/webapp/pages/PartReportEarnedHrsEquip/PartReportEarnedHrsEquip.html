@@ -64,7 +64,7 @@
                         <wm-composite captionposition="top" name="composite3">
                             <wm-label class="col-md-3 control-label" caption="Superintendent" name="label5"></wm-label>
                             <wm-container class="col-md-9" name="container3">
-                                <wm-select dataset="bind:Variables.serviceGetSupers.dataSet" datafield="ID" datavalue="bind:Variables.loggedInUser.dataSet.id" displayexpression="bind:$[FirstName] + ' ' + $[LastName] + &quot; - &quot; + $[Email]" disabled="bind:Variables.loggedInUser.dataSet.roles == 'Millwright-Superintendent' || Variables.loggedInUser.dataSet.roles == 'Millwright-GF'"
+                                <wm-select dataset="bind:Variables.serviceGetSupers.dataSet" datafield="ID" datavalue="bind:Variables.loggedInUser.dataSet.id" displayexpression="bind:$[FirstName] + ' ' + $[LastName] + &quot; - &quot; + $[Email]" disabled="bind:Variables.loggedInUser.dataSet.roles == 'Millwright-Superintendent Staff' || Variables.loggedInUser.dataSet.roles == 'Millwright-Superintendent Non-Staff' || Variables.loggedInUser.dataSet.roles == 'Millwright-GF'"
                                 orderby="FirstName:desc" name="selectSuper2"></wm-select>
                             </wm-container>
                         </wm-composite>

@@ -38,10 +38,14 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn8">
                         <wm-grid title="" dataset="bind:Variables.serviceGetEarnedHoursSuper.dataSet.content" navigation="None" spacing="condensed" name="grid1">
                             <wm-grid-column binding="superintendentName" caption="Superintendent" show="true" readonly="undefined"></wm-grid-column>
-                            <wm-grid-column binding="earnedHoursInt1" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval1 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="earnedHoursInt2" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval2 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="earnedHoursInt3" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval3 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="earnedHoursInt4" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval4 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="earnedHoursInt1" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval1 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text"
+                            show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="earnedHoursInt2" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval2 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text"
+                            show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="earnedHoursInt3" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval3 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text"
+                            show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="earnedHoursInt4" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval4 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text"
+                            show="true" readonly="false"></wm-grid-column>
                         </wm-grid>
                     </wm-gridcolumn>
                 </wm-gridrow>
@@ -60,7 +64,7 @@
                         <wm-composite captionposition="top" name="composite3">
                             <wm-label class="col-md-3 control-label" caption="Superintendent" name="label5"></wm-label>
                             <wm-container class="col-md-9" name="container3">
-                                <wm-select dataset="bind:Variables.serviceGetSupers.dataSet" datafield="ID" datavalue="bind:Variables.loggedInUser.dataSet.id" displayexpression="bind:$[FirstName] + ' ' + $[LastName] + &quot; - &quot; + $[Email]" disabled="bind:Variables.loggedInUser.dataSet.roles == 'Civil-Superintendent' || Variables.loggedInUser.dataSet.roles == 'Civil-GF'"
+                                <wm-select dataset="bind:Variables.serviceGetSupers.dataSet" datafield="ID" datavalue="bind:Variables.loggedInUser.dataSet.id" displayexpression="bind:$[FirstName] + ' ' + $[LastName] + &quot; - &quot; + $[Email]" disabled="bind:Variables.loggedInUser.dataSet.roles == 'Civil-Superintendent Staff' || Variables.loggedInUser.dataSet.roles == 'Civil-Superintendent Non-Staff' || Variables.loggedInUser.dataSet.roles == 'Civil-GF'"
                                 orderby="FirstName:desc" name="selectSuper2"></wm-select>
                             </wm-container>
                         </wm-composite>
@@ -84,10 +88,14 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn16">
                         <wm-grid title="" dataset="bind:Variables.serviceGetEarnedHoursCrew.dataSet.content" navigation="None" spacing="condensed" name="grid2">
                             <wm-grid-column binding="CrewForemanName" caption="Crew - Foreman Name" type="string" edit-widget-type="text" searchable="false" show="true" readonly="false">{{row.crewNumber + " - " + row.foremanName}}</wm-grid-column>
-                            <wm-grid-column binding="earnedHoursInt1" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval1 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="earnedHoursInt2" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval2 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="earnedHoursInt3" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval3 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="earnedHoursInt4" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval4 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="earnedHoursInt1" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval1 + ' Day Total'" type="string" formatpattern="numberToString"
+                            fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="earnedHoursInt2" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval2 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text"
+                            show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="earnedHoursInt3" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval3 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text"
+                            show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="earnedHoursInt4" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval4 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text"
+                            show="true" readonly="false"></wm-grid-column>
                         </wm-grid>
                     </wm-gridcolumn>
                 </wm-gridrow>
