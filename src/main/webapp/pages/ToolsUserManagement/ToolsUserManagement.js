@@ -161,10 +161,3 @@ Application.$controller("gridPSAUsersController", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
-
-Application.$controller("liveformUserController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
-]);

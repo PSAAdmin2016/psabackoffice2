@@ -20,7 +20,7 @@ Application.$controller("ToolsUserManagement2PageController", ["$scope", functio
         if ($scope.Variables.staticResetPassword.dataSet.dataValue) {
             $data.tblUserCreds.userId = $data.id;
             $data.tblUserCreds.userName = $data.email;
-            $data.tblUserCreds.password = null;
+            $data.tblUserCreds.password = '';
         } else if (!$scope.Variables.staticResetPassword.dataSet.dataValue) {
             $data.tblUserCreds = null;
         }

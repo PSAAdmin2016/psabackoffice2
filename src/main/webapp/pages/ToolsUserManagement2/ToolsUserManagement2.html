@@ -81,7 +81,7 @@
                                 <wm-gridrow name="gridrow12">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn23">
                                         <wm-form-field name="refRoles" displayname="Role" show="true" primary-key="false" generator="assigned" key="refRoles" type="list" is-related="true" readonly="false" widget="select" defaultvalue="bind:Widgets.gridUser.selecteditem.refRoles.id"
-                                        displayexpression="roleName" placeholder="Select value" dataset="bind:Variables.liveREFRolesFILTERED.dataSet" datafield="id" displayfield="roleName"></wm-form-field>
+                                        placeholder="Select value" displayexpression="roleName" dataset="bind:Variables.liveREFRolesFILTERED.dataSet" datafield="id" displayfield="roleName"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow13">
@@ -104,7 +104,6 @@
                             <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                             <wm-form-action key="edit" display-name="Modify" show="true" class="form-update btn-secondary" iconclass="wi wi-pencil" title="Modify" action="edit()" shortcutkey="" disabled="false" type="button" update-mode="false"></wm-form-action>
                             <wm-form-action key="new" display-name="New" show="true" class="form-new btn-success" iconclass="wi wi-plus" title="New" action="new()" shortcutkey="" disabled="false" type="button" update-mode="false"></wm-form-action>
-                            <wm-form-action key="custom" display-name="Cancel" show="true" type="button" update-mode="false" shortcutkey="" class="btn-secondary" action="cancel()"></wm-form-action>
                         </wm-liveform>
                     </wm-gridcolumn>
                 </wm-gridrow>

@@ -1142,7 +1142,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 3,
+    "bindCount" : 4,
     "tableName" : "REF_Roles",
     "tableType" : "TABLE",
     "properties" : [ ],
