@@ -25,12 +25,7 @@ Application.$controller("ToolsMobileUserManagementPageController", ["$scope", fu
 }]);
 
 
-Application.$controller("gridMobileUsersController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
+
 
 Application.$controller("dialogUpdateMobileUserController", ["$scope",
     function($scope) {

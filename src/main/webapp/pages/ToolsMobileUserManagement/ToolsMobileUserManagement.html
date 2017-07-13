@@ -1,36 +1,24 @@
-<wm-page data-ng-controller="ToolsMobileUserManagementPageController" pagetitle="Tools Mobile User Management" name="page1"> 
- <wm-header content="header" name="header1"></wm-header> 
- <wm-content name="content1"> 
-  <wm-left-panel columnwidth="1" content="leftnavUserManagemen" name="left_panel1"></wm-left-panel> 
-  <wm-page-content columnwidth="11" name="page_content1"> 
-   <wm-layoutgrid name="layoutgrid1" show="true"> 
-    <wm-gridrow name="gridrow1"> 
-     <wm-gridcolumn columnwidth="6" name="gridcolumn1"></wm-gridcolumn> 
-     <wm-gridcolumn columnwidth="6" name="gridcolumn2"></wm-gridcolumn> 
-    </wm-gridrow> 
-    <wm-gridrow name="gridrow4"> 
-     <wm-gridcolumn columnwidth="12" name="gridcolumn7"> 
-      <wm-grid title="Mobile Users" dataset="bind:Variables.serviceGetMobileUsers.dataSet.Users" navigation="Classic" name="gridMobileUsers" spacing="condensed" filtermode="multicolumn" pagesize="100" multiselect="false" showrecordcount="true" height="650px"> 
-       <wm-grid-column binding="Id" caption="Id" type="string" width="5%" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column> 
-       <wm-grid-column binding="FirstName" caption="First Name" type="string" width="10%" readonly="true" show="true"></wm-grid-column> 
-       <wm-grid-column binding="LastName" caption="Last Name" type="string" width="10%" readonly="true" show="true"></wm-grid-column> 
-       <wm-grid-column binding="Email" caption="Email" type="string" width="30%" readonly="true" show="true"></wm-grid-column> 
-       <wm-grid-column binding="Status" caption="Status" type="string" width="10%" readonly="true" show="true" filterwidget="select"></wm-grid-column> 
-       <wm-grid-column binding="CreatedDate" caption="Created Date" type="string" width="12%" readonly="true" datepattern="MM/dd/yyyy" formatpattern="toDate" searchable="false" show="true"></wm-grid-column> 
-       <wm-grid-column binding="LastActivity" caption="Last Activity" type="string" width="13%" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" searchable="false" show="true"></wm-grid-column> 
-       <wm-grid-column binding="customField" caption="Time Since Activity" type="string" width="10%" readonly="true" formatpattern="None" sortable="false" searchable="false" show="true">
-        {{row.LastActivity | timeFromNow}}
-       </wm-grid-column> 
-       <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="4%" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column> 
-       <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.dialogDeleteConfirm.open()" disabled="false"></wm-grid-row-action> 
-      </wm-grid> 
-     </wm-gridcolumn> 
-    </wm-gridrow> 
-   </wm-layoutgrid> 
-  </wm-page-content> 
- </wm-content> 
- <wm-footer content="footer" name="footer1"></wm-footer> 
- <wm-view class="dialog-view" name="viewDeleteConfirm"> 
-  <wm-confirmdialog name="dialogDeleteConfirm" message="bind:'Permanently Delete Mobile user accout?: ' + Widgets.gridMobileUsers.selecteditem.FirstName + &quot; &quot; + Widgets.gridMobileUsers.selecteditem.LastName + &quot; - &quot; + Widgets.gridMobileUsers.selecteditem.Email" oktext="DELETE" on-ok="Variables.serviceDeleteMobileUser.invoke();Widgets.dialogDeleteConfirm.close()"></wm-confirmdialog> 
- </wm-view> 
+<wm-page data-ng-controller="ToolsMobileUserManagementPageController" pagetitle="Tools Mobile User Management" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="1" content="leftnavUserManagemen" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="11" name="page_content1">
+            <wm-layoutgrid name="layoutgrid1" show="true">
+                <wm-gridrow name="gridrow1">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn1">
+                        <wm-label padding="unset 0.5em" name="label1" caption="Under Construction" fontsize="16" fontweight="bold"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn2"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow4">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn7"></wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="viewDeleteConfirm">
+        <wm-confirmdialog name="dialogDeleteConfirm" message="bind:'Permanently Delete Mobile user accout?: ' + Widgets.gridMobileUsers.selecteditem.FirstName + &quot; &quot; + Widgets.gridMobileUsers.selecteditem.LastName + &quot; - &quot; + Widgets.gridMobileUsers.selecteditem.Email"
+        oktext="DELETE" on-ok="Variables.serviceDeleteMobileUser.invoke();Widgets.dialogDeleteConfirm.close()"></wm-confirmdialog>
+    </wm-view>
 </wm-page>

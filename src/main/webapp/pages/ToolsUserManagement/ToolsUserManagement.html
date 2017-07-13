@@ -15,7 +15,7 @@
                             <wm-grid-column binding="fk_DefaultJobNumberId" caption="Job Number" type="string" width="9%" readonly="true" edit-widget-type="text" show="true" filterwidget="autocomplete"></wm-grid-column>
                             <wm-grid-column binding="pciEmployeeId" caption="Performance Employee ID" type="string" width="11%" readonly="true" edit-widget-type="text" sortable="false" show="true" filterwidget="number"></wm-grid-column>
                             <wm-grid-column binding="Active" caption="Active Status" type="string" widget-type="checkbox" width="10%" readonly="true" edit-widget-type="text" show="true" filterwidget="select">
-                                <wm-checkbox scopedatavalue="row['Active']" checkedvalue="1" uncheckedvalue="0" disabled="true" class="checkbox-custom" data-ng-class=""></wm-checkbox>
+                                <wm-checkbox scopedatavalue="row['Active']" checkedvalue="1" uncheckedvalue="0" disabled="{{true}}" class="checkbox-custom" data-ng-class=""></wm-checkbox>
                             </wm-grid-column>
                         </wm-grid>
                     </wm-gridcolumn>
