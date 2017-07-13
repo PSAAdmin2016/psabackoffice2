@@ -15,7 +15,7 @@
                             show="true" filterwidget="autocomplete" related-entity-name="TblJobNumbers"></wm-grid-column>
                             <wm-grid-column binding="pciEmployeeId" caption="Employee ID" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" filterwidget="autocomplete"></wm-grid-column>
                             <wm-grid-column binding="active" caption="Active" type="short" widget-type="checkbox" generator="assigned" readonly="true" edit-widget-type="number" show="true" filterwidget="select">
-                                <wm-checkbox scopedatavalue="row['active']" checkedvalue="1" uncheckedvalue="0" disabled="true" class="checkbox-custom" data-ng-class=""></wm-checkbox>
+                                <wm-checkbox scopedatavalue="row['active']" checkedvalue="1" uncheckedvalue="0" disabled="{{true}}" class="checkbox-custom" data-ng-class=""></wm-checkbox>
                             </wm-grid-column>
                         </wm-grid>
                     </wm-gridcolumn>
@@ -36,7 +36,7 @@
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn27">
                                         <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="short" readonly="false" required="true" step="0" widget="radioset" layout="inline" dataset="bind:Variables.staticYesNo.dataSet"
-                                        datafield="value" displayfield="label" placeholder=""></wm-form-field>
+                                        datafield="value" displayfield="label" placeholder="" viewmodewidget="default"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow4">
