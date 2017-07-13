@@ -6,7 +6,7 @@
             <wm-layoutgrid name="layoutgrid1">
                 <wm-gridrow name="gridrow1">
                     <wm-gridcolumn columnwidth="9" name="gridcolumn1">
-                        <wm-grid title="" dataset="bind:Variables.liveGetUsers.dataSet" navigation="None" name="gridUser" spacing="condensed" filtermode="multicolumn" height="300px">
+                        <wm-grid title="" dataset="bind:Variables.liveGetUsers.dataSet" navigation="None" name="gridUser" spacing="condensed" filtermode="multicolumn" height="300px" on-select="gridUserSelect($event, $scope, $rowData)">
                             <wm-grid-column binding="firstName" caption="First Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" filterwidget="autocomplete"></wm-grid-column>
                             <wm-grid-column binding="lastName" caption="Last Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" filterwidget="autocomplete"></wm-grid-column>
                             <wm-grid-column binding="email" caption="Email" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" filterwidget="autocomplete"></wm-grid-column>
@@ -75,13 +75,13 @@
                                 <wm-gridrow name="gridrow8">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn18">
                                         <wm-form-field name="refDisciplines" displayname="Discipline" show="true" primary-key="false" generator="assigned" key="refDisciplines" type="list" is-related="true" readonly="false" required="true" widget="select"
-                                        placeholder="Select..." datafield="id" displayfield="discipline" displayexpression="discipline"></wm-form-field>
+                                        placeholder="Select..." datafield="id" displayfield="discipline" displayexpression="discipline" on-change="refDisciplinesChange($event, $scope, newVal, oldVal)"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow12">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn23">
                                         <wm-form-field name="refRoles" displayname="Role" show="true" primary-key="false" generator="assigned" key="refRoles" type="list" is-related="true" readonly="false" widget="select" defaultvalue="bind:Widgets.gridUser.selecteditem.refRoles.id"
-                                        placeholder="Select value" displayexpression="roleName" dataset="bind:Variables.liveREFRolesFILTERED.dataSet" datafield="id" displayfield="roleName"></wm-form-field>
+                                        placeholder="Select value" displayexpression="roleName" dataset="bind:Variables.liveREFRolesFILTERED.dataSet" datafield="All Fields" displayfield="roleName"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow13">
@@ -102,7 +102,8 @@
                             <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
                             <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" shortcutkey="" disabled="false" type="button" update-mode="true"></wm-form-action>
                             <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
-                            <wm-form-action key="edit" display-name="Modify" show="true" class="form-update btn-secondary" iconclass="wi wi-pencil" title="Modify" action="edit()" shortcutkey="" disabled="false" type="button" update-mode="false"></wm-form-action>
+                            <wm-form-action key="edit" display-name="Modify" show="true" class="form-update btn-secondary" iconclass="wi wi-pencil" title="Modify" action="edit();editAction($event)" shortcutkey="" disabled="false" type="button"
+                            update-mode="false"></wm-form-action>
                             <wm-form-action key="new" display-name="New" show="true" class="form-new btn-success" iconclass="wi wi-plus" title="New" action="new()" shortcutkey="" disabled="false" type="button" update-mode="false"></wm-form-action>
                         </wm-liveform>
                     </wm-gridcolumn>

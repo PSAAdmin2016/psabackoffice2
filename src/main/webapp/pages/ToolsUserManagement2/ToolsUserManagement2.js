@@ -30,6 +30,35 @@ Application.$controller("ToolsUserManagement2PageController", ["$scope", functio
         //Logic to set 
     };
 
+
+    $scope.gridUserSelect = function($event, $isolateScope, $rowData) {
+
+        var refFilter = $scope.Variables.liveREFRolesFILTERED;
+        refFilter.setFilter("roleName", $rowData.refDisciplines.discipline);
+        refFilter.listRecords();
+
+        if ($scope.Widgets.refRoles_formWidget === undefined) {
+            $scope.Widgets.liveformUsers.formWidgets.refRoles.datavalue = $scope.Widgets.gridUser.selecteditem.refRoles.id;
+        } else {
+            $scope.Widgets.refRoles_formWidget.datavalue = $scope.Widgets.gridUser.selecteditem.refRoles.id;
+        }
+
+
+
+
+
+        /*
+        debugger;
+        $scope.Variables.liveREFRolesFILTERED.listRecords({
+            filterFields: {
+                "roleName": {
+                    "value": $rowData.refDisciplines.discipline
+                }
+            }
+        });
+        */
+    };
+
 }]);
 
 
@@ -48,6 +77,19 @@ Application.$controller("liveformUsersController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.editAction = function($event) {
+            //$scope.Widgets.liveformUsers.formWidgets.refRoles.datavalue = $scope.Widgets.gridUser.selecteditem.refRoles.id;
+            $scope.Widgets.refRoles_formWidget.datavalue = $scope.Widgets.gridUser.selecteditem.refRoles;
+        };
+
+
+        $scope.refDisciplinesChange = function($event, $isolateScope, newVal, oldVal) {
+            var refFilter = $scope.Variables.liveREFRolesFILTERED;
+            refFilter.setFilter("roleName", newVal.discipline);
+            refFilter.listRecords();
+        };
+
     }
 ]);
 

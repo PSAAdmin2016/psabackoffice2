@@ -1092,11 +1092,7 @@
     "name" : "liveREFRolesFILTERED",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ {
-      "target" : "roleName",
-      "value" : "bind:Widgets.liveformUsers.formWidgets.refDisciplines.displayValue",
-      "type" : "string"
-    } ],
+    "dataBinding" : [ ],
     "operation" : "read",
     "dataSet" : [ ],
     "type" : "RefRoles",
@@ -1106,7 +1102,7 @@
     "designMaxResults" : 10,
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
-    "autoUpdate" : true,
+    "autoUpdate" : false,
     "transformationRequired" : false,
     "liveSource" : "PSA",
     "ignoreCase" : true,
