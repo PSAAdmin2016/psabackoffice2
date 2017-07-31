@@ -16,7 +16,12 @@
                             <wm-gridcolumn columnwidth="2" name="gridcolumn30">
                                 <wm-button class="btn-default" caption="Upload/Import" type="button" on-click="Widgets.dialogImport.open()" iconclass="wi wi-file-upload" name="button4"></wm-button>
                             </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="10" name="gridcolumn33"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn33">
+                                <wm-button class="btn-default" caption="Get Import Template" type="button" margin="unset 0.5em" name="buttonGetTemplate1" iconclass="wi wi-file-download" on-click="Variables.FileServiceDownloadFileImportTemplate.invoke()" backgroundcolor="#d7f4e3"></wm-button>
+                                <wm-popover popoverwidth="25%" popoverheight="6%" margin="unset 0.5em" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" width="2%" name="popover9">
+                                    <wm-label padding="unset 0.5em" caption="This downloads an excel spread sheet template with detailed instructions and requirements for creating an import file." color="#000000" fontweight="bold" fontstyle="italic" name="label44"></wm-label>
+                                </wm-popover>
+                            </wm-gridcolumn>
                         </wm-gridrow>
                         <wm-gridrow name="gridrow35">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn66" padding="3% unset unset unset">
@@ -35,8 +40,8 @@
                                     <wm-select name="selectTableNameTrackers" dataset="bind:Variables.liveGetTableChoices.dataSet" datafield="All Fields" displayfield="destinationLabel"></wm-select>
                                 </wm-container>
                                 <wm-popover popoverwidth="25%" popoverheight="6%" margin="unset 0.5em" name="popoverHelp1" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" width="10%">
-                                    <wm-label padding="unset 0.5em" name="label4" caption="All files are uploaded and stored under directories specific to the JobNumber &amp; Table they are imported into.  These files are kept for archival purpose and cannot be deleted."
-                                    color="#000000" fontweight="bold" fontstyle="italic"></wm-label>
+                                    <wm-label padding="unset 0.5em" name="label4" caption="All files are uploaded and stored under directories specific to the JobNumber &amp; Table they are imported into.  These files are kept for archival purpose and cannot be deleted." color="#000000"
+                                    fontweight="bold" fontstyle="italic"></wm-label>
                                 </wm-popover>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="2" name="gridcolumn72">
@@ -76,7 +81,12 @@
                             <wm-gridcolumn columnwidth="2" name="gridcolumn62">
                                 <wm-button class="btn-default" caption="Upload/Import" type="button" on-click="Widgets.dialogImport.open()" iconclass="wi wi-file-upload" name="button5"></wm-button>
                             </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="10" name="gridcolumn63"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn63">
+                                <wm-button class="btn-default" caption="Get Import Template" type="button" margin="unset 0.5em" iconclass="wi wi-file-download" on-click="Variables.FileServiceDownloadFileImportTemplate.invoke()" name="buttonGetTemplate2" backgroundcolor="#d7f4e3"></wm-button>
+                                <wm-popover popoverwidth="25%" popoverheight="6%" margin="unset 0.5em" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" width="2%" name="popover10">
+                                    <wm-label padding="unset 0.5em" caption="This downloads an excel spread sheet template with detailed instructions and requirements for creating an import file." color="#000000" fontweight="bold" fontstyle="italic" name="label45"></wm-label>
+                                </wm-popover>
+                            </wm-gridcolumn>
                         </wm-gridrow>
                         <wm-gridrow name="gridrow38_1">
                             <wm-gridcolumn columnwidth="12" padding="3% unset unset unset" name="gridcolumn64">
@@ -95,8 +105,8 @@
                                     <wm-select dataset="bind:Variables.liveGetTableChoices.dataSet" datafield="All Fields" displayfield="destinationLabel" name="selectTableNameSpools" datavalue="bind:Variables.liveGetTableChoices.dataSet[$i]"></wm-select>
                                 </wm-container>
                                 <wm-popover popoverwidth="25%" popoverheight="6%" margin="unset 0.5em" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" width="10%" name="popover7">
-                                    <wm-label padding="unset 0.5em" caption="All files are uploaded and stored under directories specific to the JobNumber &amp; Table they are imported into.  These files are kept for archival purpose and cannot be deleted."
-                                    color="#000000" fontweight="bold" fontstyle="italic" name="label34"></wm-label>
+                                    <wm-label padding="unset 0.5em" caption="All files are uploaded and stored under directories specific to the JobNumber &amp; Table they are imported into.  These files are kept for archival purpose and cannot be deleted." color="#000000" fontweight="bold"
+                                    fontstyle="italic" name="label34"></wm-label>
                                 </wm-popover>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="2" name="gridcolumn68">
@@ -136,7 +146,12 @@
                             <wm-gridcolumn columnwidth="2" name="gridcolumn78">
                                 <wm-button class="btn-default" caption="Upload/Import" type="button" on-click="Widgets.dialogImport.open()" iconclass="wi wi-file-upload" name="button8"></wm-button>
                             </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="10" name="gridcolumn79"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn79">
+                                <wm-button class="btn-default" caption="Get Import Template" type="button" margin="unset 0.5em" iconclass="wi wi-file-download" on-click="Variables.FileServiceDownloadFileImportTemplate.invoke()" name="buttonGetTemplate3" backgroundcolor="#d7f4e3"></wm-button>
+                                <wm-popover popoverwidth="25%" popoverheight="6%" margin="unset 0.5em" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" width="2%" name="popover11">
+                                    <wm-label padding="unset 0.5em" caption="This downloads an excel spread sheet template with detailed instructions and requirements for creating an import file." color="#000000" fontweight="bold" fontstyle="italic" name="label46"></wm-label>
+                                </wm-popover>
+                            </wm-gridcolumn>
                         </wm-gridrow>
                         <wm-gridrow name="gridrow45">
                             <wm-gridcolumn columnwidth="12" padding="3% unset unset unset" name="gridcolumn80_1">
@@ -155,8 +170,8 @@
                                     <wm-select dataset="bind:Variables.liveGetTableChoices.dataSet" datafield="All Fields" displayfield="destinationLabel" name="selectTableNameQC" datavalue="bind:Variables.liveGetTableChoices.dataSet[$i]"></wm-select>
                                 </wm-container>
                                 <wm-popover popoverwidth="25%" popoverheight="6%" margin="unset 0.5em" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" width="10%" name="popover8">
-                                    <wm-label padding="unset 0.5em" caption="All files are uploaded and stored under directories specific to the JobNumber &amp; Table they are imported into.  These files are kept for archival purpose and cannot be deleted."
-                                    color="#000000" fontweight="bold" fontstyle="italic" name="label38"></wm-label>
+                                    <wm-label padding="unset 0.5em" caption="All files are uploaded and stored under directories specific to the JobNumber &amp; Table they are imported into.  These files are kept for archival purpose and cannot be deleted." color="#000000" fontweight="bold"
+                                    fontstyle="italic" name="label38"></wm-label>
                                 </wm-popover>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="2" name="gridcolumn84">
@@ -258,8 +273,8 @@
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="1" name="gridcolumn50">
                                                             <wm-popover popoverwidth="25%" margin="unset 0.5em" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" name="popover2" title="">
-                                                                <wm-label padding="unset 0.5em" caption="Installed quantities should only be imported when importing a tracker the very first time.  Also only from a job that was previously being tracked in an Excel Tracker.  (Not tracked in PSA) "
-                                                                color="#000000" fontweight="bold" fontstyle="italic" name="label22"></wm-label>
+                                                                <wm-label padding="unset 0.5em" caption="Installed quantities should only be imported when importing a tracker the very first time.  Also only from a job that was previously being tracked in an Excel Tracker.  (Not tracked in PSA) " color="#000000" fontweight="bold"
+                                                                fontstyle="italic" name="label22"></wm-label>
                                                             </wm-popover>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="8" name="gridcolumn47" horizontalalign="left">
@@ -380,8 +395,7 @@
                                                         <wm-gridcolumn columnwidth="6" name="gridcolumn57">
                                                             <wm-label class="col-md-3 control-label" caption="Total Modified Rows" color="#000000" fontweight="bold" fontsize="14" width="60%" name="label11"></wm-label>
                                                             <wm-popover popoverwidth="25%" margin="unset 0.5em" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" title="" name="popover4">
-                                                                <wm-label padding="unset 0.5em" caption="Number of rows in New Import with IDs matching in the previous import, BUT New import has different values in one or more of the other fields. " color="#000000"
-                                                                fontweight="bold" fontstyle="italic" name="label24"></wm-label>
+                                                                <wm-label padding="unset 0.5em" caption="Number of rows in New Import with IDs matching in the previous import, BUT New import has different values in one or more of the other fields. " color="#000000" fontweight="bold" fontstyle="italic" name="label24"></wm-label>
                                                             </wm-popover>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="6" name="gridcolumn58">
@@ -401,8 +415,7 @@
                                                         <wm-gridcolumn columnwidth="6" name="gridcolumn59">
                                                             <wm-label class="col-md-3 control-label" caption="Hours Delta" color="#000000" fontweight="bold" fontsize="14" width="60%" name="label12" hint="Difference between total hours of tracker already imported, and this tracker. (If Applicable)"></wm-label>
                                                             <wm-popover popoverwidth="25%" margin="unset 0.5em" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="right" color="#0069ff" title="" name="popover3">
-                                                                <wm-label padding="unset 0.5em" caption="Difference in estimated hours the NEW Tracker has compared to the already imported Tracker  (NewTracker - PreviouslyImportedTracker = HoursDelta)." color="#000000"
-                                                                fontweight="bold" fontstyle="italic" name="label23"></wm-label>
+                                                                <wm-label padding="unset 0.5em" caption="Difference in estimated hours the NEW Tracker has compared to the already imported Tracker  (NewTracker - PreviouslyImportedTracker = HoursDelta)." color="#000000" fontweight="bold" fontstyle="italic" name="label23"></wm-label>
                                                             </wm-popover>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="6" name="gridcolumn60">
