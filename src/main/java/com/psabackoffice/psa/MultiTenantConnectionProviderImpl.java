@@ -5,15 +5,20 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.io.IOUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider;
 import org.hibernate.service.spi.Stoppable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 public class MultiTenantConnectionProviderImpl implements MultiTenantConnectionProvider, Stoppable {
 
     private DataSource dataSource;
+    
+    private static final Logger logger = LoggerFactory.getLogger(MultiTenantConnectionProviderImpl.class);
 
     @Override
     public Connection getAnyConnection() throws SQLException {
@@ -26,15 +31,20 @@ public class MultiTenantConnectionProviderImpl implements MultiTenantConnectionP
     }
 
     @Override
-    public Connection getConnection(String tenantId) throws SQLException {
+ public Connection getConnection(String tenantId) throws SQLException {
         final Connection connection = getAnyConnection();
         try {
             connection.createStatement().execute("USE " + getTenantDatabaseName(tenantId));
-            System.out.println("Schema switched to: " + getTenantDatabaseName(tenantId));
+            logger.info("Schema switched to {} ", getTenantDatabaseName(tenantId));
+            return connection;
         } catch (SQLException e) {
+            try {
+                connection.close();
+            } catch (Exception e1) {
+                logger.warn("Failed to close connection", e1);
+            }
             throw new HibernateException("Could not alter JDBC connection to specified schema [" + tenantId + "]",e);
         }
-        return connection;
     }
 
     private String getTenantDatabaseName(String tenantId) {

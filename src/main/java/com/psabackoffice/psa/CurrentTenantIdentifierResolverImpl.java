@@ -1,12 +1,13 @@
 package com.psabackoffice.psa;
 
-import com.psabackoffice.psa.TblUserPsa;
-import com.psabackoffice.psa.service.TblUserPsaService;
-import com.wavemaker.runtime.security.SecurityService;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.wavemaker.runtime.security.SecurityService;
+
+import com.psabackoffice.psa.TblUserPsa;
+import com.psabackoffice.psa.service.TblUserPsaService;
 
 public class CurrentTenantIdentifierResolverImpl implements CurrentTenantIdentifierResolver {
 
@@ -24,21 +25,22 @@ public class CurrentTenantIdentifierResolverImpl implements CurrentTenantIdentif
     public String resolveCurrentTenantIdentifier() {
         final String jobNumber = TenantIdFilter.getJobNumber();
         if (StringUtils.isNotBlank(jobNumber)) {
-            logger.info("CurrentTenantIdentifierResolverImpl.resolveCurrentTenantIdentifier: jobNumber {}", jobNumber);
+            logger.info("CurrentTenantIdentifierResolverImpl.resolveCurrentTenantIdentifier: jobNumber {}:", jobNumber);
             return getUpdatedJobNumber(jobNumber);
         } else {
-            logger.info("JobNumber not found");
             boolean authenticated = securityService.isAuthenticated();
+            logger.info("JobNumber not found in HTTP request.  Authenticated User check response: " + authenticated);
+            
             if (authenticated) {
-                // Multi-tenancy logic goes here, based on
-                // user's JOB_ID field from PSA table
                 String userID = securityService.getUserId();
                 logger.info("CurrentTenantIdentifierResolverImpl.resolveCurrentTenantIdentifier: found User ID: " + userID);
                 final TblUserPsa tblUserPsa = tblUserPsaService.findById(Integer.parseInt(userID));
-                //return getUpdatedJobNumber(String.valueOf(tblUserPsa.getTblJobNumbers().getJobNumber()));
-                return getUpdatedJobNumber(String.valueOf(tblUserPsa.getFkDefaultJobNumberId()));
+                String updatedJobNumber = getUpdatedJobNumber(String.valueOf(tblUserPsa.getFkDefaultJobNumberId()));
+                logger.info("Returning Job Number {} for User ID {} ", updatedJobNumber, userID);
+                return updatedJobNumber;
             }
-            return DEFAULT_SCHEMA;
+            //return DEFAULT_SCHEMA;
+            throw new RuntimeException("Cannot resolve current tenantId for unauthenticated user.");
         }
     }
 
