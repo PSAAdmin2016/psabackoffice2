@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface LandingTrackerEquipService {
      * @param landingTrackerEquip Details of the LandingTrackerEquip to be created; value cannot be null.
      * @return The newly created LandingTrackerEquip.
      */
-	LandingTrackerEquip create(LandingTrackerEquip landingTrackerEquip);
+	LandingTrackerEquip create(@Valid LandingTrackerEquip landingTrackerEquip);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface LandingTrackerEquipService {
 	 * @return The updated LandingTrackerEquip.
 	 * @throws EntityNotFoundException if no LandingTrackerEquip is found with given input.
 	 */
-	LandingTrackerEquip update(LandingTrackerEquip landingTrackerEquip) throws EntityNotFoundException;
+	LandingTrackerEquip update(@Valid LandingTrackerEquip landingTrackerEquip) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing LandingTrackerEquip with the given id.

@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.job1111.CivilMisc;
  * @see CivilMisc
  */
 @Service("Job1111.CivilMiscService")
+@Validated
 public class CivilMiscServiceImpl implements CivilMiscService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CivilMiscServiceImpl.class);
@@ -49,6 +51,7 @@ public class CivilMiscServiceImpl implements CivilMiscService {
     @Override
 	public CivilMisc create(CivilMisc civilMisc) {
         LOGGER.debug("Creating a new CivilMisc with information: {}", civilMisc);
+
         CivilMisc civilMiscCreated = this.wmGenericDao.create(civilMisc);
         return civilMiscCreated;
     }
@@ -79,7 +82,7 @@ public class CivilMiscServiceImpl implements CivilMiscService {
         LOGGER.debug("Updating CivilMisc with information: {}", civilMisc);
         this.wmGenericDao.update(civilMisc);
 
-        Integer civilmiscId = civilMisc.getActivityId();
+        Integer civilmiscId = civilMisc.getId();
 
         return this.wmGenericDao.findById(civilmiscId);
     }

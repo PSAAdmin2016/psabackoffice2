@@ -9,7 +9,7 @@ a.google-login-btn .anchor-caption:not(:empty) {
 }
 </style>
 <script id="Main.js">
-Application.$controller("GoogleOAuthController", ["$scope", function ($scope) {
+Application.$controller("GoogleOAuthController", ["$scope", "Utils", function ($scope, Utils) {
     "use strict";
     var LOGIN_MODE = {
             'AUTOMATIC': "auto"
@@ -251,9 +251,9 @@ var _MainPage_Variables_ ={
 }
 </script>
 <script id="Main.html" type="text/ng-template">
-<wm-page name="page1" data-ng-controller="GoogleOAuthController">
-    <wm-content name="view1">
-        <wm-anchor on-click="signInButtonClick($event, $scope)" ng-class="buttonclass" caption="bind:buttoncaption" type="button" name="signInButton" iconclass="fa fa-google" show="true" class="btn google-login-btn"></wm-anchor>
-    </wm-content>
+<wm-page name="page1" data-ng-controller="GoogleOAuthController"> 
+    <wm-content name="view1"> 
+        <wm-anchor on-click="signInButtonClick($event, $scope)" ng-class="buttonclass" caption="bind:buttoncaption" type="button" name="signInButton" iconclass="fa fa-google" show="true" class="btn google-login-btn"></wm-anchor> 
+    </wm-content> 
 </wm-page>
 </script>

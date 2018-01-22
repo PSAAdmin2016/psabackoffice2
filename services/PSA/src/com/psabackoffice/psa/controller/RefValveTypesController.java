@@ -52,9 +52,9 @@ public class RefValveTypesController {
 	private RefValveTypesService refValveTypesService;
 
 	@ApiOperation(value = "Creates a new RefValveTypes instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefValveTypes createRefValveTypes(@RequestBody RefValveTypes refValveTypes) {
+    public RefValveTypes createRefValveTypes(@RequestBody RefValveTypes refValveTypes) {
 		LOGGER.debug("Create RefValveTypes with information: {}" , refValveTypes);
 
 		refValveTypes = refValveTypesService.create(refValveTypes);
@@ -62,7 +62,6 @@ public class RefValveTypesController {
 
 	    return refValveTypes;
 	}
-
 
     @ApiOperation(value = "Returns the RefValveTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

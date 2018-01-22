@@ -1,26 +1,25 @@
-<wm-partial data-ng-controller="leftnavPSAToolsPageController" type="leftnav" name="partial1">
-    <wm-nav type="pills" layout="stacked" name="nav1">
-        <wm-nav-item name="nav_item1">
-            <wm-anchor caption="Home" iconclass="glyphicon glyphicon-home" class="active" name="anchor1" on-click="Variables.goToPage_Main.invoke()"></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="nav_item7">
-            <wm-anchor name="anchor7" iconclass="fa fa-institution" caption="Create Job DB" on-click="Variables.goToPage_ToolsJobNumberManagement.invoke()"></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="nav_item3">
-            <wm-anchor name="anchor3" iconclass="fa fa-file-excel-o" caption="Import/Export Data" on-click="Variables.goToPage_ToolsImportExport.invoke()"></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="nav_item2">
-            <wm-anchor caption="User &amp; Crew Management" iconclass="fa fa-users" on-click="Variables.goToPage_ToolsUserManagementLanding.invoke()" name="anchor2" accessroles="1,SiteAdmin,SuperUser,CorporateOffice,ProjectServices,Site Admin,Project Services,Construction Manager,Director,Site Manager,Safety-Site Manager,Safety-Regional Manager,Safety-Corporate Manager,Regional Manager,QC-Corporate Manager,QC-Regional,QC-Site Manager Manager,Site Office-Project Services,Corp. Office-Project Services,Corp. Office-Site Admin"
-            hint="Manage users and permissions."></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="nav_item6">
-            <wm-anchor name="anchor6" iconclass="fa fa-table" caption="Bid Editor" on-click="Variables.goToPage_BidEditorLanding.invoke()"></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="nav_item4" accessroles="Corp. Office-Site Admin,SuperUser">
-            <wm-anchor name="anchor4" iconclass="wi wi-help-outline" caption="Help Menu Videos" on-click="Variables.goToPage_ToolsHelpMenuVideos.invoke()" accessroles="SuperUser,Corp. Office-Site Admin"></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="nav_item5" accessroles="SuperUser">
-            <wm-anchor caption="Feedback Review" on-click="Variables.goToPage_ToolsFeedBackReview.invoke()" name="anchor5" iconclass="fa fa-bullhorn" accessroles="SuperUser"></wm-anchor>
-        </wm-nav-item>
-    </wm-nav>
+<wm-partial data-ng-controller="leftnavPSAToolsPageController" type="leftnav" name="partial1"> 
+    <wm-nav type="pills" layout="stacked" name="nav1"> 
+        <wm-nav-item name="nav_item1"> 
+            <wm-anchor caption="Home" iconclass="glyphicon glyphicon-home" class="active" name="anchor1" on-click="Variables.goToPage_Main.invoke()"></wm-anchor> 
+        </wm-nav-item> 
+        <wm-nav-item name="nav_item7"> 
+            <wm-anchor name="anchor7" iconclass="fa fa-institution" caption="Create Job DB" on-click="Variables.goToPage_ToolsJobNumberManagement.invoke()"></wm-anchor> 
+        </wm-nav-item> 
+        <wm-nav-item name="nav_item3"> 
+            <wm-anchor name="anchor3" iconclass="fa fa-file-excel-o" caption="Import/Export Data" on-click="Variables.goToPage_ToolsImportExport.invoke()"></wm-anchor> 
+        </wm-nav-item> 
+        <wm-nav-item name="nav_item2"> 
+            <wm-anchor caption="User &amp; Crew Management" iconclass="fa fa-users" on-click="Variables.goToPage_ToolsUserManagementLanding.invoke()" name="anchor2" accessroles="1,SiteAdmin,SuperUser,CorporateOffice,ProjectServices,Site Admin,Project Services,Construction Manager,Director,Site Manager,Safety-Site Manager,Safety-Regional Manager,Safety-Corporate Manager,Regional Manager,QC-Corporate Manager,QC-Regional,QC-Site Manager Manager,Site Office-Project Services,Corp. Office-Project Services,Corp. Office-Site Admin" hint="Manage users and permissions."></wm-anchor> 
+        </wm-nav-item> 
+        <wm-nav-item name="nav_item6"> 
+            <wm-anchor name="anchor6" iconclass="fa fa-table" caption="Bid Editor" on-click="Variables.goToPage_BidEditorLanding.invoke()"></wm-anchor> 
+        </wm-nav-item> 
+        <wm-nav-item name="nav_item4" accessroles="Corp. Office-Site Admin,SuperUser"> 
+            <wm-anchor name="anchor4" iconclass="wi wi-help-outline" caption="Help Menu Videos" on-click="Variables.goToPage_ToolsHelpMenuVideos.invoke()" accessroles="SuperUser,Corp. Office-Site Admin"></wm-anchor> 
+        </wm-nav-item> 
+        <wm-nav-item name="nav_item5" accessroles="SuperUser"> 
+            <wm-anchor caption="Feedback Review" on-click="Variables.goToPage_ToolsFeedBackReview.invoke()" name="anchor5" iconclass="fa fa-bullhorn" accessroles="SuperUser"></wm-anchor> 
+        </wm-nav-item> 
+    </wm-nav> 
 </wm-partial>

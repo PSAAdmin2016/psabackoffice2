@@ -52,9 +52,9 @@ public class RefWeldTypesController {
 	private RefWeldTypesService refWeldTypesService;
 
 	@ApiOperation(value = "Creates a new RefWeldTypes instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefWeldTypes createRefWeldTypes(@RequestBody RefWeldTypes refWeldTypes) {
+    public RefWeldTypes createRefWeldTypes(@RequestBody RefWeldTypes refWeldTypes) {
 		LOGGER.debug("Create RefWeldTypes with information: {}" , refWeldTypes);
 
 		refWeldTypes = refWeldTypesService.create(refWeldTypes);
@@ -62,7 +62,6 @@ public class RefWeldTypesController {
 
 	    return refWeldTypes;
 	}
-
 
     @ApiOperation(value = "Returns the RefWeldTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

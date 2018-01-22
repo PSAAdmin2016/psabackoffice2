@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.job1111.SteelSellPackage;
  * @see SteelSellPackage
  */
 @Service("Job1111.SteelSellPackageService")
+@Validated
 public class SteelSellPackageServiceImpl implements SteelSellPackageService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SteelSellPackageServiceImpl.class);
@@ -49,6 +51,7 @@ public class SteelSellPackageServiceImpl implements SteelSellPackageService {
     @Override
 	public SteelSellPackage create(SteelSellPackage steelSellPackage) {
         LOGGER.debug("Creating a new SteelSellPackage with information: {}", steelSellPackage);
+
         SteelSellPackage steelSellPackageCreated = this.wmGenericDao.create(steelSellPackage);
         return steelSellPackageCreated;
     }
@@ -79,7 +82,7 @@ public class SteelSellPackageServiceImpl implements SteelSellPackageService {
         LOGGER.debug("Updating SteelSellPackage with information: {}", steelSellPackage);
         this.wmGenericDao.update(steelSellPackage);
 
-        Integer steelsellpackageId = steelSellPackage.getActivityId();
+        Integer steelsellpackageId = steelSellPackage.getId();
 
         return this.wmGenericDao.findById(steelsellpackageId);
     }

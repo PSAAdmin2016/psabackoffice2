@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface ChatMessagesService {
      * @param chatMessages Details of the ChatMessages to be created; value cannot be null.
      * @return The newly created ChatMessages.
      */
-	ChatMessages create(ChatMessages chatMessages);
+	ChatMessages create(@Valid ChatMessages chatMessages);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface ChatMessagesService {
 	 * @return The updated ChatMessages.
 	 * @throws EntityNotFoundException if no ChatMessages is found with given input.
 	 */
-	ChatMessages update(ChatMessages chatMessages) throws EntityNotFoundException;
+	ChatMessages update(@Valid ChatMessages chatMessages) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing ChatMessages with the given id.

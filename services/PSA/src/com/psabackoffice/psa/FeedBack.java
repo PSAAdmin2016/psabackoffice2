@@ -14,6 +14,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -112,7 +113,7 @@ public class FeedBack implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_FeedBackType`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    @JoinColumn(name = "`fk_FeedBackType`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_FeedBackType_FeedBackTypes`"))
     public RefFbTypes getRefFbTypes() {
         return this.refFbTypes;
     }
@@ -126,7 +127,7 @@ public class FeedBack implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_Status`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    @JoinColumn(name = "`fk_Status`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_Status_Statuses`"))
     public RefFbStatuses getRefFbStatuses() {
         return this.refFbStatuses;
     }
@@ -140,7 +141,7 @@ public class FeedBack implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_UserID`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    @JoinColumn(name = "`fk_UserID`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_UserID_UserID`"))
     public TblUserPsa getTblUserPsa() {
         return this.tblUserPsa;
     }
@@ -154,7 +155,7 @@ public class FeedBack implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_Severity`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    @JoinColumn(name = "`fk_Severity`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_ErrorSeverity_ErrorSeverity`"))
     public RefFbSeverity getRefFbSeverity() {
         return this.refFbSeverity;
     }
@@ -168,7 +169,7 @@ public class FeedBack implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_FBSubType`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    @JoinColumn(name = "`fk_FBSubType`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_ChangeType_ChangeType`"))
     public RefFbSubTypes getRefFbSubTypes() {
         return this.refFbSubTypes;
     }

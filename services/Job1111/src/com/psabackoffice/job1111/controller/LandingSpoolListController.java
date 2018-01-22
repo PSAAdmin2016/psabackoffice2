@@ -52,9 +52,9 @@ public class LandingSpoolListController {
 	private LandingSpoolListService landingSpoolListService;
 
 	@ApiOperation(value = "Creates a new LandingSpoolList instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public LandingSpoolList createLandingSpoolList(@RequestBody LandingSpoolList landingSpoolList) {
+    public LandingSpoolList createLandingSpoolList(@RequestBody LandingSpoolList landingSpoolList) {
 		LOGGER.debug("Create LandingSpoolList with information: {}" , landingSpoolList);
 
 		landingSpoolList = landingSpoolListService.create(landingSpoolList);
@@ -62,7 +62,6 @@ public class LandingSpoolListController {
 
 	    return landingSpoolList;
 	}
-
 
     @ApiOperation(value = "Returns the LandingSpoolList instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

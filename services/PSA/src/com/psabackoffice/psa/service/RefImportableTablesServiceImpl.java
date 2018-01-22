@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.psa.RefImportableTables;
  * @see RefImportableTables
  */
 @Service("PSA.RefImportableTablesService")
+@Validated
 public class RefImportableTablesServiceImpl implements RefImportableTablesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RefImportableTablesServiceImpl.class);
@@ -49,6 +51,7 @@ public class RefImportableTablesServiceImpl implements RefImportableTablesServic
     @Override
 	public RefImportableTables create(RefImportableTables refImportableTables) {
         LOGGER.debug("Creating a new RefImportableTables with information: {}", refImportableTables);
+
         RefImportableTables refImportableTablesCreated = this.wmGenericDao.create(refImportableTables);
         return refImportableTablesCreated;
     }

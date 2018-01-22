@@ -1,17 +1,17 @@
-<wm-page data-ng-controller="DashProgressJobPageController" pagetitle="Dash Progress Job" name="page1">
-    <wm-header content="header" name="header1"></wm-header>
-    <wm-content name="content1">
-        <wm-left-panel columnwidth="1" content="leftnavDashboard" name="left_panel1"></wm-left-panel>
-        <wm-page-content columnwidth="11" name="page_content1">
-            <wm-layoutgrid name="layoutgrid2">
-                <wm-gridrow name="gridrow4">
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn4">
-                        <wm-label caption="Percent Complete (Job)" fontweight="bold" fontsize="18" name="label2" width="100%"></wm-label>
-                        <wm-label padding="0em 0em unset 0.5em" name="label40_1" caption="bind:&quot;Total Hours: &quot;" margin="unset 0px unset unset" fontweight="bold"></wm-label>
+<wm-page data-ng-controller="DashProgressJobPageController" pagetitle="Dash Progress Job" name="page1"> 
+    <wm-header content="header" name="header1"></wm-header> 
+    <wm-content name="content1"> 
+        <wm-left-panel columnwidth="1" content="leftnavDashboard" name="left_panel1"></wm-left-panel> 
+        <wm-page-content columnwidth="11" name="page_content1"> 
+            <wm-layoutgrid name="layoutgrid2"> 
+                <wm-gridrow name="gridrow4"> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn4"> 
+                        <wm-label caption="Percent Complete (Job)" fontweight="bold" fontsize="18" name="label2" width="100%"></wm-label> 
+                        <wm-label padding="0em 0em unset 0.5em" name="label40_1" caption="bind:&quot;Total Hours: &quot;" margin="unset 0px unset unset" fontweight="bold"></wm-label> 
                         <wm-label padding="0em unset unset unset" caption="bind:Variables.serviceGetStatsPipe.firstRecord.content[0].HoursTesting + Variables.serviceGetStatsPipe.firstRecord.content[0].HoursALLMech + Variables.serviceGetStatsSteel.firstRecord.content[0].HoursAll + Variables.serviceGetStatsCivil.firstRecord.content[0].HoursAllCivil + Variables.serviceGetStatsCivil.firstRecord.content[0].HoursSellPunch + Variables.serviceGetStatsEquip.dataSet.content[0].hoursAll | toNumber: '2'
-" name="label41"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="10" name="gridcolumn8">
+" name="label41"></wm-label> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="10" name="gridcolumn8"> 
                         <wm-progress maxvalue="100" pollinterval="1000" height="30px" type="success-striped" hint="Over All Job Progress" datavalue="bind:(Variables.serviceGetStatsPipe.firstRecord.content[0].EarnedALLMech + 
 
 Variables.serviceGetStatsPipe.firstRecord.content[0].EarnedTestingHours + 
@@ -38,134 +38,128 @@ Variables.serviceGetStatsCivil.firstRecord.content[0].HoursSellPunch +
 
 Variables.serviceGetStatsEquip.dataSet.content[0].hoursAll
 
-) * 100 | toNumber: '3'" margin=".75% unset 0% unset" captionplacement="inside" displayformat="percentage" class="custom-progress" name="progress1"></wm-progress>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow4_1">
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn7">
-                        <wm-tile backgroundcolor="#be7700" margin="7% 1% unset 1%" width="99%" name="tile1">
-                            <wm-layoutgrid horizontalalign="center" height="100%" name="layoutgrid2_1">
-                                <wm-gridrow name="gridrow5">
-                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn11">
-                                        <wm-label width="100%" caption="Civil" class="text-uppercase h4" textdecoration="underline" margin="unset unset 0em unset" color="#000000" fontweight="bold" name="label5"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow6">
-                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn13">
-                                        <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label7"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow7">
-                                    <wm-gridcolumn columnwidth="12" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn15">
+) * 100 | toNumber: '3'" margin=".75% unset 0% unset" captionplacement="inside" displayformat="percentage" class="custom-progress" name="progress1"></wm-progress> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow4_1"> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn7"> 
+                        <wm-tile backgroundcolor="#be7700" margin="7% 1% unset 1%" width="99%" name="tile1"> 
+                            <wm-layoutgrid horizontalalign="center" height="100%" name="layoutgrid2_1"> 
+                                <wm-gridrow name="gridrow5"> 
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn11"> 
+                                        <wm-label width="100%" caption="Civil" class="text-uppercase h4" textdecoration="underline" margin="unset unset 0em unset" color="#000000" fontweight="bold" name="label5"></wm-label> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                                <wm-gridrow name="gridrow6"> 
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn13"> 
+                                        <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label7"></wm-label> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                                <wm-gridrow name="gridrow7"> 
+                                    <wm-gridcolumn columnwidth="12" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn15"> 
                                         <wm-label width="100%" caption="bind:Variables.serviceGetStatsCivil.firstRecord.content[$i].HoursAllCivil + Variables.serviceGetStatsCivil.firstRecord.content[$i].HoursSellPunch | numberToString: '2'
-" class="h5" fontweight="bold" margin="0px unset" name="label9" color="#000000"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow horizontalalign="center" name="gridrow8">
-                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn17">
-                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: (Variables.serviceGetStatsCivil.firstRecord.content[0].RemainingAllCivilHours) },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: Variables.serviceGetStatsCivil.firstRecord.content[0].EarnedAllCivilHours + Variables.serviceGetStatsCivil.firstRecord.content[0].EarnedSellPunchHours }]);"
-                                        xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart2"></wm-chart>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                            </wm-layoutgrid>
-                        </wm-tile>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn8_1">
-                        <wm-tile backgroundcolor="#00be69" margin="7% 1% unset 1%" width="99%" name="tile2">
-                            <wm-layoutgrid horizontalalign="center" height="100%" name="layoutgrid3">
-                                <wm-gridrow name="gridrow10">
-                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn17_1">
-                                        <wm-label width="100%" caption="EQUIPMENT" class="text-uppercase h4" textdecoration="underline" margin="unset unset 0em unset" color="#000000" fontweight="bold" name="label8"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow11">
-                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn18">
-                                        <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label9_1"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow12">
-                                    <wm-gridcolumn columnwidth="12" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn19">
-                                        <wm-label width="100%" caption="bind:Variables.serviceGetStatsEquip.dataSet.content[0].hoursAll | numberToString: '2'" class="h5" fontweight="bold" margin="0px unset" name="label10" color="#000000"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow horizontalalign="center" name="gridrow13">
-                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn20">
+" class="h5" fontweight="bold" margin="0px unset" name="label9" color="#000000"></wm-label> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                                <wm-gridrow horizontalalign="center" name="gridrow8"> 
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn17"> 
+                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: (Variables.serviceGetStatsCivil.firstRecord.content[0].RemainingAllCivilHours) },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: Variables.serviceGetStatsCivil.firstRecord.content[0].EarnedAllCivilHours + Variables.serviceGetStatsCivil.firstRecord.content[0].EarnedSellPunchHours }]);" xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart2"></wm-chart> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                            </wm-layoutgrid> 
+                        </wm-tile> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn8_1"> 
+                        <wm-tile backgroundcolor="#00be69" margin="7% 1% unset 1%" width="99%" name="tile2"> 
+                            <wm-layoutgrid horizontalalign="center" height="100%" name="layoutgrid3"> 
+                                <wm-gridrow name="gridrow10"> 
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn17_1"> 
+                                        <wm-label width="100%" caption="EQUIPMENT" class="text-uppercase h4" textdecoration="underline" margin="unset unset 0em unset" color="#000000" fontweight="bold" name="label8"></wm-label> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                                <wm-gridrow name="gridrow11"> 
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn18"> 
+                                        <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label9_1"></wm-label> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                                <wm-gridrow name="gridrow12"> 
+                                    <wm-gridcolumn columnwidth="12" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn19"> 
+                                        <wm-label width="100%" caption="bind:Variables.serviceGetStatsEquip.dataSet.content[0].hoursAll | numberToString: '2'" class="h5" fontweight="bold" margin="0px unset" name="label10" color="#000000"></wm-label> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                                <wm-gridrow horizontalalign="center" name="gridrow13"> 
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn20"> 
                                         <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: (Variables.serviceGetStatsEquip.dataSet.content[0].remainingAllEquipHours) },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: Variables.serviceGetStatsEquip.dataSet.content[0].earnedAllEquipHours}]);
-" xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart2_1"></wm-chart>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                            </wm-layoutgrid>
-                        </wm-tile>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn41">
-                        <wm-tile backgroundcolor="#cd4040" margin="7% 1% unset 1%" width="99%" name="tile3">
-                            <wm-layoutgrid horizontalalign="center" height="100%" name="layoutgrid4">
-                                <wm-gridrow name="gridrow14">
-                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn21">
-                                        <wm-label width="100%" caption="STEEL" class="text-uppercase h4" textdecoration="underline" margin="unset unset 0em unset" color="#000000" fontweight="bold" name="label11"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow15">
-                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn22">
-                                        <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label12"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow16">
-                                    <wm-gridcolumn columnwidth="12" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn23">
+" xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart2_1"></wm-chart> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                            </wm-layoutgrid> 
+                        </wm-tile> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn41"> 
+                        <wm-tile backgroundcolor="#cd4040" margin="7% 1% unset 1%" width="99%" name="tile3"> 
+                            <wm-layoutgrid horizontalalign="center" height="100%" name="layoutgrid4"> 
+                                <wm-gridrow name="gridrow14"> 
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn21"> 
+                                        <wm-label width="100%" caption="STEEL" class="text-uppercase h4" textdecoration="underline" margin="unset unset 0em unset" color="#000000" fontweight="bold" name="label11"></wm-label> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                                <wm-gridrow name="gridrow15"> 
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn22"> 
+                                        <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label12"></wm-label> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                                <wm-gridrow name="gridrow16"> 
+                                    <wm-gridcolumn columnwidth="12" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn23"> 
                                         <wm-label width="100%" caption="bind:Variables.serviceGetStatsSteel.firstRecord.content[$i].HoursAll  | numberToString: '2'
-" class="h5" fontweight="bold" margin="0px unset" name="label13" color="#000000"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow horizontalalign="center" name="gridrow17">
-                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn24">
-                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: Variables.serviceGetStatsSteel.firstRecord.content[0].RemainingAllHours },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: Variables.serviceGetStatsSteel.firstRecord.content[0].EarnedALLHours }]);"
-                                        xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart3"></wm-chart>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                            </wm-layoutgrid>
-                        </wm-tile>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn42">
-                        <wm-tile backgroundcolor="#2b80ef" margin="7% 1% unset 1%" width="99%" name="tile4">
-                            <wm-layoutgrid horizontalalign="center" height="100%" name="layoutgrid5">
-                                <wm-gridrow name="gridrow18">
-                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn25">
-                                        <wm-label width="100%" caption="PIPE" class="text-uppercase h4" textdecoration="underline" margin="unset unset 0em unset" color="#000000" fontweight="bold" name="label14"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow19">
-                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn26">
-                                        <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label15"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow20">
-                                    <wm-gridcolumn columnwidth="12" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn27">
-                                        <wm-label width="100%" caption="bind:Variables.serviceGetStatsPipe.firstRecord.content[0].HoursALLMech + Variables.serviceGetStatsPipe.firstRecord.content[0].HoursTesting | toNumber: '2'" class="h5" fontweight="bold"
-                                        margin="0px unset" name="label16" color="#000000"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow horizontalalign="center" name="gridrow21_1">
-                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn28">
-                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: (Variables.serviceGetStatsPipe.firstRecord.content[0].RemainingALLMechHours + Variables.serviceGetStatsPipe.firstRecord.content[0].RemainingTestingHours) },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: (Variables.serviceGetStatsPipe.firstRecord.content[0].EarnedALLMech + Variables.serviceGetStatsPipe.firstRecord.content[0].EarnedTestingHours) }]);"
-                                        xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart4"></wm-chart>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                            </wm-layoutgrid>
-                        </wm-tile>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow21">
-                    <wm-gridcolumn columnwidth="9" name="gridcolumn39">
-                        <wm-panel iconclass="wi wi-line-chart" height="450px" collapsible="false" enablefullscreen="true" title="Percent Complete (Job-Hours)" on-fullscreen="panel1Fullscreen($event, $isolateScope)" on-exitfullscreen="panel1Exitfullscreen($event, $isolateScope)"
-                        name="panel1">
-                            <wm-chart type="Line" title="" iconclass="wi wi-line-chart" height="100%" dataset="bind:Variables.serviceGetPCOTJob.dataSet[$i].content" xdateformat="%x" yunits="%" ynumberformat=".2f" name="chart5" yaxislabel="Percent Complete"
-                            customcolors="#be7700,#00be69,#000000,#2b80ef,#cd4040" xaxisdatakey="EarnedDate" yaxisdatakey="CivilPercentComplete,EquipPercentComplete,JobPercentComplete,PipePercentComplete,SteelPercentComplete"></wm-chart>
-                        </wm-panel>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn28_1">
-                        <wm-layoutgrid name="layoutgrid6">
-                            <wm-gridrow name="gridrow22">
-                                <wm-gridcolumn columnwidth="12" name="gridcolumn29">
+" class="h5" fontweight="bold" margin="0px unset" name="label13" color="#000000"></wm-label> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                                <wm-gridrow horizontalalign="center" name="gridrow17"> 
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn24"> 
+                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: Variables.serviceGetStatsSteel.firstRecord.content[0].RemainingAllHours },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: Variables.serviceGetStatsSteel.firstRecord.content[0].EarnedALLHours }]);" xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart3"></wm-chart> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                            </wm-layoutgrid> 
+                        </wm-tile> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn42"> 
+                        <wm-tile backgroundcolor="#2b80ef" margin="7% 1% unset 1%" width="99%" name="tile4"> 
+                            <wm-layoutgrid horizontalalign="center" height="100%" name="layoutgrid5"> 
+                                <wm-gridrow name="gridrow18"> 
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn25"> 
+                                        <wm-label width="100%" caption="PIPE" class="text-uppercase h4" textdecoration="underline" margin="unset unset 0em unset" color="#000000" fontweight="bold" name="label14"></wm-label> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                                <wm-gridrow name="gridrow19"> 
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn26"> 
+                                        <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label15"></wm-label> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                                <wm-gridrow name="gridrow20"> 
+                                    <wm-gridcolumn columnwidth="12" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn27"> 
+                                        <wm-label width="100%" caption="bind:Variables.serviceGetStatsPipe.firstRecord.content[0].HoursALLMech + Variables.serviceGetStatsPipe.firstRecord.content[0].HoursTesting | toNumber: '2'" class="h5" fontweight="bold" margin="0px unset" name="label16" color="#000000"></wm-label> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                                <wm-gridrow horizontalalign="center" name="gridrow21_1"> 
+                                    <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn28"> 
+                                        <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: (Variables.serviceGetStatsPipe.firstRecord.content[0].RemainingALLMechHours + Variables.serviceGetStatsPipe.firstRecord.content[0].RemainingTestingHours) },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: (Variables.serviceGetStatsPipe.firstRecord.content[0].EarnedALLMech + Variables.serviceGetStatsPipe.firstRecord.content[0].EarnedTestingHours) }]);" xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart4"></wm-chart> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                            </wm-layoutgrid> 
+                        </wm-tile> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow21"> 
+                    <wm-gridcolumn columnwidth="9" name="gridcolumn39"> 
+                        <wm-panel iconclass="wi wi-line-chart" height="450px" collapsible="false" enablefullscreen="true" title="Percent Complete (Job-Hours)" on-fullscreen="panel1Fullscreen($event, $isolateScope)" on-exitfullscreen="panel1Exitfullscreen($event, $isolateScope)" name="panel1"> 
+                            <wm-chart type="Line" title="" iconclass="wi wi-line-chart" height="100%" dataset="bind:Variables.serviceGetPCOTJob.dataSet[$i].content" xdateformat="%x" yunits="%" ynumberformat=".2f" name="chart5" yaxislabel="Percent Complete" customcolors="#be7700,#00be69,#000000,#2b80ef,#cd4040" xaxisdatakey="EarnedDate" yaxisdatakey="CivilPercentComplete,EquipPercentComplete,JobPercentComplete,PipePercentComplete,SteelPercentComplete"></wm-chart> 
+                        </wm-panel> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn28_1"> 
+                        <wm-layoutgrid name="layoutgrid6"> 
+                            <wm-gridrow name="gridrow22"> 
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn29"> 
                                     <wm-chart type="Donut" title="Hours Breakdown (Craft)" iconclass="wi wi-donut-large" dataset="bind:dataTransformer([
 
 {&quot;Label&quot;:&quot;Civil&quot;,&quot;Value&quot;: (Variables.serviceGetStatsCivil.firstRecord.content[0].HoursAllCivil + Variables.serviceGetStatsCivil.firstRecord.content[0].HoursSellPunch)},
@@ -176,21 +170,21 @@ Variables.serviceGetStatsEquip.dataSet.content[0].hoursAll
 
 {&quot;Label&quot;:&quot;Pipe&quot;,&quot;Value&quot;: (Variables.serviceGetStatsPipe.firstRecord.content[0].HoursALLMech + Variables.serviceGetStatsPipe.firstRecord.content[0].HoursTesting) }
 
-]);" xaxisdatakey="Label" yaxisdatakey="Value" height="300px" offsettop="25" centerlabel="Craft" name="chart6" customcolors="#be7700,#00be69,#cd4040,#2b80ef"></wm-chart>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                            <wm-gridrow name="gridrow23">
-                                <wm-gridcolumn columnwidth="12" name="gridcolumn31"></wm-gridcolumn>
-                            </wm-gridrow>
-                        </wm-layoutgrid>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow9">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn15_1"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn16"></wm-gridcolumn>
-                </wm-gridrow>
-            </wm-layoutgrid>
-        </wm-page-content>
-    </wm-content>
-    <wm-footer content="footer" name="footer1"></wm-footer>
+]);" xaxisdatakey="Label" yaxisdatakey="Value" height="300px" offsettop="25" centerlabel="Craft" name="chart6" customcolors="#be7700,#00be69,#cd4040,#2b80ef"></wm-chart> 
+                                </wm-gridcolumn> 
+                            </wm-gridrow> 
+                            <wm-gridrow name="gridrow23"> 
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn31"></wm-gridcolumn> 
+                            </wm-gridrow> 
+                        </wm-layoutgrid> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow9"> 
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn15_1"></wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn16"></wm-gridcolumn> 
+                </wm-gridrow> 
+            </wm-layoutgrid> 
+        </wm-page-content> 
+    </wm-content> 
+    <wm-footer content="footer" name="footer1"></wm-footer> 
 </wm-page>

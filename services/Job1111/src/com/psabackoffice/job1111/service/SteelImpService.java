@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface SteelImpService {
      * @param steelImp Details of the SteelImp to be created; value cannot be null.
      * @return The newly created SteelImp.
      */
-	SteelImp create(SteelImp steelImp);
+	SteelImp create(@Valid SteelImp steelImp);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface SteelImpService {
 	 * @return The updated SteelImp.
 	 * @throws EntityNotFoundException if no SteelImp is found with given input.
 	 */
-	SteelImp update(SteelImp steelImp) throws EntityNotFoundException;
+	SteelImp update(@Valid SteelImp steelImp) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing SteelImp with the given id.

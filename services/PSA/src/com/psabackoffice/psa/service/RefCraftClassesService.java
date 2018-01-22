@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -32,7 +34,7 @@ public interface RefCraftClassesService {
      * @param refCraftClasses Details of the RefCraftClasses to be created; value cannot be null.
      * @return The newly created RefCraftClasses.
      */
-	RefCraftClasses create(RefCraftClasses refCraftClasses);
+	RefCraftClasses create(@Valid RefCraftClasses refCraftClasses);
 
 
 	/**
@@ -62,7 +64,7 @@ public interface RefCraftClassesService {
 	 * @return The updated RefCraftClasses.
 	 * @throws EntityNotFoundException if no RefCraftClasses is found with given input.
 	 */
-	RefCraftClasses update(RefCraftClasses refCraftClasses) throws EntityNotFoundException;
+	RefCraftClasses update(@Valid RefCraftClasses refCraftClasses) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefCraftClasses with the given id.

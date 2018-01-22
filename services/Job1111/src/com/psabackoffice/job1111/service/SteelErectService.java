@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface SteelErectService {
      * @param steelErect Details of the SteelErect to be created; value cannot be null.
      * @return The newly created SteelErect.
      */
-	SteelErect create(SteelErect steelErect);
+	SteelErect create(@Valid SteelErect steelErect);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface SteelErectService {
 	 * @return The updated SteelErect.
 	 * @throws EntityNotFoundException if no SteelErect is found with given input.
 	 */
-	SteelErect update(SteelErect steelErect) throws EntityNotFoundException;
+	SteelErect update(@Valid SteelErect steelErect) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing SteelErect with the given id.

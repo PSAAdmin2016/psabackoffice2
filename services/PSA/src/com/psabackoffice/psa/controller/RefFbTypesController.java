@@ -54,9 +54,9 @@ public class RefFbTypesController {
 	private RefFbTypesService refFbTypesService;
 
 	@ApiOperation(value = "Creates a new RefFbTypes instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefFbTypes createRefFbTypes(@RequestBody RefFbTypes refFbTypes) {
+    public RefFbTypes createRefFbTypes(@RequestBody RefFbTypes refFbTypes) {
 		LOGGER.debug("Create RefFbTypes with information: {}" , refFbTypes);
 
 		refFbTypes = refFbTypesService.create(refFbTypes);
@@ -64,7 +64,6 @@ public class RefFbTypesController {
 
 	    return refFbTypes;
 	}
-
 
     @ApiOperation(value = "Returns the RefFbTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

@@ -31,6 +31,8 @@ public class CacheStatsPipePcot implements Serializable {
     private Float erectionPercentComplete;
     private Float boltUpPercentComplete;
     private Float weldPercentComplete;
+    private Float screwJointPercentComplete;
+    private Float otherConnectionPercentComplete;
     private Float cutPercentComplete;
     private Float trimPercentComplete;
     private Float supportPercentComplete;
@@ -89,6 +91,24 @@ public class CacheStatsPipePcot implements Serializable {
 
     public void setWeldPercentComplete(Float weldPercentComplete) {
         this.weldPercentComplete = weldPercentComplete;
+    }
+
+    @Column(name = "`ScrewJointPercentComplete`", nullable = true, scale = 2, precision = 5)
+    public Float getScrewJointPercentComplete() {
+        return this.screwJointPercentComplete;
+    }
+
+    public void setScrewJointPercentComplete(Float screwJointPercentComplete) {
+        this.screwJointPercentComplete = screwJointPercentComplete;
+    }
+
+    @Column(name = "`OtherConnectionPercentComplete`", nullable = true, scale = 2, precision = 5)
+    public Float getOtherConnectionPercentComplete() {
+        return this.otherConnectionPercentComplete;
+    }
+
+    public void setOtherConnectionPercentComplete(Float otherConnectionPercentComplete) {
+        this.otherConnectionPercentComplete = otherConnectionPercentComplete;
     }
 
     @Column(name = "`CutPercentComplete`", nullable = true, scale = 2, precision = 5)

@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface SteelShakeService {
      * @param steelShake Details of the SteelShake to be created; value cannot be null.
      * @return The newly created SteelShake.
      */
-	SteelShake create(SteelShake steelShake);
+	SteelShake create(@Valid SteelShake steelShake);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface SteelShakeService {
 	 * @return The updated SteelShake.
 	 * @throws EntityNotFoundException if no SteelShake is found with given input.
 	 */
-	SteelShake update(SteelShake steelShake) throws EntityNotFoundException;
+	SteelShake update(@Valid SteelShake steelShake) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing SteelShake with the given id.

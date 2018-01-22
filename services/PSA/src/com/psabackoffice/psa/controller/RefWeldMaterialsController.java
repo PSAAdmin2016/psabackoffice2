@@ -52,9 +52,9 @@ public class RefWeldMaterialsController {
 	private RefWeldMaterialsService refWeldMaterialsService;
 
 	@ApiOperation(value = "Creates a new RefWeldMaterials instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefWeldMaterials createRefWeldMaterials(@RequestBody RefWeldMaterials refWeldMaterials) {
+    public RefWeldMaterials createRefWeldMaterials(@RequestBody RefWeldMaterials refWeldMaterials) {
 		LOGGER.debug("Create RefWeldMaterials with information: {}" , refWeldMaterials);
 
 		refWeldMaterials = refWeldMaterialsService.create(refWeldMaterials);
@@ -62,7 +62,6 @@ public class RefWeldMaterialsController {
 
 	    return refWeldMaterials;
 	}
-
 
     @ApiOperation(value = "Returns the RefWeldMaterials instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

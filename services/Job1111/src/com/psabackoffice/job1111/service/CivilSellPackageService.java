@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface CivilSellPackageService {
      * @param civilSellPackage Details of the CivilSellPackage to be created; value cannot be null.
      * @return The newly created CivilSellPackage.
      */
-	CivilSellPackage create(CivilSellPackage civilSellPackage);
+	CivilSellPackage create(@Valid CivilSellPackage civilSellPackage);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface CivilSellPackageService {
 	 * @return The updated CivilSellPackage.
 	 * @throws EntityNotFoundException if no CivilSellPackage is found with given input.
 	 */
-	CivilSellPackage update(CivilSellPackage civilSellPackage) throws EntityNotFoundException;
+	CivilSellPackage update(@Valid CivilSellPackage civilSellPackage) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing CivilSellPackage with the given id.

@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.psa.TblCrewsRev;
  * @see TblCrewsRev
  */
 @Service("PSA.TblCrewsRevService")
+@Validated
 public class TblCrewsRevServiceImpl implements TblCrewsRevService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TblCrewsRevServiceImpl.class);
@@ -49,6 +51,7 @@ public class TblCrewsRevServiceImpl implements TblCrewsRevService {
     @Override
 	public TblCrewsRev create(TblCrewsRev tblCrewsRev) {
         LOGGER.debug("Creating a new TblCrewsRev with information: {}", tblCrewsRev);
+
         TblCrewsRev tblCrewsRevCreated = this.wmGenericDao.create(tblCrewsRev);
         return tblCrewsRevCreated;
     }

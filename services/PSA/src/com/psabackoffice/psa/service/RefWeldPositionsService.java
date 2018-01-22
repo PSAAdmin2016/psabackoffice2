@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefWeldPositionsService {
      * @param refWeldPositions Details of the RefWeldPositions to be created; value cannot be null.
      * @return The newly created RefWeldPositions.
      */
-	RefWeldPositions create(RefWeldPositions refWeldPositions);
+	RefWeldPositions create(@Valid RefWeldPositions refWeldPositions);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface RefWeldPositionsService {
 	 * @return The updated RefWeldPositions.
 	 * @throws EntityNotFoundException if no RefWeldPositions is found with given input.
 	 */
-	RefWeldPositions update(RefWeldPositions refWeldPositions) throws EntityNotFoundException;
+	RefWeldPositions update(@Valid RefWeldPositions refWeldPositions) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefWeldPositions with the given id.

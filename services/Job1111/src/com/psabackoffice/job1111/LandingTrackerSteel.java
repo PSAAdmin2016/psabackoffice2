@@ -23,8 +23,8 @@ import javax.persistence.Table;
 public class LandingTrackerSteel implements Serializable {
 
     private Integer uid;
-    private int bidId;
-    private Integer ewonumber;
+    private String bidId;
+    private String ewonumber;
     private String scope;
     private String phase;
     private String stage;
@@ -39,28 +39,28 @@ public class LandingTrackerSteel implements Serializable {
     private String elevation;
     private String p6description;
     private String pieceMark;
-    private Short pieceMarkRev;
+    private String pieceMarkRev;
     private String description;
     private String activityType;
     private String clientMaterialSpec;
     private String performanceMaterialSpec;
     private String materialType;
-    private Float length;
-    private Float weight;
+    private String length;
+    private String weight;
     private String system;
     private String service;
-    private Double takeOffQuantity;
-    private Short weldCount;
-    private Double steelHours;
-    private Double weldHours;
-    private Integer installedShake;
-    private Float installedErect;
-    private Float installedBoltout;
-    private Float installedImpact;
-    private Float installedWeld;
-    private Integer sellPunch;
-    private Float demoRemoved;
-    private Float installedMisc;
+    private String takeOffQuantity;
+    private String weldCount;
+    private String steelHours;
+    private String weldHours;
+    private String installedShake;
+    private String installedErect;
+    private String installedBoltout;
+    private String installedImpact;
+    private String installedWeld;
+    private String sellPunch;
+    private String demoRemoved;
+    private String installedMisc;
     private String wbs1;
     private String wbs2;
     private String wbs3;
@@ -83,25 +83,25 @@ public class LandingTrackerSteel implements Serializable {
         this.uid = uid;
     }
 
-    @Column(name = "`BidID`", nullable = false, scale = 0, precision = 10)
-    public int getBidId() {
+    @Column(name = "`BidID`", nullable = false, length = 255)
+    public String getBidId() {
         return this.bidId;
     }
 
-    public void setBidId(int bidId) {
+    public void setBidId(String bidId) {
         this.bidId = bidId;
     }
 
-    @Column(name = "`EWONumber`", nullable = true, scale = 0, precision = 7)
-    public Integer getEwonumber() {
+    @Column(name = "`EWONumber`", nullable = false, length = 255)
+    public String getEwonumber() {
         return this.ewonumber;
     }
 
-    public void setEwonumber(Integer ewonumber) {
+    public void setEwonumber(String ewonumber) {
         this.ewonumber = ewonumber;
     }
 
-    @Column(name = "`Scope`", nullable = true, length = 16)
+    @Column(name = "`Scope`", nullable = false, length = 255)
     public String getScope() {
         return this.scope;
     }
@@ -110,7 +110,7 @@ public class LandingTrackerSteel implements Serializable {
         this.scope = scope;
     }
 
-    @Column(name = "`Phase`", nullable = true, length = 45)
+    @Column(name = "`Phase`", nullable = false, length = 255)
     public String getPhase() {
         return this.phase;
     }
@@ -119,7 +119,7 @@ public class LandingTrackerSteel implements Serializable {
         this.phase = phase;
     }
 
-    @Column(name = "`Stage`", nullable = true, length = 45)
+    @Column(name = "`Stage`", nullable = false, length = 255)
     public String getStage() {
         return this.stage;
     }
@@ -128,7 +128,7 @@ public class LandingTrackerSteel implements Serializable {
         this.stage = stage;
     }
 
-    @Column(name = "`TestPackageNumber`", nullable = true, length = 45)
+    @Column(name = "`TestPackageNumber`", nullable = false, length = 255)
     public String getTestPackageNumber() {
         return this.testPackageNumber;
     }
@@ -137,7 +137,7 @@ public class LandingTrackerSteel implements Serializable {
         this.testPackageNumber = testPackageNumber;
     }
 
-    @Column(name = "`CostCode`", nullable = true, length = 45)
+    @Column(name = "`CostCode`", nullable = false, length = 255)
     public String getCostCode() {
         return this.costCode;
     }
@@ -146,7 +146,7 @@ public class LandingTrackerSteel implements Serializable {
         this.costCode = costCode;
     }
 
-    @Column(name = "`P6ID`", nullable = true, length = 45)
+    @Column(name = "`P6ID`", nullable = false, length = 255)
     public String getP6id() {
         return this.p6id;
     }
@@ -155,7 +155,7 @@ public class LandingTrackerSteel implements Serializable {
         this.p6id = p6id;
     }
 
-    @Column(name = "`AssignedContractor`", nullable = true, length = 45)
+    @Column(name = "`AssignedContractor`", nullable = false, length = 255)
     public String getAssignedContractor() {
         return this.assignedContractor;
     }
@@ -164,7 +164,7 @@ public class LandingTrackerSteel implements Serializable {
         this.assignedContractor = assignedContractor;
     }
 
-    @Column(name = "`Area`", nullable = true, length = 45)
+    @Column(name = "`Area`", nullable = false, length = 255)
     public String getArea() {
         return this.area;
     }
@@ -173,7 +173,7 @@ public class LandingTrackerSteel implements Serializable {
         this.area = area;
     }
 
-    @Column(name = "`Location`", nullable = true, length = 45)
+    @Column(name = "`Location`", nullable = false, length = 255)
     public String getLocation() {
         return this.location;
     }
@@ -182,7 +182,7 @@ public class LandingTrackerSteel implements Serializable {
         this.location = location;
     }
 
-    @Column(name = "`Structure`", nullable = true, length = 45)
+    @Column(name = "`Structure`", nullable = false, length = 255)
     public String getStructure() {
         return this.structure;
     }
@@ -191,7 +191,7 @@ public class LandingTrackerSteel implements Serializable {
         this.structure = structure;
     }
 
-    @Column(name = "`CU`", nullable = true, length = 45)
+    @Column(name = "`CU`", nullable = false, length = 255)
     public String getCu() {
         return this.cu;
     }
@@ -200,7 +200,7 @@ public class LandingTrackerSteel implements Serializable {
         this.cu = cu;
     }
 
-    @Column(name = "`Elevation`", nullable = true, length = 45)
+    @Column(name = "`Elevation`", nullable = false, length = 255)
     public String getElevation() {
         return this.elevation;
     }
@@ -209,7 +209,7 @@ public class LandingTrackerSteel implements Serializable {
         this.elevation = elevation;
     }
 
-    @Column(name = "`P6Description`", nullable = true, length = 255)
+    @Column(name = "`P6Description`", nullable = false, length = 255)
     public String getP6description() {
         return this.p6description;
     }
@@ -218,7 +218,7 @@ public class LandingTrackerSteel implements Serializable {
         this.p6description = p6description;
     }
 
-    @Column(name = "`PieceMark`", nullable = true, length = 45)
+    @Column(name = "`PieceMark`", nullable = false, length = 255)
     public String getPieceMark() {
         return this.pieceMark;
     }
@@ -227,16 +227,16 @@ public class LandingTrackerSteel implements Serializable {
         this.pieceMark = pieceMark;
     }
 
-    @Column(name = "`PieceMarkRev`", nullable = true, scale = 0, precision = 3)
-    public Short getPieceMarkRev() {
+    @Column(name = "`PieceMarkRev`", nullable = false, length = 255)
+    public String getPieceMarkRev() {
         return this.pieceMarkRev;
     }
 
-    public void setPieceMarkRev(Short pieceMarkRev) {
+    public void setPieceMarkRev(String pieceMarkRev) {
         this.pieceMarkRev = pieceMarkRev;
     }
 
-    @Column(name = "`Description`", nullable = true, length = 255)
+    @Column(name = "`Description`", nullable = false, length = 255)
     public String getDescription() {
         return this.description;
     }
@@ -245,7 +245,7 @@ public class LandingTrackerSteel implements Serializable {
         this.description = description;
     }
 
-    @Column(name = "`ActivityType`", nullable = true, length = 45)
+    @Column(name = "`ActivityType`", nullable = false, length = 255)
     public String getActivityType() {
         return this.activityType;
     }
@@ -254,7 +254,7 @@ public class LandingTrackerSteel implements Serializable {
         this.activityType = activityType;
     }
 
-    @Column(name = "`ClientMaterialSpec`", nullable = true, length = 45)
+    @Column(name = "`ClientMaterialSpec`", nullable = false, length = 255)
     public String getClientMaterialSpec() {
         return this.clientMaterialSpec;
     }
@@ -263,7 +263,7 @@ public class LandingTrackerSteel implements Serializable {
         this.clientMaterialSpec = clientMaterialSpec;
     }
 
-    @Column(name = "`PerformanceMaterialSpec`", nullable = true, length = 45)
+    @Column(name = "`PerformanceMaterialSpec`", nullable = false, length = 255)
     public String getPerformanceMaterialSpec() {
         return this.performanceMaterialSpec;
     }
@@ -272,7 +272,7 @@ public class LandingTrackerSteel implements Serializable {
         this.performanceMaterialSpec = performanceMaterialSpec;
     }
 
-    @Column(name = "`MaterialType`", nullable = true, length = 45)
+    @Column(name = "`MaterialType`", nullable = false, length = 255)
     public String getMaterialType() {
         return this.materialType;
     }
@@ -281,25 +281,25 @@ public class LandingTrackerSteel implements Serializable {
         this.materialType = materialType;
     }
 
-    @Column(name = "`Length`", nullable = true, scale = 4, precision = 8)
-    public Float getLength() {
+    @Column(name = "`Length`", nullable = false, length = 255)
+    public String getLength() {
         return this.length;
     }
 
-    public void setLength(Float length) {
+    public void setLength(String length) {
         this.length = length;
     }
 
-    @Column(name = "`Weight`", nullable = true, scale = 6, precision = 10)
-    public Float getWeight() {
+    @Column(name = "`Weight`", nullable = false, length = 255)
+    public String getWeight() {
         return this.weight;
     }
 
-    public void setWeight(Float weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
-    @Column(name = "`System`", nullable = true, length = 45)
+    @Column(name = "`System`", nullable = false, length = 255)
     public String getSystem() {
         return this.system;
     }
@@ -308,7 +308,7 @@ public class LandingTrackerSteel implements Serializable {
         this.system = system;
     }
 
-    @Column(name = "`Service`", nullable = true, length = 45)
+    @Column(name = "`Service`", nullable = false, length = 255)
     public String getService() {
         return this.service;
     }
@@ -317,111 +317,111 @@ public class LandingTrackerSteel implements Serializable {
         this.service = service;
     }
 
-    @Column(name = "`TakeOffQuantity`", nullable = true, scale = 2, precision = 12)
-    public Double getTakeOffQuantity() {
+    @Column(name = "`TakeOffQuantity`", nullable = false, length = 255)
+    public String getTakeOffQuantity() {
         return this.takeOffQuantity;
     }
 
-    public void setTakeOffQuantity(Double takeOffQuantity) {
+    public void setTakeOffQuantity(String takeOffQuantity) {
         this.takeOffQuantity = takeOffQuantity;
     }
 
-    @Column(name = "`WeldCount`", nullable = true, scale = 0, precision = 3)
-    public Short getWeldCount() {
+    @Column(name = "`WeldCount`", nullable = false, length = 255)
+    public String getWeldCount() {
         return this.weldCount;
     }
 
-    public void setWeldCount(Short weldCount) {
+    public void setWeldCount(String weldCount) {
         this.weldCount = weldCount;
     }
 
-    @Column(name = "`SteelHours`", nullable = true, scale = 6, precision = 16)
-    public Double getSteelHours() {
+    @Column(name = "`SteelHours`", nullable = false, length = 255)
+    public String getSteelHours() {
         return this.steelHours;
     }
 
-    public void setSteelHours(Double steelHours) {
+    public void setSteelHours(String steelHours) {
         this.steelHours = steelHours;
     }
 
-    @Column(name = "`WeldHours`", nullable = true, scale = 6, precision = 16)
-    public Double getWeldHours() {
+    @Column(name = "`WeldHours`", nullable = false, length = 255)
+    public String getWeldHours() {
         return this.weldHours;
     }
 
-    public void setWeldHours(Double weldHours) {
+    public void setWeldHours(String weldHours) {
         this.weldHours = weldHours;
     }
 
-    @Column(name = "`InstalledShake`", nullable = true, scale = 0, precision = 10)
-    public Integer getInstalledShake() {
+    @Column(name = "`InstalledShake`", nullable = false, length = 255)
+    public String getInstalledShake() {
         return this.installedShake;
     }
 
-    public void setInstalledShake(Integer installedShake) {
+    public void setInstalledShake(String installedShake) {
         this.installedShake = installedShake;
     }
 
-    @Column(name = "`InstalledErect`", nullable = true, scale = 6, precision = 10)
-    public Float getInstalledErect() {
+    @Column(name = "`InstalledErect`", nullable = false, length = 255)
+    public String getInstalledErect() {
         return this.installedErect;
     }
 
-    public void setInstalledErect(Float installedErect) {
+    public void setInstalledErect(String installedErect) {
         this.installedErect = installedErect;
     }
 
-    @Column(name = "`InstalledBoltout`", nullable = true, scale = 6, precision = 10)
-    public Float getInstalledBoltout() {
+    @Column(name = "`InstalledBoltout`", nullable = false, length = 255)
+    public String getInstalledBoltout() {
         return this.installedBoltout;
     }
 
-    public void setInstalledBoltout(Float installedBoltout) {
+    public void setInstalledBoltout(String installedBoltout) {
         this.installedBoltout = installedBoltout;
     }
 
-    @Column(name = "`InstalledImpact`", nullable = true, scale = 6, precision = 10)
-    public Float getInstalledImpact() {
+    @Column(name = "`InstalledImpact`", nullable = false, length = 255)
+    public String getInstalledImpact() {
         return this.installedImpact;
     }
 
-    public void setInstalledImpact(Float installedImpact) {
+    public void setInstalledImpact(String installedImpact) {
         this.installedImpact = installedImpact;
     }
 
-    @Column(name = "`InstalledWeld`", nullable = true, scale = 6, precision = 10)
-    public Float getInstalledWeld() {
+    @Column(name = "`InstalledWeld`", nullable = false, length = 255)
+    public String getInstalledWeld() {
         return this.installedWeld;
     }
 
-    public void setInstalledWeld(Float installedWeld) {
+    public void setInstalledWeld(String installedWeld) {
         this.installedWeld = installedWeld;
     }
 
-    @Column(name = "`SellPunch`", nullable = true, scale = 0, precision = 10)
-    public Integer getSellPunch() {
+    @Column(name = "`SellPunch`", nullable = false, length = 255)
+    public String getSellPunch() {
         return this.sellPunch;
     }
 
-    public void setSellPunch(Integer sellPunch) {
+    public void setSellPunch(String sellPunch) {
         this.sellPunch = sellPunch;
     }
 
-    @Column(name = "`DemoRemoved`", nullable = true, scale = 6, precision = 10)
-    public Float getDemoRemoved() {
+    @Column(name = "`DemoRemoved`", nullable = false, length = 255)
+    public String getDemoRemoved() {
         return this.demoRemoved;
     }
 
-    public void setDemoRemoved(Float demoRemoved) {
+    public void setDemoRemoved(String demoRemoved) {
         this.demoRemoved = demoRemoved;
     }
 
-    @Column(name = "`InstalledMisc`", nullable = true, scale = 6, precision = 10)
-    public Float getInstalledMisc() {
+    @Column(name = "`InstalledMisc`", nullable = false, length = 255)
+    public String getInstalledMisc() {
         return this.installedMisc;
     }
 
-    public void setInstalledMisc(Float installedMisc) {
+    public void setInstalledMisc(String installedMisc) {
         this.installedMisc = installedMisc;
     }
 

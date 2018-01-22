@@ -1,191 +1,191 @@
-<wm-partial data-ng-controller="PartSettingsSiteNumbersPageController" name="partial1">
-    <wm-layoutgrid name="layoutgrid3">
-        <wm-gridrow name="gridrow3">
-            <wm-gridcolumn columnwidth="6" name="gridcolumn6">
-                <wm-label class="col-md-3 control-label" caption="Current Job Numbers" color="#000000" fontweight="bold" fontsize="16" width="100%" textdecoration="underline" name="label31"></wm-label>
-            </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="6" name="gridcolumn7"></wm-gridcolumn>
-        </wm-gridrow>
-        <wm-gridrow name="gridrow4">
-            <wm-gridcolumn columnwidth="7" name="gridcolumn8" padding="unset 1% unset unset">
-                <wm-livegrid name="livegrid4">
-                    <wm-grid gridfirstrowselect="true" editmode="form" title="" dataset="bind:Variables.liveJobs.dataSet" navigation="Classic" name="gridJobNumbers" spacing="condensed" showrecordcount="true" filtermode="multicolumn">
-                        <wm-grid-column binding="jobNumber" caption="Job Number" type="integer" primary-key="true" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                        <wm-grid-column binding="tblJobSites.siteName" caption="Site Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="TblJobSites"></wm-grid-column>
-                        <wm-grid-column binding="tblJobSites.siteCity" caption="City" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="TblJobSites"></wm-grid-column>
-                        <wm-grid-column binding="status" caption="Status" type="short" primary-key="false" generator="assigned" show="true" readonly="false"></wm-grid-column>
-                        <wm-grid-column binding="tblJobSites.siteState" caption="State" type="string" width="10%" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="TblJobSites"></wm-grid-column>
-                    </wm-grid>
-                </wm-livegrid>
-            </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="5" name="gridcolumn9" padding="unset unset unset 1%"></wm-gridcolumn>
-        </wm-gridrow>
-        <wm-gridrow name="gridrow16">
-            <wm-gridcolumn columnwidth="7" name="gridcolumn32">
-                <wm-button class="btn-primary" caption="New Job" type="button" margin="unset 0.5em" name="button1" iconclass="wi wi-add" on-click="Widgets.dialogNewJob.open()"></wm-button>
-            </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="5" name="gridcolumn33"></wm-gridcolumn>
-        </wm-gridrow>
-    </wm-layoutgrid>
-    <wm-view class="dialog-view" name="viewNewJob">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="New Job Wizard" iconclass="wi wi-add" name="dialogNewJob" on-opened="dialogNewJobOpened($event, $scope)">
-            <wm-wizard stepstyle="auto" name="wizard1" donebtnlabel="Finish" on-cancel="Widgets.dialogNewJob.close();wizard1Cancel($scope, steps)" on-done="Widgets.dialogNewJob.close();Variables.liveJobs.listRecords()">
-                <wm-wizardstep name="wizardstep1" title="Site Info">
-                    <wm-layoutgrid name="layoutgrid6">
-                        <wm-gridrow name="gridrow7">
-                            <wm-gridcolumn columnwidth="4" name="gridcolumn14_1">
-                                <wm-composite captionposition="top" name="composite3">
-                                    <wm-label class="col-md-3 control-label" name="label3" caption="Site Name"></wm-label>
-                                    <wm-container class="col-md-9" name="container3" width="95%">
-                                        <wm-search type="autocomplete" name="searchSite" placeholder="Search..." dataset="bind:Variables.liveJobSites.dataSet" searchkey="siteName" displaylabel="siteName" datafield="siteName" orderby="siteName:desc" required="true"></wm-search>
-                                    </wm-container>
-                                </wm-composite>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="4" name="gridcolumn15">
-                                <wm-composite captionposition="top" name="composite2">
-                                    <wm-label class="col-md-3 control-label" name="label2" caption="City"></wm-label>
-                                    <wm-container class="col-md-9" name="container2" width="95%">
-                                        <wm-search type="autocomplete" name="searchCity" placeholder="Search..." dataset="bind:Variables.liveJobSites.dataSet" searchkey="siteCity" displaylabel="siteCity" datafield="siteCity" orderby="siteCity:desc" required="true"></wm-search>
-                                    </wm-container>
-                                </wm-composite>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="4" name="gridcolumn18">
-                                <wm-composite name="composite1" captionposition="top">
-                                    <wm-label class="col-md-3 control-label" name="label1" caption="State"></wm-label>
-                                    <wm-container class="col-md-9" name="container1" width="95%">
-                                        <wm-select name="selectState" dataset="bind:Variables.liveStates.dataSet" datafield="abbreviation" displayexpression="bind:$[data[$i].abbreviation] + &quot; - &quot; + $[data[$i].stateName]" required="true"></wm-select>
-                                    </wm-container>
-                                </wm-composite>
-                            </wm-gridcolumn>
-                        </wm-gridrow>
-                    </wm-layoutgrid>
-                </wm-wizardstep>
-                <wm-wizardstep name="wizardstep2" title="Job Number" on-prev="wizardstep2Prev($scope, currentStep, stepIndex)">
-                    <wm-layoutgrid name="layoutgrid5_1">
-                        <wm-gridrow name="gridrow6_1">
-                            <wm-gridcolumn columnwidth="4" name="gridcolumn13_1">
-                                <wm-composite name="composite5" captionposition="top">
-                                    <wm-label class="col-md-3 control-label" name="label13" caption="New Job Number" width="90%"></wm-label>
-                                    <wm-container class="col-md-9" name="container5">
-                                        <wm-text name="textJobNumber" autocomplete="true" type="number" maxvalue="99999" minvalue="1112" placeholder="Enter Job Number" required="true" maxchars="5" autofocus="true" updateon="default" on-keyup="textJobNumberKeyup($event, $scope)"></wm-text>
-                                    </wm-container>
-                                    <wm-icon iconclass="wi wi-help-outline" color="#0069ff" hint="Job Number MUST be greater than 1111 and MUST be unique." name="icon2"></wm-icon>
-                                </wm-composite>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="4" name="gridcolumn14_2" padding="5% unset unset unset">
-                                <wm-label class="col-md-3 control-label" caption="Job Number Already in use!" width="90%" name="label15" color="#ff0000" fontweight="bold" show="bind:Variables.serviceCheckJobNumber.dataSet[$i].JobNumberCount > 0"></wm-label>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="4" name="gridcolumn15_1"></wm-gridcolumn>
-                        </wm-gridrow>
-                    </wm-layoutgrid>
-                </wm-wizardstep>
-                <wm-wizardstep name="wizardstep3" title="Confirm">
-                    <wm-layoutgrid name="layoutgrid6_1">
-                        <wm-gridrow name="gridrow11">
-                            <wm-gridcolumn columnwidth="12" name="gridcolumn25" padding="unset unset 5% unset">
-                                <wm-label padding="unset 0.5em" caption="Please carefully confirm each field below.    Creation of Job numbers CAN NOT BE UNDONE.  Then press next to create Job." fontweight="bold" color="#000000" name="label15_1"></wm-label>
-                            </wm-gridcolumn>
-                        </wm-gridrow>
-                        <wm-gridrow name="gridrow7_1">
-                            <wm-gridcolumn columnwidth="3" name="gridcolumn16">
-                                <wm-label padding="unset 0.5em" name="label5" caption="Site Name:" fontweight="bold" color="#000000"></wm-label>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="9" name="gridcolumn17">
-                                <wm-label padding="unset 0.5em" name="label9" textdecoration="underline" caption="bind:Widgets.searchSite.query"></wm-label>
-                            </wm-gridcolumn>
-                        </wm-gridrow>
-                        <wm-gridrow name="gridrow8">
-                            <wm-gridcolumn columnwidth="3" name="gridcolumn18_1">
-                                <wm-label padding="unset 0.5em" name="label6" caption="City:" fontweight="bold" color="#000000"></wm-label>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="9" name="gridcolumn19">
-                                <wm-label padding="unset 0.5em" textdecoration="underline" name="label10" caption="bind:Widgets.searchCity.query"></wm-label>
-                            </wm-gridcolumn>
-                        </wm-gridrow>
-                        <wm-gridrow name="gridrow9">
-                            <wm-gridcolumn columnwidth="3" name="gridcolumn20">
-                                <wm-label padding="unset 0.5em" name="label7" caption="State:" fontweight="bold" color="#000000"></wm-label>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="9" name="gridcolumn21">
-                                <wm-label padding="unset 0.5em" textdecoration="underline" name="label11" caption="bind:Widgets.selectState.displayValue"></wm-label>
-                            </wm-gridcolumn>
-                        </wm-gridrow>
-                        <wm-gridrow name="gridrow10">
-                            <wm-gridcolumn columnwidth="3" name="gridcolumn22">
-                                <wm-label padding="unset 0.5em" name="label8" caption="Job Number:" fontweight="bold" color="#000000"></wm-label>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="9" name="gridcolumn23">
-                                <wm-label padding="unset 0.5em" textdecoration="underline" name="label12" caption="bind:Widgets.textJobNumber.datavalue" required="false" width="100%"></wm-label>
-                                <wm-label class="col-md-3 control-label" caption="Job Number Already in use!" width="90%" color="#ff0000" fontweight="bold" show="bind:Variables.serviceCheckJobNumber.dataSet[$i].JobNumberCount > 0" name="label14"></wm-label>
-                            </wm-gridcolumn>
-                        </wm-gridrow>
-                    </wm-layoutgrid>
-                </wm-wizardstep>
-                <wm-wizardstep name="wizardstep4" title="Create" on-load="wizardstep4Load($scope, stepIndex);Variables.serviceCreateJobDB.invoke()">
-                    <wm-layoutgrid name="layoutgrid7">
-                        <wm-gridrow name="gridrow24">
-                            <wm-gridcolumn columnwidth="3" name="gridcolumn47">
-                                <wm-label padding="unset 0.5em" caption="DB &amp; Tables:" fontweight="bold" color="#000000" name="label41"></wm-label>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="9" name="gridcolumn48">
-                                <wm-container name="containerJobDB">
-                                    <wm-icon iconclass="fa fa-check" color="#5ebc46" name="icon7" show="bind:Variables.serviceCreateJobDB.dataSet[$i].ReturnStatus"></wm-icon>
-                                    <wm-label padding="unset 0.5em" caption="OK" fontweight="bold" color="#5ebc46" fontsize="15" name="label42" show="bind:Variables.serviceCreateJobDB.dataSet[$i].ReturnStatus"></wm-label>
-                                    <wm-label padding="unset 0.5em" caption="Error Tables not created.  Please contact PSAAdmin." color="#ff0000" width="100%" name="label43" show="bind:Variables.serviceCreateJobDB.dataSet[$i].ReturnStatus == false"></wm-label>
-                                </wm-container>
-                            </wm-gridcolumn>
-                        </wm-gridrow>
-                        <wm-gridrow name="gridrow25">
-                            <wm-gridcolumn columnwidth="3" name="gridcolumn49">
-                                <wm-label padding="unset 0.5em" caption="Table Triggers:" fontweight="bold" color="#000000" name="label44"></wm-label>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="9" name="gridcolumn50">
-                                <wm-container name="containerJobTriggers">
-                                    <wm-icon iconclass="fa fa-check" color="#5ebc46" name="icon8" show="bind:Variables.serviceCreateJobTriggers.dataSet.value == '1'"></wm-icon>
-                                    <wm-label padding="unset 0.5em" caption="OK" fontweight="bold" color="#5ebc46" fontsize="15" name="label45" show="bind:Variables.serviceCreateJobTriggers.dataSet.value == '1'"></wm-label>
-                                    <wm-label padding="unset 0.5em" caption="bind:Variables.serviceCreateJobTriggers.dataSet.value" color="#ff0000" width="100%" name="label46" show="bind:Variables.serviceCreateJobTriggers.dataSet.value != '1'"></wm-label>
-                                </wm-container>
-                            </wm-gridcolumn>
-                        </wm-gridrow>
-                        <wm-gridrow name="gridrow26">
-                            <wm-gridcolumn columnwidth="3" name="gridcolumn51">
-                                <wm-label padding="unset 0.5em" caption="Stored Procedures:" fontweight="bold" color="#000000" name="label47"></wm-label>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="9" name="gridcolumn52">
-                                <wm-container name="containerJobSPs">
-                                    <wm-icon iconclass="fa fa-check" color="#5ebc46" name="icon9" show="bind:Variables.serviceCreateJobSPs.dataSet.value == '1'"></wm-icon>
-                                    <wm-label padding="unset 0.5em" caption="OK" fontweight="bold" color="#5ebc46" fontsize="15" name="label48" show="bind:Variables.serviceCreateJobSPs.dataSet.value == '1'"></wm-label>
-                                    <wm-label padding="unset 0.5em" caption="bind:Variables.serviceCreateJobSPs.dataSet.value" color="#ff0000" width="100%" name="label49" show="bind:Variables.serviceCreateJobSPs.dataSet.value != '1'"></wm-label>
-                                </wm-container>
-                            </wm-gridcolumn>
-                        </wm-gridrow>
-                        <wm-gridrow name="gridrow27">
-                            <wm-gridcolumn columnwidth="3" name="gridcolumn53">
-                                <wm-label padding="unset 0.5em" caption="Seed Tables:" fontweight="bold" color="#000000" name="label50"></wm-label>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="9" name="gridcolumn54">
-                                <wm-container name="containerJobSeeds">
-                                    <wm-icon iconclass="fa fa-check" color="#5ebc46" name="icon10" show="bind:Variables.serviceCreateJobSeeds.dataSet[$i].ReturnStatus"></wm-icon>
-                                    <wm-label padding="unset 0.5em" caption="OK" fontweight="bold" color="#5ebc46" fontsize="15" name="label51" show="bind:Variables.serviceCreateJobSeeds.dataSet[$i].ReturnStatus"></wm-label>
-                                    <wm-label padding="unset 0.5em" caption="Error Tables not seeded.  Please contact PSAAdmin." color="#ff0000" width="100%" name="label52" show="bind:Variables.serviceCreateJobSeeds.dataSet[$i].ReturnStatus == false"></wm-label>
-                                </wm-container>
-                            </wm-gridcolumn>
-                        </wm-gridrow>
-                        <wm-gridrow name="gridrow28">
-                            <wm-gridcolumn columnwidth="3" name="gridcolumn55">
-                                <wm-label padding="unset 0.5em" caption="Job Number Entry:" fontweight="bold" color="#000000" name="label53"></wm-label>
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="9" name="gridcolumn56">
-                                <wm-container name="containerJobEntry">
-                                    <wm-icon iconclass="fa fa-check" color="#5ebc46" name="icon11"></wm-icon>
-                                    <wm-label padding="unset 0.5em" caption="OK" fontweight="bold" color="#5ebc46" fontsize="15" name="label54" show="true"></wm-label>
-                                    <wm-label padding="unset 0.5em" caption="Error creating jobsite or job number.  Please contact PSAAdmin." color="#ff0000" width="100%" name="label55"></wm-label>
-                                </wm-container>
-                            </wm-gridcolumn>
-                        </wm-gridrow>
-                    </wm-layoutgrid>
-                </wm-wizardstep>
-            </wm-wizard>
-        </wm-dialog>
-    </wm-view>
+<wm-partial data-ng-controller="PartSettingsSiteNumbersPageController" name="partial1"> 
+    <wm-layoutgrid name="layoutgrid3"> 
+        <wm-gridrow name="gridrow3"> 
+            <wm-gridcolumn columnwidth="6" name="gridcolumn6"> 
+                <wm-label class="col-md-3 control-label" caption="Current Job Numbers" color="#000000" fontweight="bold" fontsize="16" width="100%" textdecoration="underline" name="label31"></wm-label> 
+            </wm-gridcolumn> 
+            <wm-gridcolumn columnwidth="6" name="gridcolumn7"></wm-gridcolumn> 
+        </wm-gridrow> 
+        <wm-gridrow name="gridrow4"> 
+            <wm-gridcolumn columnwidth="7" name="gridcolumn8" padding="unset 1% unset unset"> 
+                <wm-livetable name="livegrid4"> 
+                    <wm-table gridfirstrowselect="true" editmode="form" title="" dataset="bind:Variables.liveJobs.dataSet" navigation="Classic" name="gridJobNumbers" spacing="condensed" showrecordcount="true" filtermode="multicolumn"> 
+                        <wm-table-column binding="jobNumber" caption="Job Number" type="integer" primary-key="true" generator="assigned" show="true" readonly="false"></wm-table-column> 
+                        <wm-table-column binding="tblJobSites.siteName" caption="Site Name" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="TblJobSites"></wm-table-column> 
+                        <wm-table-column binding="tblJobSites.siteCity" caption="City" type="string" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="TblJobSites"></wm-table-column> 
+                        <wm-table-column binding="status" caption="Status" type="short" primary-key="false" generator="assigned" show="true" readonly="false"></wm-table-column> 
+                        <wm-table-column binding="tblJobSites.siteState" caption="State" type="string" width="10%" primary-key="false" generator="assigned" readonly="true" show="true" related-entity-name="TblJobSites"></wm-table-column> 
+                    </wm-table> 
+                </wm-livetable> 
+            </wm-gridcolumn> 
+            <wm-gridcolumn columnwidth="5" name="gridcolumn9" padding="unset unset unset 1%"></wm-gridcolumn> 
+        </wm-gridrow> 
+        <wm-gridrow name="gridrow16"> 
+            <wm-gridcolumn columnwidth="7" name="gridcolumn32"> 
+                <wm-button class="btn-primary" caption="New Job" type="button" margin="unset 0.5em" name="button1" iconclass="wi wi-add" on-click="Widgets.dialogNewJob.open()"></wm-button> 
+            </wm-gridcolumn> 
+            <wm-gridcolumn columnwidth="5" name="gridcolumn33"></wm-gridcolumn> 
+        </wm-gridrow> 
+    </wm-layoutgrid> 
+    <wm-view class="dialog-view" name="viewNewJob"> 
+        <wm-dialog dialogtype="design-dialog" modal="true" title="New Job Wizard" iconclass="wi wi-add" name="dialogNewJob" on-opened="dialogNewJobOpened($event, $scope)"> 
+            <wm-wizard stepstyle="auto" name="wizard1" donebtnlabel="Finish" on-cancel="Widgets.dialogNewJob.close();wizard1Cancel($scope, steps)" on-done="Widgets.dialogNewJob.close();Variables.liveJobs.listRecords()"> 
+                <wm-wizardstep name="wizardstep1" title="Site Info"> 
+                    <wm-layoutgrid name="layoutgrid6"> 
+                        <wm-gridrow name="gridrow7"> 
+                            <wm-gridcolumn columnwidth="4" name="gridcolumn14_1"> 
+                                <wm-composite captionposition="top" name="composite3"> 
+                                    <wm-label class="col-md-3 control-label" name="label3" caption="Site Name"></wm-label> 
+                                    <wm-container class="col-md-9" name="container3" width="95%"> 
+                                        <wm-search type="autocomplete" name="searchSite" placeholder="Search..." dataset="bind:Variables.liveJobSites.dataSet" searchkey="siteName" displaylabel="siteName" datafield="siteName" orderby="siteName:desc" required="true"></wm-search> 
+                                    </wm-container> 
+                                </wm-composite> 
+                            </wm-gridcolumn> 
+                            <wm-gridcolumn columnwidth="4" name="gridcolumn15"> 
+                                <wm-composite captionposition="top" name="composite2"> 
+                                    <wm-label class="col-md-3 control-label" name="label2" caption="City"></wm-label> 
+                                    <wm-container class="col-md-9" name="container2" width="95%"> 
+                                        <wm-search type="autocomplete" name="searchCity" placeholder="Search..." dataset="bind:Variables.liveJobSites.dataSet" searchkey="siteCity" displaylabel="siteCity" datafield="siteCity" orderby="siteCity:desc" required="true"></wm-search> 
+                                    </wm-container> 
+                                </wm-composite> 
+                            </wm-gridcolumn> 
+                            <wm-gridcolumn columnwidth="4" name="gridcolumn18"> 
+                                <wm-composite name="composite1" captionposition="top"> 
+                                    <wm-label class="col-md-3 control-label" name="label1" caption="State"></wm-label> 
+                                    <wm-container class="col-md-9" name="container1" width="95%"> 
+                                        <wm-select name="selectState" dataset="bind:Variables.liveStates.dataSet" datafield="abbreviation" displayexpression="bind:$[data[$i].abbreviation] + &quot; - &quot; + $[data[$i].stateName]" required="true"></wm-select> 
+                                    </wm-container> 
+                                </wm-composite> 
+                            </wm-gridcolumn> 
+                        </wm-gridrow> 
+                    </wm-layoutgrid> 
+                </wm-wizardstep> 
+                <wm-wizardstep name="wizardstep2" title="Job Number" on-prev="wizardstep2Prev($scope, currentStep, stepIndex)"> 
+                    <wm-layoutgrid name="layoutgrid5_1"> 
+                        <wm-gridrow name="gridrow6_1"> 
+                            <wm-gridcolumn columnwidth="4" name="gridcolumn13_1"> 
+                                <wm-composite name="composite5" captionposition="top"> 
+                                    <wm-label class="col-md-3 control-label" name="label13" caption="New Job Number" width="90%"></wm-label> 
+                                    <wm-container class="col-md-9" name="container5"> 
+                                        <wm-text name="textJobNumber" autocomplete="true" type="number" maxvalue="99999" minvalue="1112" placeholder="Enter Job Number" required="true" maxchars="5" autofocus="true" updateon="default" on-keyup="textJobNumberKeyup($event, $scope)"></wm-text> 
+                                    </wm-container> 
+                                    <wm-icon iconclass="wi wi-help-outline" color="#0069ff" hint="Job Number MUST be greater than 1111 and MUST be unique." name="icon2"></wm-icon> 
+                                </wm-composite> 
+                            </wm-gridcolumn> 
+                            <wm-gridcolumn columnwidth="4" name="gridcolumn14_2" padding="5% unset unset unset"> 
+                                <wm-label class="col-md-3 control-label" caption="Job Number Already in use!" width="90%" name="label15" color="#ff0000" fontweight="bold" show="bind:Variables.serviceCheckJobNumber.dataSet[$i].JobNumberCount > 0"></wm-label> 
+                            </wm-gridcolumn> 
+                            <wm-gridcolumn columnwidth="4" name="gridcolumn15_1"></wm-gridcolumn> 
+                        </wm-gridrow> 
+                    </wm-layoutgrid> 
+                </wm-wizardstep> 
+                <wm-wizardstep name="wizardstep3" title="Confirm"> 
+                    <wm-layoutgrid name="layoutgrid6_1"> 
+                        <wm-gridrow name="gridrow11"> 
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn25" padding="unset unset 5% unset"> 
+                                <wm-label padding="unset 0.5em" caption="Please carefully confirm each field below.    Creation of Job numbers CAN NOT BE UNDONE.  Then press next to create Job." fontweight="bold" color="#000000" name="label15_1"></wm-label> 
+                            </wm-gridcolumn> 
+                        </wm-gridrow> 
+                        <wm-gridrow name="gridrow7_1"> 
+                            <wm-gridcolumn columnwidth="3" name="gridcolumn16"> 
+                                <wm-label padding="unset 0.5em" name="label5" caption="Site Name:" fontweight="bold" color="#000000"></wm-label> 
+                            </wm-gridcolumn> 
+                            <wm-gridcolumn columnwidth="9" name="gridcolumn17"> 
+                                <wm-label padding="unset 0.5em" name="label9" textdecoration="underline" caption="bind:Widgets.searchSite.query"></wm-label> 
+                            </wm-gridcolumn> 
+                        </wm-gridrow> 
+                        <wm-gridrow name="gridrow8"> 
+                            <wm-gridcolumn columnwidth="3" name="gridcolumn18_1"> 
+                                <wm-label padding="unset 0.5em" name="label6" caption="City:" fontweight="bold" color="#000000"></wm-label> 
+                            </wm-gridcolumn> 
+                            <wm-gridcolumn columnwidth="9" name="gridcolumn19"> 
+                                <wm-label padding="unset 0.5em" textdecoration="underline" name="label10" caption="bind:Widgets.searchCity.query"></wm-label> 
+                            </wm-gridcolumn> 
+                        </wm-gridrow> 
+                        <wm-gridrow name="gridrow9"> 
+                            <wm-gridcolumn columnwidth="3" name="gridcolumn20"> 
+                                <wm-label padding="unset 0.5em" name="label7" caption="State:" fontweight="bold" color="#000000"></wm-label> 
+                            </wm-gridcolumn> 
+                            <wm-gridcolumn columnwidth="9" name="gridcolumn21"> 
+                                <wm-label padding="unset 0.5em" textdecoration="underline" name="label11" caption="bind:Widgets.selectState.displayValue"></wm-label> 
+                            </wm-gridcolumn> 
+                        </wm-gridrow> 
+                        <wm-gridrow name="gridrow10"> 
+                            <wm-gridcolumn columnwidth="3" name="gridcolumn22"> 
+                                <wm-label padding="unset 0.5em" name="label8" caption="Job Number:" fontweight="bold" color="#000000"></wm-label> 
+                            </wm-gridcolumn> 
+                            <wm-gridcolumn columnwidth="9" name="gridcolumn23"> 
+                                <wm-label padding="unset 0.5em" textdecoration="underline" name="label12" caption="bind:Widgets.textJobNumber.datavalue" required="false" width="100%"></wm-label> 
+                                <wm-label class="col-md-3 control-label" caption="Job Number Already in use!" width="90%" color="#ff0000" fontweight="bold" show="bind:Variables.serviceCheckJobNumber.dataSet[$i].JobNumberCount > 0" name="label14"></wm-label> 
+                            </wm-gridcolumn> 
+                        </wm-gridrow> 
+                    </wm-layoutgrid> 
+                </wm-wizardstep> 
+                <wm-wizardstep name="wizardstep4" title="Create" on-load="wizardstep4Load($scope, stepIndex);Variables.serviceCreateJobDB.invoke()"> 
+                    <wm-layoutgrid name="layoutgrid7"> 
+                        <wm-gridrow name="gridrow24"> 
+                            <wm-gridcolumn columnwidth="3" name="gridcolumn47"> 
+                                <wm-label padding="unset 0.5em" caption="DB &amp; Tables:" fontweight="bold" color="#000000" name="label41"></wm-label> 
+                            </wm-gridcolumn> 
+                            <wm-gridcolumn columnwidth="9" name="gridcolumn48"> 
+                                <wm-container name="containerJobDB"> 
+                                    <wm-icon iconclass="fa fa-check" color="#5ebc46" name="icon7" show="bind:Variables.serviceCreateJobDB.dataSet[$i].ReturnStatus"></wm-icon> 
+                                    <wm-label padding="unset 0.5em" caption="OK" fontweight="bold" color="#5ebc46" fontsize="15" name="label42" show="bind:Variables.serviceCreateJobDB.dataSet[$i].ReturnStatus"></wm-label> 
+                                    <wm-label padding="unset 0.5em" caption="Error Tables not created.  Please contact PSAAdmin." color="#ff0000" width="100%" name="label43" show="bind:Variables.serviceCreateJobDB.dataSet[$i].ReturnStatus == false"></wm-label> 
+                                </wm-container> 
+                            </wm-gridcolumn> 
+                        </wm-gridrow> 
+                        <wm-gridrow name="gridrow25"> 
+                            <wm-gridcolumn columnwidth="3" name="gridcolumn49"> 
+                                <wm-label padding="unset 0.5em" caption="Table Triggers:" fontweight="bold" color="#000000" name="label44"></wm-label> 
+                            </wm-gridcolumn> 
+                            <wm-gridcolumn columnwidth="9" name="gridcolumn50"> 
+                                <wm-container name="containerJobTriggers"> 
+                                    <wm-icon iconclass="fa fa-check" color="#5ebc46" name="icon8" show="bind:Variables.serviceCreateJobTriggers.dataSet.value == '1'"></wm-icon> 
+                                    <wm-label padding="unset 0.5em" caption="OK" fontweight="bold" color="#5ebc46" fontsize="15" name="label45" show="bind:Variables.serviceCreateJobTriggers.dataSet.value == '1'"></wm-label> 
+                                    <wm-label padding="unset 0.5em" caption="bind:Variables.serviceCreateJobTriggers.dataSet.value" color="#ff0000" width="100%" name="label46" show="bind:Variables.serviceCreateJobTriggers.dataSet.value != '1'"></wm-label> 
+                                </wm-container> 
+                            </wm-gridcolumn> 
+                        </wm-gridrow> 
+                        <wm-gridrow name="gridrow26"> 
+                            <wm-gridcolumn columnwidth="3" name="gridcolumn51"> 
+                                <wm-label padding="unset 0.5em" caption="Stored Procedures:" fontweight="bold" color="#000000" name="label47"></wm-label> 
+                            </wm-gridcolumn> 
+                            <wm-gridcolumn columnwidth="9" name="gridcolumn52"> 
+                                <wm-container name="containerJobSPs"> 
+                                    <wm-icon iconclass="fa fa-check" color="#5ebc46" name="icon9" show="bind:Variables.serviceCreateJobSPs.dataSet.value == '1'"></wm-icon> 
+                                    <wm-label padding="unset 0.5em" caption="OK" fontweight="bold" color="#5ebc46" fontsize="15" name="label48" show="bind:Variables.serviceCreateJobSPs.dataSet.value == '1'"></wm-label> 
+                                    <wm-label padding="unset 0.5em" caption="bind:Variables.serviceCreateJobSPs.dataSet.value" color="#ff0000" width="100%" name="label49" show="bind:Variables.serviceCreateJobSPs.dataSet.value != '1'"></wm-label> 
+                                </wm-container> 
+                            </wm-gridcolumn> 
+                        </wm-gridrow> 
+                        <wm-gridrow name="gridrow27"> 
+                            <wm-gridcolumn columnwidth="3" name="gridcolumn53"> 
+                                <wm-label padding="unset 0.5em" caption="Seed Tables:" fontweight="bold" color="#000000" name="label50"></wm-label> 
+                            </wm-gridcolumn> 
+                            <wm-gridcolumn columnwidth="9" name="gridcolumn54"> 
+                                <wm-container name="containerJobSeeds"> 
+                                    <wm-icon iconclass="fa fa-check" color="#5ebc46" name="icon10" show="bind:Variables.serviceCreateJobSeeds.dataSet[$i].ReturnStatus"></wm-icon> 
+                                    <wm-label padding="unset 0.5em" caption="OK" fontweight="bold" color="#5ebc46" fontsize="15" name="label51" show="bind:Variables.serviceCreateJobSeeds.dataSet[$i].ReturnStatus"></wm-label> 
+                                    <wm-label padding="unset 0.5em" caption="Error Tables not seeded.  Please contact PSAAdmin." color="#ff0000" width="100%" name="label52" show="bind:Variables.serviceCreateJobSeeds.dataSet[$i].ReturnStatus == false"></wm-label> 
+                                </wm-container> 
+                            </wm-gridcolumn> 
+                        </wm-gridrow> 
+                        <wm-gridrow name="gridrow28"> 
+                            <wm-gridcolumn columnwidth="3" name="gridcolumn55"> 
+                                <wm-label padding="unset 0.5em" caption="Job Number Entry:" fontweight="bold" color="#000000" name="label53"></wm-label> 
+                            </wm-gridcolumn> 
+                            <wm-gridcolumn columnwidth="9" name="gridcolumn56"> 
+                                <wm-container name="containerJobEntry"> 
+                                    <wm-icon iconclass="fa fa-check" color="#5ebc46" name="icon11"></wm-icon> 
+                                    <wm-label padding="unset 0.5em" caption="OK" fontweight="bold" color="#5ebc46" fontsize="15" name="label54" show="true"></wm-label> 
+                                    <wm-label padding="unset 0.5em" caption="Error creating jobsite or job number.  Please contact PSAAdmin." color="#ff0000" width="100%" name="label55"></wm-label> 
+                                </wm-container> 
+                            </wm-gridcolumn> 
+                        </wm-gridrow> 
+                    </wm-layoutgrid> 
+                </wm-wizardstep> 
+            </wm-wizard> 
+        </wm-dialog> 
+    </wm-view> 
 </wm-partial>

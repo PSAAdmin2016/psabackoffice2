@@ -2,404 +2,42 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <sql-query name="GetChatRecipientName">
+    <sql-query name="GetForemenBySuper">
         <![CDATA[
-        SELECT u.ID, u.FirstName, u.LastName, u.Email 
-FROM ChatConversationMembers ccm
-JOIN tblUserPSA u
-    ON u.ID = ccm.UserID
-WHERE ConversationID = :ConversationID
-AND UserID != :UserID
+        SELECT u.ID, u.FirstName, u.LastName, u.Email, tc.CrewNumber
+FROM PSA.tblUserPSA u
+LEFT JOIN PSA.tblCrews tc
+	on tc.Foreman = u.ID
+WHERE tc.Superintendent = :SuperID
         ]]>
-    <query-param name="ConversationID" type="java.lang.Integer"/>
-    <query-param name="UserID" type="java.lang.Integer"/>
+    <query-param name="SuperID" type="java.lang.Integer"/>
     </sql-query>
 
-    <sql-query name="GetChatRecipientName__count">
+    <sql-query name="GetForemenBySuper__count">
         <![CDATA[
-        select count(*) from (SELECT u.ID, u.FirstName, u.LastName, u.Email 
-FROM ChatConversationMembers ccm
-JOIN tblUserPSA u
-    ON u.ID = ccm.UserID
-WHERE ConversationID = :ConversationID
-AND UserID != :UserID) wmTempTable
+        select count(*) from (SELECT u.ID, u.FirstName, u.LastName, u.Email, tc.CrewNumber
+FROM PSA.tblUserPSA u
+LEFT JOIN PSA.tblCrews tc
+	on tc.Foreman = u.ID
+WHERE tc.Superintendent = :SuperID) wmTempTable
         ]]>
-    <query-param name="ConversationID" type="java.lang.Integer"/>
-    <query-param name="UserID" type="java.lang.Integer"/>
+    <query-param name="SuperID" type="java.lang.Integer"/>
     </sql-query>
 
-    <sql-query name="InsertAssignedJobNumber">
-        <![CDATA[
-        INSERT INTO `PSA`.`tblUserJobNumbers` (`fk_UserId`, `fk_JobNumber`) 
-VALUES ( :UserId, :JobNumber)
-        ]]>
-    <query-param name="UserId" type="java.lang.Integer"/>
-    <query-param name="JobNumber" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="DeleteUserAssignedApps">
-        <![CDATA[
-        DELETE FROM `PSA`.`tblUserAssignedApps` 
-
-WHERE `UserID`= :UserID
-AND MobileAppGroupID = :MobileAppGroupID
-        ]]>
-    <query-param name="UserID" type="java.lang.Integer"/>
-    <query-param name="MobileAppGroupID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="InsertLoginSuccess">
-        <![CDATA[
-        INSERT INTO `PSA`.`tblUserLoginTracker` 
-(`UserID`, `Email`, `LoginResult`, `FailedPassword`) 
-VALUES ( COALESCE((SELECT ID FROM PSA.tblUserPSA WHERE Email LIKE :EnteredUsername),0), :EnteredUsername, 1, 'N/A')
-        ]]>
-    <query-param name="EnteredUsername" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="GetRefPrecipitation">
+    <sql-query name="GetSteelActivityTypes">
         <![CDATA[
         SELECT * 
-FROM PSA.REF_Weather
-WHERE Label = 'Precipitation'
+FROM PSA.REF_ActivityTypes at
+WHERE at.ID BETWEEN 61 AND 69
         ]]>
     </sql-query>
 
-    <sql-query name="GetRefPrecipitation__count">
+    <sql-query name="GetSteelActivityTypes__count">
         <![CDATA[
         select count(*) from (SELECT * 
-FROM PSA.REF_Weather
-WHERE Label = 'Precipitation') wmTempTable
+FROM PSA.REF_ActivityTypes at
+WHERE at.ID BETWEEN 61 AND 69) wmTempTable
         ]]>
-    </sql-query>
-
-    <sql-query name="GetUsersManagers">
-        <![CDATA[
-        SELECT DISTINCT uc.FirstName, uc.LastName, uc.Email, uc.ID
-FROM (
-SELECT u.*,
-c.CrewNumber, c.JobNumber, c.ProjectManager, c.ConstructionManager, c.SiteManager, c.AreaManager, c.Superintendent, c.GF, c.Foreman, c.Leadman, c.DisciplineId, (c.Rev) AS cRev
-FROM `PSA`.tblUserPSA u
-LEFT JOIN `PSA`.tblCrews c
-	ON c.ProjectManager = u.ID OR  c.ConstructionManager = u.ID OR  c.SiteManager = u.ID OR  c.AreaManager = u.ID
-WHERE c.JobNumber = :JobNumber
-) uc
-        ]]>
-    <query-param name="JobNumber" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetUsersManagers__count">
-        <![CDATA[
-        select count(*) from (SELECT DISTINCT uc.FirstName, uc.LastName, uc.Email, uc.ID
-FROM (
-SELECT u.*,
-c.CrewNumber, c.JobNumber, c.ProjectManager, c.ConstructionManager, c.SiteManager, c.AreaManager, c.Superintendent, c.GF, c.Foreman, c.Leadman, c.DisciplineId, (c.Rev) AS cRev
-FROM `PSA`.tblUserPSA u
-LEFT JOIN `PSA`.tblCrews c
-	ON c.ProjectManager = u.ID OR  c.ConstructionManager = u.ID OR  c.SiteManager = u.ID OR  c.AreaManager = u.ID
-WHERE c.JobNumber = :JobNumber
-) uc) wmTempTable
-        ]]>
-    <query-param name="JobNumber" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetChatMessagesByConversationID">
-        <![CDATA[
-        SELECT cm.UID, cm.ConversationID, cm.Author, cm.Message, u.FirstName, u.LastName, u.Email ,cm.TimeStamp
-FROM ChatMessages cm
-JOIN tblUserPSA u
-	ON u.ID = cm.Author
-WHERE ConversationID = :ConversationID
-Order BY cm.UID
-        ]]>
-    <query-param name="ConversationID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetChatMessagesByConversationID__count">
-        <![CDATA[
-        select count(*) from (SELECT cm.UID, cm.ConversationID, cm.Author, cm.Message, u.FirstName, u.LastName, u.Email ,cm.TimeStamp
-FROM ChatMessages cm
-JOIN tblUserPSA u
-	ON u.ID = cm.Author
-WHERE ConversationID = :ConversationID
-Order BY cm.UID) wmTempTable
-        ]]>
-    <query-param name="ConversationID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="InsertUserAssignedApps">
-        <![CDATA[
-        INSERT INTO `PSA`.`tblUserAssignedApps` 
-(`UserID`, `MobileAppGroupID`) 
-VALUES (:UserID, :MobileAppGroupID)
-        ]]>
-    <query-param name="UserID" type="java.lang.Integer"/>
-    <query-param name="MobileAppGroupID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="InsertFeedbackTicketNotes">
-        <![CDATA[
-        INSERT INTO `PSA`.`FeedBackNotes` 
-(`fk_FeedBackID`, `fk_UserID`, `Notes`) 
-VALUES (:TicketID, :UserID, :Note)
-        ]]>
-    <query-param name="TicketID" type="java.lang.Integer"/>
-    <query-param name="UserID" type="java.lang.Integer"/>
-    <query-param name="Note" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="GetUsersForemen">
-        <![CDATA[
-        SELECT u.*,
-c.CrewNumber, c.JobNumber, c.ProjectManager, c.ConstructionManager, c.SiteManager, c.AreaManager, c.Superintendent, c
-    .GF, c.Foreman, c.Leadman, c.DisciplineId, (c.Rev) AS cRev
-FROM `PSA`.tblUserPSA u
-JOIN `PSA`.tblCrews c
-    ON c.GF = u.ID OR  c.Foreman = u.ID
-WHERE c.JobNumber = :JobNumber
-AND c.DisciplineId LIKE :DisciplineID
-AND c.ProjectManager LIKE :PM
-AND c.ConstructionManager LIKE :ConstM
-AND c.SiteManager LIKE :SiteM
-AND c.AreaManager LIKE :AreaM
-AND c.Superintendent LIKE :Super
-        ]]>
-    <query-param name="JobNumber" type="java.lang.Integer"/>
-    <query-param name="DisciplineID" type="java.lang.String"/>
-    <query-param name="PM" type="java.lang.String"/>
-    <query-param name="ConstM" type="java.lang.String"/>
-    <query-param name="SiteM" type="java.lang.String"/>
-    <query-param name="AreaM" type="java.lang.String"/>
-    <query-param name="Super" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="GetUsersForemen__count">
-        <![CDATA[
-        select count(*) from (SELECT u.*,
-c.CrewNumber, c.JobNumber, c.ProjectManager, c.ConstructionManager, c.SiteManager, c.AreaManager, c.Superintendent, c
-    .GF, c.Foreman, c.Leadman, c.DisciplineId, (c.Rev) AS cRev
-FROM `PSA`.tblUserPSA u
-JOIN `PSA`.tblCrews c
-    ON c.GF = u.ID OR  c.Foreman = u.ID
-WHERE c.JobNumber = :JobNumber
-AND c.DisciplineId LIKE :DisciplineID
-AND c.ProjectManager LIKE :PM
-AND c.ConstructionManager LIKE :ConstM
-AND c.SiteManager LIKE :SiteM
-AND c.AreaManager LIKE :AreaM
-AND c.Superintendent LIKE :Super) wmTempTable
-        ]]>
-    <query-param name="JobNumber" type="java.lang.Integer"/>
-    <query-param name="DisciplineID" type="java.lang.String"/>
-    <query-param name="PM" type="java.lang.String"/>
-    <query-param name="ConstM" type="java.lang.String"/>
-    <query-param name="SiteM" type="java.lang.String"/>
-    <query-param name="AreaM" type="java.lang.String"/>
-    <query-param name="Super" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="GetHelpMenuVideos">
-        <![CDATA[
-        SELECT m.ID AS CategoryID, sm.ID AS SubCategoryID, m.label AS Category, sm.label AS SubCategory, sm.title, sm.fileName
-FROM PSA.MenuHelpVideos m
-JOIN PSA.MenuSubHelpVideos sm
-	ON sm.fk_ParentMenu = m.ID
-ORDER BY m.ID, sm.ID
-        ]]>
-    </sql-query>
-
-    <sql-query name="GetHelpMenuVideos__count">
-        <![CDATA[
-        select count(*) from (SELECT m.ID AS CategoryID, sm.ID AS SubCategoryID, m.label AS Category, sm.label AS SubCategory, sm.title, sm.fileName
-FROM PSA.MenuHelpVideos m
-JOIN PSA.MenuSubHelpVideos sm
-	ON sm.fk_ParentMenu = m.ID
-ORDER BY m.ID, sm.ID) wmTempTable
-        ]]>
-    </sql-query>
-
-    <sql-query name="InsertFeedbackNotes">
-        <![CDATA[
-        INSERT INTO `PSA`.`FeedBackNotes` (`fk_FeedBackID`, `fk_UserID`, `Notes`)
-VALUES ((SELECT fb.ID 
-FROM PSA.FeedBack fb
-	INNER JOIN (SELECT MAX(fb.TimeStamp) AS Latest 
-				FROM PSA.FeedBack fb
-				WHERE fb.fk_UserID = :UserID
-                ) n
-			ON n.Latest = TimeStamp), 
-			:UserID,
-			:Notes)
-        ]]>
-    <query-param name="UserID" type="java.lang.Integer"/>
-    <query-param name="Notes" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="UpdateUserPSA">
-        <![CDATA[
-        UPDATE tblUserPSA
-SET 
-pciEmployeeId = :PerformanceEmployeeId,
-FirstName = :FirstName,
-LastName = :LastName,
-Nickname = :Nickname,
-Email = :Email,
-Active = :ActiveUser,
-LastModifiedBy = :ModifiedBy,
-fk_DisciplineId = :DisciplineId,
-fk_CraftId = :CraftId,
-fk_CraftClassId = :CraftClassId,
-fk_RoleId = :RoleId,
-fk_DefaultJobNumberId = :DefaultJobNumberId
-WHERE ID= :UserID
-        ]]>
-    <query-param name="PerformanceEmployeeId" type="java.lang.Integer"/>
-    <query-param name="FirstName" type="java.lang.String"/>
-    <query-param name="LastName" type="java.lang.String"/>
-    <query-param name="Nickname" type="java.lang.String"/>
-    <query-param name="Email" type="java.lang.String"/>
-    <query-param name="ActiveUser" type="java.lang.Byte"/>
-    <query-param name="ModifiedBy" type="java.lang.Integer"/>
-    <query-param name="DisciplineId" type="java.lang.Integer"/>
-    <query-param name="CraftId" type="java.lang.Integer"/>
-    <query-param name="CraftClassId" type="java.lang.Integer"/>
-    <query-param name="RoleId" type="java.lang.Integer"/>
-    <query-param name="DefaultJobNumberId" type="java.lang.Integer"/>
-    <query-param name="UserID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="DeleteAssignedJobNumber">
-        <![CDATA[
-        DELETE FROM `PSA`.`tblUserJobNumbers` 
-WHERE `fk_UserId`= :UserID
-AND `fk_JobNumber` = :JobNumber
-        ]]>
-    <query-param name="UserID" type="java.lang.Integer"/>
-    <query-param name="JobNumber" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="GetSettingDashUpdateInt">
-        <![CDATA[
-        SELECT s1.Value2 AS Interval1, s2.Value2 AS Interval2
-FROM SETTINGS s1
-LEFT JOIN SETTINGS s2
-    ON s2.Label = "DashUpdateInt2"
-WHERE s1.Label = "DashUpdateInt1"
-        ]]>
-    </sql-query>
-
-    <sql-query name="GetSettingDashUpdateInt__count">
-        <![CDATA[
-        select count(*) from (SELECT s1.Value2 AS Interval1, s2.Value2 AS Interval2
-FROM SETTINGS s1
-LEFT JOIN SETTINGS s2
-    ON s2.Label = "DashUpdateInt2"
-WHERE s1.Label = "DashUpdateInt1") wmTempTable
-        ]]>
-    </sql-query>
-
-    <sql-query name="GetRolesByDiscipline">
-        <![CDATA[
-        SELECT r.* 
-FROM PSA.REF_Roles r
-WHERE r.RoleName LIKE CONCAT('%',(SELECT Discipline FROM PSA.REF_Disciplines WHERE ID = :DisciplineID),'%')
-AND r.ID NOT IN (1)
-        ]]>
-    <query-param name="DisciplineID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetRolesByDiscipline__count">
-        <![CDATA[
-        select count(*) from (SELECT r.* 
-FROM PSA.REF_Roles r
-WHERE r.RoleName LIKE CONCAT('%',(SELECT Discipline FROM PSA.REF_Disciplines WHERE ID = :DisciplineID),'%')
-AND r.ID NOT IN (1)) wmTempTable
-        ]]>
-    <query-param name="DisciplineID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetRefTemperatures">
-        <![CDATA[
-        SELECT * 
-FROM PSA.REF_Weather
-WHERE Label = 'Temperature'
-        ]]>
-    </sql-query>
-
-    <sql-query name="GetRefTemperatures__count">
-        <![CDATA[
-        select count(*) from (SELECT * 
-FROM PSA.REF_Weather
-WHERE Label = 'Temperature') wmTempTable
-        ]]>
-    </sql-query>
-
-    <sql-query name="InsertUserPSA">
-        <![CDATA[
-        INSERT INTO tblUserPSA (pciEmployeeId,FirstName,LastName, Email, Password, MobileUser, Active, LastModifiedBy, fk_DisciplineId, fk_CraftId, fk_CraftClassId, fk_RoleId, fk_DefaultJobNumberId, Rev)
-VALUES(:PerformanceEmployeeID, :FirstName, :LastName, :Email, :Password, :MobileUser, :ActiveUser, :ModifiedBy, :DisciplineId, :CraftId, :CraftClassId, :RoleId, :JobNumber, 0)
-        ]]>
-    <query-param name="PerformanceEmployeeID" type="java.lang.Integer"/>
-    <query-param name="FirstName" type="java.lang.String"/>
-    <query-param name="LastName" type="java.lang.String"/>
-    <query-param name="Email" type="java.lang.String"/>
-    <query-param name="Password" type="java.lang.String"/>
-    <query-param name="MobileUser" type="java.lang.Byte"/>
-    <query-param name="ActiveUser" type="java.lang.Byte"/>
-    <query-param name="ModifiedBy" type="java.lang.Integer"/>
-    <query-param name="DisciplineId" type="java.lang.Integer"/>
-    <query-param name="CraftId" type="java.lang.Integer"/>
-    <query-param name="CraftClassId" type="java.lang.Integer"/>
-    <query-param name="RoleId" type="java.lang.Integer"/>
-    <query-param name="JobNumber" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetDefaultJobNumber">
-        <![CDATA[
-        SELECT u.fk_DefaultJobNumberId
-FROM tblUserPSA u
-WHERE ID = :UserID
-        ]]>
-    <query-param name="UserID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetDefaultJobNumber__count">
-        <![CDATA[
-        select count(*) from (SELECT u.fk_DefaultJobNumberId
-FROM tblUserPSA u
-WHERE ID = :UserID) wmTempTable
-        ]]>
-    <query-param name="UserID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="UpdateUserCreds">
-        <![CDATA[
-        UPDATE `PSA`.`tblUserCreds` 
-SET `UserName`= :UserName, 
-`Password`= :Password 
-WHERE `UserID`= :UserID
-        ]]>
-    <query-param name="UserName" type="java.lang.String"/>
-    <query-param name="Password" type="java.lang.String"/>
-    <query-param name="UserID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetChatAllLastRead">
-        <![CDATA[
-        SELECT TimeStamp 
-FROM PSA.ChatAllLastRead
-WHERE UserID = :UserID
-        ]]>
-    <query-param name="UserID" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="GetChatAllLastRead__count">
-        <![CDATA[
-        select count(*) from (SELECT TimeStamp 
-FROM PSA.ChatAllLastRead
-WHERE UserID = :UserID) wmTempTable
-        ]]>
-    <query-param name="UserID" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="Superintendents">
@@ -426,30 +64,33 @@ WHERE tc.JobNumber = :JobNumber) wmTempTable
     <query-param name="JobNumber" type="java.lang.Integer"/>
     </sql-query>
 
-    <sql-query name="GetSteelActivityTypes">
+    <sql-query name="InsertUserPSA">
         <![CDATA[
-        SELECT * 
-FROM PSA.REF_ActivityTypes at
-WHERE at.ID BETWEEN 61 AND 69
+        INSERT INTO tblUserPSA (pciEmployeeId,FirstName,LastName, Email, Password, MobileUser, Active, LastModifiedBy, fk_DisciplineId, fk_CraftId, fk_CraftClassId, fk_RoleId, fk_DefaultJobNumberId, Rev)
+VALUES(:PerformanceEmployeeID, :FirstName, :LastName, :Email, :Password, :MobileUser, :ActiveUser, :ModifiedBy, :DisciplineId, :CraftId, :CraftClassId, :RoleId, :JobNumber, 0)
         ]]>
+    <query-param name="PerformanceEmployeeID" type="java.lang.Integer"/>
+    <query-param name="FirstName" type="java.lang.String"/>
+    <query-param name="LastName" type="java.lang.String"/>
+    <query-param name="Email" type="java.lang.String"/>
+    <query-param name="Password" type="java.lang.String"/>
+    <query-param name="MobileUser" type="java.lang.Byte"/>
+    <query-param name="ActiveUser" type="java.lang.Byte"/>
+    <query-param name="ModifiedBy" type="java.lang.Integer"/>
+    <query-param name="DisciplineId" type="java.lang.Integer"/>
+    <query-param name="CraftId" type="java.lang.Integer"/>
+    <query-param name="CraftClassId" type="java.lang.Integer"/>
+    <query-param name="RoleId" type="java.lang.Integer"/>
+    <query-param name="JobNumber" type="java.lang.Integer"/>
     </sql-query>
 
-    <sql-query name="GetSteelActivityTypes__count">
+    <sql-query name="InsertAssignedJobNumber">
         <![CDATA[
-        select count(*) from (SELECT * 
-FROM PSA.REF_ActivityTypes at
-WHERE at.ID BETWEEN 61 AND 69) wmTempTable
+        INSERT INTO `PSA`.`tblUserJobNumbers` (`fk_UserId`, `fk_JobNumber`) 
+VALUES ( :UserId, :JobNumber)
         ]]>
-    </sql-query>
-
-    <sql-query name="UpdateUserCredsUserName">
-        <![CDATA[
-        UPDATE `PSA`.`tblUserCreds` 
-SET `UserName`= :UserName
-WHERE `UserID`= :UserID
-        ]]>
-    <query-param name="UserName" type="java.lang.String"/>
-    <query-param name="UserID" type="java.lang.Integer"/>
+    <query-param name="UserId" type="java.lang.Integer"/>
+    <query-param name="JobNumber" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="UpdateChatAllLastRead">
@@ -460,110 +101,6 @@ ON DUPLICATE KEY UPDATE
 UserID = :UserID
         ]]>
     <query-param name="UserID" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="Managers">
-        <![CDATA[
-        SELECT DISTINCT u.ID, u.Firstname, u.LastName, u.Email 
-FROM tblUserPSA u 
-
-LEFT JOIN PSA.tblCrews tc
-	ON u.ID IN (tc.ProjectManager, tc.ConstructionManager, tc.SiteManager, tc.AreaManager)
-WHERE tc.JobNumber = :JobNumber
-        ]]>
-    <query-param name="JobNumber" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="Managers__count">
-        <![CDATA[
-        select count(*) from (SELECT DISTINCT u.ID, u.Firstname, u.LastName, u.Email 
-FROM tblUserPSA u 
-
-LEFT JOIN PSA.tblCrews tc
-	ON u.ID IN (tc.ProjectManager, tc.ConstructionManager, tc.SiteManager, tc.AreaManager)
-WHERE tc.JobNumber = :JobNumber) wmTempTable
-        ]]>
-    <query-param name="JobNumber" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetFBSubTypeByType">
-        <![CDATA[
-        SELECT * 
-FROM PSA.REF_FB_SubTypes
-WHERE fk_FBType = :FBType
-        ]]>
-    <query-param name="FBType" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetFBSubTypeByType__count">
-        <![CDATA[
-        select count(*) from (SELECT * 
-FROM PSA.REF_FB_SubTypes
-WHERE fk_FBType = :FBType) wmTempTable
-        ]]>
-    <query-param name="FBType" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetUsersSupers">
-        <![CDATA[
-        SELECT DISTINCT uc.FirstName, uc.LastName, uc.Email, uc.ID
-FROM (
-SELECT u.*,
-c.CrewNumber, c.JobNumber, c.ProjectManager, c.ConstructionManager, c.SiteManager, c.AreaManager, c.Superintendent, c.GF, c.Foreman, c.Leadman, c.DisciplineId, (c.Rev) AS cRev
-FROM `PSA`.tblUserPSA u
-JOIN `PSA`.tblCrews c
-	ON c.Superintendent = u.ID 
-
-WHERE c.JobNumber = :JobNumber
-AND c.DisciplineId LIKE :DisciplineID
-AND c.ProjectManager LIKE :PM
-AND c.ConstructionManager LIKE :ConstM
-AND c.SiteManager LIKE :SiteM
-AND c.AreaManager LIKE :AreaM
-) uc
-        ]]>
-    <query-param name="JobNumber" type="java.lang.Integer"/>
-    <query-param name="DisciplineID" type="java.lang.String"/>
-    <query-param name="PM" type="java.lang.String"/>
-    <query-param name="ConstM" type="java.lang.String"/>
-    <query-param name="SiteM" type="java.lang.String"/>
-    <query-param name="AreaM" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="GetUsersSupers__count">
-        <![CDATA[
-        select count(*) from (SELECT DISTINCT uc.FirstName, uc.LastName, uc.Email, uc.ID
-FROM (
-SELECT u.*,
-c.CrewNumber, c.JobNumber, c.ProjectManager, c.ConstructionManager, c.SiteManager, c.AreaManager, c.Superintendent, c.GF, c.Foreman, c.Leadman, c.DisciplineId, (c.Rev) AS cRev
-FROM `PSA`.tblUserPSA u
-JOIN `PSA`.tblCrews c
-	ON c.Superintendent = u.ID 
-
-WHERE c.JobNumber = :JobNumber
-AND c.DisciplineId LIKE :DisciplineID
-AND c.ProjectManager LIKE :PM
-AND c.ConstructionManager LIKE :ConstM
-AND c.SiteManager LIKE :SiteM
-AND c.AreaManager LIKE :AreaM
-) uc) wmTempTable
-        ]]>
-    <query-param name="JobNumber" type="java.lang.Integer"/>
-    <query-param name="DisciplineID" type="java.lang.String"/>
-    <query-param name="PM" type="java.lang.String"/>
-    <query-param name="ConstM" type="java.lang.String"/>
-    <query-param name="SiteM" type="java.lang.String"/>
-    <query-param name="AreaM" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="InsertChatMessage">
-        <![CDATA[
-        INSERT INTO `ChatMessages` (`ConversationID`, `Author`, `Message`) 
-VALUES (:ConversationID, :UserID, :Message)
-        ]]>
-    <query-param name="ConversationID" type="java.lang.Integer"/>
-    <query-param name="UserID" type="java.lang.Integer"/>
-    <query-param name="Message" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="UpdateChatMessageStatus">
@@ -578,114 +115,15 @@ AND `Author` != :UserID
     <query-param name="UserID" type="java.lang.String"/>
     </sql-query>
 
-    <sql-query name="GetChatAllLatestTimeStamp">
+    <sql-query name="DeleteUserAssignedApps">
         <![CDATA[
-        SELECT MAX(TimeStamp) AS LatestTimeStamp
-FROM ChatMessages
-WHERE ConversationID = 1
-AND Author != :UserID
-        ]]>
-    <query-param name="UserID" type="java.lang.String"/>
-    </sql-query>
+        DELETE FROM `PSA`.`tblUserAssignedApps` 
 
-    <sql-query name="GetChatAllLatestTimeStamp__count">
-        <![CDATA[
-        select count(*) from (SELECT MAX(TimeStamp) AS LatestTimeStamp
-FROM ChatMessages
-WHERE ConversationID = 1
-AND Author != :UserID) wmTempTable
-        ]]>
-    <query-param name="UserID" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="InsertUserCreds">
-        <![CDATA[
-        INSERT INTO `PSA`.`tblUserCreds` 
-(`UserID`, `UserName`, `Password`) 
-VALUES (:UserID, :UserName, :Password);
+WHERE `UserID`= :UserID
+AND MobileAppGroupID = :MobileAppGroupID
         ]]>
     <query-param name="UserID" type="java.lang.Integer"/>
-    <query-param name="UserName" type="java.lang.String"/>
-    <query-param name="Password" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="InsertFeedbackTicket">
-        <![CDATA[
-        INSERT INTO `PSA`.`FeedBack` (`fk_UserID`, `fk_FeedBackType`, `fk_FBSubType`, `fk_Severity`) 
-VALUES (:UserID, :FeedbackType, :FBSubType, :ErrorSeverity)
-        ]]>
-    <query-param name="UserID" type="java.lang.Integer"/>
-    <query-param name="FeedbackType" type="java.lang.Integer"/>
-    <query-param name="FBSubType" type="java.lang.Integer"/>
-    <query-param name="ErrorSeverity" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetAssignedJobNumbers">
-        <![CDATA[
-        SELECT uj.fk_UserId, jn.JobNumber, js.SiteName, js.SiteCity, js.SiteState, jn.Status
-FROM PSA.tblJobNumbers jn
-	LEFT JOIN PSA.tblJobSites js
-		ON js.ID = jn.fk_JobSiteID
-	JOIN PSA.tblUserJobNumbers uj
-		on uj.fk_JobNumber = jn.JobNumber AND uj.fk_UserId = :UserID
-ORDER BY jn.JobNumber
-        ]]>
-    <query-param name="UserID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetAssignedJobNumbers__count">
-        <![CDATA[
-        select count(*) from (SELECT uj.fk_UserId, jn.JobNumber, js.SiteName, js.SiteCity, js.SiteState, jn.Status
-FROM PSA.tblJobNumbers jn
-	LEFT JOIN PSA.tblJobSites js
-		ON js.ID = jn.fk_JobSiteID
-	JOIN PSA.tblUserJobNumbers uj
-		on uj.fk_JobNumber = jn.JobNumber AND uj.fk_UserId = :UserID
-ORDER BY jn.JobNumber) wmTempTable
-        ]]>
-    <query-param name="UserID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetJobSites">
-        <![CDATA[
-        SELECT * 
-FROM PSA.tblJobSites
-WHERE SiteName = :SiteName
-AND SiteCity = :City
-AND SiteState = :State
-        ]]>
-    <query-param name="SiteName" type="java.lang.String"/>
-    <query-param name="City" type="java.lang.String"/>
-    <query-param name="State" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="GetJobSites__count">
-        <![CDATA[
-        select count(*) from (SELECT * 
-FROM PSA.tblJobSites
-WHERE SiteName = :SiteName
-AND SiteCity = :City
-AND SiteState = :State) wmTempTable
-        ]]>
-    <query-param name="SiteName" type="java.lang.String"/>
-    <query-param name="City" type="java.lang.String"/>
-    <query-param name="State" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="GetRefWind">
-        <![CDATA[
-        SELECT * 
-FROM PSA.REF_Weather
-WHERE Label = 'Wind'
-        ]]>
-    </sql-query>
-
-    <sql-query name="GetRefWind__count">
-        <![CDATA[
-        select count(*) from (SELECT * 
-FROM PSA.REF_Weather
-WHERE Label = 'Wind') wmTempTable
-        ]]>
+    <query-param name="MobileAppGroupID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetJobNumberCountByJobNumber">
@@ -704,76 +142,6 @@ FROM PSA.tblJobNumbers
 WHERE JobNumber = :JobNumber) wmTempTable
         ]]>
     <query-param name="JobNumber" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetForemenBySuper">
-        <![CDATA[
-        SELECT u.ID, u.FirstName, u.LastName, u.Email, tc.CrewNumber
-FROM PSA.tblUserPSA u
-LEFT JOIN PSA.tblCrews tc
-	on tc.Foreman = u.ID
-WHERE tc.Superintendent = :SuperID
-        ]]>
-    <query-param name="SuperID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetForemenBySuper__count">
-        <![CDATA[
-        select count(*) from (SELECT u.ID, u.FirstName, u.LastName, u.Email, tc.CrewNumber
-FROM PSA.tblUserPSA u
-LEFT JOIN PSA.tblCrews tc
-	on tc.Foreman = u.ID
-WHERE tc.Superintendent = :SuperID) wmTempTable
-        ]]>
-    <query-param name="SuperID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetPSAUsers">
-        <![CDATA[
-        SELECT u.*, rd.Discipline
-FROM tblUserPSA u
-LEFT JOIN REF_Disciplines rd
-    ON rd.ID = u.fk_DisciplineId
-WHERE u.Id != 1
-        ]]>
-    </sql-query>
-
-    <sql-query name="GetPSAUsers__count">
-        <![CDATA[
-        select count(*) from (SELECT u.*, rd.Discipline
-FROM tblUserPSA u
-LEFT JOIN REF_Disciplines rd
-    ON rd.ID = u.fk_DisciplineId
-WHERE u.Id != 1) wmTempTable
-        ]]>
-    </sql-query>
-
-    <sql-query name="InsertLoginFailure">
-        <![CDATA[
-        INSERT INTO `PSA`.`tblUserLoginTracker` 
-(`UserID`, `Email`, `LoginResult`, `FailedPassword`) 
-VALUES ( COALESCE((SELECT ID FROM PSA.tblUserPSA WHERE Email LIKE :EnteredUsername),0), :EnteredUsername, 0, :EnteredPassword)
-        ]]>
-    <query-param name="EnteredUsername" type="java.lang.String"/>
-    <query-param name="EnteredPassword" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="GetFBNotesByFBID">
-        <![CDATA[
-        SELECT * 
-FROM PSA.FeedBackNotes
-WHERE fk_FeedBackID = :FeedbackID
-        ]]>
-    <query-param name="FeedbackID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetFBNotesByFBID__count">
-        <![CDATA[
-        select count(*) from (SELECT * 
-FROM PSA.FeedBackNotes
-WHERE fk_FeedBackID = :FeedbackID) wmTempTable
-        ]]>
-    <query-param name="FeedbackID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetChatConversationsByLoggedInUser">
@@ -830,5 +198,637 @@ JOIN ChatMessages cm2
 	ON cm2.ConversationID = tsc.ConversationID AND cm2.TimeStamp = tsc.Timestamp) wmTempTable
         ]]>
     <query-param name="UserID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetUsersManagers">
+        <![CDATA[
+        SELECT DISTINCT uc.FirstName, uc.LastName, uc.Email, uc.ID
+FROM (
+SELECT u.*,
+c.CrewNumber, c.JobNumber, c.ProjectManager, c.ConstructionManager, c.SiteManager, c.AreaManager, c.Superintendent, c.GF, c.Foreman, c.Leadman, c.DisciplineId, (c.Rev) AS cRev
+FROM `PSA`.tblUserPSA u
+LEFT JOIN `PSA`.tblCrews c
+	ON c.ProjectManager = u.ID OR  c.ConstructionManager = u.ID OR  c.SiteManager = u.ID OR  c.AreaManager = u.ID
+WHERE c.JobNumber = :JobNumber
+) uc
+        ]]>
+    <query-param name="JobNumber" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetUsersManagers__count">
+        <![CDATA[
+        select count(*) from (SELECT DISTINCT uc.FirstName, uc.LastName, uc.Email, uc.ID
+FROM (
+SELECT u.*,
+c.CrewNumber, c.JobNumber, c.ProjectManager, c.ConstructionManager, c.SiteManager, c.AreaManager, c.Superintendent, c.GF, c.Foreman, c.Leadman, c.DisciplineId, (c.Rev) AS cRev
+FROM `PSA`.tblUserPSA u
+LEFT JOIN `PSA`.tblCrews c
+	ON c.ProjectManager = u.ID OR  c.ConstructionManager = u.ID OR  c.SiteManager = u.ID OR  c.AreaManager = u.ID
+WHERE c.JobNumber = :JobNumber
+) uc) wmTempTable
+        ]]>
+    <query-param name="JobNumber" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetChatMessagesByConversationID">
+        <![CDATA[
+        SELECT cm.UID, cm.ConversationID, cm.Author, cm.Message, u.FirstName, u.LastName, u.Email ,cm.TimeStamp
+FROM ChatMessages cm
+JOIN tblUserPSA u
+	ON u.ID = cm.Author
+WHERE ConversationID = :ConversationID
+Order BY cm.UID
+        ]]>
+    <query-param name="ConversationID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetChatMessagesByConversationID__count">
+        <![CDATA[
+        select count(*) from (SELECT cm.UID, cm.ConversationID, cm.Author, cm.Message, u.FirstName, u.LastName, u.Email ,cm.TimeStamp
+FROM ChatMessages cm
+JOIN tblUserPSA u
+	ON u.ID = cm.Author
+WHERE ConversationID = :ConversationID
+Order BY cm.UID) wmTempTable
+        ]]>
+    <query-param name="ConversationID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="InsertLoginFailure">
+        <![CDATA[
+        INSERT INTO `PSA`.`tblUserLoginTracker` 
+(`UserID`, `Email`, `LoginResult`, `FailedPassword`) 
+VALUES ( COALESCE((SELECT ID FROM PSA.tblUserPSA WHERE Email LIKE :EnteredUsername),0), :EnteredUsername, 0, :EnteredPassword)
+        ]]>
+    <query-param name="EnteredUsername" type="java.lang.String"/>
+    <query-param name="EnteredPassword" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="GetRolesByDiscipline">
+        <![CDATA[
+        SELECT r.* 
+FROM PSA.REF_Roles r
+WHERE r.RoleName LIKE CONCAT('%',(SELECT Discipline FROM PSA.REF_Disciplines WHERE ID = :DisciplineID),'%')
+AND r.ID NOT IN (1)
+        ]]>
+    <query-param name="DisciplineID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetRolesByDiscipline__count">
+        <![CDATA[
+        select count(*) from (SELECT r.* 
+FROM PSA.REF_Roles r
+WHERE r.RoleName LIKE CONCAT('%',(SELECT Discipline FROM PSA.REF_Disciplines WHERE ID = :DisciplineID),'%')
+AND r.ID NOT IN (1)) wmTempTable
+        ]]>
+    <query-param name="DisciplineID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="InsertUserCreds">
+        <![CDATA[
+        INSERT INTO `PSA`.`tblUserCreds` 
+(`UserID`, `UserName`, `Password`) 
+VALUES (:UserID, :UserName, :Password);
+        ]]>
+    <query-param name="UserID" type="java.lang.Integer"/>
+    <query-param name="UserName" type="java.lang.String"/>
+    <query-param name="Password" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="UpdateUserCredsUserName">
+        <![CDATA[
+        UPDATE `PSA`.`tblUserCreds` 
+SET `UserName`= :UserName
+WHERE `UserID`= :UserID
+        ]]>
+    <query-param name="UserName" type="java.lang.String"/>
+    <query-param name="UserID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="InsertLoginSuccess">
+        <![CDATA[
+        INSERT INTO `PSA`.`tblUserLoginTracker` 
+(`UserID`, `Email`, `LoginResult`, `FailedPassword`) 
+VALUES ( COALESCE((SELECT ID FROM PSA.tblUserPSA WHERE Email LIKE :EnteredUsername),0), :EnteredUsername, 1, 'N/A')
+        ]]>
+    <query-param name="EnteredUsername" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="GetRefTemperatures">
+        <![CDATA[
+        SELECT * 
+FROM PSA.REF_Weather
+WHERE Label = 'Temperature'
+        ]]>
+    </sql-query>
+
+    <sql-query name="GetRefTemperatures__count">
+        <![CDATA[
+        select count(*) from (SELECT * 
+FROM PSA.REF_Weather
+WHERE Label = 'Temperature') wmTempTable
+        ]]>
+    </sql-query>
+
+    <sql-query name="GetChatAllLatestTimeStamp">
+        <![CDATA[
+        SELECT MAX(TimeStamp) AS LatestTimeStamp
+FROM ChatMessages
+WHERE ConversationID = 1
+AND Author != :UserID
+        ]]>
+    <query-param name="UserID" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="GetChatAllLatestTimeStamp__count">
+        <![CDATA[
+        select count(*) from (SELECT MAX(TimeStamp) AS LatestTimeStamp
+FROM ChatMessages
+WHERE ConversationID = 1
+AND Author != :UserID) wmTempTable
+        ]]>
+    <query-param name="UserID" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="InsertFeedbackTicket">
+        <![CDATA[
+        INSERT INTO `PSA`.`FeedBack` (`fk_UserID`, `fk_FeedBackType`, `fk_FBSubType`, `fk_Severity`) 
+VALUES (:UserID, :FeedbackType, :FBSubType, :ErrorSeverity)
+        ]]>
+    <query-param name="UserID" type="java.lang.Integer"/>
+    <query-param name="FeedbackType" type="java.lang.Integer"/>
+    <query-param name="FBSubType" type="java.lang.Integer"/>
+    <query-param name="ErrorSeverity" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetRefWind">
+        <![CDATA[
+        SELECT * 
+FROM PSA.REF_Weather
+WHERE Label = 'Wind'
+        ]]>
+    </sql-query>
+
+    <sql-query name="GetRefWind__count">
+        <![CDATA[
+        select count(*) from (SELECT * 
+FROM PSA.REF_Weather
+WHERE Label = 'Wind') wmTempTable
+        ]]>
+    </sql-query>
+
+    <sql-query name="GetDefaultJobNumber">
+        <![CDATA[
+        SELECT u.fk_DefaultJobNumberId
+FROM tblUserPSA u
+WHERE ID = :UserID
+        ]]>
+    <query-param name="UserID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetDefaultJobNumber__count">
+        <![CDATA[
+        select count(*) from (SELECT u.fk_DefaultJobNumberId
+FROM tblUserPSA u
+WHERE ID = :UserID) wmTempTable
+        ]]>
+    <query-param name="UserID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetRefPrecipitation">
+        <![CDATA[
+        SELECT * 
+FROM PSA.REF_Weather
+WHERE Label = 'Precipitation'
+        ]]>
+    </sql-query>
+
+    <sql-query name="GetRefPrecipitation__count">
+        <![CDATA[
+        select count(*) from (SELECT * 
+FROM PSA.REF_Weather
+WHERE Label = 'Precipitation') wmTempTable
+        ]]>
+    </sql-query>
+
+    <sql-query name="UpdateUserPSA">
+        <![CDATA[
+        UPDATE tblUserPSA
+SET 
+pciEmployeeId = :PerformanceEmployeeId,
+FirstName = :FirstName,
+LastName = :LastName,
+Nickname = :Nickname,
+Email = :Email,
+Active = :ActiveUser,
+LastModifiedBy = :ModifiedBy,
+fk_DisciplineId = :DisciplineId,
+fk_CraftId = :CraftId,
+fk_CraftClassId = :CraftClassId,
+fk_RoleId = :RoleId,
+fk_DefaultJobNumberId = :DefaultJobNumberId
+WHERE ID= :UserID
+        ]]>
+    <query-param name="PerformanceEmployeeId" type="java.lang.Integer"/>
+    <query-param name="FirstName" type="java.lang.String"/>
+    <query-param name="LastName" type="java.lang.String"/>
+    <query-param name="Nickname" type="java.lang.String"/>
+    <query-param name="Email" type="java.lang.String"/>
+    <query-param name="ActiveUser" type="java.lang.Byte"/>
+    <query-param name="ModifiedBy" type="java.lang.Integer"/>
+    <query-param name="DisciplineId" type="java.lang.Integer"/>
+    <query-param name="CraftId" type="java.lang.Integer"/>
+    <query-param name="CraftClassId" type="java.lang.Integer"/>
+    <query-param name="RoleId" type="java.lang.Integer"/>
+    <query-param name="DefaultJobNumberId" type="java.lang.Integer"/>
+    <query-param name="UserID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetFBNotesByFBID">
+        <![CDATA[
+        SELECT * 
+FROM PSA.FeedBackNotes
+WHERE fk_FeedBackID = :FeedbackID
+        ]]>
+    <query-param name="FeedbackID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetFBNotesByFBID__count">
+        <![CDATA[
+        select count(*) from (SELECT * 
+FROM PSA.FeedBackNotes
+WHERE fk_FeedBackID = :FeedbackID) wmTempTable
+        ]]>
+    <query-param name="FeedbackID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="InsertChatMessage">
+        <![CDATA[
+        INSERT INTO `ChatMessages` (`ConversationID`, `Author`, `Message`) 
+VALUES (:ConversationID, :UserID, :Message)
+        ]]>
+    <query-param name="ConversationID" type="java.lang.Integer"/>
+    <query-param name="UserID" type="java.lang.Integer"/>
+    <query-param name="Message" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="DeleteAssignedJobNumber">
+        <![CDATA[
+        DELETE FROM `PSA`.`tblUserJobNumbers` 
+WHERE `fk_UserId`= :UserID
+AND `fk_JobNumber` = :JobNumber
+        ]]>
+    <query-param name="UserID" type="java.lang.Integer"/>
+    <query-param name="JobNumber" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="GetUsersForemen">
+        <![CDATA[
+        SELECT u.*,
+c.CrewNumber, c.JobNumber, c.ProjectManager, c.ConstructionManager, c.SiteManager, c.AreaManager, c.Superintendent, c
+    .GF, c.Foreman, c.Leadman, c.DisciplineId, (c.Rev) AS cRev
+FROM `PSA`.tblUserPSA u
+JOIN `PSA`.tblCrews c
+    ON c.GF = u.ID OR  c.Foreman = u.ID
+WHERE c.JobNumber = :JobNumber
+AND c.DisciplineId LIKE :DisciplineID
+AND c.ProjectManager LIKE :PM
+AND c.ConstructionManager LIKE :ConstM
+AND c.SiteManager LIKE :SiteM
+AND c.AreaManager LIKE :AreaM
+AND c.Superintendent LIKE :Super
+        ]]>
+    <query-param name="JobNumber" type="java.lang.Integer"/>
+    <query-param name="DisciplineID" type="java.lang.String"/>
+    <query-param name="PM" type="java.lang.String"/>
+    <query-param name="ConstM" type="java.lang.String"/>
+    <query-param name="SiteM" type="java.lang.String"/>
+    <query-param name="AreaM" type="java.lang.String"/>
+    <query-param name="Super" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="GetUsersForemen__count">
+        <![CDATA[
+        select count(*) from (SELECT u.*,
+c.CrewNumber, c.JobNumber, c.ProjectManager, c.ConstructionManager, c.SiteManager, c.AreaManager, c.Superintendent, c
+    .GF, c.Foreman, c.Leadman, c.DisciplineId, (c.Rev) AS cRev
+FROM `PSA`.tblUserPSA u
+JOIN `PSA`.tblCrews c
+    ON c.GF = u.ID OR  c.Foreman = u.ID
+WHERE c.JobNumber = :JobNumber
+AND c.DisciplineId LIKE :DisciplineID
+AND c.ProjectManager LIKE :PM
+AND c.ConstructionManager LIKE :ConstM
+AND c.SiteManager LIKE :SiteM
+AND c.AreaManager LIKE :AreaM
+AND c.Superintendent LIKE :Super) wmTempTable
+        ]]>
+    <query-param name="JobNumber" type="java.lang.Integer"/>
+    <query-param name="DisciplineID" type="java.lang.String"/>
+    <query-param name="PM" type="java.lang.String"/>
+    <query-param name="ConstM" type="java.lang.String"/>
+    <query-param name="SiteM" type="java.lang.String"/>
+    <query-param name="AreaM" type="java.lang.String"/>
+    <query-param name="Super" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="GetFBSubTypeByType">
+        <![CDATA[
+        SELECT * 
+FROM PSA.REF_FB_SubTypes
+WHERE fk_FBType = :FBType
+        ]]>
+    <query-param name="FBType" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetFBSubTypeByType__count">
+        <![CDATA[
+        select count(*) from (SELECT * 
+FROM PSA.REF_FB_SubTypes
+WHERE fk_FBType = :FBType) wmTempTable
+        ]]>
+    <query-param name="FBType" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="InsertFeedbackNotes">
+        <![CDATA[
+        INSERT INTO `PSA`.`FeedBackNotes` (`fk_FeedBackID`, `fk_UserID`, `Notes`)
+VALUES ((SELECT fb.ID 
+FROM PSA.FeedBack fb
+	INNER JOIN (SELECT MAX(fb.TimeStamp) AS Latest 
+				FROM PSA.FeedBack fb
+				WHERE fb.fk_UserID = :UserID
+                ) n
+			ON n.Latest = TimeStamp), 
+			:UserID,
+			:Notes)
+        ]]>
+    <query-param name="UserID" type="java.lang.Integer"/>
+    <query-param name="Notes" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="UpdateUserCreds">
+        <![CDATA[
+        UPDATE `PSA`.`tblUserCreds` 
+SET `UserName`= :UserName, 
+`Password`= :Password 
+WHERE `UserID`= :UserID
+        ]]>
+    <query-param name="UserName" type="java.lang.String"/>
+    <query-param name="Password" type="java.lang.String"/>
+    <query-param name="UserID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetUsersSupers">
+        <![CDATA[
+        SELECT DISTINCT uc.FirstName, uc.LastName, uc.Email, uc.ID
+FROM (
+SELECT u.*,
+c.CrewNumber, c.JobNumber, c.ProjectManager, c.ConstructionManager, c.SiteManager, c.AreaManager, c.Superintendent, c.GF, c.Foreman, c.Leadman, c.DisciplineId, (c.Rev) AS cRev
+FROM `PSA`.tblUserPSA u
+JOIN `PSA`.tblCrews c
+	ON c.Superintendent = u.ID 
+
+WHERE c.JobNumber = :JobNumber
+AND c.DisciplineId LIKE :DisciplineID
+AND c.ProjectManager LIKE :PM
+AND c.ConstructionManager LIKE :ConstM
+AND c.SiteManager LIKE :SiteM
+AND c.AreaManager LIKE :AreaM
+) uc
+        ]]>
+    <query-param name="JobNumber" type="java.lang.Integer"/>
+    <query-param name="DisciplineID" type="java.lang.String"/>
+    <query-param name="PM" type="java.lang.String"/>
+    <query-param name="ConstM" type="java.lang.String"/>
+    <query-param name="SiteM" type="java.lang.String"/>
+    <query-param name="AreaM" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="GetUsersSupers__count">
+        <![CDATA[
+        select count(*) from (SELECT DISTINCT uc.FirstName, uc.LastName, uc.Email, uc.ID
+FROM (
+SELECT u.*,
+c.CrewNumber, c.JobNumber, c.ProjectManager, c.ConstructionManager, c.SiteManager, c.AreaManager, c.Superintendent, c.GF, c.Foreman, c.Leadman, c.DisciplineId, (c.Rev) AS cRev
+FROM `PSA`.tblUserPSA u
+JOIN `PSA`.tblCrews c
+	ON c.Superintendent = u.ID 
+
+WHERE c.JobNumber = :JobNumber
+AND c.DisciplineId LIKE :DisciplineID
+AND c.ProjectManager LIKE :PM
+AND c.ConstructionManager LIKE :ConstM
+AND c.SiteManager LIKE :SiteM
+AND c.AreaManager LIKE :AreaM
+) uc) wmTempTable
+        ]]>
+    <query-param name="JobNumber" type="java.lang.Integer"/>
+    <query-param name="DisciplineID" type="java.lang.String"/>
+    <query-param name="PM" type="java.lang.String"/>
+    <query-param name="ConstM" type="java.lang.String"/>
+    <query-param name="SiteM" type="java.lang.String"/>
+    <query-param name="AreaM" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="InsertUserAssignedApps">
+        <![CDATA[
+        INSERT INTO `PSA`.`tblUserAssignedApps` 
+(`UserID`, `MobileAppGroupID`) 
+VALUES (:UserID, :MobileAppGroupID)
+        ]]>
+    <query-param name="UserID" type="java.lang.Integer"/>
+    <query-param name="MobileAppGroupID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetAssignedJobNumbers">
+        <![CDATA[
+        SELECT uj.fk_UserId, jn.JobNumber, js.SiteName, js.SiteCity, js.SiteState, jn.Status
+FROM PSA.tblJobNumbers jn
+	LEFT JOIN PSA.tblJobSites js
+		ON js.ID = jn.fk_JobSiteID
+	JOIN PSA.tblUserJobNumbers uj
+		on uj.fk_JobNumber = jn.JobNumber AND uj.fk_UserId = :UserID
+ORDER BY jn.JobNumber
+        ]]>
+    <query-param name="UserID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetAssignedJobNumbers__count">
+        <![CDATA[
+        select count(*) from (SELECT uj.fk_UserId, jn.JobNumber, js.SiteName, js.SiteCity, js.SiteState, jn.Status
+FROM PSA.tblJobNumbers jn
+	LEFT JOIN PSA.tblJobSites js
+		ON js.ID = jn.fk_JobSiteID
+	JOIN PSA.tblUserJobNumbers uj
+		on uj.fk_JobNumber = jn.JobNumber AND uj.fk_UserId = :UserID
+ORDER BY jn.JobNumber) wmTempTable
+        ]]>
+    <query-param name="UserID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="Managers">
+        <![CDATA[
+        SELECT DISTINCT u.ID, u.Firstname, u.LastName, u.Email 
+FROM tblUserPSA u 
+
+LEFT JOIN PSA.tblCrews tc
+	ON u.ID IN (tc.ProjectManager, tc.ConstructionManager, tc.SiteManager, tc.AreaManager)
+WHERE tc.JobNumber = :JobNumber
+        ]]>
+    <query-param name="JobNumber" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="Managers__count">
+        <![CDATA[
+        select count(*) from (SELECT DISTINCT u.ID, u.Firstname, u.LastName, u.Email 
+FROM tblUserPSA u 
+
+LEFT JOIN PSA.tblCrews tc
+	ON u.ID IN (tc.ProjectManager, tc.ConstructionManager, tc.SiteManager, tc.AreaManager)
+WHERE tc.JobNumber = :JobNumber) wmTempTable
+        ]]>
+    <query-param name="JobNumber" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetJobSites">
+        <![CDATA[
+        SELECT * 
+FROM PSA.tblJobSites
+WHERE SiteName = :SiteName
+AND SiteCity = :City
+AND SiteState = :State
+        ]]>
+    <query-param name="SiteName" type="java.lang.String"/>
+    <query-param name="City" type="java.lang.String"/>
+    <query-param name="State" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="GetJobSites__count">
+        <![CDATA[
+        select count(*) from (SELECT * 
+FROM PSA.tblJobSites
+WHERE SiteName = :SiteName
+AND SiteCity = :City
+AND SiteState = :State) wmTempTable
+        ]]>
+    <query-param name="SiteName" type="java.lang.String"/>
+    <query-param name="City" type="java.lang.String"/>
+    <query-param name="State" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="GetSettingDashUpdateInt">
+        <![CDATA[
+        SELECT s1.Value2 AS Interval1, s2.Value2 AS Interval2
+FROM SETTINGS s1
+LEFT JOIN SETTINGS s2
+    ON s2.Label = "DashUpdateInt2"
+WHERE s1.Label = "DashUpdateInt1"
+        ]]>
+    </sql-query>
+
+    <sql-query name="GetSettingDashUpdateInt__count">
+        <![CDATA[
+        select count(*) from (SELECT s1.Value2 AS Interval1, s2.Value2 AS Interval2
+FROM SETTINGS s1
+LEFT JOIN SETTINGS s2
+    ON s2.Label = "DashUpdateInt2"
+WHERE s1.Label = "DashUpdateInt1") wmTempTable
+        ]]>
+    </sql-query>
+
+    <sql-query name="GetChatAllLastRead">
+        <![CDATA[
+        SELECT TimeStamp 
+FROM PSA.ChatAllLastRead
+WHERE UserID = :UserID
+        ]]>
+    <query-param name="UserID" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="GetChatAllLastRead__count">
+        <![CDATA[
+        select count(*) from (SELECT TimeStamp 
+FROM PSA.ChatAllLastRead
+WHERE UserID = :UserID) wmTempTable
+        ]]>
+    <query-param name="UserID" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="GetChatRecipientName">
+        <![CDATA[
+        SELECT u.ID, u.FirstName, u.LastName, u.Email 
+FROM ChatConversationMembers ccm
+JOIN tblUserPSA u
+    ON u.ID = ccm.UserID
+WHERE ConversationID = :ConversationID
+AND UserID != :UserID
+        ]]>
+    <query-param name="ConversationID" type="java.lang.Integer"/>
+    <query-param name="UserID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetChatRecipientName__count">
+        <![CDATA[
+        select count(*) from (SELECT u.ID, u.FirstName, u.LastName, u.Email 
+FROM ChatConversationMembers ccm
+JOIN tblUserPSA u
+    ON u.ID = ccm.UserID
+WHERE ConversationID = :ConversationID
+AND UserID != :UserID) wmTempTable
+        ]]>
+    <query-param name="ConversationID" type="java.lang.Integer"/>
+    <query-param name="UserID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetPSAUsers">
+        <![CDATA[
+        SELECT u.*, rd.Discipline
+FROM tblUserPSA u
+LEFT JOIN REF_Disciplines rd
+    ON rd.ID = u.fk_DisciplineId
+WHERE u.Id != 1
+        ]]>
+    </sql-query>
+
+    <sql-query name="GetPSAUsers__count">
+        <![CDATA[
+        select count(*) from (SELECT u.*, rd.Discipline
+FROM tblUserPSA u
+LEFT JOIN REF_Disciplines rd
+    ON rd.ID = u.fk_DisciplineId
+WHERE u.Id != 1) wmTempTable
+        ]]>
+    </sql-query>
+
+    <sql-query name="InsertFeedbackTicketNotes">
+        <![CDATA[
+        INSERT INTO `PSA`.`FeedBackNotes` 
+(`fk_FeedBackID`, `fk_UserID`, `Notes`) 
+VALUES (:TicketID, :UserID, :Note)
+        ]]>
+    <query-param name="TicketID" type="java.lang.Integer"/>
+    <query-param name="UserID" type="java.lang.Integer"/>
+    <query-param name="Note" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="GetHelpMenuVideos">
+        <![CDATA[
+        SELECT m.ID AS CategoryID, sm.ID AS SubCategoryID, m.label AS Category, sm.label AS SubCategory, sm.title, sm.fileName
+FROM PSA.MenuHelpVideos m
+JOIN PSA.MenuSubHelpVideos sm
+	ON sm.fk_ParentMenu = m.ID
+ORDER BY m.ID, sm.ID
+        ]]>
+    </sql-query>
+
+    <sql-query name="GetHelpMenuVideos__count">
+        <![CDATA[
+        select count(*) from (SELECT m.ID AS CategoryID, sm.ID AS SubCategoryID, m.label AS Category, sm.label AS SubCategory, sm.title, sm.fileName
+FROM PSA.MenuHelpVideos m
+JOIN PSA.MenuSubHelpVideos sm
+	ON sm.fk_ParentMenu = m.ID
+ORDER BY m.ID, sm.ID) wmTempTable
+        ]]>
     </sql-query>
 </hibernate-mapping>

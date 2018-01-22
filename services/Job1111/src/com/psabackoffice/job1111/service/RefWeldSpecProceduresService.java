@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefWeldSpecProceduresService {
      * @param refWeldSpecProcedures Details of the RefWeldSpecProcedures to be created; value cannot be null.
      * @return The newly created RefWeldSpecProcedures.
      */
-	RefWeldSpecProcedures create(RefWeldSpecProcedures refWeldSpecProcedures);
+	RefWeldSpecProcedures create(@Valid RefWeldSpecProcedures refWeldSpecProcedures);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface RefWeldSpecProceduresService {
 	 * @return The updated RefWeldSpecProcedures.
 	 * @throws EntityNotFoundException if no RefWeldSpecProcedures is found with given input.
 	 */
-	RefWeldSpecProcedures update(RefWeldSpecProcedures refWeldSpecProcedures) throws EntityNotFoundException;
+	RefWeldSpecProcedures update(@Valid RefWeldSpecProcedures refWeldSpecProcedures) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefWeldSpecProcedures with the given id.

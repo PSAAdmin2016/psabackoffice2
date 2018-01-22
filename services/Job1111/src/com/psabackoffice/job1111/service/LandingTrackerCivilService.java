@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface LandingTrackerCivilService {
      * @param landingTrackerCivil Details of the LandingTrackerCivil to be created; value cannot be null.
      * @return The newly created LandingTrackerCivil.
      */
-	LandingTrackerCivil create(LandingTrackerCivil landingTrackerCivil);
+	LandingTrackerCivil create(@Valid LandingTrackerCivil landingTrackerCivil);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface LandingTrackerCivilService {
 	 * @return The updated LandingTrackerCivil.
 	 * @throws EntityNotFoundException if no LandingTrackerCivil is found with given input.
 	 */
-	LandingTrackerCivil update(LandingTrackerCivil landingTrackerCivil) throws EntityNotFoundException;
+	LandingTrackerCivil update(@Valid LandingTrackerCivil landingTrackerCivil) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing LandingTrackerCivil with the given id.

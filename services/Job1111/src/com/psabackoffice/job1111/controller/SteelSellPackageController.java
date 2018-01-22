@@ -52,9 +52,9 @@ public class SteelSellPackageController {
 	private SteelSellPackageService steelSellPackageService;
 
 	@ApiOperation(value = "Creates a new SteelSellPackage instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public SteelSellPackage createSteelSellPackage(@RequestBody SteelSellPackage steelSellPackage) {
+    public SteelSellPackage createSteelSellPackage(@RequestBody SteelSellPackage steelSellPackage) {
 		LOGGER.debug("Create SteelSellPackage with information: {}" , steelSellPackage);
 
 		steelSellPackage = steelSellPackageService.create(steelSellPackage);
@@ -62,7 +62,6 @@ public class SteelSellPackageController {
 
 	    return steelSellPackage;
 	}
-
 
     @ApiOperation(value = "Returns the SteelSellPackage instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -80,9 +79,9 @@ public class SteelSellPackageController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public SteelSellPackage editSteelSellPackage(@PathVariable("id") Integer id, @RequestBody SteelSellPackage steelSellPackage) throws EntityNotFoundException {
-        LOGGER.debug("Editing SteelSellPackage with id: {}" , steelSellPackage.getActivityId());
+        LOGGER.debug("Editing SteelSellPackage with id: {}" , steelSellPackage.getId());
 
-        steelSellPackage.setActivityId(id);
+        steelSellPackage.setId(id);
         steelSellPackage = steelSellPackageService.update(steelSellPackage);
         LOGGER.debug("SteelSellPackage details with id: {}" , steelSellPackage);
 

@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.psa.RefGenericPipeSpools;
  * @see RefGenericPipeSpools
  */
 @Service("PSA.RefGenericPipeSpoolsService")
+@Validated
 public class RefGenericPipeSpoolsServiceImpl implements RefGenericPipeSpoolsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RefGenericPipeSpoolsServiceImpl.class);
@@ -49,6 +51,7 @@ public class RefGenericPipeSpoolsServiceImpl implements RefGenericPipeSpoolsServ
     @Override
 	public RefGenericPipeSpools create(RefGenericPipeSpools refGenericPipeSpools) {
         LOGGER.debug("Creating a new RefGenericPipeSpools with information: {}", refGenericPipeSpools);
+
         RefGenericPipeSpools refGenericPipeSpoolsCreated = this.wmGenericDao.create(refGenericPipeSpools);
         return refGenericPipeSpoolsCreated;
     }

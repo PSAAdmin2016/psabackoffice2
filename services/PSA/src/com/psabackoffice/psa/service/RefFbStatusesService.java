@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -32,7 +34,7 @@ public interface RefFbStatusesService {
      * @param refFbStatuses Details of the RefFbStatuses to be created; value cannot be null.
      * @return The newly created RefFbStatuses.
      */
-	RefFbStatuses create(RefFbStatuses refFbStatuses);
+	RefFbStatuses create(@Valid RefFbStatuses refFbStatuses);
 
 
 	/**
@@ -62,7 +64,7 @@ public interface RefFbStatusesService {
 	 * @return The updated RefFbStatuses.
 	 * @throws EntityNotFoundException if no RefFbStatuses is found with given input.
 	 */
-	RefFbStatuses update(RefFbStatuses refFbStatuses) throws EntityNotFoundException;
+	RefFbStatuses update(@Valid RefFbStatuses refFbStatuses) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefFbStatuses with the given id.

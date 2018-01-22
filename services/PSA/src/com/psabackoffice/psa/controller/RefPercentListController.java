@@ -52,9 +52,9 @@ public class RefPercentListController {
 	private RefPercentListService refPercentListService;
 
 	@ApiOperation(value = "Creates a new RefPercentList instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefPercentList createRefPercentList(@RequestBody RefPercentList refPercentList) {
+    public RefPercentList createRefPercentList(@RequestBody RefPercentList refPercentList) {
 		LOGGER.debug("Create RefPercentList with information: {}" , refPercentList);
 
 		refPercentList = refPercentListService.create(refPercentList);
@@ -62,7 +62,6 @@ public class RefPercentListController {
 
 	    return refPercentList;
 	}
-
 
     @ApiOperation(value = "Returns the RefPercentList instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

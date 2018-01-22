@@ -52,9 +52,9 @@ public class RefActivityRejectionsController {
 	private RefActivityRejectionsService refActivityRejectionsService;
 
 	@ApiOperation(value = "Creates a new RefActivityRejections instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefActivityRejections createRefActivityRejections(@RequestBody RefActivityRejections refActivityRejections) {
+    public RefActivityRejections createRefActivityRejections(@RequestBody RefActivityRejections refActivityRejections) {
 		LOGGER.debug("Create RefActivityRejections with information: {}" , refActivityRejections);
 
 		refActivityRejections = refActivityRejectionsService.create(refActivityRejections);
@@ -62,7 +62,6 @@ public class RefActivityRejectionsController {
 
 	    return refActivityRejections;
 	}
-
 
     @ApiOperation(value = "Returns the RefActivityRejections instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

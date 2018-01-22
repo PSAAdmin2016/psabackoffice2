@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface LandingWeldSpecProceduresService {
      * @param landingWeldSpecProcedures Details of the LandingWeldSpecProcedures to be created; value cannot be null.
      * @return The newly created LandingWeldSpecProcedures.
      */
-	LandingWeldSpecProcedures create(LandingWeldSpecProcedures landingWeldSpecProcedures);
+	LandingWeldSpecProcedures create(@Valid LandingWeldSpecProcedures landingWeldSpecProcedures);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface LandingWeldSpecProceduresService {
 	 * @return The updated LandingWeldSpecProcedures.
 	 * @throws EntityNotFoundException if no LandingWeldSpecProcedures is found with given input.
 	 */
-	LandingWeldSpecProcedures update(LandingWeldSpecProcedures landingWeldSpecProcedures) throws EntityNotFoundException;
+	LandingWeldSpecProcedures update(@Valid LandingWeldSpecProcedures landingWeldSpecProcedures) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing LandingWeldSpecProcedures with the given id.

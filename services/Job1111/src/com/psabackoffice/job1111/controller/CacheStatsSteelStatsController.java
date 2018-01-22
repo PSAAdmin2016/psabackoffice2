@@ -52,9 +52,9 @@ public class CacheStatsSteelStatsController {
 	private CacheStatsSteelStatsService cacheStatsSteelStatsService;
 
 	@ApiOperation(value = "Creates a new CacheStatsSteelStats instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public CacheStatsSteelStats createCacheStatsSteelStats(@RequestBody CacheStatsSteelStats cacheStatsSteelStats) {
+    public CacheStatsSteelStats createCacheStatsSteelStats(@RequestBody CacheStatsSteelStats cacheStatsSteelStats) {
 		LOGGER.debug("Create CacheStatsSteelStats with information: {}" , cacheStatsSteelStats);
 
 		cacheStatsSteelStats = cacheStatsSteelStatsService.create(cacheStatsSteelStats);
@@ -62,7 +62,6 @@ public class CacheStatsSteelStatsController {
 
 	    return cacheStatsSteelStats;
 	}
-
 
     @ApiOperation(value = "Returns the CacheStatsSteelStats instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

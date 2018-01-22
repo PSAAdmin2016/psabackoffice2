@@ -1,95 +1,92 @@
-<wm-partial data-ng-controller="PartFAPipeBoltUpPageController">
-    <wm-layoutgrid name="layoutgrid1">
-        <wm-gridrow name="gridrow1">
-            <wm-gridcolumn columnwidth="6" name="gridcolumn1">
-                <wm-layoutgrid name="layoutgrid3">
-                    <wm-gridrow name="gridrow4">
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn6">
-                            <wm-label caption="Bolt Up" show="true" fontweight="bold" fontsize="13" name="label1"></wm-label>
-                        </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="4" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn7">
-                            <wm-checkbox caption="Rework" hint="Activity can NOT be accepted if it is Rework." disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetPipeBoltUp.dataSet.data[$i].boltUpRework" checkedvalue="1"
-                            uncheckedvalue="0" readonlygrid="true" show="true" padding="unset unset unset 0px" margin="0px unset unset unset" width="100%" name="checkboxBoltUpRework"></wm-checkbox>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                    <wm-gridrow name="gridrow5">
-                        <wm-gridcolumn columnwidth="5" name="gridcolumn8">
-                            <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite1">
-                                <wm-label class="col-md-3 control-label" caption="Spool 1" name="label2"></wm-label>
-                                <wm-container class="col-md-9" width="95%" name="container1">
-                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeBoltUp.dataSet.data[$i].boltUpSpool1" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textBoltUpSpool1" placeholder="Enter Spool 1"></wm-text>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="2" horizontalalign="center" padding="4% unset unset unset" name="gridcolumn9">
-                            <wm-label caption="TO:" show="true" fontsize="14" name="label3"></wm-label>
-                        </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="5" name="gridcolumn10">
-                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite2">
-                                <wm-label class="col-md-3 control-label" caption="Spool 2" name="label4"></wm-label>
-                                <wm-container class="col-md-9" width="95%" name="container2">
-                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeBoltUp.dataSet.data[$i].boltUpSpool2" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textBoltUpSpool2" placeholder="Enter Spool2"></wm-text>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                    <wm-gridrow name="gridrow6">
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn11">
-                            <wm-composite captionposition="top" name="composite3">
-                                <wm-label class="col-md-3 control-label" caption="Size" name="label5"></wm-label>
-                                <wm-container class="col-md-9" name="container3">
-                                    <wm-select datavalue="bind:$parent.Variables.liveGetPipeBoltUp.dataSet.data[$i].boltUpSize" dataset="bind:Variables.PSARefPipeSizesData.dataSet" datafield="value" displayfield="label" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false"
-                                    name="selectBoltUpSize"></wm-select>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                </wm-layoutgrid>
-            </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="6" name="gridcolumn2">
-                <wm-layoutgrid name="layoutgrid4">
-                    <wm-gridrow name="gridrow9">
-                        <wm-gridcolumn columnwidth="8" name="gridcolumn15">
-                            <wm-composite captionposition="top" name="composite6">
-                                <wm-label class="col-md-3 control-label" caption="Drawing Number" readonlygrid="true" name="label8"></wm-label>
-                                <wm-container class="col-md-9" width="100%" name="container6">
-                                    <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetPipeBoltUp.dataSet.data[$i].boltUpDrawingNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" name="textBoltUpDrawing" placeholder="Enter Drawing Number"></wm-text>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn16">
-                            <wm-composite captionposition="top" name="composite7">
-                                <wm-label class="col-md-3 control-label" caption="Sheet" name="label9"></wm-label>
-                                <wm-container class="col-md-9" name="container7">
-                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeBoltUp.dataSet.data[$i].boltUpSheetNumber" width="70%" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" type="number" minvalue="1" maxvalue="99" step="1" name="textBoltUpSheet"
-                                    placeholder="Enter Sheet Number"></wm-text>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                    <wm-gridrow name="gridrow10">
-                        <wm-gridcolumn columnwidth="8" name="gridcolumn17">
-                            <wm-composite captionposition="top" name="composite8">
-                                <wm-label class="col-md-3 control-label" caption="Line Number" readonlygrid="true" name="label10"></wm-label>
-                                <wm-container class="col-md-9" width="100%" name="container8">
-                                    <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetPipeBoltUp.dataSet.data[$i].boltUpLineNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" name="textBoltUpLine" placeholder="Enter Line Number"></wm-text>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="3" horizontalalign="left" name="gridcolumn18"></wm-gridcolumn>
-                    </wm-gridrow>
-                    <wm-gridrow name="gridrow11">
-                        <wm-gridcolumn columnwidth="12" name="gridcolumn19">
-                            <wm-composite captionposition="top" name="composite9">
-                                <wm-label class="col-md-3 control-label" caption="Notes" name="label11"></wm-label>
-                                <wm-container class="col-md-9" name="container9">
-                                    <wm-textarea datavalue="bind:$parent.Variables.liveGetPipeBoltUp.dataSet.data[$i].boltUpNotes" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textareaBoltUpNotes" placeholder="Input notes here"></wm-textarea>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                </wm-layoutgrid>
-            </wm-gridcolumn>
-        </wm-gridrow>
-    </wm-layoutgrid>
+<wm-partial data-ng-controller="PartFAPipeBoltUpPageController"> 
+    <wm-layoutgrid name="layoutgrid1"> 
+        <wm-gridrow name="gridrow1"> 
+            <wm-gridcolumn columnwidth="6" name="gridcolumn1"> 
+                <wm-layoutgrid name="layoutgrid3"> 
+                    <wm-gridrow name="gridrow4"> 
+                        <wm-gridcolumn columnwidth="3" name="gridcolumn6"> 
+                            <wm-label caption="Bolt Up" show="true" fontweight="bold" fontsize="13" name="label1"></wm-label> 
+                        </wm-gridcolumn> 
+                        <wm-gridcolumn columnwidth="4" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn7"> 
+                            <wm-checkbox caption="Rework" hint="Activity can NOT be accepted if it is Rework." disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetPipeBoltUp.dataSet.data[$i].boltUpRework" checkedvalue="1" uncheckedvalue="0" readonlygrid="true" show="true" padding="unset unset unset 0px" margin="0px unset unset unset" width="100%" name="checkboxBoltUpRework"></wm-checkbox> 
+                        </wm-gridcolumn> 
+                    </wm-gridrow> 
+                    <wm-gridrow name="gridrow5"> 
+                        <wm-gridcolumn columnwidth="5" name="gridcolumn8"> 
+                            <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite1"> 
+                                <wm-label class="col-md-3 control-label" caption="Spool 1" name="label2"></wm-label> 
+                                <wm-container class="col-md-9" width="95%" name="container1"> 
+                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeBoltUp.dataSet.data[$i].boltUpSpool1" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textBoltUpSpool1" placeholder="Enter Spool 1"></wm-text> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                        <wm-gridcolumn columnwidth="2" horizontalalign="center" padding="4% unset unset unset" name="gridcolumn9"> 
+                            <wm-label caption="TO:" show="true" fontsize="14" name="label3"></wm-label> 
+                        </wm-gridcolumn> 
+                        <wm-gridcolumn columnwidth="5" name="gridcolumn10"> 
+                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite2"> 
+                                <wm-label class="col-md-3 control-label" caption="Spool 2" name="label4"></wm-label> 
+                                <wm-container class="col-md-9" width="95%" name="container2"> 
+                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeBoltUp.dataSet.data[$i].boltUpSpool2" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textBoltUpSpool2" placeholder="Enter Spool2"></wm-text> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                    </wm-gridrow> 
+                    <wm-gridrow name="gridrow6"> 
+                        <wm-gridcolumn columnwidth="3" name="gridcolumn11"> 
+                            <wm-composite captionposition="top" name="composite3"> 
+                                <wm-label class="col-md-3 control-label" caption="Size" name="label5"></wm-label> 
+                                <wm-container class="col-md-9" name="container3"> 
+                                    <wm-select datavalue="bind:$parent.Variables.liveGetPipeBoltUp.dataSet.data[$i].boltUpSize" dataset="bind:Variables.PSARefPipeSizesData.dataSet" datafield="value" displayfield="label" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="selectBoltUpSize"></wm-select> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                    </wm-gridrow> 
+                </wm-layoutgrid> 
+            </wm-gridcolumn> 
+            <wm-gridcolumn columnwidth="6" name="gridcolumn2"> 
+                <wm-layoutgrid name="layoutgrid4"> 
+                    <wm-gridrow name="gridrow9"> 
+                        <wm-gridcolumn columnwidth="8" name="gridcolumn15"> 
+                            <wm-composite captionposition="top" name="composite6"> 
+                                <wm-label class="col-md-3 control-label" caption="Drawing Number" readonlygrid="true" name="label8"></wm-label> 
+                                <wm-container class="col-md-9" width="100%" name="container6"> 
+                                    <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetPipeBoltUp.dataSet.data[$i].boltUpDrawingNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" name="textBoltUpDrawing" placeholder="Enter Drawing Number"></wm-text> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                        <wm-gridcolumn columnwidth="3" name="gridcolumn16"> 
+                            <wm-composite captionposition="top" name="composite7"> 
+                                <wm-label class="col-md-3 control-label" caption="Sheet" name="label9"></wm-label> 
+                                <wm-container class="col-md-9" name="container7"> 
+                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeBoltUp.dataSet.data[$i].boltUpSheetNumber" width="70%" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" type="number" minvalue="1" maxvalue="99" step="1" name="textBoltUpSheet" placeholder="Enter Sheet Number"></wm-text> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                    </wm-gridrow> 
+                    <wm-gridrow name="gridrow10"> 
+                        <wm-gridcolumn columnwidth="8" name="gridcolumn17"> 
+                            <wm-composite captionposition="top" name="composite8"> 
+                                <wm-label class="col-md-3 control-label" caption="Line Number" readonlygrid="true" name="label10"></wm-label> 
+                                <wm-container class="col-md-9" width="100%" name="container8"> 
+                                    <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetPipeBoltUp.dataSet.data[$i].boltUpLineNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" name="textBoltUpLine" placeholder="Enter Line Number"></wm-text> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                        <wm-gridcolumn columnwidth="3" horizontalalign="left" name="gridcolumn18"></wm-gridcolumn> 
+                    </wm-gridrow> 
+                    <wm-gridrow name="gridrow11"> 
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn19"> 
+                            <wm-composite captionposition="top" name="composite9"> 
+                                <wm-label class="col-md-3 control-label" caption="Notes" name="label11"></wm-label> 
+                                <wm-container class="col-md-9" name="container9"> 
+                                    <wm-textarea datavalue="bind:$parent.Variables.liveGetPipeBoltUp.dataSet.data[$i].boltUpNotes" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textareaBoltUpNotes" placeholder="Input notes here"></wm-textarea> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                    </wm-gridrow> 
+                </wm-layoutgrid> 
+            </wm-gridcolumn> 
+        </wm-gridrow> 
+    </wm-layoutgrid> 
 </wm-partial>

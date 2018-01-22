@@ -34,49 +34,7 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public CreateManualActivityCivilResponse executeCreateManualActivityCivil(CreateManualActivityCivilRequest createManualActivityCivilRequest) {
-        Map params = new HashMap(9);
-
-        params.put("varFoundation", createManualActivityCivilRequest.getVarFoundation());
-        params.put("varDrawingNumber", createManualActivityCivilRequest.getVarDrawingNumber());
-        params.put("varDetailDrawingNumber", createManualActivityCivilRequest.getVarDetailDrawingNumber());
-        params.put("varPercentComplete", createManualActivityCivilRequest.getVarPercentComplete());
-        params.put("varNotes", createManualActivityCivilRequest.getVarNotes());
-        params.put("varUserId", createManualActivityCivilRequest.getVarUserId());
-        params.put("varBidID", createManualActivityCivilRequest.getVarBidId());
-
-        return procedureExecutor.executeNamedProcedure("CreateManualActivityCivil", params, CreateManualActivityCivilResponse.class);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public CreateManualActivityPipeResponse executeCreateManualActivityPipe(CreateManualActivityPipeRequest createManualActivityPipeRequest) {
-        Map params = new HashMap(9);
-
-        params.put("MiscDrawingNumber", createManualActivityPipeRequest.getMiscDrawingNumber());
-        params.put("MiscLineNumber", createManualActivityPipeRequest.getMiscLineNumber());
-        params.put("MiscSheetNumber", createManualActivityPipeRequest.getMiscSheetNumber());
-        params.put("MiscQuantity", createManualActivityPipeRequest.getMiscQuantity());
-        params.put("MiscNotes", createManualActivityPipeRequest.getMiscNotes());
-        params.put("UserId", createManualActivityPipeRequest.getUserId());
-        params.put("BidID", createManualActivityPipeRequest.getBidId());
-
-        return procedureExecutor.executeNamedProcedure("CreateManualActivityPipe", params, CreateManualActivityPipeResponse.class);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public GetEquipPcotResponse executeGetEquipPCOT(Integer runMode) {
-        Map params = new HashMap(3);
-
-        params.put("RunMode", runMode);
-
-        return procedureExecutor.executeNamedProcedure("GetEquipPCOT", params, GetEquipPcotResponse.class);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public GetPipeEarnedHoursResponse executeGetPipeEarnedHours(String groupedBy, String crewId, String crewRev, String foremanId, String superintendentId, String projectManagerId, String constructionManagerId, String siteManagerId, String areaManagerId, Date inputDate, Integer runMode) {
+    public GetEquipEarnedHoursResponse executeGetEquipEarnedHours(String groupedBy, String crewId, String crewRev, String foremanId, String superintendentId, String projectManagerId, String constructionManagerId, String siteManagerId, String areaManagerId, Date inputDate, Integer runMode) {
         Map params = new HashMap(13);
 
         params.put("GroupedBy", groupedBy);
@@ -91,7 +49,41 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
         params.put("InputDate", inputDate);
         params.put("RunMode", runMode);
 
-        return procedureExecutor.executeNamedProcedure("GetPipeEarnedHours", params, GetPipeEarnedHoursResponse.class);
+        return procedureExecutor.executeNamedProcedure("GetEquipEarnedHours", params, GetEquipEarnedHoursResponse.class);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public CreateLooseHoursActivitySteelResponse executeCreateLooseHoursActivitySteel(CreateLooseHoursActivitySteelRequest createLooseHoursActivitySteelRequest) {
+        Map params = new HashMap(6);
+
+        params.put("SubmissionId", createLooseHoursActivitySteelRequest.getSubmissionId());
+        params.put("ActivityId", createLooseHoursActivitySteelRequest.getActivityId());
+        params.put("UserId", createLooseHoursActivitySteelRequest.getUserId());
+        params.put("TestPackage", createLooseHoursActivitySteelRequest.getTestPackage());
+
+        return procedureExecutor.executeNamedProcedure("CreateLooseHoursActivitySteel", params, CreateLooseHoursActivitySteelResponse.class);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public GetSteelPcotResponse executeGetSteelPCOT(Integer runMode) {
+        Map params = new HashMap(3);
+
+        params.put("RunMode", runMode);
+
+        return procedureExecutor.executeNamedProcedure("GetSteelPCOT", params, GetSteelPcotResponse.class);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public ClassicTrackerEquipUpdateResponse executeClassicTrackerEquipUpdate(Integer runMode, Integer updateBidId) {
+        Map params = new HashMap(4);
+
+        params.put("RunMode", runMode);
+        params.put("UpdateBidID", updateBidId);
+
+        return procedureExecutor.executeNamedProcedure("ClassicTrackerEquipUpdate", params, ClassicTrackerEquipUpdateResponse.class);
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -113,12 +105,13 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public GetPipePcotResponse executeGetPipePCOT(Integer runMode) {
-        Map params = new HashMap(3);
+    public LockSsactivityResponse executeLockSSActivity(Integer userId, Integer fieldActivityId) {
+        Map params = new HashMap(4);
 
-        params.put("RunMode", runMode);
+        params.put("UserID", userId);
+        params.put("FieldActivityID", fieldActivityId);
 
-        return procedureExecutor.executeNamedProcedure("GetPipePCOT", params, GetPipePcotResponse.class);
+        return procedureExecutor.executeNamedProcedure("LockSSActivity", params, LockSsactivityResponse.class);
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -143,17 +136,25 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public CreateManualActivityEquipResponse executeCreateManualActivityEquip(CreateManualActivityEquipRequest createManualActivityEquipRequest) {
-        Map params = new HashMap(8);
+    public CreateLooseHoursActivityCivilResponse executeCreateLooseHoursActivityCivil(CreateLooseHoursActivityCivilRequest createLooseHoursActivityCivilRequest) {
+        Map params = new HashMap(6);
 
-        params.put("varTagNumber", createManualActivityEquipRequest.getVarTagNumber());
-        params.put("varActivitySelect", createManualActivityEquipRequest.getVarActivitySelect());
-        params.put("varPercentComplete", createManualActivityEquipRequest.getVarPercentComplete());
-        params.put("varNotes", createManualActivityEquipRequest.getVarNotes());
-        params.put("varUserId", createManualActivityEquipRequest.getVarUserId());
-        params.put("varBidID", createManualActivityEquipRequest.getVarBidId());
+        params.put("SubmissionId", createLooseHoursActivityCivilRequest.getSubmissionId());
+        params.put("ActivityId", createLooseHoursActivityCivilRequest.getActivityId());
+        params.put("UserId", createLooseHoursActivityCivilRequest.getUserId());
+        params.put("TestPackage", createLooseHoursActivityCivilRequest.getTestPackage());
 
-        return procedureExecutor.executeNamedProcedure("CreateManualActivityEquip", params, CreateManualActivityEquipResponse.class);
+        return procedureExecutor.executeNamedProcedure("CreateLooseHoursActivityCivil", params, CreateLooseHoursActivityCivilResponse.class);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public GetPipePcotResponse executeGetPipePCOT(Integer runMode) {
+        Map params = new HashMap(3);
+
+        params.put("RunMode", runMode);
+
+        return procedureExecutor.executeNamedProcedure("GetPipePCOT", params, GetPipePcotResponse.class);
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -169,38 +170,6 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public GetEquipStatsResponse executeGetEquipStats(String groupedBy, Integer runMode) {
-        Map params = new HashMap(4);
-
-        params.put("GroupedBy", groupedBy);
-        params.put("RunMode", runMode);
-
-        return procedureExecutor.executeNamedProcedure("GetEquipStats", params, GetEquipStatsResponse.class);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public GetPipeStatsResponse executeGetPipeStats(String groupedBy, Integer runMode) {
-        Map params = new HashMap(4);
-
-        params.put("GroupedBy", groupedBy);
-        params.put("RunMode", runMode);
-
-        return procedureExecutor.executeNamedProcedure("GetPipeStats", params, GetPipeStatsResponse.class);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public GetCivilPcotResponse executeGetCivilPCOT(Integer runMode) {
-        Map params = new HashMap(3);
-
-        params.put("RunMode", runMode);
-
-        return procedureExecutor.executeNamedProcedure("GetCivilPCOT", params, GetCivilPcotResponse.class);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
     public GetJobPcotResponse executeGetJobPCOT(Integer runMode) {
         Map params = new HashMap(3);
 
@@ -211,90 +180,18 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public ClassicTrackerCivilUpdateResponse executeClassicTrackerCivilUpdate(Integer runMode, Integer updateBidId) {
-        Map params = new HashMap(4);
+    public CreateManualActivityPipeResponse executeCreateManualActivityPipe(CreateManualActivityPipeRequest createManualActivityPipeRequest) {
+        Map params = new HashMap(9);
 
-        params.put("RunMode", runMode);
-        params.put("UpdateBidID", updateBidId);
+        params.put("MiscDrawingNumber", createManualActivityPipeRequest.getMiscDrawingNumber());
+        params.put("MiscLineNumber", createManualActivityPipeRequest.getMiscLineNumber());
+        params.put("MiscSheetNumber", createManualActivityPipeRequest.getMiscSheetNumber());
+        params.put("MiscQuantity", createManualActivityPipeRequest.getMiscQuantity());
+        params.put("MiscNotes", createManualActivityPipeRequest.getMiscNotes());
+        params.put("UserId", createManualActivityPipeRequest.getUserId());
+        params.put("BidID", createManualActivityPipeRequest.getBidId());
 
-        return procedureExecutor.executeNamedProcedure("ClassicTrackerCivilUpdate", params, ClassicTrackerCivilUpdateResponse.class);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public GetSteelStatsResponse executeGetSteelStats(String groupedBy, Integer runMode) {
-        Map params = new HashMap(4);
-
-        params.put("GroupedBy", groupedBy);
-        params.put("RunMode", runMode);
-
-        return procedureExecutor.executeNamedProcedure("GetSteelStats", params, GetSteelStatsResponse.class);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public ClassicTrackerSteelUpdateResponse executeClassicTrackerSteelUpdate(Integer runMode, Integer updateBidId) {
-        Map params = new HashMap(4);
-
-        params.put("RunMode", runMode);
-        params.put("UpdateBidID", updateBidId);
-
-        return procedureExecutor.executeNamedProcedure("ClassicTrackerSteelUpdate", params, ClassicTrackerSteelUpdateResponse.class);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public LockSsactivityResponse executeLockSSActivity(Integer userId, Integer fieldActivityId) {
-        Map params = new HashMap(4);
-
-        params.put("UserID", userId);
-        params.put("FieldActivityID", fieldActivityId);
-
-        return procedureExecutor.executeNamedProcedure("LockSSActivity", params, LockSsactivityResponse.class);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public GetCivilStatsResponse executeGetCivilStats(String groupedBy, Integer runMode) {
-        Map params = new HashMap(4);
-
-        params.put("GroupedBy", groupedBy);
-        params.put("RunMode", runMode);
-
-        return procedureExecutor.executeNamedProcedure("GetCivilStats", params, GetCivilStatsResponse.class);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public CreateLooseHoursActivitySteelResponse executeCreateLooseHoursActivitySteel(CreateLooseHoursActivitySteelRequest createLooseHoursActivitySteelRequest) {
-        Map params = new HashMap(6);
-
-        params.put("SubmissionId", createLooseHoursActivitySteelRequest.getSubmissionId());
-        params.put("ActivityId", createLooseHoursActivitySteelRequest.getActivityId());
-        params.put("UserId", createLooseHoursActivitySteelRequest.getUserId());
-        params.put("TestPackage", createLooseHoursActivitySteelRequest.getTestPackage());
-
-        return procedureExecutor.executeNamedProcedure("CreateLooseHoursActivitySteel", params, CreateLooseHoursActivitySteelResponse.class);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public GetEquipEarnedHoursResponse executeGetEquipEarnedHours(String groupedBy, String crewId, String crewRev, String foremanId, String superintendentId, String projectManagerId, String constructionManagerId, String siteManagerId, String areaManagerId, Date inputDate, Integer runMode) {
-        Map params = new HashMap(13);
-
-        params.put("GroupedBy", groupedBy);
-        params.put("CrewID", crewId);
-        params.put("CrewRev", crewRev);
-        params.put("ForemanID", foremanId);
-        params.put("SuperintendentID", superintendentId);
-        params.put("ProjectManagerID", projectManagerId);
-        params.put("ConstructionManagerID", constructionManagerId);
-        params.put("SiteManagerID", siteManagerId);
-        params.put("AreaManagerID", areaManagerId);
-        params.put("InputDate", inputDate);
-        params.put("RunMode", runMode);
-
-        return procedureExecutor.executeNamedProcedure("GetEquipEarnedHours", params, GetEquipEarnedHoursResponse.class);
+        return procedureExecutor.executeNamedProcedure("CreateManualActivityPipe", params, CreateManualActivityPipeResponse.class);
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -319,13 +216,128 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public ClassicTrackerEquipUpdateResponse executeClassicTrackerEquipUpdate(Integer runMode, Integer updateBidId) {
+    public GetCivilPcotResponse executeGetCivilPCOT(Integer runMode) {
+        Map params = new HashMap(3);
+
+        params.put("RunMode", runMode);
+
+        return procedureExecutor.executeNamedProcedure("GetCivilPCOT", params, GetCivilPcotResponse.class);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public GetEquipPcotResponse executeGetEquipPCOT(Integer runMode) {
+        Map params = new HashMap(3);
+
+        params.put("RunMode", runMode);
+
+        return procedureExecutor.executeNamedProcedure("GetEquipPCOT", params, GetEquipPcotResponse.class);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public GetPipeStatsResponse executeGetPipeStats(String groupedBy, Integer runMode) {
+        Map params = new HashMap(4);
+
+        params.put("GroupedBy", groupedBy);
+        params.put("RunMode", runMode);
+
+        return procedureExecutor.executeNamedProcedure("GetPipeStats", params, GetPipeStatsResponse.class);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public GetCivilStatsResponse executeGetCivilStats(String groupedBy, Integer runMode) {
+        Map params = new HashMap(4);
+
+        params.put("GroupedBy", groupedBy);
+        params.put("RunMode", runMode);
+
+        return procedureExecutor.executeNamedProcedure("GetCivilStats", params, GetCivilStatsResponse.class);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public GetPipeEarnedHoursResponse executeGetPipeEarnedHours(String groupedBy, String crewId, String crewRev, String foremanId, String superintendentId, String projectManagerId, String constructionManagerId, String siteManagerId, String areaManagerId, Date inputDate, Integer runMode) {
+        Map params = new HashMap(13);
+
+        params.put("GroupedBy", groupedBy);
+        params.put("CrewID", crewId);
+        params.put("CrewRev", crewRev);
+        params.put("ForemanID", foremanId);
+        params.put("SuperintendentID", superintendentId);
+        params.put("ProjectManagerID", projectManagerId);
+        params.put("ConstructionManagerID", constructionManagerId);
+        params.put("SiteManagerID", siteManagerId);
+        params.put("AreaManagerID", areaManagerId);
+        params.put("InputDate", inputDate);
+        params.put("RunMode", runMode);
+
+        return procedureExecutor.executeNamedProcedure("GetPipeEarnedHours", params, GetPipeEarnedHoursResponse.class);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public CreateManualActivityCivilResponse executeCreateManualActivityCivil(CreateManualActivityCivilRequest createManualActivityCivilRequest) {
+        Map params = new HashMap(9);
+
+        params.put("varFoundation", createManualActivityCivilRequest.getVarFoundation());
+        params.put("varDrawingNumber", createManualActivityCivilRequest.getVarDrawingNumber());
+        params.put("varDetailDrawingNumber", createManualActivityCivilRequest.getVarDetailDrawingNumber());
+        params.put("varPercentComplete", createManualActivityCivilRequest.getVarPercentComplete());
+        params.put("varNotes", createManualActivityCivilRequest.getVarNotes());
+        params.put("varUserId", createManualActivityCivilRequest.getVarUserId());
+        params.put("varBidID", createManualActivityCivilRequest.getVarBidId());
+
+        return procedureExecutor.executeNamedProcedure("CreateManualActivityCivil", params, CreateManualActivityCivilResponse.class);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public GetEquipStatsResponse executeGetEquipStats(String groupedBy, Integer runMode) {
+        Map params = new HashMap(4);
+
+        params.put("GroupedBy", groupedBy);
+        params.put("RunMode", runMode);
+
+        return procedureExecutor.executeNamedProcedure("GetEquipStats", params, GetEquipStatsResponse.class);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public CreateManualActivityEquipResponse executeCreateManualActivityEquip(CreateManualActivityEquipRequest createManualActivityEquipRequest) {
+        Map params = new HashMap(8);
+
+        params.put("varTagNumber", createManualActivityEquipRequest.getVarTagNumber());
+        params.put("varActivitySelect", createManualActivityEquipRequest.getVarActivitySelect());
+        params.put("varPercentComplete", createManualActivityEquipRequest.getVarPercentComplete());
+        params.put("varNotes", createManualActivityEquipRequest.getVarNotes());
+        params.put("varUserId", createManualActivityEquipRequest.getVarUserId());
+        params.put("varBidID", createManualActivityEquipRequest.getVarBidId());
+
+        return procedureExecutor.executeNamedProcedure("CreateManualActivityEquip", params, CreateManualActivityEquipResponse.class);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public GetSteelStatsResponse executeGetSteelStats(String groupedBy, Integer runMode) {
+        Map params = new HashMap(4);
+
+        params.put("GroupedBy", groupedBy);
+        params.put("RunMode", runMode);
+
+        return procedureExecutor.executeNamedProcedure("GetSteelStats", params, GetSteelStatsResponse.class);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public ClassicTrackerCivilUpdateResponse executeClassicTrackerCivilUpdate(Integer runMode, Integer updateBidId) {
         Map params = new HashMap(4);
 
         params.put("RunMode", runMode);
         params.put("UpdateBidID", updateBidId);
 
-        return procedureExecutor.executeNamedProcedure("ClassicTrackerEquipUpdate", params, ClassicTrackerEquipUpdateResponse.class);
+        return procedureExecutor.executeNamedProcedure("ClassicTrackerCivilUpdate", params, ClassicTrackerCivilUpdateResponse.class);
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -343,25 +355,13 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public CreateLooseHoursActivityCivilResponse executeCreateLooseHoursActivityCivil(CreateLooseHoursActivityCivilRequest createLooseHoursActivityCivilRequest) {
-        Map params = new HashMap(6);
-
-        params.put("SubmissionId", createLooseHoursActivityCivilRequest.getSubmissionId());
-        params.put("ActivityId", createLooseHoursActivityCivilRequest.getActivityId());
-        params.put("UserId", createLooseHoursActivityCivilRequest.getUserId());
-        params.put("TestPackage", createLooseHoursActivityCivilRequest.getTestPackage());
-
-        return procedureExecutor.executeNamedProcedure("CreateLooseHoursActivityCivil", params, CreateLooseHoursActivityCivilResponse.class);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public GetSteelPcotResponse executeGetSteelPCOT(Integer runMode) {
-        Map params = new HashMap(3);
+    public ClassicTrackerSteelUpdateResponse executeClassicTrackerSteelUpdate(Integer runMode, Integer updateBidId) {
+        Map params = new HashMap(4);
 
         params.put("RunMode", runMode);
+        params.put("UpdateBidID", updateBidId);
 
-        return procedureExecutor.executeNamedProcedure("GetSteelPCOT", params, GetSteelPcotResponse.class);
+        return procedureExecutor.executeNamedProcedure("ClassicTrackerSteelUpdate", params, ClassicTrackerSteelUpdateResponse.class);
     }
 
 }

@@ -49,23 +49,71 @@ public class QueryExecutionController {
     @Autowired
     private PSAQueryExecutorService queryService;
 
-    @RequestMapping(value = "/queries/GetChatRecipientName", method = RequestMethod.GET)
+    @RequestMapping(value = "/queries/GetForemenBySuper", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "name")
-    public Page<GetChatRecipientNameResponse> executeGetChatRecipientName(@RequestParam(value = "ConversationID", required = false) Integer conversationId, @RequestParam(value = "UserID", required = false) Integer userId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetChatRecipientName");
-        Page<GetChatRecipientNameResponse> _result = queryService.executeGetChatRecipientName(conversationId, userId, pageable);
-        LOGGER.debug("got the result for named query: GetChatRecipientName, result:{}", _result);
+    @ApiOperation(value = "Get all Foremen assigned to Crews with selected Superintendent")
+    public Page<GetForemenBySuperResponse> executeGetForemenBySuper(@RequestParam(value = "SuperID", required = false) Integer superId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetForemenBySuper");
+        Page<GetForemenBySuperResponse> _result = queryService.executeGetForemenBySuper(superId, pageable);
+        LOGGER.debug("got the result for named query: GetForemenBySuper, result:{}", _result);
         return _result;
     }
 
-    @ApiOperation(value = "Returns downloadable file for query GetChatRecipientName")
-    @RequestMapping(value = "/queries/GetChatRecipientName/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @ApiOperation(value = "Returns downloadable file for query GetForemenBySuper")
+    @RequestMapping(value = "/queries/GetForemenBySuper/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetChatRecipientName(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ConversationID", required = false) Integer conversationId, @RequestParam(value = "UserID", required = false) Integer userId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetChatRecipientName");
+    public Downloadable exportGetForemenBySuper(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "SuperID", required = false) Integer superId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetForemenBySuper");
 
-        return queryService.exportGetChatRecipientName(exportType, conversationId, userId, pageable);
+        return queryService.exportGetForemenBySuper(exportType, superId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/GetSteelActivityTypes", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "name")
+    public Page<GetSteelActivityTypesResponse> executeGetSteelActivityTypes(Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetSteelActivityTypes");
+        Page<GetSteelActivityTypesResponse> _result = queryService.executeGetSteelActivityTypes(pageable);
+        LOGGER.debug("got the result for named query: GetSteelActivityTypes, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetSteelActivityTypes")
+    @RequestMapping(value = "/queries/GetSteelActivityTypes/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetSteelActivityTypes(@PathVariable("exportType") ExportType exportType, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetSteelActivityTypes");
+
+        return queryService.exportGetSteelActivityTypes(exportType, pageable);
+    }
+
+    @RequestMapping(value = "/queries/Superintendents", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "List of all Superintendents on specified JobNumber")
+    public Page<SuperintendentsResponse> executeSuperintendents(@RequestParam(value = "JobNumber", required = false) Integer jobNumber, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: Superintendents");
+        Page<SuperintendentsResponse> _result = queryService.executeSuperintendents(jobNumber, pageable);
+        LOGGER.debug("got the result for named query: Superintendents, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query Superintendents")
+    @RequestMapping(value = "/queries/Superintendents/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportSuperintendents(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "JobNumber", required = false) Integer jobNumber, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: Superintendents");
+
+        return queryService.exportSuperintendents(exportType, jobNumber, pageable);
+    }
+
+    @RequestMapping(value = "/queries/InsertUserPSA", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Add new Record to UserPSA Table")
+    public Integer executeInsertUserPSA(@Valid @RequestBody InsertUserPsaRequest insertUserPsaRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: InsertUserPSA");
+        Integer _result = queryService.executeInsertUserPSA(insertUserPsaRequest);
+        LOGGER.debug("got the result for named query: InsertUserPSA, result:{}", _result);
+        return _result;
     }
 
     @RequestMapping(value = "/queries/InsertAssignedJobNumber", method = RequestMethod.POST)
@@ -78,6 +126,26 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/UpdateChatAllLastRead", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "sets the timestamp for when the user last viewed all chat")
+    public IntegerWrapper executeUpdateChatAllLastRead(@Valid @RequestBody UpdateChatAllLastReadRequest updateChatAllLastReadRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: UpdateChatAllLastRead");
+        Integer _result = queryService.executeUpdateChatAllLastRead(updateChatAllLastReadRequest);
+        LOGGER.debug("got the result for named query: UpdateChatAllLastRead, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
+    @RequestMapping(value = "/queries/UpdateChatMessageStatus", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Changes chat message status to 0")
+    public IntegerWrapper executeUpdateChatMessageStatus(@Valid @RequestBody UpdateChatMessageStatusRequest updateChatMessageStatusRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: UpdateChatMessageStatus");
+        Integer _result = queryService.executeUpdateChatMessageStatus(updateChatMessageStatusRequest);
+        LOGGER.debug("got the result for named query: UpdateChatMessageStatus, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/DeleteUserAssignedApps", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
@@ -88,33 +156,42 @@ public class QueryExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/queries/InsertLoginSuccess", method = RequestMethod.POST)
+    @RequestMapping(value = "/queries/GetJobNumberCountByJobNumber", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Insert a Successful login attempt into the tblUserLoginTracker table")
-    public Integer executeInsertLoginSuccess(@Valid @RequestBody InsertLoginSuccessRequest insertLoginSuccessRequest, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: InsertLoginSuccess");
-        Integer _result = queryService.executeInsertLoginSuccess(insertLoginSuccessRequest);
-        LOGGER.debug("got the result for named query: InsertLoginSuccess, result:{}", _result);
+    @ApiOperation(value = "Checks to see if the Job Number exists")
+    public Page<GetJobNumberCountByJobNumberResponse> executeGetJobNumberCountByJobNumber(@RequestParam(value = "JobNumber", required = false) Integer jobNumber, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetJobNumberCountByJobNumber");
+        Page<GetJobNumberCountByJobNumberResponse> _result = queryService.executeGetJobNumberCountByJobNumber(jobNumber, pageable);
+        LOGGER.debug("got the result for named query: GetJobNumberCountByJobNumber, result:{}", _result);
         return _result;
     }
 
-    @RequestMapping(value = "/queries/GetRefPrecipitation", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns downloadable file for query GetJobNumberCountByJobNumber")
+    @RequestMapping(value = "/queries/GetJobNumberCountByJobNumber/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "No description is provided")
-    public Page<GetRefPrecipitationResponse> executeGetRefPrecipitation(Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetRefPrecipitation");
-        Page<GetRefPrecipitationResponse> _result = queryService.executeGetRefPrecipitation(pageable);
-        LOGGER.debug("got the result for named query: GetRefPrecipitation, result:{}", _result);
+    public Downloadable exportGetJobNumberCountByJobNumber(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "JobNumber", required = false) Integer jobNumber, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetJobNumberCountByJobNumber");
+
+        return queryService.exportGetJobNumberCountByJobNumber(exportType, jobNumber, pageable);
+    }
+
+    @RequestMapping(value = "/queries/GetChatConversationsByLoggedInUser", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "name")
+    public Page<GetChatConversationsByLoggedInUserResponse> executeGetChatConversationsByLoggedInUser(@RequestParam(value = "UserID") Integer userId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetChatConversationsByLoggedInUser");
+        Page<GetChatConversationsByLoggedInUserResponse> _result = queryService.executeGetChatConversationsByLoggedInUser(userId, pageable);
+        LOGGER.debug("got the result for named query: GetChatConversationsByLoggedInUser, result:{}", _result);
         return _result;
     }
 
-    @ApiOperation(value = "Returns downloadable file for query GetRefPrecipitation")
-    @RequestMapping(value = "/queries/GetRefPrecipitation/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @ApiOperation(value = "Returns downloadable file for query GetChatConversationsByLoggedInUser")
+    @RequestMapping(value = "/queries/GetChatConversationsByLoggedInUser/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetRefPrecipitation(@PathVariable("exportType") ExportType exportType, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetRefPrecipitation");
+    public Downloadable exportGetChatConversationsByLoggedInUser(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "UserID") Integer userId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetChatConversationsByLoggedInUser");
 
-        return queryService.exportGetRefPrecipitation(exportType, pageable);
+        return queryService.exportGetChatConversationsByLoggedInUser(exportType, userId, pageable);
     }
 
     @RequestMapping(value = "/queries/GetUsersManagers", method = RequestMethod.GET)
@@ -155,111 +232,14 @@ public class QueryExecutionController {
         return queryService.exportGetChatMessagesByConversationID(exportType, conversationId, pageable);
     }
 
-    @RequestMapping(value = "/queries/InsertUserAssignedApps", method = RequestMethod.POST)
+    @RequestMapping(value = "/queries/InsertLoginFailure", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Blindly insert User Assigned app IDs")
-    public Integer executeInsertUserAssignedApps(@Valid @RequestBody InsertUserAssignedAppsRequest insertUserAssignedAppsRequest, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: InsertUserAssignedApps");
-        Integer _result = queryService.executeInsertUserAssignedApps(insertUserAssignedAppsRequest);
-        LOGGER.debug("got the result for named query: InsertUserAssignedApps, result:{}", _result);
+    @ApiOperation(value = "Insert a failed login attempt into the tblUserLoginTracker table")
+    public Integer executeInsertLoginFailure(@Valid @RequestBody InsertLoginFailureRequest insertLoginFailureRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: InsertLoginFailure");
+        Integer _result = queryService.executeInsertLoginFailure(insertLoginFailureRequest);
+        LOGGER.debug("got the result for named query: InsertLoginFailure, result:{}", _result);
         return _result;
-    }
-
-    @RequestMapping(value = "/queries/InsertFeedbackTicketNotes", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Adds more notes to a given ticket")
-    public Integer executeInsertFeedbackTicketNotes(@Valid @RequestBody InsertFeedbackTicketNotesRequest insertFeedbackTicketNotesRequest, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: InsertFeedbackTicketNotes");
-        Integer _result = queryService.executeInsertFeedbackTicketNotes(insertFeedbackTicketNotesRequest);
-        LOGGER.debug("got the result for named query: InsertFeedbackTicketNotes, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/GetUsersForemen", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Get foremen list by given inputs")
-    public Page<GetUsersForemenResponse> executeGetUsersForemen(@RequestParam(value = "JobNumber", required = false) Integer jobNumber, @RequestParam(value = "DisciplineID", required = false) String disciplineId, @RequestParam(value = "PM", required = false) String pm, @RequestParam(value = "ConstM", required = false) String constM, @RequestParam(value = "SiteM", required = false) String siteM, @RequestParam(value = "AreaM", required = false) String areaM, @RequestParam(value = "Super", required = false) String super_, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetUsersForemen");
-        Page<GetUsersForemenResponse> _result = queryService.executeGetUsersForemen(jobNumber, disciplineId, pm, constM, siteM, areaM, super_, pageable);
-        LOGGER.debug("got the result for named query: GetUsersForemen, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetUsersForemen")
-    @RequestMapping(value = "/queries/GetUsersForemen/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetUsersForemen(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "JobNumber", required = false) Integer jobNumber, @RequestParam(value = "DisciplineID", required = false) String disciplineId, @RequestParam(value = "PM", required = false) String pm, @RequestParam(value = "ConstM", required = false) String constM, @RequestParam(value = "SiteM", required = false) String siteM, @RequestParam(value = "AreaM", required = false) String areaM, @RequestParam(value = "Super", required = false) String super_, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetUsersForemen");
-
-        return queryService.exportGetUsersForemen(exportType, jobNumber, disciplineId, pm, constM, siteM, areaM, super_, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetHelpMenuVideos", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Get the Help Menu Video tree")
-    public Page<GetHelpMenuVideosResponse> executeGetHelpMenuVideos(Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetHelpMenuVideos");
-        Page<GetHelpMenuVideosResponse> _result = queryService.executeGetHelpMenuVideos(pageable);
-        LOGGER.debug("got the result for named query: GetHelpMenuVideos, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetHelpMenuVideos")
-    @RequestMapping(value = "/queries/GetHelpMenuVideos/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetHelpMenuVideos(@PathVariable("exportType") ExportType exportType, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetHelpMenuVideos");
-
-        return queryService.exportGetHelpMenuVideos(exportType, pageable);
-    }
-
-    @RequestMapping(value = "/queries/InsertFeedbackNotes", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Insert Feedback Notes to the last ticket created by the current logged in user.  (Ment to be ran directly after InsertFeedbackTicket)")
-    public Integer executeInsertFeedbackNotes(@Valid @RequestBody InsertFeedbackNotesRequest insertFeedbackNotesRequest, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: InsertFeedbackNotes");
-        Integer _result = queryService.executeInsertFeedbackNotes(insertFeedbackNotesRequest);
-        LOGGER.debug("got the result for named query: InsertFeedbackNotes, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/UpdateUserPSA", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Updates the User PSA table with supplied Inputs")
-    public Integer executeUpdateUserPSA(@Valid @RequestBody UpdateUserPsaRequest updateUserPsaRequest, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: UpdateUserPSA");
-        Integer _result = queryService.executeUpdateUserPSA(updateUserPsaRequest);
-        LOGGER.debug("got the result for named query: UpdateUserPSA, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/DeleteAssignedJobNumber", method = RequestMethod.DELETE)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Assigns a User to a Job  Number")
-    public Integer executeDeleteAssignedJobNumber(@RequestParam(value = "UserID", required = false) Integer userId, @RequestParam(value = "JobNumber", required = false) String jobNumber, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: DeleteAssignedJobNumber");
-        Integer _result = queryService.executeDeleteAssignedJobNumber(userId, jobNumber);
-        LOGGER.debug("got the result for named query: DeleteAssignedJobNumber, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/GetSettingDashUpdateInt", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Get the Dashboard Update Intervals")
-    public Page<GetSettingDashUpdateIntResponse> executeGetSettingDashUpdateInt(Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetSettingDashUpdateInt");
-        Page<GetSettingDashUpdateIntResponse> _result = queryService.executeGetSettingDashUpdateInt(pageable);
-        LOGGER.debug("got the result for named query: GetSettingDashUpdateInt, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetSettingDashUpdateInt")
-    @RequestMapping(value = "/queries/GetSettingDashUpdateInt/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetSettingDashUpdateInt(@PathVariable("exportType") ExportType exportType, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetSettingDashUpdateInt");
-
-        return queryService.exportGetSettingDashUpdateInt(exportType, pageable);
     }
 
     @RequestMapping(value = "/queries/GetRolesByDiscipline", method = RequestMethod.GET)
@@ -281,6 +261,36 @@ public class QueryExecutionController {
         return queryService.exportGetRolesByDiscipline(exportType, disciplineId, pageable);
     }
 
+    @RequestMapping(value = "/queries/InsertUserCreds", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Insert new user credentials into tblUserCreds")
+    public Integer executeInsertUserCreds(@Valid @RequestBody InsertUserCredsRequest insertUserCredsRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: InsertUserCreds");
+        Integer _result = queryService.executeInsertUserCreds(insertUserCredsRequest);
+        LOGGER.debug("got the result for named query: InsertUserCreds, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/UpdateUserCredsUserName", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Update tblUserCreds but only the UserName column... to leave password untouched.")
+    public Integer executeUpdateUserCredsUserName(@Valid @RequestBody UpdateUserCredsUserNameRequest updateUserCredsUserNameRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: UpdateUserCredsUserName");
+        Integer _result = queryService.executeUpdateUserCredsUserName(updateUserCredsUserNameRequest);
+        LOGGER.debug("got the result for named query: UpdateUserCredsUserName, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/InsertLoginSuccess", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Insert a Successful login attempt into the tblUserLoginTracker table")
+    public Integer executeInsertLoginSuccess(@Valid @RequestBody InsertLoginSuccessRequest insertLoginSuccessRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: InsertLoginSuccess");
+        Integer _result = queryService.executeInsertLoginSuccess(insertLoginSuccessRequest);
+        LOGGER.debug("got the result for named query: InsertLoginSuccess, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/GetRefTemperatures", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "No description is provided")
@@ -298,199 +308,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetRefTemperatures");
 
         return queryService.exportGetRefTemperatures(exportType, pageable);
-    }
-
-    @RequestMapping(value = "/queries/InsertUserPSA", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Add new Record to UserPSA Table")
-    public Integer executeInsertUserPSA(@Valid @RequestBody InsertUserPsaRequest insertUserPsaRequest, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: InsertUserPSA");
-        Integer _result = queryService.executeInsertUserPSA(insertUserPsaRequest);
-        LOGGER.debug("got the result for named query: InsertUserPSA, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/GetDefaultJobNumber", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Gets the default job number assigned to the logged in user")
-    public Page<GetDefaultJobNumberResponse> executeGetDefaultJobNumber(@RequestParam(value = "UserID", required = false) Integer userId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetDefaultJobNumber");
-        Page<GetDefaultJobNumberResponse> _result = queryService.executeGetDefaultJobNumber(userId, pageable);
-        LOGGER.debug("got the result for named query: GetDefaultJobNumber, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetDefaultJobNumber")
-    @RequestMapping(value = "/queries/GetDefaultJobNumber/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetDefaultJobNumber(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "UserID", required = false) Integer userId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetDefaultJobNumber");
-
-        return queryService.exportGetDefaultJobNumber(exportType, userId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/UpdateUserCreds", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "name")
-    public Integer executeUpdateUserCreds(@Valid @RequestBody UpdateUserCredsRequest updateUserCredsRequest, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: UpdateUserCreds");
-        Integer _result = queryService.executeUpdateUserCreds(updateUserCredsRequest);
-        LOGGER.debug("got the result for named query: UpdateUserCreds, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/GetChatAllLastRead", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Gets the timestamp of the last time the provided user viewed All Chat")
-    public Page<GetChatAllLastReadResponse> executeGetChatAllLastRead(@RequestParam(value = "UserID") String userId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetChatAllLastRead");
-        Page<GetChatAllLastReadResponse> _result = queryService.executeGetChatAllLastRead(userId, pageable);
-        LOGGER.debug("got the result for named query: GetChatAllLastRead, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetChatAllLastRead")
-    @RequestMapping(value = "/queries/GetChatAllLastRead/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetChatAllLastRead(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "UserID") String userId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetChatAllLastRead");
-
-        return queryService.exportGetChatAllLastRead(exportType, userId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/Superintendents", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "List of all Superintendents on specified JobNumber")
-    public Page<SuperintendentsResponse> executeSuperintendents(@RequestParam(value = "JobNumber", required = false) Integer jobNumber, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: Superintendents");
-        Page<SuperintendentsResponse> _result = queryService.executeSuperintendents(jobNumber, pageable);
-        LOGGER.debug("got the result for named query: Superintendents, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query Superintendents")
-    @RequestMapping(value = "/queries/Superintendents/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportSuperintendents(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "JobNumber", required = false) Integer jobNumber, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: Superintendents");
-
-        return queryService.exportSuperintendents(exportType, jobNumber, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetSteelActivityTypes", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "name")
-    public Page<GetSteelActivityTypesResponse> executeGetSteelActivityTypes(Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetSteelActivityTypes");
-        Page<GetSteelActivityTypesResponse> _result = queryService.executeGetSteelActivityTypes(pageable);
-        LOGGER.debug("got the result for named query: GetSteelActivityTypes, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetSteelActivityTypes")
-    @RequestMapping(value = "/queries/GetSteelActivityTypes/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetSteelActivityTypes(@PathVariable("exportType") ExportType exportType, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetSteelActivityTypes");
-
-        return queryService.exportGetSteelActivityTypes(exportType, pageable);
-    }
-
-    @RequestMapping(value = "/queries/UpdateUserCredsUserName", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Update tblUserCreds but only the UserName column... to leave password untouched.")
-    public Integer executeUpdateUserCredsUserName(@Valid @RequestBody UpdateUserCredsUserNameRequest updateUserCredsUserNameRequest, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: UpdateUserCredsUserName");
-        Integer _result = queryService.executeUpdateUserCredsUserName(updateUserCredsUserNameRequest);
-        LOGGER.debug("got the result for named query: UpdateUserCredsUserName, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/UpdateChatAllLastRead", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "sets the timestamp for when the user last viewed all chat")
-    public IntegerWrapper executeUpdateChatAllLastRead(@Valid @RequestBody UpdateChatAllLastReadRequest updateChatAllLastReadRequest, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: UpdateChatAllLastRead");
-        Integer _result = queryService.executeUpdateChatAllLastRead(updateChatAllLastReadRequest);
-        LOGGER.debug("got the result for named query: UpdateChatAllLastRead, result:{}", _result);
-        return new IntegerWrapper(_result);
-    }
-
-    @RequestMapping(value = "/queries/Managers", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Get a list of all users in a manager position on any crew by JobNumber")
-    public Page<ManagersResponse> executeManagers(@RequestParam(value = "JobNumber", required = false) Integer jobNumber, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: Managers");
-        Page<ManagersResponse> _result = queryService.executeManagers(jobNumber, pageable);
-        LOGGER.debug("got the result for named query: Managers, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query Managers")
-    @RequestMapping(value = "/queries/Managers/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportManagers(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "JobNumber", required = false) Integer jobNumber, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: Managers");
-
-        return queryService.exportManagers(exportType, jobNumber, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetFBSubTypeByType", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "get the feedback sub types By Type")
-    public Page<GetFbsubTypeByTypeResponse> executeGetFBSubTypeByType(@RequestParam(value = "FBType", required = false) Integer fbtype, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetFBSubTypeByType");
-        Page<GetFbsubTypeByTypeResponse> _result = queryService.executeGetFBSubTypeByType(fbtype, pageable);
-        LOGGER.debug("got the result for named query: GetFBSubTypeByType, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetFBSubTypeByType")
-    @RequestMapping(value = "/queries/GetFBSubTypeByType/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetFBSubTypeByType(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "FBType", required = false) Integer fbtype, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetFBSubTypeByType");
-
-        return queryService.exportGetFBSubTypeByType(exportType, fbtype, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetUsersSupers", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Get Superintendents by given Input")
-    public Page<GetUsersSupersResponse> executeGetUsersSupers(@RequestParam(value = "JobNumber", required = false) Integer jobNumber, @RequestParam(value = "DisciplineID", required = false) String disciplineId, @RequestParam(value = "PM", required = false) String pm, @RequestParam(value = "ConstM", required = false) String constM, @RequestParam(value = "SiteM", required = false) String siteM, @RequestParam(value = "AreaM", required = false) String areaM, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetUsersSupers");
-        Page<GetUsersSupersResponse> _result = queryService.executeGetUsersSupers(jobNumber, disciplineId, pm, constM, siteM, areaM, pageable);
-        LOGGER.debug("got the result for named query: GetUsersSupers, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetUsersSupers")
-    @RequestMapping(value = "/queries/GetUsersSupers/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetUsersSupers(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "JobNumber", required = false) Integer jobNumber, @RequestParam(value = "DisciplineID", required = false) String disciplineId, @RequestParam(value = "PM", required = false) String pm, @RequestParam(value = "ConstM", required = false) String constM, @RequestParam(value = "SiteM", required = false) String siteM, @RequestParam(value = "AreaM", required = false) String areaM, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetUsersSupers");
-
-        return queryService.exportGetUsersSupers(exportType, jobNumber, disciplineId, pm, constM, siteM, areaM, pageable);
-    }
-
-    @RequestMapping(value = "/queries/InsertChatMessage", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "name")
-    public Integer executeInsertChatMessage(@Valid @RequestBody InsertChatMessageRequest insertChatMessageRequest, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: InsertChatMessage");
-        Integer _result = queryService.executeInsertChatMessage(insertChatMessageRequest);
-        LOGGER.debug("got the result for named query: InsertChatMessage, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/UpdateChatMessageStatus", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Changes chat message status to 0")
-    public IntegerWrapper executeUpdateChatMessageStatus(@Valid @RequestBody UpdateChatMessageStatusRequest updateChatMessageStatusRequest, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: UpdateChatMessageStatus");
-        Integer _result = queryService.executeUpdateChatMessageStatus(updateChatMessageStatusRequest);
-        LOGGER.debug("got the result for named query: UpdateChatMessageStatus, result:{}", _result);
-        return new IntegerWrapper(_result);
     }
 
     @RequestMapping(value = "/queries/GetChatAllLatestTimeStamp", method = RequestMethod.GET)
@@ -512,16 +329,6 @@ public class QueryExecutionController {
         return queryService.exportGetChatAllLatestTimeStamp(exportType, userId, pageable);
     }
 
-    @RequestMapping(value = "/queries/InsertUserCreds", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Insert new user credentials into tblUserCreds")
-    public Integer executeInsertUserCreds(@Valid @RequestBody InsertUserCredsRequest insertUserCredsRequest, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: InsertUserCreds");
-        Integer _result = queryService.executeInsertUserCreds(insertUserCredsRequest);
-        LOGGER.debug("got the result for named query: InsertUserCreds, result:{}", _result);
-        return _result;
-    }
-
     @RequestMapping(value = "/queries/InsertFeedbackTicket", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Insert a new feedback ticket")
@@ -530,44 +337,6 @@ public class QueryExecutionController {
         Integer _result = queryService.executeInsertFeedbackTicket(insertFeedbackTicketRequest);
         LOGGER.debug("got the result for named query: InsertFeedbackTicket, result:{}", _result);
         return _result;
-    }
-
-    @RequestMapping(value = "/queries/GetAssignedJobNumbers", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Get all Job numbers logged in user is assigned to.")
-    public Page<GetAssignedJobNumbersResponse> executeGetAssignedJobNumbers(@RequestParam(value = "UserID", required = false) Integer userId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetAssignedJobNumbers");
-        Page<GetAssignedJobNumbersResponse> _result = queryService.executeGetAssignedJobNumbers(userId, pageable);
-        LOGGER.debug("got the result for named query: GetAssignedJobNumbers, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetAssignedJobNumbers")
-    @RequestMapping(value = "/queries/GetAssignedJobNumbers/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetAssignedJobNumbers(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "UserID", required = false) Integer userId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetAssignedJobNumbers");
-
-        return queryService.exportGetAssignedJobNumbers(exportType, userId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetJobSites", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Search through for all matching Job Sites")
-    public Page<GetJobSitesResponse> executeGetJobSites(@RequestParam(value = "SiteName", required = false) String siteName, @RequestParam(value = "City", required = false) String city, @RequestParam(value = "State", required = false) String state, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetJobSites");
-        Page<GetJobSitesResponse> _result = queryService.executeGetJobSites(siteName, city, state, pageable);
-        LOGGER.debug("got the result for named query: GetJobSites, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetJobSites")
-    @RequestMapping(value = "/queries/GetJobSites/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetJobSites(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "SiteName", required = false) String siteName, @RequestParam(value = "City", required = false) String city, @RequestParam(value = "State", required = false) String state, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetJobSites");
-
-        return queryService.exportGetJobSites(exportType, siteName, city, state, pageable);
     }
 
     @RequestMapping(value = "/queries/GetRefWind", method = RequestMethod.GET)
@@ -589,70 +358,51 @@ public class QueryExecutionController {
         return queryService.exportGetRefWind(exportType, pageable);
     }
 
-    @RequestMapping(value = "/queries/GetJobNumberCountByJobNumber", method = RequestMethod.GET)
+    @RequestMapping(value = "/queries/GetDefaultJobNumber", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Checks to see if the Job Number exists")
-    public Page<GetJobNumberCountByJobNumberResponse> executeGetJobNumberCountByJobNumber(@RequestParam(value = "JobNumber", required = false) Integer jobNumber, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetJobNumberCountByJobNumber");
-        Page<GetJobNumberCountByJobNumberResponse> _result = queryService.executeGetJobNumberCountByJobNumber(jobNumber, pageable);
-        LOGGER.debug("got the result for named query: GetJobNumberCountByJobNumber, result:{}", _result);
+    @ApiOperation(value = "Gets the default job number assigned to the logged in user")
+    public Page<GetDefaultJobNumberResponse> executeGetDefaultJobNumber(@RequestParam(value = "UserID", required = false) Integer userId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetDefaultJobNumber");
+        Page<GetDefaultJobNumberResponse> _result = queryService.executeGetDefaultJobNumber(userId, pageable);
+        LOGGER.debug("got the result for named query: GetDefaultJobNumber, result:{}", _result);
         return _result;
     }
 
-    @ApiOperation(value = "Returns downloadable file for query GetJobNumberCountByJobNumber")
-    @RequestMapping(value = "/queries/GetJobNumberCountByJobNumber/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @ApiOperation(value = "Returns downloadable file for query GetDefaultJobNumber")
+    @RequestMapping(value = "/queries/GetDefaultJobNumber/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetJobNumberCountByJobNumber(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "JobNumber", required = false) Integer jobNumber, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetJobNumberCountByJobNumber");
+    public Downloadable exportGetDefaultJobNumber(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "UserID", required = false) Integer userId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetDefaultJobNumber");
 
-        return queryService.exportGetJobNumberCountByJobNumber(exportType, jobNumber, pageable);
+        return queryService.exportGetDefaultJobNumber(exportType, userId, pageable);
     }
 
-    @RequestMapping(value = "/queries/GetForemenBySuper", method = RequestMethod.GET)
+    @RequestMapping(value = "/queries/GetRefPrecipitation", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Get all Foremen assigned to Crews with selected Superintendent")
-    public Page<GetForemenBySuperResponse> executeGetForemenBySuper(@RequestParam(value = "SuperID", required = false) Integer superId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetForemenBySuper");
-        Page<GetForemenBySuperResponse> _result = queryService.executeGetForemenBySuper(superId, pageable);
-        LOGGER.debug("got the result for named query: GetForemenBySuper, result:{}", _result);
+    @ApiOperation(value = "No description is provided")
+    public Page<GetRefPrecipitationResponse> executeGetRefPrecipitation(Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetRefPrecipitation");
+        Page<GetRefPrecipitationResponse> _result = queryService.executeGetRefPrecipitation(pageable);
+        LOGGER.debug("got the result for named query: GetRefPrecipitation, result:{}", _result);
         return _result;
     }
 
-    @ApiOperation(value = "Returns downloadable file for query GetForemenBySuper")
-    @RequestMapping(value = "/queries/GetForemenBySuper/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @ApiOperation(value = "Returns downloadable file for query GetRefPrecipitation")
+    @RequestMapping(value = "/queries/GetRefPrecipitation/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetForemenBySuper(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "SuperID", required = false) Integer superId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetForemenBySuper");
+    public Downloadable exportGetRefPrecipitation(@PathVariable("exportType") ExportType exportType, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetRefPrecipitation");
 
-        return queryService.exportGetForemenBySuper(exportType, superId, pageable);
+        return queryService.exportGetRefPrecipitation(exportType, pageable);
     }
 
-    @RequestMapping(value = "/queries/GetPSAUsers", method = RequestMethod.GET)
+    @RequestMapping(value = "/queries/UpdateUserPSA", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Gets all PSA users BY JobNumber")
-    public Page<GetPsausersResponse> executeGetPSAUsers(Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetPSAUsers");
-        Page<GetPsausersResponse> _result = queryService.executeGetPSAUsers(pageable);
-        LOGGER.debug("got the result for named query: GetPSAUsers, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetPSAUsers")
-    @RequestMapping(value = "/queries/GetPSAUsers/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetPSAUsers(@PathVariable("exportType") ExportType exportType, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetPSAUsers");
-
-        return queryService.exportGetPSAUsers(exportType, pageable);
-    }
-
-    @RequestMapping(value = "/queries/InsertLoginFailure", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Insert a failed login attempt into the tblUserLoginTracker table")
-    public Integer executeInsertLoginFailure(@Valid @RequestBody InsertLoginFailureRequest insertLoginFailureRequest, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: InsertLoginFailure");
-        Integer _result = queryService.executeInsertLoginFailure(insertLoginFailureRequest);
-        LOGGER.debug("got the result for named query: InsertLoginFailure, result:{}", _result);
+    @ApiOperation(value = "Updates the User PSA table with supplied Inputs")
+    public Integer executeUpdateUserPSA(@Valid @RequestBody UpdateUserPsaRequest updateUserPsaRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: UpdateUserPSA");
+        Integer _result = queryService.executeUpdateUserPSA(updateUserPsaRequest);
+        LOGGER.debug("got the result for named query: UpdateUserPSA, result:{}", _result);
         return _result;
     }
 
@@ -675,23 +425,273 @@ public class QueryExecutionController {
         return queryService.exportGetFBNotesByFBID(exportType, feedbackId, pageable);
     }
 
-    @RequestMapping(value = "/queries/GetChatConversationsByLoggedInUser", method = RequestMethod.GET)
+    @RequestMapping(value = "/queries/InsertChatMessage", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
-    public Page<GetChatConversationsByLoggedInUserResponse> executeGetChatConversationsByLoggedInUser(@RequestParam(value = "UserID") Integer userId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetChatConversationsByLoggedInUser");
-        Page<GetChatConversationsByLoggedInUserResponse> _result = queryService.executeGetChatConversationsByLoggedInUser(userId, pageable);
-        LOGGER.debug("got the result for named query: GetChatConversationsByLoggedInUser, result:{}", _result);
+    public Integer executeInsertChatMessage(@Valid @RequestBody InsertChatMessageRequest insertChatMessageRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: InsertChatMessage");
+        Integer _result = queryService.executeInsertChatMessage(insertChatMessageRequest);
+        LOGGER.debug("got the result for named query: InsertChatMessage, result:{}", _result);
         return _result;
     }
 
-    @ApiOperation(value = "Returns downloadable file for query GetChatConversationsByLoggedInUser")
-    @RequestMapping(value = "/queries/GetChatConversationsByLoggedInUser/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @RequestMapping(value = "/queries/DeleteAssignedJobNumber", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetChatConversationsByLoggedInUser(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "UserID") Integer userId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetChatConversationsByLoggedInUser");
+    @ApiOperation(value = "Assigns a User to a Job  Number")
+    public Integer executeDeleteAssignedJobNumber(@RequestParam(value = "UserID", required = false) Integer userId, @RequestParam(value = "JobNumber", required = false) String jobNumber, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: DeleteAssignedJobNumber");
+        Integer _result = queryService.executeDeleteAssignedJobNumber(userId, jobNumber);
+        LOGGER.debug("got the result for named query: DeleteAssignedJobNumber, result:{}", _result);
+        return _result;
+    }
 
-        return queryService.exportGetChatConversationsByLoggedInUser(exportType, userId, pageable);
+    @RequestMapping(value = "/queries/GetUsersForemen", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Get foremen list by given inputs")
+    public Page<GetUsersForemenResponse> executeGetUsersForemen(@RequestParam(value = "JobNumber", required = false) Integer jobNumber, @RequestParam(value = "DisciplineID", required = false) String disciplineId, @RequestParam(value = "PM", required = false) String pm, @RequestParam(value = "ConstM", required = false) String constM, @RequestParam(value = "SiteM", required = false) String siteM, @RequestParam(value = "AreaM", required = false) String areaM, @RequestParam(value = "Super", required = false) String super_, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetUsersForemen");
+        Page<GetUsersForemenResponse> _result = queryService.executeGetUsersForemen(jobNumber, disciplineId, pm, constM, siteM, areaM, super_, pageable);
+        LOGGER.debug("got the result for named query: GetUsersForemen, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetUsersForemen")
+    @RequestMapping(value = "/queries/GetUsersForemen/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetUsersForemen(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "JobNumber", required = false) Integer jobNumber, @RequestParam(value = "DisciplineID", required = false) String disciplineId, @RequestParam(value = "PM", required = false) String pm, @RequestParam(value = "ConstM", required = false) String constM, @RequestParam(value = "SiteM", required = false) String siteM, @RequestParam(value = "AreaM", required = false) String areaM, @RequestParam(value = "Super", required = false) String super_, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetUsersForemen");
+
+        return queryService.exportGetUsersForemen(exportType, jobNumber, disciplineId, pm, constM, siteM, areaM, super_, pageable);
+    }
+
+    @RequestMapping(value = "/queries/GetFBSubTypeByType", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get the feedback sub types By Type")
+    public Page<GetFbsubTypeByTypeResponse> executeGetFBSubTypeByType(@RequestParam(value = "FBType", required = false) Integer fbtype, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetFBSubTypeByType");
+        Page<GetFbsubTypeByTypeResponse> _result = queryService.executeGetFBSubTypeByType(fbtype, pageable);
+        LOGGER.debug("got the result for named query: GetFBSubTypeByType, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetFBSubTypeByType")
+    @RequestMapping(value = "/queries/GetFBSubTypeByType/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetFBSubTypeByType(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "FBType", required = false) Integer fbtype, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetFBSubTypeByType");
+
+        return queryService.exportGetFBSubTypeByType(exportType, fbtype, pageable);
+    }
+
+    @RequestMapping(value = "/queries/InsertFeedbackNotes", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Insert Feedback Notes to the last ticket created by the current logged in user.  (Ment to be ran directly after InsertFeedbackTicket)")
+    public Integer executeInsertFeedbackNotes(@Valid @RequestBody InsertFeedbackNotesRequest insertFeedbackNotesRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: InsertFeedbackNotes");
+        Integer _result = queryService.executeInsertFeedbackNotes(insertFeedbackNotesRequest);
+        LOGGER.debug("got the result for named query: InsertFeedbackNotes, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/UpdateUserCreds", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "name")
+    public Integer executeUpdateUserCreds(@Valid @RequestBody UpdateUserCredsRequest updateUserCredsRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: UpdateUserCreds");
+        Integer _result = queryService.executeUpdateUserCreds(updateUserCredsRequest);
+        LOGGER.debug("got the result for named query: UpdateUserCreds, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/GetUsersSupers", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Get Superintendents by given Input")
+    public Page<GetUsersSupersResponse> executeGetUsersSupers(@RequestParam(value = "JobNumber", required = false) Integer jobNumber, @RequestParam(value = "DisciplineID", required = false) String disciplineId, @RequestParam(value = "PM", required = false) String pm, @RequestParam(value = "ConstM", required = false) String constM, @RequestParam(value = "SiteM", required = false) String siteM, @RequestParam(value = "AreaM", required = false) String areaM, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetUsersSupers");
+        Page<GetUsersSupersResponse> _result = queryService.executeGetUsersSupers(jobNumber, disciplineId, pm, constM, siteM, areaM, pageable);
+        LOGGER.debug("got the result for named query: GetUsersSupers, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetUsersSupers")
+    @RequestMapping(value = "/queries/GetUsersSupers/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetUsersSupers(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "JobNumber", required = false) Integer jobNumber, @RequestParam(value = "DisciplineID", required = false) String disciplineId, @RequestParam(value = "PM", required = false) String pm, @RequestParam(value = "ConstM", required = false) String constM, @RequestParam(value = "SiteM", required = false) String siteM, @RequestParam(value = "AreaM", required = false) String areaM, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetUsersSupers");
+
+        return queryService.exportGetUsersSupers(exportType, jobNumber, disciplineId, pm, constM, siteM, areaM, pageable);
+    }
+
+    @RequestMapping(value = "/queries/InsertUserAssignedApps", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Blindly insert User Assigned app IDs")
+    public Integer executeInsertUserAssignedApps(@Valid @RequestBody InsertUserAssignedAppsRequest insertUserAssignedAppsRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: InsertUserAssignedApps");
+        Integer _result = queryService.executeInsertUserAssignedApps(insertUserAssignedAppsRequest);
+        LOGGER.debug("got the result for named query: InsertUserAssignedApps, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/GetAssignedJobNumbers", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Get all Job numbers logged in user is assigned to.")
+    public Page<GetAssignedJobNumbersResponse> executeGetAssignedJobNumbers(@RequestParam(value = "UserID", required = false) Integer userId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetAssignedJobNumbers");
+        Page<GetAssignedJobNumbersResponse> _result = queryService.executeGetAssignedJobNumbers(userId, pageable);
+        LOGGER.debug("got the result for named query: GetAssignedJobNumbers, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetAssignedJobNumbers")
+    @RequestMapping(value = "/queries/GetAssignedJobNumbers/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetAssignedJobNumbers(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "UserID", required = false) Integer userId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetAssignedJobNumbers");
+
+        return queryService.exportGetAssignedJobNumbers(exportType, userId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/Managers", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Get a list of all users in a manager position on any crew by JobNumber")
+    public Page<ManagersResponse> executeManagers(@RequestParam(value = "JobNumber", required = false) Integer jobNumber, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: Managers");
+        Page<ManagersResponse> _result = queryService.executeManagers(jobNumber, pageable);
+        LOGGER.debug("got the result for named query: Managers, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query Managers")
+    @RequestMapping(value = "/queries/Managers/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportManagers(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "JobNumber", required = false) Integer jobNumber, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: Managers");
+
+        return queryService.exportManagers(exportType, jobNumber, pageable);
+    }
+
+    @RequestMapping(value = "/queries/GetJobSites", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Search through for all matching Job Sites")
+    public Page<GetJobSitesResponse> executeGetJobSites(@RequestParam(value = "SiteName", required = false) String siteName, @RequestParam(value = "City", required = false) String city, @RequestParam(value = "State", required = false) String state, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetJobSites");
+        Page<GetJobSitesResponse> _result = queryService.executeGetJobSites(siteName, city, state, pageable);
+        LOGGER.debug("got the result for named query: GetJobSites, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetJobSites")
+    @RequestMapping(value = "/queries/GetJobSites/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetJobSites(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "SiteName", required = false) String siteName, @RequestParam(value = "City", required = false) String city, @RequestParam(value = "State", required = false) String state, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetJobSites");
+
+        return queryService.exportGetJobSites(exportType, siteName, city, state, pageable);
+    }
+
+    @RequestMapping(value = "/queries/GetSettingDashUpdateInt", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Get the Dashboard Update Intervals")
+    public Page<GetSettingDashUpdateIntResponse> executeGetSettingDashUpdateInt(Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetSettingDashUpdateInt");
+        Page<GetSettingDashUpdateIntResponse> _result = queryService.executeGetSettingDashUpdateInt(pageable);
+        LOGGER.debug("got the result for named query: GetSettingDashUpdateInt, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetSettingDashUpdateInt")
+    @RequestMapping(value = "/queries/GetSettingDashUpdateInt/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetSettingDashUpdateInt(@PathVariable("exportType") ExportType exportType, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetSettingDashUpdateInt");
+
+        return queryService.exportGetSettingDashUpdateInt(exportType, pageable);
+    }
+
+    @RequestMapping(value = "/queries/GetChatAllLastRead", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Gets the timestamp of the last time the provided user viewed All Chat")
+    public Page<GetChatAllLastReadResponse> executeGetChatAllLastRead(@RequestParam(value = "UserID") String userId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetChatAllLastRead");
+        Page<GetChatAllLastReadResponse> _result = queryService.executeGetChatAllLastRead(userId, pageable);
+        LOGGER.debug("got the result for named query: GetChatAllLastRead, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetChatAllLastRead")
+    @RequestMapping(value = "/queries/GetChatAllLastRead/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetChatAllLastRead(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "UserID") String userId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetChatAllLastRead");
+
+        return queryService.exportGetChatAllLastRead(exportType, userId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/GetChatRecipientName", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "name")
+    public Page<GetChatRecipientNameResponse> executeGetChatRecipientName(@RequestParam(value = "ConversationID", required = false) Integer conversationId, @RequestParam(value = "UserID", required = false) Integer userId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetChatRecipientName");
+        Page<GetChatRecipientNameResponse> _result = queryService.executeGetChatRecipientName(conversationId, userId, pageable);
+        LOGGER.debug("got the result for named query: GetChatRecipientName, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetChatRecipientName")
+    @RequestMapping(value = "/queries/GetChatRecipientName/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetChatRecipientName(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ConversationID", required = false) Integer conversationId, @RequestParam(value = "UserID", required = false) Integer userId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetChatRecipientName");
+
+        return queryService.exportGetChatRecipientName(exportType, conversationId, userId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/GetPSAUsers", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Gets all PSA users BY JobNumber")
+    public Page<GetPsausersResponse> executeGetPSAUsers(Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetPSAUsers");
+        Page<GetPsausersResponse> _result = queryService.executeGetPSAUsers(pageable);
+        LOGGER.debug("got the result for named query: GetPSAUsers, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetPSAUsers")
+    @RequestMapping(value = "/queries/GetPSAUsers/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetPSAUsers(@PathVariable("exportType") ExportType exportType, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetPSAUsers");
+
+        return queryService.exportGetPSAUsers(exportType, pageable);
+    }
+
+    @RequestMapping(value = "/queries/InsertFeedbackTicketNotes", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Adds more notes to a given ticket")
+    public Integer executeInsertFeedbackTicketNotes(@Valid @RequestBody InsertFeedbackTicketNotesRequest insertFeedbackTicketNotesRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: InsertFeedbackTicketNotes");
+        Integer _result = queryService.executeInsertFeedbackTicketNotes(insertFeedbackTicketNotesRequest);
+        LOGGER.debug("got the result for named query: InsertFeedbackTicketNotes, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/GetHelpMenuVideos", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Get the Help Menu Video tree")
+    public Page<GetHelpMenuVideosResponse> executeGetHelpMenuVideos(Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetHelpMenuVideos");
+        Page<GetHelpMenuVideosResponse> _result = queryService.executeGetHelpMenuVideos(pageable);
+        LOGGER.debug("got the result for named query: GetHelpMenuVideos, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetHelpMenuVideos")
+    @RequestMapping(value = "/queries/GetHelpMenuVideos/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetHelpMenuVideos(@PathVariable("exportType") ExportType exportType, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetHelpMenuVideos");
+
+        return queryService.exportGetHelpMenuVideos(exportType, pageable);
     }
 
 }

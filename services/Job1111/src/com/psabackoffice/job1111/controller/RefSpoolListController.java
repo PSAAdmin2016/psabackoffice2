@@ -52,9 +52,9 @@ public class RefSpoolListController {
 	private RefSpoolListService refSpoolListService;
 
 	@ApiOperation(value = "Creates a new RefSpoolList instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefSpoolList createRefSpoolList(@RequestBody RefSpoolList refSpoolList) {
+    public RefSpoolList createRefSpoolList(@RequestBody RefSpoolList refSpoolList) {
 		LOGGER.debug("Create RefSpoolList with information: {}" , refSpoolList);
 
 		refSpoolList = refSpoolListService.create(refSpoolList);
@@ -62,7 +62,6 @@ public class RefSpoolListController {
 
 	    return refSpoolList;
 	}
-
 
     @ApiOperation(value = "Returns the RefSpoolList instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

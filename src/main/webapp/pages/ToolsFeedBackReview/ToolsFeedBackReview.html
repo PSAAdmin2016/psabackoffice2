@@ -1,123 +1,123 @@
 <wm-page data-ng-controller="ToolsFeedBackReviewPageController" pagetitle="Tools Feed Back Review" name="page1"> 
- <wm-header content="header" name="header1"></wm-header> 
- <wm-content name="content1"> 
-  <wm-left-panel columnwidth="1" content="leftnavPSATools" name="left_panel1"></wm-left-panel> 
-  <wm-page-content columnwidth="11" name="page_content1"> 
-   <wm-layoutgrid name="layoutgrid1"> 
-    <wm-gridrow name="gridrow1"> 
-     <wm-gridcolumn columnwidth="8" name="gridcolumn1"> 
-      <wm-livefilter title="Filter Feedback" dataset="bind:Variables.PSAFeedBackData.dataSet" captionalign="left" captionposition="top" name="livefilter2" collapsible="true" expanded="false" class="panel-primary"> 
-       <wm-layoutgrid columns="3" name="layoutgrid4"> 
-        <wm-gridrow name="gridrow12"> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn21"> 
-          <wm-filter-field name="id" field="id" displayname="Ticket #" widget="autocomplete" is-range="false" type="integer" is-primary-key="true" generator="identity" show="true" key="id" placeholder="Enter value" datafield="key" searchkey="value" displaylabel="value"></wm-filter-field> 
-         </wm-gridcolumn> 
-         <wm-gridcolumn columnwidth="4" name="gridcolumn22"> 
-          <wm-filter-field name="refFbTypes" field="refFbTypes" displayname="Feedback Type" widget="select" lookup-type="RefFbTypes" lookup-field="label" is-related="true" related-entity-name="RefFbTypes" is-range="false" type="integer" is-primary-key="false" generator="assigned" show="true" key="refFbTypes" placeholder="Enter value" datafield="key" displayfield="value" matchmode="start" multiple="multiple"></wm-filter-field> 
-          <wm-filter-field name="refFbSubTypes" field="refFbSubTypes" displayname="Feedback Sub Type" widget="select" lookup-type="RefFbSubTypes" lookup-field="fbsubType" is-related="true" related-entity-name="RefFbSubTypes" is-range="false" type="integer" is-primary-key="false" generator="assigned" show="true" key="refFbSubTypes" placeholder="Enter value" datafield="key" displayfield="value" matchmode="start" multiple="multiple"></wm-filter-field> 
-         </wm-gridcolumn> 
-         <wm-gridcolumn columnwidth="4" name="gridcolumn23"> 
-          <wm-filter-field name="refFbSeverity" field="refFbSeverity" displayname="Severity" widget="select" lookup-type="RefFbSeverity" lookup-field="label" is-related="true" related-entity-name="RefFbSeverity" is-range="false" type="integer" is-primary-key="false" generator="assigned" show="true" key="refFbSeverity" placeholder="Enter value" datafield="key" displayfield="value" matchmode="start" multiple="multiple"></wm-filter-field> 
-          <wm-filter-field name="refFbStatuses" field="refFbStatuses" displayname="Status" widget="select" lookup-type="RefFbStatuses" lookup-field="label" is-related="true" related-entity-name="RefFbStatuses" is-range="false" type="integer" is-primary-key="false" generator="assigned" show="true" key="refFbStatuses" placeholder="Enter value" datafield="key" displayfield="value" matchmode="start" multiple="multiple"></wm-filter-field> 
-         </wm-gridcolumn> 
-        </wm-gridrow> 
-        <wm-gridrow name="gridrow13"> 
-         <wm-gridcolumn columnwidth="6" name="gridcolumn24"> 
-          <wm-filter-field name="tblUserPsa" field="tblUserPsa" displayname="User" widget="select" lookup-type="TblUserPsa" lookup-field="email" is-related="true" related-entity-name="TblUserPsa" is-range="false" type="integer" is-primary-key="false" generator="assigned" show="true" key="tblUserPsa" placeholder="Enter value" datafield="key" displayfield="value" matchmode="start" multiple="multiple"></wm-filter-field> 
-         </wm-gridcolumn> 
-        </wm-gridrow> 
-       </wm-layoutgrid> 
-       <wm-filter-action key="filter" display-name="Filter" show="true" class="btn-primary" iconclass="wi wi-filter-list" title="Filter" action="filter()" disabled="false" type="button"></wm-filter-action> 
-       <wm-filter-action key="clear" display-name="Clear" show="true" class="btn-secondary" iconclass="wi wi-cancel" title="Clear" action="clearFilter()" disabled="false" type="button"></wm-filter-action> 
-      </wm-livefilter> 
-     </wm-gridcolumn> 
-     <wm-gridcolumn columnwidth="1" name="gridcolumn21_1" horizontalalign="center"> 
-      <wm-button class="btn-default" caption="Refresh" type="button" margin="unset 0.5em" name="buttonRefresh" on-click="Variables.PSAFeedBackData.listRecords()"></wm-button> 
-     </wm-gridcolumn> 
-    </wm-gridrow> 
-    <wm-gridrow name="gridrow3"> 
-     <wm-gridcolumn columnwidth="1" name="gridcolumn5"></wm-gridcolumn> 
-     <wm-gridcolumn columnwidth="11" name="gridcolumn15"></wm-gridcolumn> 
-    </wm-gridrow> 
-    <wm-gridrow name="gridrow4"> 
-     <wm-gridcolumn columnwidth="12" name="gridcolumn6"> 
-      <wm-livegrid name="livegrid2"> 
-       <wm-grid gridfirstrowselect="true" editmode="form" title="" dataset="bind:Widgets.livefilter2.result" navigation="Classic" name="gridFeedback" showrecordcount="true" height="395px" on-rowdblclick="gridFeedbackRowdblclick($event, $rowData)"> 
-        <wm-grid-column binding="id" caption="Ticket #" type="integer" width="5%" generator="identity" edit-widget-type="number" show="true" readonly="false"></wm-grid-column> 
-        <wm-grid-column binding="tblUserPsa.firstName" caption="First Name" type="string" width="11%" generator="assigned" edit-widget-type="text" show="true" related-entity-name="TblUserPsa" readonly="false"></wm-grid-column> 
-        <wm-grid-column binding="tblUserPsa.lastName" caption="Last Name" type="string" width="11%" generator="assigned" edit-widget-type="text" show="true" related-entity-name="TblUserPsa" readonly="false"></wm-grid-column> 
-        <wm-grid-column binding="tblUserPsa.email" caption="Email" type="string" width="16%" generator="assigned" edit-widget-type="text" show="true" related-entity-name="TblUserPsa" readonly="false"></wm-grid-column> 
-        <wm-grid-column binding="refFbTypes.label" caption="Feedback Type" type="string" width="11%" generator="assigned" edit-widget-type="text" show="true" related-entity-name="RefFbTypes" readonly="false"></wm-grid-column> 
-        <wm-grid-column binding="refFbSubTypes.fbsubType" caption="FB Sub Type" type="string" width="11%" generator="assigned" edit-widget-type="text" show="true" related-entity-name="RefFbSubTypes" readonly="false"></wm-grid-column> 
-        <wm-grid-column binding="refFbSeverity.label" caption="Severity" type="string" width="11%" generator="assigned" col-ng-class="{'red':row.refFbSeverity.label == 'URGENT', 'orange':row.refFbSeverity.label == 'HIGH', 'yellow':row.refFbSeverity.label == 'MEDIUM'}" edit-widget-type="text" show="true" related-entity-name="RefFbSeverity" readonly="false"></wm-grid-column> 
-        <wm-grid-column binding="refFbStatuses.label" caption="Status" type="string" width="11%" generator="assigned" edit-widget-type="text" show="true" related-entity-name="RefFbStatuses" readonly="false"></wm-grid-column> 
-        <wm-grid-column binding="timeStamp" caption="Time Stamp" type="datetime" width="11%" generator="assigned" datepattern="dd-MMM-yyyy HH:mm:ss" formatpattern="toDate" edit-widget-type="datetime" show="true" readonly="false"></wm-grid-column> 
-        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="0px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column> 
-        <wm-grid-action key="customButton" display-name="Edit" show="true" class="btn-primary" iconclass="wi wi-mode-edit" title="Edit" action="editRow();customButtonAction($event)" shortcutkey="" disabled="false" icon="wi wi-mode-edit"></wm-grid-action> 
-        <wm-grid-row-action key="updaterow" display-name="" show="false" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow();updaterowAction($event)" disabled="false"></wm-grid-row-action> 
-       </wm-grid> 
-       <wm-liveform novalidate="false" title="Details" formlayout="inline" iconclass="wi wi-edit" dataset="bind:Widgets.livefilter2.result" captionalign="left" captionposition="top" name="liveform2" class="panel-primary"> 
-        <wm-layoutgrid name="layoutgrid4_1"> 
-         <wm-gridrow name="gridrow9" height="200px"> 
-          <wm-gridcolumn columnwidth="4" name="gridcolumn18"> 
-           <wm-layoutgrid name="layoutgrid5_1"> 
-            <wm-gridrow name="gridrow12_1"> 
-             <wm-gridcolumn columnwidth="12" name="gridcolumn24_1"> 
-              <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" itemsperrow="xs-1 sm-1 md-1 lg-1" class="media-list" dataset="bind:Variables.livePSAFeedBackNotesData.dataSet" navigation="Scroll" name="livelist1" height="200px" orderby="timeStamp:desc"> 
-               <wm-listtemplate layout="inline" name="listtemplate1"> 
-                <wm-container class="media-body" padding="unset unset unset 1.25em" name="container2"> 
-                 <wm-label name="Name" class="media-heading pull-left" caption="bind:Variables.livePSAFeedBackNotesData.dataSet.data[$i].tblUserPsa.firstName + ' ' + Variables.livePSAFeedBackNotesData.dataSet.data[$i].tblUserPsa.lastName + ' - ' + Variables.livePSAFeedBackNotesData.dataSet.data[$i].tblUserPsa.email" fontunit="em" fontweight="bold" margin="unset unset 2% unset"></wm-label> 
-                 <wm-label name="Time" caption="bind:Variables.livePSAFeedBackNotesData.dataSet.data[$i].timeStamp | toDate: 'MM-dd-yy hh:mm:ss a'" class="pull-right" margin="0px unset unset unset"></wm-label> 
-                 <wm-label name="Content" caption="bind:Variables.livePSAFeedBackNotesData.dataSet.notes" class="p text-muted" color="#000000"></wm-label> 
-                </wm-container> 
-                <wm-container class="media-right" name="container3"></wm-container> 
-               </wm-listtemplate> 
-              </wm-livelist> 
-             </wm-gridcolumn> 
-            </wm-gridrow> 
-           </wm-layoutgrid> 
-          </wm-gridcolumn> 
-          <wm-gridcolumn columnwidth="8" name="gridcolumn19" padding="unset unset unset 3%"> 
-           <wm-layoutgrid columns="3" name="layoutgrid5"> 
-            <wm-gridrow name="gridrow14"> 
-             <wm-gridcolumn columnwidth="4" name="gridcolumn27"> 
-              <wm-form-field name="tblUserPsa" displayname="User" show="true" primary-key="false" generator="assigned" key="tblUserPsa" type="list" is-related="true" widget="select" placeholder="Select value" displayexpression="firstName + ' ' + lastName + ' - ' + email" disabled="true"></wm-form-field> 
-             </wm-gridcolumn> 
-             <wm-gridcolumn columnwidth="4" name="gridcolumn28"> 
-              <wm-form-field name="refFbSubTypes" displayname="Feedback Sub Type" show="true" primary-key="false" generator="assigned" key="refFbSubTypes" type="list" is-related="true" widget="select" placeholder="Select value" displayexpression="fbsubType"></wm-form-field> 
-             </wm-gridcolumn> 
-             <wm-gridcolumn columnwidth="4" name="gridcolumn29"> 
-              <wm-form-field name="refFbStatuses" displayname="Status" show="true" primary-key="false" generator="assigned" key="refFbStatuses" type="list" is-related="true" widget="select" placeholder="Select value" displayexpression="label"></wm-form-field> 
-             </wm-gridcolumn> 
-            </wm-gridrow> 
-            <wm-gridrow name="gridrow15" padding="unset unset 0px unset"> 
-             <wm-gridcolumn columnwidth="4" name="gridcolumn31"> 
-              <wm-form-field name="refFbTypes" displayname="Feedback Type" show="true" primary-key="false" generator="assigned" key="refFbTypes" type="list" is-related="true" widget="select" placeholder="Select value" displayexpression="label"></wm-form-field> 
-             </wm-gridcolumn> 
-             <wm-gridcolumn columnwidth="4" name="gridcolumn32"> 
-              <wm-form-field name="refFbSeverity" displayname="Severity" show="true" primary-key="false" generator="assigned" key="refFbSeverity" type="list" is-related="true" widget="select" placeholder="Select value" displayexpression="label"></wm-form-field> 
-             </wm-gridcolumn> 
-             <wm-gridcolumn columnwidth="4" name="gridcolumn26_1"> 
-              <wm-form-field name="timeStamp" displayname="Time Stamp" show="true" primary-key="false" generator="assigned" key="timeStamp" type="datetime" widget="datetime" placeholder="Select date time" outputformat="yyyy-MM-ddTHH:mm:ss" disabled="true"></wm-form-field> 
-             </wm-gridcolumn> 
-            </wm-gridrow> 
-            <wm-gridrow name="gridrow10"> 
-             <wm-gridcolumn columnwidth="10" name="gridcolumn21_2" padding="unset unset 0px unset"> 
-              <wm-form-field name="textareaNewNote" displayname="New Note" widget="textarea" show="bind:Variables.staticShowNotesInput.dataSet.dataValue" type="custom" placeholder="Enter Note here" maxchars="1022" key="textareaNewNote" height="40px" margin="unset unset 0px unset"></wm-form-field> 
-             </wm-gridcolumn> 
-            </wm-gridrow> 
-           </wm-layoutgrid> 
-          </wm-gridcolumn> 
-         </wm-gridrow> 
-        </wm-layoutgrid> 
-        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel();cancelAction($event)" shortcutkey="" disabled="false" type="button" update-mode="true"></wm-form-action> 
-        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" action="saveAction($event)" disabled="false" type="submit" update-mode="true"></wm-form-action> 
-       </wm-liveform> 
-      </wm-livegrid> 
-     </wm-gridcolumn> 
-    </wm-gridrow> 
-   </wm-layoutgrid> 
-  </wm-page-content> 
- </wm-content> 
- <wm-footer content="footer" name="footer1"></wm-footer> 
+    <wm-header content="header" name="header1"></wm-header> 
+    <wm-content name="content1"> 
+        <wm-left-panel columnwidth="1" content="leftnavPSATools" name="left_panel1"></wm-left-panel> 
+        <wm-page-content columnwidth="11" name="page_content1"> 
+            <wm-layoutgrid name="layoutgrid1"> 
+                <wm-gridrow name="gridrow1"> 
+                    <wm-gridcolumn columnwidth="8" name="gridcolumn1"> 
+                        <wm-livefilter title="Filter Feedback" dataset="bind:Variables.PSAFeedBackData.dataSet" captionalign="left" captionposition="top" name="livefilter2" collapsible="true" expanded="false" class="panel-primary"> 
+                            <wm-layoutgrid columns="3" name="layoutgrid4"> 
+                                <wm-gridrow name="gridrow12"> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn21"> 
+                                        <wm-filter-field name="id" field="id" displayname="Ticket #" widget="autocomplete" is-range="false" type="integer" is-primary-key="true" generator="identity" show="true" key="id" placeholder="Enter value" datafield="key" searchkey="value" displaylabel="value"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn22"> 
+                                        <wm-filter-field name="refFbTypes" field="refFbTypes" displayname="Feedback Type" widget="select" lookup-type="RefFbTypes" lookup-field="label" is-related="true" related-entity-name="RefFbTypes" is-range="false" type="integer" is-primary-key="false" generator="assigned" show="true" key="refFbTypes" placeholder="Enter value" datafield="key" displayfield="value" matchmode="start" multiple="multiple"></wm-filter-field> 
+                                        <wm-filter-field name="refFbSubTypes" field="refFbSubTypes" displayname="Feedback Sub Type" widget="select" lookup-type="RefFbSubTypes" lookup-field="fbsubType" is-related="true" related-entity-name="RefFbSubTypes" is-range="false" type="integer" is-primary-key="false" generator="assigned" show="true" key="refFbSubTypes" placeholder="Enter value" datafield="key" displayfield="value" matchmode="start" multiple="multiple"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn23"> 
+                                        <wm-filter-field name="refFbSeverity" field="refFbSeverity" displayname="Severity" widget="select" lookup-type="RefFbSeverity" lookup-field="label" is-related="true" related-entity-name="RefFbSeverity" is-range="false" type="integer" is-primary-key="false" generator="assigned" show="true" key="refFbSeverity" placeholder="Enter value" datafield="key" displayfield="value" matchmode="start" multiple="multiple"></wm-filter-field> 
+                                        <wm-filter-field name="refFbStatuses" field="refFbStatuses" displayname="Status" widget="select" lookup-type="RefFbStatuses" lookup-field="label" is-related="true" related-entity-name="RefFbStatuses" is-range="false" type="integer" is-primary-key="false" generator="assigned" show="true" key="refFbStatuses" placeholder="Enter value" datafield="key" displayfield="value" matchmode="start" multiple="multiple"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                                <wm-gridrow name="gridrow13"> 
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn24"> 
+                                        <wm-filter-field name="tblUserPsa" field="tblUserPsa" displayname="User" widget="select" lookup-type="TblUserPsa" lookup-field="email" is-related="true" related-entity-name="TblUserPsa" is-range="false" type="integer" is-primary-key="false" generator="assigned" show="true" key="tblUserPsa" placeholder="Enter value" datafield="key" displayfield="value" matchmode="start" multiple="multiple"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                            </wm-layoutgrid> 
+                            <wm-filter-action key="filter" display-name="Filter" show="true" class="btn-primary" iconclass="wi wi-filter-list" title="Filter" action="filter()" disabled="false" type="button"></wm-filter-action> 
+                            <wm-filter-action key="clear" display-name="Clear" show="true" class="btn-secondary" iconclass="wi wi-cancel" title="Clear" action="clearFilter()" disabled="false" type="button"></wm-filter-action> 
+                        </wm-livefilter> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn21_1" horizontalalign="center"> 
+                        <wm-button class="btn-default" caption="Refresh" type="button" margin="unset 0.5em" name="buttonRefresh" on-click="Variables.PSAFeedBackData.listRecords()"></wm-button> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow3"> 
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn5"></wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="11" name="gridcolumn15"></wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow4"> 
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn6"> 
+                        <wm-livetable name="livegrid2"> 
+                            <wm-table gridfirstrowselect="true" editmode="form" title="" dataset="bind:Widgets.livefilter2.result" navigation="Classic" name="gridFeedback" showrecordcount="true" height="395px" on-rowdblclick="gridFeedbackRowdblclick($event, $rowData)"> 
+                                <wm-table-column binding="id" caption="Ticket #" type="integer" width="5%" generator="identity" edit-widget-type="number" show="true" readonly="false"></wm-table-column> 
+                                <wm-table-column binding="tblUserPsa.firstName" caption="First Name" type="string" width="11%" generator="assigned" edit-widget-type="text" show="true" related-entity-name="TblUserPsa" readonly="false"></wm-table-column> 
+                                <wm-table-column binding="tblUserPsa.lastName" caption="Last Name" type="string" width="11%" generator="assigned" edit-widget-type="text" show="true" related-entity-name="TblUserPsa" readonly="false"></wm-table-column> 
+                                <wm-table-column binding="tblUserPsa.email" caption="Email" type="string" width="16%" generator="assigned" edit-widget-type="text" show="true" related-entity-name="TblUserPsa" readonly="false"></wm-table-column> 
+                                <wm-table-column binding="refFbTypes.label" caption="Feedback Type" type="string" width="11%" generator="assigned" edit-widget-type="text" show="true" related-entity-name="RefFbTypes" readonly="false"></wm-table-column> 
+                                <wm-table-column binding="refFbSubTypes.fbsubType" caption="FB Sub Type" type="string" width="11%" generator="assigned" edit-widget-type="text" show="true" related-entity-name="RefFbSubTypes" readonly="false"></wm-table-column> 
+                                <wm-table-column binding="refFbSeverity.label" caption="Severity" type="string" width="11%" generator="assigned" col-ng-class="{'red':row.refFbSeverity.label == 'URGENT', 'orange':row.refFbSeverity.label == 'HIGH', 'yellow':row.refFbSeverity.label == 'MEDIUM'}" edit-widget-type="text" show="true" related-entity-name="RefFbSeverity" readonly="false"></wm-table-column> 
+                                <wm-table-column binding="refFbStatuses.label" caption="Status" type="string" width="11%" generator="assigned" edit-widget-type="text" show="true" related-entity-name="RefFbStatuses" readonly="false"></wm-table-column> 
+                                <wm-table-column binding="timeStamp" caption="Time Stamp" type="datetime" width="11%" generator="assigned" datepattern="dd-MMM-yyyy HH:mm:ss" formatpattern="toDate" edit-widget-type="datetime" show="true" readonly="false"></wm-table-column> 
+                                <wm-table-column binding="rowOperations" caption="Actions" type="custom" width="0px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-table-column> 
+                                <wm-table-action key="customButton" display-name="Edit" show="true" class="btn-primary" iconclass="wi wi-mode-edit" title="Edit" action="editRow();customButtonAction($event)" shortcutkey="" disabled="false" icon="wi wi-mode-edit"></wm-table-action> 
+                                <wm-table-row-action key="updaterow" display-name="" show="false" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow();updaterowAction($event)" disabled="false"></wm-table-row-action> 
+                            </wm-table> 
+                            <wm-liveform novalidate="false" title="Details" formlayout="inline" iconclass="wi wi-edit" dataset="bind:Widgets.livefilter2.result" captionalign="left" captionposition="top" name="liveform2" class="panel-primary"> 
+                                <wm-layoutgrid name="layoutgrid4_1"> 
+                                    <wm-gridrow name="gridrow9" height="200px"> 
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn18"> 
+                                            <wm-layoutgrid name="layoutgrid5_1"> 
+                                                <wm-gridrow name="gridrow12_1"> 
+                                                    <wm-gridcolumn columnwidth="12" name="gridcolumn24_1"> 
+                                                        <wm-list listclass="list-group" itemclass="list-group-item" template="true" itemsperrow="xs-1 sm-1 md-1 lg-1" class="media-list" dataset="bind:Variables.livePSAFeedBackNotesData.dataSet" navigation="Scroll" name="livelist1" height="200px" orderby="timeStamp:desc"> 
+                                                            <wm-listtemplate layout="inline" name="listtemplate1"> 
+                                                                <wm-container class="media-body" padding="unset unset unset 1.25em" name="container2"> 
+                                                                    <wm-label name="Name" class="media-heading pull-left" caption="bind:Variables.livePSAFeedBackNotesData.dataSet.data[$i].tblUserPsa.firstName + ' ' + Variables.livePSAFeedBackNotesData.dataSet.data[$i].tblUserPsa.lastName + ' - ' + Variables.livePSAFeedBackNotesData.dataSet.data[$i].tblUserPsa.email" fontunit="em" fontweight="bold" margin="unset unset 2% unset"></wm-label> 
+                                                                    <wm-label name="Time" caption="bind:Variables.livePSAFeedBackNotesData.dataSet.data[$i].timeStamp | toDate: 'MM-dd-yy hh:mm:ss a'" class="pull-right" margin="0px unset unset unset"></wm-label> 
+                                                                    <wm-label name="Content" caption="bind:Variables.livePSAFeedBackNotesData.dataSet.notes" class="p text-muted" color="#000000"></wm-label> 
+                                                                </wm-container> 
+                                                                <wm-container class="media-right" name="container3"></wm-container> 
+                                                            </wm-listtemplate> 
+                                                        </wm-list> 
+                                                    </wm-gridcolumn> 
+                                                </wm-gridrow> 
+                                            </wm-layoutgrid> 
+                                        </wm-gridcolumn> 
+                                        <wm-gridcolumn columnwidth="8" name="gridcolumn19" padding="unset unset unset 3%"> 
+                                            <wm-layoutgrid columns="3" name="layoutgrid5"> 
+                                                <wm-gridrow name="gridrow14"> 
+                                                    <wm-gridcolumn columnwidth="4" name="gridcolumn27"> 
+                                                        <wm-form-field name="tblUserPsa" displayname="User" show="true" primary-key="false" generator="assigned" key="tblUserPsa" type="list" is-related="true" widget="select" placeholder="Select value" displayexpression="firstName + ' ' + lastName + ' - ' + email" disabled="true"></wm-form-field> 
+                                                    </wm-gridcolumn> 
+                                                    <wm-gridcolumn columnwidth="4" name="gridcolumn28"> 
+                                                        <wm-form-field name="refFbSubTypes" displayname="Feedback Sub Type" show="true" primary-key="false" generator="assigned" key="refFbSubTypes" type="list" is-related="true" widget="select" placeholder="Select value" displayexpression="fbsubType"></wm-form-field> 
+                                                    </wm-gridcolumn> 
+                                                    <wm-gridcolumn columnwidth="4" name="gridcolumn29"> 
+                                                        <wm-form-field name="refFbStatuses" displayname="Status" show="true" primary-key="false" generator="assigned" key="refFbStatuses" type="list" is-related="true" widget="select" placeholder="Select value" displayexpression="label"></wm-form-field> 
+                                                    </wm-gridcolumn> 
+                                                </wm-gridrow> 
+                                                <wm-gridrow name="gridrow15" padding="unset unset 0px unset"> 
+                                                    <wm-gridcolumn columnwidth="4" name="gridcolumn31"> 
+                                                        <wm-form-field name="refFbTypes" displayname="Feedback Type" show="true" primary-key="false" generator="assigned" key="refFbTypes" type="list" is-related="true" widget="select" placeholder="Select value" displayexpression="label"></wm-form-field> 
+                                                    </wm-gridcolumn> 
+                                                    <wm-gridcolumn columnwidth="4" name="gridcolumn32"> 
+                                                        <wm-form-field name="refFbSeverity" displayname="Severity" show="true" primary-key="false" generator="assigned" key="refFbSeverity" type="list" is-related="true" widget="select" placeholder="Select value" displayexpression="label"></wm-form-field> 
+                                                    </wm-gridcolumn> 
+                                                    <wm-gridcolumn columnwidth="4" name="gridcolumn26_1"> 
+                                                        <wm-form-field name="timeStamp" displayname="Time Stamp" show="true" primary-key="false" generator="assigned" key="timeStamp" type="datetime" widget="datetime" placeholder="Select date time" outputformat="yyyy-MM-ddTHH:mm:ss" disabled="true"></wm-form-field> 
+                                                    </wm-gridcolumn> 
+                                                </wm-gridrow> 
+                                                <wm-gridrow name="gridrow10"> 
+                                                    <wm-gridcolumn columnwidth="10" name="gridcolumn21_2" padding="unset unset 0px unset"> 
+                                                        <wm-form-field name="textareaNewNote" displayname="New Note" widget="textarea" show="bind:Variables.staticShowNotesInput.dataSet.dataValue" type="custom" placeholder="Enter Note here" maxchars="1022" key="textareaNewNote" height="40px" margin="unset unset 0px unset"></wm-form-field> 
+                                                    </wm-gridcolumn> 
+                                                </wm-gridrow> 
+                                            </wm-layoutgrid> 
+                                        </wm-gridcolumn> 
+                                    </wm-gridrow> 
+                                </wm-layoutgrid> 
+                                <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel();cancelAction($event)" shortcutkey="" disabled="false" type="button" update-mode="true"></wm-form-action> 
+                                <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" action="saveAction($event)" disabled="false" type="submit" update-mode="true"></wm-form-action> 
+                            </wm-liveform> 
+                        </wm-livetable> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+            </wm-layoutgrid> 
+        </wm-page-content> 
+    </wm-content> 
+    <wm-footer content="footer" name="footer1"></wm-footer> 
 </wm-page>

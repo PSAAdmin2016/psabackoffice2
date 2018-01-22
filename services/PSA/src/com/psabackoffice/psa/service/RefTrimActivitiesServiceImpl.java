@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.psa.RefTrimActivities;
  * @see RefTrimActivities
  */
 @Service("PSA.RefTrimActivitiesService")
+@Validated
 public class RefTrimActivitiesServiceImpl implements RefTrimActivitiesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RefTrimActivitiesServiceImpl.class);
@@ -49,6 +51,7 @@ public class RefTrimActivitiesServiceImpl implements RefTrimActivitiesService {
     @Override
 	public RefTrimActivities create(RefTrimActivities refTrimActivities) {
         LOGGER.debug("Creating a new RefTrimActivities with information: {}", refTrimActivities);
+
         RefTrimActivities refTrimActivitiesCreated = this.wmGenericDao.create(refTrimActivities);
         return refTrimActivitiesCreated;
     }

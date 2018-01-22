@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.job1111.CivilSellPackage;
  * @see CivilSellPackage
  */
 @Service("Job1111.CivilSellPackageService")
+@Validated
 public class CivilSellPackageServiceImpl implements CivilSellPackageService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CivilSellPackageServiceImpl.class);
@@ -49,6 +51,7 @@ public class CivilSellPackageServiceImpl implements CivilSellPackageService {
     @Override
 	public CivilSellPackage create(CivilSellPackage civilSellPackage) {
         LOGGER.debug("Creating a new CivilSellPackage with information: {}", civilSellPackage);
+
         CivilSellPackage civilSellPackageCreated = this.wmGenericDao.create(civilSellPackage);
         return civilSellPackageCreated;
     }
@@ -79,7 +82,7 @@ public class CivilSellPackageServiceImpl implements CivilSellPackageService {
         LOGGER.debug("Updating CivilSellPackage with information: {}", civilSellPackage);
         this.wmGenericDao.update(civilSellPackage);
 
-        Integer civilsellpackageId = civilSellPackage.getActivityId();
+        Integer civilsellpackageId = civilSellPackage.getId();
 
         return this.wmGenericDao.findById(civilsellpackageId);
     }

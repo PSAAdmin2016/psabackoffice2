@@ -35,24 +35,82 @@ public class PSAQueryExecutorServiceImpl implements PSAQueryExecutorService {
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Page<GetChatRecipientNameResponse> executeGetChatRecipientName(Integer conversationId, Integer userId, Pageable pageable) {
-        Map params = new HashMap(2);
+    public Page<GetForemenBySuperResponse> executeGetForemenBySuper(Integer superId, Pageable pageable) {
+        Map params = new HashMap(1);
 
-        params.put("ConversationID", conversationId);
-        params.put("UserID", userId);
+        params.put("SuperID", superId);
 
-        return queryExecutor.executeNamedQuery("GetChatRecipientName", params, GetChatRecipientNameResponse.class, pageable);
+        return queryExecutor.executeNamedQuery("GetForemenBySuper", params, GetForemenBySuperResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Downloadable exportGetChatRecipientName(ExportType exportType, Integer conversationId, Integer userId, Pageable pageable) {
-        Map params = new HashMap(2);
+    public Downloadable exportGetForemenBySuper(ExportType exportType, Integer superId, Pageable pageable) {
+        Map params = new HashMap(1);
 
-        params.put("ConversationID", conversationId);
-        params.put("UserID", userId);
+        params.put("SuperID", superId);
 
-        return queryExecutor.exportNamedQueryData("GetChatRecipientName", params, exportType, GetChatRecipientNameResponse.class, pageable);
+        return queryExecutor.exportNamedQueryData("GetForemenBySuper", params, exportType, GetForemenBySuperResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Page<GetSteelActivityTypesResponse> executeGetSteelActivityTypes(Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.executeNamedQuery("GetSteelActivityTypes", params, GetSteelActivityTypesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Downloadable exportGetSteelActivityTypes(ExportType exportType, Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.exportNamedQueryData("GetSteelActivityTypes", params, exportType, GetSteelActivityTypesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Page<SuperintendentsResponse> executeSuperintendents(Integer jobNumber, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("JobNumber", jobNumber);
+
+        return queryExecutor.executeNamedQuery("Superintendents", params, SuperintendentsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Downloadable exportSuperintendents(ExportType exportType, Integer jobNumber, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("JobNumber", jobNumber);
+
+        return queryExecutor.exportNamedQueryData("Superintendents", params, exportType, SuperintendentsResponse.class, pageable);
+    }
+
+    @Transactional(value = "PSATransactionManager")
+    @Override
+    public Integer executeInsertUserPSA(InsertUserPsaRequest insertUserPsaRequest) {
+        Map params = new HashMap(13);
+
+        params.put("PerformanceEmployeeID", insertUserPsaRequest.getPerformanceEmployeeId());
+        params.put("FirstName", insertUserPsaRequest.getFirstName());
+        params.put("LastName", insertUserPsaRequest.getLastName());
+        params.put("Email", insertUserPsaRequest.getEmail());
+        params.put("Password", insertUserPsaRequest.getPassword());
+        params.put("MobileUser", insertUserPsaRequest.getMobileUser());
+        params.put("ActiveUser", insertUserPsaRequest.getActiveUser());
+        params.put("ModifiedBy", insertUserPsaRequest.getModifiedBy());
+        params.put("DisciplineId", insertUserPsaRequest.getDisciplineId());
+        params.put("CraftId", insertUserPsaRequest.getCraftId());
+        params.put("CraftClassId", insertUserPsaRequest.getCraftClassId());
+        params.put("RoleId", insertUserPsaRequest.getRoleId());
+        params.put("JobNumber", insertUserPsaRequest.getJobNumber());
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertUserPSA", params);
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -68,6 +126,27 @@ public class PSAQueryExecutorServiceImpl implements PSAQueryExecutorService {
 
     @Transactional(value = "PSATransactionManager")
     @Override
+    public Integer executeUpdateChatAllLastRead(UpdateChatAllLastReadRequest updateChatAllLastReadRequest) {
+        Map params = new HashMap(1);
+
+        params.put("UserID", updateChatAllLastReadRequest.getUserId());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateChatAllLastRead", params);
+    }
+
+    @Transactional(value = "PSATransactionManager")
+    @Override
+    public Integer executeUpdateChatMessageStatus(UpdateChatMessageStatusRequest updateChatMessageStatusRequest) {
+        Map params = new HashMap(2);
+
+        params.put("ConversationID", updateChatMessageStatusRequest.getConversationId());
+        params.put("UserID", updateChatMessageStatusRequest.getUserId());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateChatMessageStatus", params);
+    }
+
+    @Transactional(value = "PSATransactionManager")
+    @Override
     public Integer executeDeleteUserAssignedApps(Integer userId, Integer mobileAppGroupId) {
         Map params = new HashMap(2);
 
@@ -77,32 +156,44 @@ public class PSAQueryExecutorServiceImpl implements PSAQueryExecutorService {
         return queryExecutor.executeNamedQueryForUpdate("DeleteUserAssignedApps", params);
     }
 
-    @Transactional(value = "PSATransactionManager")
+    @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Integer executeInsertLoginSuccess(InsertLoginSuccessRequest insertLoginSuccessRequest) {
+    public Page<GetJobNumberCountByJobNumberResponse> executeGetJobNumberCountByJobNumber(Integer jobNumber, Pageable pageable) {
         Map params = new HashMap(1);
 
-        params.put("EnteredUsername", insertLoginSuccessRequest.getEnteredUsername());
+        params.put("JobNumber", jobNumber);
 
-        return queryExecutor.executeNamedQueryForUpdate("InsertLoginSuccess", params);
+        return queryExecutor.executeNamedQuery("GetJobNumberCountByJobNumber", params, GetJobNumberCountByJobNumberResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Page<GetRefPrecipitationResponse> executeGetRefPrecipitation(Pageable pageable) {
-        Map params = new HashMap(0);
+    public Downloadable exportGetJobNumberCountByJobNumber(ExportType exportType, Integer jobNumber, Pageable pageable) {
+        Map params = new HashMap(1);
 
+        params.put("JobNumber", jobNumber);
 
-        return queryExecutor.executeNamedQuery("GetRefPrecipitation", params, GetRefPrecipitationResponse.class, pageable);
+        return queryExecutor.exportNamedQueryData("GetJobNumberCountByJobNumber", params, exportType, GetJobNumberCountByJobNumberResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Downloadable exportGetRefPrecipitation(ExportType exportType, Pageable pageable) {
-        Map params = new HashMap(0);
+    public Page<GetChatConversationsByLoggedInUserResponse> executeGetChatConversationsByLoggedInUser(Integer userId, Pageable pageable) {
+        Map params = new HashMap(1);
 
+        params.put("UserID", userId);
 
-        return queryExecutor.exportNamedQueryData("GetRefPrecipitation", params, exportType, GetRefPrecipitationResponse.class, pageable);
+        return queryExecutor.executeNamedQuery("GetChatConversationsByLoggedInUser", params, GetChatConversationsByLoggedInUserResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Downloadable exportGetChatConversationsByLoggedInUser(ExportType exportType, Integer userId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("UserID", userId);
+
+        return queryExecutor.exportNamedQueryData("GetChatConversationsByLoggedInUser", params, exportType, GetChatConversationsByLoggedInUserResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
@@ -147,25 +238,238 @@ public class PSAQueryExecutorServiceImpl implements PSAQueryExecutorService {
 
     @Transactional(value = "PSATransactionManager")
     @Override
-    public Integer executeInsertUserAssignedApps(InsertUserAssignedAppsRequest insertUserAssignedAppsRequest) {
+    public Integer executeInsertLoginFailure(InsertLoginFailureRequest insertLoginFailureRequest) {
         Map params = new HashMap(2);
 
-        params.put("UserID", insertUserAssignedAppsRequest.getUserId());
-        params.put("MobileAppGroupID", insertUserAssignedAppsRequest.getMobileAppGroupId());
+        params.put("EnteredUsername", insertLoginFailureRequest.getEnteredUsername());
+        params.put("EnteredPassword", insertLoginFailureRequest.getEnteredPassword());
 
-        return queryExecutor.executeNamedQueryForUpdate("InsertUserAssignedApps", params);
+        return queryExecutor.executeNamedQueryForUpdate("InsertLoginFailure", params);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Page<GetRolesByDisciplineResponse> executeGetRolesByDiscipline(Integer disciplineId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("DisciplineID", disciplineId);
+
+        return queryExecutor.executeNamedQuery("GetRolesByDiscipline", params, GetRolesByDisciplineResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Downloadable exportGetRolesByDiscipline(ExportType exportType, Integer disciplineId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("DisciplineID", disciplineId);
+
+        return queryExecutor.exportNamedQueryData("GetRolesByDiscipline", params, exportType, GetRolesByDisciplineResponse.class, pageable);
     }
 
     @Transactional(value = "PSATransactionManager")
     @Override
-    public Integer executeInsertFeedbackTicketNotes(InsertFeedbackTicketNotesRequest insertFeedbackTicketNotesRequest) {
+    public Integer executeInsertUserCreds(InsertUserCredsRequest insertUserCredsRequest) {
         Map params = new HashMap(3);
 
-        params.put("TicketID", insertFeedbackTicketNotesRequest.getTicketId());
-        params.put("UserID", insertFeedbackTicketNotesRequest.getUserId());
-        params.put("Note", insertFeedbackTicketNotesRequest.getNote());
+        params.put("UserID", insertUserCredsRequest.getUserId());
+        params.put("UserName", insertUserCredsRequest.getUserName());
+        params.put("Password", insertUserCredsRequest.getPassword());
 
-        return queryExecutor.executeNamedQueryForUpdate("InsertFeedbackTicketNotes", params);
+        return queryExecutor.executeNamedQueryForUpdate("InsertUserCreds", params);
+    }
+
+    @Transactional(value = "PSATransactionManager")
+    @Override
+    public Integer executeUpdateUserCredsUserName(UpdateUserCredsUserNameRequest updateUserCredsUserNameRequest) {
+        Map params = new HashMap(2);
+
+        params.put("UserName", updateUserCredsUserNameRequest.getUserName());
+        params.put("UserID", updateUserCredsUserNameRequest.getUserId());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateUserCredsUserName", params);
+    }
+
+    @Transactional(value = "PSATransactionManager")
+    @Override
+    public Integer executeInsertLoginSuccess(InsertLoginSuccessRequest insertLoginSuccessRequest) {
+        Map params = new HashMap(1);
+
+        params.put("EnteredUsername", insertLoginSuccessRequest.getEnteredUsername());
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertLoginSuccess", params);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Page<GetRefTemperaturesResponse> executeGetRefTemperatures(Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.executeNamedQuery("GetRefTemperatures", params, GetRefTemperaturesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Downloadable exportGetRefTemperatures(ExportType exportType, Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.exportNamedQueryData("GetRefTemperatures", params, exportType, GetRefTemperaturesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Page<GetChatAllLatestTimeStampResponse> executeGetChatAllLatestTimeStamp(String userId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("UserID", userId);
+
+        return queryExecutor.executeNamedQuery("GetChatAllLatestTimeStamp", params, GetChatAllLatestTimeStampResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Downloadable exportGetChatAllLatestTimeStamp(ExportType exportType, String userId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("UserID", userId);
+
+        return queryExecutor.exportNamedQueryData("GetChatAllLatestTimeStamp", params, exportType, GetChatAllLatestTimeStampResponse.class, pageable);
+    }
+
+    @Transactional(value = "PSATransactionManager")
+    @Override
+    public Integer executeInsertFeedbackTicket(InsertFeedbackTicketRequest insertFeedbackTicketRequest) {
+        Map params = new HashMap(4);
+
+        params.put("UserID", insertFeedbackTicketRequest.getUserId());
+        params.put("FeedbackType", insertFeedbackTicketRequest.getFeedbackType());
+        params.put("FBSubType", insertFeedbackTicketRequest.getFbsubType());
+        params.put("ErrorSeverity", insertFeedbackTicketRequest.getErrorSeverity());
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertFeedbackTicket", params);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Page<GetRefWindResponse> executeGetRefWind(Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.executeNamedQuery("GetRefWind", params, GetRefWindResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Downloadable exportGetRefWind(ExportType exportType, Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.exportNamedQueryData("GetRefWind", params, exportType, GetRefWindResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Page<GetDefaultJobNumberResponse> executeGetDefaultJobNumber(Integer userId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("UserID", userId);
+
+        return queryExecutor.executeNamedQuery("GetDefaultJobNumber", params, GetDefaultJobNumberResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Downloadable exportGetDefaultJobNumber(ExportType exportType, Integer userId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("UserID", userId);
+
+        return queryExecutor.exportNamedQueryData("GetDefaultJobNumber", params, exportType, GetDefaultJobNumberResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Page<GetRefPrecipitationResponse> executeGetRefPrecipitation(Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.executeNamedQuery("GetRefPrecipitation", params, GetRefPrecipitationResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Downloadable exportGetRefPrecipitation(ExportType exportType, Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.exportNamedQueryData("GetRefPrecipitation", params, exportType, GetRefPrecipitationResponse.class, pageable);
+    }
+
+    @Transactional(value = "PSATransactionManager")
+    @Override
+    public Integer executeUpdateUserPSA(UpdateUserPsaRequest updateUserPsaRequest) {
+        Map params = new HashMap(13);
+
+        params.put("PerformanceEmployeeId", updateUserPsaRequest.getPerformanceEmployeeId());
+        params.put("FirstName", updateUserPsaRequest.getFirstName());
+        params.put("LastName", updateUserPsaRequest.getLastName());
+        params.put("Nickname", updateUserPsaRequest.getNickname());
+        params.put("Email", updateUserPsaRequest.getEmail());
+        params.put("ActiveUser", updateUserPsaRequest.getActiveUser());
+        params.put("ModifiedBy", updateUserPsaRequest.getModifiedBy());
+        params.put("DisciplineId", updateUserPsaRequest.getDisciplineId());
+        params.put("CraftId", updateUserPsaRequest.getCraftId());
+        params.put("CraftClassId", updateUserPsaRequest.getCraftClassId());
+        params.put("RoleId", updateUserPsaRequest.getRoleId());
+        params.put("DefaultJobNumberId", updateUserPsaRequest.getDefaultJobNumberId());
+        params.put("UserID", updateUserPsaRequest.getUserId());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateUserPSA", params);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Page<GetFbnotesByFbidResponse> executeGetFBNotesByFBID(Integer feedbackId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("FeedbackID", feedbackId);
+
+        return queryExecutor.executeNamedQuery("GetFBNotesByFBID", params, GetFbnotesByFbidResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Downloadable exportGetFBNotesByFBID(ExportType exportType, Integer feedbackId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("FeedbackID", feedbackId);
+
+        return queryExecutor.exportNamedQueryData("GetFBNotesByFBID", params, exportType, GetFbnotesByFbidResponse.class, pageable);
+    }
+
+    @Transactional(value = "PSATransactionManager")
+    @Override
+    public Integer executeInsertChatMessage(InsertChatMessageRequest insertChatMessageRequest) {
+        Map params = new HashMap(3);
+
+        params.put("ConversationID", insertChatMessageRequest.getConversationId());
+        params.put("UserID", insertChatMessageRequest.getUserId());
+        params.put("Message", insertChatMessageRequest.getMessage());
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertChatMessage", params);
+    }
+
+    @Transactional(value = "PSATransactionManager")
+    @Override
+    public Integer executeDeleteAssignedJobNumber(Integer userId, String jobNumber) {
+        Map params = new HashMap(2);
+
+        params.put("UserID", userId);
+        params.put("JobNumber", jobNumber);
+
+        return queryExecutor.executeNamedQueryForUpdate("DeleteAssignedJobNumber", params);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
@@ -202,277 +506,6 @@ public class PSAQueryExecutorServiceImpl implements PSAQueryExecutorService {
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Page<GetHelpMenuVideosResponse> executeGetHelpMenuVideos(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("GetHelpMenuVideos", params, GetHelpMenuVideosResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Downloadable exportGetHelpMenuVideos(ExportType exportType, Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.exportNamedQueryData("GetHelpMenuVideos", params, exportType, GetHelpMenuVideosResponse.class, pageable);
-    }
-
-    @Transactional(value = "PSATransactionManager")
-    @Override
-    public Integer executeInsertFeedbackNotes(InsertFeedbackNotesRequest insertFeedbackNotesRequest) {
-        Map params = new HashMap(2);
-
-        params.put("UserID", insertFeedbackNotesRequest.getUserId());
-        params.put("Notes", insertFeedbackNotesRequest.getNotes());
-
-        return queryExecutor.executeNamedQueryForUpdate("InsertFeedbackNotes", params);
-    }
-
-    @Transactional(value = "PSATransactionManager")
-    @Override
-    public Integer executeUpdateUserPSA(UpdateUserPsaRequest updateUserPsaRequest) {
-        Map params = new HashMap(13);
-
-        params.put("PerformanceEmployeeId", updateUserPsaRequest.getPerformanceEmployeeId());
-        params.put("FirstName", updateUserPsaRequest.getFirstName());
-        params.put("LastName", updateUserPsaRequest.getLastName());
-        params.put("Nickname", updateUserPsaRequest.getNickname());
-        params.put("Email", updateUserPsaRequest.getEmail());
-        params.put("ActiveUser", updateUserPsaRequest.getActiveUser());
-        params.put("ModifiedBy", updateUserPsaRequest.getModifiedBy());
-        params.put("DisciplineId", updateUserPsaRequest.getDisciplineId());
-        params.put("CraftId", updateUserPsaRequest.getCraftId());
-        params.put("CraftClassId", updateUserPsaRequest.getCraftClassId());
-        params.put("RoleId", updateUserPsaRequest.getRoleId());
-        params.put("DefaultJobNumberId", updateUserPsaRequest.getDefaultJobNumberId());
-        params.put("UserID", updateUserPsaRequest.getUserId());
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateUserPSA", params);
-    }
-
-    @Transactional(value = "PSATransactionManager")
-    @Override
-    public Integer executeDeleteAssignedJobNumber(Integer userId, String jobNumber) {
-        Map params = new HashMap(2);
-
-        params.put("UserID", userId);
-        params.put("JobNumber", jobNumber);
-
-        return queryExecutor.executeNamedQueryForUpdate("DeleteAssignedJobNumber", params);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<GetSettingDashUpdateIntResponse> executeGetSettingDashUpdateInt(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("GetSettingDashUpdateInt", params, GetSettingDashUpdateIntResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Downloadable exportGetSettingDashUpdateInt(ExportType exportType, Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.exportNamedQueryData("GetSettingDashUpdateInt", params, exportType, GetSettingDashUpdateIntResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<GetRolesByDisciplineResponse> executeGetRolesByDiscipline(Integer disciplineId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("DisciplineID", disciplineId);
-
-        return queryExecutor.executeNamedQuery("GetRolesByDiscipline", params, GetRolesByDisciplineResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Downloadable exportGetRolesByDiscipline(ExportType exportType, Integer disciplineId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("DisciplineID", disciplineId);
-
-        return queryExecutor.exportNamedQueryData("GetRolesByDiscipline", params, exportType, GetRolesByDisciplineResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<GetRefTemperaturesResponse> executeGetRefTemperatures(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("GetRefTemperatures", params, GetRefTemperaturesResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Downloadable exportGetRefTemperatures(ExportType exportType, Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.exportNamedQueryData("GetRefTemperatures", params, exportType, GetRefTemperaturesResponse.class, pageable);
-    }
-
-    @Transactional(value = "PSATransactionManager")
-    @Override
-    public Integer executeInsertUserPSA(InsertUserPsaRequest insertUserPsaRequest) {
-        Map params = new HashMap(13);
-
-        params.put("PerformanceEmployeeID", insertUserPsaRequest.getPerformanceEmployeeId());
-        params.put("FirstName", insertUserPsaRequest.getFirstName());
-        params.put("LastName", insertUserPsaRequest.getLastName());
-        params.put("Email", insertUserPsaRequest.getEmail());
-        params.put("Password", insertUserPsaRequest.getPassword());
-        params.put("MobileUser", insertUserPsaRequest.getMobileUser());
-        params.put("ActiveUser", insertUserPsaRequest.getActiveUser());
-        params.put("ModifiedBy", insertUserPsaRequest.getModifiedBy());
-        params.put("DisciplineId", insertUserPsaRequest.getDisciplineId());
-        params.put("CraftId", insertUserPsaRequest.getCraftId());
-        params.put("CraftClassId", insertUserPsaRequest.getCraftClassId());
-        params.put("RoleId", insertUserPsaRequest.getRoleId());
-        params.put("JobNumber", insertUserPsaRequest.getJobNumber());
-
-        return queryExecutor.executeNamedQueryForUpdate("InsertUserPSA", params);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<GetDefaultJobNumberResponse> executeGetDefaultJobNumber(Integer userId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("UserID", userId);
-
-        return queryExecutor.executeNamedQuery("GetDefaultJobNumber", params, GetDefaultJobNumberResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Downloadable exportGetDefaultJobNumber(ExportType exportType, Integer userId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("UserID", userId);
-
-        return queryExecutor.exportNamedQueryData("GetDefaultJobNumber", params, exportType, GetDefaultJobNumberResponse.class, pageable);
-    }
-
-    @Transactional(value = "PSATransactionManager")
-    @Override
-    public Integer executeUpdateUserCreds(UpdateUserCredsRequest updateUserCredsRequest) {
-        Map params = new HashMap(3);
-
-        params.put("UserName", updateUserCredsRequest.getUserName());
-        params.put("Password", updateUserCredsRequest.getPassword());
-        params.put("UserID", updateUserCredsRequest.getUserId());
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateUserCreds", params);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<GetChatAllLastReadResponse> executeGetChatAllLastRead(String userId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("UserID", userId);
-
-        return queryExecutor.executeNamedQuery("GetChatAllLastRead", params, GetChatAllLastReadResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Downloadable exportGetChatAllLastRead(ExportType exportType, String userId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("UserID", userId);
-
-        return queryExecutor.exportNamedQueryData("GetChatAllLastRead", params, exportType, GetChatAllLastReadResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<SuperintendentsResponse> executeSuperintendents(Integer jobNumber, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("JobNumber", jobNumber);
-
-        return queryExecutor.executeNamedQuery("Superintendents", params, SuperintendentsResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Downloadable exportSuperintendents(ExportType exportType, Integer jobNumber, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("JobNumber", jobNumber);
-
-        return queryExecutor.exportNamedQueryData("Superintendents", params, exportType, SuperintendentsResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<GetSteelActivityTypesResponse> executeGetSteelActivityTypes(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("GetSteelActivityTypes", params, GetSteelActivityTypesResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Downloadable exportGetSteelActivityTypes(ExportType exportType, Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.exportNamedQueryData("GetSteelActivityTypes", params, exportType, GetSteelActivityTypesResponse.class, pageable);
-    }
-
-    @Transactional(value = "PSATransactionManager")
-    @Override
-    public Integer executeUpdateUserCredsUserName(UpdateUserCredsUserNameRequest updateUserCredsUserNameRequest) {
-        Map params = new HashMap(2);
-
-        params.put("UserName", updateUserCredsUserNameRequest.getUserName());
-        params.put("UserID", updateUserCredsUserNameRequest.getUserId());
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateUserCredsUserName", params);
-    }
-
-    @Transactional(value = "PSATransactionManager")
-    @Override
-    public Integer executeUpdateChatAllLastRead(UpdateChatAllLastReadRequest updateChatAllLastReadRequest) {
-        Map params = new HashMap(1);
-
-        params.put("UserID", updateChatAllLastReadRequest.getUserId());
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateChatAllLastRead", params);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<ManagersResponse> executeManagers(Integer jobNumber, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("JobNumber", jobNumber);
-
-        return queryExecutor.executeNamedQuery("Managers", params, ManagersResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Downloadable exportManagers(ExportType exportType, Integer jobNumber, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("JobNumber", jobNumber);
-
-        return queryExecutor.exportNamedQueryData("Managers", params, exportType, ManagersResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
     public Page<GetFbsubTypeByTypeResponse> executeGetFBSubTypeByType(Integer fbtype, Pageable pageable) {
         Map params = new HashMap(1);
 
@@ -489,6 +522,29 @@ public class PSAQueryExecutorServiceImpl implements PSAQueryExecutorService {
         params.put("FBType", fbtype);
 
         return queryExecutor.exportNamedQueryData("GetFBSubTypeByType", params, exportType, GetFbsubTypeByTypeResponse.class, pageable);
+    }
+
+    @Transactional(value = "PSATransactionManager")
+    @Override
+    public Integer executeInsertFeedbackNotes(InsertFeedbackNotesRequest insertFeedbackNotesRequest) {
+        Map params = new HashMap(2);
+
+        params.put("UserID", insertFeedbackNotesRequest.getUserId());
+        params.put("Notes", insertFeedbackNotesRequest.getNotes());
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertFeedbackNotes", params);
+    }
+
+    @Transactional(value = "PSATransactionManager")
+    @Override
+    public Integer executeUpdateUserCreds(UpdateUserCredsRequest updateUserCredsRequest) {
+        Map params = new HashMap(3);
+
+        params.put("UserName", updateUserCredsRequest.getUserName());
+        params.put("Password", updateUserCredsRequest.getPassword());
+        params.put("UserID", updateUserCredsRequest.getUserId());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateUserCreds", params);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
@@ -523,70 +579,13 @@ public class PSAQueryExecutorServiceImpl implements PSAQueryExecutorService {
 
     @Transactional(value = "PSATransactionManager")
     @Override
-    public Integer executeInsertChatMessage(InsertChatMessageRequest insertChatMessageRequest) {
-        Map params = new HashMap(3);
-
-        params.put("ConversationID", insertChatMessageRequest.getConversationId());
-        params.put("UserID", insertChatMessageRequest.getUserId());
-        params.put("Message", insertChatMessageRequest.getMessage());
-
-        return queryExecutor.executeNamedQueryForUpdate("InsertChatMessage", params);
-    }
-
-    @Transactional(value = "PSATransactionManager")
-    @Override
-    public Integer executeUpdateChatMessageStatus(UpdateChatMessageStatusRequest updateChatMessageStatusRequest) {
+    public Integer executeInsertUserAssignedApps(InsertUserAssignedAppsRequest insertUserAssignedAppsRequest) {
         Map params = new HashMap(2);
 
-        params.put("ConversationID", updateChatMessageStatusRequest.getConversationId());
-        params.put("UserID", updateChatMessageStatusRequest.getUserId());
+        params.put("UserID", insertUserAssignedAppsRequest.getUserId());
+        params.put("MobileAppGroupID", insertUserAssignedAppsRequest.getMobileAppGroupId());
 
-        return queryExecutor.executeNamedQueryForUpdate("UpdateChatMessageStatus", params);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<GetChatAllLatestTimeStampResponse> executeGetChatAllLatestTimeStamp(String userId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("UserID", userId);
-
-        return queryExecutor.executeNamedQuery("GetChatAllLatestTimeStamp", params, GetChatAllLatestTimeStampResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Downloadable exportGetChatAllLatestTimeStamp(ExportType exportType, String userId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("UserID", userId);
-
-        return queryExecutor.exportNamedQueryData("GetChatAllLatestTimeStamp", params, exportType, GetChatAllLatestTimeStampResponse.class, pageable);
-    }
-
-    @Transactional(value = "PSATransactionManager")
-    @Override
-    public Integer executeInsertUserCreds(InsertUserCredsRequest insertUserCredsRequest) {
-        Map params = new HashMap(3);
-
-        params.put("UserID", insertUserCredsRequest.getUserId());
-        params.put("UserName", insertUserCredsRequest.getUserName());
-        params.put("Password", insertUserCredsRequest.getPassword());
-
-        return queryExecutor.executeNamedQueryForUpdate("InsertUserCreds", params);
-    }
-
-    @Transactional(value = "PSATransactionManager")
-    @Override
-    public Integer executeInsertFeedbackTicket(InsertFeedbackTicketRequest insertFeedbackTicketRequest) {
-        Map params = new HashMap(4);
-
-        params.put("UserID", insertFeedbackTicketRequest.getUserId());
-        params.put("FeedbackType", insertFeedbackTicketRequest.getFeedbackType());
-        params.put("FBSubType", insertFeedbackTicketRequest.getFbsubType());
-        params.put("ErrorSeverity", insertFeedbackTicketRequest.getErrorSeverity());
-
-        return queryExecutor.executeNamedQueryForUpdate("InsertFeedbackTicket", params);
+        return queryExecutor.executeNamedQueryForUpdate("InsertUserAssignedApps", params);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
@@ -607,6 +606,26 @@ public class PSAQueryExecutorServiceImpl implements PSAQueryExecutorService {
         params.put("UserID", userId);
 
         return queryExecutor.exportNamedQueryData("GetAssignedJobNumbers", params, exportType, GetAssignedJobNumbersResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Page<ManagersResponse> executeManagers(Integer jobNumber, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("JobNumber", jobNumber);
+
+        return queryExecutor.executeNamedQuery("Managers", params, ManagersResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Downloadable exportManagers(ExportType exportType, Integer jobNumber, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("JobNumber", jobNumber);
+
+        return queryExecutor.exportNamedQueryData("Managers", params, exportType, ManagersResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
@@ -635,60 +654,62 @@ public class PSAQueryExecutorServiceImpl implements PSAQueryExecutorService {
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Page<GetRefWindResponse> executeGetRefWind(Pageable pageable) {
+    public Page<GetSettingDashUpdateIntResponse> executeGetSettingDashUpdateInt(Pageable pageable) {
         Map params = new HashMap(0);
 
 
-        return queryExecutor.executeNamedQuery("GetRefWind", params, GetRefWindResponse.class, pageable);
+        return queryExecutor.executeNamedQuery("GetSettingDashUpdateInt", params, GetSettingDashUpdateIntResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Downloadable exportGetRefWind(ExportType exportType, Pageable pageable) {
+    public Downloadable exportGetSettingDashUpdateInt(ExportType exportType, Pageable pageable) {
         Map params = new HashMap(0);
 
 
-        return queryExecutor.exportNamedQueryData("GetRefWind", params, exportType, GetRefWindResponse.class, pageable);
+        return queryExecutor.exportNamedQueryData("GetSettingDashUpdateInt", params, exportType, GetSettingDashUpdateIntResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Page<GetJobNumberCountByJobNumberResponse> executeGetJobNumberCountByJobNumber(Integer jobNumber, Pageable pageable) {
+    public Page<GetChatAllLastReadResponse> executeGetChatAllLastRead(String userId, Pageable pageable) {
         Map params = new HashMap(1);
 
-        params.put("JobNumber", jobNumber);
+        params.put("UserID", userId);
 
-        return queryExecutor.executeNamedQuery("GetJobNumberCountByJobNumber", params, GetJobNumberCountByJobNumberResponse.class, pageable);
+        return queryExecutor.executeNamedQuery("GetChatAllLastRead", params, GetChatAllLastReadResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Downloadable exportGetJobNumberCountByJobNumber(ExportType exportType, Integer jobNumber, Pageable pageable) {
+    public Downloadable exportGetChatAllLastRead(ExportType exportType, String userId, Pageable pageable) {
         Map params = new HashMap(1);
 
-        params.put("JobNumber", jobNumber);
+        params.put("UserID", userId);
 
-        return queryExecutor.exportNamedQueryData("GetJobNumberCountByJobNumber", params, exportType, GetJobNumberCountByJobNumberResponse.class, pageable);
+        return queryExecutor.exportNamedQueryData("GetChatAllLastRead", params, exportType, GetChatAllLastReadResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Page<GetForemenBySuperResponse> executeGetForemenBySuper(Integer superId, Pageable pageable) {
-        Map params = new HashMap(1);
+    public Page<GetChatRecipientNameResponse> executeGetChatRecipientName(Integer conversationId, Integer userId, Pageable pageable) {
+        Map params = new HashMap(2);
 
-        params.put("SuperID", superId);
+        params.put("ConversationID", conversationId);
+        params.put("UserID", userId);
 
-        return queryExecutor.executeNamedQuery("GetForemenBySuper", params, GetForemenBySuperResponse.class, pageable);
+        return queryExecutor.executeNamedQuery("GetChatRecipientName", params, GetChatRecipientNameResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Downloadable exportGetForemenBySuper(ExportType exportType, Integer superId, Pageable pageable) {
-        Map params = new HashMap(1);
+    public Downloadable exportGetChatRecipientName(ExportType exportType, Integer conversationId, Integer userId, Pageable pageable) {
+        Map params = new HashMap(2);
 
-        params.put("SuperID", superId);
+        params.put("ConversationID", conversationId);
+        params.put("UserID", userId);
 
-        return queryExecutor.exportNamedQueryData("GetForemenBySuper", params, exportType, GetForemenBySuperResponse.class, pageable);
+        return queryExecutor.exportNamedQueryData("GetChatRecipientName", params, exportType, GetChatRecipientNameResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
@@ -711,53 +732,32 @@ public class PSAQueryExecutorServiceImpl implements PSAQueryExecutorService {
 
     @Transactional(value = "PSATransactionManager")
     @Override
-    public Integer executeInsertLoginFailure(InsertLoginFailureRequest insertLoginFailureRequest) {
-        Map params = new HashMap(2);
+    public Integer executeInsertFeedbackTicketNotes(InsertFeedbackTicketNotesRequest insertFeedbackTicketNotesRequest) {
+        Map params = new HashMap(3);
 
-        params.put("EnteredUsername", insertLoginFailureRequest.getEnteredUsername());
-        params.put("EnteredPassword", insertLoginFailureRequest.getEnteredPassword());
+        params.put("TicketID", insertFeedbackTicketNotesRequest.getTicketId());
+        params.put("UserID", insertFeedbackTicketNotesRequest.getUserId());
+        params.put("Note", insertFeedbackTicketNotesRequest.getNote());
 
-        return queryExecutor.executeNamedQueryForUpdate("InsertLoginFailure", params);
+        return queryExecutor.executeNamedQueryForUpdate("InsertFeedbackTicketNotes", params);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Page<GetFbnotesByFbidResponse> executeGetFBNotesByFBID(Integer feedbackId, Pageable pageable) {
-        Map params = new HashMap(1);
+    public Page<GetHelpMenuVideosResponse> executeGetHelpMenuVideos(Pageable pageable) {
+        Map params = new HashMap(0);
 
-        params.put("FeedbackID", feedbackId);
 
-        return queryExecutor.executeNamedQuery("GetFBNotesByFBID", params, GetFbnotesByFbidResponse.class, pageable);
+        return queryExecutor.executeNamedQuery("GetHelpMenuVideos", params, GetHelpMenuVideosResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Downloadable exportGetFBNotesByFBID(ExportType exportType, Integer feedbackId, Pageable pageable) {
-        Map params = new HashMap(1);
+    public Downloadable exportGetHelpMenuVideos(ExportType exportType, Pageable pageable) {
+        Map params = new HashMap(0);
 
-        params.put("FeedbackID", feedbackId);
 
-        return queryExecutor.exportNamedQueryData("GetFBNotesByFBID", params, exportType, GetFbnotesByFbidResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<GetChatConversationsByLoggedInUserResponse> executeGetChatConversationsByLoggedInUser(Integer userId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("UserID", userId);
-
-        return queryExecutor.executeNamedQuery("GetChatConversationsByLoggedInUser", params, GetChatConversationsByLoggedInUserResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Downloadable exportGetChatConversationsByLoggedInUser(ExportType exportType, Integer userId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("UserID", userId);
-
-        return queryExecutor.exportNamedQueryData("GetChatConversationsByLoggedInUser", params, exportType, GetChatConversationsByLoggedInUserResponse.class, pageable);
+        return queryExecutor.exportNamedQueryData("GetHelpMenuVideos", params, exportType, GetHelpMenuVideosResponse.class, pageable);
     }
 
 }

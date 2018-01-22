@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefJobTitlesService {
      * @param refJobTitles Details of the RefJobTitles to be created; value cannot be null.
      * @return The newly created RefJobTitles.
      */
-	RefJobTitles create(RefJobTitles refJobTitles);
+	RefJobTitles create(@Valid RefJobTitles refJobTitles);
 
 
 	/**
@@ -69,7 +71,7 @@ public interface RefJobTitlesService {
 	 * @return The updated RefJobTitles.
 	 * @throws EntityNotFoundException if no RefJobTitles is found with given input.
 	 */
-	RefJobTitles update(RefJobTitles refJobTitles) throws EntityNotFoundException;
+	RefJobTitles update(@Valid RefJobTitles refJobTitles) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefJobTitles with the given id.

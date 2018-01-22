@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface PipeTrackerDetailsService {
      * @param pipeTrackerDetails Details of the PipeTrackerDetails to be created; value cannot be null.
      * @return The newly created PipeTrackerDetails.
      */
-	PipeTrackerDetails create(PipeTrackerDetails pipeTrackerDetails);
+	PipeTrackerDetails create(@Valid PipeTrackerDetails pipeTrackerDetails);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface PipeTrackerDetailsService {
 	 * @return The updated PipeTrackerDetails.
 	 * @throws EntityNotFoundException if no PipeTrackerDetails is found with given input.
 	 */
-	PipeTrackerDetails update(PipeTrackerDetails pipeTrackerDetails) throws EntityNotFoundException;
+	PipeTrackerDetails update(@Valid PipeTrackerDetails pipeTrackerDetails) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing PipeTrackerDetails with the given id.

@@ -14,6 +14,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,6 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -36,16 +36,18 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  */
 @Entity
 @Table(name = "`tblUserPSA`", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"`Email`"}),
-        @UniqueConstraint(columnNames = {"`pciEmployeeId`"})})
+        @UniqueConstraint(name = "`Email_UNIQUE`", columnNames = {"`Email`"}),
+        @UniqueConstraint(name = "`pciEmployeeId_UNIQUE`", columnNames = {"`pciEmployeeId`"})})
 public class TblUserPsa implements Serializable {
 
     private Integer id;
     private String pciEmployeeId;
     private String firstName;
     private String lastName;
+    private String fullName;
     private String nickname;
     private String email;
+    private Short mobileUser;
     private Short active;
     @Type(type = "DateTime")
     private LocalDateTime createdDate;
@@ -61,7 +63,6 @@ public class TblUserPsa implements Serializable {
     private TblJobNumbers tblJobNumbers;
     private RefDisciplines refDisciplines;
     private RefRoles refRoles;
-    private TblUserPsa tblUserPsaByLastModifiedBy;
     private RefCraftClasses refCraftClasses;
     private List<ChatConversationMembers> chatConversationMemberses;
     private List<ChatMessages> chatMessageses;
@@ -69,15 +70,14 @@ public class TblUserPsa implements Serializable {
     private List<FeedBackNotes> feedBackNoteses;
     private List<TblCrews> tblCrewsesForConstructionManager;
     private List<TblCrews> tblCrewsesForSuperintendent;
-    private List<TblCrews> tblCrewsesForLeadman;
+    private TblCrews tblCrewsForForeman;
     private List<TblCrews> tblCrewsesForProjectManager;
     private List<TblCrews> tblCrewsesForAreaManager;
-    private List<TblCrews> tblCrewsesForForeman;
     private List<TblCrews> tblCrewsesForSiteManager;
     private List<TblCrews> tblCrewsesForGf;
+    private List<TblCrews> tblCrewsesForLeadman;
     private TblUserCreds tblUserCreds;
     private List<TblUserJobNumbers> tblUserJobNumberses;
-    private List<TblUserPsa> tblUserPsasForLastModifiedBy;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -117,6 +117,15 @@ public class TblUserPsa implements Serializable {
         this.lastName = lastName;
     }
 
+    @Column(name = "`FullName`", nullable = true, length = 64)
+    public String getFullName() {
+        return this.fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
     @Column(name = "`Nickname`", nullable = true, length = 32)
     public String getNickname() {
         return this.nickname;
@@ -133,6 +142,15 @@ public class TblUserPsa implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Column(name = "`MobileUser`", nullable = true, scale = 0, precision = 3)
+    public Short getMobileUser() {
+        return this.mobileUser;
+    }
+
+    public void setMobileUser(Short mobileUser) {
+        this.mobileUser = mobileUser;
     }
 
     @Column(name = "`Active`", nullable = true, scale = 0, precision = 3)
@@ -226,7 +244,7 @@ public class TblUserPsa implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_CraftId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    @JoinColumn(name = "`fk_CraftId`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_CraftsTO_REFCrafts`"))
     public RefCrafts getRefCrafts() {
         return this.refCrafts;
     }
@@ -240,7 +258,7 @@ public class TblUserPsa implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_DefaultJobNumberId`", referencedColumnName = "`JobNumber`", insertable = false, updatable = false)
+    @JoinColumn(name = "`fk_DefaultJobNumberId`", referencedColumnName = "`JobNumber`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_DefaultJobNumberTO_tblJobNumbers`"))
     public TblJobNumbers getTblJobNumbers() {
         return this.tblJobNumbers;
     }
@@ -254,7 +272,7 @@ public class TblUserPsa implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_DisciplineId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    @JoinColumn(name = "`fk_DisciplineId`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_DisciplineTO_REFDiscipline`"))
     public RefDisciplines getRefDisciplines() {
         return this.refDisciplines;
     }
@@ -268,7 +286,7 @@ public class TblUserPsa implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_RoleId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    @JoinColumn(name = "`fk_RoleId`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_tblUserPSA_tblRoles1`"))
     public RefRoles getRefRoles() {
         return this.refRoles;
     }
@@ -281,24 +299,8 @@ public class TblUserPsa implements Serializable {
         this.refRoles = refRoles;
     }
 
-    // ignoring self relation properties to avoid circular loops.
-    @JsonIgnoreProperties({"tblUserPsaByLastModifiedBy", "tblUserPsasForLastModifiedBy"})
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`LastModifiedBy`", referencedColumnName = "`ID`", insertable = false, updatable = false)
-    public TblUserPsa getTblUserPsaByLastModifiedBy() {
-        return this.tblUserPsaByLastModifiedBy;
-    }
-
-    public void setTblUserPsaByLastModifiedBy(TblUserPsa tblUserPsaByLastModifiedBy) {
-        if(tblUserPsaByLastModifiedBy != null) {
-            this.lastModifiedBy = tblUserPsaByLastModifiedBy.getId();
-        }
-
-        this.tblUserPsaByLastModifiedBy = tblUserPsaByLastModifiedBy;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_CraftClassId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    @JoinColumn(name = "`fk_CraftClassId`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_CraftClassTO_REFCraftClass`"))
     public RefCraftClasses getRefCraftClasses() {
         return this.refCraftClasses;
     }
@@ -371,14 +373,13 @@ public class TblUserPsa implements Serializable {
         this.tblCrewsesForSuperintendent = tblCrewsesForSuperintendent;
     }
 
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsaByLeadman")
-    public List<TblCrews> getTblCrewsesForLeadman() {
-        return this.tblCrewsesForLeadman;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsaByForeman")
+    public TblCrews getTblCrewsForForeman() {
+        return this.tblCrewsForForeman;
     }
 
-    public void setTblCrewsesForLeadman(List<TblCrews> tblCrewsesForLeadman) {
-        this.tblCrewsesForLeadman = tblCrewsesForLeadman;
+    public void setTblCrewsForForeman(TblCrews tblCrewsForForeman) {
+        this.tblCrewsForForeman = tblCrewsForForeman;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -402,16 +403,6 @@ public class TblUserPsa implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsaByForeman")
-    public List<TblCrews> getTblCrewsesForForeman() {
-        return this.tblCrewsesForForeman;
-    }
-
-    public void setTblCrewsesForForeman(List<TblCrews> tblCrewsesForForeman) {
-        this.tblCrewsesForForeman = tblCrewsesForForeman;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsaBySiteManager")
     public List<TblCrews> getTblCrewsesForSiteManager() {
         return this.tblCrewsesForSiteManager;
@@ -431,6 +422,16 @@ public class TblUserPsa implements Serializable {
         this.tblCrewsesForGf = tblCrewsesForGf;
     }
 
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsaByLeadman")
+    public List<TblCrews> getTblCrewsesForLeadman() {
+        return this.tblCrewsesForLeadman;
+    }
+
+    public void setTblCrewsesForLeadman(List<TblCrews> tblCrewsesForLeadman) {
+        this.tblCrewsesForLeadman = tblCrewsesForLeadman;
+    }
+
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "tblUserPsa")
     public TblUserCreds getTblUserCreds() {
         return this.tblUserCreds;
@@ -448,18 +449,6 @@ public class TblUserPsa implements Serializable {
 
     public void setTblUserJobNumberses(List<TblUserJobNumbers> tblUserJobNumberses) {
         this.tblUserJobNumberses = tblUserJobNumberses;
-    }
-
-    // ignoring self relation properties to avoid circular loops.
-    @JsonIgnoreProperties({"tblUserPsaByLastModifiedBy", "tblUserPsasForLastModifiedBy"})
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblUserPsaByLastModifiedBy")
-    public List<TblUserPsa> getTblUserPsasForLastModifiedBy() {
-        return this.tblUserPsasForLastModifiedBy;
-    }
-
-    public void setTblUserPsasForLastModifiedBy(List<TblUserPsa> tblUserPsasForLastModifiedBy) {
-        this.tblUserPsasForLastModifiedBy = tblUserPsasForLastModifiedBy;
     }
 
     @Override

@@ -52,9 +52,9 @@ public class CivilSellPackageController {
 	private CivilSellPackageService civilSellPackageService;
 
 	@ApiOperation(value = "Creates a new CivilSellPackage instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public CivilSellPackage createCivilSellPackage(@RequestBody CivilSellPackage civilSellPackage) {
+    public CivilSellPackage createCivilSellPackage(@RequestBody CivilSellPackage civilSellPackage) {
 		LOGGER.debug("Create CivilSellPackage with information: {}" , civilSellPackage);
 
 		civilSellPackage = civilSellPackageService.create(civilSellPackage);
@@ -62,7 +62,6 @@ public class CivilSellPackageController {
 
 	    return civilSellPackage;
 	}
-
 
     @ApiOperation(value = "Returns the CivilSellPackage instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -80,9 +79,9 @@ public class CivilSellPackageController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public CivilSellPackage editCivilSellPackage(@PathVariable("id") Integer id, @RequestBody CivilSellPackage civilSellPackage) throws EntityNotFoundException {
-        LOGGER.debug("Editing CivilSellPackage with id: {}" , civilSellPackage.getActivityId());
+        LOGGER.debug("Editing CivilSellPackage with id: {}" , civilSellPackage.getId());
 
-        civilSellPackage.setActivityId(id);
+        civilSellPackage.setId(id);
         civilSellPackage = civilSellPackageService.update(civilSellPackage);
         LOGGER.debug("CivilSellPackage details with id: {}" , civilSellPackage);
 

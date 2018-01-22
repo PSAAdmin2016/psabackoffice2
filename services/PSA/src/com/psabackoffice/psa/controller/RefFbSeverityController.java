@@ -53,9 +53,9 @@ public class RefFbSeverityController {
 	private RefFbSeverityService refFbSeverityService;
 
 	@ApiOperation(value = "Creates a new RefFbSeverity instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefFbSeverity createRefFbSeverity(@RequestBody RefFbSeverity refFbSeverity) {
+    public RefFbSeverity createRefFbSeverity(@RequestBody RefFbSeverity refFbSeverity) {
 		LOGGER.debug("Create RefFbSeverity with information: {}" , refFbSeverity);
 
 		refFbSeverity = refFbSeverityService.create(refFbSeverity);
@@ -63,7 +63,6 @@ public class RefFbSeverityController {
 
 	    return refFbSeverity;
 	}
-
 
     @ApiOperation(value = "Returns the RefFbSeverity instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface EquipFaService {
      * @param equipFa Details of the EquipFa to be created; value cannot be null.
      * @return The newly created EquipFa.
      */
-	EquipFa create(EquipFa equipFa);
+	EquipFa create(@Valid EquipFa equipFa);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface EquipFaService {
 	 * @return The updated EquipFa.
 	 * @throws EntityNotFoundException if no EquipFa is found with given input.
 	 */
-	EquipFa update(EquipFa equipFa) throws EntityNotFoundException;
+	EquipFa update(@Valid EquipFa equipFa) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing EquipFa with the given id.

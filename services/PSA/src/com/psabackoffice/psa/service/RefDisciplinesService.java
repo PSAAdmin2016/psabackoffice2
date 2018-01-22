@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -33,7 +35,7 @@ public interface RefDisciplinesService {
      * @param refDisciplines Details of the RefDisciplines to be created; value cannot be null.
      * @return The newly created RefDisciplines.
      */
-	RefDisciplines create(RefDisciplines refDisciplines);
+	RefDisciplines create(@Valid RefDisciplines refDisciplines);
 
 
 	/**
@@ -63,7 +65,7 @@ public interface RefDisciplinesService {
 	 * @return The updated RefDisciplines.
 	 * @throws EntityNotFoundException if no RefDisciplines is found with given input.
 	 */
-	RefDisciplines update(RefDisciplines refDisciplines) throws EntityNotFoundException;
+	RefDisciplines update(@Valid RefDisciplines refDisciplines) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefDisciplines with the given id.

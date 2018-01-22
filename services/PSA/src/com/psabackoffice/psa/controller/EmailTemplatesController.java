@@ -52,9 +52,9 @@ public class EmailTemplatesController {
 	private EmailTemplatesService emailTemplatesService;
 
 	@ApiOperation(value = "Creates a new EmailTemplates instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public EmailTemplates createEmailTemplates(@RequestBody EmailTemplates emailTemplates) {
+    public EmailTemplates createEmailTemplates(@RequestBody EmailTemplates emailTemplates) {
 		LOGGER.debug("Create EmailTemplates with information: {}" , emailTemplates);
 
 		emailTemplates = emailTemplatesService.create(emailTemplates);
@@ -62,7 +62,6 @@ public class EmailTemplatesController {
 
 	    return emailTemplates;
 	}
-
 
     @ApiOperation(value = "Returns the EmailTemplates instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

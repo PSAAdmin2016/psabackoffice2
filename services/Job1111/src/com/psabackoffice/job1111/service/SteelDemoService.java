@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface SteelDemoService {
      * @param steelDemo Details of the SteelDemo to be created; value cannot be null.
      * @return The newly created SteelDemo.
      */
-	SteelDemo create(SteelDemo steelDemo);
+	SteelDemo create(@Valid SteelDemo steelDemo);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface SteelDemoService {
 	 * @return The updated SteelDemo.
 	 * @throws EntityNotFoundException if no SteelDemo is found with given input.
 	 */
-	SteelDemo update(SteelDemo steelDemo) throws EntityNotFoundException;
+	SteelDemo update(@Valid SteelDemo steelDemo) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing SteelDemo with the given id.

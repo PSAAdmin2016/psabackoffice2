@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface CivilTrackerDetailsService {
      * @param civilTrackerDetails Details of the CivilTrackerDetails to be created; value cannot be null.
      * @return The newly created CivilTrackerDetails.
      */
-	CivilTrackerDetails create(CivilTrackerDetails civilTrackerDetails);
+	CivilTrackerDetails create(@Valid CivilTrackerDetails civilTrackerDetails);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface CivilTrackerDetailsService {
 	 * @return The updated CivilTrackerDetails.
 	 * @throws EntityNotFoundException if no CivilTrackerDetails is found with given input.
 	 */
-	CivilTrackerDetails update(CivilTrackerDetails civilTrackerDetails) throws EntityNotFoundException;
+	CivilTrackerDetails update(@Valid CivilTrackerDetails civilTrackerDetails) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing CivilTrackerDetails with the given id.

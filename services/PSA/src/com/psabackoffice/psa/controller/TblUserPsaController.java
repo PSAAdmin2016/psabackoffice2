@@ -58,9 +58,9 @@ public class TblUserPsaController {
 	private TblUserPsaService tblUserPsaService;
 
 	@ApiOperation(value = "Creates a new TblUserPsa instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public TblUserPsa createTblUserPsa(@RequestBody TblUserPsa tblUserPsa) {
+    public TblUserPsa createTblUserPsa(@RequestBody TblUserPsa tblUserPsa) {
 		LOGGER.debug("Create TblUserPsa with information: {}" , tblUserPsa);
 
 		tblUserPsa = tblUserPsaService.create(tblUserPsa);
@@ -68,7 +68,6 @@ public class TblUserPsaController {
 
 	    return tblUserPsa;
 	}
-
 
     @ApiOperation(value = "Returns the TblUserPsa instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -106,20 +105,20 @@ public class TblUserPsaController {
         return deletedTblUserPsa != null;
     }
 
-    @RequestMapping(value = "/pciEmployeeId/{pciEmployeeId}", method = RequestMethod.GET)
-    @ApiOperation(value = "Returns the matching TblUserPsa with given unique key values.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public TblUserPsa getByPciEmployeeId(@PathVariable("pciEmployeeId") String pciEmployeeId) {
-        LOGGER.debug("Getting TblUserPsa with uniques key PciEmployeeId");
-        return tblUserPsaService.getByPciEmployeeId(pciEmployeeId);
-    }
-
     @RequestMapping(value = "/email/{email}", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching TblUserPsa with given unique key values.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public TblUserPsa getByEmail(@PathVariable("email") String email) {
         LOGGER.debug("Getting TblUserPsa with uniques key Email");
         return tblUserPsaService.getByEmail(email);
+    }
+
+    @RequestMapping(value = "/pciEmployeeId/{pciEmployeeId}", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching TblUserPsa with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public TblUserPsa getByPciEmployeeId(@PathVariable("pciEmployeeId") String pciEmployeeId) {
+        LOGGER.debug("Getting TblUserPsa with uniques key PciEmployeeId");
+        return tblUserPsaService.getByPciEmployeeId(pciEmployeeId);
     }
 
     /**
@@ -227,15 +226,6 @@ public class TblUserPsaController {
         return tblUserPsaService.findAssociatedTblCrewsesForSuperintendent(id, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/tblCrewsesForLeadman", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the tblCrewsesForLeadman instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<TblCrews> findAssociatedTblCrewsesForLeadman(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated tblCrewsesForLeadman");
-        return tblUserPsaService.findAssociatedTblCrewsesForLeadman(id, pageable);
-    }
-
     @RequestMapping(value="/{id:.+}/tblCrewsesForProjectManager", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the tblCrewsesForProjectManager instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -252,15 +242,6 @@ public class TblUserPsaController {
 
         LOGGER.debug("Fetching all associated tblCrewsesForAreaManager");
         return tblUserPsaService.findAssociatedTblCrewsesForAreaManager(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/tblCrewsesForForeman", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the tblCrewsesForForeman instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<TblCrews> findAssociatedTblCrewsesForForeman(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated tblCrewsesForForeman");
-        return tblUserPsaService.findAssociatedTblCrewsesForForeman(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/tblCrewsesForSiteManager", method=RequestMethod.GET)
@@ -281,6 +262,15 @@ public class TblUserPsaController {
         return tblUserPsaService.findAssociatedTblCrewsesForGf(id, pageable);
     }
 
+    @RequestMapping(value="/{id:.+}/tblCrewsesForLeadman", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the tblCrewsesForLeadman instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<TblCrews> findAssociatedTblCrewsesForLeadman(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated tblCrewsesForLeadman");
+        return tblUserPsaService.findAssociatedTblCrewsesForLeadman(id, pageable);
+    }
+
     @RequestMapping(value="/{id:.+}/tblUserJobNumberses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the tblUserJobNumberses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -288,15 +278,6 @@ public class TblUserPsaController {
 
         LOGGER.debug("Fetching all associated tblUserJobNumberses");
         return tblUserPsaService.findAssociatedTblUserJobNumberses(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/tblUserPsasForLastModifiedBy", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the tblUserPsasForLastModifiedBy instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<TblUserPsa> findAssociatedTblUserPsasForLastModifiedBy(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated tblUserPsasForLastModifiedBy");
-        return tblUserPsaService.findAssociatedTblUserPsasForLastModifiedBy(id, pageable);
     }
 
     /**

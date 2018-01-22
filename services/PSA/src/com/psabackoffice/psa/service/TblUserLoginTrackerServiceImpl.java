@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.psa.TblUserLoginTracker;
  * @see TblUserLoginTracker
  */
 @Service("PSA.TblUserLoginTrackerService")
+@Validated
 public class TblUserLoginTrackerServiceImpl implements TblUserLoginTrackerService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TblUserLoginTrackerServiceImpl.class);
@@ -49,6 +51,7 @@ public class TblUserLoginTrackerServiceImpl implements TblUserLoginTrackerServic
     @Override
 	public TblUserLoginTracker create(TblUserLoginTracker tblUserLoginTracker) {
         LOGGER.debug("Creating a new TblUserLoginTracker with information: {}", tblUserLoginTracker);
+
         TblUserLoginTracker tblUserLoginTrackerCreated = this.wmGenericDao.create(tblUserLoginTracker);
         return tblUserLoginTrackerCreated;
     }

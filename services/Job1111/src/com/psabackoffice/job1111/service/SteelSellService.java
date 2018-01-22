@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface SteelSellService {
      * @param steelSell Details of the SteelSell to be created; value cannot be null.
      * @return The newly created SteelSell.
      */
-	SteelSell create(SteelSell steelSell);
+	SteelSell create(@Valid SteelSell steelSell);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface SteelSellService {
 	 * @return The updated SteelSell.
 	 * @throws EntityNotFoundException if no SteelSell is found with given input.
 	 */
-	SteelSell update(SteelSell steelSell) throws EntityNotFoundException;
+	SteelSell update(@Valid SteelSell steelSell) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing SteelSell with the given id.

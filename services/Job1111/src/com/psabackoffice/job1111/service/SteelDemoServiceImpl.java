@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.job1111.SteelDemo;
  * @see SteelDemo
  */
 @Service("Job1111.SteelDemoService")
+@Validated
 public class SteelDemoServiceImpl implements SteelDemoService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SteelDemoServiceImpl.class);
@@ -49,6 +51,7 @@ public class SteelDemoServiceImpl implements SteelDemoService {
     @Override
 	public SteelDemo create(SteelDemo steelDemo) {
         LOGGER.debug("Creating a new SteelDemo with information: {}", steelDemo);
+
         SteelDemo steelDemoCreated = this.wmGenericDao.create(steelDemo);
         return steelDemoCreated;
     }
@@ -79,7 +82,7 @@ public class SteelDemoServiceImpl implements SteelDemoService {
         LOGGER.debug("Updating SteelDemo with information: {}", steelDemo);
         this.wmGenericDao.update(steelDemo);
 
-        Integer steeldemoId = steelDemo.getActivityId();
+        Integer steeldemoId = steelDemo.getId();
 
         return this.wmGenericDao.findById(steeldemoId);
     }

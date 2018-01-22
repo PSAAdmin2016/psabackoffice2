@@ -52,9 +52,9 @@ public class SteelImpController {
 	private SteelImpService steelImpService;
 
 	@ApiOperation(value = "Creates a new SteelImp instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public SteelImp createSteelImp(@RequestBody SteelImp steelImp) {
+    public SteelImp createSteelImp(@RequestBody SteelImp steelImp) {
 		LOGGER.debug("Create SteelImp with information: {}" , steelImp);
 
 		steelImp = steelImpService.create(steelImp);
@@ -62,7 +62,6 @@ public class SteelImpController {
 
 	    return steelImp;
 	}
-
 
     @ApiOperation(value = "Returns the SteelImp instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -80,9 +79,9 @@ public class SteelImpController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public SteelImp editSteelImp(@PathVariable("id") Integer id, @RequestBody SteelImp steelImp) throws EntityNotFoundException {
-        LOGGER.debug("Editing SteelImp with id: {}" , steelImp.getActivityId());
+        LOGGER.debug("Editing SteelImp with id: {}" , steelImp.getId());
 
-        steelImp.setActivityId(id);
+        steelImp.setId(id);
         steelImp = steelImpService.update(steelImp);
         LOGGER.debug("SteelImp details with id: {}" , steelImp);
 

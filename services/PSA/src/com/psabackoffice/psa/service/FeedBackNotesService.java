@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface FeedBackNotesService {
      * @param feedBackNotes Details of the FeedBackNotes to be created; value cannot be null.
      * @return The newly created FeedBackNotes.
      */
-	FeedBackNotes create(FeedBackNotes feedBackNotes);
+	FeedBackNotes create(@Valid FeedBackNotes feedBackNotes);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface FeedBackNotesService {
 	 * @return The updated FeedBackNotes.
 	 * @throws EntityNotFoundException if no FeedBackNotes is found with given input.
 	 */
-	FeedBackNotes update(FeedBackNotes feedBackNotes) throws EntityNotFoundException;
+	FeedBackNotes update(@Valid FeedBackNotes feedBackNotes) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing FeedBackNotes with the given id.

@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.psa.MenuSubHelpVideos;
  * @see MenuSubHelpVideos
  */
 @Service("PSA.MenuSubHelpVideosService")
+@Validated
 public class MenuSubHelpVideosServiceImpl implements MenuSubHelpVideosService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MenuSubHelpVideosServiceImpl.class);
@@ -49,6 +51,7 @@ public class MenuSubHelpVideosServiceImpl implements MenuSubHelpVideosService {
     @Override
 	public MenuSubHelpVideos create(MenuSubHelpVideos menuSubHelpVideos) {
         LOGGER.debug("Creating a new MenuSubHelpVideos with information: {}", menuSubHelpVideos);
+
         MenuSubHelpVideos menuSubHelpVideosCreated = this.wmGenericDao.create(menuSubHelpVideos);
         return menuSubHelpVideosCreated;
     }

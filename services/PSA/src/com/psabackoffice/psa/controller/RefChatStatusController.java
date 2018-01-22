@@ -52,9 +52,9 @@ public class RefChatStatusController {
 	private RefChatStatusService refChatStatusService;
 
 	@ApiOperation(value = "Creates a new RefChatStatus instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefChatStatus createRefChatStatus(@RequestBody RefChatStatus refChatStatus) {
+    public RefChatStatus createRefChatStatus(@RequestBody RefChatStatus refChatStatus) {
 		LOGGER.debug("Create RefChatStatus with information: {}" , refChatStatus);
 
 		refChatStatus = refChatStatusService.create(refChatStatus);
@@ -62,7 +62,6 @@ public class RefChatStatusController {
 
 	    return refChatStatus;
 	}
-
 
     @ApiOperation(value = "Returns the RefChatStatus instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

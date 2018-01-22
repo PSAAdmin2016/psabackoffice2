@@ -23,8 +23,8 @@ import javax.persistence.Table;
 public class LandingTrackerCivil implements Serializable {
 
     private Integer uid;
-    private int bidId;
-    private Integer ewonumber;
+    private String bidId;
+    private String ewonumber;
     private String scope;
     private String phase;
     private String stage;
@@ -40,21 +40,21 @@ public class LandingTrackerCivil implements Serializable {
     private String foundationDescription;
     private String p6description;
     private String engDrawingNumber;
-    private Short sheetNumber;
-    private Short drawingRev;
+    private String sheetNumber;
+    private String drawingRev;
     private String detailDrawingNumber;
-    private Short detailRev;
+    private String detailRev;
     private String detailName;
     private String description;
     private String activityType;
     private String activitySubType;
     private String system;
     private String service;
-    private Double takeOffQuantity;
+    private String takeOffQuantity;
     private String quantityUnit;
-    private Double estimatedHours;
-    private Double installedQuantity;
-    private Double earnedSellPunch;
+    private String estimatedHours;
+    private String installedQuantity;
+    private String earnedSellPunch;
     private String wbs1;
     private String wbs2;
     private String wbs3;
@@ -77,25 +77,25 @@ public class LandingTrackerCivil implements Serializable {
         this.uid = uid;
     }
 
-    @Column(name = "`BidID`", nullable = false, scale = 0, precision = 10)
-    public int getBidId() {
+    @Column(name = "`BidID`", nullable = false, length = 255)
+    public String getBidId() {
         return this.bidId;
     }
 
-    public void setBidId(int bidId) {
+    public void setBidId(String bidId) {
         this.bidId = bidId;
     }
 
-    @Column(name = "`EWONumber`", nullable = true, scale = 0, precision = 7)
-    public Integer getEwonumber() {
+    @Column(name = "`EWONumber`", nullable = false, length = 255)
+    public String getEwonumber() {
         return this.ewonumber;
     }
 
-    public void setEwonumber(Integer ewonumber) {
+    public void setEwonumber(String ewonumber) {
         this.ewonumber = ewonumber;
     }
 
-    @Column(name = "`Scope`", nullable = true, length = 16)
+    @Column(name = "`Scope`", nullable = false, length = 255)
     public String getScope() {
         return this.scope;
     }
@@ -104,7 +104,7 @@ public class LandingTrackerCivil implements Serializable {
         this.scope = scope;
     }
 
-    @Column(name = "`Phase`", nullable = true, length = 45)
+    @Column(name = "`Phase`", nullable = false, length = 255)
     public String getPhase() {
         return this.phase;
     }
@@ -113,7 +113,7 @@ public class LandingTrackerCivil implements Serializable {
         this.phase = phase;
     }
 
-    @Column(name = "`Stage`", nullable = true, length = 45)
+    @Column(name = "`Stage`", nullable = false, length = 255)
     public String getStage() {
         return this.stage;
     }
@@ -122,7 +122,7 @@ public class LandingTrackerCivil implements Serializable {
         this.stage = stage;
     }
 
-    @Column(name = "`TestPackageNumber`", nullable = true, length = 45)
+    @Column(name = "`TestPackageNumber`", nullable = false, length = 255)
     public String getTestPackageNumber() {
         return this.testPackageNumber;
     }
@@ -131,7 +131,7 @@ public class LandingTrackerCivil implements Serializable {
         this.testPackageNumber = testPackageNumber;
     }
 
-    @Column(name = "`CostCode`", nullable = true, length = 45)
+    @Column(name = "`CostCode`", nullable = false, length = 255)
     public String getCostCode() {
         return this.costCode;
     }
@@ -140,7 +140,7 @@ public class LandingTrackerCivil implements Serializable {
         this.costCode = costCode;
     }
 
-    @Column(name = "`P6ID`", nullable = true, length = 45)
+    @Column(name = "`P6ID`", nullable = false, length = 255)
     public String getP6id() {
         return this.p6id;
     }
@@ -149,7 +149,7 @@ public class LandingTrackerCivil implements Serializable {
         this.p6id = p6id;
     }
 
-    @Column(name = "`AssignedContractor`", nullable = true, length = 45)
+    @Column(name = "`AssignedContractor`", nullable = false, length = 255)
     public String getAssignedContractor() {
         return this.assignedContractor;
     }
@@ -158,7 +158,7 @@ public class LandingTrackerCivil implements Serializable {
         this.assignedContractor = assignedContractor;
     }
 
-    @Column(name = "`Area`", nullable = true, length = 45)
+    @Column(name = "`Area`", nullable = false, length = 255)
     public String getArea() {
         return this.area;
     }
@@ -167,7 +167,7 @@ public class LandingTrackerCivil implements Serializable {
         this.area = area;
     }
 
-    @Column(name = "`Location`", nullable = true, length = 45)
+    @Column(name = "`Location`", nullable = false, length = 255)
     public String getLocation() {
         return this.location;
     }
@@ -176,7 +176,7 @@ public class LandingTrackerCivil implements Serializable {
         this.location = location;
     }
 
-    @Column(name = "`Structure`", nullable = true, length = 45)
+    @Column(name = "`Structure`", nullable = false, length = 255)
     public String getStructure() {
         return this.structure;
     }
@@ -185,7 +185,7 @@ public class LandingTrackerCivil implements Serializable {
         this.structure = structure;
     }
 
-    @Column(name = "`CU`", nullable = true, length = 45)
+    @Column(name = "`CU`", nullable = false, length = 255)
     public String getCu() {
         return this.cu;
     }
@@ -194,7 +194,7 @@ public class LandingTrackerCivil implements Serializable {
         this.cu = cu;
     }
 
-    @Column(name = "`Grouping`", nullable = true, length = 45)
+    @Column(name = "`Grouping`", nullable = false, length = 255)
     public String getGrouping() {
         return this.grouping;
     }
@@ -203,7 +203,7 @@ public class LandingTrackerCivil implements Serializable {
         this.grouping = grouping;
     }
 
-    @Column(name = "`FoundationDescription`", nullable = true, length = 45)
+    @Column(name = "`FoundationDescription`", nullable = false, length = 255)
     public String getFoundationDescription() {
         return this.foundationDescription;
     }
@@ -212,7 +212,7 @@ public class LandingTrackerCivil implements Serializable {
         this.foundationDescription = foundationDescription;
     }
 
-    @Column(name = "`P6Description`", nullable = true, length = 255)
+    @Column(name = "`P6Description`", nullable = false, length = 255)
     public String getP6description() {
         return this.p6description;
     }
@@ -221,7 +221,7 @@ public class LandingTrackerCivil implements Serializable {
         this.p6description = p6description;
     }
 
-    @Column(name = "`EngDrawingNumber`", nullable = true, length = 45)
+    @Column(name = "`EngDrawingNumber`", nullable = false, length = 255)
     public String getEngDrawingNumber() {
         return this.engDrawingNumber;
     }
@@ -230,25 +230,25 @@ public class LandingTrackerCivil implements Serializable {
         this.engDrawingNumber = engDrawingNumber;
     }
 
-    @Column(name = "`SheetNumber`", nullable = true, scale = 0, precision = 3)
-    public Short getSheetNumber() {
+    @Column(name = "`SheetNumber`", nullable = false, length = 255)
+    public String getSheetNumber() {
         return this.sheetNumber;
     }
 
-    public void setSheetNumber(Short sheetNumber) {
+    public void setSheetNumber(String sheetNumber) {
         this.sheetNumber = sheetNumber;
     }
 
-    @Column(name = "`DrawingRev`", nullable = true, scale = 0, precision = 3)
-    public Short getDrawingRev() {
+    @Column(name = "`DrawingRev`", nullable = false, length = 255)
+    public String getDrawingRev() {
         return this.drawingRev;
     }
 
-    public void setDrawingRev(Short drawingRev) {
+    public void setDrawingRev(String drawingRev) {
         this.drawingRev = drawingRev;
     }
 
-    @Column(name = "`DetailDrawingNumber`", nullable = true, length = 45)
+    @Column(name = "`DetailDrawingNumber`", nullable = false, length = 255)
     public String getDetailDrawingNumber() {
         return this.detailDrawingNumber;
     }
@@ -257,16 +257,16 @@ public class LandingTrackerCivil implements Serializable {
         this.detailDrawingNumber = detailDrawingNumber;
     }
 
-    @Column(name = "`DetailRev`", nullable = true, scale = 0, precision = 3)
-    public Short getDetailRev() {
+    @Column(name = "`DetailRev`", nullable = false, length = 255)
+    public String getDetailRev() {
         return this.detailRev;
     }
 
-    public void setDetailRev(Short detailRev) {
+    public void setDetailRev(String detailRev) {
         this.detailRev = detailRev;
     }
 
-    @Column(name = "`DetailName`", nullable = true, length = 255)
+    @Column(name = "`DetailName`", nullable = false, length = 255)
     public String getDetailName() {
         return this.detailName;
     }
@@ -275,7 +275,7 @@ public class LandingTrackerCivil implements Serializable {
         this.detailName = detailName;
     }
 
-    @Column(name = "`Description`", nullable = true, length = 255)
+    @Column(name = "`Description`", nullable = false, length = 255)
     public String getDescription() {
         return this.description;
     }
@@ -284,7 +284,7 @@ public class LandingTrackerCivil implements Serializable {
         this.description = description;
     }
 
-    @Column(name = "`ActivityType`", nullable = true, length = 45)
+    @Column(name = "`ActivityType`", nullable = false, length = 255)
     public String getActivityType() {
         return this.activityType;
     }
@@ -293,7 +293,7 @@ public class LandingTrackerCivil implements Serializable {
         this.activityType = activityType;
     }
 
-    @Column(name = "`ActivitySubType`", nullable = true, length = 45)
+    @Column(name = "`ActivitySubType`", nullable = false, length = 255)
     public String getActivitySubType() {
         return this.activitySubType;
     }
@@ -302,7 +302,7 @@ public class LandingTrackerCivil implements Serializable {
         this.activitySubType = activitySubType;
     }
 
-    @Column(name = "`System`", nullable = true, length = 45)
+    @Column(name = "`System`", nullable = false, length = 255)
     public String getSystem() {
         return this.system;
     }
@@ -311,7 +311,7 @@ public class LandingTrackerCivil implements Serializable {
         this.system = system;
     }
 
-    @Column(name = "`Service`", nullable = true, length = 45)
+    @Column(name = "`Service`", nullable = false, length = 255)
     public String getService() {
         return this.service;
     }
@@ -320,16 +320,16 @@ public class LandingTrackerCivil implements Serializable {
         this.service = service;
     }
 
-    @Column(name = "`TakeOffQuantity`", nullable = true, scale = 2, precision = 12)
-    public Double getTakeOffQuantity() {
+    @Column(name = "`TakeOffQuantity`", nullable = false, length = 255)
+    public String getTakeOffQuantity() {
         return this.takeOffQuantity;
     }
 
-    public void setTakeOffQuantity(Double takeOffQuantity) {
+    public void setTakeOffQuantity(String takeOffQuantity) {
         this.takeOffQuantity = takeOffQuantity;
     }
 
-    @Column(name = "`QuantityUnit`", nullable = true, length = 45)
+    @Column(name = "`QuantityUnit`", nullable = false, length = 255)
     public String getQuantityUnit() {
         return this.quantityUnit;
     }
@@ -338,30 +338,30 @@ public class LandingTrackerCivil implements Serializable {
         this.quantityUnit = quantityUnit;
     }
 
-    @Column(name = "`EstimatedHours`", nullable = true, scale = 6, precision = 16)
-    public Double getEstimatedHours() {
+    @Column(name = "`EstimatedHours`", nullable = false, length = 255)
+    public String getEstimatedHours() {
         return this.estimatedHours;
     }
 
-    public void setEstimatedHours(Double estimatedHours) {
+    public void setEstimatedHours(String estimatedHours) {
         this.estimatedHours = estimatedHours;
     }
 
-    @Column(name = "`InstalledQuantity`", nullable = true, scale = 2, precision = 12)
-    public Double getInstalledQuantity() {
+    @Column(name = "`InstalledQuantity`", nullable = false, length = 255)
+    public String getInstalledQuantity() {
         return this.installedQuantity;
     }
 
-    public void setInstalledQuantity(Double installedQuantity) {
+    public void setInstalledQuantity(String installedQuantity) {
         this.installedQuantity = installedQuantity;
     }
 
-    @Column(name = "`EarnedSellPunch`", nullable = true, scale = 6, precision = 16)
-    public Double getEarnedSellPunch() {
+    @Column(name = "`EarnedSellPunch`", nullable = true, length = 255)
+    public String getEarnedSellPunch() {
         return this.earnedSellPunch;
     }
 
-    public void setEarnedSellPunch(Double earnedSellPunch) {
+    public void setEarnedSellPunch(String earnedSellPunch) {
         this.earnedSellPunch = earnedSellPunch;
     }
 

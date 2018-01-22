@@ -11,6 +11,7 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -71,7 +72,7 @@ public class ChatConversationMembers implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`UserID`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    @JoinColumn(name = "`UserID`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`ConvMembersToUserID`"))
     public TblUserPsa getTblUserPsa() {
         return this.tblUserPsa;
     }
@@ -85,7 +86,7 @@ public class ChatConversationMembers implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`ConversationID`", referencedColumnName = "`ConversationID`", insertable = false, updatable = false)
+    @JoinColumn(name = "`ConversationID`", referencedColumnName = "`ConversationID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`ConvMembersTOConvID`"))
     public ChatConversations getChatConversations() {
         return this.chatConversations;
     }

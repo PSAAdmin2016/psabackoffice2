@@ -12,55 +12,55 @@ import com.psabackoffice.job1111.models.procedure.*;
 
 public interface Job1111ProcedureExecutorService {
 
-    CreateManualActivityCivilResponse executeCreateManualActivityCivil(CreateManualActivityCivilRequest createManualActivityCivilRequest);
-
-    CreateManualActivityPipeResponse executeCreateManualActivityPipe(CreateManualActivityPipeRequest createManualActivityPipeRequest);
-
-    GetEquipPcotResponse executeGetEquipPCOT(Integer runMode);
-
-    GetPipeEarnedHoursResponse executeGetPipeEarnedHours(String groupedBy, String crewId, String crewRev, String foremanId, String superintendentId, String projectManagerId, String constructionManagerId, String siteManagerId, String areaManagerId, Date inputDate, Integer runMode);
-
-    CreateManualActivitySteelResponse executeCreateManualActivitySteel(CreateManualActivitySteelRequest createManualActivitySteelRequest);
-
-    GetPipePcotResponse executeGetPipePCOT(Integer runMode);
-
-    GetCivilEarnedHoursResponse executeGetCivilEarnedHours(String groupedBy, String crewId, String crewRev, String foremanId, String superintendentId, String projectManagerId, String constructionManagerId, String siteManagerId, String areaManagerId, Date inputDate, Integer runMode);
-
-    CreateManualActivityEquipResponse executeCreateManualActivityEquip(CreateManualActivityEquipRequest createManualActivityEquipRequest);
-
-    ClassicTrackerPipeUpdateResponse executeClassicTrackerPipeUpdate(Integer runMode, Integer updateBidId);
-
-    GetEquipStatsResponse executeGetEquipStats(String groupedBy, Integer runMode);
-
-    GetPipeStatsResponse executeGetPipeStats(String groupedBy, Integer runMode);
-
-    GetCivilPcotResponse executeGetCivilPCOT(Integer runMode);
-
-    GetJobPcotResponse executeGetJobPCOT(Integer runMode);
-
-    ClassicTrackerCivilUpdateResponse executeClassicTrackerCivilUpdate(Integer runMode, Integer updateBidId);
-
-    GetSteelStatsResponse executeGetSteelStats(String groupedBy, Integer runMode);
-
-    ClassicTrackerSteelUpdateResponse executeClassicTrackerSteelUpdate(Integer runMode, Integer updateBidId);
-
-    LockSsactivityResponse executeLockSSActivity(Integer userId, Integer fieldActivityId);
-
-    GetCivilStatsResponse executeGetCivilStats(String groupedBy, Integer runMode);
+    GetEquipEarnedHoursResponse executeGetEquipEarnedHours(String groupedBy, String crewId, String crewRev, String foremanId, String superintendentId, String projectManagerId, String constructionManagerId, String siteManagerId, String areaManagerId, Date inputDate, Integer runMode);
 
     CreateLooseHoursActivitySteelResponse executeCreateLooseHoursActivitySteel(CreateLooseHoursActivitySteelRequest createLooseHoursActivitySteelRequest);
 
-    GetEquipEarnedHoursResponse executeGetEquipEarnedHours(String groupedBy, String crewId, String crewRev, String foremanId, String superintendentId, String projectManagerId, String constructionManagerId, String siteManagerId, String areaManagerId, Date inputDate, Integer runMode);
-
-    GetSteelEarnedHoursResponse executeGetSteelEarnedHours(String groupedBy, String crewId, String crewRev, String foremanId, String superintendentId, String projectManagerId, String constructionManagerId, String siteManagerId, String areaManagerId, Date inputDate, Integer runMode);
+    GetSteelPcotResponse executeGetSteelPCOT(Integer runMode);
 
     ClassicTrackerEquipUpdateResponse executeClassicTrackerEquipUpdate(Integer runMode, Integer updateBidId);
 
-    CreateLooseHoursActivitiesPipeResponse executeCreateLooseHoursActivitiesPipe(CreateLooseHoursActivitiesPipeRequest createLooseHoursActivitiesPipeRequest);
+    CreateManualActivitySteelResponse executeCreateManualActivitySteel(CreateManualActivitySteelRequest createManualActivitySteelRequest);
+
+    LockSsactivityResponse executeLockSSActivity(Integer userId, Integer fieldActivityId);
+
+    GetCivilEarnedHoursResponse executeGetCivilEarnedHours(String groupedBy, String crewId, String crewRev, String foremanId, String superintendentId, String projectManagerId, String constructionManagerId, String siteManagerId, String areaManagerId, Date inputDate, Integer runMode);
 
     CreateLooseHoursActivityCivilResponse executeCreateLooseHoursActivityCivil(CreateLooseHoursActivityCivilRequest createLooseHoursActivityCivilRequest);
 
-    GetSteelPcotResponse executeGetSteelPCOT(Integer runMode);
+    GetPipePcotResponse executeGetPipePCOT(Integer runMode);
+
+    ClassicTrackerPipeUpdateResponse executeClassicTrackerPipeUpdate(Integer runMode, Integer updateBidId);
+
+    GetJobPcotResponse executeGetJobPCOT(Integer runMode);
+
+    CreateManualActivityPipeResponse executeCreateManualActivityPipe(CreateManualActivityPipeRequest createManualActivityPipeRequest);
+
+    GetSteelEarnedHoursResponse executeGetSteelEarnedHours(String groupedBy, String crewId, String crewRev, String foremanId, String superintendentId, String projectManagerId, String constructionManagerId, String siteManagerId, String areaManagerId, Date inputDate, Integer runMode);
+
+    GetCivilPcotResponse executeGetCivilPCOT(Integer runMode);
+
+    GetEquipPcotResponse executeGetEquipPCOT(Integer runMode);
+
+    GetPipeStatsResponse executeGetPipeStats(String groupedBy, Integer runMode);
+
+    GetCivilStatsResponse executeGetCivilStats(String groupedBy, Integer runMode);
+
+    GetPipeEarnedHoursResponse executeGetPipeEarnedHours(String groupedBy, String crewId, String crewRev, String foremanId, String superintendentId, String projectManagerId, String constructionManagerId, String siteManagerId, String areaManagerId, Date inputDate, Integer runMode);
+
+    CreateManualActivityCivilResponse executeCreateManualActivityCivil(CreateManualActivityCivilRequest createManualActivityCivilRequest);
+
+    GetEquipStatsResponse executeGetEquipStats(String groupedBy, Integer runMode);
+
+    CreateManualActivityEquipResponse executeCreateManualActivityEquip(CreateManualActivityEquipRequest createManualActivityEquipRequest);
+
+    GetSteelStatsResponse executeGetSteelStats(String groupedBy, Integer runMode);
+
+    ClassicTrackerCivilUpdateResponse executeClassicTrackerCivilUpdate(Integer runMode, Integer updateBidId);
+
+    CreateLooseHoursActivitiesPipeResponse executeCreateLooseHoursActivitiesPipe(CreateLooseHoursActivitiesPipeRequest createLooseHoursActivitiesPipeRequest);
+
+    ClassicTrackerSteelUpdateResponse executeClassicTrackerSteelUpdate(Integer runMode, Integer updateBidId);
 
 }
 

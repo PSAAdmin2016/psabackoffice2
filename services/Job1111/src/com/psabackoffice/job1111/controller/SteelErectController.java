@@ -52,9 +52,9 @@ public class SteelErectController {
 	private SteelErectService steelErectService;
 
 	@ApiOperation(value = "Creates a new SteelErect instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public SteelErect createSteelErect(@RequestBody SteelErect steelErect) {
+    public SteelErect createSteelErect(@RequestBody SteelErect steelErect) {
 		LOGGER.debug("Create SteelErect with information: {}" , steelErect);
 
 		steelErect = steelErectService.create(steelErect);
@@ -62,7 +62,6 @@ public class SteelErectController {
 
 	    return steelErect;
 	}
-
 
     @ApiOperation(value = "Returns the SteelErect instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -80,9 +79,9 @@ public class SteelErectController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public SteelErect editSteelErect(@PathVariable("id") Integer id, @RequestBody SteelErect steelErect) throws EntityNotFoundException {
-        LOGGER.debug("Editing SteelErect with id: {}" , steelErect.getActivityId());
+        LOGGER.debug("Editing SteelErect with id: {}" , steelErect.getId());
 
-        steelErect.setActivityId(id);
+        steelErect.setId(id);
         steelErect = steelErectService.update(steelErect);
         LOGGER.debug("SteelErect details with id: {}" , steelErect);
 

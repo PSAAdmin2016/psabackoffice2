@@ -1,88 +1,84 @@
-<wm-partial data-ng-controller="PopSteelFAExpandedPageController" type="popover" name="partial1">
-    <wm-layoutgrid name="layoutgrid1">
-        <wm-gridrow padding="unset 1%" name="gridrow1">
-            <wm-gridcolumn columnwidth="1" name="gridcolumn1">
-                <wm-label width="100%" caption="Field Activity ID" fontweight="bold" hint="PSA Activity ID" margin="unset 2% unset unset" name="label1"></wm-label>
-            </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="1" name="gridcolumn22" horizontalalign="center">
-                <wm-label width="100%" caption="Rework" fontweight="bold" hint="PSA Activity ID" margin="unset 2% unset unset" name="label16"></wm-label>
-            </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="1" padding="unset unset unset 2%" name="gridcolumn2">
-                <wm-label width="100%" caption="Activity" fontweight="bold" name="label2"></wm-label>
-            </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="1" horizontalalign="center" name="gridcolumn3">
-                <wm-label width="100%" caption="Quantity" fontweight="bold" name="label3"></wm-label>
-            </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="2" horizontalalign="center" name="gridcolumn4">
-                <wm-label width="100%" caption="Notes" fontweight="bold" name="label4"></wm-label>
-            </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="2" name="gridcolumn5">
-                <wm-label width="48%" caption="Foreman" fontweight="bold" name="label5"></wm-label>
-                <wm-label width="48%" caption="Supervisor" fontweight="bold" margin="unset unset unset 2%" name="label6"></wm-label>
-            </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="1" name="gridcolumn6">
-                <wm-label width="100%" caption="Completed" fontweight="bold" name="label7" hint="Activity was submitted by foreman."></wm-label>
-            </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="1" name="gridcolumn7">
-                <wm-label width="100%" caption="Reviewed" fontweight="bold" hint="Reviewed and Accepted by Supervisor" name="label8"></wm-label>
-            </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="2" name="gridcolumn23"></wm-gridcolumn>
-        </wm-gridrow>
-        <wm-gridrow padding="unset 0px" name="gridrow2">
-            <wm-gridcolumn columnwidth="12" padding="unset 0px" name="gridcolumn8">
-                <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" dataset="bind:$parent.$parent.$parent.$parent.$parent.Variables.serviceGetBidWorkHistoryExpanded.dataSet" navigation="Classic" showrecordcount="true" margin="unset unset unset 0px"
-                padding="unset unset unset 0px" name="livelist1">
-                    <wm-listtemplate layout="blank" name="listtemplate1">
-                        <wm-container class="blank" data-template-ctr="true" margin="unset 0px" padding="unset 0px" name="container1">
-                            <wm-layoutgrid class="gridlayout" margin="unset 0px" padding="unset 0px" name="layoutgrid2">
-                                <wm-gridrow padding="unset 0px" name="gridrow3">
-                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" horizontalalign="left" padding=".5% unset unset unset" name="gridcolumn9">
-                                        <wm-label width="100%" caption="bind:Widgets.livelist1.currentItem.ActivityID" fontsize="10" name="label9"></wm-label>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn21" horizontalalign="center">
-                                        <wm-checkbox caption="" class="checkbox-custom" name="checkbox1" checkedvalue="1" uncheckedvalue="0" datavalue="bind:Widgets.livelist1.currentItem.Rework" disabled="true"></wm-checkbox>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" padding=".5% unset unset 2%" name="gridcolumn10">
-                                        <wm-label width="100%" caption="bind:Widgets.livelist1.currentItem.ActivityTypeName" fontsize="10" name="labelActivityTypeName"></wm-label>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" backgroundcolor="#b1efe4" horizontalalign="center" padding=".5% unset unset unset" name="gridcolumn11">
-                                        <wm-label width="100%" caption="bind:Widgets.livelist1.currentItem.Quantity + &quot; @&quot; + Widgets.livelist1.currentItem.Percent * 100 | suffix: '%'" fontsize="10" marginunit="%" color="#000000" name="label11"></wm-label>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn class="col-xs-6" columnwidth="2" padding="unset 1%" name="gridcolumn12">
-                                        <wm-composite name="composite1">
-                                            <wm-textarea datavalue="bind:Widgets.livelist1.currentItem.Notes" readonly="true" height="25px" placeholder="No Notes" name="textarea1"></wm-textarea>
-                                        </wm-composite>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn class="col-xs-6" columnwidth="2" padding=".5% unset unset unset" name="gridcolumn13">
-                                        <wm-label width="48%" caption="bind:Widgets.livelist1.currentItem.Foreman" fontsize="10" name="label12"></wm-label>
-                                        <wm-label width="48%" caption="bind:Widgets.livelist1.currentItem.Supervisor" fontsize="10" margin="unset unset unset 2%" name="label13"></wm-label>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" padding=".5% unset unset unset" name="gridcolumn14">
-                                        <wm-label width="80%" caption="bind:Widgets.livelist1.currentItem.CompleteTime | toDate: 'MM-dd-yy hh:mm:ss a'" fontsize="10" name="label14"></wm-label>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" padding=".5% unset unset unset" name="gridcolumn15">
-                                        <wm-label width="80%" caption="bind:Widgets.livelist1.currentItem.ReviewedTime | toDate: 'MM-dd-yy hh:mm:ss a'" fontsize="10" name="label15"></wm-label>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="2" name="gridcolumn31" horizontalalign="center" padding="unset 0%">
-                                        <wm-button class="btn-sm" caption="Return" type="button" hint="Return this activity to the Project Service Review list" on-click="Variables.serviceUpdateSSReturnToListPS.invoke()" show="true" disabled="false" name="buttonReturn" width="32%" iconclass="wi wi-backward"
-                                        margin="unset unset unset 0px"></wm-button>
-                                        <wm-button class="btn-sm" caption="Hist." type="button" hint="Display status and change history for this Field Activity" on-click="buttonHistoryClick($event, $scope, item, currentItemWidgets)" show="true" disabled="false" width="28%" name="buttonHistory"
-                                        iconclass="wi wi-history" backgroundcolor="#5fb4ff" color="#000000" margin="unset 1%"></wm-button>
-                                        <wm-button class="btn-sm" caption="Override" iconclass="glyphicon glyphicon-alert" backgroundcolor="#ff6500" on-click="buttonOverRideClick($event, $scope, item, currentItemWidgets)" show="true" hint="Change quantity of this Field activity." disabled="false"
-                                        padding="unset 0px" name="buttonOverRide" width="36%" margin="unset 0px unset unset"></wm-button>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                            </wm-layoutgrid>
-                        </wm-container>
-                    </wm-listtemplate>
-                </wm-livelist>
-            </wm-gridcolumn>
-        </wm-gridrow>
-        <wm-gridrow name="gridrow4">
-            <wm-gridcolumn columnwidth="12" name="gridcolumn17"></wm-gridcolumn>
-        </wm-gridrow>
-        <wm-gridrow name="gridrow5">
-            <wm-gridcolumn columnwidth="12" name="gridcolumn20"></wm-gridcolumn>
-        </wm-gridrow>
-    </wm-layoutgrid>
+<wm-partial data-ng-controller="PopSteelFAExpandedPageController" type="popover" name="partial1"> 
+    <wm-layoutgrid name="layoutgrid1"> 
+        <wm-gridrow padding="unset 1%" name="gridrow1"> 
+            <wm-gridcolumn columnwidth="1" name="gridcolumn1"> 
+                <wm-label width="100%" caption="Field Activity ID" fontweight="bold" hint="PSA Activity ID" margin="unset 2% unset unset" name="label1"></wm-label> 
+            </wm-gridcolumn> 
+            <wm-gridcolumn columnwidth="1" name="gridcolumn22" horizontalalign="center"> 
+                <wm-label width="100%" caption="Rework" fontweight="bold" hint="PSA Activity ID" margin="unset 2% unset unset" name="label16"></wm-label> 
+            </wm-gridcolumn> 
+            <wm-gridcolumn columnwidth="1" padding="unset unset unset 2%" name="gridcolumn2"> 
+                <wm-label width="100%" caption="Activity" fontweight="bold" name="label2"></wm-label> 
+            </wm-gridcolumn> 
+            <wm-gridcolumn columnwidth="1" horizontalalign="center" name="gridcolumn3"> 
+                <wm-label width="100%" caption="Quantity" fontweight="bold" name="label3"></wm-label> 
+            </wm-gridcolumn> 
+            <wm-gridcolumn columnwidth="2" horizontalalign="center" name="gridcolumn4"> 
+                <wm-label width="100%" caption="Notes" fontweight="bold" name="label4"></wm-label> 
+            </wm-gridcolumn> 
+            <wm-gridcolumn columnwidth="2" name="gridcolumn5"> 
+                <wm-label width="48%" caption="Foreman" fontweight="bold" name="label5"></wm-label> 
+                <wm-label width="48%" caption="Supervisor" fontweight="bold" margin="unset unset unset 2%" name="label6"></wm-label> 
+            </wm-gridcolumn> 
+            <wm-gridcolumn columnwidth="1" name="gridcolumn6"> 
+                <wm-label width="100%" caption="Completed" fontweight="bold" name="label7" hint="Activity was submitted by foreman."></wm-label> 
+            </wm-gridcolumn> 
+            <wm-gridcolumn columnwidth="1" name="gridcolumn7"> 
+                <wm-label width="100%" caption="Reviewed" fontweight="bold" hint="Reviewed and Accepted by Supervisor" name="label8"></wm-label> 
+            </wm-gridcolumn> 
+            <wm-gridcolumn columnwidth="2" name="gridcolumn23"></wm-gridcolumn> 
+        </wm-gridrow> 
+        <wm-gridrow padding="unset 0px" name="gridrow2"> 
+            <wm-gridcolumn columnwidth="12" padding="unset 0px" name="gridcolumn8"> 
+                <wm-list listclass="list-group" itemclass="list-group-item" template="true" dataset="bind:$parent.$parent.$parent.$parent.$parent.Variables.serviceGetBidWorkHistoryExpanded.dataSet" navigation="Classic" showrecordcount="true" margin="unset unset unset 0px" padding="unset unset unset 0px" name="livelist1"> 
+                    <wm-listtemplate layout="blank" name="listtemplate1"> 
+                        <wm-container class="blank" data-template-ctr="true" margin="unset 0px" padding="unset 0px" name="container1"> 
+                            <wm-layoutgrid class="gridlayout" margin="unset 0px" padding="unset 0px" name="layoutgrid2"> 
+                                <wm-gridrow padding="unset 0px" name="gridrow3"> 
+                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" horizontalalign="left" padding=".5% unset unset unset" name="gridcolumn9"> 
+                                        <wm-label width="100%" caption="bind:Widgets.livelist1.currentItem.ActivityID" fontsize="10" name="label9"></wm-label> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn21" horizontalalign="center"> 
+                                        <wm-checkbox caption="" class="checkbox-custom" name="checkbox1" checkedvalue="1" uncheckedvalue="0" datavalue="bind:Widgets.livelist1.currentItem.Rework" disabled="true"></wm-checkbox> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" padding=".5% unset unset 2%" name="gridcolumn10"> 
+                                        <wm-label width="100%" caption="bind:Widgets.livelist1.currentItem.ActivityTypeName" fontsize="10" name="labelActivityTypeName"></wm-label> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" backgroundcolor="#b1efe4" horizontalalign="center" padding=".5% unset unset unset" name="gridcolumn11"> 
+                                        <wm-label width="100%" caption="bind:Widgets.livelist1.currentItem.Quantity + &quot; @&quot; + Widgets.livelist1.currentItem.Percent * 100 | suffix: '%'" fontsize="10" marginunit="%" color="#000000" name="label11"></wm-label> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn class="col-xs-6" columnwidth="2" padding="unset 1%" name="gridcolumn12"> 
+                                        <wm-composite name="composite1"> 
+                                            <wm-textarea datavalue="bind:Widgets.livelist1.currentItem.Notes" readonly="true" height="25px" placeholder="No Notes" name="textarea1"></wm-textarea> 
+                                        </wm-composite> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn class="col-xs-6" columnwidth="2" padding=".5% unset unset unset" name="gridcolumn13"> 
+                                        <wm-label width="48%" caption="bind:Widgets.livelist1.currentItem.Foreman" fontsize="10" name="label12"></wm-label> 
+                                        <wm-label width="48%" caption="bind:Widgets.livelist1.currentItem.Supervisor" fontsize="10" margin="unset unset unset 2%" name="label13"></wm-label> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" padding=".5% unset unset unset" name="gridcolumn14"> 
+                                        <wm-label width="80%" caption="bind:Widgets.livelist1.currentItem.CompleteTime | toDate: 'MM-dd-yy hh:mm:ss a'" fontsize="10" name="label14"></wm-label> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn class="col-xs-6" columnwidth="1" padding=".5% unset unset unset" name="gridcolumn15"> 
+                                        <wm-label width="80%" caption="bind:Widgets.livelist1.currentItem.ReviewedTime | toDate: 'MM-dd-yy hh:mm:ss a'" fontsize="10" name="label15"></wm-label> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn31" horizontalalign="center" padding="unset 0%"> 
+                                        <wm-button class="btn-sm" caption="Return" type="button" hint="Return this activity to the Project Service Review list" on-click="Variables.serviceUpdateSSReturnToListPS.invoke()" show="true" disabled="false" name="buttonReturn" width="32%" iconclass="wi wi-backward" margin="unset unset unset 0px"></wm-button> 
+                                        <wm-button class="btn-sm" caption="Hist." type="button" hint="Display status and change history for this Field Activity" on-click="buttonHistoryClick($event, $scope, item, currentItemWidgets)" show="true" disabled="false" width="28%" name="buttonHistory" iconclass="wi wi-history" backgroundcolor="#5fb4ff" color="#000000" margin="unset 1%"></wm-button> 
+                                        <wm-button class="btn-sm" caption="Override" iconclass="glyphicon glyphicon-alert" backgroundcolor="#ff6500" on-click="buttonOverRideClick($event, $scope, item, currentItemWidgets)" show="true" hint="Change quantity of this Field activity." disabled="false" padding="unset 0px" name="buttonOverRide" width="36%" margin="unset 0px unset unset"></wm-button> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                            </wm-layoutgrid> 
+                        </wm-container> 
+                    </wm-listtemplate> 
+                </wm-list> 
+            </wm-gridcolumn> 
+        </wm-gridrow> 
+        <wm-gridrow name="gridrow4"> 
+            <wm-gridcolumn columnwidth="12" name="gridcolumn17"></wm-gridcolumn> 
+        </wm-gridrow> 
+        <wm-gridrow name="gridrow5"> 
+            <wm-gridcolumn columnwidth="12" name="gridcolumn20"></wm-gridcolumn> 
+        </wm-gridrow> 
+    </wm-layoutgrid> 
 </wm-partial>

@@ -10,7 +10,6 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetChatAllLastReadResponse implements Serializable {

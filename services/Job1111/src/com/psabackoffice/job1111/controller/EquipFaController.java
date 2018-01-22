@@ -52,9 +52,9 @@ public class EquipFaController {
 	private EquipFaService equipFaService;
 
 	@ApiOperation(value = "Creates a new EquipFa instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public EquipFa createEquipFa(@RequestBody EquipFa equipFa) {
+    public EquipFa createEquipFa(@RequestBody EquipFa equipFa) {
 		LOGGER.debug("Create EquipFa with information: {}" , equipFa);
 
 		equipFa = equipFaService.create(equipFa);
@@ -62,7 +62,6 @@ public class EquipFaController {
 
 	    return equipFa;
 	}
-
 
     @ApiOperation(value = "Returns the EquipFa instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -80,9 +79,9 @@ public class EquipFaController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public EquipFa editEquipFa(@PathVariable("id") Integer id, @RequestBody EquipFa equipFa) throws EntityNotFoundException {
-        LOGGER.debug("Editing EquipFa with id: {}" , equipFa.getActivityId());
+        LOGGER.debug("Editing EquipFa with id: {}" , equipFa.getId());
 
-        equipFa.setActivityId(id);
+        equipFa.setId(id);
         equipFa = equipFaService.update(equipFa);
         LOGGER.debug("EquipFa details with id: {}" , equipFa);
 

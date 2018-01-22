@@ -32,33 +32,24 @@ public class Job1111ProcedureExecutorServiceImpl_V1 implements Job1111ProcedureE
     @Qualifier("Job1111WMProcedureExecutor")
     private WMProcedureExecutor procedureExecutor;
 
-    public List<Object> executeCreateManualActivityCivil(String varFoundation, String varDrawingNumber, String varDetailDrawingNumber, BigDecimal varPercentComplete, String varNotes, Integer varUserId, Integer varBidId) {
-        Map params = new HashMap(9);
+    public List<Object> executeCreateLooseHoursActivitySteel(Integer submissionId, Integer activityId, Integer userId, String testPackage) {
+        Map params = new HashMap(6);
 
-        params.put("varFoundation", varFoundation);
-        params.put("varDrawingNumber", varDrawingNumber);
-        params.put("varDetailDrawingNumber", varDetailDrawingNumber);
-        params.put("varPercentComplete", varPercentComplete);
-        params.put("varNotes", varNotes);
-        params.put("varUserId", varUserId);
-        params.put("varBidID", varBidId);
+        params.put("SubmissionId", submissionId);
+        params.put("ActivityId", activityId);
+        params.put("UserId", userId);
+        params.put("TestPackage", testPackage);
 
-        return procedureExecutor.executeNamedProcedure("CreateManualActivityCivil", params);
+        return procedureExecutor.executeNamedProcedure("CreateLooseHoursActivitySteel", params);
 
     }
 
-    public List<Object> executeCreateManualActivityPipe(String miscDrawingNumber, String miscLineNumber, String miscSheetNumber, Integer miscQuantity, String miscNotes, Integer userId, Integer bidId) {
-        Map params = new HashMap(9);
+    public List<Object> executeGetSteelPCOT(Integer runMode) {
+        Map params = new HashMap(3);
 
-        params.put("MiscDrawingNumber", miscDrawingNumber);
-        params.put("MiscLineNumber", miscLineNumber);
-        params.put("MiscSheetNumber", miscSheetNumber);
-        params.put("MiscQuantity", miscQuantity);
-        params.put("MiscNotes", miscNotes);
-        params.put("UserId", userId);
-        params.put("BidID", bidId);
+        params.put("RunMode", runMode);
 
-        return procedureExecutor.executeNamedProcedure("CreateManualActivityPipe", params);
+        return procedureExecutor.executeNamedProcedure("GetSteelPCOT", params);
 
     }
 
@@ -75,6 +66,28 @@ public class Job1111ProcedureExecutorServiceImpl_V1 implements Job1111ProcedureE
         params.put("BidID", bidId);
 
         return procedureExecutor.executeNamedProcedure("CreateManualActivitySteel", params);
+
+    }
+
+    public List<Object> executeLockSSActivity(Integer userId, Integer fieldActivityId) {
+        Map params = new HashMap(4);
+
+        params.put("UserID", userId);
+        params.put("FieldActivityID", fieldActivityId);
+
+        return procedureExecutor.executeNamedProcedure("LockSSActivity", params);
+
+    }
+
+    public List<Object> executeCreateLooseHoursActivityCivil(Integer submissionId, Integer activityId, Integer userId, String testPackage) {
+        Map params = new HashMap(6);
+
+        params.put("SubmissionId", submissionId);
+        params.put("ActivityId", activityId);
+        params.put("UserId", userId);
+        params.put("TestPackage", testPackage);
+
+        return procedureExecutor.executeNamedProcedure("CreateLooseHoursActivityCivil", params);
 
     }
 
@@ -97,13 +110,27 @@ public class Job1111ProcedureExecutorServiceImpl_V1 implements Job1111ProcedureE
 
     }
 
-    public List<Object> executeGetPipeStats(String groupedBy, Integer runMode) {
-        Map params = new HashMap(4);
+    public List<Object> executeGetJobPCOT(Integer runMode) {
+        Map params = new HashMap(3);
 
-        params.put("GroupedBy", groupedBy);
         params.put("RunMode", runMode);
 
-        return procedureExecutor.executeNamedProcedure("GetPipeStats", params);
+        return procedureExecutor.executeNamedProcedure("GetJobPCOT", params);
+
+    }
+
+    public List<Object> executeCreateManualActivityPipe(String miscDrawingNumber, String miscLineNumber, String miscSheetNumber, Integer miscQuantity, String miscNotes, Integer userId, Integer bidId) {
+        Map params = new HashMap(9);
+
+        params.put("MiscDrawingNumber", miscDrawingNumber);
+        params.put("MiscLineNumber", miscLineNumber);
+        params.put("MiscSheetNumber", miscSheetNumber);
+        params.put("MiscQuantity", miscQuantity);
+        params.put("MiscNotes", miscNotes);
+        params.put("UserId", userId);
+        params.put("BidID", bidId);
+
+        return procedureExecutor.executeNamedProcedure("CreateManualActivityPipe", params);
 
     }
 
@@ -116,52 +143,13 @@ public class Job1111ProcedureExecutorServiceImpl_V1 implements Job1111ProcedureE
 
     }
 
-    public List<Object> executeGetJobPCOT(Integer runMode) {
-        Map params = new HashMap(3);
-
-        params.put("RunMode", runMode);
-
-        return procedureExecutor.executeNamedProcedure("GetJobPCOT", params);
-
-    }
-
-    public List<Object> executeClassicTrackerCivilUpdate(Integer runMode, Integer updateBidId) {
-        Map params = new HashMap(4);
-
-        params.put("RunMode", runMode);
-        params.put("UpdateBidID", updateBidId);
-
-        return procedureExecutor.executeNamedProcedure("ClassicTrackerCivilUpdate", params);
-
-    }
-
-    public List<Object> executeGetSteelStats(String groupedBy, Integer runMode) {
+    public List<Object> executeGetPipeStats(String groupedBy, Integer runMode) {
         Map params = new HashMap(4);
 
         params.put("GroupedBy", groupedBy);
         params.put("RunMode", runMode);
 
-        return procedureExecutor.executeNamedProcedure("GetSteelStats", params);
-
-    }
-
-    public List<Object> executeClassicTrackerSteelUpdate(Integer runMode, Integer updateBidId) {
-        Map params = new HashMap(4);
-
-        params.put("RunMode", runMode);
-        params.put("UpdateBidID", updateBidId);
-
-        return procedureExecutor.executeNamedProcedure("ClassicTrackerSteelUpdate", params);
-
-    }
-
-    public List<Object> executeLockSSActivity(Integer userId, Integer fieldActivityId) {
-        Map params = new HashMap(4);
-
-        params.put("UserID", userId);
-        params.put("FieldActivityID", fieldActivityId);
-
-        return procedureExecutor.executeNamedProcedure("LockSSActivity", params);
+        return procedureExecutor.executeNamedProcedure("GetPipeStats", params);
 
     }
 
@@ -175,15 +163,38 @@ public class Job1111ProcedureExecutorServiceImpl_V1 implements Job1111ProcedureE
 
     }
 
-    public List<Object> executeCreateLooseHoursActivitySteel(Integer submissionId, Integer activityId, Integer userId, String testPackage) {
-        Map params = new HashMap(6);
+    public List<Object> executeCreateManualActivityCivil(String varFoundation, String varDrawingNumber, String varDetailDrawingNumber, BigDecimal varPercentComplete, String varNotes, Integer varUserId, Integer varBidId) {
+        Map params = new HashMap(9);
 
-        params.put("SubmissionId", submissionId);
-        params.put("ActivityId", activityId);
-        params.put("UserId", userId);
-        params.put("TestPackage", testPackage);
+        params.put("varFoundation", varFoundation);
+        params.put("varDrawingNumber", varDrawingNumber);
+        params.put("varDetailDrawingNumber", varDetailDrawingNumber);
+        params.put("varPercentComplete", varPercentComplete);
+        params.put("varNotes", varNotes);
+        params.put("varUserId", varUserId);
+        params.put("varBidID", varBidId);
 
-        return procedureExecutor.executeNamedProcedure("CreateLooseHoursActivitySteel", params);
+        return procedureExecutor.executeNamedProcedure("CreateManualActivityCivil", params);
+
+    }
+
+    public List<Object> executeGetSteelStats(String groupedBy, Integer runMode) {
+        Map params = new HashMap(4);
+
+        params.put("GroupedBy", groupedBy);
+        params.put("RunMode", runMode);
+
+        return procedureExecutor.executeNamedProcedure("GetSteelStats", params);
+
+    }
+
+    public List<Object> executeClassicTrackerCivilUpdate(Integer runMode, Integer updateBidId) {
+        Map params = new HashMap(4);
+
+        params.put("RunMode", runMode);
+        params.put("UpdateBidID", updateBidId);
+
+        return procedureExecutor.executeNamedProcedure("ClassicTrackerCivilUpdate", params);
 
     }
 
@@ -199,24 +210,13 @@ public class Job1111ProcedureExecutorServiceImpl_V1 implements Job1111ProcedureE
 
     }
 
-    public List<Object> executeCreateLooseHoursActivityCivil(Integer submissionId, Integer activityId, Integer userId, String testPackage) {
-        Map params = new HashMap(6);
-
-        params.put("SubmissionId", submissionId);
-        params.put("ActivityId", activityId);
-        params.put("UserId", userId);
-        params.put("TestPackage", testPackage);
-
-        return procedureExecutor.executeNamedProcedure("CreateLooseHoursActivityCivil", params);
-
-    }
-
-    public List<Object> executeGetSteelPCOT(Integer runMode) {
-        Map params = new HashMap(3);
+    public List<Object> executeClassicTrackerSteelUpdate(Integer runMode, Integer updateBidId) {
+        Map params = new HashMap(4);
 
         params.put("RunMode", runMode);
+        params.put("UpdateBidID", updateBidId);
 
-        return procedureExecutor.executeNamedProcedure("GetSteelPCOT", params);
+        return procedureExecutor.executeNamedProcedure("ClassicTrackerSteelUpdate", params);
 
     }
 

@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface EmailTemplatesService {
      * @param emailTemplates Details of the EmailTemplates to be created; value cannot be null.
      * @return The newly created EmailTemplates.
      */
-	EmailTemplates create(EmailTemplates emailTemplates);
+	EmailTemplates create(@Valid EmailTemplates emailTemplates);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface EmailTemplatesService {
 	 * @return The updated EmailTemplates.
 	 * @throws EntityNotFoundException if no EmailTemplates is found with given input.
 	 */
-	EmailTemplates update(EmailTemplates emailTemplates) throws EntityNotFoundException;
+	EmailTemplates update(@Valid EmailTemplates emailTemplates) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing EmailTemplates with the given id.

@@ -52,9 +52,9 @@ public class SteelShakeController {
 	private SteelShakeService steelShakeService;
 
 	@ApiOperation(value = "Creates a new SteelShake instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public SteelShake createSteelShake(@RequestBody SteelShake steelShake) {
+    public SteelShake createSteelShake(@RequestBody SteelShake steelShake) {
 		LOGGER.debug("Create SteelShake with information: {}" , steelShake);
 
 		steelShake = steelShakeService.create(steelShake);
@@ -62,7 +62,6 @@ public class SteelShakeController {
 
 	    return steelShake;
 	}
-
 
     @ApiOperation(value = "Returns the SteelShake instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -80,9 +79,9 @@ public class SteelShakeController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public SteelShake editSteelShake(@PathVariable("id") Integer id, @RequestBody SteelShake steelShake) throws EntityNotFoundException {
-        LOGGER.debug("Editing SteelShake with id: {}" , steelShake.getActivityId());
+        LOGGER.debug("Editing SteelShake with id: {}" , steelShake.getId());
 
-        steelShake.setActivityId(id);
+        steelShake.setId(id);
         steelShake = steelShakeService.update(steelShake);
         LOGGER.debug("SteelShake details with id: {}" , steelShake);
 

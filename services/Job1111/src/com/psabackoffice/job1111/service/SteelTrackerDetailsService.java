@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface SteelTrackerDetailsService {
      * @param steelTrackerDetails Details of the SteelTrackerDetails to be created; value cannot be null.
      * @return The newly created SteelTrackerDetails.
      */
-	SteelTrackerDetails create(SteelTrackerDetails steelTrackerDetails);
+	SteelTrackerDetails create(@Valid SteelTrackerDetails steelTrackerDetails);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface SteelTrackerDetailsService {
 	 * @return The updated SteelTrackerDetails.
 	 * @throws EntityNotFoundException if no SteelTrackerDetails is found with given input.
 	 */
-	SteelTrackerDetails update(SteelTrackerDetails steelTrackerDetails) throws EntityNotFoundException;
+	SteelTrackerDetails update(@Valid SteelTrackerDetails steelTrackerDetails) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing SteelTrackerDetails with the given id.

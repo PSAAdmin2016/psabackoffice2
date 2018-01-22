@@ -52,9 +52,9 @@ public class RefTrimActivitiesController {
 	private RefTrimActivitiesService refTrimActivitiesService;
 
 	@ApiOperation(value = "Creates a new RefTrimActivities instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefTrimActivities createRefTrimActivities(@RequestBody RefTrimActivities refTrimActivities) {
+    public RefTrimActivities createRefTrimActivities(@RequestBody RefTrimActivities refTrimActivities) {
 		LOGGER.debug("Create RefTrimActivities with information: {}" , refTrimActivities);
 
 		refTrimActivities = refTrimActivitiesService.create(refTrimActivities);
@@ -62,7 +62,6 @@ public class RefTrimActivitiesController {
 
 	    return refTrimActivities;
 	}
-
 
     @ApiOperation(value = "Returns the RefTrimActivities instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

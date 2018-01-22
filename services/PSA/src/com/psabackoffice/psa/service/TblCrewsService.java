@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -32,7 +34,7 @@ public interface TblCrewsService {
      * @param tblCrews Details of the TblCrews to be created; value cannot be null.
      * @return The newly created TblCrews.
      */
-	TblCrews create(TblCrews tblCrews);
+	TblCrews create(@Valid TblCrews tblCrews);
 
 
 	/**
@@ -52,6 +54,14 @@ public interface TblCrewsService {
 	 */
 	TblCrews findById(Integer tblcrewsId);
 
+    /**
+	 * Find and return the TblCrews for given foreman  if exists.
+	 *
+	 * @param foreman value of foreman; value cannot be null.
+	 * @return TblCrews associated with the given inputs.
+     * @throws EntityNotFoundException if no matching TblCrews found.
+	 */
+    TblCrews getByForeman(Integer foreman)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing TblCrews. It replaces all fields of the existing TblCrews with the given tblCrews.
@@ -62,7 +72,7 @@ public interface TblCrewsService {
 	 * @return The updated TblCrews.
 	 * @throws EntityNotFoundException if no TblCrews is found with given input.
 	 */
-	TblCrews update(TblCrews tblCrews) throws EntityNotFoundException;
+	TblCrews update(@Valid TblCrews tblCrews) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing TblCrews with the given id.

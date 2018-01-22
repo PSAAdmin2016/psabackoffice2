@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefImportableTablesService {
      * @param refImportableTables Details of the RefImportableTables to be created; value cannot be null.
      * @return The newly created RefImportableTables.
      */
-	RefImportableTables create(RefImportableTables refImportableTables);
+	RefImportableTables create(@Valid RefImportableTables refImportableTables);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface RefImportableTablesService {
 	 * @return The updated RefImportableTables.
 	 * @throws EntityNotFoundException if no RefImportableTables is found with given input.
 	 */
-	RefImportableTables update(RefImportableTables refImportableTables) throws EntityNotFoundException;
+	RefImportableTables update(@Valid RefImportableTables refImportableTables) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefImportableTables with the given id.

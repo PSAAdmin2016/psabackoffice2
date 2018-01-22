@@ -30,32 +30,12 @@ public class PSAProcedureExecutorServiceImpl_V1 implements PSAProcedureExecutorS
     @Qualifier("PSAWMProcedureExecutor")
     private WMProcedureExecutor procedureExecutor;
 
-    public List<Object> executeGetImportTotals(String tableNameLanding, String tableNameDestination, String jobNumber) {
-        Map params = new HashMap(8);
-
-        params.put("tableNameLanding", tableNameLanding);
-        params.put("tableNameDestination", tableNameDestination);
-        params.put("jobNumber", jobNumber);
-
-        return procedureExecutor.executeNamedProcedure("GetImportTotals", params);
-
-    }
-
     public List<Object> executeCreateNewJobDB(Integer jobNumber) {
         Map params = new HashMap(2);
 
         params.put("jobNumber", jobNumber);
 
         return procedureExecutor.executeNamedProcedure("CreateNewJobDB", params);
-
-    }
-
-    public List<Object> executeCreateNewJobSeeds(Integer jobNumber) {
-        Map params = new HashMap(2);
-
-        params.put("jobNumber", jobNumber);
-
-        return procedureExecutor.executeNamedProcedure("CreateNewJobSeeds", params);
 
     }
 
@@ -76,6 +56,26 @@ public class PSAProcedureExecutorServiceImpl_V1 implements PSAProcedureExecutorS
         params.put("jobNumber", jobNumber);
 
         return procedureExecutor.executeNamedProcedure("ValidateLandingData", params);
+
+    }
+
+    public List<Object> executeGetImportTotals(String tableNameLanding, String tableNameDestination, String jobNumber) {
+        Map params = new HashMap(8);
+
+        params.put("tableNameLanding", tableNameLanding);
+        params.put("tableNameDestination", tableNameDestination);
+        params.put("jobNumber", jobNumber);
+
+        return procedureExecutor.executeNamedProcedure("GetImportTotals", params);
+
+    }
+
+    public List<Object> executeCreateNewJobSeeds(Integer jobNumber) {
+        Map params = new HashMap(2);
+
+        params.put("jobNumber", jobNumber);
+
+        return procedureExecutor.executeNamedProcedure("CreateNewJobSeeds", params);
 
     }
 

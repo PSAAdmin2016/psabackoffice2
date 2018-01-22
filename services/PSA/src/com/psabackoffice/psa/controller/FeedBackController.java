@@ -53,9 +53,9 @@ public class FeedBackController {
 	private FeedBackService feedBackService;
 
 	@ApiOperation(value = "Creates a new FeedBack instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public FeedBack createFeedBack(@RequestBody FeedBack feedBack) {
+    public FeedBack createFeedBack(@RequestBody FeedBack feedBack) {
 		LOGGER.debug("Create FeedBack with information: {}" , feedBack);
 
 		feedBack = feedBackService.create(feedBack);
@@ -63,7 +63,6 @@ public class FeedBackController {
 
 	    return feedBack;
 	}
-
 
     @ApiOperation(value = "Returns the FeedBack instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

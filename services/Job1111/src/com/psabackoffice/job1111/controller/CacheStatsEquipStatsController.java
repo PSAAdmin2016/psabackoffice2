@@ -52,9 +52,9 @@ public class CacheStatsEquipStatsController {
 	private CacheStatsEquipStatsService cacheStatsEquipStatsService;
 
 	@ApiOperation(value = "Creates a new CacheStatsEquipStats instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public CacheStatsEquipStats createCacheStatsEquipStats(@RequestBody CacheStatsEquipStats cacheStatsEquipStats) {
+    public CacheStatsEquipStats createCacheStatsEquipStats(@RequestBody CacheStatsEquipStats cacheStatsEquipStats) {
 		LOGGER.debug("Create CacheStatsEquipStats with information: {}" , cacheStatsEquipStats);
 
 		cacheStatsEquipStats = cacheStatsEquipStatsService.create(cacheStatsEquipStats);
@@ -62,7 +62,6 @@ public class CacheStatsEquipStatsController {
 
 	    return cacheStatsEquipStats;
 	}
-
 
     @ApiOperation(value = "Returns the CacheStatsEquipStats instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

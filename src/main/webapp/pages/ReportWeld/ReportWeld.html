@@ -1,65 +1,65 @@
-<wm-page data-ng-controller="ReportWeldPageController" pagetitle="Report Weld" name="page1">
-    <wm-header content="header" name="header1"></wm-header>
-    <wm-content name="content1" accessroles="Everyone">
-        <wm-left-panel columnwidth="1" content="leftnavReportBrowser" name="left_panel1"></wm-left-panel>
-        <wm-page-content columnwidth="11" name="page_content1">
-            <wm-layoutgrid name="layoutgrid1">
-                <wm-gridrow name="gridrow1">
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn1">
-                        <wm-label name="label3_1" caption="Weld Report" fontsize="18" fontweight="bold" width="100%" borderwidth="0px 0px 2px 0px" bordercolor="#000000" borderstyle="groove"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn2"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn3"></wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow2">
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn4">
-                        <wm-composite name="composite1" captionposition="top">
-                            <wm-label class="col-md-3 control-label" name="label2" caption="Start Date" hint="12:00 AM of the date selected" fontweight="bold" fontsize="13"></wm-label>
-                            <wm-container class="col-md-9" name="container1">
-                                <wm-date name="dateStart" hint="12:00 AM of the date selected"></wm-date>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn5">
-                        <wm-composite name="composite2" captionposition="top">
-                            <wm-label class="col-md-3 control-label" name="label3" caption="End Date" hint="12:00 AM of the date selected" fontweight="bold" fontsize="13"></wm-label>
-                            <wm-container class="col-md-9" name="container2">
-                                <wm-date name="dateEnd" hint="12:00 AM of the date selected"></wm-date>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn6">
-                        <wm-button class="btn-default" caption="REFRESH" type="button" name="button1" iconclass="wi wi-refresh" on-click="Variables.serviceGetDWRByDate.invoke()" margin="8% unset unset unset"></wm-button>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow4">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn10">
-                        <wm-grid title="" dataset="bind:Variables.serviceGetDWRByDate.dataSet" navigation="Classic" name="grid1" showrecordcount="true" showrowindex="false" spacing="condensed" exportformat="EXCEL,CSV" exportdatasize="1000">
-                            <wm-grid-column binding="WeldNumber" caption="Weld Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="WeldSpool1" caption="Spool1" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="WeldSpool2" caption="Spool2" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="WeldLineNumber" caption="Line Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="WeldDrawingNumber" caption="Drawing Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="WeldSheetNumber" caption="Sheet" type="string" width="70px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                            <wm-grid-column binding="WeldStencil" caption="Stencil" type="string" width="80px" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="WeldSize" caption="Size" type="string" width="70px" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="WeldThickness" caption="Schd." type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="WeldMaterial" caption="Material" type="string" readonly="true" edit-widget-type="text" sortable="false" show="true"></wm-grid-column>
-                            <wm-grid-column binding="WeldType" caption="Weld Type" type="string" width="70px" readonly="true" edit-widget-type="text" sortable="false" show="true"></wm-grid-column>
-                            <wm-grid-column binding="WeldLineSpec" caption="Line Spec" type="string" readonly="true" edit-widget-type="text" sortable="false" show="true"></wm-grid-column>
-                            <wm-grid-column binding="WeldProcedure" caption="Weld Procedure" type="string" width="100px" readonly="true" edit-widget-type="text" sortable="false" show="true"></wm-grid-column>
-                            <wm-grid-column binding="WeldNotes" caption="Notes" type="string" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ReceivedTime" caption="Date" type="string" width="100px" readonly="true" datepattern="M-dd-yyyy" formatpattern="toDate" edit-widget-type="text" searchable="false" show="true"></wm-grid-column>
-                        </wm-grid>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow3">
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn7"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn8"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn9"></wm-gridcolumn>
-                </wm-gridrow>
-            </wm-layoutgrid>
-        </wm-page-content>
-    </wm-content>
-    <wm-footer content="footer" name="footer1"></wm-footer>
+<wm-page data-ng-controller="ReportWeldPageController" pagetitle="Report Weld" name="page1"> 
+    <wm-header content="header" name="header1"></wm-header> 
+    <wm-content name="content1" accessroles="Everyone"> 
+        <wm-left-panel columnwidth="1" content="leftnavReportBrowser" name="left_panel1"></wm-left-panel> 
+        <wm-page-content columnwidth="11" name="page_content1"> 
+            <wm-layoutgrid name="layoutgrid1"> 
+                <wm-gridrow name="gridrow1"> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn1"> 
+                        <wm-label name="label3_1" caption="Weld Report" fontsize="18" fontweight="bold" width="100%" borderwidth="0px 0px 2px 0px" bordercolor="#000000" borderstyle="groove"></wm-label> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn2"></wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn3"></wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow2"> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn4"> 
+                        <wm-composite name="composite1" captionposition="top"> 
+                            <wm-label class="col-md-3 control-label" name="label2" caption="Start Date" hint="12:00 AM of the date selected" fontweight="bold" fontsize="13"></wm-label> 
+                            <wm-container class="col-md-9" name="container1"> 
+                                <wm-date name="dateStart" hint="12:00 AM of the date selected"></wm-date> 
+                            </wm-container> 
+                        </wm-composite> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn5"> 
+                        <wm-composite name="composite2" captionposition="top"> 
+                            <wm-label class="col-md-3 control-label" name="label3" caption="End Date" hint="12:00 AM of the date selected" fontweight="bold" fontsize="13"></wm-label> 
+                            <wm-container class="col-md-9" name="container2"> 
+                                <wm-date name="dateEnd" hint="12:00 AM of the date selected"></wm-date> 
+                            </wm-container> 
+                        </wm-composite> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn6"> 
+                        <wm-button class="btn-default" caption="REFRESH" type="button" name="button1" iconclass="wi wi-refresh" on-click="Variables.serviceGetDWRByDate.invoke()" margin="8% unset unset unset"></wm-button> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow4"> 
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn10"> 
+                        <wm-table title="" dataset="bind:Variables.serviceGetDWRByDate.dataSet" navigation="Classic" name="grid1" showrecordcount="true" showrowindex="false" spacing="condensed" exportformat="EXCEL,CSV" exportdatasize="1000"> 
+                            <wm-table-column binding="WeldNumber" caption="Weld Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="WeldSpool1" caption="Spool1" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="WeldSpool2" caption="Spool2" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="WeldLineNumber" caption="Line Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="WeldDrawingNumber" caption="Drawing Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="WeldSheetNumber" caption="Sheet" type="string" width="70px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-table-column> 
+                            <wm-table-column binding="WeldStencil" caption="Stencil" type="string" width="80px" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="WeldSize" caption="Size" type="string" width="70px" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="WeldThickness" caption="Schd." type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="WeldMaterial" caption="Material" type="string" readonly="true" edit-widget-type="text" sortable="false" show="true"></wm-table-column> 
+                            <wm-table-column binding="WeldType" caption="Weld Type" type="string" width="70px" readonly="true" edit-widget-type="text" sortable="false" show="true"></wm-table-column> 
+                            <wm-table-column binding="WeldLineSpec" caption="Line Spec" type="string" readonly="true" edit-widget-type="text" sortable="false" show="true"></wm-table-column> 
+                            <wm-table-column binding="WeldProcedure" caption="Weld Procedure" type="string" width="100px" readonly="true" edit-widget-type="text" sortable="false" show="true"></wm-table-column> 
+                            <wm-table-column binding="WeldNotes" caption="Notes" type="string" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-table-column> 
+                            <wm-table-column binding="ReceivedTime" caption="Date" type="string" width="100px" readonly="true" datepattern="M-dd-yyyy" formatpattern="toDate" edit-widget-type="text" searchable="false" show="true"></wm-table-column> 
+                        </wm-table> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow3"> 
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn7"></wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn8"></wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn9"></wm-gridcolumn> 
+                </wm-gridrow> 
+            </wm-layoutgrid> 
+        </wm-page-content> 
+    </wm-content> 
+    <wm-footer content="footer" name="footer1"></wm-footer> 
 </wm-page>

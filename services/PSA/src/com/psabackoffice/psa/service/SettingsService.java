@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface SettingsService {
      * @param settings Details of the Settings to be created; value cannot be null.
      * @return The newly created Settings.
      */
-	Settings create(Settings settings);
+	Settings create(@Valid Settings settings);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface SettingsService {
 	 * @return The updated Settings.
 	 * @throws EntityNotFoundException if no Settings is found with given input.
 	 */
-	Settings update(Settings settings) throws EntityNotFoundException;
+	Settings update(@Valid Settings settings) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing Settings with the given id.

@@ -52,9 +52,9 @@ public class RefImportableTablesController {
 	private RefImportableTablesService refImportableTablesService;
 
 	@ApiOperation(value = "Creates a new RefImportableTables instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefImportableTables createRefImportableTables(@RequestBody RefImportableTables refImportableTables) {
+    public RefImportableTables createRefImportableTables(@RequestBody RefImportableTables refImportableTables) {
 		LOGGER.debug("Create RefImportableTables with information: {}" , refImportableTables);
 
 		refImportableTables = refImportableTablesService.create(refImportableTables);
@@ -62,7 +62,6 @@ public class RefImportableTablesController {
 
 	    return refImportableTables;
 	}
-
 
     @ApiOperation(value = "Returns the RefImportableTables instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

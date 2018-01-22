@@ -52,9 +52,9 @@ public class SettingsController {
 	private SettingsService settingsService;
 
 	@ApiOperation(value = "Creates a new Settings instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public Settings createSettings(@RequestBody Settings settings) {
+    public Settings createSettings(@RequestBody Settings settings) {
 		LOGGER.debug("Create Settings with information: {}" , settings);
 
 		settings = settingsService.create(settings);
@@ -62,7 +62,6 @@ public class SettingsController {
 
 	    return settings;
 	}
-
 
     @ApiOperation(value = "Returns the Settings instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

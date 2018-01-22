@@ -1,142 +1,133 @@
-<wm-partial data-ng-controller="PartHelpLiveChatPageController" name="partial1">
-    <!--groups chats container-->
-    <wm-container name="container9" show="bind:Variables.staticShowConversations.dataSet.dataValue" height="100%">
-        <wm-layoutgrid name="layoutgrid6_1">
-            <wm-gridrow name="gridrow7_1">
-                <wm-gridcolumn columnwidth="12" name="gridcolumn12_1">
-                    <wm-container class="toolbar" name="container2">
-                        <wm-button class="btn-default" caption="NEW" type="button" name="buttonNewConversation" iconclass="wi wi-plus" on-click="buttonNewConversationClick($event, $scope)" hint="New direct conversation between you and another user."></wm-button>
-                    </wm-container>
-                </wm-gridcolumn>
-            </wm-gridrow>
-            <wm-gridrow name="gridrow13">
-                <wm-gridcolumn columnwidth="12" name="gridcolumn22_1">
-                    <wm-container name="containerAllChatConvo" on-click="containerAllChatConvoClick($event, $isolateScope)" accessroles="SuperUser,Site Office-Project Services B,Site Office-Project Services A,Corp. Office-Project Services,Corp. Office-Site Admin"
-                    conditionalclass="bind:{'': Variables.serviceGetAllChatLastRead.firstRecord.timeStamp > Variables.serviceGetAllChatLatestTimestamp.firstRecord.latestTimeStamp,
-'bg-info': Variables.serviceGetAllChatLastRead.firstRecord.timeStamp < Variables.serviceGetAllChatLatestTimestamp.firstRecord.latestTimeStamp}">
-                        <wm-layoutgrid name="layoutgrid8_1">
-                            <wm-gridrow name="gridrow14">
-                                <wm-gridcolumn columnwidth="3" name="gridcolumn25" padding="2% unset 2% 5%">
-                                    <wm-picture width="24pt" height="24pt" shape="circle" class="media-object" picturesource="resources/images/imagelists/logo.png" name="picture3" hint="Open chat to all logged in project services users."></wm-picture>
-                                </wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="7" name="gridcolumn26" padding="2% unset unset unset">
-                                    <wm-label class="p media-heading" caption="Project Services ALL Chat" fontsize="9" fontunit="pt" color="#000000" hint="Open chat to all logged in project services users." show="true" name="label12" fontweight="bold"></wm-label>
-                                </wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="2" name="gridcolumn19" padding="unset unset unset 3%">
-                                    <wm-button class="btn-transparent" iconclass="wi wi-chevron-right" fontsize="18" fontunit="pt" name="button5"></wm-button>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                        </wm-layoutgrid>
-                    </wm-container>
-                </wm-gridcolumn>
-            </wm-gridrow>
-            <wm-gridrow name="gridrow8">
-                <wm-gridcolumn columnwidth="12" name="gridcolumn14_1">
-                    <wm-livelist listclass="list-group " itemclass="list-group-item" template="true" itemsperrow="xs-1 sm-1 md-1 lg-1" class="media-list scrollable-list" dataset="bind:Variables.serviceGetChatConversations.dataSet" navigation="Scroll" name="livelistConversations"
-                    show="true" on-click="livelistConversationsClick($event, $scope)" loadingdatamsg="" nodatamessage="No Conversations..." orderby="Timestamp:desc">
-                        <wm-listtemplate layout="inline" name="listtemplate2">
-                            <wm-container class="media-left" name="container4">
-                                <wm-picture width="24pt" height="24pt" name="Picture" shape="circle" class="media-object" picturesource="resources/images/imagelists/logo.png"></wm-picture>
-                            </wm-container>
+<wm-partial data-ng-controller="PartHelpLiveChatPageController" name="partial1"> 
+    <!--groups chats container--> 
+    <wm-container name="container9" show="bind:Variables.staticShowConversations.dataSet.dataValue" height="100%"> 
+        <wm-layoutgrid name="layoutgrid6_1"> 
+            <wm-gridrow name="gridrow7_1"> 
+                <wm-gridcolumn columnwidth="12" name="gridcolumn12_1"> 
+                    <wm-container class="toolbar" name="container2"> 
+                        <wm-button class="btn-default" caption="NEW" type="button" name="buttonNewConversation" iconclass="wi wi-plus" on-click="buttonNewConversationClick($event, $scope)" hint="New direct conversation between you and another user."></wm-button> 
+                    </wm-container> 
+                </wm-gridcolumn> 
+            </wm-gridrow> 
+            <wm-gridrow name="gridrow13"> 
+                <wm-gridcolumn columnwidth="12" name="gridcolumn22_1"> 
+                    <wm-container name="containerAllChatConvo" on-click="containerAllChatConvoClick($event, $isolateScope)" accessroles="SuperUser,Site Office-Project Services B,Site Office-Project Services A,Corp. Office-Project Services,Corp. Office-Site Admin" conditionalclass="bind:{'': Variables.serviceGetAllChatLastRead.firstRecord.timeStamp > Variables.serviceGetAllChatLatestTimestamp.firstRecord.latestTimeStamp,
+'bg-info': Variables.serviceGetAllChatLastRead.firstRecord.timeStamp < Variables.serviceGetAllChatLatestTimestamp.firstRecord.latestTimeStamp}"> 
+                        <wm-layoutgrid name="layoutgrid8_1"> 
+                            <wm-gridrow name="gridrow14"> 
+                                <wm-gridcolumn columnwidth="3" name="gridcolumn25" padding="2% unset 2% 5%"> 
+                                    <wm-picture width="24pt" height="24pt" shape="circle" class="media-object" picturesource="resources/images/imagelists/logo.png" name="picture3" hint="Open chat to all logged in project services users."></wm-picture> 
+                                </wm-gridcolumn> 
+                                <wm-gridcolumn columnwidth="7" name="gridcolumn26" padding="2% unset unset unset"> 
+                                    <wm-label class="p media-heading" caption="Project Services ALL Chat" fontsize="9" fontunit="pt" color="#000000" hint="Open chat to all logged in project services users." show="true" name="label12" fontweight="bold"></wm-label> 
+                                </wm-gridcolumn> 
+                                <wm-gridcolumn columnwidth="2" name="gridcolumn19" padding="unset unset unset 3%"> 
+                                    <wm-button class="btn-transparent" iconclass="wi wi-chevron-right" fontsize="18" fontunit="pt" name="button5"></wm-button> 
+                                </wm-gridcolumn> 
+                            </wm-gridrow> 
+                        </wm-layoutgrid> 
+                    </wm-container> 
+                </wm-gridcolumn> 
+            </wm-gridrow> 
+            <wm-gridrow name="gridrow8"> 
+                <wm-gridcolumn columnwidth="12" name="gridcolumn14_1"> 
+                    <wm-list listclass="list-group " itemclass="list-group-item" template="true" itemsperrow="xs-1 sm-1 md-1 lg-1" class="media-list scrollable-list" dataset="bind:Variables.serviceGetChatConversations.dataSet" navigation="Scroll" name="livelistConversations" show="true" on-click="livelistConversationsClick($event, $scope)" loadingdatamsg="" nodatamessage="No Conversations..." orderby="Timestamp:desc"> 
+                        <wm-listtemplate layout="inline" name="listtemplate2"> 
+                            <wm-container class="media-left" name="container4"> 
+                                <wm-picture width="24pt" height="24pt" name="Picture" shape="circle" class="media-object" picturesource="resources/images/imagelists/logo.png"></wm-picture> 
+                            </wm-container> 
                             <wm-container class="media-body" padding="unset unset unset 1.25em" name="container5" conditionalclass="bind:{'': (Widgets.livelistConversations.currentItem.Status == 0 || Widgets.livelistConversations.currentItem.Author != Variables.loggedInUser.dataSet.id),
-'bg-info': (Widgets.livelistConversations.currentItem.Status == 1 &amp;&amp; Widgets.livelistConversations.currentItem.Author != Variables.loggedInUser.dataSet.id)}">
-                                <wm-layoutgrid name="layoutgrid6">
-                                    <wm-gridrow name="gridrow9_1">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn14">
-                                            <wm-label name="Name" class="p media-heading" caption="bind:Widgets.livelistConversations.currentItem.FirstName + &quot; &quot; + Widgets.livelistConversations.currentItem.LastName" fontsize="9" fontunit="pt" color="#000000"
-                                            hint="bind:&quot; (&quot; + Widgets.livelistConversations.currentItem.tblUserPsa.email + &quot;)&quot;" show="true"></wm-label>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow10_1">
-                                        <wm-gridcolumn columnwidth="8" name="gridcolumn16_1">
-                                            <wm-label name="LastMessage" caption="bind:Widgets.livelistConversations.currentItem.LastMessage" class="p text-muted" fontsize="9" height="12px"></wm-label>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn17_1">
-                                            <wm-label caption="bind:Widgets.livelistConversations.currentItem.TimeStamp | toDate: 'M/d/yyyy'" class="p text-muted" fontsize="9" height="12px" name="label6"></wm-label>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
-                            </wm-container>
-                            <wm-container class="media-right media-top" name="container6">
-                                <wm-button class="btn-transparent" iconclass="wi wi-chevron-right" fontsize="18" fontunit="pt" name="button2"></wm-button>
-                            </wm-container>
-                        </wm-listtemplate>
-                    </wm-livelist>
-                </wm-gridcolumn>
-            </wm-gridrow>
-        </wm-layoutgrid>
-    </wm-container>
-    <!--second container-->
-    <wm-container name="container4_1" show="bind:Variables.staticShowConversations.dataSet.dataValue == false" height="100%">
-        <wm-container class="toolbar" name="container7_1">
-            <wm-layoutgrid name="layoutgrid1">
-                <wm-gridrow name="gridrow1">
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn1">
-                        <wm-button class="btn-default" caption="Back" type="button" name="buttonBack" iconclass="wi wi-backward" on-click="buttonBackClick($event, $scope)"></wm-button>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="9" name="gridcolumn2" padding="unset unset unset 1%">
-                        <wm-label class="p media-heading" caption="bind:Variables.serviceGetRecipientName.dataSet[$i].FirstName + &quot; &quot; + Variables.serviceGetRecipientName.dataSet[$i].LastName" fontsize="9" fontunit="pt" color="#000000" hint="bind:&quot; (&quot; + Variables.serviceGetRecipientName.dataSet[$i].Email + &quot;)&quot;"
-                        show="bind:Variables.staticExistingConversation.dataSet.dataValue &amp;&amp; Variables.staticActiveConversation.dataSet.dataValue != 1" name="labelMessagesRecipientName" margin="2% unset unset unset"></wm-label>
-                        <wm-search name="searchChatUsers" datafield="id" placeholder="Search users.." hint="First Name, Last Name, or Email address" show="bind:Variables.staticExistingConversation.dataSet.dataValue == false" deferload="true"
-                        on-select="searchChatUsersSelect($event, $scope, selectedValue)" dataset="bind:Variables.liveChatUsers.dataSet" searchkey="email,firstName,lastName" displaylabel="bind:$[data[$i].firstName] + &quot; &quot; + $[data[$i].lastName] + &quot; (&quot; + $[data[$i].email] + &quot;)&quot;"></wm-search>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-            </wm-layoutgrid>
-        </wm-container>
-        <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" itemsperrow="xs-1 sm-1 md-1 lg-1" class="media-list message-list" datafield="All Fields" dataset="bind:Variables.serviceGetChatMessages.dataSet" navigation="Scroll"
-        name="livelistMessages" disableitem="true" loadingdatamsg="Retrieving Messages..." nodatamessage="No messages found" show="bind:Variables.staticExistingConversation.dataSet.dataValue">
-            <wm-listtemplate layout="inline" name="listtemplate2_1">
-                <wm-container class="media-left" name="container5_1" show="bind:Widgets.livelistMessages.currentItem.Author != Variables.loggedInUser.dataSet.id">
-                    <wm-picture width="16pt" height="16pt" name="Picture" shape="circle" class="media-object" picturesource="resources/images/imagelists/logo.png"></wm-picture>
-                </wm-container>
-                <wm-container class="media-body" name="container6_1" height="auto">
-                    <wm-container class="col-md-9" name="container7" width="100%" show="bind:Widgets.livelistMessages.currentItem.Author != Variables.loggedInUser.dataSet.id">
-                        <wm-layoutgrid name="layoutgrid4">
-                            <wm-gridrow name="gridrow12_1">
-                                <wm-gridcolumn columnwidth="10" name="gridcolumn20">
-                                    <wm-label width="100%" horizontalalign="left" caption="bind:Widgets.livelistMessages.currentItem.FirstName + &quot; &quot; + Widgets.livelistMessages.currentItem.LastName" class="small" margin="unset 0px unset unset" name="labelAllChatName"
-                                    show="bind:Widgets.livelistMessages.currentItem.ConversationID == 1"></wm-label>
-                                </wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="2" name="gridcolumn21"></wm-gridcolumn>
-                            </wm-gridrow>
-                            <wm-gridrow name="gridrow7">
-                                <wm-gridcolumn columnwidth="10" name="gridcolumn11" padding="unset 3% unset unset">
-                                    <wm-label name="textareaMessage1" caption="bind:Widgets.livelistMessages.currentItem.Message" backgroundcolor="#75dfe9" class="p comment" width="auto"></wm-label>
-                                </wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="2" name="gridcolumn12" padding="unset unset unset 0px">
-                                    <wm-label width="100%" horizontalalign="right" caption="bind:Widgets.livelistMessages.currentItem.TimeStamp | timeFromNow" class="small" name="label4" margin="unset unset unset 0px"></wm-label>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                        </wm-layoutgrid>
-                    </wm-container>
-                    <wm-container class="col-md-9" name="container8" width="100%" horizontalalign="left" show="bind:Widgets.livelistMessages.currentItem.Author == Variables.loggedInUser.dataSet.id" height="auto" deferload="false">
-                        <wm-layoutgrid name="layoutgrid3">
-                            <wm-gridrow name="gridrow5_1">
-                                <wm-gridcolumn columnwidth="2" name="gridcolumn7" padding="unset 0px unset unset">
-                                    <wm-label name="label3" width="100%" horizontalalign="left" caption="bind:Widgets.livelistMessages.currentItem.TimeStamp  | timeFromNow" class="small" hint="bind:Widgets.livelistMessages.currentItem.TimeStamp | toDate: 'MM-dd-yy hh:mm:ss a'"
-                                    margin="unset 0px unset unset"></wm-label>
-                                </wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="10" name="gridcolumn8_1" horizontalalign="right" padding="unset unset unset 3%">
-                                    <wm-label name="textareaMessage2" caption="bind:Widgets.livelistMessages.currentItem.Message" backgroundcolor="#f8ff66" class="p comment" width="auto" horizontalalign="left"></wm-label>
-                                </wm-gridcolumn>
-                            </wm-gridrow>
-                        </wm-layoutgrid>
-                    </wm-container>
-                </wm-container>
-            </wm-listtemplate>
-        </wm-livelist>
-        <wm-form errormessage="" class="message-container" captionposition="top" title="" enctype="application/x-www-form-urlencoded" method="post" dataset="bind:Variables.serviceCreateChatMessage.dataSet" name="formNewMessage" postmessage="" messagelayout="Toaster"
-        on-success="Variables.serviceGetChatMessages.invoke();formNewMessageSuccess($event, $scope, $data)" captionsize="0">
-            <wm-layoutgrid columns="1" name="layoutgrid7">
-                <wm-gridrow name="gridrow10_2">
-                    <wm-gridcolumn columnwidth="9" name="gridcolumn15_1">
-                        <wm-form-field name="Message" key="Message" type="string" widget="textarea" show="true" placeholder="Enter message" width="98%" class="message-block" required="true"></wm-form-field>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn16_2" padding="6% unset unset unset">
-                        <wm-button class="btn-default btn-success" caption="Send" type="submit" name="buttonSend" iconclass="wi wi-send"></wm-button>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-            </wm-layoutgrid>
-        </wm-form>
-    </wm-container>
+'bg-info': (Widgets.livelistConversations.currentItem.Status == 1 &amp;&amp; Widgets.livelistConversations.currentItem.Author != Variables.loggedInUser.dataSet.id)}"> 
+                                <wm-layoutgrid name="layoutgrid6"> 
+                                    <wm-gridrow name="gridrow9_1"> 
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn14"> 
+                                            <wm-label name="Name" class="p media-heading" caption="bind:Widgets.livelistConversations.currentItem.FirstName + &quot; &quot; + Widgets.livelistConversations.currentItem.LastName" fontsize="9" fontunit="pt" color="#000000" hint="bind:&quot; (&quot; + Widgets.livelistConversations.currentItem.tblUserPsa.email + &quot;)&quot;" show="true"></wm-label> 
+                                        </wm-gridcolumn> 
+                                    </wm-gridrow> 
+                                    <wm-gridrow name="gridrow10_1"> 
+                                        <wm-gridcolumn columnwidth="8" name="gridcolumn16_1"> 
+                                            <wm-label name="LastMessage" caption="bind:Widgets.livelistConversations.currentItem.LastMessage" class="p text-muted" fontsize="9" height="12px"></wm-label> 
+                                        </wm-gridcolumn> 
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn17_1"> 
+                                            <wm-label caption="bind:Widgets.livelistConversations.currentItem.TimeStamp | toDate: 'M/d/yyyy'" class="p text-muted" fontsize="9" height="12px" name="label6"></wm-label> 
+                                        </wm-gridcolumn> 
+                                    </wm-gridrow> 
+                                </wm-layoutgrid> 
+                            </wm-container> 
+                            <wm-container class="media-right media-top" name="container6"> 
+                                <wm-button class="btn-transparent" iconclass="wi wi-chevron-right" fontsize="18" fontunit="pt" name="button2"></wm-button> 
+                            </wm-container> 
+                        </wm-listtemplate> 
+                    </wm-list> 
+                </wm-gridcolumn> 
+            </wm-gridrow> 
+        </wm-layoutgrid> 
+    </wm-container> 
+    <!--second container--> 
+    <wm-container name="container4_1" show="bind:Variables.staticShowConversations.dataSet.dataValue == false" height="100%"> 
+        <wm-container class="toolbar" name="container7_1"> 
+            <wm-layoutgrid name="layoutgrid1"> 
+                <wm-gridrow name="gridrow1"> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn1"> 
+                        <wm-button class="btn-default" caption="Back" type="button" name="buttonBack" iconclass="wi wi-backward" on-click="buttonBackClick($event, $scope)"></wm-button> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="9" name="gridcolumn2" padding="unset unset unset 1%"> 
+                        <wm-label class="p media-heading" caption="bind:Variables.serviceGetRecipientName.dataSet[$i].FirstName + &quot; &quot; + Variables.serviceGetRecipientName.dataSet[$i].LastName" fontsize="9" fontunit="pt" color="#000000" hint="bind:&quot; (&quot; + Variables.serviceGetRecipientName.dataSet[$i].Email + &quot;)&quot;" show="bind:Variables.staticExistingConversation.dataSet.dataValue &amp;&amp; Variables.staticActiveConversation.dataSet.dataValue != 1" name="labelMessagesRecipientName" margin="2% unset unset unset"></wm-label> 
+                        <wm-search name="searchChatUsers" datafield="id" placeholder="Search users.." hint="First Name, Last Name, or Email address" show="bind:Variables.staticExistingConversation.dataSet.dataValue == false" deferload="true" on-select="searchChatUsersSelect($event, $scope, selectedValue)" dataset="bind:Variables.liveChatUsers.dataSet" searchkey="email,firstName,lastName" displaylabel="bind:$[data[$i].firstName] + &quot; &quot; + $[data[$i].lastName] + &quot; (&quot; + $[data[$i].email] + &quot;)&quot;"></wm-search> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+            </wm-layoutgrid> 
+        </wm-container> 
+        <wm-list listclass="list-group" itemclass="list-group-item" template="true" itemsperrow="xs-1 sm-1 md-1 lg-1" class="media-list message-list" datafield="All Fields" dataset="bind:Variables.serviceGetChatMessages.dataSet" navigation="Scroll" name="livelistMessages" disableitem="true" loadingdatamsg="Retrieving Messages..." nodatamessage="No messages found" show="bind:Variables.staticExistingConversation.dataSet.dataValue"> 
+            <wm-listtemplate layout="inline" name="listtemplate2_1"> 
+                <wm-container class="media-left" name="container5_1" show="bind:Widgets.livelistMessages.currentItem.Author != Variables.loggedInUser.dataSet.id"> 
+                    <wm-picture width="16pt" height="16pt" name="Picture" shape="circle" class="media-object" picturesource="resources/images/imagelists/logo.png"></wm-picture> 
+                </wm-container> 
+                <wm-container class="media-body" name="container6_1" height="auto"> 
+                    <wm-container class="col-md-9" name="container7" width="100%" show="bind:Widgets.livelistMessages.currentItem.Author != Variables.loggedInUser.dataSet.id"> 
+                        <wm-layoutgrid name="layoutgrid4"> 
+                            <wm-gridrow name="gridrow12_1"> 
+                                <wm-gridcolumn columnwidth="10" name="gridcolumn20"> 
+                                    <wm-label width="100%" horizontalalign="left" caption="bind:Widgets.livelistMessages.currentItem.FirstName + &quot; &quot; + Widgets.livelistMessages.currentItem.LastName" class="small" margin="unset 0px unset unset" name="labelAllChatName" show="bind:Widgets.livelistMessages.currentItem.ConversationID == 1"></wm-label> 
+                                </wm-gridcolumn> 
+                                <wm-gridcolumn columnwidth="2" name="gridcolumn21"></wm-gridcolumn> 
+                            </wm-gridrow> 
+                            <wm-gridrow name="gridrow7"> 
+                                <wm-gridcolumn columnwidth="10" name="gridcolumn11" padding="unset 3% unset unset"> 
+                                    <wm-label name="textareaMessage1" caption="bind:Widgets.livelistMessages.currentItem.Message" backgroundcolor="#75dfe9" class="p comment" width="auto"></wm-label> 
+                                </wm-gridcolumn> 
+                                <wm-gridcolumn columnwidth="2" name="gridcolumn12" padding="unset unset unset 0px"> 
+                                    <wm-label width="100%" horizontalalign="right" caption="bind:Widgets.livelistMessages.currentItem.TimeStamp | timeFromNow" class="small" name="label4" margin="unset unset unset 0px"></wm-label> 
+                                </wm-gridcolumn> 
+                            </wm-gridrow> 
+                        </wm-layoutgrid> 
+                    </wm-container> 
+                    <wm-container class="col-md-9" name="container8" width="100%" horizontalalign="left" show="bind:Widgets.livelistMessages.currentItem.Author == Variables.loggedInUser.dataSet.id" height="auto" deferload="false"> 
+                        <wm-layoutgrid name="layoutgrid3"> 
+                            <wm-gridrow name="gridrow5_1"> 
+                                <wm-gridcolumn columnwidth="2" name="gridcolumn7" padding="unset 0px unset unset"> 
+                                    <wm-label name="label3" width="100%" horizontalalign="left" caption="bind:Widgets.livelistMessages.currentItem.TimeStamp  | timeFromNow" class="small" hint="bind:Widgets.livelistMessages.currentItem.TimeStamp | toDate: 'MM-dd-yy hh:mm:ss a'" margin="unset 0px unset unset"></wm-label> 
+                                </wm-gridcolumn> 
+                                <wm-gridcolumn columnwidth="10" name="gridcolumn8_1" horizontalalign="right" padding="unset unset unset 3%"> 
+                                    <wm-label name="textareaMessage2" caption="bind:Widgets.livelistMessages.currentItem.Message" backgroundcolor="#f8ff66" class="p comment" width="auto" horizontalalign="left"></wm-label> 
+                                </wm-gridcolumn> 
+                            </wm-gridrow> 
+                        </wm-layoutgrid> 
+                    </wm-container> 
+                </wm-container> 
+            </wm-listtemplate> 
+        </wm-list> 
+        <wm-form errormessage="" class="message-container" captionposition="top" title="" enctype="application/x-www-form-urlencoded" method="post" dataset="bind:Variables.serviceCreateChatMessage.dataSet" name="formNewMessage" postmessage="" messagelayout="Toaster" on-success="Variables.serviceGetChatMessages.invoke();formNewMessageSuccess($event, $scope, $data)" captionsize="0"> 
+            <wm-layoutgrid columns="1" name="layoutgrid7"> 
+                <wm-gridrow name="gridrow10_2"> 
+                    <wm-gridcolumn columnwidth="9" name="gridcolumn15_1"> 
+                        <wm-form-field name="Message" key="Message" type="string" widget="textarea" show="true" placeholder="Enter message" width="98%" class="message-block" required="true"></wm-form-field> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn16_2" padding="6% unset unset unset"> 
+                        <wm-button class="btn-default btn-success" caption="Send" type="submit" name="buttonSend" iconclass="wi wi-send"></wm-button> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+            </wm-layoutgrid> 
+        </wm-form> 
+    </wm-container> 
 </wm-partial>

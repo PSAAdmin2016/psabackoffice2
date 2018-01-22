@@ -52,9 +52,9 @@ public class RefJobTitlesController {
 	private RefJobTitlesService refJobTitlesService;
 
 	@ApiOperation(value = "Creates a new RefJobTitles instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefJobTitles createRefJobTitles(@RequestBody RefJobTitles refJobTitles) {
+    public RefJobTitles createRefJobTitles(@RequestBody RefJobTitles refJobTitles) {
 		LOGGER.debug("Create RefJobTitles with information: {}" , refJobTitles);
 
 		refJobTitles = refJobTitlesService.create(refJobTitles);
@@ -62,7 +62,6 @@ public class RefJobTitlesController {
 
 	    return refJobTitles;
 	}
-
 
     @ApiOperation(value = "Returns the RefJobTitles instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

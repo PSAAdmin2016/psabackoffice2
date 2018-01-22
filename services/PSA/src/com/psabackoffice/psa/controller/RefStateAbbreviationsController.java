@@ -53,9 +53,9 @@ public class RefStateAbbreviationsController {
 	private RefStateAbbreviationsService refStateAbbreviationsService;
 
 	@ApiOperation(value = "Creates a new RefStateAbbreviations instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefStateAbbreviations createRefStateAbbreviations(@RequestBody RefStateAbbreviations refStateAbbreviations) {
+    public RefStateAbbreviations createRefStateAbbreviations(@RequestBody RefStateAbbreviations refStateAbbreviations) {
 		LOGGER.debug("Create RefStateAbbreviations with information: {}" , refStateAbbreviations);
 
 		refStateAbbreviations = refStateAbbreviationsService.create(refStateAbbreviations);
@@ -63,7 +63,6 @@ public class RefStateAbbreviationsController {
 
 	    return refStateAbbreviations;
 	}
-
 
     @ApiOperation(value = "Returns the RefStateAbbreviations instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

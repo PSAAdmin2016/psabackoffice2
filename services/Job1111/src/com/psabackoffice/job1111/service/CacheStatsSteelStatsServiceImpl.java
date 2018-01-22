@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.job1111.CacheStatsSteelStats;
  * @see CacheStatsSteelStats
  */
 @Service("Job1111.CacheStatsSteelStatsService")
+@Validated
 public class CacheStatsSteelStatsServiceImpl implements CacheStatsSteelStatsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CacheStatsSteelStatsServiceImpl.class);
@@ -49,6 +51,7 @@ public class CacheStatsSteelStatsServiceImpl implements CacheStatsSteelStatsServ
     @Override
 	public CacheStatsSteelStats create(CacheStatsSteelStats cacheStatsSteelStats) {
         LOGGER.debug("Creating a new CacheStatsSteelStats with information: {}", cacheStatsSteelStats);
+
         CacheStatsSteelStats cacheStatsSteelStatsCreated = this.wmGenericDao.create(cacheStatsSteelStats);
         return cacheStatsSteelStatsCreated;
     }

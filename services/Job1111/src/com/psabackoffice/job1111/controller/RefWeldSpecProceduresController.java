@@ -52,9 +52,9 @@ public class RefWeldSpecProceduresController {
 	private RefWeldSpecProceduresService refWeldSpecProceduresService;
 
 	@ApiOperation(value = "Creates a new RefWeldSpecProcedures instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefWeldSpecProcedures createRefWeldSpecProcedures(@RequestBody RefWeldSpecProcedures refWeldSpecProcedures) {
+    public RefWeldSpecProcedures createRefWeldSpecProcedures(@RequestBody RefWeldSpecProcedures refWeldSpecProcedures) {
 		LOGGER.debug("Create RefWeldSpecProcedures with information: {}" , refWeldSpecProcedures);
 
 		refWeldSpecProcedures = refWeldSpecProceduresService.create(refWeldSpecProcedures);
@@ -62,7 +62,6 @@ public class RefWeldSpecProceduresController {
 
 	    return refWeldSpecProcedures;
 	}
-
 
     @ApiOperation(value = "Returns the RefWeldSpecProcedures instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

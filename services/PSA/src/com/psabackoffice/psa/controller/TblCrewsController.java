@@ -53,9 +53,9 @@ public class TblCrewsController {
 	private TblCrewsService tblCrewsService;
 
 	@ApiOperation(value = "Creates a new TblCrews instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public TblCrews createTblCrews(@RequestBody TblCrews tblCrews) {
+    public TblCrews createTblCrews(@RequestBody TblCrews tblCrews) {
 		LOGGER.debug("Create TblCrews with information: {}" , tblCrews);
 
 		tblCrews = tblCrewsService.create(tblCrews);
@@ -63,7 +63,6 @@ public class TblCrewsController {
 
 	    return tblCrews;
 	}
-
 
     @ApiOperation(value = "Returns the TblCrews instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -99,6 +98,14 @@ public class TblCrewsController {
         TblCrews deletedTblCrews = tblCrewsService.delete(id);
 
         return deletedTblCrews != null;
+    }
+
+    @RequestMapping(value = "/foreman/{foreman}", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching TblCrews with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public TblCrews getByForeman(@PathVariable("foreman") Integer foreman) {
+        LOGGER.debug("Getting TblCrews with uniques key Foreman");
+        return tblCrewsService.getByForeman(foreman);
     }
 
     /**

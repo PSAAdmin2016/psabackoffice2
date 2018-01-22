@@ -1,91 +1,88 @@
-<wm-partial data-ng-controller="PartFAPipeEWOPageController">
-    <wm-layoutgrid name="layoutgrid1">
-        <wm-gridrow name="gridrow1">
-            <wm-gridcolumn columnwidth="6" name="gridcolumn1">
-                <wm-layoutgrid name="layoutgrid3">
-                    <wm-gridrow name="gridrow4">
-                        <wm-gridcolumn columnwidth="12" name="gridcolumn5">
-                            <wm-layoutgrid name="layoutgrid4_1">
-                                <wm-gridrow name="gridrow9_1">
-                                    <wm-gridcolumn columnwidth="3" name="gridcolumn12_1">
-                                        <wm-label caption="Field EWO" show="true" fontweight="bold" readonlygrid="true" fontsize="13" name="label1"></wm-label>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="4" name="gridcolumn13_1" horizontalalign="center">
-                                        <wm-checkbox caption="Rework" class="checkbox-custom" hint="Activity can NOT be accepted if it is Rework." disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetPipeEWO.dataSet.data[$i].eworework"
-                                        checkedvalue="1" uncheckedvalue="0" readonlygrid="true" show="true" padding="unset unset unset 0px" name="checkboxEWORework"></wm-checkbox>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="5" name="gridcolumn16"></wm-gridcolumn>
-                                </wm-gridrow>
-                            </wm-layoutgrid>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                    <wm-gridrow name="gridrow5">
-                        <wm-gridcolumn columnwidth="12" name="gridcolumn6">
-                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="true" name="composite1">
-                                <wm-label class="col-md-3 control-label" caption="EWO Number" name="label2"></wm-label>
-                                <wm-container class="col-md-9" name="container1">
-                                    <wm-text disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" width="30%" type="text" minvalue="1" maxvalue="32700" datavalue="bind:$parent.Variables.liveGetPipeEWO.dataSet.data[$i].ewonumber" name="textEWONumber"
-                                    placeholder="Enter EWO Number"></wm-text>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                    <wm-gridrow name="gridrow6">
-                        <wm-gridcolumn columnwidth="12" horizontalalign="left" name="gridcolumn7">
-                            <wm-composite captionposition="top" show="true" name="composite2">
-                                <wm-label class="col-md-3 control-label" caption="Hours Spent" name="label3"></wm-label>
-                                <wm-container class="col-md-9" name="container2">
-                                    <wm-text disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" width="30%" type="number" minvalue="1" maxvalue="250" datavalue="bind:$parent.Variables.liveGetPipeEWO.dataSet.data[$i].ewohours" name="textEWOHoursSpent"
-                                    placeholder="Enter hours spent"></wm-text>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                </wm-layoutgrid>
-            </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="6" name="gridcolumn2">
-                <wm-layoutgrid name="layoutgrid4">
-                    <wm-gridrow name="gridrow8">
-                        <wm-gridcolumn columnwidth="8" name="gridcolumn10">
-                            <wm-composite captionposition="top" name="composite3">
-                                <wm-label class="col-md-3 control-label" caption="Drawing Number" readonlygrid="true" name="label4"></wm-label>
-                                <wm-container class="col-md-9" width="100%" name="container4">
-                                    <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetPipeEWO.dataSet.data[$i].ewodrawingNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" name="textEWODrawing" placeholder="Enter Drawing Number"></wm-text>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn11">
-                            <wm-composite captionposition="top" name="composite4">
-                                <wm-label class="col-md-3 control-label" caption="Sheet" name="label5"></wm-label>
-                                <wm-container class="col-md-9" name="container5">
-                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeEWO.dataSet.data[$i].ewosheetNumber" width="70%" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" name="textEWOSheet" placeholder="Enter Sheet Number"></wm-text>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                    <wm-gridrow name="gridrow9">
-                        <wm-gridcolumn columnwidth="8" name="gridcolumn12">
-                            <wm-composite captionposition="top" name="composite5">
-                                <wm-label class="col-md-3 control-label" caption="Line Number" name="label6"></wm-label>
-                                <wm-container class="col-md-9" width="100%" name="container6">
-                                    <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetPipeEWO.dataSet.data[$i].ewolineNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textEWOLine" placeholder="Enter Line Number"></wm-text>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn13"></wm-gridcolumn>
-                    </wm-gridrow>
-                    <wm-gridrow name="gridrow10">
-                        <wm-gridcolumn columnwidth="12" name="gridcolumn14">
-                            <wm-composite captionposition="top" name="composite6">
-                                <wm-label class="col-md-3 control-label" caption="Notes" name="label7"></wm-label>
-                                <wm-container class="col-md-9" name="container7">
-                                    <wm-textarea datavalue="bind:$parent.Variables.liveGetPipeEWO.dataSet.data[$i].ewonotes" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textareaEWONotes" placeholder="Input notes here"></wm-textarea>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                </wm-layoutgrid>
-            </wm-gridcolumn>
-        </wm-gridrow>
-    </wm-layoutgrid>
+<wm-partial data-ng-controller="PartFAPipeEWOPageController"> 
+    <wm-layoutgrid name="layoutgrid1"> 
+        <wm-gridrow name="gridrow1"> 
+            <wm-gridcolumn columnwidth="6" name="gridcolumn1"> 
+                <wm-layoutgrid name="layoutgrid3"> 
+                    <wm-gridrow name="gridrow4"> 
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn5"> 
+                            <wm-layoutgrid name="layoutgrid4_1"> 
+                                <wm-gridrow name="gridrow9_1"> 
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn12_1"> 
+                                        <wm-label caption="Field EWO" show="true" fontweight="bold" readonlygrid="true" fontsize="13" name="label1"></wm-label> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn13_1" horizontalalign="center"> 
+                                        <wm-checkbox caption="Rework" class="checkbox-custom" hint="Activity can NOT be accepted if it is Rework." disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetPipeEWO.dataSet.data[$i].eworework" checkedvalue="1" uncheckedvalue="0" readonlygrid="true" show="true" padding="unset unset unset 0px" name="checkboxEWORework"></wm-checkbox> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="5" name="gridcolumn16"></wm-gridcolumn> 
+                                </wm-gridrow> 
+                            </wm-layoutgrid> 
+                        </wm-gridcolumn> 
+                    </wm-gridrow> 
+                    <wm-gridrow name="gridrow5"> 
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn6"> 
+                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="true" name="composite1"> 
+                                <wm-label class="col-md-3 control-label" caption="EWO Number" name="label2"></wm-label> 
+                                <wm-container class="col-md-9" name="container1"> 
+                                    <wm-text disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" width="30%" type="text" minvalue="1" maxvalue="32700" datavalue="bind:$parent.Variables.liveGetPipeEWO.dataSet.data[$i].ewonumber" name="textEWONumber" placeholder="Enter EWO Number"></wm-text> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                    </wm-gridrow> 
+                    <wm-gridrow name="gridrow6"> 
+                        <wm-gridcolumn columnwidth="12" horizontalalign="left" name="gridcolumn7"> 
+                            <wm-composite captionposition="top" show="true" name="composite2"> 
+                                <wm-label class="col-md-3 control-label" caption="Hours Spent" name="label3"></wm-label> 
+                                <wm-container class="col-md-9" name="container2"> 
+                                    <wm-text disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" width="30%" type="number" minvalue="1" maxvalue="250" datavalue="bind:$parent.Variables.liveGetPipeEWO.dataSet.data[$i].ewohours" name="textEWOHoursSpent" placeholder="Enter hours spent"></wm-text> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                    </wm-gridrow> 
+                </wm-layoutgrid> 
+            </wm-gridcolumn> 
+            <wm-gridcolumn columnwidth="6" name="gridcolumn2"> 
+                <wm-layoutgrid name="layoutgrid4"> 
+                    <wm-gridrow name="gridrow8"> 
+                        <wm-gridcolumn columnwidth="8" name="gridcolumn10"> 
+                            <wm-composite captionposition="top" name="composite3"> 
+                                <wm-label class="col-md-3 control-label" caption="Drawing Number" readonlygrid="true" name="label4"></wm-label> 
+                                <wm-container class="col-md-9" width="100%" name="container4"> 
+                                    <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetPipeEWO.dataSet.data[$i].ewodrawingNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" name="textEWODrawing" placeholder="Enter Drawing Number"></wm-text> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                        <wm-gridcolumn columnwidth="3" name="gridcolumn11"> 
+                            <wm-composite captionposition="top" name="composite4"> 
+                                <wm-label class="col-md-3 control-label" caption="Sheet" name="label5"></wm-label> 
+                                <wm-container class="col-md-9" name="container5"> 
+                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeEWO.dataSet.data[$i].ewosheetNumber" width="70%" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" name="textEWOSheet" placeholder="Enter Sheet Number"></wm-text> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                    </wm-gridrow> 
+                    <wm-gridrow name="gridrow9"> 
+                        <wm-gridcolumn columnwidth="8" name="gridcolumn12"> 
+                            <wm-composite captionposition="top" name="composite5"> 
+                                <wm-label class="col-md-3 control-label" caption="Line Number" name="label6"></wm-label> 
+                                <wm-container class="col-md-9" width="100%" name="container6"> 
+                                    <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetPipeEWO.dataSet.data[$i].ewolineNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textEWOLine" placeholder="Enter Line Number"></wm-text> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                        <wm-gridcolumn columnwidth="3" name="gridcolumn13"></wm-gridcolumn> 
+                    </wm-gridrow> 
+                    <wm-gridrow name="gridrow10"> 
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn14"> 
+                            <wm-composite captionposition="top" name="composite6"> 
+                                <wm-label class="col-md-3 control-label" caption="Notes" name="label7"></wm-label> 
+                                <wm-container class="col-md-9" name="container7"> 
+                                    <wm-textarea datavalue="bind:$parent.Variables.liveGetPipeEWO.dataSet.data[$i].ewonotes" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textareaEWONotes" placeholder="Input notes here"></wm-textarea> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                    </wm-gridrow> 
+                </wm-layoutgrid> 
+            </wm-gridcolumn> 
+        </wm-gridrow> 
+    </wm-layoutgrid> 
 </wm-partial>

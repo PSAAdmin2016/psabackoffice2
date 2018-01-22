@@ -52,9 +52,9 @@ public class SteelTrackerClassicController {
 	private SteelTrackerClassicService steelTrackerClassicService;
 
 	@ApiOperation(value = "Creates a new SteelTrackerClassic instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public SteelTrackerClassic createSteelTrackerClassic(@RequestBody SteelTrackerClassic steelTrackerClassic) {
+    public SteelTrackerClassic createSteelTrackerClassic(@RequestBody SteelTrackerClassic steelTrackerClassic) {
 		LOGGER.debug("Create SteelTrackerClassic with information: {}" , steelTrackerClassic);
 
 		steelTrackerClassic = steelTrackerClassicService.create(steelTrackerClassic);
@@ -62,7 +62,6 @@ public class SteelTrackerClassicController {
 
 	    return steelTrackerClassic;
 	}
-
 
     @ApiOperation(value = "Returns the SteelTrackerClassic instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

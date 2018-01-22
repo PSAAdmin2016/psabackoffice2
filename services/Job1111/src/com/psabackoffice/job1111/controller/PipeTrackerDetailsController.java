@@ -52,9 +52,9 @@ public class PipeTrackerDetailsController {
 	private PipeTrackerDetailsService pipeTrackerDetailsService;
 
 	@ApiOperation(value = "Creates a new PipeTrackerDetails instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public PipeTrackerDetails createPipeTrackerDetails(@RequestBody PipeTrackerDetails pipeTrackerDetails) {
+    public PipeTrackerDetails createPipeTrackerDetails(@RequestBody PipeTrackerDetails pipeTrackerDetails) {
 		LOGGER.debug("Create PipeTrackerDetails with information: {}" , pipeTrackerDetails);
 
 		pipeTrackerDetails = pipeTrackerDetailsService.create(pipeTrackerDetails);
@@ -62,7 +62,6 @@ public class PipeTrackerDetailsController {
 
 	    return pipeTrackerDetails;
 	}
-
 
     @ApiOperation(value = "Returns the PipeTrackerDetails instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

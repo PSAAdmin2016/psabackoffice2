@@ -53,9 +53,9 @@ public class MenuHelpVideosController {
 	private MenuHelpVideosService menuHelpVideosService;
 
 	@ApiOperation(value = "Creates a new MenuHelpVideos instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public MenuHelpVideos createMenuHelpVideos(@RequestBody MenuHelpVideos menuHelpVideos) {
+    public MenuHelpVideos createMenuHelpVideos(@RequestBody MenuHelpVideos menuHelpVideos) {
 		LOGGER.debug("Create MenuHelpVideos with information: {}" , menuHelpVideos);
 
 		menuHelpVideos = menuHelpVideosService.create(menuHelpVideos);
@@ -63,7 +63,6 @@ public class MenuHelpVideosController {
 
 	    return menuHelpVideos;
 	}
-
 
     @ApiOperation(value = "Returns the MenuHelpVideos instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

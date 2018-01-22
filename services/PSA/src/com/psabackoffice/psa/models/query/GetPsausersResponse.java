@@ -7,7 +7,6 @@ package com.psabackoffice.psa.models.query;
 
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.Objects;
 

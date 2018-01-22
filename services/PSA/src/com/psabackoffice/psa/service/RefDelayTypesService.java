@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefDelayTypesService {
      * @param refDelayTypes Details of the RefDelayTypes to be created; value cannot be null.
      * @return The newly created RefDelayTypes.
      */
-	RefDelayTypes create(RefDelayTypes refDelayTypes);
+	RefDelayTypes create(@Valid RefDelayTypes refDelayTypes);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface RefDelayTypesService {
 	 * @return The updated RefDelayTypes.
 	 * @throws EntityNotFoundException if no RefDelayTypes is found with given input.
 	 */
-	RefDelayTypes update(RefDelayTypes refDelayTypes) throws EntityNotFoundException;
+	RefDelayTypes update(@Valid RefDelayTypes refDelayTypes) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefDelayTypes with the given id.

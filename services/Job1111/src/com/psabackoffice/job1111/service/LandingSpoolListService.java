@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface LandingSpoolListService {
      * @param landingSpoolList Details of the LandingSpoolList to be created; value cannot be null.
      * @return The newly created LandingSpoolList.
      */
-	LandingSpoolList create(LandingSpoolList landingSpoolList);
+	LandingSpoolList create(@Valid LandingSpoolList landingSpoolList);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface LandingSpoolListService {
 	 * @return The updated LandingSpoolList.
 	 * @throws EntityNotFoundException if no LandingSpoolList is found with given input.
 	 */
-	LandingSpoolList update(LandingSpoolList landingSpoolList) throws EntityNotFoundException;
+	LandingSpoolList update(@Valid LandingSpoolList landingSpoolList) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing LandingSpoolList with the given id.

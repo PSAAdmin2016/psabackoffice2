@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface PipeWeldService {
      * @param pipeWeld Details of the PipeWeld to be created; value cannot be null.
      * @return The newly created PipeWeld.
      */
-	PipeWeld create(PipeWeld pipeWeld);
+	PipeWeld create(@Valid PipeWeld pipeWeld);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface PipeWeldService {
 	 * @return The updated PipeWeld.
 	 * @throws EntityNotFoundException if no PipeWeld is found with given input.
 	 */
-	PipeWeld update(PipeWeld pipeWeld) throws EntityNotFoundException;
+	PipeWeld update(@Valid PipeWeld pipeWeld) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing PipeWeld with the given id.

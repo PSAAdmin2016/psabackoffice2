@@ -53,9 +53,9 @@ public class RefCraftsController {
 	private RefCraftsService refCraftsService;
 
 	@ApiOperation(value = "Creates a new RefCrafts instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefCrafts createRefCrafts(@RequestBody RefCrafts refCrafts) {
+    public RefCrafts createRefCrafts(@RequestBody RefCrafts refCrafts) {
 		LOGGER.debug("Create RefCrafts with information: {}" , refCrafts);
 
 		refCrafts = refCraftsService.create(refCrafts);
@@ -63,7 +63,6 @@ public class RefCraftsController {
 
 	    return refCrafts;
 	}
-
 
     @ApiOperation(value = "Returns the RefCrafts instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

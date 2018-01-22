@@ -1444,9 +1444,9 @@
     "isList" : false,
     "saveInPhonegap" : false
   },
-  "loginVariable" : {
+  "loginAction" : {
     "_id" : "wm-loginVariable-wm.LoginVariable-1463072530449",
-    "name" : "loginVariable",
+    "name" : "loginAction",
     "owner" : "App",
     "category" : "wm.LoginVariable",
     "dataBinding" : [ {
@@ -1478,9 +1478,9 @@
     "transformationRequired" : false,
     "useDefaultSuccessHandler" : true
   },
-  "logoutVariable" : {
+  "logoutAction" : {
     "_id" : "wm-logoutVariable-wm.LogoutVariable-1452710440873",
-    "name" : "logoutVariable",
+    "name" : "logoutAction",
     "owner" : "App",
     "category" : "wm.LogoutVariable",
     "type" : "string",
@@ -4043,7 +4043,7 @@
     "tableName" : "tblUserPSA",
     "tableType" : "TABLE",
     "dbSystem" : "MySQL",
-    "properties" : [ "refCrafts", "tblJobNumbers", "refDisciplines", "refRoles", "tblUserPsaByLastModifiedBy", "refCraftClasses" ],
+    "properties" : [ "refCrafts", "tblJobNumbers", "refDisciplines", "refRoles", "refCraftClasses" ],
     "relatedTables" : [ {
       "columnName" : "refCrafts",
       "relationName" : "refCrafts",
@@ -4067,12 +4067,6 @@
       "relationName" : "refRoles",
       "type" : "RefRoles",
       "watchOn" : "PSARefRolesData",
-      "package" : "com.psabackoffice.psa.TblUserPsa"
-    }, {
-      "columnName" : "tblUserPsaByLastModifiedBy",
-      "relationName" : "tblUserPsaByLastModifiedBy",
-      "type" : "TblUserPsa",
-      "watchOn" : "PSATblUserPsaData",
       "package" : "com.psabackoffice.psa.TblUserPsa"
     }, {
       "columnName" : "refCraftClasses",
@@ -4423,7 +4417,7 @@
     "firstRow" : 0,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.loginVariable.invoke()",
+    "onSuccess" : "Actions.loginAction.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeAll",

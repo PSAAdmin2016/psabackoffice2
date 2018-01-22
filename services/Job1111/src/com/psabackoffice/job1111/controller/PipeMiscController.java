@@ -52,9 +52,9 @@ public class PipeMiscController {
 	private PipeMiscService pipeMiscService;
 
 	@ApiOperation(value = "Creates a new PipeMisc instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public PipeMisc createPipeMisc(@RequestBody PipeMisc pipeMisc) {
+    public PipeMisc createPipeMisc(@RequestBody PipeMisc pipeMisc) {
 		LOGGER.debug("Create PipeMisc with information: {}" , pipeMisc);
 
 		pipeMisc = pipeMiscService.create(pipeMisc);
@@ -62,7 +62,6 @@ public class PipeMiscController {
 
 	    return pipeMisc;
 	}
-
 
     @ApiOperation(value = "Returns the PipeMisc instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -80,9 +79,9 @@ public class PipeMiscController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public PipeMisc editPipeMisc(@PathVariable("id") Integer id, @RequestBody PipeMisc pipeMisc) throws EntityNotFoundException {
-        LOGGER.debug("Editing PipeMisc with id: {}" , pipeMisc.getActivityId());
+        LOGGER.debug("Editing PipeMisc with id: {}" , pipeMisc.getId());
 
-        pipeMisc.setActivityId(id);
+        pipeMisc.setId(id);
         pipeMisc = pipeMiscService.update(pipeMisc);
         LOGGER.debug("PipeMisc details with id: {}" , pipeMisc);
 

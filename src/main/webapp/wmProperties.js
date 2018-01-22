@@ -6,6 +6,7 @@ var _WM_APP_PROPERTIES = {
   "homePage" : "Main",
   "name" : "psabackoffice2",
   "platformType" : "WEB",
+  "securityEnabled" : "true",
   "supportedLanguages" : "en",
   "timeFormat" : "",
   "type" : "APPLICATION",

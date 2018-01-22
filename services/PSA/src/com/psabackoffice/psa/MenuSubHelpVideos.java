@@ -11,6 +11,7 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -80,7 +81,7 @@ public class MenuSubHelpVideos implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_ParentMenu`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    @JoinColumn(name = "`fk_ParentMenu`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_ParentMenu_ to_MenuHelpVideos`"))
     public MenuHelpVideos getMenuHelpVideos() {
         return this.menuHelpVideos;
     }

@@ -52,9 +52,9 @@ public class FeedBackNotesController {
 	private FeedBackNotesService feedBackNotesService;
 
 	@ApiOperation(value = "Creates a new FeedBackNotes instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public FeedBackNotes createFeedBackNotes(@RequestBody FeedBackNotes feedBackNotes) {
+    public FeedBackNotes createFeedBackNotes(@RequestBody FeedBackNotes feedBackNotes) {
 		LOGGER.debug("Create FeedBackNotes with information: {}" , feedBackNotes);
 
 		feedBackNotes = feedBackNotesService.create(feedBackNotes);
@@ -62,7 +62,6 @@ public class FeedBackNotesController {
 
 	    return feedBackNotes;
 	}
-
 
     @ApiOperation(value = "Returns the FeedBackNotes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

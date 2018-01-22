@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface TblUserLoginTrackerService {
      * @param tblUserLoginTracker Details of the TblUserLoginTracker to be created; value cannot be null.
      * @return The newly created TblUserLoginTracker.
      */
-	TblUserLoginTracker create(TblUserLoginTracker tblUserLoginTracker);
+	TblUserLoginTracker create(@Valid TblUserLoginTracker tblUserLoginTracker);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface TblUserLoginTrackerService {
 	 * @return The updated TblUserLoginTracker.
 	 * @throws EntityNotFoundException if no TblUserLoginTracker is found with given input.
 	 */
-	TblUserLoginTracker update(TblUserLoginTracker tblUserLoginTracker) throws EntityNotFoundException;
+	TblUserLoginTracker update(@Valid TblUserLoginTracker tblUserLoginTracker) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing TblUserLoginTracker with the given id.

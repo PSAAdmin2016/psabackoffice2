@@ -52,9 +52,9 @@ public class ChatMessagesController {
 	private ChatMessagesService chatMessagesService;
 
 	@ApiOperation(value = "Creates a new ChatMessages instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public ChatMessages createChatMessages(@RequestBody ChatMessages chatMessages) {
+    public ChatMessages createChatMessages(@RequestBody ChatMessages chatMessages) {
 		LOGGER.debug("Create ChatMessages with information: {}" , chatMessages);
 
 		chatMessages = chatMessagesService.create(chatMessages);
@@ -62,7 +62,6 @@ public class ChatMessagesController {
 
 	    return chatMessages;
 	}
-
 
     @ApiOperation(value = "Returns the ChatMessages instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

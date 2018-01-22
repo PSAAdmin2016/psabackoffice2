@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.job1111.LandingTrackerPipe;
  * @see LandingTrackerPipe
  */
 @Service("Job1111.LandingTrackerPipeService")
+@Validated
 public class LandingTrackerPipeServiceImpl implements LandingTrackerPipeService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LandingTrackerPipeServiceImpl.class);
@@ -49,6 +51,7 @@ public class LandingTrackerPipeServiceImpl implements LandingTrackerPipeService 
     @Override
 	public LandingTrackerPipe create(LandingTrackerPipe landingTrackerPipe) {
         LOGGER.debug("Creating a new LandingTrackerPipe with information: {}", landingTrackerPipe);
+
         LandingTrackerPipe landingTrackerPipeCreated = this.wmGenericDao.create(landingTrackerPipe);
         return landingTrackerPipeCreated;
     }

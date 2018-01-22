@@ -11,37 +11,37 @@ import com.psabackoffice.psa.models.procedure.*;
 
 public interface PSAProcedureExecutorService {
 
-    Void executeImportInstalledQuantitiesEquip(String jobNumber);
-
-    CompareColumnsResponse executeCompareColumns(String tableName, String jobNumber);
-
-    GetImportTotalsResponse executeGetImportTotals(String tableNameLanding, String tableNameDestination, String jobNumber);
-
-    LandingToWeldSpecProceduresResponse executeLandingToWeldSpecProcedures(String jobNumber);
-
     LandingToTrackerCivilResponse executeLandingToTrackerCivil(String jobNumber);
-
-    Void executeImportInstalledQuantitiesPipe(String jobNumber);
-
-    CreateNewJobDbResponse executeCreateNewJobDB(CreateNewJobDbRequest createNewJobDbRequest);
-
-    CreateNewJobSeedsResponse executeCreateNewJobSeeds(CreateNewJobSeedsRequest createNewJobSeedsRequest);
-
-    Void executeImportInstalledQuantitiesSteel(String jobNumber);
 
     LandingToTrackerEquipResponse executeLandingToTrackerEquip(String jobNumber);
 
-    CreateNewConversationResponse executeCreateNewConversation(CreateNewConversationRequest createNewConversationRequest);
-
-    ValidateLandingDataResponse executeValidateLandingData(String tableName, String jobNumber);
+    CreateNewJobDbResponse executeCreateNewJobDB(CreateNewJobDbRequest createNewJobDbRequest);
 
     Void executeImportInstalledQuantitiesCivil(String jobNumber);
 
-    LandingToTrackerPipeResponse executeLandingToTrackerPipe(String jobNumber);
+    Void executeImportInstalledQuantitiesPipe(String jobNumber);
 
     LandingToPipeSpoolsResponse executeLandingToPipeSpools(String jobNumber);
 
+    CreateNewConversationResponse executeCreateNewConversation(CreateNewConversationRequest createNewConversationRequest);
+
+    Void executeImportInstalledQuantitiesEquip(String jobNumber);
+
+    Void executeImportInstalledQuantitiesSteel(String jobNumber);
+
+    LandingToWeldSpecProceduresResponse executeLandingToWeldSpecProcedures(String jobNumber);
+
     LandingToTrackerSteelResponse executeLandingToTrackerSteel(String jobNumber);
+
+    ValidateLandingDataResponse executeValidateLandingData(String tableName, String jobNumber);
+
+    LandingToTrackerPipeResponse executeLandingToTrackerPipe(String jobNumber);
+
+    GetImportTotalsResponse executeGetImportTotals(String tableNameLanding, String tableNameDestination, String jobNumber);
+
+    CompareColumnsResponse executeCompareColumns(String tableName, String jobNumber);
+
+    CreateNewJobSeedsResponse executeCreateNewJobSeeds(CreateNewJobSeedsRequest createNewJobSeedsRequest);
 
 }
 

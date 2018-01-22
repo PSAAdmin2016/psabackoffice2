@@ -52,9 +52,9 @@ public class CivilFaController {
 	private CivilFaService civilFaService;
 
 	@ApiOperation(value = "Creates a new CivilFa instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public CivilFa createCivilFa(@RequestBody CivilFa civilFa) {
+    public CivilFa createCivilFa(@RequestBody CivilFa civilFa) {
 		LOGGER.debug("Create CivilFa with information: {}" , civilFa);
 
 		civilFa = civilFaService.create(civilFa);
@@ -62,7 +62,6 @@ public class CivilFaController {
 
 	    return civilFa;
 	}
-
 
     @ApiOperation(value = "Returns the CivilFa instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -80,9 +79,9 @@ public class CivilFaController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public CivilFa editCivilFa(@PathVariable("id") Integer id, @RequestBody CivilFa civilFa) throws EntityNotFoundException {
-        LOGGER.debug("Editing CivilFa with id: {}" , civilFa.getActivityId());
+        LOGGER.debug("Editing CivilFa with id: {}" , civilFa.getId());
 
-        civilFa.setActivityId(id);
+        civilFa.setId(id);
         civilFa = civilFaService.update(civilFa);
         LOGGER.debug("CivilFa details with id: {}" , civilFa);
 

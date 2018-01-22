@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.job1111.LandingSpoolList;
  * @see LandingSpoolList
  */
 @Service("Job1111.LandingSpoolListService")
+@Validated
 public class LandingSpoolListServiceImpl implements LandingSpoolListService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LandingSpoolListServiceImpl.class);
@@ -49,6 +51,7 @@ public class LandingSpoolListServiceImpl implements LandingSpoolListService {
     @Override
 	public LandingSpoolList create(LandingSpoolList landingSpoolList) {
         LOGGER.debug("Creating a new LandingSpoolList with information: {}", landingSpoolList);
+
         LandingSpoolList landingSpoolListCreated = this.wmGenericDao.create(landingSpoolList);
         return landingSpoolListCreated;
     }

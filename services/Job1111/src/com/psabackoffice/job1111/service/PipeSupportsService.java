@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface PipeSupportsService {
      * @param pipeSupports Details of the PipeSupports to be created; value cannot be null.
      * @return The newly created PipeSupports.
      */
-	PipeSupports create(PipeSupports pipeSupports);
+	PipeSupports create(@Valid PipeSupports pipeSupports);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface PipeSupportsService {
 	 * @return The updated PipeSupports.
 	 * @throws EntityNotFoundException if no PipeSupports is found with given input.
 	 */
-	PipeSupports update(PipeSupports pipeSupports) throws EntityNotFoundException;
+	PipeSupports update(@Valid PipeSupports pipeSupports) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing PipeSupports with the given id.

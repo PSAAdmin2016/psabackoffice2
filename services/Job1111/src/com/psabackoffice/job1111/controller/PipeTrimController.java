@@ -52,9 +52,9 @@ public class PipeTrimController {
 	private PipeTrimService pipeTrimService;
 
 	@ApiOperation(value = "Creates a new PipeTrim instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public PipeTrim createPipeTrim(@RequestBody PipeTrim pipeTrim) {
+    public PipeTrim createPipeTrim(@RequestBody PipeTrim pipeTrim) {
 		LOGGER.debug("Create PipeTrim with information: {}" , pipeTrim);
 
 		pipeTrim = pipeTrimService.create(pipeTrim);
@@ -62,7 +62,6 @@ public class PipeTrimController {
 
 	    return pipeTrim;
 	}
-
 
     @ApiOperation(value = "Returns the PipeTrim instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -80,9 +79,9 @@ public class PipeTrimController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public PipeTrim editPipeTrim(@PathVariable("id") Integer id, @RequestBody PipeTrim pipeTrim) throws EntityNotFoundException {
-        LOGGER.debug("Editing PipeTrim with id: {}" , pipeTrim.getActivityId());
+        LOGGER.debug("Editing PipeTrim with id: {}" , pipeTrim.getId());
 
-        pipeTrim.setActivityId(id);
+        pipeTrim.setId(id);
         pipeTrim = pipeTrimService.update(pipeTrim);
         LOGGER.debug("PipeTrim details with id: {}" , pipeTrim);
 

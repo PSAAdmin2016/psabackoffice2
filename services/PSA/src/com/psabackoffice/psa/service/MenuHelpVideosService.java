@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -32,7 +34,7 @@ public interface MenuHelpVideosService {
      * @param menuHelpVideos Details of the MenuHelpVideos to be created; value cannot be null.
      * @return The newly created MenuHelpVideos.
      */
-	MenuHelpVideos create(MenuHelpVideos menuHelpVideos);
+	MenuHelpVideos create(@Valid MenuHelpVideos menuHelpVideos);
 
 
 	/**
@@ -62,7 +64,7 @@ public interface MenuHelpVideosService {
 	 * @return The updated MenuHelpVideos.
 	 * @throws EntityNotFoundException if no MenuHelpVideos is found with given input.
 	 */
-	MenuHelpVideos update(MenuHelpVideos menuHelpVideos) throws EntityNotFoundException;
+	MenuHelpVideos update(@Valid MenuHelpVideos menuHelpVideos) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing MenuHelpVideos with the given id.

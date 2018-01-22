@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface CacheStatsSteelStatsService {
      * @param cacheStatsSteelStats Details of the CacheStatsSteelStats to be created; value cannot be null.
      * @return The newly created CacheStatsSteelStats.
      */
-	CacheStatsSteelStats create(CacheStatsSteelStats cacheStatsSteelStats);
+	CacheStatsSteelStats create(@Valid CacheStatsSteelStats cacheStatsSteelStats);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface CacheStatsSteelStatsService {
 	 * @return The updated CacheStatsSteelStats.
 	 * @throws EntityNotFoundException if no CacheStatsSteelStats is found with given input.
 	 */
-	CacheStatsSteelStats update(CacheStatsSteelStats cacheStatsSteelStats) throws EntityNotFoundException;
+	CacheStatsSteelStats update(@Valid CacheStatsSteelStats cacheStatsSteelStats) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing CacheStatsSteelStats with the given id.

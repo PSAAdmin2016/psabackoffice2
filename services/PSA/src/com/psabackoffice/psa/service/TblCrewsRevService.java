@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface TblCrewsRevService {
      * @param tblCrewsRev Details of the TblCrewsRev to be created; value cannot be null.
      * @return The newly created TblCrewsRev.
      */
-	TblCrewsRev create(TblCrewsRev tblCrewsRev);
+	TblCrewsRev create(@Valid TblCrewsRev tblCrewsRev);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface TblCrewsRevService {
 	 * @return The updated TblCrewsRev.
 	 * @throws EntityNotFoundException if no TblCrewsRev is found with given input.
 	 */
-	TblCrewsRev update(TblCrewsRev tblCrewsRev) throws EntityNotFoundException;
+	TblCrewsRev update(@Valid TblCrewsRev tblCrewsRev) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing TblCrewsRev with the given id.

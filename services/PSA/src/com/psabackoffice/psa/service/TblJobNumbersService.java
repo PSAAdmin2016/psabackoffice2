@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -34,7 +36,7 @@ public interface TblJobNumbersService {
      * @param tblJobNumbers Details of the TblJobNumbers to be created; value cannot be null.
      * @return The newly created TblJobNumbers.
      */
-	TblJobNumbers create(TblJobNumbers tblJobNumbers);
+	TblJobNumbers create(@Valid TblJobNumbers tblJobNumbers);
 
 
 	/**
@@ -64,7 +66,7 @@ public interface TblJobNumbersService {
 	 * @return The updated TblJobNumbers.
 	 * @throws EntityNotFoundException if no TblJobNumbers is found with given input.
 	 */
-	TblJobNumbers update(TblJobNumbers tblJobNumbers) throws EntityNotFoundException;
+	TblJobNumbers update(@Valid TblJobNumbers tblJobNumbers) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing TblJobNumbers with the given id.

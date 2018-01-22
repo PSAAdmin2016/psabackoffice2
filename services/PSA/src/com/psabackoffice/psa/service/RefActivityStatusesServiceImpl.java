@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.psa.RefActivityStatuses;
  * @see RefActivityStatuses
  */
 @Service("PSA.RefActivityStatusesService")
+@Validated
 public class RefActivityStatusesServiceImpl implements RefActivityStatusesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RefActivityStatusesServiceImpl.class);
@@ -49,6 +51,7 @@ public class RefActivityStatusesServiceImpl implements RefActivityStatusesServic
     @Override
 	public RefActivityStatuses create(RefActivityStatuses refActivityStatuses) {
         LOGGER.debug("Creating a new RefActivityStatuses with information: {}", refActivityStatuses);
+
         RefActivityStatuses refActivityStatusesCreated = this.wmGenericDao.create(refActivityStatuses);
         return refActivityStatusesCreated;
     }

@@ -1,82 +1,82 @@
 <wm-page data-ng-controller="ToolsCrewManagementPageController" pagetitle="Tools Crew Management" name="page1"> 
- <wm-header content="header" name="header1"></wm-header> 
- <wm-content name="content1"> 
-  <wm-left-panel columnwidth="1" content="leftnavUserManagemen" name="left_panel1"></wm-left-panel> 
-  <wm-page-content columnwidth="11" name="page_content1"> 
-   <wm-layoutgrid name="layoutgrid3"> 
-    <wm-gridrow name="gridrow7"> 
-     <wm-gridcolumn columnwidth="2" name="gridcolumn17_1"></wm-gridcolumn> 
-     <wm-gridcolumn columnwidth="8" name="gridcolumn18_1"></wm-gridcolumn> 
-     <wm-gridcolumn columnwidth="4" name="gridcolumn19"></wm-gridcolumn> 
-    </wm-gridrow> 
-    <wm-gridrow name="gridrow8" padding="1% unset unset unset"> 
-     <wm-gridcolumn columnwidth="8" name="gridcolumn16"> 
-      <wm-livegrid name="livegrid2"> 
-       <wm-grid gridfirstrowselect="true" editmode="form" title="Crews" dataset="bind:Variables.PSACrewsData.dataSet" navigation="Classic" name="grid2" on-rowdblclick="grid2Rowdblclick($event, $rowData)" spacing="condensed" filtermode="multicolumn" height="350" showrecordcount="true"> 
-        <wm-grid-column binding="tblJobNumbers.jobNumber" caption="Job Number" type="integer" primary-key="true" generator="assigned" datafield="jobNumber" displayfield="jobNumber" show="true" filterwidget="autocomplete" related-entity-name="TblJobNumbers" readonly="false"></wm-grid-column> 
-        <wm-grid-column binding="crewNumber" caption="PSA Crew Number" type="integer" generator="assigned" show="true" filterwidget="autocomplete" readonly="false"></wm-grid-column> 
-        <wm-grid-column binding="refDisciplines.discipline" caption="Discipline" type="string" primary-key="false" generator="assigned" readonly="true" show="true" filterwidget="select" related-entity-name="RefDisciplines"></wm-grid-column> 
-        <wm-grid-column binding="timeStamp" caption="Last Modified" type="timestamp" generator="assigned" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" searchable="false" show="true" filterwidget="datetime" readonly="false"></wm-grid-column> 
-        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="7%" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column> 
-        <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action> 
-        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action> 
-       </wm-grid> 
-       <wm-liveform novalidate="false" title="Crew Details" formlayout="inline" iconclass="wi wi-edit" dataset="bind:Variables.PSACrewsData.dataSet" captionalign="left" captionposition="top" name="liveform2" autocomplete="true"> 
-        <wm-layoutgrid columns="3" name="layoutgrid4"> 
-         <wm-gridrow name="gridrow10"> 
-          <wm-gridcolumn columnwidth="4" name="gridcolumn20"> 
-           <wm-form-field name="tblJobNumbers" displayname="Job Numbers" show="true" primary-key="false" generator="assigned" key="tblJobNumbers" type="list" is-related="true" widget="select" placeholder="Select value" tabindex="1" required="true"></wm-form-field> 
-          </wm-gridcolumn> 
-          <wm-gridcolumn columnwidth="4" name="gridcolumn21"> 
-           <wm-form-field name="tblUserPsaByProjectManager" displayname="Project Manager" show="true" primary-key="false" generator="assigned" key="tblUserPsaByProjectManager" type="list" is-related="true" widget="autocomplete" placeholder="Select value" displayexpression="firstName + ' ' + lastName" tabindex="2" searchkey="firstName,lastName" displaylabel="firstName + ' ' + lastName" required="true"></wm-form-field> 
-          </wm-gridcolumn> 
-          <wm-gridcolumn columnwidth="4" name="gridcolumn22"> 
-           <wm-form-field name="tblUserPsaBySuperintendent" displayname="Superintendent" show="true" primary-key="false" generator="assigned" key="tblUserPsaBySuperintendent" type="list" is-related="true" widget="autocomplete" placeholder="Select value" displayexpression="firstName + ' ' + lastName" tabindex="3" searchkey="firstName,lastName" displaylabel="firstName + ' ' + lastName" required="true"></wm-form-field> 
-          </wm-gridcolumn> 
-         </wm-gridrow> 
-         <wm-gridrow name="gridrow11"> 
-          <wm-gridcolumn columnwidth="4" name="gridcolumn23"> 
-           <wm-form-field name="refDisciplines" displayname="Crew Discipline" show="true" primary-key="false" generator="assigned" key="refDisciplines" type="list" is-related="true" widget="select" displayexpression="discipline" required="true"></wm-form-field> 
-          </wm-gridcolumn> 
-          <wm-gridcolumn columnwidth="4" name="gridcolumn24"> 
-           <wm-form-field name="tblUserPsaByConstructionManager" displayname="Construction Manager" show="true" primary-key="false" generator="assigned" key="tblUserPsaByConstructionManager" type="list" is-related="true" widget="autocomplete" placeholder="Select value" displayexpression="firstName + ' ' + lastName" tabindex="2" searchkey="firstName,lastName" displaylabel="firstName + ' ' + lastName" required="true"></wm-form-field> 
-          </wm-gridcolumn> 
-          <wm-gridcolumn columnwidth="4" name="gridcolumn25"> 
-           <wm-form-field name="tblUserPsaByGf" displayname="General Foreman" show="true" primary-key="false" generator="assigned" key="tblUserPsaByGf" type="list" is-related="true" widget="autocomplete" placeholder="Select value" displayexpression="firstName + ' ' + lastName" tabindex="3" searchkey="firstName,lastName" displaylabel="firstName + ' ' + lastName" required="true"></wm-form-field> 
-          </wm-gridcolumn> 
-         </wm-gridrow> 
-         <wm-gridrow name="gridrow12"> 
-          <wm-gridcolumn columnwidth="4" name="gridcolumn28"></wm-gridcolumn> 
-          <wm-gridcolumn columnwidth="4" name="gridcolumn17_2"> 
-           <wm-form-field name="tblUserPsaBySiteManager" displayname="Site Manager" show="true" primary-key="false" generator="assigned" key="tblUserPsaBySiteManager" type="list" is-related="true" widget="autocomplete" placeholder="Select value" displayexpression="firstName + ' ' + lastName" tabindex="2" searchkey="firstName,lastName" displaylabel="firstName + ' ' + lastName" required="true"></wm-form-field> 
-          </wm-gridcolumn> 
-          <wm-gridcolumn columnwidth="4" name="gridcolumn19_1"> 
-           <wm-form-field name="tblUserPsaByForeman" displayname="Foreman" show="true" primary-key="false" generator="assigned" key="tblUserPsaByForeman" type="list" is-related="true" widget="autocomplete" placeholder="Select value" displayexpression="firstName + ' ' + lastName" tabindex="3" searchkey="firstName,lastName" displaylabel="firstName + ' ' + lastName" required="true"></wm-form-field> 
-          </wm-gridcolumn> 
-         </wm-gridrow> 
-         <wm-gridrow name="gridrow13"> 
-          <wm-gridcolumn columnwidth="4" name="gridcolumn20_1"></wm-gridcolumn> 
-          <wm-gridcolumn columnwidth="4" name="gridcolumn18_2"> 
-           <wm-form-field name="tblUserPsaByAreaManager" displayname="Area Manager" show="true" primary-key="false" generator="assigned" key="tblUserPsaByAreaManager" type="list" is-related="true" widget="autocomplete" placeholder="Select value" displayexpression="firstName + ' ' + lastName" tabindex="2" searchkey="firstName,lastName" displaylabel="firstName + ' ' + lastName" required="true"></wm-form-field> 
-          </wm-gridcolumn> 
-          <wm-gridcolumn columnwidth="4" name="gridcolumn20_2"> 
-           <wm-form-field name="tblUserPsaByLeadman" displayname="Leadman" show="true" primary-key="false" generator="assigned" key="tblUserPsaByLeadman" type="list" is-related="true" widget="autocomplete" placeholder="Select value" displayexpression="firstName + ' ' + lastName" tabindex="3" searchkey="firstName,lastName" displaylabel="firstName + ' ' + lastName" required="true"></wm-form-field> 
-          </wm-gridcolumn> 
-         </wm-gridrow> 
-        </wm-layoutgrid> 
-        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field> 
-        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action> 
-        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action> 
-       </wm-liveform> 
-      </wm-livegrid> 
-     </wm-gridcolumn> 
-     <wm-gridcolumn columnwidth="2" name="gridcolumn17"></wm-gridcolumn> 
-    </wm-gridrow> 
-    <wm-gridrow name="gridrow9"> 
-     <wm-gridcolumn columnwidth="12" name="gridcolumn18"></wm-gridcolumn> 
-    </wm-gridrow> 
-   </wm-layoutgrid> 
-  </wm-page-content> 
- </wm-content> 
- <wm-footer content="footer" name="footer1"></wm-footer> 
+    <wm-header content="header" name="header1"></wm-header> 
+    <wm-content name="content1"> 
+        <wm-left-panel columnwidth="1" content="leftnavUserManagemen" name="left_panel1"></wm-left-panel> 
+        <wm-page-content columnwidth="11" name="page_content1"> 
+            <wm-layoutgrid name="layoutgrid3"> 
+                <wm-gridrow name="gridrow7"> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn17_1"></wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="8" name="gridcolumn18_1"></wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn19"></wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow8" padding="1% unset unset unset"> 
+                    <wm-gridcolumn columnwidth="8" name="gridcolumn16"> 
+                        <wm-livetable name="livegrid2"> 
+                            <wm-table gridfirstrowselect="true" editmode="form" title="Crews" dataset="bind:Variables.PSACrewsData.dataSet" navigation="Classic" name="grid2" on-rowdblclick="grid2Rowdblclick($event, $rowData)" spacing="condensed" filtermode="multicolumn" height="350" showrecordcount="true"> 
+                                <wm-table-column binding="tblJobNumbers.jobNumber" caption="Job Number" type="integer" primary-key="true" generator="assigned" datafield="jobNumber" displayfield="jobNumber" show="true" filterwidget="autocomplete" related-entity-name="TblJobNumbers" readonly="false"></wm-table-column> 
+                                <wm-table-column binding="crewNumber" caption="PSA Crew Number" type="integer" generator="assigned" show="true" filterwidget="autocomplete" readonly="false"></wm-table-column> 
+                                <wm-table-column binding="refDisciplines.discipline" caption="Discipline" type="string" primary-key="false" generator="assigned" readonly="true" show="true" filterwidget="select" related-entity-name="RefDisciplines"></wm-table-column> 
+                                <wm-table-column binding="timeStamp" caption="Last Modified" type="timestamp" generator="assigned" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" searchable="false" show="true" filterwidget="datetime" readonly="false"></wm-table-column> 
+                                <wm-table-column binding="rowOperations" caption="Actions" type="custom" width="7%" readonly="true" sortable="false" searchable="false" show="true"></wm-table-column> 
+                                <wm-table-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-table-action> 
+                                <wm-table-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-table-row-action> 
+                            </wm-table> 
+                            <wm-liveform novalidate="false" title="Crew Details" formlayout="inline" iconclass="wi wi-edit" dataset="bind:Variables.PSACrewsData.dataSet" captionalign="left" captionposition="top" name="liveform2" autocomplete="true"> 
+                                <wm-layoutgrid columns="3" name="layoutgrid4"> 
+                                    <wm-gridrow name="gridrow10"> 
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn20"> 
+                                            <wm-form-field name="tblJobNumbers" displayname="Job Numbers" show="true" primary-key="false" generator="assigned" key="tblJobNumbers" type="list" is-related="true" widget="select" placeholder="Select value" tabindex="1" required="true"></wm-form-field> 
+                                        </wm-gridcolumn> 
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn21"> 
+                                            <wm-form-field name="tblUserPsaByProjectManager" displayname="Project Manager" show="true" primary-key="false" generator="assigned" key="tblUserPsaByProjectManager" type="list" is-related="true" widget="autocomplete" placeholder="Select value" displayexpression="firstName + ' ' + lastName" tabindex="2" searchkey="firstName,lastName" displaylabel="firstName + ' ' + lastName" required="true"></wm-form-field> 
+                                        </wm-gridcolumn> 
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn22"> 
+                                            <wm-form-field name="tblUserPsaBySuperintendent" displayname="Superintendent" show="true" primary-key="false" generator="assigned" key="tblUserPsaBySuperintendent" type="list" is-related="true" widget="autocomplete" placeholder="Select value" displayexpression="firstName + ' ' + lastName" tabindex="3" searchkey="firstName,lastName" displaylabel="firstName + ' ' + lastName" required="true"></wm-form-field> 
+                                        </wm-gridcolumn> 
+                                    </wm-gridrow> 
+                                    <wm-gridrow name="gridrow11"> 
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn23"> 
+                                            <wm-form-field name="refDisciplines" displayname="Crew Discipline" show="true" primary-key="false" generator="assigned" key="refDisciplines" type="list" is-related="true" widget="select" displayexpression="discipline" required="true"></wm-form-field> 
+                                        </wm-gridcolumn> 
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn24"> 
+                                            <wm-form-field name="tblUserPsaByConstructionManager" displayname="Construction Manager" show="true" primary-key="false" generator="assigned" key="tblUserPsaByConstructionManager" type="list" is-related="true" widget="autocomplete" placeholder="Select value" displayexpression="firstName + ' ' + lastName" tabindex="2" searchkey="firstName,lastName" displaylabel="firstName + ' ' + lastName" required="true"></wm-form-field> 
+                                        </wm-gridcolumn> 
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn25"> 
+                                            <wm-form-field name="tblUserPsaByGf" displayname="General Foreman" show="true" primary-key="false" generator="assigned" key="tblUserPsaByGf" type="list" is-related="true" widget="autocomplete" placeholder="Select value" displayexpression="firstName + ' ' + lastName" tabindex="3" searchkey="firstName,lastName" displaylabel="firstName + ' ' + lastName" required="true"></wm-form-field> 
+                                        </wm-gridcolumn> 
+                                    </wm-gridrow> 
+                                    <wm-gridrow name="gridrow12"> 
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn28"></wm-gridcolumn> 
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn17_2"> 
+                                            <wm-form-field name="tblUserPsaBySiteManager" displayname="Site Manager" show="true" primary-key="false" generator="assigned" key="tblUserPsaBySiteManager" type="list" is-related="true" widget="autocomplete" placeholder="Select value" displayexpression="firstName + ' ' + lastName" tabindex="2" searchkey="firstName,lastName" displaylabel="firstName + ' ' + lastName" required="true"></wm-form-field> 
+                                        </wm-gridcolumn> 
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn19_1"> 
+                                            <wm-form-field name="tblUserPsaByForeman" displayname="Foreman" show="true" primary-key="false" generator="assigned" key="tblUserPsaByForeman" type="list" is-related="true" widget="autocomplete" placeholder="Select value" displayexpression="firstName + ' ' + lastName" tabindex="3" searchkey="firstName,lastName" displaylabel="firstName + ' ' + lastName" required="true"></wm-form-field> 
+                                        </wm-gridcolumn> 
+                                    </wm-gridrow> 
+                                    <wm-gridrow name="gridrow13"> 
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn20_1"></wm-gridcolumn> 
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn18_2"> 
+                                            <wm-form-field name="tblUserPsaByAreaManager" displayname="Area Manager" show="true" primary-key="false" generator="assigned" key="tblUserPsaByAreaManager" type="list" is-related="true" widget="autocomplete" placeholder="Select value" displayexpression="firstName + ' ' + lastName" tabindex="2" searchkey="firstName,lastName" displaylabel="firstName + ' ' + lastName" required="true"></wm-form-field> 
+                                        </wm-gridcolumn> 
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn20_2"> 
+                                            <wm-form-field name="tblUserPsaByLeadman" displayname="Leadman" show="true" primary-key="false" generator="assigned" key="tblUserPsaByLeadman" type="list" is-related="true" widget="autocomplete" placeholder="Select value" displayexpression="firstName + ' ' + lastName" tabindex="3" searchkey="firstName,lastName" displaylabel="firstName + ' ' + lastName" required="true"></wm-form-field> 
+                                        </wm-gridcolumn> 
+                                    </wm-gridrow> 
+                                </wm-layoutgrid> 
+                                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field> 
+                                <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action> 
+                                <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action> 
+                            </wm-liveform> 
+                        </wm-livetable> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn17"></wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow9"> 
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn18"></wm-gridcolumn> 
+                </wm-gridrow> 
+            </wm-layoutgrid> 
+        </wm-page-content> 
+    </wm-content> 
+    <wm-footer content="footer" name="footer1"></wm-footer> 
 </wm-page>

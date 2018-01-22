@@ -1,411 +1,12 @@
 {
-  "CreateManualActivityCivil" : {
-    "procedureString" : "call CreateManualActivityCivil(?, ?, ?, ?, ?, ?, ?, ?, ?)",
-    "parameters" : [ {
-      "name" : "varFoundation",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "varDrawingNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "varDetailDrawingNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "varPercentComplete",
-      "type" : "big_decimal",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : ".9",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "varNotes",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "Test Notes",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "varUserId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "varBidID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "false",
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "CreateManualActivityPipe" : {
-    "procedureString" : "call CreateManualActivityPipe(?, ?, ?, ?, ?, ?, ?, ?, ?)",
-    "parameters" : [ {
-      "name" : "MiscDrawingNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "BobDwg",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "MiscLineNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "BobLine",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "MiscSheetNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "2",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "MiscQuantity",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "3",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "MiscNotes",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "BobNote",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "UserId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "BidID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "7",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "GetEquipPCOT" : {
-    "procedureString" : "call GetEquipPCOT(?, ?, ?)",
-    "parameters" : [ {
-      "name" : "RunMode",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "GetPipeEarnedHours" : {
-    "procedureString" : "call GetPipeEarnedHours(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+  "GetEquipEarnedHours" : {
+    "procedureString" : "CALL GetPipeEarnedHours(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
     "parameters" : [ {
       "name" : "GroupedBy",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "SuperintendentID",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "CrewID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "CrewRev",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ForemanID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "SuperintendentID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ProjectManagerID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ConstructionManagerID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "SiteManagerID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "AreaManagerID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "InputDate",
-      "type" : "date",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "2016-07-07",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "RunMode",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "",
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "CreateManualActivitySteel" : {
-    "procedureString" : "call CreateManualActivitySteel(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-    "parameters" : [ {
-      "name" : "ActivityType",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "61",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "Area",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "Area",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "PieceNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "Piece",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "Quantity",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "8",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "Percent",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "Notes",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "Test 2",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "UserId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "BidID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "false",
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "GetPipePCOT" : {
-    "procedureString" : "call GetPipePCOT(?, ?, ?)",
-    "parameters" : [ {
-      "name" : "RunMode",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "GetCivilEarnedHours" : {
-    "procedureString" : "CALL GetCivilEarnedHours(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-    "parameters" : [ {
-      "name" : "GroupedBy",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "ForemanID",
       "required" : true,
       "parameterType" : "IN"
@@ -414,6 +15,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -422,6 +24,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -430,6 +33,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -438,6 +42,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -446,6 +51,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -454,6 +60,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -462,6 +69,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -470,6 +78,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -478,7 +87,8 @@
       "type" : "date",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "2017-01-06",
+      "variableName" : null,
+      "testValue" : "2017-03-27",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -486,6 +96,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "1",
       "required" : true,
       "parameterType" : "IN"
@@ -494,6 +105,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -502,418 +114,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "CreateManualActivityEquip" : {
-    "procedureString" : "call CreateManualActivityEquip(?, ?, ?, ?, ?, ?, ?, ?)",
-    "parameters" : [ {
-      "name" : "varTagNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "tag",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "varActivitySelect",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "act",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "varPercentComplete",
-      "type" : "big_decimal",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : ".33",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "varNotes",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "note",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "varUserId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "2",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "varBidID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "ClassicTrackerPipeUpdate" : {
-    "procedureString" : "call UpdateTrackerPipeClassic(?, ?, ?, ?)",
-    "parameters" : [ {
-      "name" : "RunMode",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "UpdateBidID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "GetEquipStats" : {
-    "procedureString" : "call GetEquipStats(?, ?, ?, ?)",
-    "parameters" : [ {
-      "name" : "GroupedBy",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "P6ID",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "RunMode",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "GetPipeStats" : {
-    "procedureString" : "call GetPipeStats(?, ?, ?, ?)",
-    "parameters" : [ {
-      "name" : "GroupedBy",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "WBS10",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "RunMode",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "GetCivilPCOT" : {
-    "procedureString" : "call GetCivilPCOT(?, ?, ?)",
-    "parameters" : [ {
-      "name" : "RunMode",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "GetJobPCOT" : {
-    "procedureString" : "call GetJobPCOT(?, ?, ?)",
-    "parameters" : [ {
-      "name" : "RunMode",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "ClassicTrackerCivilUpdate" : {
-    "procedureString" : "call UpdateTrackerCivilClassic(?, ?, ?, ?)",
-    "parameters" : [ {
-      "name" : "RunMode",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "UpdateBidID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "GetSteelStats" : {
-    "procedureString" : "call GetSteelStats(?, ?, ?, ?)",
-    "parameters" : [ {
-      "name" : "GroupedBy",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "WBS10",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "RunMode",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "ClassicTrackerSteelUpdate" : {
-    "procedureString" : "call UpdateTrackerSteelClassic(?, ?, ?, ?)",
-    "parameters" : [ {
-      "name" : "RunMode",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "UpdateBidID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "LockSSActivity" : {
-    "procedureString" : "call LockSSActivity(?, ?, ?, ?)",
-    "parameters" : [ {
-      "name" : "UserID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "2",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "FieldActivityID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "GetCivilStats" : {
-    "procedureString" : "call GetCivilStats(?, ?, ?, ? )",
-    "parameters" : [ {
-      "name" : "GroupedBy",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "WBS10",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "RunMode",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -926,6 +127,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "1",
       "required" : true,
       "parameterType" : "IN"
@@ -934,6 +136,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "9",
       "required" : true,
       "parameterType" : "IN"
@@ -942,6 +145,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "2",
       "required" : true,
       "parameterType" : "IN"
@@ -950,6 +154,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "1",
       "required" : true,
       "parameterType" : "IN"
@@ -958,6 +163,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -966,362 +172,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "GetEquipEarnedHours" : {
-    "procedureString" : "CALL GetPipeEarnedHours(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-    "parameters" : [ {
-      "name" : "GroupedBy",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "ForemanID",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "CrewID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "CrewRev",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ForemanID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "SuperintendentID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ProjectManagerID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ConstructionManagerID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "SiteManagerID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "AreaManagerID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "InputDate",
-      "type" : "date",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "2017-03-27",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "RunMode",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "GetSteelEarnedHours" : {
-    "procedureString" : "CALL GetSteelEarnedHours(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-    "parameters" : [ {
-      "name" : "GroupedBy",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "ForemanID",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "CrewID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "CrewRev",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ForemanID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "SuperintendentID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ProjectManagerID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ConstructionManagerID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "SiteManagerID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "AreaManagerID",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "%",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "InputDate",
-      "type" : "date",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "2016-10-21",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "RunMode",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "ClassicTrackerEquipUpdate" : {
-    "procedureString" : "call UpdateTrackerEquipClassic(?, ?, ?, ?)",
-    "parameters" : [ {
-      "name" : "RunMode",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "2",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "UpdateBidID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : false,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "CreateLooseHoursActivitiesPipe" : {
-    "procedureString" : "call CreateLooseHoursActivityPipe(?, ?, ?, ?, ?, ?)",
-    "parameters" : [ {
-      "name" : "SubmissionId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ActivityId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "6",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "UserId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "2",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "TestPackage",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
-  "CreateLooseHoursActivityCivil" : {
-    "procedureString" : "call CreateLooseHoursActivityCivil(?, ?, ?, ?, ?, ?)",
-    "parameters" : [ {
-      "name" : "SubmissionId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ActivityId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "8",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "UserId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "2",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "TestPackage",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -1334,6 +185,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "1",
       "required" : false,
       "parameterType" : "IN"
@@ -1342,6 +194,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -1350,6 +203,1310 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "ClassicTrackerEquipUpdate" : {
+    "procedureString" : "call UpdateTrackerEquipClassic(?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "RunMode",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "2",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "UpdateBidID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "CreateManualActivitySteel" : {
+    "procedureString" : "call CreateManualActivitySteel(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "ActivityType",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "61",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "Area",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "Area",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "PieceNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "Piece",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "Quantity",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "8",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "Percent",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "Notes",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "Test 2",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "UserId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "BidID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "false",
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "LockSSActivity" : {
+    "procedureString" : "call LockSSActivity(?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "UserID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "2",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "FieldActivityID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "GetCivilEarnedHours" : {
+    "procedureString" : "CALL GetCivilEarnedHours(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "GroupedBy",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "ForemanID",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "CrewID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "CrewRev",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ForemanID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "SuperintendentID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ProjectManagerID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ConstructionManagerID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "SiteManagerID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "AreaManagerID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "InputDate",
+      "type" : "date",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "2017-01-06",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "RunMode",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "CreateLooseHoursActivityCivil" : {
+    "procedureString" : "call CreateLooseHoursActivityCivil(?, ?, ?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "SubmissionId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ActivityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "8",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "UserId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "2",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "TestPackage",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "GetPipePCOT" : {
+    "procedureString" : "call GetPipePCOT(?, ?, ?)",
+    "parameters" : [ {
+      "name" : "RunMode",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "ClassicTrackerPipeUpdate" : {
+    "procedureString" : "call UpdateTrackerPipeClassic(?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "RunMode",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "UpdateBidID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "GetJobPCOT" : {
+    "procedureString" : "call GetJobPCOT(?, ?, ?)",
+    "parameters" : [ {
+      "name" : "RunMode",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "CreateManualActivityPipe" : {
+    "procedureString" : "call CreateManualActivityPipe(?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "MiscDrawingNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "BobDwg",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "MiscLineNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "BobLine",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "MiscSheetNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "2",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "MiscQuantity",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "3",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "MiscNotes",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "BobNote",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "UserId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "BidID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "7",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "GetSteelEarnedHours" : {
+    "procedureString" : "CALL GetSteelEarnedHours(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "GroupedBy",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "ForemanID",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "CrewID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "CrewRev",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ForemanID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "SuperintendentID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ProjectManagerID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ConstructionManagerID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "SiteManagerID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "AreaManagerID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "InputDate",
+      "type" : "date",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "2016-10-21",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "RunMode",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "GetCivilPCOT" : {
+    "procedureString" : "call GetCivilPCOT(?, ?, ?)",
+    "parameters" : [ {
+      "name" : "RunMode",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "GetEquipPCOT" : {
+    "procedureString" : "call GetEquipPCOT(?, ?, ?)",
+    "parameters" : [ {
+      "name" : "RunMode",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "GetPipeStats" : {
+    "procedureString" : "call GetPipeStats(?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "GroupedBy",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "WBS10",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "RunMode",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "GetCivilStats" : {
+    "procedureString" : "call GetCivilStats(?, ?, ?, ? )",
+    "parameters" : [ {
+      "name" : "GroupedBy",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "WBS10",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "RunMode",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "GetPipeEarnedHours" : {
+    "procedureString" : "call GetPipeEarnedHours(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "GroupedBy",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "SuperintendentID",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "CrewID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "CrewRev",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ForemanID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "SuperintendentID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ProjectManagerID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ConstructionManagerID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "SiteManagerID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "AreaManagerID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "%",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "InputDate",
+      "type" : "date",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "2016-07-07",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "RunMode",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "",
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "CreateManualActivityCivil" : {
+    "procedureString" : "call CreateManualActivityCivil(?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "varFoundation",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "varDrawingNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "varDetailDrawingNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "varPercentComplete",
+      "type" : "big_decimal",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : ".9",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "varNotes",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "Test Notes",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "varUserId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "varBidID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "false",
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "GetEquipStats" : {
+    "procedureString" : "call GetEquipStats(?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "GroupedBy",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "P6ID",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "RunMode",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "CreateManualActivityEquip" : {
+    "procedureString" : "call CreateManualActivityEquip(?, ?, ?, ?, ?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "varTagNumber",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "tag",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "varActivitySelect",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "act",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "varPercentComplete",
+      "type" : "big_decimal",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : ".33",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "varNotes",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "note",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "varUserId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "2",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "varBidID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "GetSteelStats" : {
+    "procedureString" : "call GetSteelStats(?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "GroupedBy",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "WBS10",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "RunMode",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "ClassicTrackerCivilUpdate" : {
+    "procedureString" : "call UpdateTrackerCivilClassic(?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "RunMode",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "UpdateBidID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "CreateLooseHoursActivitiesPipe" : {
+    "procedureString" : "call CreateLooseHoursActivityPipe(?, ?, ?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "SubmissionId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ActivityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "6",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "UserId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "2",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "TestPackage",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "ClassicTrackerSteelUpdate" : {
+    "procedureString" : "call UpdateTrackerSteelClassic(?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "RunMode",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "UpdateBidID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : "1",
+      "required" : false,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"

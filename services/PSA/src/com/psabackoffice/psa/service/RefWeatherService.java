@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefWeatherService {
      * @param refWeather Details of the RefWeather to be created; value cannot be null.
      * @return The newly created RefWeather.
      */
-	RefWeather create(RefWeather refWeather);
+	RefWeather create(@Valid RefWeather refWeather);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface RefWeatherService {
 	 * @return The updated RefWeather.
 	 * @throws EntityNotFoundException if no RefWeather is found with given input.
 	 */
-	RefWeather update(RefWeather refWeather) throws EntityNotFoundException;
+	RefWeather update(@Valid RefWeather refWeather) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefWeather with the given id.

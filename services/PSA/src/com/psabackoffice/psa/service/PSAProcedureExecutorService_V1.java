@@ -14,19 +14,19 @@ import com.psabackoffice.psa.models.procedure.*;
 public interface PSAProcedureExecutorService_V1 {
 
     @Deprecated
-    List<Object> executeGetImportTotals(String tableNameLanding, String tableNameDestination, String jobNumber);
-
-    @Deprecated
     List<Object> executeCreateNewJobDB(Integer jobNumber);
-
-    @Deprecated
-    List<Object> executeCreateNewJobSeeds(Integer jobNumber);
 
     @Deprecated
     List<Object> executeCreateNewConversation(Integer varCreator, Integer varRecipient);
 
     @Deprecated
     List<Object> executeValidateLandingData(String tableName, String jobNumber);
+
+    @Deprecated
+    List<Object> executeGetImportTotals(String tableNameLanding, String tableNameDestination, String jobNumber);
+
+    @Deprecated
+    List<Object> executeCreateNewJobSeeds(Integer jobNumber);
 
 }
 

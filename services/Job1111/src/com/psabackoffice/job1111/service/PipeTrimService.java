@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface PipeTrimService {
      * @param pipeTrim Details of the PipeTrim to be created; value cannot be null.
      * @return The newly created PipeTrim.
      */
-	PipeTrim create(PipeTrim pipeTrim);
+	PipeTrim create(@Valid PipeTrim pipeTrim);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface PipeTrimService {
 	 * @return The updated PipeTrim.
 	 * @throws EntityNotFoundException if no PipeTrim is found with given input.
 	 */
-	PipeTrim update(PipeTrim pipeTrim) throws EntityNotFoundException;
+	PipeTrim update(@Valid PipeTrim pipeTrim) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing PipeTrim with the given id.

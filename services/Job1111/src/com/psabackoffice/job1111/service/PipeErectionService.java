@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface PipeErectionService {
      * @param pipeErection Details of the PipeErection to be created; value cannot be null.
      * @return The newly created PipeErection.
      */
-	PipeErection create(PipeErection pipeErection);
+	PipeErection create(@Valid PipeErection pipeErection);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface PipeErectionService {
 	 * @return The updated PipeErection.
 	 * @throws EntityNotFoundException if no PipeErection is found with given input.
 	 */
-	PipeErection update(PipeErection pipeErection) throws EntityNotFoundException;
+	PipeErection update(@Valid PipeErection pipeErection) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing PipeErection with the given id.

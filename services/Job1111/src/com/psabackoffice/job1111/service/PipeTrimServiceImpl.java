@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.job1111.PipeTrim;
  * @see PipeTrim
  */
 @Service("Job1111.PipeTrimService")
+@Validated
 public class PipeTrimServiceImpl implements PipeTrimService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PipeTrimServiceImpl.class);
@@ -49,6 +51,7 @@ public class PipeTrimServiceImpl implements PipeTrimService {
     @Override
 	public PipeTrim create(PipeTrim pipeTrim) {
         LOGGER.debug("Creating a new PipeTrim with information: {}", pipeTrim);
+
         PipeTrim pipeTrimCreated = this.wmGenericDao.create(pipeTrim);
         return pipeTrimCreated;
     }
@@ -79,7 +82,7 @@ public class PipeTrimServiceImpl implements PipeTrimService {
         LOGGER.debug("Updating PipeTrim with information: {}", pipeTrim);
         this.wmGenericDao.update(pipeTrim);
 
-        Integer pipetrimId = pipeTrim.getActivityId();
+        Integer pipetrimId = pipeTrim.getId();
 
         return this.wmGenericDao.findById(pipetrimId);
     }

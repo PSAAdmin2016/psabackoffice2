@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefTrimActivitiesService {
      * @param refTrimActivities Details of the RefTrimActivities to be created; value cannot be null.
      * @return The newly created RefTrimActivities.
      */
-	RefTrimActivities create(RefTrimActivities refTrimActivities);
+	RefTrimActivities create(@Valid RefTrimActivities refTrimActivities);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface RefTrimActivitiesService {
 	 * @return The updated RefTrimActivities.
 	 * @throws EntityNotFoundException if no RefTrimActivities is found with given input.
 	 */
-	RefTrimActivities update(RefTrimActivities refTrimActivities) throws EntityNotFoundException;
+	RefTrimActivities update(@Valid RefTrimActivities refTrimActivities) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefTrimActivities with the given id.

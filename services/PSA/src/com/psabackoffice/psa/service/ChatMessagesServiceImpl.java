@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.psa.ChatMessages;
  * @see ChatMessages
  */
 @Service("PSA.ChatMessagesService")
+@Validated
 public class ChatMessagesServiceImpl implements ChatMessagesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ChatMessagesServiceImpl.class);
@@ -49,6 +51,7 @@ public class ChatMessagesServiceImpl implements ChatMessagesService {
     @Override
 	public ChatMessages create(ChatMessages chatMessages) {
         LOGGER.debug("Creating a new ChatMessages with information: {}", chatMessages);
+
         ChatMessages chatMessagesCreated = this.wmGenericDao.create(chatMessages);
         return chatMessagesCreated;
     }

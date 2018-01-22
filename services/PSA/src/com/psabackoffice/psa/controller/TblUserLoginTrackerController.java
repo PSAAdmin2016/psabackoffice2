@@ -52,9 +52,9 @@ public class TblUserLoginTrackerController {
 	private TblUserLoginTrackerService tblUserLoginTrackerService;
 
 	@ApiOperation(value = "Creates a new TblUserLoginTracker instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public TblUserLoginTracker createTblUserLoginTracker(@RequestBody TblUserLoginTracker tblUserLoginTracker) {
+    public TblUserLoginTracker createTblUserLoginTracker(@RequestBody TblUserLoginTracker tblUserLoginTracker) {
 		LOGGER.debug("Create TblUserLoginTracker with information: {}" , tblUserLoginTracker);
 
 		tblUserLoginTracker = tblUserLoginTrackerService.create(tblUserLoginTracker);
@@ -62,7 +62,6 @@ public class TblUserLoginTrackerController {
 
 	    return tblUserLoginTracker;
 	}
-
 
     @ApiOperation(value = "Returns the TblUserLoginTracker instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

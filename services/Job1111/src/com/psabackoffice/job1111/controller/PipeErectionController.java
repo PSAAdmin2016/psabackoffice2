@@ -52,9 +52,9 @@ public class PipeErectionController {
 	private PipeErectionService pipeErectionService;
 
 	@ApiOperation(value = "Creates a new PipeErection instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public PipeErection createPipeErection(@RequestBody PipeErection pipeErection) {
+    public PipeErection createPipeErection(@RequestBody PipeErection pipeErection) {
 		LOGGER.debug("Create PipeErection with information: {}" , pipeErection);
 
 		pipeErection = pipeErectionService.create(pipeErection);
@@ -62,7 +62,6 @@ public class PipeErectionController {
 
 	    return pipeErection;
 	}
-
 
     @ApiOperation(value = "Returns the PipeErection instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -80,9 +79,9 @@ public class PipeErectionController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public PipeErection editPipeErection(@PathVariable("id") Integer id, @RequestBody PipeErection pipeErection) throws EntityNotFoundException {
-        LOGGER.debug("Editing PipeErection with id: {}" , pipeErection.getActivityId());
+        LOGGER.debug("Editing PipeErection with id: {}" , pipeErection.getId());
 
-        pipeErection.setActivityId(id);
+        pipeErection.setId(id);
         pipeErection = pipeErectionService.update(pipeErection);
         LOGGER.debug("PipeErection details with id: {}" , pipeErection);
 

@@ -52,9 +52,9 @@ public class RefRolesMobileFoldersController {
 	private RefRolesMobileFoldersService refRolesMobileFoldersService;
 
 	@ApiOperation(value = "Creates a new RefRolesMobileFolders instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefRolesMobileFolders createRefRolesMobileFolders(@RequestBody RefRolesMobileFolders refRolesMobileFolders) {
+    public RefRolesMobileFolders createRefRolesMobileFolders(@RequestBody RefRolesMobileFolders refRolesMobileFolders) {
 		LOGGER.debug("Create RefRolesMobileFolders with information: {}" , refRolesMobileFolders);
 
 		refRolesMobileFolders = refRolesMobileFoldersService.create(refRolesMobileFolders);
@@ -62,7 +62,6 @@ public class RefRolesMobileFoldersController {
 
 	    return refRolesMobileFolders;
 	}
-
 
     @ApiOperation(value = "Returns the RefRolesMobileFolders instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

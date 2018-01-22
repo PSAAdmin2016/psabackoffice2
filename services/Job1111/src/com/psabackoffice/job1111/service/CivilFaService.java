@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface CivilFaService {
      * @param civilFa Details of the CivilFa to be created; value cannot be null.
      * @return The newly created CivilFa.
      */
-	CivilFa create(CivilFa civilFa);
+	CivilFa create(@Valid CivilFa civilFa);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface CivilFaService {
 	 * @return The updated CivilFa.
 	 * @throws EntityNotFoundException if no CivilFa is found with given input.
 	 */
-	CivilFa update(CivilFa civilFa) throws EntityNotFoundException;
+	CivilFa update(@Valid CivilFa civilFa) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing CivilFa with the given id.

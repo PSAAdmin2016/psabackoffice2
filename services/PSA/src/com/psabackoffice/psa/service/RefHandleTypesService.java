@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefHandleTypesService {
      * @param refHandleTypes Details of the RefHandleTypes to be created; value cannot be null.
      * @return The newly created RefHandleTypes.
      */
-	RefHandleTypes create(RefHandleTypes refHandleTypes);
+	RefHandleTypes create(@Valid RefHandleTypes refHandleTypes);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface RefHandleTypesService {
 	 * @return The updated RefHandleTypes.
 	 * @throws EntityNotFoundException if no RefHandleTypes is found with given input.
 	 */
-	RefHandleTypes update(RefHandleTypes refHandleTypes) throws EntityNotFoundException;
+	RefHandleTypes update(@Valid RefHandleTypes refHandleTypes) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefHandleTypes with the given id.

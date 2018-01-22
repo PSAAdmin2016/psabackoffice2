@@ -52,9 +52,9 @@ public class PipeWeldController {
 	private PipeWeldService pipeWeldService;
 
 	@ApiOperation(value = "Creates a new PipeWeld instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public PipeWeld createPipeWeld(@RequestBody PipeWeld pipeWeld) {
+    public PipeWeld createPipeWeld(@RequestBody PipeWeld pipeWeld) {
 		LOGGER.debug("Create PipeWeld with information: {}" , pipeWeld);
 
 		pipeWeld = pipeWeldService.create(pipeWeld);
@@ -62,7 +62,6 @@ public class PipeWeldController {
 
 	    return pipeWeld;
 	}
-
 
     @ApiOperation(value = "Returns the PipeWeld instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -80,9 +79,9 @@ public class PipeWeldController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public PipeWeld editPipeWeld(@PathVariable("id") Integer id, @RequestBody PipeWeld pipeWeld) throws EntityNotFoundException {
-        LOGGER.debug("Editing PipeWeld with id: {}" , pipeWeld.getActivityId());
+        LOGGER.debug("Editing PipeWeld with id: {}" , pipeWeld.getId());
 
-        pipeWeld.setActivityId(id);
+        pipeWeld.setId(id);
         pipeWeld = pipeWeldService.update(pipeWeld);
         LOGGER.debug("PipeWeld details with id: {}" , pipeWeld);
 

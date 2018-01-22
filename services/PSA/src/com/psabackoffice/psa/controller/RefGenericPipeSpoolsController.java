@@ -52,9 +52,9 @@ public class RefGenericPipeSpoolsController {
 	private RefGenericPipeSpoolsService refGenericPipeSpoolsService;
 
 	@ApiOperation(value = "Creates a new RefGenericPipeSpools instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefGenericPipeSpools createRefGenericPipeSpools(@RequestBody RefGenericPipeSpools refGenericPipeSpools) {
+    public RefGenericPipeSpools createRefGenericPipeSpools(@RequestBody RefGenericPipeSpools refGenericPipeSpools) {
 		LOGGER.debug("Create RefGenericPipeSpools with information: {}" , refGenericPipeSpools);
 
 		refGenericPipeSpools = refGenericPipeSpoolsService.create(refGenericPipeSpools);
@@ -62,7 +62,6 @@ public class RefGenericPipeSpoolsController {
 
 	    return refGenericPipeSpools;
 	}
-
 
     @ApiOperation(value = "Returns the RefGenericPipeSpools instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

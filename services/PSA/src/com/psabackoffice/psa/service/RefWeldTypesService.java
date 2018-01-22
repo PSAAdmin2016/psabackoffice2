@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefWeldTypesService {
      * @param refWeldTypes Details of the RefWeldTypes to be created; value cannot be null.
      * @return The newly created RefWeldTypes.
      */
-	RefWeldTypes create(RefWeldTypes refWeldTypes);
+	RefWeldTypes create(@Valid RefWeldTypes refWeldTypes);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface RefWeldTypesService {
 	 * @return The updated RefWeldTypes.
 	 * @throws EntityNotFoundException if no RefWeldTypes is found with given input.
 	 */
-	RefWeldTypes update(RefWeldTypes refWeldTypes) throws EntityNotFoundException;
+	RefWeldTypes update(@Valid RefWeldTypes refWeldTypes) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefWeldTypes with the given id.

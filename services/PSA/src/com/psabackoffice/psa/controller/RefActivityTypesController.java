@@ -52,9 +52,9 @@ public class RefActivityTypesController {
 	private RefActivityTypesService refActivityTypesService;
 
 	@ApiOperation(value = "Creates a new RefActivityTypes instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefActivityTypes createRefActivityTypes(@RequestBody RefActivityTypes refActivityTypes) {
+    public RefActivityTypes createRefActivityTypes(@RequestBody RefActivityTypes refActivityTypes) {
 		LOGGER.debug("Create RefActivityTypes with information: {}" , refActivityTypes);
 
 		refActivityTypes = refActivityTypesService.create(refActivityTypes);
@@ -62,7 +62,6 @@ public class RefActivityTypesController {
 
 	    return refActivityTypes;
 	}
-
 
     @ApiOperation(value = "Returns the RefActivityTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

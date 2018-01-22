@@ -9,6 +9,8 @@ package com.psabackoffice.psa.models.query;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UpdateUserCredsRequest implements Serializable {

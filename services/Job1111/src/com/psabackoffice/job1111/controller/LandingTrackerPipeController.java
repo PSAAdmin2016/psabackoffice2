@@ -52,9 +52,9 @@ public class LandingTrackerPipeController {
 	private LandingTrackerPipeService landingTrackerPipeService;
 
 	@ApiOperation(value = "Creates a new LandingTrackerPipe instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public LandingTrackerPipe createLandingTrackerPipe(@RequestBody LandingTrackerPipe landingTrackerPipe) {
+    public LandingTrackerPipe createLandingTrackerPipe(@RequestBody LandingTrackerPipe landingTrackerPipe) {
 		LOGGER.debug("Create LandingTrackerPipe with information: {}" , landingTrackerPipe);
 
 		landingTrackerPipe = landingTrackerPipeService.create(landingTrackerPipe);
@@ -62,7 +62,6 @@ public class LandingTrackerPipeController {
 
 	    return landingTrackerPipe;
 	}
-
 
     @ApiOperation(value = "Returns the LandingTrackerPipe instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

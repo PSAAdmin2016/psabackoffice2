@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.job1111.SteelShake;
  * @see SteelShake
  */
 @Service("Job1111.SteelShakeService")
+@Validated
 public class SteelShakeServiceImpl implements SteelShakeService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SteelShakeServiceImpl.class);
@@ -49,6 +51,7 @@ public class SteelShakeServiceImpl implements SteelShakeService {
     @Override
 	public SteelShake create(SteelShake steelShake) {
         LOGGER.debug("Creating a new SteelShake with information: {}", steelShake);
+
         SteelShake steelShakeCreated = this.wmGenericDao.create(steelShake);
         return steelShakeCreated;
     }
@@ -79,7 +82,7 @@ public class SteelShakeServiceImpl implements SteelShakeService {
         LOGGER.debug("Updating SteelShake with information: {}", steelShake);
         this.wmGenericDao.update(steelShake);
 
-        Integer steelshakeId = steelShake.getActivityId();
+        Integer steelshakeId = steelShake.getId();
 
         return this.wmGenericDao.findById(steelshakeId);
     }

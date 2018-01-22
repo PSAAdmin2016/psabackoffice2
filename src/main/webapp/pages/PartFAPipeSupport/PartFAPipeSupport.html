@@ -1,98 +1,93 @@
-<wm-partial data-ng-controller="PartFAPipeSupportPageController">
-    <wm-layoutgrid name="layoutgrid1">
-        <wm-gridrow name="gridrow1">
-            <wm-gridcolumn columnwidth="6" name="gridcolumn1">
-                <wm-layoutgrid name="layoutgrid3">
-                    <wm-gridrow name="gridrow4">
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn5">
-                            <wm-label caption="Support / Shoe" show="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportType == 1" fontweight="bold" fontsize="13" name="label1"></wm-label>
-                            <wm-label caption="Guide/Stops/Ect" show="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportType == 2" fontweight="bold" color="#dc0000" fontsize="13" name="label2"></wm-label>
-                        </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="4" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn6">
-                            <wm-checkbox caption="Rework" class="checkbox-custom" hint="Activity can NOT be accepted if it is Rework." disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportRework"
-                            checkedvalue="1" uncheckedvalue="0" readonlygrid="true" show="true" padding="unset unset unset 0px" margin="0px unset unset unset" name="checkboxSupportRework"></wm-checkbox>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                    <wm-gridrow name="gridrow5">
-                        <wm-gridcolumn columnwidth="12" name="gridcolumn7">
+<wm-partial data-ng-controller="PartFAPipeSupportPageController"> 
+    <wm-layoutgrid name="layoutgrid1"> 
+        <wm-gridrow name="gridrow1"> 
+            <wm-gridcolumn columnwidth="6" name="gridcolumn1"> 
+                <wm-layoutgrid name="layoutgrid3"> 
+                    <wm-gridrow name="gridrow4"> 
+                        <wm-gridcolumn columnwidth="3" name="gridcolumn5"> 
+                            <wm-label caption="Support / Shoe" show="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportType == 1" fontweight="bold" fontsize="13" name="label1"></wm-label> 
+                            <wm-label caption="Guide/Stops/Ect" show="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportType == 2" fontweight="bold" color="#dc0000" fontsize="13" name="label2"></wm-label> 
+                        </wm-gridcolumn> 
+                        <wm-gridcolumn columnwidth="4" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn6"> 
+                            <wm-checkbox caption="Rework" class="checkbox-custom" hint="Activity can NOT be accepted if it is Rework." disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportRework" checkedvalue="1" uncheckedvalue="0" readonlygrid="true" show="true" padding="unset unset unset 0px" margin="0px unset unset unset" name="checkboxSupportRework"></wm-checkbox> 
+                        </wm-gridcolumn> 
+                    </wm-gridrow> 
+                    <wm-gridrow name="gridrow5"> 
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn7"> 
                             <wm-composite captionposition="top" marginunit="px" paddingunit="%" show="bind:Variables.Job1111_SubsSupportsData.dataSet.data[$i].supportType == 1
-" name="composite1">
-                                <wm-label class="col-md-3 control-label" caption="Support Part#" name="label3"></wm-label>
-                                <wm-container class="col-md-9" name="container1">
-                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportPartNumber" readonly="false" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" width="40%" name="textSupportPart" placeholder="Enter Part Number"></wm-text>
-                                </wm-container>
-                            </wm-composite>
-                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite2">
-                                <wm-label class="col-md-3 control-label" caption="Installed Quantity" name="label4"></wm-label>
-                                <wm-container class="col-md-9" name="container2">
-                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportQuantity" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" width="40%" type="number" minvalue=".1" maxvalue="99" name="textSupportQuantity"
-                                    placeholder="Enter Quantity"></wm-text>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                    <wm-gridrow name="gridrow6">
-                        <wm-gridcolumn columnwidth="4" horizontalalign="left" name="gridcolumn8">
-                            <wm-checkbox caption="Support Complete" class="checkbox-custom" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportComplete" checkedvalue="1" uncheckedvalue="0"
-                            show="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportType == 1" readonlygrid="true" on-change="checkboxSupportCompleteChange($event, $scope)" padding="unset unset unset 0px" name="checkboxSupportComplete"></wm-checkbox>
-                            <wm-checkbox caption="Shared Support" class="checkbox-custom" hint="Check if this weld was worked on by welders other then the ones named in Welder Stencil." disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportShared"
-                            checkedvalue="1" uncheckedvalue="0" readonlygrid="true" show="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportType == 1" padding="unset unset unset 0px" name="checkboxSupportShared" margin="2% unset unset unset"></wm-checkbox>
-                        </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn9">
-                            <wm-composite captionposition="top" hint="Percentage of the Entire weld did the above listed welders complete in this Activity?" show="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportType == 1" name="composite3">
-                                <wm-label class="col-md-3 control-label" caption="Percent Completed" name="label5"></wm-label>
-                                <wm-container class="col-md-9" name="container3">
-                                    <wm-select disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datafield="value" displayfield="label" dataset="bind:Variables.PSARefPercentListData.dataSet" datavalue="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportPercentCompleted"
-                                    readonlygrid="true" name="selectSupportPercentComplete"></wm-select>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                </wm-layoutgrid>
-            </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="6" name="gridcolumn2">
-                <wm-layoutgrid name="layoutgrid4">
-                    <wm-gridrow name="gridrow7">
-                        <wm-gridcolumn columnwidth="8" name="gridcolumn11">
-                            <wm-composite captionposition="top" name="composite4">
-                                <wm-label class="col-md-3 control-label" caption="Drawing Number" readonlygrid="true" name="label6"></wm-label>
-                                <wm-container class="col-md-9" width="100%" name="container4">
-                                    <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportDrawingNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" name="textSupportDrawing" placeholder="Enter Drawing Number"></wm-text>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn12">
-                            <wm-composite captionposition="top" name="composite5">
-                                <wm-label class="col-md-3 control-label" caption="Sheet" name="label7"></wm-label>
-                                <wm-container class="col-md-9" name="container5">
-                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportSheetNumber" width="70%" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textSupportSheet" placeholder="Enter Sheet Number"></wm-text>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                    <wm-gridrow name="gridrow8">
-                        <wm-gridcolumn columnwidth="8" name="gridcolumn13">
-                            <wm-composite captionposition="top" name="composite6">
-                                <wm-label class="col-md-3 control-label" caption="Line Number" name="label8"></wm-label>
-                                <wm-container class="col-md-9" width="100%" name="container6">
-                                    <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportLineNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textSupportLine" placeholder="Enter Line Number"></wm-text>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn14"></wm-gridcolumn>
-                    </wm-gridrow>
-                    <wm-gridrow name="gridrow9">
-                        <wm-gridcolumn columnwidth="12" name="gridcolumn15">
-                            <wm-composite captionposition="top" name="composite7">
-                                <wm-label class="col-md-3 control-label" caption="Notes" name="label9"></wm-label>
-                                <wm-container class="col-md-9" name="container7">
-                                    <wm-textarea datavalue="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportNotes" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textareaSupportNotes" placeholder="Input notes here"></wm-textarea>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                </wm-layoutgrid>
-            </wm-gridcolumn>
-        </wm-gridrow>
-    </wm-layoutgrid>
+" name="composite1"> 
+                                <wm-label class="col-md-3 control-label" caption="Support Part#" name="label3"></wm-label> 
+                                <wm-container class="col-md-9" name="container1"> 
+                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportPartNumber" readonly="false" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" width="40%" name="textSupportPart" placeholder="Enter Part Number"></wm-text> 
+                                </wm-container> 
+                            </wm-composite> 
+                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite2"> 
+                                <wm-label class="col-md-3 control-label" caption="Installed Quantity" name="label4"></wm-label> 
+                                <wm-container class="col-md-9" name="container2"> 
+                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportQuantity" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" width="40%" type="number" minvalue=".1" maxvalue="99" name="textSupportQuantity" placeholder="Enter Quantity"></wm-text> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                    </wm-gridrow> 
+                    <wm-gridrow name="gridrow6"> 
+                        <wm-gridcolumn columnwidth="4" horizontalalign="left" name="gridcolumn8"> 
+                            <wm-checkbox caption="Support Complete" class="checkbox-custom" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportComplete" checkedvalue="1" uncheckedvalue="0" show="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportType == 1" readonlygrid="true" on-change="checkboxSupportCompleteChange($event, $scope)" padding="unset unset unset 0px" name="checkboxSupportComplete"></wm-checkbox> 
+                            <wm-checkbox caption="Shared Support" class="checkbox-custom" hint="Check if this weld was worked on by welders other then the ones named in Welder Stencil." disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportShared" checkedvalue="1" uncheckedvalue="0" readonlygrid="true" show="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportType == 1" padding="unset unset unset 0px" name="checkboxSupportShared" margin="2% unset unset unset"></wm-checkbox> 
+                        </wm-gridcolumn> 
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn9"> 
+                            <wm-composite captionposition="top" hint="Percentage of the Entire weld did the above listed welders complete in this Activity?" show="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportType == 1" name="composite3"> 
+                                <wm-label class="col-md-3 control-label" caption="Percent Completed" name="label5"></wm-label> 
+                                <wm-container class="col-md-9" name="container3"> 
+                                    <wm-select disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datafield="value" displayfield="label" dataset="bind:Variables.PSARefPercentListData.dataSet" datavalue="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportPercentCompleted" readonlygrid="true" name="selectSupportPercentComplete"></wm-select> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                    </wm-gridrow> 
+                </wm-layoutgrid> 
+            </wm-gridcolumn> 
+            <wm-gridcolumn columnwidth="6" name="gridcolumn2"> 
+                <wm-layoutgrid name="layoutgrid4"> 
+                    <wm-gridrow name="gridrow7"> 
+                        <wm-gridcolumn columnwidth="8" name="gridcolumn11"> 
+                            <wm-composite captionposition="top" name="composite4"> 
+                                <wm-label class="col-md-3 control-label" caption="Drawing Number" readonlygrid="true" name="label6"></wm-label> 
+                                <wm-container class="col-md-9" width="100%" name="container4"> 
+                                    <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportDrawingNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" name="textSupportDrawing" placeholder="Enter Drawing Number"></wm-text> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                        <wm-gridcolumn columnwidth="3" name="gridcolumn12"> 
+                            <wm-composite captionposition="top" name="composite5"> 
+                                <wm-label class="col-md-3 control-label" caption="Sheet" name="label7"></wm-label> 
+                                <wm-container class="col-md-9" name="container5"> 
+                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportSheetNumber" width="70%" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textSupportSheet" placeholder="Enter Sheet Number"></wm-text> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                    </wm-gridrow> 
+                    <wm-gridrow name="gridrow8"> 
+                        <wm-gridcolumn columnwidth="8" name="gridcolumn13"> 
+                            <wm-composite captionposition="top" name="composite6"> 
+                                <wm-label class="col-md-3 control-label" caption="Line Number" name="label8"></wm-label> 
+                                <wm-container class="col-md-9" width="100%" name="container6"> 
+                                    <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportLineNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textSupportLine" placeholder="Enter Line Number"></wm-text> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                        <wm-gridcolumn columnwidth="3" name="gridcolumn14"></wm-gridcolumn> 
+                    </wm-gridrow> 
+                    <wm-gridrow name="gridrow9"> 
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn15"> 
+                            <wm-composite captionposition="top" name="composite7"> 
+                                <wm-label class="col-md-3 control-label" caption="Notes" name="label9"></wm-label> 
+                                <wm-container class="col-md-9" name="container7"> 
+                                    <wm-textarea datavalue="bind:$parent.Variables.liveGetPipeSupports.dataSet.data[$i].supportNotes" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textareaSupportNotes" placeholder="Input notes here"></wm-textarea> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                    </wm-gridrow> 
+                </wm-layoutgrid> 
+            </wm-gridcolumn> 
+        </wm-gridrow> 
+    </wm-layoutgrid> 
 </wm-partial>

@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.psa.RefRolesMobileFolders;
  * @see RefRolesMobileFolders
  */
 @Service("PSA.RefRolesMobileFoldersService")
+@Validated
 public class RefRolesMobileFoldersServiceImpl implements RefRolesMobileFoldersService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RefRolesMobileFoldersServiceImpl.class);
@@ -49,6 +51,7 @@ public class RefRolesMobileFoldersServiceImpl implements RefRolesMobileFoldersSe
     @Override
 	public RefRolesMobileFolders create(RefRolesMobileFolders refRolesMobileFolders) {
         LOGGER.debug("Creating a new RefRolesMobileFolders with information: {}", refRolesMobileFolders);
+
         RefRolesMobileFolders refRolesMobileFoldersCreated = this.wmGenericDao.create(refRolesMobileFolders);
         return refRolesMobileFoldersCreated;
     }

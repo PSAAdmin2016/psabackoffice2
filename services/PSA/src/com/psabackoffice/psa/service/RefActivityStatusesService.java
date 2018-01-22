@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefActivityStatusesService {
      * @param refActivityStatuses Details of the RefActivityStatuses to be created; value cannot be null.
      * @return The newly created RefActivityStatuses.
      */
-	RefActivityStatuses create(RefActivityStatuses refActivityStatuses);
+	RefActivityStatuses create(@Valid RefActivityStatuses refActivityStatuses);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface RefActivityStatusesService {
 	 * @return The updated RefActivityStatuses.
 	 * @throws EntityNotFoundException if no RefActivityStatuses is found with given input.
 	 */
-	RefActivityStatuses update(RefActivityStatuses refActivityStatuses) throws EntityNotFoundException;
+	RefActivityStatuses update(@Valid RefActivityStatuses refActivityStatuses) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefActivityStatuses with the given id.

@@ -52,9 +52,9 @@ public class RefDelayTypesController {
 	private RefDelayTypesService refDelayTypesService;
 
 	@ApiOperation(value = "Creates a new RefDelayTypes instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefDelayTypes createRefDelayTypes(@RequestBody RefDelayTypes refDelayTypes) {
+    public RefDelayTypes createRefDelayTypes(@RequestBody RefDelayTypes refDelayTypes) {
 		LOGGER.debug("Create RefDelayTypes with information: {}" , refDelayTypes);
 
 		refDelayTypes = refDelayTypesService.create(refDelayTypes);
@@ -62,7 +62,6 @@ public class RefDelayTypesController {
 
 	    return refDelayTypes;
 	}
-
 
     @ApiOperation(value = "Returns the RefDelayTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

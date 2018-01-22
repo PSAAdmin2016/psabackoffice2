@@ -52,9 +52,9 @@ public class RefInstTypesController {
 	private RefInstTypesService refInstTypesService;
 
 	@ApiOperation(value = "Creates a new RefInstTypes instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefInstTypes createRefInstTypes(@RequestBody RefInstTypes refInstTypes) {
+    public RefInstTypes createRefInstTypes(@RequestBody RefInstTypes refInstTypes) {
 		LOGGER.debug("Create RefInstTypes with information: {}" , refInstTypes);
 
 		refInstTypes = refInstTypesService.create(refInstTypes);
@@ -62,7 +62,6 @@ public class RefInstTypesController {
 
 	    return refInstTypes;
 	}
-
 
     @ApiOperation(value = "Returns the RefInstTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.job1111.PipeTesting;
  * @see PipeTesting
  */
 @Service("Job1111.PipeTestingService")
+@Validated
 public class PipeTestingServiceImpl implements PipeTestingService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PipeTestingServiceImpl.class);
@@ -49,6 +51,7 @@ public class PipeTestingServiceImpl implements PipeTestingService {
     @Override
 	public PipeTesting create(PipeTesting pipeTesting) {
         LOGGER.debug("Creating a new PipeTesting with information: {}", pipeTesting);
+
         PipeTesting pipeTestingCreated = this.wmGenericDao.create(pipeTesting);
         return pipeTestingCreated;
     }
@@ -79,7 +82,7 @@ public class PipeTestingServiceImpl implements PipeTestingService {
         LOGGER.debug("Updating PipeTesting with information: {}", pipeTesting);
         this.wmGenericDao.update(pipeTesting);
 
-        Integer pipetestingId = pipeTesting.getActivityId();
+        Integer pipetestingId = pipeTesting.getId();
 
         return this.wmGenericDao.findById(pipetestingId);
     }

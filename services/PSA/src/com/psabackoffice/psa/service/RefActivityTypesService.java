@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefActivityTypesService {
      * @param refActivityTypes Details of the RefActivityTypes to be created; value cannot be null.
      * @return The newly created RefActivityTypes.
      */
-	RefActivityTypes create(RefActivityTypes refActivityTypes);
+	RefActivityTypes create(@Valid RefActivityTypes refActivityTypes);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface RefActivityTypesService {
 	 * @return The updated RefActivityTypes.
 	 * @throws EntityNotFoundException if no RefActivityTypes is found with given input.
 	 */
-	RefActivityTypes update(RefActivityTypes refActivityTypes) throws EntityNotFoundException;
+	RefActivityTypes update(@Valid RefActivityTypes refActivityTypes) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefActivityTypes with the given id.

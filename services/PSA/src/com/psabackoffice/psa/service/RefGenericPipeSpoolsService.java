@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefGenericPipeSpoolsService {
      * @param refGenericPipeSpools Details of the RefGenericPipeSpools to be created; value cannot be null.
      * @return The newly created RefGenericPipeSpools.
      */
-	RefGenericPipeSpools create(RefGenericPipeSpools refGenericPipeSpools);
+	RefGenericPipeSpools create(@Valid RefGenericPipeSpools refGenericPipeSpools);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface RefGenericPipeSpoolsService {
 	 * @return The updated RefGenericPipeSpools.
 	 * @throws EntityNotFoundException if no RefGenericPipeSpools is found with given input.
 	 */
-	RefGenericPipeSpools update(RefGenericPipeSpools refGenericPipeSpools) throws EntityNotFoundException;
+	RefGenericPipeSpools update(@Valid RefGenericPipeSpools refGenericPipeSpools) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefGenericPipeSpools with the given id.

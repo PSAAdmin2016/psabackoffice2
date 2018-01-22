@@ -52,9 +52,9 @@ public class PipeTestingController {
 	private PipeTestingService pipeTestingService;
 
 	@ApiOperation(value = "Creates a new PipeTesting instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public PipeTesting createPipeTesting(@RequestBody PipeTesting pipeTesting) {
+    public PipeTesting createPipeTesting(@RequestBody PipeTesting pipeTesting) {
 		LOGGER.debug("Create PipeTesting with information: {}" , pipeTesting);
 
 		pipeTesting = pipeTestingService.create(pipeTesting);
@@ -62,7 +62,6 @@ public class PipeTestingController {
 
 	    return pipeTesting;
 	}
-
 
     @ApiOperation(value = "Returns the PipeTesting instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -80,9 +79,9 @@ public class PipeTestingController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public PipeTesting editPipeTesting(@PathVariable("id") Integer id, @RequestBody PipeTesting pipeTesting) throws EntityNotFoundException {
-        LOGGER.debug("Editing PipeTesting with id: {}" , pipeTesting.getActivityId());
+        LOGGER.debug("Editing PipeTesting with id: {}" , pipeTesting.getId());
 
-        pipeTesting.setActivityId(id);
+        pipeTesting.setId(id);
         pipeTesting = pipeTestingService.update(pipeTesting);
         LOGGER.debug("PipeTesting details with id: {}" , pipeTesting);
 

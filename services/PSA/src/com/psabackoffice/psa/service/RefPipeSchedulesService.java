@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefPipeSchedulesService {
      * @param refPipeSchedules Details of the RefPipeSchedules to be created; value cannot be null.
      * @return The newly created RefPipeSchedules.
      */
-	RefPipeSchedules create(RefPipeSchedules refPipeSchedules);
+	RefPipeSchedules create(@Valid RefPipeSchedules refPipeSchedules);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface RefPipeSchedulesService {
 	 * @return The updated RefPipeSchedules.
 	 * @throws EntityNotFoundException if no RefPipeSchedules is found with given input.
 	 */
-	RefPipeSchedules update(RefPipeSchedules refPipeSchedules) throws EntityNotFoundException;
+	RefPipeSchedules update(@Valid RefPipeSchedules refPipeSchedules) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefPipeSchedules with the given id.

@@ -52,9 +52,9 @@ public class SteelMiscController {
 	private SteelMiscService steelMiscService;
 
 	@ApiOperation(value = "Creates a new SteelMisc instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public SteelMisc createSteelMisc(@RequestBody SteelMisc steelMisc) {
+    public SteelMisc createSteelMisc(@RequestBody SteelMisc steelMisc) {
 		LOGGER.debug("Create SteelMisc with information: {}" , steelMisc);
 
 		steelMisc = steelMiscService.create(steelMisc);
@@ -62,7 +62,6 @@ public class SteelMiscController {
 
 	    return steelMisc;
 	}
-
 
     @ApiOperation(value = "Returns the SteelMisc instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -80,9 +79,9 @@ public class SteelMiscController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public SteelMisc editSteelMisc(@PathVariable("id") Integer id, @RequestBody SteelMisc steelMisc) throws EntityNotFoundException {
-        LOGGER.debug("Editing SteelMisc with id: {}" , steelMisc.getActivityId());
+        LOGGER.debug("Editing SteelMisc with id: {}" , steelMisc.getId());
 
-        steelMisc.setActivityId(id);
+        steelMisc.setId(id);
         steelMisc = steelMiscService.update(steelMisc);
         LOGGER.debug("SteelMisc details with id: {}" , steelMisc);
 

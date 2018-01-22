@@ -52,9 +52,9 @@ public class TblCrewsRevController {
 	private TblCrewsRevService tblCrewsRevService;
 
 	@ApiOperation(value = "Creates a new TblCrewsRev instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public TblCrewsRev createTblCrewsRev(@RequestBody TblCrewsRev tblCrewsRev) {
+    public TblCrewsRev createTblCrewsRev(@RequestBody TblCrewsRev tblCrewsRev) {
 		LOGGER.debug("Create TblCrewsRev with information: {}" , tblCrewsRev);
 
 		tblCrewsRev = tblCrewsRevService.create(tblCrewsRev);
@@ -62,7 +62,6 @@ public class TblCrewsRevController {
 
 	    return tblCrewsRev;
 	}
-
 
     @ApiOperation(value = "Returns the TblCrewsRev instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

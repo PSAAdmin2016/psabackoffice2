@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -33,7 +35,7 @@ public interface RefRolesService {
      * @param refRoles Details of the RefRoles to be created; value cannot be null.
      * @return The newly created RefRoles.
      */
-	RefRoles create(RefRoles refRoles);
+	RefRoles create(@Valid RefRoles refRoles);
 
 
 	/**
@@ -63,7 +65,7 @@ public interface RefRolesService {
 	 * @return The updated RefRoles.
 	 * @throws EntityNotFoundException if no RefRoles is found with given input.
 	 */
-	RefRoles update(RefRoles refRoles) throws EntityNotFoundException;
+	RefRoles update(@Valid RefRoles refRoles) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefRoles with the given id.

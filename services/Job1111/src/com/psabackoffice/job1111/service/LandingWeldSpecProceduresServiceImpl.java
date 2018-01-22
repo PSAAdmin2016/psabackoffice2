@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.job1111.LandingWeldSpecProcedures;
  * @see LandingWeldSpecProcedures
  */
 @Service("Job1111.LandingWeldSpecProceduresService")
+@Validated
 public class LandingWeldSpecProceduresServiceImpl implements LandingWeldSpecProceduresService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LandingWeldSpecProceduresServiceImpl.class);
@@ -49,6 +51,7 @@ public class LandingWeldSpecProceduresServiceImpl implements LandingWeldSpecProc
     @Override
 	public LandingWeldSpecProcedures create(LandingWeldSpecProcedures landingWeldSpecProcedures) {
         LOGGER.debug("Creating a new LandingWeldSpecProcedures with information: {}", landingWeldSpecProcedures);
+
         LandingWeldSpecProcedures landingWeldSpecProceduresCreated = this.wmGenericDao.create(landingWeldSpecProcedures);
         return landingWeldSpecProceduresCreated;
     }

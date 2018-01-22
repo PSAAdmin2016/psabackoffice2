@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefWeldMaterialsService {
      * @param refWeldMaterials Details of the RefWeldMaterials to be created; value cannot be null.
      * @return The newly created RefWeldMaterials.
      */
-	RefWeldMaterials create(RefWeldMaterials refWeldMaterials);
+	RefWeldMaterials create(@Valid RefWeldMaterials refWeldMaterials);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface RefWeldMaterialsService {
 	 * @return The updated RefWeldMaterials.
 	 * @throws EntityNotFoundException if no RefWeldMaterials is found with given input.
 	 */
-	RefWeldMaterials update(RefWeldMaterials refWeldMaterials) throws EntityNotFoundException;
+	RefWeldMaterials update(@Valid RefWeldMaterials refWeldMaterials) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefWeldMaterials with the given id.

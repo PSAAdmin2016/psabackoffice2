@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefSpoolListService {
      * @param refSpoolList Details of the RefSpoolList to be created; value cannot be null.
      * @return The newly created RefSpoolList.
      */
-	RefSpoolList create(RefSpoolList refSpoolList);
+	RefSpoolList create(@Valid RefSpoolList refSpoolList);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface RefSpoolListService {
 	 * @return The updated RefSpoolList.
 	 * @throws EntityNotFoundException if no RefSpoolList is found with given input.
 	 */
-	RefSpoolList update(RefSpoolList refSpoolList) throws EntityNotFoundException;
+	RefSpoolList update(@Valid RefSpoolList refSpoolList) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefSpoolList with the given id.

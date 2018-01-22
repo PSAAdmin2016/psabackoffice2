@@ -1,25 +1,25 @@
-<wm-partial data-ng-controller="leftnavDashboardPageController" type="leftnav" name="partial1">
-    <wm-nav type="pills" layout="stacked" name="nav1">
-        <wm-nav-item name="nav_item1">
-            <wm-anchor caption="Home" name="anchor1" iconclass="glyphicon glyphicon-home" on-click="Variables.goToPage_Main.invoke();anchor1Click($event, $scope)"></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="nav_item2" accessroles="Civil-Superintendent Non-Staff,Civil-Superintendent Staff,Corp. Office-Site Admin,Corp. Office-Director,Corp. Office-Project Manager,Corp. Office-Project Services,Corp. Office-Regional Manager,Iron-Superintendent Non-Staff,Iron-Superintendent Staff,Millwright-Superintendent Non-Staff,Millwright-Superintendent Staff,Pipe-Superintendent Non-Staff,Pipe-Superintendent Staff,Safety-Area Manager,Safety-Corporate Manager,Safety-Regional Manager,Safety-Site Manager,Site Office-Area Manager,Site Office-Construction Manager,Site Office-Project Services A,Site Office-Project Services B,Site Office-Site Manager,SuperUser">
-            <wm-anchor caption="Job Progress" name="anchor2" iconclass="fa fa-bar-chart" on-click="Variables.goToPage_DashProgressJob.invoke()"></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="nav_item4" accessroles="Site Office-Area Manager,Site Office-Construction Manager,Site Office-Project Services A,Site Office-Project Services B,Site Office-Site Manager,SuperUser,Pipe-GF,Pipe-Superintendent Non-Staff,Pipe-Superintendent Staff,Corp. Office-Site Admin,Corp. Office-Regional Manager,Corp. Office-Project Services,Corp. Office-Project Manager,Corp. Office-Director">
-            <wm-anchor name="anchor4" iconclass="fa fa-bar-chart" caption="Pipe Progress" on-click="Variables.goToPage_DashProgressPipe.invoke()"></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="nav_item5" accessroles="Site Office-Area Manager,Site Office-Construction Manager,Site Office-Project Services A,Site Office-Project Services B,Site Office-Site Manager,SuperUser,Corp. Office-Director,Corp. Office-Project Manager,Corp. Office-Project Services,Corp. Office-Regional Manager,Corp. Office-Site Admin,Iron-Superintendent Non-Staff,Iron-Superintendent Staff,Steel-GF,Steel-Superintendent Non-Staff,Steel-Superintendent Staff">
-            <wm-anchor name="anchor5" iconclass="fa fa-bar-chart" caption="Steel Progress" on-click="Variables.goToPage_DashProgressSteel.invoke()"></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="nav_item6" accessroles="Site Office-Area Manager,Site Office-Construction Manager,Site Office-Project Services A,Site Office-Project Services B,SuperUser,Site Office-Site Manager,Corp. Office-Director,Corp. Office-Project Manager,Corp. Office-Project Services,Corp. Office-Regional Manager,Corp. Office-Site Admin,Civil-Superintendent Non-Staff,Civil-Superintendent Staff">
-            <wm-anchor name="anchor6" iconclass="fa fa-bar-chart" caption="Civil Progress" on-click="Variables.goToPage_DashProgressCivil.invoke()"></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="nav_item7" accessroles="Site Office-Project Services B,Site Office-Construction Manager,Site Office-Area Manager,Site Office-Project Services A,Site Office-Site Manager,SuperUser,Corp. Office-Director,Corp. Office-Project Manager,Corp. Office-Project Services,Corp. Office-Regional Manager,Corp. Office-Site Admin,Millwright-Superintendent Non-Staff,Millwright-Superintendent Staff">
-            <wm-anchor name="anchor7" iconclass="fa fa-bar-chart" caption="Equip. Progress" on-click="Variables.goToPage_DashProgressEquip.invoke()"></wm-anchor>
-        </wm-nav-item>
-        <wm-nav-item name="nav_item3" show="true" accessroles="SuperUser">
-            <wm-anchor name="anchor3" iconclass="fa fa-bar-chart" caption="Job Productivity" on-click="Variables.goToPage_DashboardProductivityJob.invoke()"></wm-anchor>
-        </wm-nav-item>
-    </wm-nav>
+<wm-partial data-ng-controller="leftnavDashboardPageController" type="leftnav" name="partial1"> 
+    <wm-nav type="pills" layout="stacked" name="nav1"> 
+        <wm-nav-item name="nav_item1"> 
+            <wm-anchor caption="Home" name="anchor1" iconclass="glyphicon glyphicon-home" on-click="Variables.goToPage_Main.invoke();anchor1Click($event, $scope)"></wm-anchor> 
+        </wm-nav-item> 
+        <wm-nav-item name="nav_item2" accessroles="Civil-Superintendent Non-Staff,Civil-Superintendent Staff,Corp. Office-Site Admin,Corp. Office-Director,Corp. Office-Project Manager,Corp. Office-Project Services,Corp. Office-Regional Manager,Iron-Superintendent Non-Staff,Iron-Superintendent Staff,Millwright-Superintendent Non-Staff,Millwright-Superintendent Staff,Pipe-Superintendent Non-Staff,Pipe-Superintendent Staff,Safety-Area Manager,Safety-Corporate Manager,Safety-Regional Manager,Safety-Site Manager,Site Office-Area Manager,Site Office-Construction Manager,Site Office-Project Services A,Site Office-Project Services B,Site Office-Site Manager,SuperUser"> 
+            <wm-anchor caption="Job Progress" name="anchor2" iconclass="fa fa-bar-chart" on-click="Variables.goToPage_DashProgressJob.invoke()"></wm-anchor> 
+        </wm-nav-item> 
+        <wm-nav-item name="nav_item4" accessroles="Site Office-Area Manager,Site Office-Construction Manager,Site Office-Project Services A,Site Office-Project Services B,Site Office-Site Manager,SuperUser,Pipe-GF,Pipe-Superintendent Non-Staff,Pipe-Superintendent Staff,Corp. Office-Site Admin,Corp. Office-Regional Manager,Corp. Office-Project Services,Corp. Office-Project Manager,Corp. Office-Director"> 
+            <wm-anchor name="anchor4" iconclass="fa fa-bar-chart" caption="Pipe Progress" on-click="Variables.goToPage_DashProgressPipe.invoke()"></wm-anchor> 
+        </wm-nav-item> 
+        <wm-nav-item name="nav_item5" accessroles="Site Office-Area Manager,Site Office-Construction Manager,Site Office-Project Services A,Site Office-Project Services B,Site Office-Site Manager,SuperUser,Corp. Office-Director,Corp. Office-Project Manager,Corp. Office-Project Services,Corp. Office-Regional Manager,Corp. Office-Site Admin,Iron-Superintendent Non-Staff,Iron-Superintendent Staff,Steel-GF,Steel-Superintendent Non-Staff,Steel-Superintendent Staff"> 
+            <wm-anchor name="anchor5" iconclass="fa fa-bar-chart" caption="Steel Progress" on-click="Variables.goToPage_DashProgressSteel.invoke()"></wm-anchor> 
+        </wm-nav-item> 
+        <wm-nav-item name="nav_item6" accessroles="Site Office-Area Manager,Site Office-Construction Manager,Site Office-Project Services A,Site Office-Project Services B,SuperUser,Site Office-Site Manager,Corp. Office-Director,Corp. Office-Project Manager,Corp. Office-Project Services,Corp. Office-Regional Manager,Corp. Office-Site Admin,Civil-Superintendent Non-Staff,Civil-Superintendent Staff"> 
+            <wm-anchor name="anchor6" iconclass="fa fa-bar-chart" caption="Civil Progress" on-click="Variables.goToPage_DashProgressCivil.invoke()"></wm-anchor> 
+        </wm-nav-item> 
+        <wm-nav-item name="nav_item7" accessroles="Site Office-Project Services B,Site Office-Construction Manager,Site Office-Area Manager,Site Office-Project Services A,Site Office-Site Manager,SuperUser,Corp. Office-Director,Corp. Office-Project Manager,Corp. Office-Project Services,Corp. Office-Regional Manager,Corp. Office-Site Admin,Millwright-Superintendent Non-Staff,Millwright-Superintendent Staff"> 
+            <wm-anchor name="anchor7" iconclass="fa fa-bar-chart" caption="Equip. Progress" on-click="Variables.goToPage_DashProgressEquip.invoke()"></wm-anchor> 
+        </wm-nav-item> 
+        <wm-nav-item name="nav_item3" show="true" accessroles="SuperUser"> 
+            <wm-anchor name="anchor3" iconclass="fa fa-bar-chart" caption="Job Productivity" on-click="Variables.goToPage_DashboardProductivityJob.invoke()"></wm-anchor> 
+        </wm-nav-item> 
+    </wm-nav> 
 </wm-partial>

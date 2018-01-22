@@ -52,9 +52,9 @@ public class RefPipeDemoTypesController {
 	private RefPipeDemoTypesService refPipeDemoTypesService;
 
 	@ApiOperation(value = "Creates a new RefPipeDemoTypes instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefPipeDemoTypes createRefPipeDemoTypes(@RequestBody RefPipeDemoTypes refPipeDemoTypes) {
+    public RefPipeDemoTypes createRefPipeDemoTypes(@RequestBody RefPipeDemoTypes refPipeDemoTypes) {
 		LOGGER.debug("Create RefPipeDemoTypes with information: {}" , refPipeDemoTypes);
 
 		refPipeDemoTypes = refPipeDemoTypesService.create(refPipeDemoTypes);
@@ -62,7 +62,6 @@ public class RefPipeDemoTypesController {
 
 	    return refPipeDemoTypes;
 	}
-
 
     @ApiOperation(value = "Returns the RefPipeDemoTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

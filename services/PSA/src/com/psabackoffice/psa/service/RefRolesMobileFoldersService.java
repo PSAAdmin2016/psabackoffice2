@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefRolesMobileFoldersService {
      * @param refRolesMobileFolders Details of the RefRolesMobileFolders to be created; value cannot be null.
      * @return The newly created RefRolesMobileFolders.
      */
-	RefRolesMobileFolders create(RefRolesMobileFolders refRolesMobileFolders);
+	RefRolesMobileFolders create(@Valid RefRolesMobileFolders refRolesMobileFolders);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface RefRolesMobileFoldersService {
 	 * @return The updated RefRolesMobileFolders.
 	 * @throws EntityNotFoundException if no RefRolesMobileFolders is found with given input.
 	 */
-	RefRolesMobileFolders update(RefRolesMobileFolders refRolesMobileFolders) throws EntityNotFoundException;
+	RefRolesMobileFolders update(@Valid RefRolesMobileFolders refRolesMobileFolders) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefRolesMobileFolders with the given id.

@@ -52,9 +52,9 @@ public class EquipTrackerClassicController {
 	private EquipTrackerClassicService equipTrackerClassicService;
 
 	@ApiOperation(value = "Creates a new EquipTrackerClassic instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public EquipTrackerClassic createEquipTrackerClassic(@RequestBody EquipTrackerClassic equipTrackerClassic) {
+    public EquipTrackerClassic createEquipTrackerClassic(@RequestBody EquipTrackerClassic equipTrackerClassic) {
 		LOGGER.debug("Create EquipTrackerClassic with information: {}" , equipTrackerClassic);
 
 		equipTrackerClassic = equipTrackerClassicService.create(equipTrackerClassic);
@@ -62,7 +62,6 @@ public class EquipTrackerClassicController {
 
 	    return equipTrackerClassic;
 	}
-
 
     @ApiOperation(value = "Returns the EquipTrackerClassic instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

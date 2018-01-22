@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.psa.RefValveTypes;
  * @see RefValveTypes
  */
 @Service("PSA.RefValveTypesService")
+@Validated
 public class RefValveTypesServiceImpl implements RefValveTypesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RefValveTypesServiceImpl.class);
@@ -49,6 +51,7 @@ public class RefValveTypesServiceImpl implements RefValveTypesService {
     @Override
 	public RefValveTypes create(RefValveTypes refValveTypes) {
         LOGGER.debug("Creating a new RefValveTypes with information: {}", refValveTypes);
+
         RefValveTypes refValveTypesCreated = this.wmGenericDao.create(refValveTypes);
         return refValveTypesCreated;
     }

@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface LandingTrackerSteelService {
      * @param landingTrackerSteel Details of the LandingTrackerSteel to be created; value cannot be null.
      * @return The newly created LandingTrackerSteel.
      */
-	LandingTrackerSteel create(LandingTrackerSteel landingTrackerSteel);
+	LandingTrackerSteel create(@Valid LandingTrackerSteel landingTrackerSteel);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface LandingTrackerSteelService {
 	 * @return The updated LandingTrackerSteel.
 	 * @throws EntityNotFoundException if no LandingTrackerSteel is found with given input.
 	 */
-	LandingTrackerSteel update(LandingTrackerSteel landingTrackerSteel) throws EntityNotFoundException;
+	LandingTrackerSteel update(@Valid LandingTrackerSteel landingTrackerSteel) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing LandingTrackerSteel with the given id.

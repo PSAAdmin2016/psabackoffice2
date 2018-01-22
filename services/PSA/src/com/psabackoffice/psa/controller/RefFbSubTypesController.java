@@ -53,9 +53,9 @@ public class RefFbSubTypesController {
 	private RefFbSubTypesService refFbSubTypesService;
 
 	@ApiOperation(value = "Creates a new RefFbSubTypes instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefFbSubTypes createRefFbSubTypes(@RequestBody RefFbSubTypes refFbSubTypes) {
+    public RefFbSubTypes createRefFbSubTypes(@RequestBody RefFbSubTypes refFbSubTypes) {
 		LOGGER.debug("Create RefFbSubTypes with information: {}" , refFbSubTypes);
 
 		refFbSubTypes = refFbSubTypesService.create(refFbSubTypes);
@@ -63,7 +63,6 @@ public class RefFbSubTypesController {
 
 	    return refFbSubTypes;
 	}
-
 
     @ApiOperation(value = "Returns the RefFbSubTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

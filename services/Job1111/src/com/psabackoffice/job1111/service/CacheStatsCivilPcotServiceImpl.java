@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.job1111.CacheStatsCivilPcot;
  * @see CacheStatsCivilPcot
  */
 @Service("Job1111.CacheStatsCivilPcotService")
+@Validated
 public class CacheStatsCivilPcotServiceImpl implements CacheStatsCivilPcotService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CacheStatsCivilPcotServiceImpl.class);
@@ -49,6 +51,7 @@ public class CacheStatsCivilPcotServiceImpl implements CacheStatsCivilPcotServic
     @Override
 	public CacheStatsCivilPcot create(CacheStatsCivilPcot cacheStatsCivilPcot) {
         LOGGER.debug("Creating a new CacheStatsCivilPcot with information: {}", cacheStatsCivilPcot);
+
         CacheStatsCivilPcot cacheStatsCivilPcotCreated = this.wmGenericDao.create(cacheStatsCivilPcot);
         return cacheStatsCivilPcotCreated;
     }

@@ -1,104 +1,94 @@
-<wm-partial data-ng-controller="PartReportEarnedHrsPipePageController" name="partial1">
-    <wm-tabs name="tabs1">
-        <wm-tabpane name="tabpane1" title="By Superintendent" accessroles="CorporateOffice,SuperUser,Manager,Regional Manager,Project Manager,Site Admin,Construction Manager,Area Manager,Site Manager,Pipe-Superintendent,Site Office-Site Manager,Site Office-Project Services,Site Office-Construction Manager,Site Office-Area Manager,Corp. Office-Site Admin,Corp. Office-Regional Manager,Corp. Office-Project Services,Corp. Office-Project Manager,Corp. Office-Director,Pipe-Superintendent Non-Staff,Pipe-Superintendent Staff">
-            <wm-layoutgrid name="layoutgrid3">
-                <wm-gridrow name="gridrow7_1">
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn16">
-                        <wm-label caption="Earned Hours Report" fontsize="18" fontweight="bold" width="100%" borderwidth="0px 0px 2px 0px" bordercolor="#000000" borderstyle="groove" name="label7"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="10" name="gridcolumn17_1"></wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow8_1">
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn18_1">
-                        <wm-composite captionposition="top" name="composite5_1">
-                            <wm-label class="col-md-3 control-label" caption="Superintendent" name="label8"></wm-label>
-                            <wm-container class="col-md-9" name="container5_1">
-                                <wm-select dataset="bind:Variables.serviceGetSupers.dataSet" datafield="ID" datavalue="bind:Variables.loggedInUser.dataSet.id" displayexpression="bind:$[FirstName] + ' ' + $[LastName] + &quot; - &quot; + $[Email]" disabled="bind:Variables.loggedInUser.dataSet.roles == 'Pipe-Superintendent Staff' || Variables.loggedInUser.dataSet.roles == 'Pipe-Superintendent Non-Staff' || Variables.loggedInUser.dataSet.roles == 'Pipe-GF'"
-                                orderby="FirstName:desc" name="selectSuper1"></wm-select>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn19_1">
-                        <wm-composite captionposition="top" name="composite6_1">
-                            <wm-label class="col-md-3 control-label" caption="Date" name="label9"></wm-label>
-                            <wm-container class="col-md-9" name="container6_1">
-                                <wm-date hint="Select date." name="dateSuper"></wm-date>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn20_1">
-                        <wm-button class="btn-default" caption="Get Report" type="button" on-click="Variables.serviceGetEarnedHoursSuper.invoke()" backgroundcolor="#0B9642" iconclass="wi wi-view-day" margin="16px unset unset unset" hint="Get report for the selected date range."
-                        name="button3_1"></wm-button>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn21"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn22"></wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow9">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn23">
-                        <wm-grid title="" dataset="bind:Variables.serviceGetEarnedHoursSuper.dataSet.content" navigation="None" spacing="condensed" name="grid2">
-                            <wm-grid-column binding="superintendentName" caption="Superintendent" show="true" readonly="undefined"></wm-grid-column>
-                            <wm-grid-column binding="earnedHoursInt1" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval1 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text"
-                            show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="earnedHoursInt2" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval2 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text"
-                            show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="earnedHoursInt3" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval3 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text"
-                            show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="earnedHoursInt4" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval4 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text"
-                            show="true" readonly="false"></wm-grid-column>
-                        </wm-grid>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-            </wm-layoutgrid>
-        </wm-tabpane>
-        <wm-tabpane name="tabpane2" title="By Crew" accessroles="Authenticated" isdefaulttab="true">
-            <wm-layoutgrid name="layoutgrid5">
-                <wm-gridrow name="gridrow17">
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn41">
-                        <wm-label caption="Earned Hours Report" fontsize="18" fontweight="bold" width="100%" borderwidth="0px 0px 2px 0px" bordercolor="#000000" borderstyle="groove" name="label11"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="10" name="gridcolumn53"></wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow18">
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn44">
-                        <wm-composite captionposition="top" name="composite5">
-                            <wm-label class="col-md-3 control-label" caption="Superintendent" name="label12"></wm-label>
-                            <wm-container class="col-md-9" name="container5">
-                                <wm-select dataset="bind:Variables.serviceGetSupers.dataSet" datafield="ID" datavalue="bind:Variables.loggedInUser.dataSet.id" displayexpression="bind:$[FirstName] + ' ' + $[LastName] + &quot; - &quot; + $[Email]" disabled="bind:Variables.loggedInUser.dataSet.roles == 'Pipe-Superintendent' || Variables.loggedInUser.dataSet.roles == 'Pipe-GF'"
-                                name="selectSuper2" orderby="FirstName:desc"></wm-select>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn57">
-                        <wm-composite captionposition="top" name="composite6">
-                            <wm-label class="col-md-3 control-label" caption="Date" name="label13"></wm-label>
-                            <wm-container class="col-md-9" name="container6">
-                                <wm-date hint="Select date." name="dateForeman"></wm-date>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn45">
-                        <wm-button class="btn-default" caption="Get Report" type="button" on-click="Variables.serviceGetEarnedHoursCrew.invoke()" backgroundcolor="#0B9642" iconclass="wi wi-view-day" margin="16px unset unset unset" hint="Get report for the selected date range."
-                        name="button3"></wm-button>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn46"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn52"></wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow20">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn48">
-                        <wm-grid title="" dataset="bind:Variables.serviceGetEarnedHoursCrew.dataSet.content" navigation="None" name="grid3" spacing="condensed">
-                            <wm-grid-column binding="CrewForemanName" caption="Crew - Foreman Name" type="string" edit-widget-type="text" searchable="false" show="true" readonly="false">{{row.crewNumber + " - " + row.foremanName}}</wm-grid-column>
-                            <wm-grid-column binding="earnedHoursInt1" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval1 + ' Day Total'" type="string" formatpattern="numberToString"
-                            fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="earnedHoursInt2" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval2 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text"
-                            show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="earnedHoursInt3" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval3 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text"
-                            show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="earnedHoursInt4" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval4 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text"
-                            show="true" readonly="false"></wm-grid-column>
-                        </wm-grid>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-            </wm-layoutgrid>
-        </wm-tabpane>
-    </wm-tabs>
+<wm-partial data-ng-controller="PartReportEarnedHrsPipePageController" name="partial1"> 
+    <wm-tabs name="tabs1"> 
+        <wm-tabpane name="tabpane1" title="By Superintendent" accessroles="CorporateOffice,SuperUser,Manager,Regional Manager,Project Manager,Site Admin,Construction Manager,Area Manager,Site Manager,Pipe-Superintendent,Site Office-Site Manager,Site Office-Project Services,Site Office-Construction Manager,Site Office-Area Manager,Corp. Office-Site Admin,Corp. Office-Regional Manager,Corp. Office-Project Services,Corp. Office-Project Manager,Corp. Office-Director,Pipe-Superintendent Non-Staff,Pipe-Superintendent Staff"> 
+            <wm-layoutgrid name="layoutgrid3"> 
+                <wm-gridrow name="gridrow7_1"> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn16"> 
+                        <wm-label caption="Earned Hours Report" fontsize="18" fontweight="bold" width="100%" borderwidth="0px 0px 2px 0px" bordercolor="#000000" borderstyle="groove" name="label7"></wm-label> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="10" name="gridcolumn17_1"></wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow8_1"> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn18_1"> 
+                        <wm-composite captionposition="top" name="composite5_1"> 
+                            <wm-label class="col-md-3 control-label" caption="Superintendent" name="label8"></wm-label> 
+                            <wm-container class="col-md-9" name="container5_1"> 
+                                <wm-select dataset="bind:Variables.serviceGetSupers.dataSet" datafield="ID" datavalue="bind:Variables.loggedInUser.dataSet.id" displayexpression="bind:$[FirstName] + ' ' + $[LastName] + &quot; - &quot; + $[Email]" disabled="bind:Variables.loggedInUser.dataSet.roles == 'Pipe-Superintendent Staff' || Variables.loggedInUser.dataSet.roles == 'Pipe-Superintendent Non-Staff' || Variables.loggedInUser.dataSet.roles == 'Pipe-GF'" orderby="FirstName:desc" name="selectSuper1"></wm-select> 
+                            </wm-container> 
+                        </wm-composite> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn19_1"> 
+                        <wm-composite captionposition="top" name="composite6_1"> 
+                            <wm-label class="col-md-3 control-label" caption="Date" name="label9"></wm-label> 
+                            <wm-container class="col-md-9" name="container6_1"> 
+                                <wm-date hint="Select date." name="dateSuper"></wm-date> 
+                            </wm-container> 
+                        </wm-composite> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn20_1"> 
+                        <wm-button class="btn-default" caption="Get Report" type="button" on-click="Variables.serviceGetEarnedHoursSuper.invoke()" backgroundcolor="#0B9642" iconclass="wi wi-view-day" margin="16px unset unset unset" hint="Get report for the selected date range." name="button3_1"></wm-button> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn21"></wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn22"></wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow9"> 
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn23"> 
+                        <wm-table title="" dataset="bind:Variables.serviceGetEarnedHoursSuper.dataSet.content" navigation="None" spacing="condensed" name="grid2"> 
+                            <wm-table-column binding="superintendentName" caption="Superintendent" show="true" readonly="undefined"></wm-table-column> 
+                            <wm-table-column binding="earnedHoursInt1" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval1 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="earnedHoursInt2" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval2 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="earnedHoursInt3" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval3 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="earnedHoursInt4" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval4 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                        </wm-table> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+            </wm-layoutgrid> 
+        </wm-tabpane> 
+        <wm-tabpane name="tabpane2" title="By Crew" accessroles="Authenticated" isdefaulttab="true"> 
+            <wm-layoutgrid name="layoutgrid5"> 
+                <wm-gridrow name="gridrow17"> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn41"> 
+                        <wm-label caption="Earned Hours Report" fontsize="18" fontweight="bold" width="100%" borderwidth="0px 0px 2px 0px" bordercolor="#000000" borderstyle="groove" name="label11"></wm-label> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="10" name="gridcolumn53"></wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow18"> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn44"> 
+                        <wm-composite captionposition="top" name="composite5"> 
+                            <wm-label class="col-md-3 control-label" caption="Superintendent" name="label12"></wm-label> 
+                            <wm-container class="col-md-9" name="container5"> 
+                                <wm-select dataset="bind:Variables.serviceGetSupers.dataSet" datafield="ID" datavalue="bind:Variables.loggedInUser.dataSet.id" displayexpression="bind:$[FirstName] + ' ' + $[LastName] + &quot; - &quot; + $[Email]" disabled="bind:Variables.loggedInUser.dataSet.roles == 'Pipe-Superintendent' || Variables.loggedInUser.dataSet.roles == 'Pipe-GF'" name="selectSuper2" orderby="FirstName:desc"></wm-select> 
+                            </wm-container> 
+                        </wm-composite> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn57"> 
+                        <wm-composite captionposition="top" name="composite6"> 
+                            <wm-label class="col-md-3 control-label" caption="Date" name="label13"></wm-label> 
+                            <wm-container class="col-md-9" name="container6"> 
+                                <wm-date hint="Select date." name="dateForeman"></wm-date> 
+                            </wm-container> 
+                        </wm-composite> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn45"> 
+                        <wm-button class="btn-default" caption="Get Report" type="button" on-click="Variables.serviceGetEarnedHoursCrew.invoke()" backgroundcolor="#0B9642" iconclass="wi wi-view-day" margin="16px unset unset unset" hint="Get report for the selected date range." name="button3"></wm-button> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn46"></wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn52"></wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow20"> 
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn48"> 
+                        <wm-table title="" dataset="bind:Variables.serviceGetEarnedHoursCrew.dataSet.content" navigation="None" name="grid3" spacing="condensed"> 
+                            <wm-table-column binding="CrewForemanName" caption="Crew - Foreman Name" type="string" edit-widget-type="text" searchable="false" show="true" readonly="false">
+                                 {{row.crewNumber + " - " + row.foremanName}} 
+                            </wm-table-column> 
+                            <wm-table-column binding="earnedHoursInt1" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval1 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="earnedHoursInt2" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval2 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="earnedHoursInt3" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval3 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="earnedHoursInt4" caption="bind: Variables.serviceGetIntervals.firstRecord.Interval4 + ' Day Total'" type="string" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                        </wm-table> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+            </wm-layoutgrid> 
+        </wm-tabpane> 
+    </wm-tabs> 
 </wm-partial>

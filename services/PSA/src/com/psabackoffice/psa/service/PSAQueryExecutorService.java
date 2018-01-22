@@ -17,19 +17,35 @@ import com.psabackoffice.psa.models.query.*;
 
 public interface PSAQueryExecutorService {
 
-    Page<GetChatRecipientNameResponse> executeGetChatRecipientName(Integer conversationId, Integer userId, Pageable pageable);
+    Page<GetForemenBySuperResponse> executeGetForemenBySuper(Integer superId, Pageable pageable);
 
-    Downloadable exportGetChatRecipientName(ExportType exportType, Integer conversationId, Integer userId, Pageable pageable);
+    Downloadable exportGetForemenBySuper(ExportType exportType, Integer superId, Pageable pageable);
+
+    Page<GetSteelActivityTypesResponse> executeGetSteelActivityTypes(Pageable pageable);
+
+    Downloadable exportGetSteelActivityTypes(ExportType exportType, Pageable pageable);
+
+    Page<SuperintendentsResponse> executeSuperintendents(Integer jobNumber, Pageable pageable);
+
+    Downloadable exportSuperintendents(ExportType exportType, Integer jobNumber, Pageable pageable);
+
+    Integer executeInsertUserPSA(InsertUserPsaRequest insertUserPsaRequest);
 
     Integer executeInsertAssignedJobNumber(InsertAssignedJobNumberRequest insertAssignedJobNumberRequest);
 
+    Integer executeUpdateChatAllLastRead(UpdateChatAllLastReadRequest updateChatAllLastReadRequest);
+
+    Integer executeUpdateChatMessageStatus(UpdateChatMessageStatusRequest updateChatMessageStatusRequest);
+
     Integer executeDeleteUserAssignedApps(Integer userId, Integer mobileAppGroupId);
 
-    Integer executeInsertLoginSuccess(InsertLoginSuccessRequest insertLoginSuccessRequest);
+    Page<GetJobNumberCountByJobNumberResponse> executeGetJobNumberCountByJobNumber(Integer jobNumber, Pageable pageable);
 
-    Page<GetRefPrecipitationResponse> executeGetRefPrecipitation(Pageable pageable);
+    Downloadable exportGetJobNumberCountByJobNumber(ExportType exportType, Integer jobNumber, Pageable pageable);
 
-    Downloadable exportGetRefPrecipitation(ExportType exportType, Pageable pageable);
+    Page<GetChatConversationsByLoggedInUserResponse> executeGetChatConversationsByLoggedInUser(Integer userId, Pageable pageable);
+
+    Downloadable exportGetChatConversationsByLoggedInUser(ExportType exportType, Integer userId, Pageable pageable);
 
     Page<GetUsersManagersResponse> executeGetUsersManagers(Integer jobNumber, Pageable pageable);
 
@@ -39,117 +55,101 @@ public interface PSAQueryExecutorService {
 
     Downloadable exportGetChatMessagesByConversationID(ExportType exportType, Integer conversationId, Pageable pageable);
 
-    Integer executeInsertUserAssignedApps(InsertUserAssignedAppsRequest insertUserAssignedAppsRequest);
-
-    Integer executeInsertFeedbackTicketNotes(InsertFeedbackTicketNotesRequest insertFeedbackTicketNotesRequest);
-
-    Page<GetUsersForemenResponse> executeGetUsersForemen(Integer jobNumber, String disciplineId, String pm, String constM, String siteM, String areaM, String super_, Pageable pageable);
-
-    Downloadable exportGetUsersForemen(ExportType exportType, Integer jobNumber, String disciplineId, String pm, String constM, String siteM, String areaM, String super_, Pageable pageable);
-
-    Page<GetHelpMenuVideosResponse> executeGetHelpMenuVideos(Pageable pageable);
-
-    Downloadable exportGetHelpMenuVideos(ExportType exportType, Pageable pageable);
-
-    Integer executeInsertFeedbackNotes(InsertFeedbackNotesRequest insertFeedbackNotesRequest);
-
-    Integer executeUpdateUserPSA(UpdateUserPsaRequest updateUserPsaRequest);
-
-    Integer executeDeleteAssignedJobNumber(Integer userId, String jobNumber);
-
-    Page<GetSettingDashUpdateIntResponse> executeGetSettingDashUpdateInt(Pageable pageable);
-
-    Downloadable exportGetSettingDashUpdateInt(ExportType exportType, Pageable pageable);
+    Integer executeInsertLoginFailure(InsertLoginFailureRequest insertLoginFailureRequest);
 
     Page<GetRolesByDisciplineResponse> executeGetRolesByDiscipline(Integer disciplineId, Pageable pageable);
 
     Downloadable exportGetRolesByDiscipline(ExportType exportType, Integer disciplineId, Pageable pageable);
 
-    Page<GetRefTemperaturesResponse> executeGetRefTemperatures(Pageable pageable);
-
-    Downloadable exportGetRefTemperatures(ExportType exportType, Pageable pageable);
-
-    Integer executeInsertUserPSA(InsertUserPsaRequest insertUserPsaRequest);
-
-    Page<GetDefaultJobNumberResponse> executeGetDefaultJobNumber(Integer userId, Pageable pageable);
-
-    Downloadable exportGetDefaultJobNumber(ExportType exportType, Integer userId, Pageable pageable);
-
-    Integer executeUpdateUserCreds(UpdateUserCredsRequest updateUserCredsRequest);
-
-    Page<GetChatAllLastReadResponse> executeGetChatAllLastRead(String userId, Pageable pageable);
-
-    Downloadable exportGetChatAllLastRead(ExportType exportType, String userId, Pageable pageable);
-
-    Page<SuperintendentsResponse> executeSuperintendents(Integer jobNumber, Pageable pageable);
-
-    Downloadable exportSuperintendents(ExportType exportType, Integer jobNumber, Pageable pageable);
-
-    Page<GetSteelActivityTypesResponse> executeGetSteelActivityTypes(Pageable pageable);
-
-    Downloadable exportGetSteelActivityTypes(ExportType exportType, Pageable pageable);
+    Integer executeInsertUserCreds(InsertUserCredsRequest insertUserCredsRequest);
 
     Integer executeUpdateUserCredsUserName(UpdateUserCredsUserNameRequest updateUserCredsUserNameRequest);
 
-    Integer executeUpdateChatAllLastRead(UpdateChatAllLastReadRequest updateChatAllLastReadRequest);
+    Integer executeInsertLoginSuccess(InsertLoginSuccessRequest insertLoginSuccessRequest);
 
-    Page<ManagersResponse> executeManagers(Integer jobNumber, Pageable pageable);
+    Page<GetRefTemperaturesResponse> executeGetRefTemperatures(Pageable pageable);
 
-    Downloadable exportManagers(ExportType exportType, Integer jobNumber, Pageable pageable);
-
-    Page<GetFbsubTypeByTypeResponse> executeGetFBSubTypeByType(Integer fbtype, Pageable pageable);
-
-    Downloadable exportGetFBSubTypeByType(ExportType exportType, Integer fbtype, Pageable pageable);
-
-    Page<GetUsersSupersResponse> executeGetUsersSupers(Integer jobNumber, String disciplineId, String pm, String constM, String siteM, String areaM, Pageable pageable);
-
-    Downloadable exportGetUsersSupers(ExportType exportType, Integer jobNumber, String disciplineId, String pm, String constM, String siteM, String areaM, Pageable pageable);
-
-    Integer executeInsertChatMessage(InsertChatMessageRequest insertChatMessageRequest);
-
-    Integer executeUpdateChatMessageStatus(UpdateChatMessageStatusRequest updateChatMessageStatusRequest);
+    Downloadable exportGetRefTemperatures(ExportType exportType, Pageable pageable);
 
     Page<GetChatAllLatestTimeStampResponse> executeGetChatAllLatestTimeStamp(String userId, Pageable pageable);
 
     Downloadable exportGetChatAllLatestTimeStamp(ExportType exportType, String userId, Pageable pageable);
 
-    Integer executeInsertUserCreds(InsertUserCredsRequest insertUserCredsRequest);
-
     Integer executeInsertFeedbackTicket(InsertFeedbackTicketRequest insertFeedbackTicketRequest);
-
-    Page<GetAssignedJobNumbersResponse> executeGetAssignedJobNumbers(Integer userId, Pageable pageable);
-
-    Downloadable exportGetAssignedJobNumbers(ExportType exportType, Integer userId, Pageable pageable);
-
-    Page<GetJobSitesResponse> executeGetJobSites(String siteName, String city, String state, Pageable pageable);
-
-    Downloadable exportGetJobSites(ExportType exportType, String siteName, String city, String state, Pageable pageable);
 
     Page<GetRefWindResponse> executeGetRefWind(Pageable pageable);
 
     Downloadable exportGetRefWind(ExportType exportType, Pageable pageable);
 
-    Page<GetJobNumberCountByJobNumberResponse> executeGetJobNumberCountByJobNumber(Integer jobNumber, Pageable pageable);
+    Page<GetDefaultJobNumberResponse> executeGetDefaultJobNumber(Integer userId, Pageable pageable);
 
-    Downloadable exportGetJobNumberCountByJobNumber(ExportType exportType, Integer jobNumber, Pageable pageable);
+    Downloadable exportGetDefaultJobNumber(ExportType exportType, Integer userId, Pageable pageable);
 
-    Page<GetForemenBySuperResponse> executeGetForemenBySuper(Integer superId, Pageable pageable);
+    Page<GetRefPrecipitationResponse> executeGetRefPrecipitation(Pageable pageable);
 
-    Downloadable exportGetForemenBySuper(ExportType exportType, Integer superId, Pageable pageable);
+    Downloadable exportGetRefPrecipitation(ExportType exportType, Pageable pageable);
 
-    Page<GetPsausersResponse> executeGetPSAUsers(Pageable pageable);
-
-    Downloadable exportGetPSAUsers(ExportType exportType, Pageable pageable);
-
-    Integer executeInsertLoginFailure(InsertLoginFailureRequest insertLoginFailureRequest);
+    Integer executeUpdateUserPSA(UpdateUserPsaRequest updateUserPsaRequest);
 
     Page<GetFbnotesByFbidResponse> executeGetFBNotesByFBID(Integer feedbackId, Pageable pageable);
 
     Downloadable exportGetFBNotesByFBID(ExportType exportType, Integer feedbackId, Pageable pageable);
 
-    Page<GetChatConversationsByLoggedInUserResponse> executeGetChatConversationsByLoggedInUser(Integer userId, Pageable pageable);
+    Integer executeInsertChatMessage(InsertChatMessageRequest insertChatMessageRequest);
 
-    Downloadable exportGetChatConversationsByLoggedInUser(ExportType exportType, Integer userId, Pageable pageable);
+    Integer executeDeleteAssignedJobNumber(Integer userId, String jobNumber);
+
+    Page<GetUsersForemenResponse> executeGetUsersForemen(Integer jobNumber, String disciplineId, String pm, String constM, String siteM, String areaM, String super_, Pageable pageable);
+
+    Downloadable exportGetUsersForemen(ExportType exportType, Integer jobNumber, String disciplineId, String pm, String constM, String siteM, String areaM, String super_, Pageable pageable);
+
+    Page<GetFbsubTypeByTypeResponse> executeGetFBSubTypeByType(Integer fbtype, Pageable pageable);
+
+    Downloadable exportGetFBSubTypeByType(ExportType exportType, Integer fbtype, Pageable pageable);
+
+    Integer executeInsertFeedbackNotes(InsertFeedbackNotesRequest insertFeedbackNotesRequest);
+
+    Integer executeUpdateUserCreds(UpdateUserCredsRequest updateUserCredsRequest);
+
+    Page<GetUsersSupersResponse> executeGetUsersSupers(Integer jobNumber, String disciplineId, String pm, String constM, String siteM, String areaM, Pageable pageable);
+
+    Downloadable exportGetUsersSupers(ExportType exportType, Integer jobNumber, String disciplineId, String pm, String constM, String siteM, String areaM, Pageable pageable);
+
+    Integer executeInsertUserAssignedApps(InsertUserAssignedAppsRequest insertUserAssignedAppsRequest);
+
+    Page<GetAssignedJobNumbersResponse> executeGetAssignedJobNumbers(Integer userId, Pageable pageable);
+
+    Downloadable exportGetAssignedJobNumbers(ExportType exportType, Integer userId, Pageable pageable);
+
+    Page<ManagersResponse> executeManagers(Integer jobNumber, Pageable pageable);
+
+    Downloadable exportManagers(ExportType exportType, Integer jobNumber, Pageable pageable);
+
+    Page<GetJobSitesResponse> executeGetJobSites(String siteName, String city, String state, Pageable pageable);
+
+    Downloadable exportGetJobSites(ExportType exportType, String siteName, String city, String state, Pageable pageable);
+
+    Page<GetSettingDashUpdateIntResponse> executeGetSettingDashUpdateInt(Pageable pageable);
+
+    Downloadable exportGetSettingDashUpdateInt(ExportType exportType, Pageable pageable);
+
+    Page<GetChatAllLastReadResponse> executeGetChatAllLastRead(String userId, Pageable pageable);
+
+    Downloadable exportGetChatAllLastRead(ExportType exportType, String userId, Pageable pageable);
+
+    Page<GetChatRecipientNameResponse> executeGetChatRecipientName(Integer conversationId, Integer userId, Pageable pageable);
+
+    Downloadable exportGetChatRecipientName(ExportType exportType, Integer conversationId, Integer userId, Pageable pageable);
+
+    Page<GetPsausersResponse> executeGetPSAUsers(Pageable pageable);
+
+    Downloadable exportGetPSAUsers(ExportType exportType, Pageable pageable);
+
+    Integer executeInsertFeedbackTicketNotes(InsertFeedbackTicketNotesRequest insertFeedbackTicketNotesRequest);
+
+    Page<GetHelpMenuVideosResponse> executeGetHelpMenuVideos(Pageable pageable);
+
+    Downloadable exportGetHelpMenuVideos(ExportType exportType, Pageable pageable);
 
 }
 

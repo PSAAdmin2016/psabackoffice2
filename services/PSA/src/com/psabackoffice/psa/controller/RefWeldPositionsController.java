@@ -52,9 +52,9 @@ public class RefWeldPositionsController {
 	private RefWeldPositionsService refWeldPositionsService;
 
 	@ApiOperation(value = "Creates a new RefWeldPositions instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefWeldPositions createRefWeldPositions(@RequestBody RefWeldPositions refWeldPositions) {
+    public RefWeldPositions createRefWeldPositions(@RequestBody RefWeldPositions refWeldPositions) {
 		LOGGER.debug("Create RefWeldPositions with information: {}" , refWeldPositions);
 
 		refWeldPositions = refWeldPositionsService.create(refWeldPositions);
@@ -62,7 +62,6 @@ public class RefWeldPositionsController {
 
 	    return refWeldPositions;
 	}
-
 
     @ApiOperation(value = "Returns the RefWeldPositions instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

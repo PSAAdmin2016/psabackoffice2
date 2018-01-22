@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface LandingTrackerPipeService {
      * @param landingTrackerPipe Details of the LandingTrackerPipe to be created; value cannot be null.
      * @return The newly created LandingTrackerPipe.
      */
-	LandingTrackerPipe create(LandingTrackerPipe landingTrackerPipe);
+	LandingTrackerPipe create(@Valid LandingTrackerPipe landingTrackerPipe);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface LandingTrackerPipeService {
 	 * @return The updated LandingTrackerPipe.
 	 * @throws EntityNotFoundException if no LandingTrackerPipe is found with given input.
 	 */
-	LandingTrackerPipe update(LandingTrackerPipe landingTrackerPipe) throws EntityNotFoundException;
+	LandingTrackerPipe update(@Valid LandingTrackerPipe landingTrackerPipe) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing LandingTrackerPipe with the given id.

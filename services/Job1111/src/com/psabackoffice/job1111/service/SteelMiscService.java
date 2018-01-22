@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface SteelMiscService {
      * @param steelMisc Details of the SteelMisc to be created; value cannot be null.
      * @return The newly created SteelMisc.
      */
-	SteelMisc create(SteelMisc steelMisc);
+	SteelMisc create(@Valid SteelMisc steelMisc);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface SteelMiscService {
 	 * @return The updated SteelMisc.
 	 * @throws EntityNotFoundException if no SteelMisc is found with given input.
 	 */
-	SteelMisc update(SteelMisc steelMisc) throws EntityNotFoundException;
+	SteelMisc update(@Valid SteelMisc steelMisc) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing SteelMisc with the given id.

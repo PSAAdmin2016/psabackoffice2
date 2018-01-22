@@ -52,9 +52,9 @@ public class SteelSellController {
 	private SteelSellService steelSellService;
 
 	@ApiOperation(value = "Creates a new SteelSell instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public SteelSell createSteelSell(@RequestBody SteelSell steelSell) {
+    public SteelSell createSteelSell(@RequestBody SteelSell steelSell) {
 		LOGGER.debug("Create SteelSell with information: {}" , steelSell);
 
 		steelSell = steelSellService.create(steelSell);
@@ -62,7 +62,6 @@ public class SteelSellController {
 
 	    return steelSell;
 	}
-
 
     @ApiOperation(value = "Returns the SteelSell instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -80,9 +79,9 @@ public class SteelSellController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public SteelSell editSteelSell(@PathVariable("id") Integer id, @RequestBody SteelSell steelSell) throws EntityNotFoundException {
-        LOGGER.debug("Editing SteelSell with id: {}" , steelSell.getActivityId());
+        LOGGER.debug("Editing SteelSell with id: {}" , steelSell.getId());
 
-        steelSell.setActivityId(id);
+        steelSell.setId(id);
         steelSell = steelSellService.update(steelSell);
         LOGGER.debug("SteelSell details with id: {}" , steelSell);
 

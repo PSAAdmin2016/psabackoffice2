@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface CivilTrackerClassicService {
      * @param civilTrackerClassic Details of the CivilTrackerClassic to be created; value cannot be null.
      * @return The newly created CivilTrackerClassic.
      */
-	CivilTrackerClassic create(CivilTrackerClassic civilTrackerClassic);
+	CivilTrackerClassic create(@Valid CivilTrackerClassic civilTrackerClassic);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface CivilTrackerClassicService {
 	 * @return The updated CivilTrackerClassic.
 	 * @throws EntityNotFoundException if no CivilTrackerClassic is found with given input.
 	 */
-	CivilTrackerClassic update(CivilTrackerClassic civilTrackerClassic) throws EntityNotFoundException;
+	CivilTrackerClassic update(@Valid CivilTrackerClassic civilTrackerClassic) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing CivilTrackerClassic with the given id.

@@ -52,9 +52,9 @@ public class PipeSupportsController {
 	private PipeSupportsService pipeSupportsService;
 
 	@ApiOperation(value = "Creates a new PipeSupports instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public PipeSupports createPipeSupports(@RequestBody PipeSupports pipeSupports) {
+    public PipeSupports createPipeSupports(@RequestBody PipeSupports pipeSupports) {
 		LOGGER.debug("Create PipeSupports with information: {}" , pipeSupports);
 
 		pipeSupports = pipeSupportsService.create(pipeSupports);
@@ -62,7 +62,6 @@ public class PipeSupportsController {
 
 	    return pipeSupports;
 	}
-
 
     @ApiOperation(value = "Returns the PipeSupports instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -80,9 +79,9 @@ public class PipeSupportsController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public PipeSupports editPipeSupports(@PathVariable("id") Integer id, @RequestBody PipeSupports pipeSupports) throws EntityNotFoundException {
-        LOGGER.debug("Editing PipeSupports with id: {}" , pipeSupports.getActivityId());
+        LOGGER.debug("Editing PipeSupports with id: {}" , pipeSupports.getId());
 
-        pipeSupports.setActivityId(id);
+        pipeSupports.setId(id);
         pipeSupports = pipeSupportsService.update(pipeSupports);
         LOGGER.debug("PipeSupports details with id: {}" , pipeSupports);
 

@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface PipeEwoService {
      * @param pipeEwo Details of the PipeEwo to be created; value cannot be null.
      * @return The newly created PipeEwo.
      */
-	PipeEwo create(PipeEwo pipeEwo);
+	PipeEwo create(@Valid PipeEwo pipeEwo);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface PipeEwoService {
 	 * @return The updated PipeEwo.
 	 * @throws EntityNotFoundException if no PipeEwo is found with given input.
 	 */
-	PipeEwo update(PipeEwo pipeEwo) throws EntityNotFoundException;
+	PipeEwo update(@Valid PipeEwo pipeEwo) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing PipeEwo with the given id.

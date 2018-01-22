@@ -1,210 +1,210 @@
 <wm-page data-ng-controller="BidEditorMechanicalPageController" pagetitle="Bid Editor Mechanical" name="page1"> 
- <wm-header content="header" name="header1"></wm-header> 
- <wm-content name="content1" accessroles="Everyone"> 
-  <wm-left-panel columnwidth="1" content="leftnavBidEditor" name="left_panel1"></wm-left-panel> 
-  <wm-page-content columnwidth="11" name="page_content1"> 
-   <wm-layoutgrid name="layoutgrid2"> 
-    <wm-gridrow name="gridrow12"> 
-     <wm-gridcolumn columnwidth="12" name="gridcolumn29_1"> 
-      <wm-label caption="UNDER CONSTRUCTION" name="label4"></wm-label> 
-     </wm-gridcolumn> 
-    </wm-gridrow> 
-    <wm-gridrow name="gridrow7_1"> 
-     <wm-gridcolumn columnwidth="12" name="gridcolumn24"> 
-      <wm-livefilter title="Filters" dataset="bind:Variables.Job1111_TrackerDetailsData.dataSet" captionalign="left" captionposition="top" name="livefilterTrackerMasterPipe" pagesize="1000" collapsible="true" iconclass="fa fa-filter" class="panel-primary" expanded="false"> 
-       <wm-layoutgrid name="layoutgrid1"> 
-        <wm-gridrow name="gridrow22"> 
-         <wm-gridcolumn columnwidth="8" name="gridcolumn28" backgroundcolor="#d3d3d3" padding="unset unset 0px unset"> 
-          <wm-label name="label1" caption="Physical Grouping Filters" fontweight="bold" margin="unset unset 0px unset"></wm-label> 
-         </wm-gridcolumn> 
-        </wm-gridrow> 
-        <wm-gridrow name="gridrow1"> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn29"> 
-          <wm-filter-field name="area" field="area" displayname="Area" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="area" placeholder="Select" matchmode="start" filter-on="area" datafield="key" displayfield="value"></wm-filter-field> 
-         </wm-gridcolumn> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn30"> 
-          <wm-filter-field name="location" field="location" displayname="Location" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="location" placeholder="Select" matchmode="start" filter-on="location" datafield="key" displayfield="value"></wm-filter-field> 
-         </wm-gridcolumn> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn31"> 
-          <wm-filter-field name="elevation" field="elevation" displayname="Elevation" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="elevation" placeholder="Select" matchmode="start" filter-on="elevation" datafield="key" displayfield="value"></wm-filter-field> 
-         </wm-gridcolumn> 
-        </wm-gridrow> 
-        <wm-gridrow name="gridrow23"> 
-         <wm-gridcolumn columnwidth="8" name="gridcolumn32" backgroundcolor="#d3d3d3" padding="unset unset 0px unset"> 
-          <wm-label caption="Logical Grouping Filters" name="label2" fontweight="bold" margin="unset unset 0px unset"></wm-label> 
-         </wm-gridcolumn> 
-        </wm-gridrow> 
-        <wm-gridrow name="gridrow5"> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn28_1"> 
-          <wm-filter-field name="scope" field="scope" widget="select" is-range="false" show="true" filter-on="scope" type="string" is-primary-key="false" generator="assigned" matchmode="start" placeholder="Select" displayname="Scope" key="scope" datafield="key" displayfield="value"></wm-filter-field> 
-         </wm-gridcolumn> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn5"> 
-          <wm-filter-field name="phase" field="phase" displayname="Phase" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="phase" placeholder="Select" matchmode="start" filter-on="phase" datafield="key" displayfield="value"></wm-filter-field> 
-         </wm-gridcolumn> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn33"> 
-          <wm-filter-field name="cu" field="cu" displayname="Cu" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="cu" placeholder="Select" matchmode="start" filter-on="cu" datafield="key" displayfield="value"></wm-filter-field> 
-         </wm-gridcolumn> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn34"> 
-          <wm-filter-field name="p6id" field="p6id" displayname="P6 ID" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="p6id" placeholder="Select" matchmode="start" filter-on="p6id" datafield="key" displayfield="value"></wm-filter-field> 
-         </wm-gridcolumn> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn35"> 
-          <wm-filter-field name="stage" field="stage" displayname="Stage" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="stage" placeholder="Select" matchmode="start" filter-on="stage" datafield="key" displayfield="value"></wm-filter-field> 
-         </wm-gridcolumn> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn36"> 
-          <wm-filter-field name="testPackageNumber" field="testPackageNumber" displayname="Test Package" widget="text" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" inputtype="text" primary-key="false" key="testPackageNumber" placeholder="Search" matchmode="anywhere" filter-on="testPackageNumber"></wm-filter-field> 
-         </wm-gridcolumn> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn37"> 
-          <wm-filter-field name="costCode" field="costCode" displayname="Cost Code" widget="text" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" inputtype="text" primary-key="false" key="costCode" placeholder="Search" matchmode="start" filter-on="costCode"></wm-filter-field> 
-         </wm-gridcolumn> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn38"> 
-          <wm-filter-field name="system" field="system" displayname="System" widget="text" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" inputtype="text" primary-key="false" key="system" placeholder="Search" matchmode="anywhere" filter-on="system"></wm-filter-field> 
-         </wm-gridcolumn> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn39"> 
-          <wm-filter-field name="service" field="service" displayname="Service" widget="text" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" inputtype="text" primary-key="false" key="service" placeholder="Search" matchmode="anywhere" filter-on="service"></wm-filter-field> 
-         </wm-gridcolumn> 
-        </wm-gridrow> 
-        <wm-gridrow name="gridrow6"> 
-         <wm-gridcolumn columnwidth="8" name="gridcolumn6" backgroundcolor="#d3d3d3" padding="unset unset 0px unset"> 
-          <wm-label caption="Item Specific Filters" name="label3" fontweight="bold" margin="unset unset 0px unset"></wm-label> 
-         </wm-gridcolumn> 
-        </wm-gridrow> 
-        <wm-gridrow name="gridrow7"> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn27_1"> 
-          <wm-filter-field name="bidId" display-name="Bid Id" field="bidId" widget="number" is-range="false" show="true" type="integer" is-primary-key="false" generator="assigned" matchmode="start" displayname="Bid ID" inputtype="number" primary-key="false" key="bidId" placeholder="Enter value"></wm-filter-field> 
-         </wm-gridcolumn> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn7"> 
-          <wm-filter-field name="lineNumber" field="lineNumber" displayname="Line Number" widget="text" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" inputtype="text" primary-key="false" key="lineNumber" placeholder="Search" matchmode="anywhere" filter-on="lineNumber"></wm-filter-field> 
-         </wm-gridcolumn> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn40"> 
-          <wm-filter-field name="engDrawingNumber" field="engDrawingNumber" displayname="Drawing Number" widget="text" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" inputtype="text" primary-key="false" key="engDrawingNumber" placeholder="Search" matchmode="anywhere" filter-on="engDrawingNumber"></wm-filter-field> 
-         </wm-gridcolumn> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn41"> 
-          <wm-filter-field name="ect" field="ect" displayname="E.C.T." widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="ect" placeholder="Select" matchmode="start" filter-on="ect" datafield="key" displayfield="value"></wm-filter-field> 
-         </wm-gridcolumn> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn42"> 
-          <wm-filter-field name="pipingActivityType" field="pipingActivityType" displayname="Piping Activity Type" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="pipingActivityType" placeholder="Select" matchmode="start" filter-on="pipingActivityType" datafield="key" displayfield="value"></wm-filter-field> 
-         </wm-gridcolumn> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn43"> 
-          <wm-filter-field name="pipeSize" field="pipeSize" displayname="Pipe Size" widget="select" is-range="false" type="float" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="pipeSize" placeholder="Select" filter-on="pipeSize" datafield="key" displayfield="value" orderby="value:asc"></wm-filter-field> 
-         </wm-gridcolumn> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn44"> 
-          <wm-filter-field name="componentNumber" field="componentNumber" displayname="Component Number" widget="text" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" inputtype="text" primary-key="false" key="componentNumber" placeholder="Search" matchmode="anywhere" filter-on="componentNumber"></wm-filter-field> 
-         </wm-gridcolumn> 
-         <wm-gridcolumn columnwidth="1" name="gridcolumn45"> 
-          <wm-filter-field name="description" field="description" displayname="Description" widget="text" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" inputtype="text" primary-key="false" key="description" placeholder="Search" matchmode="anywhere" filter-on="description"></wm-filter-field> 
-         </wm-gridcolumn> 
-        </wm-gridrow> 
-       </wm-layoutgrid> 
-       <wm-filter-action key="filter" display-name="Filter" show="true" class="btn-primary" iconclass="glyphicon glyphicon-filter" title="Filter" action="filter()" disabled="false" type="button"></wm-filter-action> 
-       <wm-filter-action key="clear" display-name="Clear" show="true" class="btn" iconclass="wi wi-cancel" title="Clear" action="clearFilter()" disabled="false" type="button"></wm-filter-action> 
-      </wm-livefilter> 
-     </wm-gridcolumn> 
-    </wm-gridrow> 
-    <wm-gridrow name="gridrow8"> 
-     <wm-gridcolumn columnwidth="12" name="gridcolumn27"> 
-      <wm-grid dataset="bind:Widgets.livefilterTrackerMasterPipe.result" navigation="Classic" name="gridBidEditor" showrecordcount="true" height="700px" pagesize="100" fontsize="10" on-rowdblclick="gridBidEditorRowdblclick($event, $data)" class="panel-default" editmode="inline"> 
-       <wm-grid-column binding="bidId" caption="Bid ID" type="integer" width="70px" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="scope" caption="Scope" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="phase" caption="Phase" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="area" caption="Area" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="location" caption="Location" type="string" width="80px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="elevation" caption="Elevation" type="string" width="100px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="cu" caption="CU" type="string" width="60px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="p6id" caption="P6 ID" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="p6description" caption="P6 Description" type="string" width="100px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="stage" caption="Stage" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="testPackageNumber" caption="Test Package" type="string" width="100px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="costCode" caption="Cost Code" type="string" width="80px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="lineNumber" caption="Line Number" type="string" width="150px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="engDrawingNumber" caption="Drawing Number" type="string" width="150px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="sheetNumber" caption="Sheet" type="byte" width="70px" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="revisionNumber" caption="Revision" type="byte" width="70px" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="system" caption="System" type="string" width="100px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="service" caption="Service" type="string" width="100px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="clientPipeSpec" caption="Client Pipe Spec" type="string" width="100px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="materialCode" caption="Material Code" type="string" width="100px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="description" caption="Description" type="string" width="150px" generator="assigned" edit-widget-type="text" sortable="false" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="componentNumber" caption="Component Number" type="string" width="100px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="ect" caption="E.C.T" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="pipingActivityType" caption="ECT SubType" type="string" width="100px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="pipeSize" caption="Pipe Size" type="float" width="70px" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="takeOffQuantity" caption="Take Off Quantity" type="double" width="100px" generator="assigned" formatpattern="toNumber" fractionsize="2" edit-widget-type="number" sortable="false" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="quantityUnit" caption="Quantity Unit" type="string" width="70px" generator="assigned" edit-widget-type="text" sortable="false" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="estimatedHours" caption="Estimated Hours" type="double" width="100px" generator="assigned" formatpattern="toNumber" fractionsize="2" edit-widget-type="number" sortable="false" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="wbs1" caption="Wbs1" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="wbs2" caption="Wbs2" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="wbs3" caption="Wbs3" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="wbs4" caption="Wbs4" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="wbs5" caption="Wbs5" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="wbs6" caption="Wbs6" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="wbs7" caption="Wbs7" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="wbs8" caption="Wbs8" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="wbs9" caption="Wbs9" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="wbs10" caption="Wbs10" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column> 
-       <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column> 
-       <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" disabled="false"></wm-grid-action> 
-       <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action> 
-      </wm-grid> 
-     </wm-gridcolumn> 
-    </wm-gridrow> 
-    <wm-gridrow name="gridrow11"> 
-     <wm-gridcolumn columnwidth="12" name="gridcolumn26" horizontalalign="center"> 
-      <wm-button class="btn-default" caption="Show Change Log" type="button" name="buttonShowChangeLog" show="bind:Variables.staticShowChangeLog.dataSet.dataValue == false" on-click="buttonShowChangeLogClick($event, $scope)"></wm-button> 
-      <wm-button class="btn-default" caption="Hide Change Log" type="button" name="buttonHideChangeLog" show="bind:Variables.staticShowChangeLog.dataSet.dataValue == true" on-click="buttonHideChangeLogClick($event, $scope)"></wm-button> 
-     </wm-gridcolumn> 
-    </wm-gridrow> 
-    <wm-gridrow name="gridrow10"> 
-     <wm-gridcolumn columnwidth="12" name="gridcolumn25"> 
-      <wm-tile name="tile1" show="bind:Variables.staticShowChangeLog.dataSet.dataValue"> 
-       <wm-grid readonlygrid="true" dataset="bind:Variables.Job1111ExecuteGetBidChangeLogByID.dataSet" navigation="None" showrecordcount="true" height="100" pagesize="100" fontsize="10" name="gridChangeLog" enablesort="false" class="panel-default"> 
-        <wm-grid-column binding="TimeStamp" caption="Time Stamp" type="string" width="70px" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="BidID" caption="Bid ID" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="Scope" caption="Scope" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="Phase" caption="Phase" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="Area" caption="Area" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="Location" caption="Location" type="string" width="80px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="Elevation" caption="Elevation" type="string" width="100px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="CU" caption="CU" type="string" width="60px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="P6ID" caption="P6ID" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="P6Description" caption="P6 Description" type="string" width="100px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="Stage" caption="Stage" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="TestPackageNumber" caption="Test Package" type="string" width="100px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="CostCode" caption="Cost Code" type="string" width="80px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="LineNumber" caption="Line Number" type="string" width="150px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="EngDrawingNumber" caption="Drawing Number" type="string" width="150px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="SheetNumber" caption="Sheet" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="RevisionNumber" caption="Revision Number" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="System" caption="System" type="string" width="100px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="Service" caption="Service" type="string" width="100px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="ClientPipeSpec" caption="Client Pipe Spec" type="string" width="100px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="MaterialCode" caption="Material Code" type="string" width="100px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="Description" caption="Description" type="string" width="150px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="ComponentNumber" caption="Component Number" type="string" width="100px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="ECT" caption="ECT" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="PipingActivityType" caption="Piping Activity Type" type="string" width="100px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="PipeSize" caption="Pipe Size" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="TakeOffQuantity" caption="Take Off Quantity" type="string" width="100px" readonly="true" formatpattern="toNumber" fractionsize="2" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="QuantityUnit" caption="Quantity Unit" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="EstimatedHours" caption="Estimated Hours" type="string" width="100px" readonly="true" formatpattern="toNumber" fractionsize="2" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="WBS1" caption="WBS1" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="WBS2" caption="WBS2" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="WBS3" caption="WBS3" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="WBS4" caption="WBS4" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="WBS5" caption="WBS5" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="WBS6" caption="WBS6" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="WBS7" caption="WBS7" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="WBS8" caption="WBS8" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="WBS9" caption="WBS9" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-        <wm-grid-column binding="WBS10" caption="WBS10" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-grid-column> 
-       </wm-grid> 
-      </wm-tile> 
-     </wm-gridcolumn> 
-    </wm-gridrow> 
-    <wm-gridrow name="gridrow9"> 
-     <wm-gridcolumn columnwidth="12" name="gridcolumn33_1" horizontalalign="left"></wm-gridcolumn> 
-    </wm-gridrow> 
-   </wm-layoutgrid> 
-  </wm-page-content> 
- </wm-content> 
- <wm-footer content="footer" name="footer1"></wm-footer> 
+    <wm-header content="header" name="header1"></wm-header> 
+    <wm-content name="content1" accessroles="Everyone"> 
+        <wm-left-panel columnwidth="1" content="leftnavBidEditor" name="left_panel1"></wm-left-panel> 
+        <wm-page-content columnwidth="11" name="page_content1"> 
+            <wm-layoutgrid name="layoutgrid2"> 
+                <wm-gridrow name="gridrow12"> 
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn29_1"> 
+                        <wm-label caption="UNDER CONSTRUCTION" name="label4"></wm-label> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow7_1"> 
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn24"> 
+                        <wm-livefilter title="Filters" dataset="bind:Variables.Job1111_TrackerDetailsData.dataSet" captionalign="left" captionposition="top" name="livefilterTrackerMasterPipe" pagesize="1000" collapsible="true" iconclass="fa fa-filter" class="panel-primary" expanded="false"> 
+                            <wm-layoutgrid name="layoutgrid1"> 
+                                <wm-gridrow name="gridrow22"> 
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn28" backgroundcolor="#d3d3d3" padding="unset unset 0px unset"> 
+                                        <wm-label name="label1" caption="Physical Grouping Filters" fontweight="bold" margin="unset unset 0px unset"></wm-label> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                                <wm-gridrow name="gridrow1"> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn29"> 
+                                        <wm-filter-field name="area" field="area" displayname="Area" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="area" placeholder="Select" matchmode="start" filter-on="area" datafield="key" displayfield="value"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn30"> 
+                                        <wm-filter-field name="location" field="location" displayname="Location" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="location" placeholder="Select" matchmode="start" filter-on="location" datafield="key" displayfield="value"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn31"> 
+                                        <wm-filter-field name="elevation" field="elevation" displayname="Elevation" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="elevation" placeholder="Select" matchmode="start" filter-on="elevation" datafield="key" displayfield="value"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                                <wm-gridrow name="gridrow23"> 
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn32" backgroundcolor="#d3d3d3" padding="unset unset 0px unset"> 
+                                        <wm-label caption="Logical Grouping Filters" name="label2" fontweight="bold" margin="unset unset 0px unset"></wm-label> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                                <wm-gridrow name="gridrow5"> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn28_1"> 
+                                        <wm-filter-field name="scope" field="scope" widget="select" is-range="false" show="true" filter-on="scope" type="string" is-primary-key="false" generator="assigned" matchmode="start" placeholder="Select" displayname="Scope" key="scope" datafield="key" displayfield="value"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn5"> 
+                                        <wm-filter-field name="phase" field="phase" displayname="Phase" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="phase" placeholder="Select" matchmode="start" filter-on="phase" datafield="key" displayfield="value"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn33"> 
+                                        <wm-filter-field name="cu" field="cu" displayname="Cu" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="cu" placeholder="Select" matchmode="start" filter-on="cu" datafield="key" displayfield="value"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn34"> 
+                                        <wm-filter-field name="p6id" field="p6id" displayname="P6 ID" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="p6id" placeholder="Select" matchmode="start" filter-on="p6id" datafield="key" displayfield="value"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn35"> 
+                                        <wm-filter-field name="stage" field="stage" displayname="Stage" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="stage" placeholder="Select" matchmode="start" filter-on="stage" datafield="key" displayfield="value"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn36"> 
+                                        <wm-filter-field name="testPackageNumber" field="testPackageNumber" displayname="Test Package" widget="text" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" inputtype="text" primary-key="false" key="testPackageNumber" placeholder="Search" matchmode="anywhere" filter-on="testPackageNumber"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn37"> 
+                                        <wm-filter-field name="costCode" field="costCode" displayname="Cost Code" widget="text" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" inputtype="text" primary-key="false" key="costCode" placeholder="Search" matchmode="start" filter-on="costCode"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn38"> 
+                                        <wm-filter-field name="system" field="system" displayname="System" widget="text" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" inputtype="text" primary-key="false" key="system" placeholder="Search" matchmode="anywhere" filter-on="system"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn39"> 
+                                        <wm-filter-field name="service" field="service" displayname="Service" widget="text" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" inputtype="text" primary-key="false" key="service" placeholder="Search" matchmode="anywhere" filter-on="service"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                                <wm-gridrow name="gridrow6"> 
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn6" backgroundcolor="#d3d3d3" padding="unset unset 0px unset"> 
+                                        <wm-label caption="Item Specific Filters" name="label3" fontweight="bold" margin="unset unset 0px unset"></wm-label> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                                <wm-gridrow name="gridrow7"> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn27_1"> 
+                                        <wm-filter-field name="bidId" display-name="Bid Id" field="bidId" widget="number" is-range="false" show="true" type="integer" is-primary-key="false" generator="assigned" matchmode="start" displayname="Bid ID" inputtype="number" primary-key="false" key="bidId" placeholder="Enter value"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn7"> 
+                                        <wm-filter-field name="lineNumber" field="lineNumber" displayname="Line Number" widget="text" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" inputtype="text" primary-key="false" key="lineNumber" placeholder="Search" matchmode="anywhere" filter-on="lineNumber"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn40"> 
+                                        <wm-filter-field name="engDrawingNumber" field="engDrawingNumber" displayname="Drawing Number" widget="text" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" inputtype="text" primary-key="false" key="engDrawingNumber" placeholder="Search" matchmode="anywhere" filter-on="engDrawingNumber"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn41"> 
+                                        <wm-filter-field name="ect" field="ect" displayname="E.C.T." widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="ect" placeholder="Select" matchmode="start" filter-on="ect" datafield="key" displayfield="value"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn42"> 
+                                        <wm-filter-field name="pipingActivityType" field="pipingActivityType" displayname="Piping Activity Type" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="pipingActivityType" placeholder="Select" matchmode="start" filter-on="pipingActivityType" datafield="key" displayfield="value"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn43"> 
+                                        <wm-filter-field name="pipeSize" field="pipeSize" displayname="Pipe Size" widget="select" is-range="false" type="float" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="pipeSize" placeholder="Select" filter-on="pipeSize" datafield="key" displayfield="value" orderby="value:asc"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn44"> 
+                                        <wm-filter-field name="componentNumber" field="componentNumber" displayname="Component Number" widget="text" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" inputtype="text" primary-key="false" key="componentNumber" placeholder="Search" matchmode="anywhere" filter-on="componentNumber"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn45"> 
+                                        <wm-filter-field name="description" field="description" displayname="Description" widget="text" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" inputtype="text" primary-key="false" key="description" placeholder="Search" matchmode="anywhere" filter-on="description"></wm-filter-field> 
+                                    </wm-gridcolumn> 
+                                </wm-gridrow> 
+                            </wm-layoutgrid> 
+                            <wm-filter-action key="filter" display-name="Filter" show="true" class="btn-primary" iconclass="glyphicon glyphicon-filter" title="Filter" action="filter()" disabled="false" type="button"></wm-filter-action> 
+                            <wm-filter-action key="clear" display-name="Clear" show="true" class="btn" iconclass="wi wi-cancel" title="Clear" action="clearFilter()" disabled="false" type="button"></wm-filter-action> 
+                        </wm-livefilter> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow8"> 
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn27"> 
+                        <wm-table dataset="bind:Widgets.livefilterTrackerMasterPipe.result" navigation="Classic" name="gridBidEditor" showrecordcount="true" height="700px" pagesize="100" fontsize="10" on-rowdblclick="gridBidEditorRowdblclick($event, $data)" class="panel-default" editmode="inline"> 
+                            <wm-table-column binding="bidId" caption="Bid ID" type="integer" width="70px" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="scope" caption="Scope" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="phase" caption="Phase" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="area" caption="Area" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="location" caption="Location" type="string" width="80px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="elevation" caption="Elevation" type="string" width="100px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="cu" caption="CU" type="string" width="60px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="p6id" caption="P6 ID" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="p6description" caption="P6 Description" type="string" width="100px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="stage" caption="Stage" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="testPackageNumber" caption="Test Package" type="string" width="100px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="costCode" caption="Cost Code" type="string" width="80px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="lineNumber" caption="Line Number" type="string" width="150px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="engDrawingNumber" caption="Drawing Number" type="string" width="150px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="sheetNumber" caption="Sheet" type="byte" width="70px" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="revisionNumber" caption="Revision" type="byte" width="70px" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="system" caption="System" type="string" width="100px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="service" caption="Service" type="string" width="100px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="clientPipeSpec" caption="Client Pipe Spec" type="string" width="100px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="materialCode" caption="Material Code" type="string" width="100px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="description" caption="Description" type="string" width="150px" generator="assigned" edit-widget-type="text" sortable="false" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="componentNumber" caption="Component Number" type="string" width="100px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="ect" caption="E.C.T" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="pipingActivityType" caption="ECT SubType" type="string" width="100px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="pipeSize" caption="Pipe Size" type="float" width="70px" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="takeOffQuantity" caption="Take Off Quantity" type="double" width="100px" generator="assigned" formatpattern="toNumber" fractionsize="2" edit-widget-type="number" sortable="false" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="quantityUnit" caption="Quantity Unit" type="string" width="70px" generator="assigned" edit-widget-type="text" sortable="false" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="estimatedHours" caption="Estimated Hours" type="double" width="100px" generator="assigned" formatpattern="toNumber" fractionsize="2" edit-widget-type="number" sortable="false" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="wbs1" caption="Wbs1" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="wbs2" caption="Wbs2" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="wbs3" caption="Wbs3" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="wbs4" caption="Wbs4" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="wbs5" caption="Wbs5" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="wbs6" caption="Wbs6" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="wbs7" caption="Wbs7" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="wbs8" caption="Wbs8" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="wbs9" caption="Wbs9" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="wbs10" caption="Wbs10" type="string" width="70px" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+                            <wm-table-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-table-column> 
+                            <wm-table-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" disabled="false"></wm-table-action> 
+                            <wm-table-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-table-row-action> 
+                        </wm-table> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow11"> 
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn26" horizontalalign="center"> 
+                        <wm-button class="btn-default" caption="Show Change Log" type="button" name="buttonShowChangeLog" show="bind:Variables.staticShowChangeLog.dataSet.dataValue == false" on-click="buttonShowChangeLogClick($event, $scope)"></wm-button> 
+                        <wm-button class="btn-default" caption="Hide Change Log" type="button" name="buttonHideChangeLog" show="bind:Variables.staticShowChangeLog.dataSet.dataValue == true" on-click="buttonHideChangeLogClick($event, $scope)"></wm-button> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow10"> 
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn25"> 
+                        <wm-tile name="tile1" show="bind:Variables.staticShowChangeLog.dataSet.dataValue"> 
+                            <wm-table readonlygrid="true" dataset="bind:Variables.Job1111ExecuteGetBidChangeLogByID.dataSet" navigation="None" showrecordcount="true" height="100" pagesize="100" fontsize="10" name="gridChangeLog" enablesort="false" class="panel-default"> 
+                                <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" width="70px" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="BidID" caption="Bid ID" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="Scope" caption="Scope" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="Phase" caption="Phase" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="Area" caption="Area" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="Location" caption="Location" type="string" width="80px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="Elevation" caption="Elevation" type="string" width="100px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="CU" caption="CU" type="string" width="60px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="P6ID" caption="P6ID" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="P6Description" caption="P6 Description" type="string" width="100px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="Stage" caption="Stage" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="TestPackageNumber" caption="Test Package" type="string" width="100px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="CostCode" caption="Cost Code" type="string" width="80px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="LineNumber" caption="Line Number" type="string" width="150px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="EngDrawingNumber" caption="Drawing Number" type="string" width="150px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="SheetNumber" caption="Sheet" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="RevisionNumber" caption="Revision Number" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="System" caption="System" type="string" width="100px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="Service" caption="Service" type="string" width="100px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="ClientPipeSpec" caption="Client Pipe Spec" type="string" width="100px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="MaterialCode" caption="Material Code" type="string" width="100px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="Description" caption="Description" type="string" width="150px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="ComponentNumber" caption="Component Number" type="string" width="100px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="ECT" caption="ECT" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="PipingActivityType" caption="Piping Activity Type" type="string" width="100px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="PipeSize" caption="Pipe Size" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="TakeOffQuantity" caption="Take Off Quantity" type="string" width="100px" readonly="true" formatpattern="toNumber" fractionsize="2" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="QuantityUnit" caption="Quantity Unit" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="EstimatedHours" caption="Estimated Hours" type="string" width="100px" readonly="true" formatpattern="toNumber" fractionsize="2" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="WBS1" caption="WBS1" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="WBS2" caption="WBS2" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="WBS3" caption="WBS3" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="WBS4" caption="WBS4" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="WBS5" caption="WBS5" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="WBS6" caption="WBS6" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="WBS7" caption="WBS7" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="WBS8" caption="WBS8" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="WBS9" caption="WBS9" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                                <wm-table-column binding="WBS10" caption="WBS10" type="string" width="70px" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
+                            </wm-table> 
+                        </wm-tile> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow9"> 
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn33_1" horizontalalign="left"></wm-gridcolumn> 
+                </wm-gridrow> 
+            </wm-layoutgrid> 
+        </wm-page-content> 
+    </wm-content> 
+    <wm-footer content="footer" name="footer1"></wm-footer> 
 </wm-page>

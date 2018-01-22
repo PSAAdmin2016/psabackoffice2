@@ -53,9 +53,9 @@ public class TblJobSitesController {
 	private TblJobSitesService tblJobSitesService;
 
 	@ApiOperation(value = "Creates a new TblJobSites instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public TblJobSites createTblJobSites(@RequestBody TblJobSites tblJobSites) {
+    public TblJobSites createTblJobSites(@RequestBody TblJobSites tblJobSites) {
 		LOGGER.debug("Create TblJobSites with information: {}" , tblJobSites);
 
 		tblJobSites = tblJobSitesService.create(tblJobSites);
@@ -63,7 +63,6 @@ public class TblJobSitesController {
 
 	    return tblJobSites;
 	}
-
 
     @ApiOperation(value = "Returns the TblJobSites instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

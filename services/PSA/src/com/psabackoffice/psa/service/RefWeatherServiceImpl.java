@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.psa.RefWeather;
  * @see RefWeather
  */
 @Service("PSA.RefWeatherService")
+@Validated
 public class RefWeatherServiceImpl implements RefWeatherService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RefWeatherServiceImpl.class);
@@ -49,6 +51,7 @@ public class RefWeatherServiceImpl implements RefWeatherService {
     @Override
 	public RefWeather create(RefWeather refWeather) {
         LOGGER.debug("Creating a new RefWeather with information: {}", refWeather);
+
         RefWeather refWeatherCreated = this.wmGenericDao.create(refWeather);
         return refWeatherCreated;
     }

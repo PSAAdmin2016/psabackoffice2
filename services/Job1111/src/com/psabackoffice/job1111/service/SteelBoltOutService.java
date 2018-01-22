@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface SteelBoltOutService {
      * @param steelBoltOut Details of the SteelBoltOut to be created; value cannot be null.
      * @return The newly created SteelBoltOut.
      */
-	SteelBoltOut create(SteelBoltOut steelBoltOut);
+	SteelBoltOut create(@Valid SteelBoltOut steelBoltOut);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface SteelBoltOutService {
 	 * @return The updated SteelBoltOut.
 	 * @throws EntityNotFoundException if no SteelBoltOut is found with given input.
 	 */
-	SteelBoltOut update(SteelBoltOut steelBoltOut) throws EntityNotFoundException;
+	SteelBoltOut update(@Valid SteelBoltOut steelBoltOut) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing SteelBoltOut with the given id.

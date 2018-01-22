@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.psa.FeedBackNotes;
  * @see FeedBackNotes
  */
 @Service("PSA.FeedBackNotesService")
+@Validated
 public class FeedBackNotesServiceImpl implements FeedBackNotesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FeedBackNotesServiceImpl.class);
@@ -49,6 +51,7 @@ public class FeedBackNotesServiceImpl implements FeedBackNotesService {
     @Override
 	public FeedBackNotes create(FeedBackNotes feedBackNotes) {
         LOGGER.debug("Creating a new FeedBackNotes with information: {}", feedBackNotes);
+
         FeedBackNotes feedBackNotesCreated = this.wmGenericDao.create(feedBackNotes);
         return feedBackNotesCreated;
     }

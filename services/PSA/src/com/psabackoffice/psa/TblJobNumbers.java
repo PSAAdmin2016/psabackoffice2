@@ -13,6 +13,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -66,7 +67,7 @@ public class TblJobNumbers implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_JobSiteId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    @JoinColumn(name = "`fk_JobSiteId`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_tblJobNumbers_tblJobSites1`"))
     public TblJobSites getTblJobSites() {
         return this.tblJobSites;
     }

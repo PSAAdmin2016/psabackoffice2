@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface ChatConversationMembersService {
      * @param chatConversationMembers Details of the ChatConversationMembers to be created; value cannot be null.
      * @return The newly created ChatConversationMembers.
      */
-	ChatConversationMembers create(ChatConversationMembers chatConversationMembers);
+	ChatConversationMembers create(@Valid ChatConversationMembers chatConversationMembers);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface ChatConversationMembersService {
 	 * @return The updated ChatConversationMembers.
 	 * @throws EntityNotFoundException if no ChatConversationMembers is found with given input.
 	 */
-	ChatConversationMembers update(ChatConversationMembers chatConversationMembers) throws EntityNotFoundException;
+	ChatConversationMembers update(@Valid ChatConversationMembers chatConversationMembers) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing ChatConversationMembers with the given id.

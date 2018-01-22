@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -32,7 +34,7 @@ public interface RefFbSeverityService {
      * @param refFbSeverity Details of the RefFbSeverity to be created; value cannot be null.
      * @return The newly created RefFbSeverity.
      */
-	RefFbSeverity create(RefFbSeverity refFbSeverity);
+	RefFbSeverity create(@Valid RefFbSeverity refFbSeverity);
 
 
 	/**
@@ -62,7 +64,7 @@ public interface RefFbSeverityService {
 	 * @return The updated RefFbSeverity.
 	 * @throws EntityNotFoundException if no RefFbSeverity is found with given input.
 	 */
-	RefFbSeverity update(RefFbSeverity refFbSeverity) throws EntityNotFoundException;
+	RefFbSeverity update(@Valid RefFbSeverity refFbSeverity) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefFbSeverity with the given id.

@@ -54,9 +54,9 @@ public class RefDisciplinesController {
 	private RefDisciplinesService refDisciplinesService;
 
 	@ApiOperation(value = "Creates a new RefDisciplines instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefDisciplines createRefDisciplines(@RequestBody RefDisciplines refDisciplines) {
+    public RefDisciplines createRefDisciplines(@RequestBody RefDisciplines refDisciplines) {
 		LOGGER.debug("Create RefDisciplines with information: {}" , refDisciplines);
 
 		refDisciplines = refDisciplinesService.create(refDisciplines);
@@ -64,7 +64,6 @@ public class RefDisciplinesController {
 
 	    return refDisciplines;
 	}
-
 
     @ApiOperation(value = "Returns the RefDisciplines instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

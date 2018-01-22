@@ -52,9 +52,9 @@ public class SteelTrackerDetailsController {
 	private SteelTrackerDetailsService steelTrackerDetailsService;
 
 	@ApiOperation(value = "Creates a new SteelTrackerDetails instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public SteelTrackerDetails createSteelTrackerDetails(@RequestBody SteelTrackerDetails steelTrackerDetails) {
+    public SteelTrackerDetails createSteelTrackerDetails(@RequestBody SteelTrackerDetails steelTrackerDetails) {
 		LOGGER.debug("Create SteelTrackerDetails with information: {}" , steelTrackerDetails);
 
 		steelTrackerDetails = steelTrackerDetailsService.create(steelTrackerDetails);
@@ -62,7 +62,6 @@ public class SteelTrackerDetailsController {
 
 	    return steelTrackerDetails;
 	}
-
 
     @ApiOperation(value = "Returns the SteelTrackerDetails instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

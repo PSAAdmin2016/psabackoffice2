@@ -54,9 +54,9 @@ public class RefRolesController {
 	private RefRolesService refRolesService;
 
 	@ApiOperation(value = "Creates a new RefRoles instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefRoles createRefRoles(@RequestBody RefRoles refRoles) {
+    public RefRoles createRefRoles(@RequestBody RefRoles refRoles) {
 		LOGGER.debug("Create RefRoles with information: {}" , refRoles);
 
 		refRoles = refRolesService.create(refRoles);
@@ -64,7 +64,6 @@ public class RefRolesController {
 
 	    return refRoles;
 	}
-
 
     @ApiOperation(value = "Returns the RefRoles instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

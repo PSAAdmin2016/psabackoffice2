@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface PipeTrackerClassicService {
      * @param pipeTrackerClassic Details of the PipeTrackerClassic to be created; value cannot be null.
      * @return The newly created PipeTrackerClassic.
      */
-	PipeTrackerClassic create(PipeTrackerClassic pipeTrackerClassic);
+	PipeTrackerClassic create(@Valid PipeTrackerClassic pipeTrackerClassic);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface PipeTrackerClassicService {
 	 * @return The updated PipeTrackerClassic.
 	 * @throws EntityNotFoundException if no PipeTrackerClassic is found with given input.
 	 */
-	PipeTrackerClassic update(PipeTrackerClassic pipeTrackerClassic) throws EntityNotFoundException;
+	PipeTrackerClassic update(@Valid PipeTrackerClassic pipeTrackerClassic) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing PipeTrackerClassic with the given id.

@@ -52,9 +52,9 @@ public class RefWeatherController {
 	private RefWeatherService refWeatherService;
 
 	@ApiOperation(value = "Creates a new RefWeather instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefWeather createRefWeather(@RequestBody RefWeather refWeather) {
+    public RefWeather createRefWeather(@RequestBody RefWeather refWeather) {
 		LOGGER.debug("Create RefWeather with information: {}" , refWeather);
 
 		refWeather = refWeatherService.create(refWeather);
@@ -62,7 +62,6 @@ public class RefWeatherController {
 
 	    return refWeather;
 	}
-
 
     @ApiOperation(value = "Returns the RefWeather instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

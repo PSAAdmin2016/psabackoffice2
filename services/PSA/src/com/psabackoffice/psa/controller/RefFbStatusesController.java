@@ -53,9 +53,9 @@ public class RefFbStatusesController {
 	private RefFbStatusesService refFbStatusesService;
 
 	@ApiOperation(value = "Creates a new RefFbStatuses instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefFbStatuses createRefFbStatuses(@RequestBody RefFbStatuses refFbStatuses) {
+    public RefFbStatuses createRefFbStatuses(@RequestBody RefFbStatuses refFbStatuses) {
 		LOGGER.debug("Create RefFbStatuses with information: {}" , refFbStatuses);
 
 		refFbStatuses = refFbStatusesService.create(refFbStatuses);
@@ -63,7 +63,6 @@ public class RefFbStatusesController {
 
 	    return refFbStatuses;
 	}
-
 
     @ApiOperation(value = "Returns the RefFbStatuses instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

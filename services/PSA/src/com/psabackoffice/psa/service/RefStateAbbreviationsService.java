@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -32,7 +34,7 @@ public interface RefStateAbbreviationsService {
      * @param refStateAbbreviations Details of the RefStateAbbreviations to be created; value cannot be null.
      * @return The newly created RefStateAbbreviations.
      */
-	RefStateAbbreviations create(RefStateAbbreviations refStateAbbreviations);
+	RefStateAbbreviations create(@Valid RefStateAbbreviations refStateAbbreviations);
 
 
 	/**
@@ -62,7 +64,7 @@ public interface RefStateAbbreviationsService {
 	 * @return The updated RefStateAbbreviations.
 	 * @throws EntityNotFoundException if no RefStateAbbreviations is found with given input.
 	 */
-	RefStateAbbreviations update(RefStateAbbreviations refStateAbbreviations) throws EntityNotFoundException;
+	RefStateAbbreviations update(@Valid RefStateAbbreviations refStateAbbreviations) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefStateAbbreviations with the given id.

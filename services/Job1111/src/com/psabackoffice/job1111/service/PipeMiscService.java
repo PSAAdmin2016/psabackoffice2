@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface PipeMiscService {
      * @param pipeMisc Details of the PipeMisc to be created; value cannot be null.
      * @return The newly created PipeMisc.
      */
-	PipeMisc create(PipeMisc pipeMisc);
+	PipeMisc create(@Valid PipeMisc pipeMisc);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface PipeMiscService {
 	 * @return The updated PipeMisc.
 	 * @throws EntityNotFoundException if no PipeMisc is found with given input.
 	 */
-	PipeMisc update(PipeMisc pipeMisc) throws EntityNotFoundException;
+	PipeMisc update(@Valid PipeMisc pipeMisc) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing PipeMisc with the given id.

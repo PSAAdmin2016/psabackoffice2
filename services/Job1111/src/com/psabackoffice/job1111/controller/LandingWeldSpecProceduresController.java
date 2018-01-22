@@ -52,9 +52,9 @@ public class LandingWeldSpecProceduresController {
 	private LandingWeldSpecProceduresService landingWeldSpecProceduresService;
 
 	@ApiOperation(value = "Creates a new LandingWeldSpecProcedures instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public LandingWeldSpecProcedures createLandingWeldSpecProcedures(@RequestBody LandingWeldSpecProcedures landingWeldSpecProcedures) {
+    public LandingWeldSpecProcedures createLandingWeldSpecProcedures(@RequestBody LandingWeldSpecProcedures landingWeldSpecProcedures) {
 		LOGGER.debug("Create LandingWeldSpecProcedures with information: {}" , landingWeldSpecProcedures);
 
 		landingWeldSpecProcedures = landingWeldSpecProceduresService.create(landingWeldSpecProcedures);
@@ -62,7 +62,6 @@ public class LandingWeldSpecProceduresController {
 
 	    return landingWeldSpecProcedures;
 	}
-
 
     @ApiOperation(value = "Returns the LandingWeldSpecProcedures instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

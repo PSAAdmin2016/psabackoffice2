@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface CacheStatsEquipPcotService {
      * @param cacheStatsEquipPcot Details of the CacheStatsEquipPcot to be created; value cannot be null.
      * @return The newly created CacheStatsEquipPcot.
      */
-	CacheStatsEquipPcot create(CacheStatsEquipPcot cacheStatsEquipPcot);
+	CacheStatsEquipPcot create(@Valid CacheStatsEquipPcot cacheStatsEquipPcot);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface CacheStatsEquipPcotService {
 	 * @return The updated CacheStatsEquipPcot.
 	 * @throws EntityNotFoundException if no CacheStatsEquipPcot is found with given input.
 	 */
-	CacheStatsEquipPcot update(CacheStatsEquipPcot cacheStatsEquipPcot) throws EntityNotFoundException;
+	CacheStatsEquipPcot update(@Valid CacheStatsEquipPcot cacheStatsEquipPcot) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing CacheStatsEquipPcot with the given id.

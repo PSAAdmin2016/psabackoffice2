@@ -52,9 +52,9 @@ public class CivilTrackerClassicController {
 	private CivilTrackerClassicService civilTrackerClassicService;
 
 	@ApiOperation(value = "Creates a new CivilTrackerClassic instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public CivilTrackerClassic createCivilTrackerClassic(@RequestBody CivilTrackerClassic civilTrackerClassic) {
+    public CivilTrackerClassic createCivilTrackerClassic(@RequestBody CivilTrackerClassic civilTrackerClassic) {
 		LOGGER.debug("Create CivilTrackerClassic with information: {}" , civilTrackerClassic);
 
 		civilTrackerClassic = civilTrackerClassicService.create(civilTrackerClassic);
@@ -62,7 +62,6 @@ public class CivilTrackerClassicController {
 
 	    return civilTrackerClassic;
 	}
-
 
     @ApiOperation(value = "Returns the CivilTrackerClassic instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

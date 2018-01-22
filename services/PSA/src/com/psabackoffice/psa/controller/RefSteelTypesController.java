@@ -52,9 +52,9 @@ public class RefSteelTypesController {
 	private RefSteelTypesService refSteelTypesService;
 
 	@ApiOperation(value = "Creates a new RefSteelTypes instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefSteelTypes createRefSteelTypes(@RequestBody RefSteelTypes refSteelTypes) {
+    public RefSteelTypes createRefSteelTypes(@RequestBody RefSteelTypes refSteelTypes) {
 		LOGGER.debug("Create RefSteelTypes with information: {}" , refSteelTypes);
 
 		refSteelTypes = refSteelTypesService.create(refSteelTypes);
@@ -62,7 +62,6 @@ public class RefSteelTypesController {
 
 	    return refSteelTypes;
 	}
-
 
     @ApiOperation(value = "Returns the RefSteelTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

@@ -52,9 +52,9 @@ public class SteelBoltOutController {
 	private SteelBoltOutService steelBoltOutService;
 
 	@ApiOperation(value = "Creates a new SteelBoltOut instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public SteelBoltOut createSteelBoltOut(@RequestBody SteelBoltOut steelBoltOut) {
+    public SteelBoltOut createSteelBoltOut(@RequestBody SteelBoltOut steelBoltOut) {
 		LOGGER.debug("Create SteelBoltOut with information: {}" , steelBoltOut);
 
 		steelBoltOut = steelBoltOutService.create(steelBoltOut);
@@ -62,7 +62,6 @@ public class SteelBoltOutController {
 
 	    return steelBoltOut;
 	}
-
 
     @ApiOperation(value = "Returns the SteelBoltOut instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -80,9 +79,9 @@ public class SteelBoltOutController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public SteelBoltOut editSteelBoltOut(@PathVariable("id") Integer id, @RequestBody SteelBoltOut steelBoltOut) throws EntityNotFoundException {
-        LOGGER.debug("Editing SteelBoltOut with id: {}" , steelBoltOut.getActivityId());
+        LOGGER.debug("Editing SteelBoltOut with id: {}" , steelBoltOut.getId());
 
-        steelBoltOut.setActivityId(id);
+        steelBoltOut.setId(id);
         steelBoltOut = steelBoltOutService.update(steelBoltOut);
         LOGGER.debug("SteelBoltOut details with id: {}" , steelBoltOut);
 

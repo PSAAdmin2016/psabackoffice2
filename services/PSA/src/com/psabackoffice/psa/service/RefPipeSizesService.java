@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefPipeSizesService {
      * @param refPipeSizes Details of the RefPipeSizes to be created; value cannot be null.
      * @return The newly created RefPipeSizes.
      */
-	RefPipeSizes create(RefPipeSizes refPipeSizes);
+	RefPipeSizes create(@Valid RefPipeSizes refPipeSizes);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface RefPipeSizesService {
 	 * @return The updated RefPipeSizes.
 	 * @throws EntityNotFoundException if no RefPipeSizes is found with given input.
 	 */
-	RefPipeSizes update(RefPipeSizes refPipeSizes) throws EntityNotFoundException;
+	RefPipeSizes update(@Valid RefPipeSizes refPipeSizes) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefPipeSizes with the given id.

@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -33,7 +35,7 @@ public interface RefFbTypesService {
      * @param refFbTypes Details of the RefFbTypes to be created; value cannot be null.
      * @return The newly created RefFbTypes.
      */
-	RefFbTypes create(RefFbTypes refFbTypes);
+	RefFbTypes create(@Valid RefFbTypes refFbTypes);
 
 
 	/**
@@ -63,7 +65,7 @@ public interface RefFbTypesService {
 	 * @return The updated RefFbTypes.
 	 * @throws EntityNotFoundException if no RefFbTypes is found with given input.
 	 */
-	RefFbTypes update(RefFbTypes refFbTypes) throws EntityNotFoundException;
+	RefFbTypes update(@Valid RefFbTypes refFbTypes) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefFbTypes with the given id.

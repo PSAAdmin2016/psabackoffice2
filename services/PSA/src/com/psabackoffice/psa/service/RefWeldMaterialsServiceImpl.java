@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.psa.RefWeldMaterials;
  * @see RefWeldMaterials
  */
 @Service("PSA.RefWeldMaterialsService")
+@Validated
 public class RefWeldMaterialsServiceImpl implements RefWeldMaterialsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RefWeldMaterialsServiceImpl.class);
@@ -49,6 +51,7 @@ public class RefWeldMaterialsServiceImpl implements RefWeldMaterialsService {
     @Override
 	public RefWeldMaterials create(RefWeldMaterials refWeldMaterials) {
         LOGGER.debug("Creating a new RefWeldMaterials with information: {}", refWeldMaterials);
+
         RefWeldMaterials refWeldMaterialsCreated = this.wmGenericDao.create(refWeldMaterials);
         return refWeldMaterialsCreated;
     }

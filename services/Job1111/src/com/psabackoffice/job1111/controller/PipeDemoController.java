@@ -52,9 +52,9 @@ public class PipeDemoController {
 	private PipeDemoService pipeDemoService;
 
 	@ApiOperation(value = "Creates a new PipeDemo instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public PipeDemo createPipeDemo(@RequestBody PipeDemo pipeDemo) {
+    public PipeDemo createPipeDemo(@RequestBody PipeDemo pipeDemo) {
 		LOGGER.debug("Create PipeDemo with information: {}" , pipeDemo);
 
 		pipeDemo = pipeDemoService.create(pipeDemo);
@@ -62,7 +62,6 @@ public class PipeDemoController {
 
 	    return pipeDemo;
 	}
-
 
     @ApiOperation(value = "Returns the PipeDemo instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -80,9 +79,9 @@ public class PipeDemoController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public PipeDemo editPipeDemo(@PathVariable("id") Integer id, @RequestBody PipeDemo pipeDemo) throws EntityNotFoundException {
-        LOGGER.debug("Editing PipeDemo with id: {}" , pipeDemo.getActivityId());
+        LOGGER.debug("Editing PipeDemo with id: {}" , pipeDemo.getId());
 
-        pipeDemo.setActivityId(id);
+        pipeDemo.setId(id);
         pipeDemo = pipeDemoService.update(pipeDemo);
         LOGGER.debug("PipeDemo details with id: {}" , pipeDemo);
 

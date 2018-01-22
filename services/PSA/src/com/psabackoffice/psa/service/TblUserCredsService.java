@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface TblUserCredsService {
      * @param tblUserCreds Details of the TblUserCreds to be created; value cannot be null.
      * @return The newly created TblUserCreds.
      */
-	TblUserCreds create(TblUserCreds tblUserCreds);
+	TblUserCreds create(@Valid TblUserCreds tblUserCreds);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface TblUserCredsService {
 	 * @return The updated TblUserCreds.
 	 * @throws EntityNotFoundException if no TblUserCreds is found with given input.
 	 */
-	TblUserCreds update(TblUserCreds tblUserCreds) throws EntityNotFoundException;
+	TblUserCreds update(@Valid TblUserCreds tblUserCreds) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing TblUserCreds with the given id.

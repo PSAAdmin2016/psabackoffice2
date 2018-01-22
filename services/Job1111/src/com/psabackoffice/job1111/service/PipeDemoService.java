@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface PipeDemoService {
      * @param pipeDemo Details of the PipeDemo to be created; value cannot be null.
      * @return The newly created PipeDemo.
      */
-	PipeDemo create(PipeDemo pipeDemo);
+	PipeDemo create(@Valid PipeDemo pipeDemo);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface PipeDemoService {
 	 * @return The updated PipeDemo.
 	 * @throws EntityNotFoundException if no PipeDemo is found with given input.
 	 */
-	PipeDemo update(PipeDemo pipeDemo) throws EntityNotFoundException;
+	PipeDemo update(@Valid PipeDemo pipeDemo) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing PipeDemo with the given id.

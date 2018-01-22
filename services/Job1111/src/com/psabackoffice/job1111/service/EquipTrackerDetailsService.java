@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface EquipTrackerDetailsService {
      * @param equipTrackerDetails Details of the EquipTrackerDetails to be created; value cannot be null.
      * @return The newly created EquipTrackerDetails.
      */
-	EquipTrackerDetails create(EquipTrackerDetails equipTrackerDetails);
+	EquipTrackerDetails create(@Valid EquipTrackerDetails equipTrackerDetails);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface EquipTrackerDetailsService {
 	 * @return The updated EquipTrackerDetails.
 	 * @throws EntityNotFoundException if no EquipTrackerDetails is found with given input.
 	 */
-	EquipTrackerDetails update(EquipTrackerDetails equipTrackerDetails) throws EntityNotFoundException;
+	EquipTrackerDetails update(@Valid EquipTrackerDetails equipTrackerDetails) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing EquipTrackerDetails with the given id.

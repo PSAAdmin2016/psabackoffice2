@@ -52,9 +52,9 @@ public class PipeEwoController {
 	private PipeEwoService pipeEwoService;
 
 	@ApiOperation(value = "Creates a new PipeEwo instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public PipeEwo createPipeEwo(@RequestBody PipeEwo pipeEwo) {
+    public PipeEwo createPipeEwo(@RequestBody PipeEwo pipeEwo) {
 		LOGGER.debug("Create PipeEwo with information: {}" , pipeEwo);
 
 		pipeEwo = pipeEwoService.create(pipeEwo);
@@ -62,7 +62,6 @@ public class PipeEwoController {
 
 	    return pipeEwo;
 	}
-
 
     @ApiOperation(value = "Returns the PipeEwo instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -80,9 +79,9 @@ public class PipeEwoController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public PipeEwo editPipeEwo(@PathVariable("id") Integer id, @RequestBody PipeEwo pipeEwo) throws EntityNotFoundException {
-        LOGGER.debug("Editing PipeEwo with id: {}" , pipeEwo.getActivityId());
+        LOGGER.debug("Editing PipeEwo with id: {}" , pipeEwo.getId());
 
-        pipeEwo.setActivityId(id);
+        pipeEwo.setId(id);
         pipeEwo = pipeEwoService.update(pipeEwo);
         LOGGER.debug("PipeEwo details with id: {}" , pipeEwo);
 

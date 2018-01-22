@@ -52,9 +52,9 @@ public class LandingTrackerSteelController {
 	private LandingTrackerSteelService landingTrackerSteelService;
 
 	@ApiOperation(value = "Creates a new LandingTrackerSteel instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public LandingTrackerSteel createLandingTrackerSteel(@RequestBody LandingTrackerSteel landingTrackerSteel) {
+    public LandingTrackerSteel createLandingTrackerSteel(@RequestBody LandingTrackerSteel landingTrackerSteel) {
 		LOGGER.debug("Create LandingTrackerSteel with information: {}" , landingTrackerSteel);
 
 		landingTrackerSteel = landingTrackerSteelService.create(landingTrackerSteel);
@@ -62,7 +62,6 @@ public class LandingTrackerSteelController {
 
 	    return landingTrackerSteel;
 	}
-
 
     @ApiOperation(value = "Returns the LandingTrackerSteel instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

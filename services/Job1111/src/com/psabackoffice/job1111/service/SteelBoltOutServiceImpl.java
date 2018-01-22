@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.wavemaker.runtime.data.dao.WMGenericDao;
 import com.wavemaker.runtime.data.exception.EntityNotFoundException;
@@ -32,6 +33,7 @@ import com.psabackoffice.job1111.SteelBoltOut;
  * @see SteelBoltOut
  */
 @Service("Job1111.SteelBoltOutService")
+@Validated
 public class SteelBoltOutServiceImpl implements SteelBoltOutService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SteelBoltOutServiceImpl.class);
@@ -49,6 +51,7 @@ public class SteelBoltOutServiceImpl implements SteelBoltOutService {
     @Override
 	public SteelBoltOut create(SteelBoltOut steelBoltOut) {
         LOGGER.debug("Creating a new SteelBoltOut with information: {}", steelBoltOut);
+
         SteelBoltOut steelBoltOutCreated = this.wmGenericDao.create(steelBoltOut);
         return steelBoltOutCreated;
     }
@@ -79,7 +82,7 @@ public class SteelBoltOutServiceImpl implements SteelBoltOutService {
         LOGGER.debug("Updating SteelBoltOut with information: {}", steelBoltOut);
         this.wmGenericDao.update(steelBoltOut);
 
-        Integer steelboltoutId = steelBoltOut.getActivityId();
+        Integer steelboltoutId = steelBoltOut.getId();
 
         return this.wmGenericDao.findById(steelboltoutId);
     }

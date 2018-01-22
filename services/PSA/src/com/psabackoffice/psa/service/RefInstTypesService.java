@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefInstTypesService {
      * @param refInstTypes Details of the RefInstTypes to be created; value cannot be null.
      * @return The newly created RefInstTypes.
      */
-	RefInstTypes create(RefInstTypes refInstTypes);
+	RefInstTypes create(@Valid RefInstTypes refInstTypes);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface RefInstTypesService {
 	 * @return The updated RefInstTypes.
 	 * @throws EntityNotFoundException if no RefInstTypes is found with given input.
 	 */
-	RefInstTypes update(RefInstTypes refInstTypes) throws EntityNotFoundException;
+	RefInstTypes update(@Valid RefInstTypes refInstTypes) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefInstTypes with the given id.

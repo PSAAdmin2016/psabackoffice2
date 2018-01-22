@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface CivilMiscService {
      * @param civilMisc Details of the CivilMisc to be created; value cannot be null.
      * @return The newly created CivilMisc.
      */
-	CivilMisc create(CivilMisc civilMisc);
+	CivilMisc create(@Valid CivilMisc civilMisc);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface CivilMiscService {
 	 * @return The updated CivilMisc.
 	 * @throws EntityNotFoundException if no CivilMisc is found with given input.
 	 */
-	CivilMisc update(CivilMisc civilMisc) throws EntityNotFoundException;
+	CivilMisc update(@Valid CivilMisc civilMisc) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing CivilMisc with the given id.

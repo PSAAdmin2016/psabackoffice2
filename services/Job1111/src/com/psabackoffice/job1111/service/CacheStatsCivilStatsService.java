@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface CacheStatsCivilStatsService {
      * @param cacheStatsCivilStats Details of the CacheStatsCivilStats to be created; value cannot be null.
      * @return The newly created CacheStatsCivilStats.
      */
-	CacheStatsCivilStats create(CacheStatsCivilStats cacheStatsCivilStats);
+	CacheStatsCivilStats create(@Valid CacheStatsCivilStats cacheStatsCivilStats);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface CacheStatsCivilStatsService {
 	 * @return The updated CacheStatsCivilStats.
 	 * @throws EntityNotFoundException if no CacheStatsCivilStats is found with given input.
 	 */
-	CacheStatsCivilStats update(CacheStatsCivilStats cacheStatsCivilStats) throws EntityNotFoundException;
+	CacheStatsCivilStats update(@Valid CacheStatsCivilStats cacheStatsCivilStats) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing CacheStatsCivilStats with the given id.

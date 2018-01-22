@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -32,7 +34,7 @@ public interface FeedBackService {
      * @param feedBack Details of the FeedBack to be created; value cannot be null.
      * @return The newly created FeedBack.
      */
-	FeedBack create(FeedBack feedBack);
+	FeedBack create(@Valid FeedBack feedBack);
 
 
 	/**
@@ -62,7 +64,7 @@ public interface FeedBackService {
 	 * @return The updated FeedBack.
 	 * @throws EntityNotFoundException if no FeedBack is found with given input.
 	 */
-	FeedBack update(FeedBack feedBack) throws EntityNotFoundException;
+	FeedBack update(@Valid FeedBack feedBack) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing FeedBack with the given id.

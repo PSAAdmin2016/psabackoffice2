@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface PipeTestingService {
      * @param pipeTesting Details of the PipeTesting to be created; value cannot be null.
      * @return The newly created PipeTesting.
      */
-	PipeTesting create(PipeTesting pipeTesting);
+	PipeTesting create(@Valid PipeTesting pipeTesting);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface PipeTestingService {
 	 * @return The updated PipeTesting.
 	 * @throws EntityNotFoundException if no PipeTesting is found with given input.
 	 */
-	PipeTesting update(PipeTesting pipeTesting) throws EntityNotFoundException;
+	PipeTesting update(@Valid PipeTesting pipeTesting) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing PipeTesting with the given id.

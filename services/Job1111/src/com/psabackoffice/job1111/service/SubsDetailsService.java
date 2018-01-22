@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -16,9 +18,28 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.psabackoffice.job1111.SubmissionActivityStatus;
+import com.psabackoffice.job1111.CivilFa;
+import com.psabackoffice.job1111.CivilMisc;
+import com.psabackoffice.job1111.CivilSellPackage;
+import com.psabackoffice.job1111.EquipFa;
+import com.psabackoffice.job1111.PipeDemo;
+import com.psabackoffice.job1111.PipeErection;
+import com.psabackoffice.job1111.PipeEwo;
+import com.psabackoffice.job1111.PipeMisc;
+import com.psabackoffice.job1111.PipeSupports;
+import com.psabackoffice.job1111.PipeTesting;
+import com.psabackoffice.job1111.PipeTrim;
+import com.psabackoffice.job1111.PipeWeld;
+import com.psabackoffice.job1111.SteelBoltOut;
+import com.psabackoffice.job1111.SteelDemo;
+import com.psabackoffice.job1111.SteelErect;
+import com.psabackoffice.job1111.SteelImp;
+import com.psabackoffice.job1111.SteelMisc;
+import com.psabackoffice.job1111.SteelSell;
+import com.psabackoffice.job1111.SteelSellPackage;
+import com.psabackoffice.job1111.SteelShake;
+import com.psabackoffice.job1111.SteelWeld;
 import com.psabackoffice.job1111.SubsDetails;
-import com.psabackoffice.job1111.SubsSignatures;
 
 /**
  * Service object for domain model class {@link SubsDetails}.
@@ -33,7 +54,7 @@ public interface SubsDetailsService {
      * @param subsDetails Details of the SubsDetails to be created; value cannot be null.
      * @return The newly created SubsDetails.
      */
-	SubsDetails create(SubsDetails subsDetails);
+	SubsDetails create(@Valid SubsDetails subsDetails);
 
 
 	/**
@@ -63,7 +84,7 @@ public interface SubsDetailsService {
 	 * @return The updated SubsDetails.
 	 * @throws EntityNotFoundException if no SubsDetails is found with given input.
 	 */
-	SubsDetails update(SubsDetails subsDetails) throws EntityNotFoundException;
+	SubsDetails update(@Valid SubsDetails subsDetails) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing SubsDetails with the given id.
@@ -143,28 +164,256 @@ public interface SubsDetailsService {
 	Page<Map<String, Object>> getAggregatedValues(AggregationInfo aggregationInfo, Pageable pageable);
 
     /*
-     * Returns the associated submissionActivityStatuses for given SubsDetails id.
+     * Returns the associated civilFas for given SubsDetails id.
      *
      * @param submissionId value of submissionId; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SubmissionActivityStatus instances.
+     * @return Paginated list of associated CivilFa instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<SubmissionActivityStatus> findAssociatedSubmissionActivityStatuses(Integer submissionId, Pageable pageable);
+    Page<CivilFa> findAssociatedCivilFas(Integer submissionId, Pageable pageable);
 
     /*
-     * Returns the associated subsSignatureses for given SubsDetails id.
+     * Returns the associated civilMiscs for given SubsDetails id.
      *
      * @param submissionId value of submissionId; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated SubsSignatures instances.
+     * @return Paginated list of associated CivilMisc instances.
      *
      * @see Pageable
      * @see Page
      */
-    Page<SubsSignatures> findAssociatedSubsSignatureses(Integer submissionId, Pageable pageable);
+    Page<CivilMisc> findAssociatedCivilMiscs(Integer submissionId, Pageable pageable);
+
+    /*
+     * Returns the associated civilSellPackages for given SubsDetails id.
+     *
+     * @param submissionId value of submissionId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated CivilSellPackage instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<CivilSellPackage> findAssociatedCivilSellPackages(Integer submissionId, Pageable pageable);
+
+    /*
+     * Returns the associated equipFas for given SubsDetails id.
+     *
+     * @param submissionId value of submissionId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated EquipFa instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<EquipFa> findAssociatedEquipFas(Integer submissionId, Pageable pageable);
+
+    /*
+     * Returns the associated pipeDemos for given SubsDetails id.
+     *
+     * @param submissionId value of submissionId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated PipeDemo instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<PipeDemo> findAssociatedPipeDemos(Integer submissionId, Pageable pageable);
+
+    /*
+     * Returns the associated pipeEwos for given SubsDetails id.
+     *
+     * @param submissionId value of submissionId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated PipeEwo instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<PipeEwo> findAssociatedPipeEwos(Integer submissionId, Pageable pageable);
+
+    /*
+     * Returns the associated pipeErections for given SubsDetails id.
+     *
+     * @param submissionId value of submissionId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated PipeErection instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<PipeErection> findAssociatedPipeErections(Integer submissionId, Pageable pageable);
+
+    /*
+     * Returns the associated pipeMiscs for given SubsDetails id.
+     *
+     * @param submissionId value of submissionId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated PipeMisc instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<PipeMisc> findAssociatedPipeMiscs(Integer submissionId, Pageable pageable);
+
+    /*
+     * Returns the associated pipeSupportses for given SubsDetails id.
+     *
+     * @param submissionId value of submissionId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated PipeSupports instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<PipeSupports> findAssociatedPipeSupportses(Integer submissionId, Pageable pageable);
+
+    /*
+     * Returns the associated pipeTestings for given SubsDetails id.
+     *
+     * @param submissionId value of submissionId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated PipeTesting instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<PipeTesting> findAssociatedPipeTestings(Integer submissionId, Pageable pageable);
+
+    /*
+     * Returns the associated pipeTrims for given SubsDetails id.
+     *
+     * @param submissionId value of submissionId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated PipeTrim instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<PipeTrim> findAssociatedPipeTrims(Integer submissionId, Pageable pageable);
+
+    /*
+     * Returns the associated pipeWelds for given SubsDetails id.
+     *
+     * @param submissionId value of submissionId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated PipeWeld instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<PipeWeld> findAssociatedPipeWelds(Integer submissionId, Pageable pageable);
+
+    /*
+     * Returns the associated steelBoltOuts for given SubsDetails id.
+     *
+     * @param submissionId value of submissionId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated SteelBoltOut instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<SteelBoltOut> findAssociatedSteelBoltOuts(Integer submissionId, Pageable pageable);
+
+    /*
+     * Returns the associated steelDemos for given SubsDetails id.
+     *
+     * @param submissionId value of submissionId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated SteelDemo instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<SteelDemo> findAssociatedSteelDemos(Integer submissionId, Pageable pageable);
+
+    /*
+     * Returns the associated steelErects for given SubsDetails id.
+     *
+     * @param submissionId value of submissionId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated SteelErect instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<SteelErect> findAssociatedSteelErects(Integer submissionId, Pageable pageable);
+
+    /*
+     * Returns the associated steelImps for given SubsDetails id.
+     *
+     * @param submissionId value of submissionId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated SteelImp instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<SteelImp> findAssociatedSteelImps(Integer submissionId, Pageable pageable);
+
+    /*
+     * Returns the associated steelMiscs for given SubsDetails id.
+     *
+     * @param submissionId value of submissionId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated SteelMisc instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<SteelMisc> findAssociatedSteelMiscs(Integer submissionId, Pageable pageable);
+
+    /*
+     * Returns the associated steelSells for given SubsDetails id.
+     *
+     * @param submissionId value of submissionId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated SteelSell instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<SteelSell> findAssociatedSteelSells(Integer submissionId, Pageable pageable);
+
+    /*
+     * Returns the associated steelSellPackages for given SubsDetails id.
+     *
+     * @param submissionId value of submissionId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated SteelSellPackage instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<SteelSellPackage> findAssociatedSteelSellPackages(Integer submissionId, Pageable pageable);
+
+    /*
+     * Returns the associated steelShakes for given SubsDetails id.
+     *
+     * @param submissionId value of submissionId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated SteelShake instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<SteelShake> findAssociatedSteelShakes(Integer submissionId, Pageable pageable);
+
+    /*
+     * Returns the associated steelWelds for given SubsDetails id.
+     *
+     * @param submissionId value of submissionId; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated SteelWeld instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<SteelWeld> findAssociatedSteelWelds(Integer submissionId, Pageable pageable);
 
 }
 

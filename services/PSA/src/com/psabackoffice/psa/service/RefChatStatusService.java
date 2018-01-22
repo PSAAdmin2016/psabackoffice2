@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefChatStatusService {
      * @param refChatStatus Details of the RefChatStatus to be created; value cannot be null.
      * @return The newly created RefChatStatus.
      */
-	RefChatStatus create(RefChatStatus refChatStatus);
+	RefChatStatus create(@Valid RefChatStatus refChatStatus);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface RefChatStatusService {
 	 * @return The updated RefChatStatus.
 	 * @throws EntityNotFoundException if no RefChatStatus is found with given input.
 	 */
-	RefChatStatus update(RefChatStatus refChatStatus) throws EntityNotFoundException;
+	RefChatStatus update(@Valid RefChatStatus refChatStatus) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefChatStatus with the given id.

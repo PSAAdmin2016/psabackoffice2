@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefActivityRejectionsService {
      * @param refActivityRejections Details of the RefActivityRejections to be created; value cannot be null.
      * @return The newly created RefActivityRejections.
      */
-	RefActivityRejections create(RefActivityRejections refActivityRejections);
+	RefActivityRejections create(@Valid RefActivityRejections refActivityRejections);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface RefActivityRejectionsService {
 	 * @return The updated RefActivityRejections.
 	 * @throws EntityNotFoundException if no RefActivityRejections is found with given input.
 	 */
-	RefActivityRejections update(RefActivityRejections refActivityRejections) throws EntityNotFoundException;
+	RefActivityRejections update(@Valid RefActivityRejections refActivityRejections) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefActivityRejections with the given id.

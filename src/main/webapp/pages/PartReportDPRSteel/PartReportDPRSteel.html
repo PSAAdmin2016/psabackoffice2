@@ -1,187 +1,185 @@
-<wm-partial data-ng-controller="PartReportDPRSteelPageController" name="partial1">
-    <wm-tabs name="tabs1">
-        <wm-tabpane name="tabpane2" title="By Superintendent">
-            <wm-layoutgrid name="layoutgrid5">
-                <wm-gridrow name="gridrow11">
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn27">
-                        <wm-composite captionposition="top" name="composite6">
-                            <wm-label class="col-md-3 control-label" caption="Superintendent" name="label7"></wm-label>
-                            <wm-container class="col-md-9" name="container6">
-                                <wm-select dataset="bind:Variables.serviceGetSuperintendents.dataSet" datafield="ID" datavalue="bind:Variables.loggedInUser.dataSet.id" displayexpression="bind:$[FirstName] + ' ' + $[LastName]" name="selectSuper2" disabled="bind:Variables.loggedInUser.dataSet.roles = 'Steel-Superintendent' || Variables.loggedInUser.dataSet.roles == 'Steel-GF'"></wm-select>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn28">
-                        <wm-composite captionposition="top" name="composite7">
-                            <wm-label class="col-md-3 control-label" caption="Start Date" name="label8"></wm-label>
-                            <wm-container class="col-md-9" name="container7">
-                                <wm-date name="dateStart2"></wm-date>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn29">
-                        <wm-composite captionposition="top" name="composite8">
-                            <wm-label class="col-md-3 control-label" caption="Report Type" name="label9"></wm-label>
-                            <wm-container class="col-md-9" name="container8">
-                                <wm-switch datavalue="1" dataset="bind:Variables.staticSwitchOptions.dataSet" datafield="Value" displayfield="Label" name="switchReportType2"></wm-switch>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn30">
-                        <wm-button class="btn-default" caption="Get Report" type="button" on-click="buttonGetReport2Click($event, $scope)" backgroundcolor="#0B9642" iconclass="wi wi-view-day" margin="16px unset unset unset" hint="Get report for the selected date range."
-                        name="buttonGetReport2"></wm-button>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn31"></wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow12">
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn32"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn33">
-                        <wm-composite captionposition="top" name="composite10">
-                            <wm-label class="col-md-3 control-label" caption="End Date" name="label11"></wm-label>
-                            <wm-container class="col-md-9" name="container10">
-                                <wm-date datavalue="CURRENT_DATE" autofocus="false" name="dateEnd2"></wm-date>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn34"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn35"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn36"></wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow13">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn37">
-                        <wm-grid title="" dataset="bind:Variables.serviceGetDPR2Condensed.dataSet" navigation="Classic" showrecordcount="true" show="bind:Widgets.switchReportType2.datavalue == '1'" spacing="condensed" name="grid3">
-                            <wm-grid-column binding="Area" caption="Area" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="PieceNumber" caption="Piece Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ShakeQuantity" caption="Shake Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ErectQuantity" caption="Erect Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="BoltoutQuantity" caption="Boltout Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ImpQuantity" caption="Impact Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="WeldQuantity" caption="Weld Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="SellQuantity" caption="Sell Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="DemoLength" caption="Demo Length" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="MiscQuantity" caption="Misc Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ReceivedTime" caption="Date Submitted" type="string" readonly="true" datepattern="M/d/yyyy" formatpattern="toDate" edit-widget-type="text" show="true"></wm-grid-column>
-                        </wm-grid>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow14">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn38">
-                        <wm-grid title="" dataset="bind:Variables.serviceGetDPR2Detailed.dataSet" navigation="Classic" showrecordcount="true" show="bind:Widgets.switchReportType2.datavalue == '2'" spacing="condensed" name="grid4">
-                            <wm-grid-column binding="Area" caption="Area" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="PieceNumber" caption="Piece Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ShakeQuantity" caption="Shake Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ErectQuantity" caption="Erect Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ErectPercent" caption="Erect Percent" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="BoltoutQuantity" caption="Boltout Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="BoltoutPercent" caption="Boltout Percent" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ImpQuantity" caption="Impact Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ImpPercent" caption="Impact Percent" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="WeldQuantity" caption="Weld Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="WeldPercent" caption="Weld Percent" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="SellQuantity" caption="Sell/Punch Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="DemoLength" caption="Demo Length" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="MiscQuantity" caption="Misc Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="CurrentStatus" caption="Current Status" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ReceivedTime" caption="Date Submitted" readonly="true" datepattern="M/d/yyyy" formatpattern="toDate" fractionsize="0" show="true"></wm-grid-column>
-                        </wm-grid>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-            </wm-layoutgrid>
-        </wm-tabpane>
-        <wm-tabpane name="tabpane3" title="By Crew" isdefaulttab="true">
-            <wm-layoutgrid name="layoutgrid4">
-                <wm-gridrow name="gridrow7">
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn15">
-                        <wm-composite name="composite1" captionposition="top">
-                            <wm-label class="col-md-3 control-label" name="label2" caption="Superintendent"></wm-label>
-                            <wm-container class="col-md-9" name="container1">
-                                <wm-select name="selectSuper3" dataset="bind:Variables.serviceGetSuperintendents.dataSet" datafield="ID" datavalue="bind:Variables.loggedInUser.dataSet.id" displayexpression="bind:$[FirstName] + ' ' + $[LastName]" disabled="bind:Variables.loggedInUser.dataSet.roles = 'Steel-Superintendent' || Variables.loggedInUser.dataSet.roles == 'Steel-GF'"></wm-select>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn16">
-                        <wm-composite name="composite3" captionposition="top">
-                            <wm-label class="col-md-3 control-label" name="label4" caption="Start Date"></wm-label>
-                            <wm-container class="col-md-9" name="container3">
-                                <wm-date name="dateStart3"></wm-date>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn19">
-                        <wm-composite name="composite5" captionposition="top">
-                            <wm-label class="col-md-3 control-label" name="label6" caption="Report Type"></wm-label>
-                            <wm-container class="col-md-9" name="container5">
-                                <wm-switch datavalue="1" name="switchReportType3" dataset="bind:Variables.staticSwitchOptions.dataSet" datafield="Value" displayfield="Label"></wm-switch>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn20">
-                        <wm-button class="btn-default" caption="Get Report" type="button" on-click="buttonGetReport3Click($event, $scope)" backgroundcolor="#0B9642" iconclass="wi wi-view-day" margin="16px unset unset unset" hint="Get report for the selected date range."
-                        name="buttonGetReport3"></wm-button>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn24"></wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow8">
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn17">
-                        <wm-composite name="composite2" captionposition="top">
-                            <wm-label class="col-md-3 control-label" name="label3" caption="Crew - Foreman"></wm-label>
-                            <wm-container class="col-md-9" name="container2">
-                                <wm-select name="selectForeman3" dataset="bind:Variables.serviceGetForemen.dataSet" datafield="ID" displayexpression="bind:$[CrewNumber] + ' - ' + $[FirstName] + ' ' + $[LastName] + ': ' +$[Email]"></wm-select>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn21">
-                        <wm-composite name="composite4" captionposition="top">
-                            <wm-label class="col-md-3 control-label" name="label5" caption="End Date"></wm-label>
-                            <wm-container class="col-md-9" name="container4">
-                                <wm-date name="dateEnd3" datavalue="CURRENT_DATE" autofocus="false"></wm-date>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn22"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn18"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn25"></wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow9">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn23">
-                        <wm-grid title="" dataset="bind:Variables.serviceGetDPR3Condensed.dataSet" navigation="Classic" name="grid1" showrecordcount="true" show="bind:Widgets.switchReportType3.datavalue == '1'" spacing="condensed">
-                            <wm-grid-column binding="Area" caption="Area" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="PieceNumber" caption="Piece Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ShakeQuantity" caption="Shake Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ErectQuantity" caption="Erect Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="BoltoutQuantity" caption="Boltout Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ImpQuantity" caption="Impact Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="WeldQuantity" caption="Weld Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="SellQuantity" caption="Sell Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="DemoLength" caption="Demo Length" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="MiscQuantity" caption="Misc Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ReceivedTime" caption="Date Submitted" type="string" readonly="true" datepattern="M/d/yyyy" formatpattern="toDate" edit-widget-type="text" show="true"></wm-grid-column>
-                        </wm-grid>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow10">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn26">
-                        <wm-grid title="" dataset="bind:Variables.serviceGetDPR3Detailed.dataSet" navigation="Classic" showrecordcount="true" show="bind:Widgets.switchReportType3.datavalue == '2'" name="grid2" spacing="condensed">
-                            <wm-grid-column binding="Area" caption="Area" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="PieceNumber" caption="Piece Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ShakeQuantity" caption="Shake Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ErectQuantity" caption="Erect Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ErectPercent" caption="Erect Percent" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="BoltoutQuantity" caption="Boltout Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="BoltoutPercent" caption="Boltout Percent" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ImpQuantity" caption="Impact Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ImpPercent" caption="Impact Percent" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="WeldQuantity" caption="Weld Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="WeldPercent" caption="Weld Percent" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="SellQuantity" caption="Sell/Punch Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="DemoLength" caption="Demo Length" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="MiscQuantity" caption="Misc Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="CurrentStatus" caption="Current Status" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                            <wm-grid-column binding="ReceivedTime" caption="Date Submitted" type="string" readonly="true" datepattern="M/d/yyyy" formatpattern="toDate" edit-widget-type="text" show="true"></wm-grid-column>
-                        </wm-grid>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-            </wm-layoutgrid>
-        </wm-tabpane>
-    </wm-tabs>
+<wm-partial data-ng-controller="PartReportDPRSteelPageController" name="partial1"> 
+    <wm-tabs name="tabs1"> 
+        <wm-tabpane name="tabpane2" title="By Superintendent"> 
+            <wm-layoutgrid name="layoutgrid5"> 
+                <wm-gridrow name="gridrow11"> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn27"> 
+                        <wm-composite captionposition="top" name="composite6"> 
+                            <wm-label class="col-md-3 control-label" caption="Superintendent" name="label7"></wm-label> 
+                            <wm-container class="col-md-9" name="container6"> 
+                                <wm-select dataset="bind:Variables.serviceGetSuperintendents.dataSet" datafield="ID" datavalue="bind:Variables.loggedInUser.dataSet.id" displayexpression="bind:$[FirstName] + ' ' + $[LastName]" name="selectSuper2" disabled="bind:Variables.loggedInUser.dataSet.roles = 'Steel-Superintendent' || Variables.loggedInUser.dataSet.roles == 'Steel-GF'"></wm-select> 
+                            </wm-container> 
+                        </wm-composite> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn28"> 
+                        <wm-composite captionposition="top" name="composite7"> 
+                            <wm-label class="col-md-3 control-label" caption="Start Date" name="label8"></wm-label> 
+                            <wm-container class="col-md-9" name="container7"> 
+                                <wm-date name="dateStart2"></wm-date> 
+                            </wm-container> 
+                        </wm-composite> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn29"> 
+                        <wm-composite captionposition="top" name="composite8"> 
+                            <wm-label class="col-md-3 control-label" caption="Report Type" name="label9"></wm-label> 
+                            <wm-container class="col-md-9" name="container8"> 
+                                <wm-switch datavalue="1" dataset="bind:Variables.staticSwitchOptions.dataSet" datafield="Value" displayfield="Label" name="switchReportType2"></wm-switch> 
+                            </wm-container> 
+                        </wm-composite> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn30"> 
+                        <wm-button class="btn-default" caption="Get Report" type="button" on-click="buttonGetReport2Click($event, $scope)" backgroundcolor="#0B9642" iconclass="wi wi-view-day" margin="16px unset unset unset" hint="Get report for the selected date range." name="buttonGetReport2"></wm-button> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn31"></wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow12"> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn32"></wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn33"> 
+                        <wm-composite captionposition="top" name="composite10"> 
+                            <wm-label class="col-md-3 control-label" caption="End Date" name="label11"></wm-label> 
+                            <wm-container class="col-md-9" name="container10"> 
+                                <wm-date datavalue="CURRENT_DATE" autofocus="false" name="dateEnd2"></wm-date> 
+                            </wm-container> 
+                        </wm-composite> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn34"></wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn35"></wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn36"></wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow13"> 
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn37"> 
+                        <wm-table title="" dataset="bind:Variables.serviceGetDPR2Condensed.dataSet" navigation="Classic" showrecordcount="true" show="bind:Widgets.switchReportType2.datavalue == '1'" spacing="condensed" name="grid3"> 
+                            <wm-table-column binding="Area" caption="Area" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="PieceNumber" caption="Piece Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="ShakeQuantity" caption="Shake Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="ErectQuantity" caption="Erect Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="BoltoutQuantity" caption="Boltout Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="ImpQuantity" caption="Impact Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="WeldQuantity" caption="Weld Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="SellQuantity" caption="Sell Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="DemoLength" caption="Demo Length" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="MiscQuantity" caption="Misc Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="ReceivedTime" caption="Date Submitted" type="string" readonly="true" datepattern="M/d/yyyy" formatpattern="toDate" edit-widget-type="text" show="true"></wm-table-column> 
+                        </wm-table> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow14"> 
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn38"> 
+                        <wm-table title="" dataset="bind:Variables.serviceGetDPR2Detailed.dataSet" navigation="Classic" showrecordcount="true" show="bind:Widgets.switchReportType2.datavalue == '2'" spacing="condensed" name="grid4"> 
+                            <wm-table-column binding="Area" caption="Area" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="PieceNumber" caption="Piece Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="ShakeQuantity" caption="Shake Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="ErectQuantity" caption="Erect Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="ErectPercent" caption="Erect Percent" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="BoltoutQuantity" caption="Boltout Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="BoltoutPercent" caption="Boltout Percent" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="ImpQuantity" caption="Impact Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="ImpPercent" caption="Impact Percent" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="WeldQuantity" caption="Weld Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="WeldPercent" caption="Weld Percent" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="SellQuantity" caption="Sell/Punch Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="DemoLength" caption="Demo Length" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="MiscQuantity" caption="Misc Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="CurrentStatus" caption="Current Status" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="ReceivedTime" caption="Date Submitted" readonly="true" datepattern="M/d/yyyy" formatpattern="toDate" fractionsize="0" show="true"></wm-table-column> 
+                        </wm-table> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+            </wm-layoutgrid> 
+        </wm-tabpane> 
+        <wm-tabpane name="tabpane3" title="By Crew" isdefaulttab="true"> 
+            <wm-layoutgrid name="layoutgrid4"> 
+                <wm-gridrow name="gridrow7"> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn15"> 
+                        <wm-composite name="composite1" captionposition="top"> 
+                            <wm-label class="col-md-3 control-label" name="label2" caption="Superintendent"></wm-label> 
+                            <wm-container class="col-md-9" name="container1"> 
+                                <wm-select name="selectSuper3" dataset="bind:Variables.serviceGetSuperintendents.dataSet" datafield="ID" datavalue="bind:Variables.loggedInUser.dataSet.id" displayexpression="bind:$[FirstName] + ' ' + $[LastName]" disabled="bind:Variables.loggedInUser.dataSet.roles = 'Steel-Superintendent' || Variables.loggedInUser.dataSet.roles == 'Steel-GF'"></wm-select> 
+                            </wm-container> 
+                        </wm-composite> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn16"> 
+                        <wm-composite name="composite3" captionposition="top"> 
+                            <wm-label class="col-md-3 control-label" name="label4" caption="Start Date"></wm-label> 
+                            <wm-container class="col-md-9" name="container3"> 
+                                <wm-date name="dateStart3"></wm-date> 
+                            </wm-container> 
+                        </wm-composite> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn19"> 
+                        <wm-composite name="composite5" captionposition="top"> 
+                            <wm-label class="col-md-3 control-label" name="label6" caption="Report Type"></wm-label> 
+                            <wm-container class="col-md-9" name="container5"> 
+                                <wm-switch datavalue="1" name="switchReportType3" dataset="bind:Variables.staticSwitchOptions.dataSet" datafield="Value" displayfield="Label"></wm-switch> 
+                            </wm-container> 
+                        </wm-composite> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn20"> 
+                        <wm-button class="btn-default" caption="Get Report" type="button" on-click="buttonGetReport3Click($event, $scope)" backgroundcolor="#0B9642" iconclass="wi wi-view-day" margin="16px unset unset unset" hint="Get report for the selected date range." name="buttonGetReport3"></wm-button> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn24"></wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow8"> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn17"> 
+                        <wm-composite name="composite2" captionposition="top"> 
+                            <wm-label class="col-md-3 control-label" name="label3" caption="Crew - Foreman"></wm-label> 
+                            <wm-container class="col-md-9" name="container2"> 
+                                <wm-select name="selectForeman3" dataset="bind:Variables.serviceGetForemen.dataSet" datafield="ID" displayexpression="bind:$[CrewNumber] + ' - ' + $[FirstName] + ' ' + $[LastName] + ': ' +$[Email]"></wm-select> 
+                            </wm-container> 
+                        </wm-composite> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn21"> 
+                        <wm-composite name="composite4" captionposition="top"> 
+                            <wm-label class="col-md-3 control-label" name="label5" caption="End Date"></wm-label> 
+                            <wm-container class="col-md-9" name="container4"> 
+                                <wm-date name="dateEnd3" datavalue="CURRENT_DATE" autofocus="false"></wm-date> 
+                            </wm-container> 
+                        </wm-composite> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn22"></wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn18"></wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn25"></wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow9"> 
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn23"> 
+                        <wm-table title="" dataset="bind:Variables.serviceGetDPR3Condensed.dataSet" navigation="Classic" name="grid1" showrecordcount="true" show="bind:Widgets.switchReportType3.datavalue == '1'" spacing="condensed"> 
+                            <wm-table-column binding="Area" caption="Area" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="PieceNumber" caption="Piece Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="ShakeQuantity" caption="Shake Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="ErectQuantity" caption="Erect Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="BoltoutQuantity" caption="Boltout Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="ImpQuantity" caption="Impact Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="WeldQuantity" caption="Weld Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="SellQuantity" caption="Sell Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="DemoLength" caption="Demo Length" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="MiscQuantity" caption="Misc Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="ReceivedTime" caption="Date Submitted" type="string" readonly="true" datepattern="M/d/yyyy" formatpattern="toDate" edit-widget-type="text" show="true"></wm-table-column> 
+                        </wm-table> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+                <wm-gridrow name="gridrow10"> 
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn26"> 
+                        <wm-table title="" dataset="bind:Variables.serviceGetDPR3Detailed.dataSet" navigation="Classic" showrecordcount="true" show="bind:Widgets.switchReportType3.datavalue == '2'" name="grid2" spacing="condensed"> 
+                            <wm-table-column binding="Area" caption="Area" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="PieceNumber" caption="Piece Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="ShakeQuantity" caption="Shake Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="ErectQuantity" caption="Erect Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="ErectPercent" caption="Erect Percent" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="BoltoutQuantity" caption="Boltout Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="BoltoutPercent" caption="Boltout Percent" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="ImpQuantity" caption="Impact Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="ImpPercent" caption="Impact Percent" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="WeldQuantity" caption="Weld Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="WeldPercent" caption="Weld Percent" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="SellQuantity" caption="Sell/Punch Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="DemoLength" caption="Demo Length" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="MiscQuantity" caption="Misc Quantity" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="CurrentStatus" caption="Current Status" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
+                            <wm-table-column binding="ReceivedTime" caption="Date Submitted" type="string" readonly="true" datepattern="M/d/yyyy" formatpattern="toDate" edit-widget-type="text" show="true"></wm-table-column> 
+                        </wm-table> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+            </wm-layoutgrid> 
+        </wm-tabpane> 
+    </wm-tabs> 
 </wm-partial>

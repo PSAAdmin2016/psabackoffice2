@@ -7,6 +7,8 @@ package com.psabackoffice.job1111.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface SteelWeldService {
      * @param steelWeld Details of the SteelWeld to be created; value cannot be null.
      * @return The newly created SteelWeld.
      */
-	SteelWeld create(SteelWeld steelWeld);
+	SteelWeld create(@Valid SteelWeld steelWeld);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface SteelWeldService {
 	 * @return The updated SteelWeld.
 	 * @throws EntityNotFoundException if no SteelWeld is found with given input.
 	 */
-	SteelWeld update(SteelWeld steelWeld) throws EntityNotFoundException;
+	SteelWeld update(@Valid SteelWeld steelWeld) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing SteelWeld with the given id.

@@ -52,9 +52,9 @@ public class CivilMiscController {
 	private CivilMiscService civilMiscService;
 
 	@ApiOperation(value = "Creates a new CivilMisc instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public CivilMisc createCivilMisc(@RequestBody CivilMisc civilMisc) {
+    public CivilMisc createCivilMisc(@RequestBody CivilMisc civilMisc) {
 		LOGGER.debug("Create CivilMisc with information: {}" , civilMisc);
 
 		civilMisc = civilMiscService.create(civilMisc);
@@ -62,7 +62,6 @@ public class CivilMiscController {
 
 	    return civilMisc;
 	}
-
 
     @ApiOperation(value = "Returns the CivilMisc instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
@@ -80,9 +79,9 @@ public class CivilMiscController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public CivilMisc editCivilMisc(@PathVariable("id") Integer id, @RequestBody CivilMisc civilMisc) throws EntityNotFoundException {
-        LOGGER.debug("Editing CivilMisc with id: {}" , civilMisc.getActivityId());
+        LOGGER.debug("Editing CivilMisc with id: {}" , civilMisc.getId());
 
-        civilMisc.setActivityId(id);
+        civilMisc.setId(id);
         civilMisc = civilMiscService.update(civilMisc);
         LOGGER.debug("CivilMisc details with id: {}" , civilMisc);
 

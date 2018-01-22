@@ -52,9 +52,9 @@ public class RefHandleTypesController {
 	private RefHandleTypesService refHandleTypesService;
 
 	@ApiOperation(value = "Creates a new RefHandleTypes instance.")
-	@RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-	public RefHandleTypes createRefHandleTypes(@RequestBody RefHandleTypes refHandleTypes) {
+    public RefHandleTypes createRefHandleTypes(@RequestBody RefHandleTypes refHandleTypes) {
 		LOGGER.debug("Create RefHandleTypes with information: {}" , refHandleTypes);
 
 		refHandleTypes = refHandleTypesService.create(refHandleTypes);
@@ -62,7 +62,6 @@ public class RefHandleTypesController {
 
 	    return refHandleTypes;
 	}
-
 
     @ApiOperation(value = "Returns the RefHandleTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)

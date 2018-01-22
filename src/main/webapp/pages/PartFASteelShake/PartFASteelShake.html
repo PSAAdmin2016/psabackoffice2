@@ -1,77 +1,77 @@
 <wm-partial data-ng-controller="PartFASteelShakePageController" name="partial1"> 
- <wm-layoutgrid name="layoutgrid8"> 
-  <wm-gridrow name="gridrow18"> 
-   <wm-gridcolumn columnwidth="6" name="gridcolumn31"> 
-    <wm-layoutgrid name="layoutgrid9"> 
-     <wm-gridrow name="gridrow19"> 
-      <wm-gridcolumn columnwidth="3" name="gridcolumn32"> 
-       <wm-label caption="Shake-Out" show="true" fontweight="bold" fontsize="14" name="label18" width="100%"></wm-label> 
-       <wm-label caption="(Receive/Unload at Unit)" show="true" fontweight="bold" fontsize="11" width="100%" name="label6" fontstyle="italic"></wm-label> 
-      </wm-gridcolumn> 
-      <wm-gridcolumn columnwidth="4" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn33"> 
-       <wm-checkbox caption="Rework" hint="Activity can NOT be accepted if it is Rework." disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetSteelShake.dataSet.data[$i].farework" checkedvalue="1" uncheckedvalue="0" readonlygrid="true" show="true" padding="unset unset unset 0px" margin="0px unset unset unset" width="100%" name="checkbox3"></wm-checkbox> 
-      </wm-gridcolumn> 
-     </wm-gridrow> 
-     <wm-gridrow name="gridrow20"> 
-      <wm-gridcolumn columnwidth="5" name="gridcolumn34"> 
-       <wm-composite captionposition="top" name="composite17"> 
-        <wm-label class="col-md-3 control-label" caption="Area" readonlygrid="true" name="label23"></wm-label> 
-        <wm-container class="col-md-9" width="95%" name="container17"> 
-         <wm-text datavalue="bind:$parent.Variables.liveGetSteelShake.dataSet.data[$i].faarea" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" placeholder="Enter Area..." name="textSteelArea"></wm-text> 
-        </wm-container> 
-       </wm-composite> 
-      </wm-gridcolumn> 
-      <wm-gridcolumn columnwidth="2" horizontalalign="left" name="gridcolumn35"></wm-gridcolumn> 
-      <wm-gridcolumn columnwidth="5" name="gridcolumn36"></wm-gridcolumn> 
-     </wm-gridrow> 
-     <wm-gridrow name="gridrow7"> 
-      <wm-gridcolumn columnwidth="5" name="gridcolumn13"> 
-       <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite14"> 
-        <wm-label class="col-md-3 control-label" caption="Piece #" name="label19"></wm-label> 
-        <wm-container class="col-md-9" width="95%" name="container14"> 
-         <wm-text datavalue="bind:$parent.Variables.liveGetSteelShake.dataSet.data[$i].fapieceNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" placeholder="Enter Piece Number..." name="textSteelPieceNumber"></wm-text> 
-        </wm-container> 
-       </wm-composite> 
-      </wm-gridcolumn> 
-      <wm-gridcolumn columnwidth="2" name="gridcolumn14"></wm-gridcolumn> 
-      <wm-gridcolumn columnwidth="5" name="gridcolumn15"></wm-gridcolumn> 
-     </wm-gridrow> 
-     <wm-gridrow name="gridrow8"> 
-      <wm-gridcolumn columnwidth="5" name="gridcolumn16"> 
-       <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite15"> 
-        <wm-label class="col-md-3 control-label" caption="Quantity" name="label21"></wm-label> 
-        <wm-container class="col-md-9" width="30%" name="container15"> 
-         <wm-text datavalue="bind:$parent.Variables.liveGetSteelShake.dataSet.data[$i].fashakeQuantity" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" placeholder="Enter Quantity" name="textSteelQuantity" type="number" minvalue="0" maxvalue="255"></wm-text> 
-        </wm-container> 
-       </wm-composite> 
-      </wm-gridcolumn> 
-      <wm-gridcolumn columnwidth="2" name="gridcolumn17"></wm-gridcolumn> 
-      <wm-gridcolumn columnwidth="5" name="gridcolumn18"></wm-gridcolumn> 
-     </wm-gridrow> 
+    <wm-layoutgrid name="layoutgrid8"> 
+        <wm-gridrow name="gridrow18"> 
+            <wm-gridcolumn columnwidth="6" name="gridcolumn31"> 
+                <wm-layoutgrid name="layoutgrid9"> 
+                    <wm-gridrow name="gridrow19"> 
+                        <wm-gridcolumn columnwidth="3" name="gridcolumn32"> 
+                            <wm-label caption="Shake-Out" show="true" fontweight="bold" fontsize="14" name="label18" width="100%"></wm-label> 
+                            <wm-label caption="(Receive/Unload at Unit)" show="true" fontweight="bold" fontsize="11" width="100%" name="label6" fontstyle="italic"></wm-label> 
+                        </wm-gridcolumn> 
+                        <wm-gridcolumn columnwidth="4" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn33"> 
+                            <wm-checkbox caption="Rework" hint="Activity can NOT be accepted if it is Rework." disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetSteelShake.dataSet.data[$i].farework" checkedvalue="1" uncheckedvalue="0" readonlygrid="true" show="true" padding="unset unset unset 0px" margin="0px unset unset unset" width="100%" name="checkbox3"></wm-checkbox> 
+                        </wm-gridcolumn> 
+                    </wm-gridrow> 
+                    <wm-gridrow name="gridrow20"> 
+                        <wm-gridcolumn columnwidth="5" name="gridcolumn34"> 
+                            <wm-composite captionposition="top" name="composite17"> 
+                                <wm-label class="col-md-3 control-label" caption="Area" readonlygrid="true" name="label23"></wm-label> 
+                                <wm-container class="col-md-9" width="95%" name="container17"> 
+                                    <wm-text datavalue="bind:$parent.Variables.liveGetSteelShake.dataSet.data[$i].faarea" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" placeholder="Enter Area..." name="textSteelArea"></wm-text> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                        <wm-gridcolumn columnwidth="2" horizontalalign="left" name="gridcolumn35"></wm-gridcolumn> 
+                        <wm-gridcolumn columnwidth="5" name="gridcolumn36"></wm-gridcolumn> 
+                    </wm-gridrow> 
+                    <wm-gridrow name="gridrow7"> 
+                        <wm-gridcolumn columnwidth="5" name="gridcolumn13"> 
+                            <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite14"> 
+                                <wm-label class="col-md-3 control-label" caption="Piece #" name="label19"></wm-label> 
+                                <wm-container class="col-md-9" width="95%" name="container14"> 
+                                    <wm-text datavalue="bind:$parent.Variables.liveGetSteelShake.dataSet.data[$i].fapieceNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" placeholder="Enter Piece Number..." name="textSteelPieceNumber"></wm-text> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                        <wm-gridcolumn columnwidth="2" name="gridcolumn14"></wm-gridcolumn> 
+                        <wm-gridcolumn columnwidth="5" name="gridcolumn15"></wm-gridcolumn> 
+                    </wm-gridrow> 
+                    <wm-gridrow name="gridrow8"> 
+                        <wm-gridcolumn columnwidth="5" name="gridcolumn16"> 
+                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite15"> 
+                                <wm-label class="col-md-3 control-label" caption="Quantity" name="label21"></wm-label> 
+                                <wm-container class="col-md-9" width="30%" name="container15"> 
+                                    <wm-text datavalue="bind:$parent.Variables.liveGetSteelShake.dataSet.data[$i].fashakeQuantity" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" placeholder="Enter Quantity" name="textSteelQuantity" type="number" minvalue="0" maxvalue="255"></wm-text> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                        <wm-gridcolumn columnwidth="2" name="gridcolumn17"></wm-gridcolumn> 
+                        <wm-gridcolumn columnwidth="5" name="gridcolumn18"></wm-gridcolumn> 
+                    </wm-gridrow> 
+                </wm-layoutgrid> 
+            </wm-gridcolumn> 
+            <wm-gridcolumn columnwidth="6" name="gridcolumn38"> 
+                <wm-layoutgrid name="layoutgrid10"> 
+                    <wm-gridrow name="gridrow22"> 
+                        <wm-gridcolumn columnwidth="8" name="gridcolumn39"></wm-gridcolumn> 
+                        <wm-gridcolumn columnwidth="3" name="gridcolumn40"></wm-gridcolumn> 
+                    </wm-gridrow> 
+                    <wm-gridrow name="gridrow23"> 
+                        <wm-gridcolumn columnwidth="8" name="gridcolumn41"></wm-gridcolumn> 
+                        <wm-gridcolumn columnwidth="3" horizontalalign="left" name="gridcolumn42"></wm-gridcolumn> 
+                    </wm-gridrow> 
+                    <wm-gridrow name="gridrow24"> 
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn43"> 
+                            <wm-composite captionposition="top" name="composite18"> 
+                                <wm-label class="col-md-3 control-label" caption="Notes" name="label24"></wm-label> 
+                                <wm-container class="col-md-9" name="container18"> 
+                                    <wm-textarea datavalue="bind:$parent.Variables.liveGetSteelShake.dataSet.data[$i].fanotes" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" placeholder="Input notes here..." name="textareaSteelNotes"></wm-textarea> 
+                                </wm-container> 
+                            </wm-composite> 
+                        </wm-gridcolumn> 
+                    </wm-gridrow> 
+                </wm-layoutgrid> 
+            </wm-gridcolumn> 
+        </wm-gridrow> 
     </wm-layoutgrid> 
-   </wm-gridcolumn> 
-   <wm-gridcolumn columnwidth="6" name="gridcolumn38"> 
-    <wm-layoutgrid name="layoutgrid10"> 
-     <wm-gridrow name="gridrow22"> 
-      <wm-gridcolumn columnwidth="8" name="gridcolumn39"></wm-gridcolumn> 
-      <wm-gridcolumn columnwidth="3" name="gridcolumn40"></wm-gridcolumn> 
-     </wm-gridrow> 
-     <wm-gridrow name="gridrow23"> 
-      <wm-gridcolumn columnwidth="8" name="gridcolumn41"></wm-gridcolumn> 
-      <wm-gridcolumn columnwidth="3" horizontalalign="left" name="gridcolumn42"></wm-gridcolumn> 
-     </wm-gridrow> 
-     <wm-gridrow name="gridrow24"> 
-      <wm-gridcolumn columnwidth="12" name="gridcolumn43"> 
-       <wm-composite captionposition="top" name="composite18"> 
-        <wm-label class="col-md-3 control-label" caption="Notes" name="label24"></wm-label> 
-        <wm-container class="col-md-9" name="container18"> 
-         <wm-textarea datavalue="bind:$parent.Variables.liveGetSteelShake.dataSet.data[$i].fanotes" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" placeholder="Input notes here..." name="textareaSteelNotes"></wm-textarea> 
-        </wm-container> 
-       </wm-composite> 
-      </wm-gridcolumn> 
-     </wm-gridrow> 
-    </wm-layoutgrid> 
-   </wm-gridcolumn> 
-  </wm-gridrow> 
- </wm-layoutgrid> 
 </wm-partial>

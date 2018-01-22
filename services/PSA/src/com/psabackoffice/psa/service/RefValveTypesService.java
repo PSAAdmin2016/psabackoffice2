@@ -7,6 +7,8 @@ package com.psabackoffice.psa.service;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +33,7 @@ public interface RefValveTypesService {
      * @param refValveTypes Details of the RefValveTypes to be created; value cannot be null.
      * @return The newly created RefValveTypes.
      */
-	RefValveTypes create(RefValveTypes refValveTypes);
+	RefValveTypes create(@Valid RefValveTypes refValveTypes);
 
 
 	/**
@@ -61,7 +63,7 @@ public interface RefValveTypesService {
 	 * @return The updated RefValveTypes.
 	 * @throws EntityNotFoundException if no RefValveTypes is found with given input.
 	 */
-	RefValveTypes update(RefValveTypes refValveTypes) throws EntityNotFoundException;
+	RefValveTypes update(@Valid RefValveTypes refValveTypes) throws EntityNotFoundException;
 
     /**
 	 * Deletes an existing RefValveTypes with the given id.

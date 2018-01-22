@@ -358,14 +358,14 @@
             <artifactId>ews-java-api-2.0</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/ews-java-api-2.0.jar</systemPath>
+            <systemPath>${project.lib.directory}/ews-java-api-2.0.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>mail-1.4.7</groupId>
             <artifactId>mail-1.4.7</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/mail-1.4.7.jar</systemPath>
+            <systemPath>${project.lib.directory}/mail-1.4.7.jar</systemPath>
         </dependency>
     </dependencies>
     <dependencyManagement>
@@ -395,8 +395,10 @@
     </dependencyManagement>
     <properties>
         <profile.props.file>development.properties</profile.props.file>
-        <spring.version>4.2.0.RELEASE</spring.version>
+        <spring.version>4.3.9.RELEASE</spring.version>
         <spring.security.version>4.1.2.RELEASE</spring.security.version>
-        <wavemaker.studio.version>8.5.0</wavemaker.studio.version>
+        <wavemaker.studio.version>9.1.0</wavemaker.studio.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.lib.directory>${basedir}/lib</project.lib.directory>
     </properties>
 </project>

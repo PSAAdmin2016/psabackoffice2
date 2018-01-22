@@ -1,44 +1,44 @@
 <wm-partial data-ng-controller="headerPageController" name="header" type="header"> 
- <wm-layoutgrid name="headerlayout"> 
-  <wm-gridrow name="headerrow"> 
-   <wm-gridcolumn name="headerleft" verticalalign="middle" columnwidth="4"> 
-    <wm-picture picturesource="resources/images/imagelists/logo.png" name="AppLogo" margin="unset unset unset 5px"></wm-picture> 
-    <wm-label caption="PSA Back Office" class="application-name" name="AppName" fontsize="20" color="#ffffff"></wm-label> 
-   </wm-gridcolumn> 
-   <wm-gridcolumn columnwidth="4" name="gridcolumn3" horizontalalign="left"> 
-    <wm-composite name="composite4" captionposition="top" accessroles="Authenticated" padding="2% unset unset unset"> 
-     <wm-label class="col-md-3" name="label4" caption="Active Job#" color="#ffffff"></wm-label> 
-     <wm-container class="col-md-9" name="container4" width="40%"> 
-      <wm-select name="selectActiveJobNumber" dataset="bind:Variables.PSAExecuteGetAssignedJobNumbers.dataSet" datafield="JobNumber" displayexpression="bind:$[JobNumber] + &quot; - &quot; + $[SiteCity] + $[SiteState]" placeholder="Choose Job Number" datavalue="bind:Variables.ActiveJobNumber.dataSet.dataValue" disabled="true" hint="Can only be changed from the HOME page"></wm-select> 
-     </wm-container> 
-    </wm-composite> 
-   </wm-gridcolumn> 
-   <wm-gridcolumn name="headerRight" verticalalign="middle" columnwidth="4" horizontalalign="right" backgroundposition="bottom, right" padding="1% 1% unset unset"> 
-    <wm-gridrow name="headerrow1"> 
-     <wm-label caption="Logged in as:" class="application-name" name="labelLogginInAs" fontsize="11" fontweight="bold" showindevice="sm,md,lg" color="#ffffff"></wm-label> 
-    </wm-gridrow> 
-    <wm-gridrow name="headerrow1"> 
-     <wm-label caption="bind:Variables.loggedInUser.dataSet.name" class="application-name" name="AppName" fontsize="10" color="#ffffff"></wm-label> 
-    </wm-gridrow> 
-    <wm-gridrow name="headerrow3" horizontalalign="right" paddingunit="%"> 
-     <wm-gridcolumn columnwidth="6" name="gridcolumn8"></wm-gridcolumn> 
-     <wm-gridcolumn columnwidth="2" name="gridcolumn8_2" padding="unset 2%"> 
-      <wm-popover popoverheight="500" caption="Live Help" contentsource="partial" content="PartHelpLiveChat" iconclass="wi wi-chat" fontsize="12" color="#0069ff" backgroundcolor="#f1f1f1" backgroundposition="center" padding="8% 4%" borderstyle="solid" borderwidth="1px" bordercolor="#0069ff" popoverwidth="310" name="popover2" accessroles="SuperUser,Site Office-Project Services,Corp. Office-Project Services,Corp. Office-Site Admin"></wm-popover> 
-     </wm-gridcolumn> 
-     <wm-gridcolumn columnwidth="2" horizontalalign="center" padding="unset 3%" name="gridcolumn8_1"> 
-      <wm-popover popoverwidth="20" popoverheight="120" caption="HELP" contentsource="partial" content="HelpMenu" iconclass="wi wi-help-outline" fontsize="13" color="#0069ff" backgroundcolor="#f1f1f1" backgroundposition="center" padding="8% 11%" borderstyle="solid" borderwidth="1px" bordercolor="#0069ff" name="popoverFAQ2"></wm-popover> 
-     </wm-gridcolumn> 
-     <wm-gridcolumn columnwidth="2" name="gridcolumn7" horizontalalign="right"> 
-      <wm-button class="btn-default" caption="LogOut" type="button" name="button1" verticalalign="bottom" on-click="Variables.logoutVariable.invoke()" on-tap="Variables.logoutVariable.invoke()"></wm-button> 
-     </wm-gridcolumn> 
-    </wm-gridrow> 
-   </wm-gridcolumn> 
-  </wm-gridrow> 
- </wm-layoutgrid> 
- <wm-view class="dialog-view" name="viewFAQ"> 
-  <wm-iframedialog name="iframedialogFAQ" url="resources/files/FAQ.pdf" width="60%" height="750px" animation="slideInDown" title="FAQ" iconclass="wi wi-help-outline"></wm-iframedialog> 
- </wm-view> 
- <wm-view class="dialog-view" name="viewMedia"> 
-  <wm-pagedialog name="pagedialogMedia" oktext="Close" title="Media" width="50%" height="auto" content="PartHelpMedia"></wm-pagedialog> 
- </wm-view> 
+    <wm-layoutgrid name="headerlayout"> 
+        <wm-gridrow name="headerrow"> 
+            <wm-gridcolumn name="headerleft" verticalalign="middle" columnwidth="4"> 
+                <wm-picture picturesource="resources/images/imagelists/logo.png" name="AppLogo" margin="unset unset unset 5px"></wm-picture> 
+                <wm-label caption="PSA Back Office" class="application-name" name="AppName" fontsize="20" color="#ffffff"></wm-label> 
+            </wm-gridcolumn> 
+            <wm-gridcolumn columnwidth="4" name="gridcolumn3" horizontalalign="left"> 
+                <wm-composite name="composite4" captionposition="top" accessroles="Authenticated" padding="2% unset unset unset"> 
+                    <wm-label class="col-md-3" name="label4" caption="Active Job#" color="#ffffff"></wm-label> 
+                    <wm-container class="col-md-9" name="container4" width="40%"> 
+                        <wm-select name="selectActiveJobNumber" dataset="bind:Variables.PSAExecuteGetAssignedJobNumbers.dataSet" datafield="JobNumber" displayexpression="bind:$[JobNumber] + &quot; - &quot; + $[SiteCity] + $[SiteState]" placeholder="Choose Job Number" datavalue="bind:Variables.ActiveJobNumber.dataSet.dataValue" disabled="true" hint="Can only be changed from the HOME page"></wm-select> 
+                    </wm-container> 
+                </wm-composite> 
+            </wm-gridcolumn> 
+            <wm-gridcolumn name="headerRight" verticalalign="middle" columnwidth="4" horizontalalign="right" backgroundposition="bottom, right" padding="1% 1% unset unset"> 
+                <wm-gridrow name="headerrow1"> 
+                    <wm-label caption="Logged in as:" class="application-name" name="labelLogginInAs" fontsize="11" fontweight="bold" showindevice="sm,md,lg" color="#ffffff"></wm-label> 
+                </wm-gridrow> 
+                <wm-gridrow name="headerrow1"> 
+                    <wm-label caption="bind:Variables.loggedInUser.dataSet.name" class="application-name" name="AppName" fontsize="10" color="#ffffff"></wm-label> 
+                </wm-gridrow> 
+                <wm-gridrow name="headerrow3" horizontalalign="right" paddingunit="%"> 
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn8"></wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn8_2" padding="unset 2%"> 
+                        <wm-popover popoverheight="500" caption="Live Help" contentsource="partial" content="PartHelpLiveChat" iconclass="wi wi-chat" fontsize="12" color="#0069ff" backgroundcolor="#f1f1f1" backgroundposition="center" padding="8% 4%" borderstyle="solid" borderwidth="1px" bordercolor="#0069ff" popoverwidth="310" name="popover2" accessroles="SuperUser,Site Office-Project Services,Corp. Office-Project Services,Corp. Office-Site Admin"></wm-popover> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="2" horizontalalign="center" padding="unset 3%" name="gridcolumn8_1"> 
+                        <wm-popover popoverwidth="20" popoverheight="120" caption="HELP" contentsource="partial" content="HelpMenu" iconclass="wi wi-help-outline" fontsize="13" color="#0069ff" backgroundcolor="#f1f1f1" backgroundposition="center" padding="8% 11%" borderstyle="solid" borderwidth="1px" bordercolor="#0069ff" name="popoverFAQ2"></wm-popover> 
+                    </wm-gridcolumn> 
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn7" horizontalalign="right"> 
+                        <wm-button class="btn-default" caption="LogOut" type="button" name="button1" verticalalign="bottom" on-click="Actions.logoutAction.invoke()" on-tap="Actions.logoutAction.invoke()"></wm-button> 
+                    </wm-gridcolumn> 
+                </wm-gridrow> 
+            </wm-gridcolumn> 
+        </wm-gridrow> 
+    </wm-layoutgrid> 
+    <wm-view class="dialog-view" name="viewFAQ"> 
+        <wm-iframedialog name="iframedialogFAQ" url="resources/files/FAQ.pdf" width="60%" height="750px" animation="slideInDown" title="FAQ" iconclass="wi wi-help-outline"></wm-iframedialog> 
+    </wm-view> 
+    <wm-view class="dialog-view" name="viewMedia"> 
+        <wm-pagedialog name="pagedialogMedia" oktext="Close" title="Media" width="50%" height="auto" content="PartHelpMedia"></wm-pagedialog> 
+    </wm-view> 
 </wm-partial>
