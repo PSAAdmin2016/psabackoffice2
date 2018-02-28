@@ -53,26 +53,27 @@ public class ChatConversationMembersServiceImpl implements ChatConversationMembe
         LOGGER.debug("Creating a new ChatConversationMembers with information: {}", chatConversationMembers);
 
         ChatConversationMembers chatConversationMembersCreated = this.wmGenericDao.create(chatConversationMembers);
-        return chatConversationMembersCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(chatConversationMembersCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public ChatConversationMembers getById(Integer chatconversationmembersId) throws EntityNotFoundException {
         LOGGER.debug("Finding ChatConversationMembers by id: {}", chatconversationmembersId);
-        ChatConversationMembers chatConversationMembers = this.wmGenericDao.findById(chatconversationmembersId);
-        if (chatConversationMembers == null){
-            LOGGER.debug("No ChatConversationMembers found with id: {}", chatconversationmembersId);
-            throw new EntityNotFoundException(String.valueOf(chatconversationmembersId));
-        }
-        return chatConversationMembers;
+        return this.wmGenericDao.findById(chatconversationmembersId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public ChatConversationMembers findById(Integer chatconversationmembersId) {
         LOGGER.debug("Finding ChatConversationMembers by id: {}", chatconversationmembersId);
-        return this.wmGenericDao.findById(chatconversationmembersId);
+        try {
+            return this.wmGenericDao.findById(chatconversationmembersId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No ChatConversationMembers found with id: {}", chatconversationmembersId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class ChatConversationMembersServiceImpl implements ChatConversationMembe
 	@Override
 	public ChatConversationMembers update(ChatConversationMembers chatConversationMembers) throws EntityNotFoundException {
         LOGGER.debug("Updating ChatConversationMembers with information: {}", chatConversationMembers);
+
         this.wmGenericDao.update(chatConversationMembers);
+        this.wmGenericDao.refresh(chatConversationMembers);
 
-        Integer chatconversationmembersId = chatConversationMembers.getUid();
-
-        return this.wmGenericDao.findById(chatconversationmembersId);
+        return chatConversationMembers;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class ChatConversationMembersServiceImpl implements ChatConversationMembe
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(ChatConversationMembers chatConversationMembers) {
+        LOGGER.debug("Deleting ChatConversationMembers with {}", chatConversationMembers);
+        this.wmGenericDao.delete(chatConversationMembers);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

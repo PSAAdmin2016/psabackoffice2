@@ -53,26 +53,27 @@ public class CivilTrackerClassicServiceImpl implements CivilTrackerClassicServic
         LOGGER.debug("Creating a new CivilTrackerClassic with information: {}", civilTrackerClassic);
 
         CivilTrackerClassic civilTrackerClassicCreated = this.wmGenericDao.create(civilTrackerClassic);
-        return civilTrackerClassicCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(civilTrackerClassicCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public CivilTrackerClassic getById(Integer civiltrackerclassicId) throws EntityNotFoundException {
         LOGGER.debug("Finding CivilTrackerClassic by id: {}", civiltrackerclassicId);
-        CivilTrackerClassic civilTrackerClassic = this.wmGenericDao.findById(civiltrackerclassicId);
-        if (civilTrackerClassic == null){
-            LOGGER.debug("No CivilTrackerClassic found with id: {}", civiltrackerclassicId);
-            throw new EntityNotFoundException(String.valueOf(civiltrackerclassicId));
-        }
-        return civilTrackerClassic;
+        return this.wmGenericDao.findById(civiltrackerclassicId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public CivilTrackerClassic findById(Integer civiltrackerclassicId) {
         LOGGER.debug("Finding CivilTrackerClassic by id: {}", civiltrackerclassicId);
-        return this.wmGenericDao.findById(civiltrackerclassicId);
+        try {
+            return this.wmGenericDao.findById(civiltrackerclassicId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No CivilTrackerClassic found with id: {}", civiltrackerclassicId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class CivilTrackerClassicServiceImpl implements CivilTrackerClassicServic
 	@Override
 	public CivilTrackerClassic update(CivilTrackerClassic civilTrackerClassic) throws EntityNotFoundException {
         LOGGER.debug("Updating CivilTrackerClassic with information: {}", civilTrackerClassic);
+
         this.wmGenericDao.update(civilTrackerClassic);
+        this.wmGenericDao.refresh(civilTrackerClassic);
 
-        Integer civiltrackerclassicId = civilTrackerClassic.getUid();
-
-        return this.wmGenericDao.findById(civiltrackerclassicId);
+        return civilTrackerClassic;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class CivilTrackerClassicServiceImpl implements CivilTrackerClassicServic
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(CivilTrackerClassic civilTrackerClassic) {
+        LOGGER.debug("Deleting CivilTrackerClassic with {}", civilTrackerClassic);
+        this.wmGenericDao.delete(civilTrackerClassic);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

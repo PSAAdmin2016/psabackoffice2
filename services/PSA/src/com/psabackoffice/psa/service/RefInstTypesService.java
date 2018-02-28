@@ -74,6 +74,13 @@ public interface RefInstTypesService {
 	 */
 	RefInstTypes delete(Integer refinsttypesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefInstTypes with the given object.
+	 *
+	 * @param refInstTypes The instance of the RefInstTypes to be deleted; value cannot be null.
+	 */
+	void delete(RefInstTypes refInstTypes);
+
 	/**
 	 * Find all RefInstTypes matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

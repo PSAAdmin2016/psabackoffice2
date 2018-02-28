@@ -53,26 +53,27 @@ public class RefPipeSizesServiceImpl implements RefPipeSizesService {
         LOGGER.debug("Creating a new RefPipeSizes with information: {}", refPipeSizes);
 
         RefPipeSizes refPipeSizesCreated = this.wmGenericDao.create(refPipeSizes);
-        return refPipeSizesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refPipeSizesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefPipeSizes getById(Integer refpipesizesId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefPipeSizes by id: {}", refpipesizesId);
-        RefPipeSizes refPipeSizes = this.wmGenericDao.findById(refpipesizesId);
-        if (refPipeSizes == null){
-            LOGGER.debug("No RefPipeSizes found with id: {}", refpipesizesId);
-            throw new EntityNotFoundException(String.valueOf(refpipesizesId));
-        }
-        return refPipeSizes;
+        return this.wmGenericDao.findById(refpipesizesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefPipeSizes findById(Integer refpipesizesId) {
         LOGGER.debug("Finding RefPipeSizes by id: {}", refpipesizesId);
-        return this.wmGenericDao.findById(refpipesizesId);
+        try {
+            return this.wmGenericDao.findById(refpipesizesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefPipeSizes found with id: {}", refpipesizesId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefPipeSizesServiceImpl implements RefPipeSizesService {
 	@Override
 	public RefPipeSizes update(RefPipeSizes refPipeSizes) throws EntityNotFoundException {
         LOGGER.debug("Updating RefPipeSizes with information: {}", refPipeSizes);
+
         this.wmGenericDao.update(refPipeSizes);
+        this.wmGenericDao.refresh(refPipeSizes);
 
-        Integer refpipesizesId = refPipeSizes.getId();
-
-        return this.wmGenericDao.findById(refpipesizesId);
+        return refPipeSizes;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class RefPipeSizesServiceImpl implements RefPipeSizesService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefPipeSizes refPipeSizes) {
+        LOGGER.debug("Deleting RefPipeSizes with {}", refPipeSizes);
+        this.wmGenericDao.delete(refPipeSizes);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

@@ -74,6 +74,13 @@ public interface CivilTrackerDetailsService {
 	 */
 	CivilTrackerDetails delete(Integer civiltrackerdetailsId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing CivilTrackerDetails with the given object.
+	 *
+	 * @param civilTrackerDetails The instance of the CivilTrackerDetails to be deleted; value cannot be null.
+	 */
+	void delete(CivilTrackerDetails civilTrackerDetails);
+
 	/**
 	 * Find all CivilTrackerDetails matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

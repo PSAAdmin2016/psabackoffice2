@@ -53,26 +53,27 @@ public class PipeMiscServiceImpl implements PipeMiscService {
         LOGGER.debug("Creating a new PipeMisc with information: {}", pipeMisc);
 
         PipeMisc pipeMiscCreated = this.wmGenericDao.create(pipeMisc);
-        return pipeMiscCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(pipeMiscCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public PipeMisc getById(Integer pipemiscId) throws EntityNotFoundException {
         LOGGER.debug("Finding PipeMisc by id: {}", pipemiscId);
-        PipeMisc pipeMisc = this.wmGenericDao.findById(pipemiscId);
-        if (pipeMisc == null){
-            LOGGER.debug("No PipeMisc found with id: {}", pipemiscId);
-            throw new EntityNotFoundException(String.valueOf(pipemiscId));
-        }
-        return pipeMisc;
+        return this.wmGenericDao.findById(pipemiscId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public PipeMisc findById(Integer pipemiscId) {
         LOGGER.debug("Finding PipeMisc by id: {}", pipemiscId);
-        return this.wmGenericDao.findById(pipemiscId);
+        try {
+            return this.wmGenericDao.findById(pipemiscId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No PipeMisc found with id: {}", pipemiscId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class PipeMiscServiceImpl implements PipeMiscService {
 	@Override
 	public PipeMisc update(PipeMisc pipeMisc) throws EntityNotFoundException {
         LOGGER.debug("Updating PipeMisc with information: {}", pipeMisc);
+
         this.wmGenericDao.update(pipeMisc);
+        this.wmGenericDao.refresh(pipeMisc);
 
-        Integer pipemiscId = pipeMisc.getId();
-
-        return this.wmGenericDao.findById(pipemiscId);
+        return pipeMisc;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class PipeMiscServiceImpl implements PipeMiscService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(PipeMisc pipeMisc) {
+        LOGGER.debug("Deleting PipeMisc with {}", pipeMisc);
+        this.wmGenericDao.delete(pipeMisc);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

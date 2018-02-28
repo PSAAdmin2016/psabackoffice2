@@ -130,6 +130,10 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdateSteelShakeQuantity(UpdateSteelShakeQuantityRequest updateSteelShakeQuantityRequest);
 
+    Page<GetActivitiesPendingReviewPipeResponse> executeGetActivitiesPendingReviewPipe(String superId, Pageable pageable);
+
+    Downloadable exportGetActivitiesPendingReviewPipe(ExportType exportType, String superId, Pageable pageable);
+
     Page<GetPsrecentActivitiesResponse> executeGetPSRecentActivities(Integer userId, Pageable pageable);
 
     Downloadable exportGetPSRecentActivities(ExportType exportType, Integer userId, Pageable pageable);
@@ -258,6 +262,10 @@ public interface Job1111QueryExecutorService {
 
     Downloadable exportGetQuantitiesTestPackagePipe(ExportType exportType, String testPackage, Pageable pageable);
 
+    Page<GetActivitiesPendingReviewCivilResponse> executeGetActivitiesPendingReviewCivil(String superId, Pageable pageable);
+
+    Downloadable exportGetActivitiesPendingReviewCivil(ExportType exportType, String superId, Pageable pageable);
+
     Page<GetActivityHistorySteelWeldResponse> executeGetActivityHistorySteelWeld(Integer activityId, Pageable pageable);
 
     Downloadable exportGetActivityHistorySteelWeld(ExportType exportType, Integer activityId, Pageable pageable);
@@ -340,6 +348,10 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdateSteelSell(UpdateSteelSellRequest updateSteelSellRequest);
 
+    Page<GetActivitiesPendingReviewSteelResponse> executeGetActivitiesPendingReviewSteel(String superId, Pageable pageable);
+
+    Downloadable exportGetActivitiesPendingReviewSteel(ExportType exportType, String superId, Pageable pageable);
+
     Integer executeUpdateSteelImp(UpdateSteelImpRequest updateSteelImpRequest);
 
     Page<GetQuantityDemoRemovedResponse> executeGetQuantityDemoRemoved(Integer bidId, Pageable pageable);
@@ -401,6 +413,10 @@ public interface Job1111QueryExecutorService {
     Integer executeUnLockSSActivity(UnLockSsactivityRequest unLockSsactivityRequest);
 
     Integer executeUpdateSteelDemoQuantity(UpdateSteelDemoQuantityRequest updateSteelDemoQuantityRequest);
+
+    Page<GetActivitiesPendingReviewEquipResponse> executeGetActivitiesPendingReviewEquip(String superId, Pageable pageable);
+
+    Downloadable exportGetActivitiesPendingReviewEquip(ExportType exportType, String superId, Pageable pageable);
 
     Integer executeUpdatePipeSupports(UpdatePipeSupportsRequest updatePipeSupportsRequest);
 

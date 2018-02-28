@@ -74,6 +74,13 @@ public interface EquipTrackerDetailsService {
 	 */
 	EquipTrackerDetails delete(Integer equiptrackerdetailsId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing EquipTrackerDetails with the given object.
+	 *
+	 * @param equipTrackerDetails The instance of the EquipTrackerDetails to be deleted; value cannot be null.
+	 */
+	void delete(EquipTrackerDetails equipTrackerDetails);
+
 	/**
 	 * Find all EquipTrackerDetails matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

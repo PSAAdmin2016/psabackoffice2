@@ -53,26 +53,27 @@ public class CivilMiscServiceImpl implements CivilMiscService {
         LOGGER.debug("Creating a new CivilMisc with information: {}", civilMisc);
 
         CivilMisc civilMiscCreated = this.wmGenericDao.create(civilMisc);
-        return civilMiscCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(civilMiscCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public CivilMisc getById(Integer civilmiscId) throws EntityNotFoundException {
         LOGGER.debug("Finding CivilMisc by id: {}", civilmiscId);
-        CivilMisc civilMisc = this.wmGenericDao.findById(civilmiscId);
-        if (civilMisc == null){
-            LOGGER.debug("No CivilMisc found with id: {}", civilmiscId);
-            throw new EntityNotFoundException(String.valueOf(civilmiscId));
-        }
-        return civilMisc;
+        return this.wmGenericDao.findById(civilmiscId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public CivilMisc findById(Integer civilmiscId) {
         LOGGER.debug("Finding CivilMisc by id: {}", civilmiscId);
-        return this.wmGenericDao.findById(civilmiscId);
+        try {
+            return this.wmGenericDao.findById(civilmiscId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No CivilMisc found with id: {}", civilmiscId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class CivilMiscServiceImpl implements CivilMiscService {
 	@Override
 	public CivilMisc update(CivilMisc civilMisc) throws EntityNotFoundException {
         LOGGER.debug("Updating CivilMisc with information: {}", civilMisc);
+
         this.wmGenericDao.update(civilMisc);
+        this.wmGenericDao.refresh(civilMisc);
 
-        Integer civilmiscId = civilMisc.getId();
-
-        return this.wmGenericDao.findById(civilmiscId);
+        return civilMisc;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class CivilMiscServiceImpl implements CivilMiscService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(CivilMisc civilMisc) {
+        LOGGER.debug("Deleting CivilMisc with {}", civilMisc);
+        this.wmGenericDao.delete(civilMisc);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

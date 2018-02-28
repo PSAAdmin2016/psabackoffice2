@@ -79,9 +79,9 @@ public class CivilSellPackageController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public CivilSellPackage editCivilSellPackage(@PathVariable("id") Integer id, @RequestBody CivilSellPackage civilSellPackage) throws EntityNotFoundException {
-        LOGGER.debug("Editing CivilSellPackage with id: {}" , civilSellPackage.getId());
+        LOGGER.debug("Editing CivilSellPackage with id: {}" , civilSellPackage.getActivityId());
 
-        civilSellPackage.setId(id);
+        civilSellPackage.setActivityId(id);
         civilSellPackage = civilSellPackageService.update(civilSellPackage);
         LOGGER.debug("CivilSellPackage details with id: {}" , civilSellPackage);
 

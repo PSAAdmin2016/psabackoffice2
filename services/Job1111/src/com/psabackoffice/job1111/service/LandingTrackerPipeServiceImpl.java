@@ -53,26 +53,27 @@ public class LandingTrackerPipeServiceImpl implements LandingTrackerPipeService 
         LOGGER.debug("Creating a new LandingTrackerPipe with information: {}", landingTrackerPipe);
 
         LandingTrackerPipe landingTrackerPipeCreated = this.wmGenericDao.create(landingTrackerPipe);
-        return landingTrackerPipeCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(landingTrackerPipeCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public LandingTrackerPipe getById(Integer landingtrackerpipeId) throws EntityNotFoundException {
         LOGGER.debug("Finding LandingTrackerPipe by id: {}", landingtrackerpipeId);
-        LandingTrackerPipe landingTrackerPipe = this.wmGenericDao.findById(landingtrackerpipeId);
-        if (landingTrackerPipe == null){
-            LOGGER.debug("No LandingTrackerPipe found with id: {}", landingtrackerpipeId);
-            throw new EntityNotFoundException(String.valueOf(landingtrackerpipeId));
-        }
-        return landingTrackerPipe;
+        return this.wmGenericDao.findById(landingtrackerpipeId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public LandingTrackerPipe findById(Integer landingtrackerpipeId) {
         LOGGER.debug("Finding LandingTrackerPipe by id: {}", landingtrackerpipeId);
-        return this.wmGenericDao.findById(landingtrackerpipeId);
+        try {
+            return this.wmGenericDao.findById(landingtrackerpipeId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No LandingTrackerPipe found with id: {}", landingtrackerpipeId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class LandingTrackerPipeServiceImpl implements LandingTrackerPipeService 
 	@Override
 	public LandingTrackerPipe update(LandingTrackerPipe landingTrackerPipe) throws EntityNotFoundException {
         LOGGER.debug("Updating LandingTrackerPipe with information: {}", landingTrackerPipe);
+
         this.wmGenericDao.update(landingTrackerPipe);
+        this.wmGenericDao.refresh(landingTrackerPipe);
 
-        Integer landingtrackerpipeId = landingTrackerPipe.getId();
-
-        return this.wmGenericDao.findById(landingtrackerpipeId);
+        return landingTrackerPipe;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class LandingTrackerPipeServiceImpl implements LandingTrackerPipeService 
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(LandingTrackerPipe landingTrackerPipe) {
+        LOGGER.debug("Deleting LandingTrackerPipe with {}", landingTrackerPipe);
+        this.wmGenericDao.delete(landingTrackerPipe);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

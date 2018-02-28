@@ -53,26 +53,27 @@ public class LandingWeldSpecProceduresServiceImpl implements LandingWeldSpecProc
         LOGGER.debug("Creating a new LandingWeldSpecProcedures with information: {}", landingWeldSpecProcedures);
 
         LandingWeldSpecProcedures landingWeldSpecProceduresCreated = this.wmGenericDao.create(landingWeldSpecProcedures);
-        return landingWeldSpecProceduresCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(landingWeldSpecProceduresCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public LandingWeldSpecProcedures getById(Integer landingweldspecproceduresId) throws EntityNotFoundException {
         LOGGER.debug("Finding LandingWeldSpecProcedures by id: {}", landingweldspecproceduresId);
-        LandingWeldSpecProcedures landingWeldSpecProcedures = this.wmGenericDao.findById(landingweldspecproceduresId);
-        if (landingWeldSpecProcedures == null){
-            LOGGER.debug("No LandingWeldSpecProcedures found with id: {}", landingweldspecproceduresId);
-            throw new EntityNotFoundException(String.valueOf(landingweldspecproceduresId));
-        }
-        return landingWeldSpecProcedures;
+        return this.wmGenericDao.findById(landingweldspecproceduresId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public LandingWeldSpecProcedures findById(Integer landingweldspecproceduresId) {
         LOGGER.debug("Finding LandingWeldSpecProcedures by id: {}", landingweldspecproceduresId);
-        return this.wmGenericDao.findById(landingweldspecproceduresId);
+        try {
+            return this.wmGenericDao.findById(landingweldspecproceduresId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No LandingWeldSpecProcedures found with id: {}", landingweldspecproceduresId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class LandingWeldSpecProceduresServiceImpl implements LandingWeldSpecProc
 	@Override
 	public LandingWeldSpecProcedures update(LandingWeldSpecProcedures landingWeldSpecProcedures) throws EntityNotFoundException {
         LOGGER.debug("Updating LandingWeldSpecProcedures with information: {}", landingWeldSpecProcedures);
+
         this.wmGenericDao.update(landingWeldSpecProcedures);
+        this.wmGenericDao.refresh(landingWeldSpecProcedures);
 
-        Integer landingweldspecproceduresId = landingWeldSpecProcedures.getId();
-
-        return this.wmGenericDao.findById(landingweldspecproceduresId);
+        return landingWeldSpecProcedures;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class LandingWeldSpecProceduresServiceImpl implements LandingWeldSpecProc
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(LandingWeldSpecProcedures landingWeldSpecProcedures) {
+        LOGGER.debug("Deleting LandingWeldSpecProcedures with {}", landingWeldSpecProcedures);
+        this.wmGenericDao.delete(landingWeldSpecProcedures);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

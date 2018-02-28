@@ -74,6 +74,13 @@ public interface ChatMessagesService {
 	 */
 	ChatMessages delete(Integer chatmessagesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing ChatMessages with the given object.
+	 *
+	 * @param chatMessages The instance of the ChatMessages to be deleted; value cannot be null.
+	 */
+	void delete(ChatMessages chatMessages);
+
 	/**
 	 * Find all ChatMessages matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

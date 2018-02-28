@@ -10,7 +10,6 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,8 +21,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PostPersist;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -33,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  */
 @Entity
 @Table(name = "`tblCrews`", uniqueConstraints = {
-        @UniqueConstraint(name = "`Foreman_UNIQUE`", columnNames = {"`Foreman`"})})
+            @UniqueConstraint(name = "`Foreman_UNIQUE`", columnNames = {"`Foreman`"})})
 public class TblCrews implements Serializable {
 
     private Integer id;
@@ -192,6 +197,7 @@ public class TblCrews implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`ConstructionManager`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`ConstructionMtoUserID`"))
+    @Fetch(FetchMode.JOIN)
     public TblUserPsa getTblUserPsaByConstructionManager() {
         return this.tblUserPsaByConstructionManager;
     }
@@ -206,6 +212,7 @@ public class TblCrews implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`Superintendent`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`SuperToUserID`"))
+    @Fetch(FetchMode.JOIN)
     public TblUserPsa getTblUserPsaBySuperintendent() {
         return this.tblUserPsaBySuperintendent;
     }
@@ -220,6 +227,7 @@ public class TblCrews implements Serializable {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`Foreman`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`ForemanToUserID`"))
+    @Fetch(FetchMode.JOIN)
     public TblUserPsa getTblUserPsaByForeman() {
         return this.tblUserPsaByForeman;
     }
@@ -234,6 +242,7 @@ public class TblCrews implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`ProjectManager`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`PMtoUserID`"))
+    @Fetch(FetchMode.JOIN)
     public TblUserPsa getTblUserPsaByProjectManager() {
         return this.tblUserPsaByProjectManager;
     }
@@ -248,6 +257,7 @@ public class TblCrews implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`AreaManager`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`AreaMtoUserID`"))
+    @Fetch(FetchMode.JOIN)
     public TblUserPsa getTblUserPsaByAreaManager() {
         return this.tblUserPsaByAreaManager;
     }
@@ -262,6 +272,7 @@ public class TblCrews implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`DisciplineId`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`DisciplinIDTO_REFDisciplines`"))
+    @Fetch(FetchMode.JOIN)
     public RefDisciplines getRefDisciplines() {
         return this.refDisciplines;
     }
@@ -276,6 +287,7 @@ public class TblCrews implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`JobNumber`", referencedColumnName = "`JobNumber`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`JobNumberToJobNumber`"))
+    @Fetch(FetchMode.JOIN)
     public TblJobNumbers getTblJobNumbers() {
         return this.tblJobNumbers;
     }
@@ -290,6 +302,7 @@ public class TblCrews implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`SiteManager`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`SiteMtoUserID`"))
+    @Fetch(FetchMode.JOIN)
     public TblUserPsa getTblUserPsaBySiteManager() {
         return this.tblUserPsaBySiteManager;
     }
@@ -304,6 +317,7 @@ public class TblCrews implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`GF`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`GTtoUserID`"))
+    @Fetch(FetchMode.JOIN)
     public TblUserPsa getTblUserPsaByGf() {
         return this.tblUserPsaByGf;
     }
@@ -318,6 +332,7 @@ public class TblCrews implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`Leadman`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`LeadmanToUserID`"))
+    @Fetch(FetchMode.JOIN)
     public TblUserPsa getTblUserPsaByLeadman() {
         return this.tblUserPsaByLeadman;
     }
@@ -331,13 +346,23 @@ public class TblCrews implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblCrews")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblCrews")
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
     public List<TblCrewsRev> getTblCrewsRevs() {
         return this.tblCrewsRevs;
     }
 
     public void setTblCrewsRevs(List<TblCrewsRev> tblCrewsRevs) {
         this.tblCrewsRevs = tblCrewsRevs;
+    }
+
+    @PostPersist
+    public void onPostPersist() {
+        if(tblCrewsRevs != null) {
+            for(TblCrewsRev tblCrewsRev : tblCrewsRevs) {
+                tblCrewsRev.setTblCrews(this);
+            }
+        }
     }
 
     @Override

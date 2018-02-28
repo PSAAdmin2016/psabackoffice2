@@ -311,7 +311,7 @@
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "org.joda.time.LocalDateTime",
+          "typeRef" : "java.time.LocalDateTime",
           "list" : false
         }
       }, {

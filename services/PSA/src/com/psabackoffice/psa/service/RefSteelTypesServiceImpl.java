@@ -53,26 +53,27 @@ public class RefSteelTypesServiceImpl implements RefSteelTypesService {
         LOGGER.debug("Creating a new RefSteelTypes with information: {}", refSteelTypes);
 
         RefSteelTypes refSteelTypesCreated = this.wmGenericDao.create(refSteelTypes);
-        return refSteelTypesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refSteelTypesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefSteelTypes getById(Integer refsteeltypesId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefSteelTypes by id: {}", refsteeltypesId);
-        RefSteelTypes refSteelTypes = this.wmGenericDao.findById(refsteeltypesId);
-        if (refSteelTypes == null){
-            LOGGER.debug("No RefSteelTypes found with id: {}", refsteeltypesId);
-            throw new EntityNotFoundException(String.valueOf(refsteeltypesId));
-        }
-        return refSteelTypes;
+        return this.wmGenericDao.findById(refsteeltypesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefSteelTypes findById(Integer refsteeltypesId) {
         LOGGER.debug("Finding RefSteelTypes by id: {}", refsteeltypesId);
-        return this.wmGenericDao.findById(refsteeltypesId);
+        try {
+            return this.wmGenericDao.findById(refsteeltypesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefSteelTypes found with id: {}", refsteeltypesId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefSteelTypesServiceImpl implements RefSteelTypesService {
 	@Override
 	public RefSteelTypes update(RefSteelTypes refSteelTypes) throws EntityNotFoundException {
         LOGGER.debug("Updating RefSteelTypes with information: {}", refSteelTypes);
+
         this.wmGenericDao.update(refSteelTypes);
+        this.wmGenericDao.refresh(refSteelTypes);
 
-        Integer refsteeltypesId = refSteelTypes.getId();
-
-        return this.wmGenericDao.findById(refsteeltypesId);
+        return refSteelTypes;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class RefSteelTypesServiceImpl implements RefSteelTypesService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefSteelTypes refSteelTypes) {
+        LOGGER.debug("Deleting RefSteelTypes with {}", refSteelTypes);
+        this.wmGenericDao.delete(refSteelTypes);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

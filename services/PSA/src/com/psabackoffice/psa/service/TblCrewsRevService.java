@@ -74,6 +74,13 @@ public interface TblCrewsRevService {
 	 */
 	TblCrewsRev delete(Integer tblcrewsrevId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing TblCrewsRev with the given object.
+	 *
+	 * @param tblCrewsRev The instance of the TblCrewsRev to be deleted; value cannot be null.
+	 */
+	void delete(TblCrewsRev tblCrewsRev);
+
 	/**
 	 * Find all TblCrewsRevs matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

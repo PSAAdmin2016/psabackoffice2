@@ -74,6 +74,13 @@ public interface RefPipeSchedulesService {
 	 */
 	RefPipeSchedules delete(Integer refpipeschedulesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefPipeSchedules with the given object.
+	 *
+	 * @param refPipeSchedules The instance of the RefPipeSchedules to be deleted; value cannot be null.
+	 */
+	void delete(RefPipeSchedules refPipeSchedules);
+
 	/**
 	 * Find all RefPipeSchedules matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

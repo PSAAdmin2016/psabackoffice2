@@ -53,26 +53,27 @@ public class PipeTrimServiceImpl implements PipeTrimService {
         LOGGER.debug("Creating a new PipeTrim with information: {}", pipeTrim);
 
         PipeTrim pipeTrimCreated = this.wmGenericDao.create(pipeTrim);
-        return pipeTrimCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(pipeTrimCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public PipeTrim getById(Integer pipetrimId) throws EntityNotFoundException {
         LOGGER.debug("Finding PipeTrim by id: {}", pipetrimId);
-        PipeTrim pipeTrim = this.wmGenericDao.findById(pipetrimId);
-        if (pipeTrim == null){
-            LOGGER.debug("No PipeTrim found with id: {}", pipetrimId);
-            throw new EntityNotFoundException(String.valueOf(pipetrimId));
-        }
-        return pipeTrim;
+        return this.wmGenericDao.findById(pipetrimId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public PipeTrim findById(Integer pipetrimId) {
         LOGGER.debug("Finding PipeTrim by id: {}", pipetrimId);
-        return this.wmGenericDao.findById(pipetrimId);
+        try {
+            return this.wmGenericDao.findById(pipetrimId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No PipeTrim found with id: {}", pipetrimId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class PipeTrimServiceImpl implements PipeTrimService {
 	@Override
 	public PipeTrim update(PipeTrim pipeTrim) throws EntityNotFoundException {
         LOGGER.debug("Updating PipeTrim with information: {}", pipeTrim);
+
         this.wmGenericDao.update(pipeTrim);
+        this.wmGenericDao.refresh(pipeTrim);
 
-        Integer pipetrimId = pipeTrim.getId();
-
-        return this.wmGenericDao.findById(pipetrimId);
+        return pipeTrim;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class PipeTrimServiceImpl implements PipeTrimService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(PipeTrim pipeTrim) {
+        LOGGER.debug("Deleting PipeTrim with {}", pipeTrim);
+        this.wmGenericDao.delete(pipeTrim);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

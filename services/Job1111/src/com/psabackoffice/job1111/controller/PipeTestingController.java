@@ -79,9 +79,9 @@ public class PipeTestingController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public PipeTesting editPipeTesting(@PathVariable("id") Integer id, @RequestBody PipeTesting pipeTesting) throws EntityNotFoundException {
-        LOGGER.debug("Editing PipeTesting with id: {}" , pipeTesting.getId());
+        LOGGER.debug("Editing PipeTesting with id: {}" , pipeTesting.getActivityId());
 
-        pipeTesting.setId(id);
+        pipeTesting.setActivityId(id);
         pipeTesting = pipeTestingService.update(pipeTesting);
         LOGGER.debug("PipeTesting details with id: {}" , pipeTesting);
 

@@ -75,6 +75,13 @@ public interface RefStateAbbreviationsService {
 	 */
 	RefStateAbbreviations delete(String refstateabbreviationsId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefStateAbbreviations with the given object.
+	 *
+	 * @param refStateAbbreviations The instance of the RefStateAbbreviations to be deleted; value cannot be null.
+	 */
+	void delete(RefStateAbbreviations refStateAbbreviations);
+
 	/**
 	 * Find all RefStateAbbreviations matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

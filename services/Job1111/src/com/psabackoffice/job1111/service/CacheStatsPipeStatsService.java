@@ -74,6 +74,13 @@ public interface CacheStatsPipeStatsService {
 	 */
 	CacheStatsPipeStats delete(Integer cachestatspipestatsId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing CacheStatsPipeStats with the given object.
+	 *
+	 * @param cacheStatsPipeStats The instance of the CacheStatsPipeStats to be deleted; value cannot be null.
+	 */
+	void delete(CacheStatsPipeStats cacheStatsPipeStats);
+
 	/**
 	 * Find all CacheStatsPipeStats matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

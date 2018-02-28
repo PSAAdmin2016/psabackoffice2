@@ -53,26 +53,27 @@ public class CivilFaServiceImpl implements CivilFaService {
         LOGGER.debug("Creating a new CivilFa with information: {}", civilFa);
 
         CivilFa civilFaCreated = this.wmGenericDao.create(civilFa);
-        return civilFaCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(civilFaCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public CivilFa getById(Integer civilfaId) throws EntityNotFoundException {
         LOGGER.debug("Finding CivilFa by id: {}", civilfaId);
-        CivilFa civilFa = this.wmGenericDao.findById(civilfaId);
-        if (civilFa == null){
-            LOGGER.debug("No CivilFa found with id: {}", civilfaId);
-            throw new EntityNotFoundException(String.valueOf(civilfaId));
-        }
-        return civilFa;
+        return this.wmGenericDao.findById(civilfaId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public CivilFa findById(Integer civilfaId) {
         LOGGER.debug("Finding CivilFa by id: {}", civilfaId);
-        return this.wmGenericDao.findById(civilfaId);
+        try {
+            return this.wmGenericDao.findById(civilfaId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No CivilFa found with id: {}", civilfaId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class CivilFaServiceImpl implements CivilFaService {
 	@Override
 	public CivilFa update(CivilFa civilFa) throws EntityNotFoundException {
         LOGGER.debug("Updating CivilFa with information: {}", civilFa);
+
         this.wmGenericDao.update(civilFa);
+        this.wmGenericDao.refresh(civilFa);
 
-        Integer civilfaId = civilFa.getId();
-
-        return this.wmGenericDao.findById(civilfaId);
+        return civilFa;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class CivilFaServiceImpl implements CivilFaService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(CivilFa civilFa) {
+        LOGGER.debug("Deleting CivilFa with {}", civilFa);
+        this.wmGenericDao.delete(civilFa);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

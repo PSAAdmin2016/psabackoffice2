@@ -53,26 +53,27 @@ public class RefActivityStatusesServiceImpl implements RefActivityStatusesServic
         LOGGER.debug("Creating a new RefActivityStatuses with information: {}", refActivityStatuses);
 
         RefActivityStatuses refActivityStatusesCreated = this.wmGenericDao.create(refActivityStatuses);
-        return refActivityStatusesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refActivityStatusesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefActivityStatuses getById(Integer refactivitystatusesId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefActivityStatuses by id: {}", refactivitystatusesId);
-        RefActivityStatuses refActivityStatuses = this.wmGenericDao.findById(refactivitystatusesId);
-        if (refActivityStatuses == null){
-            LOGGER.debug("No RefActivityStatuses found with id: {}", refactivitystatusesId);
-            throw new EntityNotFoundException(String.valueOf(refactivitystatusesId));
-        }
-        return refActivityStatuses;
+        return this.wmGenericDao.findById(refactivitystatusesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefActivityStatuses findById(Integer refactivitystatusesId) {
         LOGGER.debug("Finding RefActivityStatuses by id: {}", refactivitystatusesId);
-        return this.wmGenericDao.findById(refactivitystatusesId);
+        try {
+            return this.wmGenericDao.findById(refactivitystatusesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefActivityStatuses found with id: {}", refactivitystatusesId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefActivityStatusesServiceImpl implements RefActivityStatusesServic
 	@Override
 	public RefActivityStatuses update(RefActivityStatuses refActivityStatuses) throws EntityNotFoundException {
         LOGGER.debug("Updating RefActivityStatuses with information: {}", refActivityStatuses);
+
         this.wmGenericDao.update(refActivityStatuses);
+        this.wmGenericDao.refresh(refActivityStatuses);
 
-        Integer refactivitystatusesId = refActivityStatuses.getId();
-
-        return this.wmGenericDao.findById(refactivitystatusesId);
+        return refActivityStatuses;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class RefActivityStatusesServiceImpl implements RefActivityStatusesServic
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefActivityStatuses refActivityStatuses) {
+        LOGGER.debug("Deleting RefActivityStatuses with {}", refActivityStatuses);
+        this.wmGenericDao.delete(refActivityStatuses);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

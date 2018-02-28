@@ -53,26 +53,27 @@ public class EquipTrackerClassicServiceImpl implements EquipTrackerClassicServic
         LOGGER.debug("Creating a new EquipTrackerClassic with information: {}", equipTrackerClassic);
 
         EquipTrackerClassic equipTrackerClassicCreated = this.wmGenericDao.create(equipTrackerClassic);
-        return equipTrackerClassicCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(equipTrackerClassicCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public EquipTrackerClassic getById(Integer equiptrackerclassicId) throws EntityNotFoundException {
         LOGGER.debug("Finding EquipTrackerClassic by id: {}", equiptrackerclassicId);
-        EquipTrackerClassic equipTrackerClassic = this.wmGenericDao.findById(equiptrackerclassicId);
-        if (equipTrackerClassic == null){
-            LOGGER.debug("No EquipTrackerClassic found with id: {}", equiptrackerclassicId);
-            throw new EntityNotFoundException(String.valueOf(equiptrackerclassicId));
-        }
-        return equipTrackerClassic;
+        return this.wmGenericDao.findById(equiptrackerclassicId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public EquipTrackerClassic findById(Integer equiptrackerclassicId) {
         LOGGER.debug("Finding EquipTrackerClassic by id: {}", equiptrackerclassicId);
-        return this.wmGenericDao.findById(equiptrackerclassicId);
+        try {
+            return this.wmGenericDao.findById(equiptrackerclassicId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No EquipTrackerClassic found with id: {}", equiptrackerclassicId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class EquipTrackerClassicServiceImpl implements EquipTrackerClassicServic
 	@Override
 	public EquipTrackerClassic update(EquipTrackerClassic equipTrackerClassic) throws EntityNotFoundException {
         LOGGER.debug("Updating EquipTrackerClassic with information: {}", equipTrackerClassic);
+
         this.wmGenericDao.update(equipTrackerClassic);
+        this.wmGenericDao.refresh(equipTrackerClassic);
 
-        Integer equiptrackerclassicId = equipTrackerClassic.getUid();
-
-        return this.wmGenericDao.findById(equiptrackerclassicId);
+        return equipTrackerClassic;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class EquipTrackerClassicServiceImpl implements EquipTrackerClassicServic
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(EquipTrackerClassic equipTrackerClassic) {
+        LOGGER.debug("Deleting EquipTrackerClassic with {}", equipTrackerClassic);
+        this.wmGenericDao.delete(equipTrackerClassic);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

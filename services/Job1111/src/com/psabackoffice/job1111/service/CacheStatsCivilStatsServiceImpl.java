@@ -53,26 +53,27 @@ public class CacheStatsCivilStatsServiceImpl implements CacheStatsCivilStatsServ
         LOGGER.debug("Creating a new CacheStatsCivilStats with information: {}", cacheStatsCivilStats);
 
         CacheStatsCivilStats cacheStatsCivilStatsCreated = this.wmGenericDao.create(cacheStatsCivilStats);
-        return cacheStatsCivilStatsCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(cacheStatsCivilStatsCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public CacheStatsCivilStats getById(Integer cachestatscivilstatsId) throws EntityNotFoundException {
         LOGGER.debug("Finding CacheStatsCivilStats by id: {}", cachestatscivilstatsId);
-        CacheStatsCivilStats cacheStatsCivilStats = this.wmGenericDao.findById(cachestatscivilstatsId);
-        if (cacheStatsCivilStats == null){
-            LOGGER.debug("No CacheStatsCivilStats found with id: {}", cachestatscivilstatsId);
-            throw new EntityNotFoundException(String.valueOf(cachestatscivilstatsId));
-        }
-        return cacheStatsCivilStats;
+        return this.wmGenericDao.findById(cachestatscivilstatsId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public CacheStatsCivilStats findById(Integer cachestatscivilstatsId) {
         LOGGER.debug("Finding CacheStatsCivilStats by id: {}", cachestatscivilstatsId);
-        return this.wmGenericDao.findById(cachestatscivilstatsId);
+        try {
+            return this.wmGenericDao.findById(cachestatscivilstatsId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No CacheStatsCivilStats found with id: {}", cachestatscivilstatsId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class CacheStatsCivilStatsServiceImpl implements CacheStatsCivilStatsServ
 	@Override
 	public CacheStatsCivilStats update(CacheStatsCivilStats cacheStatsCivilStats) throws EntityNotFoundException {
         LOGGER.debug("Updating CacheStatsCivilStats with information: {}", cacheStatsCivilStats);
+
         this.wmGenericDao.update(cacheStatsCivilStats);
+        this.wmGenericDao.refresh(cacheStatsCivilStats);
 
-        Integer cachestatscivilstatsId = cacheStatsCivilStats.getBidId();
-
-        return this.wmGenericDao.findById(cachestatscivilstatsId);
+        return cacheStatsCivilStats;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class CacheStatsCivilStatsServiceImpl implements CacheStatsCivilStatsServ
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(CacheStatsCivilStats cacheStatsCivilStats) {
+        LOGGER.debug("Deleting CacheStatsCivilStats with {}", cacheStatsCivilStats);
+        this.wmGenericDao.delete(cacheStatsCivilStats);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

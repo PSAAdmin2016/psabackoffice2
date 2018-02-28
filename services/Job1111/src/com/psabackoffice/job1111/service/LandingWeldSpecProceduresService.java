@@ -74,6 +74,13 @@ public interface LandingWeldSpecProceduresService {
 	 */
 	LandingWeldSpecProcedures delete(Integer landingweldspecproceduresId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing LandingWeldSpecProcedures with the given object.
+	 *
+	 * @param landingWeldSpecProcedures The instance of the LandingWeldSpecProcedures to be deleted; value cannot be null.
+	 */
+	void delete(LandingWeldSpecProcedures landingWeldSpecProcedures);
+
 	/**
 	 * Find all LandingWeldSpecProcedures matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

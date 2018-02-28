@@ -53,26 +53,27 @@ public class TblCrewsRevServiceImpl implements TblCrewsRevService {
         LOGGER.debug("Creating a new TblCrewsRev with information: {}", tblCrewsRev);
 
         TblCrewsRev tblCrewsRevCreated = this.wmGenericDao.create(tblCrewsRev);
-        return tblCrewsRevCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(tblCrewsRevCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public TblCrewsRev getById(Integer tblcrewsrevId) throws EntityNotFoundException {
         LOGGER.debug("Finding TblCrewsRev by id: {}", tblcrewsrevId);
-        TblCrewsRev tblCrewsRev = this.wmGenericDao.findById(tblcrewsrevId);
-        if (tblCrewsRev == null){
-            LOGGER.debug("No TblCrewsRev found with id: {}", tblcrewsrevId);
-            throw new EntityNotFoundException(String.valueOf(tblcrewsrevId));
-        }
-        return tblCrewsRev;
+        return this.wmGenericDao.findById(tblcrewsrevId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public TblCrewsRev findById(Integer tblcrewsrevId) {
         LOGGER.debug("Finding TblCrewsRev by id: {}", tblcrewsrevId);
-        return this.wmGenericDao.findById(tblcrewsrevId);
+        try {
+            return this.wmGenericDao.findById(tblcrewsrevId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No TblCrewsRev found with id: {}", tblcrewsrevId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class TblCrewsRevServiceImpl implements TblCrewsRevService {
 	@Override
 	public TblCrewsRev update(TblCrewsRev tblCrewsRev) throws EntityNotFoundException {
         LOGGER.debug("Updating TblCrewsRev with information: {}", tblCrewsRev);
+
         this.wmGenericDao.update(tblCrewsRev);
+        this.wmGenericDao.refresh(tblCrewsRev);
 
-        Integer tblcrewsrevId = tblCrewsRev.getId();
-
-        return this.wmGenericDao.findById(tblcrewsrevId);
+        return tblCrewsRev;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class TblCrewsRevServiceImpl implements TblCrewsRevService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(TblCrewsRev tblCrewsRev) {
+        LOGGER.debug("Deleting TblCrewsRev with {}", tblCrewsRev);
+        this.wmGenericDao.delete(tblCrewsRev);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

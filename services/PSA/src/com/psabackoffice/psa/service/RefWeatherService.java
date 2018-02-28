@@ -74,6 +74,13 @@ public interface RefWeatherService {
 	 */
 	RefWeather delete(Integer refweatherId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefWeather with the given object.
+	 *
+	 * @param refWeather The instance of the RefWeather to be deleted; value cannot be null.
+	 */
+	void delete(RefWeather refWeather);
+
 	/**
 	 * Find all RefWeathers matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

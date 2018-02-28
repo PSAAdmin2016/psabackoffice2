@@ -53,26 +53,27 @@ public class RefWeatherServiceImpl implements RefWeatherService {
         LOGGER.debug("Creating a new RefWeather with information: {}", refWeather);
 
         RefWeather refWeatherCreated = this.wmGenericDao.create(refWeather);
-        return refWeatherCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refWeatherCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefWeather getById(Integer refweatherId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefWeather by id: {}", refweatherId);
-        RefWeather refWeather = this.wmGenericDao.findById(refweatherId);
-        if (refWeather == null){
-            LOGGER.debug("No RefWeather found with id: {}", refweatherId);
-            throw new EntityNotFoundException(String.valueOf(refweatherId));
-        }
-        return refWeather;
+        return this.wmGenericDao.findById(refweatherId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefWeather findById(Integer refweatherId) {
         LOGGER.debug("Finding RefWeather by id: {}", refweatherId);
-        return this.wmGenericDao.findById(refweatherId);
+        try {
+            return this.wmGenericDao.findById(refweatherId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefWeather found with id: {}", refweatherId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefWeatherServiceImpl implements RefWeatherService {
 	@Override
 	public RefWeather update(RefWeather refWeather) throws EntityNotFoundException {
         LOGGER.debug("Updating RefWeather with information: {}", refWeather);
+
         this.wmGenericDao.update(refWeather);
+        this.wmGenericDao.refresh(refWeather);
 
-        Integer refweatherId = refWeather.getId();
-
-        return this.wmGenericDao.findById(refweatherId);
+        return refWeather;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class RefWeatherServiceImpl implements RefWeatherService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefWeather refWeather) {
+        LOGGER.debug("Deleting RefWeather with {}", refWeather);
+        this.wmGenericDao.delete(refWeather);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

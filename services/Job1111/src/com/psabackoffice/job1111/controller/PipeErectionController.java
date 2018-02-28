@@ -79,9 +79,9 @@ public class PipeErectionController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public PipeErection editPipeErection(@PathVariable("id") Integer id, @RequestBody PipeErection pipeErection) throws EntityNotFoundException {
-        LOGGER.debug("Editing PipeErection with id: {}" , pipeErection.getId());
+        LOGGER.debug("Editing PipeErection with id: {}" , pipeErection.getActivityId());
 
-        pipeErection.setId(id);
+        pipeErection.setActivityId(id);
         pipeErection = pipeErectionService.update(pipeErection);
         LOGGER.debug("PipeErection details with id: {}" , pipeErection);
 

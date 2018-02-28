@@ -53,26 +53,27 @@ public class RefInstTypesServiceImpl implements RefInstTypesService {
         LOGGER.debug("Creating a new RefInstTypes with information: {}", refInstTypes);
 
         RefInstTypes refInstTypesCreated = this.wmGenericDao.create(refInstTypes);
-        return refInstTypesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refInstTypesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefInstTypes getById(Integer refinsttypesId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefInstTypes by id: {}", refinsttypesId);
-        RefInstTypes refInstTypes = this.wmGenericDao.findById(refinsttypesId);
-        if (refInstTypes == null){
-            LOGGER.debug("No RefInstTypes found with id: {}", refinsttypesId);
-            throw new EntityNotFoundException(String.valueOf(refinsttypesId));
-        }
-        return refInstTypes;
+        return this.wmGenericDao.findById(refinsttypesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefInstTypes findById(Integer refinsttypesId) {
         LOGGER.debug("Finding RefInstTypes by id: {}", refinsttypesId);
-        return this.wmGenericDao.findById(refinsttypesId);
+        try {
+            return this.wmGenericDao.findById(refinsttypesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefInstTypes found with id: {}", refinsttypesId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefInstTypesServiceImpl implements RefInstTypesService {
 	@Override
 	public RefInstTypes update(RefInstTypes refInstTypes) throws EntityNotFoundException {
         LOGGER.debug("Updating RefInstTypes with information: {}", refInstTypes);
+
         this.wmGenericDao.update(refInstTypes);
+        this.wmGenericDao.refresh(refInstTypes);
 
-        Integer refinsttypesId = refInstTypes.getId();
-
-        return this.wmGenericDao.findById(refinsttypesId);
+        return refInstTypes;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class RefInstTypesServiceImpl implements RefInstTypesService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefInstTypes refInstTypes) {
+        LOGGER.debug("Deleting RefInstTypes with {}", refInstTypes);
+        this.wmGenericDao.delete(refInstTypes);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

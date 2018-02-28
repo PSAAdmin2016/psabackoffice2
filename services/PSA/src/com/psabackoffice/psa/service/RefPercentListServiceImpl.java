@@ -53,26 +53,27 @@ public class RefPercentListServiceImpl implements RefPercentListService {
         LOGGER.debug("Creating a new RefPercentList with information: {}", refPercentList);
 
         RefPercentList refPercentListCreated = this.wmGenericDao.create(refPercentList);
-        return refPercentListCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refPercentListCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefPercentList getById(Integer refpercentlistId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefPercentList by id: {}", refpercentlistId);
-        RefPercentList refPercentList = this.wmGenericDao.findById(refpercentlistId);
-        if (refPercentList == null){
-            LOGGER.debug("No RefPercentList found with id: {}", refpercentlistId);
-            throw new EntityNotFoundException(String.valueOf(refpercentlistId));
-        }
-        return refPercentList;
+        return this.wmGenericDao.findById(refpercentlistId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefPercentList findById(Integer refpercentlistId) {
         LOGGER.debug("Finding RefPercentList by id: {}", refpercentlistId);
-        return this.wmGenericDao.findById(refpercentlistId);
+        try {
+            return this.wmGenericDao.findById(refpercentlistId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefPercentList found with id: {}", refpercentlistId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefPercentListServiceImpl implements RefPercentListService {
 	@Override
 	public RefPercentList update(RefPercentList refPercentList) throws EntityNotFoundException {
         LOGGER.debug("Updating RefPercentList with information: {}", refPercentList);
+
         this.wmGenericDao.update(refPercentList);
+        this.wmGenericDao.refresh(refPercentList);
 
-        Integer refpercentlistId = refPercentList.getId();
-
-        return this.wmGenericDao.findById(refpercentlistId);
+        return refPercentList;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class RefPercentListServiceImpl implements RefPercentListService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefPercentList refPercentList) {
+        LOGGER.debug("Deleting RefPercentList with {}", refPercentList);
+        this.wmGenericDao.delete(refPercentList);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

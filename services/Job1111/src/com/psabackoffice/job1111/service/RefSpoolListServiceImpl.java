@@ -53,26 +53,27 @@ public class RefSpoolListServiceImpl implements RefSpoolListService {
         LOGGER.debug("Creating a new RefSpoolList with information: {}", refSpoolList);
 
         RefSpoolList refSpoolListCreated = this.wmGenericDao.create(refSpoolList);
-        return refSpoolListCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refSpoolListCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public RefSpoolList getById(String refspoollistId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefSpoolList by id: {}", refspoollistId);
-        RefSpoolList refSpoolList = this.wmGenericDao.findById(refspoollistId);
-        if (refSpoolList == null){
-            LOGGER.debug("No RefSpoolList found with id: {}", refspoollistId);
-            throw new EntityNotFoundException(String.valueOf(refspoollistId));
-        }
-        return refSpoolList;
+        return this.wmGenericDao.findById(refspoollistId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public RefSpoolList findById(String refspoollistId) {
         LOGGER.debug("Finding RefSpoolList by id: {}", refspoollistId);
-        return this.wmGenericDao.findById(refspoollistId);
+        try {
+            return this.wmGenericDao.findById(refspoollistId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefSpoolList found with id: {}", refspoollistId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefSpoolListServiceImpl implements RefSpoolListService {
 	@Override
 	public RefSpoolList update(RefSpoolList refSpoolList) throws EntityNotFoundException {
         LOGGER.debug("Updating RefSpoolList with information: {}", refSpoolList);
+
         this.wmGenericDao.update(refSpoolList);
+        this.wmGenericDao.refresh(refSpoolList);
 
-        String refspoollistId = refSpoolList.getSpoolNumber();
-
-        return this.wmGenericDao.findById(refspoollistId);
+        return refSpoolList;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class RefSpoolListServiceImpl implements RefSpoolListService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(RefSpoolList refSpoolList) {
+        LOGGER.debug("Deleting RefSpoolList with {}", refSpoolList);
+        this.wmGenericDao.delete(refSpoolList);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

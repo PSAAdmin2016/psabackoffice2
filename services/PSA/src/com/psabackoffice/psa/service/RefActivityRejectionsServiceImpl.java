@@ -53,26 +53,27 @@ public class RefActivityRejectionsServiceImpl implements RefActivityRejectionsSe
         LOGGER.debug("Creating a new RefActivityRejections with information: {}", refActivityRejections);
 
         RefActivityRejections refActivityRejectionsCreated = this.wmGenericDao.create(refActivityRejections);
-        return refActivityRejectionsCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refActivityRejectionsCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefActivityRejections getById(Integer refactivityrejectionsId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefActivityRejections by id: {}", refactivityrejectionsId);
-        RefActivityRejections refActivityRejections = this.wmGenericDao.findById(refactivityrejectionsId);
-        if (refActivityRejections == null){
-            LOGGER.debug("No RefActivityRejections found with id: {}", refactivityrejectionsId);
-            throw new EntityNotFoundException(String.valueOf(refactivityrejectionsId));
-        }
-        return refActivityRejections;
+        return this.wmGenericDao.findById(refactivityrejectionsId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefActivityRejections findById(Integer refactivityrejectionsId) {
         LOGGER.debug("Finding RefActivityRejections by id: {}", refactivityrejectionsId);
-        return this.wmGenericDao.findById(refactivityrejectionsId);
+        try {
+            return this.wmGenericDao.findById(refactivityrejectionsId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefActivityRejections found with id: {}", refactivityrejectionsId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefActivityRejectionsServiceImpl implements RefActivityRejectionsSe
 	@Override
 	public RefActivityRejections update(RefActivityRejections refActivityRejections) throws EntityNotFoundException {
         LOGGER.debug("Updating RefActivityRejections with information: {}", refActivityRejections);
+
         this.wmGenericDao.update(refActivityRejections);
+        this.wmGenericDao.refresh(refActivityRejections);
 
-        Integer refactivityrejectionsId = refActivityRejections.getId();
-
-        return this.wmGenericDao.findById(refactivityrejectionsId);
+        return refActivityRejections;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class RefActivityRejectionsServiceImpl implements RefActivityRejectionsSe
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefActivityRejections refActivityRejections) {
+        LOGGER.debug("Deleting RefActivityRejections with {}", refActivityRejections);
+        this.wmGenericDao.delete(refActivityRejections);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

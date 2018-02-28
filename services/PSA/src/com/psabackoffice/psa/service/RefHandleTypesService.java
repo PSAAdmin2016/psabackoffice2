@@ -74,6 +74,13 @@ public interface RefHandleTypesService {
 	 */
 	RefHandleTypes delete(Integer refhandletypesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefHandleTypes with the given object.
+	 *
+	 * @param refHandleTypes The instance of the RefHandleTypes to be deleted; value cannot be null.
+	 */
+	void delete(RefHandleTypes refHandleTypes);
+
 	/**
 	 * Find all RefHandleTypes matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

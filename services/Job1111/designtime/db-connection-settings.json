@@ -78,19 +78,13 @@
     "table" : "LandingWeldSpecProcedures",
     "schema" : null
   }, {
-    "table" : "PipeBoltUp",
-    "schema" : null
-  }, {
-    "table" : "PipeDelay",
+    "table" : "PipeConnection",
     "schema" : null
   }, {
     "table" : "PipeDemo",
     "schema" : null
   }, {
     "table" : "PipeErection",
-    "schema" : null
-  }, {
-    "table" : "PipeEWO",
     "schema" : null
   }, {
     "table" : "PipeMisc",
@@ -126,28 +120,16 @@
     "table" : "SETTINGS",
     "schema" : null
   }, {
-    "table" : "SteelBoltOut",
-    "schema" : null
-  }, {
     "table" : "SteelDemo",
     "schema" : null
   }, {
-    "table" : "SteelErect",
-    "schema" : null
-  }, {
-    "table" : "SteelImp",
+    "table" : "SteelFA",
     "schema" : null
   }, {
     "table" : "SteelMisc",
     "schema" : null
   }, {
-    "table" : "SteelSell",
-    "schema" : null
-  }, {
     "table" : "SteelSellPackage",
-    "schema" : null
-  }, {
-    "table" : "SteelShake",
     "schema" : null
   }, {
     "table" : "SteelTrackerClassic",
@@ -156,13 +138,16 @@
     "table" : "SteelTrackerDetails",
     "schema" : null
   }, {
-    "table" : "SteelWeld",
-    "schema" : null
-  }, {
     "table" : "SubmissionActivityStatus",
     "schema" : null
   }, {
+    "table" : "SubsDelay",
+    "schema" : null
+  }, {
     "table" : "SubsDetails",
+    "schema" : null
+  }, {
+    "table" : "SubsEWO",
     "schema" : null
   }, {
     "table" : "SubsSignatures",
@@ -186,5 +171,5 @@
     "reason" : null,
     "message" : null
   },
-  "readOnly" : false
+  "readOnly" : true
 }

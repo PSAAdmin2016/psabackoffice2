@@ -74,6 +74,13 @@ public interface EmailTemplatesService {
 	 */
 	EmailTemplates delete(Integer emailtemplatesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing EmailTemplates with the given object.
+	 *
+	 * @param emailTemplates The instance of the EmailTemplates to be deleted; value cannot be null.
+	 */
+	void delete(EmailTemplates emailTemplates);
+
 	/**
 	 * Find all EmailTemplates matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

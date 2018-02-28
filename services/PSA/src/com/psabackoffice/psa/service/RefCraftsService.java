@@ -75,6 +75,13 @@ public interface RefCraftsService {
 	 */
 	RefCrafts delete(Integer refcraftsId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefCrafts with the given object.
+	 *
+	 * @param refCrafts The instance of the RefCrafts to be deleted; value cannot be null.
+	 */
+	void delete(RefCrafts refCrafts);
+
 	/**
 	 * Find all RefCrafts matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

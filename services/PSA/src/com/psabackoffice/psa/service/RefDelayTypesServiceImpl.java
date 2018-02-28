@@ -53,26 +53,27 @@ public class RefDelayTypesServiceImpl implements RefDelayTypesService {
         LOGGER.debug("Creating a new RefDelayTypes with information: {}", refDelayTypes);
 
         RefDelayTypes refDelayTypesCreated = this.wmGenericDao.create(refDelayTypes);
-        return refDelayTypesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refDelayTypesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefDelayTypes getById(Integer refdelaytypesId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefDelayTypes by id: {}", refdelaytypesId);
-        RefDelayTypes refDelayTypes = this.wmGenericDao.findById(refdelaytypesId);
-        if (refDelayTypes == null){
-            LOGGER.debug("No RefDelayTypes found with id: {}", refdelaytypesId);
-            throw new EntityNotFoundException(String.valueOf(refdelaytypesId));
-        }
-        return refDelayTypes;
+        return this.wmGenericDao.findById(refdelaytypesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefDelayTypes findById(Integer refdelaytypesId) {
         LOGGER.debug("Finding RefDelayTypes by id: {}", refdelaytypesId);
-        return this.wmGenericDao.findById(refdelaytypesId);
+        try {
+            return this.wmGenericDao.findById(refdelaytypesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefDelayTypes found with id: {}", refdelaytypesId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefDelayTypesServiceImpl implements RefDelayTypesService {
 	@Override
 	public RefDelayTypes update(RefDelayTypes refDelayTypes) throws EntityNotFoundException {
         LOGGER.debug("Updating RefDelayTypes with information: {}", refDelayTypes);
+
         this.wmGenericDao.update(refDelayTypes);
+        this.wmGenericDao.refresh(refDelayTypes);
 
-        Integer refdelaytypesId = refDelayTypes.getId();
-
-        return this.wmGenericDao.findById(refdelaytypesId);
+        return refDelayTypes;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class RefDelayTypesServiceImpl implements RefDelayTypesService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefDelayTypes refDelayTypes) {
+        LOGGER.debug("Deleting RefDelayTypes with {}", refDelayTypes);
+        this.wmGenericDao.delete(refDelayTypes);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

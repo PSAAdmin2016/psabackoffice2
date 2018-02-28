@@ -74,6 +74,13 @@ public interface CivilTrackerClassicService {
 	 */
 	CivilTrackerClassic delete(Integer civiltrackerclassicId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing CivilTrackerClassic with the given object.
+	 *
+	 * @param civilTrackerClassic The instance of the CivilTrackerClassic to be deleted; value cannot be null.
+	 */
+	void delete(CivilTrackerClassic civilTrackerClassic);
+
 	/**
 	 * Find all CivilTrackerClassics matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

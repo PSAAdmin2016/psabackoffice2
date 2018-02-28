@@ -8,6 +8,7 @@ package com.psabackoffice.psa.service;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,36 +59,29 @@ public class RefFbSeverityServiceImpl implements RefFbSeverityService {
     @Override
 	public RefFbSeverity create(RefFbSeverity refFbSeverity) {
         LOGGER.debug("Creating a new RefFbSeverity with information: {}", refFbSeverity);
-        List<FeedBack> feedBacks = refFbSeverity.getFeedBacks();
 
         RefFbSeverity refFbSeverityCreated = this.wmGenericDao.create(refFbSeverity);
-        if(feedBacks != null) {
-            for(FeedBack _feedBack : feedBacks) {
-                _feedBack.setRefFbSeverity(refFbSeverityCreated);
-                LOGGER.debug("Creating a new child FeedBack with information: {}", _feedBack);
-                feedBackService.create(_feedBack);
-            }
-        }
-        return refFbSeverityCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refFbSeverityCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefFbSeverity getById(Integer reffbseverityId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefFbSeverity by id: {}", reffbseverityId);
-        RefFbSeverity refFbSeverity = this.wmGenericDao.findById(reffbseverityId);
-        if (refFbSeverity == null){
-            LOGGER.debug("No RefFbSeverity found with id: {}", reffbseverityId);
-            throw new EntityNotFoundException(String.valueOf(reffbseverityId));
-        }
-        return refFbSeverity;
+        return this.wmGenericDao.findById(reffbseverityId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefFbSeverity findById(Integer reffbseverityId) {
         LOGGER.debug("Finding RefFbSeverity by id: {}", reffbseverityId);
-        return this.wmGenericDao.findById(reffbseverityId);
+        try {
+            return this.wmGenericDao.findById(reffbseverityId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefFbSeverity found with id: {}", reffbseverityId, ex);
+            return null;
+        }
     }
 
 
@@ -95,11 +89,21 @@ public class RefFbSeverityServiceImpl implements RefFbSeverityService {
 	@Override
 	public RefFbSeverity update(RefFbSeverity refFbSeverity) throws EntityNotFoundException {
         LOGGER.debug("Updating RefFbSeverity with information: {}", refFbSeverity);
+
+        List<FeedBack> feedBacks = refFbSeverity.getFeedBacks();
+
+        if(feedBacks != null && Hibernate.isInitialized(feedBacks)) {
+            if(!feedBacks.isEmpty()) {
+                for(FeedBack _feedBack : feedBacks) {
+                    _feedBack.setRefFbSeverity(refFbSeverity);
+                }
+            }
+        }
+
         this.wmGenericDao.update(refFbSeverity);
+        this.wmGenericDao.refresh(refFbSeverity);
 
-        Integer reffbseverityId = refFbSeverity.getId();
-
-        return this.wmGenericDao.findById(reffbseverityId);
+        return refFbSeverity;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -113,6 +117,13 @@ public class RefFbSeverityServiceImpl implements RefFbSeverityService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefFbSeverity refFbSeverity) {
+        LOGGER.debug("Deleting RefFbSeverity with {}", refFbSeverity);
+        this.wmGenericDao.delete(refFbSeverity);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

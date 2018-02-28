@@ -74,6 +74,13 @@ public interface SettingsService {
 	 */
 	Settings delete(String settingsId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing Settings with the given object.
+	 *
+	 * @param settings The instance of the Settings to be deleted; value cannot be null.
+	 */
+	void delete(Settings settings);
+
 	/**
 	 * Find all Settings matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

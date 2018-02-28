@@ -74,6 +74,13 @@ public interface SteelDemoService {
 	 */
 	SteelDemo delete(Integer steeldemoId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing SteelDemo with the given object.
+	 *
+	 * @param steelDemo The instance of the SteelDemo to be deleted; value cannot be null.
+	 */
+	void delete(SteelDemo steelDemo);
+
 	/**
 	 * Find all SteelDemos matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

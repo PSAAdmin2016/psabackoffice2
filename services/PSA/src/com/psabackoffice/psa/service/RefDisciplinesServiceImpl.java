@@ -8,6 +8,7 @@ package com.psabackoffice.psa.service;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,45 +65,29 @@ public class RefDisciplinesServiceImpl implements RefDisciplinesService {
     @Override
 	public RefDisciplines create(RefDisciplines refDisciplines) {
         LOGGER.debug("Creating a new RefDisciplines with information: {}", refDisciplines);
-        List<TblCrews> tblCrewses = refDisciplines.getTblCrewses();
-        List<TblUserPsa> tblUserPsas = refDisciplines.getTblUserPsas();
 
         RefDisciplines refDisciplinesCreated = this.wmGenericDao.create(refDisciplines);
-        if(tblCrewses != null) {
-            for(TblCrews _tblCrews : tblCrewses) {
-                _tblCrews.setRefDisciplines(refDisciplinesCreated);
-                LOGGER.debug("Creating a new child TblCrews with information: {}", _tblCrews);
-                tblCrewsService.create(_tblCrews);
-            }
-        }
-
-        if(tblUserPsas != null) {
-            for(TblUserPsa _tblUserPsa : tblUserPsas) {
-                _tblUserPsa.setRefDisciplines(refDisciplinesCreated);
-                LOGGER.debug("Creating a new child TblUserPsa with information: {}", _tblUserPsa);
-                tblUserPsaService.create(_tblUserPsa);
-            }
-        }
-        return refDisciplinesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refDisciplinesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefDisciplines getById(Integer refdisciplinesId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefDisciplines by id: {}", refdisciplinesId);
-        RefDisciplines refDisciplines = this.wmGenericDao.findById(refdisciplinesId);
-        if (refDisciplines == null){
-            LOGGER.debug("No RefDisciplines found with id: {}", refdisciplinesId);
-            throw new EntityNotFoundException(String.valueOf(refdisciplinesId));
-        }
-        return refDisciplines;
+        return this.wmGenericDao.findById(refdisciplinesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefDisciplines findById(Integer refdisciplinesId) {
         LOGGER.debug("Finding RefDisciplines by id: {}", refdisciplinesId);
-        return this.wmGenericDao.findById(refdisciplinesId);
+        try {
+            return this.wmGenericDao.findById(refdisciplinesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefDisciplines found with id: {}", refdisciplinesId, ex);
+            return null;
+        }
     }
 
 
@@ -110,11 +95,30 @@ public class RefDisciplinesServiceImpl implements RefDisciplinesService {
 	@Override
 	public RefDisciplines update(RefDisciplines refDisciplines) throws EntityNotFoundException {
         LOGGER.debug("Updating RefDisciplines with information: {}", refDisciplines);
+
+        List<TblCrews> tblCrewses = refDisciplines.getTblCrewses();
+        List<TblUserPsa> tblUserPsas = refDisciplines.getTblUserPsas();
+
+        if(tblCrewses != null && Hibernate.isInitialized(tblCrewses)) {
+            if(!tblCrewses.isEmpty()) {
+                for(TblCrews _tblCrews : tblCrewses) {
+                    _tblCrews.setRefDisciplines(refDisciplines);
+                }
+            }
+        }
+
+        if(tblUserPsas != null && Hibernate.isInitialized(tblUserPsas)) {
+            if(!tblUserPsas.isEmpty()) {
+                for(TblUserPsa _tblUserPsa : tblUserPsas) {
+                    _tblUserPsa.setRefDisciplines(refDisciplines);
+                }
+            }
+        }
+
         this.wmGenericDao.update(refDisciplines);
+        this.wmGenericDao.refresh(refDisciplines);
 
-        Integer refdisciplinesId = refDisciplines.getId();
-
-        return this.wmGenericDao.findById(refdisciplinesId);
+        return refDisciplines;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -128,6 +132,13 @@ public class RefDisciplinesServiceImpl implements RefDisciplinesService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefDisciplines refDisciplines) {
+        LOGGER.debug("Deleting RefDisciplines with {}", refDisciplines);
+        this.wmGenericDao.delete(refDisciplines);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

@@ -74,6 +74,13 @@ public interface LandingSpoolListService {
 	 */
 	LandingSpoolList delete(String landingspoollistId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing LandingSpoolList with the given object.
+	 *
+	 * @param landingSpoolList The instance of the LandingSpoolList to be deleted; value cannot be null.
+	 */
+	void delete(LandingSpoolList landingSpoolList);
+
 	/**
 	 * Find all LandingSpoolLists matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

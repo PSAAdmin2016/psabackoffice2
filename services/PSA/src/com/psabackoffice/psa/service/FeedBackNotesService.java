@@ -74,6 +74,13 @@ public interface FeedBackNotesService {
 	 */
 	FeedBackNotes delete(Integer feedbacknotesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing FeedBackNotes with the given object.
+	 *
+	 * @param feedBackNotes The instance of the FeedBackNotes to be deleted; value cannot be null.
+	 */
+	void delete(FeedBackNotes feedBackNotes);
+
 	/**
 	 * Find all FeedBackNotes matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

@@ -79,9 +79,9 @@ public class CivilFaController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public CivilFa editCivilFa(@PathVariable("id") Integer id, @RequestBody CivilFa civilFa) throws EntityNotFoundException {
-        LOGGER.debug("Editing CivilFa with id: {}" , civilFa.getId());
+        LOGGER.debug("Editing CivilFa with id: {}" , civilFa.getActivityId());
 
-        civilFa.setId(id);
+        civilFa.setActivityId(id);
         civilFa = civilFaService.update(civilFa);
         LOGGER.debug("CivilFa details with id: {}" , civilFa);
 

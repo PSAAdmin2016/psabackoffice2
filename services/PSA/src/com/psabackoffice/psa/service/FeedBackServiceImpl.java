@@ -8,6 +8,7 @@ package com.psabackoffice.psa.service;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,36 +59,29 @@ public class FeedBackServiceImpl implements FeedBackService {
     @Override
 	public FeedBack create(FeedBack feedBack) {
         LOGGER.debug("Creating a new FeedBack with information: {}", feedBack);
-        List<FeedBackNotes> feedBackNoteses = feedBack.getFeedBackNoteses();
 
         FeedBack feedBackCreated = this.wmGenericDao.create(feedBack);
-        if(feedBackNoteses != null) {
-            for(FeedBackNotes _feedBackNotes : feedBackNoteses) {
-                _feedBackNotes.setFeedBack(feedBackCreated);
-                LOGGER.debug("Creating a new child FeedBackNotes with information: {}", _feedBackNotes);
-                feedBackNotesService.create(_feedBackNotes);
-            }
-        }
-        return feedBackCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(feedBackCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public FeedBack getById(Integer feedbackId) throws EntityNotFoundException {
         LOGGER.debug("Finding FeedBack by id: {}", feedbackId);
-        FeedBack feedBack = this.wmGenericDao.findById(feedbackId);
-        if (feedBack == null){
-            LOGGER.debug("No FeedBack found with id: {}", feedbackId);
-            throw new EntityNotFoundException(String.valueOf(feedbackId));
-        }
-        return feedBack;
+        return this.wmGenericDao.findById(feedbackId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public FeedBack findById(Integer feedbackId) {
         LOGGER.debug("Finding FeedBack by id: {}", feedbackId);
-        return this.wmGenericDao.findById(feedbackId);
+        try {
+            return this.wmGenericDao.findById(feedbackId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No FeedBack found with id: {}", feedbackId, ex);
+            return null;
+        }
     }
 
 
@@ -95,11 +89,21 @@ public class FeedBackServiceImpl implements FeedBackService {
 	@Override
 	public FeedBack update(FeedBack feedBack) throws EntityNotFoundException {
         LOGGER.debug("Updating FeedBack with information: {}", feedBack);
+
+        List<FeedBackNotes> feedBackNoteses = feedBack.getFeedBackNoteses();
+
+        if(feedBackNoteses != null && Hibernate.isInitialized(feedBackNoteses)) {
+            if(!feedBackNoteses.isEmpty()) {
+                for(FeedBackNotes _feedBackNotes : feedBackNoteses) {
+                    _feedBackNotes.setFeedBack(feedBack);
+                }
+            }
+        }
+
         this.wmGenericDao.update(feedBack);
+        this.wmGenericDao.refresh(feedBack);
 
-        Integer feedbackId = feedBack.getId();
-
-        return this.wmGenericDao.findById(feedbackId);
+        return feedBack;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -113,6 +117,13 @@ public class FeedBackServiceImpl implements FeedBackService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(FeedBack feedBack) {
+        LOGGER.debug("Deleting FeedBack with {}", feedBack);
+        this.wmGenericDao.delete(feedBack);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

@@ -74,6 +74,13 @@ public interface RefActivityRejectionsService {
 	 */
 	RefActivityRejections delete(Integer refactivityrejectionsId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefActivityRejections with the given object.
+	 *
+	 * @param refActivityRejections The instance of the RefActivityRejections to be deleted; value cannot be null.
+	 */
+	void delete(RefActivityRejections refActivityRejections);
+
 	/**
 	 * Find all RefActivityRejections matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

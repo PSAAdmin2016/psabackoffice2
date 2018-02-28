@@ -53,26 +53,27 @@ public class RefWeldPositionsServiceImpl implements RefWeldPositionsService {
         LOGGER.debug("Creating a new RefWeldPositions with information: {}", refWeldPositions);
 
         RefWeldPositions refWeldPositionsCreated = this.wmGenericDao.create(refWeldPositions);
-        return refWeldPositionsCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refWeldPositionsCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefWeldPositions getById(Integer refweldpositionsId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefWeldPositions by id: {}", refweldpositionsId);
-        RefWeldPositions refWeldPositions = this.wmGenericDao.findById(refweldpositionsId);
-        if (refWeldPositions == null){
-            LOGGER.debug("No RefWeldPositions found with id: {}", refweldpositionsId);
-            throw new EntityNotFoundException(String.valueOf(refweldpositionsId));
-        }
-        return refWeldPositions;
+        return this.wmGenericDao.findById(refweldpositionsId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefWeldPositions findById(Integer refweldpositionsId) {
         LOGGER.debug("Finding RefWeldPositions by id: {}", refweldpositionsId);
-        return this.wmGenericDao.findById(refweldpositionsId);
+        try {
+            return this.wmGenericDao.findById(refweldpositionsId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefWeldPositions found with id: {}", refweldpositionsId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefWeldPositionsServiceImpl implements RefWeldPositionsService {
 	@Override
 	public RefWeldPositions update(RefWeldPositions refWeldPositions) throws EntityNotFoundException {
         LOGGER.debug("Updating RefWeldPositions with information: {}", refWeldPositions);
+
         this.wmGenericDao.update(refWeldPositions);
+        this.wmGenericDao.refresh(refWeldPositions);
 
-        Integer refweldpositionsId = refWeldPositions.getId();
-
-        return this.wmGenericDao.findById(refweldpositionsId);
+        return refWeldPositions;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class RefWeldPositionsServiceImpl implements RefWeldPositionsService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefWeldPositions refWeldPositions) {
+        LOGGER.debug("Deleting RefWeldPositions with {}", refWeldPositions);
+        this.wmGenericDao.delete(refWeldPositions);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

@@ -8,6 +8,7 @@ package com.psabackoffice.psa.service;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,36 +59,29 @@ public class RefFbStatusesServiceImpl implements RefFbStatusesService {
     @Override
 	public RefFbStatuses create(RefFbStatuses refFbStatuses) {
         LOGGER.debug("Creating a new RefFbStatuses with information: {}", refFbStatuses);
-        List<FeedBack> feedBacks = refFbStatuses.getFeedBacks();
 
         RefFbStatuses refFbStatusesCreated = this.wmGenericDao.create(refFbStatuses);
-        if(feedBacks != null) {
-            for(FeedBack _feedBack : feedBacks) {
-                _feedBack.setRefFbStatuses(refFbStatusesCreated);
-                LOGGER.debug("Creating a new child FeedBack with information: {}", _feedBack);
-                feedBackService.create(_feedBack);
-            }
-        }
-        return refFbStatusesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refFbStatusesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefFbStatuses getById(Integer reffbstatusesId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefFbStatuses by id: {}", reffbstatusesId);
-        RefFbStatuses refFbStatuses = this.wmGenericDao.findById(reffbstatusesId);
-        if (refFbStatuses == null){
-            LOGGER.debug("No RefFbStatuses found with id: {}", reffbstatusesId);
-            throw new EntityNotFoundException(String.valueOf(reffbstatusesId));
-        }
-        return refFbStatuses;
+        return this.wmGenericDao.findById(reffbstatusesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefFbStatuses findById(Integer reffbstatusesId) {
         LOGGER.debug("Finding RefFbStatuses by id: {}", reffbstatusesId);
-        return this.wmGenericDao.findById(reffbstatusesId);
+        try {
+            return this.wmGenericDao.findById(reffbstatusesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefFbStatuses found with id: {}", reffbstatusesId, ex);
+            return null;
+        }
     }
 
 
@@ -95,11 +89,21 @@ public class RefFbStatusesServiceImpl implements RefFbStatusesService {
 	@Override
 	public RefFbStatuses update(RefFbStatuses refFbStatuses) throws EntityNotFoundException {
         LOGGER.debug("Updating RefFbStatuses with information: {}", refFbStatuses);
+
+        List<FeedBack> feedBacks = refFbStatuses.getFeedBacks();
+
+        if(feedBacks != null && Hibernate.isInitialized(feedBacks)) {
+            if(!feedBacks.isEmpty()) {
+                for(FeedBack _feedBack : feedBacks) {
+                    _feedBack.setRefFbStatuses(refFbStatuses);
+                }
+            }
+        }
+
         this.wmGenericDao.update(refFbStatuses);
+        this.wmGenericDao.refresh(refFbStatuses);
 
-        Integer reffbstatusesId = refFbStatuses.getId();
-
-        return this.wmGenericDao.findById(reffbstatusesId);
+        return refFbStatuses;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -113,6 +117,13 @@ public class RefFbStatusesServiceImpl implements RefFbStatusesService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefFbStatuses refFbStatuses) {
+        LOGGER.debug("Deleting RefFbStatuses with {}", refFbStatuses);
+        this.wmGenericDao.delete(refFbStatuses);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

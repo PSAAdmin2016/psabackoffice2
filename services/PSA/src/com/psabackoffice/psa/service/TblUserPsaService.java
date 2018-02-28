@@ -97,6 +97,13 @@ public interface TblUserPsaService {
 	 */
 	TblUserPsa delete(Integer tbluserpsaId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing TblUserPsa with the given object.
+	 *
+	 * @param tblUserPsa The instance of the TblUserPsa to be deleted; value cannot be null.
+	 */
+	void delete(TblUserPsa tblUserPsa);
+
 	/**
 	 * Find all TblUserPsas matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

@@ -53,26 +53,27 @@ public class CacheStatsSteelPcotServiceImpl implements CacheStatsSteelPcotServic
         LOGGER.debug("Creating a new CacheStatsSteelPcot with information: {}", cacheStatsSteelPcot);
 
         CacheStatsSteelPcot cacheStatsSteelPcotCreated = this.wmGenericDao.create(cacheStatsSteelPcot);
-        return cacheStatsSteelPcotCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(cacheStatsSteelPcotCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public CacheStatsSteelPcot getById(Integer cachestatssteelpcotId) throws EntityNotFoundException {
         LOGGER.debug("Finding CacheStatsSteelPcot by id: {}", cachestatssteelpcotId);
-        CacheStatsSteelPcot cacheStatsSteelPcot = this.wmGenericDao.findById(cachestatssteelpcotId);
-        if (cacheStatsSteelPcot == null){
-            LOGGER.debug("No CacheStatsSteelPcot found with id: {}", cachestatssteelpcotId);
-            throw new EntityNotFoundException(String.valueOf(cachestatssteelpcotId));
-        }
-        return cacheStatsSteelPcot;
+        return this.wmGenericDao.findById(cachestatssteelpcotId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public CacheStatsSteelPcot findById(Integer cachestatssteelpcotId) {
         LOGGER.debug("Finding CacheStatsSteelPcot by id: {}", cachestatssteelpcotId);
-        return this.wmGenericDao.findById(cachestatssteelpcotId);
+        try {
+            return this.wmGenericDao.findById(cachestatssteelpcotId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No CacheStatsSteelPcot found with id: {}", cachestatssteelpcotId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class CacheStatsSteelPcotServiceImpl implements CacheStatsSteelPcotServic
 	@Override
 	public CacheStatsSteelPcot update(CacheStatsSteelPcot cacheStatsSteelPcot) throws EntityNotFoundException {
         LOGGER.debug("Updating CacheStatsSteelPcot with information: {}", cacheStatsSteelPcot);
+
         this.wmGenericDao.update(cacheStatsSteelPcot);
+        this.wmGenericDao.refresh(cacheStatsSteelPcot);
 
-        Integer cachestatssteelpcotId = cacheStatsSteelPcot.getId();
-
-        return this.wmGenericDao.findById(cachestatssteelpcotId);
+        return cacheStatsSteelPcot;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class CacheStatsSteelPcotServiceImpl implements CacheStatsSteelPcotServic
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(CacheStatsSteelPcot cacheStatsSteelPcot) {
+        LOGGER.debug("Deleting CacheStatsSteelPcot with {}", cacheStatsSteelPcot);
+        this.wmGenericDao.delete(cacheStatsSteelPcot);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

@@ -8,6 +8,7 @@ package com.psabackoffice.psa.service;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,36 +59,29 @@ public class MenuHelpVideosServiceImpl implements MenuHelpVideosService {
     @Override
 	public MenuHelpVideos create(MenuHelpVideos menuHelpVideos) {
         LOGGER.debug("Creating a new MenuHelpVideos with information: {}", menuHelpVideos);
-        List<MenuSubHelpVideos> menuSubHelpVideoses = menuHelpVideos.getMenuSubHelpVideoses();
 
         MenuHelpVideos menuHelpVideosCreated = this.wmGenericDao.create(menuHelpVideos);
-        if(menuSubHelpVideoses != null) {
-            for(MenuSubHelpVideos _menuSubHelpVideos : menuSubHelpVideoses) {
-                _menuSubHelpVideos.setMenuHelpVideos(menuHelpVideosCreated);
-                LOGGER.debug("Creating a new child MenuSubHelpVideos with information: {}", _menuSubHelpVideos);
-                menuSubHelpVideosService.create(_menuSubHelpVideos);
-            }
-        }
-        return menuHelpVideosCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(menuHelpVideosCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public MenuHelpVideos getById(Integer menuhelpvideosId) throws EntityNotFoundException {
         LOGGER.debug("Finding MenuHelpVideos by id: {}", menuhelpvideosId);
-        MenuHelpVideos menuHelpVideos = this.wmGenericDao.findById(menuhelpvideosId);
-        if (menuHelpVideos == null){
-            LOGGER.debug("No MenuHelpVideos found with id: {}", menuhelpvideosId);
-            throw new EntityNotFoundException(String.valueOf(menuhelpvideosId));
-        }
-        return menuHelpVideos;
+        return this.wmGenericDao.findById(menuhelpvideosId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public MenuHelpVideos findById(Integer menuhelpvideosId) {
         LOGGER.debug("Finding MenuHelpVideos by id: {}", menuhelpvideosId);
-        return this.wmGenericDao.findById(menuhelpvideosId);
+        try {
+            return this.wmGenericDao.findById(menuhelpvideosId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No MenuHelpVideos found with id: {}", menuhelpvideosId, ex);
+            return null;
+        }
     }
 
 
@@ -95,11 +89,21 @@ public class MenuHelpVideosServiceImpl implements MenuHelpVideosService {
 	@Override
 	public MenuHelpVideos update(MenuHelpVideos menuHelpVideos) throws EntityNotFoundException {
         LOGGER.debug("Updating MenuHelpVideos with information: {}", menuHelpVideos);
+
+        List<MenuSubHelpVideos> menuSubHelpVideoses = menuHelpVideos.getMenuSubHelpVideoses();
+
+        if(menuSubHelpVideoses != null && Hibernate.isInitialized(menuSubHelpVideoses)) {
+            if(!menuSubHelpVideoses.isEmpty()) {
+                for(MenuSubHelpVideos _menuSubHelpVideos : menuSubHelpVideoses) {
+                    _menuSubHelpVideos.setMenuHelpVideos(menuHelpVideos);
+                }
+            }
+        }
+
         this.wmGenericDao.update(menuHelpVideos);
+        this.wmGenericDao.refresh(menuHelpVideos);
 
-        Integer menuhelpvideosId = menuHelpVideos.getId();
-
-        return this.wmGenericDao.findById(menuhelpvideosId);
+        return menuHelpVideos;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -113,6 +117,13 @@ public class MenuHelpVideosServiceImpl implements MenuHelpVideosService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(MenuHelpVideos menuHelpVideos) {
+        LOGGER.debug("Deleting MenuHelpVideos with {}", menuHelpVideos);
+        this.wmGenericDao.delete(menuHelpVideos);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

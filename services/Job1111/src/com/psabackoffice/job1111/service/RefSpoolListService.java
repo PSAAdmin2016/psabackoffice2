@@ -74,6 +74,13 @@ public interface RefSpoolListService {
 	 */
 	RefSpoolList delete(String refspoollistId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefSpoolList with the given object.
+	 *
+	 * @param refSpoolList The instance of the RefSpoolList to be deleted; value cannot be null.
+	 */
+	void delete(RefSpoolList refSpoolList);
+
 	/**
 	 * Find all RefSpoolLists matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

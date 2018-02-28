@@ -74,6 +74,13 @@ public interface RefWeldMaterialsService {
 	 */
 	RefWeldMaterials delete(Integer refweldmaterialsId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefWeldMaterials with the given object.
+	 *
+	 * @param refWeldMaterials The instance of the RefWeldMaterials to be deleted; value cannot be null.
+	 */
+	void delete(RefWeldMaterials refWeldMaterials);
+
 	/**
 	 * Find all RefWeldMaterials matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

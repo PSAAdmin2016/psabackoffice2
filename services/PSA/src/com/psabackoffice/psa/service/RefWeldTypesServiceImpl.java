@@ -53,26 +53,27 @@ public class RefWeldTypesServiceImpl implements RefWeldTypesService {
         LOGGER.debug("Creating a new RefWeldTypes with information: {}", refWeldTypes);
 
         RefWeldTypes refWeldTypesCreated = this.wmGenericDao.create(refWeldTypes);
-        return refWeldTypesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refWeldTypesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefWeldTypes getById(Integer refweldtypesId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefWeldTypes by id: {}", refweldtypesId);
-        RefWeldTypes refWeldTypes = this.wmGenericDao.findById(refweldtypesId);
-        if (refWeldTypes == null){
-            LOGGER.debug("No RefWeldTypes found with id: {}", refweldtypesId);
-            throw new EntityNotFoundException(String.valueOf(refweldtypesId));
-        }
-        return refWeldTypes;
+        return this.wmGenericDao.findById(refweldtypesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefWeldTypes findById(Integer refweldtypesId) {
         LOGGER.debug("Finding RefWeldTypes by id: {}", refweldtypesId);
-        return this.wmGenericDao.findById(refweldtypesId);
+        try {
+            return this.wmGenericDao.findById(refweldtypesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefWeldTypes found with id: {}", refweldtypesId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefWeldTypesServiceImpl implements RefWeldTypesService {
 	@Override
 	public RefWeldTypes update(RefWeldTypes refWeldTypes) throws EntityNotFoundException {
         LOGGER.debug("Updating RefWeldTypes with information: {}", refWeldTypes);
+
         this.wmGenericDao.update(refWeldTypes);
+        this.wmGenericDao.refresh(refWeldTypes);
 
-        Integer refweldtypesId = refWeldTypes.getId();
-
-        return this.wmGenericDao.findById(refweldtypesId);
+        return refWeldTypes;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class RefWeldTypesServiceImpl implements RefWeldTypesService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefWeldTypes refWeldTypes) {
+        LOGGER.debug("Deleting RefWeldTypes with {}", refWeldTypes);
+        this.wmGenericDao.delete(refWeldTypes);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

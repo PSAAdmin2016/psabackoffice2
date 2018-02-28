@@ -74,6 +74,13 @@ public interface PipeSupportsService {
 	 */
 	PipeSupports delete(Integer pipesupportsId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing PipeSupports with the given object.
+	 *
+	 * @param pipeSupports The instance of the PipeSupports to be deleted; value cannot be null.
+	 */
+	void delete(PipeSupports pipeSupports);
+
 	/**
 	 * Find all PipeSupports matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

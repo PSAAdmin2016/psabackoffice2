@@ -53,26 +53,27 @@ public class PipeTrackerDetailsServiceImpl implements PipeTrackerDetailsService 
         LOGGER.debug("Creating a new PipeTrackerDetails with information: {}", pipeTrackerDetails);
 
         PipeTrackerDetails pipeTrackerDetailsCreated = this.wmGenericDao.create(pipeTrackerDetails);
-        return pipeTrackerDetailsCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(pipeTrackerDetailsCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public PipeTrackerDetails getById(Integer pipetrackerdetailsId) throws EntityNotFoundException {
         LOGGER.debug("Finding PipeTrackerDetails by id: {}", pipetrackerdetailsId);
-        PipeTrackerDetails pipeTrackerDetails = this.wmGenericDao.findById(pipetrackerdetailsId);
-        if (pipeTrackerDetails == null){
-            LOGGER.debug("No PipeTrackerDetails found with id: {}", pipetrackerdetailsId);
-            throw new EntityNotFoundException(String.valueOf(pipetrackerdetailsId));
-        }
-        return pipeTrackerDetails;
+        return this.wmGenericDao.findById(pipetrackerdetailsId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public PipeTrackerDetails findById(Integer pipetrackerdetailsId) {
         LOGGER.debug("Finding PipeTrackerDetails by id: {}", pipetrackerdetailsId);
-        return this.wmGenericDao.findById(pipetrackerdetailsId);
+        try {
+            return this.wmGenericDao.findById(pipetrackerdetailsId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No PipeTrackerDetails found with id: {}", pipetrackerdetailsId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class PipeTrackerDetailsServiceImpl implements PipeTrackerDetailsService 
 	@Override
 	public PipeTrackerDetails update(PipeTrackerDetails pipeTrackerDetails) throws EntityNotFoundException {
         LOGGER.debug("Updating PipeTrackerDetails with information: {}", pipeTrackerDetails);
+
         this.wmGenericDao.update(pipeTrackerDetails);
+        this.wmGenericDao.refresh(pipeTrackerDetails);
 
-        Integer pipetrackerdetailsId = pipeTrackerDetails.getId();
-
-        return this.wmGenericDao.findById(pipetrackerdetailsId);
+        return pipeTrackerDetails;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class PipeTrackerDetailsServiceImpl implements PipeTrackerDetailsService 
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(PipeTrackerDetails pipeTrackerDetails) {
+        LOGGER.debug("Deleting PipeTrackerDetails with {}", pipeTrackerDetails);
+        this.wmGenericDao.delete(pipeTrackerDetails);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

@@ -83,6 +83,13 @@ public interface TblCrewsService {
 	 */
 	TblCrews delete(Integer tblcrewsId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing TblCrews with the given object.
+	 *
+	 * @param tblCrews The instance of the TblCrews to be deleted; value cannot be null.
+	 */
+	void delete(TblCrews tblCrews);
+
 	/**
 	 * Find all TblCrews matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

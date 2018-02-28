@@ -8,6 +8,7 @@ package com.psabackoffice.job1111.service;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,30 +25,12 @@ import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
+import com.wavemaker.runtime.data.util.DaoUtils;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.psabackoffice.job1111.CivilFa;
-import com.psabackoffice.job1111.CivilMisc;
-import com.psabackoffice.job1111.CivilSellPackage;
-import com.psabackoffice.job1111.EquipFa;
-import com.psabackoffice.job1111.PipeDemo;
-import com.psabackoffice.job1111.PipeErection;
-import com.psabackoffice.job1111.PipeEwo;
-import com.psabackoffice.job1111.PipeMisc;
-import com.psabackoffice.job1111.PipeSupports;
-import com.psabackoffice.job1111.PipeTesting;
-import com.psabackoffice.job1111.PipeTrim;
-import com.psabackoffice.job1111.PipeWeld;
-import com.psabackoffice.job1111.SteelBoltOut;
-import com.psabackoffice.job1111.SteelDemo;
-import com.psabackoffice.job1111.SteelErect;
-import com.psabackoffice.job1111.SteelImp;
-import com.psabackoffice.job1111.SteelMisc;
-import com.psabackoffice.job1111.SteelSell;
-import com.psabackoffice.job1111.SteelSellPackage;
-import com.psabackoffice.job1111.SteelShake;
-import com.psabackoffice.job1111.SteelWeld;
+import com.psabackoffice.job1111.SubmissionActivityStatus;
 import com.psabackoffice.job1111.SubsDetails;
+import com.psabackoffice.job1111.SubsSignatures;
 
 
 /**
@@ -63,108 +46,13 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
 
     @Lazy
     @Autowired
-	@Qualifier("Job1111.PipeErectionService")
-	private PipeErectionService pipeErectionService;
+	@Qualifier("Job1111.SubsSignaturesService")
+	private SubsSignaturesService subsSignaturesService;
 
     @Lazy
     @Autowired
-	@Qualifier("Job1111.PipeMiscService")
-	private PipeMiscService pipeMiscService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.EquipFaService")
-	private EquipFaService equipFaService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.PipeDemoService")
-	private PipeDemoService pipeDemoService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.SteelMiscService")
-	private SteelMiscService steelMiscService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.PipeTrimService")
-	private PipeTrimService pipeTrimService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.PipeTestingService")
-	private PipeTestingService pipeTestingService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.SteelImpService")
-	private SteelImpService steelImpService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.PipeWeldService")
-	private PipeWeldService pipeWeldService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.CivilSellPackageService")
-	private CivilSellPackageService civilSellPackageService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.SteelShakeService")
-	private SteelShakeService steelShakeService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.SteelBoltOutService")
-	private SteelBoltOutService steelBoltOutService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.SteelWeldService")
-	private SteelWeldService steelWeldService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.CivilFaService")
-	private CivilFaService civilFaService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.SteelDemoService")
-	private SteelDemoService steelDemoService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.PipeEwoService")
-	private PipeEwoService pipeEwoService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.SteelErectService")
-	private SteelErectService steelErectService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.CivilMiscService")
-	private CivilMiscService civilMiscService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.PipeSupportsService")
-	private PipeSupportsService pipeSupportsService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.SteelSellService")
-	private SteelSellService steelSellService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.SteelSellPackageService")
-	private SteelSellPackageService steelSellPackageService;
+	@Qualifier("Job1111.SubmissionActivityStatusService")
+	private SubmissionActivityStatusService submissionActivityStatusService;
 
     @Autowired
     @Qualifier("Job1111.SubsDetailsDao")
@@ -178,216 +66,29 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
     @Override
 	public SubsDetails create(SubsDetails subsDetails) {
         LOGGER.debug("Creating a new SubsDetails with information: {}", subsDetails);
-        List<CivilFa> civilFas = subsDetails.getCivilFas();
-        List<CivilMisc> civilMiscs = subsDetails.getCivilMiscs();
-        List<CivilSellPackage> civilSellPackages = subsDetails.getCivilSellPackages();
-        List<EquipFa> equipFas = subsDetails.getEquipFas();
-        List<PipeDemo> pipeDemos = subsDetails.getPipeDemos();
-        List<PipeEwo> pipeEwos = subsDetails.getPipeEwos();
-        List<PipeErection> pipeErections = subsDetails.getPipeErections();
-        List<PipeMisc> pipeMiscs = subsDetails.getPipeMiscs();
-        List<PipeSupports> pipeSupportses = subsDetails.getPipeSupportses();
-        List<PipeTesting> pipeTestings = subsDetails.getPipeTestings();
-        List<PipeTrim> pipeTrims = subsDetails.getPipeTrims();
-        List<PipeWeld> pipeWelds = subsDetails.getPipeWelds();
-        List<SteelBoltOut> steelBoltOuts = subsDetails.getSteelBoltOuts();
-        List<SteelDemo> steelDemos = subsDetails.getSteelDemos();
-        List<SteelErect> steelErects = subsDetails.getSteelErects();
-        List<SteelImp> steelImps = subsDetails.getSteelImps();
-        List<SteelMisc> steelMiscs = subsDetails.getSteelMiscs();
-        List<SteelSell> steelSells = subsDetails.getSteelSells();
-        List<SteelSellPackage> steelSellPackages = subsDetails.getSteelSellPackages();
-        List<SteelShake> steelShakes = subsDetails.getSteelShakes();
-        List<SteelWeld> steelWelds = subsDetails.getSteelWelds();
 
         SubsDetails subsDetailsCreated = this.wmGenericDao.create(subsDetails);
-        if(civilFas != null) {
-            for(CivilFa _civilFa : civilFas) {
-                _civilFa.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child CivilFa with information: {}", _civilFa);
-                civilFaService.create(_civilFa);
-            }
-        }
-
-        if(civilMiscs != null) {
-            for(CivilMisc _civilMisc : civilMiscs) {
-                _civilMisc.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child CivilMisc with information: {}", _civilMisc);
-                civilMiscService.create(_civilMisc);
-            }
-        }
-
-        if(civilSellPackages != null) {
-            for(CivilSellPackage _civilSellPackage : civilSellPackages) {
-                _civilSellPackage.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child CivilSellPackage with information: {}", _civilSellPackage);
-                civilSellPackageService.create(_civilSellPackage);
-            }
-        }
-
-        if(equipFas != null) {
-            for(EquipFa _equipFa : equipFas) {
-                _equipFa.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child EquipFa with information: {}", _equipFa);
-                equipFaService.create(_equipFa);
-            }
-        }
-
-        if(pipeDemos != null) {
-            for(PipeDemo _pipeDemo : pipeDemos) {
-                _pipeDemo.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child PipeDemo with information: {}", _pipeDemo);
-                pipeDemoService.create(_pipeDemo);
-            }
-        }
-
-        if(pipeEwos != null) {
-            for(PipeEwo _pipeEwo : pipeEwos) {
-                _pipeEwo.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child PipeEwo with information: {}", _pipeEwo);
-                pipeEwoService.create(_pipeEwo);
-            }
-        }
-
-        if(pipeErections != null) {
-            for(PipeErection _pipeErection : pipeErections) {
-                _pipeErection.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child PipeErection with information: {}", _pipeErection);
-                pipeErectionService.create(_pipeErection);
-            }
-        }
-
-        if(pipeMiscs != null) {
-            for(PipeMisc _pipeMisc : pipeMiscs) {
-                _pipeMisc.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child PipeMisc with information: {}", _pipeMisc);
-                pipeMiscService.create(_pipeMisc);
-            }
-        }
-
-        if(pipeSupportses != null) {
-            for(PipeSupports _pipeSupports : pipeSupportses) {
-                _pipeSupports.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child PipeSupports with information: {}", _pipeSupports);
-                pipeSupportsService.create(_pipeSupports);
-            }
-        }
-
-        if(pipeTestings != null) {
-            for(PipeTesting _pipeTesting : pipeTestings) {
-                _pipeTesting.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child PipeTesting with information: {}", _pipeTesting);
-                pipeTestingService.create(_pipeTesting);
-            }
-        }
-
-        if(pipeTrims != null) {
-            for(PipeTrim _pipeTrim : pipeTrims) {
-                _pipeTrim.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child PipeTrim with information: {}", _pipeTrim);
-                pipeTrimService.create(_pipeTrim);
-            }
-        }
-
-        if(pipeWelds != null) {
-            for(PipeWeld _pipeWeld : pipeWelds) {
-                _pipeWeld.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child PipeWeld with information: {}", _pipeWeld);
-                pipeWeldService.create(_pipeWeld);
-            }
-        }
-
-        if(steelBoltOuts != null) {
-            for(SteelBoltOut _steelBoltOut : steelBoltOuts) {
-                _steelBoltOut.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child SteelBoltOut with information: {}", _steelBoltOut);
-                steelBoltOutService.create(_steelBoltOut);
-            }
-        }
-
-        if(steelDemos != null) {
-            for(SteelDemo _steelDemo : steelDemos) {
-                _steelDemo.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child SteelDemo with information: {}", _steelDemo);
-                steelDemoService.create(_steelDemo);
-            }
-        }
-
-        if(steelErects != null) {
-            for(SteelErect _steelErect : steelErects) {
-                _steelErect.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child SteelErect with information: {}", _steelErect);
-                steelErectService.create(_steelErect);
-            }
-        }
-
-        if(steelImps != null) {
-            for(SteelImp _steelImp : steelImps) {
-                _steelImp.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child SteelImp with information: {}", _steelImp);
-                steelImpService.create(_steelImp);
-            }
-        }
-
-        if(steelMiscs != null) {
-            for(SteelMisc _steelMisc : steelMiscs) {
-                _steelMisc.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child SteelMisc with information: {}", _steelMisc);
-                steelMiscService.create(_steelMisc);
-            }
-        }
-
-        if(steelSells != null) {
-            for(SteelSell _steelSell : steelSells) {
-                _steelSell.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child SteelSell with information: {}", _steelSell);
-                steelSellService.create(_steelSell);
-            }
-        }
-
-        if(steelSellPackages != null) {
-            for(SteelSellPackage _steelSellPackage : steelSellPackages) {
-                _steelSellPackage.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child SteelSellPackage with information: {}", _steelSellPackage);
-                steelSellPackageService.create(_steelSellPackage);
-            }
-        }
-
-        if(steelShakes != null) {
-            for(SteelShake _steelShake : steelShakes) {
-                _steelShake.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child SteelShake with information: {}", _steelShake);
-                steelShakeService.create(_steelShake);
-            }
-        }
-
-        if(steelWelds != null) {
-            for(SteelWeld _steelWeld : steelWelds) {
-                _steelWeld.setSubsDetails(subsDetailsCreated);
-                LOGGER.debug("Creating a new child SteelWeld with information: {}", _steelWeld);
-                steelWeldService.create(_steelWeld);
-            }
-        }
-        return subsDetailsCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(subsDetailsCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public SubsDetails getById(Integer subsdetailsId) throws EntityNotFoundException {
         LOGGER.debug("Finding SubsDetails by id: {}", subsdetailsId);
-        SubsDetails subsDetails = this.wmGenericDao.findById(subsdetailsId);
-        if (subsDetails == null){
-            LOGGER.debug("No SubsDetails found with id: {}", subsdetailsId);
-            throw new EntityNotFoundException(String.valueOf(subsdetailsId));
-        }
-        return subsDetails;
+        return this.wmGenericDao.findById(subsdetailsId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public SubsDetails findById(Integer subsdetailsId) {
         LOGGER.debug("Finding SubsDetails by id: {}", subsdetailsId);
-        return this.wmGenericDao.findById(subsdetailsId);
+        try {
+            return this.wmGenericDao.findById(subsdetailsId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No SubsDetails found with id: {}", subsdetailsId, ex);
+            return null;
+        }
     }
 
 
@@ -395,11 +96,54 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
 	@Override
 	public SubsDetails update(SubsDetails subsDetails) throws EntityNotFoundException {
         LOGGER.debug("Updating SubsDetails with information: {}", subsDetails);
+
+        List<SubmissionActivityStatus> submissionActivityStatuses = subsDetails.getSubmissionActivityStatuses();
+        List<SubsSignatures> subsSignatureses = subsDetails.getSubsSignatureses();
+
+        if(submissionActivityStatuses != null && Hibernate.isInitialized(submissionActivityStatuses)) {
+            if(!submissionActivityStatuses.isEmpty()) {
+                for(SubmissionActivityStatus _submissionActivityStatus : submissionActivityStatuses) {
+                    _submissionActivityStatus.setSubsDetails(subsDetails);
+                }
+            }
+        }
+
+        if(subsSignatureses != null && Hibernate.isInitialized(subsSignatureses)) {
+            if(!subsSignatureses.isEmpty()) {
+                for(SubsSignatures _subsSignatures : subsSignatureses) {
+                    _subsSignatures.setSubsDetails(subsDetails);
+                }
+            }
+        }
+
         this.wmGenericDao.update(subsDetails);
+        this.wmGenericDao.refresh(subsDetails);
 
-        Integer subsdetailsId = subsDetails.getSubmissionId();
+        // Deleting children which are not present in the list.
+        if(submissionActivityStatuses != null && Hibernate.isInitialized(submissionActivityStatuses) && !submissionActivityStatuses.isEmpty()) {
+            List<SubmissionActivityStatus> _remainingChildren = wmGenericDao.execute(
+                session -> DaoUtils.findAllRemainingChildren(session, SubmissionActivityStatus.class,
+                        new DaoUtils.ChildrenFilter("subsDetails", subsDetails, submissionActivityStatuses)));
+            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
+            for(SubmissionActivityStatus _submissionActivityStatus : _remainingChildren) {
+                submissionActivityStatusService.delete(_submissionActivityStatus);
+            }
+            subsDetails.setSubmissionActivityStatuses(submissionActivityStatuses);
+        }
 
-        return this.wmGenericDao.findById(subsdetailsId);
+        // Deleting children which are not present in the list.
+        if(subsSignatureses != null && Hibernate.isInitialized(subsSignatureses) && !subsSignatureses.isEmpty()) {
+            List<SubsSignatures> _remainingChildren = wmGenericDao.execute(
+                session -> DaoUtils.findAllRemainingChildren(session, SubsSignatures.class,
+                        new DaoUtils.ChildrenFilter("subsDetails", subsDetails, subsSignatureses)));
+            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
+            for(SubsSignatures _subsSignatures : _remainingChildren) {
+                subsSignaturesService.delete(_subsSignatures);
+            }
+            subsDetails.setSubsSignatureses(subsSignatureses);
+        }
+
+        return subsDetails;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -413,6 +157,13 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(SubsDetails subsDetails) {
+        LOGGER.debug("Deleting SubsDetails with {}", subsDetails);
+        this.wmGenericDao.delete(subsDetails);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -450,422 +201,42 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<CivilFa> findAssociatedCivilFas(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated civilFas");
+    public Page<SubmissionActivityStatus> findAssociatedSubmissionActivityStatuses(Integer submissionId, Pageable pageable) {
+        LOGGER.debug("Fetching all associated submissionActivityStatuses");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
 
-        return civilFaService.findAll(queryBuilder.toString(), pageable);
+        return submissionActivityStatusService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<CivilMisc> findAssociatedCivilMiscs(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated civilMiscs");
+    public Page<SubsSignatures> findAssociatedSubsSignatureses(Integer submissionId, Pageable pageable) {
+        LOGGER.debug("Fetching all associated subsSignatureses");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
 
-        return civilMiscService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<CivilSellPackage> findAssociatedCivilSellPackages(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated civilSellPackages");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
-
-        return civilSellPackageService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<EquipFa> findAssociatedEquipFas(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated equipFas");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
-
-        return equipFaService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<PipeDemo> findAssociatedPipeDemos(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated pipeDemos");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
-
-        return pipeDemoService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<PipeEwo> findAssociatedPipeEwos(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated pipeEwos");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
-
-        return pipeEwoService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<PipeErection> findAssociatedPipeErections(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated pipeErections");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
-
-        return pipeErectionService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<PipeMisc> findAssociatedPipeMiscs(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated pipeMiscs");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
-
-        return pipeMiscService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<PipeSupports> findAssociatedPipeSupportses(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated pipeSupportses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
-
-        return pipeSupportsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<PipeTesting> findAssociatedPipeTestings(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated pipeTestings");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
-
-        return pipeTestingService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<PipeTrim> findAssociatedPipeTrims(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated pipeTrims");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
-
-        return pipeTrimService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<PipeWeld> findAssociatedPipeWelds(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated pipeWelds");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
-
-        return pipeWeldService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelBoltOut> findAssociatedSteelBoltOuts(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelBoltOuts");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
-
-        return steelBoltOutService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelDemo> findAssociatedSteelDemos(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelDemos");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
-
-        return steelDemoService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelErect> findAssociatedSteelErects(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelErects");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
-
-        return steelErectService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelImp> findAssociatedSteelImps(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelImps");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
-
-        return steelImpService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelMisc> findAssociatedSteelMiscs(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelMiscs");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
-
-        return steelMiscService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelSell> findAssociatedSteelSells(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelSells");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
-
-        return steelSellService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelSellPackage> findAssociatedSteelSellPackages(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelSellPackages");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
-
-        return steelSellPackageService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelShake> findAssociatedSteelShakes(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelShakes");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
-
-        return steelShakeService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<SteelWeld> findAssociatedSteelWelds(Integer submissionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated steelWelds");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("subsDetails.submissionId = '" + submissionId + "'");
-
-        return steelWeldService.findAll(queryBuilder.toString(), pageable);
+        return subsSignaturesService.findAll(queryBuilder.toString(), pageable);
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service PipeErectionService instance
+	 * @param service SubsSignaturesService instance
 	 */
-	protected void setPipeErectionService(PipeErectionService service) {
-        this.pipeErectionService = service;
+	protected void setSubsSignaturesService(SubsSignaturesService service) {
+        this.subsSignaturesService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service PipeMiscService instance
+	 * @param service SubmissionActivityStatusService instance
 	 */
-	protected void setPipeMiscService(PipeMiscService service) {
-        this.pipeMiscService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service EquipFaService instance
-	 */
-	protected void setEquipFaService(EquipFaService service) {
-        this.equipFaService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service PipeDemoService instance
-	 */
-	protected void setPipeDemoService(PipeDemoService service) {
-        this.pipeDemoService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SteelMiscService instance
-	 */
-	protected void setSteelMiscService(SteelMiscService service) {
-        this.steelMiscService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service PipeTrimService instance
-	 */
-	protected void setPipeTrimService(PipeTrimService service) {
-        this.pipeTrimService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service PipeTestingService instance
-	 */
-	protected void setPipeTestingService(PipeTestingService service) {
-        this.pipeTestingService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SteelImpService instance
-	 */
-	protected void setSteelImpService(SteelImpService service) {
-        this.steelImpService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service PipeWeldService instance
-	 */
-	protected void setPipeWeldService(PipeWeldService service) {
-        this.pipeWeldService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service CivilSellPackageService instance
-	 */
-	protected void setCivilSellPackageService(CivilSellPackageService service) {
-        this.civilSellPackageService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SteelShakeService instance
-	 */
-	protected void setSteelShakeService(SteelShakeService service) {
-        this.steelShakeService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SteelBoltOutService instance
-	 */
-	protected void setSteelBoltOutService(SteelBoltOutService service) {
-        this.steelBoltOutService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SteelWeldService instance
-	 */
-	protected void setSteelWeldService(SteelWeldService service) {
-        this.steelWeldService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service CivilFaService instance
-	 */
-	protected void setCivilFaService(CivilFaService service) {
-        this.civilFaService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SteelDemoService instance
-	 */
-	protected void setSteelDemoService(SteelDemoService service) {
-        this.steelDemoService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service PipeEwoService instance
-	 */
-	protected void setPipeEwoService(PipeEwoService service) {
-        this.pipeEwoService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SteelErectService instance
-	 */
-	protected void setSteelErectService(SteelErectService service) {
-        this.steelErectService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service CivilMiscService instance
-	 */
-	protected void setCivilMiscService(CivilMiscService service) {
-        this.civilMiscService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service PipeSupportsService instance
-	 */
-	protected void setPipeSupportsService(PipeSupportsService service) {
-        this.pipeSupportsService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SteelSellService instance
-	 */
-	protected void setSteelSellService(SteelSellService service) {
-        this.steelSellService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SteelSellPackageService instance
-	 */
-	protected void setSteelSellPackageService(SteelSellPackageService service) {
-        this.steelSellPackageService = service;
+	protected void setSubmissionActivityStatusService(SubmissionActivityStatusService service) {
+        this.submissionActivityStatusService = service;
     }
 
 }

@@ -8,6 +8,7 @@ package com.psabackoffice.psa.service;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,36 +59,39 @@ public class RefStateAbbreviationsServiceImpl implements RefStateAbbreviationsSe
     @Override
 	public RefStateAbbreviations create(RefStateAbbreviations refStateAbbreviations) {
         LOGGER.debug("Creating a new RefStateAbbreviations with information: {}", refStateAbbreviations);
+
         List<TblJobSites> tblJobSiteses = refStateAbbreviations.getTblJobSiteses();
 
-        RefStateAbbreviations refStateAbbreviationsCreated = this.wmGenericDao.create(refStateAbbreviations);
-        if(tblJobSiteses != null) {
-            for(TblJobSites _tblJobSites : tblJobSiteses) {
-                _tblJobSites.setRefStateAbbreviations(refStateAbbreviationsCreated);
-                LOGGER.debug("Creating a new child TblJobSites with information: {}", _tblJobSites);
-                tblJobSitesService.create(_tblJobSites);
+        if(tblJobSiteses != null && Hibernate.isInitialized(tblJobSiteses)) {
+            if(!tblJobSiteses.isEmpty()) {
+                for(TblJobSites _tblJobSites : tblJobSiteses) {
+                    _tblJobSites.setRefStateAbbreviations(refStateAbbreviations);
+                }
             }
         }
-        return refStateAbbreviationsCreated;
+
+        RefStateAbbreviations refStateAbbreviationsCreated = this.wmGenericDao.create(refStateAbbreviations);
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refStateAbbreviationsCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefStateAbbreviations getById(String refstateabbreviationsId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefStateAbbreviations by id: {}", refstateabbreviationsId);
-        RefStateAbbreviations refStateAbbreviations = this.wmGenericDao.findById(refstateabbreviationsId);
-        if (refStateAbbreviations == null){
-            LOGGER.debug("No RefStateAbbreviations found with id: {}", refstateabbreviationsId);
-            throw new EntityNotFoundException(String.valueOf(refstateabbreviationsId));
-        }
-        return refStateAbbreviations;
+        return this.wmGenericDao.findById(refstateabbreviationsId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefStateAbbreviations findById(String refstateabbreviationsId) {
         LOGGER.debug("Finding RefStateAbbreviations by id: {}", refstateabbreviationsId);
-        return this.wmGenericDao.findById(refstateabbreviationsId);
+        try {
+            return this.wmGenericDao.findById(refstateabbreviationsId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefStateAbbreviations found with id: {}", refstateabbreviationsId, ex);
+            return null;
+        }
     }
 
 
@@ -95,11 +99,21 @@ public class RefStateAbbreviationsServiceImpl implements RefStateAbbreviationsSe
 	@Override
 	public RefStateAbbreviations update(RefStateAbbreviations refStateAbbreviations) throws EntityNotFoundException {
         LOGGER.debug("Updating RefStateAbbreviations with information: {}", refStateAbbreviations);
+
+        List<TblJobSites> tblJobSiteses = refStateAbbreviations.getTblJobSiteses();
+
+        if(tblJobSiteses != null && Hibernate.isInitialized(tblJobSiteses)) {
+            if(!tblJobSiteses.isEmpty()) {
+                for(TblJobSites _tblJobSites : tblJobSiteses) {
+                    _tblJobSites.setRefStateAbbreviations(refStateAbbreviations);
+                }
+            }
+        }
+
         this.wmGenericDao.update(refStateAbbreviations);
+        this.wmGenericDao.refresh(refStateAbbreviations);
 
-        String refstateabbreviationsId = refStateAbbreviations.getAbbreviation();
-
-        return this.wmGenericDao.findById(refstateabbreviationsId);
+        return refStateAbbreviations;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -113,6 +127,13 @@ public class RefStateAbbreviationsServiceImpl implements RefStateAbbreviationsSe
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefStateAbbreviations refStateAbbreviations) {
+        LOGGER.debug("Deleting RefStateAbbreviations with {}", refStateAbbreviations);
+        this.wmGenericDao.delete(refStateAbbreviations);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

@@ -53,26 +53,27 @@ public class ChatMessagesServiceImpl implements ChatMessagesService {
         LOGGER.debug("Creating a new ChatMessages with information: {}", chatMessages);
 
         ChatMessages chatMessagesCreated = this.wmGenericDao.create(chatMessages);
-        return chatMessagesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(chatMessagesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public ChatMessages getById(Integer chatmessagesId) throws EntityNotFoundException {
         LOGGER.debug("Finding ChatMessages by id: {}", chatmessagesId);
-        ChatMessages chatMessages = this.wmGenericDao.findById(chatmessagesId);
-        if (chatMessages == null){
-            LOGGER.debug("No ChatMessages found with id: {}", chatmessagesId);
-            throw new EntityNotFoundException(String.valueOf(chatmessagesId));
-        }
-        return chatMessages;
+        return this.wmGenericDao.findById(chatmessagesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public ChatMessages findById(Integer chatmessagesId) {
         LOGGER.debug("Finding ChatMessages by id: {}", chatmessagesId);
-        return this.wmGenericDao.findById(chatmessagesId);
+        try {
+            return this.wmGenericDao.findById(chatmessagesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No ChatMessages found with id: {}", chatmessagesId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class ChatMessagesServiceImpl implements ChatMessagesService {
 	@Override
 	public ChatMessages update(ChatMessages chatMessages) throws EntityNotFoundException {
         LOGGER.debug("Updating ChatMessages with information: {}", chatMessages);
+
         this.wmGenericDao.update(chatMessages);
+        this.wmGenericDao.refresh(chatMessages);
 
-        Integer chatmessagesId = chatMessages.getUid();
-
-        return this.wmGenericDao.findById(chatmessagesId);
+        return chatMessages;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class ChatMessagesServiceImpl implements ChatMessagesService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(ChatMessages chatMessages) {
+        LOGGER.debug("Deleting ChatMessages with {}", chatMessages);
+        this.wmGenericDao.delete(chatMessages);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

@@ -53,26 +53,27 @@ public class CacheStatsEquipPcotServiceImpl implements CacheStatsEquipPcotServic
         LOGGER.debug("Creating a new CacheStatsEquipPcot with information: {}", cacheStatsEquipPcot);
 
         CacheStatsEquipPcot cacheStatsEquipPcotCreated = this.wmGenericDao.create(cacheStatsEquipPcot);
-        return cacheStatsEquipPcotCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(cacheStatsEquipPcotCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public CacheStatsEquipPcot getById(Integer cachestatsequippcotId) throws EntityNotFoundException {
         LOGGER.debug("Finding CacheStatsEquipPcot by id: {}", cachestatsequippcotId);
-        CacheStatsEquipPcot cacheStatsEquipPcot = this.wmGenericDao.findById(cachestatsequippcotId);
-        if (cacheStatsEquipPcot == null){
-            LOGGER.debug("No CacheStatsEquipPcot found with id: {}", cachestatsequippcotId);
-            throw new EntityNotFoundException(String.valueOf(cachestatsequippcotId));
-        }
-        return cacheStatsEquipPcot;
+        return this.wmGenericDao.findById(cachestatsequippcotId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public CacheStatsEquipPcot findById(Integer cachestatsequippcotId) {
         LOGGER.debug("Finding CacheStatsEquipPcot by id: {}", cachestatsequippcotId);
-        return this.wmGenericDao.findById(cachestatsequippcotId);
+        try {
+            return this.wmGenericDao.findById(cachestatsequippcotId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No CacheStatsEquipPcot found with id: {}", cachestatsequippcotId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class CacheStatsEquipPcotServiceImpl implements CacheStatsEquipPcotServic
 	@Override
 	public CacheStatsEquipPcot update(CacheStatsEquipPcot cacheStatsEquipPcot) throws EntityNotFoundException {
         LOGGER.debug("Updating CacheStatsEquipPcot with information: {}", cacheStatsEquipPcot);
+
         this.wmGenericDao.update(cacheStatsEquipPcot);
+        this.wmGenericDao.refresh(cacheStatsEquipPcot);
 
-        Integer cachestatsequippcotId = cacheStatsEquipPcot.getId();
-
-        return this.wmGenericDao.findById(cachestatsequippcotId);
+        return cacheStatsEquipPcot;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class CacheStatsEquipPcotServiceImpl implements CacheStatsEquipPcotServic
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(CacheStatsEquipPcot cacheStatsEquipPcot) {
+        LOGGER.debug("Deleting CacheStatsEquipPcot with {}", cacheStatsEquipPcot);
+        this.wmGenericDao.delete(cacheStatsEquipPcot);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

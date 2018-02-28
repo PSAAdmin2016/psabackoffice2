@@ -74,6 +74,13 @@ public interface SteelTrackerClassicService {
 	 */
 	SteelTrackerClassic delete(Integer steeltrackerclassicId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing SteelTrackerClassic with the given object.
+	 *
+	 * @param steelTrackerClassic The instance of the SteelTrackerClassic to be deleted; value cannot be null.
+	 */
+	void delete(SteelTrackerClassic steelTrackerClassic);
+
 	/**
 	 * Find all SteelTrackerClassics matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

@@ -53,26 +53,27 @@ public class MenuSubHelpVideosServiceImpl implements MenuSubHelpVideosService {
         LOGGER.debug("Creating a new MenuSubHelpVideos with information: {}", menuSubHelpVideos);
 
         MenuSubHelpVideos menuSubHelpVideosCreated = this.wmGenericDao.create(menuSubHelpVideos);
-        return menuSubHelpVideosCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(menuSubHelpVideosCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public MenuSubHelpVideos getById(Integer menusubhelpvideosId) throws EntityNotFoundException {
         LOGGER.debug("Finding MenuSubHelpVideos by id: {}", menusubhelpvideosId);
-        MenuSubHelpVideos menuSubHelpVideos = this.wmGenericDao.findById(menusubhelpvideosId);
-        if (menuSubHelpVideos == null){
-            LOGGER.debug("No MenuSubHelpVideos found with id: {}", menusubhelpvideosId);
-            throw new EntityNotFoundException(String.valueOf(menusubhelpvideosId));
-        }
-        return menuSubHelpVideos;
+        return this.wmGenericDao.findById(menusubhelpvideosId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public MenuSubHelpVideos findById(Integer menusubhelpvideosId) {
         LOGGER.debug("Finding MenuSubHelpVideos by id: {}", menusubhelpvideosId);
-        return this.wmGenericDao.findById(menusubhelpvideosId);
+        try {
+            return this.wmGenericDao.findById(menusubhelpvideosId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No MenuSubHelpVideos found with id: {}", menusubhelpvideosId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class MenuSubHelpVideosServiceImpl implements MenuSubHelpVideosService {
 	@Override
 	public MenuSubHelpVideos update(MenuSubHelpVideos menuSubHelpVideos) throws EntityNotFoundException {
         LOGGER.debug("Updating MenuSubHelpVideos with information: {}", menuSubHelpVideos);
+
         this.wmGenericDao.update(menuSubHelpVideos);
+        this.wmGenericDao.refresh(menuSubHelpVideos);
 
-        Integer menusubhelpvideosId = menuSubHelpVideos.getId();
-
-        return this.wmGenericDao.findById(menusubhelpvideosId);
+        return menuSubHelpVideos;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class MenuSubHelpVideosServiceImpl implements MenuSubHelpVideosService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(MenuSubHelpVideos menuSubHelpVideos) {
+        LOGGER.debug("Deleting MenuSubHelpVideos with {}", menuSubHelpVideos);
+        this.wmGenericDao.delete(menuSubHelpVideos);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

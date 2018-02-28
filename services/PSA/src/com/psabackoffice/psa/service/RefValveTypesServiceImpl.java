@@ -53,26 +53,27 @@ public class RefValveTypesServiceImpl implements RefValveTypesService {
         LOGGER.debug("Creating a new RefValveTypes with information: {}", refValveTypes);
 
         RefValveTypes refValveTypesCreated = this.wmGenericDao.create(refValveTypes);
-        return refValveTypesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refValveTypesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefValveTypes getById(Integer refvalvetypesId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefValveTypes by id: {}", refvalvetypesId);
-        RefValveTypes refValveTypes = this.wmGenericDao.findById(refvalvetypesId);
-        if (refValveTypes == null){
-            LOGGER.debug("No RefValveTypes found with id: {}", refvalvetypesId);
-            throw new EntityNotFoundException(String.valueOf(refvalvetypesId));
-        }
-        return refValveTypes;
+        return this.wmGenericDao.findById(refvalvetypesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefValveTypes findById(Integer refvalvetypesId) {
         LOGGER.debug("Finding RefValveTypes by id: {}", refvalvetypesId);
-        return this.wmGenericDao.findById(refvalvetypesId);
+        try {
+            return this.wmGenericDao.findById(refvalvetypesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefValveTypes found with id: {}", refvalvetypesId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefValveTypesServiceImpl implements RefValveTypesService {
 	@Override
 	public RefValveTypes update(RefValveTypes refValveTypes) throws EntityNotFoundException {
         LOGGER.debug("Updating RefValveTypes with information: {}", refValveTypes);
+
         this.wmGenericDao.update(refValveTypes);
+        this.wmGenericDao.refresh(refValveTypes);
 
-        Integer refvalvetypesId = refValveTypes.getId();
-
-        return this.wmGenericDao.findById(refvalvetypesId);
+        return refValveTypes;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class RefValveTypesServiceImpl implements RefValveTypesService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefValveTypes refValveTypes) {
+        LOGGER.debug("Deleting RefValveTypes with {}", refValveTypes);
+        this.wmGenericDao.delete(refValveTypes);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

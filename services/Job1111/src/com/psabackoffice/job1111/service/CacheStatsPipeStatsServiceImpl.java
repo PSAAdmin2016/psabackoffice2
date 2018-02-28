@@ -53,26 +53,27 @@ public class CacheStatsPipeStatsServiceImpl implements CacheStatsPipeStatsServic
         LOGGER.debug("Creating a new CacheStatsPipeStats with information: {}", cacheStatsPipeStats);
 
         CacheStatsPipeStats cacheStatsPipeStatsCreated = this.wmGenericDao.create(cacheStatsPipeStats);
-        return cacheStatsPipeStatsCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(cacheStatsPipeStatsCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public CacheStatsPipeStats getById(Integer cachestatspipestatsId) throws EntityNotFoundException {
         LOGGER.debug("Finding CacheStatsPipeStats by id: {}", cachestatspipestatsId);
-        CacheStatsPipeStats cacheStatsPipeStats = this.wmGenericDao.findById(cachestatspipestatsId);
-        if (cacheStatsPipeStats == null){
-            LOGGER.debug("No CacheStatsPipeStats found with id: {}", cachestatspipestatsId);
-            throw new EntityNotFoundException(String.valueOf(cachestatspipestatsId));
-        }
-        return cacheStatsPipeStats;
+        return this.wmGenericDao.findById(cachestatspipestatsId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public CacheStatsPipeStats findById(Integer cachestatspipestatsId) {
         LOGGER.debug("Finding CacheStatsPipeStats by id: {}", cachestatspipestatsId);
-        return this.wmGenericDao.findById(cachestatspipestatsId);
+        try {
+            return this.wmGenericDao.findById(cachestatspipestatsId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No CacheStatsPipeStats found with id: {}", cachestatspipestatsId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class CacheStatsPipeStatsServiceImpl implements CacheStatsPipeStatsServic
 	@Override
 	public CacheStatsPipeStats update(CacheStatsPipeStats cacheStatsPipeStats) throws EntityNotFoundException {
         LOGGER.debug("Updating CacheStatsPipeStats with information: {}", cacheStatsPipeStats);
+
         this.wmGenericDao.update(cacheStatsPipeStats);
+        this.wmGenericDao.refresh(cacheStatsPipeStats);
 
-        Integer cachestatspipestatsId = cacheStatsPipeStats.getBidId();
-
-        return this.wmGenericDao.findById(cachestatspipestatsId);
+        return cacheStatsPipeStats;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class CacheStatsPipeStatsServiceImpl implements CacheStatsPipeStatsServic
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(CacheStatsPipeStats cacheStatsPipeStats) {
+        LOGGER.debug("Deleting CacheStatsPipeStats with {}", cacheStatsPipeStats);
+        this.wmGenericDao.delete(cacheStatsPipeStats);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

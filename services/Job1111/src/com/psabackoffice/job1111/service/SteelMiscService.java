@@ -74,6 +74,13 @@ public interface SteelMiscService {
 	 */
 	SteelMisc delete(Integer steelmiscId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing SteelMisc with the given object.
+	 *
+	 * @param steelMisc The instance of the SteelMisc to be deleted; value cannot be null.
+	 */
+	void delete(SteelMisc steelMisc);
+
 	/**
 	 * Find all SteelMiscs matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

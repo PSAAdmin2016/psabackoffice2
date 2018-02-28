@@ -53,26 +53,27 @@ public class SteelMiscServiceImpl implements SteelMiscService {
         LOGGER.debug("Creating a new SteelMisc with information: {}", steelMisc);
 
         SteelMisc steelMiscCreated = this.wmGenericDao.create(steelMisc);
-        return steelMiscCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(steelMiscCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public SteelMisc getById(Integer steelmiscId) throws EntityNotFoundException {
         LOGGER.debug("Finding SteelMisc by id: {}", steelmiscId);
-        SteelMisc steelMisc = this.wmGenericDao.findById(steelmiscId);
-        if (steelMisc == null){
-            LOGGER.debug("No SteelMisc found with id: {}", steelmiscId);
-            throw new EntityNotFoundException(String.valueOf(steelmiscId));
-        }
-        return steelMisc;
+        return this.wmGenericDao.findById(steelmiscId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public SteelMisc findById(Integer steelmiscId) {
         LOGGER.debug("Finding SteelMisc by id: {}", steelmiscId);
-        return this.wmGenericDao.findById(steelmiscId);
+        try {
+            return this.wmGenericDao.findById(steelmiscId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No SteelMisc found with id: {}", steelmiscId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class SteelMiscServiceImpl implements SteelMiscService {
 	@Override
 	public SteelMisc update(SteelMisc steelMisc) throws EntityNotFoundException {
         LOGGER.debug("Updating SteelMisc with information: {}", steelMisc);
+
         this.wmGenericDao.update(steelMisc);
+        this.wmGenericDao.refresh(steelMisc);
 
-        Integer steelmiscId = steelMisc.getId();
-
-        return this.wmGenericDao.findById(steelmiscId);
+        return steelMisc;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class SteelMiscServiceImpl implements SteelMiscService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(SteelMisc steelMisc) {
+        LOGGER.debug("Deleting SteelMisc with {}", steelMisc);
+        this.wmGenericDao.delete(steelMisc);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

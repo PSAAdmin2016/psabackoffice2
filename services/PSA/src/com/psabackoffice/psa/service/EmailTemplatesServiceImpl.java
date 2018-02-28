@@ -53,26 +53,27 @@ public class EmailTemplatesServiceImpl implements EmailTemplatesService {
         LOGGER.debug("Creating a new EmailTemplates with information: {}", emailTemplates);
 
         EmailTemplates emailTemplatesCreated = this.wmGenericDao.create(emailTemplates);
-        return emailTemplatesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(emailTemplatesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public EmailTemplates getById(Integer emailtemplatesId) throws EntityNotFoundException {
         LOGGER.debug("Finding EmailTemplates by id: {}", emailtemplatesId);
-        EmailTemplates emailTemplates = this.wmGenericDao.findById(emailtemplatesId);
-        if (emailTemplates == null){
-            LOGGER.debug("No EmailTemplates found with id: {}", emailtemplatesId);
-            throw new EntityNotFoundException(String.valueOf(emailtemplatesId));
-        }
-        return emailTemplates;
+        return this.wmGenericDao.findById(emailtemplatesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public EmailTemplates findById(Integer emailtemplatesId) {
         LOGGER.debug("Finding EmailTemplates by id: {}", emailtemplatesId);
-        return this.wmGenericDao.findById(emailtemplatesId);
+        try {
+            return this.wmGenericDao.findById(emailtemplatesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No EmailTemplates found with id: {}", emailtemplatesId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class EmailTemplatesServiceImpl implements EmailTemplatesService {
 	@Override
 	public EmailTemplates update(EmailTemplates emailTemplates) throws EntityNotFoundException {
         LOGGER.debug("Updating EmailTemplates with information: {}", emailTemplates);
+
         this.wmGenericDao.update(emailTemplates);
+        this.wmGenericDao.refresh(emailTemplates);
 
-        Integer emailtemplatesId = emailTemplates.getId();
-
-        return this.wmGenericDao.findById(emailtemplatesId);
+        return emailTemplates;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class EmailTemplatesServiceImpl implements EmailTemplatesService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(EmailTemplates emailTemplates) {
+        LOGGER.debug("Deleting EmailTemplates with {}", emailTemplates);
+        this.wmGenericDao.delete(emailTemplates);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

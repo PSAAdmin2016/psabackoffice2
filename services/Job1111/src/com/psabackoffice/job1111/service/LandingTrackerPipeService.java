@@ -74,6 +74,13 @@ public interface LandingTrackerPipeService {
 	 */
 	LandingTrackerPipe delete(Integer landingtrackerpipeId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing LandingTrackerPipe with the given object.
+	 *
+	 * @param landingTrackerPipe The instance of the LandingTrackerPipe to be deleted; value cannot be null.
+	 */
+	void delete(LandingTrackerPipe landingTrackerPipe);
+
 	/**
 	 * Find all LandingTrackerPipes matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

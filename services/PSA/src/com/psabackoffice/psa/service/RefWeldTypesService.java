@@ -74,6 +74,13 @@ public interface RefWeldTypesService {
 	 */
 	RefWeldTypes delete(Integer refweldtypesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefWeldTypes with the given object.
+	 *
+	 * @param refWeldTypes The instance of the RefWeldTypes to be deleted; value cannot be null.
+	 */
+	void delete(RefWeldTypes refWeldTypes);
+
 	/**
 	 * Find all RefWeldTypes matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

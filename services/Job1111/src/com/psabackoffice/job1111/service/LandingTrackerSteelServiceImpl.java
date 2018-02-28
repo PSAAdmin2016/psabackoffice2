@@ -53,26 +53,27 @@ public class LandingTrackerSteelServiceImpl implements LandingTrackerSteelServic
         LOGGER.debug("Creating a new LandingTrackerSteel with information: {}", landingTrackerSteel);
 
         LandingTrackerSteel landingTrackerSteelCreated = this.wmGenericDao.create(landingTrackerSteel);
-        return landingTrackerSteelCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(landingTrackerSteelCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public LandingTrackerSteel getById(Integer landingtrackersteelId) throws EntityNotFoundException {
         LOGGER.debug("Finding LandingTrackerSteel by id: {}", landingtrackersteelId);
-        LandingTrackerSteel landingTrackerSteel = this.wmGenericDao.findById(landingtrackersteelId);
-        if (landingTrackerSteel == null){
-            LOGGER.debug("No LandingTrackerSteel found with id: {}", landingtrackersteelId);
-            throw new EntityNotFoundException(String.valueOf(landingtrackersteelId));
-        }
-        return landingTrackerSteel;
+        return this.wmGenericDao.findById(landingtrackersteelId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public LandingTrackerSteel findById(Integer landingtrackersteelId) {
         LOGGER.debug("Finding LandingTrackerSteel by id: {}", landingtrackersteelId);
-        return this.wmGenericDao.findById(landingtrackersteelId);
+        try {
+            return this.wmGenericDao.findById(landingtrackersteelId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No LandingTrackerSteel found with id: {}", landingtrackersteelId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class LandingTrackerSteelServiceImpl implements LandingTrackerSteelServic
 	@Override
 	public LandingTrackerSteel update(LandingTrackerSteel landingTrackerSteel) throws EntityNotFoundException {
         LOGGER.debug("Updating LandingTrackerSteel with information: {}", landingTrackerSteel);
+
         this.wmGenericDao.update(landingTrackerSteel);
+        this.wmGenericDao.refresh(landingTrackerSteel);
 
-        Integer landingtrackersteelId = landingTrackerSteel.getUid();
-
-        return this.wmGenericDao.findById(landingtrackersteelId);
+        return landingTrackerSteel;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class LandingTrackerSteelServiceImpl implements LandingTrackerSteelServic
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(LandingTrackerSteel landingTrackerSteel) {
+        LOGGER.debug("Deleting LandingTrackerSteel with {}", landingTrackerSteel);
+        this.wmGenericDao.delete(landingTrackerSteel);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

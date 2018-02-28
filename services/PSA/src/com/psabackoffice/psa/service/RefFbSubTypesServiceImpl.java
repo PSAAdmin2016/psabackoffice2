@@ -8,6 +8,7 @@ package com.psabackoffice.psa.service;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,36 +59,29 @@ public class RefFbSubTypesServiceImpl implements RefFbSubTypesService {
     @Override
 	public RefFbSubTypes create(RefFbSubTypes refFbSubTypes) {
         LOGGER.debug("Creating a new RefFbSubTypes with information: {}", refFbSubTypes);
-        List<FeedBack> feedBacks = refFbSubTypes.getFeedBacks();
 
         RefFbSubTypes refFbSubTypesCreated = this.wmGenericDao.create(refFbSubTypes);
-        if(feedBacks != null) {
-            for(FeedBack _feedBack : feedBacks) {
-                _feedBack.setRefFbSubTypes(refFbSubTypesCreated);
-                LOGGER.debug("Creating a new child FeedBack with information: {}", _feedBack);
-                feedBackService.create(_feedBack);
-            }
-        }
-        return refFbSubTypesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refFbSubTypesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefFbSubTypes getById(Integer reffbsubtypesId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefFbSubTypes by id: {}", reffbsubtypesId);
-        RefFbSubTypes refFbSubTypes = this.wmGenericDao.findById(reffbsubtypesId);
-        if (refFbSubTypes == null){
-            LOGGER.debug("No RefFbSubTypes found with id: {}", reffbsubtypesId);
-            throw new EntityNotFoundException(String.valueOf(reffbsubtypesId));
-        }
-        return refFbSubTypes;
+        return this.wmGenericDao.findById(reffbsubtypesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefFbSubTypes findById(Integer reffbsubtypesId) {
         LOGGER.debug("Finding RefFbSubTypes by id: {}", reffbsubtypesId);
-        return this.wmGenericDao.findById(reffbsubtypesId);
+        try {
+            return this.wmGenericDao.findById(reffbsubtypesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefFbSubTypes found with id: {}", reffbsubtypesId, ex);
+            return null;
+        }
     }
 
 
@@ -95,11 +89,21 @@ public class RefFbSubTypesServiceImpl implements RefFbSubTypesService {
 	@Override
 	public RefFbSubTypes update(RefFbSubTypes refFbSubTypes) throws EntityNotFoundException {
         LOGGER.debug("Updating RefFbSubTypes with information: {}", refFbSubTypes);
+
+        List<FeedBack> feedBacks = refFbSubTypes.getFeedBacks();
+
+        if(feedBacks != null && Hibernate.isInitialized(feedBacks)) {
+            if(!feedBacks.isEmpty()) {
+                for(FeedBack _feedBack : feedBacks) {
+                    _feedBack.setRefFbSubTypes(refFbSubTypes);
+                }
+            }
+        }
+
         this.wmGenericDao.update(refFbSubTypes);
+        this.wmGenericDao.refresh(refFbSubTypes);
 
-        Integer reffbsubtypesId = refFbSubTypes.getId();
-
-        return this.wmGenericDao.findById(reffbsubtypesId);
+        return refFbSubTypes;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -113,6 +117,13 @@ public class RefFbSubTypesServiceImpl implements RefFbSubTypesService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefFbSubTypes refFbSubTypes) {
+        LOGGER.debug("Deleting RefFbSubTypes with {}", refFbSubTypes);
+        this.wmGenericDao.delete(refFbSubTypes);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

@@ -8,6 +8,7 @@ package com.psabackoffice.psa.service;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,45 +65,29 @@ public class RefFbTypesServiceImpl implements RefFbTypesService {
     @Override
 	public RefFbTypes create(RefFbTypes refFbTypes) {
         LOGGER.debug("Creating a new RefFbTypes with information: {}", refFbTypes);
-        List<FeedBack> feedBacks = refFbTypes.getFeedBacks();
-        List<RefFbSubTypes> refFbSubTypeses = refFbTypes.getRefFbSubTypeses();
 
         RefFbTypes refFbTypesCreated = this.wmGenericDao.create(refFbTypes);
-        if(feedBacks != null) {
-            for(FeedBack _feedBack : feedBacks) {
-                _feedBack.setRefFbTypes(refFbTypesCreated);
-                LOGGER.debug("Creating a new child FeedBack with information: {}", _feedBack);
-                feedBackService.create(_feedBack);
-            }
-        }
-
-        if(refFbSubTypeses != null) {
-            for(RefFbSubTypes _refFbSubTypes : refFbSubTypeses) {
-                _refFbSubTypes.setRefFbTypes(refFbTypesCreated);
-                LOGGER.debug("Creating a new child RefFbSubTypes with information: {}", _refFbSubTypes);
-                refFbSubTypesService.create(_refFbSubTypes);
-            }
-        }
-        return refFbTypesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refFbTypesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefFbTypes getById(Integer reffbtypesId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefFbTypes by id: {}", reffbtypesId);
-        RefFbTypes refFbTypes = this.wmGenericDao.findById(reffbtypesId);
-        if (refFbTypes == null){
-            LOGGER.debug("No RefFbTypes found with id: {}", reffbtypesId);
-            throw new EntityNotFoundException(String.valueOf(reffbtypesId));
-        }
-        return refFbTypes;
+        return this.wmGenericDao.findById(reffbtypesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefFbTypes findById(Integer reffbtypesId) {
         LOGGER.debug("Finding RefFbTypes by id: {}", reffbtypesId);
-        return this.wmGenericDao.findById(reffbtypesId);
+        try {
+            return this.wmGenericDao.findById(reffbtypesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefFbTypes found with id: {}", reffbtypesId, ex);
+            return null;
+        }
     }
 
 
@@ -110,11 +95,30 @@ public class RefFbTypesServiceImpl implements RefFbTypesService {
 	@Override
 	public RefFbTypes update(RefFbTypes refFbTypes) throws EntityNotFoundException {
         LOGGER.debug("Updating RefFbTypes with information: {}", refFbTypes);
+
+        List<FeedBack> feedBacks = refFbTypes.getFeedBacks();
+        List<RefFbSubTypes> refFbSubTypeses = refFbTypes.getRefFbSubTypeses();
+
+        if(feedBacks != null && Hibernate.isInitialized(feedBacks)) {
+            if(!feedBacks.isEmpty()) {
+                for(FeedBack _feedBack : feedBacks) {
+                    _feedBack.setRefFbTypes(refFbTypes);
+                }
+            }
+        }
+
+        if(refFbSubTypeses != null && Hibernate.isInitialized(refFbSubTypeses)) {
+            if(!refFbSubTypeses.isEmpty()) {
+                for(RefFbSubTypes _refFbSubTypes : refFbSubTypeses) {
+                    _refFbSubTypes.setRefFbTypes(refFbTypes);
+                }
+            }
+        }
+
         this.wmGenericDao.update(refFbTypes);
+        this.wmGenericDao.refresh(refFbTypes);
 
-        Integer reffbtypesId = refFbTypes.getId();
-
-        return this.wmGenericDao.findById(reffbtypesId);
+        return refFbTypes;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -128,6 +132,13 @@ public class RefFbTypesServiceImpl implements RefFbTypesService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefFbTypes refFbTypes) {
+        LOGGER.debug("Deleting RefFbTypes with {}", refFbTypes);
+        this.wmGenericDao.delete(refFbTypes);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

@@ -79,9 +79,9 @@ public class SteelSellPackageController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public SteelSellPackage editSteelSellPackage(@PathVariable("id") Integer id, @RequestBody SteelSellPackage steelSellPackage) throws EntityNotFoundException {
-        LOGGER.debug("Editing SteelSellPackage with id: {}" , steelSellPackage.getId());
+        LOGGER.debug("Editing SteelSellPackage with id: {}" , steelSellPackage.getActivityId());
 
-        steelSellPackage.setId(id);
+        steelSellPackage.setActivityId(id);
         steelSellPackage = steelSellPackageService.update(steelSellPackage);
         LOGGER.debug("SteelSellPackage details with id: {}" , steelSellPackage);
 

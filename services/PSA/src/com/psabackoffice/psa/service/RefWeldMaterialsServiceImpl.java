@@ -53,26 +53,27 @@ public class RefWeldMaterialsServiceImpl implements RefWeldMaterialsService {
         LOGGER.debug("Creating a new RefWeldMaterials with information: {}", refWeldMaterials);
 
         RefWeldMaterials refWeldMaterialsCreated = this.wmGenericDao.create(refWeldMaterials);
-        return refWeldMaterialsCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refWeldMaterialsCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefWeldMaterials getById(Integer refweldmaterialsId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefWeldMaterials by id: {}", refweldmaterialsId);
-        RefWeldMaterials refWeldMaterials = this.wmGenericDao.findById(refweldmaterialsId);
-        if (refWeldMaterials == null){
-            LOGGER.debug("No RefWeldMaterials found with id: {}", refweldmaterialsId);
-            throw new EntityNotFoundException(String.valueOf(refweldmaterialsId));
-        }
-        return refWeldMaterials;
+        return this.wmGenericDao.findById(refweldmaterialsId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefWeldMaterials findById(Integer refweldmaterialsId) {
         LOGGER.debug("Finding RefWeldMaterials by id: {}", refweldmaterialsId);
-        return this.wmGenericDao.findById(refweldmaterialsId);
+        try {
+            return this.wmGenericDao.findById(refweldmaterialsId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefWeldMaterials found with id: {}", refweldmaterialsId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefWeldMaterialsServiceImpl implements RefWeldMaterialsService {
 	@Override
 	public RefWeldMaterials update(RefWeldMaterials refWeldMaterials) throws EntityNotFoundException {
         LOGGER.debug("Updating RefWeldMaterials with information: {}", refWeldMaterials);
+
         this.wmGenericDao.update(refWeldMaterials);
+        this.wmGenericDao.refresh(refWeldMaterials);
 
-        Integer refweldmaterialsId = refWeldMaterials.getId();
-
-        return this.wmGenericDao.findById(refweldmaterialsId);
+        return refWeldMaterials;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class RefWeldMaterialsServiceImpl implements RefWeldMaterialsService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefWeldMaterials refWeldMaterials) {
+        LOGGER.debug("Deleting RefWeldMaterials with {}", refWeldMaterials);
+        this.wmGenericDao.delete(refWeldMaterials);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

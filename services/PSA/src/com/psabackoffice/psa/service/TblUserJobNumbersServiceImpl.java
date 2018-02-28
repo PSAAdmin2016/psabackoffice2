@@ -53,26 +53,27 @@ public class TblUserJobNumbersServiceImpl implements TblUserJobNumbersService {
         LOGGER.debug("Creating a new TblUserJobNumbers with information: {}", tblUserJobNumbers);
 
         TblUserJobNumbers tblUserJobNumbersCreated = this.wmGenericDao.create(tblUserJobNumbers);
-        return tblUserJobNumbersCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(tblUserJobNumbersCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public TblUserJobNumbers getById(Integer tbluserjobnumbersId) throws EntityNotFoundException {
         LOGGER.debug("Finding TblUserJobNumbers by id: {}", tbluserjobnumbersId);
-        TblUserJobNumbers tblUserJobNumbers = this.wmGenericDao.findById(tbluserjobnumbersId);
-        if (tblUserJobNumbers == null){
-            LOGGER.debug("No TblUserJobNumbers found with id: {}", tbluserjobnumbersId);
-            throw new EntityNotFoundException(String.valueOf(tbluserjobnumbersId));
-        }
-        return tblUserJobNumbers;
+        return this.wmGenericDao.findById(tbluserjobnumbersId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public TblUserJobNumbers findById(Integer tbluserjobnumbersId) {
         LOGGER.debug("Finding TblUserJobNumbers by id: {}", tbluserjobnumbersId);
-        return this.wmGenericDao.findById(tbluserjobnumbersId);
+        try {
+            return this.wmGenericDao.findById(tbluserjobnumbersId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No TblUserJobNumbers found with id: {}", tbluserjobnumbersId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class TblUserJobNumbersServiceImpl implements TblUserJobNumbersService {
 	@Override
 	public TblUserJobNumbers update(TblUserJobNumbers tblUserJobNumbers) throws EntityNotFoundException {
         LOGGER.debug("Updating TblUserJobNumbers with information: {}", tblUserJobNumbers);
+
         this.wmGenericDao.update(tblUserJobNumbers);
+        this.wmGenericDao.refresh(tblUserJobNumbers);
 
-        Integer tbluserjobnumbersId = tblUserJobNumbers.getId();
-
-        return this.wmGenericDao.findById(tbluserjobnumbersId);
+        return tblUserJobNumbers;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class TblUserJobNumbersServiceImpl implements TblUserJobNumbersService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(TblUserJobNumbers tblUserJobNumbers) {
+        LOGGER.debug("Deleting TblUserJobNumbers with {}", tblUserJobNumbers);
+        this.wmGenericDao.delete(tblUserJobNumbers);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

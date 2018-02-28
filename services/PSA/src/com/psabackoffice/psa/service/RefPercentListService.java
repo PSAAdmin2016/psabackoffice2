@@ -74,6 +74,13 @@ public interface RefPercentListService {
 	 */
 	RefPercentList delete(Integer refpercentlistId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefPercentList with the given object.
+	 *
+	 * @param refPercentList The instance of the RefPercentList to be deleted; value cannot be null.
+	 */
+	void delete(RefPercentList refPercentList);
+
 	/**
 	 * Find all RefPercentLists matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

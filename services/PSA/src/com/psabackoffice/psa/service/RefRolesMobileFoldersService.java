@@ -74,6 +74,13 @@ public interface RefRolesMobileFoldersService {
 	 */
 	RefRolesMobileFolders delete(Integer refrolesmobilefoldersId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefRolesMobileFolders with the given object.
+	 *
+	 * @param refRolesMobileFolders The instance of the RefRolesMobileFolders to be deleted; value cannot be null.
+	 */
+	void delete(RefRolesMobileFolders refRolesMobileFolders);
+
 	/**
 	 * Find all RefRolesMobileFolders matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

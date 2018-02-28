@@ -74,6 +74,13 @@ public interface RefPipeDemoTypesService {
 	 */
 	RefPipeDemoTypes delete(Integer refpipedemotypesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefPipeDemoTypes with the given object.
+	 *
+	 * @param refPipeDemoTypes The instance of the RefPipeDemoTypes to be deleted; value cannot be null.
+	 */
+	void delete(RefPipeDemoTypes refPipeDemoTypes);
+
 	/**
 	 * Find all RefPipeDemoTypes matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

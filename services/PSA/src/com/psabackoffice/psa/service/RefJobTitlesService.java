@@ -82,6 +82,13 @@ public interface RefJobTitlesService {
 	 */
 	RefJobTitles delete(Integer refjobtitlesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefJobTitles with the given object.
+	 *
+	 * @param refJobTitles The instance of the RefJobTitles to be deleted; value cannot be null.
+	 */
+	void delete(RefJobTitles refJobTitles);
+
 	/**
 	 * Find all RefJobTitles matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

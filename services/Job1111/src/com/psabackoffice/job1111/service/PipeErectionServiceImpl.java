@@ -53,26 +53,27 @@ public class PipeErectionServiceImpl implements PipeErectionService {
         LOGGER.debug("Creating a new PipeErection with information: {}", pipeErection);
 
         PipeErection pipeErectionCreated = this.wmGenericDao.create(pipeErection);
-        return pipeErectionCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(pipeErectionCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public PipeErection getById(Integer pipeerectionId) throws EntityNotFoundException {
         LOGGER.debug("Finding PipeErection by id: {}", pipeerectionId);
-        PipeErection pipeErection = this.wmGenericDao.findById(pipeerectionId);
-        if (pipeErection == null){
-            LOGGER.debug("No PipeErection found with id: {}", pipeerectionId);
-            throw new EntityNotFoundException(String.valueOf(pipeerectionId));
-        }
-        return pipeErection;
+        return this.wmGenericDao.findById(pipeerectionId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public PipeErection findById(Integer pipeerectionId) {
         LOGGER.debug("Finding PipeErection by id: {}", pipeerectionId);
-        return this.wmGenericDao.findById(pipeerectionId);
+        try {
+            return this.wmGenericDao.findById(pipeerectionId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No PipeErection found with id: {}", pipeerectionId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class PipeErectionServiceImpl implements PipeErectionService {
 	@Override
 	public PipeErection update(PipeErection pipeErection) throws EntityNotFoundException {
         LOGGER.debug("Updating PipeErection with information: {}", pipeErection);
+
         this.wmGenericDao.update(pipeErection);
+        this.wmGenericDao.refresh(pipeErection);
 
-        Integer pipeerectionId = pipeErection.getId();
-
-        return this.wmGenericDao.findById(pipeerectionId);
+        return pipeErection;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class PipeErectionServiceImpl implements PipeErectionService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(PipeErection pipeErection) {
+        LOGGER.debug("Deleting PipeErection with {}", pipeErection);
+        this.wmGenericDao.delete(pipeErection);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

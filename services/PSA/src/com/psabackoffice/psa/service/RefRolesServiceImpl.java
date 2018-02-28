@@ -8,6 +8,7 @@ package com.psabackoffice.psa.service;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,45 +65,29 @@ public class RefRolesServiceImpl implements RefRolesService {
     @Override
 	public RefRoles create(RefRoles refRoles) {
         LOGGER.debug("Creating a new RefRoles with information: {}", refRoles);
-        List<RefRolesMobileFolders> refRolesMobileFolderses = refRoles.getRefRolesMobileFolderses();
-        List<TblUserPsa> tblUserPsas = refRoles.getTblUserPsas();
 
         RefRoles refRolesCreated = this.wmGenericDao.create(refRoles);
-        if(refRolesMobileFolderses != null) {
-            for(RefRolesMobileFolders _refRolesMobileFolders : refRolesMobileFolderses) {
-                _refRolesMobileFolders.setRefRoles(refRolesCreated);
-                LOGGER.debug("Creating a new child RefRolesMobileFolders with information: {}", _refRolesMobileFolders);
-                refRolesMobileFoldersService.create(_refRolesMobileFolders);
-            }
-        }
-
-        if(tblUserPsas != null) {
-            for(TblUserPsa _tblUserPsa : tblUserPsas) {
-                _tblUserPsa.setRefRoles(refRolesCreated);
-                LOGGER.debug("Creating a new child TblUserPsa with information: {}", _tblUserPsa);
-                tblUserPsaService.create(_tblUserPsa);
-            }
-        }
-        return refRolesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refRolesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefRoles getById(Integer refrolesId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefRoles by id: {}", refrolesId);
-        RefRoles refRoles = this.wmGenericDao.findById(refrolesId);
-        if (refRoles == null){
-            LOGGER.debug("No RefRoles found with id: {}", refrolesId);
-            throw new EntityNotFoundException(String.valueOf(refrolesId));
-        }
-        return refRoles;
+        return this.wmGenericDao.findById(refrolesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefRoles findById(Integer refrolesId) {
         LOGGER.debug("Finding RefRoles by id: {}", refrolesId);
-        return this.wmGenericDao.findById(refrolesId);
+        try {
+            return this.wmGenericDao.findById(refrolesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefRoles found with id: {}", refrolesId, ex);
+            return null;
+        }
     }
 
 
@@ -110,11 +95,30 @@ public class RefRolesServiceImpl implements RefRolesService {
 	@Override
 	public RefRoles update(RefRoles refRoles) throws EntityNotFoundException {
         LOGGER.debug("Updating RefRoles with information: {}", refRoles);
+
+        List<RefRolesMobileFolders> refRolesMobileFolderses = refRoles.getRefRolesMobileFolderses();
+        List<TblUserPsa> tblUserPsas = refRoles.getTblUserPsas();
+
+        if(refRolesMobileFolderses != null && Hibernate.isInitialized(refRolesMobileFolderses)) {
+            if(!refRolesMobileFolderses.isEmpty()) {
+                for(RefRolesMobileFolders _refRolesMobileFolders : refRolesMobileFolderses) {
+                    _refRolesMobileFolders.setRefRoles(refRoles);
+                }
+            }
+        }
+
+        if(tblUserPsas != null && Hibernate.isInitialized(tblUserPsas)) {
+            if(!tblUserPsas.isEmpty()) {
+                for(TblUserPsa _tblUserPsa : tblUserPsas) {
+                    _tblUserPsa.setRefRoles(refRoles);
+                }
+            }
+        }
+
         this.wmGenericDao.update(refRoles);
+        this.wmGenericDao.refresh(refRoles);
 
-        Integer refrolesId = refRoles.getId();
-
-        return this.wmGenericDao.findById(refrolesId);
+        return refRoles;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -128,6 +132,13 @@ public class RefRolesServiceImpl implements RefRolesService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefRoles refRoles) {
+        LOGGER.debug("Deleting RefRoles with {}", refRoles);
+        this.wmGenericDao.delete(refRoles);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

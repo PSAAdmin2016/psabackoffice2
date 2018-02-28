@@ -74,6 +74,13 @@ public interface RefPipeSizesService {
 	 */
 	RefPipeSizes delete(Integer refpipesizesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefPipeSizes with the given object.
+	 *
+	 * @param refPipeSizes The instance of the RefPipeSizes to be deleted; value cannot be null.
+	 */
+	void delete(RefPipeSizes refPipeSizes);
+
 	/**
 	 * Find all RefPipeSizes matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

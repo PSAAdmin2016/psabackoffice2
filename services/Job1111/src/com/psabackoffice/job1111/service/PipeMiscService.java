@@ -74,6 +74,13 @@ public interface PipeMiscService {
 	 */
 	PipeMisc delete(Integer pipemiscId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing PipeMisc with the given object.
+	 *
+	 * @param pipeMisc The instance of the PipeMisc to be deleted; value cannot be null.
+	 */
+	void delete(PipeMisc pipeMisc);
+
 	/**
 	 * Find all PipeMiscs matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

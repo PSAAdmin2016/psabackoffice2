@@ -53,26 +53,27 @@ public class CacheStatsPipePcotServiceImpl implements CacheStatsPipePcotService 
         LOGGER.debug("Creating a new CacheStatsPipePcot with information: {}", cacheStatsPipePcot);
 
         CacheStatsPipePcot cacheStatsPipePcotCreated = this.wmGenericDao.create(cacheStatsPipePcot);
-        return cacheStatsPipePcotCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(cacheStatsPipePcotCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public CacheStatsPipePcot getById(Integer cachestatspipepcotId) throws EntityNotFoundException {
         LOGGER.debug("Finding CacheStatsPipePcot by id: {}", cachestatspipepcotId);
-        CacheStatsPipePcot cacheStatsPipePcot = this.wmGenericDao.findById(cachestatspipepcotId);
-        if (cacheStatsPipePcot == null){
-            LOGGER.debug("No CacheStatsPipePcot found with id: {}", cachestatspipepcotId);
-            throw new EntityNotFoundException(String.valueOf(cachestatspipepcotId));
-        }
-        return cacheStatsPipePcot;
+        return this.wmGenericDao.findById(cachestatspipepcotId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public CacheStatsPipePcot findById(Integer cachestatspipepcotId) {
         LOGGER.debug("Finding CacheStatsPipePcot by id: {}", cachestatspipepcotId);
-        return this.wmGenericDao.findById(cachestatspipepcotId);
+        try {
+            return this.wmGenericDao.findById(cachestatspipepcotId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No CacheStatsPipePcot found with id: {}", cachestatspipepcotId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class CacheStatsPipePcotServiceImpl implements CacheStatsPipePcotService 
 	@Override
 	public CacheStatsPipePcot update(CacheStatsPipePcot cacheStatsPipePcot) throws EntityNotFoundException {
         LOGGER.debug("Updating CacheStatsPipePcot with information: {}", cacheStatsPipePcot);
+
         this.wmGenericDao.update(cacheStatsPipePcot);
+        this.wmGenericDao.refresh(cacheStatsPipePcot);
 
-        Integer cachestatspipepcotId = cacheStatsPipePcot.getId();
-
-        return this.wmGenericDao.findById(cachestatspipepcotId);
+        return cacheStatsPipePcot;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class CacheStatsPipePcotServiceImpl implements CacheStatsPipePcotService 
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(CacheStatsPipePcot cacheStatsPipePcot) {
+        LOGGER.debug("Deleting CacheStatsPipePcot with {}", cacheStatsPipePcot);
+        this.wmGenericDao.delete(cacheStatsPipePcot);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

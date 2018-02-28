@@ -53,26 +53,27 @@ public class RefGenericPipeSpoolsServiceImpl implements RefGenericPipeSpoolsServ
         LOGGER.debug("Creating a new RefGenericPipeSpools with information: {}", refGenericPipeSpools);
 
         RefGenericPipeSpools refGenericPipeSpoolsCreated = this.wmGenericDao.create(refGenericPipeSpools);
-        return refGenericPipeSpoolsCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refGenericPipeSpoolsCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefGenericPipeSpools getById(Integer refgenericpipespoolsId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefGenericPipeSpools by id: {}", refgenericpipespoolsId);
-        RefGenericPipeSpools refGenericPipeSpools = this.wmGenericDao.findById(refgenericpipespoolsId);
-        if (refGenericPipeSpools == null){
-            LOGGER.debug("No RefGenericPipeSpools found with id: {}", refgenericpipespoolsId);
-            throw new EntityNotFoundException(String.valueOf(refgenericpipespoolsId));
-        }
-        return refGenericPipeSpools;
+        return this.wmGenericDao.findById(refgenericpipespoolsId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefGenericPipeSpools findById(Integer refgenericpipespoolsId) {
         LOGGER.debug("Finding RefGenericPipeSpools by id: {}", refgenericpipespoolsId);
-        return this.wmGenericDao.findById(refgenericpipespoolsId);
+        try {
+            return this.wmGenericDao.findById(refgenericpipespoolsId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefGenericPipeSpools found with id: {}", refgenericpipespoolsId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefGenericPipeSpoolsServiceImpl implements RefGenericPipeSpoolsServ
 	@Override
 	public RefGenericPipeSpools update(RefGenericPipeSpools refGenericPipeSpools) throws EntityNotFoundException {
         LOGGER.debug("Updating RefGenericPipeSpools with information: {}", refGenericPipeSpools);
+
         this.wmGenericDao.update(refGenericPipeSpools);
+        this.wmGenericDao.refresh(refGenericPipeSpools);
 
-        Integer refgenericpipespoolsId = refGenericPipeSpools.getId();
-
-        return this.wmGenericDao.findById(refgenericpipespoolsId);
+        return refGenericPipeSpools;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class RefGenericPipeSpoolsServiceImpl implements RefGenericPipeSpoolsServ
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefGenericPipeSpools refGenericPipeSpools) {
+        LOGGER.debug("Deleting RefGenericPipeSpools with {}", refGenericPipeSpools);
+        this.wmGenericDao.delete(refGenericPipeSpools);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

@@ -53,26 +53,27 @@ public class RefChatStatusServiceImpl implements RefChatStatusService {
         LOGGER.debug("Creating a new RefChatStatus with information: {}", refChatStatus);
 
         RefChatStatus refChatStatusCreated = this.wmGenericDao.create(refChatStatus);
-        return refChatStatusCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refChatStatusCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefChatStatus getById(Integer refchatstatusId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefChatStatus by id: {}", refchatstatusId);
-        RefChatStatus refChatStatus = this.wmGenericDao.findById(refchatstatusId);
-        if (refChatStatus == null){
-            LOGGER.debug("No RefChatStatus found with id: {}", refchatstatusId);
-            throw new EntityNotFoundException(String.valueOf(refchatstatusId));
-        }
-        return refChatStatus;
+        return this.wmGenericDao.findById(refchatstatusId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefChatStatus findById(Integer refchatstatusId) {
         LOGGER.debug("Finding RefChatStatus by id: {}", refchatstatusId);
-        return this.wmGenericDao.findById(refchatstatusId);
+        try {
+            return this.wmGenericDao.findById(refchatstatusId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefChatStatus found with id: {}", refchatstatusId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefChatStatusServiceImpl implements RefChatStatusService {
 	@Override
 	public RefChatStatus update(RefChatStatus refChatStatus) throws EntityNotFoundException {
         LOGGER.debug("Updating RefChatStatus with information: {}", refChatStatus);
+
         this.wmGenericDao.update(refChatStatus);
+        this.wmGenericDao.refresh(refChatStatus);
 
-        Integer refchatstatusId = refChatStatus.getId();
-
-        return this.wmGenericDao.findById(refchatstatusId);
+        return refChatStatus;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class RefChatStatusServiceImpl implements RefChatStatusService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefChatStatus refChatStatus) {
+        LOGGER.debug("Deleting RefChatStatus with {}", refChatStatus);
+        this.wmGenericDao.delete(refChatStatus);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

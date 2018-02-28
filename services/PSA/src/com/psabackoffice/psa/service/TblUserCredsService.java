@@ -74,6 +74,13 @@ public interface TblUserCredsService {
 	 */
 	TblUserCreds delete(Integer tblusercredsId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing TblUserCreds with the given object.
+	 *
+	 * @param tblUserCreds The instance of the TblUserCreds to be deleted; value cannot be null.
+	 */
+	void delete(TblUserCreds tblUserCreds);
+
 	/**
 	 * Find all TblUserCreds matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

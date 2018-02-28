@@ -75,6 +75,13 @@ public interface RefFbSeverityService {
 	 */
 	RefFbSeverity delete(Integer reffbseverityId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefFbSeverity with the given object.
+	 *
+	 * @param refFbSeverity The instance of the RefFbSeverity to be deleted; value cannot be null.
+	 */
+	void delete(RefFbSeverity refFbSeverity);
+
 	/**
 	 * Find all RefFbSeverities matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

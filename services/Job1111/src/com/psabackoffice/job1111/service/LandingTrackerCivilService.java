@@ -74,6 +74,13 @@ public interface LandingTrackerCivilService {
 	 */
 	LandingTrackerCivil delete(Integer landingtrackercivilId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing LandingTrackerCivil with the given object.
+	 *
+	 * @param landingTrackerCivil The instance of the LandingTrackerCivil to be deleted; value cannot be null.
+	 */
+	void delete(LandingTrackerCivil landingTrackerCivil);
+
 	/**
 	 * Find all LandingTrackerCivils matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

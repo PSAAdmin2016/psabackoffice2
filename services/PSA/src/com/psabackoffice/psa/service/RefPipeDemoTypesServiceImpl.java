@@ -53,26 +53,27 @@ public class RefPipeDemoTypesServiceImpl implements RefPipeDemoTypesService {
         LOGGER.debug("Creating a new RefPipeDemoTypes with information: {}", refPipeDemoTypes);
 
         RefPipeDemoTypes refPipeDemoTypesCreated = this.wmGenericDao.create(refPipeDemoTypes);
-        return refPipeDemoTypesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refPipeDemoTypesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefPipeDemoTypes getById(Integer refpipedemotypesId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefPipeDemoTypes by id: {}", refpipedemotypesId);
-        RefPipeDemoTypes refPipeDemoTypes = this.wmGenericDao.findById(refpipedemotypesId);
-        if (refPipeDemoTypes == null){
-            LOGGER.debug("No RefPipeDemoTypes found with id: {}", refpipedemotypesId);
-            throw new EntityNotFoundException(String.valueOf(refpipedemotypesId));
-        }
-        return refPipeDemoTypes;
+        return this.wmGenericDao.findById(refpipedemotypesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefPipeDemoTypes findById(Integer refpipedemotypesId) {
         LOGGER.debug("Finding RefPipeDemoTypes by id: {}", refpipedemotypesId);
-        return this.wmGenericDao.findById(refpipedemotypesId);
+        try {
+            return this.wmGenericDao.findById(refpipedemotypesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefPipeDemoTypes found with id: {}", refpipedemotypesId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefPipeDemoTypesServiceImpl implements RefPipeDemoTypesService {
 	@Override
 	public RefPipeDemoTypes update(RefPipeDemoTypes refPipeDemoTypes) throws EntityNotFoundException {
         LOGGER.debug("Updating RefPipeDemoTypes with information: {}", refPipeDemoTypes);
+
         this.wmGenericDao.update(refPipeDemoTypes);
+        this.wmGenericDao.refresh(refPipeDemoTypes);
 
-        Integer refpipedemotypesId = refPipeDemoTypes.getId();
-
-        return this.wmGenericDao.findById(refpipedemotypesId);
+        return refPipeDemoTypes;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class RefPipeDemoTypesServiceImpl implements RefPipeDemoTypesService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefPipeDemoTypes refPipeDemoTypes) {
+        LOGGER.debug("Deleting RefPipeDemoTypes with {}", refPipeDemoTypes);
+        this.wmGenericDao.delete(refPipeDemoTypes);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

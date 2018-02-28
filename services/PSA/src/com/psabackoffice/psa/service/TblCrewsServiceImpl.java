@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,36 +60,29 @@ public class TblCrewsServiceImpl implements TblCrewsService {
     @Override
 	public TblCrews create(TblCrews tblCrews) {
         LOGGER.debug("Creating a new TblCrews with information: {}", tblCrews);
-        List<TblCrewsRev> tblCrewsRevs = tblCrews.getTblCrewsRevs();
 
         TblCrews tblCrewsCreated = this.wmGenericDao.create(tblCrews);
-        if(tblCrewsRevs != null) {
-            for(TblCrewsRev _tblCrewsRev : tblCrewsRevs) {
-                _tblCrewsRev.setTblCrews(tblCrewsCreated);
-                LOGGER.debug("Creating a new child TblCrewsRev with information: {}", _tblCrewsRev);
-                tblCrewsRevService.create(_tblCrewsRev);
-            }
-        }
-        return tblCrewsCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(tblCrewsCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public TblCrews getById(Integer tblcrewsId) throws EntityNotFoundException {
         LOGGER.debug("Finding TblCrews by id: {}", tblcrewsId);
-        TblCrews tblCrews = this.wmGenericDao.findById(tblcrewsId);
-        if (tblCrews == null){
-            LOGGER.debug("No TblCrews found with id: {}", tblcrewsId);
-            throw new EntityNotFoundException(String.valueOf(tblcrewsId));
-        }
-        return tblCrews;
+        return this.wmGenericDao.findById(tblcrewsId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public TblCrews findById(Integer tblcrewsId) {
         LOGGER.debug("Finding TblCrews by id: {}", tblcrewsId);
-        return this.wmGenericDao.findById(tblcrewsId);
+        try {
+            return this.wmGenericDao.findById(tblcrewsId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No TblCrews found with id: {}", tblcrewsId, ex);
+            return null;
+        }
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
@@ -112,11 +106,21 @@ public class TblCrewsServiceImpl implements TblCrewsService {
 	@Override
 	public TblCrews update(TblCrews tblCrews) throws EntityNotFoundException {
         LOGGER.debug("Updating TblCrews with information: {}", tblCrews);
+
+        List<TblCrewsRev> tblCrewsRevs = tblCrews.getTblCrewsRevs();
+
+        if(tblCrewsRevs != null && Hibernate.isInitialized(tblCrewsRevs)) {
+            if(!tblCrewsRevs.isEmpty()) {
+                for(TblCrewsRev _tblCrewsRev : tblCrewsRevs) {
+                    _tblCrewsRev.setTblCrews(tblCrews);
+                }
+            }
+        }
+
         this.wmGenericDao.update(tblCrews);
+        this.wmGenericDao.refresh(tblCrews);
 
-        Integer tblcrewsId = tblCrews.getId();
-
-        return this.wmGenericDao.findById(tblcrewsId);
+        return tblCrews;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -130,6 +134,13 @@ public class TblCrewsServiceImpl implements TblCrewsService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(TblCrews tblCrews) {
+        LOGGER.debug("Deleting TblCrews with {}", tblCrews);
+        this.wmGenericDao.delete(tblCrews);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

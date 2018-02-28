@@ -53,26 +53,27 @@ public class SteelSellPackageServiceImpl implements SteelSellPackageService {
         LOGGER.debug("Creating a new SteelSellPackage with information: {}", steelSellPackage);
 
         SteelSellPackage steelSellPackageCreated = this.wmGenericDao.create(steelSellPackage);
-        return steelSellPackageCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(steelSellPackageCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public SteelSellPackage getById(Integer steelsellpackageId) throws EntityNotFoundException {
         LOGGER.debug("Finding SteelSellPackage by id: {}", steelsellpackageId);
-        SteelSellPackage steelSellPackage = this.wmGenericDao.findById(steelsellpackageId);
-        if (steelSellPackage == null){
-            LOGGER.debug("No SteelSellPackage found with id: {}", steelsellpackageId);
-            throw new EntityNotFoundException(String.valueOf(steelsellpackageId));
-        }
-        return steelSellPackage;
+        return this.wmGenericDao.findById(steelsellpackageId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public SteelSellPackage findById(Integer steelsellpackageId) {
         LOGGER.debug("Finding SteelSellPackage by id: {}", steelsellpackageId);
-        return this.wmGenericDao.findById(steelsellpackageId);
+        try {
+            return this.wmGenericDao.findById(steelsellpackageId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No SteelSellPackage found with id: {}", steelsellpackageId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class SteelSellPackageServiceImpl implements SteelSellPackageService {
 	@Override
 	public SteelSellPackage update(SteelSellPackage steelSellPackage) throws EntityNotFoundException {
         LOGGER.debug("Updating SteelSellPackage with information: {}", steelSellPackage);
+
         this.wmGenericDao.update(steelSellPackage);
+        this.wmGenericDao.refresh(steelSellPackage);
 
-        Integer steelsellpackageId = steelSellPackage.getId();
-
-        return this.wmGenericDao.findById(steelsellpackageId);
+        return steelSellPackage;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class SteelSellPackageServiceImpl implements SteelSellPackageService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(SteelSellPackage steelSellPackage) {
+        LOGGER.debug("Deleting SteelSellPackage with {}", steelSellPackage);
+        this.wmGenericDao.delete(steelSellPackage);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

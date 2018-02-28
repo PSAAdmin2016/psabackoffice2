@@ -8,6 +8,7 @@ package com.psabackoffice.psa.service;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,36 +59,29 @@ public class RefCraftClassesServiceImpl implements RefCraftClassesService {
     @Override
 	public RefCraftClasses create(RefCraftClasses refCraftClasses) {
         LOGGER.debug("Creating a new RefCraftClasses with information: {}", refCraftClasses);
-        List<TblUserPsa> tblUserPsas = refCraftClasses.getTblUserPsas();
 
         RefCraftClasses refCraftClassesCreated = this.wmGenericDao.create(refCraftClasses);
-        if(tblUserPsas != null) {
-            for(TblUserPsa _tblUserPsa : tblUserPsas) {
-                _tblUserPsa.setRefCraftClasses(refCraftClassesCreated);
-                LOGGER.debug("Creating a new child TblUserPsa with information: {}", _tblUserPsa);
-                tblUserPsaService.create(_tblUserPsa);
-            }
-        }
-        return refCraftClassesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refCraftClassesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefCraftClasses getById(Integer refcraftclassesId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefCraftClasses by id: {}", refcraftclassesId);
-        RefCraftClasses refCraftClasses = this.wmGenericDao.findById(refcraftclassesId);
-        if (refCraftClasses == null){
-            LOGGER.debug("No RefCraftClasses found with id: {}", refcraftclassesId);
-            throw new EntityNotFoundException(String.valueOf(refcraftclassesId));
-        }
-        return refCraftClasses;
+        return this.wmGenericDao.findById(refcraftclassesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefCraftClasses findById(Integer refcraftclassesId) {
         LOGGER.debug("Finding RefCraftClasses by id: {}", refcraftclassesId);
-        return this.wmGenericDao.findById(refcraftclassesId);
+        try {
+            return this.wmGenericDao.findById(refcraftclassesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefCraftClasses found with id: {}", refcraftclassesId, ex);
+            return null;
+        }
     }
 
 
@@ -95,11 +89,21 @@ public class RefCraftClassesServiceImpl implements RefCraftClassesService {
 	@Override
 	public RefCraftClasses update(RefCraftClasses refCraftClasses) throws EntityNotFoundException {
         LOGGER.debug("Updating RefCraftClasses with information: {}", refCraftClasses);
+
+        List<TblUserPsa> tblUserPsas = refCraftClasses.getTblUserPsas();
+
+        if(tblUserPsas != null && Hibernate.isInitialized(tblUserPsas)) {
+            if(!tblUserPsas.isEmpty()) {
+                for(TblUserPsa _tblUserPsa : tblUserPsas) {
+                    _tblUserPsa.setRefCraftClasses(refCraftClasses);
+                }
+            }
+        }
+
         this.wmGenericDao.update(refCraftClasses);
+        this.wmGenericDao.refresh(refCraftClasses);
 
-        Integer refcraftclassesId = refCraftClasses.getId();
-
-        return this.wmGenericDao.findById(refcraftclassesId);
+        return refCraftClasses;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -113,6 +117,13 @@ public class RefCraftClassesServiceImpl implements RefCraftClassesService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefCraftClasses refCraftClasses) {
+        LOGGER.debug("Deleting RefCraftClasses with {}", refCraftClasses);
+        this.wmGenericDao.delete(refCraftClasses);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

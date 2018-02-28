@@ -53,26 +53,27 @@ public class RefWeldSpecProceduresServiceImpl implements RefWeldSpecProceduresSe
         LOGGER.debug("Creating a new RefWeldSpecProcedures with information: {}", refWeldSpecProcedures);
 
         RefWeldSpecProcedures refWeldSpecProceduresCreated = this.wmGenericDao.create(refWeldSpecProcedures);
-        return refWeldSpecProceduresCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refWeldSpecProceduresCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public RefWeldSpecProcedures getById(Integer refweldspecproceduresId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefWeldSpecProcedures by id: {}", refweldspecproceduresId);
-        RefWeldSpecProcedures refWeldSpecProcedures = this.wmGenericDao.findById(refweldspecproceduresId);
-        if (refWeldSpecProcedures == null){
-            LOGGER.debug("No RefWeldSpecProcedures found with id: {}", refweldspecproceduresId);
-            throw new EntityNotFoundException(String.valueOf(refweldspecproceduresId));
-        }
-        return refWeldSpecProcedures;
+        return this.wmGenericDao.findById(refweldspecproceduresId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public RefWeldSpecProcedures findById(Integer refweldspecproceduresId) {
         LOGGER.debug("Finding RefWeldSpecProcedures by id: {}", refweldspecproceduresId);
-        return this.wmGenericDao.findById(refweldspecproceduresId);
+        try {
+            return this.wmGenericDao.findById(refweldspecproceduresId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefWeldSpecProcedures found with id: {}", refweldspecproceduresId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefWeldSpecProceduresServiceImpl implements RefWeldSpecProceduresSe
 	@Override
 	public RefWeldSpecProcedures update(RefWeldSpecProcedures refWeldSpecProcedures) throws EntityNotFoundException {
         LOGGER.debug("Updating RefWeldSpecProcedures with information: {}", refWeldSpecProcedures);
+
         this.wmGenericDao.update(refWeldSpecProcedures);
+        this.wmGenericDao.refresh(refWeldSpecProcedures);
 
-        Integer refweldspecproceduresId = refWeldSpecProcedures.getId();
-
-        return this.wmGenericDao.findById(refweldspecproceduresId);
+        return refWeldSpecProcedures;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class RefWeldSpecProceduresServiceImpl implements RefWeldSpecProceduresSe
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(RefWeldSpecProcedures refWeldSpecProcedures) {
+        LOGGER.debug("Deleting RefWeldSpecProcedures with {}", refWeldSpecProcedures);
+        this.wmGenericDao.delete(refWeldSpecProcedures);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

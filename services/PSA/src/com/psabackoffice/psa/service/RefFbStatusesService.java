@@ -75,6 +75,13 @@ public interface RefFbStatusesService {
 	 */
 	RefFbStatuses delete(Integer reffbstatusesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefFbStatuses with the given object.
+	 *
+	 * @param refFbStatuses The instance of the RefFbStatuses to be deleted; value cannot be null.
+	 */
+	void delete(RefFbStatuses refFbStatuses);
+
 	/**
 	 * Find all RefFbStatuses matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

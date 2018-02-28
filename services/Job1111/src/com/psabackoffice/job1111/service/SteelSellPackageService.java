@@ -74,6 +74,13 @@ public interface SteelSellPackageService {
 	 */
 	SteelSellPackage delete(Integer steelsellpackageId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing SteelSellPackage with the given object.
+	 *
+	 * @param steelSellPackage The instance of the SteelSellPackage to be deleted; value cannot be null.
+	 */
+	void delete(SteelSellPackage steelSellPackage);
+
 	/**
 	 * Find all SteelSellPackages matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

@@ -659,6 +659,26 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
+    public Page<GetActivitiesPendingReviewPipeResponse> executeGetActivitiesPendingReviewPipe(String superId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("SuperID", superId);
+
+        return queryExecutor.executeNamedQuery("GetActivitiesPendingReviewPipe", params, GetActivitiesPendingReviewPipeResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Downloadable exportGetActivitiesPendingReviewPipe(ExportType exportType, String superId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("SuperID", superId);
+
+        return queryExecutor.exportNamedQueryData("GetActivitiesPendingReviewPipe", params, exportType, GetActivitiesPendingReviewPipeResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
     public Page<GetPsrecentActivitiesResponse> executeGetPSRecentActivities(Integer userId, Pageable pageable) {
         Map params = new HashMap(1);
 
@@ -1374,6 +1394,26 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
+    public Page<GetActivitiesPendingReviewCivilResponse> executeGetActivitiesPendingReviewCivil(String superId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("SuperID", superId);
+
+        return queryExecutor.executeNamedQuery("GetActivitiesPendingReviewCivil", params, GetActivitiesPendingReviewCivilResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Downloadable exportGetActivitiesPendingReviewCivil(ExportType exportType, String superId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("SuperID", superId);
+
+        return queryExecutor.exportNamedQueryData("GetActivitiesPendingReviewCivil", params, exportType, GetActivitiesPendingReviewCivilResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
     public Page<GetActivityHistorySteelWeldResponse> executeGetActivityHistorySteelWeld(Integer activityId, Pageable pageable) {
         Map params = new HashMap(1);
 
@@ -1855,6 +1895,26 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelSell", params);
     }
 
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<GetActivitiesPendingReviewSteelResponse> executeGetActivitiesPendingReviewSteel(String superId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("SuperID", superId);
+
+        return queryExecutor.executeNamedQuery("GetActivitiesPendingReviewSteel", params, GetActivitiesPendingReviewSteelResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Downloadable exportGetActivitiesPendingReviewSteel(ExportType exportType, String superId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("SuperID", superId);
+
+        return queryExecutor.exportNamedQueryData("GetActivitiesPendingReviewSteel", params, exportType, GetActivitiesPendingReviewSteelResponse.class, pageable);
+    }
+
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public Integer executeUpdateSteelImp(UpdateSteelImpRequest updateSteelImpRequest) {
@@ -2178,6 +2238,26 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         params.put("FieldActivityID", updateSteelDemoQuantityRequest.getFieldActivityId());
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelDemoQuantity", params);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<GetActivitiesPendingReviewEquipResponse> executeGetActivitiesPendingReviewEquip(String superId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("SuperID", superId);
+
+        return queryExecutor.executeNamedQuery("GetActivitiesPendingReviewEquip", params, GetActivitiesPendingReviewEquipResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Downloadable exportGetActivitiesPendingReviewEquip(ExportType exportType, String superId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("SuperID", superId);
+
+        return queryExecutor.exportNamedQueryData("GetActivitiesPendingReviewEquip", params, exportType, GetActivitiesPendingReviewEquipResponse.class, pageable);
     }
 
     @Transactional(value = "Job1111TransactionManager")

@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,7 +19,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PostPersist;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -79,6 +84,7 @@ public class TblJobSites implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`SiteState`", referencedColumnName = "`Abbreviation`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_StateAbbreviation_JobSite`"))
+    @Fetch(FetchMode.JOIN)
     public RefStateAbbreviations getRefStateAbbreviations() {
         return this.refStateAbbreviations;
     }
@@ -92,13 +98,23 @@ public class TblJobSites implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblJobSites")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblJobSites")
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
     public List<TblJobNumbers> getTblJobNumberses() {
         return this.tblJobNumberses;
     }
 
     public void setTblJobNumberses(List<TblJobNumbers> tblJobNumberses) {
         this.tblJobNumberses = tblJobNumberses;
+    }
+
+    @PostPersist
+    public void onPostPersist() {
+        if(tblJobNumberses != null) {
+            for(TblJobNumbers tblJobNumbers : tblJobNumberses) {
+                tblJobNumbers.setTblJobSites(this);
+            }
+        }
     }
 
     @Override

@@ -74,6 +74,13 @@ public interface RefGenericPipeSpoolsService {
 	 */
 	RefGenericPipeSpools delete(Integer refgenericpipespoolsId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefGenericPipeSpools with the given object.
+	 *
+	 * @param refGenericPipeSpools The instance of the RefGenericPipeSpools to be deleted; value cannot be null.
+	 */
+	void delete(RefGenericPipeSpools refGenericPipeSpools);
+
 	/**
 	 * Find all RefGenericPipeSpools matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

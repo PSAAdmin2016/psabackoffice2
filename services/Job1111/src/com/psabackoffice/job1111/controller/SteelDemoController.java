@@ -79,9 +79,9 @@ public class SteelDemoController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public SteelDemo editSteelDemo(@PathVariable("id") Integer id, @RequestBody SteelDemo steelDemo) throws EntityNotFoundException {
-        LOGGER.debug("Editing SteelDemo with id: {}" , steelDemo.getId());
+        LOGGER.debug("Editing SteelDemo with id: {}" , steelDemo.getActivityId());
 
-        steelDemo.setId(id);
+        steelDemo.setActivityId(id);
         steelDemo = steelDemoService.update(steelDemo);
         LOGGER.debug("SteelDemo details with id: {}" , steelDemo);
 

@@ -76,6 +76,13 @@ public interface RefRolesService {
 	 */
 	RefRoles delete(Integer refrolesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefRoles with the given object.
+	 *
+	 * @param refRoles The instance of the RefRoles to be deleted; value cannot be null.
+	 */
+	void delete(RefRoles refRoles);
+
 	/**
 	 * Find all RefRoles matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

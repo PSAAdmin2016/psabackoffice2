@@ -79,9 +79,9 @@ public class PipeMiscController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public PipeMisc editPipeMisc(@PathVariable("id") Integer id, @RequestBody PipeMisc pipeMisc) throws EntityNotFoundException {
-        LOGGER.debug("Editing PipeMisc with id: {}" , pipeMisc.getId());
+        LOGGER.debug("Editing PipeMisc with id: {}" , pipeMisc.getActivityId());
 
-        pipeMisc.setId(id);
+        pipeMisc.setActivityId(id);
         pipeMisc = pipeMiscService.update(pipeMisc);
         LOGGER.debug("PipeMisc details with id: {}" , pipeMisc);
 

@@ -74,6 +74,13 @@ public interface LandingTrackerSteelService {
 	 */
 	LandingTrackerSteel delete(Integer landingtrackersteelId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing LandingTrackerSteel with the given object.
+	 *
+	 * @param landingTrackerSteel The instance of the LandingTrackerSteel to be deleted; value cannot be null.
+	 */
+	void delete(LandingTrackerSteel landingTrackerSteel);
+
 	/**
 	 * Find all LandingTrackerSteels matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

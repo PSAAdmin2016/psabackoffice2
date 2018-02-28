@@ -74,6 +74,13 @@ public interface RefDelayTypesService {
 	 */
 	RefDelayTypes delete(Integer refdelaytypesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefDelayTypes with the given object.
+	 *
+	 * @param refDelayTypes The instance of the RefDelayTypes to be deleted; value cannot be null.
+	 */
+	void delete(RefDelayTypes refDelayTypes);
+
 	/**
 	 * Find all RefDelayTypes matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

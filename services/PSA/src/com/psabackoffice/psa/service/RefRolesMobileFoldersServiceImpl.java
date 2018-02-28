@@ -53,26 +53,27 @@ public class RefRolesMobileFoldersServiceImpl implements RefRolesMobileFoldersSe
         LOGGER.debug("Creating a new RefRolesMobileFolders with information: {}", refRolesMobileFolders);
 
         RefRolesMobileFolders refRolesMobileFoldersCreated = this.wmGenericDao.create(refRolesMobileFolders);
-        return refRolesMobileFoldersCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refRolesMobileFoldersCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefRolesMobileFolders getById(Integer refrolesmobilefoldersId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefRolesMobileFolders by id: {}", refrolesmobilefoldersId);
-        RefRolesMobileFolders refRolesMobileFolders = this.wmGenericDao.findById(refrolesmobilefoldersId);
-        if (refRolesMobileFolders == null){
-            LOGGER.debug("No RefRolesMobileFolders found with id: {}", refrolesmobilefoldersId);
-            throw new EntityNotFoundException(String.valueOf(refrolesmobilefoldersId));
-        }
-        return refRolesMobileFolders;
+        return this.wmGenericDao.findById(refrolesmobilefoldersId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefRolesMobileFolders findById(Integer refrolesmobilefoldersId) {
         LOGGER.debug("Finding RefRolesMobileFolders by id: {}", refrolesmobilefoldersId);
-        return this.wmGenericDao.findById(refrolesmobilefoldersId);
+        try {
+            return this.wmGenericDao.findById(refrolesmobilefoldersId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefRolesMobileFolders found with id: {}", refrolesmobilefoldersId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefRolesMobileFoldersServiceImpl implements RefRolesMobileFoldersSe
 	@Override
 	public RefRolesMobileFolders update(RefRolesMobileFolders refRolesMobileFolders) throws EntityNotFoundException {
         LOGGER.debug("Updating RefRolesMobileFolders with information: {}", refRolesMobileFolders);
+
         this.wmGenericDao.update(refRolesMobileFolders);
+        this.wmGenericDao.refresh(refRolesMobileFolders);
 
-        Integer refrolesmobilefoldersId = refRolesMobileFolders.getId();
-
-        return this.wmGenericDao.findById(refrolesmobilefoldersId);
+        return refRolesMobileFolders;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class RefRolesMobileFoldersServiceImpl implements RefRolesMobileFoldersSe
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefRolesMobileFolders refRolesMobileFolders) {
+        LOGGER.debug("Deleting RefRolesMobileFolders with {}", refRolesMobileFolders);
+        this.wmGenericDao.delete(refRolesMobileFolders);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

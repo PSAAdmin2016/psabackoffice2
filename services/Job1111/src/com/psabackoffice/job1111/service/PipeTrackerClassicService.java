@@ -74,6 +74,13 @@ public interface PipeTrackerClassicService {
 	 */
 	PipeTrackerClassic delete(Integer pipetrackerclassicId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing PipeTrackerClassic with the given object.
+	 *
+	 * @param pipeTrackerClassic The instance of the PipeTrackerClassic to be deleted; value cannot be null.
+	 */
+	void delete(PipeTrackerClassic pipeTrackerClassic);
+
 	/**
 	 * Find all PipeTrackerClassics matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

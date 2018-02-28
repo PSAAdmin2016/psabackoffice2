@@ -28,7 +28,11 @@
   "corsConfig" : {
     "enabled" : false,
     "maxAge" : 1600,
-    "pathEntries" : [ ],
+    "pathEntries" : [ {
+      "name" : "root",
+      "path" : "/**",
+      "allowedOrigins" : "*"
+    } ],
     "allowCredentials" : false
   },
   "tokenAuthConfig" : {

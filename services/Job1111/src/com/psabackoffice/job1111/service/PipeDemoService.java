@@ -74,6 +74,13 @@ public interface PipeDemoService {
 	 */
 	PipeDemo delete(Integer pipedemoId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing PipeDemo with the given object.
+	 *
+	 * @param pipeDemo The instance of the PipeDemo to be deleted; value cannot be null.
+	 */
+	void delete(PipeDemo pipeDemo);
+
 	/**
 	 * Find all PipeDemos matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

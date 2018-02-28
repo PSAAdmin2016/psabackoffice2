@@ -53,26 +53,27 @@ public class RefTrimActivitiesServiceImpl implements RefTrimActivitiesService {
         LOGGER.debug("Creating a new RefTrimActivities with information: {}", refTrimActivities);
 
         RefTrimActivities refTrimActivitiesCreated = this.wmGenericDao.create(refTrimActivities);
-        return refTrimActivitiesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refTrimActivitiesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefTrimActivities getById(Integer reftrimactivitiesId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefTrimActivities by id: {}", reftrimactivitiesId);
-        RefTrimActivities refTrimActivities = this.wmGenericDao.findById(reftrimactivitiesId);
-        if (refTrimActivities == null){
-            LOGGER.debug("No RefTrimActivities found with id: {}", reftrimactivitiesId);
-            throw new EntityNotFoundException(String.valueOf(reftrimactivitiesId));
-        }
-        return refTrimActivities;
+        return this.wmGenericDao.findById(reftrimactivitiesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefTrimActivities findById(Integer reftrimactivitiesId) {
         LOGGER.debug("Finding RefTrimActivities by id: {}", reftrimactivitiesId);
-        return this.wmGenericDao.findById(reftrimactivitiesId);
+        try {
+            return this.wmGenericDao.findById(reftrimactivitiesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefTrimActivities found with id: {}", reftrimactivitiesId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefTrimActivitiesServiceImpl implements RefTrimActivitiesService {
 	@Override
 	public RefTrimActivities update(RefTrimActivities refTrimActivities) throws EntityNotFoundException {
         LOGGER.debug("Updating RefTrimActivities with information: {}", refTrimActivities);
+
         this.wmGenericDao.update(refTrimActivities);
+        this.wmGenericDao.refresh(refTrimActivities);
 
-        Integer reftrimactivitiesId = refTrimActivities.getId();
-
-        return this.wmGenericDao.findById(reftrimactivitiesId);
+        return refTrimActivities;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class RefTrimActivitiesServiceImpl implements RefTrimActivitiesService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefTrimActivities refTrimActivities) {
+        LOGGER.debug("Deleting RefTrimActivities with {}", refTrimActivities);
+        this.wmGenericDao.delete(refTrimActivities);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

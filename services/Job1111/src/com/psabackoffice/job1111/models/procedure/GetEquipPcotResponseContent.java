@@ -7,10 +7,9 @@ package com.psabackoffice.job1111.models.procedure;
 
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
-
-import org.joda.time.LocalDateTime;
 
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 

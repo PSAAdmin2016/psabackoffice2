@@ -19,7 +19,7 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
     };
 
 
-    $scope.liveGetSubsSignaturesonSuccess = function(variable, data) { //SubsSignatures Called by Update data on input change even in SubsDetails variable
+    $scope.liveGetSubsSignaturesonSuccess = function(variable, data) { //SubsSignatures Called by Update data on input change event in SubsDetails variable
         $scope.signaturePad.fromDataURL(data[0].signatureData);
     };
 
@@ -85,54 +85,93 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
     };
 
 
-    $scope.gridSuperReviewActivitiesSelect = function($event, $rowData) {
+    $scope.gridSuperReviewActivitiesPipeSelect = function($event, $isolateScope, $rowData) {
         $scope.Variables.staticEditMode.dataSet.dataValue = false;
 
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 10) {
+        $scope.Variables.liveGetSubsDetails.setFilter('submissionId', $rowData.submissionId);
+        $scope.Variables.liveGetSubsDetails.listRecords();
+
+        if ($scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 10) {
             console.log('Activity Type 10 not defined: ReviewSuperPipe: GridActivitySelect');
         }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 11) {
-            $scope.Variables.liveGetPipeErection.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityID);
-            $scope.Variables.serviceGetErectionTotal.setInput('ActivityId', $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityID); //Updated called by liveGetSubsErection
+        if ($scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 11) {
+            $scope.Variables.liveGetPipeErection.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityId);
+            $scope.Variables.serviceGetErectionTotal.setInput('ActivityId', $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityId); //Updated called by liveGetSubsErection
             $scope.Variables.liveGetPipeErection.listRecords();
             $scope.Widgets.containerFADetails.content = 'PartFAPipeErection';
         }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 20) {
+        if ($scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 20) {
             console.log('Activity Type 20 not defined: ReviewSuperPipe: GridActivitySelect');
         }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 21) {
-            $scope.Variables.liveGetPipeBoltUp.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityID);
+        if ($scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 21) {
+            $scope.Variables.liveGetPipeBoltUp.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityId);
             $scope.Variables.liveGetPipeBoltUp.listRecords();
             $scope.Widgets.containerFADetails.content = 'PartFAPipeBoltUp';
         }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 22 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 23) {
-            $scope.Variables.liveGetPipeWeld.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityID);
+        if ($scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 22 || $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 23) {
+            $scope.Variables.liveGetPipeWeld.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityId);
             $scope.Variables.liveGetPipeWeld.listRecords();
             $scope.Widgets.containerFADetails.content = 'PartFAPipeWeld';
         }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 30) {
+        if ($scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 30) {
             console.log('Activity Type 30 not defined: ReviewSuperPipe: GridActivitySelect');
         }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 31 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 33 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 34 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 35 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 39) {
-            $scope.Variables.liveGetPipeTrim.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityID);
+        if ($scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 31 || $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 33 || $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 34 || $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 35 || $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 39) {
+            $scope.Variables.liveGetPipeTrim.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityId);
             $scope.Variables.liveGetPipeTrim.listRecords();
             $scope.Widgets.containerFADetails.content = 'PartFAPipeTrim';
         }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 32) {
-            $scope.Variables.liveGetPipeSupports.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityID);
+        if ($scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 32) {
+            $scope.Variables.liveGetPipeSupports.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityId);
             $scope.Variables.liveGetPipeSupports.listRecords();
             $scope.Widgets.containerFADetails.content = 'PartFAPipeSupports';
         }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 40 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 41 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 42 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 43) {
-            $scope.Variables.liveGetPipeTesting.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityID);
+        if ($scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 40 || $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 41 || $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 42 || $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 43) {
+            $scope.Variables.liveGetPipeTesting.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityId);
             $scope.Variables.liveGetPipeTesting.listRecords();
             $scope.Widgets.containerFADetails.content = 'PartFAPipeTesting';
         }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 50 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 51 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 52 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 53 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 59) {
-            $scope.Variables.liveGetPipeDemo.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityID);
+        if ($scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 50 || $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 51 || $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 52 || $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 53 || $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 59) {
+            $scope.Variables.liveGetPipeDemo.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityId);
             $scope.Variables.liveGetPipeDemo.listRecords();
             $scope.Widgets.containerFADetails.content = 'PartFAPipeDemo';
         }
+        if ($scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 90 || $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityType == 91) {
+            $scope.Variables.liveGetPipeMisc.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.activityId);
+            $scope.Variables.liveGetPipeMisc.listRecords();
+            $scope.Widgets.containerFADetails.content = 'PartFAPipeMisc';
+        }
+    };
+
+
+    $scope.gridSuperReviewActivitiesCivilSelect = function($event, $isolateScope, $rowData) {
+        $scope.Variables.staticEditMode.dataSet.dataValue = false;
+
+        $scope.Variables.liveGetSubsDetails.setFilter('submissionId', $rowData.submissionId);
+        $scope.Variables.liveGetSubsDetails.listRecords();
+
+        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 70 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 71) {
+            $scope.Variables.liveGetCivilFA.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityID);
+            $scope.Variables.liveGetCivilFA.listRecords();
+            $scope.Widgets.containerFADetails.content = 'PartFACivilStandard';
+        }
+        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 72) {
+            $scope.Variables.liveGetCivilSellPackage.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityID);
+            $scope.Variables.liveGetCivilSellPackage.listRecords();
+            $scope.Widgets.containerFADetails.content = 'PartFACivilSellPackage';
+        }
+        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 97) {
+            $scope.Variables.liveGetCivilMisc.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityID);
+            $scope.Variables.liveGetCivilMisc.listRecords();
+            $scope.Widgets.containerFADetails.content = 'PartFACivilMisc';
+        }
+    };
+
+
+    $scope.gridSuperReviewActivitiesSelect = function($event, $rowData) {
+        $scope.Variables.staticEditMode.dataSet.dataValue = false;
+
+
         if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 60) {
             console.log('Activity Type 60 not defined: ReviewSuperPipe: GridActivitySelect');
         }
@@ -176,16 +215,7 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
             $scope.Variables.liveGetSteelWeld.listRecords();
             $scope.Widgets.containerFADetails.content = 'PartFASteelWeld';
         }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 70 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 71) {
-            $scope.Variables.liveGetCivilFA.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityID);
-            $scope.Variables.liveGetCivilFA.listRecords();
-            $scope.Widgets.containerFADetails.content = 'PartFACivilStandard';
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 72) {
-            $scope.Variables.liveGetCivilSellPackage.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityID);
-            $scope.Variables.liveGetCivilSellPackage.listRecords();
-            $scope.Widgets.containerFADetails.content = 'PartFACivilSellPackage';
-        }
+
         if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 77) {
             console.log('Activity Type 77 not defined: ReviewSuperPipe: GridActivitySelect');
         }
@@ -194,11 +224,7 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
             $scope.Variables.liveGetEquipFA.listRecords();
             $scope.Widgets.containerFADetails.content = 'PartFAEquipStandard';
         }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 90 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 91) {
-            $scope.Variables.liveGetPipeMisc.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityID);
-            $scope.Variables.liveGetPipeMisc.listRecords();
-            $scope.Widgets.containerFADetails.content = 'PartFAPipeMisc';
-        }
+
         if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 93) {
             $scope.Variables.liveGetPipeEWO.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityID);
             $scope.Variables.liveGetPipeEWO.listRecords();
@@ -209,11 +235,7 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
             $scope.Variables.liveGetSteelMisc.listRecords();
             $scope.Widgets.containerFADetails.content = 'PartFASteelMisc';
         }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 97) {
-            $scope.Variables.liveGetCivilMisc.setFilter('ActivityID', $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityID);
-            $scope.Variables.liveGetCivilMisc.listRecords();
-            $scope.Widgets.containerFADetails.content = 'PartFACivilMisc';
-        }
+
     };
 
 
@@ -415,9 +437,20 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
     };
 
 
+    $scope.tabPipeSelect = function($event, $isolateScope) {
+        $scope.Variables.liveGetSubsDetails.setFilter('submissionId', $scope.Widgets.gridSuperReviewActivitiesPipe.selecteditem.submissionId);
+        $scope.Variables.liveGetSubsDetails.listRecords();
+    };
+
+
+    $scope.tabCivilSelect = function($event, $isolateScope) {
+        $scope.Variables.liveGetSubsDetails.setFilter('submissionId', $scope.Widgets.gridSuperReviewActivitiesCivil.selecteditem.submissionId);
+        $scope.Variables.liveGetSubsDetails.listRecords();
+    };
+
 }]);
 
-Application.$controller("gridSuperReviewActivitiesController", ["$scope",
+Application.$controller("gridSuperReviewActivitiesPipeController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
@@ -459,6 +492,20 @@ Application.$controller("dialogNotesNewController", ["$scope",
 ]);
 
 Application.$controller("dialogRecentActivitiesController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("gridSuperReviewActivitiesPipeController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("gridSuperReviewActivitiesCivilController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;

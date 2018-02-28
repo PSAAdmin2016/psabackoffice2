@@ -10,7 +10,6 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,7 +17,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PostPersist;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -56,7 +59,8 @@ public class ChatConversations implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "chatConversations")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "chatConversations")
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
     public List<ChatConversationMembers> getChatConversationMemberses() {
         return this.chatConversationMemberses;
     }
@@ -66,13 +70,28 @@ public class ChatConversations implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "chatConversations")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "chatConversations")
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
     public List<ChatMessages> getChatMessageses() {
         return this.chatMessageses;
     }
 
     public void setChatMessageses(List<ChatMessages> chatMessageses) {
         this.chatMessageses = chatMessageses;
+    }
+
+    @PostPersist
+    public void onPostPersist() {
+        if(chatConversationMemberses != null) {
+            for(ChatConversationMembers chatConversationMembers : chatConversationMemberses) {
+                chatConversationMembers.setChatConversations(this);
+            }
+        }
+        if(chatMessageses != null) {
+            for(ChatMessages chatMessages : chatMessageses) {
+                chatMessages.setChatConversations(this);
+            }
+        }
     }
 
     @Override

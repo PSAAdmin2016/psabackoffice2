@@ -53,26 +53,27 @@ public class EquipFaServiceImpl implements EquipFaService {
         LOGGER.debug("Creating a new EquipFa with information: {}", equipFa);
 
         EquipFa equipFaCreated = this.wmGenericDao.create(equipFa);
-        return equipFaCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(equipFaCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public EquipFa getById(Integer equipfaId) throws EntityNotFoundException {
         LOGGER.debug("Finding EquipFa by id: {}", equipfaId);
-        EquipFa equipFa = this.wmGenericDao.findById(equipfaId);
-        if (equipFa == null){
-            LOGGER.debug("No EquipFa found with id: {}", equipfaId);
-            throw new EntityNotFoundException(String.valueOf(equipfaId));
-        }
-        return equipFa;
+        return this.wmGenericDao.findById(equipfaId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public EquipFa findById(Integer equipfaId) {
         LOGGER.debug("Finding EquipFa by id: {}", equipfaId);
-        return this.wmGenericDao.findById(equipfaId);
+        try {
+            return this.wmGenericDao.findById(equipfaId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No EquipFa found with id: {}", equipfaId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class EquipFaServiceImpl implements EquipFaService {
 	@Override
 	public EquipFa update(EquipFa equipFa) throws EntityNotFoundException {
         LOGGER.debug("Updating EquipFa with information: {}", equipFa);
+
         this.wmGenericDao.update(equipFa);
+        this.wmGenericDao.refresh(equipFa);
 
-        Integer equipfaId = equipFa.getId();
-
-        return this.wmGenericDao.findById(equipfaId);
+        return equipFa;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class EquipFaServiceImpl implements EquipFaService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(EquipFa equipFa) {
+        LOGGER.debug("Deleting EquipFa with {}", equipFa);
+        this.wmGenericDao.delete(equipFa);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

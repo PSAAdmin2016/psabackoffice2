@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,7 +16,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PostPersist;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -54,13 +57,23 @@ public class RefCraftClasses implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "refCraftClasses")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "refCraftClasses")
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
     public List<TblUserPsa> getTblUserPsas() {
         return this.tblUserPsas;
     }
 
     public void setTblUserPsas(List<TblUserPsa> tblUserPsas) {
         this.tblUserPsas = tblUserPsas;
+    }
+
+    @PostPersist
+    public void onPostPersist() {
+        if(tblUserPsas != null) {
+            for(TblUserPsa tblUserPsa : tblUserPsas) {
+                tblUserPsa.setRefCraftClasses(this);
+            }
+        }
     }
 
     @Override

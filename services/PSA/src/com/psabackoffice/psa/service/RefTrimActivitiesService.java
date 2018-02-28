@@ -74,6 +74,13 @@ public interface RefTrimActivitiesService {
 	 */
 	RefTrimActivities delete(Integer reftrimactivitiesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefTrimActivities with the given object.
+	 *
+	 * @param refTrimActivities The instance of the RefTrimActivities to be deleted; value cannot be null.
+	 */
+	void delete(RefTrimActivities refTrimActivities);
+
 	/**
 	 * Find all RefTrimActivities matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

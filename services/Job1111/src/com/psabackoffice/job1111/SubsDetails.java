@@ -10,7 +10,6 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,7 +17,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PostPersist;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -43,27 +46,8 @@ public class SubsDetails implements Serializable {
     private Timestamp receivedTime;
     private short rev;
     private Timestamp timeStamp;
-    private List<CivilFa> civilFas;
-    private List<CivilMisc> civilMiscs;
-    private List<CivilSellPackage> civilSellPackages;
-    private List<EquipFa> equipFas;
-    private List<PipeDemo> pipeDemos;
-    private List<PipeEwo> pipeEwos;
-    private List<PipeErection> pipeErections;
-    private List<PipeMisc> pipeMiscs;
-    private List<PipeSupports> pipeSupportses;
-    private List<PipeTesting> pipeTestings;
-    private List<PipeTrim> pipeTrims;
-    private List<PipeWeld> pipeWelds;
-    private List<SteelBoltOut> steelBoltOuts;
-    private List<SteelDemo> steelDemos;
-    private List<SteelErect> steelErects;
-    private List<SteelImp> steelImps;
-    private List<SteelMisc> steelMiscs;
-    private List<SteelSell> steelSells;
-    private List<SteelSellPackage> steelSellPackages;
-    private List<SteelShake> steelShakes;
-    private List<SteelWeld> steelWelds;
+    private List<SubmissionActivityStatus> submissionActivityStatuses;
+    private List<SubsSignatures> subsSignatureses;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -185,213 +169,39 @@ public class SubsDetails implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<CivilFa> getCivilFas() {
-        return this.civilFas;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "subsDetails")
+    @Cascade({CascadeType.SAVE_UPDATE})
+    public List<SubmissionActivityStatus> getSubmissionActivityStatuses() {
+        return this.submissionActivityStatuses;
     }
 
-    public void setCivilFas(List<CivilFa> civilFas) {
-        this.civilFas = civilFas;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<CivilMisc> getCivilMiscs() {
-        return this.civilMiscs;
-    }
-
-    public void setCivilMiscs(List<CivilMisc> civilMiscs) {
-        this.civilMiscs = civilMiscs;
+    public void setSubmissionActivityStatuses(List<SubmissionActivityStatus> submissionActivityStatuses) {
+        this.submissionActivityStatuses = submissionActivityStatuses;
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<CivilSellPackage> getCivilSellPackages() {
-        return this.civilSellPackages;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "subsDetails")
+    @Cascade({CascadeType.SAVE_UPDATE})
+    public List<SubsSignatures> getSubsSignatureses() {
+        return this.subsSignatureses;
     }
 
-    public void setCivilSellPackages(List<CivilSellPackage> civilSellPackages) {
-        this.civilSellPackages = civilSellPackages;
+    public void setSubsSignatureses(List<SubsSignatures> subsSignatureses) {
+        this.subsSignatureses = subsSignatureses;
     }
 
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<EquipFa> getEquipFas() {
-        return this.equipFas;
-    }
-
-    public void setEquipFas(List<EquipFa> equipFas) {
-        this.equipFas = equipFas;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<PipeDemo> getPipeDemos() {
-        return this.pipeDemos;
-    }
-
-    public void setPipeDemos(List<PipeDemo> pipeDemos) {
-        this.pipeDemos = pipeDemos;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<PipeEwo> getPipeEwos() {
-        return this.pipeEwos;
-    }
-
-    public void setPipeEwos(List<PipeEwo> pipeEwos) {
-        this.pipeEwos = pipeEwos;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<PipeErection> getPipeErections() {
-        return this.pipeErections;
-    }
-
-    public void setPipeErections(List<PipeErection> pipeErections) {
-        this.pipeErections = pipeErections;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<PipeMisc> getPipeMiscs() {
-        return this.pipeMiscs;
-    }
-
-    public void setPipeMiscs(List<PipeMisc> pipeMiscs) {
-        this.pipeMiscs = pipeMiscs;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<PipeSupports> getPipeSupportses() {
-        return this.pipeSupportses;
-    }
-
-    public void setPipeSupportses(List<PipeSupports> pipeSupportses) {
-        this.pipeSupportses = pipeSupportses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<PipeTesting> getPipeTestings() {
-        return this.pipeTestings;
-    }
-
-    public void setPipeTestings(List<PipeTesting> pipeTestings) {
-        this.pipeTestings = pipeTestings;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<PipeTrim> getPipeTrims() {
-        return this.pipeTrims;
-    }
-
-    public void setPipeTrims(List<PipeTrim> pipeTrims) {
-        this.pipeTrims = pipeTrims;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<PipeWeld> getPipeWelds() {
-        return this.pipeWelds;
-    }
-
-    public void setPipeWelds(List<PipeWeld> pipeWelds) {
-        this.pipeWelds = pipeWelds;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SteelBoltOut> getSteelBoltOuts() {
-        return this.steelBoltOuts;
-    }
-
-    public void setSteelBoltOuts(List<SteelBoltOut> steelBoltOuts) {
-        this.steelBoltOuts = steelBoltOuts;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SteelDemo> getSteelDemos() {
-        return this.steelDemos;
-    }
-
-    public void setSteelDemos(List<SteelDemo> steelDemos) {
-        this.steelDemos = steelDemos;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SteelErect> getSteelErects() {
-        return this.steelErects;
-    }
-
-    public void setSteelErects(List<SteelErect> steelErects) {
-        this.steelErects = steelErects;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SteelImp> getSteelImps() {
-        return this.steelImps;
-    }
-
-    public void setSteelImps(List<SteelImp> steelImps) {
-        this.steelImps = steelImps;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SteelMisc> getSteelMiscs() {
-        return this.steelMiscs;
-    }
-
-    public void setSteelMiscs(List<SteelMisc> steelMiscs) {
-        this.steelMiscs = steelMiscs;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SteelSell> getSteelSells() {
-        return this.steelSells;
-    }
-
-    public void setSteelSells(List<SteelSell> steelSells) {
-        this.steelSells = steelSells;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SteelSellPackage> getSteelSellPackages() {
-        return this.steelSellPackages;
-    }
-
-    public void setSteelSellPackages(List<SteelSellPackage> steelSellPackages) {
-        this.steelSellPackages = steelSellPackages;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SteelShake> getSteelShakes() {
-        return this.steelShakes;
-    }
-
-    public void setSteelShakes(List<SteelShake> steelShakes) {
-        this.steelShakes = steelShakes;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "subsDetails")
-    public List<SteelWeld> getSteelWelds() {
-        return this.steelWelds;
-    }
-
-    public void setSteelWelds(List<SteelWeld> steelWelds) {
-        this.steelWelds = steelWelds;
+    @PostPersist
+    public void onPostPersist() {
+        if(submissionActivityStatuses != null) {
+            for(SubmissionActivityStatus submissionActivityStatus : submissionActivityStatuses) {
+                submissionActivityStatus.setSubsDetails(this);
+            }
+        }
+        if(subsSignatureses != null) {
+            for(SubsSignatures subsSignatures : subsSignatureses) {
+                subsSignatures.setSubsDetails(this);
+            }
+        }
     }
 
     @Override

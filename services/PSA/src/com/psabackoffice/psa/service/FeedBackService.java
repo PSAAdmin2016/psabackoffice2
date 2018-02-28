@@ -75,6 +75,13 @@ public interface FeedBackService {
 	 */
 	FeedBack delete(Integer feedbackId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing FeedBack with the given object.
+	 *
+	 * @param feedBack The instance of the FeedBack to be deleted; value cannot be null.
+	 */
+	void delete(FeedBack feedBack);
+
 	/**
 	 * Find all FeedBacks matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

@@ -53,26 +53,27 @@ public class PipeSupportsServiceImpl implements PipeSupportsService {
         LOGGER.debug("Creating a new PipeSupports with information: {}", pipeSupports);
 
         PipeSupports pipeSupportsCreated = this.wmGenericDao.create(pipeSupports);
-        return pipeSupportsCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(pipeSupportsCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public PipeSupports getById(Integer pipesupportsId) throws EntityNotFoundException {
         LOGGER.debug("Finding PipeSupports by id: {}", pipesupportsId);
-        PipeSupports pipeSupports = this.wmGenericDao.findById(pipesupportsId);
-        if (pipeSupports == null){
-            LOGGER.debug("No PipeSupports found with id: {}", pipesupportsId);
-            throw new EntityNotFoundException(String.valueOf(pipesupportsId));
-        }
-        return pipeSupports;
+        return this.wmGenericDao.findById(pipesupportsId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public PipeSupports findById(Integer pipesupportsId) {
         LOGGER.debug("Finding PipeSupports by id: {}", pipesupportsId);
-        return this.wmGenericDao.findById(pipesupportsId);
+        try {
+            return this.wmGenericDao.findById(pipesupportsId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No PipeSupports found with id: {}", pipesupportsId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class PipeSupportsServiceImpl implements PipeSupportsService {
 	@Override
 	public PipeSupports update(PipeSupports pipeSupports) throws EntityNotFoundException {
         LOGGER.debug("Updating PipeSupports with information: {}", pipeSupports);
+
         this.wmGenericDao.update(pipeSupports);
+        this.wmGenericDao.refresh(pipeSupports);
 
-        Integer pipesupportsId = pipeSupports.getId();
-
-        return this.wmGenericDao.findById(pipesupportsId);
+        return pipeSupports;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class PipeSupportsServiceImpl implements PipeSupportsService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(PipeSupports pipeSupports) {
+        LOGGER.debug("Deleting PipeSupports with {}", pipeSupports);
+        this.wmGenericDao.delete(pipeSupports);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

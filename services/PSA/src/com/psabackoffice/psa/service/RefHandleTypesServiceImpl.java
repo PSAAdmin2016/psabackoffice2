@@ -53,26 +53,27 @@ public class RefHandleTypesServiceImpl implements RefHandleTypesService {
         LOGGER.debug("Creating a new RefHandleTypes with information: {}", refHandleTypes);
 
         RefHandleTypes refHandleTypesCreated = this.wmGenericDao.create(refHandleTypes);
-        return refHandleTypesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refHandleTypesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefHandleTypes getById(Integer refhandletypesId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefHandleTypes by id: {}", refhandletypesId);
-        RefHandleTypes refHandleTypes = this.wmGenericDao.findById(refhandletypesId);
-        if (refHandleTypes == null){
-            LOGGER.debug("No RefHandleTypes found with id: {}", refhandletypesId);
-            throw new EntityNotFoundException(String.valueOf(refhandletypesId));
-        }
-        return refHandleTypes;
+        return this.wmGenericDao.findById(refhandletypesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefHandleTypes findById(Integer refhandletypesId) {
         LOGGER.debug("Finding RefHandleTypes by id: {}", refhandletypesId);
-        return this.wmGenericDao.findById(refhandletypesId);
+        try {
+            return this.wmGenericDao.findById(refhandletypesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefHandleTypes found with id: {}", refhandletypesId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefHandleTypesServiceImpl implements RefHandleTypesService {
 	@Override
 	public RefHandleTypes update(RefHandleTypes refHandleTypes) throws EntityNotFoundException {
         LOGGER.debug("Updating RefHandleTypes with information: {}", refHandleTypes);
+
         this.wmGenericDao.update(refHandleTypes);
+        this.wmGenericDao.refresh(refHandleTypes);
 
-        Integer refhandletypesId = refHandleTypes.getId();
-
-        return this.wmGenericDao.findById(refhandletypesId);
+        return refHandleTypes;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class RefHandleTypesServiceImpl implements RefHandleTypesService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefHandleTypes refHandleTypes) {
+        LOGGER.debug("Deleting RefHandleTypes with {}", refHandleTypes);
+        this.wmGenericDao.delete(refHandleTypes);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

@@ -53,26 +53,27 @@ public class PipeWeldServiceImpl implements PipeWeldService {
         LOGGER.debug("Creating a new PipeWeld with information: {}", pipeWeld);
 
         PipeWeld pipeWeldCreated = this.wmGenericDao.create(pipeWeld);
-        return pipeWeldCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(pipeWeldCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public PipeWeld getById(Integer pipeweldId) throws EntityNotFoundException {
         LOGGER.debug("Finding PipeWeld by id: {}", pipeweldId);
-        PipeWeld pipeWeld = this.wmGenericDao.findById(pipeweldId);
-        if (pipeWeld == null){
-            LOGGER.debug("No PipeWeld found with id: {}", pipeweldId);
-            throw new EntityNotFoundException(String.valueOf(pipeweldId));
-        }
-        return pipeWeld;
+        return this.wmGenericDao.findById(pipeweldId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public PipeWeld findById(Integer pipeweldId) {
         LOGGER.debug("Finding PipeWeld by id: {}", pipeweldId);
-        return this.wmGenericDao.findById(pipeweldId);
+        try {
+            return this.wmGenericDao.findById(pipeweldId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No PipeWeld found with id: {}", pipeweldId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class PipeWeldServiceImpl implements PipeWeldService {
 	@Override
 	public PipeWeld update(PipeWeld pipeWeld) throws EntityNotFoundException {
         LOGGER.debug("Updating PipeWeld with information: {}", pipeWeld);
+
         this.wmGenericDao.update(pipeWeld);
+        this.wmGenericDao.refresh(pipeWeld);
 
-        Integer pipeweldId = pipeWeld.getId();
-
-        return this.wmGenericDao.findById(pipeweldId);
+        return pipeWeld;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class PipeWeldServiceImpl implements PipeWeldService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(PipeWeld pipeWeld) {
+        LOGGER.debug("Deleting PipeWeld with {}", pipeWeld);
+        this.wmGenericDao.delete(pipeWeld);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

@@ -75,6 +75,13 @@ public interface TblJobSitesService {
 	 */
 	TblJobSites delete(Integer tbljobsitesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing TblJobSites with the given object.
+	 *
+	 * @param tblJobSites The instance of the TblJobSites to be deleted; value cannot be null.
+	 */
+	void delete(TblJobSites tblJobSites);
+
 	/**
 	 * Find all TblJobSites matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

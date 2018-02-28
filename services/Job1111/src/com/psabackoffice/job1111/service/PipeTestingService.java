@@ -74,6 +74,13 @@ public interface PipeTestingService {
 	 */
 	PipeTesting delete(Integer pipetestingId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing PipeTesting with the given object.
+	 *
+	 * @param pipeTesting The instance of the PipeTesting to be deleted; value cannot be null.
+	 */
+	void delete(PipeTesting pipeTesting);
+
 	/**
 	 * Find all PipeTestings matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

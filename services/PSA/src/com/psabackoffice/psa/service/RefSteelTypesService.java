@@ -74,6 +74,13 @@ public interface RefSteelTypesService {
 	 */
 	RefSteelTypes delete(Integer refsteeltypesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefSteelTypes with the given object.
+	 *
+	 * @param refSteelTypes The instance of the RefSteelTypes to be deleted; value cannot be null.
+	 */
+	void delete(RefSteelTypes refSteelTypes);
+
 	/**
 	 * Find all RefSteelTypes matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

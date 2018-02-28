@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,6 +18,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -68,6 +72,7 @@ public class TblJobNumbers implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`fk_JobSiteId`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_tblJobNumbers_tblJobSites1`"))
+    @Fetch(FetchMode.JOIN)
     public TblJobSites getTblJobSites() {
         return this.tblJobSites;
     }
@@ -81,7 +86,8 @@ public class TblJobNumbers implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblJobNumbers")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblJobNumbers")
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
     public List<TblCrews> getTblCrewses() {
         return this.tblCrewses;
     }
@@ -91,7 +97,8 @@ public class TblJobNumbers implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblJobNumbers")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblJobNumbers")
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
     public List<TblUserJobNumbers> getTblUserJobNumberses() {
         return this.tblUserJobNumberses;
     }
@@ -101,7 +108,8 @@ public class TblJobNumbers implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "tblJobNumbers")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblJobNumbers")
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
     public List<TblUserPsa> getTblUserPsas() {
         return this.tblUserPsas;
     }

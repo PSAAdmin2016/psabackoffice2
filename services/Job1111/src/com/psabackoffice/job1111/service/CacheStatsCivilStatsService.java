@@ -74,6 +74,13 @@ public interface CacheStatsCivilStatsService {
 	 */
 	CacheStatsCivilStats delete(Integer cachestatscivilstatsId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing CacheStatsCivilStats with the given object.
+	 *
+	 * @param cacheStatsCivilStats The instance of the CacheStatsCivilStats to be deleted; value cannot be null.
+	 */
+	void delete(CacheStatsCivilStats cacheStatsCivilStats);
+
 	/**
 	 * Find all CacheStatsCivilStats matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

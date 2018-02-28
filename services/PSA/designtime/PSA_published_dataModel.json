@@ -124,7 +124,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "ChatConversationMembers",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.ChatConversationMembers",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "ChatConversationMembers",
     "oldName" : "ChatConversationMembers",
     "primaryKey" : {
@@ -140,14 +142,26 @@
     },
     "relations" : [ {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "tblUserPsa",
       "mappings" : [ {
         "sourceColumn" : "UserID",
         "targetColumn" : "ID"
       } ],
       "name" : "ConvMembersToUserID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -157,14 +171,26 @@
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "chatConversations",
       "mappings" : [ {
         "sourceColumn" : "ConversationID",
         "targetColumn" : "ConversationID"
       } ],
       "name" : "ConvMembersTOConvID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -196,7 +222,7 @@
       "name" : "ConversationID",
       "nullable" : false,
       "oldName" : "ConversationID",
-      "partOfAnyRelation" : true,
+      "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
@@ -239,7 +265,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "ChatConversations",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.ChatConversations",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "ChatConversations",
     "oldName" : "ChatConversations",
     "primaryKey" : {
@@ -253,41 +281,7 @@
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "chatConversationMemberses",
-      "mappings" : [ {
-        "sourceColumn" : "ConversationID",
-        "targetColumn" : "ConversationID"
-      } ],
-      "name" : "ConvMembersTOConvID",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "ChatConversations",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "ChatConversationMembers",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "chatMessageses",
-      "mappings" : [ {
-        "sourceColumn" : "ConversationID",
-        "targetColumn" : "ConversationID"
-      } ],
-      "name" : "MessageConvIDTOConvID",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "ChatConversations",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "ChatMessages",
-      "virtual" : false
-    } ],
+    "relations" : [ ],
     "schema" : null,
     "temporals" : [ ],
     "type" : "TABLE"
@@ -451,7 +445,7 @@
       "generatorType" : "assigned",
       "generatorValue" : null,
       "hidden" : false,
-      "javaType" : "datetime",
+      "javaType" : "timestamp",
       "length" : 0,
       "name" : "TimeStamp",
       "nullable" : true,
@@ -465,12 +459,14 @@
       "primaryKey" : false,
       "scale" : 0,
       "sequenceSchema" : null,
-      "sqlType" : "datetime",
+      "sqlType" : "timestamp",
       "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "ChatMessages",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.ChatMessages",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "ChatMessages",
     "oldName" : "ChatMessages",
     "primaryKey" : {
@@ -486,14 +482,26 @@
     },
     "relations" : [ {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "tblUserPsa",
       "mappings" : [ {
         "sourceColumn" : "Author",
         "targetColumn" : "ID"
       } ],
       "name" : "MessageAuthorToUserID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -503,14 +511,26 @@
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "chatConversations",
       "mappings" : [ {
         "sourceColumn" : "ConversationID",
         "targetColumn" : "ConversationID"
       } ],
       "name" : "MessageConvIDTOConvID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -643,7 +663,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "EmailTemplates",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.EmailTemplates",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "EmailTemplates",
     "oldName" : "EmailTemplates",
     "primaryKey" : {
@@ -681,7 +703,7 @@
       "name" : "ID",
       "nullable" : false,
       "oldName" : "ID",
-      "partOfAnyRelation" : true,
+      "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
@@ -869,7 +891,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "FeedBack",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.FeedBack",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "FeedBack",
     "oldName" : "FeedBack",
     "primaryKey" : {
@@ -885,14 +909,26 @@
     },
     "relations" : [ {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "refFbTypes",
       "mappings" : [ {
         "sourceColumn" : "fk_FeedBackType",
         "targetColumn" : "ID"
       } ],
       "name" : "fk_FeedBackType_FeedBackTypes",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -902,14 +938,26 @@
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "refFbStatuses",
       "mappings" : [ {
         "sourceColumn" : "fk_Status",
         "targetColumn" : "ID"
       } ],
       "name" : "fk_Status_Statuses",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -919,14 +967,26 @@
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "tblUserPsa",
       "mappings" : [ {
         "sourceColumn" : "fk_UserID",
         "targetColumn" : "ID"
       } ],
       "name" : "fk_UserID_UserID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -936,14 +996,26 @@
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "refFbSeverity",
       "mappings" : [ {
         "sourceColumn" : "fk_Severity",
         "targetColumn" : "ID"
       } ],
       "name" : "fk_ErrorSeverity_ErrorSeverity",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -953,37 +1025,32 @@
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "refFbSubTypes",
       "mappings" : [ {
         "sourceColumn" : "fk_FBSubType",
         "targetColumn" : "ID"
       } ],
       "name" : "fk_ChangeType_ChangeType",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "FeedBack",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "REF_FB_SubTypes",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "feedBackNoteses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "fk_FeedBackID"
-      } ],
-      "name" : "fk_FeedBackTOFeedBackNotes",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "FeedBack",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "FeedBackNotes",
       "virtual" : false
     } ],
     "schema" : null,
@@ -1139,7 +1206,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "FeedBackNotes",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.FeedBackNotes",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "FeedBackNotes",
     "oldName" : "FeedBackNotes",
     "primaryKey" : {
@@ -1155,14 +1224,26 @@
     },
     "relations" : [ {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "tblUserPsa",
       "mappings" : [ {
         "sourceColumn" : "fk_UserID",
         "targetColumn" : "ID"
       } ],
       "name" : "fk_UserIDTOPSAUserID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -1172,14 +1253,26 @@
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "feedBack",
       "mappings" : [ {
         "sourceColumn" : "fk_FeedBackID",
         "targetColumn" : "ID"
       } ],
       "name" : "fk_FeedBackTOFeedBackNotes",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -1211,7 +1304,7 @@
       "name" : "ID",
       "nullable" : false,
       "oldName" : "ID",
-      "partOfAnyRelation" : true,
+      "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
@@ -1283,7 +1376,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "MenuHelpVideos",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.MenuHelpVideos",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "MenuHelpVideos",
     "oldName" : "MenuHelpVideos",
     "primaryKey" : {
@@ -1297,24 +1392,7 @@
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "menuSubHelpVideoses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "fk_ParentMenu"
-      } ],
-      "name" : "fk_ParentMenu_ to_MenuHelpVideos",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "MenuHelpVideos",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "MenuSubHelpVideos",
-      "virtual" : false
-    } ],
+    "relations" : [ ],
     "schema" : null,
     "temporals" : [ ],
     "type" : "TABLE"
@@ -1468,7 +1546,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "MenuSubHelpVideos",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.MenuSubHelpVideos",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "MenuSubHelpVideos",
     "oldName" : "MenuSubHelpVideos",
     "primaryKey" : {
@@ -1484,14 +1564,26 @@
     },
     "relations" : [ {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "menuHelpVideos",
       "mappings" : [ {
         "sourceColumn" : "fk_ParentMenu",
         "targetColumn" : "ID"
       } ],
       "name" : "fk_ParentMenu_ to_MenuHelpVideos",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -1566,7 +1658,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefActivityRejections",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefActivityRejections",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_ActivityRejections",
     "oldName" : "REF_ActivityRejections",
     "primaryKey" : {
@@ -1647,7 +1741,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefActivityStatuses",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefActivityStatuses",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_ActivityStatuses",
     "oldName" : "REF_ActivityStatuses",
     "primaryKey" : {
@@ -1728,7 +1824,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefActivityTypes",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefActivityTypes",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_ActivityTypes",
     "oldName" : "REF_ActivityTypes",
     "primaryKey" : {
@@ -1809,7 +1907,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefChatStatus",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefChatStatus",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_ChatStatus",
     "oldName" : "REF_ChatStatus",
     "primaryKey" : {
@@ -1847,7 +1947,7 @@
       "name" : "ID",
       "nullable" : false,
       "oldName" : "ID",
-      "partOfAnyRelation" : true,
+      "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
@@ -1890,7 +1990,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefCraftClasses",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefCraftClasses",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_CraftClasses",
     "oldName" : "REF_CraftClasses",
     "primaryKey" : {
@@ -1904,24 +2006,7 @@
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblUserPsas",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "fk_CraftClassId"
-      } ],
-      "name" : "fk_CraftClassTO_REFCraftClass",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "REF_CraftClasses",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblUserPSA",
-      "virtual" : false
-    } ],
+    "relations" : [ ],
     "schema" : null,
     "temporals" : [ ],
     "type" : "TABLE"
@@ -1945,7 +2030,7 @@
       "name" : "ID",
       "nullable" : false,
       "oldName" : "ID",
-      "partOfAnyRelation" : true,
+      "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
@@ -1988,7 +2073,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefCrafts",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefCrafts",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_Crafts",
     "oldName" : "REF_Crafts",
     "primaryKey" : {
@@ -2002,24 +2089,7 @@
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblUserPsas",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "fk_CraftId"
-      } ],
-      "name" : "fk_CraftsTO_REFCrafts",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "REF_Crafts",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblUserPSA",
-      "virtual" : false
-    } ],
+    "relations" : [ ],
     "schema" : null,
     "temporals" : [ ],
     "type" : "TABLE"
@@ -2115,7 +2185,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefDelayTypes",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefDelayTypes",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_DelayTypes",
     "oldName" : "REF_DelayTypes",
     "primaryKey" : {
@@ -2153,7 +2225,7 @@
       "name" : "ID",
       "nullable" : false,
       "oldName" : "ID",
-      "partOfAnyRelation" : true,
+      "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
@@ -2196,7 +2268,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefDisciplines",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefDisciplines",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_Disciplines",
     "oldName" : "REF_Disciplines",
     "primaryKey" : {
@@ -2210,41 +2284,7 @@
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblCrewses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "DisciplineId"
-      } ],
-      "name" : "DisciplinIDTO_REFDisciplines",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "REF_Disciplines",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblCrews",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblUserPsas",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "fk_DisciplineId"
-      } ],
-      "name" : "fk_DisciplineTO_REFDiscipline",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "REF_Disciplines",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblUserPSA",
-      "virtual" : false
-    } ],
+    "relations" : [ ],
     "schema" : null,
     "temporals" : [ ],
     "type" : "TABLE"
@@ -2268,7 +2308,7 @@
       "name" : "ID",
       "nullable" : false,
       "oldName" : "ID",
-      "partOfAnyRelation" : true,
+      "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
@@ -2311,7 +2351,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefFbSeverity",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefFbSeverity",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_FB_Severity",
     "oldName" : "REF_FB_Severity",
     "primaryKey" : {
@@ -2325,24 +2367,7 @@
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "feedBacks",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "fk_Severity"
-      } ],
-      "name" : "fk_ErrorSeverity_ErrorSeverity",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "REF_FB_Severity",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "FeedBack",
-      "virtual" : false
-    } ],
+    "relations" : [ ],
     "schema" : null,
     "temporals" : [ ],
     "type" : "TABLE"
@@ -2366,7 +2391,7 @@
       "name" : "ID",
       "nullable" : false,
       "oldName" : "ID",
-      "partOfAnyRelation" : true,
+      "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
@@ -2409,7 +2434,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefFbStatuses",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefFbStatuses",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_FB_Statuses",
     "oldName" : "REF_FB_Statuses",
     "primaryKey" : {
@@ -2423,24 +2450,7 @@
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "feedBacks",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "fk_Status"
-      } ],
-      "name" : "fk_Status_Statuses",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "REF_FB_Statuses",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "FeedBack",
-      "virtual" : false
-    } ],
+    "relations" : [ ],
     "schema" : null,
     "temporals" : [ ],
     "type" : "TABLE"
@@ -2464,7 +2474,7 @@
       "name" : "ID",
       "nullable" : false,
       "oldName" : "ID",
-      "partOfAnyRelation" : true,
+      "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
@@ -2536,7 +2546,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefFbSubTypes",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefFbSubTypes",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_FB_SubTypes",
     "oldName" : "REF_FB_SubTypes",
     "primaryKey" : {
@@ -2552,37 +2564,32 @@
     },
     "relations" : [ {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "refFbTypes",
       "mappings" : [ {
         "sourceColumn" : "fk_FBType",
         "targetColumn" : "ID"
       } ],
       "name" : "fbSubTypeTOfbType",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "REF_FB_SubTypes",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "REF_FB_Types",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "feedBacks",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "fk_FBSubType"
-      } ],
-      "name" : "fk_ChangeType_ChangeType",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "REF_FB_SubTypes",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "FeedBack",
       "virtual" : false
     } ],
     "schema" : null,
@@ -2608,7 +2615,7 @@
       "name" : "ID",
       "nullable" : false,
       "oldName" : "ID",
-      "partOfAnyRelation" : true,
+      "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
@@ -2651,7 +2658,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefFbTypes",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefFbTypes",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_FB_Types",
     "oldName" : "REF_FB_Types",
     "primaryKey" : {
@@ -2665,41 +2674,7 @@
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "feedBacks",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "fk_FeedBackType"
-      } ],
-      "name" : "fk_FeedBackType_FeedBackTypes",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "REF_FB_Types",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "FeedBack",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "refFbSubTypeses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "fk_FBType"
-      } ],
-      "name" : "fbSubTypeTOfbType",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "REF_FB_Types",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "REF_FB_SubTypes",
-      "virtual" : false
-    } ],
+    "relations" : [ ],
     "schema" : null,
     "temporals" : [ ],
     "type" : "TABLE"
@@ -2795,7 +2770,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefGenericPipeSpools",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefGenericPipeSpools",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_GenericPipeSpools",
     "oldName" : "REF_GenericPipeSpools",
     "primaryKey" : {
@@ -2905,7 +2882,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefHandleTypes",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefHandleTypes",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_HandleTypes",
     "oldName" : "REF_HandleTypes",
     "primaryKey" : {
@@ -3044,7 +3023,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefImportableTables",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefImportableTables",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_ImportableTables",
     "oldName" : "REF_ImportableTables",
     "primaryKey" : {
@@ -3154,7 +3135,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefInstTypes",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefInstTypes",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_InstTypes",
     "oldName" : "REF_InstTypes",
     "primaryKey" : {
@@ -3242,7 +3225,9 @@
       "virtual" : false
     } ],
     "entityName" : "RefJobTitles",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefJobTitles",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_JobTitles",
     "oldName" : "REF_JobTitles",
     "primaryKey" : {
@@ -3381,7 +3366,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefPercentList",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefPercentList",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_PercentList",
     "oldName" : "REF_PercentList",
     "primaryKey" : {
@@ -3491,7 +3478,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefPipeDemoTypes",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefPipeDemoTypes",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_PipeDemoTypes",
     "oldName" : "REF_PipeDemoTypes",
     "primaryKey" : {
@@ -3601,7 +3590,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefPipeSchedules",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefPipeSchedules",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_PipeSchedules",
     "oldName" : "REF_PipeSchedules",
     "primaryKey" : {
@@ -3711,7 +3702,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefPipeSizes",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefPipeSizes",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_PipeSizes",
     "oldName" : "REF_PipeSizes",
     "primaryKey" : {
@@ -3749,7 +3742,7 @@
       "name" : "ID",
       "nullable" : false,
       "oldName" : "ID",
-      "partOfAnyRelation" : true,
+      "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
@@ -3792,7 +3785,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefRoles",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefRoles",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_Roles",
     "oldName" : "REF_Roles",
     "primaryKey" : {
@@ -3806,41 +3801,7 @@
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "refRolesMobileFolderses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "RoleID"
-      } ],
-      "name" : "MobileRoleIDTOREF_Roles",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "REF_Roles",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "REF_RolesMobileFolders",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblUserPsas",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "fk_RoleId"
-      } ],
-      "name" : "fk_tblUserPSA_tblRoles1",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "REF_Roles",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblUserPSA",
-      "virtual" : false
-    } ],
+    "relations" : [ ],
     "schema" : null,
     "temporals" : [ ],
     "type" : "TABLE"
@@ -3965,7 +3926,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefRolesMobileFolders",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefRolesMobileFolders",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_RolesMobileFolders",
     "oldName" : "REF_RolesMobileFolders",
     "primaryKey" : {
@@ -3981,14 +3944,26 @@
     },
     "relations" : [ {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "refRoles",
       "mappings" : [ {
         "sourceColumn" : "RoleID",
         "targetColumn" : "ID"
       } ],
       "name" : "MobileRoleIDTOREF_Roles",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -4020,7 +3995,7 @@
       "name" : "Abbreviation",
       "nullable" : false,
       "oldName" : "Abbreviation",
-      "partOfAnyRelation" : true,
+      "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
@@ -4063,7 +4038,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefStateAbbreviations",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefStateAbbreviations",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_StateAbbreviations",
     "oldName" : "REF_StateAbbreviations",
     "primaryKey" : {
@@ -4077,24 +4054,7 @@
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblJobSiteses",
-      "mappings" : [ {
-        "sourceColumn" : "Abbreviation",
-        "targetColumn" : "SiteState"
-      } ],
-      "name" : "fk_StateAbbreviation_JobSite",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "REF_StateAbbreviations",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblJobSites",
-      "virtual" : false
-    } ],
+    "relations" : [ ],
     "schema" : null,
     "temporals" : [ ],
     "type" : "TABLE"
@@ -4161,7 +4121,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefSteelTypes",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefSteelTypes",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_SteelTypes",
     "oldName" : "REF_SteelTypes",
     "primaryKey" : {
@@ -4300,7 +4262,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefTrimActivities",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefTrimActivities",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_TrimActivities",
     "oldName" : "REF_TrimActivities",
     "primaryKey" : {
@@ -4410,7 +4374,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefValveTypes",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefValveTypes",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_ValveTypes",
     "oldName" : "REF_ValveTypes",
     "primaryKey" : {
@@ -4520,7 +4486,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefWeather",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefWeather",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_Weather",
     "oldName" : "REF_Weather",
     "primaryKey" : {
@@ -4630,7 +4598,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefWeldMaterials",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefWeldMaterials",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_WeldMaterials",
     "oldName" : "REF_WeldMaterials",
     "primaryKey" : {
@@ -4740,7 +4710,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefWeldPositions",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefWeldPositions",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_WeldPositions",
     "oldName" : "REF_WeldPositions",
     "primaryKey" : {
@@ -4850,7 +4822,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "RefWeldTypes",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.RefWeldTypes",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "REF_WeldTypes",
     "oldName" : "REF_WeldTypes",
     "primaryKey" : {
@@ -4989,7 +4963,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "Settings",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.Settings",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "SETTINGS",
     "oldName" : "SETTINGS",
     "primaryKey" : {
@@ -5027,7 +5003,7 @@
       "name" : "ID",
       "nullable" : false,
       "oldName" : "ID",
-      "partOfAnyRelation" : true,
+      "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
@@ -5425,7 +5401,9 @@
       "virtual" : false
     } ],
     "entityName" : "TblCrews",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.TblCrews",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "tblCrews",
     "oldName" : "tblCrews",
     "primaryKey" : {
@@ -5441,14 +5419,26 @@
     },
     "relations" : [ {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "tblUserPsaByConstructionManager",
       "mappings" : [ {
         "sourceColumn" : "ConstructionManager",
         "targetColumn" : "ID"
       } ],
       "name" : "ConstructionMtoUserID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -5458,14 +5448,26 @@
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "tblUserPsaBySuperintendent",
       "mappings" : [ {
         "sourceColumn" : "Superintendent",
         "targetColumn" : "ID"
       } ],
       "name" : "SuperToUserID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -5475,14 +5477,26 @@
       "virtual" : false
     }, {
       "cardinality" : "OneToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : true,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "tblUserPsaByForeman",
       "mappings" : [ {
         "sourceColumn" : "Foreman",
         "targetColumn" : "ID"
       } ],
       "name" : "ForemanToUserID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : false,
@@ -5492,14 +5506,26 @@
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "tblUserPsaByProjectManager",
       "mappings" : [ {
         "sourceColumn" : "ProjectManager",
         "targetColumn" : "ID"
       } ],
       "name" : "PMtoUserID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -5509,14 +5535,26 @@
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "tblUserPsaByAreaManager",
       "mappings" : [ {
         "sourceColumn" : "AreaManager",
         "targetColumn" : "ID"
       } ],
       "name" : "AreaMtoUserID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -5526,14 +5564,26 @@
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "refDisciplines",
       "mappings" : [ {
         "sourceColumn" : "DisciplineId",
         "targetColumn" : "ID"
       } ],
       "name" : "DisciplinIDTO_REFDisciplines",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -5543,14 +5593,26 @@
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "tblJobNumbers",
       "mappings" : [ {
         "sourceColumn" : "JobNumber",
         "targetColumn" : "JobNumber"
       } ],
       "name" : "JobNumberToJobNumber",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -5560,14 +5622,26 @@
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "tblUserPsaBySiteManager",
       "mappings" : [ {
         "sourceColumn" : "SiteManager",
         "targetColumn" : "ID"
       } ],
       "name" : "SiteMtoUserID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -5577,14 +5651,26 @@
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "tblUserPsaByGf",
       "mappings" : [ {
         "sourceColumn" : "GF",
         "targetColumn" : "ID"
       } ],
       "name" : "GTtoUserID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -5594,37 +5680,32 @@
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "tblUserPsaByLeadman",
       "mappings" : [ {
         "sourceColumn" : "Leadman",
         "targetColumn" : "ID"
       } ],
       "name" : "LeadmanToUserID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "tblCrews",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "tblUserPSA",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblCrewsRevs",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "OrgID"
-      } ],
-      "name" : "OrgIdTOID",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblCrews",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblCrewsRev",
       "virtual" : false
     } ],
     "schema" : null,
@@ -6070,7 +6151,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "TblCrewsRev",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.TblCrewsRev",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "tblCrewsRev",
     "oldName" : "tblCrewsRev",
     "primaryKey" : {
@@ -6086,14 +6169,26 @@
     },
     "relations" : [ {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "tblCrews",
       "mappings" : [ {
         "sourceColumn" : "OrgID",
         "targetColumn" : "ID"
       } ],
       "name" : "OrgIdTOID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -6125,7 +6220,7 @@
       "name" : "JobNumber",
       "nullable" : false,
       "oldName" : "JobNumber",
-      "partOfAnyRelation" : true,
+      "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
@@ -6197,7 +6292,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "TblJobNumbers",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.TblJobNumbers",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "tblJobNumbers",
     "oldName" : "tblJobNumbers",
     "primaryKey" : {
@@ -6213,71 +6310,32 @@
     },
     "relations" : [ {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "tblJobSites",
       "mappings" : [ {
         "sourceColumn" : "fk_JobSiteId",
         "targetColumn" : "ID"
       } ],
       "name" : "fk_tblJobNumbers_tblJobSites1",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "tblJobNumbers",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "tblJobSites",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblCrewses",
-      "mappings" : [ {
-        "sourceColumn" : "JobNumber",
-        "targetColumn" : "JobNumber"
-      } ],
-      "name" : "JobNumberToJobNumber",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblJobNumbers",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblCrews",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblUserJobNumberses",
-      "mappings" : [ {
-        "sourceColumn" : "JobNumber",
-        "targetColumn" : "fk_JobNumber"
-      } ],
-      "name" : "fk_JobNumbers_tblJobNumbers",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblJobNumbers",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblUserJobNumbers",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblUserPsas",
-      "mappings" : [ {
-        "sourceColumn" : "JobNumber",
-        "targetColumn" : "fk_DefaultJobNumberId"
-      } ],
-      "name" : "fk_DefaultJobNumberTO_tblJobNumbers",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblJobNumbers",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblUserPSA",
       "virtual" : false
     } ],
     "schema" : null,
@@ -6303,7 +6361,7 @@
       "name" : "ID",
       "nullable" : false,
       "oldName" : "ID",
-      "partOfAnyRelation" : true,
+      "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
@@ -6404,7 +6462,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "TblJobSites",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.TblJobSites",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "tblJobSites",
     "oldName" : "tblJobSites",
     "primaryKey" : {
@@ -6420,37 +6480,32 @@
     },
     "relations" : [ {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "refStateAbbreviations",
       "mappings" : [ {
         "sourceColumn" : "SiteState",
         "targetColumn" : "Abbreviation"
       } ],
       "name" : "fk_StateAbbreviation_JobSite",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "tblJobSites",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "REF_StateAbbreviations",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblJobNumberses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "fk_JobSiteId"
-      } ],
-      "name" : "fk_tblJobNumbers_tblJobSites1",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblJobSites",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblJobNumbers",
       "virtual" : false
     } ],
     "schema" : null,
@@ -6548,7 +6603,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "TblUserCreds",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.TblUserCreds",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "tblUserCreds",
     "oldName" : "tblUserCreds",
     "primaryKey" : {
@@ -6564,14 +6621,26 @@
     },
     "relations" : [ {
       "cardinality" : "OneToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "tblUserPsa",
       "mappings" : [ {
         "sourceColumn" : "UserID",
         "targetColumn" : "ID"
       } ],
       "name" : "UserIDTOtbluserPSAID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -6675,7 +6744,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "TblUserJobNumbers",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.TblUserJobNumbers",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "tblUserJobNumbers",
     "oldName" : "tblUserJobNumbers",
     "primaryKey" : {
@@ -6691,14 +6762,26 @@
     },
     "relations" : [ {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "tblJobNumbers",
       "mappings" : [ {
         "sourceColumn" : "fk_JobNumber",
         "targetColumn" : "JobNumber"
       } ],
       "name" : "fk_JobNumbers_tblJobNumbers",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -6708,14 +6791,26 @@
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "tblUserPsa",
       "mappings" : [ {
         "sourceColumn" : "fk_UserId",
         "targetColumn" : "ID"
       } ],
       "name" : "fk_UserId_tblUserPSA",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -6906,7 +7001,9 @@
     } ],
     "constraints" : [ ],
     "entityName" : "TblUserLoginTracker",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.TblUserLoginTracker",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "tblUserLoginTracker",
     "oldName" : "tblUserLoginTracker",
     "primaryKey" : {
@@ -6944,7 +7041,7 @@
       "name" : "ID",
       "nullable" : false,
       "oldName" : "ID",
-      "partOfAnyRelation" : true,
+      "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
@@ -7465,7 +7562,9 @@
       "virtual" : false
     } ],
     "entityName" : "TblUserPsa",
+    "filter" : null,
     "fullyQualifiedName" : "com.psabackoffice.psa.TblUserPsa",
+    "ignoreRefreshAfterInsert" : false,
     "name" : "tblUserPSA",
     "oldName" : "tblUserPSA",
     "primaryKey" : {
@@ -7481,14 +7580,26 @@
     },
     "relations" : [ {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "refCrafts",
       "mappings" : [ {
         "sourceColumn" : "fk_CraftId",
         "targetColumn" : "ID"
       } ],
       "name" : "fk_CraftsTO_REFCrafts",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -7498,14 +7609,26 @@
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "tblJobNumbers",
       "mappings" : [ {
         "sourceColumn" : "fk_DefaultJobNumberId",
         "targetColumn" : "JobNumber"
       } ],
       "name" : "fk_DefaultJobNumberTO_tblJobNumbers",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -7515,14 +7638,26 @@
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "refDisciplines",
       "mappings" : [ {
         "sourceColumn" : "fk_DisciplineId",
         "targetColumn" : "ID"
       } ],
       "name" : "fk_DisciplineTO_REFDiscipline",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -7532,14 +7667,26 @@
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "refRoles",
       "mappings" : [ {
         "sourceColumn" : "fk_RoleId",
         "targetColumn" : "ID"
       } ],
       "name" : "fk_tblUserPSA_tblRoles1",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
@@ -7549,258 +7696,32 @@
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
       "columnsUniqueKey" : false,
       "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
       "fieldName" : "refCraftClasses",
       "mappings" : [ {
         "sourceColumn" : "fk_CraftClassId",
         "targetColumn" : "ID"
       } ],
       "name" : "fk_CraftClassTO_REFCraftClass",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
       "primary" : true,
       "selfRelation" : false,
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "tblUserPSA",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "REF_CraftClasses",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "chatConversationMemberses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "UserID"
-      } ],
-      "name" : "ConvMembersToUserID",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblUserPSA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "ChatConversationMembers",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "chatMessageses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "Author"
-      } ],
-      "name" : "MessageAuthorToUserID",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblUserPSA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "ChatMessages",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "feedBacks",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "fk_UserID"
-      } ],
-      "name" : "fk_UserID_UserID",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblUserPSA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "FeedBack",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "feedBackNoteses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "fk_UserID"
-      } ],
-      "name" : "fk_UserIDTOPSAUserID",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblUserPSA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "FeedBackNotes",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblCrewsesForConstructionManager",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "ConstructionManager"
-      } ],
-      "name" : "ConstructionMtoUserID",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblUserPSA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblCrews",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblCrewsesForSuperintendent",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "Superintendent"
-      } ],
-      "name" : "SuperToUserID",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblUserPSA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblCrews",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblCrewsForForeman",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "Foreman"
-      } ],
-      "name" : "ForemanToUserID",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblUserPSA",
-      "targetColumnsUniqueKey" : true,
-      "targetTable" : "tblCrews",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblCrewsesForProjectManager",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "ProjectManager"
-      } ],
-      "name" : "PMtoUserID",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblUserPSA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblCrews",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblCrewsesForAreaManager",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "AreaManager"
-      } ],
-      "name" : "AreaMtoUserID",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblUserPSA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblCrews",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblCrewsesForSiteManager",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "SiteManager"
-      } ],
-      "name" : "SiteMtoUserID",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblUserPSA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblCrews",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblCrewsesForGf",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "GF"
-      } ],
-      "name" : "GTtoUserID",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblUserPSA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblCrews",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblCrewsesForLeadman",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "Leadman"
-      } ],
-      "name" : "LeadmanToUserID",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblUserPSA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblCrews",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToOne",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblUserCreds",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "UserID"
-      } ],
-      "name" : "UserIDTOtbluserPSAID",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblUserPSA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblUserCreds",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToMany",
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fieldName" : "tblUserJobNumberses",
-      "mappings" : [ {
-        "sourceColumn" : "ID",
-        "targetColumn" : "fk_UserId"
-      } ],
-      "name" : "fk_UserId_tblUserPSA",
-      "primary" : false,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblUserPSA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblUserJobNumbers",
       "virtual" : false
     } ],
     "schema" : null,

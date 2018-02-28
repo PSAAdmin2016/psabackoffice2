@@ -74,6 +74,13 @@ public interface RefImportableTablesService {
 	 */
 	RefImportableTables delete(Integer refimportabletablesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefImportableTables with the given object.
+	 *
+	 * @param refImportableTables The instance of the RefImportableTables to be deleted; value cannot be null.
+	 */
+	void delete(RefImportableTables refImportableTables);
+
 	/**
 	 * Find all RefImportableTables matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

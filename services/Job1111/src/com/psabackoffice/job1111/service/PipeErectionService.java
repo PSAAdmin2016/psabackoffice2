@@ -74,6 +74,13 @@ public interface PipeErectionService {
 	 */
 	PipeErection delete(Integer pipeerectionId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing PipeErection with the given object.
+	 *
+	 * @param pipeErection The instance of the PipeErection to be deleted; value cannot be null.
+	 */
+	void delete(PipeErection pipeErection);
+
 	/**
 	 * Find all PipeErections matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

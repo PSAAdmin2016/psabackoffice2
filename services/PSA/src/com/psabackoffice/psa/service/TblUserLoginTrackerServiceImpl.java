@@ -53,26 +53,27 @@ public class TblUserLoginTrackerServiceImpl implements TblUserLoginTrackerServic
         LOGGER.debug("Creating a new TblUserLoginTracker with information: {}", tblUserLoginTracker);
 
         TblUserLoginTracker tblUserLoginTrackerCreated = this.wmGenericDao.create(tblUserLoginTracker);
-        return tblUserLoginTrackerCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(tblUserLoginTrackerCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public TblUserLoginTracker getById(Integer tbluserlogintrackerId) throws EntityNotFoundException {
         LOGGER.debug("Finding TblUserLoginTracker by id: {}", tbluserlogintrackerId);
-        TblUserLoginTracker tblUserLoginTracker = this.wmGenericDao.findById(tbluserlogintrackerId);
-        if (tblUserLoginTracker == null){
-            LOGGER.debug("No TblUserLoginTracker found with id: {}", tbluserlogintrackerId);
-            throw new EntityNotFoundException(String.valueOf(tbluserlogintrackerId));
-        }
-        return tblUserLoginTracker;
+        return this.wmGenericDao.findById(tbluserlogintrackerId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public TblUserLoginTracker findById(Integer tbluserlogintrackerId) {
         LOGGER.debug("Finding TblUserLoginTracker by id: {}", tbluserlogintrackerId);
-        return this.wmGenericDao.findById(tbluserlogintrackerId);
+        try {
+            return this.wmGenericDao.findById(tbluserlogintrackerId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No TblUserLoginTracker found with id: {}", tbluserlogintrackerId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class TblUserLoginTrackerServiceImpl implements TblUserLoginTrackerServic
 	@Override
 	public TblUserLoginTracker update(TblUserLoginTracker tblUserLoginTracker) throws EntityNotFoundException {
         LOGGER.debug("Updating TblUserLoginTracker with information: {}", tblUserLoginTracker);
+
         this.wmGenericDao.update(tblUserLoginTracker);
+        this.wmGenericDao.refresh(tblUserLoginTracker);
 
-        Integer tbluserlogintrackerId = tblUserLoginTracker.getUid();
-
-        return this.wmGenericDao.findById(tbluserlogintrackerId);
+        return tblUserLoginTracker;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class TblUserLoginTrackerServiceImpl implements TblUserLoginTrackerServic
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(TblUserLoginTracker tblUserLoginTracker) {
+        LOGGER.debug("Deleting TblUserLoginTracker with {}", tblUserLoginTracker);
+        this.wmGenericDao.delete(tblUserLoginTracker);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

@@ -7,9 +7,8 @@ package com.psabackoffice.psa.models.query;
 
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Objects;
-
-import org.joda.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;

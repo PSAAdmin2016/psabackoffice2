@@ -75,6 +75,13 @@ public interface RefFbSubTypesService {
 	 */
 	RefFbSubTypes delete(Integer reffbsubtypesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefFbSubTypes with the given object.
+	 *
+	 * @param refFbSubTypes The instance of the RefFbSubTypes to be deleted; value cannot be null.
+	 */
+	void delete(RefFbSubTypes refFbSubTypes);
+
 	/**
 	 * Find all RefFbSubTypes matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

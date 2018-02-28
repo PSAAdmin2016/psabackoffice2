@@ -79,9 +79,9 @@ public class CivilMiscController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public CivilMisc editCivilMisc(@PathVariable("id") Integer id, @RequestBody CivilMisc civilMisc) throws EntityNotFoundException {
-        LOGGER.debug("Editing CivilMisc with id: {}" , civilMisc.getId());
+        LOGGER.debug("Editing CivilMisc with id: {}" , civilMisc.getActivityId());
 
-        civilMisc.setId(id);
+        civilMisc.setActivityId(id);
         civilMisc = civilMiscService.update(civilMisc);
         LOGGER.debug("CivilMisc details with id: {}" , civilMisc);
 

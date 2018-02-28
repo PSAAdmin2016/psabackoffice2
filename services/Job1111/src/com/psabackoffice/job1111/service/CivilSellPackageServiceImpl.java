@@ -53,26 +53,27 @@ public class CivilSellPackageServiceImpl implements CivilSellPackageService {
         LOGGER.debug("Creating a new CivilSellPackage with information: {}", civilSellPackage);
 
         CivilSellPackage civilSellPackageCreated = this.wmGenericDao.create(civilSellPackage);
-        return civilSellPackageCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(civilSellPackageCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public CivilSellPackage getById(Integer civilsellpackageId) throws EntityNotFoundException {
         LOGGER.debug("Finding CivilSellPackage by id: {}", civilsellpackageId);
-        CivilSellPackage civilSellPackage = this.wmGenericDao.findById(civilsellpackageId);
-        if (civilSellPackage == null){
-            LOGGER.debug("No CivilSellPackage found with id: {}", civilsellpackageId);
-            throw new EntityNotFoundException(String.valueOf(civilsellpackageId));
-        }
-        return civilSellPackage;
+        return this.wmGenericDao.findById(civilsellpackageId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public CivilSellPackage findById(Integer civilsellpackageId) {
         LOGGER.debug("Finding CivilSellPackage by id: {}", civilsellpackageId);
-        return this.wmGenericDao.findById(civilsellpackageId);
+        try {
+            return this.wmGenericDao.findById(civilsellpackageId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No CivilSellPackage found with id: {}", civilsellpackageId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class CivilSellPackageServiceImpl implements CivilSellPackageService {
 	@Override
 	public CivilSellPackage update(CivilSellPackage civilSellPackage) throws EntityNotFoundException {
         LOGGER.debug("Updating CivilSellPackage with information: {}", civilSellPackage);
+
         this.wmGenericDao.update(civilSellPackage);
+        this.wmGenericDao.refresh(civilSellPackage);
 
-        Integer civilsellpackageId = civilSellPackage.getId();
-
-        return this.wmGenericDao.findById(civilsellpackageId);
+        return civilSellPackage;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class CivilSellPackageServiceImpl implements CivilSellPackageService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(CivilSellPackage civilSellPackage) {
+        LOGGER.debug("Deleting CivilSellPackage with {}", civilSellPackage);
+        this.wmGenericDao.delete(civilSellPackage);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

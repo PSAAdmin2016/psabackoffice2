@@ -8,6 +8,7 @@ package com.psabackoffice.psa.service;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,45 +65,29 @@ public class ChatConversationsServiceImpl implements ChatConversationsService {
     @Override
 	public ChatConversations create(ChatConversations chatConversations) {
         LOGGER.debug("Creating a new ChatConversations with information: {}", chatConversations);
-        List<ChatConversationMembers> chatConversationMemberses = chatConversations.getChatConversationMemberses();
-        List<ChatMessages> chatMessageses = chatConversations.getChatMessageses();
 
         ChatConversations chatConversationsCreated = this.wmGenericDao.create(chatConversations);
-        if(chatConversationMemberses != null) {
-            for(ChatConversationMembers _chatConversationMembers : chatConversationMemberses) {
-                _chatConversationMembers.setChatConversations(chatConversationsCreated);
-                LOGGER.debug("Creating a new child ChatConversationMembers with information: {}", _chatConversationMembers);
-                chatConversationMembersService.create(_chatConversationMembers);
-            }
-        }
-
-        if(chatMessageses != null) {
-            for(ChatMessages _chatMessages : chatMessageses) {
-                _chatMessages.setChatConversations(chatConversationsCreated);
-                LOGGER.debug("Creating a new child ChatMessages with information: {}", _chatMessages);
-                chatMessagesService.create(_chatMessages);
-            }
-        }
-        return chatConversationsCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(chatConversationsCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public ChatConversations getById(Integer chatconversationsId) throws EntityNotFoundException {
         LOGGER.debug("Finding ChatConversations by id: {}", chatconversationsId);
-        ChatConversations chatConversations = this.wmGenericDao.findById(chatconversationsId);
-        if (chatConversations == null){
-            LOGGER.debug("No ChatConversations found with id: {}", chatconversationsId);
-            throw new EntityNotFoundException(String.valueOf(chatconversationsId));
-        }
-        return chatConversations;
+        return this.wmGenericDao.findById(chatconversationsId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public ChatConversations findById(Integer chatconversationsId) {
         LOGGER.debug("Finding ChatConversations by id: {}", chatconversationsId);
-        return this.wmGenericDao.findById(chatconversationsId);
+        try {
+            return this.wmGenericDao.findById(chatconversationsId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No ChatConversations found with id: {}", chatconversationsId, ex);
+            return null;
+        }
     }
 
 
@@ -110,11 +95,30 @@ public class ChatConversationsServiceImpl implements ChatConversationsService {
 	@Override
 	public ChatConversations update(ChatConversations chatConversations) throws EntityNotFoundException {
         LOGGER.debug("Updating ChatConversations with information: {}", chatConversations);
+
+        List<ChatConversationMembers> chatConversationMemberses = chatConversations.getChatConversationMemberses();
+        List<ChatMessages> chatMessageses = chatConversations.getChatMessageses();
+
+        if(chatConversationMemberses != null && Hibernate.isInitialized(chatConversationMemberses)) {
+            if(!chatConversationMemberses.isEmpty()) {
+                for(ChatConversationMembers _chatConversationMembers : chatConversationMemberses) {
+                    _chatConversationMembers.setChatConversations(chatConversations);
+                }
+            }
+        }
+
+        if(chatMessageses != null && Hibernate.isInitialized(chatMessageses)) {
+            if(!chatMessageses.isEmpty()) {
+                for(ChatMessages _chatMessages : chatMessageses) {
+                    _chatMessages.setChatConversations(chatConversations);
+                }
+            }
+        }
+
         this.wmGenericDao.update(chatConversations);
+        this.wmGenericDao.refresh(chatConversations);
 
-        Integer chatconversationsId = chatConversations.getConversationId();
-
-        return this.wmGenericDao.findById(chatconversationsId);
+        return chatConversations;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -128,6 +132,13 @@ public class ChatConversationsServiceImpl implements ChatConversationsService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(ChatConversations chatConversations) {
+        LOGGER.debug("Deleting ChatConversations with {}", chatConversations);
+        this.wmGenericDao.delete(chatConversations);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

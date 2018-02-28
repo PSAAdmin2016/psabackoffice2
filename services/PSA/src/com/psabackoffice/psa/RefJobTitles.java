@@ -21,7 +21,7 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name = "`REF_JobTitles`", uniqueConstraints = {
-        @UniqueConstraint(name = "`ID_UNIQUE`", columnNames = {"`ID`"})})
+            @UniqueConstraint(name = "`ID_UNIQUE`", columnNames = {"`ID`"})})
 public class RefJobTitles implements Serializable {
 
     private Integer id;

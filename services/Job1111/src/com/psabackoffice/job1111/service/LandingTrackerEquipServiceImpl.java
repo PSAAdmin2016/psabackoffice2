@@ -53,26 +53,27 @@ public class LandingTrackerEquipServiceImpl implements LandingTrackerEquipServic
         LOGGER.debug("Creating a new LandingTrackerEquip with information: {}", landingTrackerEquip);
 
         LandingTrackerEquip landingTrackerEquipCreated = this.wmGenericDao.create(landingTrackerEquip);
-        return landingTrackerEquipCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(landingTrackerEquipCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public LandingTrackerEquip getById(Integer landingtrackerequipId) throws EntityNotFoundException {
         LOGGER.debug("Finding LandingTrackerEquip by id: {}", landingtrackerequipId);
-        LandingTrackerEquip landingTrackerEquip = this.wmGenericDao.findById(landingtrackerequipId);
-        if (landingTrackerEquip == null){
-            LOGGER.debug("No LandingTrackerEquip found with id: {}", landingtrackerequipId);
-            throw new EntityNotFoundException(String.valueOf(landingtrackerequipId));
-        }
-        return landingTrackerEquip;
+        return this.wmGenericDao.findById(landingtrackerequipId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public LandingTrackerEquip findById(Integer landingtrackerequipId) {
         LOGGER.debug("Finding LandingTrackerEquip by id: {}", landingtrackerequipId);
-        return this.wmGenericDao.findById(landingtrackerequipId);
+        try {
+            return this.wmGenericDao.findById(landingtrackerequipId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No LandingTrackerEquip found with id: {}", landingtrackerequipId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class LandingTrackerEquipServiceImpl implements LandingTrackerEquipServic
 	@Override
 	public LandingTrackerEquip update(LandingTrackerEquip landingTrackerEquip) throws EntityNotFoundException {
         LOGGER.debug("Updating LandingTrackerEquip with information: {}", landingTrackerEquip);
+
         this.wmGenericDao.update(landingTrackerEquip);
+        this.wmGenericDao.refresh(landingTrackerEquip);
 
-        Integer landingtrackerequipId = landingTrackerEquip.getUid();
-
-        return this.wmGenericDao.findById(landingtrackerequipId);
+        return landingTrackerEquip;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class LandingTrackerEquipServiceImpl implements LandingTrackerEquipServic
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(LandingTrackerEquip landingTrackerEquip) {
+        LOGGER.debug("Deleting LandingTrackerEquip with {}", landingTrackerEquip);
+        this.wmGenericDao.delete(landingTrackerEquip);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

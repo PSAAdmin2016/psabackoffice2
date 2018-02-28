@@ -53,26 +53,27 @@ public class SettingsServiceImpl implements SettingsService {
         LOGGER.debug("Creating a new Settings with information: {}", settings);
 
         Settings settingsCreated = this.wmGenericDao.create(settings);
-        return settingsCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(settingsCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public Settings getById(String settingsId) throws EntityNotFoundException {
         LOGGER.debug("Finding Settings by id: {}", settingsId);
-        Settings settings = this.wmGenericDao.findById(settingsId);
-        if (settings == null){
-            LOGGER.debug("No Settings found with id: {}", settingsId);
-            throw new EntityNotFoundException(String.valueOf(settingsId));
-        }
-        return settings;
+        return this.wmGenericDao.findById(settingsId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public Settings findById(String settingsId) {
         LOGGER.debug("Finding Settings by id: {}", settingsId);
-        return this.wmGenericDao.findById(settingsId);
+        try {
+            return this.wmGenericDao.findById(settingsId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No Settings found with id: {}", settingsId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class SettingsServiceImpl implements SettingsService {
 	@Override
 	public Settings update(Settings settings) throws EntityNotFoundException {
         LOGGER.debug("Updating Settings with information: {}", settings);
+
         this.wmGenericDao.update(settings);
+        this.wmGenericDao.refresh(settings);
 
-        String settingsId = settings.getLabel();
-
-        return this.wmGenericDao.findById(settingsId);
+        return settings;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class SettingsServiceImpl implements SettingsService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(Settings settings) {
+        LOGGER.debug("Deleting Settings with {}", settings);
+        this.wmGenericDao.delete(settings);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

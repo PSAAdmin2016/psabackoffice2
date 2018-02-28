@@ -74,6 +74,13 @@ public interface PipeWeldService {
 	 */
 	PipeWeld delete(Integer pipeweldId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing PipeWeld with the given object.
+	 *
+	 * @param pipeWeld The instance of the PipeWeld to be deleted; value cannot be null.
+	 */
+	void delete(PipeWeld pipeWeld);
+
 	/**
 	 * Find all PipeWelds matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

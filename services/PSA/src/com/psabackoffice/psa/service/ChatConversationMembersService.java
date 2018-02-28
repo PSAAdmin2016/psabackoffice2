@@ -74,6 +74,13 @@ public interface ChatConversationMembersService {
 	 */
 	ChatConversationMembers delete(Integer chatconversationmembersId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing ChatConversationMembers with the given object.
+	 *
+	 * @param chatConversationMembers The instance of the ChatConversationMembers to be deleted; value cannot be null.
+	 */
+	void delete(ChatConversationMembers chatConversationMembers);
+
 	/**
 	 * Find all ChatConversationMembers matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

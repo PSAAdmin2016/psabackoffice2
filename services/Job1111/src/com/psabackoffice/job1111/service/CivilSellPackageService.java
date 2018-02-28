@@ -74,6 +74,13 @@ public interface CivilSellPackageService {
 	 */
 	CivilSellPackage delete(Integer civilsellpackageId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing CivilSellPackage with the given object.
+	 *
+	 * @param civilSellPackage The instance of the CivilSellPackage to be deleted; value cannot be null.
+	 */
+	void delete(CivilSellPackage civilSellPackage);
+
 	/**
 	 * Find all CivilSellPackages matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

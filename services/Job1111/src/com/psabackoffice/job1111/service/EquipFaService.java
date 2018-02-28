@@ -74,6 +74,13 @@ public interface EquipFaService {
 	 */
 	EquipFa delete(Integer equipfaId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing EquipFa with the given object.
+	 *
+	 * @param equipFa The instance of the EquipFa to be deleted; value cannot be null.
+	 */
+	void delete(EquipFa equipFa);
+
 	/**
 	 * Find all EquipFas matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

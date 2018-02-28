@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,149 +96,29 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
     @Override
 	public TblUserPsa create(TblUserPsa tblUserPsa) {
         LOGGER.debug("Creating a new TblUserPsa with information: {}", tblUserPsa);
-        List<ChatConversationMembers> chatConversationMemberses = tblUserPsa.getChatConversationMemberses();
-        List<ChatMessages> chatMessageses = tblUserPsa.getChatMessageses();
-        List<FeedBack> feedBacks = tblUserPsa.getFeedBacks();
-        List<FeedBackNotes> feedBackNoteses = tblUserPsa.getFeedBackNoteses();
-        List<TblCrews> tblCrewsesForConstructionManager = tblUserPsa.getTblCrewsesForConstructionManager();
-        List<TblCrews> tblCrewsesForSuperintendent = tblUserPsa.getTblCrewsesForSuperintendent();
-        TblCrews tblCrewsForForeman = tblUserPsa.getTblCrewsForForeman();
-        List<TblCrews> tblCrewsesForProjectManager = tblUserPsa.getTblCrewsesForProjectManager();
-        List<TblCrews> tblCrewsesForAreaManager = tblUserPsa.getTblCrewsesForAreaManager();
-        List<TblCrews> tblCrewsesForSiteManager = tblUserPsa.getTblCrewsesForSiteManager();
-        List<TblCrews> tblCrewsesForGf = tblUserPsa.getTblCrewsesForGf();
-        List<TblCrews> tblCrewsesForLeadman = tblUserPsa.getTblCrewsesForLeadman();
-        TblUserCreds tblUserCreds = tblUserPsa.getTblUserCreds();
-        List<TblUserJobNumbers> tblUserJobNumberses = tblUserPsa.getTblUserJobNumberses();
 
         TblUserPsa tblUserPsaCreated = this.wmGenericDao.create(tblUserPsa);
-        if(chatConversationMemberses != null) {
-            for(ChatConversationMembers _chatConversationMembers : chatConversationMemberses) {
-                _chatConversationMembers.setTblUserPsa(tblUserPsaCreated);
-                LOGGER.debug("Creating a new child ChatConversationMembers with information: {}", _chatConversationMembers);
-                chatConversationMembersService.create(_chatConversationMembers);
-            }
-        }
-
-        if(chatMessageses != null) {
-            for(ChatMessages _chatMessages : chatMessageses) {
-                _chatMessages.setTblUserPsa(tblUserPsaCreated);
-                LOGGER.debug("Creating a new child ChatMessages with information: {}", _chatMessages);
-                chatMessagesService.create(_chatMessages);
-            }
-        }
-
-        if(feedBacks != null) {
-            for(FeedBack _feedBack : feedBacks) {
-                _feedBack.setTblUserPsa(tblUserPsaCreated);
-                LOGGER.debug("Creating a new child FeedBack with information: {}", _feedBack);
-                feedBackService.create(_feedBack);
-            }
-        }
-
-        if(feedBackNoteses != null) {
-            for(FeedBackNotes _feedBackNotes : feedBackNoteses) {
-                _feedBackNotes.setTblUserPsa(tblUserPsaCreated);
-                LOGGER.debug("Creating a new child FeedBackNotes with information: {}", _feedBackNotes);
-                feedBackNotesService.create(_feedBackNotes);
-            }
-        }
-
-        if(tblCrewsesForConstructionManager != null) {
-            for(TblCrews _tblCrews : tblCrewsesForConstructionManager) {
-                _tblCrews.setTblUserPsaByConstructionManager(tblUserPsaCreated);
-                LOGGER.debug("Creating a new child TblCrews with information: {}", _tblCrews);
-                tblCrewsService.create(_tblCrews);
-            }
-        }
-
-        if(tblCrewsesForSuperintendent != null) {
-            for(TblCrews _tblCrews : tblCrewsesForSuperintendent) {
-                _tblCrews.setTblUserPsaBySuperintendent(tblUserPsaCreated);
-                LOGGER.debug("Creating a new child TblCrews with information: {}", _tblCrews);
-                tblCrewsService.create(_tblCrews);
-            }
-        }
-
-        if(tblCrewsForForeman != null) {
-            LOGGER.debug("Creating a new child TblCrews with information: {}", tblCrewsForForeman);
-            tblCrewsForForeman.setTblUserPsaByForeman(tblUserPsaCreated);
-            tblCrewsService.create(tblCrewsForForeman);
-        }
-
-        if(tblCrewsesForProjectManager != null) {
-            for(TblCrews _tblCrews : tblCrewsesForProjectManager) {
-                _tblCrews.setTblUserPsaByProjectManager(tblUserPsaCreated);
-                LOGGER.debug("Creating a new child TblCrews with information: {}", _tblCrews);
-                tblCrewsService.create(_tblCrews);
-            }
-        }
-
-        if(tblCrewsesForAreaManager != null) {
-            for(TblCrews _tblCrews : tblCrewsesForAreaManager) {
-                _tblCrews.setTblUserPsaByAreaManager(tblUserPsaCreated);
-                LOGGER.debug("Creating a new child TblCrews with information: {}", _tblCrews);
-                tblCrewsService.create(_tblCrews);
-            }
-        }
-
-        if(tblCrewsesForSiteManager != null) {
-            for(TblCrews _tblCrews : tblCrewsesForSiteManager) {
-                _tblCrews.setTblUserPsaBySiteManager(tblUserPsaCreated);
-                LOGGER.debug("Creating a new child TblCrews with information: {}", _tblCrews);
-                tblCrewsService.create(_tblCrews);
-            }
-        }
-
-        if(tblCrewsesForGf != null) {
-            for(TblCrews _tblCrews : tblCrewsesForGf) {
-                _tblCrews.setTblUserPsaByGf(tblUserPsaCreated);
-                LOGGER.debug("Creating a new child TblCrews with information: {}", _tblCrews);
-                tblCrewsService.create(_tblCrews);
-            }
-        }
-
-        if(tblCrewsesForLeadman != null) {
-            for(TblCrews _tblCrews : tblCrewsesForLeadman) {
-                _tblCrews.setTblUserPsaByLeadman(tblUserPsaCreated);
-                LOGGER.debug("Creating a new child TblCrews with information: {}", _tblCrews);
-                tblCrewsService.create(_tblCrews);
-            }
-        }
-
-        if(tblUserCreds != null) {
-            LOGGER.debug("Creating a new child TblUserCreds with information: {}", tblUserCreds);
-            tblUserCreds.setTblUserPsa(tblUserPsaCreated);
-            tblUserCredsService.create(tblUserCreds);
-        }
-
-        if(tblUserJobNumberses != null) {
-            for(TblUserJobNumbers _tblUserJobNumbers : tblUserJobNumberses) {
-                _tblUserJobNumbers.setTblUserPsa(tblUserPsaCreated);
-                LOGGER.debug("Creating a new child TblUserJobNumbers with information: {}", _tblUserJobNumbers);
-                tblUserJobNumbersService.create(_tblUserJobNumbers);
-            }
-        }
-        return tblUserPsaCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(tblUserPsaCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public TblUserPsa getById(Integer tbluserpsaId) throws EntityNotFoundException {
         LOGGER.debug("Finding TblUserPsa by id: {}", tbluserpsaId);
-        TblUserPsa tblUserPsa = this.wmGenericDao.findById(tbluserpsaId);
-        if (tblUserPsa == null){
-            LOGGER.debug("No TblUserPsa found with id: {}", tbluserpsaId);
-            throw new EntityNotFoundException(String.valueOf(tbluserpsaId));
-        }
-        return tblUserPsa;
+        return this.wmGenericDao.findById(tbluserpsaId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public TblUserPsa findById(Integer tbluserpsaId) {
         LOGGER.debug("Finding TblUserPsa by id: {}", tbluserpsaId);
-        return this.wmGenericDao.findById(tbluserpsaId);
+        try {
+            return this.wmGenericDao.findById(tbluserpsaId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No TblUserPsa found with id: {}", tbluserpsaId, ex);
+            return null;
+        }
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
@@ -278,11 +159,130 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
 	@Override
 	public TblUserPsa update(TblUserPsa tblUserPsa) throws EntityNotFoundException {
         LOGGER.debug("Updating TblUserPsa with information: {}", tblUserPsa);
+
+        List<ChatConversationMembers> chatConversationMemberses = tblUserPsa.getChatConversationMemberses();
+        List<ChatMessages> chatMessageses = tblUserPsa.getChatMessageses();
+        List<FeedBack> feedBacks = tblUserPsa.getFeedBacks();
+        List<FeedBackNotes> feedBackNoteses = tblUserPsa.getFeedBackNoteses();
+        List<TblCrews> tblCrewsesForConstructionManager = tblUserPsa.getTblCrewsesForConstructionManager();
+        List<TblCrews> tblCrewsesForSuperintendent = tblUserPsa.getTblCrewsesForSuperintendent();
+        TblCrews tblCrewsForForeman = tblUserPsa.getTblCrewsForForeman();
+        List<TblCrews> tblCrewsesForProjectManager = tblUserPsa.getTblCrewsesForProjectManager();
+        List<TblCrews> tblCrewsesForAreaManager = tblUserPsa.getTblCrewsesForAreaManager();
+        List<TblCrews> tblCrewsesForSiteManager = tblUserPsa.getTblCrewsesForSiteManager();
+        List<TblCrews> tblCrewsesForGf = tblUserPsa.getTblCrewsesForGf();
+        List<TblCrews> tblCrewsesForLeadman = tblUserPsa.getTblCrewsesForLeadman();
+        TblUserCreds tblUserCreds = tblUserPsa.getTblUserCreds();
+        List<TblUserJobNumbers> tblUserJobNumberses = tblUserPsa.getTblUserJobNumberses();
+
+        if(chatConversationMemberses != null && Hibernate.isInitialized(chatConversationMemberses)) {
+            if(!chatConversationMemberses.isEmpty()) {
+                for(ChatConversationMembers _chatConversationMembers : chatConversationMemberses) {
+                    _chatConversationMembers.setTblUserPsa(tblUserPsa);
+                }
+            }
+        }
+
+        if(chatMessageses != null && Hibernate.isInitialized(chatMessageses)) {
+            if(!chatMessageses.isEmpty()) {
+                for(ChatMessages _chatMessages : chatMessageses) {
+                    _chatMessages.setTblUserPsa(tblUserPsa);
+                }
+            }
+        }
+
+        if(feedBacks != null && Hibernate.isInitialized(feedBacks)) {
+            if(!feedBacks.isEmpty()) {
+                for(FeedBack _feedBack : feedBacks) {
+                    _feedBack.setTblUserPsa(tblUserPsa);
+                }
+            }
+        }
+
+        if(feedBackNoteses != null && Hibernate.isInitialized(feedBackNoteses)) {
+            if(!feedBackNoteses.isEmpty()) {
+                for(FeedBackNotes _feedBackNotes : feedBackNoteses) {
+                    _feedBackNotes.setTblUserPsa(tblUserPsa);
+                }
+            }
+        }
+
+        if(tblCrewsesForConstructionManager != null && Hibernate.isInitialized(tblCrewsesForConstructionManager)) {
+            if(!tblCrewsesForConstructionManager.isEmpty()) {
+                for(TblCrews _tblCrews : tblCrewsesForConstructionManager) {
+                    _tblCrews.setTblUserPsaByConstructionManager(tblUserPsa);
+                }
+            }
+        }
+
+        if(tblCrewsesForSuperintendent != null && Hibernate.isInitialized(tblCrewsesForSuperintendent)) {
+            if(!tblCrewsesForSuperintendent.isEmpty()) {
+                for(TblCrews _tblCrews : tblCrewsesForSuperintendent) {
+                    _tblCrews.setTblUserPsaBySuperintendent(tblUserPsa);
+                }
+            }
+        }
+
+        if(tblCrewsForForeman != null && Hibernate.isInitialized(tblCrewsForForeman)) {
+            tblCrewsForForeman.setTblUserPsaByForeman(tblUserPsa);
+        }
+
+        if(tblCrewsesForProjectManager != null && Hibernate.isInitialized(tblCrewsesForProjectManager)) {
+            if(!tblCrewsesForProjectManager.isEmpty()) {
+                for(TblCrews _tblCrews : tblCrewsesForProjectManager) {
+                    _tblCrews.setTblUserPsaByProjectManager(tblUserPsa);
+                }
+            }
+        }
+
+        if(tblCrewsesForAreaManager != null && Hibernate.isInitialized(tblCrewsesForAreaManager)) {
+            if(!tblCrewsesForAreaManager.isEmpty()) {
+                for(TblCrews _tblCrews : tblCrewsesForAreaManager) {
+                    _tblCrews.setTblUserPsaByAreaManager(tblUserPsa);
+                }
+            }
+        }
+
+        if(tblCrewsesForSiteManager != null && Hibernate.isInitialized(tblCrewsesForSiteManager)) {
+            if(!tblCrewsesForSiteManager.isEmpty()) {
+                for(TblCrews _tblCrews : tblCrewsesForSiteManager) {
+                    _tblCrews.setTblUserPsaBySiteManager(tblUserPsa);
+                }
+            }
+        }
+
+        if(tblCrewsesForGf != null && Hibernate.isInitialized(tblCrewsesForGf)) {
+            if(!tblCrewsesForGf.isEmpty()) {
+                for(TblCrews _tblCrews : tblCrewsesForGf) {
+                    _tblCrews.setTblUserPsaByGf(tblUserPsa);
+                }
+            }
+        }
+
+        if(tblCrewsesForLeadman != null && Hibernate.isInitialized(tblCrewsesForLeadman)) {
+            if(!tblCrewsesForLeadman.isEmpty()) {
+                for(TblCrews _tblCrews : tblCrewsesForLeadman) {
+                    _tblCrews.setTblUserPsaByLeadman(tblUserPsa);
+                }
+            }
+        }
+
+        if(tblUserCreds != null && Hibernate.isInitialized(tblUserCreds)) {
+            tblUserCreds.setTblUserPsa(tblUserPsa);
+        }
+
+        if(tblUserJobNumberses != null && Hibernate.isInitialized(tblUserJobNumberses)) {
+            if(!tblUserJobNumberses.isEmpty()) {
+                for(TblUserJobNumbers _tblUserJobNumbers : tblUserJobNumberses) {
+                    _tblUserJobNumbers.setTblUserPsa(tblUserPsa);
+                }
+            }
+        }
+
         this.wmGenericDao.update(tblUserPsa);
+        this.wmGenericDao.refresh(tblUserPsa);
 
-        Integer tbluserpsaId = tblUserPsa.getId();
-
-        return this.wmGenericDao.findById(tbluserpsaId);
+        return tblUserPsa;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -296,6 +296,13 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(TblUserPsa tblUserPsa) {
+        LOGGER.debug("Deleting TblUserPsa with {}", tblUserPsa);
+        this.wmGenericDao.delete(tblUserPsa);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

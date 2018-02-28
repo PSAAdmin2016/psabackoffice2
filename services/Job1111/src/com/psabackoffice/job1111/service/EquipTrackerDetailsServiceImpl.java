@@ -53,26 +53,27 @@ public class EquipTrackerDetailsServiceImpl implements EquipTrackerDetailsServic
         LOGGER.debug("Creating a new EquipTrackerDetails with information: {}", equipTrackerDetails);
 
         EquipTrackerDetails equipTrackerDetailsCreated = this.wmGenericDao.create(equipTrackerDetails);
-        return equipTrackerDetailsCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(equipTrackerDetailsCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public EquipTrackerDetails getById(Integer equiptrackerdetailsId) throws EntityNotFoundException {
         LOGGER.debug("Finding EquipTrackerDetails by id: {}", equiptrackerdetailsId);
-        EquipTrackerDetails equipTrackerDetails = this.wmGenericDao.findById(equiptrackerdetailsId);
-        if (equipTrackerDetails == null){
-            LOGGER.debug("No EquipTrackerDetails found with id: {}", equiptrackerdetailsId);
-            throw new EntityNotFoundException(String.valueOf(equiptrackerdetailsId));
-        }
-        return equipTrackerDetails;
+        return this.wmGenericDao.findById(equiptrackerdetailsId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public EquipTrackerDetails findById(Integer equiptrackerdetailsId) {
         LOGGER.debug("Finding EquipTrackerDetails by id: {}", equiptrackerdetailsId);
-        return this.wmGenericDao.findById(equiptrackerdetailsId);
+        try {
+            return this.wmGenericDao.findById(equiptrackerdetailsId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No EquipTrackerDetails found with id: {}", equiptrackerdetailsId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class EquipTrackerDetailsServiceImpl implements EquipTrackerDetailsServic
 	@Override
 	public EquipTrackerDetails update(EquipTrackerDetails equipTrackerDetails) throws EntityNotFoundException {
         LOGGER.debug("Updating EquipTrackerDetails with information: {}", equipTrackerDetails);
+
         this.wmGenericDao.update(equipTrackerDetails);
+        this.wmGenericDao.refresh(equipTrackerDetails);
 
-        Integer equiptrackerdetailsId = equipTrackerDetails.getUid();
-
-        return this.wmGenericDao.findById(equiptrackerdetailsId);
+        return equipTrackerDetails;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class EquipTrackerDetailsServiceImpl implements EquipTrackerDetailsServic
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(EquipTrackerDetails equipTrackerDetails) {
+        LOGGER.debug("Deleting EquipTrackerDetails with {}", equipTrackerDetails);
+        this.wmGenericDao.delete(equipTrackerDetails);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

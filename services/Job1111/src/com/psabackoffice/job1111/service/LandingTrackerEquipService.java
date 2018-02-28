@@ -74,6 +74,13 @@ public interface LandingTrackerEquipService {
 	 */
 	LandingTrackerEquip delete(Integer landingtrackerequipId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing LandingTrackerEquip with the given object.
+	 *
+	 * @param landingTrackerEquip The instance of the LandingTrackerEquip to be deleted; value cannot be null.
+	 */
+	void delete(LandingTrackerEquip landingTrackerEquip);
+
 	/**
 	 * Find all LandingTrackerEquips matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

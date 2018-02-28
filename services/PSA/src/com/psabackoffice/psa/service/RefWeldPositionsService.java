@@ -74,6 +74,13 @@ public interface RefWeldPositionsService {
 	 */
 	RefWeldPositions delete(Integer refweldpositionsId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefWeldPositions with the given object.
+	 *
+	 * @param refWeldPositions The instance of the RefWeldPositions to be deleted; value cannot be null.
+	 */
+	void delete(RefWeldPositions refWeldPositions);
+
 	/**
 	 * Find all RefWeldPositions matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

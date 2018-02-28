@@ -54,26 +54,27 @@ public class RefJobTitlesServiceImpl implements RefJobTitlesService {
         LOGGER.debug("Creating a new RefJobTitles with information: {}", refJobTitles);
 
         RefJobTitles refJobTitlesCreated = this.wmGenericDao.create(refJobTitles);
-        return refJobTitlesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refJobTitlesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefJobTitles getById(Integer refjobtitlesId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefJobTitles by id: {}", refjobtitlesId);
-        RefJobTitles refJobTitles = this.wmGenericDao.findById(refjobtitlesId);
-        if (refJobTitles == null){
-            LOGGER.debug("No RefJobTitles found with id: {}", refjobtitlesId);
-            throw new EntityNotFoundException(String.valueOf(refjobtitlesId));
-        }
-        return refJobTitles;
+        return this.wmGenericDao.findById(refjobtitlesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefJobTitles findById(Integer refjobtitlesId) {
         LOGGER.debug("Finding RefJobTitles by id: {}", refjobtitlesId);
-        return this.wmGenericDao.findById(refjobtitlesId);
+        try {
+            return this.wmGenericDao.findById(refjobtitlesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefJobTitles found with id: {}", refjobtitlesId, ex);
+            return null;
+        }
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
@@ -97,11 +98,11 @@ public class RefJobTitlesServiceImpl implements RefJobTitlesService {
 	@Override
 	public RefJobTitles update(RefJobTitles refJobTitles) throws EntityNotFoundException {
         LOGGER.debug("Updating RefJobTitles with information: {}", refJobTitles);
+
         this.wmGenericDao.update(refJobTitles);
+        this.wmGenericDao.refresh(refJobTitles);
 
-        Integer refjobtitlesId = refJobTitles.getId();
-
-        return this.wmGenericDao.findById(refjobtitlesId);
+        return refJobTitles;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -115,6 +116,13 @@ public class RefJobTitlesServiceImpl implements RefJobTitlesService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefJobTitles refJobTitles) {
+        LOGGER.debug("Deleting RefJobTitles with {}", refJobTitles);
+        this.wmGenericDao.delete(refJobTitles);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

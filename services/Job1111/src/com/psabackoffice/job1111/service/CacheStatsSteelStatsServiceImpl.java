@@ -53,26 +53,27 @@ public class CacheStatsSteelStatsServiceImpl implements CacheStatsSteelStatsServ
         LOGGER.debug("Creating a new CacheStatsSteelStats with information: {}", cacheStatsSteelStats);
 
         CacheStatsSteelStats cacheStatsSteelStatsCreated = this.wmGenericDao.create(cacheStatsSteelStats);
-        return cacheStatsSteelStatsCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(cacheStatsSteelStatsCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public CacheStatsSteelStats getById(Integer cachestatssteelstatsId) throws EntityNotFoundException {
         LOGGER.debug("Finding CacheStatsSteelStats by id: {}", cachestatssteelstatsId);
-        CacheStatsSteelStats cacheStatsSteelStats = this.wmGenericDao.findById(cachestatssteelstatsId);
-        if (cacheStatsSteelStats == null){
-            LOGGER.debug("No CacheStatsSteelStats found with id: {}", cachestatssteelstatsId);
-            throw new EntityNotFoundException(String.valueOf(cachestatssteelstatsId));
-        }
-        return cacheStatsSteelStats;
+        return this.wmGenericDao.findById(cachestatssteelstatsId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public CacheStatsSteelStats findById(Integer cachestatssteelstatsId) {
         LOGGER.debug("Finding CacheStatsSteelStats by id: {}", cachestatssteelstatsId);
-        return this.wmGenericDao.findById(cachestatssteelstatsId);
+        try {
+            return this.wmGenericDao.findById(cachestatssteelstatsId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No CacheStatsSteelStats found with id: {}", cachestatssteelstatsId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class CacheStatsSteelStatsServiceImpl implements CacheStatsSteelStatsServ
 	@Override
 	public CacheStatsSteelStats update(CacheStatsSteelStats cacheStatsSteelStats) throws EntityNotFoundException {
         LOGGER.debug("Updating CacheStatsSteelStats with information: {}", cacheStatsSteelStats);
+
         this.wmGenericDao.update(cacheStatsSteelStats);
+        this.wmGenericDao.refresh(cacheStatsSteelStats);
 
-        Integer cachestatssteelstatsId = cacheStatsSteelStats.getBidId();
-
-        return this.wmGenericDao.findById(cachestatssteelstatsId);
+        return cacheStatsSteelStats;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class CacheStatsSteelStatsServiceImpl implements CacheStatsSteelStatsServ
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(CacheStatsSteelStats cacheStatsSteelStats) {
+        LOGGER.debug("Deleting CacheStatsSteelStats with {}", cacheStatsSteelStats);
+        this.wmGenericDao.delete(cacheStatsSteelStats);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

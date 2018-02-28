@@ -74,6 +74,13 @@ public interface PipeTrimService {
 	 */
 	PipeTrim delete(Integer pipetrimId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing PipeTrim with the given object.
+	 *
+	 * @param pipeTrim The instance of the PipeTrim to be deleted; value cannot be null.
+	 */
+	void delete(PipeTrim pipeTrim);
+
 	/**
 	 * Find all PipeTrims matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

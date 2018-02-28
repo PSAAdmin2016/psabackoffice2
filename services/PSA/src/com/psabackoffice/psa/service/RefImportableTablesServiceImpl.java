@@ -53,26 +53,27 @@ public class RefImportableTablesServiceImpl implements RefImportableTablesServic
         LOGGER.debug("Creating a new RefImportableTables with information: {}", refImportableTables);
 
         RefImportableTables refImportableTablesCreated = this.wmGenericDao.create(refImportableTables);
-        return refImportableTablesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refImportableTablesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefImportableTables getById(Integer refimportabletablesId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefImportableTables by id: {}", refimportabletablesId);
-        RefImportableTables refImportableTables = this.wmGenericDao.findById(refimportabletablesId);
-        if (refImportableTables == null){
-            LOGGER.debug("No RefImportableTables found with id: {}", refimportabletablesId);
-            throw new EntityNotFoundException(String.valueOf(refimportabletablesId));
-        }
-        return refImportableTables;
+        return this.wmGenericDao.findById(refimportabletablesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefImportableTables findById(Integer refimportabletablesId) {
         LOGGER.debug("Finding RefImportableTables by id: {}", refimportabletablesId);
-        return this.wmGenericDao.findById(refimportabletablesId);
+        try {
+            return this.wmGenericDao.findById(refimportabletablesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefImportableTables found with id: {}", refimportabletablesId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefImportableTablesServiceImpl implements RefImportableTablesServic
 	@Override
 	public RefImportableTables update(RefImportableTables refImportableTables) throws EntityNotFoundException {
         LOGGER.debug("Updating RefImportableTables with information: {}", refImportableTables);
+
         this.wmGenericDao.update(refImportableTables);
+        this.wmGenericDao.refresh(refImportableTables);
 
-        Integer refimportabletablesId = refImportableTables.getId();
-
-        return this.wmGenericDao.findById(refimportabletablesId);
+        return refImportableTables;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class RefImportableTablesServiceImpl implements RefImportableTablesServic
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefImportableTables refImportableTables) {
+        LOGGER.debug("Deleting RefImportableTables with {}", refImportableTables);
+        this.wmGenericDao.delete(refImportableTables);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

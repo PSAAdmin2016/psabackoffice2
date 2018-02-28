@@ -74,6 +74,13 @@ public interface RefActivityStatusesService {
 	 */
 	RefActivityStatuses delete(Integer refactivitystatusesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefActivityStatuses with the given object.
+	 *
+	 * @param refActivityStatuses The instance of the RefActivityStatuses to be deleted; value cannot be null.
+	 */
+	void delete(RefActivityStatuses refActivityStatuses);
+
 	/**
 	 * Find all RefActivityStatuses matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

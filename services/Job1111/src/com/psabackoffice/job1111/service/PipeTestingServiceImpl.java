@@ -53,26 +53,27 @@ public class PipeTestingServiceImpl implements PipeTestingService {
         LOGGER.debug("Creating a new PipeTesting with information: {}", pipeTesting);
 
         PipeTesting pipeTestingCreated = this.wmGenericDao.create(pipeTesting);
-        return pipeTestingCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(pipeTestingCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public PipeTesting getById(Integer pipetestingId) throws EntityNotFoundException {
         LOGGER.debug("Finding PipeTesting by id: {}", pipetestingId);
-        PipeTesting pipeTesting = this.wmGenericDao.findById(pipetestingId);
-        if (pipeTesting == null){
-            LOGGER.debug("No PipeTesting found with id: {}", pipetestingId);
-            throw new EntityNotFoundException(String.valueOf(pipetestingId));
-        }
-        return pipeTesting;
+        return this.wmGenericDao.findById(pipetestingId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public PipeTesting findById(Integer pipetestingId) {
         LOGGER.debug("Finding PipeTesting by id: {}", pipetestingId);
-        return this.wmGenericDao.findById(pipetestingId);
+        try {
+            return this.wmGenericDao.findById(pipetestingId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No PipeTesting found with id: {}", pipetestingId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class PipeTestingServiceImpl implements PipeTestingService {
 	@Override
 	public PipeTesting update(PipeTesting pipeTesting) throws EntityNotFoundException {
         LOGGER.debug("Updating PipeTesting with information: {}", pipeTesting);
+
         this.wmGenericDao.update(pipeTesting);
+        this.wmGenericDao.refresh(pipeTesting);
 
-        Integer pipetestingId = pipeTesting.getId();
-
-        return this.wmGenericDao.findById(pipetestingId);
+        return pipeTesting;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class PipeTestingServiceImpl implements PipeTestingService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(PipeTesting pipeTesting) {
+        LOGGER.debug("Deleting PipeTesting with {}", pipeTesting);
+        this.wmGenericDao.delete(pipeTesting);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

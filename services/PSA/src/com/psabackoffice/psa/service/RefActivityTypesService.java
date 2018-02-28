@@ -74,6 +74,13 @@ public interface RefActivityTypesService {
 	 */
 	RefActivityTypes delete(Integer refactivitytypesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefActivityTypes with the given object.
+	 *
+	 * @param refActivityTypes The instance of the RefActivityTypes to be deleted; value cannot be null.
+	 */
+	void delete(RefActivityTypes refActivityTypes);
+
 	/**
 	 * Find all RefActivityTypes matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

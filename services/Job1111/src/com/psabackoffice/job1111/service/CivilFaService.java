@@ -74,6 +74,13 @@ public interface CivilFaService {
 	 */
 	CivilFa delete(Integer civilfaId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing CivilFa with the given object.
+	 *
+	 * @param civilFa The instance of the CivilFa to be deleted; value cannot be null.
+	 */
+	void delete(CivilFa civilFa);
+
 	/**
 	 * Find all CivilFas matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

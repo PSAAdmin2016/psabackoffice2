@@ -74,6 +74,13 @@ public interface CacheStatsEquipStatsService {
 	 */
 	CacheStatsEquipStats delete(Integer cachestatsequipstatsId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing CacheStatsEquipStats with the given object.
+	 *
+	 * @param cacheStatsEquipStats The instance of the CacheStatsEquipStats to be deleted; value cannot be null.
+	 */
+	void delete(CacheStatsEquipStats cacheStatsEquipStats);
+
 	/**
 	 * Find all CacheStatsEquipStats matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

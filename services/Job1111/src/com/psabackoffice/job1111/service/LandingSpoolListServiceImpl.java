@@ -53,26 +53,27 @@ public class LandingSpoolListServiceImpl implements LandingSpoolListService {
         LOGGER.debug("Creating a new LandingSpoolList with information: {}", landingSpoolList);
 
         LandingSpoolList landingSpoolListCreated = this.wmGenericDao.create(landingSpoolList);
-        return landingSpoolListCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(landingSpoolListCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public LandingSpoolList getById(String landingspoollistId) throws EntityNotFoundException {
         LOGGER.debug("Finding LandingSpoolList by id: {}", landingspoollistId);
-        LandingSpoolList landingSpoolList = this.wmGenericDao.findById(landingspoollistId);
-        if (landingSpoolList == null){
-            LOGGER.debug("No LandingSpoolList found with id: {}", landingspoollistId);
-            throw new EntityNotFoundException(String.valueOf(landingspoollistId));
-        }
-        return landingSpoolList;
+        return this.wmGenericDao.findById(landingspoollistId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public LandingSpoolList findById(String landingspoollistId) {
         LOGGER.debug("Finding LandingSpoolList by id: {}", landingspoollistId);
-        return this.wmGenericDao.findById(landingspoollistId);
+        try {
+            return this.wmGenericDao.findById(landingspoollistId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No LandingSpoolList found with id: {}", landingspoollistId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class LandingSpoolListServiceImpl implements LandingSpoolListService {
 	@Override
 	public LandingSpoolList update(LandingSpoolList landingSpoolList) throws EntityNotFoundException {
         LOGGER.debug("Updating LandingSpoolList with information: {}", landingSpoolList);
+
         this.wmGenericDao.update(landingSpoolList);
+        this.wmGenericDao.refresh(landingSpoolList);
 
-        String landingspoollistId = landingSpoolList.getSpoolNumber();
-
-        return this.wmGenericDao.findById(landingspoollistId);
+        return landingSpoolList;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class LandingSpoolListServiceImpl implements LandingSpoolListService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(LandingSpoolList landingSpoolList) {
+        LOGGER.debug("Deleting LandingSpoolList with {}", landingSpoolList);
+        this.wmGenericDao.delete(landingSpoolList);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

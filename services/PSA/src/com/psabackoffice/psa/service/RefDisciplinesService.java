@@ -76,6 +76,13 @@ public interface RefDisciplinesService {
 	 */
 	RefDisciplines delete(Integer refdisciplinesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefDisciplines with the given object.
+	 *
+	 * @param refDisciplines The instance of the RefDisciplines to be deleted; value cannot be null.
+	 */
+	void delete(RefDisciplines refDisciplines);
+
 	/**
 	 * Find all RefDisciplines matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

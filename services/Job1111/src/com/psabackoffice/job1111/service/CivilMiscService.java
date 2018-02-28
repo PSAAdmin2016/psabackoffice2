@@ -74,6 +74,13 @@ public interface CivilMiscService {
 	 */
 	CivilMisc delete(Integer civilmiscId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing CivilMisc with the given object.
+	 *
+	 * @param civilMisc The instance of the CivilMisc to be deleted; value cannot be null.
+	 */
+	void delete(CivilMisc civilMisc);
+
 	/**
 	 * Find all CivilMiscs matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

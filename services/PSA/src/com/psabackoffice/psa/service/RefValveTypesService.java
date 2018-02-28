@@ -74,6 +74,13 @@ public interface RefValveTypesService {
 	 */
 	RefValveTypes delete(Integer refvalvetypesId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefValveTypes with the given object.
+	 *
+	 * @param refValveTypes The instance of the RefValveTypes to be deleted; value cannot be null.
+	 */
+	void delete(RefValveTypes refValveTypes);
+
 	/**
 	 * Find all RefValveTypes matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

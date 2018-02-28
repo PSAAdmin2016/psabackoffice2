@@ -74,6 +74,13 @@ public interface RefWeldSpecProceduresService {
 	 */
 	RefWeldSpecProcedures delete(Integer refweldspecproceduresId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefWeldSpecProcedures with the given object.
+	 *
+	 * @param refWeldSpecProcedures The instance of the RefWeldSpecProcedures to be deleted; value cannot be null.
+	 */
+	void delete(RefWeldSpecProcedures refWeldSpecProcedures);
+
 	/**
 	 * Find all RefWeldSpecProcedures matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

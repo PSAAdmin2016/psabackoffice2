@@ -53,26 +53,27 @@ public class PipeDemoServiceImpl implements PipeDemoService {
         LOGGER.debug("Creating a new PipeDemo with information: {}", pipeDemo);
 
         PipeDemo pipeDemoCreated = this.wmGenericDao.create(pipeDemo);
-        return pipeDemoCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(pipeDemoCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public PipeDemo getById(Integer pipedemoId) throws EntityNotFoundException {
         LOGGER.debug("Finding PipeDemo by id: {}", pipedemoId);
-        PipeDemo pipeDemo = this.wmGenericDao.findById(pipedemoId);
-        if (pipeDemo == null){
-            LOGGER.debug("No PipeDemo found with id: {}", pipedemoId);
-            throw new EntityNotFoundException(String.valueOf(pipedemoId));
-        }
-        return pipeDemo;
+        return this.wmGenericDao.findById(pipedemoId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public PipeDemo findById(Integer pipedemoId) {
         LOGGER.debug("Finding PipeDemo by id: {}", pipedemoId);
-        return this.wmGenericDao.findById(pipedemoId);
+        try {
+            return this.wmGenericDao.findById(pipedemoId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No PipeDemo found with id: {}", pipedemoId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class PipeDemoServiceImpl implements PipeDemoService {
 	@Override
 	public PipeDemo update(PipeDemo pipeDemo) throws EntityNotFoundException {
         LOGGER.debug("Updating PipeDemo with information: {}", pipeDemo);
+
         this.wmGenericDao.update(pipeDemo);
+        this.wmGenericDao.refresh(pipeDemo);
 
-        Integer pipedemoId = pipeDemo.getId();
-
-        return this.wmGenericDao.findById(pipedemoId);
+        return pipeDemo;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class PipeDemoServiceImpl implements PipeDemoService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(PipeDemo pipeDemo) {
+        LOGGER.debug("Deleting PipeDemo with {}", pipeDemo);
+        this.wmGenericDao.delete(pipeDemo);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

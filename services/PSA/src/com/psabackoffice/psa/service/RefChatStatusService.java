@@ -74,6 +74,13 @@ public interface RefChatStatusService {
 	 */
 	RefChatStatus delete(Integer refchatstatusId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing RefChatStatus with the given object.
+	 *
+	 * @param refChatStatus The instance of the RefChatStatus to be deleted; value cannot be null.
+	 */
+	void delete(RefChatStatus refChatStatus);
+
 	/**
 	 * Find all RefChatStatuses matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

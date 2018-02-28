@@ -75,6 +75,13 @@ public interface MenuHelpVideosService {
 	 */
 	MenuHelpVideos delete(Integer menuhelpvideosId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing MenuHelpVideos with the given object.
+	 *
+	 * @param menuHelpVideos The instance of the MenuHelpVideos to be deleted; value cannot be null.
+	 */
+	void delete(MenuHelpVideos menuHelpVideos);
+
 	/**
 	 * Find all MenuHelpVideos matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

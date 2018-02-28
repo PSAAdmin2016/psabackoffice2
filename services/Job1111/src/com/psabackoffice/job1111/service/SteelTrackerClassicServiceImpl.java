@@ -53,26 +53,27 @@ public class SteelTrackerClassicServiceImpl implements SteelTrackerClassicServic
         LOGGER.debug("Creating a new SteelTrackerClassic with information: {}", steelTrackerClassic);
 
         SteelTrackerClassic steelTrackerClassicCreated = this.wmGenericDao.create(steelTrackerClassic);
-        return steelTrackerClassicCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(steelTrackerClassicCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public SteelTrackerClassic getById(Integer steeltrackerclassicId) throws EntityNotFoundException {
         LOGGER.debug("Finding SteelTrackerClassic by id: {}", steeltrackerclassicId);
-        SteelTrackerClassic steelTrackerClassic = this.wmGenericDao.findById(steeltrackerclassicId);
-        if (steelTrackerClassic == null){
-            LOGGER.debug("No SteelTrackerClassic found with id: {}", steeltrackerclassicId);
-            throw new EntityNotFoundException(String.valueOf(steeltrackerclassicId));
-        }
-        return steelTrackerClassic;
+        return this.wmGenericDao.findById(steeltrackerclassicId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public SteelTrackerClassic findById(Integer steeltrackerclassicId) {
         LOGGER.debug("Finding SteelTrackerClassic by id: {}", steeltrackerclassicId);
-        return this.wmGenericDao.findById(steeltrackerclassicId);
+        try {
+            return this.wmGenericDao.findById(steeltrackerclassicId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No SteelTrackerClassic found with id: {}", steeltrackerclassicId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class SteelTrackerClassicServiceImpl implements SteelTrackerClassicServic
 	@Override
 	public SteelTrackerClassic update(SteelTrackerClassic steelTrackerClassic) throws EntityNotFoundException {
         LOGGER.debug("Updating SteelTrackerClassic with information: {}", steelTrackerClassic);
+
         this.wmGenericDao.update(steelTrackerClassic);
+        this.wmGenericDao.refresh(steelTrackerClassic);
 
-        Integer steeltrackerclassicId = steelTrackerClassic.getUid();
-
-        return this.wmGenericDao.findById(steeltrackerclassicId);
+        return steelTrackerClassic;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class SteelTrackerClassicServiceImpl implements SteelTrackerClassicServic
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(SteelTrackerClassic steelTrackerClassic) {
+        LOGGER.debug("Deleting SteelTrackerClassic with {}", steelTrackerClassic);
+        this.wmGenericDao.delete(steelTrackerClassic);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

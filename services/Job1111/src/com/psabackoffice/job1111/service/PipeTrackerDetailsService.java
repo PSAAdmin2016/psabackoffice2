@@ -74,6 +74,13 @@ public interface PipeTrackerDetailsService {
 	 */
 	PipeTrackerDetails delete(Integer pipetrackerdetailsId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing PipeTrackerDetails with the given object.
+	 *
+	 * @param pipeTrackerDetails The instance of the PipeTrackerDetails to be deleted; value cannot be null.
+	 */
+	void delete(PipeTrackerDetails pipeTrackerDetails);
+
 	/**
 	 * Find all PipeTrackerDetails matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

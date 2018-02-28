@@ -53,26 +53,27 @@ public class RefActivityTypesServiceImpl implements RefActivityTypesService {
         LOGGER.debug("Creating a new RefActivityTypes with information: {}", refActivityTypes);
 
         RefActivityTypes refActivityTypesCreated = this.wmGenericDao.create(refActivityTypes);
-        return refActivityTypesCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(refActivityTypesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefActivityTypes getById(Integer refactivitytypesId) throws EntityNotFoundException {
         LOGGER.debug("Finding RefActivityTypes by id: {}", refactivitytypesId);
-        RefActivityTypes refActivityTypes = this.wmGenericDao.findById(refactivitytypesId);
-        if (refActivityTypes == null){
-            LOGGER.debug("No RefActivityTypes found with id: {}", refactivitytypesId);
-            throw new EntityNotFoundException(String.valueOf(refactivitytypesId));
-        }
-        return refActivityTypes;
+        return this.wmGenericDao.findById(refactivitytypesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public RefActivityTypes findById(Integer refactivitytypesId) {
         LOGGER.debug("Finding RefActivityTypes by id: {}", refactivitytypesId);
-        return this.wmGenericDao.findById(refactivitytypesId);
+        try {
+            return this.wmGenericDao.findById(refactivitytypesId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No RefActivityTypes found with id: {}", refactivitytypesId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class RefActivityTypesServiceImpl implements RefActivityTypesService {
 	@Override
 	public RefActivityTypes update(RefActivityTypes refActivityTypes) throws EntityNotFoundException {
         LOGGER.debug("Updating RefActivityTypes with information: {}", refActivityTypes);
+
         this.wmGenericDao.update(refActivityTypes);
+        this.wmGenericDao.refresh(refActivityTypes);
 
-        Integer refactivitytypesId = refActivityTypes.getId();
-
-        return this.wmGenericDao.findById(refactivitytypesId);
+        return refActivityTypes;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class RefActivityTypesServiceImpl implements RefActivityTypesService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(RefActivityTypes refActivityTypes) {
+        LOGGER.debug("Deleting RefActivityTypes with {}", refActivityTypes);
+        this.wmGenericDao.delete(refActivityTypes);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

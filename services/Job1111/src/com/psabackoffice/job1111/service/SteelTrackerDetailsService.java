@@ -74,6 +74,13 @@ public interface SteelTrackerDetailsService {
 	 */
 	SteelTrackerDetails delete(Integer steeltrackerdetailsId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing SteelTrackerDetails with the given object.
+	 *
+	 * @param steelTrackerDetails The instance of the SteelTrackerDetails to be deleted; value cannot be null.
+	 */
+	void delete(SteelTrackerDetails steelTrackerDetails);
+
 	/**
 	 * Find all SteelTrackerDetails matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

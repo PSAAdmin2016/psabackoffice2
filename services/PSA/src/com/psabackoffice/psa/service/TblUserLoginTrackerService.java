@@ -74,6 +74,13 @@ public interface TblUserLoginTrackerService {
 	 */
 	TblUserLoginTracker delete(Integer tbluserlogintrackerId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing TblUserLoginTracker with the given object.
+	 *
+	 * @param tblUserLoginTracker The instance of the TblUserLoginTracker to be deleted; value cannot be null.
+	 */
+	void delete(TblUserLoginTracker tblUserLoginTracker);
+
 	/**
 	 * Find all TblUserLoginTrackers matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

@@ -74,6 +74,13 @@ public interface CacheStatsSteelPcotService {
 	 */
 	CacheStatsSteelPcot delete(Integer cachestatssteelpcotId) throws EntityNotFoundException;
 
+    /**
+	 * Deletes an existing CacheStatsSteelPcot with the given object.
+	 *
+	 * @param cacheStatsSteelPcot The instance of the CacheStatsSteelPcot to be deleted; value cannot be null.
+	 */
+	void delete(CacheStatsSteelPcot cacheStatsSteelPcot);
+
 	/**
 	 * Find all CacheStatsSteelPcots matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.

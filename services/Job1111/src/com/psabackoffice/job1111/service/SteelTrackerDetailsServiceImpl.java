@@ -53,26 +53,27 @@ public class SteelTrackerDetailsServiceImpl implements SteelTrackerDetailsServic
         LOGGER.debug("Creating a new SteelTrackerDetails with information: {}", steelTrackerDetails);
 
         SteelTrackerDetails steelTrackerDetailsCreated = this.wmGenericDao.create(steelTrackerDetails);
-        return steelTrackerDetailsCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(steelTrackerDetailsCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public SteelTrackerDetails getById(Integer steeltrackerdetailsId) throws EntityNotFoundException {
         LOGGER.debug("Finding SteelTrackerDetails by id: {}", steeltrackerdetailsId);
-        SteelTrackerDetails steelTrackerDetails = this.wmGenericDao.findById(steeltrackerdetailsId);
-        if (steelTrackerDetails == null){
-            LOGGER.debug("No SteelTrackerDetails found with id: {}", steeltrackerdetailsId);
-            throw new EntityNotFoundException(String.valueOf(steeltrackerdetailsId));
-        }
-        return steelTrackerDetails;
+        return this.wmGenericDao.findById(steeltrackerdetailsId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
 	public SteelTrackerDetails findById(Integer steeltrackerdetailsId) {
         LOGGER.debug("Finding SteelTrackerDetails by id: {}", steeltrackerdetailsId);
-        return this.wmGenericDao.findById(steeltrackerdetailsId);
+        try {
+            return this.wmGenericDao.findById(steeltrackerdetailsId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No SteelTrackerDetails found with id: {}", steeltrackerdetailsId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class SteelTrackerDetailsServiceImpl implements SteelTrackerDetailsServic
 	@Override
 	public SteelTrackerDetails update(SteelTrackerDetails steelTrackerDetails) throws EntityNotFoundException {
         LOGGER.debug("Updating SteelTrackerDetails with information: {}", steelTrackerDetails);
+
         this.wmGenericDao.update(steelTrackerDetails);
+        this.wmGenericDao.refresh(steelTrackerDetails);
 
-        Integer steeltrackerdetailsId = steelTrackerDetails.getUid();
-
-        return this.wmGenericDao.findById(steeltrackerdetailsId);
+        return steelTrackerDetails;
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -98,6 +99,13 @@ public class SteelTrackerDetailsServiceImpl implements SteelTrackerDetailsServic
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+	@Override
+	public void delete(SteelTrackerDetails steelTrackerDetails) {
+        LOGGER.debug("Deleting SteelTrackerDetails with {}", steelTrackerDetails);
+        this.wmGenericDao.delete(steelTrackerDetails);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")

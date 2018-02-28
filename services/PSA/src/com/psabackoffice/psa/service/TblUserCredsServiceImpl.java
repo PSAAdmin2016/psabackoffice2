@@ -53,26 +53,27 @@ public class TblUserCredsServiceImpl implements TblUserCredsService {
         LOGGER.debug("Creating a new TblUserCreds with information: {}", tblUserCreds);
 
         TblUserCreds tblUserCredsCreated = this.wmGenericDao.create(tblUserCreds);
-        return tblUserCredsCreated;
+        // reloading object from database to get database defined & server defined values.
+        return this.wmGenericDao.refresh(tblUserCredsCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public TblUserCreds getById(Integer tblusercredsId) throws EntityNotFoundException {
         LOGGER.debug("Finding TblUserCreds by id: {}", tblusercredsId);
-        TblUserCreds tblUserCreds = this.wmGenericDao.findById(tblusercredsId);
-        if (tblUserCreds == null){
-            LOGGER.debug("No TblUserCreds found with id: {}", tblusercredsId);
-            throw new EntityNotFoundException(String.valueOf(tblusercredsId));
-        }
-        return tblUserCreds;
+        return this.wmGenericDao.findById(tblusercredsId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
 	public TblUserCreds findById(Integer tblusercredsId) {
         LOGGER.debug("Finding TblUserCreds by id: {}", tblusercredsId);
-        return this.wmGenericDao.findById(tblusercredsId);
+        try {
+            return this.wmGenericDao.findById(tblusercredsId);
+        } catch(EntityNotFoundException ex) {
+            LOGGER.debug("No TblUserCreds found with id: {}", tblusercredsId, ex);
+            return null;
+        }
     }
 
 
@@ -80,11 +81,11 @@ public class TblUserCredsServiceImpl implements TblUserCredsService {
 	@Override
 	public TblUserCreds update(TblUserCreds tblUserCreds) throws EntityNotFoundException {
         LOGGER.debug("Updating TblUserCreds with information: {}", tblUserCreds);
+
         this.wmGenericDao.update(tblUserCreds);
+        this.wmGenericDao.refresh(tblUserCreds);
 
-        Integer tblusercredsId = tblUserCreds.getUserId();
-
-        return this.wmGenericDao.findById(tblusercredsId);
+        return tblUserCreds;
     }
 
     @Transactional(value = "PSATransactionManager")
@@ -98,6 +99,13 @@ public class TblUserCredsServiceImpl implements TblUserCredsService {
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
+    }
+
+    @Transactional(value = "PSATransactionManager")
+	@Override
+	public void delete(TblUserCreds tblUserCreds) {
+        LOGGER.debug("Deleting TblUserCreds with {}", tblUserCreds);
+        this.wmGenericDao.delete(tblUserCreds);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")

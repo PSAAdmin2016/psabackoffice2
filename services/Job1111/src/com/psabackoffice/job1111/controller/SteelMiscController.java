@@ -79,9 +79,9 @@ public class SteelMiscController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public SteelMisc editSteelMisc(@PathVariable("id") Integer id, @RequestBody SteelMisc steelMisc) throws EntityNotFoundException {
-        LOGGER.debug("Editing SteelMisc with id: {}" , steelMisc.getId());
+        LOGGER.debug("Editing SteelMisc with id: {}" , steelMisc.getActivityId());
 
-        steelMisc.setId(id);
+        steelMisc.setActivityId(id);
         steelMisc = steelMiscService.update(steelMisc);
         LOGGER.debug("SteelMisc details with id: {}" , steelMisc);
 
