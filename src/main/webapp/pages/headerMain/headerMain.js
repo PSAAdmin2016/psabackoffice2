@@ -36,11 +36,8 @@ Application.$controller("headerMainPageController", ["$scope", "$rootScope", "Di
     $scope.SchemaChangeServiceChangeSchemaonSuccess = function(variable, data) {
         try {
 
-            console.log("Refreshing LineSpec" + " :selectActiveJobNumberChange");
-            $rootScope.Variables.Job1111RefLineSpecs.update();
-
-            console.log("Refreshing WeldProcedures" + " :selectActiveJobNumberChange");
-            $rootScope.Variables.Job1111RefWeldProcedures.update();
+            console.log("Refreshing RefWeldSpecProcedures" + " :selectActiveJobNumberChange");
+            $rootScope.Variables.Job1111RefWeldSpecProcedures.listRecords();
 
         } catch (err) {
             console.log("selectActiveJobNumberChange Error :Main.js: selectActiveJobNumberChange: " + err);

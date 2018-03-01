@@ -8990,9 +8990,9 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
   },
-  "serviceGetFAsCivil" : {
-    "_id" : "wm-serviceGetFAsCivil-wm.ServiceVariable-1519765295265",
-    "name" : "serviceGetFAsCivil",
+  "serviceGetFAsPipeCivilEquip" : {
+    "_id" : "wm-serviceGetFAsPipeCivilEquip-wm.ServiceVariable-1519921203853",
+    "name" : "serviceGetFAsPipeCivilEquip",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
@@ -9000,62 +9000,10 @@
       "value" : "bind:Widgets.selectSuperintendant.datavalue",
       "type" : "string"
     } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetActivitiesPendingReviewCivilResponse",
+    "type" : "com.psabackoffice.job1111.models.query.GetActivitiesPendingReviewPipeCivilEquipResponse",
     "service" : "Job1111",
-    "operation" : "executeGetActivitiesPendingReviewCivil",
-    "operationId" : "QueryExecutionController_executeGetActivitiesPendingReviewCivil",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 100,
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
-  },
-  "serviceGetFAsEquip" : {
-    "_id" : "wm-serviceGetFAsEquip-wm.ServiceVariable-1519765321183",
-    "name" : "serviceGetFAsEquip",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "SuperID",
-      "value" : "bind:Widgets.selectSuperintendant.datavalue",
-      "type" : "string"
-    } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetActivitiesPendingReviewEquipResponse",
-    "service" : "Job1111",
-    "operation" : "executeGetActivitiesPendingReviewEquip",
-    "operationId" : "QueryExecutionController_executeGetActivitiesPendingReviewEquip",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 100,
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
-  },
-  "serviceGetFAsPipe" : {
-    "_id" : "wm-serviceGetFAsPipe-wm.ServiceVariable-1519765245681",
-    "name" : "serviceGetFAsPipe",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "SuperID",
-      "value" : "bind:Widgets.selectSuperintendant.datavalue",
-      "type" : "string"
-    } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetActivitiesPendingReviewPipeResponse",
-    "service" : "Job1111",
-    "operation" : "executeGetActivitiesPendingReviewPipe",
-    "operationId" : "QueryExecutionController_executeGetActivitiesPendingReviewPipe",
+    "operation" : "executeGetActivitiesPendingReviewPipeCivilEquip",
+    "operationId" : "QueryExecutionController_executeGetActivitiesPendingReviewPipeCivilEquip",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],

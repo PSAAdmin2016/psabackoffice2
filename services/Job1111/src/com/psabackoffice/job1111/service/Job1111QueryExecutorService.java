@@ -140,6 +140,10 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdatePipeErection(UpdatePipeErectionRequest updatePipeErectionRequest);
 
+    Page<GetActivitiesPendingReviewPipeCivilEquipResponse> executeGetActivitiesPendingReviewPipeCivilEquip(String superId, Pageable pageable);
+
+    Downloadable exportGetActivitiesPendingReviewPipeCivilEquip(ExportType exportType, String superId, Pageable pageable);
+
     Integer executeUpdateSettingPipeRFTPercent(UpdateSettingPipeRftpercentRequest updateSettingPipeRftpercentRequest);
 
     Page<GetActivityHistoryPipeTrimResponse> executeGetActivityHistoryPipeTrim(Integer activityId, Pageable pageable);

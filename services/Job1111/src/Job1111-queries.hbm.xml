@@ -2242,6 +2242,224 @@ WHERE ActivityID = :FieldActivityID
     <query-param name="FieldActivityID" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="GetActivitiesPendingReviewPipeCivilEquip">
+        <![CDATA[
+        SELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,
+at.ActivityType AS ActivityTypeName, sd.ReceivedTime, CONCAT(u.FirstName, " ", u.LastName) AS NameFull, ats.Status, NULL AS Description
+
+FROM SubmissionActivityStatus sas
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+JOIN PSA.REF_ActivityTypes at
+	ON  at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+JOIN PSA.tblUserPSA u
+	ON u.ID = sd.UserID
+
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+
+
+WHERE sas.ActivityType IN (10,11,20,21,22,23,30,31,32,33,34,35,39,40,41,42,43,50,51,52,53,54,59,90,91,92,93)
+AND sas.fk_ActivityStatus in (1,4,6,8,10)
+AND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)
+
+
+
+UNION
+
+
+
+SELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,
+at.ActivityType AS ActivityTypeName, sd.ReceivedTime, CONCAT(u.FirstName, " ", u.LastName) AS NameFull, ats.Status,
+IF(sas.ActivityType IN (70,71), ctd.Description, IF(sas.ActivityType = 72, 'Sell Package', 'MISC') ) AS Description 
+
+FROM SubmissionActivityStatus sas
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+JOIN CivilFA cfa
+	On cfa.ActivityID = sas.ActivityID
+    
+LEFT JOIN CivilTrackerDetails ctd
+	ON ctd.BidID = cfa.FABidID
+    
+JOIN PSA.REF_ActivityTypes at
+	ON  at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+JOIN PSA.tblUserPSA u
+	ON u.ID = sd.UserID
+
+
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+
+
+WHERE sas.fk_ActivityStatus in (1,4,6,8,10)
+AND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)
+
+
+
+
+
+UNION
+
+
+
+
+
+
+SELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,
+at.ActivityType AS ActivityTypeName, sd.ReceivedTime, CONCAT(u.FirstName, " ", u.LastName) AS NameFull, ats.Status,
+etd.Description
+
+FROM SubmissionActivityStatus sas
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+JOIN EquipFA efa
+	ON efa.ActivityID = sas.ActivityID
+    
+LEFT JOIN EquipTrackerDetails etd
+	ON etd.BidID = efa.FABidID
+    
+JOIN PSA.REF_ActivityTypes at
+	ON  at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+JOIN PSA.tblUserPSA u
+	ON u.ID = sd.UserID
+
+
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+
+
+WHERE sas.fk_ActivityStatus in (1,4,6,8,10)
+AND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)
+
+
+
+ORDER BY ActivityID DESC
+        ]]>
+    <query-param name="SuperID" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="GetActivitiesPendingReviewPipeCivilEquip__count">
+        <![CDATA[
+        select count(*) from (SELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,
+at.ActivityType AS ActivityTypeName, sd.ReceivedTime, CONCAT(u.FirstName, " ", u.LastName) AS NameFull, ats.Status, NULL AS Description
+
+FROM SubmissionActivityStatus sas
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+JOIN PSA.REF_ActivityTypes at
+	ON  at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+JOIN PSA.tblUserPSA u
+	ON u.ID = sd.UserID
+
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+
+
+WHERE sas.ActivityType IN (10,11,20,21,22,23,30,31,32,33,34,35,39,40,41,42,43,50,51,52,53,54,59,90,91,92,93)
+AND sas.fk_ActivityStatus in (1,4,6,8,10)
+AND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)
+
+
+
+UNION
+
+
+
+SELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,
+at.ActivityType AS ActivityTypeName, sd.ReceivedTime, CONCAT(u.FirstName, " ", u.LastName) AS NameFull, ats.Status,
+IF(sas.ActivityType IN (70,71), ctd.Description, IF(sas.ActivityType = 72, 'Sell Package', 'MISC') ) AS Description 
+
+FROM SubmissionActivityStatus sas
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+JOIN CivilFA cfa
+	On cfa.ActivityID = sas.ActivityID
+    
+LEFT JOIN CivilTrackerDetails ctd
+	ON ctd.BidID = cfa.FABidID
+    
+JOIN PSA.REF_ActivityTypes at
+	ON  at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+JOIN PSA.tblUserPSA u
+	ON u.ID = sd.UserID
+
+
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+
+
+WHERE sas.fk_ActivityStatus in (1,4,6,8,10)
+AND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)
+
+
+
+
+
+UNION
+
+
+
+
+
+
+SELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,
+at.ActivityType AS ActivityTypeName, sd.ReceivedTime, CONCAT(u.FirstName, " ", u.LastName) AS NameFull, ats.Status,
+etd.Description
+
+FROM SubmissionActivityStatus sas
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+JOIN EquipFA efa
+	ON efa.ActivityID = sas.ActivityID
+    
+LEFT JOIN EquipTrackerDetails etd
+	ON etd.BidID = efa.FABidID
+    
+JOIN PSA.REF_ActivityTypes at
+	ON  at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+JOIN PSA.tblUserPSA u
+	ON u.ID = sd.UserID
+
+
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+
+
+WHERE sas.fk_ActivityStatus in (1,4,6,8,10)
+AND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)
+
+
+
+ORDER BY ActivityID DESC) wmTempTable
+        ]]>
+    <query-param name="SuperID" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="UpdateSettingPipeRFTPercent">
         <![CDATA[
         UPDATE SETTINGS
