@@ -1,13 +1,13 @@
 {
-  "Job1111SteelFaData" : {
+  "liveSteelFaData" : {
     "_id" : "wm-Job1111SteelFaData-wm.LiveVariable-1519939318403",
-    "name" : "Job1111SteelFaData",
+    "name" : "liveSteelFaData",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
-      "target" : "fapieceNumber",
-      "value" : "bind:$parent.Widgets.gridSuperReviewSteel.selecteditem.pieceMark",
-      "type" : "string"
+      "target" : "activityId",
+      "value" : "bind:Variables.serviceGetActivityIDs.dataSet[$i].activityId",
+      "type" : "number"
     } ],
     "operation" : "read",
     "dataSet" : [ ],
@@ -284,7 +284,7 @@
       "primaryFields" : [ "activityId" ]
     },
     "isDefault" : true,
-    "bindCount" : 1,
+    "bindCount" : 3,
     "tableName" : "SteelFA",
     "tableType" : "TABLE",
     "properties" : [ "submissionActivityStatus" ],
@@ -297,5 +297,35 @@
     } ],
     "filterFields" : { },
     "package" : "com.psabackoffice.job1111.SteelFa"
+  },
+  "serviceGetActivityIDs" : {
+    "_id" : "wm-serviceGetActivityIDs-wm.ServiceVariable-1519945362802",
+    "name" : "serviceGetActivityIDs",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "SubmissionID",
+      "value" : "bind:$parent.Widgets.gridSuperReviewSteel.selecteditem.submissionId",
+      "type" : "string"
+    }, {
+      "target" : "PieceMark",
+      "value" : "bind:$parent.Widgets.gridSuperReviewSteel.selecteditem.pieceMark",
+      "type" : "string"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.query.GetActivitiesPendingReviewSteelActivitiesResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetActivitiesPendingReviewSteelActivities",
+    "operationId" : "QueryExecutionController_executeGetActivitiesPendingReviewSteelActivities",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 50,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
   }
 }

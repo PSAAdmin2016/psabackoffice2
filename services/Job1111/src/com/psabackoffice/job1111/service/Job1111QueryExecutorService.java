@@ -56,6 +56,10 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdateEquipFAQuantity(UpdateEquipFaquantityRequest updateEquipFaquantityRequest);
 
+    Page<GetActivitiesPendingReviewSteelActivitiesResponse> executeGetActivitiesPendingReviewSteelActivities(String submissionId, String pieceMark, Pageable pageable);
+
+    Downloadable exportGetActivitiesPendingReviewSteelActivities(ExportType exportType, String submissionId, String pieceMark, Pageable pageable);
+
     Integer executeUpdatePipeTrim(UpdatePipeTrimRequest updatePipeTrimRequest);
 
     Page<GetSettingSteelImpPercentResponse> executeGetSettingSteelImpPercent(Pageable pageable);

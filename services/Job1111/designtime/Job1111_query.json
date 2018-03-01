@@ -740,6 +740,72 @@
       } ]
     }
   },
+  "GetActivitiesPendingReviewSteelActivities" : {
+    "name" : "GetActivitiesPendingReviewSteelActivities",
+    "description" : "Returns the ActivityID for pending steel activities, via SubmissionID, and PieceMark",
+    "version" : "V2",
+    "queryString" : "SELECT sas.ActivityID, sd.SubmissionID, \n\n(COALESCE(stls.FAPieceNumber,COALESCE(stle.FAPieceNumber,COALESCE(stlb.FAPieceNumber, COALESCE(stli.FAPieceNumber, COALESCE(stlsell.FAPieceNumber, COALESCE(stlw.FAPieceNumber,'N/A'))))))) AS PieceMark\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nLEFT JOIN SteelFA stls\n\tON stls.ActivityID = sas.ActivityID AND stls.ActivityType = 61\nLEFT JOIN SteelFA stle\n\tON stle.ActivityID = sas.ActivityID AND stle.ActivityType = 62\nLEFT JOIN SteelFA stlb\n\tON stlb.ActivityID = sas.ActivityID AND stlb.ActivityType = 63\nLEFT JOIN SteelFA stli\n\tON stli.ActivityID = sas.ActivityID AND stli.ActivityType = 64\nLEFT JOIN SteelFA stlsell\n\tON stlsell.ActivityID = sas.ActivityID AND stlsell.ActivityType = 65\nLEFT JOIN SteelFA stlw\n\tON stlw.ActivityID = sas.ActivityID AND stlw.ActivityType = 68\n\n\nWHERE sd.SubmissionID = :SubmissionID\nAND sas.ActivityType IN (61,62,63,64,65,68)\nAND sas.fk_ActivityStatus in (1,4,6,8,10)\nHAVING PieceMark = :PieceMark\n\nORDER BY PieceMark DESC",
+    "countQueryString" : "select count(*) from (SELECT sas.ActivityID, sd.SubmissionID, \n\n(COALESCE(stls.FAPieceNumber,COALESCE(stle.FAPieceNumber,COALESCE(stlb.FAPieceNumber, COALESCE(stli.FAPieceNumber, COALESCE(stlsell.FAPieceNumber, COALESCE(stlw.FAPieceNumber,'N/A'))))))) AS PieceMark\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nLEFT JOIN SteelFA stls\n\tON stls.ActivityID = sas.ActivityID AND stls.ActivityType = 61\nLEFT JOIN SteelFA stle\n\tON stle.ActivityID = sas.ActivityID AND stle.ActivityType = 62\nLEFT JOIN SteelFA stlb\n\tON stlb.ActivityID = sas.ActivityID AND stlb.ActivityType = 63\nLEFT JOIN SteelFA stli\n\tON stli.ActivityID = sas.ActivityID AND stli.ActivityType = 64\nLEFT JOIN SteelFA stlsell\n\tON stlsell.ActivityID = sas.ActivityID AND stlsell.ActivityType = 65\nLEFT JOIN SteelFA stlw\n\tON stlw.ActivityID = sas.ActivityID AND stlw.ActivityType = 68\n\n\nWHERE sd.SubmissionID = :SubmissionID\nAND sas.ActivityType IN (61,62,63,64,65,68)\nAND sas.fk_ActivityStatus in (1,4,6,8,10)\nHAVING PieceMark = :PieceMark\n\nORDER BY PieceMark DESC) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "SubmissionID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "456",
+      "required" : true
+    }, {
+      "name" : "PieceMark",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "4b",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.psabackoffice.job1111.models.query.GetActivitiesPendingReviewSteelActivitiesResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "ActivityID",
+        "fieldName" : "activityId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "SubmissionID",
+        "fieldName" : "submissionId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "PieceMark",
+        "fieldName" : "pieceMark",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "GetActivityHistoryCivilFA" : {
     "name" : "GetActivityHistoryCivilFA",
     "description" : "name",

@@ -232,6 +232,28 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         return queryExecutor.executeNamedQueryForUpdate("UpdateEquipFAQuantity", params);
     }
 
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<GetActivitiesPendingReviewSteelActivitiesResponse> executeGetActivitiesPendingReviewSteelActivities(String submissionId, String pieceMark, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("SubmissionID", submissionId);
+        params.put("PieceMark", pieceMark);
+
+        return queryExecutor.executeNamedQuery("GetActivitiesPendingReviewSteelActivities", params, GetActivitiesPendingReviewSteelActivitiesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Downloadable exportGetActivitiesPendingReviewSteelActivities(ExportType exportType, String submissionId, String pieceMark, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("SubmissionID", submissionId);
+        params.put("PieceMark", pieceMark);
+
+        return queryExecutor.exportNamedQueryData("GetActivitiesPendingReviewSteelActivities", params, exportType, GetActivitiesPendingReviewSteelActivitiesResponse.class, pageable);
+    }
+
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public Integer executeUpdatePipeTrim(UpdatePipeTrimRequest updatePipeTrimRequest) {

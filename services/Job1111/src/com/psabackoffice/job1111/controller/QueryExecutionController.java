@@ -234,6 +234,25 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
+    @RequestMapping(value = "/queries/GetActivitiesPendingReviewSteelActivities", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Returns the ActivityID for pending steel activities, via SubmissionID, and PieceMark")
+    public Page<GetActivitiesPendingReviewSteelActivitiesResponse> executeGetActivitiesPendingReviewSteelActivities(@RequestParam(value = "SubmissionID") String submissionId, @RequestParam(value = "PieceMark") String pieceMark, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetActivitiesPendingReviewSteelActivities");
+        Page<GetActivitiesPendingReviewSteelActivitiesResponse> _result = queryService.executeGetActivitiesPendingReviewSteelActivities(submissionId, pieceMark, pageable);
+        LOGGER.debug("got the result for named query: GetActivitiesPendingReviewSteelActivities, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetActivitiesPendingReviewSteelActivities")
+    @RequestMapping(value = "/queries/GetActivitiesPendingReviewSteelActivities/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetActivitiesPendingReviewSteelActivities(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "SubmissionID") String submissionId, @RequestParam(value = "PieceMark") String pieceMark, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetActivitiesPendingReviewSteelActivities");
+
+        return queryService.exportGetActivitiesPendingReviewSteelActivities(exportType, submissionId, pieceMark, pageable);
+    }
+
     @RequestMapping(value = "/queries/UpdatePipeTrim", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Update Job####.SubsTrim with data inputs")

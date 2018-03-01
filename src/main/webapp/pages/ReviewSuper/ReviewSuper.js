@@ -430,6 +430,8 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
     $scope.tabPipeCivilEquipSelect = function($event, $isolateScope) {
         $scope.Variables.liveGetSubsDetails.setFilter('submissionId', $scope.Widgets.gridSuperReviewActivities.selecteditem.submissionId);
         $scope.Variables.liveGetSubsDetails.listRecords();
+
+
     };
 
 

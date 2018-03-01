@@ -1073,6 +1073,74 @@ WHERE `ActivityID`= :FieldActivityID
     <query-param name="FieldActivityID" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="GetActivitiesPendingReviewSteelActivities">
+        <![CDATA[
+        SELECT sas.ActivityID, sd.SubmissionID, 
+
+(COALESCE(stls.FAPieceNumber,COALESCE(stle.FAPieceNumber,COALESCE(stlb.FAPieceNumber, COALESCE(stli.FAPieceNumber, COALESCE(stlsell.FAPieceNumber, COALESCE(stlw.FAPieceNumber,'N/A'))))))) AS PieceMark
+
+FROM SubsDetails sd
+JOIN SubmissionActivityStatus sas
+	ON sas.SubmissionID = sd.SubmissionID
+LEFT JOIN SteelFA stls
+	ON stls.ActivityID = sas.ActivityID AND stls.ActivityType = 61
+LEFT JOIN SteelFA stle
+	ON stle.ActivityID = sas.ActivityID AND stle.ActivityType = 62
+LEFT JOIN SteelFA stlb
+	ON stlb.ActivityID = sas.ActivityID AND stlb.ActivityType = 63
+LEFT JOIN SteelFA stli
+	ON stli.ActivityID = sas.ActivityID AND stli.ActivityType = 64
+LEFT JOIN SteelFA stlsell
+	ON stlsell.ActivityID = sas.ActivityID AND stlsell.ActivityType = 65
+LEFT JOIN SteelFA stlw
+	ON stlw.ActivityID = sas.ActivityID AND stlw.ActivityType = 68
+
+
+WHERE sd.SubmissionID = :SubmissionID
+AND sas.ActivityType IN (61,62,63,64,65,68)
+AND sas.fk_ActivityStatus in (1,4,6,8,10)
+HAVING PieceMark = :PieceMark
+
+ORDER BY PieceMark DESC
+        ]]>
+    <query-param name="SubmissionID" type="java.lang.String"/>
+    <query-param name="PieceMark" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="GetActivitiesPendingReviewSteelActivities__count">
+        <![CDATA[
+        select count(*) from (SELECT sas.ActivityID, sd.SubmissionID, 
+
+(COALESCE(stls.FAPieceNumber,COALESCE(stle.FAPieceNumber,COALESCE(stlb.FAPieceNumber, COALESCE(stli.FAPieceNumber, COALESCE(stlsell.FAPieceNumber, COALESCE(stlw.FAPieceNumber,'N/A'))))))) AS PieceMark
+
+FROM SubsDetails sd
+JOIN SubmissionActivityStatus sas
+	ON sas.SubmissionID = sd.SubmissionID
+LEFT JOIN SteelFA stls
+	ON stls.ActivityID = sas.ActivityID AND stls.ActivityType = 61
+LEFT JOIN SteelFA stle
+	ON stle.ActivityID = sas.ActivityID AND stle.ActivityType = 62
+LEFT JOIN SteelFA stlb
+	ON stlb.ActivityID = sas.ActivityID AND stlb.ActivityType = 63
+LEFT JOIN SteelFA stli
+	ON stli.ActivityID = sas.ActivityID AND stli.ActivityType = 64
+LEFT JOIN SteelFA stlsell
+	ON stlsell.ActivityID = sas.ActivityID AND stlsell.ActivityType = 65
+LEFT JOIN SteelFA stlw
+	ON stlw.ActivityID = sas.ActivityID AND stlw.ActivityType = 68
+
+
+WHERE sd.SubmissionID = :SubmissionID
+AND sas.ActivityType IN (61,62,63,64,65,68)
+AND sas.fk_ActivityStatus in (1,4,6,8,10)
+HAVING PieceMark = :PieceMark
+
+ORDER BY PieceMark DESC) wmTempTable
+        ]]>
+    <query-param name="SubmissionID" type="java.lang.String"/>
+    <query-param name="PieceMark" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="UpdatePipeTrim">
         <![CDATA[
         UPDATE PipeTrim
