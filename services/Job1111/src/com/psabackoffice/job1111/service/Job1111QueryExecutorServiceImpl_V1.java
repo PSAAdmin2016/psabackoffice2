@@ -619,19 +619,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateSubDetails(String temp, String precipitation, String wind, Integer submissionId) {
-        Map params = new HashMap(4);
-
-        params.put("Temp", temp);
-        params.put("Precipitation", precipitation);
-        params.put("Wind", wind);
-        params.put("SubmissionID", submissionId);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateSubDetails", params);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
     public int executeUpdatePipeCutPrep(String drawingNumber, String lineNumber, String sheetNumber, BigDecimal size, String thickness, Integer rework, String notes, Integer fieldActivityId) {
         Map params = new HashMap(8);
 

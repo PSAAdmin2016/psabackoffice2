@@ -58,16 +58,16 @@
                         <wm-gridcolumn columnwidth="2" name="gridcolumn12">
                             <wm-composite captionposition="top" name="composite5">
                                 <wm-label class="col-md-3 control-label" caption="Size" name="label8"></wm-label>
-                                <wm-container class="col-md-9" width="90%" name="container5">
+                                <wm-container class="col-md-9" width="95%" name="container5">
                                     <wm-select datavalue="bind:$parent.Variables.liveGetPipeWeld.dataSet.data[$i].weldSize" dataset="bind:Variables.PSARefPipeSizesData.dataSet" datafield="value" displayfield="label" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false"
                                         name="selectWeldSize"></wm-select>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn13">
+                        <wm-gridcolumn columnwidth="2" name="gridcolumn13">
                             <wm-composite captionposition="top" name="composite6">
                                 <wm-label class="col-md-3 control-label" caption="Wall Thickness" name="label9"></wm-label>
-                                <wm-container class="col-md-9" width="90%" name="container6">
+                                <wm-container class="col-md-9" width="95%" name="container6">
                                     <wm-select datavalue="bind:$parent.Variables.liveGetPipeWeld.dataSet.data[$i].weldThickness" dataset="bind:Variables.PSARefPipeSchedulesData.dataSet" datafield="value" displayfield="label" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false"
                                         name="selectWeldThickness"></wm-select>
                                 </wm-container>
@@ -76,16 +76,16 @@
                         <wm-gridcolumn columnwidth="4" padding="unset 0% unset unset" name="gridcolumn14">
                             <wm-composite captionposition="top" show="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.activityType == 22" name="composite7">
                                 <wm-label class="col-md-3 control-label" caption="Weld Type" name="label10"></wm-label>
-                                <wm-container class="col-md-9" width="90%" name="container7">
+                                <wm-container class="col-md-9" width="95%" name="container7">
                                     <wm-select datavalue="bind:$parent.Variables.liveGetPipeWeld.dataSet.data[$i].weldType" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" dataset="bind:Variables.PSARefWeldTypesData.dataSet" datafield="value"
                                         displayfield="label" name="selectWeldType"></wm-select>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn15">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn15">
                             <wm-composite captionposition="top" show="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.activityType == 22" name="composite8">
                                 <wm-label class="col-md-3 control-label" caption="Position" name="label11"></wm-label>
-                                <wm-container class="col-md-9" width="90%" name="container8">
+                                <wm-container class="col-md-9" width="95%" name="container8">
                                     <wm-select datavalue="bind:$parent.Variables.liveGetPipeWeld.dataSet.data[$i].weldPosition" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" dataset="bind:Variables.PSARefWeldPositionsData.dataSet"
                                         datafield="value" hint="bind:Variables.PSARefWeldPositionsData.dataSet.data[$i].description" textalign="left" displayfield="description" margin="unset unset unset 0%" padding="unset unset unset 0%" name="selectWeldPosition"></wm-select>
                                 </wm-container>
@@ -96,27 +96,27 @@
                         <wm-gridcolumn columnwidth="4" name="gridcolumn16">
                             <wm-composite captionposition="top" show="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.activityType == 22" name="composite9">
                                 <wm-label class="col-md-3 control-label" caption="Material" name="label12"></wm-label>
-                                <wm-container class="col-md-9" width="90%" name="container9">
+                                <wm-container class="col-md-9" width="95%" name="container9">
                                     <wm-select disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetPipeWeld.dataSet.data[$i].weldMaterial" dataset="bind:Variables.PSARefWeldMaterialsData.dataSet"
-                                        datafield="label" displayfield="label" displayexpression="bind:$[data[$i].label] + ' - ' +$[data[$i].value]" name="selectWeldMaterial"></wm-select>
+                                        datafield="value" displayexpression="bind:$[data[$i].value] + ' - ' +$[data[$i].label]" name="selectWeldMaterial"></wm-select>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn17">
                             <wm-composite captionposition="top" show="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.activityType == 22" name="composite10">
                                 <wm-label class="col-md-3 control-label" caption="Weld Procedure" name="label13"></wm-label>
-                                <wm-container class="col-md-9" width="90%" name="container10">
+                                <wm-container class="col-md-9" width="95%" name="container10">
                                     <wm-select disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetPipeWeld.dataSet.data[$i].weldProcedure" dataset="bind:Variables.Job1111RefWeldSpecProcedures.dataSet"
-                                        datafield="All Fields" name="selectWeldProcedure"></wm-select>
+                                        datafield="weldProcedure" name="selectWeldProcedure" displayfield="weldProcedure" orderby="weldProcedure:desc"></wm-select>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn18">
                             <wm-composite captionposition="top" show="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.activityType == 22" name="composite11">
                                 <wm-label class="col-md-3 control-label" caption="Line Spec" name="label14"></wm-label>
-                                <wm-container class="col-md-9" width="90%" name="container11">
+                                <wm-container class="col-md-9" width="95%" name="container11">
                                     <wm-select disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetPipeWeld.dataSet.data[$i].weldLineSpec" dataset="bind:Variables.Job1111RefWeldSpecProcedures.dataSet"
-                                        datafield="All Fields" name="selectWeldSpec"></wm-select>
+                                        datafield="lineSpec" name="selectWeldSpec" displayfield="lineSpec" orderby="lineSpec:desc"></wm-select>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>

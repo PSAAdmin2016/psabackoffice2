@@ -1,0 +1,33 @@
+<wm-partial data-ng-controller="PartFASteelStandardPageController" name="partial1">
+    <wm-layoutgrid name="layoutgrid1">
+        <wm-gridrow name="gridrow1">
+            <wm-gridcolumn columnwidth="6" name="gridcolumn1"></wm-gridcolumn>
+            <wm-gridcolumn columnwidth="6" name="gridcolumn2"></wm-gridcolumn>
+        </wm-gridrow>
+        <wm-gridrow name="gridrow2">
+            <wm-gridcolumn columnwidth="12" name="gridcolumn3">
+                <wm-table editmode="quickedit" name="gridSteelFA" title="Individual Steel Activities" dataset="bind:Variables.Job1111SteelFaData.dataSet" navigation="None" spacing="condensed" enablesort="false">
+                    <wm-table-column binding="faarea" caption="Area" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                    <wm-table-column binding="fapieceNumber" caption="Piece#" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                    <wm-table-column binding="activityType" caption="Activity Type" edit-widget-type="number" type="short" generator="assigned" readonly="true" show="true"></wm-table-column>
+                    <wm-table-column binding="faquantity" caption="Quantity" edit-widget-type="number" type="short" generator="assigned" show="true" readonly="false" required="true"></wm-table-column>
+                    <wm-table-column binding="fapercent" caption="Percent" edit-widget-type="select" type="float" generator="assigned" dataset="bind:Variables.staticPercentListQuarter.dataSet" datafield="dataValue" displayfield="dataValue"
+                        show="true" readonly="false" required="true"></wm-table-column>
+                    <wm-table-column binding="farework" caption="Rework" widget-type="checkbox" edit-widget-type="checkbox" type="boolean" generator="assigned" show="true" readonly="false">
+                        <wm-checkbox scopedatavalue="row['farework']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                    </wm-table-column>
+                    <wm-table-column binding="fanotes" caption="Notes" edit-widget-type="textarea" type="string" generator="assigned" show="true" readonly="false"></wm-table-column>
+                    <wm-table-column binding="submissionActivityStatus.fkActivityStatus" caption="Status" edit-widget-type="select" related-entity-name="SubmissionActivityStatus" type="integer" generator="assigned" dataset="bind:Variables.PSARefActivityStatusesData.dataSet"
+                        datafield="id" displayfield="status" show="true" readonly="false"></wm-table-column>
+                </wm-table>
+            </wm-gridcolumn>
+        </wm-gridrow>
+        <wm-gridrow name="gridrow4">
+            <wm-gridcolumn columnwidth="12" name="gridcolumn7"></wm-gridcolumn>
+        </wm-gridrow>
+        <wm-gridrow name="gridrow3">
+            <wm-gridcolumn columnwidth="6" name="gridcolumn5"></wm-gridcolumn>
+            <wm-gridcolumn columnwidth="6" name="gridcolumn6"></wm-gridcolumn>
+        </wm-gridrow>
+    </wm-layoutgrid>
+</wm-partial>

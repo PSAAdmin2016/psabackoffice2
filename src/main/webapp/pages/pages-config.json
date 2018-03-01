@@ -159,6 +159,10 @@
   "type" : "PARTIAL",
   "params" : [ ]
 }, {
+  "name" : "PartFASteelStandard",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
   "name" : "PartFASteelWeld",
   "type" : "PARTIAL",
   "params" : [ ]

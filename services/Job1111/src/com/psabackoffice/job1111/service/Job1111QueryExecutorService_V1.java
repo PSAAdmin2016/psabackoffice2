@@ -172,9 +172,6 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetActivityHistoryStatus(Pageable pageable, Integer activityId);
 
     @Deprecated
-    public int executeUpdateSubDetails(String temp, String precipitation, String wind, Integer submissionId);
-
-    @Deprecated
     public int executeUpdatePipeCutPrep(String drawingNumber, String lineNumber, String sheetNumber, BigDecimal size, String thickness, Integer rework, String notes, Integer fieldActivityId);
 
     @Deprecated

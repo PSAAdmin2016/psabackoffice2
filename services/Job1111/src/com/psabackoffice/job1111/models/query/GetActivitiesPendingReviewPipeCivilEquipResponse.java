@@ -42,6 +42,12 @@ public class GetActivitiesPendingReviewPipeCivilEquipResponse implements Seriali
     @ColumnAlias("Description")
     private String description;
 
+    @ColumnAlias("Craft")
+    private String craft;
+
+    @ColumnAlias("BidID")
+    private Integer bidId;
+
     public Integer getSubmissionId() {
         return this.submissionId;
     }
@@ -114,6 +120,22 @@ public class GetActivitiesPendingReviewPipeCivilEquipResponse implements Seriali
         this.description = description;
     }
 
+    public String getCraft() {
+        return this.craft;
+    }
+
+    public void setCraft(String craft) {
+        this.craft = craft;
+    }
+
+    public Integer getBidId() {
+        return this.bidId;
+    }
+
+    public void setBidId(Integer bidId) {
+        this.bidId = bidId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -127,7 +149,9 @@ public class GetActivitiesPendingReviewPipeCivilEquipResponse implements Seriali
                 Objects.equals(getReceivedTime(), getActivitiesPendingReviewPipeCivilEquipResponse.getReceivedTime()) &&
                 Objects.equals(getNameFull(), getActivitiesPendingReviewPipeCivilEquipResponse.getNameFull()) &&
                 Objects.equals(getStatus(), getActivitiesPendingReviewPipeCivilEquipResponse.getStatus()) &&
-                Objects.equals(getDescription(), getActivitiesPendingReviewPipeCivilEquipResponse.getDescription());
+                Objects.equals(getDescription(), getActivitiesPendingReviewPipeCivilEquipResponse.getDescription()) &&
+                Objects.equals(getCraft(), getActivitiesPendingReviewPipeCivilEquipResponse.getCraft()) &&
+                Objects.equals(getBidId(), getActivitiesPendingReviewPipeCivilEquipResponse.getBidId());
     }
 
     @Override
@@ -140,6 +164,8 @@ public class GetActivitiesPendingReviewPipeCivilEquipResponse implements Seriali
                 getReceivedTime(),
                 getNameFull(),
                 getStatus(),
-                getDescription());
+                getDescription(),
+                getCraft(),
+                getBidId());
     }
 }

@@ -28,14 +28,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                         <wm-button class="btn-default" caption="Refresh" type="button" iconclass="glyphicon glyphicon-refresh" on-click="buttonRefreshClick($event, $scope)" paddingunit="%" name="buttonRefresh"></wm-button>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="2" name="gridcolumn12"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn13">
-                        <wm-composite horizontalalign="right" padding="2% unset unset 2%" name="composite2">
-                            <wm-label class="col-md-3" caption="Total Activities:" width="40%" padding="unset 1% unset unset" name="label3"></wm-label>
-                            <wm-container class="col-md-9" horizontalalign="right" width="59%" padding="unset unset unset 1%" name="container2">
-                                <wm-text type="number" placeholder="" width="100%" readonly="true" autocomplete="false" readonlygrid="true" datavalue="bind:Variables.serviceGetFieldActivities.dataSet.totalElements" name="text1"></wm-text>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn13"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="1" name="gridcolumn14"></wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
@@ -46,14 +39,30 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                     name="gridSuperReviewActivities" filtermode="multicolumn" navigation="None" spacing="condensed" on-datarender="gridSuperReviewActivitiesDatarender($scope, $data)">
                                     <wm-table-column binding="activityId" caption="Field Activity ID" width="10%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="number"></wm-table-column>
                                     <wm-table-column binding="status" caption="Status" width="10%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
+                                    <wm-table-column binding="craft" caption="Craft" width="10%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
                                     <wm-table-column binding="activityTypeName" caption="Activity Type" width="10%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
-                                    <wm-table-column binding="nameFull" caption="Foreman Name" width="15%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
-                                    <wm-table-column binding="description" caption="Description" width="40%" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="nameFull" caption="Foreman" width="15%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
+                                    <wm-table-column binding="description" caption="Description" width="35%" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
                                     <wm-table-column binding="receivedTime" caption="Received Time" textalignment="center" edit-widget-type="text" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate"
                                         searchable="false" show="true"></wm-table-column>
                                 </wm-table>
                             </wm-tabpane>
-                            <wm-tabpane name="tabSteel" title="Steel" badgetype="primary"></wm-tabpane>
+                            <wm-tabpane name="tabSteel" title="Steel" badgetype="primary" on-select="tabSteelSelect($event, $scope)" badgevalue="bind:Variables.serviceGetFAsSteel.dataSet.totalElements">
+                                <wm-table shownavigation="false" gridfirstrowselect="true" dataset="bind:Variables.serviceGetFAsSteel.dataSet" on-select="gridSuperReviewSteelSelect($event, $scope, $rowData)" class="panel-default" height="250px" filtermode="multicolumn"
+                                    navigation="None" spacing="condensed" on-datarender="gridSuperReviewActivitiesDatarender($scope, $data)" name="gridSuperReviewSteel">
+                                    <wm-table-column binding="pieceMark" caption="Piece Mark" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                                    <wm-table-column binding="status" caption="Status" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
+                                    <wm-table-column binding="nameFull" caption="Foreman" width="15%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
+                                    <wm-table-column binding="quantityShake" caption="Shake" textalignment="center" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="quantityErect" caption="Erect" textalignment="center" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="quantityBoltOut" caption="Bolt Out" textalignment="center" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="quantityImp" caption="Impact" textalignment="center" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="quantityWeld" caption="Weld" textalignment="center" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="quantitySell" caption="Sell/Punch" textalignment="center" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="receivedTime" caption="Received Time" textalignment="center" edit-widget-type="text" type="string" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" searchable="false"
+                                        show="true" readonly="false"></wm-table-column>
+                                </wm-table>
+                            </wm-tabpane>
                         </wm-tabs>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="2" name="gridcolumn44">
@@ -135,7 +144,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                 </wm-gridrow>
                 <wm-gridrow name="gridrow5">
                     <wm-gridcolumn columnwidth="8" name="gridcolumn11_1">
-                        <wm-container name="containerFADetails"></wm-container>
+                        <wm-container name="containerFADetails" show="true"></wm-container>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn13_1" padding="1.25% unset unset unset">
                         <wm-layoutgrid name="layoutgrid6">

@@ -1,4 +1,4 @@
-Application.$controller("PartFAPipeTestingPageController", ["$scope", function ($scope) {
+Application.$controller("PartFASteelStandardPageController", ["$scope", function ($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
@@ -17,7 +17,7 @@ Application.$controller("PartFAPipeTestingPageController", ["$scope", function (
 }]);
 
 
-Application.$controller("gridTestPackageDrawingsController", ["$scope",
+Application.$controller("gridSteelFAController", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;

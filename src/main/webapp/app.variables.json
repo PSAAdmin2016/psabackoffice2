@@ -1046,59 +1046,88 @@
     "isDefault" : true
   },
   "Job1111RefWeldSpecProcedures" : {
-    "_id" : "wm-serviceUpdateCutPrep-wm.ServiceVariable-1476111880136",
+    "_id" : "wm-Job1111RefWeldSpecProcedures-wm.LiveVariable-1519924303142",
     "name" : "Job1111RefWeldSpecProcedures",
     "owner" : "App",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "DrawingNumber",
-      "value" : "bind:Widgets.textWeldDrawing.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "LineNumber",
-      "value" : "bind:Widgets.textWeldLine.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "SheetNumber",
-      "value" : "bind:Widgets.textWeldSheet.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "Size",
-      "value" : "bind:Widgets.selectWeldSize.datavalue",
-      "type" : "number"
-    }, {
-      "target" : "Thickness",
-      "value" : "bind:Widgets.selectWeldThickness.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "Rework",
-      "value" : "bind:Widgets.checkboxWeldRework.datavalue",
-      "type" : "integer"
-    }, {
-      "target" : "Notes",
-      "value" : "bind:Widgets.textareaWeldNotes.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "FieldActivityID",
-      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityID",
-      "type" : "integer"
-    } ],
-    "type" : "integer",
-    "service" : "Job1111",
-    "operation" : "executeUpdatePipeCutPrep",
-    "operationId" : "QueryExecutionController_executeUpdatePipeCutPrep",
-    "operationType" : "put",
-    "serviceType" : "DataService",
+    "category" : "wm.LiveVariable",
+    "dataBinding" : [ ],
+    "operation" : "read",
     "dataSet" : [ ],
+    "type" : "RefWeldSpecProcedures",
     "isList" : false,
+    "saveInPhonegap" : false,
     "maxResults" : 1000,
     "designMaxResults" : 10,
+    "inFlightBehavior" : "executeLast",
     "startUpdate" : true,
     "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
+    "liveSource" : "Job1111",
+    "ignoreCase" : false,
+    "matchMode" : "start",
+    "orderBy" : "id asc",
+    "propertiesMap" : {
+      "columns" : [ {
+        "fieldName" : "id",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "ID",
+        "isPrimaryKey" : true,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "identity",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
+        "fieldName" : "lineSpec",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "LineSpec",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 45,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
+        "fieldName" : "weldProcedure",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "WeldProcedure",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 45,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
+        "fieldName" : "materialType",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "MaterialType",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 45,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      } ],
+      "entityName" : "RefWeldSpecProcedures",
+      "fullyQualifiedName" : "com.psabackoffice.job1111.RefWeldSpecProcedures",
+      "tableType" : "TABLE",
+      "primaryFields" : [ "id" ]
+    },
+    "bindCount" : 2,
+    "tableName" : "REF_WeldSpecProcedures",
+    "tableType" : "TABLE",
+    "properties" : [ ],
+    "relatedTables" : [ ],
+    "filterFields" : { },
+    "package" : "com.psabackoffice.job1111.RefWeldSpecProcedures"
   },
   "Job1111SettingsData" : {
     "_id" : "wm-Job1111SettingsData-wm.LiveVariable-1458250324161",
@@ -2321,7 +2350,7 @@
       "primaryFields" : [ "id" ]
     },
     "isDefault" : true,
-    "bindCount" : 2,
+    "bindCount" : 3,
     "tableName" : "REF_PercentList",
     "tableType" : "TABLE",
     "dbSystem" : "MySQL",

@@ -130,10 +130,6 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdateSteelShakeQuantity(UpdateSteelShakeQuantityRequest updateSteelShakeQuantityRequest);
 
-    Page<GetActivitiesPendingReviewPipeResponse> executeGetActivitiesPendingReviewPipe(String superId, Pageable pageable);
-
-    Downloadable exportGetActivitiesPendingReviewPipe(ExportType exportType, String superId, Pageable pageable);
-
     Page<GetPsrecentActivitiesResponse> executeGetPSRecentActivities(Integer userId, Pageable pageable);
 
     Downloadable exportGetPSRecentActivities(ExportType exportType, Integer userId, Pageable pageable);
@@ -195,8 +191,6 @@ public interface Job1111QueryExecutorService {
     Page<GetBidActivityQuantitesEquipResponse> executeGetBidActivityQuantitesEquip(String bidId, Pageable pageable);
 
     Downloadable exportGetBidActivityQuantitesEquip(ExportType exportType, String bidId, Pageable pageable);
-
-    Integer executeUpdateSubDetails(UpdateSubDetailsRequest updateSubDetailsRequest);
 
     Integer executeUpdatePipeCutPrep(UpdatePipeCutPrepRequest updatePipeCutPrepRequest);
 
@@ -265,10 +259,6 @@ public interface Job1111QueryExecutorService {
     Page<GetQuantitiesTestPackagePipeResponse> executeGetQuantitiesTestPackagePipe(String testPackage, Pageable pageable);
 
     Downloadable exportGetQuantitiesTestPackagePipe(ExportType exportType, String testPackage, Pageable pageable);
-
-    Page<GetActivitiesPendingReviewCivilResponse> executeGetActivitiesPendingReviewCivil(String superId, Pageable pageable);
-
-    Downloadable exportGetActivitiesPendingReviewCivil(ExportType exportType, String superId, Pageable pageable);
 
     Page<GetActivityHistorySteelWeldResponse> executeGetActivityHistorySteelWeld(Integer activityId, Pageable pageable);
 
@@ -417,10 +407,6 @@ public interface Job1111QueryExecutorService {
     Integer executeUnLockSSActivity(UnLockSsactivityRequest unLockSsactivityRequest);
 
     Integer executeUpdateSteelDemoQuantity(UpdateSteelDemoQuantityRequest updateSteelDemoQuantityRequest);
-
-    Page<GetActivitiesPendingReviewEquipResponse> executeGetActivitiesPendingReviewEquip(String superId, Pageable pageable);
-
-    Downloadable exportGetActivitiesPendingReviewEquip(ExportType exportType, String superId, Pageable pageable);
 
     Integer executeUpdatePipeSupports(UpdatePipeSupportsRequest updatePipeSupportsRequest);
 

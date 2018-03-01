@@ -7,6 +7,7 @@ package com.psabackoffice.job1111.models.query;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -18,17 +19,11 @@ public class GetActivitiesPendingReviewSteelResponse implements Serializable {
     @ColumnAlias("SubmissionID")
     private Integer submissionId;
 
-    @ColumnAlias("ActivityID")
-    private Integer activityId;
-
-    @ColumnAlias("ActivityType")
-    private Short activityType;
-
     @ColumnAlias("fk_ActivityStatus")
     private Short fkActivityStatus;
 
-    @ColumnAlias("ActivityTypeName")
-    private String activityTypeName;
+    @ColumnAlias("Status")
+    private String status;
 
     @ColumnAlias("ReceivedTime")
     private Timestamp receivedTime;
@@ -36,8 +31,26 @@ public class GetActivitiesPendingReviewSteelResponse implements Serializable {
     @ColumnAlias("NameFull")
     private String nameFull;
 
-    @ColumnAlias("Status")
-    private String status;
+    @ColumnAlias("PieceMark")
+    private String pieceMark;
+
+    @ColumnAlias("QuantityShake")
+    private BigDecimal quantityShake;
+
+    @ColumnAlias("QuantityErect")
+    private BigDecimal quantityErect;
+
+    @ColumnAlias("QuantityBoltOut")
+    private BigDecimal quantityBoltOut;
+
+    @ColumnAlias("QuantityImp")
+    private BigDecimal quantityImp;
+
+    @ColumnAlias("QuantitySell")
+    private BigDecimal quantitySell;
+
+    @ColumnAlias("QuantityWeld")
+    private BigDecimal quantityWeld;
 
     public Integer getSubmissionId() {
         return this.submissionId;
@@ -45,22 +58,6 @@ public class GetActivitiesPendingReviewSteelResponse implements Serializable {
 
     public void setSubmissionId(Integer submissionId) {
         this.submissionId = submissionId;
-    }
-
-    public Integer getActivityId() {
-        return this.activityId;
-    }
-
-    public void setActivityId(Integer activityId) {
-        this.activityId = activityId;
-    }
-
-    public Short getActivityType() {
-        return this.activityType;
-    }
-
-    public void setActivityType(Short activityType) {
-        this.activityType = activityType;
     }
 
     public Short getFkActivityStatus() {
@@ -71,12 +68,12 @@ public class GetActivitiesPendingReviewSteelResponse implements Serializable {
         this.fkActivityStatus = fkActivityStatus;
     }
 
-    public String getActivityTypeName() {
-        return this.activityTypeName;
+    public String getStatus() {
+        return this.status;
     }
 
-    public void setActivityTypeName(String activityTypeName) {
-        this.activityTypeName = activityTypeName;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Timestamp getReceivedTime() {
@@ -95,12 +92,60 @@ public class GetActivitiesPendingReviewSteelResponse implements Serializable {
         this.nameFull = nameFull;
     }
 
-    public String getStatus() {
-        return this.status;
+    public String getPieceMark() {
+        return this.pieceMark;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setPieceMark(String pieceMark) {
+        this.pieceMark = pieceMark;
+    }
+
+    public BigDecimal getQuantityShake() {
+        return this.quantityShake;
+    }
+
+    public void setQuantityShake(BigDecimal quantityShake) {
+        this.quantityShake = quantityShake;
+    }
+
+    public BigDecimal getQuantityErect() {
+        return this.quantityErect;
+    }
+
+    public void setQuantityErect(BigDecimal quantityErect) {
+        this.quantityErect = quantityErect;
+    }
+
+    public BigDecimal getQuantityBoltOut() {
+        return this.quantityBoltOut;
+    }
+
+    public void setQuantityBoltOut(BigDecimal quantityBoltOut) {
+        this.quantityBoltOut = quantityBoltOut;
+    }
+
+    public BigDecimal getQuantityImp() {
+        return this.quantityImp;
+    }
+
+    public void setQuantityImp(BigDecimal quantityImp) {
+        this.quantityImp = quantityImp;
+    }
+
+    public BigDecimal getQuantitySell() {
+        return this.quantitySell;
+    }
+
+    public void setQuantitySell(BigDecimal quantitySell) {
+        this.quantitySell = quantitySell;
+    }
+
+    public BigDecimal getQuantityWeld() {
+        return this.quantityWeld;
+    }
+
+    public void setQuantityWeld(BigDecimal quantityWeld) {
+        this.quantityWeld = quantityWeld;
     }
 
     @Override
@@ -109,24 +154,32 @@ public class GetActivitiesPendingReviewSteelResponse implements Serializable {
         if (!(o instanceof GetActivitiesPendingReviewSteelResponse)) return false;
         final GetActivitiesPendingReviewSteelResponse getActivitiesPendingReviewSteelResponse = (GetActivitiesPendingReviewSteelResponse) o;
         return Objects.equals(getSubmissionId(), getActivitiesPendingReviewSteelResponse.getSubmissionId()) &&
-                Objects.equals(getActivityId(), getActivitiesPendingReviewSteelResponse.getActivityId()) &&
-                Objects.equals(getActivityType(), getActivitiesPendingReviewSteelResponse.getActivityType()) &&
                 Objects.equals(getFkActivityStatus(), getActivitiesPendingReviewSteelResponse.getFkActivityStatus()) &&
-                Objects.equals(getActivityTypeName(), getActivitiesPendingReviewSteelResponse.getActivityTypeName()) &&
+                Objects.equals(getStatus(), getActivitiesPendingReviewSteelResponse.getStatus()) &&
                 Objects.equals(getReceivedTime(), getActivitiesPendingReviewSteelResponse.getReceivedTime()) &&
                 Objects.equals(getNameFull(), getActivitiesPendingReviewSteelResponse.getNameFull()) &&
-                Objects.equals(getStatus(), getActivitiesPendingReviewSteelResponse.getStatus());
+                Objects.equals(getPieceMark(), getActivitiesPendingReviewSteelResponse.getPieceMark()) &&
+                Objects.equals(getQuantityShake(), getActivitiesPendingReviewSteelResponse.getQuantityShake()) &&
+                Objects.equals(getQuantityErect(), getActivitiesPendingReviewSteelResponse.getQuantityErect()) &&
+                Objects.equals(getQuantityBoltOut(), getActivitiesPendingReviewSteelResponse.getQuantityBoltOut()) &&
+                Objects.equals(getQuantityImp(), getActivitiesPendingReviewSteelResponse.getQuantityImp()) &&
+                Objects.equals(getQuantitySell(), getActivitiesPendingReviewSteelResponse.getQuantitySell()) &&
+                Objects.equals(getQuantityWeld(), getActivitiesPendingReviewSteelResponse.getQuantityWeld());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getSubmissionId(),
-                getActivityId(),
-                getActivityType(),
                 getFkActivityStatus(),
-                getActivityTypeName(),
+                getStatus(),
                 getReceivedTime(),
                 getNameFull(),
-                getStatus());
+                getPieceMark(),
+                getQuantityShake(),
+                getQuantityErect(),
+                getQuantityBoltOut(),
+                getQuantityImp(),
+                getQuantitySell(),
+                getQuantityWeld());
     }
 }
