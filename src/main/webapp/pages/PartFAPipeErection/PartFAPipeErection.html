@@ -154,7 +154,12 @@
                             <wm-composite captionposition="top" name="composite14">
                                 <wm-label class="col-md-3" caption="Total:" textdecoration="underline" fontweight="bold" readonlygrid="true" name="label15"></wm-label>
                                 <wm-container class="col-md-9" name="container14">
-                                    <wm-text type="text" readonly="true" disabled="false" readonlygrid="true" name="textErectionLengthTotal" datavalue="bind:$parent.Variables.serviceGetErectionTotal.dataSet.content[0].Total" placeholder=""></wm-text>
+                                    <wm-text type="text" readonly="true" disabled="false" readonlygrid="true" name="textErectionLengthTotal" datavalue="bind:Widgets.textErectionLength1.datavalue +
+Widgets.textErectionLength2.datavalue +
+Widgets.textErectionLength3.datavalue +
+Widgets.textErectionLength4.datavalue +
+Widgets.textErectionLength5.datavalue +
+Widgets.textErectionLength6.datavalue" placeholder=""></wm-text>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>

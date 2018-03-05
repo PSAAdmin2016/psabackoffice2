@@ -48,6 +48,10 @@ public interface Job1111QueryExecutorService {
 
     Downloadable exportGetActivityHistoryPipeWeld(ExportType exportType, Integer activityId, Pageable pageable);
 
+    Page<GetActivitiesPendingReviewFasResponse> executeGetActivitiesPendingReviewFAs(String superId, Pageable pageable);
+
+    Downloadable exportGetActivitiesPendingReviewFAs(ExportType exportType, String superId, Pageable pageable);
+
     Integer executeUpdateSteelDemo(UpdateSteelDemoRequest updateSteelDemoRequest);
 
     Page<GetQuantitiesTestPackageCivilResponse> executeGetQuantitiesTestPackageCivil(String testPackage, Pageable pageable);
@@ -139,10 +143,6 @@ public interface Job1111QueryExecutorService {
     Downloadable exportGetPSRecentActivities(ExportType exportType, Integer userId, Pageable pageable);
 
     Integer executeUpdatePipeErection(UpdatePipeErectionRequest updatePipeErectionRequest);
-
-    Page<GetActivitiesPendingReviewPipeCivilEquipResponse> executeGetActivitiesPendingReviewPipeCivilEquip(String superId, Pageable pageable);
-
-    Downloadable exportGetActivitiesPendingReviewPipeCivilEquip(ExportType exportType, String superId, Pageable pageable);
 
     Integer executeUpdateSettingPipeRFTPercent(UpdateSettingPipeRftpercentRequest updateSettingPipeRftpercentRequest);
 

@@ -186,6 +186,26 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         return queryExecutor.exportNamedQueryData("GetActivityHistoryPipeWeld", params, exportType, GetActivityHistoryPipeWeldResponse.class, pageable);
     }
 
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<GetActivitiesPendingReviewFasResponse> executeGetActivitiesPendingReviewFAs(String superId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("SuperID", superId);
+
+        return queryExecutor.executeNamedQuery("GetActivitiesPendingReviewFAs", params, GetActivitiesPendingReviewFasResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Downloadable exportGetActivitiesPendingReviewFAs(ExportType exportType, String superId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("SuperID", superId);
+
+        return queryExecutor.exportNamedQueryData("GetActivitiesPendingReviewFAs", params, exportType, GetActivitiesPendingReviewFasResponse.class, pageable);
+    }
+
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public Integer executeUpdateSteelDemo(UpdateSteelDemoRequest updateSteelDemoRequest) {
@@ -726,26 +746,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         params.put("FieldActivityID", updatePipeErectionRequest.getFieldActivityId());
 
         return queryExecutor.executeNamedQueryForUpdate("UpdatePipeErection", params);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<GetActivitiesPendingReviewPipeCivilEquipResponse> executeGetActivitiesPendingReviewPipeCivilEquip(String superId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("SuperID", superId);
-
-        return queryExecutor.executeNamedQuery("GetActivitiesPendingReviewPipeCivilEquip", params, GetActivitiesPendingReviewPipeCivilEquipResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Downloadable exportGetActivitiesPendingReviewPipeCivilEquip(ExportType exportType, String superId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("SuperID", superId);
-
-        return queryExecutor.exportNamedQueryData("GetActivitiesPendingReviewPipeCivilEquip", params, exportType, GetActivitiesPendingReviewPipeCivilEquipResponse.class, pageable);
     }
 
     @Transactional(value = "Job1111TransactionManager")

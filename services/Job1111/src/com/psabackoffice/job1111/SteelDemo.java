@@ -29,10 +29,9 @@ import org.hibernate.annotations.FetchMode;
 public class SteelDemo implements Serializable {
 
     private Integer activityId;
-    private String demoArea;
-    private Integer demoSteelType;
-    private String demoSize;
+    private Integer demoBidId;
     private Integer demoQuantity;
+    private Float demoPercent;
     private String demoNotes;
     private Short activityType;
     private Short demoTimeInForm;
@@ -50,31 +49,13 @@ public class SteelDemo implements Serializable {
         this.activityId = activityId;
     }
 
-    @Column(name = "`DemoArea`", nullable = true, length = 45)
-    public String getDemoArea() {
-        return this.demoArea;
+    @Column(name = "`DemoBidID`", nullable = true, scale = 0, precision = 10)
+    public Integer getDemoBidId() {
+        return this.demoBidId;
     }
 
-    public void setDemoArea(String demoArea) {
-        this.demoArea = demoArea;
-    }
-
-    @Column(name = "`DemoSteelType`", nullable = true, scale = 0, precision = 10)
-    public Integer getDemoSteelType() {
-        return this.demoSteelType;
-    }
-
-    public void setDemoSteelType(Integer demoSteelType) {
-        this.demoSteelType = demoSteelType;
-    }
-
-    @Column(name = "`DemoSize`", nullable = true, length = 45)
-    public String getDemoSize() {
-        return this.demoSize;
-    }
-
-    public void setDemoSize(String demoSize) {
-        this.demoSize = demoSize;
+    public void setDemoBidId(Integer demoBidId) {
+        this.demoBidId = demoBidId;
     }
 
     @Column(name = "`DemoQuantity`", nullable = true, scale = 0, precision = 7)
@@ -84,6 +65,15 @@ public class SteelDemo implements Serializable {
 
     public void setDemoQuantity(Integer demoQuantity) {
         this.demoQuantity = demoQuantity;
+    }
+
+    @Column(name = "`DemoPercent`", nullable = true, scale = 2, precision = 3)
+    public Float getDemoPercent() {
+        return this.demoPercent;
+    }
+
+    public void setDemoPercent(Float demoPercent) {
+        this.demoPercent = demoPercent;
     }
 
     @Column(name = "`DemoNotes`", nullable = true, length = 255)

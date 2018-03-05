@@ -34,9 +34,9 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="10" name="gridcolumn4">
                         <wm-tabs name="tabs1">
-                            <wm-tabpane name="tabPipeCivilEquip" title="Pipe/Civil/Equip" show="true" badgevalue="bind:Variables.serviceGetFAsPipeCivilEquip.dataSet.totalElements" padding="unset unset 0% unset" badgetype="primary" on-select="tabPipeCivilEquipSelect($event, $scope)">
-                                <wm-table shownavigation="false" gridfirstrowselect="true" dataset="bind:Variables.serviceGetFAsPipeCivilEquip.dataSet" on-select="gridSuperReviewActivitiesSelect($event, $scope, $rowData)" class="panel-default" height="250px"
-                                    name="gridSuperReviewActivities" filtermode="multicolumn" navigation="None" spacing="condensed" on-datarender="gridSuperReviewActivitiesDatarender($scope, $data)">
+                            <wm-tabpane name="tabFAs" title="Field Activities" show="true" badgevalue="bind:Variables.serviceGetFAs.dataSet.totalElements" padding="unset unset 0% unset" badgetype="primary" on-select="tabFAsSelect($event, $scope)">
+                                <wm-table shownavigation="false" gridfirstrowselect="true" dataset="bind:Variables.serviceGetFAs.dataSet" on-select="gridSuperReviewActivitiesSelect($event, $scope, $rowData)" class="panel-default" height="250px" name="gridSuperReviewActivities"
+                                    filtermode="multicolumn" navigation="None" spacing="condensed" on-datarender="gridSuperReviewActivitiesDatarender($scope, $data)">
                                     <wm-table-column binding="activityId" caption="Field Activity ID" width="10%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="number"></wm-table-column>
                                     <wm-table-column binding="status" caption="Status" width="10%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
                                     <wm-table-column binding="craft" caption="Craft" width="10%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
@@ -47,7 +47,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                         searchable="false" show="true"></wm-table-column>
                                 </wm-table>
                             </wm-tabpane>
-                            <wm-tabpane name="tabSteel" title="Steel" badgetype="primary" on-select="tabSteelSelect($event, $scope)" badgevalue="bind:Variables.serviceGetFAsSteel.dataSet.totalElements">
+                            <wm-tabpane name="tabSteel" title="Steel Piece Work" badgetype="primary" on-select="tabSteelSelect($event, $scope)" badgevalue="bind:Variables.serviceGetFAsSteel.dataSet.totalElements">
                                 <wm-table shownavigation="false" gridfirstrowselect="true" dataset="bind:Variables.serviceGetFAsSteel.dataSet" on-select="gridSuperReviewSteelSelect($event, $scope, $rowData)" class="panel-default" height="250px" filtermode="multicolumn"
                                     navigation="None" spacing="condensed" on-datarender="gridSuperReviewActivitiesDatarender($scope, $data)" name="gridSuperReviewSteel">
                                     <wm-table-column binding="pieceMark" caption="Piece Mark" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>

@@ -12,7 +12,7 @@ import java.util.Objects;
 
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class GetActivitiesPendingReviewPipeCivilEquipResponse implements Serializable {
+public class GetActivitiesPendingReviewFasResponse implements Serializable {
 
 
     @ColumnAlias("SubmissionID")
@@ -139,19 +139,19 @@ public class GetActivitiesPendingReviewPipeCivilEquipResponse implements Seriali
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GetActivitiesPendingReviewPipeCivilEquipResponse)) return false;
-        final GetActivitiesPendingReviewPipeCivilEquipResponse getActivitiesPendingReviewPipeCivilEquipResponse = (GetActivitiesPendingReviewPipeCivilEquipResponse) o;
-        return Objects.equals(getSubmissionId(), getActivitiesPendingReviewPipeCivilEquipResponse.getSubmissionId()) &&
-                Objects.equals(getActivityId(), getActivitiesPendingReviewPipeCivilEquipResponse.getActivityId()) &&
-                Objects.equals(getActivityType(), getActivitiesPendingReviewPipeCivilEquipResponse.getActivityType()) &&
-                Objects.equals(getFkActivityStatus(), getActivitiesPendingReviewPipeCivilEquipResponse.getFkActivityStatus()) &&
-                Objects.equals(getActivityTypeName(), getActivitiesPendingReviewPipeCivilEquipResponse.getActivityTypeName()) &&
-                Objects.equals(getReceivedTime(), getActivitiesPendingReviewPipeCivilEquipResponse.getReceivedTime()) &&
-                Objects.equals(getNameFull(), getActivitiesPendingReviewPipeCivilEquipResponse.getNameFull()) &&
-                Objects.equals(getStatus(), getActivitiesPendingReviewPipeCivilEquipResponse.getStatus()) &&
-                Objects.equals(getDescription(), getActivitiesPendingReviewPipeCivilEquipResponse.getDescription()) &&
-                Objects.equals(getCraft(), getActivitiesPendingReviewPipeCivilEquipResponse.getCraft()) &&
-                Objects.equals(getBidId(), getActivitiesPendingReviewPipeCivilEquipResponse.getBidId());
+        if (!(o instanceof GetActivitiesPendingReviewFasResponse)) return false;
+        final GetActivitiesPendingReviewFasResponse getActivitiesPendingReviewFasResponse = (GetActivitiesPendingReviewFasResponse) o;
+        return Objects.equals(getSubmissionId(), getActivitiesPendingReviewFasResponse.getSubmissionId()) &&
+                Objects.equals(getActivityId(), getActivitiesPendingReviewFasResponse.getActivityId()) &&
+                Objects.equals(getActivityType(), getActivitiesPendingReviewFasResponse.getActivityType()) &&
+                Objects.equals(getFkActivityStatus(), getActivitiesPendingReviewFasResponse.getFkActivityStatus()) &&
+                Objects.equals(getActivityTypeName(), getActivitiesPendingReviewFasResponse.getActivityTypeName()) &&
+                Objects.equals(getReceivedTime(), getActivitiesPendingReviewFasResponse.getReceivedTime()) &&
+                Objects.equals(getNameFull(), getActivitiesPendingReviewFasResponse.getNameFull()) &&
+                Objects.equals(getStatus(), getActivitiesPendingReviewFasResponse.getStatus()) &&
+                Objects.equals(getDescription(), getActivitiesPendingReviewFasResponse.getDescription()) &&
+                Objects.equals(getCraft(), getActivitiesPendingReviewFasResponse.getCraft()) &&
+                Objects.equals(getBidId(), getActivitiesPendingReviewFasResponse.getBidId());
     }
 
     @Override

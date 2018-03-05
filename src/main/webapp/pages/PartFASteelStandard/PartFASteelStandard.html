@@ -1,8 +1,12 @@
 <wm-partial data-ng-controller="PartFASteelStandardPageController" name="partial1">
     <wm-layoutgrid name="layoutgrid1">
+        <wm-gridrow name="gridrow4">
+            <wm-gridcolumn columnwidth="11" name="gridcolumn6_1"></wm-gridcolumn>
+            <wm-gridcolumn columnwidth="1" name="gridcolumn7_1"></wm-gridcolumn>
+        </wm-gridrow>
         <wm-gridrow name="gridrow2">
             <wm-gridcolumn columnwidth="11" name="gridcolumn3">
-                <wm-table editmode="inline" name="gridSteelFA" title="Individual Steel Activities" dataset="bind:Variables.liveSteelFaData.dataSet" navigation="None" spacing="condensed" enablesort="false">
+                <wm-table editmode="inline" name="gridSteelFA" title="" dataset="bind:Variables.liveSteelFaData.dataSet" navigation="None" spacing="condensed" enablesort="false">
                     <wm-table-column binding="faarea" caption="Area" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                     <wm-table-column binding="fapieceNumber" caption="Piece#" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                     <wm-table-column binding="activityType" caption="Activity Type" edit-widget-type="number" type="short" generator="assigned" readonly="true" show="true"></wm-table-column>

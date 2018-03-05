@@ -1,80 +1,60 @@
-<wm-partial data-ng-controller="PartFASteelDemoPageController" name="partial1"> 
-    <wm-layoutgrid name="layoutgrid1"> 
-        <wm-gridrow name="gridrow1"> 
-            <wm-gridcolumn columnwidth="6" name="gridcolumn1"> 
-                <wm-layoutgrid name="layoutgrid2"> 
-                    <wm-gridrow name="gridrow2"> 
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn2"> 
-                            <wm-label caption="Demo" show="true" fontweight="bold" fontsize="14" name="label1" width="100%"></wm-label> 
-                            <wm-label caption="(Demolition)" show="true" fontweight="bold" fontsize="11" width="100%" fontstyle="italic" name="label6"></wm-label> 
-                        </wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="4" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn3"></wm-gridcolumn> 
-                    </wm-gridrow> 
-                    <wm-gridrow name="gridrow7"> 
-                        <wm-gridcolumn columnwidth="5" name="gridcolumn14"> 
-                            <wm-composite captionposition="top" name="composite3"> 
-                                <wm-label class="col-md-3 control-label" caption="Area" readonlygrid="true" name="label4"></wm-label> 
-                                <wm-container class="col-md-9" width="100%" name="container3"> 
-                                    <wm-text datavalue="bind:$parent.Variables.liveGetSteelDemo.dataSet.data[$i].demoArea" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" placeholder="Enter Area..." name="textArea"></wm-text> 
-                                </wm-container> 
-                            </wm-composite> 
-                        </wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="1" name="gridcolumn15"></wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="2" name="gridcolumn16"></wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn17"></wm-gridcolumn> 
-                    </wm-gridrow> 
-                    <wm-gridrow name="gridrow3"> 
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn4"> 
-                            <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite1"> 
-                                <wm-label class="col-md-3 control-label" caption="Steel Type" name="label2"></wm-label> 
-                                <wm-container class="col-md-9" width="95%" name="container1"> 
-                                    <wm-select name="selectSteelType" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datafield="id" datavalue="bind:$parent.Variables.liveGetSteelDemo.dataSet.data[$i].demoSteelType" dataset="bind:Variables.liveGetSteelTypes.dataSet" displayfield="steelName"></wm-select> 
-                                </wm-container> 
-                            </wm-composite> 
-                        </wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="2" horizontalalign="left" name="gridcolumn5"> 
-                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite2"> 
-                                <wm-label class="col-md-3 control-label" caption="Size" name="label3"></wm-label> 
-                                <wm-container class="col-md-9" width="95%" name="container2"> 
-                                    <wm-text datavalue="bind:$parent.Variables.liveGetSteelDemo.dataSet.data[$i].demoSize
-" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" placeholder="Enter Size" type="text" minvalue="0" maxvalue="255" name="textSize"></wm-text> 
-                                </wm-container> 
-                            </wm-composite> 
-                        </wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="2" name="gridcolumn13"> 
-                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite5"> 
-                                <wm-label class="col-md-3 control-label" caption="Quantity" name="label7"></wm-label> 
-                                <wm-container class="col-md-9" width="95%" name="container5"> 
-                                    <wm-text datavalue="bind:$parent.Variables.liveGetSteelDemo.dataSet.data[$i].demoQuantity" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" placeholder="Enter Quantity" type="number" minvalue="0" maxvalue="32767" name="textQuantity"></wm-text> 
-                                </wm-container> 
-                            </wm-composite> 
-                        </wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn6"></wm-gridcolumn> 
-                    </wm-gridrow> 
-                </wm-layoutgrid> 
-            </wm-gridcolumn> 
-            <wm-gridcolumn columnwidth="6" name="gridcolumn7"> 
-                <wm-layoutgrid name="layoutgrid3"> 
-                    <wm-gridrow name="gridrow4"> 
-                        <wm-gridcolumn columnwidth="8" name="gridcolumn8"></wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn9"></wm-gridcolumn> 
-                    </wm-gridrow> 
-                    <wm-gridrow name="gridrow5"> 
-                        <wm-gridcolumn columnwidth="8" name="gridcolumn10"></wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="3" horizontalalign="left" name="gridcolumn11"></wm-gridcolumn> 
-                    </wm-gridrow> 
-                    <wm-gridrow name="gridrow6"> 
-                        <wm-gridcolumn columnwidth="12" name="gridcolumn12"> 
-                            <wm-composite captionposition="top" name="composite4"> 
-                                <wm-label class="col-md-3 control-label" caption="Notes" name="label5"></wm-label> 
-                                <wm-container class="col-md-9" name="container4"> 
-                                    <wm-textarea datavalue="bind:$parent.Variables.liveGetSteelDemo.dataSet.data[$i].demoNotes" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" placeholder="Input notes here..." name="textareaNotes"></wm-textarea> 
-                                </wm-container> 
-                            </wm-composite> 
-                        </wm-gridcolumn> 
-                    </wm-gridrow> 
-                </wm-layoutgrid> 
-            </wm-gridcolumn> 
-        </wm-gridrow> 
-    </wm-layoutgrid> 
+<wm-partial data-ng-controller="PartFASteelDemoPageController" name="partial1">
+    <wm-layoutgrid name="layoutgrid1">
+        <wm-gridrow name="gridrow1">
+            <wm-gridcolumn columnwidth="6" name="gridcolumn1">
+                <wm-layoutgrid name="layoutgrid2">
+                    <wm-gridrow name="gridrow2">
+                        <wm-gridcolumn columnwidth="3" name="gridcolumn2">
+                            <wm-label caption="Demo" show="true" fontweight="bold" fontsize="14" name="label1" width="100%"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn3"></wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="5" name="gridcolumn18"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow7">
+                        <wm-gridcolumn columnwidth="6" name="gridcolumn14">
+                            <wm-composite captionposition="top" name="composite3">
+                                <wm-label class="col-md-3 control-label" caption="Description" readonlygrid="true" name="label4"></wm-label>
+                                <wm-container class="col-md-9" width="95%" name="container3">
+                                    <wm-text datavalue="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.description" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" placeholder="Enter Area..." name="textArea"></wm-text>
+                                </wm-container>
+                            </wm-composite>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="2" name="gridcolumn16">
+                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite5">
+                                <wm-label class="col-md-3 control-label" caption="Quantity" name="label7"></wm-label>
+                                <wm-container class="col-md-9" width="95%" name="container5">
+                                    <wm-text datavalue="bind:$parent.Variables.liveGetSteelDemo.dataSet.data[$i].demoQuantity" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" placeholder="Enter Quantity" type="number" minvalue="0"
+                                        maxvalue="32767" name="textQuantity"></wm-text>
+                                </wm-container>
+                            </wm-composite>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn17"></wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
+            </wm-gridcolumn>
+            <wm-gridcolumn columnwidth="6" name="gridcolumn7">
+                <wm-layoutgrid name="layoutgrid3">
+                    <wm-gridrow name="gridrow7_1">
+                        <wm-gridcolumn columnwidth="8" name="gridcolumn14_1"></wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="3" name="gridcolumn15"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow5">
+                        <wm-gridcolumn columnwidth="8" name="gridcolumn10"></wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="3" horizontalalign="left" name="gridcolumn11"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow6">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn12">
+                            <wm-composite captionposition="top" name="composite4">
+                                <wm-label class="col-md-3 control-label" caption="Notes" name="label5"></wm-label>
+                                <wm-container class="col-md-9" name="container4">
+                                    <wm-textarea datavalue="bind:$parent.Variables.liveGetSteelDemo.dataSet.data[$i].demoNotes" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" placeholder="Input notes here..."
+                                        name="textareaNotes"></wm-textarea>
+                                </wm-container>
+                            </wm-composite>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
+            </wm-gridcolumn>
+        </wm-gridrow>
+    </wm-layoutgrid>
 </wm-partial>

@@ -195,6 +195,25 @@ public class QueryExecutionController {
         return queryService.exportGetActivityHistoryPipeWeld(exportType, activityId, pageable);
     }
 
+    @RequestMapping(value = "/queries/GetActivitiesPendingReviewFAs", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Gets all activities pending super review for Pipe Civil Equip, AND Non Piece mark steel work.")
+    public Page<GetActivitiesPendingReviewFasResponse> executeGetActivitiesPendingReviewFAs(@RequestParam(value = "SuperID") String superId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetActivitiesPendingReviewFAs");
+        Page<GetActivitiesPendingReviewFasResponse> _result = queryService.executeGetActivitiesPendingReviewFAs(superId, pageable);
+        LOGGER.debug("got the result for named query: GetActivitiesPendingReviewFAs, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetActivitiesPendingReviewFAs")
+    @RequestMapping(value = "/queries/GetActivitiesPendingReviewFAs/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetActivitiesPendingReviewFAs(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "SuperID") String superId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetActivitiesPendingReviewFAs");
+
+        return queryService.exportGetActivitiesPendingReviewFAs(exportType, superId, pageable);
+    }
+
     @RequestMapping(value = "/queries/UpdateSteelDemo", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
@@ -638,25 +657,6 @@ public class QueryExecutionController {
         Integer _result = queryService.executeUpdatePipeErection(updatePipeErectionRequest);
         LOGGER.debug("got the result for named query: UpdatePipeErection, result:{}", _result);
         return _result;
-    }
-
-    @RequestMapping(value = "/queries/GetActivitiesPendingReviewPipeCivilEquip", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Gets all activities pending super review for Pipe Civil AND Equipment.")
-    public Page<GetActivitiesPendingReviewPipeCivilEquipResponse> executeGetActivitiesPendingReviewPipeCivilEquip(@RequestParam(value = "SuperID") String superId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetActivitiesPendingReviewPipeCivilEquip");
-        Page<GetActivitiesPendingReviewPipeCivilEquipResponse> _result = queryService.executeGetActivitiesPendingReviewPipeCivilEquip(superId, pageable);
-        LOGGER.debug("got the result for named query: GetActivitiesPendingReviewPipeCivilEquip, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetActivitiesPendingReviewPipeCivilEquip")
-    @RequestMapping(value = "/queries/GetActivitiesPendingReviewPipeCivilEquip/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetActivitiesPendingReviewPipeCivilEquip(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "SuperID") String superId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetActivitiesPendingReviewPipeCivilEquip");
-
-        return queryService.exportGetActivitiesPendingReviewPipeCivilEquip(exportType, superId, pageable);
     }
 
     @RequestMapping(value = "/queries/UpdateSettingPipeRFTPercent", method = RequestMethod.PUT)
