@@ -255,10 +255,10 @@ public class QueryExecutionController {
 
     @RequestMapping(value = "/queries/GetActivitiesPendingReviewSteelActivities", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Returns the ActivityID for pending steel activities, via SubmissionID, and PieceMark")
-    public Page<GetActivitiesPendingReviewSteelActivitiesResponse> executeGetActivitiesPendingReviewSteelActivities(@RequestParam(value = "SubmissionID") String submissionId, @RequestParam(value = "PieceMark") String pieceMark, Pageable pageable, HttpServletRequest _request) {
+    @ApiOperation(value = "Returns individual activities for given submission/pieceMark/Status.  Populates the Super Review steel detailed list")
+    public Page<GetActivitiesPendingReviewSteelActivitiesResponse> executeGetActivitiesPendingReviewSteelActivities(@RequestParam(value = "SubmissionID") String submissionId, @RequestParam(value = "PieceMark") String pieceMark, @RequestParam(value = "StatusID") String statusId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetActivitiesPendingReviewSteelActivities");
-        Page<GetActivitiesPendingReviewSteelActivitiesResponse> _result = queryService.executeGetActivitiesPendingReviewSteelActivities(submissionId, pieceMark, pageable);
+        Page<GetActivitiesPendingReviewSteelActivitiesResponse> _result = queryService.executeGetActivitiesPendingReviewSteelActivities(submissionId, pieceMark, statusId, pageable);
         LOGGER.debug("got the result for named query: GetActivitiesPendingReviewSteelActivities, result:{}", _result);
         return _result;
     }
@@ -266,10 +266,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetActivitiesPendingReviewSteelActivities")
     @RequestMapping(value = "/queries/GetActivitiesPendingReviewSteelActivities/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetActivitiesPendingReviewSteelActivities(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "SubmissionID") String submissionId, @RequestParam(value = "PieceMark") String pieceMark, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetActivitiesPendingReviewSteelActivities(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "SubmissionID") String submissionId, @RequestParam(value = "PieceMark") String pieceMark, @RequestParam(value = "StatusID") String statusId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetActivitiesPendingReviewSteelActivities");
 
-        return queryService.exportGetActivitiesPendingReviewSteelActivities(exportType, submissionId, pieceMark, pageable);
+        return queryService.exportGetActivitiesPendingReviewSteelActivities(exportType, submissionId, pieceMark, statusId, pageable);
     }
 
     @RequestMapping(value = "/queries/UpdatePipeTrim", method = RequestMethod.PUT)

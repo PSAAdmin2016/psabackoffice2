@@ -254,22 +254,24 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<GetActivitiesPendingReviewSteelActivitiesResponse> executeGetActivitiesPendingReviewSteelActivities(String submissionId, String pieceMark, Pageable pageable) {
-        Map params = new HashMap(2);
+    public Page<GetActivitiesPendingReviewSteelActivitiesResponse> executeGetActivitiesPendingReviewSteelActivities(String submissionId, String pieceMark, String statusId, Pageable pageable) {
+        Map params = new HashMap(3);
 
         params.put("SubmissionID", submissionId);
         params.put("PieceMark", pieceMark);
+        params.put("StatusID", statusId);
 
         return queryExecutor.executeNamedQuery("GetActivitiesPendingReviewSteelActivities", params, GetActivitiesPendingReviewSteelActivitiesResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Downloadable exportGetActivitiesPendingReviewSteelActivities(ExportType exportType, String submissionId, String pieceMark, Pageable pageable) {
-        Map params = new HashMap(2);
+    public Downloadable exportGetActivitiesPendingReviewSteelActivities(ExportType exportType, String submissionId, String pieceMark, String statusId, Pageable pageable) {
+        Map params = new HashMap(3);
 
         params.put("SubmissionID", submissionId);
         params.put("PieceMark", pieceMark);
+        params.put("StatusID", statusId);
 
         return queryExecutor.exportNamedQueryData("GetActivitiesPendingReviewSteelActivities", params, exportType, GetActivitiesPendingReviewSteelActivitiesResponse.class, pageable);
     }

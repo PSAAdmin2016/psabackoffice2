@@ -63,7 +63,6 @@ public class SubmissionActivityStatus implements Serializable {
     private PipeWeld pipeWeld;
     private List<Sasnotes> sasnoteses;
     private SteelDemo steelDemo;
-    private SteelFa steelFa;
     private SteelMisc steelMisc;
     private SteelSellPackage steelSellPackage;
     private SubsDelay subsDelay;
@@ -324,17 +323,6 @@ public class SubmissionActivityStatus implements Serializable {
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
     @Cascade({CascadeType.SAVE_UPDATE})
     @Fetch(FetchMode.JOIN)
-    public SteelFa getSteelFa() {
-        return this.steelFa;
-    }
-
-    public void setSteelFa(SteelFa steelFa) {
-        this.steelFa = steelFa;
-    }
-
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
-    @Cascade({CascadeType.SAVE_UPDATE})
-    @Fetch(FetchMode.JOIN)
     public SteelMisc getSteelMisc() {
         return this.steelMisc;
     }
@@ -421,9 +409,6 @@ public class SubmissionActivityStatus implements Serializable {
         }
         if(steelDemo != null) {
             steelDemo.setSubmissionActivityStatus(this);
-        }
-        if(steelFa != null) {
-            steelFa.setSubmissionActivityStatus(this);
         }
         if(steelMisc != null) {
             steelMisc.setSubmissionActivityStatus(this);

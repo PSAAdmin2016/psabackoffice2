@@ -14,14 +14,59 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serializable {
 
 
+    @ColumnAlias("fk_ActivityStatus")
+    private Short fkActivityStatus;
+
+    @ColumnAlias("Status")
+    private String status;
+
+    @ColumnAlias("ActivityType")
+    private String activityType;
+
     @ColumnAlias("ActivityID")
     private Integer activityId;
 
-    @ColumnAlias("SubmissionID")
-    private Integer submissionId;
+    @ColumnAlias("FAArea")
+    private String faarea;
 
-    @ColumnAlias("PieceMark")
-    private String pieceMark;
+    @ColumnAlias("FAPieceNumber")
+    private String fapieceNumber;
+
+    @ColumnAlias("FAQuantity")
+    private Short faquantity;
+
+    @ColumnAlias("FAPercent")
+    private Float fapercent;
+
+    @ColumnAlias("FARework")
+    private Byte farework;
+
+    @ColumnAlias("FANotes")
+    private String fanotes;
+
+    public Short getFkActivityStatus() {
+        return this.fkActivityStatus;
+    }
+
+    public void setFkActivityStatus(Short fkActivityStatus) {
+        this.fkActivityStatus = fkActivityStatus;
+    }
+
+    public String getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getActivityType() {
+        return this.activityType;
+    }
+
+    public void setActivityType(String activityType) {
+        this.activityType = activityType;
+    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -31,20 +76,52 @@ public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serial
         this.activityId = activityId;
     }
 
-    public Integer getSubmissionId() {
-        return this.submissionId;
+    public String getFaarea() {
+        return this.faarea;
     }
 
-    public void setSubmissionId(Integer submissionId) {
-        this.submissionId = submissionId;
+    public void setFaarea(String faarea) {
+        this.faarea = faarea;
     }
 
-    public String getPieceMark() {
-        return this.pieceMark;
+    public String getFapieceNumber() {
+        return this.fapieceNumber;
     }
 
-    public void setPieceMark(String pieceMark) {
-        this.pieceMark = pieceMark;
+    public void setFapieceNumber(String fapieceNumber) {
+        this.fapieceNumber = fapieceNumber;
+    }
+
+    public Short getFaquantity() {
+        return this.faquantity;
+    }
+
+    public void setFaquantity(Short faquantity) {
+        this.faquantity = faquantity;
+    }
+
+    public Float getFapercent() {
+        return this.fapercent;
+    }
+
+    public void setFapercent(Float fapercent) {
+        this.fapercent = fapercent;
+    }
+
+    public Byte getFarework() {
+        return this.farework;
+    }
+
+    public void setFarework(Byte farework) {
+        this.farework = farework;
+    }
+
+    public String getFanotes() {
+        return this.fanotes;
+    }
+
+    public void setFanotes(String fanotes) {
+        this.fanotes = fanotes;
     }
 
     @Override
@@ -52,15 +129,29 @@ public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serial
         if (this == o) return true;
         if (!(o instanceof GetActivitiesPendingReviewSteelActivitiesResponse)) return false;
         final GetActivitiesPendingReviewSteelActivitiesResponse getActivitiesPendingReviewSteelActivitiesResponse = (GetActivitiesPendingReviewSteelActivitiesResponse) o;
-        return Objects.equals(getActivityId(), getActivitiesPendingReviewSteelActivitiesResponse.getActivityId()) &&
-                Objects.equals(getSubmissionId(), getActivitiesPendingReviewSteelActivitiesResponse.getSubmissionId()) &&
-                Objects.equals(getPieceMark(), getActivitiesPendingReviewSteelActivitiesResponse.getPieceMark());
+        return Objects.equals(getFkActivityStatus(), getActivitiesPendingReviewSteelActivitiesResponse.getFkActivityStatus()) &&
+                Objects.equals(getStatus(), getActivitiesPendingReviewSteelActivitiesResponse.getStatus()) &&
+                Objects.equals(getActivityType(), getActivitiesPendingReviewSteelActivitiesResponse.getActivityType()) &&
+                Objects.equals(getActivityId(), getActivitiesPendingReviewSteelActivitiesResponse.getActivityId()) &&
+                Objects.equals(getFaarea(), getActivitiesPendingReviewSteelActivitiesResponse.getFaarea()) &&
+                Objects.equals(getFapieceNumber(), getActivitiesPendingReviewSteelActivitiesResponse.getFapieceNumber()) &&
+                Objects.equals(getFaquantity(), getActivitiesPendingReviewSteelActivitiesResponse.getFaquantity()) &&
+                Objects.equals(getFapercent(), getActivitiesPendingReviewSteelActivitiesResponse.getFapercent()) &&
+                Objects.equals(getFarework(), getActivitiesPendingReviewSteelActivitiesResponse.getFarework()) &&
+                Objects.equals(getFanotes(), getActivitiesPendingReviewSteelActivitiesResponse.getFanotes());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getActivityId(),
-                getSubmissionId(),
-                getPieceMark());
+        return Objects.hash(getFkActivityStatus(),
+                getStatus(),
+                getActivityType(),
+                getActivityId(),
+                getFaarea(),
+                getFapieceNumber(),
+                getFaquantity(),
+                getFapercent(),
+                getFarework(),
+                getFanotes());
     }
 }

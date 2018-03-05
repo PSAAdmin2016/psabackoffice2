@@ -42,7 +42,6 @@ import com.psabackoffice.job1111.PipeTrim;
 import com.psabackoffice.job1111.PipeWeld;
 import com.psabackoffice.job1111.Sasnotes;
 import com.psabackoffice.job1111.SteelDemo;
-import com.psabackoffice.job1111.SteelFa;
 import com.psabackoffice.job1111.SteelMisc;
 import com.psabackoffice.job1111.SteelSellPackage;
 import com.psabackoffice.job1111.SubmissionActivityStatus;
@@ -128,11 +127,6 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
 
     @Lazy
     @Autowired
-	@Qualifier("Job1111.SteelFaService")
-	private SteelFaService steelFaService;
-
-    @Lazy
-    @Autowired
 	@Qualifier("Job1111.SteelDemoService")
 	private SteelDemoService steelDemoService;
 
@@ -213,7 +207,6 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
         PipeWeld pipeWeld = submissionActivityStatus.getPipeWeld();
         List<Sasnotes> sasnoteses = submissionActivityStatus.getSasnoteses();
         SteelDemo steelDemo = submissionActivityStatus.getSteelDemo();
-        SteelFa steelFa = submissionActivityStatus.getSteelFa();
         SteelMisc steelMisc = submissionActivityStatus.getSteelMisc();
         SteelSellPackage steelSellPackage = submissionActivityStatus.getSteelSellPackage();
         SubsDelay subsDelay = submissionActivityStatus.getSubsDelay();
@@ -277,10 +270,6 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
 
         if(steelDemo != null && Hibernate.isInitialized(steelDemo)) {
             steelDemo.setSubmissionActivityStatus(submissionActivityStatus);
-        }
-
-        if(steelFa != null && Hibernate.isInitialized(steelFa)) {
-            steelFa.setSubmissionActivityStatus(submissionActivityStatus);
         }
 
         if(steelMisc != null && Hibernate.isInitialized(steelMisc)) {
@@ -523,15 +512,6 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
 	 */
 	protected void setCivilFaService(CivilFaService service) {
         this.civilFaService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service SteelFaService instance
-	 */
-	protected void setSteelFaService(SteelFaService service) {
-        this.steelFaService = service;
     }
 
     /**

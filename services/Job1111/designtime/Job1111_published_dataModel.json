@@ -30896,7 +30896,7 @@
       },
       "constraintList" : null,
       "fieldName" : "activityId",
-      "foreignKey" : true,
+      "foreignKey" : false,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "hidden" : false,
@@ -30905,8 +30905,8 @@
       "name" : "ActivityID",
       "nullable" : false,
       "oldName" : "ActivityID",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
       "period" : false,
@@ -31045,7 +31045,7 @@
       "generatorType" : "assigned",
       "generatorValue" : null,
       "hidden" : false,
-      "javaType" : "boolean",
+      "javaType" : "short",
       "length" : 0,
       "name" : "FARework",
       "nullable" : true,
@@ -31055,11 +31055,11 @@
       "partOfPrimaryKey" : false,
       "partOfUniqueKey" : false,
       "period" : false,
-      "precision" : 1,
+      "precision" : 3,
       "primaryKey" : false,
       "scale" : 0,
       "sequenceSchema" : null,
-      "sqlType" : "boolean",
+      "sqlType" : "number",
       "unique" : false
     }, {
       "columnValue" : {
@@ -31225,36 +31225,7 @@
       "name" : "PRIMARY",
       "virtual" : false
     },
-    "relations" : [ {
-      "cardinality" : "OneToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "NONE",
-        "cascadeReplace" : true
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "submissionActivityStatus",
-      "mappings" : [ {
-        "sourceColumn" : "ActivityID",
-        "targetColumn" : "ActivityID"
-      } ],
-      "name" : "Steel_ActivityID_to_SASActivityID",
-      "parentFetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "SteelFA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "SubmissionActivityStatus",
-      "virtual" : false
-    } ],
+    "relations" : [ ],
     "schema" : null,
     "temporals" : [ ],
     "type" : "TABLE"

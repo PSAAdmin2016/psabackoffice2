@@ -60,9 +60,9 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdateEquipFAQuantity(UpdateEquipFaquantityRequest updateEquipFaquantityRequest);
 
-    Page<GetActivitiesPendingReviewSteelActivitiesResponse> executeGetActivitiesPendingReviewSteelActivities(String submissionId, String pieceMark, Pageable pageable);
+    Page<GetActivitiesPendingReviewSteelActivitiesResponse> executeGetActivitiesPendingReviewSteelActivities(String submissionId, String pieceMark, String statusId, Pageable pageable);
 
-    Downloadable exportGetActivitiesPendingReviewSteelActivities(ExportType exportType, String submissionId, String pieceMark, Pageable pageable);
+    Downloadable exportGetActivitiesPendingReviewSteelActivities(ExportType exportType, String submissionId, String pieceMark, String statusId, Pageable pageable);
 
     Integer executeUpdatePipeTrim(UpdatePipeTrimRequest updatePipeTrimRequest);
 

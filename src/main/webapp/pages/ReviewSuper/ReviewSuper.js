@@ -21,6 +21,7 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
     $scope.buttonRefreshClick = function($event, $isolateScope) {
         $scope.Variables.serviceGetFAs.invoke();
+        $scope.Variables.serviceGetFAsSteel.invoke();
 
     };
 
@@ -200,9 +201,6 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
             $scope.Widgets.gridSuperReviewActivities.onRowFilterChange();
         });
     };
-
-
-
 
 
     $scope.buttonResearchClick = function($event, $isolateScope) {

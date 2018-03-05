@@ -6,19 +6,19 @@
         </wm-gridrow>
         <wm-gridrow name="gridrow2">
             <wm-gridcolumn columnwidth="11" name="gridcolumn3">
-                <wm-table editmode="inline" name="gridSteelFA" title="" dataset="bind:Variables.liveSteelFaData.dataSet" navigation="None" spacing="condensed" enablesort="false">
-                    <wm-table-column binding="faarea" caption="Area" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
-                    <wm-table-column binding="fapieceNumber" caption="Piece#" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
-                    <wm-table-column binding="activityType" caption="Activity Type" edit-widget-type="number" type="short" generator="assigned" readonly="true" show="true"></wm-table-column>
-                    <wm-table-column binding="faquantity" caption="Quantity" edit-widget-type="number" type="short" generator="assigned" show="true" readonly="false" required="true"></wm-table-column>
-                    <wm-table-column binding="fapercent" caption="Percent" edit-widget-type="select" type="float" generator="assigned" dataset="bind:Variables.staticPercentListQuarter.dataSet" datafield="dataValue" displayfield="dataValue"
-                        show="true" readonly="false" required="true"></wm-table-column>
-                    <wm-table-column binding="farework" caption="Rework" widget-type="checkbox" edit-widget-type="checkbox" type="boolean" generator="assigned" show="true" readonly="false">
+                <wm-table editmode="inline" name="gridSteelFA" title="" dataset="bind:Variables.serviceGetSteelFAData.dataSet" navigation="None" spacing="condensed" enablesort="false">
+                    <wm-table-column binding="faarea" caption="Area" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                    <wm-table-column binding="fapieceNumber" caption="Piece#" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                    <wm-table-column binding="activityType" caption="Activity Type" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                    <wm-table-column binding="faquantity" caption="Quantity" edit-widget-type="number" type="string" show="true" readonly="false"></wm-table-column>
+                    <wm-table-column binding="fapercent" caption="Percent" edit-widget-type="select" type="string" dataset="bind:Variables.staticPercentListQuarter.dataSet" datafield="dataValue" displayfield="label" show="true" readonly="false">{{(row.fapercent * 100) + "%"}}</wm-table-column>
+                    <wm-table-column binding="farework" caption="Rework" widget-type="checkbox" edit-widget-type="checkbox" type="string" show="true" readonly="false">
                         <wm-checkbox scopedatavalue="row['farework']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                     </wm-table-column>
-                    <wm-table-column binding="fanotes" caption="Notes" edit-widget-type="textarea" type="string" generator="assigned" show="true" readonly="false"></wm-table-column>
-                    <wm-table-column binding="submissionActivityStatus.fkActivityStatus" caption="Status" edit-widget-type="select" related-entity-name="SubmissionActivityStatus" type="integer" generator="assigned" dataset="bind:Variables.PSARefActivityStatusesData.dataSet"
-                        datafield="id" displayfield="status" show="true" readonly="false"></wm-table-column>
+                    <wm-table-column binding="fanotes" caption="Notes" edit-widget-type="textarea" type="string" readonly="true" show="true"></wm-table-column>
+                    <wm-table-column binding="status" caption="Status" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                    <wm-table-column binding="rowOperations" caption="Actions" width="120px" edit-widget-type="text" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-table-column>
+                    <wm-table-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-table-row-action>
                 </wm-table>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn7"></wm-gridcolumn>

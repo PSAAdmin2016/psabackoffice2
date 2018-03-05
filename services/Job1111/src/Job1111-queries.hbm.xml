@@ -1371,70 +1371,74 @@ WHERE `ActivityID`= :FieldActivityID
 
     <sql-query name="GetActivitiesPendingReviewSteelActivities">
         <![CDATA[
-        SELECT sas.ActivityID, sd.SubmissionID, 
+        SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, 
+stl.ActivityID, stl.FAArea, stl.FAPieceNumber, stl.FAQuantity, stl.FAPercent, stl.FARework, stl.FANotes
 
-(COALESCE(stls.FAPieceNumber,COALESCE(stle.FAPieceNumber,COALESCE(stlb.FAPieceNumber, COALESCE(stli.FAPieceNumber, COALESCE(stlsell.FAPieceNumber, COALESCE(stlw.FAPieceNumber,'N/A'))))))) AS PieceMark
+
 
 FROM SubsDetails sd
 JOIN SubmissionActivityStatus sas
 	ON sas.SubmissionID = sd.SubmissionID
-LEFT JOIN SteelFA stls
-	ON stls.ActivityID = sas.ActivityID AND stls.ActivityType = 61
-LEFT JOIN SteelFA stle
-	ON stle.ActivityID = sas.ActivityID AND stle.ActivityType = 62
-LEFT JOIN SteelFA stlb
-	ON stlb.ActivityID = sas.ActivityID AND stlb.ActivityType = 63
-LEFT JOIN SteelFA stli
-	ON stli.ActivityID = sas.ActivityID AND stli.ActivityType = 64
-LEFT JOIN SteelFA stlsell
-	ON stlsell.ActivityID = sas.ActivityID AND stlsell.ActivityType = 65
-LEFT JOIN SteelFA stlw
-	ON stlw.ActivityID = sas.ActivityID AND stlw.ActivityType = 68
+JOIN SteelFA stl
+	ON stl.ActivityID = sas.ActivityID 
+    
+JOIN PSA.tblUserPSA u
+	ON u.ID = sd.UserID
+JOIN PSA.REF_ActivityTypes at
+	ON  at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
 
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 
-WHERE sd.SubmissionID = :SubmissionID
-AND sas.ActivityType IN (61,62,63,64,65,68)
-AND sas.fk_ActivityStatus in (1,4,6,8,10)
-HAVING PieceMark = :PieceMark
+WHERE sas.SubmissionID = :SubmissionID
+AND stl.FAPiecenumber = :PieceMark
+AND sas.fk_ActivityStatus = :StatusID
 
-ORDER BY PieceMark DESC
+ORDER BY sas.ActivityType
         ]]>
     <query-param name="SubmissionID" type="java.lang.String"/>
     <query-param name="PieceMark" type="java.lang.String"/>
+    <query-param name="StatusID" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="GetActivitiesPendingReviewSteelActivities__count">
         <![CDATA[
-        select count(*) from (SELECT sas.ActivityID, sd.SubmissionID, 
+        select count(*) from (SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, 
+stl.ActivityID, stl.FAArea, stl.FAPieceNumber, stl.FAQuantity, stl.FAPercent, stl.FARework, stl.FANotes
 
-(COALESCE(stls.FAPieceNumber,COALESCE(stle.FAPieceNumber,COALESCE(stlb.FAPieceNumber, COALESCE(stli.FAPieceNumber, COALESCE(stlsell.FAPieceNumber, COALESCE(stlw.FAPieceNumber,'N/A'))))))) AS PieceMark
+
 
 FROM SubsDetails sd
 JOIN SubmissionActivityStatus sas
 	ON sas.SubmissionID = sd.SubmissionID
-LEFT JOIN SteelFA stls
-	ON stls.ActivityID = sas.ActivityID AND stls.ActivityType = 61
-LEFT JOIN SteelFA stle
-	ON stle.ActivityID = sas.ActivityID AND stle.ActivityType = 62
-LEFT JOIN SteelFA stlb
-	ON stlb.ActivityID = sas.ActivityID AND stlb.ActivityType = 63
-LEFT JOIN SteelFA stli
-	ON stli.ActivityID = sas.ActivityID AND stli.ActivityType = 64
-LEFT JOIN SteelFA stlsell
-	ON stlsell.ActivityID = sas.ActivityID AND stlsell.ActivityType = 65
-LEFT JOIN SteelFA stlw
-	ON stlw.ActivityID = sas.ActivityID AND stlw.ActivityType = 68
+JOIN SteelFA stl
+	ON stl.ActivityID = sas.ActivityID 
+    
+JOIN PSA.tblUserPSA u
+	ON u.ID = sd.UserID
+JOIN PSA.REF_ActivityTypes at
+	ON  at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
 
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 
-WHERE sd.SubmissionID = :SubmissionID
-AND sas.ActivityType IN (61,62,63,64,65,68)
-AND sas.fk_ActivityStatus in (1,4,6,8,10)
-HAVING PieceMark = :PieceMark
+WHERE sas.SubmissionID = :SubmissionID
+AND stl.FAPiecenumber = :PieceMark
+AND sas.fk_ActivityStatus = :StatusID
 
-ORDER BY PieceMark DESC) wmTempTable
+ORDER BY sas.ActivityType) wmTempTable
         ]]>
     <query-param name="SubmissionID" type="java.lang.String"/>
     <query-param name="PieceMark" type="java.lang.String"/>
+    <query-param name="StatusID" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="UpdatePipeTrim">
@@ -7899,17 +7903,25 @@ WHERE `ActivityID`= :FieldActivityID
 
     <sql-query name="GetActivitiesPendingReviewSteel">
         <![CDATA[
-        SELECT sd.SubmissionID, sas.fk_ActivityStatus, ats.Status, sd.ReceivedTime, 
+        SELECT fas.SubmissionID, fas.fk_ActivityStatus, fas.Status, fas.ReceivedTime, fas.NameFull, fas.PieceMark,
+SUM(QuantityShake) AS QuantityShake,
+SUM(QuantityErect) AS QuantityErect,
+SUM(QuantityBoltOut) AS QuantityBoltOut,
+SUM(QuantityImp) AS QuantityImp,
+SUM(QuantitySell) AS QuantitySell,
+SUM(QuantityWeld) AS QuantityWeld
+FROM (
+SELECT sd.SubmissionID, sas.fk_ActivityStatus, ats.Status, sd.ReceivedTime, 
 CONCAT(u.FirstName, " ", u.LastName) AS NameFull, 
 
 (COALESCE(stls.FAPieceNumber,COALESCE(stle.FAPieceNumber,COALESCE(stlb.FAPieceNumber, COALESCE(stli.FAPieceNumber, COALESCE(stlsell.FAPieceNumber, COALESCE(stlw.FAPieceNumber,'N/A'))))))) AS PieceMark,
 
-SUM(COALESCE(stls.FAQuantity,0) * COALESCE(stls.FAPercent,0)) AS QuantityShake,
-SUM(COALESCE(stle.FAQuantity,0) * COALESCE(stle.FAPercent,0)) AS QuantityErect,
-SUM(COALESCE(stlb.FAQuantity,0) * COALESCE(stlb.FAPercent,0)) AS QuantityBoltOut,
-SUM(COALESCE(stli.FAQuantity,0) * COALESCE(stli.FAPercent,0)) AS QuantityImp,
-SUM(COALESCE(stlsell.FAQuantity,0) * COALESCE(stlsell.FAPercent,0)) AS QuantitySell,
-SUM(COALESCE(stlw.FAQuantity,0) * COALESCE(stlw.FAPercent,0)) AS QuantityWeld
+(COALESCE(stls.FAQuantity,0) * COALESCE(stls.FAPercent,0)) AS QuantityShake,
+(COALESCE(stle.FAQuantity,0) * COALESCE(stle.FAPercent,0)) AS QuantityErect,
+(COALESCE(stlb.FAQuantity,0) * COALESCE(stlb.FAPercent,0)) AS QuantityBoltOut,
+(COALESCE(stli.FAQuantity,0) * COALESCE(stli.FAPercent,0)) AS QuantityImp,
+(COALESCE(stlsell.FAQuantity,0) * COALESCE(stlsell.FAPercent,0)) AS QuantitySell,
+(COALESCE(stlw.FAQuantity,0) * COALESCE(stlw.FAPercent,0)) AS QuantityWeld
 
 FROM SubsDetails sd
 JOIN SubmissionActivityStatus sas
@@ -7941,26 +7953,34 @@ LEFT JOIN PSA.tblCrewsRev tcr
 WHERE sas.ActivityType IN (61,62,63,64,65,68)
 AND sas.fk_ActivityStatus in (1,4,6,8,10)
 AND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)
-GROUP BY sd.SubmissionID, sas.fk_ActivityStatus
 
-ORDER BY sd.SubmissionID DESC
+ORDER BY sd.SubmissionID DESC ) fas
+GROUP BY fas.SubmissionID, fas.PieceMark, fas.fk_ActivityStatus
         ]]>
     <query-param name="SuperID" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="GetActivitiesPendingReviewSteel__count">
         <![CDATA[
-        select count(*) from (SELECT sd.SubmissionID, sas.fk_ActivityStatus, ats.Status, sd.ReceivedTime, 
+        select count(*) from (SELECT fas.SubmissionID, fas.fk_ActivityStatus, fas.Status, fas.ReceivedTime, fas.NameFull, fas.PieceMark,
+SUM(QuantityShake) AS QuantityShake,
+SUM(QuantityErect) AS QuantityErect,
+SUM(QuantityBoltOut) AS QuantityBoltOut,
+SUM(QuantityImp) AS QuantityImp,
+SUM(QuantitySell) AS QuantitySell,
+SUM(QuantityWeld) AS QuantityWeld
+FROM (
+SELECT sd.SubmissionID, sas.fk_ActivityStatus, ats.Status, sd.ReceivedTime, 
 CONCAT(u.FirstName, " ", u.LastName) AS NameFull, 
 
 (COALESCE(stls.FAPieceNumber,COALESCE(stle.FAPieceNumber,COALESCE(stlb.FAPieceNumber, COALESCE(stli.FAPieceNumber, COALESCE(stlsell.FAPieceNumber, COALESCE(stlw.FAPieceNumber,'N/A'))))))) AS PieceMark,
 
-SUM(COALESCE(stls.FAQuantity,0) * COALESCE(stls.FAPercent,0)) AS QuantityShake,
-SUM(COALESCE(stle.FAQuantity,0) * COALESCE(stle.FAPercent,0)) AS QuantityErect,
-SUM(COALESCE(stlb.FAQuantity,0) * COALESCE(stlb.FAPercent,0)) AS QuantityBoltOut,
-SUM(COALESCE(stli.FAQuantity,0) * COALESCE(stli.FAPercent,0)) AS QuantityImp,
-SUM(COALESCE(stlsell.FAQuantity,0) * COALESCE(stlsell.FAPercent,0)) AS QuantitySell,
-SUM(COALESCE(stlw.FAQuantity,0) * COALESCE(stlw.FAPercent,0)) AS QuantityWeld
+(COALESCE(stls.FAQuantity,0) * COALESCE(stls.FAPercent,0)) AS QuantityShake,
+(COALESCE(stle.FAQuantity,0) * COALESCE(stle.FAPercent,0)) AS QuantityErect,
+(COALESCE(stlb.FAQuantity,0) * COALESCE(stlb.FAPercent,0)) AS QuantityBoltOut,
+(COALESCE(stli.FAQuantity,0) * COALESCE(stli.FAPercent,0)) AS QuantityImp,
+(COALESCE(stlsell.FAQuantity,0) * COALESCE(stlsell.FAPercent,0)) AS QuantitySell,
+(COALESCE(stlw.FAQuantity,0) * COALESCE(stlw.FAPercent,0)) AS QuantityWeld
 
 FROM SubsDetails sd
 JOIN SubmissionActivityStatus sas
@@ -7992,9 +8012,9 @@ LEFT JOIN PSA.tblCrewsRev tcr
 WHERE sas.ActivityType IN (61,62,63,64,65,68)
 AND sas.fk_ActivityStatus in (1,4,6,8,10)
 AND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)
-GROUP BY sd.SubmissionID, sas.fk_ActivityStatus
 
-ORDER BY sd.SubmissionID DESC) wmTempTable
+ORDER BY sd.SubmissionID DESC ) fas
+GROUP BY fas.SubmissionID, fas.PieceMark, fas.fk_ActivityStatus) wmTempTable
         ]]>
     <query-param name="SuperID" type="java.lang.String"/>
     </sql-query>
