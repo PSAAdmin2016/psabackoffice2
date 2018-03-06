@@ -24,19 +24,16 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn11" padding=".7% unset unset 1%">
+                    <wm-gridcolumn columnwidth="8" name="gridcolumn11" padding=".7% unset unset 1%">
                         <wm-button class="btn-default" caption="Refresh" type="button" iconclass="glyphicon glyphicon-refresh" on-click="buttonRefreshClick($event, $scope)" paddingunit="%" name="buttonRefresh"></wm-button>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn12"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn13"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn14"></wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="10" name="gridcolumn4">
                         <wm-tabs name="tabs1">
                             <wm-tabpane name="tabFAs" title="Field Activities" show="true" badgevalue="bind:Variables.serviceGetFAs.dataSet.totalElements" padding="unset unset 0% unset" badgetype="primary" on-select="tabFAsSelect($event, $scope)">
-                                <wm-table shownavigation="false" gridfirstrowselect="true" dataset="bind:Variables.serviceGetFAs.dataSet" on-select="gridSuperReviewActivitiesSelect($event, $scope, $rowData)" class="panel-default" height="250px" name="gridSuperReviewActivities" filtermode="multicolumn"
-                                    navigation="None" spacing="condensed" on-datarender="gridSuperReviewActivitiesDatarender($scope, $data)">
+                                <wm-table shownavigation="false" gridfirstrowselect="true" dataset="bind:Variables.serviceGetFAs.dataSet" on-select="gridSuperReviewActivitiesSelect($event, $scope, $rowData)" class="panel-default" height="250px" name="gridSuperReviewActivities"
+                                    filtermode="multicolumn" navigation="None" spacing="condensed" on-datarender="gridSuperReviewActivitiesDatarender($scope, $data)">
                                     <wm-table-column binding="activityId" caption="Field Activity ID" width="10%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="number"></wm-table-column>
                                     <wm-table-column binding="status" caption="Status" width="10%" col-ng-class="{'yellow':row.status == 'Progress Returned', 'orange':row.status == 'Supervisor Modified' || row.Status == 'Progress Returned Mod', 'blue':row.status == 'Returned To List'}"
                                         edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
@@ -44,15 +41,16 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                     <wm-table-column binding="activityTypeName" caption="Activity Type" width="10%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
                                     <wm-table-column binding="nameFull" caption="Foreman" width="15%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
                                     <wm-table-column binding="description" caption="Description" width="35%" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
-                                    <wm-table-column binding="receivedTime" caption="Received Time" textalignment="center" edit-widget-type="text" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" searchable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="receivedTime" caption="Received Time" textalignment="center" edit-widget-type="text" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate"
+                                        searchable="false" show="true"></wm-table-column>
                                 </wm-table>
                             </wm-tabpane>
                             <wm-tabpane name="tabSteel" title="Steel Piece Work" badgetype="primary" on-select="tabSteelSelect($event, $scope)" badgevalue="bind:Variables.serviceGetFAsSteel.dataSet.totalElements">
-                                <wm-table shownavigation="false" gridfirstrowselect="true" dataset="bind:Variables.serviceGetFAsSteel.dataSet" on-select="gridSuperReviewSteelSelect($event, $scope, $rowData)" class="panel-default" height="250px" filtermode="multicolumn" navigation="None"
-                                    spacing="condensed" on-datarender="gridSuperReviewActivitiesDatarender($scope, $data)" name="gridSuperReviewSteel">
+                                <wm-table shownavigation="false" gridfirstrowselect="true" dataset="bind:Variables.serviceGetFAsSteel.dataSet" on-select="gridSuperReviewSteelSelect($event, $scope, $rowData)" class="panel-default" height="250px" filtermode="multicolumn"
+                                    navigation="None" spacing="condensed" on-datarender="gridSuperReviewActivitiesDatarender($scope, $data)" name="gridSuperReviewSteel">
                                     <wm-table-column binding="pieceMark" caption="Piece Mark" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
-                                    <wm-table-column binding="status" caption="Status" col-ng-class="{'yellow':row.status == 'Progress Returned', 'orange':row.status == 'Supervisor Modified' || row.Status == 'Progress Returned Mod', 'blue':row.status == 'Returned To List'}" edit-widget-type="text"
-                                        type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
+                                    <wm-table-column binding="status" caption="Status" col-ng-class="{'yellow':row.status == 'Progress Returned', 'orange':row.status == 'Supervisor Modified' || row.Status == 'Progress Returned Mod', 'blue':row.status == 'Returned To List'}"
+                                        edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
                                     <wm-table-column binding="nameFull" caption="Foreman" width="15%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
                                     <wm-table-column binding="quantityShake" caption="Shake" textalignment="center" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
                                     <wm-table-column binding="quantityErect" caption="Erect" textalignment="center" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
@@ -60,7 +58,8 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                     <wm-table-column binding="quantityImp" caption="Impact" textalignment="center" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
                                     <wm-table-column binding="quantityWeld" caption="Weld" textalignment="center" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
                                     <wm-table-column binding="quantitySell" caption="Sell/Punch" textalignment="center" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
-                                    <wm-table-column binding="receivedTime" caption="Received Time" textalignment="center" edit-widget-type="text" type="string" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" searchable="false" show="true" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="receivedTime" caption="Received Time" textalignment="center" edit-widget-type="text" type="string" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" searchable="false"
+                                        show="true" readonly="false"></wm-table-column>
                                 </wm-table>
                             </wm-tabpane>
                         </wm-tabs>
@@ -75,8 +74,8 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                             </wm-gridrow>
                             <wm-gridrow name="gridrow20">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn47">
-                                    <wm-button class="btn-raised" caption="Research" type="button" margin="unset unset 5% 2%" backgroundcolor="#40E0D0" hint="Jump to Classic Tracker, Filtered to This Dwg, Sheet" on-click="buttonResearchClick($event, $scope)" accessroles="Everyone" name="buttonResearch"
-                                        width="50%" iconclass="fa fa-search" disabled="bind:Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 93"></wm-button>
+                                    <wm-button class="btn-raised" caption="Research" type="button" margin="unset unset 5% 2%" backgroundcolor="#40E0D0" hint="Jump to Classic Tracker, Filtered to This Dwg, Sheet" on-click="buttonResearchClick($event, $scope)"
+                                        accessroles="Everyone" name="buttonResearch" width="50%" iconclass="fa fa-search" disabled="bind:Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 93"></wm-button>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                             <wm-gridrow name="gridrow21">
@@ -98,15 +97,16 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                         backgroundcolor="#0B9642" iconclass="glyphicon glyphicon-thumbs-up" shortcutkey="a" name="btnAccept"></wm-button>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="4" name="gridcolumn15">
-                                    <wm-button class="btn-default" caption="Modify" type="button" hint="Modify this activity." readonlygrid="true" on-click="btnModifyClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == false" backgroundcolor="#ff6500" iconclass="glyphicon glyphicon-edit"
-                                        shortcutkey="m" name="btnModify"></wm-button>
-                                    <wm-button class="btn-default" caption="Cancel" type="button" hint="Cancel." on-click="btnCancelClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == true" backgroundcolor="#a07d7d" iconclass="glyphicon glyphicon-remove" name="btnCancel"></wm-button>
+                                    <wm-button class="btn-default" caption="Modify" type="button" hint="Modify this activity." readonlygrid="true" on-click="btnModifyClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == false" backgroundcolor="#ff6500"
+                                        iconclass="glyphicon glyphicon-edit" shortcutkey="m" name="btnModify"></wm-button>
+                                    <wm-button class="btn-default" caption="Cancel" type="button" hint="Cancel." on-click="btnCancelClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == true" backgroundcolor="#a07d7d"
+                                        iconclass="glyphicon glyphicon-remove" name="btnCancel"></wm-button>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="4" name="gridcolumn16">
-                                    <wm-button class="btn-default" caption="Reject" type="button" hint="Reject this activity and remove it from the list." on-click="btnRejectClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == false" backgroundcolor="#dc0000"
-                                        iconclass="glyphicon glyphicon-thumbs-down" shortcutkey="r" name="btnReject"></wm-button>
-                                    <wm-button class="btn-default" caption="Save" type="button" hint="Save your changes." readonlygrid="true" show="bind:Variables.staticEditMode.dataSet.dataValue == true" backgroundcolor="#0B9642" on-click="btnSaveClick($event, $scope)" iconclass="glyphicon glyphicon-ok"
-                                        name="btnSave"></wm-button>
+                                    <wm-button class="btn-default" caption="Reject" type="button" hint="Reject this activity and remove it from the list." on-click="btnRejectClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == false"
+                                        backgroundcolor="#dc0000" iconclass="glyphicon glyphicon-thumbs-down" shortcutkey="r" name="btnReject"></wm-button>
+                                    <wm-button class="btn-default" caption="Save" type="button" hint="Save your changes." readonlygrid="true" show="bind:Variables.staticEditMode.dataSet.dataValue == true" backgroundcolor="#0B9642" on-click="btnSaveClick($event, $scope)"
+                                        iconclass="glyphicon glyphicon-ok" name="btnSave"></wm-button>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                         </wm-layoutgrid>

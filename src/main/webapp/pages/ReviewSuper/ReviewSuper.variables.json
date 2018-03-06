@@ -7673,5 +7673,18 @@
     "type" : "boolean",
     "isList" : false,
     "saveInPhonegap" : false
+  },
+  "staticTabSelect" : {
+    "_id" : "wm-staticTabSelect-wm.Variable-1520346018983",
+    "name" : "staticTabSelect",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : "1"
+    },
+    "type" : "string",
+    "isList" : false,
+    "saveInPhonegap" : false
   }
 }

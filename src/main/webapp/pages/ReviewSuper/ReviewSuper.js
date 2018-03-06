@@ -22,7 +22,6 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
     $scope.buttonRefreshClick = function($event, $isolateScope) {
         $scope.Variables.serviceGetFAs.invoke();
         $scope.Variables.serviceGetFAsSteel.invoke();
-
     };
 
 
@@ -41,7 +40,7 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
 
     $scope.btnRejectClick = function($event, $isolateScope) {
-        $scope.Variables.serviceUpdateSS.dataBinding.ActivityStatus = '3';
+        $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "3");
         $scope.Variables.serviceUpdateSS.invoke();
     };
 
@@ -58,6 +57,9 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
     $scope.btnSaveClick = function($event, $isolateScope) {
         $scope.Variables.staticEditMode.dataSet.dataValue = false; //disable all fields
+        if ($scope.Variables.staticTabSelect.dataValue == '1') {
+
+        }
 
         //Update changes to Field Activities
         if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 22) {
@@ -395,15 +397,17 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
 
     $scope.tabFAsSelect = function($event, $isolateScope) {
+        $scope.Variables.staticTabSelect.setValue('dataValue', '1');
+
         $scope.Variables.liveGetSubsDetails.setFilter('submissionId', $scope.Widgets.gridSuperReviewActivities.selecteditem.submissionId);
         $scope.Variables.liveGetSubsDetails.listRecords();
 
         $scope.gridSuperReviewActivitiesSelect(null, null, $scope.Widgets.gridSuperReviewActivities.selecteditem);
-
     };
 
 
     $scope.tabSteelSelect = function($event, $isolateScope) {
+        $scope.Variables.staticTabSelect.setValue('dataValue', '2');
         $scope.Widgets.containerFADetails.content = 'PartFASteelStandard';
     };
 

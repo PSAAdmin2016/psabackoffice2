@@ -26,4 +26,12 @@ Application.$controller("TestLabPageController", ["$scope", function($scope) {
     };
 
 
+
+    $scope.button6Click = function($event, $isolateScope) {
+        $scope.Variables.ActiveJobNumber.dataSet.dataValue = 1234;
+        $scope.Variables.ActiveJobNumber.setValue("dataValue", 1234);
+        $scope.Variables.serviceGetACHEquipFA.invoke();
+        debugger;
+    };
+
 }]);
