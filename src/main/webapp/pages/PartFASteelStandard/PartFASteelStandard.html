@@ -18,13 +18,10 @@
                     <wm-table-column binding="fanotes" caption="Notes" edit-widget-type="textarea" type="string" readonly="true" show="true"></wm-table-column>
                     <wm-table-column binding="status" caption="Status" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
                     <wm-table-column binding="rowOperations" caption="Actions" width="120px" edit-widget-type="text" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-table-column>
-                    <wm-table-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-table-row-action>
+                    <wm-table-row-action key="customRow" display-name="Reject" show="true" class="btn-default" iconclass="glyphicon glyphicon-thumbs-down" title="rowActionReject" action="customRowAction($event)" disabled="false"></wm-table-row-action>
                 </wm-table>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn7"></wm-gridcolumn>
-        </wm-gridrow>
-        <wm-gridrow name="gridrow7">
-            <wm-gridcolumn columnwidth="12" name="gridcolumn11"></wm-gridcolumn>
         </wm-gridrow>
         <wm-gridrow name="gridrow3">
             <wm-gridcolumn columnwidth="6" name="gridcolumn5"></wm-gridcolumn>

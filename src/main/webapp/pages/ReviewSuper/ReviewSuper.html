@@ -93,8 +93,10 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                         <wm-layoutgrid name="layoutgrid2">
                             <wm-gridrow name="gridrow6">
                                 <wm-gridcolumn columnwidth="4" name="gridcolumn14_1">
-                                    <wm-button class="btn-default" caption="Accept" type="button" hint="Accept the activity and submit to project services review." on-click="btnAcceptClick($event, $scope)" readonlygrid="true" tabindex="1" show="bind:Variables.staticEditMode.dataSet.dataValue == false"
+                                    <wm-button class="btn-default" caption="Accept" type="button" hint="Accept the activity and submit to project services review." on-click="btnAcceptClick($event, $scope)" readonlygrid="true" tabindex="1" show="bind:Variables.staticEditMode.dataSet.dataValue == false &amp;&amp; Variables.staticTabSelect.dataSet.dataValue == '1'"
                                         backgroundcolor="#0B9642" iconclass="glyphicon glyphicon-thumbs-up" shortcutkey="a" name="btnAccept"></wm-button>
+                                    <wm-button class="btn-default" caption="Accept" type="button" hint="Accept the activities and submit to project services review." on-click="btnAccept2Click($event, $scope)" readonlygrid="true" tabindex="1"
+                                        show="bind:Variables.staticEditMode.dataSet.dataValue == false &amp;&amp; Variables.staticTabSelect.dataSet.dataValue == '2'" backgroundcolor="#0B9642" iconclass="glyphicon glyphicon-thumbs-up" shortcutkey="a" name="btnAccept2"></wm-button>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="4" name="gridcolumn15">
                                     <wm-button class="btn-default" caption="Modify" type="button" hint="Modify this activity." readonlygrid="true" on-click="btnModifyClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == false" backgroundcolor="#ff6500"

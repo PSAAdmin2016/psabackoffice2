@@ -22,5 +22,10 @@ Application.$controller("gridSteelFAController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.customRowAction = function($event, $rowData) {
+            debugger;
+        };
+
     }
 ]);

@@ -26,16 +26,39 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
 
     $scope.btnAcceptClick = function($event, $isolateScope) {
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus == 1 || $scope.Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus == 10) { //New || Returned To List
-            $scope.Variables.serviceUpdateSS.dataBinding.ActivityStatus = 2;
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus == 6 || $scope.Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus == 8) { //Progress Returned || Progress Rejected mod
-            $scope.Variables.serviceUpdateSS.dataBinding.ActivityStatus = 7;
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus == 4) { // Supervisor Modified
-            $scope.Variables.serviceUpdateSS.dataBinding.ActivityStatus = 9;
+        switch ($scope.Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus) {
+            case 1:
+            case 10:
+                $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "2");
+                break;
+            case 6:
+            case 8:
+                $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "7");
+                break;
+            case 4:
+                $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "9");
         }
         $scope.Variables.serviceUpdateSS.invoke();
+    };
+
+
+    $scope.btnAccept2Click = function($event, $isolateScope) {
+        switch ($scope.Widgets.gridSuperReviewSteel.selecteditem.fk_ActivityStatus) {
+            case 1:
+            case 10:
+                $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "2");
+                break;
+            case 6:
+            case 8:
+                $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "7");
+                break;
+            case 4:
+                $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "9");
+        }
+        //Need logic for looping through all FA's that make up the one row selected in the gridSuperReviewSteel.  
+        //OR pass a List to the querry if that works right.
+        //OR Build an array of objects to pass to an UpdateSS LiveVariable -> setInput() -> invoke()
+        //$scope.Variables.serviceUpdateSS.invoke();
     };
 
 
@@ -415,6 +438,9 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
     $scope.liveGetSubsSignaturesonSuccess = function(variable, data) { //SubsSignatures Called by On Success event in liveGetSubsDetails variable
         $scope.signaturePad.fromDataURL(data[0].signatureData);
     };
+
+
+
 
 
 
