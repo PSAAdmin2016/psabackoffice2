@@ -8,6 +8,7 @@
     <import resource="classpath:NewJobTriggers.spring.xml"/>
     <import resource="classpath:PSA.spring.xml"/>
     <import resource="classpath:SHA256Encryption.spring.xml"/>
+    <import resource="classpath:WeatherCurrent.spring.xml"/>
     <import resource="classpath:WeatherHistory.spring.xml"/>
     <import resource="classpath:schemaChangeService.spring.xml"/>
     <import resource="classpath:securityService.spring.xml"/>

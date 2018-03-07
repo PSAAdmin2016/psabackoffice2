@@ -1,0 +1,367 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "2.0",
+    "x-WM-USE_PROXY_FOR_WEB" : true,
+    "x-WM-USE_PROXY_FOR_MOBILE" : true,
+    "x-WM-API_ID" : "6a1bae3d-dd2f-4a8a-b97e-912ec89d36ff",
+    "x-WM-SERVICE_ID" : "wunderground",
+    "x-WM-SERVICE_TYPE" : "RestService"
+  },
+  "host" : "api.wunderground.com",
+  "basePath" : "",
+  "tags" : [ {
+    "name" : "RestServiceVirtualController",
+    "description" : "Rest service swagger documentation"
+  } ],
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/WeatherCurrent/invoke/a64134bb22ac4df4/conditions/q/{zipcode}.json" : {
+      "get" : {
+        "tags" : [ "RestServiceVirtualController" ],
+        "operationId" : "WeatherCurrent_RestServiceVirtualController-invoke",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "zipcode",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/RootResponse"
+            }
+          }
+        },
+        "x-WM-METHOD_NAME" : "invoke",
+        "x-WM-ACCESS_SPECIFIER" : "APP_ONLY"
+      },
+      "x-WM-BASE_PATH" : "/WeatherCurrent/invoke/a64134bb22ac4df4/conditions/q/{zipcode}.json",
+      "x-WM-TAG" : "RestServiceVirtualController",
+      "x-WM-RELATIVE_PATH" : "",
+      "x-WM-COMPLETE_PATH" : "${rest.WeatherCurrent.scheme}://${rest.WeatherCurrent.host}${rest.WeatherCurrent.basepath}/a64134bb22ac4df4/conditions/q/{zipcode}.json"
+    }
+  },
+  "definitions" : {
+    "display_location" : {
+      "required" : [ "city", "country", "country_iso3166", "elevation", "full", "latitude", "longitude", "magic", "state", "state_name", "wmo", "zip" ],
+      "properties" : {
+        "zip" : {
+          "type" : "string"
+        },
+        "magic" : {
+          "type" : "string"
+        },
+        "elevation" : {
+          "type" : "string"
+        },
+        "country" : {
+          "type" : "string"
+        },
+        "country_iso3166" : {
+          "type" : "string"
+        },
+        "city" : {
+          "type" : "string"
+        },
+        "state_name" : {
+          "type" : "string"
+        },
+        "latitude" : {
+          "type" : "string"
+        },
+        "wmo" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "full" : {
+          "type" : "string"
+        },
+        "longitude" : {
+          "type" : "string"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherCurrent.display_location",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "features" : {
+      "required" : [ "conditions" ],
+      "properties" : {
+        "conditions" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherCurrent.features",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "image" : {
+      "required" : [ "link", "title", "url" ],
+      "properties" : {
+        "link" : {
+          "type" : "string"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherCurrent.image",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "observation_location" : {
+      "required" : [ "city", "country", "country_iso3166", "elevation", "full", "latitude", "longitude", "state" ],
+      "properties" : {
+        "elevation" : {
+          "type" : "string"
+        },
+        "country" : {
+          "type" : "string"
+        },
+        "country_iso3166" : {
+          "type" : "string"
+        },
+        "city" : {
+          "type" : "string"
+        },
+        "latitude" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "full" : {
+          "type" : "string"
+        },
+        "longitude" : {
+          "type" : "string"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherCurrent.observation_location",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "response" : {
+      "required" : [ "features", "termsofService", "version" ],
+      "properties" : {
+        "features" : {
+          "$ref" : "#/definitions/features"
+        },
+        "version" : {
+          "type" : "string"
+        },
+        "termsofService" : {
+          "type" : "string"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherCurrent.response",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "estimated" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherCurrent.estimated",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "current_observation" : {
+      "required" : [ "UV", "dewpoint_c", "dewpoint_f", "dewpoint_string", "display_location", "estimated", "feelslike_c", "feelslike_f", "feelslike_string", "forecast_url", "heat_index_c", "heat_index_f", "heat_index_string", "history_url", "icon", "icon_url", "image", "local_epoch", "local_time_rfc822", "local_tz_long", "local_tz_offset", "local_tz_short", "nowcast", "ob_url", "observation_epoch", "observation_location", "observation_time", "observation_time_rfc822", "precip_1hr_in", "precip_1hr_metric", "precip_1hr_string", "precip_today_in", "precip_today_metric", "precip_today_string", "pressure_in", "pressure_mb", "pressure_trend", "relative_humidity", "solarradiation", "station_id", "temp_c", "temp_f", "temperature_string", "visibility_km", "visibility_mi", "weather", "wind_degrees", "wind_dir", "wind_gust_kph", "wind_gust_mph", "wind_kph", "wind_mph", "wind_string", "windchill_c", "windchill_f", "windchill_string" ],
+      "properties" : {
+        "nowcast" : {
+          "type" : "string"
+        },
+        "temp_c" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "observation_epoch" : {
+          "type" : "string"
+        },
+        "temp_f" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "wind_kph" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "wind_mph" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "wind_degrees" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "temperature_string" : {
+          "type" : "string"
+        },
+        "weather" : {
+          "type" : "string"
+        },
+        "feelslike_string" : {
+          "type" : "string"
+        },
+        "precip_today_metric" : {
+          "type" : "string"
+        },
+        "precip_1hr_string" : {
+          "type" : "string"
+        },
+        "icon_url" : {
+          "type" : "string"
+        },
+        "image" : {
+          "$ref" : "#/definitions/image"
+        },
+        "UV" : {
+          "type" : "string"
+        },
+        "station_id" : {
+          "type" : "string"
+        },
+        "local_epoch" : {
+          "type" : "string"
+        },
+        "local_tz_short" : {
+          "type" : "string"
+        },
+        "wind_dir" : {
+          "type" : "string"
+        },
+        "precip_1hr_metric" : {
+          "type" : "string"
+        },
+        "pressure_in" : {
+          "type" : "string"
+        },
+        "local_tz_long" : {
+          "type" : "string"
+        },
+        "wind_gust_mph" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "windchill_string" : {
+          "type" : "string"
+        },
+        "wind_gust_kph" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "wind_string" : {
+          "type" : "string"
+        },
+        "local_time_rfc822" : {
+          "type" : "string"
+        },
+        "visibility_km" : {
+          "type" : "string"
+        },
+        "relative_humidity" : {
+          "type" : "string"
+        },
+        "pressure_mb" : {
+          "type" : "string"
+        },
+        "observation_time_rfc822" : {
+          "type" : "string"
+        },
+        "precip_1hr_in" : {
+          "type" : "string"
+        },
+        "feelslike_c" : {
+          "type" : "string"
+        },
+        "observation_time" : {
+          "type" : "string"
+        },
+        "feelslike_f" : {
+          "type" : "string"
+        },
+        "history_url" : {
+          "type" : "string"
+        },
+        "windchill_f" : {
+          "type" : "string"
+        },
+        "windchill_c" : {
+          "type" : "string"
+        },
+        "precip_today_string" : {
+          "type" : "string"
+        },
+        "icon" : {
+          "type" : "string"
+        },
+        "precip_today_in" : {
+          "type" : "string"
+        },
+        "solarradiation" : {
+          "type" : "string"
+        },
+        "observation_location" : {
+          "$ref" : "#/definitions/observation_location"
+        },
+        "dewpoint_f" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "display_location" : {
+          "$ref" : "#/definitions/display_location"
+        },
+        "dewpoint_string" : {
+          "type" : "string"
+        },
+        "pressure_trend" : {
+          "type" : "string"
+        },
+        "dewpoint_c" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "estimated" : {
+          "$ref" : "#/definitions/estimated"
+        },
+        "forecast_url" : {
+          "type" : "string"
+        },
+        "local_tz_offset" : {
+          "type" : "string"
+        },
+        "heat_index_f" : {
+          "type" : "string"
+        },
+        "heat_index_c" : {
+          "type" : "string"
+        },
+        "ob_url" : {
+          "type" : "string"
+        },
+        "heat_index_string" : {
+          "type" : "string"
+        },
+        "visibility_mi" : {
+          "type" : "string"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherCurrent.current_observation",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "RootResponse" : {
+      "required" : [ "current_observation", "response" ],
+      "properties" : {
+        "response" : {
+          "$ref" : "#/definitions/response"
+        },
+        "current_observation" : {
+          "$ref" : "#/definitions/current_observation"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherCurrent.RootResponse",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    }
+  }
+}
