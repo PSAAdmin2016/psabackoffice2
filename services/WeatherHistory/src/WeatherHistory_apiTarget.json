@@ -1,45 +1,14 @@
 {
-  "tags" : [ {
-    "description" : "Rest service swagger documentation",
-    "name" : "RestServiceVirtualController"
-  } ],
   "basePath" : "${rest.WeatherHistory.basepath}",
   "paths" : {
-    "/7c85903fe2de535c/history_{Year}{Month}{Day}/q/{State}/{City}.json" : {
-      "x-WM-BASE_PATH" : "/7c85903fe2de535c/history_{Year}{Month}{Day}/q/{State}/{City}.json",
+    "/api/{key}/history_{yyyy}{mm}{dd}/q/{zipcode}.json" : {
+      "x-WM-BASE_PATH" : "/api/{key}/history_{yyyy}{mm}{dd}/q/{zipcode}.json",
       "x-WM-TAG" : "RestServiceVirtualController",
+      "x-WM-RELATIVE_PATH" : "",
       "get" : {
-        "tags" : [ "RestServiceVirtualController" ],
         "x-WM-METHOD_NAME" : "invoke",
         "x-WM-ACCESS_SPECIFIER" : "APP_ONLY",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "Year",
-          "type" : "string",
-          "required" : true,
-          "in" : "path"
-        }, {
-          "name" : "Month",
-          "type" : "string",
-          "required" : true,
-          "in" : "path"
-        }, {
-          "name" : "Day",
-          "type" : "string",
-          "required" : true,
-          "in" : "path"
-        }, {
-          "name" : "State",
-          "type" : "string",
-          "required" : true,
-          "in" : "path"
-        }, {
-          "name" : "City",
-          "type" : "string",
-          "required" : true,
-          "in" : "path"
-        } ],
-        "consumes" : [ "text/xml" ],
+        "operationId" : "WeatherHistory_RestServiceVirtualController-invoke",
         "responses" : {
           "200" : {
             "schema" : {
@@ -48,124 +17,400 @@
             "description" : "Success"
           }
         },
-        "operationId" : "WeatherHistory_RestServiceVirtualController-invoke"
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "key",
+          "type" : "string",
+          "required" : true
+        }, {
+          "in" : "path",
+          "name" : "yyyy",
+          "type" : "string",
+          "required" : true
+        }, {
+          "in" : "path",
+          "name" : "mm",
+          "type" : "string",
+          "required" : true
+        }, {
+          "in" : "path",
+          "name" : "dd",
+          "type" : "string",
+          "required" : true
+        }, {
+          "in" : "path",
+          "name" : "zipcode",
+          "type" : "string",
+          "required" : true
+        } ],
+        "tags" : [ "RestServiceVirtualController" ],
+        "consumes" : [ "text/xml" ]
       },
-      "x-WM-RELATIVE_PATH" : "",
-      "x-WM-COMPLETE_PATH" : "${rest.WeatherHistory.scheme}://${rest.WeatherHistory.host}${rest.WeatherHistory.basepath}/7c85903fe2de535c/history_{Year}{Month}{Day}/q/{State}/{City}.json"
+      "x-WM-COMPLETE_PATH" : "${rest.WeatherHistory.scheme}://${rest.WeatherHistory.host}${rest.WeatherHistory.basepath}/api/{key}/history_{yyyy}{mm}{dd}/q/{zipcode}.json"
     }
   },
   "host" : "${rest.WeatherHistory.host}",
   "schemes" : [ "${rest.WeatherHistory.scheme}" ],
-  "swagger" : "2.0",
   "definitions" : {
-    "history" : {
-      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.history",
+    "date" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.date",
       "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "hour", "mday", "min", "mon", "pretty", "tzname", "year" ],
       "properties" : {
-        "dailysummary" : {
-          "x-WM-IS_LIST" : true,
-          "items" : {
-            "$ref" : "#/definitions/dailysummaryEntryItem"
-          },
-          "uniqueItems" : false,
-          "type" : "array"
+        "pretty" : {
+          "type" : "string"
         },
-        "utcdate" : {
-          "$ref" : "#/definitions/utcdate"
+        "min" : {
+          "type" : "string"
         },
+        "hour" : {
+          "type" : "string"
+        },
+        "year" : {
+          "type" : "string"
+        },
+        "mday" : {
+          "type" : "string"
+        },
+        "mon" : {
+          "type" : "string"
+        },
+        "tzname" : {
+          "type" : "string"
+        }
+      }
+    },
+    "dailysummaryEntryItem" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.dailysummaryEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "coolingdegreedays", "coolingdegreedaysnormal", "date", "fog", "gdegreedays", "hail", "heatingdegreedays", "heatingdegreedaysnormal", "humidity", "maxdewpti", "maxdewptm", "maxhumidity", "maxpressurei", "maxpressurem", "maxtempi", "maxtempm", "maxvisi", "maxvism", "maxwspdi", "maxwspdm", "meandewpti", "meandewptm", "meanpressurei", "meanpressurem", "meantempi", "meantempm", "meanvisi", "meanvism", "meanwdird", "meanwdire", "meanwindspdi", "meanwindspdm", "mindewpti", "mindewptm", "minhumidity", "minpressurei", "minpressurem", "mintempi", "mintempm", "minvisi", "minvism", "minwspdi", "minwspdm", "monthtodatecoolingdegreedays", "monthtodatecoolingdegreedaysnormal", "monthtodateheatingdegreedays", "monthtodateheatingdegreedaysnormal", "monthtodatesnowfalli", "monthtodatesnowfallm", "precipi", "precipm", "precipsource", "rain", "since1jancoolingdegreedays", "since1jancoolingdegreedaysnormal", "since1julheatingdegreedays", "since1julheatingdegreedaysnormal", "since1julsnowfalli", "since1julsnowfallm", "since1sepcoolingdegreedays", "since1sepcoolingdegreedaysnormal", "since1sepheatingdegreedays", "since1sepheatingdegreedaysnormal", "snow", "snowdepthi", "snowdepthm", "snowfalli", "snowfallm", "thunder", "tornado" ],
+      "properties" : {
         "date" : {
           "$ref" : "#/definitions/date"
         },
-        "observations" : {
-          "x-WM-IS_LIST" : true,
-          "items" : {
-            "$ref" : "#/definitions/observationsEntryItem"
-          },
-          "uniqueItems" : false,
-          "type" : "array"
-        }
-      },
-      "required" : [ "dailysummary", "date", "observations", "utcdate" ]
-    },
-    "response" : {
-      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.response",
-      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
-      "properties" : {
-        "features" : {
-          "$ref" : "#/definitions/features"
-        },
-        "termsofService" : {
+        "snowfallm" : {
           "type" : "string"
         },
-        "version" : {
-          "type" : "string"
-        }
-      },
-      "required" : [ "features", "termsofService", "version" ]
-    },
-    "RootResponse" : {
-      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.RootResponse",
-      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
-      "properties" : {
-        "history" : {
-          "$ref" : "#/definitions/history"
-        },
-        "response" : {
-          "$ref" : "#/definitions/response"
-        }
-      },
-      "required" : [ "history", "response" ]
-    },
-    "observationsEntryItem" : {
-      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.observationsEntryItem",
-      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
-      "properties" : {
-        "dewptm" : {
+        "precipi" : {
           "type" : "string"
         },
-        "wdird" : {
+        "precipsource" : {
           "type" : "string"
         },
-        "wspdm" : {
+        "since1julheatingdegreedays" : {
           "type" : "string"
         },
-        "wdire" : {
+        "snowfalli" : {
           "type" : "string"
         },
-        "tempi" : {
+        "precipm" : {
           "type" : "string"
         },
-        "wspdi" : {
+        "meantempm" : {
           "type" : "string"
         },
-        "tempm" : {
+        "since1julsnowfallm" : {
           "type" : "string"
         },
-        "utcdate" : {
-          "$ref" : "#/definitions/utcdate"
-        },
-        "windchillm" : {
+        "monthtodateheatingdegreedays" : {
           "type" : "string"
         },
-        "date" : {
-          "$ref" : "#/definitions/date"
-        },
-        "wgustm" : {
+        "thunder" : {
           "type" : "string"
         },
-        "wgusti" : {
+        "meantempi" : {
+          "type" : "string"
+        },
+        "since1julsnowfalli" : {
+          "type" : "string"
+        },
+        "meanvisi" : {
+          "type" : "string"
+        },
+        "since1jancoolingdegreedaysnormal" : {
+          "type" : "string"
+        },
+        "maxwspdi" : {
+          "type" : "string"
+        },
+        "meanvism" : {
+          "type" : "string"
+        },
+        "mintempm" : {
+          "type" : "string"
+        },
+        "minhumidity" : {
+          "type" : "string"
+        },
+        "mintempi" : {
+          "type" : "string"
+        },
+        "humidity" : {
+          "type" : "string"
+        },
+        "monthtodatecoolingdegreedaysnormal" : {
+          "type" : "string"
+        },
+        "maxwspdm" : {
+          "type" : "string"
+        },
+        "monthtodateheatingdegreedaysnormal" : {
+          "type" : "string"
+        },
+        "rain" : {
+          "type" : "string"
+        },
+        "gdegreedays" : {
+          "type" : "string"
+        },
+        "since1sepcoolingdegreedaysnormal" : {
+          "type" : "string"
+        },
+        "monthtodatecoolingdegreedays" : {
+          "type" : "string"
+        },
+        "since1sepheatingdegreedaysnormal" : {
+          "type" : "string"
+        },
+        "heatingdegreedaysnormal" : {
+          "type" : "string"
+        },
+        "monthtodatesnowfalli" : {
+          "type" : "string"
+        },
+        "mindewptm" : {
           "type" : "string"
         },
         "snow" : {
           "type" : "string"
         },
+        "monthtodatesnowfallm" : {
+          "type" : "string"
+        },
+        "mindewpti" : {
+          "type" : "string"
+        },
+        "heatingdegreedays" : {
+          "type" : "string"
+        },
+        "snowdepthm" : {
+          "type" : "string"
+        },
+        "maxdewptm" : {
+          "type" : "string"
+        },
+        "fog" : {
+          "type" : "string"
+        },
+        "snowdepthi" : {
+          "type" : "string"
+        },
+        "maxdewpti" : {
+          "type" : "string"
+        },
+        "maxtempm" : {
+          "type" : "string"
+        },
+        "minwspdi" : {
+          "type" : "string"
+        },
+        "maxtempi" : {
+          "type" : "string"
+        },
+        "since1sepcoolingdegreedays" : {
+          "type" : "string"
+        },
+        "meanpressurem" : {
+          "type" : "string"
+        },
+        "minwspdm" : {
+          "type" : "string"
+        },
+        "coolingdegreedaysnormal" : {
+          "type" : "string"
+        },
+        "minpressurem" : {
+          "type" : "string"
+        },
+        "minvisi" : {
+          "type" : "string"
+        },
+        "tornado" : {
+          "type" : "string"
+        },
+        "meandewpti" : {
+          "type" : "string"
+        },
+        "maxhumidity" : {
+          "type" : "string"
+        },
+        "minpressurei" : {
+          "type" : "string"
+        },
+        "minvism" : {
+          "type" : "string"
+        },
+        "meandewptm" : {
+          "type" : "string"
+        },
+        "maxpressurem" : {
+          "type" : "string"
+        },
+        "since1jancoolingdegreedays" : {
+          "type" : "string"
+        },
+        "hail" : {
+          "type" : "string"
+        },
+        "meanwindspdm" : {
+          "type" : "string"
+        },
+        "maxpressurei" : {
+          "type" : "string"
+        },
+        "meanwdire" : {
+          "type" : "string"
+        },
+        "since1julheatingdegreedaysnormal" : {
+          "type" : "string"
+        },
+        "meanwdird" : {
+          "type" : "string"
+        },
+        "maxvism" : {
+          "type" : "string"
+        },
+        "since1sepheatingdegreedays" : {
+          "type" : "string"
+        },
+        "meanwindspdi" : {
+          "type" : "string"
+        },
+        "maxvisi" : {
+          "type" : "string"
+        },
+        "meanpressurei" : {
+          "type" : "string"
+        },
+        "coolingdegreedays" : {
+          "type" : "string"
+        }
+      }
+    },
+    "features" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.features",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "history" ],
+      "properties" : {
+        "history" : {
+          "format" : "int32",
+          "type" : "integer"
+        }
+      }
+    },
+    "response" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.response",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "features", "termsofService", "version" ],
+      "properties" : {
+        "features" : {
+          "$ref" : "#/definitions/features"
+        },
+        "version" : {
+          "type" : "string"
+        },
+        "termsofService" : {
+          "type" : "string"
+        }
+      }
+    },
+    "history" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.history",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "dailysummary", "date", "observations", "utcdate" ],
+      "properties" : {
+        "date" : {
+          "$ref" : "#/definitions/date"
+        },
+        "dailysummary" : {
+          "x-WM-IS_LIST" : true,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/dailysummaryEntryItem"
+          }
+        },
+        "observations" : {
+          "x-WM-IS_LIST" : true,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/observationsEntryItem"
+          }
+        },
+        "utcdate" : {
+          "$ref" : "#/definitions/utcdate"
+        }
+      }
+    },
+    "observationsEntryItem" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.observationsEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "conds", "date", "dewpti", "dewptm", "fog", "hail", "heatindexi", "heatindexm", "hum", "icon", "metar", "precipi", "precipm", "pressurei", "pressurem", "rain", "snow", "tempi", "tempm", "thunder", "tornado", "utcdate", "visi", "vism", "wdird", "wdire", "wgusti", "wgustm", "windchilli", "windchillm", "wspdi", "wspdm" ],
+      "properties" : {
+        "date" : {
+          "$ref" : "#/definitions/date"
+        },
+        "hum" : {
+          "type" : "string"
+        },
+        "precipi" : {
+          "type" : "string"
+        },
+        "precipm" : {
+          "type" : "string"
+        },
+        "tempi" : {
+          "type" : "string"
+        },
+        "icon" : {
+          "type" : "string"
+        },
+        "tempm" : {
+          "type" : "string"
+        },
+        "thunder" : {
+          "type" : "string"
+        },
         "windchilli" : {
           "type" : "string"
         },
-        "conds" : {
+        "wgusti" : {
           "type" : "string"
         },
-        "dewpti" : {
+        "pressurei" : {
+          "type" : "string"
+        },
+        "windchillm" : {
+          "type" : "string"
+        },
+        "wgustm" : {
+          "type" : "string"
+        },
+        "wdire" : {
+          "type" : "string"
+        },
+        "wdird" : {
+          "type" : "string"
+        },
+        "wspdi" : {
+          "type" : "string"
+        },
+        "pressurem" : {
+          "type" : "string"
+        },
+        "utcdate" : {
+          "$ref" : "#/definitions/utcdate"
+        },
+        "wspdm" : {
           "type" : "string"
         },
         "rain" : {
@@ -174,34 +419,28 @@
         "metar" : {
           "type" : "string"
         },
-        "thunder" : {
+        "heatindexi" : {
+          "type" : "string"
+        },
+        "tornado" : {
+          "type" : "string"
+        },
+        "dewpti" : {
           "type" : "string"
         },
         "hail" : {
           "type" : "string"
         },
-        "icon" : {
-          "type" : "string"
-        },
-        "heatindexi" : {
-          "type" : "string"
-        },
-        "hum" : {
-          "type" : "string"
-        },
-        "precipi" : {
-          "type" : "string"
-        },
-        "pressurei" : {
-          "type" : "string"
-        },
-        "precipm" : {
-          "type" : "string"
-        },
-        "pressurem" : {
-          "type" : "string"
-        },
         "heatindexm" : {
+          "type" : "string"
+        },
+        "conds" : {
+          "type" : "string"
+        },
+        "snow" : {
+          "type" : "string"
+        },
+        "dewptm" : {
           "type" : "string"
         },
         "vism" : {
@@ -212,246 +451,37 @@
         },
         "fog" : {
           "type" : "string"
-        },
-        "tornado" : {
-          "type" : "string"
         }
-      },
-      "required" : [ "conds", "date", "dewpti", "dewptm", "fog", "hail", "heatindexi", "heatindexm", "hum", "icon", "metar", "precipi", "precipm", "pressurei", "pressurem", "rain", "snow", "tempi", "tempm", "thunder", "tornado", "utcdate", "visi", "vism", "wdird", "wdire", "wgusti", "wgustm", "windchilli", "windchillm", "wspdi", "wspdm" ]
+      }
     },
-    "features" : {
-      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.features",
+    "RootResponse" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.RootResponse",
       "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "history", "response" ],
       "properties" : {
+        "response" : {
+          "$ref" : "#/definitions/response"
+        },
         "history" : {
-          "format" : "int32",
-          "type" : "integer"
+          "$ref" : "#/definitions/history"
         }
-      },
-      "required" : [ "history" ]
-    },
-    "dailysummaryEntryItem" : {
-      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.dailysummaryEntryItem",
-      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
-      "properties" : {
-        "maxtempi" : {
-          "type" : "string"
-        },
-        "minpressurei" : {
-          "type" : "string"
-        },
-        "coolingdegreedays" : {
-          "type" : "string"
-        },
-        "meanpressurem" : {
-          "type" : "string"
-        },
-        "meandewpti" : {
-          "type" : "string"
-        },
-        "maxtempm" : {
-          "type" : "string"
-        },
-        "minpressurem" : {
-          "type" : "string"
-        },
-        "mindewptm" : {
-          "type" : "string"
-        },
-        "meandewptm" : {
-          "type" : "string"
-        },
-        "mindewpti" : {
-          "type" : "string"
-        },
-        "since1jancoolingdegreedaysnormal" : {
-          "type" : "string"
-        },
-        "gdegreedays" : {
-          "type" : "string"
-        },
-        "since1julheatingdegreedays" : {
-          "type" : "string"
-        },
-        "since1sepcoolingdegreedays" : {
-          "type" : "string"
-        },
-        "snow" : {
-          "type" : "string"
-        },
-        "minvism" : {
-          "type" : "string"
-        },
-        "monthtodatesnowfalli" : {
-          "type" : "string"
-        },
-        "monthtodateheatingdegreedays" : {
-          "type" : "string"
-        },
-        "minvisi" : {
-          "type" : "string"
-        },
-        "monthtodatesnowfallm" : {
-          "type" : "string"
-        },
-        "thunder" : {
-          "type" : "string"
-        },
-        "precipi" : {
-          "type" : "string"
-        },
-        "precipm" : {
-          "type" : "string"
-        },
-        "meanvisi" : {
-          "type" : "string"
-        },
-        "maxvism" : {
-          "type" : "string"
-        },
-        "humidity" : {
-          "type" : "string"
-        },
-        "maxvisi" : {
-          "type" : "string"
-        },
-        "meanvism" : {
-          "type" : "string"
-        },
-        "meanpressurei" : {
-          "type" : "string"
-        },
-        "maxhumidity" : {
-          "type" : "string"
-        },
-        "monthtodateheatingdegreedaysnormal" : {
-          "type" : "string"
-        },
-        "meantempi" : {
-          "type" : "string"
-        },
-        "minwspdi" : {
-          "type" : "string"
-        },
-        "meantempm" : {
-          "type" : "string"
-        },
-        "maxwspdm" : {
-          "type" : "string"
-        },
-        "heatingdegreedays" : {
-          "type" : "string"
-        },
-        "maxwspdi" : {
-          "type" : "string"
-        },
-        "maxpressurem" : {
-          "type" : "string"
-        },
-        "date" : {
-          "$ref" : "#/definitions/date"
-        },
-        "minwspdm" : {
-          "type" : "string"
-        },
-        "maxpressurei" : {
-          "type" : "string"
-        },
-        "mintempm" : {
-          "type" : "string"
-        },
-        "maxdewpti" : {
-          "type" : "string"
-        },
-        "mintempi" : {
-          "type" : "string"
-        },
-        "maxdewptm" : {
-          "type" : "string"
-        },
-        "monthtodatecoolingdegreedaysnormal" : {
-          "type" : "string"
-        },
-        "rain" : {
-          "type" : "string"
-        },
-        "monthtodatecoolingdegreedays" : {
-          "type" : "string"
-        },
-        "hail" : {
-          "type" : "string"
-        },
-        "meanwindspdi" : {
-          "type" : "string"
-        },
-        "snowfalli" : {
-          "type" : "string"
-        },
-        "since1sepcoolingdegreedaysnormal" : {
-          "type" : "string"
-        },
-        "snowfallm" : {
-          "type" : "string"
-        },
-        "precipsource" : {
-          "type" : "string"
-        },
-        "since1julsnowfalli" : {
-          "type" : "string"
-        },
-        "since1sepheatingdegreedays" : {
-          "type" : "string"
-        },
-        "heatingdegreedaysnormal" : {
-          "type" : "string"
-        },
-        "since1julheatingdegreedaysnormal" : {
-          "type" : "string"
-        },
-        "fog" : {
-          "type" : "string"
-        },
-        "since1jancoolingdegreedays" : {
-          "type" : "string"
-        },
-        "since1julsnowfallm" : {
-          "type" : "string"
-        },
-        "snowdepthm" : {
-          "type" : "string"
-        },
-        "minhumidity" : {
-          "type" : "string"
-        },
-        "coolingdegreedaysnormal" : {
-          "type" : "string"
-        },
-        "meanwdire" : {
-          "type" : "string"
-        },
-        "meanwindspdm" : {
-          "type" : "string"
-        },
-        "tornado" : {
-          "type" : "string"
-        },
-        "snowdepthi" : {
-          "type" : "string"
-        },
-        "since1sepheatingdegreedaysnormal" : {
-          "type" : "string"
-        },
-        "meanwdird" : {
-          "type" : "string"
-        }
-      },
-      "required" : [ "coolingdegreedays", "coolingdegreedaysnormal", "date", "fog", "gdegreedays", "hail", "heatingdegreedays", "heatingdegreedaysnormal", "humidity", "maxdewpti", "maxdewptm", "maxhumidity", "maxpressurei", "maxpressurem", "maxtempi", "maxtempm", "maxvisi", "maxvism", "maxwspdi", "maxwspdm", "meandewpti", "meandewptm", "meanpressurei", "meanpressurem", "meantempi", "meantempm", "meanvisi", "meanvism", "meanwdird", "meanwdire", "meanwindspdi", "meanwindspdm", "mindewpti", "mindewptm", "minhumidity", "minpressurei", "minpressurem", "mintempi", "mintempm", "minvisi", "minvism", "minwspdi", "minwspdm", "monthtodatecoolingdegreedays", "monthtodatecoolingdegreedaysnormal", "monthtodateheatingdegreedays", "monthtodateheatingdegreedaysnormal", "monthtodatesnowfalli", "monthtodatesnowfallm", "precipi", "precipm", "precipsource", "rain", "since1jancoolingdegreedays", "since1jancoolingdegreedaysnormal", "since1julheatingdegreedays", "since1julheatingdegreedaysnormal", "since1julsnowfalli", "since1julsnowfallm", "since1sepcoolingdegreedays", "since1sepcoolingdegreedaysnormal", "since1sepheatingdegreedays", "since1sepheatingdegreedaysnormal", "snow", "snowdepthi", "snowdepthm", "snowfalli", "snowfallm", "thunder", "tornado" ]
+      }
     },
     "utcdate" : {
       "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.utcdate",
       "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "hour", "mday", "min", "mon", "pretty", "tzname", "year" ],
       "properties" : {
+        "pretty" : {
+          "type" : "string"
+        },
         "min" : {
+          "type" : "string"
+        },
+        "hour" : {
+          "type" : "string"
+        },
+        "year" : {
           "type" : "string"
         },
         "mday" : {
@@ -460,56 +490,23 @@
         "mon" : {
           "type" : "string"
         },
-        "year" : {
-          "type" : "string"
-        },
-        "hour" : {
-          "type" : "string"
-        },
-        "pretty" : {
-          "type" : "string"
-        },
         "tzname" : {
           "type" : "string"
         }
-      },
-      "required" : [ "hour", "mday", "min", "mon", "pretty", "tzname", "year" ]
-    },
-    "date" : {
-      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.date",
-      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
-      "properties" : {
-        "min" : {
-          "type" : "string"
-        },
-        "mday" : {
-          "type" : "string"
-        },
-        "mon" : {
-          "type" : "string"
-        },
-        "year" : {
-          "type" : "string"
-        },
-        "hour" : {
-          "type" : "string"
-        },
-        "pretty" : {
-          "type" : "string"
-        },
-        "tzname" : {
-          "type" : "string"
-        }
-      },
-      "required" : [ "hour", "mday", "min", "mon", "pretty", "tzname", "year" ]
+      }
     }
   },
+  "swagger" : "2.0",
   "info" : {
-    "x-WM-SERVICE_TYPE" : "RestService",
-    "x-WM-API_ID" : "128cfae3-70fa-4d01-863d-b2bae0f9d886",
     "x-WM-USE_PROXY_FOR_WEB" : true,
-    "x-WM-SERVICE_ID" : "wunderground",
     "x-WM-USE_PROXY_FOR_MOBILE" : true,
-    "version" : "2.0"
-  }
+    "x-WM-API_ID" : "466d798c-6ef3-4645-a522-5032fd893341",
+    "x-WM-SERVICE_ID" : "wunderground",
+    "version" : "2.0",
+    "x-WM-SERVICE_TYPE" : "RestService"
+  },
+  "tags" : [ {
+    "name" : "RestServiceVirtualController",
+    "description" : "Rest service swagger documentation"
+  } ]
 }
