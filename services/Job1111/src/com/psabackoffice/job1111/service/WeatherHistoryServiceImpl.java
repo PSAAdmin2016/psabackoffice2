@@ -24,54 +24,54 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.psabackoffice.job1111.SubsWeatherDetails;
+import com.psabackoffice.job1111.WeatherHistory;
 
 
 /**
- * ServiceImpl object for domain model class SubsWeatherDetails.
+ * ServiceImpl object for domain model class WeatherHistory.
  *
- * @see SubsWeatherDetails
+ * @see WeatherHistory
  */
-@Service("Job1111.SubsWeatherDetailsService")
+@Service("Job1111.WeatherHistoryService")
 @Validated
-public class SubsWeatherDetailsServiceImpl implements SubsWeatherDetailsService {
+public class WeatherHistoryServiceImpl implements WeatherHistoryService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(SubsWeatherDetailsServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WeatherHistoryServiceImpl.class);
 
 
     @Autowired
-    @Qualifier("Job1111.SubsWeatherDetailsDao")
-    private WMGenericDao<SubsWeatherDetails, Integer> wmGenericDao;
+    @Qualifier("Job1111.WeatherHistoryDao")
+    private WMGenericDao<WeatherHistory, Integer> wmGenericDao;
 
-    public void setWMGenericDao(WMGenericDao<SubsWeatherDetails, Integer> wmGenericDao) {
+    public void setWMGenericDao(WMGenericDao<WeatherHistory, Integer> wmGenericDao) {
         this.wmGenericDao = wmGenericDao;
     }
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-	public SubsWeatherDetails create(SubsWeatherDetails subsWeatherDetails) {
-        LOGGER.debug("Creating a new SubsWeatherDetails with information: {}", subsWeatherDetails);
+	public WeatherHistory create(WeatherHistory weatherHistory) {
+        LOGGER.debug("Creating a new WeatherHistory with information: {}", weatherHistory);
 
-        SubsWeatherDetails subsWeatherDetailsCreated = this.wmGenericDao.create(subsWeatherDetails);
+        WeatherHistory weatherHistoryCreated = this.wmGenericDao.create(weatherHistory);
         // reloading object from database to get database defined & server defined values.
-        return this.wmGenericDao.refresh(subsWeatherDetailsCreated);
+        return this.wmGenericDao.refresh(weatherHistoryCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public SubsWeatherDetails getById(Integer subsweatherdetailsId) throws EntityNotFoundException {
-        LOGGER.debug("Finding SubsWeatherDetails by id: {}", subsweatherdetailsId);
-        return this.wmGenericDao.findById(subsweatherdetailsId);
+	public WeatherHistory getById(Integer weatherhistoryId) throws EntityNotFoundException {
+        LOGGER.debug("Finding WeatherHistory by id: {}", weatherhistoryId);
+        return this.wmGenericDao.findById(weatherhistoryId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public SubsWeatherDetails findById(Integer subsweatherdetailsId) {
-        LOGGER.debug("Finding SubsWeatherDetails by id: {}", subsweatherdetailsId);
+	public WeatherHistory findById(Integer weatherhistoryId) {
+        LOGGER.debug("Finding WeatherHistory by id: {}", weatherhistoryId);
         try {
-            return this.wmGenericDao.findById(subsweatherdetailsId);
+            return this.wmGenericDao.findById(weatherhistoryId);
         } catch(EntityNotFoundException ex) {
-            LOGGER.debug("No SubsWeatherDetails found with id: {}", subsweatherdetailsId, ex);
+            LOGGER.debug("No WeatherHistory found with id: {}", weatherhistoryId, ex);
             return null;
         }
     }
@@ -79,23 +79,23 @@ public class SubsWeatherDetailsServiceImpl implements SubsWeatherDetailsService 
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public SubsWeatherDetails update(SubsWeatherDetails subsWeatherDetails) throws EntityNotFoundException {
-        LOGGER.debug("Updating SubsWeatherDetails with information: {}", subsWeatherDetails);
+	public WeatherHistory update(WeatherHistory weatherHistory) throws EntityNotFoundException {
+        LOGGER.debug("Updating WeatherHistory with information: {}", weatherHistory);
 
-        this.wmGenericDao.update(subsWeatherDetails);
-        this.wmGenericDao.refresh(subsWeatherDetails);
+        this.wmGenericDao.update(weatherHistory);
+        this.wmGenericDao.refresh(weatherHistory);
 
-        return subsWeatherDetails;
+        return weatherHistory;
     }
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public SubsWeatherDetails delete(Integer subsweatherdetailsId) throws EntityNotFoundException {
-        LOGGER.debug("Deleting SubsWeatherDetails with id: {}", subsweatherdetailsId);
-        SubsWeatherDetails deleted = this.wmGenericDao.findById(subsweatherdetailsId);
+	public WeatherHistory delete(Integer weatherhistoryId) throws EntityNotFoundException {
+        LOGGER.debug("Deleting WeatherHistory with id: {}", weatherhistoryId);
+        WeatherHistory deleted = this.wmGenericDao.findById(weatherhistoryId);
         if (deleted == null) {
-            LOGGER.debug("No SubsWeatherDetails found with id: {}", subsweatherdetailsId);
-            throw new EntityNotFoundException(String.valueOf(subsweatherdetailsId));
+            LOGGER.debug("No WeatherHistory found with id: {}", weatherhistoryId);
+            throw new EntityNotFoundException(String.valueOf(weatherhistoryId));
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
@@ -103,29 +103,29 @@ public class SubsWeatherDetailsServiceImpl implements SubsWeatherDetailsService 
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public void delete(SubsWeatherDetails subsWeatherDetails) {
-        LOGGER.debug("Deleting SubsWeatherDetails with {}", subsWeatherDetails);
-        this.wmGenericDao.delete(subsWeatherDetails);
+	public void delete(WeatherHistory weatherHistory) {
+        LOGGER.debug("Deleting WeatherHistory with {}", weatherHistory);
+        this.wmGenericDao.delete(weatherHistory);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public Page<SubsWeatherDetails> findAll(QueryFilter[] queryFilters, Pageable pageable) {
-        LOGGER.debug("Finding all SubsWeatherDetails");
+	public Page<WeatherHistory> findAll(QueryFilter[] queryFilters, Pageable pageable) {
+        LOGGER.debug("Finding all WeatherHistories");
         return this.wmGenericDao.search(queryFilters, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<SubsWeatherDetails> findAll(String query, Pageable pageable) {
-        LOGGER.debug("Finding all SubsWeatherDetails");
+    public Page<WeatherHistory> findAll(String query, Pageable pageable) {
+        LOGGER.debug("Finding all WeatherHistories");
         return this.wmGenericDao.searchByQuery(query, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
     public Downloadable export(ExportType exportType, String query, Pageable pageable) {
-        LOGGER.debug("exporting data in the service Job1111 for table SubsWeatherDetails to {} format", exportType);
+        LOGGER.debug("exporting data in the service Job1111 for table WeatherHistory to {} format", exportType);
         return this.wmGenericDao.export(exportType, query, pageable);
     }
 

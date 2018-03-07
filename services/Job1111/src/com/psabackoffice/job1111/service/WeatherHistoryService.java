@@ -18,71 +18,71 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.psabackoffice.job1111.SubsWeatherDetails;
+import com.psabackoffice.job1111.WeatherHistory;
 
 /**
- * Service object for domain model class {@link SubsWeatherDetails}.
+ * Service object for domain model class {@link WeatherHistory}.
  */
-public interface SubsWeatherDetailsService {
+public interface WeatherHistoryService {
 
     /**
-     * Creates a new SubsWeatherDetails. It does cascade insert for all the children in a single transaction.
+     * Creates a new WeatherHistory. It does cascade insert for all the children in a single transaction.
      *
-     * This method overrides the input field values using Server side or database managed properties defined on SubsWeatherDetails if any.
+     * This method overrides the input field values using Server side or database managed properties defined on WeatherHistory if any.
      *
-     * @param subsWeatherDetails Details of the SubsWeatherDetails to be created; value cannot be null.
-     * @return The newly created SubsWeatherDetails.
+     * @param weatherHistory Details of the WeatherHistory to be created; value cannot be null.
+     * @return The newly created WeatherHistory.
      */
-	SubsWeatherDetails create(@Valid SubsWeatherDetails subsWeatherDetails);
+	WeatherHistory create(@Valid WeatherHistory weatherHistory);
 
 
 	/**
-	 * Returns SubsWeatherDetails by given id if exists.
+	 * Returns WeatherHistory by given id if exists.
 	 *
-	 * @param subsweatherdetailsId The id of the SubsWeatherDetails to get; value cannot be null.
-	 * @return SubsWeatherDetails associated with the given subsweatherdetailsId.
-     * @throws EntityNotFoundException If no SubsWeatherDetails is found.
+	 * @param weatherhistoryId The id of the WeatherHistory to get; value cannot be null.
+	 * @return WeatherHistory associated with the given weatherhistoryId.
+     * @throws EntityNotFoundException If no WeatherHistory is found.
 	 */
-	SubsWeatherDetails getById(Integer subsweatherdetailsId) throws EntityNotFoundException;
+	WeatherHistory getById(Integer weatherhistoryId) throws EntityNotFoundException;
 
     /**
-	 * Find and return the SubsWeatherDetails by given id if exists, returns null otherwise.
+	 * Find and return the WeatherHistory by given id if exists, returns null otherwise.
 	 *
-	 * @param subsweatherdetailsId The id of the SubsWeatherDetails to get; value cannot be null.
-	 * @return SubsWeatherDetails associated with the given subsweatherdetailsId.
+	 * @param weatherhistoryId The id of the WeatherHistory to get; value cannot be null.
+	 * @return WeatherHistory associated with the given weatherhistoryId.
 	 */
-	SubsWeatherDetails findById(Integer subsweatherdetailsId);
+	WeatherHistory findById(Integer weatherhistoryId);
 
 
 	/**
-	 * Updates the details of an existing SubsWeatherDetails. It replaces all fields of the existing SubsWeatherDetails with the given subsWeatherDetails.
+	 * Updates the details of an existing WeatherHistory. It replaces all fields of the existing WeatherHistory with the given weatherHistory.
 	 *
-     * This method overrides the input field values using Server side or database managed properties defined on SubsWeatherDetails if any.
+     * This method overrides the input field values using Server side or database managed properties defined on WeatherHistory if any.
      *
-	 * @param subsWeatherDetails The details of the SubsWeatherDetails to be updated; value cannot be null.
-	 * @return The updated SubsWeatherDetails.
-	 * @throws EntityNotFoundException if no SubsWeatherDetails is found with given input.
+	 * @param weatherHistory The details of the WeatherHistory to be updated; value cannot be null.
+	 * @return The updated WeatherHistory.
+	 * @throws EntityNotFoundException if no WeatherHistory is found with given input.
 	 */
-	SubsWeatherDetails update(@Valid SubsWeatherDetails subsWeatherDetails) throws EntityNotFoundException;
+	WeatherHistory update(@Valid WeatherHistory weatherHistory) throws EntityNotFoundException;
 
     /**
-	 * Deletes an existing SubsWeatherDetails with the given id.
+	 * Deletes an existing WeatherHistory with the given id.
 	 *
-	 * @param subsweatherdetailsId The id of the SubsWeatherDetails to be deleted; value cannot be null.
-	 * @return The deleted SubsWeatherDetails.
-	 * @throws EntityNotFoundException if no SubsWeatherDetails found with the given id.
+	 * @param weatherhistoryId The id of the WeatherHistory to be deleted; value cannot be null.
+	 * @return The deleted WeatherHistory.
+	 * @throws EntityNotFoundException if no WeatherHistory found with the given id.
 	 */
-	SubsWeatherDetails delete(Integer subsweatherdetailsId) throws EntityNotFoundException;
+	WeatherHistory delete(Integer weatherhistoryId) throws EntityNotFoundException;
 
     /**
-	 * Deletes an existing SubsWeatherDetails with the given object.
+	 * Deletes an existing WeatherHistory with the given object.
 	 *
-	 * @param subsWeatherDetails The instance of the SubsWeatherDetails to be deleted; value cannot be null.
+	 * @param weatherHistory The instance of the WeatherHistory to be deleted; value cannot be null.
 	 */
-	void delete(SubsWeatherDetails subsWeatherDetails);
+	void delete(WeatherHistory weatherHistory);
 
 	/**
-	 * Find all SubsWeatherDetails matching the given QueryFilter(s).
+	 * Find all WeatherHistories matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.
      * This method returns Paginated results.
 	 *
@@ -90,30 +90,30 @@ public interface SubsWeatherDetailsService {
 	 *
      * @param queryFilters Array of queryFilters to filter the results; No filters applied if the input is null/empty.
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of matching SubsWeatherDetails.
+     * @return Paginated list of matching WeatherHistories.
      *
      * @see QueryFilter
      * @see Pageable
      * @see Page
 	 */
     @Deprecated
-	Page<SubsWeatherDetails> findAll(QueryFilter[] queryFilters, Pageable pageable);
+	Page<WeatherHistory> findAll(QueryFilter[] queryFilters, Pageable pageable);
 
     /**
-	 * Find all SubsWeatherDetails matching the given input query. This method returns Paginated results.
+	 * Find all WeatherHistories matching the given input query. This method returns Paginated results.
      * Note: Go through the documentation for <u>query</u> syntax.
 	 *
      * @param query The query to filter the results; No filters applied if the input is null/empty.
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of matching SubsWeatherDetails.
+     * @return Paginated list of matching WeatherHistories.
      *
      * @see Pageable
      * @see Page
 	 */
-    Page<SubsWeatherDetails> findAll(String query, Pageable pageable);
+    Page<WeatherHistory> findAll(String query, Pageable pageable);
 
     /**
-	 * Exports all SubsWeatherDetails matching the given input query to the given exportType format.
+	 * Exports all WeatherHistories matching the given input query to the given exportType format.
      * Note: Go through the documentation for <u>query</u> syntax.
 	 *
      * @param exportType The format in which to export the data; value cannot be null.
@@ -128,11 +128,11 @@ public interface SubsWeatherDetailsService {
     Downloadable export(ExportType exportType, String query, Pageable pageable);
 
 	/**
-	 * Retrieve the count of the SubsWeatherDetails in the repository with matching query.
+	 * Retrieve the count of the WeatherHistories in the repository with matching query.
      * Note: Go through the documentation for <u>query</u> syntax.
      *
      * @param query query to filter results. No filters applied if the input is null/empty.
-	 * @return The count of the SubsWeatherDetails.
+	 * @return The count of the WeatherHistory.
 	 */
 	long count(String query);
 

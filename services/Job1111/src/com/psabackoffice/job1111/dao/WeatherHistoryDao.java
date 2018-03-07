@@ -14,14 +14,14 @@ import org.springframework.stereotype.Repository;
 
 import com.wavemaker.runtime.data.dao.WMGenericDaoImpl;
 
-import com.psabackoffice.job1111.SubsWeatherDetails;
+import com.psabackoffice.job1111.WeatherHistory;
 
 /**
- * Specifies methods used to obtain and modify SubsWeatherDetails related information
+ * Specifies methods used to obtain and modify WeatherHistory related information
  * which is stored in the database.
  */
-@Repository("Job1111.SubsWeatherDetailsDao")
-public class SubsWeatherDetailsDao extends WMGenericDaoImpl<SubsWeatherDetails, Integer> {
+@Repository("Job1111.WeatherHistoryDao")
+public class WeatherHistoryDao extends WMGenericDaoImpl<WeatherHistory, Integer> {
 
     @Autowired
     @Qualifier("Job1111Template")

@@ -1,0 +1,28 @@
+{
+  "webServiceWeatherHistory" : {
+    "_id" : "wm-webServiceWeatherHistory-wm.ServiceVariable-1520445530543",
+    "name" : "webServiceWeatherHistory",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "zipcode",
+      "value" : "70460",
+      "type" : "string"
+    } ],
+    "type" : "WeatherHistory.RootResponse",
+    "service" : "WeatherHistory",
+    "operation" : "invoke",
+    "operationId" : "WeatherHistory_RestServiceVirtualController-invoke",
+    "operationType" : "get",
+    "serviceType" : "RestService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "RestServiceVirtual"
+  }
+}

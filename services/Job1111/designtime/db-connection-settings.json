@@ -153,7 +153,7 @@
     "table" : "SubsSignatures",
     "schema" : null
   }, {
-    "table" : "SubsWeatherDetails",
+    "table" : "WeatherHistory",
     "schema" : null
   } ],
   "schemaFilter" : [ ".*" ],

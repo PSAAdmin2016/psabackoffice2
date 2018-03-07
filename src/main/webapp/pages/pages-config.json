@@ -291,6 +291,10 @@
   "type" : "PAGE",
   "params" : [ ]
 }, {
+  "name" : "TestLab2",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
   "name" : "ToolsCrewManagement",
   "type" : "PAGE",
   "params" : [ ]

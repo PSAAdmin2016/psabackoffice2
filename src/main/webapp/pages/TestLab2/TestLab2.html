@@ -1,0 +1,30 @@
+<wm-page data-ng-controller="TestLab2PageController" pagetitle="Test Lab 2" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnavTestLab" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-container name="container1" backgroundcolor="#c4b8f5" width="100%" height="100%">
+                <wm-container name="container2" width="98%" height="25%" horizontalalign="left" class="centererer">
+                    <wm-container name="container6" class="centerChild">
+                        <wm-button class="btn btn-danger btn-lg" caption="Click Me" type="button" margin="unset 0.5em" name="button1" on-click="button1Click($event, $scope)"></wm-button>
+                    </wm-container>
+                </wm-container>
+                <wm-container name="container3" width="98%" height="25%" class="centererer">
+                    <wm-layoutgrid name="layoutgrid1">
+                        <wm-gridrow name="gridrow1">
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn1" horizontalalign="center"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn2"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow2">
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn3"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn4"></wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
+                </wm-container>
+                <wm-container name="container4" width="98%" height="25%" class="centererer"></wm-container>
+                <wm-container name="container5" width="98%" height="25%" class="centererer"></wm-container>
+            </wm-container>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>
