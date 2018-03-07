@@ -1,8 +1,8 @@
 {
   "basePath" : "${rest.WeatherHistory.basepath}",
   "paths" : {
-    "/api/{key}/history_{yyyy}{mm}{dd}/q/{zipcode}.json" : {
-      "x-WM-BASE_PATH" : "/api/{key}/history_{yyyy}{mm}{dd}/q/{zipcode}.json",
+    "/a64134bb22ac4df4/history_{yyyy}{mm}{dd}/q/{zipcode}.json" : {
+      "x-WM-BASE_PATH" : "/a64134bb22ac4df4/history_{yyyy}{mm}{dd}/q/{zipcode}.json",
       "x-WM-TAG" : "RestServiceVirtualController",
       "x-WM-RELATIVE_PATH" : "",
       "get" : {
@@ -18,11 +18,6 @@
           }
         },
         "parameters" : [ {
-          "in" : "path",
-          "name" : "key",
-          "type" : "string",
-          "required" : true
-        }, {
           "in" : "path",
           "name" : "yyyy",
           "type" : "string",
@@ -46,7 +41,7 @@
         "tags" : [ "RestServiceVirtualController" ],
         "consumes" : [ "text/xml" ]
       },
-      "x-WM-COMPLETE_PATH" : "${rest.WeatherHistory.scheme}://${rest.WeatherHistory.host}${rest.WeatherHistory.basepath}/api/{key}/history_{yyyy}{mm}{dd}/q/{zipcode}.json"
+      "x-WM-COMPLETE_PATH" : "${rest.WeatherHistory.scheme}://${rest.WeatherHistory.host}${rest.WeatherHistory.basepath}/a64134bb22ac4df4/history_{yyyy}{mm}{dd}/q/{zipcode}.json"
     }
   },
   "host" : "${rest.WeatherHistory.host}",
@@ -500,7 +495,7 @@
   "info" : {
     "x-WM-USE_PROXY_FOR_WEB" : true,
     "x-WM-USE_PROXY_FOR_MOBILE" : true,
-    "x-WM-API_ID" : "466d798c-6ef3-4645-a522-5032fd893341",
+    "x-WM-API_ID" : "a61ee074-4602-4a8b-bc1a-c5a3855094c0",
     "x-WM-SERVICE_ID" : "wunderground",
     "version" : "2.0",
     "x-WM-SERVICE_TYPE" : "RestService"

@@ -16,20 +16,19 @@ Application.$controller("TestLab2PageController", ["$scope", function($scope) {
 
 
     $scope.button1Click = function($event, $isolateScope) {
-        var weatherHistory = $scope.Variables.webServiceWeatherHistory;
-        weatherHistory.invoke({
+
+        $scope.Variables.webServiceWeatherHistory.invoke({
                 "inputFields": {
-                    "key": "a64134bb22ac4df4",
                     "yyyy": "2018",
                     "mm": "03",
                     "dd": "01",
-                    "zipcode": "70460",
+                    "zipcode": "70460"
                 }
             },
             function(data) {
                 // Success Callback
                 //console.log("success", data);
-                alert('Your max temp for 03-01-2018 is ' + data.history.dailysummary[0].maxtempi);
+                alert('Your max temp for ' + data.history.date.pretty + ' is ' + data.history.dailysummary[0].maxtempi);
 
             },
             function(error) {
@@ -38,8 +37,6 @@ Application.$controller("TestLab2PageController", ["$scope", function($scope) {
                 alert(error);
             });
 
-
-        debugger;
 
     };
 
