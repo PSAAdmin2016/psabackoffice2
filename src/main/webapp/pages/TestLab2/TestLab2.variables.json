@@ -6,7 +6,11 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "zipcode",
-      "value" : "70460",
+      "value" : "bind:Widgets.zipCodeField.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "yyyy",
+      "value" : "bind:Widgets.datePicker.datavalue",
       "type" : "string"
     } ],
     "type" : "WeatherHistory.RootResponse",

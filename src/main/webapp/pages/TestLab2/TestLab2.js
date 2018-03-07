@@ -40,4 +40,37 @@ Application.$controller("TestLab2PageController", ["$scope", function($scope) {
 
     };
 
+
+    $scope.clearButtonClick = function($event, $isolateScope) {
+        $scope.Widgets.zipCodeField.datavalue = "";
+        $scope.Widgets.datePicker.datavalue = "";
+    };
+
+
+    $scope.button2Click = function($event, $isolateScope) {
+
+        if ($scope.Widgets.datePicker.datavalue.length > 4 && $scope.Widgets.zipCodeField.datavalue.length > 4) {
+            var monDayYear = $scope.Widgets.datePicker.datavalue.split("-");
+            $scope.Variables.webServiceWeatherHistory.invoke({
+                    "inputFields": {
+                        "yyyy": monDayYear[0],
+                        "mm": monDayYear[1],
+                        "dd": monDayYear[2],
+                        "zipcode": $scope.Widgets.zipCodeField.datavalue
+                    }
+                },
+                function(data) {
+                    // Success Callback
+                    //console.log("success", data);
+                    alert('Your max temp for ' + data.history.date.pretty + ' is ' + data.history.dailysummary[0].maxtempi);
+
+                },
+                function(error) {
+                    // Error Callback
+                    //console.log("error", error)
+                    alert(error);
+                });
+        }
+    };
+
 }]);
