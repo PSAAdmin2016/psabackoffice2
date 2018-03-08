@@ -166,6 +166,23 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         return queryExecutor.executeNamedQueryForUpdate("UpdateSteelErectQuantity", params);
     }
 
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public Integer executeUpdateSteelFA(UpdateSteelFaRequest updateSteelFaRequest) {
+        Map params = new HashMap(8);
+
+        params.put("Area", updateSteelFaRequest.getArea());
+        params.put("Piece", updateSteelFaRequest.getPiece());
+        params.put("Quantity", updateSteelFaRequest.getQuantity());
+        params.put("Percent", updateSteelFaRequest.getPercent());
+        params.put("Rework", updateSteelFaRequest.getRework());
+        params.put("Notes", updateSteelFaRequest.getNotes());
+        params.put("ActivityType", updateSteelFaRequest.getActivityType());
+        params.put("FieldActivityID", updateSteelFaRequest.getFieldActivityId());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateSteelFA", params);
+    }
+
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
     public Page<GetActivityHistoryPipeWeldResponse> executeGetActivityHistoryPipeWeld(Integer activityId, Pageable pageable) {
@@ -2048,6 +2065,18 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         params.put("BidID", bidId);
 
         return queryExecutor.exportNamedQueryData("GetQuantityWeldInstalled", params, exportType, GetQuantityWeldInstalledResponse.class, pageable);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public Integer executeUpdateSteelFAQuantity(UpdateSteelFaquantityRequest updateSteelFaquantityRequest) {
+        Map params = new HashMap(3);
+
+        params.put("Quantity", updateSteelFaquantityRequest.getQuantity());
+        params.put("Percent", updateSteelFaquantityRequest.getPercent());
+        params.put("FieldActivityID", updateSteelFaquantityRequest.getFieldActivityId());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateSteelFAQuantity", params);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")

@@ -744,8 +744,8 @@
     "name" : "GetActivitiesPendingReviewSteelActivities",
     "description" : "Returns individual activities for given submission/pieceMark/Status.  Populates the Super Review steel detailed list",
     "version" : "V2",
-    "queryString" : "SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, \nstl.ActivityID, stl.FAArea, stl.FAPieceNumber, stl.FAQuantity, stl.FAPercent, stl.FARework, stl.FANotes\n\n\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nJOIN SteelFA stl\n\tON stl.ActivityID = sas.ActivityID \n    \nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nWHERE sas.SubmissionID = :SubmissionID\nAND stl.FAPiecenumber = :PieceMark\nAND sas.fk_ActivityStatus = :StatusID\n\nORDER BY sas.ActivityType",
-    "countQueryString" : "select count(*) from (SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, \nstl.ActivityID, stl.FAArea, stl.FAPieceNumber, stl.FAQuantity, stl.FAPercent, stl.FARework, stl.FANotes\n\n\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nJOIN SteelFA stl\n\tON stl.ActivityID = sas.ActivityID \n    \nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nWHERE sas.SubmissionID = :SubmissionID\nAND stl.FAPiecenumber = :PieceMark\nAND sas.fk_ActivityStatus = :StatusID\n\nORDER BY sas.ActivityType) wmTempTable",
+    "queryString" : "SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, at.ID AS ActivityTypeID,\nstl.ActivityID, stl.FAArea, stl.FAPieceNumber, stl.FAQuantity, stl.FAPercent, stl.FARework, stl.FANotes\n\n\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nJOIN SteelFA stl\n\tON stl.ActivityID = sas.ActivityID \n    \nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nWHERE sas.SubmissionID = :SubmissionID\nAND stl.FAPiecenumber = :PieceMark\nAND sas.fk_ActivityStatus = :StatusID\n\nORDER BY sas.ActivityType",
+    "countQueryString" : "select count(*) from (SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, at.ID AS ActivityTypeID,\nstl.ActivityID, stl.FAArea, stl.FAPieceNumber, stl.FAQuantity, stl.FAPercent, stl.FARework, stl.FANotes\n\n\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nJOIN SteelFA stl\n\tON stl.ActivityID = sas.ActivityID \n    \nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nWHERE sas.SubmissionID = :SubmissionID\nAND stl.FAPiecenumber = :PieceMark\nAND sas.fk_ActivityStatus = :StatusID\n\nORDER BY sas.ActivityType) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -812,6 +812,15 @@
           "list" : false
         }
       }, {
+        "name" : "ActivityTypeID",
+        "fieldName" : "activityTypeId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
         "name" : "ActivityID",
         "fieldName" : "activityId",
         "optional" : false,
@@ -862,7 +871,7 @@
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Byte",
+          "typeRef" : "java.lang.Short",
           "list" : false
         }
       }, {
@@ -13681,6 +13690,138 @@
     "request" : {
       "wrapped" : true,
       "typeRef" : "com.psabackoffice.job1111.models.query.UpdateSteelErectQuantityRequest",
+      "method" : "PUT"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
+  "UpdateSteelFA" : {
+    "name" : "UpdateSteelFA",
+    "description" : "Update Steel FA record without timeinform/rev/timestamp",
+    "version" : "V2",
+    "queryString" : "UPDATE `SteelFA` \nSET \n`FAArea`= :Area, \n`FAPieceNumber`= :Piece, \n`FAQuantity`= :Quantity,\n`FAPercent`= :Percent,\n`FARework`= :Rework, \n`FANotes`= :Notes , \n`ActivityType`= :ActivityType \nWHERE `ActivityID`= :FieldActivityID",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "Area",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "2",
+      "required" : true
+    }, {
+      "name" : "Piece",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "2b",
+      "required" : true
+    }, {
+      "name" : "Quantity",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1",
+      "required" : true
+    }, {
+      "name" : "Percent",
+      "type" : "big_decimal",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1",
+      "required" : true
+    }, {
+      "name" : "Rework",
+      "type" : "short",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1",
+      "required" : true
+    }, {
+      "name" : "Notes",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "Test1",
+      "required" : true
+    }, {
+      "name" : "ActivityType",
+      "type" : "short",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "61",
+      "required" : true
+    }, {
+      "name" : "FieldActivityID",
+      "type" : "short",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "2625",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.job1111.models.query.UpdateSteelFaRequest",
+      "method" : "PUT"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
+  "UpdateSteelFAQuantity" : {
+    "name" : "UpdateSteelFAQuantity",
+    "description" : "Update Steel FA quantity/percent",
+    "version" : "V2",
+    "queryString" : "UPDATE `SteelFA` \nSET \n \n`FAQuantity`= :Quantity,\n`FAPercent`= :Percent\nWHERE `ActivityID`= :FieldActivityID",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "Quantity",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1",
+      "required" : true
+    }, {
+      "name" : "Percent",
+      "type" : "big_decimal",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : ".75",
+      "required" : true
+    }, {
+      "name" : "FieldActivityID",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "2625",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.job1111.models.query.UpdateSteelFaquantityRequest",
       "method" : "PUT"
     },
     "identifiers" : [ ],

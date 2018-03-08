@@ -176,6 +176,16 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/UpdateSteelFA", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Update Steel FA record without timeinform/rev/timestamp")
+    public IntegerWrapper executeUpdateSteelFA(@Valid @RequestBody UpdateSteelFaRequest updateSteelFaRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: UpdateSteelFA");
+        Integer _result = queryService.executeUpdateSteelFA(updateSteelFaRequest);
+        LOGGER.debug("got the result for named query: UpdateSteelFA, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/GetActivityHistoryPipeWeld", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "No description is provided")
@@ -1774,6 +1784,16 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetQuantityWeldInstalled");
 
         return queryService.exportGetQuantityWeldInstalled(exportType, bidId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/UpdateSteelFAQuantity", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Update Steel FA quantity/percent")
+    public IntegerWrapper executeUpdateSteelFAQuantity(@Valid @RequestBody UpdateSteelFaquantityRequest updateSteelFaquantityRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: UpdateSteelFAQuantity");
+        Integer _result = queryService.executeUpdateSteelFAQuantity(updateSteelFaquantityRequest);
+        LOGGER.debug("got the result for named query: UpdateSteelFAQuantity, result:{}", _result);
+        return new IntegerWrapper(_result);
     }
 
     @RequestMapping(value = "/queries/GetBidActivityMatchesEquip", method = RequestMethod.GET)

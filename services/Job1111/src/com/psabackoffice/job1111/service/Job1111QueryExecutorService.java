@@ -44,6 +44,8 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdateSteelErectQuantity(UpdateSteelErectQuantityRequest updateSteelErectQuantityRequest);
 
+    Integer executeUpdateSteelFA(UpdateSteelFaRequest updateSteelFaRequest);
+
     Page<GetActivityHistoryPipeWeldResponse> executeGetActivityHistoryPipeWeld(Integer activityId, Pageable pageable);
 
     Downloadable exportGetActivityHistoryPipeWeld(ExportType exportType, Integer activityId, Pageable pageable);
@@ -375,6 +377,8 @@ public interface Job1111QueryExecutorService {
     Page<GetQuantityWeldInstalledResponse> executeGetQuantityWeldInstalled(Integer bidId, Pageable pageable);
 
     Downloadable exportGetQuantityWeldInstalled(ExportType exportType, Integer bidId, Pageable pageable);
+
+    Integer executeUpdateSteelFAQuantity(UpdateSteelFaquantityRequest updateSteelFaquantityRequest);
 
     Page<GetBidActivityMatchesEquipResponse> executeGetBidActivityMatchesEquip(String bidId, String tagNumber, String description, Pageable pageable);
 

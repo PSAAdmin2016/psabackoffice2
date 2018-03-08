@@ -23,6 +23,9 @@ public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serial
     @ColumnAlias("ActivityType")
     private String activityType;
 
+    @ColumnAlias("ActivityTypeID")
+    private Integer activityTypeId;
+
     @ColumnAlias("ActivityID")
     private Integer activityId;
 
@@ -39,7 +42,7 @@ public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serial
     private Float fapercent;
 
     @ColumnAlias("FARework")
-    private Byte farework;
+    private Short farework;
 
     @ColumnAlias("FANotes")
     private String fanotes;
@@ -66,6 +69,14 @@ public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serial
 
     public void setActivityType(String activityType) {
         this.activityType = activityType;
+    }
+
+    public Integer getActivityTypeId() {
+        return this.activityTypeId;
+    }
+
+    public void setActivityTypeId(Integer activityTypeId) {
+        this.activityTypeId = activityTypeId;
     }
 
     public Integer getActivityId() {
@@ -108,11 +119,11 @@ public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serial
         this.fapercent = fapercent;
     }
 
-    public Byte getFarework() {
+    public Short getFarework() {
         return this.farework;
     }
 
-    public void setFarework(Byte farework) {
+    public void setFarework(Short farework) {
         this.farework = farework;
     }
 
@@ -132,6 +143,7 @@ public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serial
         return Objects.equals(getFkActivityStatus(), getActivitiesPendingReviewSteelActivitiesResponse.getFkActivityStatus()) &&
                 Objects.equals(getStatus(), getActivitiesPendingReviewSteelActivitiesResponse.getStatus()) &&
                 Objects.equals(getActivityType(), getActivitiesPendingReviewSteelActivitiesResponse.getActivityType()) &&
+                Objects.equals(getActivityTypeId(), getActivitiesPendingReviewSteelActivitiesResponse.getActivityTypeId()) &&
                 Objects.equals(getActivityId(), getActivitiesPendingReviewSteelActivitiesResponse.getActivityId()) &&
                 Objects.equals(getFaarea(), getActivitiesPendingReviewSteelActivitiesResponse.getFaarea()) &&
                 Objects.equals(getFapieceNumber(), getActivitiesPendingReviewSteelActivitiesResponse.getFapieceNumber()) &&
@@ -146,6 +158,7 @@ public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serial
         return Objects.hash(getFkActivityStatus(),
                 getStatus(),
                 getActivityType(),
+                getActivityTypeId(),
                 getActivityId(),
                 getFaarea(),
                 getFapieceNumber(),

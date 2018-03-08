@@ -853,6 +853,29 @@ WHERE `ActivityID`= :FieldActivityID
     <query-param name="FieldActivityID" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="UpdateSteelFA">
+        <![CDATA[
+        UPDATE `SteelFA` 
+SET 
+`FAArea`= :Area, 
+`FAPieceNumber`= :Piece, 
+`FAQuantity`= :Quantity,
+`FAPercent`= :Percent,
+`FARework`= :Rework, 
+`FANotes`= :Notes , 
+`ActivityType`= :ActivityType 
+WHERE `ActivityID`= :FieldActivityID
+        ]]>
+    <query-param name="Area" type="java.lang.String"/>
+    <query-param name="Piece" type="java.lang.String"/>
+    <query-param name="Quantity" type="java.lang.Integer"/>
+    <query-param name="Percent" type="java.math.BigDecimal"/>
+    <query-param name="Rework" type="java.lang.Short"/>
+    <query-param name="Notes" type="java.lang.String"/>
+    <query-param name="ActivityType" type="java.lang.Short"/>
+    <query-param name="FieldActivityID" type="java.lang.Short"/>
+    </sql-query>
+
     <sql-query name="GetActivityHistoryPipeWeld">
         <![CDATA[
         SELECT pw.* 
@@ -1371,7 +1394,7 @@ WHERE `ActivityID`= :FieldActivityID
 
     <sql-query name="GetActivitiesPendingReviewSteelActivities">
         <![CDATA[
-        SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, 
+        SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, at.ID AS ActivityTypeID,
 stl.ActivityID, stl.FAArea, stl.FAPieceNumber, stl.FAQuantity, stl.FAPercent, stl.FARework, stl.FANotes
 
 
@@ -1407,7 +1430,7 @@ ORDER BY sas.ActivityType
 
     <sql-query name="GetActivitiesPendingReviewSteelActivities__count">
         <![CDATA[
-        select count(*) from (SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, 
+        select count(*) from (SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, at.ID AS ActivityTypeID,
 stl.ActivityID, stl.FAArea, stl.FAPieceNumber, stl.FAQuantity, stl.FAPercent, stl.FARework, stl.FANotes
 
 
@@ -8244,6 +8267,20 @@ AND sas.fk_ActivityStatus IN (5,12)
 AND fk_BidIDAssigned = :BidID) wmTempTable
         ]]>
     <query-param name="BidID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="UpdateSteelFAQuantity">
+        <![CDATA[
+        UPDATE `SteelFA` 
+SET 
+ 
+`FAQuantity`= :Quantity,
+`FAPercent`= :Percent
+WHERE `ActivityID`= :FieldActivityID
+        ]]>
+    <query-param name="Quantity" type="java.lang.Integer"/>
+    <query-param name="Percent" type="java.math.BigDecimal"/>
+    <query-param name="FieldActivityID" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="GetBidActivityMatchesEquip">

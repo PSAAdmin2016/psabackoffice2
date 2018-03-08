@@ -29,6 +29,17 @@ Application.$controller("PartFASteelStandardPageController", ["$scope", function
     };
 
 
+    $scope.gridSteelFARowupdate = function($event, $isolateScope, $rowData) {
+        $scope.Variables.serviceUpdateSteelFA.invoke();
+    };
+
+
+    $scope.serviceUpdateSteelFAonBeforeUpdate = function(variable, inputData) {
+        inputData.Quantity = $scope.Widgets.gridSteelFA.formfields.faquantity.getProperty('value');
+        inputData.Percent = $scope.Widgets.gridSteelFA.formfields.fapercent.getProperty('value');
+        inputData.Rework = $scope.Widgets.gridSteelFA.formfields.farework.getProperty('value');
+    };
+
 }]);
 
 
@@ -40,21 +51,20 @@ Application.$controller("gridSteelFAController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRowAction = function($event, $rowData) { //REJECT
-
+            $scope.Variables.serviceUpdateSASReject.setInput("FieldActivityID", $rowData.activityId);
+            $scope.Variables.serviceUpdateSASReject.invoke() //ReInvokes serviceGetSteelFAData onSuccess
             $scope.Widgets.gridSteelFA.cancelRow();
             $scope.Variables.staticEditMode.setValue("dataValue", false);
         };
 
 
         $scope.customRow1Action = function($event, $rowData) { //SAVE
-
-            $scope.Widgets.gridSteelFA.cancelRow();
+            $scope.Widgets.gridSteelFA.saveRow();
             $scope.Variables.staticEditMode.setValue("dataValue", false);
         };
 
 
         $scope.customRow3Action = function($event, $rowData) { //Cancel
-
             $scope.Widgets.gridSteelFA.cancelRow();
             $scope.Variables.staticEditMode.setValue("dataValue", false);
         };
