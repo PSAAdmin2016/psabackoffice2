@@ -80,11 +80,21 @@ Application.$controller("TestLab2PageController", ["$scope", function($scope) {
 
     };
 
+
+    $scope.liveCreateWeatherHistoryonBeforeUpdate = function(variable, inputData) {
+        inputData.weatherDate = $scope.Variables.serviceWeatherHistory.dataSet.history.date.year + "-" + $scope.Variables.serviceWeatherHistory.dataSet.history.date.mon + "-" + $scope.Variables.serviceWeatherHistory.dataSet.history.date.mday;
+
+    };
+
 }]);
 
+
+
+
+
 Application.$controller("WeatherHistoryTable1Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

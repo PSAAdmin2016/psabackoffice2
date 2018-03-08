@@ -1,8 +1,8 @@
 <wm-page data-ng-controller="TestLab2PageController" pagetitle="Test Lab 2" name="page1">
     <wm-header content="header" name="header1"></wm-header>
     <wm-content name="content1">
-        <wm-left-panel columnwidth="2" content="leftnavTestLab" name="left_panel1"></wm-left-panel>
-        <wm-page-content columnwidth="10" name="page_content1">
+        <wm-left-panel columnwidth="1" content="leftnavTestLab" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="11" name="page_content1">
             <wm-container name="container1" backgroundcolor="#c4b8f5">
                 <wm-container name="container2" width="98%" height="25%" horizontalalign="left" class="centererer">
                     <wm-container name="container6" class="centerChild">
@@ -34,7 +34,7 @@
                 </wm-container>
                 <wm-container name="container4" width="98%" height="25%" class="centererer"></wm-container>
             </wm-container>
-            <wm-form errormessage="" captionposition="top" title="Form" enctype="application/x-www-form-urlencoded" method="get" dataset="bind:Variables.WeatherHistoryInvoke.dataSet" captionalign="left" name="WeatherHistoryForm1" on-success="WeatherHistoryForm1Success($event, $scope, $data)">
+            <wm-form errormessage="" captionposition="top" title="Form" enctype="application/x-www-form-urlencoded" method="get" dataset="bind:Variables.serviceWeatherHistory.dataSet" captionalign="left" name="WeatherHistoryForm1" on-success="WeatherHistoryForm1Success($event, $scope, $data)">
                 <wm-layoutgrid name="layoutgrid2" width="100%">
                     <wm-gridrow name="gridrow4">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn2" horizontalalign="left">
@@ -60,7 +60,7 @@
                                 <wm-layoutgrid name="layoutgrid5">
                                     <wm-gridrow name="gridrow6">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn13" horizontalalign="center">
-                                            <wm-label padding="unset 0.5em" name="labelWeatherHistoryTitle" class="h2" caption="bind:Variables.WeatherHistoryInvoke.dataSet.history.dailysummary[$i].maxtempm"></wm-label>
+                                            <wm-label padding="unset 0.5em" name="labelWeatherHistoryTitle" class="h2" caption="bind:Variables.serviceWeatherHistory.dataSet.history.dailysummary[$i].maxtempm"></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow12" padding="0px unset">
@@ -87,10 +87,10 @@
                                                 </wm-gridrow>
                                                 <wm-gridrow name="gridrow7">
                                                     <wm-gridcolumn columnwidth="6" name="gridcolumn14">
-                                                        <wm-label padding="unset 0.5em" name="label8" class="p" fontsize="2" fontunit="em" caption="bind:Variables.WeatherHistoryInvoke.dataSet.history.dailysummary[$i].mintempi"></wm-label>
+                                                        <wm-label padding="unset 0.5em" name="label8" class="p" fontsize="2" fontunit="em" caption="bind:Variables.serviceWeatherHistory.dataSet.history.dailysummary[$i].mintempi"></wm-label>
                                                     </wm-gridcolumn>
                                                     <wm-gridcolumn columnwidth="6" name="gridcolumn15">
-                                                        <wm-label padding="unset 0.5em" name="label9_1" caption="bind:Variables.WeatherHistoryInvoke.dataSet.history.dailysummary[$i].maxtempi" fontsize="2" fontunit="em"></wm-label>
+                                                        <wm-label padding="unset 0.5em" name="label9_1" caption="bind:Variables.serviceWeatherHistory.dataSet.history.dailysummary[$i].maxtempi" fontsize="2" fontunit="em"></wm-label>
                                                     </wm-gridcolumn>
                                                 </wm-gridrow>
                                                 <wm-gridrow name="gridrow8"></wm-gridrow>
@@ -108,16 +108,16 @@
                                                 </wm-gridrow>
                                                 <wm-gridrow name="gridrow11">
                                                     <wm-gridcolumn columnwidth="6" name="gridcolumn22">
-                                                        <wm-label padding="unset 0.5em" class="p" fontsize="2" fontunit="em" caption="bind:Variables.WeatherHistoryInvoke.dataSet.history.dailysummary[$i].minwspdi" name="label9" margin="5% unset unset unset"></wm-label>
+                                                        <wm-label padding="unset 0.5em" class="p" fontsize="2" fontunit="em" caption="bind:Variables.serviceWeatherHistory.dataSet.history.dailysummary[$i].minwspdi" name="label9" margin="5% unset unset unset"></wm-label>
                                                     </wm-gridcolumn>
                                                     <wm-gridcolumn columnwidth="6" name="gridcolumn23">
-                                                        <wm-label padding="unset 0.5em" name="label12" caption="bind:Variables.WeatherHistoryInvoke.dataSet.history.dailysummary[$i].maxwspdi" fontsize="2" fontunit="em"></wm-label>
+                                                        <wm-label padding="unset 0.5em" name="label12" caption="bind:Variables.serviceWeatherHistory.dataSet.history.dailysummary[$i].maxwspdi" fontsize="2" fontunit="em"></wm-label>
                                                     </wm-gridcolumn>
                                                 </wm-gridrow>
                                             </wm-layoutgrid>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="4" name="gridcolumn32" horizontalalign="center">
-                                            <wm-label padding="unset 0.5em" class="p" fontsize="2" fontunit="em" caption="bind:Variables.WeatherHistoryInvoke.dataSet.history.dailysummary[$i].precipi" margin="5% unset unset unset" name="label10"></wm-label>
+                                            <wm-label padding="unset 0.5em" class="p" fontsize="2" fontunit="em" caption="bind:Variables.serviceWeatherHistory.dataSet.history.dailysummary[$i].precipi" margin="5% unset unset unset" name="label10"></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
@@ -126,7 +126,7 @@
                     </wm-gridrow>
                     <wm-gridrow name="gridrow12_1">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn24">
-                            <wm-table name="WeatherHistoryTable1" title="Weatherhistory List" dataset="bind:Variables.Job1111WeatherHistoryData.dataSet" navigation="None">
+                            <wm-table name="WeatherHistoryTable1" title="Weatherhistory List" dataset="bind:Variables.liveGetWeatherHistory.dataSet" navigation="None" spacing="condensed">
                                 <wm-table-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-table-column>
                                 <wm-table-column binding="weatherDate" caption="Weather Date" generator="assigned" pcdisplay="true" mobiledisplay="true" type="date"></wm-table-column>
                                 <wm-table-column binding="tempMax" caption="Temp Max" generator="assigned" pcdisplay="true" mobiledisplay="true" type="short"></wm-table-column>

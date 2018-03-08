@@ -1,32 +1,32 @@
 {
-  "databaseVarInsertWeatherHistory" : {
+  "liveCreateWeatherHistory" : {
     "_id" : "wm-databaseVarInsertWeatherHistory-wm.LiveVariable-1520540774386",
-    "name" : "databaseVarInsertWeatherHistory",
+    "name" : "liveCreateWeatherHistory",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "tempMax",
-      "value" : "bind:Variables.WeatherHistoryInvoke.dataSet.history.dailysummary[$i].maxtempi",
+      "value" : "bind:Variables.serviceWeatherHistory.dataSet.history.dailysummary[$i].maxtempi",
       "type" : "number"
     }, {
       "target" : "tempMin",
-      "value" : "bind:Variables.WeatherHistoryInvoke.dataSet.history.dailysummary[$i].mintempi",
+      "value" : "bind:Variables.serviceWeatherHistory.dataSet.history.dailysummary[$i].mintempi",
       "type" : "number"
     }, {
       "target" : "thunderStorms",
-      "value" : "bind:Variables.WeatherHistoryInvoke.dataSet.history.dailysummary[$i].thunder",
+      "value" : "bind:Variables.serviceWeatherHistory.dataSet.history.dailysummary[$i].thunder",
       "type" : "number"
     }, {
       "target" : "windSpeed",
-      "value" : "bind:Variables.WeatherHistoryInvoke.dataSet.history.dailysummary[$i].meanwindspdi",
+      "value" : "bind:Variables.serviceWeatherHistory.dataSet.history.dailysummary[$i].meanwindspdi",
       "type" : "number"
     }, {
       "target" : "windDir",
-      "value" : "bind:Variables.WeatherHistoryInvoke.dataSet.history.dailysummary[$i].meanwdird",
+      "value" : "bind:Variables.serviceWeatherHistory.dataSet.history.dailysummary[$i].meanwdird",
       "type" : "number"
     }, {
       "target" : "precip",
-      "value" : "bind:Variables.WeatherHistoryInvoke.dataSet.history.dailysummary[$i].precipi",
+      "value" : "bind:Variables.serviceWeatherHistory.dataSet.history.dailysummary[$i].precipi",
       "type" : "number"
     } ],
     "operation" : "insert",
@@ -36,6 +36,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onBeforeUpdate" : "liveCreateWeatherHistoryonBeforeUpdate($event, $scope)",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : false,
@@ -154,9 +155,9 @@
     "inputFields" : { },
     "package" : "com.psabackoffice.job1111.WeatherHistory"
   },
-  "Job1111WeatherHistoryData" : {
+  "liveGetWeatherHistory" : {
     "_id" : "wm-Job1111WeatherHistoryData-wm.LiveVariable-1520540583439",
-    "name" : "Job1111WeatherHistoryData",
+    "name" : "liveGetWeatherHistory",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
     "dataBinding" : [ ],
@@ -287,9 +288,9 @@
     "filterFields" : { },
     "package" : "com.psabackoffice.job1111.WeatherHistory"
   },
-  "WeatherHistoryInvoke" : {
+  "serviceWeatherHistory" : {
     "_id" : "wm-WeatherHistoryInvoke-wm.ServiceVariable-1520529391805",
-    "name" : "WeatherHistoryInvoke",
+    "name" : "serviceWeatherHistory",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
@@ -310,7 +311,7 @@
     "dataSet" : [ ],
     "isList" : false,
     "maxResults" : 20,
-    "onSuccess" : "Variables.databaseVarInsertWeatherHistory.createRecord()",
+    "onSuccess" : "Variables.liveCreateWeatherHistory.createRecord()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
