@@ -1,0 +1,28 @@
+.red {
+    background-color: #dc0000;
+}
+.pink {
+    background-color: #F8E0E0;
+}
+.blue {
+    background-color: #5fb4ff;
+}
+.green {
+    background-color: #D8F6CE;
+}
+.yellow {
+    background-color: #fffe80;
+}
+.orange {
+    background-color: #ff6500;
+}
+.wm-app .btn-reject {
+    color: #00000;
+    background-color: #dc0000;
+    border-color: #ccc;
+}
+.wm-app .btn-save {
+    color: #00000;
+    background-color: #0B9642;
+    border-color: #ccc;
+}

@@ -32,5 +32,18 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
+  },
+  "staticEditMode" : {
+    "_id" : "wm-staticEditMode-wm.Variable-1520529023540",
+    "name" : "staticEditMode",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : false
+    },
+    "type" : "boolean",
+    "isList" : false,
+    "saveInPhonegap" : false
   }
 }

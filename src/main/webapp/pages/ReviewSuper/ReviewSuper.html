@@ -93,22 +93,20 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                         <wm-layoutgrid name="layoutgrid2">
                             <wm-gridrow name="gridrow6">
                                 <wm-gridcolumn columnwidth="4" name="gridcolumn14_1">
-                                    <wm-button class="btn-default" caption="Accept" type="button" hint="Accept the activity and submit to project services review." on-click="btnAcceptClick($event, $scope)" readonlygrid="true" tabindex="1" show="bind:Variables.staticEditMode.dataSet.dataValue == false &amp;&amp; Variables.staticTabSelect.dataSet.dataValue == '1'"
+                                    <wm-button class="btn-default" caption="Accept" type="button" hint="Accept the activity and submit to project services review." on-click="btnAcceptClick($event, $scope)" readonlygrid="true" tabindex="1" show="bind:Variables.staticEditMode.dataSet.dataValue == false &amp;&amp; (Widgets.containerFADetails.Variables.staticEditMode.dataSet.dataValue == false || Widgets.containerFADetails.Variables.staticEditMode.dataSet.dataValue == undefined)"
                                         backgroundcolor="#0B9642" iconclass="glyphicon glyphicon-thumbs-up" shortcutkey="a" name="btnAccept"></wm-button>
-                                    <wm-button class="btn-default" caption="Accept" type="button" hint="Accept the activities and submit to project services review." on-click="btnAccept2Click($event, $scope)" readonlygrid="true" tabindex="1"
-                                        show="bind:Variables.staticEditMode.dataSet.dataValue == false &amp;&amp; Variables.staticTabSelect.dataSet.dataValue == '2'" backgroundcolor="#0B9642" iconclass="glyphicon glyphicon-thumbs-up" shortcutkey="a" name="btnAccept2"></wm-button>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="4" name="gridcolumn15">
-                                    <wm-button class="btn-default" caption="Modify" type="button" hint="Modify this activity." readonlygrid="true" on-click="btnModifyClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == false" backgroundcolor="#ff6500"
-                                        iconclass="glyphicon glyphicon-edit" shortcutkey="m" name="btnModify"></wm-button>
-                                    <wm-button class="btn-default" caption="Cancel" type="button" hint="Cancel." on-click="btnCancelClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == true" backgroundcolor="#a07d7d"
-                                        iconclass="glyphicon glyphicon-remove" name="btnCancel"></wm-button>
+                                    <wm-button class="btn-default" caption="Modify" type="button" hint="Modify this activity." readonlygrid="true" on-click="btnModifyClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == false &amp;&amp; Variables.staticTabSelect.dataSet.dataValue == '1'"
+                                        backgroundcolor="#ff6500" iconclass="glyphicon glyphicon-edit" shortcutkey="m" name="btnModify"></wm-button>
+                                    <wm-button class="btn-default" caption="Cancel" type="button" hint="Cancel." on-click="btnCancelClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == true &amp;&amp; Variables.staticTabSelect.dataSet.dataValue == '1'"
+                                        backgroundcolor="#a07d7d" iconclass="glyphicon glyphicon-remove" name="btnCancel"></wm-button>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="4" name="gridcolumn16">
-                                    <wm-button class="btn-default" caption="Reject" type="button" hint="Reject this activity and remove it from the list." on-click="btnRejectClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == false"
+                                    <wm-button class="btn-default" caption="Reject" type="button" hint="Reject this activity and remove it from the list." on-click="btnRejectClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == false &amp;&amp; Variables.staticTabSelect.dataSet.dataValue == '1'"
                                         backgroundcolor="#dc0000" iconclass="glyphicon glyphicon-thumbs-down" shortcutkey="r" name="btnReject"></wm-button>
-                                    <wm-button class="btn-default" caption="Save" type="button" hint="Save your changes." readonlygrid="true" show="bind:Variables.staticEditMode.dataSet.dataValue == true" backgroundcolor="#0B9642" on-click="btnSaveClick($event, $scope)"
-                                        iconclass="glyphicon glyphicon-ok" name="btnSave"></wm-button>
+                                    <wm-button class="btn-default" caption="Save" type="button" hint="Save your changes." readonlygrid="true" show="bind:Variables.staticEditMode.dataSet.dataValue == true &amp;&amp; Variables.staticTabSelect.dataSet.dataValue == '1'"
+                                        backgroundcolor="#0B9642" on-click="btnSaveClick($event, $scope)" iconclass="glyphicon glyphicon-ok" name="btnSave"></wm-button>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                         </wm-layoutgrid>

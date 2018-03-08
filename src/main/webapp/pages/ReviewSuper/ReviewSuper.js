@@ -26,39 +26,39 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
 
     $scope.btnAcceptClick = function($event, $isolateScope) {
-        switch ($scope.Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus) {
-            case 1:
-            case 10:
-                $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "2");
-                break;
-            case 6:
-            case 8:
-                $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "7");
-                break;
-            case 4:
-                $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "9");
+        if ($scope.Variables.staticTabSelect.dataSet.dataValue == '1') {
+            switch ($scope.Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus) {
+                case 1:
+                case 10:
+                    $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "2");
+                    break;
+                case 6:
+                case 8:
+                    $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "7");
+                    break;
+                case 4:
+                    $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "9");
+            }
+            $scope.Variables.serviceUpdateSS.invoke();
+        } else if ($scope.Variables.staticTabSelect.dataSet.dataValue == '2') {
+            switch ($scope.Widgets.gridSuperReviewSteel.selecteditem.fk_ActivityStatus) {
+                case 1:
+                case 10:
+                    $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "2");
+                    break;
+                case 6:
+                case 8:
+                    $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "7");
+                    break;
+                case 4:
+                    $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "9");
+            }
+            //Need logic for looping through all FA's that make up the one row selected in the gridSuperReviewSteel.  
+            //OR pass a List to the querry if that works right.
+            //OR Build an array of objects to pass to an UpdateSS LiveVariable -> setInput() -> invoke()
+            //$scope.Variables.serviceUpdateSS.invoke();
         }
-        $scope.Variables.serviceUpdateSS.invoke();
-    };
 
-
-    $scope.btnAccept2Click = function($event, $isolateScope) {
-        switch ($scope.Widgets.gridSuperReviewSteel.selecteditem.fk_ActivityStatus) {
-            case 1:
-            case 10:
-                $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "2");
-                break;
-            case 6:
-            case 8:
-                $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "7");
-                break;
-            case 4:
-                $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "9");
-        }
-        //Need logic for looping through all FA's that make up the one row selected in the gridSuperReviewSteel.  
-        //OR pass a List to the querry if that works right.
-        //OR Build an array of objects to pass to an UpdateSS LiveVariable -> setInput() -> invoke()
-        //$scope.Variables.serviceUpdateSS.invoke();
     };
 
 
@@ -80,7 +80,7 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
     $scope.btnSaveClick = function($event, $isolateScope) {
         $scope.Variables.staticEditMode.dataSet.dataValue = false; //disable all fields
-        if ($scope.Variables.staticTabSelect.dataValue == '1') {
+        if ($scope.Variables.staticTabSelect.dataSet.dataValue == '1') {
 
         }
 
@@ -101,7 +101,6 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
             $scope.Variables.serviceUpdateSS.dataBinding.ActivityStatus = 4; //Supervisor Modified
         }
         $scope.Variables.serviceUpdateSS.invoke();
-
     };
 
 
@@ -110,114 +109,116 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
             // Avoid unneeded logic and Data requests on initial page load.
             return;
         }
+        if ($scope.Variables.staticTabSelect.dataSet.dataValue == '1') {
+            $scope.Variables.staticEditMode.dataSet.dataValue = false;
+            $scope.Variables.liveGetSubsDetails.setFilter('submissionId', $rowData.submissionId);
+            $scope.Variables.liveGetSubsDetails.listRecords();
 
-        $scope.Variables.staticEditMode.dataSet.dataValue = false;
-
-        $scope.Variables.liveGetSubsDetails.setFilter('submissionId', $rowData.submissionId);
-        $scope.Variables.liveGetSubsDetails.listRecords();
-
-        if ($rowData.activityType == 10) {
-            console.log('Activity Type 10 not defined: ReviewSuperPipe: GridActivitySelect');
-        }
-        if ($rowData.activityType == 11) {
-            $scope.Variables.liveGetPipeErection.setFilter('ActivityID', $rowData.activityId);
-            $scope.Variables.liveGetPipeErection.listRecords();
-            $scope.Widgets.containerFADetails.content = 'PartFAPipeErection';
-        }
-        if ($rowData.activityType == 20) {
-            console.log('Activity Type 20 not defined: ReviewSuperPipe: GridActivitySelect');
-        }
-        if ($rowData.activityType == 21) {
-            $scope.Variables.liveGetPipeBoltUp.setFilter('ActivityID', $rowData.activityId);
-            $scope.Variables.liveGetPipeBoltUp.listRecords();
-            $scope.Widgets.containerFADetails.content = 'PartFAPipeBoltUp';
-        }
-        if ($rowData.activityType == 22 || $rowData.activityType == 23) {
-            $scope.Variables.liveGetPipeWeld.setFilter('ActivityID', $rowData.activityId);
-            $scope.Variables.liveGetPipeWeld.listRecords();
-            $scope.Widgets.containerFADetails.content = 'PartFAPipeWeld';
-        }
-        if ($rowData.activityType == 30) {
-            console.log('Activity Type 30 not defined: ReviewSuperPipe: GridActivitySelect');
-        }
-        if ($rowData.activityType == 31 || $rowData.activityType == 33 || $rowData.activityType == 34 || $rowData.activityType == 35 || $rowData.activityType == 39) {
-            $scope.Variables.liveGetPipeTrim.setFilter('ActivityID', $rowData.activityId);
-            $scope.Variables.liveGetPipeTrim.listRecords();
-            $scope.Widgets.containerFADetails.content = 'PartFAPipeTrim';
-        }
-        if ($rowData.activityType == 32) {
-            $scope.Variables.liveGetPipeSupports.setFilter('ActivityID', $rowData.activityId);
-            $scope.Variables.liveGetPipeSupports.listRecords();
-            $scope.Widgets.containerFADetails.content = 'PartFAPipeSupport';
-        }
-        if ($rowData.activityType == 40 || $rowData.activityType == 41 || $rowData.activityType == 42 || $rowData.activityType == 43) {
-            $scope.Variables.liveGetPipeTesting.setFilter('ActivityID', $rowData.activityId);
-            $scope.Variables.liveGetPipeTesting.listRecords();
-            $scope.Widgets.containerFADetails.content = 'PartFAPipeTesting';
-        }
-        if ($rowData.activityType == 50 || $rowData.activityType == 51 || $rowData.activityType == 52 || $rowData.activityType == 53 || $rowData.activityType == 59) {
-            $scope.Variables.liveGetPipeDemo.setFilter('ActivityID', $rowData.activityId);
-            $scope.Variables.liveGetPipeDemo.listRecords();
-            $scope.Widgets.containerFADetails.content = 'PartFAPipeDemo';
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.activityType == 66) {
-            $scope.Variables.liveGetSteelSellPackage.setFilter('ActivityID', $rowData.activityId);
-            $scope.Variables.liveGetSteelSellPackage.listRecords();
-            $scope.Widgets.containerFADetails.content = 'PartFASteelSellPackage';
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.activityType == 67) {
-            $scope.Variables.liveGetSteelDemo.setFilter('ActivityID', $rowData.activityId);
-            $scope.Variables.liveGetSteelDemo.listRecords();
-            $scope.Widgets.containerFADetails.content = 'PartFASteelDemo';
-        }
-
-        if ($rowData.activityType == 70 || $rowData.activityType == 71) {
-            $scope.Variables.liveGetCivilTracker.setFilter('BidID', $rowData.bidId);
-            $scope.Variables.liveGetCivilTracker.listRecords();
-            $scope.Variables.liveGetCivilFA.setFilter('ActivityID', $rowData.activityId);
-            $scope.Variables.liveGetCivilFA.listRecords();
-            $scope.Widgets.containerFADetails.content = 'PartFACivilStandard';
-        }
-        if ($rowData.activityType == 72) {
-            $scope.Variables.liveGetCivilSellPackage.setFilter('ActivityID', $rowData.activityId);
-            $scope.Variables.liveGetCivilSellPackage.listRecords();
-            $scope.Widgets.containerFADetails.content = 'PartFACivilSellPackage';
-        }
-
-        if ($rowData.activityType == 80) {
-            $scope.Variables.liveGetEquipFA.setFilter('ActivityID', $rowData.activityId);
-            $scope.Variables.liveGetEquipFA.listRecords();
-            $scope.Widgets.containerFADetails.content = 'PartFAEquipStandard';
-        }
-
-        if ($rowData.activityType == 90 || $rowData.activityType == 91) {
-            $scope.Variables.liveGetPipeMisc.setFilter('ActivityID', $rowData.activityId);
-            $scope.Variables.liveGetPipeMisc.listRecords();
-            $scope.Widgets.containerFADetails.content = 'PartFAPipeMisc';
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.activityType == 93) {
-            $scope.Variables.liveGetPipeEWO.setFilter('ActivityID', $rowData.activityId);
-            $scope.Variables.liveGetPipeEWO.listRecords();
-            $scope.Widgets.containerFADetails.content = 'PartFAEWO';
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.activityType == 96) {
-            $scope.Variables.liveGetSteelMisc.setFilter('ActivityID', $rowData.activityId);
-            $scope.Variables.liveGetSteelMisc.listRecords();
-            $scope.Widgets.containerFADetails.content = 'PartFASteelMisc';
-        }
-        if ($rowData.activityType == 97) {
-            $scope.Variables.liveGetCivilMisc.setFilter('ActivityID', $rowData.activityId);
-            $scope.Variables.liveGetCivilMisc.listRecords();
-            $scope.Widgets.containerFADetails.content = 'PartFACivilMisc';
+            if ($rowData.activityType == 10) {
+                console.log('Activity Type 10 not defined: ReviewSuperPipe: GridActivitySelect');
+            }
+            if ($rowData.activityType == 11) {
+                $scope.Variables.liveGetPipeErection.setFilter('ActivityID', $rowData.activityId);
+                $scope.Variables.liveGetPipeErection.listRecords();
+                $scope.Widgets.containerFADetails.content = 'PartFAPipeErection';
+            }
+            if ($rowData.activityType == 20) {
+                console.log('Activity Type 20 not defined: ReviewSuperPipe: GridActivitySelect');
+            }
+            if ($rowData.activityType == 21) {
+                $scope.Variables.liveGetPipeBoltUp.setFilter('ActivityID', $rowData.activityId);
+                $scope.Variables.liveGetPipeBoltUp.listRecords();
+                $scope.Widgets.containerFADetails.content = 'PartFAPipeBoltUp';
+            }
+            if ($rowData.activityType == 22 || $rowData.activityType == 23) {
+                $scope.Variables.liveGetPipeWeld.setFilter('ActivityID', $rowData.activityId);
+                $scope.Variables.liveGetPipeWeld.listRecords();
+                $scope.Widgets.containerFADetails.content = 'PartFAPipeWeld';
+            }
+            if ($rowData.activityType == 30) {
+                console.log('Activity Type 30 not defined: ReviewSuperPipe: GridActivitySelect');
+            }
+            if ($rowData.activityType == 31 || $rowData.activityType == 33 || $rowData.activityType == 34 || $rowData.activityType == 35 || $rowData.activityType == 39) {
+                $scope.Variables.liveGetPipeTrim.setFilter('ActivityID', $rowData.activityId);
+                $scope.Variables.liveGetPipeTrim.listRecords();
+                $scope.Widgets.containerFADetails.content = 'PartFAPipeTrim';
+            }
+            if ($rowData.activityType == 32) {
+                $scope.Variables.liveGetPipeSupports.setFilter('ActivityID', $rowData.activityId);
+                $scope.Variables.liveGetPipeSupports.listRecords();
+                $scope.Widgets.containerFADetails.content = 'PartFAPipeSupport';
+            }
+            if ($rowData.activityType == 40 || $rowData.activityType == 41 || $rowData.activityType == 42 || $rowData.activityType == 43) {
+                $scope.Variables.liveGetPipeTesting.setFilter('ActivityID', $rowData.activityId);
+                $scope.Variables.liveGetPipeTesting.listRecords();
+                $scope.Widgets.containerFADetails.content = 'PartFAPipeTesting';
+            }
+            if ($rowData.activityType == 50 || $rowData.activityType == 51 || $rowData.activityType == 52 || $rowData.activityType == 53 || $rowData.activityType == 59) {
+                $scope.Variables.liveGetPipeDemo.setFilter('ActivityID', $rowData.activityId);
+                $scope.Variables.liveGetPipeDemo.listRecords();
+                $scope.Widgets.containerFADetails.content = 'PartFAPipeDemo';
+            }
+            if ($scope.Widgets.gridSuperReviewActivities.selecteditem.activityType == 66) {
+                $scope.Variables.liveGetSteelSellPackage.setFilter('ActivityID', $rowData.activityId);
+                $scope.Variables.liveGetSteelSellPackage.listRecords();
+                $scope.Widgets.containerFADetails.content = 'PartFASteelSellPackage';
+            }
+            if ($scope.Widgets.gridSuperReviewActivities.selecteditem.activityType == 67) {
+                $scope.Variables.liveGetSteelDemo.setFilter('ActivityID', $rowData.activityId);
+                $scope.Variables.liveGetSteelDemo.listRecords();
+                $scope.Widgets.containerFADetails.content = 'PartFASteelDemo';
+            }
+            if ($rowData.activityType == 70 || $rowData.activityType == 71) {
+                $scope.Variables.liveGetCivilTracker.setFilter('BidID', $rowData.bidId);
+                $scope.Variables.liveGetCivilTracker.listRecords();
+                $scope.Variables.liveGetCivilFA.setFilter('ActivityID', $rowData.activityId);
+                $scope.Variables.liveGetCivilFA.listRecords();
+                $scope.Widgets.containerFADetails.content = 'PartFACivilStandard';
+            }
+            if ($rowData.activityType == 72) {
+                $scope.Variables.liveGetCivilSellPackage.setFilter('ActivityID', $rowData.activityId);
+                $scope.Variables.liveGetCivilSellPackage.listRecords();
+                $scope.Widgets.containerFADetails.content = 'PartFACivilSellPackage';
+            }
+            if ($rowData.activityType == 80) {
+                $scope.Variables.liveGetEquipFA.setFilter('ActivityID', $rowData.activityId);
+                $scope.Variables.liveGetEquipFA.listRecords();
+                $scope.Widgets.containerFADetails.content = 'PartFAEquipStandard';
+            }
+            if ($rowData.activityType == 90 || $rowData.activityType == 91) {
+                $scope.Variables.liveGetPipeMisc.setFilter('ActivityID', $rowData.activityId);
+                $scope.Variables.liveGetPipeMisc.listRecords();
+                $scope.Widgets.containerFADetails.content = 'PartFAPipeMisc';
+            }
+            if ($scope.Widgets.gridSuperReviewActivities.selecteditem.activityType == 93) {
+                $scope.Variables.liveGetPipeEWO.setFilter('ActivityID', $rowData.activityId);
+                $scope.Variables.liveGetPipeEWO.listRecords();
+                $scope.Widgets.containerFADetails.content = 'PartFAEWO';
+            }
+            if ($scope.Widgets.gridSuperReviewActivities.selecteditem.activityType == 96) {
+                $scope.Variables.liveGetSteelMisc.setFilter('ActivityID', $rowData.activityId);
+                $scope.Variables.liveGetSteelMisc.listRecords();
+                $scope.Widgets.containerFADetails.content = 'PartFASteelMisc';
+            }
+            if ($rowData.activityType == 97) {
+                $scope.Variables.liveGetCivilMisc.setFilter('ActivityID', $rowData.activityId);
+                $scope.Variables.liveGetCivilMisc.listRecords();
+                $scope.Widgets.containerFADetails.content = 'PartFACivilMisc';
+            }
         }
     };
 
 
     $scope.gridSuperReviewSteelSelect = function($event, $rowData) {
         $scope.Variables.staticEditMode.dataSet.dataValue = false;
-
-        $scope.Variables.liveGetSubsDetails.setFilter('submissionId', $rowData.submissionId);
-        $scope.Variables.liveGetSubsDetails.listRecords();
+        if ($scope.Variables.staticTabSelect.dataSet.dataValue == '2') {
+            if ($scope.Widgets.containerFADetails.Variables.staticEditMode.dataSet.dataValue) {
+                $scope.Widgets.containerFADetails.Variables.staticEditMode.setValue("dataValue", false);
+                $scope.Widgets.containerFADetails.Widgets.gridSteelFA.cancelRow();
+            }
+            $scope.Variables.liveGetSubsDetails.setFilter('submissionId', $rowData.submissionId);
+            $scope.Variables.liveGetSubsDetails.listRecords();
+        }
     };
 
 
@@ -421,10 +422,8 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
     $scope.tabFAsSelect = function($event, $isolateScope) {
         $scope.Variables.staticTabSelect.setValue('dataValue', '1');
-
         $scope.Variables.liveGetSubsDetails.setFilter('submissionId', $scope.Widgets.gridSuperReviewActivities.selecteditem.submissionId);
         $scope.Variables.liveGetSubsDetails.listRecords();
-
         $scope.gridSuperReviewActivitiesSelect(null, null, $scope.Widgets.gridSuperReviewActivities.selecteditem);
     };
 

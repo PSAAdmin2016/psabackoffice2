@@ -15,7 +15,23 @@ Application.$controller("PartFASteelStandardPageController", ["$scope", function
     };
 
 
+    $scope.gridSteelFARowclick = function($event, $isolateScope, $rowData) {
+        $scope.Widgets.gridSteelFA.cancelRow();
+        $scope.Variables.staticEditMode.setValue("dataValue", false);
+    };
+
+
+    $scope.gridSteelFARowdblclick = function($event, $isolateScope, $rowData) {
+        if (!$scope.Variables.staticEditMode.dataSet.dataValue) {
+            $scope.Variables.staticEditMode.setValue("dataValue", true);
+            $scope.Widgets.gridSteelFA.editRow();
+        }
+    };
+
+
 }]);
+
+
 
 
 Application.$controller("gridSteelFAController", ["$scope",
@@ -23,9 +39,24 @@ Application.$controller("gridSteelFAController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
-        $scope.customRowAction = function($event, $rowData) {
-            debugger;
+        $scope.customRowAction = function($event, $rowData) { //REJECT
+
+            $scope.Widgets.gridSteelFA.cancelRow();
+            $scope.Variables.staticEditMode.setValue("dataValue", false);
         };
 
+
+        $scope.customRow1Action = function($event, $rowData) { //SAVE
+
+            $scope.Widgets.gridSteelFA.cancelRow();
+            $scope.Variables.staticEditMode.setValue("dataValue", false);
+        };
+
+
+        $scope.customRow3Action = function($event, $rowData) { //Cancel
+
+            $scope.Widgets.gridSteelFA.cancelRow();
+            $scope.Variables.staticEditMode.setValue("dataValue", false);
+        };
     }
 ]);
