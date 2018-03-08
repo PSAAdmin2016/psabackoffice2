@@ -4,7 +4,7 @@
     "version" : "2.0",
     "x-WM-USE_PROXY_FOR_WEB" : true,
     "x-WM-USE_PROXY_FOR_MOBILE" : true,
-    "x-WM-API_ID" : "8f9597f6-2068-40d0-9191-a5597b414a0d",
+    "x-WM-API_ID" : "79411a1f-dd02-45cf-994c-cb90a7a2e5bb",
     "x-WM-SERVICE_ID" : "wunderground",
     "x-WM-SERVICE_TYPE" : "RestService"
   },
@@ -16,13 +16,13 @@
   } ],
   "schemes" : [ "http" ],
   "paths" : {
-    "/WeatherHistory/invoke/a64134bb22ac4df4/history_{yyyymmdd}/q/{zipcode}.json" : {
+    "/WeatherHistory/invoke/a64134bb22ac4df4/history_{yyyyMMdd}/q/{zipcode}.json" : {
       "get" : {
         "tags" : [ "RestServiceVirtualController" ],
         "operationId" : "WeatherHistory_RestServiceVirtualController-invoke",
         "consumes" : [ "text/xml" ],
         "parameters" : [ {
-          "name" : "yyyymmdd",
+          "name" : "yyyyMMdd",
           "in" : "path",
           "required" : true,
           "type" : "string"
@@ -43,10 +43,10 @@
         "x-WM-METHOD_NAME" : "invoke",
         "x-WM-ACCESS_SPECIFIER" : "APP_ONLY"
       },
-      "x-WM-BASE_PATH" : "/WeatherHistory/invoke/a64134bb22ac4df4/history_{yyyymmdd}/q/{zipcode}.json",
+      "x-WM-BASE_PATH" : "/WeatherHistory/invoke/a64134bb22ac4df4/history_{yyyyMMdd}/q/{zipcode}.json",
       "x-WM-TAG" : "RestServiceVirtualController",
       "x-WM-RELATIVE_PATH" : "",
-      "x-WM-COMPLETE_PATH" : "${rest.WeatherHistory.scheme}://${rest.WeatherHistory.host}${rest.WeatherHistory.basepath}/a64134bb22ac4df4/history_{yyyymmdd}/q/{zipcode}.json"
+      "x-WM-COMPLETE_PATH" : "${rest.WeatherHistory.scheme}://${rest.WeatherHistory.host}${rest.WeatherHistory.basepath}/a64134bb22ac4df4/history_{yyyyMMdd}/q/{zipcode}.json"
     }
   },
   "definitions" : {

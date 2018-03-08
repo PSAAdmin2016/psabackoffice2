@@ -74,6 +74,17 @@ Application.$controller("TestLab2PageController", ["$scope", function($scope) {
     };
 
 
+    $scope.WeatherHistoryForm1Success = function($event, $isolateScope, $data) {
+        $scope.Widgets.labelWeatherHistoryTitle.content = 'Success';
 
+
+    };
 
 }]);
+
+Application.$controller("WeatherHistoryTable1Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
