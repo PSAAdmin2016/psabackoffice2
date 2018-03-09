@@ -36,6 +36,7 @@ import com.psabackoffice.psa.ChatConversationMembers;
 import com.psabackoffice.psa.ChatMessages;
 import com.psabackoffice.psa.FeedBack;
 import com.psabackoffice.psa.FeedBackNotes;
+import com.psabackoffice.psa.Settingsuser;
 import com.psabackoffice.psa.TblCrews;
 import com.psabackoffice.psa.TblUserJobNumbers;
 import com.psabackoffice.psa.TblUserPsa;
@@ -206,6 +207,15 @@ public class TblUserPsaController {
 
         LOGGER.debug("Fetching all associated feedBackNoteses");
         return tblUserPsaService.findAssociatedFeedBackNoteses(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/settingsusers", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the settingsusers instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Settingsuser> findAssociatedSettingsusers(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated settingsusers");
+        return tblUserPsaService.findAssociatedSettingsusers(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/tblCrewsesForConstructionManager", method=RequestMethod.GET)

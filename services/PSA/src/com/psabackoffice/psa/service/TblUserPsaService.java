@@ -22,6 +22,7 @@ import com.psabackoffice.psa.ChatConversationMembers;
 import com.psabackoffice.psa.ChatMessages;
 import com.psabackoffice.psa.FeedBack;
 import com.psabackoffice.psa.FeedBackNotes;
+import com.psabackoffice.psa.Settingsuser;
 import com.psabackoffice.psa.TblCrews;
 import com.psabackoffice.psa.TblUserJobNumbers;
 import com.psabackoffice.psa.TblUserPsa;
@@ -219,6 +220,18 @@ public interface TblUserPsaService {
      * @see Page
      */
     Page<FeedBackNotes> findAssociatedFeedBackNoteses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated settingsusers for given TblUserPsa id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Settingsuser instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Settingsuser> findAssociatedSettingsusers(Integer id, Pageable pageable);
 
     /*
      * Returns the associated tblCrewsesForConstructionManager for given TblUserPsa id.

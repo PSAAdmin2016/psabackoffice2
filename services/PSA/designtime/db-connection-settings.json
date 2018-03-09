@@ -129,7 +129,13 @@
     "table" : "REF_WeldTypes",
     "schema" : null
   }, {
+    "table" : "REF_Zipcodes",
+    "schema" : null
+  }, {
     "table" : "SETTINGS",
+    "schema" : null
+  }, {
+    "table" : "SETTINGSUser",
     "schema" : null
   }, {
     "table" : "tblCrews",

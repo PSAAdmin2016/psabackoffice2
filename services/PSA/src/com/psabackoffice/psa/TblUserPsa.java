@@ -61,15 +61,16 @@ public class TblUserPsa implements Serializable {
     private Integer fkDefaultJobNumberId;
     private short rev;
     private Timestamp timeStamp;
-    private RefCrafts refCrafts;
-    private TblJobNumbers tblJobNumbers;
-    private RefDisciplines refDisciplines;
     private RefRoles refRoles;
+    private RefCrafts refCrafts;
+    private RefDisciplines refDisciplines;
+    private TblJobNumbers tblJobNumbers;
     private RefCraftClasses refCraftClasses;
     private List<ChatConversationMembers> chatConversationMemberses;
     private List<ChatMessages> chatMessageses;
     private List<FeedBack> feedBacks;
     private List<FeedBackNotes> feedBackNoteses;
+    private List<Settingsuser> settingsusers;
     private List<TblCrews> tblCrewsesForConstructionManager;
     private List<TblCrews> tblCrewsesForSuperintendent;
     private TblCrews tblCrewsForForeman;
@@ -246,6 +247,21 @@ public class TblUserPsa implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`fk_RoleId`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_tblUserPSA_tblRoles1`"))
+    @Fetch(FetchMode.JOIN)
+    public RefRoles getRefRoles() {
+        return this.refRoles;
+    }
+
+    public void setRefRoles(RefRoles refRoles) {
+        if(refRoles != null) {
+            this.fkRoleId = refRoles.getId();
+        }
+
+        this.refRoles = refRoles;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`fk_CraftId`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_CraftsTO_REFCrafts`"))
     @Fetch(FetchMode.JOIN)
     public RefCrafts getRefCrafts() {
@@ -258,21 +274,6 @@ public class TblUserPsa implements Serializable {
         }
 
         this.refCrafts = refCrafts;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_DefaultJobNumberId`", referencedColumnName = "`JobNumber`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_DefaultJobNumberTO_tblJobNumbers`"))
-    @Fetch(FetchMode.JOIN)
-    public TblJobNumbers getTblJobNumbers() {
-        return this.tblJobNumbers;
-    }
-
-    public void setTblJobNumbers(TblJobNumbers tblJobNumbers) {
-        if(tblJobNumbers != null) {
-            this.fkDefaultJobNumberId = tblJobNumbers.getJobNumber();
-        }
-
-        this.tblJobNumbers = tblJobNumbers;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -291,18 +292,18 @@ public class TblUserPsa implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_RoleId`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_tblUserPSA_tblRoles1`"))
+    @JoinColumn(name = "`fk_DefaultJobNumberId`", referencedColumnName = "`JobNumber`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_DefaultJobNumberTO_tblJobNumbers`"))
     @Fetch(FetchMode.JOIN)
-    public RefRoles getRefRoles() {
-        return this.refRoles;
+    public TblJobNumbers getTblJobNumbers() {
+        return this.tblJobNumbers;
     }
 
-    public void setRefRoles(RefRoles refRoles) {
-        if(refRoles != null) {
-            this.fkRoleId = refRoles.getId();
+    public void setTblJobNumbers(TblJobNumbers tblJobNumbers) {
+        if(tblJobNumbers != null) {
+            this.fkDefaultJobNumberId = tblJobNumbers.getJobNumber();
         }
 
-        this.refRoles = refRoles;
+        this.tblJobNumbers = tblJobNumbers;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -362,6 +363,17 @@ public class TblUserPsa implements Serializable {
 
     public void setFeedBackNoteses(List<FeedBackNotes> feedBackNoteses) {
         this.feedBackNoteses = feedBackNoteses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsa")
+    @Cascade({CascadeType.SAVE_UPDATE})
+    public List<Settingsuser> getSettingsusers() {
+        return this.settingsusers;
+    }
+
+    public void setSettingsusers(List<Settingsuser> settingsusers) {
+        this.settingsusers = settingsusers;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -492,6 +504,11 @@ public class TblUserPsa implements Serializable {
         if(feedBackNoteses != null) {
             for(FeedBackNotes feedBackNotes : feedBackNoteses) {
                 feedBackNotes.setTblUserPsa(this);
+            }
+        }
+        if(settingsusers != null) {
+            for(Settingsuser settingsuser : settingsusers) {
+                settingsuser.setTblUserPsa(this);
             }
         }
         if(tblCrewsesForConstructionManager != null) {

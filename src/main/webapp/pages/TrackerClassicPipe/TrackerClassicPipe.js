@@ -23,11 +23,6 @@ Application.$controller("TrackerClassicPipePageController", ["$scope", function(
     };
 
 
-    $scope.gridClassicTrackerPipeRowdblclick = function($event, $data) {
-        WM.element($event.target).parent().find('.edit-row-button').click();
-    };
-
-
     $scope.timerDelayGetActivityHistoryonTimerFire = function(variable, data) { // This timer fired in the popoverActivityHistoryShow Event
         if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Erection') {
             $scope.Variables.Job1111ExecuteGetActivityHistoryErection.update();
@@ -106,19 +101,54 @@ Application.$controller("gridClassicTrackerPipeController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
+
         $scope.customButtonAction = function($event) { //Hide selected Columns
-            var hiddenCount = 0;
+            //Get currently Hidden Columns from Settings
+            var pageSettings = $scope.Variables.liveSettingsUser.dataSet.data.find(x => x.label === 'PageTrackerClassicPipe');
+            var pageSettingsJSON = {};
+            if (pageSettings) {
+                pageSettingsJSON = JSON.parse(pageSettings.valueString);
+            }
+
+            //Hide Selected Columns
             _.forEach($scope.selectedColumns, function(value, key) {
-                value.colDef.show = false;
-                hiddenCount = 1;
-                $scope.Variables.staticClassicTrackerPipeColumnShowHideCache.addItem(key);
+                $scope.columns[key].setProperty('show', false);
+                if (pageSettingsJSON.hiddenColumns && pageSettingsJSON.hiddenColumns[0]) {
+                    pageSettingsJSON.hiddenColumns.push(key);
+                } else {
+                    pageSettingsJSON.hiddenColumns = [key];
+                }
+                //$scope.Variables.staticClassicTrackerPipeColumnShowHideCache.addItem(key);
             });
 
-            if (hiddenCount > 0) {
+            //Display "Show All" button
+            if (pageSettingsJSON.hiddenColumns.length > 0) {
                 $scope.Variables.staticShowHideShowAllButton.dataSet.show = 1;
             }
             $scope.redraw();
+
+            //Submit new hiddenColumns to pageSettingsUser
+            if (pageSettings) {
+                $scope.Variables.liveSettingsUser.updateRecord({
+                    row: {
+                        "id": pageSettings.id,
+                        "userId": pageSettings.userId,
+                        "label": pageSettings.label,
+                        "valueString": JSON.stringify(pageSettingsJSON)
+                    }
+                });
+            } else {
+                $scope.Variables.liveSettingsUser.createRecord({
+                    row: {
+                        "userId": $scope.Variables.loggedInUser.dataSet.id,
+                        "label": "PageTrackerClassicPipe",
+                        "valueString": JSON.stringify(pageSettingsJSON)
+                    }
+                });
+            }
+
         };
+
 
         $scope.customButton1Action = function($event) { //Show All
             $scope.Variables.staticClassicTrackerPipeColumnShowHideCache.dataSet = [];
@@ -129,8 +159,6 @@ Application.$controller("gridClassicTrackerPipeController", ["$scope",
             $scope.Variables.staticShowHideShowAllButton.dataSet.show = 0;
             $scope.redraw();
         };
-
-
     }
 ]);
 

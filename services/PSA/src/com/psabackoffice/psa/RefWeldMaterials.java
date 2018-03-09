@@ -23,8 +23,8 @@ import javax.persistence.Table;
 public class RefWeldMaterials implements Serializable {
 
     private Integer id;
-    private String label;
     private String value;
+    private String label;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,15 +37,6 @@ public class RefWeldMaterials implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "`Label`", nullable = true, length = 45)
-    public String getLabel() {
-        return this.label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
-    }
-
     @Column(name = "`Value`", nullable = true, length = 45)
     public String getValue() {
         return this.value;
@@ -53,6 +44,15 @@ public class RefWeldMaterials implements Serializable {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    @Column(name = "`Label`", nullable = true, length = 45)
+    public String getLabel() {
+        return this.label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
     }
 
 

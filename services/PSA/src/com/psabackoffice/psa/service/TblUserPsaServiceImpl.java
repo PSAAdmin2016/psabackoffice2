@@ -26,12 +26,14 @@ import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
+import com.wavemaker.runtime.data.util.DaoUtils;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.psa.ChatConversationMembers;
 import com.psabackoffice.psa.ChatMessages;
 import com.psabackoffice.psa.FeedBack;
 import com.psabackoffice.psa.FeedBackNotes;
+import com.psabackoffice.psa.Settingsuser;
 import com.psabackoffice.psa.TblCrews;
 import com.psabackoffice.psa.TblUserCreds;
 import com.psabackoffice.psa.TblUserJobNumbers;
@@ -63,6 +65,11 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
     @Autowired
 	@Qualifier("PSA.FeedBackService")
 	private FeedBackService feedBackService;
+
+    @Lazy
+    @Autowired
+	@Qualifier("PSA.SettingsuserService")
+	private SettingsuserService settingsuserService;
 
     @Lazy
     @Autowired
@@ -164,6 +171,7 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
         List<ChatMessages> chatMessageses = tblUserPsa.getChatMessageses();
         List<FeedBack> feedBacks = tblUserPsa.getFeedBacks();
         List<FeedBackNotes> feedBackNoteses = tblUserPsa.getFeedBackNoteses();
+        List<Settingsuser> settingsusers = tblUserPsa.getSettingsusers();
         List<TblCrews> tblCrewsesForConstructionManager = tblUserPsa.getTblCrewsesForConstructionManager();
         List<TblCrews> tblCrewsesForSuperintendent = tblUserPsa.getTblCrewsesForSuperintendent();
         TblCrews tblCrewsForForeman = tblUserPsa.getTblCrewsForForeman();
@@ -203,6 +211,14 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
             if(!feedBackNoteses.isEmpty()) {
                 for(FeedBackNotes _feedBackNotes : feedBackNoteses) {
                     _feedBackNotes.setTblUserPsa(tblUserPsa);
+                }
+            }
+        }
+
+        if(settingsusers != null && Hibernate.isInitialized(settingsusers)) {
+            if(!settingsusers.isEmpty()) {
+                for(Settingsuser _settingsuser : settingsusers) {
+                    _settingsuser.setTblUserPsa(tblUserPsa);
                 }
             }
         }
@@ -281,6 +297,18 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
 
         this.wmGenericDao.update(tblUserPsa);
         this.wmGenericDao.refresh(tblUserPsa);
+
+        // Deleting children which are not present in the list.
+        if(settingsusers != null && Hibernate.isInitialized(settingsusers) && !settingsusers.isEmpty()) {
+            List<Settingsuser> _remainingChildren = wmGenericDao.execute(
+                session -> DaoUtils.findAllRemainingChildren(session, Settingsuser.class,
+                        new DaoUtils.ChildrenFilter("tblUserPsa", tblUserPsa, settingsusers)));
+            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
+            for(Settingsuser _settingsuser : _remainingChildren) {
+                settingsuserService.delete(_settingsuser);
+            }
+            tblUserPsa.setSettingsusers(settingsusers);
+        }
 
         return tblUserPsa;
     }
@@ -380,6 +408,17 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
         queryBuilder.append("tblUserPsa.id = '" + id + "'");
 
         return feedBackNotesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Page<Settingsuser> findAssociatedSettingsusers(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated settingsusers");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("tblUserPsa.id = '" + id + "'");
+
+        return settingsuserService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
@@ -495,6 +534,15 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
 	 */
 	protected void setFeedBackService(FeedBackService service) {
         this.feedBackService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SettingsuserService instance
+	 */
+	protected void setSettingsuserService(SettingsuserService service) {
+        this.settingsuserService = service;
     }
 
     /**

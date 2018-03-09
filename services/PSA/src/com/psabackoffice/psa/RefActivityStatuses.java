@@ -10,8 +10,6 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -26,8 +24,7 @@ public class RefActivityStatuses implements Serializable {
     private String status;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "`ID`", nullable = false, scale = 0, precision = 10)
+    @Column(name = "`ID`", nullable = false, scale = 0, precision = 3)
     public Integer getId() {
         return this.id;
     }
