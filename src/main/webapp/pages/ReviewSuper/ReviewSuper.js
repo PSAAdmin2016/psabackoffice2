@@ -503,5 +503,7 @@ Application.$controller("gridSuperReviewSteelController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+
     }
 ]);

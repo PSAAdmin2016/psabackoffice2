@@ -48,18 +48,23 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                             <wm-tabpane name="tabSteel" title="Steel Piece Work" badgetype="primary" on-select="tabSteelSelect($event, $scope)" badgevalue="bind:Variables.serviceGetFAsSteel.dataSet.totalElements">
                                 <wm-table shownavigation="false" gridfirstrowselect="true" dataset="bind:Variables.serviceGetFAsSteel.dataSet" on-select="gridSuperReviewSteelSelect($event, $scope, $rowData)" class="panel-default" height="250px" filtermode="multicolumn"
                                     navigation="None" spacing="condensed" on-datarender="gridSuperReviewActivitiesDatarender($scope, $data)" name="gridSuperReviewSteel">
-                                    <wm-table-column binding="pieceMark" caption="Piece Mark" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
-                                    <wm-table-column binding="status" caption="Status" col-ng-class="{'yellow':row.status == 'Progress Returned', 'orange':row.status == 'Supervisor Modified' || row.Status == 'Progress Returned Mod', 'blue':row.status == 'Returned To List'}"
+                                    <wm-table-column binding="Select" caption="Select" widget-type="checkbox" width="4%" edit-widget-type="checkbox" type="boolean" defaultvalue="false" searchable="false" show="true" checkedvalue="true" uncheckedvalue="false"
+                                        readonly="false">
+                                        <wm-checkbox scopedatavalue="row['Select']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                                    </wm-table-column>
+                                    <wm-table-column binding="area" caption="Area" width="10%" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                                    <wm-table-column binding="pieceMark" caption="Piece Mark" width="15%" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                                    <wm-table-column binding="status" caption="Status" width="10%" col-ng-class="{'yellow':row.status == 'Progress Returned', 'orange':row.status == 'Supervisor Modified' || row.Status == 'Progress Returned Mod', 'blue':row.status == 'Returned To List'}"
                                         edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
-                                    <wm-table-column binding="nameFull" caption="Foreman" width="15%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
+                                    <wm-table-column binding="nameFull" caption="Foreman" width="12%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
                                     <wm-table-column binding="quantityShake" caption="Shake" textalignment="center" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
                                     <wm-table-column binding="quantityErect" caption="Erect" textalignment="center" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
                                     <wm-table-column binding="quantityBoltOut" caption="Bolt Out" textalignment="center" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
                                     <wm-table-column binding="quantityImp" caption="Impact" textalignment="center" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
                                     <wm-table-column binding="quantityWeld" caption="Weld" textalignment="center" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
                                     <wm-table-column binding="quantitySell" caption="Sell/Punch" textalignment="center" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
-                                    <wm-table-column binding="receivedTime" caption="Received Time" textalignment="center" edit-widget-type="text" type="string" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" searchable="false"
-                                        show="true" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="receivedTime" caption="Received Time" textalignment="center" edit-widget-type="text" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate"
+                                        searchable="false" show="true"></wm-table-column>
                                 </wm-table>
                             </wm-tabpane>
                         </wm-tabs>

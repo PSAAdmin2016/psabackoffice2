@@ -34,6 +34,9 @@ public class GetActivitiesPendingReviewSteelResponse implements Serializable {
     @ColumnAlias("PieceMark")
     private String pieceMark;
 
+    @ColumnAlias("Area")
+    private String area;
+
     @ColumnAlias("QuantityShake")
     private BigDecimal quantityShake;
 
@@ -100,6 +103,14 @@ public class GetActivitiesPendingReviewSteelResponse implements Serializable {
         this.pieceMark = pieceMark;
     }
 
+    public String getArea() {
+        return this.area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
     public BigDecimal getQuantityShake() {
         return this.quantityShake;
     }
@@ -159,6 +170,7 @@ public class GetActivitiesPendingReviewSteelResponse implements Serializable {
                 Objects.equals(getReceivedTime(), getActivitiesPendingReviewSteelResponse.getReceivedTime()) &&
                 Objects.equals(getNameFull(), getActivitiesPendingReviewSteelResponse.getNameFull()) &&
                 Objects.equals(getPieceMark(), getActivitiesPendingReviewSteelResponse.getPieceMark()) &&
+                Objects.equals(getArea(), getActivitiesPendingReviewSteelResponse.getArea()) &&
                 Objects.equals(getQuantityShake(), getActivitiesPendingReviewSteelResponse.getQuantityShake()) &&
                 Objects.equals(getQuantityErect(), getActivitiesPendingReviewSteelResponse.getQuantityErect()) &&
                 Objects.equals(getQuantityBoltOut(), getActivitiesPendingReviewSteelResponse.getQuantityBoltOut()) &&
@@ -175,6 +187,7 @@ public class GetActivitiesPendingReviewSteelResponse implements Serializable {
                 getReceivedTime(),
                 getNameFull(),
                 getPieceMark(),
+                getArea(),
                 getQuantityShake(),
                 getQuantityErect(),
                 getQuantityBoltOut(),

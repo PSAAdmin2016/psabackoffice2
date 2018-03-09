@@ -7926,7 +7926,7 @@ WHERE `ActivityID`= :FieldActivityID
 
     <sql-query name="GetActivitiesPendingReviewSteel">
         <![CDATA[
-        SELECT fas.SubmissionID, fas.fk_ActivityStatus, fas.Status, fas.ReceivedTime, fas.NameFull, fas.PieceMark,
+        SELECT fas.SubmissionID, fas.fk_ActivityStatus, fas.Status, fas.ReceivedTime, fas.NameFull, fas.PieceMark, fas.Area,
 SUM(QuantityShake) AS QuantityShake,
 SUM(QuantityErect) AS QuantityErect,
 SUM(QuantityBoltOut) AS QuantityBoltOut,
@@ -7936,6 +7936,7 @@ SUM(QuantityWeld) AS QuantityWeld
 FROM (
 SELECT sd.SubmissionID, sas.fk_ActivityStatus, ats.Status, sd.ReceivedTime, 
 CONCAT(u.FirstName, " ", u.LastName) AS NameFull, 
+(COALESCE(stls.FAArea,COALESCE(stle.FAArea,COALESCE(stlb.FAArea, COALESCE(stli.FAArea, COALESCE(stlsell.FAArea, COALESCE(stlw.FAArea,'N/A'))))))) AS Area,
 
 (COALESCE(stls.FAPieceNumber,COALESCE(stle.FAPieceNumber,COALESCE(stlb.FAPieceNumber, COALESCE(stli.FAPieceNumber, COALESCE(stlsell.FAPieceNumber, COALESCE(stlw.FAPieceNumber,'N/A'))))))) AS PieceMark,
 
@@ -7985,7 +7986,7 @@ GROUP BY fas.SubmissionID, fas.PieceMark, fas.fk_ActivityStatus
 
     <sql-query name="GetActivitiesPendingReviewSteel__count">
         <![CDATA[
-        select count(*) from (SELECT fas.SubmissionID, fas.fk_ActivityStatus, fas.Status, fas.ReceivedTime, fas.NameFull, fas.PieceMark,
+        select count(*) from (SELECT fas.SubmissionID, fas.fk_ActivityStatus, fas.Status, fas.ReceivedTime, fas.NameFull, fas.PieceMark, fas.Area,
 SUM(QuantityShake) AS QuantityShake,
 SUM(QuantityErect) AS QuantityErect,
 SUM(QuantityBoltOut) AS QuantityBoltOut,
@@ -7995,6 +7996,7 @@ SUM(QuantityWeld) AS QuantityWeld
 FROM (
 SELECT sd.SubmissionID, sas.fk_ActivityStatus, ats.Status, sd.ReceivedTime, 
 CONCAT(u.FirstName, " ", u.LastName) AS NameFull, 
+(COALESCE(stls.FAArea,COALESCE(stle.FAArea,COALESCE(stlb.FAArea, COALESCE(stli.FAArea, COALESCE(stlsell.FAArea, COALESCE(stlw.FAArea,'N/A'))))))) AS Area,
 
 (COALESCE(stls.FAPieceNumber,COALESCE(stle.FAPieceNumber,COALESCE(stlb.FAPieceNumber, COALESCE(stli.FAPieceNumber, COALESCE(stlsell.FAPieceNumber, COALESCE(stlw.FAPieceNumber,'N/A'))))))) AS PieceMark,
 
