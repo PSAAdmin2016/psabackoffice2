@@ -201,7 +201,7 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn4">
                         <wm-livetable formlayout="dialog" name="livegrid1">
                             <wm-table gridfirstrowselect="false" dataset="bind:Widgets.livefilterClassicTrackerPipe.result" navigation="Classic" name="gridClassicTrackerPipe" height="610px" showrecordcount="true" fontsize="10" on-rowdblclick="Variables.serviceGetBidWorkHistory.invoke();Widgets.dialogBidWorkHistory.open()"
-                                pagesize="100" class="panel-default" on-columnselect="gridClassicTrackerPipeColumnselect($event, $data)" on-columndeselect="gridClassicTrackerPipeColumndeselect($event, $data)" editmode="dialog" spacing="condensed">
+                                pagesize="100" class="panel-default" on-columnselect="gridClassicTrackerPipeColumnselect($event, $data)" on-columndeselect="gridClassicTrackerPipeColumndeselect($event, $data)" editmode="dialog" spacing="condensed" on-beforedatarender="gridClassicTrackerPipeBeforedatarender($scope, $data, $columns)">
                                 <wm-table-column binding="id" caption="ID" width="70px" primary-key="true" edit-widget-type="number" type="integer" generator="assigned" show="true" readonly="false"></wm-table-column>
                                 <wm-table-column binding="bidId" caption="Bid ID" width="70px" edit-widget-type="number" type="integer" generator="assigned" show="true" readonly="false"></wm-table-column>
                                 <wm-table-column binding="scope" caption="Scope" width="80px" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="false"></wm-table-column>

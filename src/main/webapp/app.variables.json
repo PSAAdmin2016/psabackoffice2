@@ -4575,17 +4575,6 @@
     "isList" : true,
     "saveInPhonegap" : false
   },
-  "staticClassicTrackerPipeColumnShowHideCache" : {
-    "_id" : "wm-staticClassicTrackerColumnShowHideCache-wm.Variable-1473441407153",
-    "name" : "staticClassicTrackerPipeColumnShowHideCache",
-    "owner" : "App",
-    "category" : "wm.Variable",
-    "dataBinding" : [ ],
-    "dataSet" : [ ],
-    "type" : "string",
-    "isList" : true,
-    "saveInPhonegap" : false
-  },
   "staticClassicTrackerSteelColumnShowHideCache" : {
     "_id" : "wm-staticClassicTrackerSteelColumnShowHideCache-wm.Variable-1478022841338",
     "name" : "staticClassicTrackerSteelColumnShowHideCache",

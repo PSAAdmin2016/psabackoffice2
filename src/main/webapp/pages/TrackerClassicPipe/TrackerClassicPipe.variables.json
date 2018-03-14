@@ -1177,6 +1177,105 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
   },
+  "staticTrackerClassicPageSettings" : {
+    "_id" : "wm-staticTrackerClassicPageSettings-wm.Variable-1521046946031",
+    "name" : "staticTrackerClassicPageSettings",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "valueString" : "",
+      "id" : "",
+      "label" : "",
+      "userId" : "",
+      "tblUserPsa" : {
+        "lastName" : "",
+        "refRoles" : {
+          "roleName" : "",
+          "id" : ""
+        },
+        "refCrafts" : {
+          "craft" : "",
+          "id" : ""
+        },
+        "tblUserCreds" : {
+          "password" : "",
+          "userName" : "",
+          "userId" : "",
+          "tblUserPsa" : { }
+        },
+        "nickname" : "",
+        "mobileUser" : "",
+        "id" : "",
+        "tblJobNumbers" : {
+          "fkJobSiteId" : "",
+          "tblJobSites" : {
+            "siteCity" : "",
+            "siteState" : "",
+            "siteName" : "",
+            "id" : "",
+            "refStateAbbreviations" : {
+              "stateName" : "",
+              "abbreviation" : ""
+            }
+          },
+          "jobNumber" : "",
+          "status" : ""
+        },
+        "email" : "",
+        "rev" : "",
+        "refCraftClasses" : {
+          "className" : "",
+          "id" : ""
+        },
+        "fkCraftId" : "",
+        "lastModifiedBy" : "",
+        "fullName" : "",
+        "active" : "",
+        "fkCraftClassId" : "",
+        "fkDefaultJobNumberId" : "",
+        "refDisciplines" : {
+          "id" : "",
+          "discipline" : ""
+        },
+        "timeStamp" : "",
+        "firstName" : "",
+        "tblCrewsForForeman" : {
+          "projectManager" : "",
+          "constructionManager" : "",
+          "tblUserPsaBySiteManager" : { },
+          "foreman" : "",
+          "tblUserPsaBySuperintendent" : { },
+          "tblUserPsaByAreaManager" : { },
+          "areaManager" : "",
+          "siteManager" : "",
+          "id" : "",
+          "tblJobNumbers" : { },
+          "gf" : "",
+          "rev" : "",
+          "superintendent" : "",
+          "tblUserPsaByProjectManager" : { },
+          "disciplineId" : "",
+          "refDisciplines" : { },
+          "crewNumber" : "",
+          "timeStamp" : "",
+          "tblUserPsaByForeman" : { },
+          "tblUserPsaByGf" : { },
+          "tblUserPsaByConstructionManager" : { },
+          "tblUserPsaByLeadman" : { },
+          "jobNumber" : "",
+          "leadman" : ""
+        },
+        "createdDate" : "",
+        "pciEmployeeId" : "",
+        "fkRoleId" : "",
+        "fkDisciplineId" : ""
+      }
+    },
+    "type" : "com.psabackoffice.psa.Settingsuser",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
   "timerDelayGetActivityHistory" : {
     "_id" : "wm-timerDelayGetActivityHistory-wm.TimerVariable-1464553321472",
     "name" : "timerDelayGetActivityHistory",
