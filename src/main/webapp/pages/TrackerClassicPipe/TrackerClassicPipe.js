@@ -13,7 +13,6 @@ Application.$controller("TrackerClassicPipePageController", ["$scope", function(
          * '$scope.Widgets.username.datavalue'
          */
         $scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.liveSettingsUser.dataSet.data.find(x => x.label === 'PageTrackerClassicPipe'));
-        //$scope.Widgets.gridClassicTrackerPipe.redraw();
     };
 
 
@@ -96,7 +95,7 @@ Application.$controller("gridClassicTrackerPipeController", ["$scope",
 
         $scope.customButtonAction = function($event) { //Hide selected Columns
             //Get currently hiddenColumns arrray from local static
-            var pageSettings = $scope.Variables.staticTrackerClassicPageSettings.dataSet;
+            var pageSettings = $scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.liveSettingsUser.dataSet.data.find(x => x.label === 'PageTrackerClassicPipe'));
             var pageSettingsJSON = {};
             if (pageSettings && pageSettings.valueString) {
                 pageSettingsJSON = JSON.parse(pageSettings.valueString);
@@ -130,8 +129,6 @@ Application.$controller("gridClassicTrackerPipeController", ["$scope",
                         "label": pageSettings.label,
                         "valueString": JSON.stringify(pageSettingsJSON)
                     }
-                }, function(data) { //On Success
-                    $scope.Variables.liveSettingsUser.listRecords();
                 });
             } else {
                 $scope.Variables.liveSettingsUser.createRecord({
@@ -142,7 +139,6 @@ Application.$controller("gridClassicTrackerPipeController", ["$scope",
                     }
                 }, function(data) { //On Success
                     $scope.Variables.staticTrackerClassicPageSettings.setValue("id", pageSettings.id);
-                    $scope.Variables.liveSettingsUser.listRecords();
                 });
             }
         };
@@ -150,7 +146,7 @@ Application.$controller("gridClassicTrackerPipeController", ["$scope",
 
         $scope.customButton1Action = function($event) { //Show All 
             //Get currently hiddenColumns array from local static
-            var pageSettings = $scope.Variables.staticTrackerClassicPageSettings.dataSet;
+            var pageSettings = $scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.liveSettingsUser.dataSet.data.find(x => x.label === 'PageTrackerClassicPipe'));
             var pageSettingsJSON = {};
             pageSettingsJSON.hiddenColumns = [];
 
