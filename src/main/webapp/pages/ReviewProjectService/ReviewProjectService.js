@@ -8,6 +8,7 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
          * e.g. $scope.Variables.staticVariable1.getData()
          */
         $scope.Variables.staticVariableMachineStateTimer.dataValue = Date.now();
+
     };
 
     /* perform any action on widgets/variables within this block */
@@ -21,6 +22,7 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
          * e.g. to get value of text widget named 'username' use following scrip
          * '$scope.Widgets.username.datavalue'
          */
+
     };
 
     function invokePartialFn(fnName) {
@@ -73,6 +75,19 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
         $timeout(function() {
             $scope.Widgets.gridApprovalReview.onRowFilterChange();
         });
+
+        var pageSettings = $scope.Variables.liveSettingsUser.getData().data.find(x => x.label === 'PagePSR');
+        var pageSettingsJSON = {};
+        if (pageSettings && pageSettings.valueString) {
+            pageSettingsJSON = JSON.parse(pageSettings.valueString);
+        }
+        if (pageSettingsJSON.selectedActivityIndex) {
+            $scope.Widgets.gridApprovalReview.selectItem(pageSettingsJSON.selectedActivityIndex);
+        } else {
+            $scope.Widgets.gridApprovalReview.selectItem(0);
+        }
+
+        debugger;
     };
 
 
@@ -93,6 +108,44 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
 */
     };
 
+
+    $scope.savePageSettings = function() {
+        //### Save persistent Settings ###
+        //Get currently items
+        var pageSettings = $scope.Variables.liveSettingsUser.getData().data.find(x => x.label === 'PagePSR');
+        var pageSettingsJSON = {};
+        if (pageSettings && pageSettings.valueString) {
+            pageSettingsJSON = JSON.parse(pageSettings.valueString);
+        }
+
+        //Update/Build pageSettingsJSON
+        pageSettingsJSON.selectedActivityIndex = $scope.Widgets.gridApprovalReview.gridData.findIndex(x => x.ActivityID === $scope.Widgets.gridApprovalReview.selectedItems[0].ActivityID);
+
+        //Submit items to DB
+        if (pageSettings && pageSettings.valueString) {
+            $scope.Variables.liveSettingsUser.updateRecord({
+                row: {
+                    "id": pageSettings.id,
+                    "userId": pageSettings.userId,
+                    "label": pageSettings.label,
+                    "valueString": JSON.stringify(pageSettingsJSON)
+                }
+            });
+        } else {
+            $scope.Variables.liveSettingsUser.createRecord({
+                row: {
+                    "userId": $scope.Variables.loggedInUser.dataSet.id,
+                    "label": "PagePSR",
+                    "valueString": JSON.stringify(pageSettingsJSON)
+                }
+            });
+        }
+    };
+
+
+    $scope.button9Click = function($event, $isolateScope) {
+        $scope.savePageSettings();
+    };
 
 }]);
 

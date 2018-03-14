@@ -21,6 +21,8 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
 
 
     $scope.ResearchClick = function($event, $isolateScope) {
+        $scope.$parent.savePageSettings();
+
         if ($scope.Widgets.switchSpool1Spool2.datavalue == 'Spool2') {
             // Set DWG & Sheet of Nav call 
             $scope.$parent.Variables.navigationToClassicPipe.setData({
@@ -32,7 +34,6 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
             });
             //Fire Nav Call
             $scope.$parent.Variables.navigationToClassicPipe.invoke();
-
         } else {
             // Set DWG & Sheet of Nav call 
             $scope.$parent.Variables.navigationToClassicPipe.setData({

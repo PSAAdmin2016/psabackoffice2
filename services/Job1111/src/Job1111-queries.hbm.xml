@@ -4855,21 +4855,21 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pb.BoltUpSpool1, pb.BoltUpSpool2, 
-pb.BoltUpLineNumber AS Line1, pb.BoltUpDrawingNumber AS DWG1, pb.BoltUpSheetNumber AS Sheet1,
+pc.ConnectionSpool1, pc.ConnectionSpool2, 
+pc.ConnectionLineNumber AS Line1, pc.ConnectionDrawingNumber AS DWG1, pc.ConnectionSheetNumber AS Sheet1,
 COALESCE(sl.LineNumber,'N/A') AS Line2, COALESCE(sl.DrawingNumber,'N/A') AS DWG2, COALESCE(sl.Sheetnumber,'N/A') AS Sheet2,
-pb.BoltUpSize , pb.BoltUpNotes, 1 AS BoltUpInstalled
-, 'N/A' AS Area, 'N/A' AS PercentClaim, pb.BoltUpRework AS Rework
+pc.ConnectionSize , pc.ConnectionNotes, pc.ConnectionQuantity AS ConnectionInstalled
+, 'N/A' AS Area, 'N/A' AS PercentClaim, pc.ConnectionRework AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
 	ON at.ID =sas.ActivityType
 LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
-JOIN PipeBoltUp pb
-	ON pb.ActivityID = sas.ActivityID
+JOIN PipeConnection pc
+	ON pc.ActivityID = sas.ActivityID
 LEFT JOIN REF_SpoolList sl
-	ON sl.SpoolNumber = pb.BoltUpSpool2
+	ON sl.SpoolNumber = pc.ConnectionSpool2
 
 WHERE sas.fk_ActivityStatus IN (2,7,9,11)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
@@ -5008,18 +5008,18 @@ UNION
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
 'N/A' AS Spool1, 'N/A' AS Spool2, 
-pEWO.EWOLineNumber, pEWO.EWODrawingNumber, pEWO.EWOSheetNumber, 
-pEWO.EWOLineNumber AS Line2, pEWO.EWODrawingNumber AS DWG2, pEWO.EWOSheetNumber AS Sheet2,
-'N/A' AS EWOSize , pEWO.EWONotes, 'N/A' AS TestingEarned,
-'N/A' AS Area, 'N/A' AS PercentClaim, pEWO.EWORework AS Rework
+ewo.EWOLineNumber, ewo.EWODrawingNumber, ewo.EWOSheetNumber, 
+ewo.EWOLineNumber AS Line2, ewo.EWODrawingNumber AS DWG2, ewo.EWOSheetNumber AS Sheet2,
+'N/A' AS EWOSize , ewo.EWONotes, 'N/A' AS TestingEarned,
+'N/A' AS Area, 'N/A' AS PercentClaim, ewo.EWORework AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
 	ON at.ID =sas.ActivityType
 LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
-JOIN PipeEWO pEWO
-	ON pEWO.ActivityID = sas.ActivityID
+JOIN SubsEWO ewo
+	ON ewo.ActivityID = sas.ActivityID
 WHERE sas.fk_ActivityStatus IN (2,7,9,11)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
@@ -5028,17 +5028,17 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stls.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
+stlfa.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stls.FANotes, stls.FAShakeQuantity, stls.FAArea, 1.00 AS PercentClaim, stls.FARework AS Rework
+stlfa.FANotes, stlfa.FAQuantity, stlfa.FAArea, stlfa.FAPercent AS PercentClaim, stlfa.FARework AS Rework
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
 	ON at.ID =sas.ActivityType
 LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
-JOIN SteelShake stls
-	ON stls.ActivityID = sas.ActivityID
+JOIN SteelFA stlfa
+	ON stlfa.ActivityID = sas.ActivityID
 WHERE sas.fk_ActivityStatus IN (2,7,9,11)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
@@ -5049,119 +5049,10 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stle.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
+stld.DemoBidID AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stle.FANotes, stle.FAErectQuantity, stle.FAArea, stle.FAErectPercent, stle.FARework AS Rework
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN SteelErect stle
-	ON stle.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
-
-
-
-UNION
-
-
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stlb.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
-'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
-'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stlb.FANotes, stlb.FABoltOutQuantity, stlb.FAArea, stlb.FABoltOutPercent , stlb.FARework AS Rework
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN SteelBoltOut stlb
-	ON stlb.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
-
-
-
-UNION
-
-
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stli.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
-'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
-'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stli.FANotes, stli.FAImpQuantity, stli.FAArea, stli.FAImpPercent , stli.FARework AS Rework
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN SteelImp stli
-	ON stli.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
-
-
-
-UNION
-
-
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stlw.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
-'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
-'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stlw.FANotes, stlw.FAWeldQuantity, stlw.FAArea, stlw.FAWeldPercent , stlw.FARework AS Rework
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN SteelWeld stlw
-	ON stlw.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
-
-
-
-UNION
-
-
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stlsell.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
-'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
-'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stlsell.FANotes, stlsell.FASellQuantity, stlsell.FAArea, 1.00 AS PercentClaim , stlsell.FARework AS Rework
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN SteelSell stlsell
-	ON stlsell.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
-
-
-
-UNION
-
-
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-rst.SteelName AS Spool1, 'N/A' AS Spool2, 
-'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
-'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, DemoSize AS Size , 
-stld.DemoNotes, stld.DemoQuantity, stld.DemoArea, 1.00 AS PercentClaim, 0 AS Rework
+stld.DemoNotes, stld.DemoQuantity, std.Area, stld.DemoPercent AS PercentClaim, 0 AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -5170,8 +5061,9 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
 JOIN SteelDemo stld
 	ON stld.ActivityID = sas.ActivityID
-JOIN PSA.REF_SteelTypes rst
-	ON stld.DemoSteelType = rst.ID
+JOIN SteelTrackerDetails std
+	ON std.BidID = stld.DemoBidID
+
 WHERE sas.fk_ActivityStatus IN (2,7,9,11)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
@@ -5226,10 +5118,10 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'CIVIL' AS Craft, 
-cfa.FAFoundation AS Spool1, cfa.FABidID AS Spool2, 
-cfa.FADrawingNumber AS LineNumber, cfa.FADetailDrawingNumber AS DrawingNumber, 'N/A' AS SheetNumber, 
+cfa.FABidID AS Spool1, 'N/A' AS Spool2, 
+'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-cfa.FANotes, IF(cfa.ActivityType = 70, (cfa.FAPercentComplete * ctd.TakeOffQuantity), cfa.FAQuantity) AS Quantity, 'N/A' AS Area, cfa.FAPercentComplete AS PercentClaim, cfa.FARework AS Rework
+cfa.FANotes, IF(cfa.ActivityType = 70, (cfa.FAPercent * ctd.TakeOffQuantity), cfa.FAQuantity) AS Quantity, 'N/A' AS Area, cfa.FAPercent AS PercentClaim, cfa.FARework AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -5340,21 +5232,21 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pb.BoltUpSpool1, pb.BoltUpSpool2, 
-pb.BoltUpLineNumber AS Line1, pb.BoltUpDrawingNumber AS DWG1, pb.BoltUpSheetNumber AS Sheet1,
+pc.ConnectionSpool1, pc.ConnectionSpool2, 
+pc.ConnectionLineNumber AS Line1, pc.ConnectionDrawingNumber AS DWG1, pc.ConnectionSheetNumber AS Sheet1,
 COALESCE(sl.LineNumber,'N/A') AS Line2, COALESCE(sl.DrawingNumber,'N/A') AS DWG2, COALESCE(sl.Sheetnumber,'N/A') AS Sheet2,
-pb.BoltUpSize , pb.BoltUpNotes, 1 AS BoltUpInstalled
-, 'N/A' AS Area, 'N/A' AS PercentClaim, pb.BoltUpRework AS Rework
+pc.ConnectionSize , pc.ConnectionNotes, pc.ConnectionQuantity AS ConnectionInstalled
+, 'N/A' AS Area, 'N/A' AS PercentClaim, pc.ConnectionRework AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
 	ON at.ID =sas.ActivityType
 LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
-JOIN PipeBoltUp pb
-	ON pb.ActivityID = sas.ActivityID
+JOIN PipeConnection pc
+	ON pc.ActivityID = sas.ActivityID
 LEFT JOIN REF_SpoolList sl
-	ON sl.SpoolNumber = pb.BoltUpSpool2
+	ON sl.SpoolNumber = pc.ConnectionSpool2
 
 WHERE sas.fk_ActivityStatus IN (2,7,9,11)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
@@ -5493,18 +5385,18 @@ UNION
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
 'N/A' AS Spool1, 'N/A' AS Spool2, 
-pEWO.EWOLineNumber, pEWO.EWODrawingNumber, pEWO.EWOSheetNumber, 
-pEWO.EWOLineNumber AS Line2, pEWO.EWODrawingNumber AS DWG2, pEWO.EWOSheetNumber AS Sheet2,
-'N/A' AS EWOSize , pEWO.EWONotes, 'N/A' AS TestingEarned,
-'N/A' AS Area, 'N/A' AS PercentClaim, pEWO.EWORework AS Rework
+ewo.EWOLineNumber, ewo.EWODrawingNumber, ewo.EWOSheetNumber, 
+ewo.EWOLineNumber AS Line2, ewo.EWODrawingNumber AS DWG2, ewo.EWOSheetNumber AS Sheet2,
+'N/A' AS EWOSize , ewo.EWONotes, 'N/A' AS TestingEarned,
+'N/A' AS Area, 'N/A' AS PercentClaim, ewo.EWORework AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
 	ON at.ID =sas.ActivityType
 LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
-JOIN PipeEWO pEWO
-	ON pEWO.ActivityID = sas.ActivityID
+JOIN SubsEWO ewo
+	ON ewo.ActivityID = sas.ActivityID
 WHERE sas.fk_ActivityStatus IN (2,7,9,11)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
@@ -5513,17 +5405,17 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stls.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
+stlfa.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stls.FANotes, stls.FAShakeQuantity, stls.FAArea, 1.00 AS PercentClaim, stls.FARework AS Rework
+stlfa.FANotes, stlfa.FAQuantity, stlfa.FAArea, stlfa.FAPercent AS PercentClaim, stlfa.FARework AS Rework
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
 	ON at.ID =sas.ActivityType
 LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
-JOIN SteelShake stls
-	ON stls.ActivityID = sas.ActivityID
+JOIN SteelFA stlfa
+	ON stlfa.ActivityID = sas.ActivityID
 WHERE sas.fk_ActivityStatus IN (2,7,9,11)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
@@ -5534,119 +5426,10 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stle.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
+stld.DemoBidID AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stle.FANotes, stle.FAErectQuantity, stle.FAArea, stle.FAErectPercent, stle.FARework AS Rework
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN SteelErect stle
-	ON stle.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
-
-
-
-UNION
-
-
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stlb.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
-'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
-'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stlb.FANotes, stlb.FABoltOutQuantity, stlb.FAArea, stlb.FABoltOutPercent , stlb.FARework AS Rework
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN SteelBoltOut stlb
-	ON stlb.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
-
-
-
-UNION
-
-
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stli.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
-'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
-'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stli.FANotes, stli.FAImpQuantity, stli.FAArea, stli.FAImpPercent , stli.FARework AS Rework
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN SteelImp stli
-	ON stli.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
-
-
-
-UNION
-
-
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stlw.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
-'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
-'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stlw.FANotes, stlw.FAWeldQuantity, stlw.FAArea, stlw.FAWeldPercent , stlw.FARework AS Rework
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN SteelWeld stlw
-	ON stlw.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
-
-
-
-UNION
-
-
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-stlsell.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
-'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
-'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stlsell.FANotes, stlsell.FASellQuantity, stlsell.FAArea, 1.00 AS PercentClaim , stlsell.FARework AS Rework
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN SteelSell stlsell
-	ON stlsell.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
-
-
-
-UNION
-
-
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
-rst.SteelName AS Spool1, 'N/A' AS Spool2, 
-'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
-'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, DemoSize AS Size , 
-stld.DemoNotes, stld.DemoQuantity, stld.DemoArea, 1.00 AS PercentClaim, 0 AS Rework
+stld.DemoNotes, stld.DemoQuantity, std.Area, stld.DemoPercent AS PercentClaim, 0 AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -5655,8 +5438,9 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
 JOIN SteelDemo stld
 	ON stld.ActivityID = sas.ActivityID
-JOIN PSA.REF_SteelTypes rst
-	ON stld.DemoSteelType = rst.ID
+JOIN SteelTrackerDetails std
+	ON std.BidID = stld.DemoBidID
+
 WHERE sas.fk_ActivityStatus IN (2,7,9,11)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
@@ -5711,10 +5495,10 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'CIVIL' AS Craft, 
-cfa.FAFoundation AS Spool1, cfa.FABidID AS Spool2, 
-cfa.FADrawingNumber AS LineNumber, cfa.FADetailDrawingNumber AS DrawingNumber, 'N/A' AS SheetNumber, 
+cfa.FABidID AS Spool1, 'N/A' AS Spool2, 
+'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-cfa.FANotes, IF(cfa.ActivityType = 70, (cfa.FAPercentComplete * ctd.TakeOffQuantity), cfa.FAQuantity) AS Quantity, 'N/A' AS Area, cfa.FAPercentComplete AS PercentClaim, cfa.FARework AS Rework
+cfa.FANotes, IF(cfa.ActivityType = 70, (cfa.FAPercent * ctd.TakeOffQuantity), cfa.FAQuantity) AS Quantity, 'N/A' AS Area, cfa.FAPercent AS PercentClaim, cfa.FARework AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at

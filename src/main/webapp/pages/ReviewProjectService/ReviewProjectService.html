@@ -1,137 +1,144 @@
-<wm-page data-ng-controller="ReviewProjectServicePageController" pagetitle="Review Project Service" name="page1"> 
-    <wm-header content="header" name="header1"></wm-header> 
-    <wm-content name="content1"> 
-        <wm-left-panel columnwidth="1" content="leftnavProgressTrack" name="left_panel1"></wm-left-panel> 
-        <wm-page-content columnwidth="11" name="page_content1"> 
-            <wm-layoutgrid name="layoutgrid1"> 
-                <wm-gridrow name="gridrow1"> 
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn1"> 
-                        <wm-label name="label287" caption="Pending Activities" fontweight="bold" fontsize="16" fontstyle="italic" textdecoration="underline" margin="1% unset unset 0%" hint="Activities which have been approved by the Superintendent."></wm-label> 
-                    </wm-gridcolumn> 
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn156"> 
-                        <wm-button class="btn-default" caption="Refresh" type="button" name="buttonRefresh" iconclass="glyphicon glyphicon-refresh" on-click="buttonRefreshClick($event, $scope)"></wm-button> 
-                    </wm-gridcolumn> 
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn2"></wm-gridcolumn> 
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn3"></wm-gridcolumn> 
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn41"> 
-                        <wm-composite horizontalalign="right" name="composite182_1" margin="0% unset" padding="2% unset unset 2%"> 
-                            <wm-label class="col-md-3" caption="Total Activities:" name="label237" width="40%" padding="unset 1% unset unset"></wm-label> 
-                            <wm-container class="col-md-9" horizontalalign="right" paddingunit="%" name="container177" width="40%"> 
-                                <wm-text type="number" placeholder="" width="100%" readonly="true" autocomplete="false" readonlygrid="true" name="textApprovalActivityCount" datavalue="bind:Variables.serviceGetActivitiesPendingApproval.dataSet.totalElements"></wm-text> 
-                            </wm-container> 
-                        </wm-composite> 
-                    </wm-gridcolumn> 
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn161_2"> 
-                        <wm-button class="btn-default" caption="Recent Activities" type="button" backgroundcolor="#5fb4ff" iconclass="wi wi-history" width="90%" name="buttonRecentActivities" hint="Return an activity to Project Services Review." on-click="Widgets.dialogRecentActivities.open();Variables.serviceGetPSRecentActivities.invoke()" margin="2% unset unset unset"></wm-button> 
-                    </wm-gridcolumn> 
-                </wm-gridrow> 
-                <wm-gridrow name="gridrow2"> 
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn4"> 
-                        <wm-table dataset="bind:Variables.serviceGetActivitiesPendingApproval.dataSet" name="gridApprovalReview" gridfirstrowselect="true" shownavigation="false" height="250px" on-select="gridApprovalReviewSelect($event, $data)" on-deselect="gridApprovalReviewDeselect($event, $rowData)" class="panel-default" filtermode="multicolumn" on-datarender="gridApprovalReviewDatarender($scope, $data)" spacing="condensed"> 
-                            <wm-table-column binding="ActivityID" caption="Field Activity ID" type="string" width="20%" readonly="true" edit-widget-type="text" show="true" filterwidget="number" filterplaceholder="Search Field Activity ID..."></wm-table-column> 
-                            <wm-table-column binding="Craft" caption="Craft" type="string" width="20%" readonly="true" edit-widget-type="text" show="true" filterwidget="select"></wm-table-column> 
-                            <wm-table-column binding="ActivityTypeName" caption="Activity Type" type="string" width="20%" readonly="true" edit-widget-type="text" show="true" filterwidget="select"></wm-table-column> 
-                            <wm-table-column binding="Status" caption="Status" type="string" width="20%" readonly="true" col-ng-class="{'yellow':row.Status == 'Supervisor Returned', 'blue':row.Status=='Returned To List'}" edit-widget-type="text" show="true" filterwidget="select"></wm-table-column> 
-                            <wm-table-column binding="Quantity" caption="Quantity" type="string" width="15%" readonly="true" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-table-column> 
-                            <wm-table-column binding="Rework" caption="Rework" type="string" widget-type="checkbox" width="5%" readonly="true" edit-widget-type="text" show="true" filterwidget="select"> 
-                                <wm-checkbox scopedatavalue="row['Rework']" checkedvalue="1" uncheckedvalue="0" disabled="{{true}}" class="checkbox-custom" data-ng-class=""></wm-checkbox> 
-                            </wm-table-column> 
-                        </wm-table> 
-                    </wm-gridcolumn> 
-                </wm-gridrow> 
-                <wm-gridrow name="gridrow99"> 
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn245"> 
-                        <wm-container name="containerActivityMatches"></wm-container> 
-                    </wm-gridcolumn> 
-                </wm-gridrow> 
-            </wm-layoutgrid> 
-        </wm-page-content> 
-    </wm-content> 
-    <wm-footer content="footer" name="footer1"></wm-footer> 
-    <wm-view class="dialog-view" name="viewNotes" show="false"> 
-        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogNotes" title="Notes" iconclass="glyphicon glyphicon-edit"> 
-            <wm-table readonlygrid="true" insertrow="false" updaterow="false" deleterow="false" dataset="bind:Variables.serviceGetNotesByFieldActivityID.dataSet" name="gridNotes" showheader="false" enablesort="false" shownavigation="false" class="panel-default"> 
-                <wm-table-column binding="Notes" caption="Notes" type="string" readonly="true" pcdisplay="true" mobiledisplay="true"></wm-table-column> 
-                <wm-table-column binding="Email" caption="Email" type="string" readonly="true" pcdisplay="true" mobiledisplay="true"></wm-table-column> 
-            </wm-table> 
-            <wm-dialogactions name="dialogactions5"> 
-                <wm-button class="btn-secondary" caption="Exit" on-click="closeDialog()" name="button20"></wm-button> 
-                <wm-button class="btn-primary" caption="New" name="buttonNoteNew" iconclass="glyphicon glyphicon-plus" on-click="Widgets.dialogNotesNewPSReview.open()"></wm-button> 
-            </wm-dialogactions> 
-        </wm-dialog> 
-    </wm-view> 
-    <wm-view class="dialog-view" name="viewNotesNEW" show="false"> 
-        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogNotesNewPSReview" width="25%" title="New Note" iconclass="glyphicon glyphicon-edit"> 
-            <wm-textarea name="textareaSSNoteNew" placeholder="Type Note here" updateon="default" on-keyup="textareaSSNoteNewKeyup($event, $scope)" required="true" maxchars="252"></wm-textarea> 
-            <wm-label width="20%" caption="Remaining:" fontsize="10" textalign="right" name="label283_1"></wm-label> 
-            <wm-label width="20%" caption="252" fontsize="10" textalign="right" name="labelTextCountNewNote"></wm-label> 
-            <wm-dialogactions name="dialogactions6"> 
-                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button22"></wm-button> 
-                <wm-button class="btn-primary" caption="Save" name="buttonNoteSave" type="submit" on-click="Widgets.dialogNotesNewPSReview.close();Variables.serviceCreateSSNote.invoke()"></wm-button> 
-            </wm-dialogactions> 
-        </wm-dialog> 
-    </wm-view> 
-    <wm-view class="dialog-view" name="view11" show="false"> 
-        <wm-alertdialog name="alertRecordLocked" message="bind:Variables.staticRecordLockedMessage.dataSet.dataValue" alerttype="information" title="Info" on-ok="Variables.serviceGetActivitiesPendingApproval.invoke();Widgets.alertRecordLocked.close()"></wm-alertdialog> 
-    </wm-view> 
-    <wm-view class="dialog-view" name="viewRecentActivities" show="false"> 
-        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogRecentActivities" title="Recent Activities" iconclass="wi wi-edit"> 
-            <wm-dialogcontent name="dialogcontent8"> 
-                <wm-layoutgrid name="layoutgrid24"> 
-                    <wm-gridrow name="gridrow68_1"> 
-                        <wm-gridcolumn columnwidth="2" horizontalalign="center" name="gridcolumn162_3"> 
-                            <wm-label width="100%" caption="Field Activity ID" fontweight="bold" name="label196"></wm-label> 
-                        </wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="2" horizontalalign="center" name="gridcolumn163_1"> 
-                            <wm-label width="100%" caption="Activity Type" fontweight="bold" name="label197"></wm-label> 
-                        </wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="2" horizontalalign="center" name="gridcolumn164_1"> 
-                            <wm-label width="100%" caption="Current Status" fontweight="bold" name="label198"></wm-label> 
-                        </wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="2" horizontalalign="center" name="gridcolumn165_1"> 
-                            <wm-label width="100%" caption="Date" fontweight="bold" name="label199_1"></wm-label> 
-                        </wm-gridcolumn> 
-                    </wm-gridrow> 
-                    <wm-gridrow name="gridrow69" padding="unset 0px"> 
-                        <wm-gridcolumn columnwidth="12" name="gridcolumn166_1" padding="unset 0px"> 
-                            <wm-list listclass="list-group" itemclass="list-group-item" template="true" dataset="bind:Variables.serviceGetPSRecentActivities.dataSet" navigation="Classic" showrecordcount="true" name="livelistRecentActivities"> 
-                                <wm-listtemplate layout="blank" name="listtemplate2_1"> 
-                                    <wm-container class="blank" data-template-ctr="true" name="container86"> 
-                                        <wm-layoutgrid class="gridlayout" name="layoutgrid25"> 
-                                            <wm-gridrow name="gridrow70"> 
-                                                <wm-gridcolumn class="col-xs-6" columnwidth="2" horizontalalign="center" name="gridcolumn167_2"> 
-                                                    <wm-label width="100%" caption="bind:Variables.serviceGetPSRecentActivities.dataSet.ActivityID" fontsize="11" name="label200_1"></wm-label> 
-                                                </wm-gridcolumn> 
-                                                <wm-gridcolumn class="col-xs-6" columnwidth="2" horizontalalign="center" name="gridcolumn168_2"> 
-                                                    <wm-label width="100%" caption="bind:Variables.serviceGetPSRecentActivities.dataSet.ActivityType" fontsize="11" name="label201_1"></wm-label> 
-                                                </wm-gridcolumn> 
-                                                <wm-gridcolumn class="col-xs-6" columnwidth="2" horizontalalign="center" name="gridcolumn169_2"> 
-                                                    <wm-label width="100%" caption="bind:Variables.serviceGetPSRecentActivities.dataSet.Status" fontsize="11" name="label202_1"></wm-label> 
-                                                </wm-gridcolumn> 
-                                                <wm-gridcolumn class="col-xs-6" columnwidth="2" horizontalalign="center" name="gridcolumn170_2"> 
-                                                    <wm-label width="90%" caption="bind:Variables.serviceGetPSRecentActivities.dataSet.TimeStamp | toDate: 'MM-dd-yy hh:mm:ss a'" fontsize="11" name="label203_1"></wm-label> 
-                                                </wm-gridcolumn> 
-                                                <wm-gridcolumn columnwidth="2" name="gridcolumn171"></wm-gridcolumn> 
-                                                <wm-gridcolumn columnwidth="2" name="gridcolumn172"> 
-                                                    <wm-button class="btn-default" caption="Return" type="button" hint="Return this activity to Superintendent Review List" height="24" name="button23" show="bind:Variables.serviceGetPSRecentActivities.dataSet.Status == 'Progress Approved' || Variables.serviceGetPSRecentActivities.dataSet.Status == 'Dismissed'" on-click="Variables.serviceUpdateSSReturnToListPS.invoke()"></wm-button> 
-                                                </wm-gridcolumn> 
-                                            </wm-gridrow> 
-                                        </wm-layoutgrid> 
-                                    </wm-container> 
-                                </wm-listtemplate> 
-                            </wm-list> 
-                        </wm-gridcolumn> 
-                    </wm-gridrow> 
-                    <wm-gridrow name="gridrow71_1"> 
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn173"></wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn174"></wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn175"></wm-gridcolumn> 
-                    </wm-gridrow> 
-                </wm-layoutgrid> 
-            </wm-dialogcontent> 
-            <wm-dialogactions name="dialogactions7"> 
-                <wm-button class="btn-secondary" caption="OK" on-click="closeDialog()" name="button21"></wm-button> 
-            </wm-dialogactions> 
-        </wm-dialog> 
-    </wm-view> 
+<wm-page data-ng-controller="ReviewProjectServicePageController" pagetitle="Review Project Service" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="1" content="leftnavProgressTrack" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="11" name="page_content1">
+            <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow1">
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn1">
+                        <wm-label name="label287" caption="Pending Activities" fontweight="bold" fontsize="16" fontstyle="italic" textdecoration="underline" margin="1% unset unset 0%" hint="Activities which have been approved by the Superintendent."></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn156">
+                        <wm-button class="btn-default" caption="Refresh" type="button" name="buttonRefresh" iconclass="glyphicon glyphicon-refresh" on-click="buttonRefreshClick($event, $scope)"></wm-button>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn2">
+                        <wm-button class="btn-default" caption="Button" type="button" margin="unset 0.5em" name="button9" on-click="button9Click($event, $scope)"></wm-button>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn3"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn41">
+                        <wm-composite horizontalalign="right" name="composite182_1" margin="0% unset" padding="2% unset unset 2%">
+                            <wm-label class="col-md-3" caption="Total Activities:" name="label237" width="40%" padding="unset 1% unset unset"></wm-label>
+                            <wm-container class="col-md-9" horizontalalign="right" paddingunit="%" name="container177" width="40%">
+                                <wm-text type="number" placeholder="" width="100%" readonly="true" autocomplete="false" readonlygrid="true" name="textApprovalActivityCount" datavalue="bind:Variables.serviceGetActivitiesPendingApproval.dataSet.totalElements"></wm-text>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn161_2">
+                        <wm-button class="btn-default" caption="Recent Activities" type="button" backgroundcolor="#5fb4ff" iconclass="wi wi-history" width="90%" name="buttonRecentActivities" hint="Return an activity to Project Services Review." on-click="Widgets.dialogRecentActivities.open();Variables.serviceGetPSRecentActivities.invoke()"
+                            margin="2% unset unset unset"></wm-button>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow2">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn4">
+                        <wm-table dataset="bind:Variables.serviceGetActivitiesPendingApproval.dataSet" name="gridApprovalReview" gridfirstrowselect="false" shownavigation="false" height="250px" on-select="gridApprovalReviewSelect($event, $data)" on-deselect="gridApprovalReviewDeselect($event, $rowData)"
+                            class="panel-default" filtermode="multicolumn" on-datarender="gridApprovalReviewDatarender($scope, $data)" spacing="condensed">
+                            <wm-table-column binding="ActivityID" caption="Field Activity ID" width="20%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="number" filterplaceholder="Search Field Activity ID..."></wm-table-column>
+                            <wm-table-column binding="Craft" caption="Craft" width="20%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
+                            <wm-table-column binding="ActivityTypeName" caption="Activity Type" width="20%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
+                            <wm-table-column binding="Status" caption="Status" width="20%" col-ng-class="{'yellow':row.Status == 'Supervisor Returned', 'blue':row.Status=='Returned To List'}" edit-widget-type="text" type="string" readonly="true"
+                                show="true" filterwidget="select"></wm-table-column>
+                            <wm-table-column binding="Quantity" caption="Quantity" width="15%" edit-widget-type="text" type="string" readonly="true" formatpattern="numberToString" fractionsize="2" sortable="false" searchable="false"
+                                show="true"></wm-table-column>
+                            <wm-table-column binding="Rework" caption="Rework" widget-type="checkbox" width="5%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select">
+                                <wm-checkbox scopedatavalue="row['Rework']" checkedvalue="1" uncheckedvalue="0" disabled="{{true}}" class="checkbox-custom" data-ng-class=""></wm-checkbox>
+                            </wm-table-column>
+                        </wm-table>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow99">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn245">
+                        <wm-container name="containerActivityMatches"></wm-container>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="viewNotes" show="false">
+        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogNotes" title="Notes" iconclass="glyphicon glyphicon-edit">
+            <wm-table readonlygrid="true" insertrow="false" updaterow="false" deleterow="false" dataset="bind:Variables.serviceGetNotesByFieldActivityID.dataSet" name="gridNotes" showheader="false" enablesort="false" shownavigation="false" class="panel-default">
+                <wm-table-column binding="Notes" caption="Notes" type="string" readonly="true" pcdisplay="true" mobiledisplay="true"></wm-table-column>
+                <wm-table-column binding="Email" caption="Email" type="string" readonly="true" pcdisplay="true" mobiledisplay="true"></wm-table-column>
+            </wm-table>
+            <wm-dialogactions name="dialogactions5">
+                <wm-button class="btn-secondary" caption="Exit" on-click="closeDialog()" name="button20"></wm-button>
+                <wm-button class="btn-primary" caption="New" name="buttonNoteNew" iconclass="glyphicon glyphicon-plus" on-click="Widgets.dialogNotesNewPSReview.open()"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewNotesNEW" show="false">
+        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogNotesNewPSReview" width="25%" title="New Note" iconclass="glyphicon glyphicon-edit">
+            <wm-textarea name="textareaSSNoteNew" placeholder="Type Note here" updateon="default" on-keyup="textareaSSNoteNewKeyup($event, $scope)" required="true" maxchars="252"></wm-textarea>
+            <wm-label width="20%" caption="Remaining:" fontsize="10" textalign="right" name="label283_1"></wm-label>
+            <wm-label width="20%" caption="252" fontsize="10" textalign="right" name="labelTextCountNewNote"></wm-label>
+            <wm-dialogactions name="dialogactions6">
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button22"></wm-button>
+                <wm-button class="btn-primary" caption="Save" name="buttonNoteSave" type="submit" on-click="Widgets.dialogNotesNewPSReview.close();Variables.serviceCreateSSNote.invoke()"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="view11" show="false">
+        <wm-alertdialog name="alertRecordLocked" message="bind:Variables.staticRecordLockedMessage.dataSet.dataValue" alerttype="information" title="Info" on-ok="Variables.serviceGetActivitiesPendingApproval.invoke();Widgets.alertRecordLocked.close()"></wm-alertdialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewRecentActivities" show="false">
+        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogRecentActivities" title="Recent Activities" iconclass="wi wi-edit">
+            <wm-dialogcontent name="dialogcontent8">
+                <wm-layoutgrid name="layoutgrid24">
+                    <wm-gridrow name="gridrow68_1">
+                        <wm-gridcolumn columnwidth="2" horizontalalign="center" name="gridcolumn162_3">
+                            <wm-label width="100%" caption="Field Activity ID" fontweight="bold" name="label196"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="2" horizontalalign="center" name="gridcolumn163_1">
+                            <wm-label width="100%" caption="Activity Type" fontweight="bold" name="label197"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="2" horizontalalign="center" name="gridcolumn164_1">
+                            <wm-label width="100%" caption="Current Status" fontweight="bold" name="label198"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="2" horizontalalign="center" name="gridcolumn165_1">
+                            <wm-label width="100%" caption="Date" fontweight="bold" name="label199_1"></wm-label>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow69" padding="unset 0px">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn166_1" padding="unset 0px">
+                            <wm-list listclass="list-group" itemclass="list-group-item" template="true" dataset="bind:Variables.serviceGetPSRecentActivities.dataSet" navigation="Classic" showrecordcount="true" name="livelistRecentActivities">
+                                <wm-listtemplate layout="blank" name="listtemplate2_1">
+                                    <wm-container class="blank" data-template-ctr="true" name="container86">
+                                        <wm-layoutgrid class="gridlayout" name="layoutgrid25">
+                                            <wm-gridrow name="gridrow70">
+                                                <wm-gridcolumn class="col-xs-6" columnwidth="2" horizontalalign="center" name="gridcolumn167_2">
+                                                    <wm-label width="100%" caption="bind:Variables.serviceGetPSRecentActivities.dataSet.ActivityID" fontsize="11" name="label200_1"></wm-label>
+                                                </wm-gridcolumn>
+                                                <wm-gridcolumn class="col-xs-6" columnwidth="2" horizontalalign="center" name="gridcolumn168_2">
+                                                    <wm-label width="100%" caption="bind:Variables.serviceGetPSRecentActivities.dataSet.ActivityType" fontsize="11" name="label201_1"></wm-label>
+                                                </wm-gridcolumn>
+                                                <wm-gridcolumn class="col-xs-6" columnwidth="2" horizontalalign="center" name="gridcolumn169_2">
+                                                    <wm-label width="100%" caption="bind:Variables.serviceGetPSRecentActivities.dataSet.Status" fontsize="11" name="label202_1"></wm-label>
+                                                </wm-gridcolumn>
+                                                <wm-gridcolumn class="col-xs-6" columnwidth="2" horizontalalign="center" name="gridcolumn170_2">
+                                                    <wm-label width="90%" caption="bind:Variables.serviceGetPSRecentActivities.dataSet.TimeStamp | toDate: 'MM-dd-yy hh:mm:ss a'" fontsize="11" name="label203_1"></wm-label>
+                                                </wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="2" name="gridcolumn171"></wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="2" name="gridcolumn172">
+                                                    <wm-button class="btn-default" caption="Return" type="button" hint="Return this activity to Superintendent Review List" height="24" name="button23" show="bind:Variables.serviceGetPSRecentActivities.dataSet.Status == 'Progress Approved' || Variables.serviceGetPSRecentActivities.dataSet.Status == 'Dismissed'"
+                                                        on-click="Variables.serviceUpdateSSReturnToListPS.invoke()"></wm-button>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                        </wm-layoutgrid>
+                                    </wm-container>
+                                </wm-listtemplate>
+                            </wm-list>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow71_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn173"></wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn174"></wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn175"></wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
+            </wm-dialogcontent>
+            <wm-dialogactions name="dialogactions7">
+                <wm-button class="btn-secondary" caption="OK" on-click="closeDialog()" name="button21"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
 </wm-page>
