@@ -12,7 +12,25 @@ Application.$controller("TrackerClassicPipePageController", ["$scope", function(
          * e.g. to get value of text widget named 'username' use following script
          * '$scope.Widgets.username.datavalue'
          */
-        $scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.liveSettingsUser.dataSet.data.find(x => x.label === 'PageTrackerClassicPipe'));
+        //Update local PageSetting variable
+        $scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.liveSettingsUser.getData().data.find(x => x.label === 'PageTrackerClassicPipe'));
+
+        //Set grid hidden columns
+        var pageSettings = $scope.Variables.staticTrackerClassicPageSettings.dataSet.valueString;
+        var pageSettingsJSON = {};
+        if (pageSettings) {
+            pageSettingsJSON = JSON.parse(pageSettings);
+            _.forEach(pageSettingsJSON.hiddenColumns, function(key, value) {
+                $columns[key].setProperty('show', false);
+            });
+
+            if (pageSettingsJSON.hiddenColumns.length > 0) {
+                $scope.Variables.staticShowHideShowAllButton.setValue("show", 1);
+            } else {
+                $scope.Variables.staticShowHideShowAllButton.setValue("show", 0);
+            }
+        }
+        $scope.Widgets.gridClassicTrackerPipe.redraw();
     };
 
 
@@ -57,24 +75,6 @@ Application.$controller("TrackerClassicPipePageController", ["$scope", function(
             $scope.Widgets.livefilterClassicTrackerPipe.filter();
         }
     };
-
-
-    $scope.gridClassicTrackerPipeBeforedatarender = function($isolateScope, $data, $columns) {
-        var pageSettings = $scope.Variables.staticTrackerClassicPageSettings.dataSet.valueString;
-        var pageSettingsJSON = {};
-        if (pageSettings) {
-            pageSettingsJSON = JSON.parse(pageSettings);
-            _.forEach(pageSettingsJSON.hiddenColumns, function(key, value) {
-                $columns[key].setProperty('show', false);
-            });
-
-            if (pageSettingsJSON.hiddenColumns.length > 0) {
-                $scope.Variables.staticShowHideShowAllButton.setValue("show", 1);
-            } else {
-                $scope.Variables.staticShowHideShowAllButton.setValue("show", 0);
-            }
-        }
-    };
 }]);
 
 
@@ -101,24 +101,27 @@ Application.$controller("gridClassicTrackerPipeController", ["$scope",
                 pageSettingsJSON = JSON.parse(pageSettings.valueString);
             }
 
-            //Update hiddenColumns array
+            //Update hiddenColumns array AND hide columns
             _.forEach($scope.selectedColumns, function(value, key) {
                 if (pageSettingsJSON.hiddenColumns && pageSettingsJSON.hiddenColumns[0]) {
                     if (pageSettingsJSON.hiddenColumns.indexOf(key) == -1) {
                         pageSettingsJSON.hiddenColumns.push(key);
+                        value.colDef.show = false;
                     }
                 } else {
                     pageSettingsJSON.hiddenColumns = [key];
+                    value.colDef.show = false;
                 }
             });
+            if (pageSettingsJSON.hiddenColumns.length > 0) {
+                $scope.Variables.staticShowHideShowAllButton.setValue("show", 1);
+            }
+            $scope.redraw();
 
             //Update local static Settings Variable
             $scope.Variables.staticTrackerClassicPageSettings.setValue("userId", $scope.Variables.loggedInUser.dataSet.id);
             $scope.Variables.staticTrackerClassicPageSettings.setValue("label", "PageTrackerClassicPipe");
             $scope.Variables.staticTrackerClassicPageSettings.setValue("valueString", JSON.stringify(pageSettingsJSON));
-
-            //Redraw data table.  hiddenColumns array will be applied during "Before Redraw" event.
-            $scope.redraw();
 
             //Submit new hiddenColumns for persistent storage
             if (pageSettings && pageSettings.valueString) {
@@ -141,6 +144,7 @@ Application.$controller("gridClassicTrackerPipeController", ["$scope",
                     $scope.Variables.staticTrackerClassicPageSettings.setValue("id", pageSettings.id);
                 });
             }
+
         };
 
 
@@ -148,13 +152,17 @@ Application.$controller("gridClassicTrackerPipeController", ["$scope",
             //Get currently hiddenColumns array from local static
             var pageSettings = $scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.liveSettingsUser.dataSet.data.find(x => x.label === 'PageTrackerClassicPipe'));
             var pageSettingsJSON = {};
+
+            //Update hiddenColumns array AND hide columns
             pageSettingsJSON.hiddenColumns = [];
+            _.forEach($scope.columns, function(value) { //Show all in data grid
+                value.show = true;
+            });
+            $scope.Variables.staticShowHideShowAllButton.setValue("show", 0);
+            $scope.redraw();
 
             //Update local Settings Variable
             $scope.Variables.staticTrackerClassicPageSettings.setValue("valueString", JSON.stringify(pageSettingsJSON));
-
-            //Redraw data table.  hiddenColumns array will be applied during "Before Redraw" event.
-            $scope.redraw();
 
             //Submit hiddenColumns for persistent storage
             $scope.Variables.liveSettingsUser.updateRecord({
