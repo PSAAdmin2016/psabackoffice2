@@ -47,7 +47,8 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
         //Update/Build pageSettingsJSON
         pageSettingsJSON.selectedActivityIndex = $scope.Widgets.gridApprovalReview.gridData.findIndex(x => x.ActivityID === $scope.Widgets.gridApprovalReview.selectedItems[0].ActivityID);
         pageSettingsJSON.selectedActivityID = $scope.Widgets.gridApprovalReview.gridData.find(x => x.ActivityID === $scope.Widgets.gridApprovalReview.selectedItems[0].ActivityID).ActivityID;
-        pageSettingsJSON.selectedColumnFilters[0] = 'BOB';
+        pageSettingsJSON.selectedColumnFilters = ['BOB'];
+        debugger;
 
         //Submit items to DB
         if (pageSettings && pageSettings.valueString) {
@@ -116,7 +117,7 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
             pageSettingsJSON = JSON.parse(pageSettings.valueString);
         }
 
-        //## Select Row ## If ActivityID still in Table select it.. If not select 1 Index lower.  Min 0.
+        //### Select Row ### If ActivityID still in Table select it.. If not select Index - 1 .  Min 0.
         if (pageSettingsJSON.selectedActivityID) {
             var i = $isolateScope.gridData.findIndex(x => x.ActivityID === pageSettingsJSON.selectedActivityID);
             if (i) {
