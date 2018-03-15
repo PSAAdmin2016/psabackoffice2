@@ -47,7 +47,7 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
         //Update/Build pageSettingsJSON
         pageSettingsJSON.selectedActivityIndex = $scope.Widgets.gridApprovalReview.gridData.findIndex(x => x.ActivityID === $scope.Widgets.gridApprovalReview.selectedItems[0].ActivityID);
         pageSettingsJSON.selectedActivityID = $scope.Widgets.gridApprovalReview.gridData.find(x => x.ActivityID === $scope.Widgets.gridApprovalReview.selectedItems[0].ActivityID).ActivityID;
-        pageSettingsJSON.selectedColumnFilters = ['BOB'];
+        pageSettingsJSON.selectedColumnFilters = $scope.Widgets.gridApprovalReview.filterInfo;
         debugger;
 
         //Submit items to DB
@@ -131,7 +131,7 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
 
         //## Set Column Filters 
         if (pageSettingsJSON.selectedColumnFilters) {
-
+            //$scope.Widgets.gridApprovalReview.filterInfo = pageSettingsJSON.selectedColumnFilters;
         }
     };
 
