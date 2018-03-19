@@ -1,3 +1,4 @@
+var firstLoad = false;
 Application.$controller("TrackerClassicPipePageController", ["$scope", function($scope) {
     "use strict";
 
@@ -13,24 +14,31 @@ Application.$controller("TrackerClassicPipePageController", ["$scope", function(
          * '$scope.Widgets.username.datavalue'
          */
         //Update local PageSetting variable
-        $scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.SettingsPageUser.getData().data.find(x => x.label === 'PageTrackerClassicPipe'));
+        $scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.SettingsPageUser.getData().data.find(x => x.label === $scope.activePageName));
+        firstLoad = true;
+    };
 
-        //Set grid hidden columns
-        var pageSettings = $scope.Variables.staticTrackerClassicPageSettings.dataSet.valueString;
-        var pageSettingsJSON = {};
-        if (pageSettings) {
-            pageSettingsJSON = JSON.parse(pageSettings);
-            _.forEach(pageSettingsJSON.hiddenColumns, function(key, value) {
-                $columns[key].setProperty('show', false);
-            });
 
-            if (pageSettingsJSON.hiddenColumns.length > 0) {
-                $scope.Variables.staticShowHideShowAllButton.setValue("show", 1);
-            } else {
-                $scope.Variables.staticShowHideShowAllButton.setValue("show", 0);
+    $scope.gridClassicTrackerPipeDatarender = function($isolateScope, $data) {
+        if (firstLoad) {
+            firstLoad = false;
+            var pageSettings = $scope.Variables.staticTrackerClassicPageSettings.dataSet.valueString;
+            var pageSettingsJSON = {};
+
+            if (pageSettings) {
+                pageSettingsJSON = JSON.parse(pageSettings);
+
+                _.forEach(pageSettingsJSON.hiddenColumns, function(key, value) {
+                    $isolateScope.columns[key].setProperty('show', false);
+                });
+
+                if (pageSettingsJSON.hiddenColumns.length > 0) {
+                    $scope.Variables.staticShowHideShowAllButton.setValue("show", 1);
+                } else {
+                    $scope.Variables.staticShowHideShowAllButton.setValue("show", 0);
+                }
             }
         }
-        $scope.Widgets.gridClassicTrackerPipe.redraw();
     };
 
 
@@ -95,7 +103,7 @@ Application.$controller("gridClassicTrackerPipeController", ["$scope",
 
         $scope.customButtonAction = function($event) { //Hide selected Columns
             //Get currently hiddenColumns arrray from local static
-            var pageSettings = $scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.SettingsPageUser.dataSet.data.find(x => x.label === 'PageTrackerClassicPipe'));
+            var pageSettings = $scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.SettingsPageUser.dataSet.data.find(x => x.label === 'TrackerClassicPipe'));
             var pageSettingsJSON = {};
             if (pageSettings && pageSettings.valueString) {
                 pageSettingsJSON = JSON.parse(pageSettings.valueString);
@@ -120,16 +128,17 @@ Application.$controller("gridClassicTrackerPipeController", ["$scope",
 
             //Update local static Settings Variable
             $scope.Variables.staticTrackerClassicPageSettings.setValue("userId", $scope.Variables.loggedInUser.dataSet.id);
-            $scope.Variables.staticTrackerClassicPageSettings.setValue("label", "PageTrackerClassicPipe");
+            $scope.Variables.staticTrackerClassicPageSettings.setValue("label", 'TrackerClassicPipe');
             $scope.Variables.staticTrackerClassicPageSettings.setValue("valueString", JSON.stringify(pageSettingsJSON));
 
             //Submit new hiddenColumns for persistent storage
-            if (pageSettings && pageSettings.valueString) {
+
+            if (pageSettings && pageSettings.id) {
                 $scope.Variables.SettingsPageUser.updateRecord({
                     row: {
                         "id": pageSettings.id,
-                        "userId": pageSettings.userId,
-                        "label": pageSettings.label,
+                        "userId": $scope.Variables.loggedInUser.dataSet.id,
+                        "label": 'TrackerClassicPipe',
                         "valueString": JSON.stringify(pageSettingsJSON)
                     }
                 });
@@ -137,20 +146,17 @@ Application.$controller("gridClassicTrackerPipeController", ["$scope",
                 $scope.Variables.SettingsPageUser.createRecord({
                     row: {
                         "userId": $scope.Variables.loggedInUser.dataSet.id,
-                        "label": "PageTrackerClassicPipe",
+                        "label": 'TrackerClassicPipe',
                         "valueString": JSON.stringify(pageSettingsJSON)
                     }
-                }, function(data) { //On Success
-                    $scope.Variables.staticTrackerClassicPageSettings.setValue("id", pageSettings.id);
                 });
             }
-
         };
 
 
         $scope.customButton1Action = function($event) { //Show All 
             //Get currently hiddenColumns array from local static
-            var pageSettings = $scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.SettingsPageUser.dataSet.data.find(x => x.label === 'PageTrackerClassicPipe'));
+            var pageSettings = $scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.SettingsPageUser.dataSet.data.find(x => x.label === 'TrackerClassicPipe'));
             var pageSettingsJSON = {};
 
             //Update hiddenColumns array AND hide columns
@@ -168,8 +174,8 @@ Application.$controller("gridClassicTrackerPipeController", ["$scope",
             $scope.Variables.SettingsPageUser.updateRecord({
                 row: {
                     "id": pageSettings.id,
-                    "userId": pageSettings.userId,
-                    "label": pageSettings.label,
+                    "userId": $scope.Variables.loggedInUser.dataSet.id,
+                    "label": 'TrackerClassicPipe',
                     "valueString": JSON.stringify(pageSettingsJSON)
                 }
             }, function(data) { //On Success
