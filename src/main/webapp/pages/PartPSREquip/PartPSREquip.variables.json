@@ -96,9 +96,10 @@
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
-          "precision" : 10,
+          "precision" : 3,
           "generator" : "assigned",
           "isRelated" : false,
+          "defaultValue" : "1",
           "scale" : 0
         }, {
           "fieldName" : "fkLastModifiedBy",
@@ -120,7 +121,7 @@
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
-          "precision" : 10,
+          "precision" : 7,
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
@@ -135,6 +136,7 @@
           "precision" : 3,
           "generator" : "assigned",
           "isRelated" : false,
+          "defaultValue" : "0",
           "scale" : 0
         }, {
           "fieldName" : "timeStamp",
@@ -142,7 +144,7 @@
           "fullyQualifiedType" : "timestamp",
           "columnName" : "TimeStamp",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -275,7 +277,7 @@
         "fullyQualifiedType" : "timestamp",
         "columnName" : "TimeStamp",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",

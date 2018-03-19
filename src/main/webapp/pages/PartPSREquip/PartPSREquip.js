@@ -88,6 +88,7 @@ Application.$controller("PartPSREquipPageController", ["$scope", "$rootScope", "
 
 
     $scope.buttonResearchClick = function($event, $isolateScope) {
+        $scope.$parent.savePageSettings();
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 80) {
             $scope.$parent.Variables.navigationToClassicEquip.setData({
                 'PageLoadBidID': parseInt($scope.$parent.Widgets.gridApprovalReview.selecteditem.Spool2),

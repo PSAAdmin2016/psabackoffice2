@@ -299,6 +299,7 @@ Application.$controller("PartPSRSteelPageController", ["$scope", "$rootScope", "
 
 
     $scope.ResearchClick = function($event, $isolateScope) {
+        $scope.$parent.savePageSettings();
         $scope.$parent.Variables.navigationToClassicSteel.setData({
             'PageLoadArea': $scope.$parent.Widgets.gridApprovalReview.selecteditem.Area,
             'PageLoadPieceMark': $scope.$parent.Widgets.gridApprovalReview.selecteditem.Spool1,

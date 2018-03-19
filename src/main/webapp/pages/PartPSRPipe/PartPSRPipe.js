@@ -21,7 +21,6 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
 
 
     $scope.ResearchClick = function($event, $isolateScope) {
-        debugger;
         $scope.$parent.savePageSettings();
 
         if ($scope.Widgets.switchSpool1Spool2.datavalue == 'Spool2') {
@@ -46,7 +45,6 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
             });
             //Fire Nav Call
             $scope.$parent.Variables.navigationToClassicPipe.invoke();
-
         }
 
     };

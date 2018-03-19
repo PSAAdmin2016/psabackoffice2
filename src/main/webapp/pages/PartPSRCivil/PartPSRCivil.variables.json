@@ -100,9 +100,10 @@
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
-          "precision" : 10,
+          "precision" : 3,
           "generator" : "assigned",
           "isRelated" : false,
+          "defaultValue" : "1",
           "scale" : 0
         }, {
           "fieldName" : "fkLastModifiedBy",
@@ -124,7 +125,7 @@
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
-          "precision" : 10,
+          "precision" : 7,
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
@@ -139,6 +140,7 @@
           "precision" : 3,
           "generator" : "assigned",
           "isRelated" : false,
+          "defaultValue" : "0",
           "scale" : 0
         }, {
           "fieldName" : "timeStamp",
@@ -146,7 +148,7 @@
           "fullyQualifiedType" : "timestamp",
           "columnName" : "TimeStamp",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -166,66 +168,6 @@
         "isRelated" : false,
         "scale" : 0
       }, {
-        "fieldName" : "fafoundation",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "FAFoundation",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 45,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "scale" : 0
-      }, {
-        "fieldName" : "fadescription",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "FADescription",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 45,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "scale" : 0
-      }, {
-        "fieldName" : "fadrawingNumber",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "FADrawingNumber",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 45,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "scale" : 0
-      }, {
-        "fieldName" : "fadetailDrawingNumber",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "FADetailDrawingNumber",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 45,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "scale" : 0
-      }, {
-        "fieldName" : "fapercentComplete",
-        "type" : "float",
-        "fullyQualifiedType" : "float",
-        "columnName" : "FAPercentComplete",
-        "isPrimaryKey" : false,
-        "notNull" : true,
-        "length" : 0,
-        "precision" : 3,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "scale" : 2
-      }, {
         "fieldName" : "faquantity",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
@@ -237,6 +179,18 @@
         "generator" : "assigned",
         "isRelated" : false,
         "scale" : 0
+      }, {
+        "fieldName" : "fapercent",
+        "type" : "float",
+        "fullyQualifiedType" : "float",
+        "columnName" : "FAPercent",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 3,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 2
       }, {
         "fieldName" : "farework",
         "type" : "short",
@@ -303,7 +257,7 @@
         "fullyQualifiedType" : "timestamp",
         "columnName" : "TimeStamp",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",

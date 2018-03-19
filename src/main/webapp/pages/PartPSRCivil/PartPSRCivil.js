@@ -134,6 +134,7 @@ Application.$controller("PartPSRCivilPageController", ["$scope", "$rootScope", "
 
 
     $scope.buttonResearchClick = function($event, $isolateScope) {
+        $scope.$parent.savePageSettings();
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 70 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 71) {
             $scope.$parent.Variables.navigationToClassicCivil.setData({
                 'PageLoadBidID': parseInt($scope.$parent.Widgets.gridApprovalReview.selecteditem.Spool2),
