@@ -326,5 +326,15 @@
     "type" : "string",
     "isList" : false,
     "saveInPhonegap" : false
+  },
+  "timerSavePageSettings" : {
+    "_id" : "wm-timerSavePageSettings-wm.TimerVariable-1521483838128",
+    "name" : "timerSavePageSettings",
+    "owner" : "Page",
+    "category" : "wm.TimerVariable",
+    "autoStart" : true,
+    "repeating" : true,
+    "delay" : 300000,
+    "onTimerFire" : "timerSavePageSettingsonTimerFire($event, $scope)"
   }
 }

@@ -1,3 +1,4 @@
+var firstLoad = false;
 Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootScope", "DialogService", "Utils", "$timeout", function($scope, $rootScope, DialogService, Utils, $timeout) {
     "use strict";
 
@@ -22,7 +23,7 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
          * e.g. to get value of text widget named 'username' use following scrip
          * '$scope.Widgets.username.datavalue'
          */
-
+        firstLoad = true;
     };
 
 
@@ -36,39 +37,40 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
     }
 
 
-    function savePageSettings() { //### Save persistent Settings ###
-        //Get currently items
-        var pageSettings = $scope.Variables.liveSettingsUser.getData().data.find(x => x.label === 'PagePSR');
+    $scope.savePageSettings = function() { //### Save persistent Settings ###
+        //Get currently items.  Needed for pageSettings.id
+        var pageSettings = $scope.Variables.SettingsPageUser.getData().data.find(x => x.label === $scope.activePageName);
         var pageSettingsJSON = {};
-        if (pageSettings && pageSettings.valueString) {
-            pageSettingsJSON = JSON.parse(pageSettings.valueString);
-        }
 
         //Update/Build pageSettingsJSON
         pageSettingsJSON.selectedActivityIndex = $scope.Widgets.gridApprovalReview.gridData.findIndex(x => x.ActivityID === $scope.Widgets.gridApprovalReview.selectedItems[0].ActivityID);
         pageSettingsJSON.selectedActivityID = $scope.Widgets.gridApprovalReview.gridData.find(x => x.ActivityID === $scope.Widgets.gridApprovalReview.selectedItems[0].ActivityID).ActivityID;
-        pageSettingsJSON.selectedColumnFilters = $scope.Widgets.gridApprovalReview.filterInfo;
-        debugger;
+        pageSettingsJSON.selectedColumnFilters = $scope.Widgets.gridApprovalReview.rowFilter;
 
         //Submit items to DB
-        if (pageSettings && pageSettings.valueString) {
-            $scope.Variables.liveSettingsUser.updateRecord({
+        if (pageSettings && pageSettings.id) {
+            $scope.Variables.SettingsPageUser.updateRecord({
                 row: {
                     "id": pageSettings.id,
-                    "userId": pageSettings.userId,
-                    "label": pageSettings.label,
+                    "userId": $scope.Variables.loggedInUser.dataSet.id,
+                    "label": $scope.activePageName,
                     "valueString": JSON.stringify(pageSettingsJSON)
                 }
             });
         } else {
-            $scope.Variables.liveSettingsUser.createRecord({
+            $scope.Variables.SettingsPageUser.createRecord({
                 row: {
                     "userId": $scope.Variables.loggedInUser.dataSet.id,
-                    "label": "PagePSR",
+                    "label": $scope.activePageName,
                     "valueString": JSON.stringify(pageSettingsJSON)
                 }
             });
         }
+    };
+
+
+    $scope.timerSavePageSettingsonTimerFire = function(variable, data) {
+        $scope.savePageSettings();
     };
 
 
@@ -106,33 +108,38 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
 
 
     $scope.gridApprovalReviewDatarender = function($isolateScope, $data) {
-        var pageSettings = $scope.Variables.liveSettingsUser.getData().data.find(x => x.label === 'PagePSR');
+        var pageSettings = $scope.Variables.SettingsPageUser.getData().data.find(x => x.label === $scope.activePageName);
         var pageSettingsJSON = {};
+        if (firstLoad) {
+            firstLoad = false;
+            if (pageSettings) {
+                pageSettingsJSON = JSON.parse(pageSettings.valueString);
+
+                //## Set Column Filters
+                if (pageSettingsJSON.selectedColumnFilters) {
+                    $isolateScope.rowFilter = pageSettingsJSON.selectedColumnFilters;
+                }
+
+                //### Select Row ### If ActivityID still in Table select it.. If not select Index - 1 .  Min 0.
+                if (pageSettingsJSON.selectedActivityID) {
+                    var i = $isolateScope.gridData.findIndex(x => x.ActivityID === pageSettingsJSON.selectedActivityID);
+                    if (i) {
+                        $isolateScope.selectItem(i);
+                        $('[name="gridApprovalReview"] tr.app-datagrid-row.active').focus();
+                    } else {
+                        $isolateScope.selectItem(Math.min((pageSettingsJSON.selectedActivityIndex - 1), 0));
+                        $('[name="gridApprovalReview"] tr.app-datagrid-row.active').focus();
+                    }
+                } else {
+                    $isolateScope.selectItem(0);
+                    $('[name="gridApprovalReview"] tr.app-datagrid-row.active').focus();
+                }
+            }
+        }
 
         $timeout(function() {
             $scope.Widgets.gridApprovalReview.onRowFilterChange();
         });
-
-        if (pageSettings && pageSettings.valueString) {
-            pageSettingsJSON = JSON.parse(pageSettings.valueString);
-        }
-
-        //### Select Row ### If ActivityID still in Table select it.. If not select Index - 1 .  Min 0.
-        if (pageSettingsJSON.selectedActivityID) {
-            var i = $isolateScope.gridData.findIndex(x => x.ActivityID === pageSettingsJSON.selectedActivityID);
-            if (i) {
-                $isolateScope.selectItem(i);
-            } else {
-                $isolateScope.selectItem(Math.min((pageSettingsJSON.selectedActivityIndex - 1), 0));
-            }
-        } else {
-            $isolateScope.selectItem(0);
-        }
-
-        //## Set Column Filters 
-        if (pageSettingsJSON.selectedColumnFilters) {
-            //$scope.Widgets.gridApprovalReview.filterInfo = pageSettingsJSON.selectedColumnFilters;
-        }
     };
 
 
@@ -152,12 +159,6 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
         }
 */
     };
-
-
-    $scope.button9Click = function($event, $isolateScope) {
-        savePageSettings();
-    };
-
 }]);
 
 
