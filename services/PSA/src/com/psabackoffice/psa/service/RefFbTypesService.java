@@ -19,7 +19,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.psa.FeedBack;
-import com.psabackoffice.psa.RefFbSubTypes;
 import com.psabackoffice.psa.RefFbTypes;
 
 /**
@@ -162,18 +161,6 @@ public interface RefFbTypesService {
      * @see Page
      */
     Page<FeedBack> findAssociatedFeedBacks(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated refFbSubTypeses for given RefFbTypes id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated RefFbSubTypes instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<RefFbSubTypes> findAssociatedRefFbSubTypeses(Integer id, Pageable pageable);
 
 }
 

@@ -33,8 +33,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 import com.psabackoffice.psa.RefRoles;
-import com.psabackoffice.psa.RefRolesMobileFolders;
-import com.psabackoffice.psa.TblUserPsa;
+import com.psabackoffice.psa.TblUserRoles;
 import com.psabackoffice.psa.service.RefRolesService;
 
 
@@ -152,22 +151,13 @@ public class RefRolesController {
         return refRolesService.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/refRolesMobileFolderses", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the refRolesMobileFolderses instance associated with the given id.")
+    @RequestMapping(value="/{id:.+}/tblUserRoleses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the tblUserRoleses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<RefRolesMobileFolders> findAssociatedRefRolesMobileFolderses(@PathVariable("id") Integer id, Pageable pageable) {
+    public Page<TblUserRoles> findAssociatedTblUserRoleses(@PathVariable("id") Integer id, Pageable pageable) {
 
-        LOGGER.debug("Fetching all associated refRolesMobileFolderses");
-        return refRolesService.findAssociatedRefRolesMobileFolderses(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/tblUserPsas", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the tblUserPsas instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<TblUserPsa> findAssociatedTblUserPsas(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated tblUserPsas");
-        return refRolesService.findAssociatedTblUserPsas(id, pageable);
+        LOGGER.debug("Fetching all associated tblUserRoleses");
+        return refRolesService.findAssociatedTblUserRoleses(id, pageable);
     }
 
     /**

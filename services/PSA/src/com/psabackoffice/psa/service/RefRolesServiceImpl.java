@@ -25,11 +25,11 @@ import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
+import com.wavemaker.runtime.data.util.DaoUtils;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.psa.RefRoles;
-import com.psabackoffice.psa.RefRolesMobileFolders;
-import com.psabackoffice.psa.TblUserPsa;
+import com.psabackoffice.psa.TblUserRoles;
 
 
 /**
@@ -45,13 +45,8 @@ public class RefRolesServiceImpl implements RefRolesService {
 
     @Lazy
     @Autowired
-	@Qualifier("PSA.RefRolesMobileFoldersService")
-	private RefRolesMobileFoldersService refRolesMobileFoldersService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("PSA.TblUserPsaService")
-	private TblUserPsaService tblUserPsaService;
+	@Qualifier("PSA.TblUserRolesService")
+	private TblUserRolesService tblUserRolesService;
 
     @Autowired
     @Qualifier("PSA.RefRolesDao")
@@ -96,27 +91,30 @@ public class RefRolesServiceImpl implements RefRolesService {
 	public RefRoles update(RefRoles refRoles) throws EntityNotFoundException {
         LOGGER.debug("Updating RefRoles with information: {}", refRoles);
 
-        List<RefRolesMobileFolders> refRolesMobileFolderses = refRoles.getRefRolesMobileFolderses();
-        List<TblUserPsa> tblUserPsas = refRoles.getTblUserPsas();
+        List<TblUserRoles> tblUserRoleses = refRoles.getTblUserRoleses();
 
-        if(refRolesMobileFolderses != null && Hibernate.isInitialized(refRolesMobileFolderses)) {
-            if(!refRolesMobileFolderses.isEmpty()) {
-                for(RefRolesMobileFolders _refRolesMobileFolders : refRolesMobileFolderses) {
-                    _refRolesMobileFolders.setRefRoles(refRoles);
-                }
-            }
-        }
-
-        if(tblUserPsas != null && Hibernate.isInitialized(tblUserPsas)) {
-            if(!tblUserPsas.isEmpty()) {
-                for(TblUserPsa _tblUserPsa : tblUserPsas) {
-                    _tblUserPsa.setRefRoles(refRoles);
+        if(tblUserRoleses != null && Hibernate.isInitialized(tblUserRoleses)) {
+            if(!tblUserRoleses.isEmpty()) {
+                for(TblUserRoles _tblUserRoles : tblUserRoleses) {
+                    _tblUserRoles.setRefRoles(refRoles);
                 }
             }
         }
 
         this.wmGenericDao.update(refRoles);
         this.wmGenericDao.refresh(refRoles);
+
+        // Deleting children which are not present in the list.
+        if(tblUserRoleses != null && Hibernate.isInitialized(tblUserRoleses) && !tblUserRoleses.isEmpty()) {
+            List<TblUserRoles> _remainingChildren = wmGenericDao.execute(
+                session -> DaoUtils.findAllRemainingChildren(session, TblUserRoles.class,
+                        new DaoUtils.ChildrenFilter("refRoles", refRoles, tblUserRoleses)));
+            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
+            for(TblUserRoles _tblUserRoles : _remainingChildren) {
+                tblUserRolesService.delete(_tblUserRoles);
+            }
+            refRoles.setTblUserRoleses(tblUserRoleses);
+        }
 
         return refRoles;
     }
@@ -176,42 +174,22 @@ public class RefRolesServiceImpl implements RefRolesService {
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Page<RefRolesMobileFolders> findAssociatedRefRolesMobileFolderses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated refRolesMobileFolderses");
+    public Page<TblUserRoles> findAssociatedTblUserRoleses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated tblUserRoleses");
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("refRoles.id = '" + id + "'");
 
-        return refRolesMobileFoldersService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<TblUserPsa> findAssociatedTblUserPsas(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated tblUserPsas");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("refRoles.id = '" + id + "'");
-
-        return tblUserPsaService.findAll(queryBuilder.toString(), pageable);
+        return tblUserRolesService.findAll(queryBuilder.toString(), pageable);
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service RefRolesMobileFoldersService instance
+	 * @param service TblUserRolesService instance
 	 */
-	protected void setRefRolesMobileFoldersService(RefRolesMobileFoldersService service) {
-        this.refRolesMobileFoldersService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service TblUserPsaService instance
-	 */
-	protected void setTblUserPsaService(TblUserPsaService service) {
-        this.tblUserPsaService = service;
+	protected void setTblUserRolesService(TblUserRolesService service) {
+        this.tblUserRolesService = service;
     }
 
 }

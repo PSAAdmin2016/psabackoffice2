@@ -24,54 +24,54 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.psabackoffice.psa.RefRolesMobileFolders;
+import com.psabackoffice.psa.TblUserRoles;
 
 
 /**
- * ServiceImpl object for domain model class RefRolesMobileFolders.
+ * ServiceImpl object for domain model class TblUserRoles.
  *
- * @see RefRolesMobileFolders
+ * @see TblUserRoles
  */
-@Service("PSA.RefRolesMobileFoldersService")
+@Service("PSA.TblUserRolesService")
 @Validated
-public class RefRolesMobileFoldersServiceImpl implements RefRolesMobileFoldersService {
+public class TblUserRolesServiceImpl implements TblUserRolesService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RefRolesMobileFoldersServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TblUserRolesServiceImpl.class);
 
 
     @Autowired
-    @Qualifier("PSA.RefRolesMobileFoldersDao")
-    private WMGenericDao<RefRolesMobileFolders, Integer> wmGenericDao;
+    @Qualifier("PSA.TblUserRolesDao")
+    private WMGenericDao<TblUserRoles, Integer> wmGenericDao;
 
-    public void setWMGenericDao(WMGenericDao<RefRolesMobileFolders, Integer> wmGenericDao) {
+    public void setWMGenericDao(WMGenericDao<TblUserRoles, Integer> wmGenericDao) {
         this.wmGenericDao = wmGenericDao;
     }
 
     @Transactional(value = "PSATransactionManager")
     @Override
-	public RefRolesMobileFolders create(RefRolesMobileFolders refRolesMobileFolders) {
-        LOGGER.debug("Creating a new RefRolesMobileFolders with information: {}", refRolesMobileFolders);
+	public TblUserRoles create(TblUserRoles tblUserRoles) {
+        LOGGER.debug("Creating a new TblUserRoles with information: {}", tblUserRoles);
 
-        RefRolesMobileFolders refRolesMobileFoldersCreated = this.wmGenericDao.create(refRolesMobileFolders);
+        TblUserRoles tblUserRolesCreated = this.wmGenericDao.create(tblUserRoles);
         // reloading object from database to get database defined & server defined values.
-        return this.wmGenericDao.refresh(refRolesMobileFoldersCreated);
+        return this.wmGenericDao.refresh(tblUserRolesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefRolesMobileFolders getById(Integer refrolesmobilefoldersId) throws EntityNotFoundException {
-        LOGGER.debug("Finding RefRolesMobileFolders by id: {}", refrolesmobilefoldersId);
-        return this.wmGenericDao.findById(refrolesmobilefoldersId);
+	public TblUserRoles getById(Integer tbluserrolesId) throws EntityNotFoundException {
+        LOGGER.debug("Finding TblUserRoles by id: {}", tbluserrolesId);
+        return this.wmGenericDao.findById(tbluserrolesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefRolesMobileFolders findById(Integer refrolesmobilefoldersId) {
-        LOGGER.debug("Finding RefRolesMobileFolders by id: {}", refrolesmobilefoldersId);
+	public TblUserRoles findById(Integer tbluserrolesId) {
+        LOGGER.debug("Finding TblUserRoles by id: {}", tbluserrolesId);
         try {
-            return this.wmGenericDao.findById(refrolesmobilefoldersId);
+            return this.wmGenericDao.findById(tbluserrolesId);
         } catch(EntityNotFoundException ex) {
-            LOGGER.debug("No RefRolesMobileFolders found with id: {}", refrolesmobilefoldersId, ex);
+            LOGGER.debug("No TblUserRoles found with id: {}", tbluserrolesId, ex);
             return null;
         }
     }
@@ -79,23 +79,23 @@ public class RefRolesMobileFoldersServiceImpl implements RefRolesMobileFoldersSe
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefRolesMobileFolders update(RefRolesMobileFolders refRolesMobileFolders) throws EntityNotFoundException {
-        LOGGER.debug("Updating RefRolesMobileFolders with information: {}", refRolesMobileFolders);
+	public TblUserRoles update(TblUserRoles tblUserRoles) throws EntityNotFoundException {
+        LOGGER.debug("Updating TblUserRoles with information: {}", tblUserRoles);
 
-        this.wmGenericDao.update(refRolesMobileFolders);
-        this.wmGenericDao.refresh(refRolesMobileFolders);
+        this.wmGenericDao.update(tblUserRoles);
+        this.wmGenericDao.refresh(tblUserRoles);
 
-        return refRolesMobileFolders;
+        return tblUserRoles;
     }
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefRolesMobileFolders delete(Integer refrolesmobilefoldersId) throws EntityNotFoundException {
-        LOGGER.debug("Deleting RefRolesMobileFolders with id: {}", refrolesmobilefoldersId);
-        RefRolesMobileFolders deleted = this.wmGenericDao.findById(refrolesmobilefoldersId);
+	public TblUserRoles delete(Integer tbluserrolesId) throws EntityNotFoundException {
+        LOGGER.debug("Deleting TblUserRoles with id: {}", tbluserrolesId);
+        TblUserRoles deleted = this.wmGenericDao.findById(tbluserrolesId);
         if (deleted == null) {
-            LOGGER.debug("No RefRolesMobileFolders found with id: {}", refrolesmobilefoldersId);
-            throw new EntityNotFoundException(String.valueOf(refrolesmobilefoldersId));
+            LOGGER.debug("No TblUserRoles found with id: {}", tbluserrolesId);
+            throw new EntityNotFoundException(String.valueOf(tbluserrolesId));
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
@@ -103,29 +103,29 @@ public class RefRolesMobileFoldersServiceImpl implements RefRolesMobileFoldersSe
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public void delete(RefRolesMobileFolders refRolesMobileFolders) {
-        LOGGER.debug("Deleting RefRolesMobileFolders with {}", refRolesMobileFolders);
-        this.wmGenericDao.delete(refRolesMobileFolders);
+	public void delete(TblUserRoles tblUserRoles) {
+        LOGGER.debug("Deleting TblUserRoles with {}", tblUserRoles);
+        this.wmGenericDao.delete(tblUserRoles);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public Page<RefRolesMobileFolders> findAll(QueryFilter[] queryFilters, Pageable pageable) {
-        LOGGER.debug("Finding all RefRolesMobileFolders");
+	public Page<TblUserRoles> findAll(QueryFilter[] queryFilters, Pageable pageable) {
+        LOGGER.debug("Finding all TblUserRoles");
         return this.wmGenericDao.search(queryFilters, pageable);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Page<RefRolesMobileFolders> findAll(String query, Pageable pageable) {
-        LOGGER.debug("Finding all RefRolesMobileFolders");
+    public Page<TblUserRoles> findAll(String query, Pageable pageable) {
+        LOGGER.debug("Finding all TblUserRoles");
         return this.wmGenericDao.searchByQuery(query, pageable);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
     public Downloadable export(ExportType exportType, String query, Pageable pageable) {
-        LOGGER.debug("exporting data in the service PSA for table RefRolesMobileFolders to {} format", exportType);
+        LOGGER.debug("exporting data in the service PSA for table TblUserRoles to {} format", exportType);
         return this.wmGenericDao.export(exportType, query, pageable);
     }
 

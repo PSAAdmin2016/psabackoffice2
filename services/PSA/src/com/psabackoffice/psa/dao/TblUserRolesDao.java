@@ -14,14 +14,14 @@ import org.springframework.stereotype.Repository;
 
 import com.wavemaker.runtime.data.dao.WMGenericDaoImpl;
 
-import com.psabackoffice.psa.RefRolesMobileFolders;
+import com.psabackoffice.psa.TblUserRoles;
 
 /**
- * Specifies methods used to obtain and modify RefRolesMobileFolders related information
+ * Specifies methods used to obtain and modify TblUserRoles related information
  * which is stored in the database.
  */
-@Repository("PSA.RefRolesMobileFoldersDao")
-public class RefRolesMobileFoldersDao extends WMGenericDaoImpl<RefRolesMobileFolders, Integer> {
+@Repository("PSA.TblUserRolesDao")
+public class TblUserRolesDao extends WMGenericDaoImpl<TblUserRoles, Integer> {
 
     @Autowired
     @Qualifier("PSATemplate")

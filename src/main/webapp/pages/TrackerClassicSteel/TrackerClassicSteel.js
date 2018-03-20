@@ -1,3 +1,4 @@
+var firstLoad = false;
 Application.$controller("TrackerClassicSteelPageController", ["$scope", "DialogService", function($scope, DialogService) {
     "use strict";
 
@@ -12,12 +13,8 @@ Application.$controller("TrackerClassicSteelPageController", ["$scope", "DialogS
          * e.g. to get value of text widget named 'username' use following script
          * '$scope.Widgets.username.datavalue'
          */
-        if ($scope.Variables.staticClassicTrackerSteelColumnShowHideCache.dataSet.length) {
-            _.forEach($scope.Variables.staticClassicTrackerSteelColumnShowHideCache.dataSet, function(key) {
-                $scope.Widgets.gridClassicTrackerSteel.columns[key].show = false; //Set show false for the columns present in variable
-            });
-            $scope.Widgets.gridClassicTrackerSteel.redraw();
-        }
+        $scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.SettingsPageUser.getData().data.find(x => x.label === $scope.activePageName));
+        firstLoad = true;
 
     };
 

@@ -28,7 +28,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.psa.FeedBack;
-import com.psabackoffice.psa.RefFbSubTypes;
 import com.psabackoffice.psa.RefFbTypes;
 
 
@@ -47,11 +46,6 @@ public class RefFbTypesServiceImpl implements RefFbTypesService {
     @Autowired
 	@Qualifier("PSA.FeedBackService")
 	private FeedBackService feedBackService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("PSA.RefFbSubTypesService")
-	private RefFbSubTypesService refFbSubTypesService;
 
     @Autowired
     @Qualifier("PSA.RefFbTypesDao")
@@ -97,20 +91,11 @@ public class RefFbTypesServiceImpl implements RefFbTypesService {
         LOGGER.debug("Updating RefFbTypes with information: {}", refFbTypes);
 
         List<FeedBack> feedBacks = refFbTypes.getFeedBacks();
-        List<RefFbSubTypes> refFbSubTypeses = refFbTypes.getRefFbSubTypeses();
 
         if(feedBacks != null && Hibernate.isInitialized(feedBacks)) {
             if(!feedBacks.isEmpty()) {
                 for(FeedBack _feedBack : feedBacks) {
                     _feedBack.setRefFbTypes(refFbTypes);
-                }
-            }
-        }
-
-        if(refFbSubTypeses != null && Hibernate.isInitialized(refFbSubTypeses)) {
-            if(!refFbSubTypeses.isEmpty()) {
-                for(RefFbSubTypes _refFbSubTypes : refFbSubTypeses) {
-                    _refFbSubTypes.setRefFbTypes(refFbTypes);
                 }
             }
         }
@@ -185,17 +170,6 @@ public class RefFbTypesServiceImpl implements RefFbTypesService {
         return feedBackService.findAll(queryBuilder.toString(), pageable);
     }
 
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<RefFbSubTypes> findAssociatedRefFbSubTypeses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated refFbSubTypeses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("refFbTypes.id = '" + id + "'");
-
-        return refFbSubTypesService.findAll(queryBuilder.toString(), pageable);
-    }
-
     /**
 	 * This setter method should only be used by unit tests
 	 *
@@ -203,15 +177,6 @@ public class RefFbTypesServiceImpl implements RefFbTypesService {
 	 */
 	protected void setFeedBackService(FeedBackService service) {
         this.feedBackService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service RefFbSubTypesService instance
-	 */
-	protected void setRefFbSubTypesService(RefFbSubTypesService service) {
-        this.refFbSubTypesService = service;
     }
 
 }

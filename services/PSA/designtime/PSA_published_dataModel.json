@@ -722,16 +722,16 @@
         "type" : "user-defined"
       },
       "constraintList" : null,
-      "fieldName" : "fkUserId",
+      "fieldName" : "userId",
       "foreignKey" : true,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "hidden" : false,
       "javaType" : "integer",
       "length" : 0,
-      "name" : "fk_UserID",
+      "name" : "UserID",
       "nullable" : true,
-      "oldName" : "fk_UserID",
+      "oldName" : "UserID",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
@@ -751,16 +751,16 @@
         "type" : "user-defined"
       },
       "constraintList" : null,
-      "fieldName" : "fkFeedBackType",
+      "fieldName" : "feedBackType",
       "foreignKey" : true,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "hidden" : false,
       "javaType" : "integer",
       "length" : 0,
-      "name" : "fk_FeedBackType",
+      "name" : "FeedBackType",
       "nullable" : true,
-      "oldName" : "fk_FeedBackType",
+      "oldName" : "FeedBackType",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
@@ -780,16 +780,16 @@
         "type" : "user-defined"
       },
       "constraintList" : null,
-      "fieldName" : "fkFbsubType",
+      "fieldName" : "severity",
       "foreignKey" : true,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "hidden" : false,
       "javaType" : "integer",
       "length" : 0,
-      "name" : "fk_FBSubType",
+      "name" : "Severity",
       "nullable" : true,
-      "oldName" : "fk_FBSubType",
+      "oldName" : "Severity",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
@@ -805,49 +805,20 @@
       "columnValue" : {
         "insertable" : true,
         "updatable" : true,
-        "defaultValue" : null,
+        "defaultValue" : "1",
         "type" : "user-defined"
       },
       "constraintList" : null,
-      "fieldName" : "fkSeverity",
+      "fieldName" : "status",
       "foreignKey" : true,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "hidden" : false,
       "javaType" : "integer",
       "length" : 0,
-      "name" : "fk_Severity",
+      "name" : "Status",
       "nullable" : true,
-      "oldName" : "fk_Severity",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "period" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null,
-        "type" : "user-defined"
-      },
-      "constraintList" : null,
-      "fieldName" : "fkStatus",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "hidden" : false,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "fk_Status",
-      "nullable" : true,
-      "oldName" : "fk_Status",
+      "oldName" : "Status",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
@@ -921,7 +892,7 @@
       },
       "fieldName" : "refFbTypes",
       "mappings" : [ {
-        "sourceColumn" : "fk_FeedBackType",
+        "sourceColumn" : "FeedBackType",
         "targetColumn" : "ID"
       } ],
       "name" : "fk_FeedBackType_FeedBackTypes",
@@ -948,38 +919,9 @@
         "fetch" : true,
         "columnsFilter" : [ ]
       },
-      "fieldName" : "refFbStatuses",
-      "mappings" : [ {
-        "sourceColumn" : "fk_Status",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "fk_Status_Statuses",
-      "parentFetchOptions" : {
-        "fetch" : false,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "FeedBack",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "REF_FB_Statuses",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
       "fieldName" : "tblUserPsa",
       "mappings" : [ {
-        "sourceColumn" : "fk_UserID",
+        "sourceColumn" : "UserID",
         "targetColumn" : "ID"
       } ],
       "name" : "fk_UserID_UserID",
@@ -1006,12 +948,12 @@
         "fetch" : true,
         "columnsFilter" : [ ]
       },
-      "fieldName" : "refFbSeverity",
+      "fieldName" : "refFbStatuses",
       "mappings" : [ {
-        "sourceColumn" : "fk_Severity",
+        "sourceColumn" : "Status",
         "targetColumn" : "ID"
       } ],
-      "name" : "fk_ErrorSeverity_ErrorSeverity",
+      "name" : "fk_Status_Statuses",
       "parentFetchOptions" : {
         "fetch" : false,
         "columnsFilter" : [ ]
@@ -1021,7 +963,7 @@
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "FeedBack",
       "targetColumnsUniqueKey" : false,
-      "targetTable" : "REF_FB_Severity",
+      "targetTable" : "REF_FB_Statuses",
       "virtual" : false
     }, {
       "cardinality" : "ManyToOne",
@@ -1035,12 +977,12 @@
         "fetch" : true,
         "columnsFilter" : [ ]
       },
-      "fieldName" : "refFbSubTypes",
+      "fieldName" : "refFbSeverity",
       "mappings" : [ {
-        "sourceColumn" : "fk_FBSubType",
+        "sourceColumn" : "Severity",
         "targetColumn" : "ID"
       } ],
-      "name" : "fk_ChangeType_ChangeType",
+      "name" : "fk_ErrorSeverity_ErrorSeverity",
       "parentFetchOptions" : {
         "fetch" : false,
         "columnsFilter" : [ ]
@@ -1050,7 +992,7 @@
       "sourceColumnsNotUniqueKey" : true,
       "sourceTable" : "FeedBack",
       "targetColumnsUniqueKey" : false,
-      "targetTable" : "REF_FB_SubTypes",
+      "targetTable" : "REF_FB_Severity",
       "virtual" : false
     } ],
     "schema" : null,
@@ -2493,45 +2435,16 @@
         "type" : "user-defined"
       },
       "constraintList" : null,
-      "fieldName" : "fkFbtype",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "hidden" : false,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "fk_FBType",
-      "nullable" : true,
-      "oldName" : "fk_FBType",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "period" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null,
-        "type" : "user-defined"
-      },
-      "constraintList" : null,
-      "fieldName" : "fbsubType",
+      "fieldName" : "type",
       "foreignKey" : false,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "hidden" : false,
       "javaType" : "string",
-      "length" : 128,
-      "name" : "FBSubType",
+      "length" : 45,
+      "name" : "Type",
       "nullable" : true,
-      "oldName" : "FBSubType",
+      "oldName" : "Type",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : false,
@@ -2543,89 +2456,6 @@
       "sequenceSchema" : null,
       "sqlType" : "string",
       "unique" : false
-    } ],
-    "constraints" : [ ],
-    "entityName" : "RefFbSubTypes",
-    "filter" : null,
-    "fullyQualifiedName" : "com.psabackoffice.psa.RefFbSubTypes",
-    "ignoreRefreshAfterInsert" : false,
-    "name" : "REF_FB_SubTypes",
-    "oldName" : "REF_FB_SubTypes",
-    "primaryKey" : {
-      "columns" : [ "ID" ],
-      "composite" : false,
-      "generator" : {
-        "generatorType" : "identity",
-        "generatorValue" : null,
-        "schemaName" : null
-      },
-      "name" : "PRIMARY",
-      "virtual" : false
-    },
-    "relations" : [ {
-      "cardinality" : "ManyToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "refFbTypes",
-      "mappings" : [ {
-        "sourceColumn" : "fk_FBType",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "fbSubTypeTOfbType",
-      "parentFetchOptions" : {
-        "fetch" : false,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "REF_FB_SubTypes",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "REF_FB_Types",
-      "virtual" : false
-    } ],
-    "schema" : null,
-    "temporals" : [ ],
-    "type" : "TABLE"
-  }, {
-    "catalog" : "PSA",
-    "columns" : [ {
-      "columnValue" : {
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null,
-        "type" : "user-defined"
-      },
-      "constraintList" : null,
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "hidden" : false,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "period" : false,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : true
     }, {
       "columnValue" : {
         "insertable" : true,
@@ -2634,16 +2464,16 @@
         "type" : "user-defined"
       },
       "constraintList" : null,
-      "fieldName" : "label",
+      "fieldName" : "subType",
       "foreignKey" : false,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "hidden" : false,
       "javaType" : "string",
-      "length" : 45,
-      "name" : "Label",
+      "length" : 128,
+      "name" : "SubType",
       "nullable" : true,
-      "oldName" : "Label",
+      "oldName" : "SubType",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : false,
@@ -3802,176 +3632,6 @@
       "virtual" : false
     },
     "relations" : [ ],
-    "schema" : null,
-    "temporals" : [ ],
-    "type" : "TABLE"
-  }, {
-    "catalog" : "PSA",
-    "columns" : [ {
-      "columnValue" : {
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null,
-        "type" : "user-defined"
-      },
-      "constraintList" : null,
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "hidden" : false,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "period" : false,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null,
-        "type" : "user-defined"
-      },
-      "constraintList" : null,
-      "fieldName" : "roleId",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "hidden" : false,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "RoleID",
-      "nullable" : true,
-      "oldName" : "RoleID",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "period" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null,
-        "type" : "user-defined"
-      },
-      "constraintList" : null,
-      "fieldName" : "mobileFolder",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "hidden" : false,
-      "javaType" : "string",
-      "length" : 45,
-      "name" : "MobileFolder",
-      "nullable" : true,
-      "oldName" : "MobileFolder",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "period" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null,
-        "type" : "user-defined"
-      },
-      "constraintList" : null,
-      "fieldName" : "mobileFolderName",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "hidden" : false,
-      "javaType" : "string",
-      "length" : 45,
-      "name" : "MobileFolderName",
-      "nullable" : true,
-      "oldName" : "MobileFolderName",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "period" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "string",
-      "unique" : false
-    } ],
-    "constraints" : [ ],
-    "entityName" : "RefRolesMobileFolders",
-    "filter" : null,
-    "fullyQualifiedName" : "com.psabackoffice.psa.RefRolesMobileFolders",
-    "ignoreRefreshAfterInsert" : false,
-    "name" : "REF_RolesMobileFolders",
-    "oldName" : "REF_RolesMobileFolders",
-    "primaryKey" : {
-      "columns" : [ "ID" ],
-      "composite" : false,
-      "generator" : {
-        "generatorType" : "identity",
-        "generatorValue" : null,
-        "schemaName" : null
-      },
-      "name" : "PRIMARY",
-      "virtual" : false
-    },
-    "relations" : [ {
-      "cardinality" : "ManyToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "refRoles",
-      "mappings" : [ {
-        "sourceColumn" : "RoleID",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "MobileRoleIDTOREF_Roles",
-      "parentFetchOptions" : {
-        "fetch" : false,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "REF_RolesMobileFolders",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "REF_Roles",
-      "virtual" : false
-    } ],
     "schema" : null,
     "temporals" : [ ],
     "type" : "TABLE"
@@ -5711,122 +5371,6 @@
         "fetch" : true,
         "columnsFilter" : [ ]
       },
-      "fieldName" : "tblUserPsaByConstructionManager",
-      "mappings" : [ {
-        "sourceColumn" : "ConstructionManager",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "ConstructionMtoUserID",
-      "parentFetchOptions" : {
-        "fetch" : false,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblCrews",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblUserPSA",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "tblUserPsaBySuperintendent",
-      "mappings" : [ {
-        "sourceColumn" : "Superintendent",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "SuperToUserID",
-      "parentFetchOptions" : {
-        "fetch" : false,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblCrews",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblUserPSA",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
-      },
-      "columnsUniqueKey" : true,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "tblUserPsaByForeman",
-      "mappings" : [ {
-        "sourceColumn" : "Foreman",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "ForemanToUserID",
-      "parentFetchOptions" : {
-        "fetch" : false,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : false,
-      "sourceTable" : "tblCrews",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblUserPSA",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "tblUserPsaByProjectManager",
-      "mappings" : [ {
-        "sourceColumn" : "ProjectManager",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "PMtoUserID",
-      "parentFetchOptions" : {
-        "fetch" : false,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblCrews",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblUserPSA",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
       "fieldName" : "tblUserPsaByAreaManager",
       "mappings" : [ {
         "sourceColumn" : "AreaManager",
@@ -5978,6 +5522,122 @@
         "targetColumn" : "ID"
       } ],
       "name" : "LeadmanToUserID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "tblCrews",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "tblUserPSA",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "tblUserPsaByConstructionManager",
+      "mappings" : [ {
+        "sourceColumn" : "ConstructionManager",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "ConstructionMtoUserID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "tblCrews",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "tblUserPSA",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "tblUserPsaBySuperintendent",
+      "mappings" : [ {
+        "sourceColumn" : "Superintendent",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "SuperToUserID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "tblCrews",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "tblUserPSA",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
+      "columnsUniqueKey" : true,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "tblUserPsaByForeman",
+      "mappings" : [ {
+        "sourceColumn" : "Foreman",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "ForemanToUserID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : false,
+      "sourceTable" : "tblCrews",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "tblUserPSA",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "tblUserPsaByProjectManager",
+      "mappings" : [ {
+        "sourceColumn" : "ProjectManager",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "PMtoUserID",
       "parentFetchOptions" : {
         "fetch" : false,
         "columnsFilter" : [ ]
@@ -6741,6 +6401,35 @@
       "sequenceSchema" : null,
       "sqlType" : "string",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null,
+        "type" : "user-defined"
+      },
+      "constraintList" : null,
+      "fieldName" : "zipCode",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "hidden" : false,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "ZipCode",
+      "nullable" : true,
+      "oldName" : "ZipCode",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "period" : false,
+      "precision" : 7,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "number",
+      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "TblJobSites",
@@ -7054,35 +6743,6 @@
         "fetch" : true,
         "columnsFilter" : [ ]
       },
-      "fieldName" : "tblJobNumbers",
-      "mappings" : [ {
-        "sourceColumn" : "fk_JobNumber",
-        "targetColumn" : "JobNumber"
-      } ],
-      "name" : "fk_JobNumbers_tblJobNumbers",
-      "parentFetchOptions" : {
-        "fetch" : false,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblUserJobNumbers",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblJobNumbers",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
       "fieldName" : "tblUserPsa",
       "mappings" : [ {
         "sourceColumn" : "fk_UserId",
@@ -7099,6 +6759,35 @@
       "sourceTable" : "tblUserJobNumbers",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "tblUserPSA",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "tblJobNumbers",
+      "mappings" : [ {
+        "sourceColumn" : "fk_JobNumber",
+        "targetColumn" : "JobNumber"
+      } ],
+      "name" : "fk_JobNumbers_tblJobNumbers",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "tblUserJobNumbers",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "tblJobNumbers",
       "virtual" : false
     } ],
     "schema" : null,
@@ -7516,35 +7205,6 @@
         "type" : "user-defined"
       },
       "constraintList" : null,
-      "fieldName" : "mobileUser",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "hidden" : false,
-      "javaType" : "short",
-      "length" : 0,
-      "name" : "MobileUser",
-      "nullable" : true,
-      "oldName" : "MobileUser",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "period" : false,
-      "precision" : 3,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null,
-        "type" : "user-defined"
-      },
-      "constraintList" : null,
       "fieldName" : "active",
       "foreignKey" : false,
       "generatorType" : "assigned",
@@ -7719,35 +7379,6 @@
         "type" : "user-defined"
       },
       "constraintList" : null,
-      "fieldName" : "fkRoleId",
-      "foreignKey" : true,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "hidden" : false,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "fk_RoleId",
-      "nullable" : true,
-      "oldName" : "fk_RoleId",
-      "partOfAnyRelation" : true,
-      "partOfForeignKey" : true,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "period" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null,
-        "type" : "user-defined"
-      },
-      "constraintList" : null,
       "fieldName" : "fkDefaultJobNumberId",
       "foreignKey" : true,
       "generatorType" : "assigned",
@@ -7829,16 +7460,16 @@
       "unique" : false
     } ],
     "constraints" : [ {
-      "columns" : [ "pciEmployeeId" ],
+      "columns" : [ "Email" ],
       "composite" : false,
-      "name" : "pciEmployeeId_UNIQUE",
+      "name" : "Email_UNIQUE",
       "schemaName" : null,
       "type" : "UNIQUE",
       "virtual" : false
     }, {
-      "columns" : [ "Email" ],
+      "columns" : [ "pciEmployeeId" ],
       "composite" : false,
-      "name" : "Email_UNIQUE",
+      "name" : "pciEmployeeId_UNIQUE",
       "schemaName" : null,
       "type" : "UNIQUE",
       "virtual" : false
@@ -7861,64 +7492,6 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "ManyToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "refRoles",
-      "mappings" : [ {
-        "sourceColumn" : "fk_RoleId",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "fk_tblUserPSA_tblRoles1",
-      "parentFetchOptions" : {
-        "fetch" : false,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblUserPSA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "REF_Roles",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "refCrafts",
-      "mappings" : [ {
-        "sourceColumn" : "fk_CraftId",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "fk_CraftsTO_REFCrafts",
-      "parentFetchOptions" : {
-        "fetch" : false,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblUserPSA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "REF_Crafts",
-      "virtual" : false
-    }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
         "cascadeRemove" : "REMOVE",
@@ -8004,6 +7577,234 @@
       "sourceTable" : "tblUserPSA",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "REF_CraftClasses",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "refCrafts",
+      "mappings" : [ {
+        "sourceColumn" : "fk_CraftId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "fk_CraftsTO_REFCrafts",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "tblUserPSA",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "REF_Crafts",
+      "virtual" : false
+    } ],
+    "schema" : null,
+    "temporals" : [ ],
+    "type" : "TABLE"
+  }, {
+    "catalog" : "PSA",
+    "columns" : [ {
+      "columnValue" : {
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null,
+        "type" : "user-defined"
+      },
+      "constraintList" : null,
+      "fieldName" : "id",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "hidden" : false,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "ID",
+      "nullable" : false,
+      "oldName" : "ID",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "period" : false,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null,
+        "type" : "user-defined"
+      },
+      "constraintList" : null,
+      "fieldName" : "userId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "hidden" : false,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "UserID",
+      "nullable" : true,
+      "oldName" : "UserID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "period" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null,
+        "type" : "user-defined"
+      },
+      "constraintList" : null,
+      "fieldName" : "roleId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "hidden" : false,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "RoleID",
+      "nullable" : true,
+      "oldName" : "RoleID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "period" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null,
+        "type" : "user-defined"
+      },
+      "constraintList" : null,
+      "fieldName" : "timeStamp",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "hidden" : false,
+      "javaType" : "timestamp",
+      "length" : 0,
+      "name" : "TimeStamp",
+      "nullable" : true,
+      "oldName" : "TimeStamp",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "period" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "timestamp",
+      "unique" : false
+    } ],
+    "constraints" : [ ],
+    "entityName" : "TblUserRoles",
+    "filter" : null,
+    "fullyQualifiedName" : "com.psabackoffice.psa.TblUserRoles",
+    "ignoreRefreshAfterInsert" : false,
+    "name" : "tblUserRoles",
+    "oldName" : "tblUserRoles",
+    "primaryKey" : {
+      "columns" : [ "ID" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null,
+        "schemaName" : null
+      },
+      "name" : "PRIMARY",
+      "virtual" : false
+    },
+    "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "refRoles",
+      "mappings" : [ {
+        "sourceColumn" : "RoleID",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "UserRoles_UserRoles_Roles",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "tblUserRoles",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "REF_Roles",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "tblUserPsa",
+      "mappings" : [ {
+        "sourceColumn" : "UserID",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "UserRoles_UserID_UserPSA",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "tblUserRoles",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "tblUserPSA",
       "virtual" : false
     } ],
     "schema" : null,

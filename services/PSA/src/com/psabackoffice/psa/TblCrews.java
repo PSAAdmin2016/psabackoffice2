@@ -55,16 +55,16 @@ public class TblCrews implements Serializable {
     private Integer disciplineId;
     private Short rev;
     private Timestamp timeStamp;
-    private TblUserPsa tblUserPsaByConstructionManager;
-    private TblUserPsa tblUserPsaBySuperintendent;
-    private TblUserPsa tblUserPsaByForeman;
-    private TblUserPsa tblUserPsaByProjectManager;
     private TblUserPsa tblUserPsaByAreaManager;
     private RefDisciplines refDisciplines;
     private TblJobNumbers tblJobNumbers;
     private TblUserPsa tblUserPsaBySiteManager;
     private TblUserPsa tblUserPsaByGf;
     private TblUserPsa tblUserPsaByLeadman;
+    private TblUserPsa tblUserPsaByConstructionManager;
+    private TblUserPsa tblUserPsaBySuperintendent;
+    private TblUserPsa tblUserPsaByForeman;
+    private TblUserPsa tblUserPsaByProjectManager;
     private List<TblCrewsRev> tblCrewsRevs;
 
     @Id
@@ -196,66 +196,6 @@ public class TblCrews implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`ConstructionManager`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`ConstructionMtoUserID`"))
-    @Fetch(FetchMode.JOIN)
-    public TblUserPsa getTblUserPsaByConstructionManager() {
-        return this.tblUserPsaByConstructionManager;
-    }
-
-    public void setTblUserPsaByConstructionManager(TblUserPsa tblUserPsaByConstructionManager) {
-        if(tblUserPsaByConstructionManager != null) {
-            this.constructionManager = tblUserPsaByConstructionManager.getId();
-        }
-
-        this.tblUserPsaByConstructionManager = tblUserPsaByConstructionManager;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`Superintendent`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`SuperToUserID`"))
-    @Fetch(FetchMode.JOIN)
-    public TblUserPsa getTblUserPsaBySuperintendent() {
-        return this.tblUserPsaBySuperintendent;
-    }
-
-    public void setTblUserPsaBySuperintendent(TblUserPsa tblUserPsaBySuperintendent) {
-        if(tblUserPsaBySuperintendent != null) {
-            this.superintendent = tblUserPsaBySuperintendent.getId();
-        }
-
-        this.tblUserPsaBySuperintendent = tblUserPsaBySuperintendent;
-    }
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`Foreman`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`ForemanToUserID`"))
-    @Fetch(FetchMode.JOIN)
-    public TblUserPsa getTblUserPsaByForeman() {
-        return this.tblUserPsaByForeman;
-    }
-
-    public void setTblUserPsaByForeman(TblUserPsa tblUserPsaByForeman) {
-        if(tblUserPsaByForeman != null) {
-            this.foreman = tblUserPsaByForeman.getId();
-        }
-
-        this.tblUserPsaByForeman = tblUserPsaByForeman;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`ProjectManager`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`PMtoUserID`"))
-    @Fetch(FetchMode.JOIN)
-    public TblUserPsa getTblUserPsaByProjectManager() {
-        return this.tblUserPsaByProjectManager;
-    }
-
-    public void setTblUserPsaByProjectManager(TblUserPsa tblUserPsaByProjectManager) {
-        if(tblUserPsaByProjectManager != null) {
-            this.projectManager = tblUserPsaByProjectManager.getId();
-        }
-
-        this.tblUserPsaByProjectManager = tblUserPsaByProjectManager;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`AreaManager`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`AreaMtoUserID`"))
     @Fetch(FetchMode.JOIN)
     public TblUserPsa getTblUserPsaByAreaManager() {
@@ -343,6 +283,66 @@ public class TblCrews implements Serializable {
         }
 
         this.tblUserPsaByLeadman = tblUserPsaByLeadman;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`ConstructionManager`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`ConstructionMtoUserID`"))
+    @Fetch(FetchMode.JOIN)
+    public TblUserPsa getTblUserPsaByConstructionManager() {
+        return this.tblUserPsaByConstructionManager;
+    }
+
+    public void setTblUserPsaByConstructionManager(TblUserPsa tblUserPsaByConstructionManager) {
+        if(tblUserPsaByConstructionManager != null) {
+            this.constructionManager = tblUserPsaByConstructionManager.getId();
+        }
+
+        this.tblUserPsaByConstructionManager = tblUserPsaByConstructionManager;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`Superintendent`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`SuperToUserID`"))
+    @Fetch(FetchMode.JOIN)
+    public TblUserPsa getTblUserPsaBySuperintendent() {
+        return this.tblUserPsaBySuperintendent;
+    }
+
+    public void setTblUserPsaBySuperintendent(TblUserPsa tblUserPsaBySuperintendent) {
+        if(tblUserPsaBySuperintendent != null) {
+            this.superintendent = tblUserPsaBySuperintendent.getId();
+        }
+
+        this.tblUserPsaBySuperintendent = tblUserPsaBySuperintendent;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`Foreman`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`ForemanToUserID`"))
+    @Fetch(FetchMode.JOIN)
+    public TblUserPsa getTblUserPsaByForeman() {
+        return this.tblUserPsaByForeman;
+    }
+
+    public void setTblUserPsaByForeman(TblUserPsa tblUserPsaByForeman) {
+        if(tblUserPsaByForeman != null) {
+            this.foreman = tblUserPsaByForeman.getId();
+        }
+
+        this.tblUserPsaByForeman = tblUserPsaByForeman;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`ProjectManager`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`PMtoUserID`"))
+    @Fetch(FetchMode.JOIN)
+    public TblUserPsa getTblUserPsaByProjectManager() {
+        return this.tblUserPsaByProjectManager;
+    }
+
+    public void setTblUserPsaByProjectManager(TblUserPsa tblUserPsaByProjectManager) {
+        if(tblUserPsaByProjectManager != null) {
+            this.projectManager = tblUserPsaByProjectManager.getId();
+        }
+
+        this.tblUserPsaByProjectManager = tblUserPsaByProjectManager;
     }
 
     @JsonInclude(Include.NON_EMPTY)

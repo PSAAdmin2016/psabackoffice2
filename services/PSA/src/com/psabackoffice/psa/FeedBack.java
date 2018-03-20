@@ -39,17 +39,15 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class FeedBack implements Serializable {
 
     private Integer id;
-    private Integer fkUserId;
-    private Integer fkFeedBackType;
-    private Integer fkFbsubType;
-    private Integer fkSeverity;
-    private Integer fkStatus;
+    private Integer userId;
+    private Integer feedBackType;
+    private Integer severity;
+    private Integer status;
     private Timestamp timeStamp;
     private RefFbTypes refFbTypes;
-    private RefFbStatuses refFbStatuses;
     private TblUserPsa tblUserPsa;
+    private RefFbStatuses refFbStatuses;
     private RefFbSeverity refFbSeverity;
-    private RefFbSubTypes refFbSubTypes;
     private List<FeedBackNotes> feedBackNoteses;
 
     @Id
@@ -63,49 +61,40 @@ public class FeedBack implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "`fk_UserID`", nullable = true, scale = 0, precision = 10)
-    public Integer getFkUserId() {
-        return this.fkUserId;
+    @Column(name = "`UserID`", nullable = true, scale = 0, precision = 10)
+    public Integer getUserId() {
+        return this.userId;
     }
 
-    public void setFkUserId(Integer fkUserId) {
-        this.fkUserId = fkUserId;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    @Column(name = "`fk_FeedBackType`", nullable = true, scale = 0, precision = 10)
-    public Integer getFkFeedBackType() {
-        return this.fkFeedBackType;
+    @Column(name = "`FeedBackType`", nullable = true, scale = 0, precision = 10)
+    public Integer getFeedBackType() {
+        return this.feedBackType;
     }
 
-    public void setFkFeedBackType(Integer fkFeedBackType) {
-        this.fkFeedBackType = fkFeedBackType;
+    public void setFeedBackType(Integer feedBackType) {
+        this.feedBackType = feedBackType;
     }
 
-    @Column(name = "`fk_FBSubType`", nullable = true, scale = 0, precision = 10)
-    public Integer getFkFbsubType() {
-        return this.fkFbsubType;
+    @Column(name = "`Severity`", nullable = true, scale = 0, precision = 10)
+    public Integer getSeverity() {
+        return this.severity;
     }
 
-    public void setFkFbsubType(Integer fkFbsubType) {
-        this.fkFbsubType = fkFbsubType;
+    public void setSeverity(Integer severity) {
+        this.severity = severity;
     }
 
-    @Column(name = "`fk_Severity`", nullable = true, scale = 0, precision = 10)
-    public Integer getFkSeverity() {
-        return this.fkSeverity;
+    @Column(name = "`Status`", nullable = true, scale = 0, precision = 10)
+    public Integer getStatus() {
+        return this.status;
     }
 
-    public void setFkSeverity(Integer fkSeverity) {
-        this.fkSeverity = fkSeverity;
-    }
-
-    @Column(name = "`fk_Status`", nullable = true, scale = 0, precision = 10)
-    public Integer getFkStatus() {
-        return this.fkStatus;
-    }
-
-    public void setFkStatus(Integer fkStatus) {
-        this.fkStatus = fkStatus;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     @Column(name = "`TimeStamp`", nullable = true)
@@ -118,7 +107,7 @@ public class FeedBack implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_FeedBackType`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_FeedBackType_FeedBackTypes`"))
+    @JoinColumn(name = "`FeedBackType`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_FeedBackType_FeedBackTypes`"))
     @Fetch(FetchMode.JOIN)
     public RefFbTypes getRefFbTypes() {
         return this.refFbTypes;
@@ -126,29 +115,14 @@ public class FeedBack implements Serializable {
 
     public void setRefFbTypes(RefFbTypes refFbTypes) {
         if(refFbTypes != null) {
-            this.fkFeedBackType = refFbTypes.getId();
+            this.feedBackType = refFbTypes.getId();
         }
 
         this.refFbTypes = refFbTypes;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_Status`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_Status_Statuses`"))
-    @Fetch(FetchMode.JOIN)
-    public RefFbStatuses getRefFbStatuses() {
-        return this.refFbStatuses;
-    }
-
-    public void setRefFbStatuses(RefFbStatuses refFbStatuses) {
-        if(refFbStatuses != null) {
-            this.fkStatus = refFbStatuses.getId();
-        }
-
-        this.refFbStatuses = refFbStatuses;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_UserID`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_UserID_UserID`"))
+    @JoinColumn(name = "`UserID`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_UserID_UserID`"))
     @Fetch(FetchMode.JOIN)
     public TblUserPsa getTblUserPsa() {
         return this.tblUserPsa;
@@ -156,14 +130,29 @@ public class FeedBack implements Serializable {
 
     public void setTblUserPsa(TblUserPsa tblUserPsa) {
         if(tblUserPsa != null) {
-            this.fkUserId = tblUserPsa.getId();
+            this.userId = tblUserPsa.getId();
         }
 
         this.tblUserPsa = tblUserPsa;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_Severity`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_ErrorSeverity_ErrorSeverity`"))
+    @JoinColumn(name = "`Status`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_Status_Statuses`"))
+    @Fetch(FetchMode.JOIN)
+    public RefFbStatuses getRefFbStatuses() {
+        return this.refFbStatuses;
+    }
+
+    public void setRefFbStatuses(RefFbStatuses refFbStatuses) {
+        if(refFbStatuses != null) {
+            this.status = refFbStatuses.getId();
+        }
+
+        this.refFbStatuses = refFbStatuses;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`Severity`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_ErrorSeverity_ErrorSeverity`"))
     @Fetch(FetchMode.JOIN)
     public RefFbSeverity getRefFbSeverity() {
         return this.refFbSeverity;
@@ -171,25 +160,10 @@ public class FeedBack implements Serializable {
 
     public void setRefFbSeverity(RefFbSeverity refFbSeverity) {
         if(refFbSeverity != null) {
-            this.fkSeverity = refFbSeverity.getId();
+            this.severity = refFbSeverity.getId();
         }
 
         this.refFbSeverity = refFbSeverity;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_FBSubType`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_ChangeType_ChangeType`"))
-    @Fetch(FetchMode.JOIN)
-    public RefFbSubTypes getRefFbSubTypes() {
-        return this.refFbSubTypes;
-    }
-
-    public void setRefFbSubTypes(RefFbSubTypes refFbSubTypes) {
-        if(refFbSubTypes != null) {
-            this.fkFbsubType = refFbSubTypes.getId();
-        }
-
-        this.refFbSubTypes = refFbSubTypes;
     }
 
     @JsonInclude(Include.NON_EMPTY)

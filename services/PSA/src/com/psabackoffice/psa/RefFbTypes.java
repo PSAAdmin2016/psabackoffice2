@@ -33,9 +33,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class RefFbTypes implements Serializable {
 
     private Integer id;
-    private String label;
+    private String type;
+    private String subType;
     private List<FeedBack> feedBacks;
-    private List<RefFbSubTypes> refFbSubTypeses;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,13 +48,22 @@ public class RefFbTypes implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "`Label`", nullable = true, length = 45)
-    public String getLabel() {
-        return this.label;
+    @Column(name = "`Type`", nullable = true, length = 45)
+    public String getType() {
+        return this.type;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @Column(name = "`SubType`", nullable = true, length = 128)
+    public String getSubType() {
+        return this.subType;
+    }
+
+    public void setSubType(String subType) {
+        this.subType = subType;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -68,27 +77,11 @@ public class RefFbTypes implements Serializable {
         this.feedBacks = feedBacks;
     }
 
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "refFbTypes")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
-    public List<RefFbSubTypes> getRefFbSubTypeses() {
-        return this.refFbSubTypeses;
-    }
-
-    public void setRefFbSubTypeses(List<RefFbSubTypes> refFbSubTypeses) {
-        this.refFbSubTypeses = refFbSubTypeses;
-    }
-
     @PostPersist
     public void onPostPersist() {
         if(feedBacks != null) {
             for(FeedBack feedBack : feedBacks) {
                 feedBack.setRefFbTypes(this);
-            }
-        }
-        if(refFbSubTypeses != null) {
-            for(RefFbSubTypes refFbSubTypes : refFbSubTypeses) {
-                refFbSubTypes.setRefFbTypes(this);
             }
         }
     }

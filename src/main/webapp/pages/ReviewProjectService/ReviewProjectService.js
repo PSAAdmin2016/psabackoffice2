@@ -46,7 +46,7 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
         pageSettingsJSON.selectedActivityIndex = $scope.Widgets.gridApprovalReview.gridData.findIndex(x => x.ActivityID === $scope.Widgets.gridApprovalReview.selectedItems[0].ActivityID);
         pageSettingsJSON.selectedActivityID = $scope.Widgets.gridApprovalReview.gridData.find(x => x.ActivityID === $scope.Widgets.gridApprovalReview.selectedItems[0].ActivityID).ActivityID;
         pageSettingsJSON.selectedColumnFilters = $scope.Widgets.gridApprovalReview.rowFilter;
-        debugger;
+
         //Submit items to DB
         if (pageSettings && pageSettings.id) {
             $scope.Variables.SettingsPageUser.updateRecord({
@@ -69,7 +69,7 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
     };
 
 
-    $scope.timerSavePageSettingsonTimerFire = function(variable, data) {
+    $scope.timerSavePageSettingsonTimerFire = function(variable, data) { // Save user settings every 5 min
         $scope.savePageSettings();
     };
 
@@ -110,6 +110,7 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
     $scope.gridApprovalReviewDatarender = function($isolateScope, $data) {
         var pageSettings = $scope.Variables.SettingsPageUser.getData().data.find(x => x.label === $scope.activePageName);
         var pageSettingsJSON = {};
+
         if (firstLoad) {
             firstLoad = false;
             if (pageSettings) {

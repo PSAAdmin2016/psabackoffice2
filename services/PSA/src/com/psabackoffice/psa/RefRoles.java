@@ -34,8 +34,7 @@ public class RefRoles implements Serializable {
 
     private Integer id;
     private String roleName;
-    private List<RefRolesMobileFolders> refRolesMobileFolderses;
-    private List<TblUserPsa> tblUserPsas;
+    private List<TblUserRoles> tblUserRoleses;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,36 +58,20 @@ public class RefRoles implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "refRoles")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
-    public List<RefRolesMobileFolders> getRefRolesMobileFolderses() {
-        return this.refRolesMobileFolderses;
+    @Cascade({CascadeType.SAVE_UPDATE})
+    public List<TblUserRoles> getTblUserRoleses() {
+        return this.tblUserRoleses;
     }
 
-    public void setRefRolesMobileFolderses(List<RefRolesMobileFolders> refRolesMobileFolderses) {
-        this.refRolesMobileFolderses = refRolesMobileFolderses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "refRoles")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
-    public List<TblUserPsa> getTblUserPsas() {
-        return this.tblUserPsas;
-    }
-
-    public void setTblUserPsas(List<TblUserPsa> tblUserPsas) {
-        this.tblUserPsas = tblUserPsas;
+    public void setTblUserRoleses(List<TblUserRoles> tblUserRoleses) {
+        this.tblUserRoleses = tblUserRoleses;
     }
 
     @PostPersist
     public void onPostPersist() {
-        if(refRolesMobileFolderses != null) {
-            for(RefRolesMobileFolders refRolesMobileFolders : refRolesMobileFolderses) {
-                refRolesMobileFolders.setRefRoles(this);
-            }
-        }
-        if(tblUserPsas != null) {
-            for(TblUserPsa tblUserPsa : tblUserPsas) {
-                tblUserPsa.setRefRoles(this);
+        if(tblUserRoleses != null) {
+            for(TblUserRoles tblUserRoles : tblUserRoleses) {
+                tblUserRoles.setRefRoles(this);
             }
         }
     }

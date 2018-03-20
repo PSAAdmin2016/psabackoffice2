@@ -66,9 +66,6 @@
     "table" : "REF_FB_Statuses",
     "schema" : null
   }, {
-    "table" : "REF_FB_SubTypes",
-    "schema" : null
-  }, {
     "table" : "REF_FB_Types",
     "schema" : null
   }, {
@@ -100,9 +97,6 @@
     "schema" : null
   }, {
     "table" : "REF_Roles",
-    "schema" : null
-  }, {
-    "table" : "REF_RolesMobileFolders",
     "schema" : null
   }, {
     "table" : "REF_StateAbbreviations",
@@ -160,6 +154,9 @@
     "schema" : null
   }, {
     "table" : "tblUserPSA",
+    "schema" : null
+  }, {
+    "table" : "tblUserRoles",
     "schema" : null
   } ],
   "schemaFilter" : [ ".*" ],

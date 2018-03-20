@@ -11,9 +11,9 @@
   "rolePropertyName" : "",
   "roleColumnName" : "",
   "useRolesQuery" : true,
-  "rolesByUsernameQuery" : "SELECT r.RoleName \nFROM PSA.tblUserPSA u\n\tJOIN PSA.REF_Roles r\n\t    ON r.ID = u.fk_RoleId\nWHERE Email = :LOGGED_IN_USERNAME",
+  "rolesByUsernameQuery" : "SELECT r.RoleName \nFROM PSA.tblUserPSA u\nJOIN PSA.tblUserRoles ur\n\tON ur.UserID = u.ID\nJOIN PSA.REF_Roles r\n\t    ON r.ID = ur.RoleID\nWHERE Email = :LOGGED_IN_USERNAME",
   "tenantIdField" : null,
   "defTenantId" : 0,
   "tenantIdPropertyName" : null,
-  "queryType" : "SQL"
+  "queryType" : "NATIVE_SQL"
 }

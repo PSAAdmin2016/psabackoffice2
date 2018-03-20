@@ -41,6 +41,7 @@ public class TblJobSites implements Serializable {
     private String siteName;
     private String siteCity;
     private String siteState;
+    private Integer zipCode;
     private RefStateAbbreviations refStateAbbreviations;
     private List<TblJobNumbers> tblJobNumberses;
 
@@ -80,6 +81,15 @@ public class TblJobSites implements Serializable {
 
     public void setSiteState(String siteState) {
         this.siteState = siteState;
+    }
+
+    @Column(name = "`ZipCode`", nullable = true, scale = 0, precision = 7)
+    public Integer getZipCode() {
+        return this.zipCode;
+    }
+
+    public void setZipCode(Integer zipCode) {
+        this.zipCode = zipCode;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

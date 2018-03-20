@@ -18,72 +18,71 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.psabackoffice.psa.RefRoles;
 import com.psabackoffice.psa.TblUserRoles;
 
 /**
- * Service object for domain model class {@link RefRoles}.
+ * Service object for domain model class {@link TblUserRoles}.
  */
-public interface RefRolesService {
+public interface TblUserRolesService {
 
     /**
-     * Creates a new RefRoles. It does cascade insert for all the children in a single transaction.
+     * Creates a new TblUserRoles. It does cascade insert for all the children in a single transaction.
      *
-     * This method overrides the input field values using Server side or database managed properties defined on RefRoles if any.
+     * This method overrides the input field values using Server side or database managed properties defined on TblUserRoles if any.
      *
-     * @param refRoles Details of the RefRoles to be created; value cannot be null.
-     * @return The newly created RefRoles.
+     * @param tblUserRoles Details of the TblUserRoles to be created; value cannot be null.
+     * @return The newly created TblUserRoles.
      */
-	RefRoles create(@Valid RefRoles refRoles);
+	TblUserRoles create(@Valid TblUserRoles tblUserRoles);
 
 
 	/**
-	 * Returns RefRoles by given id if exists.
+	 * Returns TblUserRoles by given id if exists.
 	 *
-	 * @param refrolesId The id of the RefRoles to get; value cannot be null.
-	 * @return RefRoles associated with the given refrolesId.
-     * @throws EntityNotFoundException If no RefRoles is found.
+	 * @param tbluserrolesId The id of the TblUserRoles to get; value cannot be null.
+	 * @return TblUserRoles associated with the given tbluserrolesId.
+     * @throws EntityNotFoundException If no TblUserRoles is found.
 	 */
-	RefRoles getById(Integer refrolesId) throws EntityNotFoundException;
+	TblUserRoles getById(Integer tbluserrolesId) throws EntityNotFoundException;
 
     /**
-	 * Find and return the RefRoles by given id if exists, returns null otherwise.
+	 * Find and return the TblUserRoles by given id if exists, returns null otherwise.
 	 *
-	 * @param refrolesId The id of the RefRoles to get; value cannot be null.
-	 * @return RefRoles associated with the given refrolesId.
+	 * @param tbluserrolesId The id of the TblUserRoles to get; value cannot be null.
+	 * @return TblUserRoles associated with the given tbluserrolesId.
 	 */
-	RefRoles findById(Integer refrolesId);
+	TblUserRoles findById(Integer tbluserrolesId);
 
 
 	/**
-	 * Updates the details of an existing RefRoles. It replaces all fields of the existing RefRoles with the given refRoles.
+	 * Updates the details of an existing TblUserRoles. It replaces all fields of the existing TblUserRoles with the given tblUserRoles.
 	 *
-     * This method overrides the input field values using Server side or database managed properties defined on RefRoles if any.
+     * This method overrides the input field values using Server side or database managed properties defined on TblUserRoles if any.
      *
-	 * @param refRoles The details of the RefRoles to be updated; value cannot be null.
-	 * @return The updated RefRoles.
-	 * @throws EntityNotFoundException if no RefRoles is found with given input.
+	 * @param tblUserRoles The details of the TblUserRoles to be updated; value cannot be null.
+	 * @return The updated TblUserRoles.
+	 * @throws EntityNotFoundException if no TblUserRoles is found with given input.
 	 */
-	RefRoles update(@Valid RefRoles refRoles) throws EntityNotFoundException;
+	TblUserRoles update(@Valid TblUserRoles tblUserRoles) throws EntityNotFoundException;
 
     /**
-	 * Deletes an existing RefRoles with the given id.
+	 * Deletes an existing TblUserRoles with the given id.
 	 *
-	 * @param refrolesId The id of the RefRoles to be deleted; value cannot be null.
-	 * @return The deleted RefRoles.
-	 * @throws EntityNotFoundException if no RefRoles found with the given id.
+	 * @param tbluserrolesId The id of the TblUserRoles to be deleted; value cannot be null.
+	 * @return The deleted TblUserRoles.
+	 * @throws EntityNotFoundException if no TblUserRoles found with the given id.
 	 */
-	RefRoles delete(Integer refrolesId) throws EntityNotFoundException;
+	TblUserRoles delete(Integer tbluserrolesId) throws EntityNotFoundException;
 
     /**
-	 * Deletes an existing RefRoles with the given object.
+	 * Deletes an existing TblUserRoles with the given object.
 	 *
-	 * @param refRoles The instance of the RefRoles to be deleted; value cannot be null.
+	 * @param tblUserRoles The instance of the TblUserRoles to be deleted; value cannot be null.
 	 */
-	void delete(RefRoles refRoles);
+	void delete(TblUserRoles tblUserRoles);
 
 	/**
-	 * Find all RefRoles matching the given QueryFilter(s).
+	 * Find all TblUserRoles matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.
      * This method returns Paginated results.
 	 *
@@ -91,30 +90,30 @@ public interface RefRolesService {
 	 *
      * @param queryFilters Array of queryFilters to filter the results; No filters applied if the input is null/empty.
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of matching RefRoles.
+     * @return Paginated list of matching TblUserRoles.
      *
      * @see QueryFilter
      * @see Pageable
      * @see Page
 	 */
     @Deprecated
-	Page<RefRoles> findAll(QueryFilter[] queryFilters, Pageable pageable);
+	Page<TblUserRoles> findAll(QueryFilter[] queryFilters, Pageable pageable);
 
     /**
-	 * Find all RefRoles matching the given input query. This method returns Paginated results.
+	 * Find all TblUserRoles matching the given input query. This method returns Paginated results.
      * Note: Go through the documentation for <u>query</u> syntax.
 	 *
      * @param query The query to filter the results; No filters applied if the input is null/empty.
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of matching RefRoles.
+     * @return Paginated list of matching TblUserRoles.
      *
      * @see Pageable
      * @see Page
 	 */
-    Page<RefRoles> findAll(String query, Pageable pageable);
+    Page<TblUserRoles> findAll(String query, Pageable pageable);
 
     /**
-	 * Exports all RefRoles matching the given input query to the given exportType format.
+	 * Exports all TblUserRoles matching the given input query to the given exportType format.
      * Note: Go through the documentation for <u>query</u> syntax.
 	 *
      * @param exportType The format in which to export the data; value cannot be null.
@@ -129,11 +128,11 @@ public interface RefRolesService {
     Downloadable export(ExportType exportType, String query, Pageable pageable);
 
 	/**
-	 * Retrieve the count of the RefRoles in the repository with matching query.
+	 * Retrieve the count of the TblUserRoles in the repository with matching query.
      * Note: Go through the documentation for <u>query</u> syntax.
      *
      * @param query query to filter results. No filters applied if the input is null/empty.
-	 * @return The count of the RefRoles.
+	 * @return The count of the TblUserRoles.
 	 */
 	long count(String query);
 
@@ -150,17 +149,6 @@ public interface RefRolesService {
 	 */
 	Page<Map<String, Object>> getAggregatedValues(AggregationInfo aggregationInfo, Pageable pageable);
 
-    /*
-     * Returns the associated tblUserRoleses for given RefRoles id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated TblUserRoles instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<TblUserRoles> findAssociatedTblUserRoleses(Integer id, Pageable pageable);
 
 }
 

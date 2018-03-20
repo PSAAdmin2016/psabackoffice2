@@ -38,6 +38,7 @@ import com.psabackoffice.psa.TblCrews;
 import com.psabackoffice.psa.TblUserCreds;
 import com.psabackoffice.psa.TblUserJobNumbers;
 import com.psabackoffice.psa.TblUserPsa;
+import com.psabackoffice.psa.TblUserRoles;
 
 
 /**
@@ -90,6 +91,11 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
     @Autowired
 	@Qualifier("PSA.ChatMessagesService")
 	private ChatMessagesService chatMessagesService;
+
+    @Lazy
+    @Autowired
+	@Qualifier("PSA.TblUserRolesService")
+	private TblUserRolesService tblUserRolesService;
 
     @Autowired
     @Qualifier("PSA.TblUserPsaDao")
@@ -172,16 +178,17 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
         List<FeedBack> feedBacks = tblUserPsa.getFeedBacks();
         List<FeedBackNotes> feedBackNoteses = tblUserPsa.getFeedBackNoteses();
         List<Settingsuser> settingsusers = tblUserPsa.getSettingsusers();
-        List<TblCrews> tblCrewsesForConstructionManager = tblUserPsa.getTblCrewsesForConstructionManager();
-        List<TblCrews> tblCrewsesForSuperintendent = tblUserPsa.getTblCrewsesForSuperintendent();
-        TblCrews tblCrewsForForeman = tblUserPsa.getTblCrewsForForeman();
-        List<TblCrews> tblCrewsesForProjectManager = tblUserPsa.getTblCrewsesForProjectManager();
         List<TblCrews> tblCrewsesForAreaManager = tblUserPsa.getTblCrewsesForAreaManager();
         List<TblCrews> tblCrewsesForSiteManager = tblUserPsa.getTblCrewsesForSiteManager();
         List<TblCrews> tblCrewsesForGf = tblUserPsa.getTblCrewsesForGf();
         List<TblCrews> tblCrewsesForLeadman = tblUserPsa.getTblCrewsesForLeadman();
+        List<TblCrews> tblCrewsesForConstructionManager = tblUserPsa.getTblCrewsesForConstructionManager();
+        List<TblCrews> tblCrewsesForSuperintendent = tblUserPsa.getTblCrewsesForSuperintendent();
+        TblCrews tblCrewsForForeman = tblUserPsa.getTblCrewsForForeman();
+        List<TblCrews> tblCrewsesForProjectManager = tblUserPsa.getTblCrewsesForProjectManager();
         TblUserCreds tblUserCreds = tblUserPsa.getTblUserCreds();
         List<TblUserJobNumbers> tblUserJobNumberses = tblUserPsa.getTblUserJobNumberses();
+        List<TblUserRoles> tblUserRoleses = tblUserPsa.getTblUserRoleses();
 
         if(chatConversationMemberses != null && Hibernate.isInitialized(chatConversationMemberses)) {
             if(!chatConversationMemberses.isEmpty()) {
@@ -223,34 +230,6 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
             }
         }
 
-        if(tblCrewsesForConstructionManager != null && Hibernate.isInitialized(tblCrewsesForConstructionManager)) {
-            if(!tblCrewsesForConstructionManager.isEmpty()) {
-                for(TblCrews _tblCrews : tblCrewsesForConstructionManager) {
-                    _tblCrews.setTblUserPsaByConstructionManager(tblUserPsa);
-                }
-            }
-        }
-
-        if(tblCrewsesForSuperintendent != null && Hibernate.isInitialized(tblCrewsesForSuperintendent)) {
-            if(!tblCrewsesForSuperintendent.isEmpty()) {
-                for(TblCrews _tblCrews : tblCrewsesForSuperintendent) {
-                    _tblCrews.setTblUserPsaBySuperintendent(tblUserPsa);
-                }
-            }
-        }
-
-        if(tblCrewsForForeman != null && Hibernate.isInitialized(tblCrewsForForeman)) {
-            tblCrewsForForeman.setTblUserPsaByForeman(tblUserPsa);
-        }
-
-        if(tblCrewsesForProjectManager != null && Hibernate.isInitialized(tblCrewsesForProjectManager)) {
-            if(!tblCrewsesForProjectManager.isEmpty()) {
-                for(TblCrews _tblCrews : tblCrewsesForProjectManager) {
-                    _tblCrews.setTblUserPsaByProjectManager(tblUserPsa);
-                }
-            }
-        }
-
         if(tblCrewsesForAreaManager != null && Hibernate.isInitialized(tblCrewsesForAreaManager)) {
             if(!tblCrewsesForAreaManager.isEmpty()) {
                 for(TblCrews _tblCrews : tblCrewsesForAreaManager) {
@@ -283,6 +262,34 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
             }
         }
 
+        if(tblCrewsesForConstructionManager != null && Hibernate.isInitialized(tblCrewsesForConstructionManager)) {
+            if(!tblCrewsesForConstructionManager.isEmpty()) {
+                for(TblCrews _tblCrews : tblCrewsesForConstructionManager) {
+                    _tblCrews.setTblUserPsaByConstructionManager(tblUserPsa);
+                }
+            }
+        }
+
+        if(tblCrewsesForSuperintendent != null && Hibernate.isInitialized(tblCrewsesForSuperintendent)) {
+            if(!tblCrewsesForSuperintendent.isEmpty()) {
+                for(TblCrews _tblCrews : tblCrewsesForSuperintendent) {
+                    _tblCrews.setTblUserPsaBySuperintendent(tblUserPsa);
+                }
+            }
+        }
+
+        if(tblCrewsForForeman != null && Hibernate.isInitialized(tblCrewsForForeman)) {
+            tblCrewsForForeman.setTblUserPsaByForeman(tblUserPsa);
+        }
+
+        if(tblCrewsesForProjectManager != null && Hibernate.isInitialized(tblCrewsesForProjectManager)) {
+            if(!tblCrewsesForProjectManager.isEmpty()) {
+                for(TblCrews _tblCrews : tblCrewsesForProjectManager) {
+                    _tblCrews.setTblUserPsaByProjectManager(tblUserPsa);
+                }
+            }
+        }
+
         if(tblUserCreds != null && Hibernate.isInitialized(tblUserCreds)) {
             tblUserCreds.setTblUserPsa(tblUserPsa);
         }
@@ -291,6 +298,14 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
             if(!tblUserJobNumberses.isEmpty()) {
                 for(TblUserJobNumbers _tblUserJobNumbers : tblUserJobNumberses) {
                     _tblUserJobNumbers.setTblUserPsa(tblUserPsa);
+                }
+            }
+        }
+
+        if(tblUserRoleses != null && Hibernate.isInitialized(tblUserRoleses)) {
+            if(!tblUserRoleses.isEmpty()) {
+                for(TblUserRoles _tblUserRoles : tblUserRoleses) {
+                    _tblUserRoles.setTblUserPsa(tblUserPsa);
                 }
             }
         }
@@ -308,6 +323,18 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
                 settingsuserService.delete(_settingsuser);
             }
             tblUserPsa.setSettingsusers(settingsusers);
+        }
+
+        // Deleting children which are not present in the list.
+        if(tblUserRoleses != null && Hibernate.isInitialized(tblUserRoleses) && !tblUserRoleses.isEmpty()) {
+            List<TblUserRoles> _remainingChildren = wmGenericDao.execute(
+                session -> DaoUtils.findAllRemainingChildren(session, TblUserRoles.class,
+                        new DaoUtils.ChildrenFilter("tblUserPsa", tblUserPsa, tblUserRoleses)));
+            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
+            for(TblUserRoles _tblUserRoles : _remainingChildren) {
+                tblUserRolesService.delete(_tblUserRoles);
+            }
+            tblUserPsa.setTblUserRoleses(tblUserRoleses);
         }
 
         return tblUserPsa;
@@ -423,39 +450,6 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Page<TblCrews> findAssociatedTblCrewsesForConstructionManager(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated tblCrewsesForConstructionManager");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("tblUserPsaByConstructionManager.id = '" + id + "'");
-
-        return tblCrewsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<TblCrews> findAssociatedTblCrewsesForSuperintendent(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated tblCrewsesForSuperintendent");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("tblUserPsaBySuperintendent.id = '" + id + "'");
-
-        return tblCrewsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<TblCrews> findAssociatedTblCrewsesForProjectManager(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated tblCrewsesForProjectManager");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("tblUserPsaByProjectManager.id = '" + id + "'");
-
-        return tblCrewsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
     public Page<TblCrews> findAssociatedTblCrewsesForAreaManager(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated tblCrewsesForAreaManager");
 
@@ -500,6 +494,39 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
+    public Page<TblCrews> findAssociatedTblCrewsesForConstructionManager(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated tblCrewsesForConstructionManager");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("tblUserPsaByConstructionManager.id = '" + id + "'");
+
+        return tblCrewsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Page<TblCrews> findAssociatedTblCrewsesForSuperintendent(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated tblCrewsesForSuperintendent");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("tblUserPsaBySuperintendent.id = '" + id + "'");
+
+        return tblCrewsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Page<TblCrews> findAssociatedTblCrewsesForProjectManager(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated tblCrewsesForProjectManager");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("tblUserPsaByProjectManager.id = '" + id + "'");
+
+        return tblCrewsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
     public Page<TblUserJobNumbers> findAssociatedTblUserJobNumberses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated tblUserJobNumberses");
 
@@ -507,6 +534,17 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
         queryBuilder.append("tblUserPsa.id = '" + id + "'");
 
         return tblUserJobNumbersService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
+    public Page<TblUserRoles> findAssociatedTblUserRoleses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated tblUserRoleses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("tblUserPsa.id = '" + id + "'");
+
+        return tblUserRolesService.findAll(queryBuilder.toString(), pageable);
     }
 
     /**
@@ -579,6 +617,15 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
 	 */
 	protected void setChatMessagesService(ChatMessagesService service) {
         this.chatMessagesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service TblUserRolesService instance
+	 */
+	protected void setTblUserRolesService(TblUserRolesService service) {
+        this.tblUserRolesService = service;
     }
 
 }

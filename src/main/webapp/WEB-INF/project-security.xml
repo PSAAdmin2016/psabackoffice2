@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <beans xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd" xmlns="http://www.springframework.org/schema/beans" xmlns:security="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <bean class="org.springframework.security.web.FilterChainProxy" id="wmCompositeSecurityFilter">
-        <constructor-arg>
-            <security:filter-chain pattern="/**" filters="sslSecureFilter, wmXSSFilter, wmXFrameOptionsFilter, wmXContentTypeOptionsFilter,corsFilter"/>
-        </constructor-arg>
-    </bean>
-    <bean class="com.wavemaker.runtime.cors.CorsBeanPostProcessor" id="corsBeanPostProcessor"/>
-    <bean class="org.springframework.web.cors.UrlBasedCorsConfigurationSource" id="corsConfigurationSource"/>
-    <bean class="org.springframework.web.filter.CorsFilter" id="corsFilter">
-        <constructor-arg ref="corsConfigurationSource"/>
-    </bean>
     <bean class="com.wavemaker.runtime.security.SecurityService" id="securityService"/>
     <bean class="com.wavemaker.runtime.security.controller.SecurityController" id="securityController"/>
     <bean class="com.wavemaker.runtime.web.filter.SSLSecureFilter" id="sslSecureFilter"/>
@@ -19,6 +9,16 @@
         <property name="allowFromUrl" value="${general.xFrameOptions.allowFromUrl}"/>
     </bean>
     <bean class="com.wavemaker.runtime.security.filter.WMXContentTypeOptionsFilter" id="wmXContentTypeOptionsFilter"/>
+    <bean class="org.springframework.web.filter.CorsFilter" id="corsFilter">
+        <constructor-arg ref="corsConfigurationSource"/>
+    </bean>
+    <bean class="org.springframework.web.cors.UrlBasedCorsConfigurationSource" id="corsConfigurationSource"/>
+    <bean class="com.wavemaker.runtime.cors.CorsBeanPostProcessor" id="corsBeanPostProcessor"/>
+    <bean class="org.springframework.security.web.FilterChainProxy" id="wmCompositeSecurityFilter">
+        <constructor-arg>
+            <security:filter-chain pattern="/**" filters="sslSecureFilter, wmXSSFilter, wmXFrameOptionsFilter, wmXContentTypeOptionsFilter,corsFilter"/>
+        </constructor-arg>
+    </bean>
     <bean class="com.wavemaker.runtime.data.spring.WMPropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
@@ -35,11 +35,11 @@
         <property name="enforceSecurity">
             <value>${enabled}</value>
         </property>
+        <property name="rolesConfig" ref="rolesConfig"/>
         <property name="loginConfig" ref="loginConfig"/>
         <property name="rememberMeConfig" ref="rememberMeConfig"/>
         <property name="tokenAuthConfig" ref="tokenAuthConfig"/>
         <property name="csrfConfig" ref="csrfConfig"/>
-        <property name="rolesConfig" ref="rolesConfig"/>
     </bean>
     <bean class="com.wavemaker.commons.model.security.SSLConfig" id="sslConfig">
         <property name="useSSL" value="${general.ssl.enabled}"/>
@@ -50,6 +50,20 @@
         <property name="enforceXssSecurity" value="${general.xss.enabled}"/>
         <property name="policyFile" value="wm-xss-policies.xml"/>
         <property name="xssFilterStrategy" value="NONE"/>
+    </bean>
+    <bean class="com.wavemaker.commons.model.security.CorsConfig" id="corsConfig">
+        <property name="enabled" value="${general.cors.enabled}"/>
+        <property name="maxAge" value="${general.cors.maxAge}"/>
+        <property name="allowCredentials" value="${general.cors.allowCredentials}"/>
+        <property name="pathEntries">
+            <list>
+                <bean class="com.wavemaker.commons.model.security.PathEntry" id="root">
+                    <property name="name" value="root"/>
+                    <property name="path" value="/**"/>
+                    <property name="allowedOrigins" value="${general.cors.root.allowedOrigins}"/>
+                </bean>
+            </list>
+        </property>
     </bean>
     <security:global-method-security pre-post-annotations="enabled" authentication-manager-ref="authenticationManager"/>
     <security:http pattern="/app.css" security="none"/>
@@ -89,12 +103,12 @@
         <security:intercept-url pattern="/services/PSA/TblUserPsa/*" access="isAuthenticated()" method="DELETE"/>
         <security:intercept-url pattern="/services/PSA/queryExecutor/queries/InsertLoginFailure" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/PSA/queryExecutor/queries/InsertLoginSuccess" access="isAuthenticated()" method="POST"/>
+        <security:intercept-url pattern="/services/application/i18n/**" access="permitAll"/>
         <security:intercept-url pattern="/services/fileImporter/**" access="hasAnyRole('ROLE_SuperUser','ROLE_Site Office-Project Services','ROLE_Corp. Office-Site Admin','ROLE_Corp. Office-Project Services')"/>
         <security:intercept-url pattern="/services/prefabs/**/servicedefs" access="permitAll"/>
         <security:intercept-url pattern="/services/sHA256Encryption/**" access="permitAll"/>
         <security:intercept-url pattern="/services/security/**" access="permitAll"/>
         <security:intercept-url pattern="/services/servicedefs" access="permitAll"/>
-        <security:intercept-url pattern="/services/application/i18n/**" access="permitAll"/>
         <security:intercept-url pattern="/**" access="permitAll" method="OPTIONS"/>
         <security:intercept-url pattern="/" access="isAuthenticated()"/>
         <security:intercept-url pattern="/**" access="isAuthenticated()"/>
@@ -449,8 +463,10 @@
         <property name="authoritiesByUsernameQuery">
             <value>SELECT r.RoleName 
 FROM PSA.tblUserPSA u
-	JOIN PSA.REF_Roles r
-	    ON r.ID = u.fk_RoleId
+JOIN PSA.tblUserRoles ur
+	ON ur.UserID = u.ID
+JOIN PSA.REF_Roles r
+	    ON r.ID = ur.RoleID
 WHERE Email = :LOGGED_IN_USERNAME</value>
         </property>
         <property name="rolesByQuery" value="true"/>
@@ -467,19 +483,6 @@ WHERE Email = :LOGGED_IN_USERNAME</value>
         </property>
         <property name="authoritiesProvider">
             <ref bean="defaultAuthoritiesProvider"/>
-        </property>
-    </bean>
-    <bean class="com.wavemaker.commons.model.security.CorsConfig" id="corsConfig">
-        <property name="enabled" value="${general.cors.enabled}"/>
-        <property name="maxAge" value="${general.cors.maxAge}"/>
-        <property name="pathEntries">
-            <list>
-                <bean class="com.wavemaker.commons.model.security.PathEntry" id="root">
-                    <property name="name" value="root"/>
-                    <property name="path" value="/**"/>
-                    <property name="allowedOrigins" value="${general.cors.root.allowedOrigins}"/>
-                </bean>
-            </list>
         </property>
     </bean>
 </beans>
