@@ -92,6 +92,7 @@ Application.$controller("TestLab2PageController", ["$scope", function($scope) {
 
 
 
+
 Application.$controller("WeatherHistoryTable1Controller", ["$scope",
     function($scope) {
         "use strict";
