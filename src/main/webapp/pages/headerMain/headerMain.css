@@ -1,19 +1,9 @@
 .wm-app .badge {
-background-color: #f8ff66;
-color: #000000;
+/*background-color: #f8ff66;*/
+/*color: #000000;*/
 }
 
-.liveHelpButton {
-    min-width: 100px;
-}
-.helpButton {
-    min-width: 80px;
-}
-.navItems {
-    padding: 7px;
-}
-.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open>.dropdown-toggle.btn-default {
-    color: #fff !important;
-    background-color: #00b3db !important;
-    border-color: #285e8e; /*set the color you want here*/
+.buttonGroup {
+    display: inline;
+    padding-left: 8px;
 }

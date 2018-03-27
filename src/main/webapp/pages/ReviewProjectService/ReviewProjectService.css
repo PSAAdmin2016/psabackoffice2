@@ -28,3 +28,12 @@ background-color: #fffe80;
 .wm-app .app-grid .app-datagrid .table-container .table tbody tr td.orange {
 background-color: #ff6500;
 }
+
+.buttonGroup {
+    display: inline;
+}
+
+.inlineDisply {
+    display: inline;
+    margin: 0 auto;
+}

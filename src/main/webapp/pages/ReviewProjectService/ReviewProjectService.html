@@ -11,19 +11,23 @@
                     <wm-gridcolumn columnwidth="2" name="gridcolumn156">
                         <wm-button class="btn-default" caption="Refresh" type="button" name="buttonRefresh" iconclass="glyphicon glyphicon-refresh" on-click="buttonRefreshClick($event, $scope)"></wm-button>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn2"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn3"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn41">
-                        <wm-composite horizontalalign="right" name="composite182_1" margin="0% unset" padding="2% unset unset 2%">
-                            <wm-label class="col-md-3" caption="Total Activities:" name="label237" width="40%" padding="unset 1% unset unset"></wm-label>
-                            <wm-container class="col-md-9" horizontalalign="right" paddingunit="%" name="container177" width="40%">
-                                <wm-text type="number" placeholder="" width="100%" readonly="true" autocomplete="false" readonlygrid="true" name="textApprovalActivityCount" datavalue="bind:Variables.serviceGetActivitiesPendingApproval.dataSet.totalElements"></wm-text>
+                    <wm-gridcolumn columnwidth="8" name="gridcolumn161_2">
+                        <wm-container name="container4" class="input-group pull-right">
+                            <wm-container name="container6" class="buttonGroup pull-right" display="inline">
+                                <wm-button class="btn-default" caption="Recent Activities" type="button" backgroundcolor="#5fb4ff" iconclass="wi wi-history" name="buttonRecentActivities" hint="Return an activity to Project Services Review." on-click="Widgets.dialogRecentActivities.open();Variables.serviceGetPSRecentActivities.invoke()"
+                                    margin="unset unset unset 15px"></wm-button>
                             </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn161_2">
-                        <wm-button class="btn-default" caption="Recent Activities" type="button" backgroundcolor="#5fb4ff" iconclass="wi wi-history" width="90%" name="buttonRecentActivities" hint="Return an activity to Project Services Review." on-click="Widgets.dialogRecentActivities.open();Variables.serviceGetPSRecentActivities.invoke()"
-                            margin="2% unset unset unset"></wm-button>
+                            <wm-container name="container5" class="buttonGroup" display="inline" width="200px">
+                                <wm-container name="composite182_1" class="inlineDisply">
+                                    <wm-container name="container55555" display="inline" horizontalalign="right">
+                                        <wm-label caption="Total Activities:" name="label237" width="50px" class="inlineDisply" margin="unset 1px unset unset"></wm-label>
+                                        <wm-text type="number" placeholder="" readonly="true" autocomplete="false" readonlygrid="true" name="textApprovalActivityCount" datavalue="bind:Variables.serviceGetActivitiesPendingApproval.dataSet.totalElements"
+                                            class="pull-right" width="35" margin="unset unset unset 1px"></wm-text>
+                                    </wm-container>
+                                    <wm-container name="container177" width="50px" class="inlineDisply"></wm-container>
+                                </wm-container>
+                            </wm-container>
+                        </wm-container>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
