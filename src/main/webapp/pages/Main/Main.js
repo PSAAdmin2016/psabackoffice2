@@ -6,7 +6,7 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
 
         if ($scope.Variables.ActiveJobNumber.dataSet.dataValue < 1111) { //Test if ActiveJobNumber is already set
             console.log("Updating ActiveJobNumber: Main.js: GetDefaultJobNumber: ");
-            $scope.Variables.PSAExecuteGetDefaultJobNumber.update();
+            $scope.Variables.serviceGetDefaultJobNumber.update();
         } else {
             console.log("ActiveJobNumber already set. :Main.js: MainPageOnReady");
         }
@@ -15,9 +15,7 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
 
     /* perform any action with widgets inside this block */
     $scope.onPageReady = function() {
-        //var temp = _WM_APP_PROPERTIES.version;
         $scope.Variables.staticProjectVersion.setValue('dataValue', _WM_APP_PROPERTIES.version);
-
     };
 
 

@@ -1620,40 +1620,6 @@
     "spinnerContext" : "page",
     "spinnerMessage" : "Retrieving Data..."
   },
-  "PSAExecuteGetDefaultJobNumber" : {
-    "_id" : "wm-PSAExecuteGetDefaultJobNumber-wm.ServiceVariable-1461255616889",
-    "name" : "PSAExecuteGetDefaultJobNumber",
-    "owner" : "App",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "UserID",
-      "value" : "bind:Variables.loggedInUser.dataSet.id",
-      "type" : "integer"
-    } ],
-    "type" : "com.psabackoffice.psa.models.query.GetDefaultJobNumberResponse",
-    "service" : "PSA",
-    "operation" : "executeGetDefaultJobNumber",
-    "operationId" : "QueryExecutionController_executeGetDefaultJobNumber",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : {
-      "dataValue" : ""
-    },
-    "isList" : true,
-    "firstRow" : 0,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "onSuccess" : "PSAExecuteGetDefaultJobNumberonSuccess($event, $scope)",
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "isDefault" : true,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page",
-    "spinnerMessage" : "Retrieving Data..."
-  },
   "PSAExecuteGetForemenBySuper" : {
     "_id" : "wm-PSAExecuteGetForemenBySuper-wm.ServiceVariable-1460574557775",
     "name" : "PSAExecuteGetForemenBySuper",
@@ -4000,6 +3966,40 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
+  },
+  "serviceGetDefaultJobNumber" : {
+    "_id" : "wm-PSAExecuteGetDefaultJobNumber-wm.ServiceVariable-1461255616889",
+    "name" : "serviceGetDefaultJobNumber",
+    "owner" : "App",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "UserID",
+      "value" : "bind:Variables.loggedInUser.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.psa.models.query.GetDefaultJobNumberResponse",
+    "service" : "PSA",
+    "operation" : "executeGetDefaultJobNumber",
+    "operationId" : "QueryExecutionController_executeGetDefaultJobNumber",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "isList" : true,
+    "firstRow" : 0,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "PSAExecuteGetDefaultJobNumberonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page",
+    "spinnerMessage" : "Retrieving Data..."
   },
   "serviceGetRefPrecip" : {
     "_id" : "wm-serviceGetRefPrecip-wm.ServiceVariable-1475862002995",
