@@ -9,7 +9,7 @@
     "service" : "schemaChangeService",
     "operation" : "changeSchema",
     "operationId" : "SchemaChangeController_changeSchema",
-    "operationType" : "post",
+    "operationType" : "get",
     "serviceType" : "JavaService",
     "dataSet" : {
       "dataValue" : ""

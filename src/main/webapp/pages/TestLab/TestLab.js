@@ -37,4 +37,25 @@ Application.$controller("TestLabPageController", ["$scope", function($scope) {
 
 
 
+
+    $scope.button8Click = function($event, $isolateScope) {
+        $scope.Variables.liveCreateFBNotes.createRecord({
+
+        });
+    };
+
 }]);
+
+Application.$controller("FeedBackLiveForm1Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("FeedBackNotesLiveForm1Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);

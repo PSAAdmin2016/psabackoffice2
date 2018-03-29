@@ -35,18 +35,20 @@ public class SchemaChangeService {
     private TblUserPsaService tblUserPsaService;
     private static final Logger logger=LoggerFactory.getLogger(SchemaChangeService.class);
     
-    public String changeSchema(String newSchema, HttpServletRequest request){
+    public String changeSchema(Integer newSchema, HttpServletRequest request){
         
-        if(StringUtils.isNotBlank(newSchema)){
-            logger.info("NEW SCHEMA: " + newSchema);
-            request.getSession().setAttribute("jobNumber",newSchema);
+        String sNewSchema = Integer.toString(newSchema);
+        if(StringUtils.isNotBlank(sNewSchema)){
+            logger.info("NEW SCHEMA: " + sNewSchema);
+            request.getSession().setAttribute("jobNumber",sNewSchema);
             logger.info("SETTING JOB NUMBER ATTRIBUTE TO: " + request.getSession().getAttribute("jobNumber"));
-        return newSchema;
+        return sNewSchema;
         } else {
             return DEFAULT_SCHEMA;
         }
     }
-    
+
+
     public String getSchemaForUser(String userName){
         boolean authenticated = securityService.isAuthenticated();
         if (authenticated){
@@ -67,9 +69,6 @@ public class SchemaChangeService {
     
     
     private String getUpdatedJobNumber(String jobNumber) {
-        if (jobNumber.startsWith("Job")){
-            return jobNumber;
-        }
         return "Job" + jobNumber;
     }
 }

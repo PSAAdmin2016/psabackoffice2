@@ -17,6 +17,4 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
     $scope.onPageReady = function() {
         $scope.Variables.staticProjectVersion.setValue('dataValue', _WM_APP_PROPERTIES.version);
     };
-
-
 }]);

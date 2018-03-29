@@ -4,8 +4,9 @@
 package com.psabackoffice.schemachangeservice.controller;
 
 import com.psabackoffice.schemachangeservice.SchemaChangeService;
-import java.lang.String;
+import java.lang.Integer;
 import javax.servlet.http.HttpServletRequest;
+import java.lang.String;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,8 @@ public class SchemaChangeController {
     @Autowired
     private SchemaChangeService schemaChangeservice;
 
-    @RequestMapping(value = "/changeSchema", produces = "application/json", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "")
-    public String changeSchema(@RequestParam(value = "newSchema", required = false) String newSchema, HttpServletRequest request) {
+    @RequestMapping(value = "/changeSchema", produces = "application/json", method = RequestMethod.GET)
+    public String changeSchema(@RequestParam(value = "newSchema", required = false) Integer newSchema, HttpServletRequest request) {
         return schemaChangeservice.changeSchema(newSchema, request);
     }
 
