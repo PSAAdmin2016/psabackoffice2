@@ -5031,7 +5031,7 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 stlfa.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stlfa.FANotes, stlfa.FAQuantity, stlfa.FAArea, stlfa.FAPercent AS PercentClaim, stlfa.FARework AS Rework
+stlfa.FANotes, stlfa.FAQuantity, stlfa.FAArea, stlfa.FAPercentCompleted AS PercentClaim, stlfa.FARework AS Rework
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
 	ON at.ID =sas.ActivityType
@@ -5052,7 +5052,7 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 stld.DemoBidID AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stld.DemoNotes, stld.DemoQuantity, std.Area, stld.DemoPercent AS PercentClaim, 0 AS Rework
+stld.DemoNotes, stld.DemoQuantity, std.Area, stld.DemoPercentCompleted AS PercentClaim, 0 AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -5121,7 +5121,7 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 cfa.FABidID AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-cfa.FANotes, IF(cfa.ActivityType = 70, (cfa.FAPercent * ctd.TakeOffQuantity), cfa.FAQuantity) AS Quantity, 'N/A' AS Area, cfa.FAPercent AS PercentClaim, cfa.FARework AS Rework
+cfa.FANotes, IF(cfa.ActivityType = 70, (cfa.FAPercentCompleted * ctd.TakeOffQuantity), cfa.FAQuantity) AS Quantity, 'N/A' AS Area, cfa.FAPercentCompleted AS PercentClaim, cfa.FARework AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -5168,7 +5168,7 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 cm.MiscFoundation AS Spool1, 'N/A' AS Spool2, 
 cm.MiscDrawingNumber AS LineNumber, cm.MiscDetailDrawingNumber AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-cm.MiscNotes, 0 AS Quantity, 'N/A' AS Area, cm.MiscPercentComplete AS PercentClaim, cm.MiscRework AS Rework
+cm.MiscNotes, 0 AS Quantity, 'N/A' AS Area, cm.MiscPercentCompleted AS PercentClaim, cm.MiscRework AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -5190,7 +5190,7 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 efa.FATagNumber AS Spool1, efa.FABidID AS Spool2, 
 efa.FAActivitySelect AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-efa.FANotes, efa.FAQuantity AS Quantity, 'N/A' AS Area, efa.FAPercentComplete AS PercentClaim, efa.FARework AS Rework
+efa.FANotes, efa.FAQuantity AS Quantity, 'N/A' AS Area, efa.FAPercentCompleted AS PercentClaim, efa.FARework AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -5408,7 +5408,7 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 stlfa.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stlfa.FANotes, stlfa.FAQuantity, stlfa.FAArea, stlfa.FAPercent AS PercentClaim, stlfa.FARework AS Rework
+stlfa.FANotes, stlfa.FAQuantity, stlfa.FAArea, stlfa.FAPercentCompleted AS PercentClaim, stlfa.FARework AS Rework
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
 	ON at.ID =sas.ActivityType
@@ -5429,7 +5429,7 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 stld.DemoBidID AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stld.DemoNotes, stld.DemoQuantity, std.Area, stld.DemoPercent AS PercentClaim, 0 AS Rework
+stld.DemoNotes, stld.DemoQuantity, std.Area, stld.DemoPercentCompleted AS PercentClaim, 0 AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -5498,7 +5498,7 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 cfa.FABidID AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-cfa.FANotes, IF(cfa.ActivityType = 70, (cfa.FAPercent * ctd.TakeOffQuantity), cfa.FAQuantity) AS Quantity, 'N/A' AS Area, cfa.FAPercent AS PercentClaim, cfa.FARework AS Rework
+cfa.FANotes, IF(cfa.ActivityType = 70, (cfa.FAPercentCompleted * ctd.TakeOffQuantity), cfa.FAQuantity) AS Quantity, 'N/A' AS Area, cfa.FAPercentCompleted AS PercentClaim, cfa.FARework AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -5545,7 +5545,7 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 cm.MiscFoundation AS Spool1, 'N/A' AS Spool2, 
 cm.MiscDrawingNumber AS LineNumber, cm.MiscDetailDrawingNumber AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-cm.MiscNotes, 0 AS Quantity, 'N/A' AS Area, cm.MiscPercentComplete AS PercentClaim, cm.MiscRework AS Rework
+cm.MiscNotes, 0 AS Quantity, 'N/A' AS Area, cm.MiscPercentCompleted AS PercentClaim, cm.MiscRework AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -5567,7 +5567,7 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 efa.FATagNumber AS Spool1, efa.FABidID AS Spool2, 
 efa.FAActivitySelect AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-efa.FANotes, efa.FAQuantity AS Quantity, 'N/A' AS Area, efa.FAPercentComplete AS PercentClaim, efa.FARework AS Rework
+efa.FANotes, efa.FAQuantity AS Quantity, 'N/A' AS Area, efa.FAPercentCompleted AS PercentClaim, efa.FARework AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
