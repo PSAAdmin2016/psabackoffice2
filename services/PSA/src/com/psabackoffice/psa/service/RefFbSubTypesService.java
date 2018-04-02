@@ -20,71 +20,70 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.psa.FeedBack;
 import com.psabackoffice.psa.RefFbSubTypes;
-import com.psabackoffice.psa.RefFbTypes;
 
 /**
- * Service object for domain model class {@link RefFbTypes}.
+ * Service object for domain model class {@link RefFbSubTypes}.
  */
-public interface RefFbTypesService {
+public interface RefFbSubTypesService {
 
     /**
-     * Creates a new RefFbTypes. It does cascade insert for all the children in a single transaction.
+     * Creates a new RefFbSubTypes. It does cascade insert for all the children in a single transaction.
      *
-     * This method overrides the input field values using Server side or database managed properties defined on RefFbTypes if any.
+     * This method overrides the input field values using Server side or database managed properties defined on RefFbSubTypes if any.
      *
-     * @param refFbTypes Details of the RefFbTypes to be created; value cannot be null.
-     * @return The newly created RefFbTypes.
+     * @param refFbSubTypes Details of the RefFbSubTypes to be created; value cannot be null.
+     * @return The newly created RefFbSubTypes.
      */
-	RefFbTypes create(@Valid RefFbTypes refFbTypes);
+	RefFbSubTypes create(@Valid RefFbSubTypes refFbSubTypes);
 
 
 	/**
-	 * Returns RefFbTypes by given id if exists.
+	 * Returns RefFbSubTypes by given id if exists.
 	 *
-	 * @param reffbtypesId The id of the RefFbTypes to get; value cannot be null.
-	 * @return RefFbTypes associated with the given reffbtypesId.
-     * @throws EntityNotFoundException If no RefFbTypes is found.
+	 * @param reffbsubtypesId The id of the RefFbSubTypes to get; value cannot be null.
+	 * @return RefFbSubTypes associated with the given reffbsubtypesId.
+     * @throws EntityNotFoundException If no RefFbSubTypes is found.
 	 */
-	RefFbTypes getById(Integer reffbtypesId) throws EntityNotFoundException;
+	RefFbSubTypes getById(Integer reffbsubtypesId) throws EntityNotFoundException;
 
     /**
-	 * Find and return the RefFbTypes by given id if exists, returns null otherwise.
+	 * Find and return the RefFbSubTypes by given id if exists, returns null otherwise.
 	 *
-	 * @param reffbtypesId The id of the RefFbTypes to get; value cannot be null.
-	 * @return RefFbTypes associated with the given reffbtypesId.
+	 * @param reffbsubtypesId The id of the RefFbSubTypes to get; value cannot be null.
+	 * @return RefFbSubTypes associated with the given reffbsubtypesId.
 	 */
-	RefFbTypes findById(Integer reffbtypesId);
+	RefFbSubTypes findById(Integer reffbsubtypesId);
 
 
 	/**
-	 * Updates the details of an existing RefFbTypes. It replaces all fields of the existing RefFbTypes with the given refFbTypes.
+	 * Updates the details of an existing RefFbSubTypes. It replaces all fields of the existing RefFbSubTypes with the given refFbSubTypes.
 	 *
-     * This method overrides the input field values using Server side or database managed properties defined on RefFbTypes if any.
+     * This method overrides the input field values using Server side or database managed properties defined on RefFbSubTypes if any.
      *
-	 * @param refFbTypes The details of the RefFbTypes to be updated; value cannot be null.
-	 * @return The updated RefFbTypes.
-	 * @throws EntityNotFoundException if no RefFbTypes is found with given input.
+	 * @param refFbSubTypes The details of the RefFbSubTypes to be updated; value cannot be null.
+	 * @return The updated RefFbSubTypes.
+	 * @throws EntityNotFoundException if no RefFbSubTypes is found with given input.
 	 */
-	RefFbTypes update(@Valid RefFbTypes refFbTypes) throws EntityNotFoundException;
+	RefFbSubTypes update(@Valid RefFbSubTypes refFbSubTypes) throws EntityNotFoundException;
 
     /**
-	 * Deletes an existing RefFbTypes with the given id.
+	 * Deletes an existing RefFbSubTypes with the given id.
 	 *
-	 * @param reffbtypesId The id of the RefFbTypes to be deleted; value cannot be null.
-	 * @return The deleted RefFbTypes.
-	 * @throws EntityNotFoundException if no RefFbTypes found with the given id.
+	 * @param reffbsubtypesId The id of the RefFbSubTypes to be deleted; value cannot be null.
+	 * @return The deleted RefFbSubTypes.
+	 * @throws EntityNotFoundException if no RefFbSubTypes found with the given id.
 	 */
-	RefFbTypes delete(Integer reffbtypesId) throws EntityNotFoundException;
+	RefFbSubTypes delete(Integer reffbsubtypesId) throws EntityNotFoundException;
 
     /**
-	 * Deletes an existing RefFbTypes with the given object.
+	 * Deletes an existing RefFbSubTypes with the given object.
 	 *
-	 * @param refFbTypes The instance of the RefFbTypes to be deleted; value cannot be null.
+	 * @param refFbSubTypes The instance of the RefFbSubTypes to be deleted; value cannot be null.
 	 */
-	void delete(RefFbTypes refFbTypes);
+	void delete(RefFbSubTypes refFbSubTypes);
 
 	/**
-	 * Find all RefFbTypes matching the given QueryFilter(s).
+	 * Find all RefFbSubTypes matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.
      * This method returns Paginated results.
 	 *
@@ -92,30 +91,30 @@ public interface RefFbTypesService {
 	 *
      * @param queryFilters Array of queryFilters to filter the results; No filters applied if the input is null/empty.
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of matching RefFbTypes.
+     * @return Paginated list of matching RefFbSubTypes.
      *
      * @see QueryFilter
      * @see Pageable
      * @see Page
 	 */
     @Deprecated
-	Page<RefFbTypes> findAll(QueryFilter[] queryFilters, Pageable pageable);
+	Page<RefFbSubTypes> findAll(QueryFilter[] queryFilters, Pageable pageable);
 
     /**
-	 * Find all RefFbTypes matching the given input query. This method returns Paginated results.
+	 * Find all RefFbSubTypes matching the given input query. This method returns Paginated results.
      * Note: Go through the documentation for <u>query</u> syntax.
 	 *
      * @param query The query to filter the results; No filters applied if the input is null/empty.
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of matching RefFbTypes.
+     * @return Paginated list of matching RefFbSubTypes.
      *
      * @see Pageable
      * @see Page
 	 */
-    Page<RefFbTypes> findAll(String query, Pageable pageable);
+    Page<RefFbSubTypes> findAll(String query, Pageable pageable);
 
     /**
-	 * Exports all RefFbTypes matching the given input query to the given exportType format.
+	 * Exports all RefFbSubTypes matching the given input query to the given exportType format.
      * Note: Go through the documentation for <u>query</u> syntax.
 	 *
      * @param exportType The format in which to export the data; value cannot be null.
@@ -130,11 +129,11 @@ public interface RefFbTypesService {
     Downloadable export(ExportType exportType, String query, Pageable pageable);
 
 	/**
-	 * Retrieve the count of the RefFbTypes in the repository with matching query.
+	 * Retrieve the count of the RefFbSubTypes in the repository with matching query.
      * Note: Go through the documentation for <u>query</u> syntax.
      *
      * @param query query to filter results. No filters applied if the input is null/empty.
-	 * @return The count of the RefFbTypes.
+	 * @return The count of the RefFbSubTypes.
 	 */
 	long count(String query);
 
@@ -152,7 +151,7 @@ public interface RefFbTypesService {
 	Page<Map<String, Object>> getAggregatedValues(AggregationInfo aggregationInfo, Pageable pageable);
 
     /*
-     * Returns the associated feedBacks for given RefFbTypes id.
+     * Returns the associated feedBacks for given RefFbSubTypes id.
      *
      * @param id value of id; value cannot be null
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
@@ -162,18 +161,6 @@ public interface RefFbTypesService {
      * @see Page
      */
     Page<FeedBack> findAssociatedFeedBacks(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated refFbSubTypeses for given RefFbTypes id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated RefFbSubTypes instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<RefFbSubTypes> findAssociatedRefFbSubTypeses(Integer id, Pageable pageable);
 
 }
 

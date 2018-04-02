@@ -281,20 +281,6 @@
           "targetTable" : "REF_FB_Types",
           "scale" : 0
         }, {
-          "fieldName" : "tblUserPsa",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "UserID",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 10,
-          "generator" : "assigned",
-          "isRelated" : true,
-          "relatedColumnName" : "userId",
-          "targetTable" : "tblUserPSA",
-          "scale" : 0
-        }, {
           "fieldName" : "refFbStatuses",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
@@ -310,6 +296,20 @@
           "targetTable" : "REF_FB_Statuses",
           "scale" : 0
         }, {
+          "fieldName" : "tblUserPsa",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "UserID",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "relatedColumnName" : "userId",
+          "targetTable" : "tblUserPSA",
+          "scale" : 0
+        }, {
           "fieldName" : "refFbSeverity",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
@@ -322,6 +322,20 @@
           "isRelated" : true,
           "relatedColumnName" : "severity",
           "targetTable" : "REF_FB_Severity",
+          "scale" : 0
+        }, {
+          "fieldName" : "refFbSubTypes",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "FeedBackSubType",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "relatedColumnName" : "feedBackSubType",
+          "targetTable" : "REF_FB_SubTypes",
           "scale" : 0
         }, {
           "fieldName" : "id",
@@ -463,10 +477,10 @@
           "isRelated" : false,
           "scale" : 0
         }, {
-          "fieldName" : "type",
+          "fieldName" : "label",
           "type" : "string",
           "fullyQualifiedType" : "string",
-          "columnName" : "Type",
+          "columnName" : "Label",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 45,
@@ -474,14 +488,46 @@
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
+        } ]
+      }, {
+        "fieldName" : "refFbStatuses",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "Status",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : true,
+        "defaultValue" : "1",
+        "relatedTableName" : "REF_FB_Statuses",
+        "relatedEntityName" : "RefFbStatuses",
+        "relatedColumnName" : "status",
+        "relatedFieldName" : "refFbStatuses.id",
+        "isList" : false,
+        "targetTable" : "REF_FB_Statuses",
+        "scale" : 0,
+        "columns" : [ {
+          "fieldName" : "id",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ID",
+          "isPrimaryKey" : true,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "identity",
+          "isRelated" : false,
+          "scale" : 0
         }, {
-          "fieldName" : "subType",
+          "fieldName" : "label",
           "type" : "string",
           "fullyQualifiedType" : "string",
-          "columnName" : "SubType",
+          "columnName" : "Label",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 128,
+          "length" : 45,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -707,50 +753,6 @@
           "scale" : 0
         } ]
       }, {
-        "fieldName" : "refFbStatuses",
-        "type" : "integer",
-        "fullyQualifiedType" : "integer",
-        "columnName" : "Status",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 0,
-        "precision" : 10,
-        "generator" : "assigned",
-        "isRelated" : true,
-        "defaultValue" : "1",
-        "relatedTableName" : "REF_FB_Statuses",
-        "relatedEntityName" : "RefFbStatuses",
-        "relatedColumnName" : "status",
-        "relatedFieldName" : "refFbStatuses.id",
-        "isList" : false,
-        "targetTable" : "REF_FB_Statuses",
-        "scale" : 0,
-        "columns" : [ {
-          "fieldName" : "id",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "ID",
-          "isPrimaryKey" : true,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 10,
-          "generator" : "identity",
-          "isRelated" : false,
-          "scale" : 0
-        }, {
-          "fieldName" : "label",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "Label",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 45,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "scale" : 0
-        } ]
-      }, {
         "fieldName" : "refFbSeverity",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
@@ -794,6 +796,63 @@
           "scale" : 0
         } ]
       }, {
+        "fieldName" : "refFbSubTypes",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "FeedBackSubType",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : true,
+        "relatedTableName" : "REF_FB_SubTypes",
+        "relatedEntityName" : "RefFbSubTypes",
+        "relatedColumnName" : "feedBackSubType",
+        "relatedFieldName" : "refFbSubTypes.id",
+        "isList" : false,
+        "targetTable" : "REF_FB_SubTypes",
+        "scale" : 0,
+        "columns" : [ {
+          "fieldName" : "refFbTypes",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "TypeID",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "relatedColumnName" : "typeId",
+          "targetTable" : "REF_FB_Types",
+          "scale" : 0
+        }, {
+          "fieldName" : "id",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ID",
+          "isPrimaryKey" : true,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "identity",
+          "isRelated" : false,
+          "scale" : 0
+        }, {
+          "fieldName" : "label",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "Label",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 128,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
+        } ]
+      }, {
         "fieldName" : "id",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
@@ -823,21 +882,15 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 1,
+    "bindCount" : 2,
     "tableName" : "FeedBack",
     "tableType" : "TABLE",
-    "properties" : [ "refFbTypes", "tblUserPsa", "refFbStatuses", "refFbSeverity" ],
+    "properties" : [ "refFbTypes", "refFbStatuses", "tblUserPsa", "refFbSeverity", "refFbSubTypes" ],
     "relatedTables" : [ {
       "columnName" : "refFbTypes",
       "relationName" : "refFbTypes",
       "type" : "RefFbTypes",
       "watchOn" : "PSARefFbTypesData",
-      "package" : "com.psabackoffice.psa.FeedBack"
-    }, {
-      "columnName" : "tblUserPsa",
-      "relationName" : "tblUserPsa",
-      "type" : "TblUserPsa",
-      "watchOn" : "PSATblUserPsaData",
       "package" : "com.psabackoffice.psa.FeedBack"
     }, {
       "columnName" : "refFbStatuses",
@@ -846,10 +899,22 @@
       "watchOn" : "PSARefFbStatusesData",
       "package" : "com.psabackoffice.psa.FeedBack"
     }, {
+      "columnName" : "tblUserPsa",
+      "relationName" : "tblUserPsa",
+      "type" : "TblUserPsa",
+      "watchOn" : "PSATblUserPsaData",
+      "package" : "com.psabackoffice.psa.FeedBack"
+    }, {
       "columnName" : "refFbSeverity",
       "relationName" : "refFbSeverity",
       "type" : "RefFbSeverity",
       "watchOn" : "PSARefFbSeverityData",
+      "package" : "com.psabackoffice.psa.FeedBack"
+    }, {
+      "columnName" : "refFbSubTypes",
+      "relationName" : "refFbSubTypes",
+      "type" : "RefFbSubTypes",
+      "watchOn" : "PSARefFbSubTypesData",
       "package" : "com.psabackoffice.psa.FeedBack"
     } ],
     "filterFields" : { },
@@ -1137,20 +1202,6 @@
           "targetTable" : "REF_FB_Types",
           "scale" : 0
         }, {
-          "fieldName" : "tblUserPsa",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "UserID",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 10,
-          "generator" : "assigned",
-          "isRelated" : true,
-          "relatedColumnName" : "userId",
-          "targetTable" : "tblUserPSA",
-          "scale" : 0
-        }, {
           "fieldName" : "refFbStatuses",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
@@ -1166,6 +1217,20 @@
           "targetTable" : "REF_FB_Statuses",
           "scale" : 0
         }, {
+          "fieldName" : "tblUserPsa",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "UserID",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "relatedColumnName" : "userId",
+          "targetTable" : "tblUserPSA",
+          "scale" : 0
+        }, {
           "fieldName" : "refFbSeverity",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
@@ -1178,6 +1243,20 @@
           "isRelated" : true,
           "relatedColumnName" : "severity",
           "targetTable" : "REF_FB_Severity",
+          "scale" : 0
+        }, {
+          "fieldName" : "refFbSubTypes",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "FeedBackSubType",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "relatedColumnName" : "feedBackSubType",
+          "targetTable" : "REF_FB_SubTypes",
           "scale" : 0
         }, {
           "fieldName" : "id",
@@ -1246,7 +1325,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 1,
+    "bindCount" : 3,
     "tableName" : "FeedBackNotes",
     "tableType" : "TABLE",
     "properties" : [ "tblUserPsa", "feedBack" ],
@@ -1265,6 +1344,115 @@
     } ],
     "filterFields" : { },
     "package" : "com.psabackoffice.psa.FeedBackNotes"
+  },
+  "liveFBSubTypes" : {
+    "_id" : "wm-liveFBSubTypes-wm.LiveVariable-1522350845530",
+    "name" : "liveFBSubTypes",
+    "owner" : "Page",
+    "category" : "wm.LiveVariable",
+    "dataBinding" : [ ],
+    "operation" : "read",
+    "dataSet" : [ ],
+    "type" : "RefFbSubTypes",
+    "isList" : false,
+    "saveInPhonegap" : false,
+    "maxResults" : 50,
+    "designMaxResults" : 10,
+    "inFlightBehavior" : "executeLast",
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "transformationRequired" : false,
+    "liveSource" : "PSA",
+    "ignoreCase" : true,
+    "matchMode" : "start",
+    "orderBy" : "id asc",
+    "propertiesMap" : {
+      "columns" : [ {
+        "fieldName" : "refFbTypes",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "TypeID",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : true,
+        "relatedTableName" : "REF_FB_Types",
+        "relatedEntityName" : "RefFbTypes",
+        "relatedColumnName" : "typeId",
+        "relatedFieldName" : "refFbTypes.id",
+        "isList" : false,
+        "targetTable" : "REF_FB_Types",
+        "scale" : 0,
+        "columns" : [ {
+          "fieldName" : "id",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ID",
+          "isPrimaryKey" : true,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "identity",
+          "isRelated" : false,
+          "scale" : 0
+        }, {
+          "fieldName" : "label",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "Label",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 45,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
+        } ]
+      }, {
+        "fieldName" : "id",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "ID",
+        "isPrimaryKey" : true,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "identity",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
+        "fieldName" : "label",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "Label",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 128,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      } ],
+      "entityName" : "RefFbSubTypes",
+      "fullyQualifiedName" : "com.psabackoffice.psa.RefFbSubTypes",
+      "tableType" : "TABLE",
+      "primaryFields" : [ "id" ]
+    },
+    "bindCount" : 1,
+    "tableName" : "REF_FB_SubTypes",
+    "tableType" : "TABLE",
+    "properties" : [ "refFbTypes" ],
+    "relatedTables" : [ {
+      "columnName" : "refFbTypes",
+      "relationName" : "refFbTypes",
+      "type" : "RefFbTypes",
+      "watchOn" : "PSARefFbTypesData",
+      "package" : "com.psabackoffice.psa.RefFbSubTypes"
+    } ],
+    "filterFields" : { },
+    "package" : "com.psabackoffice.psa.RefFbSubTypes"
   },
   "liveGetEmailInvite" : {
     "_id" : "wm-liveGetEmailInvite-wm.LiveVariable-1493673210041",

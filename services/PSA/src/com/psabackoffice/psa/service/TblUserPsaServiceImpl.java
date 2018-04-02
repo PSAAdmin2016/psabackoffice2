@@ -178,6 +178,7 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
         List<FeedBack> feedBacks = tblUserPsa.getFeedBacks();
         List<FeedBackNotes> feedBackNoteses = tblUserPsa.getFeedBackNoteses();
         List<Settingsuser> settingsusers = tblUserPsa.getSettingsusers();
+        List<TblCrews> tblCrewsesForProjectManager = tblUserPsa.getTblCrewsesForProjectManager();
         List<TblCrews> tblCrewsesForAreaManager = tblUserPsa.getTblCrewsesForAreaManager();
         List<TblCrews> tblCrewsesForSiteManager = tblUserPsa.getTblCrewsesForSiteManager();
         List<TblCrews> tblCrewsesForGf = tblUserPsa.getTblCrewsesForGf();
@@ -185,7 +186,6 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
         List<TblCrews> tblCrewsesForConstructionManager = tblUserPsa.getTblCrewsesForConstructionManager();
         List<TblCrews> tblCrewsesForSuperintendent = tblUserPsa.getTblCrewsesForSuperintendent();
         TblCrews tblCrewsForForeman = tblUserPsa.getTblCrewsForForeman();
-        List<TblCrews> tblCrewsesForProjectManager = tblUserPsa.getTblCrewsesForProjectManager();
         TblUserCreds tblUserCreds = tblUserPsa.getTblUserCreds();
         List<TblUserJobNumbers> tblUserJobNumberses = tblUserPsa.getTblUserJobNumberses();
         List<TblUserRoles> tblUserRoleses = tblUserPsa.getTblUserRoleses();
@@ -226,6 +226,14 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
             if(!settingsusers.isEmpty()) {
                 for(Settingsuser _settingsuser : settingsusers) {
                     _settingsuser.setTblUserPsa(tblUserPsa);
+                }
+            }
+        }
+
+        if(tblCrewsesForProjectManager != null && Hibernate.isInitialized(tblCrewsesForProjectManager)) {
+            if(!tblCrewsesForProjectManager.isEmpty()) {
+                for(TblCrews _tblCrews : tblCrewsesForProjectManager) {
+                    _tblCrews.setTblUserPsaByProjectManager(tblUserPsa);
                 }
             }
         }
@@ -280,14 +288,6 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
 
         if(tblCrewsForForeman != null && Hibernate.isInitialized(tblCrewsForForeman)) {
             tblCrewsForForeman.setTblUserPsaByForeman(tblUserPsa);
-        }
-
-        if(tblCrewsesForProjectManager != null && Hibernate.isInitialized(tblCrewsesForProjectManager)) {
-            if(!tblCrewsesForProjectManager.isEmpty()) {
-                for(TblCrews _tblCrews : tblCrewsesForProjectManager) {
-                    _tblCrews.setTblUserPsaByProjectManager(tblUserPsa);
-                }
-            }
         }
 
         if(tblUserCreds != null && Hibernate.isInitialized(tblUserCreds)) {
@@ -450,6 +450,17 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
+    public Page<TblCrews> findAssociatedTblCrewsesForProjectManager(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated tblCrewsesForProjectManager");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("tblUserPsaByProjectManager.id = '" + id + "'");
+
+        return tblCrewsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "PSATransactionManager")
+    @Override
     public Page<TblCrews> findAssociatedTblCrewsesForAreaManager(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated tblCrewsesForAreaManager");
 
@@ -510,17 +521,6 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("tblUserPsaBySuperintendent.id = '" + id + "'");
-
-        return tblCrewsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<TblCrews> findAssociatedTblCrewsesForProjectManager(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated tblCrewsesForProjectManager");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("tblUserPsaByProjectManager.id = '" + id + "'");
 
         return tblCrewsService.findAll(queryBuilder.toString(), pageable);
     }

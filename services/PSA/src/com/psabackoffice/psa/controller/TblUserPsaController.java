@@ -219,6 +219,15 @@ public class TblUserPsaController {
         return tblUserPsaService.findAssociatedSettingsusers(id, pageable);
     }
 
+    @RequestMapping(value="/{id:.+}/tblCrewsesForProjectManager", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the tblCrewsesForProjectManager instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<TblCrews> findAssociatedTblCrewsesForProjectManager(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated tblCrewsesForProjectManager");
+        return tblUserPsaService.findAssociatedTblCrewsesForProjectManager(id, pageable);
+    }
+
     @RequestMapping(value="/{id:.+}/tblCrewsesForAreaManager", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the tblCrewsesForAreaManager instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -271,15 +280,6 @@ public class TblUserPsaController {
 
         LOGGER.debug("Fetching all associated tblCrewsesForSuperintendent");
         return tblUserPsaService.findAssociatedTblCrewsesForSuperintendent(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/tblCrewsesForProjectManager", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the tblCrewsesForProjectManager instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<TblCrews> findAssociatedTblCrewsesForProjectManager(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated tblCrewsesForProjectManager");
-        return tblUserPsaService.findAssociatedTblCrewsesForProjectManager(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/tblUserJobNumberses", method=RequestMethod.GET)

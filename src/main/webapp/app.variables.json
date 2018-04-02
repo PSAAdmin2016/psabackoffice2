@@ -1997,25 +1997,13 @@
         "isRelated" : false,
         "scale" : 0
       }, {
-        "fieldName" : "type",
+        "fieldName" : "label",
         "type" : "string",
         "fullyQualifiedType" : "string",
-        "columnName" : "Type",
+        "columnName" : "Label",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 45,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "scale" : 0
-      }, {
-        "fieldName" : "subType",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "SubType",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 128,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,

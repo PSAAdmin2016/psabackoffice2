@@ -66,6 +66,9 @@
     "table" : "REF_FB_Statuses",
     "schema" : null
   }, {
+    "table" : "REF_FB_SubTypes",
+    "schema" : null
+  }, {
     "table" : "REF_FB_Types",
     "schema" : null
   }, {

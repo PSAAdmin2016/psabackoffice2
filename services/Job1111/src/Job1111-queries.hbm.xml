@@ -5164,28 +5164,6 @@ UNION
 
 
 
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'CIVIL' AS Craft, 
-cm.MiscFoundation AS Spool1, 'N/A' AS Spool2, 
-cm.MiscDrawingNumber AS LineNumber, cm.MiscDetailDrawingNumber AS DrawingNumber, 'N/A' AS SheetNumber, 
-'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-cm.MiscNotes, 0 AS Quantity, 'N/A' AS Area, cm.MiscPercentCompleted AS PercentClaim, cm.MiscRework AS Rework
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN CivilMisc cm
-	ON cm.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
-
-
-
-UNION
-
-
-
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'EQUIP' AS Craft,
 efa.FATagNumber AS Spool1, efa.FABidID AS Spool2, 
 efa.FAActivitySelect AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
@@ -5532,28 +5510,6 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
 JOIN CivilSellPackage csp
 	ON csp.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
-
-
-
-UNION
-
-
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'CIVIL' AS Craft, 
-cm.MiscFoundation AS Spool1, 'N/A' AS Spool2, 
-cm.MiscDrawingNumber AS LineNumber, cm.MiscDetailDrawingNumber AS DrawingNumber, 'N/A' AS SheetNumber, 
-'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-cm.MiscNotes, 0 AS Quantity, 'N/A' AS Area, cm.MiscPercentCompleted AS PercentClaim, cm.MiscRework AS Rework
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN CivilMisc cm
-	ON cm.ActivityID = sas.ActivityID
 WHERE sas.fk_ActivityStatus IN (2,7,9,11)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 

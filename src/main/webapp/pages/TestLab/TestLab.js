@@ -39,23 +39,32 @@ Application.$controller("TestLabPageController", ["$scope", function($scope) {
 
 
     $scope.button8Click = function($event, $isolateScope) {
-        $scope.Variables.liveCreateFBNotes.createRecord({
-
-        });
+        $scope.Variables.liveCreateFBNotes.createRecord();
     };
 
 }]);
 
-Application.$controller("FeedBackLiveForm1Controller", ["$scope",
+
+
+Application.$controller("FeedBackNotesLiveForm1Controller", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
     }
 ]);
 
-Application.$controller("FeedBackNotesLiveForm1Controller", ["$scope",
+Application.$controller("FeedBackLiveForm1Controller", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+
+
+        $scope.refFbTypesChange = function($event, $isolateScope, newVal, oldVal) {
+            debugger;
+            $scope.Variables.liveFBSubTypes.setFilter("typeId", newVal.id);
+            $scope.Variables.liveFBSubTypes.update();
+        };
+
     }
 ]);

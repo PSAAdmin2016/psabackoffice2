@@ -34,8 +34,8 @@ public class TblUserRoles implements Serializable {
     private Integer userId;
     private Integer roleId;
     private Timestamp timeStamp;
-    private RefRoles refRoles;
     private TblUserPsa tblUserPsa;
+    private RefRoles refRoles;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -76,21 +76,6 @@ public class TblUserRoles implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`RoleID`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`UserRoles_UserRoles_Roles`"))
-    @Fetch(FetchMode.JOIN)
-    public RefRoles getRefRoles() {
-        return this.refRoles;
-    }
-
-    public void setRefRoles(RefRoles refRoles) {
-        if(refRoles != null) {
-            this.roleId = refRoles.getId();
-        }
-
-        this.refRoles = refRoles;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`UserID`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`UserRoles_UserID_UserPSA`"))
     @Fetch(FetchMode.JOIN)
     public TblUserPsa getTblUserPsa() {
@@ -103,6 +88,21 @@ public class TblUserRoles implements Serializable {
         }
 
         this.tblUserPsa = tblUserPsa;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`RoleID`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`UserRoles_UserRoles_Roles`"))
+    @Fetch(FetchMode.JOIN)
+    public RefRoles getRefRoles() {
+        return this.refRoles;
+    }
+
+    public void setRefRoles(RefRoles refRoles) {
+        if(refRoles != null) {
+            this.roleId = refRoles.getId();
+        }
+
+        this.refRoles = refRoles;
     }
 
     @Override

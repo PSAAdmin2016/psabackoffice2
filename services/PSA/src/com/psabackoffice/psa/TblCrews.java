@@ -55,6 +55,7 @@ public class TblCrews implements Serializable {
     private Integer disciplineId;
     private Short rev;
     private Timestamp timeStamp;
+    private TblUserPsa tblUserPsaByProjectManager;
     private TblUserPsa tblUserPsaByAreaManager;
     private RefDisciplines refDisciplines;
     private TblJobNumbers tblJobNumbers;
@@ -64,7 +65,6 @@ public class TblCrews implements Serializable {
     private TblUserPsa tblUserPsaByConstructionManager;
     private TblUserPsa tblUserPsaBySuperintendent;
     private TblUserPsa tblUserPsaByForeman;
-    private TblUserPsa tblUserPsaByProjectManager;
     private List<TblCrewsRev> tblCrewsRevs;
 
     @Id
@@ -193,6 +193,21 @@ public class TblCrews implements Serializable {
 
     public void setTimeStamp(Timestamp timeStamp) {
         this.timeStamp = timeStamp;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`ProjectManager`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`PMtoUserID`"))
+    @Fetch(FetchMode.JOIN)
+    public TblUserPsa getTblUserPsaByProjectManager() {
+        return this.tblUserPsaByProjectManager;
+    }
+
+    public void setTblUserPsaByProjectManager(TblUserPsa tblUserPsaByProjectManager) {
+        if(tblUserPsaByProjectManager != null) {
+            this.projectManager = tblUserPsaByProjectManager.getId();
+        }
+
+        this.tblUserPsaByProjectManager = tblUserPsaByProjectManager;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -328,21 +343,6 @@ public class TblCrews implements Serializable {
         }
 
         this.tblUserPsaByForeman = tblUserPsaByForeman;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`ProjectManager`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`PMtoUserID`"))
-    @Fetch(FetchMode.JOIN)
-    public TblUserPsa getTblUserPsaByProjectManager() {
-        return this.tblUserPsaByProjectManager;
-    }
-
-    public void setTblUserPsaByProjectManager(TblUserPsa tblUserPsaByProjectManager) {
-        if(tblUserPsaByProjectManager != null) {
-            this.projectManager = tblUserPsaByProjectManager.getId();
-        }
-
-        this.tblUserPsaByProjectManager = tblUserPsaByProjectManager;
     }
 
     @JsonInclude(Include.NON_EMPTY)

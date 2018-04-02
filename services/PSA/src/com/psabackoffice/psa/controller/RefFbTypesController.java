@@ -33,6 +33,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 import com.psabackoffice.psa.FeedBack;
+import com.psabackoffice.psa.RefFbSubTypes;
 import com.psabackoffice.psa.RefFbTypes;
 import com.psabackoffice.psa.service.RefFbTypesService;
 
@@ -158,6 +159,15 @@ public class RefFbTypesController {
 
         LOGGER.debug("Fetching all associated feedBacks");
         return refFbTypesService.findAssociatedFeedBacks(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/refFbSubTypeses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the refFbSubTypeses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<RefFbSubTypes> findAssociatedRefFbSubTypeses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated refFbSubTypeses");
+        return refFbTypesService.findAssociatedRefFbSubTypeses(id, pageable);
     }
 
     /**

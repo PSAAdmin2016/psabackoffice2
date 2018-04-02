@@ -30,63 +30,57 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.psa.FeedBack;
 import com.psabackoffice.psa.RefFbSubTypes;
-import com.psabackoffice.psa.RefFbTypes;
 
 
 /**
- * ServiceImpl object for domain model class RefFbTypes.
+ * ServiceImpl object for domain model class RefFbSubTypes.
  *
- * @see RefFbTypes
+ * @see RefFbSubTypes
  */
-@Service("PSA.RefFbTypesService")
+@Service("PSA.RefFbSubTypesService")
 @Validated
-public class RefFbTypesServiceImpl implements RefFbTypesService {
+public class RefFbSubTypesServiceImpl implements RefFbSubTypesService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RefFbTypesServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RefFbSubTypesServiceImpl.class);
 
     @Lazy
     @Autowired
 	@Qualifier("PSA.FeedBackService")
 	private FeedBackService feedBackService;
 
-    @Lazy
     @Autowired
-	@Qualifier("PSA.RefFbSubTypesService")
-	private RefFbSubTypesService refFbSubTypesService;
+    @Qualifier("PSA.RefFbSubTypesDao")
+    private WMGenericDao<RefFbSubTypes, Integer> wmGenericDao;
 
-    @Autowired
-    @Qualifier("PSA.RefFbTypesDao")
-    private WMGenericDao<RefFbTypes, Integer> wmGenericDao;
-
-    public void setWMGenericDao(WMGenericDao<RefFbTypes, Integer> wmGenericDao) {
+    public void setWMGenericDao(WMGenericDao<RefFbSubTypes, Integer> wmGenericDao) {
         this.wmGenericDao = wmGenericDao;
     }
 
     @Transactional(value = "PSATransactionManager")
     @Override
-	public RefFbTypes create(RefFbTypes refFbTypes) {
-        LOGGER.debug("Creating a new RefFbTypes with information: {}", refFbTypes);
+	public RefFbSubTypes create(RefFbSubTypes refFbSubTypes) {
+        LOGGER.debug("Creating a new RefFbSubTypes with information: {}", refFbSubTypes);
 
-        RefFbTypes refFbTypesCreated = this.wmGenericDao.create(refFbTypes);
+        RefFbSubTypes refFbSubTypesCreated = this.wmGenericDao.create(refFbSubTypes);
         // reloading object from database to get database defined & server defined values.
-        return this.wmGenericDao.refresh(refFbTypesCreated);
+        return this.wmGenericDao.refresh(refFbSubTypesCreated);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefFbTypes getById(Integer reffbtypesId) throws EntityNotFoundException {
-        LOGGER.debug("Finding RefFbTypes by id: {}", reffbtypesId);
-        return this.wmGenericDao.findById(reffbtypesId);
+	public RefFbSubTypes getById(Integer reffbsubtypesId) throws EntityNotFoundException {
+        LOGGER.debug("Finding RefFbSubTypes by id: {}", reffbsubtypesId);
+        return this.wmGenericDao.findById(reffbsubtypesId);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefFbTypes findById(Integer reffbtypesId) {
-        LOGGER.debug("Finding RefFbTypes by id: {}", reffbtypesId);
+	public RefFbSubTypes findById(Integer reffbsubtypesId) {
+        LOGGER.debug("Finding RefFbSubTypes by id: {}", reffbsubtypesId);
         try {
-            return this.wmGenericDao.findById(reffbtypesId);
+            return this.wmGenericDao.findById(reffbsubtypesId);
         } catch(EntityNotFoundException ex) {
-            LOGGER.debug("No RefFbTypes found with id: {}", reffbtypesId, ex);
+            LOGGER.debug("No RefFbSubTypes found with id: {}", reffbsubtypesId, ex);
             return null;
         }
     }
@@ -94,54 +88,45 @@ public class RefFbTypesServiceImpl implements RefFbTypesService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefFbTypes update(RefFbTypes refFbTypes) throws EntityNotFoundException {
-        LOGGER.debug("Updating RefFbTypes with information: {}", refFbTypes);
+	public RefFbSubTypes update(RefFbSubTypes refFbSubTypes) throws EntityNotFoundException {
+        LOGGER.debug("Updating RefFbSubTypes with information: {}", refFbSubTypes);
 
-        List<FeedBack> feedBacks = refFbTypes.getFeedBacks();
-        List<RefFbSubTypes> refFbSubTypeses = refFbTypes.getRefFbSubTypeses();
+        List<FeedBack> feedBacks = refFbSubTypes.getFeedBacks();
 
         if(feedBacks != null && Hibernate.isInitialized(feedBacks)) {
             if(!feedBacks.isEmpty()) {
                 for(FeedBack _feedBack : feedBacks) {
-                    _feedBack.setRefFbTypes(refFbTypes);
+                    _feedBack.setRefFbSubTypes(refFbSubTypes);
                 }
             }
         }
 
-        if(refFbSubTypeses != null && Hibernate.isInitialized(refFbSubTypeses)) {
-            if(!refFbSubTypeses.isEmpty()) {
-                for(RefFbSubTypes _refFbSubTypes : refFbSubTypeses) {
-                    _refFbSubTypes.setRefFbTypes(refFbTypes);
-                }
-            }
-        }
-
-        this.wmGenericDao.update(refFbTypes);
-        this.wmGenericDao.refresh(refFbTypes);
+        this.wmGenericDao.update(refFbSubTypes);
+        this.wmGenericDao.refresh(refFbSubTypes);
 
         // Deleting children which are not present in the list.
-        if(refFbSubTypeses != null && Hibernate.isInitialized(refFbSubTypeses) && !refFbSubTypeses.isEmpty()) {
-            List<RefFbSubTypes> _remainingChildren = wmGenericDao.execute(
-                session -> DaoUtils.findAllRemainingChildren(session, RefFbSubTypes.class,
-                        new DaoUtils.ChildrenFilter("refFbTypes", refFbTypes, refFbSubTypeses)));
+        if(feedBacks != null && Hibernate.isInitialized(feedBacks) && !feedBacks.isEmpty()) {
+            List<FeedBack> _remainingChildren = wmGenericDao.execute(
+                session -> DaoUtils.findAllRemainingChildren(session, FeedBack.class,
+                        new DaoUtils.ChildrenFilter("refFbSubTypes", refFbSubTypes, feedBacks)));
             LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
-            for(RefFbSubTypes _refFbSubTypes : _remainingChildren) {
-                refFbSubTypesService.delete(_refFbSubTypes);
+            for(FeedBack _feedBack : _remainingChildren) {
+                feedBackService.delete(_feedBack);
             }
-            refFbTypes.setRefFbSubTypeses(refFbSubTypeses);
+            refFbSubTypes.setFeedBacks(feedBacks);
         }
 
-        return refFbTypes;
+        return refFbSubTypes;
     }
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefFbTypes delete(Integer reffbtypesId) throws EntityNotFoundException {
-        LOGGER.debug("Deleting RefFbTypes with id: {}", reffbtypesId);
-        RefFbTypes deleted = this.wmGenericDao.findById(reffbtypesId);
+	public RefFbSubTypes delete(Integer reffbsubtypesId) throws EntityNotFoundException {
+        LOGGER.debug("Deleting RefFbSubTypes with id: {}", reffbsubtypesId);
+        RefFbSubTypes deleted = this.wmGenericDao.findById(reffbsubtypesId);
         if (deleted == null) {
-            LOGGER.debug("No RefFbTypes found with id: {}", reffbtypesId);
-            throw new EntityNotFoundException(String.valueOf(reffbtypesId));
+            LOGGER.debug("No RefFbSubTypes found with id: {}", reffbsubtypesId);
+            throw new EntityNotFoundException(String.valueOf(reffbsubtypesId));
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
@@ -149,29 +134,29 @@ public class RefFbTypesServiceImpl implements RefFbTypesService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public void delete(RefFbTypes refFbTypes) {
-        LOGGER.debug("Deleting RefFbTypes with {}", refFbTypes);
-        this.wmGenericDao.delete(refFbTypes);
+	public void delete(RefFbSubTypes refFbSubTypes) {
+        LOGGER.debug("Deleting RefFbSubTypes with {}", refFbSubTypes);
+        this.wmGenericDao.delete(refFbSubTypes);
     }
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public Page<RefFbTypes> findAll(QueryFilter[] queryFilters, Pageable pageable) {
-        LOGGER.debug("Finding all RefFbTypes");
+	public Page<RefFbSubTypes> findAll(QueryFilter[] queryFilters, Pageable pageable) {
+        LOGGER.debug("Finding all RefFbSubTypes");
         return this.wmGenericDao.search(queryFilters, pageable);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Page<RefFbTypes> findAll(String query, Pageable pageable) {
-        LOGGER.debug("Finding all RefFbTypes");
+    public Page<RefFbSubTypes> findAll(String query, Pageable pageable) {
+        LOGGER.debug("Finding all RefFbSubTypes");
         return this.wmGenericDao.searchByQuery(query, pageable);
     }
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
     public Downloadable export(ExportType exportType, String query, Pageable pageable) {
-        LOGGER.debug("exporting data in the service PSA for table RefFbTypes to {} format", exportType);
+        LOGGER.debug("exporting data in the service PSA for table RefFbSubTypes to {} format", exportType);
         return this.wmGenericDao.export(exportType, query, pageable);
     }
 
@@ -193,20 +178,9 @@ public class RefFbTypesServiceImpl implements RefFbTypesService {
         LOGGER.debug("Fetching all associated feedBacks");
 
         StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("refFbTypes.id = '" + id + "'");
+        queryBuilder.append("refFbSubTypes.id = '" + id + "'");
 
         return feedBackService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<RefFbSubTypes> findAssociatedRefFbSubTypeses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated refFbSubTypeses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("refFbTypes.id = '" + id + "'");
-
-        return refFbSubTypesService.findAll(queryBuilder.toString(), pageable);
     }
 
     /**
@@ -216,15 +190,6 @@ public class RefFbTypesServiceImpl implements RefFbTypesService {
 	 */
 	protected void setFeedBackService(FeedBackService service) {
         this.feedBackService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service RefFbSubTypesService instance
-	 */
-	protected void setRefFbSubTypesService(RefFbSubTypesService service) {
-        this.refFbSubTypesService = service;
     }
 
 }
