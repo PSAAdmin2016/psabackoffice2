@@ -21,10 +21,12 @@ import javax.persistence.Table;
 public class CacheStatsEquipStats implements Serializable {
 
     private Integer bidId;
+    private String projectServicesRep;
     private String scope;
     private String phase;
     private String stage;
     private String testPackageNumber;
+    private String workPackage;
     private String costCode;
     private String p6id;
     private String assignedContractor;
@@ -92,6 +94,15 @@ public class CacheStatsEquipStats implements Serializable {
         this.bidId = bidId;
     }
 
+    @Column(name = "`ProjectServicesRep`", nullable = true, length = 45)
+    public String getProjectServicesRep() {
+        return this.projectServicesRep;
+    }
+
+    public void setProjectServicesRep(String projectServicesRep) {
+        this.projectServicesRep = projectServicesRep;
+    }
+
     @Column(name = "`Scope`", nullable = true, length = 16)
     public String getScope() {
         return this.scope;
@@ -126,6 +137,15 @@ public class CacheStatsEquipStats implements Serializable {
 
     public void setTestPackageNumber(String testPackageNumber) {
         this.testPackageNumber = testPackageNumber;
+    }
+
+    @Column(name = "`WorkPackage`", nullable = true, length = 45)
+    public String getWorkPackage() {
+        return this.workPackage;
+    }
+
+    public void setWorkPackage(String workPackage) {
+        this.workPackage = workPackage;
     }
 
     @Column(name = "`CostCode`", nullable = true, length = 45)

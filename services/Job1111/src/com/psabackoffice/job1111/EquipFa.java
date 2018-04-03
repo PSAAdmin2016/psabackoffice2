@@ -33,7 +33,7 @@ public class EquipFa implements Serializable {
     private String fatagNumber;
     private String faactivitySelect;
     private short faquantity;
-    private float fapercentComplete;
+    private float fapercentCompleted;
     private Short farework;
     private String fanotes;
     private Short activityType;
@@ -88,13 +88,13 @@ public class EquipFa implements Serializable {
         this.faquantity = faquantity;
     }
 
-    @Column(name = "`FAPercentComplete`", nullable = false, scale = 2, precision = 3)
-    public float getFapercentComplete() {
-        return this.fapercentComplete;
+    @Column(name = "`FAPercentCompleted`", nullable = false, scale = 2, precision = 3)
+    public float getFapercentCompleted() {
+        return this.fapercentCompleted;
     }
 
-    public void setFapercentComplete(float fapercentComplete) {
-        this.fapercentComplete = fapercentComplete;
+    public void setFapercentCompleted(float fapercentCompleted) {
+        this.fapercentCompleted = fapercentCompleted;
     }
 
     @Column(name = "`FARework`", nullable = true, scale = 0, precision = 3)

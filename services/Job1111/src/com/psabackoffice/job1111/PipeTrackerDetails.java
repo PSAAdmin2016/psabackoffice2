@@ -23,32 +23,34 @@ import javax.persistence.Table;
 @Table(name = "`PipeTrackerDetails`")
 public class PipeTrackerDetails implements Serializable {
 
-    private Integer id;
+    private Integer uid;
     private int bidId;
+    private String projectServicesRep;
     private Integer ewonumber;
     private String scope;
     private String phase;
     private String stage;
     private String testPackageNumber;
+    private String workPackage;
     private String costCode;
     private String p6id;
+    private String p6description;
     private String assignedContractor;
     private String area;
     private String location;
     private String structure;
     private String cu;
     private String elevation;
-    private String p6description;
     private String lineNumber;
     private String engDrawingNumber;
     private Short sheetNumber;
-    private Short revisionNumber;
+    private Short drawingRev;
     private String description;
-    private String ect;
-    private String pipingActivityType;
-    private String clientPipeSpec;
-    private String materialCode;
-    private Float pipeSize;
+    private String activityType;
+    private String activitySubType;
+    private String clientMaterialSpec;
+    private String performanceMaterialSpec;
+    private Float size;
     private String system;
     private String service;
     private String componentNumber;
@@ -70,13 +72,13 @@ public class PipeTrackerDetails implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "`ID`", nullable = false, scale = 0, precision = 10)
-    public Integer getId() {
-        return this.id;
+    @Column(name = "`UID`", nullable = false, scale = 0, precision = 10)
+    public Integer getUid() {
+        return this.uid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
     @Column(name = "`BidID`", nullable = false, scale = 0, precision = 10)
@@ -86,6 +88,15 @@ public class PipeTrackerDetails implements Serializable {
 
     public void setBidId(int bidId) {
         this.bidId = bidId;
+    }
+
+    @Column(name = "`ProjectServicesRep`", nullable = true, length = 45)
+    public String getProjectServicesRep() {
+        return this.projectServicesRep;
+    }
+
+    public void setProjectServicesRep(String projectServicesRep) {
+        this.projectServicesRep = projectServicesRep;
     }
 
     @Column(name = "`EWONumber`", nullable = true, scale = 0, precision = 7)
@@ -133,6 +144,15 @@ public class PipeTrackerDetails implements Serializable {
         this.testPackageNumber = testPackageNumber;
     }
 
+    @Column(name = "`WorkPackage`", nullable = true, length = 45)
+    public String getWorkPackage() {
+        return this.workPackage;
+    }
+
+    public void setWorkPackage(String workPackage) {
+        this.workPackage = workPackage;
+    }
+
     @Column(name = "`CostCode`", nullable = true, length = 45)
     public String getCostCode() {
         return this.costCode;
@@ -149,6 +169,15 @@ public class PipeTrackerDetails implements Serializable {
 
     public void setP6id(String p6id) {
         this.p6id = p6id;
+    }
+
+    @Column(name = "`P6Description`", nullable = true, length = 255)
+    public String getP6description() {
+        return this.p6description;
+    }
+
+    public void setP6description(String p6description) {
+        this.p6description = p6description;
     }
 
     @Column(name = "`AssignedContractor`", nullable = true, length = 45)
@@ -205,15 +234,6 @@ public class PipeTrackerDetails implements Serializable {
         this.elevation = elevation;
     }
 
-    @Column(name = "`P6Description`", nullable = true, length = 255)
-    public String getP6description() {
-        return this.p6description;
-    }
-
-    public void setP6description(String p6description) {
-        this.p6description = p6description;
-    }
-
     @Column(name = "`LineNumber`", nullable = true, length = 45)
     public String getLineNumber() {
         return this.lineNumber;
@@ -241,13 +261,13 @@ public class PipeTrackerDetails implements Serializable {
         this.sheetNumber = sheetNumber;
     }
 
-    @Column(name = "`RevisionNumber`", nullable = true, scale = 0, precision = 3)
-    public Short getRevisionNumber() {
-        return this.revisionNumber;
+    @Column(name = "`DrawingRev`", nullable = true, scale = 0, precision = 3)
+    public Short getDrawingRev() {
+        return this.drawingRev;
     }
 
-    public void setRevisionNumber(Short revisionNumber) {
-        this.revisionNumber = revisionNumber;
+    public void setDrawingRev(Short drawingRev) {
+        this.drawingRev = drawingRev;
     }
 
     @Column(name = "`Description`", nullable = true, length = 255)
@@ -259,49 +279,49 @@ public class PipeTrackerDetails implements Serializable {
         this.description = description;
     }
 
-    @Column(name = "`ECT`", nullable = true, length = 3)
-    public String getEct() {
-        return this.ect;
+    @Column(name = "`ActivityType`", nullable = true, length = 3)
+    public String getActivityType() {
+        return this.activityType;
     }
 
-    public void setEct(String ect) {
-        this.ect = ect;
+    public void setActivityType(String activityType) {
+        this.activityType = activityType;
     }
 
-    @Column(name = "`PipingActivityType`", nullable = true, length = 45)
-    public String getPipingActivityType() {
-        return this.pipingActivityType;
+    @Column(name = "`ActivitySubType`", nullable = true, length = 45)
+    public String getActivitySubType() {
+        return this.activitySubType;
     }
 
-    public void setPipingActivityType(String pipingActivityType) {
-        this.pipingActivityType = pipingActivityType;
+    public void setActivitySubType(String activitySubType) {
+        this.activitySubType = activitySubType;
     }
 
-    @Column(name = "`ClientPipeSpec`", nullable = true, length = 45)
-    public String getClientPipeSpec() {
-        return this.clientPipeSpec;
+    @Column(name = "`ClientMaterialSpec`", nullable = true, length = 45)
+    public String getClientMaterialSpec() {
+        return this.clientMaterialSpec;
     }
 
-    public void setClientPipeSpec(String clientPipeSpec) {
-        this.clientPipeSpec = clientPipeSpec;
+    public void setClientMaterialSpec(String clientMaterialSpec) {
+        this.clientMaterialSpec = clientMaterialSpec;
     }
 
-    @Column(name = "`MaterialCode`", nullable = true, length = 45)
-    public String getMaterialCode() {
-        return this.materialCode;
+    @Column(name = "`PerformanceMaterialSpec`", nullable = true, length = 45)
+    public String getPerformanceMaterialSpec() {
+        return this.performanceMaterialSpec;
     }
 
-    public void setMaterialCode(String materialCode) {
-        this.materialCode = materialCode;
+    public void setPerformanceMaterialSpec(String performanceMaterialSpec) {
+        this.performanceMaterialSpec = performanceMaterialSpec;
     }
 
-    @Column(name = "`PipeSize`", nullable = true, scale = 2, precision = 4)
-    public Float getPipeSize() {
-        return this.pipeSize;
+    @Column(name = "`Size`", nullable = true, scale = 2, precision = 4)
+    public Float getSize() {
+        return this.size;
     }
 
-    public void setPipeSize(Float pipeSize) {
-        this.pipeSize = pipeSize;
+    public void setSize(Float size) {
+        this.size = size;
     }
 
     @Column(name = "`System`", nullable = true, length = 45)
@@ -472,12 +492,12 @@ public class PipeTrackerDetails implements Serializable {
         if (this == o) return true;
         if (!(o instanceof PipeTrackerDetails)) return false;
         final PipeTrackerDetails pipeTrackerDetails = (PipeTrackerDetails) o;
-        return Objects.equals(getId(), pipeTrackerDetails.getId());
+        return Objects.equals(getUid(), pipeTrackerDetails.getUid());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(getUid());
     }
 }
 

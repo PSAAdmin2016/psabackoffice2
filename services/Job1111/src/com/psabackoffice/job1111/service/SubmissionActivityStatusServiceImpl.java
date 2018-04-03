@@ -29,7 +29,6 @@ import com.wavemaker.runtime.data.util.DaoUtils;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.CivilFa;
-import com.psabackoffice.job1111.CivilMisc;
 import com.psabackoffice.job1111.CivilSellPackage;
 import com.psabackoffice.job1111.EquipFa;
 import com.psabackoffice.job1111.PipeConnection;
@@ -42,6 +41,7 @@ import com.psabackoffice.job1111.PipeTrim;
 import com.psabackoffice.job1111.PipeWeld;
 import com.psabackoffice.job1111.Sasnotes;
 import com.psabackoffice.job1111.SteelDemo;
+import com.psabackoffice.job1111.SteelFa;
 import com.psabackoffice.job1111.SteelMisc;
 import com.psabackoffice.job1111.SteelSellPackage;
 import com.psabackoffice.job1111.SubmissionActivityStatus;
@@ -127,13 +127,13 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
 
     @Lazy
     @Autowired
-	@Qualifier("Job1111.SteelDemoService")
-	private SteelDemoService steelDemoService;
+	@Qualifier("Job1111.SteelFaService")
+	private SteelFaService steelFaService;
 
     @Lazy
     @Autowired
-	@Qualifier("Job1111.CivilMiscService")
-	private CivilMiscService civilMiscService;
+	@Qualifier("Job1111.SteelDemoService")
+	private SteelDemoService steelDemoService;
 
     @Lazy
     @Autowired
@@ -194,7 +194,6 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
         LOGGER.debug("Updating SubmissionActivityStatus with information: {}", submissionActivityStatus);
 
         CivilFa civilFa = submissionActivityStatus.getCivilFa();
-        CivilMisc civilMisc = submissionActivityStatus.getCivilMisc();
         CivilSellPackage civilSellPackage = submissionActivityStatus.getCivilSellPackage();
         EquipFa equipFa = submissionActivityStatus.getEquipFa();
         PipeConnection pipeConnection = submissionActivityStatus.getPipeConnection();
@@ -207,6 +206,7 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
         PipeWeld pipeWeld = submissionActivityStatus.getPipeWeld();
         List<Sasnotes> sasnoteses = submissionActivityStatus.getSasnoteses();
         SteelDemo steelDemo = submissionActivityStatus.getSteelDemo();
+        SteelFa steelFa = submissionActivityStatus.getSteelFa();
         SteelMisc steelMisc = submissionActivityStatus.getSteelMisc();
         SteelSellPackage steelSellPackage = submissionActivityStatus.getSteelSellPackage();
         SubsDelay subsDelay = submissionActivityStatus.getSubsDelay();
@@ -214,10 +214,6 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
 
         if(civilFa != null && Hibernate.isInitialized(civilFa)) {
             civilFa.setSubmissionActivityStatus(submissionActivityStatus);
-        }
-
-        if(civilMisc != null && Hibernate.isInitialized(civilMisc)) {
-            civilMisc.setSubmissionActivityStatus(submissionActivityStatus);
         }
 
         if(civilSellPackage != null && Hibernate.isInitialized(civilSellPackage)) {
@@ -270,6 +266,10 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
 
         if(steelDemo != null && Hibernate.isInitialized(steelDemo)) {
             steelDemo.setSubmissionActivityStatus(submissionActivityStatus);
+        }
+
+        if(steelFa != null && Hibernate.isInitialized(steelFa)) {
+            steelFa.setSubmissionActivityStatus(submissionActivityStatus);
         }
 
         if(steelMisc != null && Hibernate.isInitialized(steelMisc)) {
@@ -517,19 +517,19 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service SteelDemoService instance
+	 * @param service SteelFaService instance
 	 */
-	protected void setSteelDemoService(SteelDemoService service) {
-        this.steelDemoService = service;
+	protected void setSteelFaService(SteelFaService service) {
+        this.steelFaService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service CivilMiscService instance
+	 * @param service SteelDemoService instance
 	 */
-	protected void setCivilMiscService(CivilMiscService service) {
-        this.civilMiscService = service;
+	protected void setSteelDemoService(SteelDemoService service) {
+        this.steelDemoService = service;
     }
 
     /**

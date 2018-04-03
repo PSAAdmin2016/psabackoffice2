@@ -39,9 +39,6 @@
     "table" : "CivilFA",
     "schema" : null
   }, {
-    "table" : "CivilMisc",
-    "schema" : null
-  }, {
     "table" : "CivilSellPackage",
     "schema" : null
   }, {

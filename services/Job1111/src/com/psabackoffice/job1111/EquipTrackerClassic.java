@@ -25,20 +25,22 @@ public class EquipTrackerClassic implements Serializable {
 
     private Integer uid;
     private int bidId;
+    private String projectServicesRep;
     private Integer ewonumber;
     private String scope;
     private String phase;
     private String stage;
     private String testPackageNumber;
+    private String workPackage;
     private String costCode;
     private String p6id;
+    private String p6description;
     private String assignedContractor;
     private String area;
     private String location;
     private String structure;
     private String cu;
     private String elevation;
-    private String p6description;
     private String engDrawingNumber;
     private Short sheetNumber;
     private Short drawingRev;
@@ -87,6 +89,15 @@ public class EquipTrackerClassic implements Serializable {
         this.bidId = bidId;
     }
 
+    @Column(name = "`ProjectServicesRep`", nullable = true, length = 45)
+    public String getProjectServicesRep() {
+        return this.projectServicesRep;
+    }
+
+    public void setProjectServicesRep(String projectServicesRep) {
+        this.projectServicesRep = projectServicesRep;
+    }
+
     @Column(name = "`EWONumber`", nullable = true, scale = 0, precision = 7)
     public Integer getEwonumber() {
         return this.ewonumber;
@@ -132,6 +143,15 @@ public class EquipTrackerClassic implements Serializable {
         this.testPackageNumber = testPackageNumber;
     }
 
+    @Column(name = "`WorkPackage`", nullable = true, length = 45)
+    public String getWorkPackage() {
+        return this.workPackage;
+    }
+
+    public void setWorkPackage(String workPackage) {
+        this.workPackage = workPackage;
+    }
+
     @Column(name = "`CostCode`", nullable = true, length = 45)
     public String getCostCode() {
         return this.costCode;
@@ -148,6 +168,15 @@ public class EquipTrackerClassic implements Serializable {
 
     public void setP6id(String p6id) {
         this.p6id = p6id;
+    }
+
+    @Column(name = "`P6Description`", nullable = true, length = 255)
+    public String getP6description() {
+        return this.p6description;
+    }
+
+    public void setP6description(String p6description) {
+        this.p6description = p6description;
     }
 
     @Column(name = "`AssignedContractor`", nullable = true, length = 45)
@@ -202,15 +231,6 @@ public class EquipTrackerClassic implements Serializable {
 
     public void setElevation(String elevation) {
         this.elevation = elevation;
-    }
-
-    @Column(name = "`P6Description`", nullable = true, length = 255)
-    public String getP6description() {
-        return this.p6description;
-    }
-
-    public void setP6description(String p6description) {
-        this.p6description = p6description;
     }
 
     @Column(name = "`EngDrawingNumber`", nullable = true, length = 45)

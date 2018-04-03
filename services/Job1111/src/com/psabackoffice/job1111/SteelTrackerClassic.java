@@ -23,20 +23,23 @@ public class SteelTrackerClassic implements Serializable {
 
     private Integer uid;
     private Integer bidId;
+    private String projectServicesRep;
     private String ewonumber;
     private String scope;
     private String phase;
     private String stage;
     private String testPackageNumber;
+    private String workPackage;
     private String costCode;
     private String p6id;
+    private String p6description;
     private String assignedContractor;
     private String area;
     private String location;
     private String structure;
     private String cu;
     private String elevation;
-    private String p6description;
+    private String sortGroup1;
     private String pieceMark;
     private Short pieceMarkRev;
     private String description;
@@ -107,6 +110,15 @@ public class SteelTrackerClassic implements Serializable {
         this.bidId = bidId;
     }
 
+    @Column(name = "`ProjectServicesRep`", nullable = true, length = 45)
+    public String getProjectServicesRep() {
+        return this.projectServicesRep;
+    }
+
+    public void setProjectServicesRep(String projectServicesRep) {
+        this.projectServicesRep = projectServicesRep;
+    }
+
     @Column(name = "`EWONumber`", nullable = true, length = 45)
     public String getEwonumber() {
         return this.ewonumber;
@@ -152,6 +164,15 @@ public class SteelTrackerClassic implements Serializable {
         this.testPackageNumber = testPackageNumber;
     }
 
+    @Column(name = "`WorkPackage`", nullable = true, length = 45)
+    public String getWorkPackage() {
+        return this.workPackage;
+    }
+
+    public void setWorkPackage(String workPackage) {
+        this.workPackage = workPackage;
+    }
+
     @Column(name = "`CostCode`", nullable = true, length = 45)
     public String getCostCode() {
         return this.costCode;
@@ -168,6 +189,15 @@ public class SteelTrackerClassic implements Serializable {
 
     public void setP6id(String p6id) {
         this.p6id = p6id;
+    }
+
+    @Column(name = "`P6Description`", nullable = true, length = 255)
+    public String getP6description() {
+        return this.p6description;
+    }
+
+    public void setP6description(String p6description) {
+        this.p6description = p6description;
     }
 
     @Column(name = "`AssignedContractor`", nullable = true, length = 45)
@@ -224,13 +254,13 @@ public class SteelTrackerClassic implements Serializable {
         this.elevation = elevation;
     }
 
-    @Column(name = "`P6Description`", nullable = true, length = 255)
-    public String getP6description() {
-        return this.p6description;
+    @Column(name = "`SortGroup1`", nullable = true, length = 45)
+    public String getSortGroup1() {
+        return this.sortGroup1;
     }
 
-    public void setP6description(String p6description) {
-        this.p6description = p6description;
+    public void setSortGroup1(String sortGroup1) {
+        this.sortGroup1 = sortGroup1;
     }
 
     @Column(name = "`PieceMark`", nullable = true, length = 45)

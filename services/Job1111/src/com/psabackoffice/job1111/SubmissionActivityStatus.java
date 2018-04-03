@@ -50,7 +50,6 @@ public class SubmissionActivityStatus implements Serializable {
     private Timestamp timeStamp;
     private SubsDetails subsDetails;
     private CivilFa civilFa;
-    private CivilMisc civilMisc;
     private CivilSellPackage civilSellPackage;
     private EquipFa equipFa;
     private PipeConnection pipeConnection;
@@ -63,6 +62,7 @@ public class SubmissionActivityStatus implements Serializable {
     private PipeWeld pipeWeld;
     private List<Sasnotes> sasnoteses;
     private SteelDemo steelDemo;
+    private SteelFa steelFa;
     private SteelMisc steelMisc;
     private SteelSellPackage steelSellPackage;
     private SubsDelay subsDelay;
@@ -175,17 +175,6 @@ public class SubmissionActivityStatus implements Serializable {
 
     public void setCivilFa(CivilFa civilFa) {
         this.civilFa = civilFa;
-    }
-
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
-    @Cascade({CascadeType.SAVE_UPDATE})
-    @Fetch(FetchMode.JOIN)
-    public CivilMisc getCivilMisc() {
-        return this.civilMisc;
-    }
-
-    public void setCivilMisc(CivilMisc civilMisc) {
-        this.civilMisc = civilMisc;
     }
 
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
@@ -323,6 +312,17 @@ public class SubmissionActivityStatus implements Serializable {
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
     @Cascade({CascadeType.SAVE_UPDATE})
     @Fetch(FetchMode.JOIN)
+    public SteelFa getSteelFa() {
+        return this.steelFa;
+    }
+
+    public void setSteelFa(SteelFa steelFa) {
+        this.steelFa = steelFa;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    @Cascade({CascadeType.SAVE_UPDATE})
+    @Fetch(FetchMode.JOIN)
     public SteelMisc getSteelMisc() {
         return this.steelMisc;
     }
@@ -369,9 +369,6 @@ public class SubmissionActivityStatus implements Serializable {
         if(civilFa != null) {
             civilFa.setSubmissionActivityStatus(this);
         }
-        if(civilMisc != null) {
-            civilMisc.setSubmissionActivityStatus(this);
-        }
         if(civilSellPackage != null) {
             civilSellPackage.setSubmissionActivityStatus(this);
         }
@@ -409,6 +406,9 @@ public class SubmissionActivityStatus implements Serializable {
         }
         if(steelDemo != null) {
             steelDemo.setSubmissionActivityStatus(this);
+        }
+        if(steelFa != null) {
+            steelFa.setSubmissionActivityStatus(this);
         }
         if(steelMisc != null) {
             steelMisc.setSubmissionActivityStatus(this);

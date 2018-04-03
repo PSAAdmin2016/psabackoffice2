@@ -21,10 +21,12 @@ import javax.persistence.Table;
 public class CacheStatsSteelStats implements Serializable {
 
     private Integer bidId;
+    private String projectServicesRep;
     private String scope;
     private String phase;
     private String stage;
     private String testPackageNumber;
+    private String workPackage;
     private String costCode;
     private String p6id;
     private String p6description;
@@ -34,6 +36,7 @@ public class CacheStatsSteelStats implements Serializable {
     private String structure;
     private String cu;
     private String elevation;
+    private String sortGroup1;
     private String system;
     private String service;
     private String pieceMark;
@@ -105,6 +108,15 @@ public class CacheStatsSteelStats implements Serializable {
         this.bidId = bidId;
     }
 
+    @Column(name = "`ProjectServicesRep`", nullable = true, length = 45)
+    public String getProjectServicesRep() {
+        return this.projectServicesRep;
+    }
+
+    public void setProjectServicesRep(String projectServicesRep) {
+        this.projectServicesRep = projectServicesRep;
+    }
+
     @Column(name = "`Scope`", nullable = true, length = 16)
     public String getScope() {
         return this.scope;
@@ -139,6 +151,15 @@ public class CacheStatsSteelStats implements Serializable {
 
     public void setTestPackageNumber(String testPackageNumber) {
         this.testPackageNumber = testPackageNumber;
+    }
+
+    @Column(name = "`WorkPackage`", nullable = true, length = 45)
+    public String getWorkPackage() {
+        return this.workPackage;
+    }
+
+    public void setWorkPackage(String workPackage) {
+        this.workPackage = workPackage;
     }
 
     @Column(name = "`CostCode`", nullable = true, length = 45)
@@ -220,6 +241,15 @@ public class CacheStatsSteelStats implements Serializable {
 
     public void setElevation(String elevation) {
         this.elevation = elevation;
+    }
+
+    @Column(name = "`SortGroup1`", nullable = true, length = 45)
+    public String getSortGroup1() {
+        return this.sortGroup1;
+    }
+
+    public void setSortGroup1(String sortGroup1) {
+        this.sortGroup1 = sortGroup1;
     }
 
     @Column(name = "`System`", nullable = true, length = 45)

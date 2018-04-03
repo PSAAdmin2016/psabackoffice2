@@ -79,9 +79,9 @@ public class PipeTrackerClassicController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public PipeTrackerClassic editPipeTrackerClassic(@PathVariable("id") Integer id, @RequestBody PipeTrackerClassic pipeTrackerClassic) throws EntityNotFoundException {
-        LOGGER.debug("Editing PipeTrackerClassic with id: {}" , pipeTrackerClassic.getId());
+        LOGGER.debug("Editing PipeTrackerClassic with id: {}" , pipeTrackerClassic.getUid());
 
-        pipeTrackerClassic.setId(id);
+        pipeTrackerClassic.setUid(id);
         pipeTrackerClassic = pipeTrackerClassicService.update(pipeTrackerClassic);
         LOGGER.debug("PipeTrackerClassic details with id: {}" , pipeTrackerClassic);
 

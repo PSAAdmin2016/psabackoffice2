@@ -31,7 +31,7 @@ public class CivilFa implements Serializable {
     private Integer activityId;
     private Integer fabidId;
     private int faquantity;
-    private float fapercent;
+    private float fapercentCompleted;
     private Short farework;
     private String fanotes;
     private Short activityType;
@@ -68,13 +68,13 @@ public class CivilFa implements Serializable {
         this.faquantity = faquantity;
     }
 
-    @Column(name = "`FAPercent`", nullable = false, scale = 2, precision = 3)
-    public float getFapercent() {
-        return this.fapercent;
+    @Column(name = "`FAPercentCompleted`", nullable = false, scale = 2, precision = 3)
+    public float getFapercentCompleted() {
+        return this.fapercentCompleted;
     }
 
-    public void setFapercent(float fapercent) {
-        this.fapercent = fapercent;
+    public void setFapercentCompleted(float fapercentCompleted) {
+        this.fapercentCompleted = fapercentCompleted;
     }
 
     @Column(name = "`FARework`", nullable = true, scale = 0, precision = 3)

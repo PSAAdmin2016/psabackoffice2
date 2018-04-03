@@ -22,10 +22,12 @@ import javax.persistence.Table;
 public class CacheStatsPipeStats implements Serializable {
 
     private Integer bidId;
+    private String projectServicesRep;
     private String scope;
     private String phase;
     private String stage;
     private String testPackageNumber;
+    private String workPackage;
     private String costCode;
     private String p6id;
     private String p6description;
@@ -68,9 +70,9 @@ public class CacheStatsPipeStats implements Serializable {
     private Double hoursSupports;
     private Double hoursMisc;
     private Double hoursDemo;
-    private Double hoursReadyForTesting;
+    private BigDecimal hoursRft;
     private Double hoursHydro;
-    private Double hoursClientTurnover;
+    private BigDecimal hoursCto;
     private Double hoursTesting;
     private BigDecimal hoursMech;
     private BigDecimal hoursAll;
@@ -94,9 +96,9 @@ public class CacheStatsPipeStats implements Serializable {
     private Double earnedSupportHours;
     private Double earnedMiscHours;
     private Double earnedDemoHours;
-    private Double earnedReadyForTestingHours;
+    private BigDecimal earnedRfthours;
     private Double earnedHydroHours;
-    private Double earnedClientTurnoverHours;
+    private BigDecimal earnedCtohours;
     private Double earnedTestingHours;
     private BigDecimal earnedMechHours;
     private BigDecimal earnedAllHours;
@@ -120,9 +122,9 @@ public class CacheStatsPipeStats implements Serializable {
     private Double remainingSupportHours;
     private Double remainingMiscHours;
     private Double remainingDemoHours;
-    private Double remainingReadyForTestingHours;
+    private BigDecimal remainingRfthours;
     private Double remainingHydroHours;
-    private Double remainingClientTurnoverHours;
+    private BigDecimal remainingCtohours;
     private Double remainingTestingHours;
     private BigDecimal remainingMechHours;
     private BigDecimal remainingAllHours;
@@ -135,6 +137,15 @@ public class CacheStatsPipeStats implements Serializable {
 
     public void setBidId(Integer bidId) {
         this.bidId = bidId;
+    }
+
+    @Column(name = "`ProjectServicesRep`", nullable = true, length = 45)
+    public String getProjectServicesRep() {
+        return this.projectServicesRep;
+    }
+
+    public void setProjectServicesRep(String projectServicesRep) {
+        this.projectServicesRep = projectServicesRep;
     }
 
     @Column(name = "`Scope`", nullable = true, length = 16)
@@ -171,6 +182,15 @@ public class CacheStatsPipeStats implements Serializable {
 
     public void setTestPackageNumber(String testPackageNumber) {
         this.testPackageNumber = testPackageNumber;
+    }
+
+    @Column(name = "`WorkPackage`", nullable = true, length = 45)
+    public String getWorkPackage() {
+        return this.workPackage;
+    }
+
+    public void setWorkPackage(String workPackage) {
+        this.workPackage = workPackage;
     }
 
     @Column(name = "`CostCode`", nullable = true, length = 45)
@@ -551,13 +571,13 @@ public class CacheStatsPipeStats implements Serializable {
         this.hoursDemo = hoursDemo;
     }
 
-    @Column(name = "`HoursReadyForTesting`", nullable = true, scale = 6, precision = 16)
-    public Double getHoursReadyForTesting() {
-        return this.hoursReadyForTesting;
+    @Column(name = "`HoursRFT`", nullable = true, scale = 6, precision = 16)
+    public BigDecimal getHoursRft() {
+        return this.hoursRft;
     }
 
-    public void setHoursReadyForTesting(Double hoursReadyForTesting) {
-        this.hoursReadyForTesting = hoursReadyForTesting;
+    public void setHoursRft(BigDecimal hoursRft) {
+        this.hoursRft = hoursRft;
     }
 
     @Column(name = "`HoursHydro`", nullable = true, scale = 6, precision = 16)
@@ -569,13 +589,13 @@ public class CacheStatsPipeStats implements Serializable {
         this.hoursHydro = hoursHydro;
     }
 
-    @Column(name = "`HoursClientTurnover`", nullable = true, scale = 6, precision = 16)
-    public Double getHoursClientTurnover() {
-        return this.hoursClientTurnover;
+    @Column(name = "`HoursCTO`", nullable = true, scale = 6, precision = 16)
+    public BigDecimal getHoursCto() {
+        return this.hoursCto;
     }
 
-    public void setHoursClientTurnover(Double hoursClientTurnover) {
-        this.hoursClientTurnover = hoursClientTurnover;
+    public void setHoursCto(BigDecimal hoursCto) {
+        this.hoursCto = hoursCto;
     }
 
     @Column(name = "`HoursTesting`", nullable = true, scale = 6, precision = 16)
@@ -785,13 +805,13 @@ public class CacheStatsPipeStats implements Serializable {
         this.earnedDemoHours = earnedDemoHours;
     }
 
-    @Column(name = "`EarnedReadyForTestingHours`", nullable = true, scale = 6, precision = 16)
-    public Double getEarnedReadyForTestingHours() {
-        return this.earnedReadyForTestingHours;
+    @Column(name = "`EarnedRFTHours`", nullable = true, scale = 6, precision = 16)
+    public BigDecimal getEarnedRfthours() {
+        return this.earnedRfthours;
     }
 
-    public void setEarnedReadyForTestingHours(Double earnedReadyForTestingHours) {
-        this.earnedReadyForTestingHours = earnedReadyForTestingHours;
+    public void setEarnedRfthours(BigDecimal earnedRfthours) {
+        this.earnedRfthours = earnedRfthours;
     }
 
     @Column(name = "`EarnedHydroHours`", nullable = true, scale = 6, precision = 16)
@@ -803,13 +823,13 @@ public class CacheStatsPipeStats implements Serializable {
         this.earnedHydroHours = earnedHydroHours;
     }
 
-    @Column(name = "`EarnedClientTurnoverHours`", nullable = true, scale = 6, precision = 16)
-    public Double getEarnedClientTurnoverHours() {
-        return this.earnedClientTurnoverHours;
+    @Column(name = "`EarnedCTOHours`", nullable = true, scale = 6, precision = 16)
+    public BigDecimal getEarnedCtohours() {
+        return this.earnedCtohours;
     }
 
-    public void setEarnedClientTurnoverHours(Double earnedClientTurnoverHours) {
-        this.earnedClientTurnoverHours = earnedClientTurnoverHours;
+    public void setEarnedCtohours(BigDecimal earnedCtohours) {
+        this.earnedCtohours = earnedCtohours;
     }
 
     @Column(name = "`EarnedTestingHours`", nullable = true, scale = 6, precision = 16)
@@ -1019,13 +1039,13 @@ public class CacheStatsPipeStats implements Serializable {
         this.remainingDemoHours = remainingDemoHours;
     }
 
-    @Column(name = "`RemainingReadyForTestingHours`", nullable = true, scale = 6, precision = 16)
-    public Double getRemainingReadyForTestingHours() {
-        return this.remainingReadyForTestingHours;
+    @Column(name = "`RemainingRFTHours`", nullable = true, scale = 6, precision = 16)
+    public BigDecimal getRemainingRfthours() {
+        return this.remainingRfthours;
     }
 
-    public void setRemainingReadyForTestingHours(Double remainingReadyForTestingHours) {
-        this.remainingReadyForTestingHours = remainingReadyForTestingHours;
+    public void setRemainingRfthours(BigDecimal remainingRfthours) {
+        this.remainingRfthours = remainingRfthours;
     }
 
     @Column(name = "`RemainingHydroHours`", nullable = true, scale = 6, precision = 16)
@@ -1037,13 +1057,13 @@ public class CacheStatsPipeStats implements Serializable {
         this.remainingHydroHours = remainingHydroHours;
     }
 
-    @Column(name = "`RemainingClientTurnoverHours`", nullable = true, scale = 6, precision = 16)
-    public Double getRemainingClientTurnoverHours() {
-        return this.remainingClientTurnoverHours;
+    @Column(name = "`RemainingCTOHours`", nullable = true, scale = 6, precision = 16)
+    public BigDecimal getRemainingCtohours() {
+        return this.remainingCtohours;
     }
 
-    public void setRemainingClientTurnoverHours(Double remainingClientTurnoverHours) {
-        this.remainingClientTurnoverHours = remainingClientTurnoverHours;
+    public void setRemainingCtohours(BigDecimal remainingCtohours) {
+        this.remainingCtohours = remainingCtohours;
     }
 
     @Column(name = "`RemainingTestingHours`", nullable = true, scale = 6, precision = 16)

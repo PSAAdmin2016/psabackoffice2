@@ -79,9 +79,9 @@ public class LandingTrackerPipeController {
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public LandingTrackerPipe editLandingTrackerPipe(@PathVariable("id") Integer id, @RequestBody LandingTrackerPipe landingTrackerPipe) throws EntityNotFoundException {
-        LOGGER.debug("Editing LandingTrackerPipe with id: {}" , landingTrackerPipe.getId());
+        LOGGER.debug("Editing LandingTrackerPipe with id: {}" , landingTrackerPipe.getUid());
 
-        landingTrackerPipe.setId(id);
+        landingTrackerPipe.setUid(id);
         landingTrackerPipe = landingTrackerPipeService.update(landingTrackerPipe);
         LOGGER.debug("LandingTrackerPipe details with id: {}" , landingTrackerPipe);
 
