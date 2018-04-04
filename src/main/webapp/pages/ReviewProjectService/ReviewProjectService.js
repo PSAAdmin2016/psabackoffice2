@@ -108,6 +108,7 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
 
 
     $scope.gridApprovalReviewDatarender = function($isolateScope, $data) {
+        debugger;
         var pageSettings = $scope.Variables.SettingsPageUser.getData().data.find(x => x.label === $scope.activePageName);
         var pageSettingsJSON = {};
 
@@ -126,15 +127,16 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
                     var i = $isolateScope.gridData.findIndex(x => x.ActivityID === pageSettingsJSON.selectedActivityID);
                     if (i) {
                         $isolateScope.selectItem(i);
-                        $('[name="gridApprovalReview"] tr.app-datagrid-row.active').focus();
                     } else {
                         $isolateScope.selectItem(Math.min((pageSettingsJSON.selectedActivityIndex - 1), 0));
-                        $('[name="gridApprovalReview"] tr.app-datagrid-row.active').focus();
                     }
                 } else {
                     $isolateScope.selectItem(0);
-                    $('[name="gridApprovalReview"] tr.app-datagrid-row.active').focus();
                 }
+
+                $timeout(function() {
+                    $('[name="gridApprovalReview"] tr.app-datagrid-row.active').focus();
+                });
             }
         }
 
