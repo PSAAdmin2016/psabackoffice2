@@ -20,21 +20,17 @@ public class GetActivityHistorySteelDemoResponse implements Serializable {
     @ColumnAlias("ActivityID")
     private Integer activityId;
 
-    @JsonProperty("DemoArea")
-    @ColumnAlias("DemoArea")
-    private String demoArea;
-
-    @JsonProperty("DemoSteelType")
-    @ColumnAlias("DemoSteelType")
-    private Integer demoSteelType;
-
-    @JsonProperty("DemoSize")
-    @ColumnAlias("DemoSize")
-    private String demoSize;
+    @JsonProperty("DemoBidID")
+    @ColumnAlias("DemoBidID")
+    private Integer demoBidId;
 
     @JsonProperty("DemoQuantity")
     @ColumnAlias("DemoQuantity")
     private Integer demoQuantity;
+
+    @JsonProperty("DemoPercentCompleted")
+    @ColumnAlias("DemoPercentCompleted")
+    private Float demoPercentCompleted;
 
     @JsonProperty("DemoNotes")
     @ColumnAlias("DemoNotes")
@@ -64,28 +60,12 @@ public class GetActivityHistorySteelDemoResponse implements Serializable {
         this.activityId = activityId;
     }
 
-    public String getDemoArea() {
-        return this.demoArea;
+    public Integer getDemoBidId() {
+        return this.demoBidId;
     }
 
-    public void setDemoArea(String demoArea) {
-        this.demoArea = demoArea;
-    }
-
-    public Integer getDemoSteelType() {
-        return this.demoSteelType;
-    }
-
-    public void setDemoSteelType(Integer demoSteelType) {
-        this.demoSteelType = demoSteelType;
-    }
-
-    public String getDemoSize() {
-        return this.demoSize;
-    }
-
-    public void setDemoSize(String demoSize) {
-        this.demoSize = demoSize;
+    public void setDemoBidId(Integer demoBidId) {
+        this.demoBidId = demoBidId;
     }
 
     public Integer getDemoQuantity() {
@@ -94,6 +74,14 @@ public class GetActivityHistorySteelDemoResponse implements Serializable {
 
     public void setDemoQuantity(Integer demoQuantity) {
         this.demoQuantity = demoQuantity;
+    }
+
+    public Float getDemoPercentCompleted() {
+        return this.demoPercentCompleted;
+    }
+
+    public void setDemoPercentCompleted(Float demoPercentCompleted) {
+        this.demoPercentCompleted = demoPercentCompleted;
     }
 
     public String getDemoNotes() {
@@ -142,10 +130,9 @@ public class GetActivityHistorySteelDemoResponse implements Serializable {
         if (!(o instanceof GetActivityHistorySteelDemoResponse)) return false;
         final GetActivityHistorySteelDemoResponse getActivityHistorySteelDemoResponse = (GetActivityHistorySteelDemoResponse) o;
         return Objects.equals(getActivityId(), getActivityHistorySteelDemoResponse.getActivityId()) &&
-                Objects.equals(getDemoArea(), getActivityHistorySteelDemoResponse.getDemoArea()) &&
-                Objects.equals(getDemoSteelType(), getActivityHistorySteelDemoResponse.getDemoSteelType()) &&
-                Objects.equals(getDemoSize(), getActivityHistorySteelDemoResponse.getDemoSize()) &&
+                Objects.equals(getDemoBidId(), getActivityHistorySteelDemoResponse.getDemoBidId()) &&
                 Objects.equals(getDemoQuantity(), getActivityHistorySteelDemoResponse.getDemoQuantity()) &&
+                Objects.equals(getDemoPercentCompleted(), getActivityHistorySteelDemoResponse.getDemoPercentCompleted()) &&
                 Objects.equals(getDemoNotes(), getActivityHistorySteelDemoResponse.getDemoNotes()) &&
                 Objects.equals(getActivityType(), getActivityHistorySteelDemoResponse.getActivityType()) &&
                 Objects.equals(getDemoTimeInForm(), getActivityHistorySteelDemoResponse.getDemoTimeInForm()) &&
@@ -156,10 +143,9 @@ public class GetActivityHistorySteelDemoResponse implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getActivityId(),
-                getDemoArea(),
-                getDemoSteelType(),
-                getDemoSize(),
+                getDemoBidId(),
                 getDemoQuantity(),
+                getDemoPercentCompleted(),
                 getDemoNotes(),
                 getActivityType(),
                 getDemoTimeInForm(),

@@ -208,7 +208,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetActivitiesPendingReviewFAs", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Gets all activities pending super review for Pipe Civil Equip, AND Non Piece mark steel work.")
-    public Page<GetActivitiesPendingReviewFasResponse> executeGetActivitiesPendingReviewFAs(@RequestParam(value = "SuperID") String superId, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetActivitiesPendingReviewFasResponse> executeGetActivitiesPendingReviewFAs(@RequestParam(value = "SuperID") Integer superId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetActivitiesPendingReviewFAs");
         Page<GetActivitiesPendingReviewFasResponse> _result = queryService.executeGetActivitiesPendingReviewFAs(superId, pageable);
         LOGGER.debug("got the result for named query: GetActivitiesPendingReviewFAs, result:{}", _result);
@@ -218,7 +218,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetActivitiesPendingReviewFAs")
     @RequestMapping(value = "/queries/GetActivitiesPendingReviewFAs/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetActivitiesPendingReviewFAs(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "SuperID") String superId, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetActivitiesPendingReviewFAs(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "SuperID") Integer superId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetActivitiesPendingReviewFAs");
 
         return queryService.exportGetActivitiesPendingReviewFAs(exportType, superId, pageable);
@@ -266,7 +266,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetActivitiesPendingReviewSteelActivities", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Returns individual activities for given submission/pieceMark/Status.  Populates the Super Review steel detailed list")
-    public Page<GetActivitiesPendingReviewSteelActivitiesResponse> executeGetActivitiesPendingReviewSteelActivities(@RequestParam(value = "SubmissionID") String submissionId, @RequestParam(value = "PieceMark") String pieceMark, @RequestParam(value = "StatusID") String statusId, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetActivitiesPendingReviewSteelActivitiesResponse> executeGetActivitiesPendingReviewSteelActivities(@RequestParam(value = "SubmissionID") Integer submissionId, @RequestParam(value = "PieceMark") String pieceMark, @RequestParam(value = "StatusID") Integer statusId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetActivitiesPendingReviewSteelActivities");
         Page<GetActivitiesPendingReviewSteelActivitiesResponse> _result = queryService.executeGetActivitiesPendingReviewSteelActivities(submissionId, pieceMark, statusId, pageable);
         LOGGER.debug("got the result for named query: GetActivitiesPendingReviewSteelActivities, result:{}", _result);
@@ -276,7 +276,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetActivitiesPendingReviewSteelActivities")
     @RequestMapping(value = "/queries/GetActivitiesPendingReviewSteelActivities/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetActivitiesPendingReviewSteelActivities(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "SubmissionID") String submissionId, @RequestParam(value = "PieceMark") String pieceMark, @RequestParam(value = "StatusID") String statusId, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetActivitiesPendingReviewSteelActivities(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "SubmissionID") Integer submissionId, @RequestParam(value = "PieceMark") String pieceMark, @RequestParam(value = "StatusID") Integer statusId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetActivitiesPendingReviewSteelActivities");
 
         return queryService.exportGetActivitiesPendingReviewSteelActivities(exportType, submissionId, pieceMark, statusId, pageable);
@@ -415,25 +415,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetSettingSteelSellPercent");
 
         return queryService.exportGetSettingSteelSellPercent(exportType, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetActivityHistorySteelShake", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "name")
-    public Page<GetActivityHistorySteelShakeResponse> executeGetActivityHistorySteelShake(@RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetActivityHistorySteelShake");
-        Page<GetActivityHistorySteelShakeResponse> _result = queryService.executeGetActivityHistorySteelShake(activityId, pageable);
-        LOGGER.debug("got the result for named query: GetActivityHistorySteelShake, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetActivityHistorySteelShake")
-    @RequestMapping(value = "/queries/GetActivityHistorySteelShake/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetActivityHistorySteelShake(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetActivityHistorySteelShake");
-
-        return queryService.exportGetActivityHistorySteelShake(exportType, activityId, pageable);
     }
 
     @RequestMapping(value = "/queries/GetActivityHistoryEquipFA", method = RequestMethod.GET)
@@ -883,7 +864,7 @@ public class QueryExecutionController {
 
     @RequestMapping(value = "/queries/GetActivityHistoryStatus", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "name")
+    @ApiOperation(value = "Get the status change history for a given ActivityID")
     public Page<GetActivityHistoryStatusResponse> executeGetActivityHistoryStatus(@RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetActivityHistoryStatus");
         Page<GetActivityHistoryStatusResponse> _result = queryService.executeGetActivityHistoryStatus(activityId, pageable);
@@ -1023,25 +1004,6 @@ public class QueryExecutionController {
         Integer _result = queryService.executeUpdateSteelBoltoutQuantity(updateSteelBoltoutQuantityRequest);
         LOGGER.debug("got the result for named query: UpdateSteelBoltoutQuantity, result:{}", _result);
         return _result;
-    }
-
-    @RequestMapping(value = "/queries/GetActivityHistorySteelImp", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "name")
-    public Page<GetActivityHistorySteelImpResponse> executeGetActivityHistorySteelImp(@RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetActivityHistorySteelImp");
-        Page<GetActivityHistorySteelImpResponse> _result = queryService.executeGetActivityHistorySteelImp(activityId, pageable);
-        LOGGER.debug("got the result for named query: GetActivityHistorySteelImp, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetActivityHistorySteelImp")
-    @RequestMapping(value = "/queries/GetActivityHistorySteelImp/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetActivityHistorySteelImp(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetActivityHistorySteelImp");
-
-        return queryService.exportGetActivityHistorySteelImp(exportType, activityId, pageable);
     }
 
     @RequestMapping(value = "/queries/UpdatePipeWeld", method = RequestMethod.PUT)
@@ -1218,6 +1180,25 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
+    @RequestMapping(value = "/queries/GetActivityHistorySteelFA", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Get the Activity change history for a given SteelFA activityID")
+    public Page<GetActivityHistorySteelFaResponse> executeGetActivityHistorySteelFA(@RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetActivityHistorySteelFA");
+        Page<GetActivityHistorySteelFaResponse> _result = queryService.executeGetActivityHistorySteelFA(activityId, pageable);
+        LOGGER.debug("got the result for named query: GetActivityHistorySteelFA, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetActivityHistorySteelFA")
+    @RequestMapping(value = "/queries/GetActivityHistorySteelFA/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetActivityHistorySteelFA(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetActivityHistorySteelFA");
+
+        return queryService.exportGetActivityHistorySteelFA(exportType, activityId, pageable);
+    }
+
     @RequestMapping(value = "/queries/UpdateSettingSteelErect", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
@@ -1226,6 +1207,25 @@ public class QueryExecutionController {
         Integer _result = queryService.executeUpdateSettingSteelErect(updateSettingSteelErectRequest);
         LOGGER.debug("got the result for named query: UpdateSettingSteelErect, result:{}", _result);
         return _result;
+    }
+
+    @RequestMapping(value = "/queries/GetActivityHistoryPipeConnection", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Get the change history for a given Pipe Connection ActivityID")
+    public Page<GetActivityHistoryPipeConnectionResponse> executeGetActivityHistoryPipeConnection(@RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetActivityHistoryPipeConnection");
+        Page<GetActivityHistoryPipeConnectionResponse> _result = queryService.executeGetActivityHistoryPipeConnection(activityId, pageable);
+        LOGGER.debug("got the result for named query: GetActivityHistoryPipeConnection, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetActivityHistoryPipeConnection")
+    @RequestMapping(value = "/queries/GetActivityHistoryPipeConnection/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetActivityHistoryPipeConnection(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetActivityHistoryPipeConnection");
+
+        return queryService.exportGetActivityHistoryPipeConnection(exportType, activityId, pageable);
     }
 
     @RequestMapping(value = "/queries/GetQuantitiesTestPackagePipe", method = RequestMethod.GET)
@@ -1245,25 +1245,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetQuantitiesTestPackagePipe");
 
         return queryService.exportGetQuantitiesTestPackagePipe(exportType, testPackage, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetActivityHistorySteelWeld", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "name")
-    public Page<GetActivityHistorySteelWeldResponse> executeGetActivityHistorySteelWeld(@RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetActivityHistorySteelWeld");
-        Page<GetActivityHistorySteelWeldResponse> _result = queryService.executeGetActivityHistorySteelWeld(activityId, pageable);
-        LOGGER.debug("got the result for named query: GetActivityHistorySteelWeld, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetActivityHistorySteelWeld")
-    @RequestMapping(value = "/queries/GetActivityHistorySteelWeld/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetActivityHistorySteelWeld(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetActivityHistorySteelWeld");
-
-        return queryService.exportGetActivityHistorySteelWeld(exportType, activityId, pageable);
     }
 
     @RequestMapping(value = "/queries/UpdatePipeSupportsQuantity", method = RequestMethod.PUT)
@@ -1423,9 +1404,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/CheckSASLock", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "No description is provided")
-    public Page<CheckSaslockResponse> executeCheckSASLock(@RequestParam(value = "FieldActivityID") String fieldActivityId, Pageable pageable, HttpServletRequest _request) {
+    public Page<CheckSaslockResponse> executeCheckSASLock(@RequestParam(value = "ActivityID") String activityId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: CheckSASLock");
-        Page<CheckSaslockResponse> _result = queryService.executeCheckSASLock(fieldActivityId, pageable);
+        Page<CheckSaslockResponse> _result = queryService.executeCheckSASLock(activityId, pageable);
         LOGGER.debug("got the result for named query: CheckSASLock, result:{}", _result);
         return _result;
     }
@@ -1433,10 +1414,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query CheckSASLock")
     @RequestMapping(value = "/queries/CheckSASLock/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportCheckSASLock(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "FieldActivityID") String fieldActivityId, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportCheckSASLock(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ActivityID") String activityId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: CheckSASLock");
 
-        return queryService.exportCheckSASLock(exportType, fieldActivityId, pageable);
+        return queryService.exportCheckSASLock(exportType, activityId, pageable);
     }
 
     @RequestMapping(value = "/queries/GetSettingCivilPunch", method = RequestMethod.GET)
@@ -1526,25 +1507,6 @@ public class QueryExecutionController {
         return queryService.exportGetBidWorkHistorySteelExpanded(exportType, bidId, subId, pageable);
     }
 
-    @RequestMapping(value = "/queries/GetActivityHistoryPipeBoltup", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "No description is provided")
-    public Page<GetActivityHistoryPipeBoltupResponse> executeGetActivityHistoryPipeBoltup(@RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetActivityHistoryPipeBoltup");
-        Page<GetActivityHistoryPipeBoltupResponse> _result = queryService.executeGetActivityHistoryPipeBoltup(activityId, pageable);
-        LOGGER.debug("got the result for named query: GetActivityHistoryPipeBoltup, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetActivityHistoryPipeBoltup")
-    @RequestMapping(value = "/queries/GetActivityHistoryPipeBoltup/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetActivityHistoryPipeBoltup(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetActivityHistoryPipeBoltup");
-
-        return queryService.exportGetActivityHistoryPipeBoltup(exportType, activityId, pageable);
-    }
-
     @RequestMapping(value = "/queries/GetSuperRecentActivites", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get recent activites modified by a given user super review page")
@@ -1593,25 +1555,6 @@ public class QueryExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/queries/GetActivityHistorySteelErect", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "name")
-    public Page<GetActivityHistorySteelErectResponse> executeGetActivityHistorySteelErect(@RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetActivityHistorySteelErect");
-        Page<GetActivityHistorySteelErectResponse> _result = queryService.executeGetActivityHistorySteelErect(activityId, pageable);
-        LOGGER.debug("got the result for named query: GetActivityHistorySteelErect, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetActivityHistorySteelErect")
-    @RequestMapping(value = "/queries/GetActivityHistorySteelErect/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetActivityHistorySteelErect(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetActivityHistorySteelErect");
-
-        return queryService.exportGetActivityHistorySteelErect(exportType, activityId, pageable);
-    }
-
     @RequestMapping(value = "/queries/GetBidActivityMatchesCivil", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Name")
@@ -1644,7 +1587,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetActivitiesPendingReviewSteel", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get All activities pending super review for Steel.")
-    public Page<GetActivitiesPendingReviewSteelResponse> executeGetActivitiesPendingReviewSteel(@RequestParam(value = "SuperID") String superId, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetActivitiesPendingReviewSteelResponse> executeGetActivitiesPendingReviewSteel(@RequestParam(value = "SuperID") Integer superId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetActivitiesPendingReviewSteel");
         Page<GetActivitiesPendingReviewSteelResponse> _result = queryService.executeGetActivitiesPendingReviewSteel(superId, pageable);
         LOGGER.debug("got the result for named query: GetActivitiesPendingReviewSteel, result:{}", _result);
@@ -1654,7 +1597,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetActivitiesPendingReviewSteel")
     @RequestMapping(value = "/queries/GetActivitiesPendingReviewSteel/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetActivitiesPendingReviewSteel(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "SuperID") String superId, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetActivitiesPendingReviewSteel(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "SuperID") Integer superId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetActivitiesPendingReviewSteel");
 
         return queryService.exportGetActivitiesPendingReviewSteel(exportType, superId, pageable);
@@ -1687,25 +1630,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetQuantityDemoRemoved");
 
         return queryService.exportGetQuantityDemoRemoved(exportType, bidId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetActivityHistorySteelBoltout", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "name")
-    public Page<GetActivityHistorySteelBoltoutResponse> executeGetActivityHistorySteelBoltout(@RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetActivityHistorySteelBoltout");
-        Page<GetActivityHistorySteelBoltoutResponse> _result = queryService.executeGetActivityHistorySteelBoltout(activityId, pageable);
-        LOGGER.debug("got the result for named query: GetActivityHistorySteelBoltout, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetActivityHistorySteelBoltout")
-    @RequestMapping(value = "/queries/GetActivityHistorySteelBoltout/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetActivityHistorySteelBoltout(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetActivityHistorySteelBoltout");
-
-        return queryService.exportGetActivityHistorySteelBoltout(exportType, activityId, pageable);
     }
 
     @RequestMapping(value = "/queries/UpdateCivilFAQuantity", method = RequestMethod.PUT)
@@ -1913,7 +1837,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetBidActivityMatchesByTestPackagePipe", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "No description is provided")
-    public Page<GetBidActivityMatchesByTestPackagePipeResponse> executeGetBidActivityMatchesByTestPackagePipe(@RequestParam(value = "TestPackage", required = false) String testPackage, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetBidActivityMatchesByTestPackagePipeResponse> executeGetBidActivityMatchesByTestPackagePipe(@RequestParam(value = "TestPackage") String testPackage, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetBidActivityMatchesByTestPackagePipe");
         Page<GetBidActivityMatchesByTestPackagePipeResponse> _result = queryService.executeGetBidActivityMatchesByTestPackagePipe(testPackage, pageable);
         LOGGER.debug("got the result for named query: GetBidActivityMatchesByTestPackagePipe, result:{}", _result);
@@ -1923,7 +1847,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetBidActivityMatchesByTestPackagePipe")
     @RequestMapping(value = "/queries/GetBidActivityMatchesByTestPackagePipe/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetBidActivityMatchesByTestPackagePipe(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "TestPackage", required = false) String testPackage, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetBidActivityMatchesByTestPackagePipe(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "TestPackage") String testPackage, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetBidActivityMatchesByTestPackagePipe");
 
         return queryService.exportGetBidActivityMatchesByTestPackagePipe(exportType, testPackage, pageable);
@@ -2007,25 +1931,6 @@ public class QueryExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/queries/GetActivityHistorySteelSell", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "name")
-    public Page<GetActivityHistorySteelSellResponse> executeGetActivityHistorySteelSell(@RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetActivityHistorySteelSell");
-        Page<GetActivityHistorySteelSellResponse> _result = queryService.executeGetActivityHistorySteelSell(activityId, pageable);
-        LOGGER.debug("got the result for named query: GetActivityHistorySteelSell, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetActivityHistorySteelSell")
-    @RequestMapping(value = "/queries/GetActivityHistorySteelSell/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetActivityHistorySteelSell(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetActivityHistorySteelSell");
-
-        return queryService.exportGetActivityHistorySteelSell(exportType, activityId, pageable);
-    }
-
     @RequestMapping(value = "/queries/UpdatePipeEWO", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Update Job####.SubsEWO from input fields")
@@ -2053,25 +1958,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetDrawingByTestPackageCivil");
 
         return queryService.exportGetDrawingByTestPackageCivil(exportType, testPackage, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetActivityHistoryCivilMisc", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Name")
-    public Page<GetActivityHistoryCivilMiscResponse> executeGetActivityHistoryCivilMisc(@RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetActivityHistoryCivilMisc");
-        Page<GetActivityHistoryCivilMiscResponse> _result = queryService.executeGetActivityHistoryCivilMisc(activityId, pageable);
-        LOGGER.debug("got the result for named query: GetActivityHistoryCivilMisc, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetActivityHistoryCivilMisc")
-    @RequestMapping(value = "/queries/GetActivityHistoryCivilMisc/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetActivityHistoryCivilMisc(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetActivityHistoryCivilMisc");
-
-        return queryService.exportGetActivityHistoryCivilMisc(exportType, activityId, pageable);
     }
 
     @RequestMapping(value = "/queries/UpdateSteelBoltout", method = RequestMethod.PUT)

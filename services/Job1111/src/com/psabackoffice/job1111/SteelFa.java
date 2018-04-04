@@ -29,7 +29,7 @@ import org.hibernate.annotations.FetchMode;
 public class SteelFa implements Serializable {
 
     private Integer activityId;
-    private String faarea;
+    private String fasortGroup1;
     private String fapieceNumber;
     private short faquantity;
     private Float fapercentCompleted;
@@ -51,13 +51,13 @@ public class SteelFa implements Serializable {
         this.activityId = activityId;
     }
 
-    @Column(name = "`FAArea`", nullable = true, length = 45)
-    public String getFaarea() {
-        return this.faarea;
+    @Column(name = "`FASortGroup1`", nullable = true, length = 45)
+    public String getFasortGroup1() {
+        return this.fasortGroup1;
     }
 
-    public void setFaarea(String faarea) {
-        this.faarea = faarea;
+    public void setFasortGroup1(String fasortGroup1) {
+        this.fasortGroup1 = fasortGroup1;
     }
 
     @Column(name = "`FAPieceNumber`", nullable = true, length = 45)

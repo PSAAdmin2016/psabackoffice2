@@ -24,29 +24,13 @@ public class GetActivityHistoryCivilFaResponse implements Serializable {
     @ColumnAlias("FABidID")
     private Integer fabidId;
 
-    @JsonProperty("FAFoundation")
-    @ColumnAlias("FAFoundation")
-    private String fafoundation;
-
-    @JsonProperty("FADescription")
-    @ColumnAlias("FADescription")
-    private String fadescription;
-
-    @JsonProperty("FADrawingNumber")
-    @ColumnAlias("FADrawingNumber")
-    private String fadrawingNumber;
-
-    @JsonProperty("FADetailDrawingNumber")
-    @ColumnAlias("FADetailDrawingNumber")
-    private String fadetailDrawingNumber;
-
-    @JsonProperty("FAPercentComplete")
-    @ColumnAlias("FAPercentComplete")
-    private Float fapercentComplete;
-
     @JsonProperty("FAQuantity")
     @ColumnAlias("FAQuantity")
     private Integer faquantity;
+
+    @JsonProperty("FAPercentCompleted")
+    @ColumnAlias("FAPercentCompleted")
+    private Float fapercentCompleted;
 
     @JsonProperty("FARework")
     @ColumnAlias("FARework")
@@ -88,52 +72,20 @@ public class GetActivityHistoryCivilFaResponse implements Serializable {
         this.fabidId = fabidId;
     }
 
-    public String getFafoundation() {
-        return this.fafoundation;
-    }
-
-    public void setFafoundation(String fafoundation) {
-        this.fafoundation = fafoundation;
-    }
-
-    public String getFadescription() {
-        return this.fadescription;
-    }
-
-    public void setFadescription(String fadescription) {
-        this.fadescription = fadescription;
-    }
-
-    public String getFadrawingNumber() {
-        return this.fadrawingNumber;
-    }
-
-    public void setFadrawingNumber(String fadrawingNumber) {
-        this.fadrawingNumber = fadrawingNumber;
-    }
-
-    public String getFadetailDrawingNumber() {
-        return this.fadetailDrawingNumber;
-    }
-
-    public void setFadetailDrawingNumber(String fadetailDrawingNumber) {
-        this.fadetailDrawingNumber = fadetailDrawingNumber;
-    }
-
-    public Float getFapercentComplete() {
-        return this.fapercentComplete;
-    }
-
-    public void setFapercentComplete(Float fapercentComplete) {
-        this.fapercentComplete = fapercentComplete;
-    }
-
     public Integer getFaquantity() {
         return this.faquantity;
     }
 
     public void setFaquantity(Integer faquantity) {
         this.faquantity = faquantity;
+    }
+
+    public Float getFapercentCompleted() {
+        return this.fapercentCompleted;
+    }
+
+    public void setFapercentCompleted(Float fapercentCompleted) {
+        this.fapercentCompleted = fapercentCompleted;
     }
 
     public Short getFarework() {
@@ -191,12 +143,8 @@ public class GetActivityHistoryCivilFaResponse implements Serializable {
         final GetActivityHistoryCivilFaResponse getActivityHistoryCivilFaResponse = (GetActivityHistoryCivilFaResponse) o;
         return Objects.equals(getActivityId(), getActivityHistoryCivilFaResponse.getActivityId()) &&
                 Objects.equals(getFabidId(), getActivityHistoryCivilFaResponse.getFabidId()) &&
-                Objects.equals(getFafoundation(), getActivityHistoryCivilFaResponse.getFafoundation()) &&
-                Objects.equals(getFadescription(), getActivityHistoryCivilFaResponse.getFadescription()) &&
-                Objects.equals(getFadrawingNumber(), getActivityHistoryCivilFaResponse.getFadrawingNumber()) &&
-                Objects.equals(getFadetailDrawingNumber(), getActivityHistoryCivilFaResponse.getFadetailDrawingNumber()) &&
-                Objects.equals(getFapercentComplete(), getActivityHistoryCivilFaResponse.getFapercentComplete()) &&
                 Objects.equals(getFaquantity(), getActivityHistoryCivilFaResponse.getFaquantity()) &&
+                Objects.equals(getFapercentCompleted(), getActivityHistoryCivilFaResponse.getFapercentCompleted()) &&
                 Objects.equals(getFarework(), getActivityHistoryCivilFaResponse.getFarework()) &&
                 Objects.equals(getFanotes(), getActivityHistoryCivilFaResponse.getFanotes()) &&
                 Objects.equals(getActivityType(), getActivityHistoryCivilFaResponse.getActivityType()) &&
@@ -209,12 +157,8 @@ public class GetActivityHistoryCivilFaResponse implements Serializable {
     public int hashCode() {
         return Objects.hash(getActivityId(),
                 getFabidId(),
-                getFafoundation(),
-                getFadescription(),
-                getFadrawingNumber(),
-                getFadetailDrawingNumber(),
-                getFapercentComplete(),
                 getFaquantity(),
+                getFapercentCompleted(),
                 getFarework(),
                 getFanotes(),
                 getActivityType(),

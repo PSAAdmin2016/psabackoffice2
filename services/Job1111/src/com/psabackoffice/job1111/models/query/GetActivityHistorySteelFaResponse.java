@@ -10,53 +10,41 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class GetActivityHistorySteelErectResponse implements Serializable {
+public class GetActivityHistorySteelFaResponse implements Serializable {
 
 
-    @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
 
-    @JsonProperty("FAArea")
-    @ColumnAlias("FAArea")
-    private String faarea;
+    @ColumnAlias("FASortGroup1")
+    private String fasortGroup1;
 
-    @JsonProperty("FAPieceNumber")
     @ColumnAlias("FAPieceNumber")
     private String fapieceNumber;
 
-    @JsonProperty("FAErectQuantity")
-    @ColumnAlias("FAErectQuantity")
-    private Short faerectQuantity;
+    @ColumnAlias("FAQuantity")
+    private Integer faquantity;
 
-    @JsonProperty("FAErectPercent")
-    @ColumnAlias("FAErectPercent")
-    private Float faerectPercent;
+    @ColumnAlias("FAPercentCompleted")
+    private Float fapercentCompleted;
 
-    @JsonProperty("FARework")
     @ColumnAlias("FARework")
     private Short farework;
 
-    @JsonProperty("FANotes")
     @ColumnAlias("FANotes")
     private String fanotes;
 
-    @JsonProperty("ActivityType")
     @ColumnAlias("ActivityType")
     private Short activityType;
 
-    @JsonProperty("FATimeInForm")
     @ColumnAlias("FATimeInForm")
     private Short fatimeInForm;
 
-    @JsonProperty("Rev")
     @ColumnAlias("Rev")
     private Short rev;
 
-    @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
 
@@ -68,12 +56,12 @@ public class GetActivityHistorySteelErectResponse implements Serializable {
         this.activityId = activityId;
     }
 
-    public String getFaarea() {
-        return this.faarea;
+    public String getFasortGroup1() {
+        return this.fasortGroup1;
     }
 
-    public void setFaarea(String faarea) {
-        this.faarea = faarea;
+    public void setFasortGroup1(String fasortGroup1) {
+        this.fasortGroup1 = fasortGroup1;
     }
 
     public String getFapieceNumber() {
@@ -84,20 +72,20 @@ public class GetActivityHistorySteelErectResponse implements Serializable {
         this.fapieceNumber = fapieceNumber;
     }
 
-    public Short getFaerectQuantity() {
-        return this.faerectQuantity;
+    public Integer getFaquantity() {
+        return this.faquantity;
     }
 
-    public void setFaerectQuantity(Short faerectQuantity) {
-        this.faerectQuantity = faerectQuantity;
+    public void setFaquantity(Integer faquantity) {
+        this.faquantity = faquantity;
     }
 
-    public Float getFaerectPercent() {
-        return this.faerectPercent;
+    public Float getFapercentCompleted() {
+        return this.fapercentCompleted;
     }
 
-    public void setFaerectPercent(Float faerectPercent) {
-        this.faerectPercent = faerectPercent;
+    public void setFapercentCompleted(Float fapercentCompleted) {
+        this.fapercentCompleted = fapercentCompleted;
     }
 
     public Short getFarework() {
@@ -151,28 +139,28 @@ public class GetActivityHistorySteelErectResponse implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GetActivityHistorySteelErectResponse)) return false;
-        final GetActivityHistorySteelErectResponse getActivityHistorySteelErectResponse = (GetActivityHistorySteelErectResponse) o;
-        return Objects.equals(getActivityId(), getActivityHistorySteelErectResponse.getActivityId()) &&
-                Objects.equals(getFaarea(), getActivityHistorySteelErectResponse.getFaarea()) &&
-                Objects.equals(getFapieceNumber(), getActivityHistorySteelErectResponse.getFapieceNumber()) &&
-                Objects.equals(getFaerectQuantity(), getActivityHistorySteelErectResponse.getFaerectQuantity()) &&
-                Objects.equals(getFaerectPercent(), getActivityHistorySteelErectResponse.getFaerectPercent()) &&
-                Objects.equals(getFarework(), getActivityHistorySteelErectResponse.getFarework()) &&
-                Objects.equals(getFanotes(), getActivityHistorySteelErectResponse.getFanotes()) &&
-                Objects.equals(getActivityType(), getActivityHistorySteelErectResponse.getActivityType()) &&
-                Objects.equals(getFatimeInForm(), getActivityHistorySteelErectResponse.getFatimeInForm()) &&
-                Objects.equals(getRev(), getActivityHistorySteelErectResponse.getRev()) &&
-                Objects.equals(getTimeStamp(), getActivityHistorySteelErectResponse.getTimeStamp());
+        if (!(o instanceof GetActivityHistorySteelFaResponse)) return false;
+        final GetActivityHistorySteelFaResponse getActivityHistorySteelFaResponse = (GetActivityHistorySteelFaResponse) o;
+        return Objects.equals(getActivityId(), getActivityHistorySteelFaResponse.getActivityId()) &&
+                Objects.equals(getFasortGroup1(), getActivityHistorySteelFaResponse.getFasortGroup1()) &&
+                Objects.equals(getFapieceNumber(), getActivityHistorySteelFaResponse.getFapieceNumber()) &&
+                Objects.equals(getFaquantity(), getActivityHistorySteelFaResponse.getFaquantity()) &&
+                Objects.equals(getFapercentCompleted(), getActivityHistorySteelFaResponse.getFapercentCompleted()) &&
+                Objects.equals(getFarework(), getActivityHistorySteelFaResponse.getFarework()) &&
+                Objects.equals(getFanotes(), getActivityHistorySteelFaResponse.getFanotes()) &&
+                Objects.equals(getActivityType(), getActivityHistorySteelFaResponse.getActivityType()) &&
+                Objects.equals(getFatimeInForm(), getActivityHistorySteelFaResponse.getFatimeInForm()) &&
+                Objects.equals(getRev(), getActivityHistorySteelFaResponse.getRev()) &&
+                Objects.equals(getTimeStamp(), getActivityHistorySteelFaResponse.getTimeStamp());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getActivityId(),
-                getFaarea(),
+                getFasortGroup1(),
                 getFapieceNumber(),
-                getFaerectQuantity(),
-                getFaerectPercent(),
+                getFaquantity(),
+                getFapercentCompleted(),
                 getFarework(),
                 getFanotes(),
                 getActivityType(),

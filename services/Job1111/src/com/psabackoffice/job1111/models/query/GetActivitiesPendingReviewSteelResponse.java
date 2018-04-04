@@ -34,8 +34,8 @@ public class GetActivitiesPendingReviewSteelResponse implements Serializable {
     @ColumnAlias("PieceMark")
     private String pieceMark;
 
-    @ColumnAlias("Area")
-    private String area;
+    @ColumnAlias("SortGroup1")
+    private String sortGroup1;
 
     @ColumnAlias("QuantityShake")
     private BigDecimal quantityShake;
@@ -103,12 +103,12 @@ public class GetActivitiesPendingReviewSteelResponse implements Serializable {
         this.pieceMark = pieceMark;
     }
 
-    public String getArea() {
-        return this.area;
+    public String getSortGroup1() {
+        return this.sortGroup1;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setSortGroup1(String sortGroup1) {
+        this.sortGroup1 = sortGroup1;
     }
 
     public BigDecimal getQuantityShake() {
@@ -170,7 +170,7 @@ public class GetActivitiesPendingReviewSteelResponse implements Serializable {
                 Objects.equals(getReceivedTime(), getActivitiesPendingReviewSteelResponse.getReceivedTime()) &&
                 Objects.equals(getNameFull(), getActivitiesPendingReviewSteelResponse.getNameFull()) &&
                 Objects.equals(getPieceMark(), getActivitiesPendingReviewSteelResponse.getPieceMark()) &&
-                Objects.equals(getArea(), getActivitiesPendingReviewSteelResponse.getArea()) &&
+                Objects.equals(getSortGroup1(), getActivitiesPendingReviewSteelResponse.getSortGroup1()) &&
                 Objects.equals(getQuantityShake(), getActivitiesPendingReviewSteelResponse.getQuantityShake()) &&
                 Objects.equals(getQuantityErect(), getActivitiesPendingReviewSteelResponse.getQuantityErect()) &&
                 Objects.equals(getQuantityBoltOut(), getActivitiesPendingReviewSteelResponse.getQuantityBoltOut()) &&
@@ -187,7 +187,7 @@ public class GetActivitiesPendingReviewSteelResponse implements Serializable {
                 getReceivedTime(),
                 getNameFull(),
                 getPieceMark(),
-                getArea(),
+                getSortGroup1(),
                 getQuantityShake(),
                 getQuantityErect(),
                 getQuantityBoltOut(),

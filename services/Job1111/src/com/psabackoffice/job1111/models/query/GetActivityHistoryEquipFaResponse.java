@@ -30,8 +30,8 @@ public class GetActivityHistoryEquipFaResponse implements Serializable {
     @ColumnAlias("FAQuantity")
     private Integer faquantity;
 
-    @ColumnAlias("FAPercentComplete")
-    private Float fapercentComplete;
+    @ColumnAlias("FAPercentCompleted")
+    private Float fapercentCompleted;
 
     @ColumnAlias("FARework")
     private Short farework;
@@ -91,12 +91,12 @@ public class GetActivityHistoryEquipFaResponse implements Serializable {
         this.faquantity = faquantity;
     }
 
-    public Float getFapercentComplete() {
-        return this.fapercentComplete;
+    public Float getFapercentCompleted() {
+        return this.fapercentCompleted;
     }
 
-    public void setFapercentComplete(Float fapercentComplete) {
-        this.fapercentComplete = fapercentComplete;
+    public void setFapercentCompleted(Float fapercentCompleted) {
+        this.fapercentCompleted = fapercentCompleted;
     }
 
     public Short getFarework() {
@@ -157,7 +157,7 @@ public class GetActivityHistoryEquipFaResponse implements Serializable {
                 Objects.equals(getFatagNumber(), getActivityHistoryEquipFaResponse.getFatagNumber()) &&
                 Objects.equals(getFaactivitySelect(), getActivityHistoryEquipFaResponse.getFaactivitySelect()) &&
                 Objects.equals(getFaquantity(), getActivityHistoryEquipFaResponse.getFaquantity()) &&
-                Objects.equals(getFapercentComplete(), getActivityHistoryEquipFaResponse.getFapercentComplete()) &&
+                Objects.equals(getFapercentCompleted(), getActivityHistoryEquipFaResponse.getFapercentCompleted()) &&
                 Objects.equals(getFarework(), getActivityHistoryEquipFaResponse.getFarework()) &&
                 Objects.equals(getFanotes(), getActivityHistoryEquipFaResponse.getFanotes()) &&
                 Objects.equals(getActivityType(), getActivityHistoryEquipFaResponse.getActivityType()) &&
@@ -173,7 +173,7 @@ public class GetActivityHistoryEquipFaResponse implements Serializable {
                 getFatagNumber(),
                 getFaactivitySelect(),
                 getFaquantity(),
-                getFapercentComplete(),
+                getFapercentCompleted(),
                 getFarework(),
                 getFanotes(),
                 getActivityType(),

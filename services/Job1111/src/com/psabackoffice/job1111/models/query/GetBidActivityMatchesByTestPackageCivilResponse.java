@@ -26,6 +26,10 @@ public class GetBidActivityMatchesByTestPackageCivilResponse implements Serializ
     @ColumnAlias("BidID")
     private Integer bidId;
 
+    @JsonProperty("ProjectServicesRep")
+    @ColumnAlias("ProjectServicesRep")
+    private String projectServicesRep;
+
     @JsonProperty("EWONumber")
     @ColumnAlias("EWONumber")
     private Integer ewonumber;
@@ -46,6 +50,10 @@ public class GetBidActivityMatchesByTestPackageCivilResponse implements Serializ
     @ColumnAlias("TestPackageNumber")
     private String testPackageNumber;
 
+    @JsonProperty("WorkPackage")
+    @ColumnAlias("WorkPackage")
+    private String workPackage;
+
     @JsonProperty("CostCode")
     @ColumnAlias("CostCode")
     private String costCode;
@@ -53,6 +61,10 @@ public class GetBidActivityMatchesByTestPackageCivilResponse implements Serializ
     @JsonProperty("P6ID")
     @ColumnAlias("P6ID")
     private String p6id;
+
+    @JsonProperty("P6Description")
+    @ColumnAlias("P6Description")
+    private String p6description;
 
     @JsonProperty("AssignedContractor")
     @ColumnAlias("AssignedContractor")
@@ -70,21 +82,25 @@ public class GetBidActivityMatchesByTestPackageCivilResponse implements Serializ
     @ColumnAlias("Structure")
     private String structure;
 
-    @JsonProperty("Grouping")
-    @ColumnAlias("Grouping")
-    private String grouping;
-
-    @JsonProperty("FoundationDescription")
-    @ColumnAlias("FoundationDescription")
-    private String foundationDescription;
-
     @JsonProperty("CU")
     @ColumnAlias("CU")
     private String cu;
 
-    @JsonProperty("P6Description")
-    @ColumnAlias("P6Description")
-    private String p6description;
+    @JsonProperty("Elevation")
+    @ColumnAlias("Elevation")
+    private String elevation;
+
+    @JsonProperty("SortGroup1")
+    @ColumnAlias("SortGroup1")
+    private String sortGroup1;
+
+    @JsonProperty("SortGroup2")
+    @ColumnAlias("SortGroup2")
+    private String sortGroup2;
+
+    @JsonProperty("SortGroup3")
+    @ColumnAlias("SortGroup3")
+    private String sortGroup3;
 
     @JsonProperty("EngDrawingNumber")
     @ColumnAlias("EngDrawingNumber")
@@ -140,7 +156,7 @@ public class GetBidActivityMatchesByTestPackageCivilResponse implements Serializ
 
     @JsonProperty("EstimatedHours")
     @ColumnAlias("EstimatedHours")
-    private Double estimatedHours;
+    private BigDecimal estimatedHours;
 
     @JsonProperty("WBS1")
     @ColumnAlias("WBS1")
@@ -222,6 +238,14 @@ public class GetBidActivityMatchesByTestPackageCivilResponse implements Serializ
         this.bidId = bidId;
     }
 
+    public String getProjectServicesRep() {
+        return this.projectServicesRep;
+    }
+
+    public void setProjectServicesRep(String projectServicesRep) {
+        this.projectServicesRep = projectServicesRep;
+    }
+
     public Integer getEwonumber() {
         return this.ewonumber;
     }
@@ -262,6 +286,14 @@ public class GetBidActivityMatchesByTestPackageCivilResponse implements Serializ
         this.testPackageNumber = testPackageNumber;
     }
 
+    public String getWorkPackage() {
+        return this.workPackage;
+    }
+
+    public void setWorkPackage(String workPackage) {
+        this.workPackage = workPackage;
+    }
+
     public String getCostCode() {
         return this.costCode;
     }
@@ -276,6 +308,14 @@ public class GetBidActivityMatchesByTestPackageCivilResponse implements Serializ
 
     public void setP6id(String p6id) {
         this.p6id = p6id;
+    }
+
+    public String getP6description() {
+        return this.p6description;
+    }
+
+    public void setP6description(String p6description) {
+        this.p6description = p6description;
     }
 
     public String getAssignedContractor() {
@@ -310,22 +350,6 @@ public class GetBidActivityMatchesByTestPackageCivilResponse implements Serializ
         this.structure = structure;
     }
 
-    public String getGrouping() {
-        return this.grouping;
-    }
-
-    public void setGrouping(String grouping) {
-        this.grouping = grouping;
-    }
-
-    public String getFoundationDescription() {
-        return this.foundationDescription;
-    }
-
-    public void setFoundationDescription(String foundationDescription) {
-        this.foundationDescription = foundationDescription;
-    }
-
     public String getCu() {
         return this.cu;
     }
@@ -334,12 +358,36 @@ public class GetBidActivityMatchesByTestPackageCivilResponse implements Serializ
         this.cu = cu;
     }
 
-    public String getP6description() {
-        return this.p6description;
+    public String getElevation() {
+        return this.elevation;
     }
 
-    public void setP6description(String p6description) {
-        this.p6description = p6description;
+    public void setElevation(String elevation) {
+        this.elevation = elevation;
+    }
+
+    public String getSortGroup1() {
+        return this.sortGroup1;
+    }
+
+    public void setSortGroup1(String sortGroup1) {
+        this.sortGroup1 = sortGroup1;
+    }
+
+    public String getSortGroup2() {
+        return this.sortGroup2;
+    }
+
+    public void setSortGroup2(String sortGroup2) {
+        this.sortGroup2 = sortGroup2;
+    }
+
+    public String getSortGroup3() {
+        return this.sortGroup3;
+    }
+
+    public void setSortGroup3(String sortGroup3) {
+        this.sortGroup3 = sortGroup3;
     }
 
     public String getEngDrawingNumber() {
@@ -446,11 +494,11 @@ public class GetBidActivityMatchesByTestPackageCivilResponse implements Serializ
         this.quantityUnit = quantityUnit;
     }
 
-    public Double getEstimatedHours() {
+    public BigDecimal getEstimatedHours() {
         return this.estimatedHours;
     }
 
-    public void setEstimatedHours(Double estimatedHours) {
+    public void setEstimatedHours(BigDecimal estimatedHours) {
         this.estimatedHours = estimatedHours;
     }
 
@@ -589,21 +637,25 @@ public class GetBidActivityMatchesByTestPackageCivilResponse implements Serializ
         final GetBidActivityMatchesByTestPackageCivilResponse getBidActivityMatchesByTestPackageCivilResponse = (GetBidActivityMatchesByTestPackageCivilResponse) o;
         return Objects.equals(getUid(), getBidActivityMatchesByTestPackageCivilResponse.getUid()) &&
                 Objects.equals(getBidId(), getBidActivityMatchesByTestPackageCivilResponse.getBidId()) &&
+                Objects.equals(getProjectServicesRep(), getBidActivityMatchesByTestPackageCivilResponse.getProjectServicesRep()) &&
                 Objects.equals(getEwonumber(), getBidActivityMatchesByTestPackageCivilResponse.getEwonumber()) &&
                 Objects.equals(getScope(), getBidActivityMatchesByTestPackageCivilResponse.getScope()) &&
                 Objects.equals(getPhase(), getBidActivityMatchesByTestPackageCivilResponse.getPhase()) &&
                 Objects.equals(getStage(), getBidActivityMatchesByTestPackageCivilResponse.getStage()) &&
                 Objects.equals(getTestPackageNumber(), getBidActivityMatchesByTestPackageCivilResponse.getTestPackageNumber()) &&
+                Objects.equals(getWorkPackage(), getBidActivityMatchesByTestPackageCivilResponse.getWorkPackage()) &&
                 Objects.equals(getCostCode(), getBidActivityMatchesByTestPackageCivilResponse.getCostCode()) &&
                 Objects.equals(getP6id(), getBidActivityMatchesByTestPackageCivilResponse.getP6id()) &&
+                Objects.equals(getP6description(), getBidActivityMatchesByTestPackageCivilResponse.getP6description()) &&
                 Objects.equals(getAssignedContractor(), getBidActivityMatchesByTestPackageCivilResponse.getAssignedContractor()) &&
                 Objects.equals(getArea(), getBidActivityMatchesByTestPackageCivilResponse.getArea()) &&
                 Objects.equals(getLocation(), getBidActivityMatchesByTestPackageCivilResponse.getLocation()) &&
                 Objects.equals(getStructure(), getBidActivityMatchesByTestPackageCivilResponse.getStructure()) &&
-                Objects.equals(getGrouping(), getBidActivityMatchesByTestPackageCivilResponse.getGrouping()) &&
-                Objects.equals(getFoundationDescription(), getBidActivityMatchesByTestPackageCivilResponse.getFoundationDescription()) &&
                 Objects.equals(getCu(), getBidActivityMatchesByTestPackageCivilResponse.getCu()) &&
-                Objects.equals(getP6description(), getBidActivityMatchesByTestPackageCivilResponse.getP6description()) &&
+                Objects.equals(getElevation(), getBidActivityMatchesByTestPackageCivilResponse.getElevation()) &&
+                Objects.equals(getSortGroup1(), getBidActivityMatchesByTestPackageCivilResponse.getSortGroup1()) &&
+                Objects.equals(getSortGroup2(), getBidActivityMatchesByTestPackageCivilResponse.getSortGroup2()) &&
+                Objects.equals(getSortGroup3(), getBidActivityMatchesByTestPackageCivilResponse.getSortGroup3()) &&
                 Objects.equals(getEngDrawingNumber(), getBidActivityMatchesByTestPackageCivilResponse.getEngDrawingNumber()) &&
                 Objects.equals(getSheetNumber(), getBidActivityMatchesByTestPackageCivilResponse.getSheetNumber()) &&
                 Objects.equals(getDrawingRev(), getBidActivityMatchesByTestPackageCivilResponse.getDrawingRev()) &&
@@ -640,21 +692,25 @@ public class GetBidActivityMatchesByTestPackageCivilResponse implements Serializ
     public int hashCode() {
         return Objects.hash(getUid(),
                 getBidId(),
+                getProjectServicesRep(),
                 getEwonumber(),
                 getScope(),
                 getPhase(),
                 getStage(),
                 getTestPackageNumber(),
+                getWorkPackage(),
                 getCostCode(),
                 getP6id(),
+                getP6description(),
                 getAssignedContractor(),
                 getArea(),
                 getLocation(),
                 getStructure(),
-                getGrouping(),
-                getFoundationDescription(),
                 getCu(),
-                getP6description(),
+                getElevation(),
+                getSortGroup1(),
+                getSortGroup2(),
+                getSortGroup3(),
                 getEngDrawingNumber(),
                 getSheetNumber(),
                 getDrawingRev(),

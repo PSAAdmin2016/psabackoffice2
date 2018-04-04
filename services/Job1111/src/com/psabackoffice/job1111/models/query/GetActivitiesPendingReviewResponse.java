@@ -34,11 +34,11 @@ public class GetActivitiesPendingReviewResponse implements Serializable {
 
     @JsonProperty("fk_ActivityStatus")
     @ColumnAlias("fk_ActivityStatus")
-    private Integer fkActivityStatus;
+    private Short fkActivityStatus;
 
     @JsonProperty("fk_LastModifiedBy")
     @ColumnAlias("fk_LastModifiedBy")
-    private Integer fkLastModifiedBy;
+    private Long fkLastModifiedBy;
 
     @JsonProperty("LockField")
     @ColumnAlias("LockField")
@@ -112,19 +112,19 @@ public class GetActivitiesPendingReviewResponse implements Serializable {
         this.fkBidIdassigned = fkBidIdassigned;
     }
 
-    public Integer getFkActivityStatus() {
+    public Short getFkActivityStatus() {
         return this.fkActivityStatus;
     }
 
-    public void setFkActivityStatus(Integer fkActivityStatus) {
+    public void setFkActivityStatus(Short fkActivityStatus) {
         this.fkActivityStatus = fkActivityStatus;
     }
 
-    public Integer getFkLastModifiedBy() {
+    public Long getFkLastModifiedBy() {
         return this.fkLastModifiedBy;
     }
 
-    public void setFkLastModifiedBy(Integer fkLastModifiedBy) {
+    public void setFkLastModifiedBy(Long fkLastModifiedBy) {
         this.fkLastModifiedBy = fkLastModifiedBy;
     }
 

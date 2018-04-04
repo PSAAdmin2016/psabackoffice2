@@ -68,7 +68,7 @@ public class CacheStatsCivilPcot implements Serializable {
         this.sellPunchPercentComplete = sellPunchPercentComplete;
     }
 
-    @Column(name = "`TotalPercentComplete`", nullable = true, scale = 2, precision = 5)
+    @Column(name = "`TotalPercentComplete`", nullable = true, scale = 3, precision = 6)
     public Float getTotalPercentComplete() {
         return this.totalPercentComplete;
     }

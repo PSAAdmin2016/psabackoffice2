@@ -7,6 +7,7 @@ package com.psabackoffice.job1111.models.query;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -38,7 +39,7 @@ public class GetActivityHistoryPipeMiscResponse implements Serializable {
 
     @JsonProperty("MiscQuantity")
     @ColumnAlias("MiscQuantity")
-    private Double miscQuantity;
+    private BigDecimal miscQuantity;
 
     @JsonProperty("MiscRework")
     @ColumnAlias("MiscRework")
@@ -100,11 +101,11 @@ public class GetActivityHistoryPipeMiscResponse implements Serializable {
         this.miscTimeInForm = miscTimeInForm;
     }
 
-    public Double getMiscQuantity() {
+    public BigDecimal getMiscQuantity() {
         return this.miscQuantity;
     }
 
-    public void setMiscQuantity(Double miscQuantity) {
+    public void setMiscQuantity(BigDecimal miscQuantity) {
         this.miscQuantity = miscQuantity;
     }
 

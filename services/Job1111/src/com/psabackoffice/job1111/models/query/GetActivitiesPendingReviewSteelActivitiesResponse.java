@@ -29,8 +29,8 @@ public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serial
     @ColumnAlias("ActivityID")
     private Integer activityId;
 
-    @ColumnAlias("FAArea")
-    private String faarea;
+    @ColumnAlias("FASortGroup1")
+    private String fasortGroup1;
 
     @ColumnAlias("FAPieceNumber")
     private String fapieceNumber;
@@ -38,8 +38,8 @@ public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serial
     @ColumnAlias("FAQuantity")
     private Short faquantity;
 
-    @ColumnAlias("FAPercent")
-    private Float fapercent;
+    @ColumnAlias("FAPercentCompleted")
+    private Float fapercentCompleted;
 
     @ColumnAlias("FARework")
     private Short farework;
@@ -87,12 +87,12 @@ public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serial
         this.activityId = activityId;
     }
 
-    public String getFaarea() {
-        return this.faarea;
+    public String getFasortGroup1() {
+        return this.fasortGroup1;
     }
 
-    public void setFaarea(String faarea) {
-        this.faarea = faarea;
+    public void setFasortGroup1(String fasortGroup1) {
+        this.fasortGroup1 = fasortGroup1;
     }
 
     public String getFapieceNumber() {
@@ -111,12 +111,12 @@ public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serial
         this.faquantity = faquantity;
     }
 
-    public Float getFapercent() {
-        return this.fapercent;
+    public Float getFapercentCompleted() {
+        return this.fapercentCompleted;
     }
 
-    public void setFapercent(Float fapercent) {
-        this.fapercent = fapercent;
+    public void setFapercentCompleted(Float fapercentCompleted) {
+        this.fapercentCompleted = fapercentCompleted;
     }
 
     public Short getFarework() {
@@ -145,10 +145,10 @@ public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serial
                 Objects.equals(getActivityType(), getActivitiesPendingReviewSteelActivitiesResponse.getActivityType()) &&
                 Objects.equals(getActivityTypeId(), getActivitiesPendingReviewSteelActivitiesResponse.getActivityTypeId()) &&
                 Objects.equals(getActivityId(), getActivitiesPendingReviewSteelActivitiesResponse.getActivityId()) &&
-                Objects.equals(getFaarea(), getActivitiesPendingReviewSteelActivitiesResponse.getFaarea()) &&
+                Objects.equals(getFasortGroup1(), getActivitiesPendingReviewSteelActivitiesResponse.getFasortGroup1()) &&
                 Objects.equals(getFapieceNumber(), getActivitiesPendingReviewSteelActivitiesResponse.getFapieceNumber()) &&
                 Objects.equals(getFaquantity(), getActivitiesPendingReviewSteelActivitiesResponse.getFaquantity()) &&
-                Objects.equals(getFapercent(), getActivitiesPendingReviewSteelActivitiesResponse.getFapercent()) &&
+                Objects.equals(getFapercentCompleted(), getActivitiesPendingReviewSteelActivitiesResponse.getFapercentCompleted()) &&
                 Objects.equals(getFarework(), getActivitiesPendingReviewSteelActivitiesResponse.getFarework()) &&
                 Objects.equals(getFanotes(), getActivitiesPendingReviewSteelActivitiesResponse.getFanotes());
     }
@@ -160,10 +160,10 @@ public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serial
                 getActivityType(),
                 getActivityTypeId(),
                 getActivityId(),
-                getFaarea(),
+                getFasortGroup1(),
                 getFapieceNumber(),
                 getFaquantity(),
-                getFapercent(),
+                getFapercentCompleted(),
                 getFarework(),
                 getFanotes());
     }

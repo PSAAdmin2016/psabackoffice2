@@ -29,6 +29,7 @@ import org.hibernate.annotations.FetchMode;
 public class PipeErection implements Serializable {
 
     private Integer activityId;
+    private Integer erectionBidId;
     private String erectionSpool1;
     private Short erectionLengthSpool1;
     private String erectionSpool2;
@@ -62,6 +63,15 @@ public class PipeErection implements Serializable {
 
     public void setActivityId(Integer activityId) {
         this.activityId = activityId;
+    }
+
+    @Column(name = "`ErectionBidID`", nullable = true, scale = 0, precision = 10)
+    public Integer getErectionBidId() {
+        return this.erectionBidId;
+    }
+
+    public void setErectionBidId(Integer erectionBidId) {
+        this.erectionBidId = erectionBidId;
     }
 
     @Column(name = "`ErectionSpool1`", nullable = true, length = 45)

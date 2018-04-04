@@ -20,41 +20,13 @@ public class GetActivityHistoryPipeTrimResponse implements Serializable {
     @ColumnAlias("ActivityID")
     private Integer activityId;
 
-    @JsonProperty("TrimActivitySelect")
-    @ColumnAlias("TrimActivitySelect")
-    private String trimActivitySelect;
-
-    @JsonProperty("TrimSize")
-    @ColumnAlias("TrimSize")
-    private Float trimSize;
+    @JsonProperty("TrimBidID")
+    @ColumnAlias("TrimBidID")
+    private Integer trimBidId;
 
     @JsonProperty("TrimQuantity")
     @ColumnAlias("TrimQuantity")
     private Short trimQuantity;
-
-    @JsonProperty("TrimHandleType")
-    @ColumnAlias("TrimHandleType")
-    private String trimHandleType;
-
-    @JsonProperty("TrimInstrumentType")
-    @ColumnAlias("TrimInstrumentType")
-    private String trimInstrumentType;
-
-    @JsonProperty("TrimDrawingNumber")
-    @ColumnAlias("TrimDrawingNumber")
-    private String trimDrawingNumber;
-
-    @JsonProperty("TrimLineNumber")
-    @ColumnAlias("TrimLineNumber")
-    private String trimLineNumber;
-
-    @JsonProperty("TrimSheetNumber")
-    @ColumnAlias("TrimSheetNumber")
-    private String trimSheetNumber;
-
-    @JsonProperty("TrimTimeInForm")
-    @ColumnAlias("TrimTimeInForm")
-    private Integer trimTimeInForm;
 
     @JsonProperty("TrimRework")
     @ColumnAlias("TrimRework")
@@ -67,6 +39,10 @@ public class GetActivityHistoryPipeTrimResponse implements Serializable {
     @JsonProperty("ActivityType")
     @ColumnAlias("ActivityType")
     private Short activityType;
+
+    @JsonProperty("TrimTimeInForm")
+    @ColumnAlias("TrimTimeInForm")
+    private Integer trimTimeInForm;
 
     @JsonProperty("Rev")
     @ColumnAlias("Rev")
@@ -84,20 +60,12 @@ public class GetActivityHistoryPipeTrimResponse implements Serializable {
         this.activityId = activityId;
     }
 
-    public String getTrimActivitySelect() {
-        return this.trimActivitySelect;
+    public Integer getTrimBidId() {
+        return this.trimBidId;
     }
 
-    public void setTrimActivitySelect(String trimActivitySelect) {
-        this.trimActivitySelect = trimActivitySelect;
-    }
-
-    public Float getTrimSize() {
-        return this.trimSize;
-    }
-
-    public void setTrimSize(Float trimSize) {
-        this.trimSize = trimSize;
+    public void setTrimBidId(Integer trimBidId) {
+        this.trimBidId = trimBidId;
     }
 
     public Short getTrimQuantity() {
@@ -106,54 +74,6 @@ public class GetActivityHistoryPipeTrimResponse implements Serializable {
 
     public void setTrimQuantity(Short trimQuantity) {
         this.trimQuantity = trimQuantity;
-    }
-
-    public String getTrimHandleType() {
-        return this.trimHandleType;
-    }
-
-    public void setTrimHandleType(String trimHandleType) {
-        this.trimHandleType = trimHandleType;
-    }
-
-    public String getTrimInstrumentType() {
-        return this.trimInstrumentType;
-    }
-
-    public void setTrimInstrumentType(String trimInstrumentType) {
-        this.trimInstrumentType = trimInstrumentType;
-    }
-
-    public String getTrimDrawingNumber() {
-        return this.trimDrawingNumber;
-    }
-
-    public void setTrimDrawingNumber(String trimDrawingNumber) {
-        this.trimDrawingNumber = trimDrawingNumber;
-    }
-
-    public String getTrimLineNumber() {
-        return this.trimLineNumber;
-    }
-
-    public void setTrimLineNumber(String trimLineNumber) {
-        this.trimLineNumber = trimLineNumber;
-    }
-
-    public String getTrimSheetNumber() {
-        return this.trimSheetNumber;
-    }
-
-    public void setTrimSheetNumber(String trimSheetNumber) {
-        this.trimSheetNumber = trimSheetNumber;
-    }
-
-    public Integer getTrimTimeInForm() {
-        return this.trimTimeInForm;
-    }
-
-    public void setTrimTimeInForm(Integer trimTimeInForm) {
-        this.trimTimeInForm = trimTimeInForm;
     }
 
     public Short getTrimRework() {
@@ -180,6 +100,14 @@ public class GetActivityHistoryPipeTrimResponse implements Serializable {
         this.activityType = activityType;
     }
 
+    public Integer getTrimTimeInForm() {
+        return this.trimTimeInForm;
+    }
+
+    public void setTrimTimeInForm(Integer trimTimeInForm) {
+        this.trimTimeInForm = trimTimeInForm;
+    }
+
     public Short getRev() {
         return this.rev;
     }
@@ -202,18 +130,12 @@ public class GetActivityHistoryPipeTrimResponse implements Serializable {
         if (!(o instanceof GetActivityHistoryPipeTrimResponse)) return false;
         final GetActivityHistoryPipeTrimResponse getActivityHistoryPipeTrimResponse = (GetActivityHistoryPipeTrimResponse) o;
         return Objects.equals(getActivityId(), getActivityHistoryPipeTrimResponse.getActivityId()) &&
-                Objects.equals(getTrimActivitySelect(), getActivityHistoryPipeTrimResponse.getTrimActivitySelect()) &&
-                Objects.equals(getTrimSize(), getActivityHistoryPipeTrimResponse.getTrimSize()) &&
+                Objects.equals(getTrimBidId(), getActivityHistoryPipeTrimResponse.getTrimBidId()) &&
                 Objects.equals(getTrimQuantity(), getActivityHistoryPipeTrimResponse.getTrimQuantity()) &&
-                Objects.equals(getTrimHandleType(), getActivityHistoryPipeTrimResponse.getTrimHandleType()) &&
-                Objects.equals(getTrimInstrumentType(), getActivityHistoryPipeTrimResponse.getTrimInstrumentType()) &&
-                Objects.equals(getTrimDrawingNumber(), getActivityHistoryPipeTrimResponse.getTrimDrawingNumber()) &&
-                Objects.equals(getTrimLineNumber(), getActivityHistoryPipeTrimResponse.getTrimLineNumber()) &&
-                Objects.equals(getTrimSheetNumber(), getActivityHistoryPipeTrimResponse.getTrimSheetNumber()) &&
-                Objects.equals(getTrimTimeInForm(), getActivityHistoryPipeTrimResponse.getTrimTimeInForm()) &&
                 Objects.equals(getTrimRework(), getActivityHistoryPipeTrimResponse.getTrimRework()) &&
                 Objects.equals(getTrimNotes(), getActivityHistoryPipeTrimResponse.getTrimNotes()) &&
                 Objects.equals(getActivityType(), getActivityHistoryPipeTrimResponse.getActivityType()) &&
+                Objects.equals(getTrimTimeInForm(), getActivityHistoryPipeTrimResponse.getTrimTimeInForm()) &&
                 Objects.equals(getRev(), getActivityHistoryPipeTrimResponse.getRev()) &&
                 Objects.equals(getTimeStamp(), getActivityHistoryPipeTrimResponse.getTimeStamp());
     }
@@ -221,18 +143,12 @@ public class GetActivityHistoryPipeTrimResponse implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getActivityId(),
-                getTrimActivitySelect(),
-                getTrimSize(),
+                getTrimBidId(),
                 getTrimQuantity(),
-                getTrimHandleType(),
-                getTrimInstrumentType(),
-                getTrimDrawingNumber(),
-                getTrimLineNumber(),
-                getTrimSheetNumber(),
-                getTrimTimeInForm(),
                 getTrimRework(),
                 getTrimNotes(),
                 getActivityType(),
+                getTrimTimeInForm(),
                 getRev(),
                 getTimeStamp());
     }

@@ -8,7 +8,6 @@ package com.psabackoffice.job1111.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -18,13 +17,17 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 public class GetBidActivityMatchesByTestPackagePipeResponse implements Serializable {
 
 
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
+    @JsonProperty("UID")
+    @ColumnAlias("UID")
+    private Integer uid;
 
     @JsonProperty("BidID")
     @ColumnAlias("BidID")
     private Integer bidId;
+
+    @JsonProperty("ProjectServicesRep")
+    @ColumnAlias("ProjectServicesRep")
+    private String projectServicesRep;
 
     @JsonProperty("Scope")
     @ColumnAlias("Scope")
@@ -34,21 +37,21 @@ public class GetBidActivityMatchesByTestPackagePipeResponse implements Serializa
     @ColumnAlias("Phase")
     private String phase;
 
-    @JsonProperty("Area")
-    @ColumnAlias("Area")
-    private String area;
+    @JsonProperty("Stage")
+    @ColumnAlias("Stage")
+    private String stage;
 
-    @JsonProperty("Location")
-    @ColumnAlias("Location")
-    private String location;
+    @JsonProperty("TestPackageNumber")
+    @ColumnAlias("TestPackageNumber")
+    private String testPackageNumber;
 
-    @JsonProperty("Elevation")
-    @ColumnAlias("Elevation")
-    private String elevation;
+    @JsonProperty("WorkPackage")
+    @ColumnAlias("WorkPackage")
+    private String workPackage;
 
-    @JsonProperty("CU")
-    @ColumnAlias("CU")
-    private String cu;
+    @JsonProperty("CostCode")
+    @ColumnAlias("CostCode")
+    private String costCode;
 
     @JsonProperty("P6ID")
     @ColumnAlias("P6ID")
@@ -58,17 +61,29 @@ public class GetBidActivityMatchesByTestPackagePipeResponse implements Serializa
     @ColumnAlias("P6Description")
     private String p6description;
 
-    @JsonProperty("Stage")
-    @ColumnAlias("Stage")
-    private String stage;
+    @JsonProperty("AssignedContractor")
+    @ColumnAlias("AssignedContractor")
+    private String assignedContractor;
 
-    @JsonProperty("TestPackageNumber")
-    @ColumnAlias("TestPackageNumber")
-    private String testPackageNumber;
+    @JsonProperty("Area")
+    @ColumnAlias("Area")
+    private String area;
 
-    @JsonProperty("CostCode")
-    @ColumnAlias("CostCode")
-    private String costCode;
+    @JsonProperty("Location")
+    @ColumnAlias("Location")
+    private String location;
+
+    @JsonProperty("Structure")
+    @ColumnAlias("Structure")
+    private String structure;
+
+    @JsonProperty("CU")
+    @ColumnAlias("CU")
+    private String cu;
+
+    @JsonProperty("Elevation")
+    @ColumnAlias("Elevation")
+    private String elevation;
 
     @JsonProperty("LineNumber")
     @ColumnAlias("LineNumber")
@@ -82,9 +97,33 @@ public class GetBidActivityMatchesByTestPackagePipeResponse implements Serializa
     @ColumnAlias("SheetNumber")
     private Short sheetNumber;
 
-    @JsonProperty("RevisionNumber")
-    @ColumnAlias("RevisionNumber")
-    private Short revisionNumber;
+    @JsonProperty("DrawingRev")
+    @ColumnAlias("DrawingRev")
+    private Short drawingRev;
+
+    @JsonProperty("Description")
+    @ColumnAlias("Description")
+    private String description;
+
+    @JsonProperty("ActivityType")
+    @ColumnAlias("ActivityType")
+    private String activityType;
+
+    @JsonProperty("ActivitySubType")
+    @ColumnAlias("ActivitySubType")
+    private String activitySubType;
+
+    @JsonProperty("ClientMaterialSpec")
+    @ColumnAlias("ClientMaterialSpec")
+    private String clientMaterialSpec;
+
+    @JsonProperty("PerformanceMaterialSpec")
+    @ColumnAlias("PerformanceMaterialSpec")
+    private String performanceMaterialSpec;
+
+    @JsonProperty("Size")
+    @ColumnAlias("Size")
+    private Float size;
 
     @JsonProperty("System")
     @ColumnAlias("System")
@@ -94,33 +133,9 @@ public class GetBidActivityMatchesByTestPackagePipeResponse implements Serializa
     @ColumnAlias("Service")
     private String service;
 
-    @JsonProperty("ClientPipeSpec")
-    @ColumnAlias("ClientPipeSpec")
-    private String clientPipeSpec;
-
-    @JsonProperty("MaterialCode")
-    @ColumnAlias("MaterialCode")
-    private String materialCode;
-
-    @JsonProperty("Description")
-    @ColumnAlias("Description")
-    private String description;
-
     @JsonProperty("ComponentNumber")
     @ColumnAlias("ComponentNumber")
     private String componentNumber;
-
-    @JsonProperty("ECT")
-    @ColumnAlias("ECT")
-    private String ect;
-
-    @JsonProperty("PipingActivityType")
-    @ColumnAlias("PipingActivityType")
-    private String pipingActivityType;
-
-    @JsonProperty("PipeSize")
-    @ColumnAlias("PipeSize")
-    private Float pipeSize;
 
     @JsonProperty("TakeOffQuantity")
     @ColumnAlias("TakeOffQuantity")
@@ -132,7 +147,7 @@ public class GetBidActivityMatchesByTestPackagePipeResponse implements Serializa
 
     @JsonProperty("EstimatedHours")
     @ColumnAlias("EstimatedHours")
-    private Double estimatedHours;
+    private BigDecimal estimatedHours;
 
     @JsonProperty("WBS1")
     @ColumnAlias("WBS1")
@@ -182,48 +197,48 @@ public class GetBidActivityMatchesByTestPackagePipeResponse implements Serializa
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
 
-    @JsonProperty("ReadyForTestingInstalled")
-    @ColumnAlias("ReadyForTestingInstalled")
-    private BigInteger readyForTestingInstalled;
+    @JsonProperty("RFTInstalled")
+    @ColumnAlias("RFTInstalled")
+    private Integer rftinstalled;
 
     @JsonProperty("HydroInstalled")
     @ColumnAlias("HydroInstalled")
-    private BigInteger hydroInstalled;
+    private Integer hydroInstalled;
 
-    @JsonProperty("ClientTurnoverInstalled")
-    @ColumnAlias("ClientTurnoverInstalled")
-    private BigInteger clientTurnoverInstalled;
+    @JsonProperty("CTOInstalled")
+    @ColumnAlias("CTOInstalled")
+    private Integer ctoinstalled;
 
-    @JsonProperty("ReadyForTestingHours")
-    @ColumnAlias("ReadyForTestingHours")
-    private BigDecimal readyForTestingHours;
+    @JsonProperty("RFTHours")
+    @ColumnAlias("RFTHours")
+    private BigDecimal rfthours;
 
     @JsonProperty("HydroHours")
     @ColumnAlias("HydroHours")
     private BigDecimal hydroHours;
 
-    @JsonProperty("ClientTurnoverHours")
-    @ColumnAlias("ClientTurnoverHours")
-    private BigDecimal clientTurnoverHours;
+    @JsonProperty("CTOHours")
+    @ColumnAlias("CTOHours")
+    private BigDecimal ctohours;
 
-    @JsonProperty("EarnedReadyForTestingHours")
-    @ColumnAlias("EarnedReadyForTestingHours")
-    private BigDecimal earnedReadyForTestingHours;
+    @JsonProperty("EarnedRFTHours")
+    @ColumnAlias("EarnedRFTHours")
+    private BigDecimal earnedRfthours;
 
     @JsonProperty("EarnedHydroHours")
     @ColumnAlias("EarnedHydroHours")
     private BigDecimal earnedHydroHours;
 
-    @JsonProperty("EarnedClientTurnoverHours")
-    @ColumnAlias("EarnedClientTurnoverHours")
-    private BigDecimal earnedClientTurnoverHours;
+    @JsonProperty("EarnedCTOHours")
+    @ColumnAlias("EarnedCTOHours")
+    private BigDecimal earnedCtohours;
 
-    public Integer getId() {
-        return this.id;
+    public Integer getUid() {
+        return this.uid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
     public Integer getBidId() {
@@ -232,6 +247,14 @@ public class GetBidActivityMatchesByTestPackagePipeResponse implements Serializa
 
     public void setBidId(Integer bidId) {
         this.bidId = bidId;
+    }
+
+    public String getProjectServicesRep() {
+        return this.projectServicesRep;
+    }
+
+    public void setProjectServicesRep(String projectServicesRep) {
+        this.projectServicesRep = projectServicesRep;
     }
 
     public String getScope() {
@@ -250,36 +273,36 @@ public class GetBidActivityMatchesByTestPackagePipeResponse implements Serializa
         this.phase = phase;
     }
 
-    public String getArea() {
-        return this.area;
+    public String getStage() {
+        return this.stage;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setStage(String stage) {
+        this.stage = stage;
     }
 
-    public String getLocation() {
-        return this.location;
+    public String getTestPackageNumber() {
+        return this.testPackageNumber;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setTestPackageNumber(String testPackageNumber) {
+        this.testPackageNumber = testPackageNumber;
     }
 
-    public String getElevation() {
-        return this.elevation;
+    public String getWorkPackage() {
+        return this.workPackage;
     }
 
-    public void setElevation(String elevation) {
-        this.elevation = elevation;
+    public void setWorkPackage(String workPackage) {
+        this.workPackage = workPackage;
     }
 
-    public String getCu() {
-        return this.cu;
+    public String getCostCode() {
+        return this.costCode;
     }
 
-    public void setCu(String cu) {
-        this.cu = cu;
+    public void setCostCode(String costCode) {
+        this.costCode = costCode;
     }
 
     public String getP6id() {
@@ -298,28 +321,52 @@ public class GetBidActivityMatchesByTestPackagePipeResponse implements Serializa
         this.p6description = p6description;
     }
 
-    public String getStage() {
-        return this.stage;
+    public String getAssignedContractor() {
+        return this.assignedContractor;
     }
 
-    public void setStage(String stage) {
-        this.stage = stage;
+    public void setAssignedContractor(String assignedContractor) {
+        this.assignedContractor = assignedContractor;
     }
 
-    public String getTestPackageNumber() {
-        return this.testPackageNumber;
+    public String getArea() {
+        return this.area;
     }
 
-    public void setTestPackageNumber(String testPackageNumber) {
-        this.testPackageNumber = testPackageNumber;
+    public void setArea(String area) {
+        this.area = area;
     }
 
-    public String getCostCode() {
-        return this.costCode;
+    public String getLocation() {
+        return this.location;
     }
 
-    public void setCostCode(String costCode) {
-        this.costCode = costCode;
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getStructure() {
+        return this.structure;
+    }
+
+    public void setStructure(String structure) {
+        this.structure = structure;
+    }
+
+    public String getCu() {
+        return this.cu;
+    }
+
+    public void setCu(String cu) {
+        this.cu = cu;
+    }
+
+    public String getElevation() {
+        return this.elevation;
+    }
+
+    public void setElevation(String elevation) {
+        this.elevation = elevation;
     }
 
     public String getLineNumber() {
@@ -346,12 +393,60 @@ public class GetBidActivityMatchesByTestPackagePipeResponse implements Serializa
         this.sheetNumber = sheetNumber;
     }
 
-    public Short getRevisionNumber() {
-        return this.revisionNumber;
+    public Short getDrawingRev() {
+        return this.drawingRev;
     }
 
-    public void setRevisionNumber(Short revisionNumber) {
-        this.revisionNumber = revisionNumber;
+    public void setDrawingRev(Short drawingRev) {
+        this.drawingRev = drawingRev;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getActivityType() {
+        return this.activityType;
+    }
+
+    public void setActivityType(String activityType) {
+        this.activityType = activityType;
+    }
+
+    public String getActivitySubType() {
+        return this.activitySubType;
+    }
+
+    public void setActivitySubType(String activitySubType) {
+        this.activitySubType = activitySubType;
+    }
+
+    public String getClientMaterialSpec() {
+        return this.clientMaterialSpec;
+    }
+
+    public void setClientMaterialSpec(String clientMaterialSpec) {
+        this.clientMaterialSpec = clientMaterialSpec;
+    }
+
+    public String getPerformanceMaterialSpec() {
+        return this.performanceMaterialSpec;
+    }
+
+    public void setPerformanceMaterialSpec(String performanceMaterialSpec) {
+        this.performanceMaterialSpec = performanceMaterialSpec;
+    }
+
+    public Float getSize() {
+        return this.size;
+    }
+
+    public void setSize(Float size) {
+        this.size = size;
     }
 
     public String getSystem() {
@@ -370,60 +465,12 @@ public class GetBidActivityMatchesByTestPackagePipeResponse implements Serializa
         this.service = service;
     }
 
-    public String getClientPipeSpec() {
-        return this.clientPipeSpec;
-    }
-
-    public void setClientPipeSpec(String clientPipeSpec) {
-        this.clientPipeSpec = clientPipeSpec;
-    }
-
-    public String getMaterialCode() {
-        return this.materialCode;
-    }
-
-    public void setMaterialCode(String materialCode) {
-        this.materialCode = materialCode;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getComponentNumber() {
         return this.componentNumber;
     }
 
     public void setComponentNumber(String componentNumber) {
         this.componentNumber = componentNumber;
-    }
-
-    public String getEct() {
-        return this.ect;
-    }
-
-    public void setEct(String ect) {
-        this.ect = ect;
-    }
-
-    public String getPipingActivityType() {
-        return this.pipingActivityType;
-    }
-
-    public void setPipingActivityType(String pipingActivityType) {
-        this.pipingActivityType = pipingActivityType;
-    }
-
-    public Float getPipeSize() {
-        return this.pipeSize;
-    }
-
-    public void setPipeSize(Float pipeSize) {
-        this.pipeSize = pipeSize;
     }
 
     public Double getTakeOffQuantity() {
@@ -442,11 +489,11 @@ public class GetBidActivityMatchesByTestPackagePipeResponse implements Serializa
         this.quantityUnit = quantityUnit;
     }
 
-    public Double getEstimatedHours() {
+    public BigDecimal getEstimatedHours() {
         return this.estimatedHours;
     }
 
-    public void setEstimatedHours(Double estimatedHours) {
+    public void setEstimatedHours(BigDecimal estimatedHours) {
         this.estimatedHours = estimatedHours;
     }
 
@@ -546,36 +593,36 @@ public class GetBidActivityMatchesByTestPackagePipeResponse implements Serializa
         this.timeStamp = timeStamp;
     }
 
-    public BigInteger getReadyForTestingInstalled() {
-        return this.readyForTestingInstalled;
+    public Integer getRftinstalled() {
+        return this.rftinstalled;
     }
 
-    public void setReadyForTestingInstalled(BigInteger readyForTestingInstalled) {
-        this.readyForTestingInstalled = readyForTestingInstalled;
+    public void setRftinstalled(Integer rftinstalled) {
+        this.rftinstalled = rftinstalled;
     }
 
-    public BigInteger getHydroInstalled() {
+    public Integer getHydroInstalled() {
         return this.hydroInstalled;
     }
 
-    public void setHydroInstalled(BigInteger hydroInstalled) {
+    public void setHydroInstalled(Integer hydroInstalled) {
         this.hydroInstalled = hydroInstalled;
     }
 
-    public BigInteger getClientTurnoverInstalled() {
-        return this.clientTurnoverInstalled;
+    public Integer getCtoinstalled() {
+        return this.ctoinstalled;
     }
 
-    public void setClientTurnoverInstalled(BigInteger clientTurnoverInstalled) {
-        this.clientTurnoverInstalled = clientTurnoverInstalled;
+    public void setCtoinstalled(Integer ctoinstalled) {
+        this.ctoinstalled = ctoinstalled;
     }
 
-    public BigDecimal getReadyForTestingHours() {
-        return this.readyForTestingHours;
+    public BigDecimal getRfthours() {
+        return this.rfthours;
     }
 
-    public void setReadyForTestingHours(BigDecimal readyForTestingHours) {
-        this.readyForTestingHours = readyForTestingHours;
+    public void setRfthours(BigDecimal rfthours) {
+        this.rfthours = rfthours;
     }
 
     public BigDecimal getHydroHours() {
@@ -586,20 +633,20 @@ public class GetBidActivityMatchesByTestPackagePipeResponse implements Serializa
         this.hydroHours = hydroHours;
     }
 
-    public BigDecimal getClientTurnoverHours() {
-        return this.clientTurnoverHours;
+    public BigDecimal getCtohours() {
+        return this.ctohours;
     }
 
-    public void setClientTurnoverHours(BigDecimal clientTurnoverHours) {
-        this.clientTurnoverHours = clientTurnoverHours;
+    public void setCtohours(BigDecimal ctohours) {
+        this.ctohours = ctohours;
     }
 
-    public BigDecimal getEarnedReadyForTestingHours() {
-        return this.earnedReadyForTestingHours;
+    public BigDecimal getEarnedRfthours() {
+        return this.earnedRfthours;
     }
 
-    public void setEarnedReadyForTestingHours(BigDecimal earnedReadyForTestingHours) {
-        this.earnedReadyForTestingHours = earnedReadyForTestingHours;
+    public void setEarnedRfthours(BigDecimal earnedRfthours) {
+        this.earnedRfthours = earnedRfthours;
     }
 
     public BigDecimal getEarnedHydroHours() {
@@ -610,12 +657,12 @@ public class GetBidActivityMatchesByTestPackagePipeResponse implements Serializa
         this.earnedHydroHours = earnedHydroHours;
     }
 
-    public BigDecimal getEarnedClientTurnoverHours() {
-        return this.earnedClientTurnoverHours;
+    public BigDecimal getEarnedCtohours() {
+        return this.earnedCtohours;
     }
 
-    public void setEarnedClientTurnoverHours(BigDecimal earnedClientTurnoverHours) {
-        this.earnedClientTurnoverHours = earnedClientTurnoverHours;
+    public void setEarnedCtohours(BigDecimal earnedCtohours) {
+        this.earnedCtohours = earnedCtohours;
     }
 
     @Override
@@ -623,32 +670,36 @@ public class GetBidActivityMatchesByTestPackagePipeResponse implements Serializa
         if (this == o) return true;
         if (!(o instanceof GetBidActivityMatchesByTestPackagePipeResponse)) return false;
         final GetBidActivityMatchesByTestPackagePipeResponse getBidActivityMatchesByTestPackagePipeResponse = (GetBidActivityMatchesByTestPackagePipeResponse) o;
-        return Objects.equals(getId(), getBidActivityMatchesByTestPackagePipeResponse.getId()) &&
+        return Objects.equals(getUid(), getBidActivityMatchesByTestPackagePipeResponse.getUid()) &&
                 Objects.equals(getBidId(), getBidActivityMatchesByTestPackagePipeResponse.getBidId()) &&
+                Objects.equals(getProjectServicesRep(), getBidActivityMatchesByTestPackagePipeResponse.getProjectServicesRep()) &&
                 Objects.equals(getScope(), getBidActivityMatchesByTestPackagePipeResponse.getScope()) &&
                 Objects.equals(getPhase(), getBidActivityMatchesByTestPackagePipeResponse.getPhase()) &&
-                Objects.equals(getArea(), getBidActivityMatchesByTestPackagePipeResponse.getArea()) &&
-                Objects.equals(getLocation(), getBidActivityMatchesByTestPackagePipeResponse.getLocation()) &&
-                Objects.equals(getElevation(), getBidActivityMatchesByTestPackagePipeResponse.getElevation()) &&
-                Objects.equals(getCu(), getBidActivityMatchesByTestPackagePipeResponse.getCu()) &&
-                Objects.equals(getP6id(), getBidActivityMatchesByTestPackagePipeResponse.getP6id()) &&
-                Objects.equals(getP6description(), getBidActivityMatchesByTestPackagePipeResponse.getP6description()) &&
                 Objects.equals(getStage(), getBidActivityMatchesByTestPackagePipeResponse.getStage()) &&
                 Objects.equals(getTestPackageNumber(), getBidActivityMatchesByTestPackagePipeResponse.getTestPackageNumber()) &&
+                Objects.equals(getWorkPackage(), getBidActivityMatchesByTestPackagePipeResponse.getWorkPackage()) &&
                 Objects.equals(getCostCode(), getBidActivityMatchesByTestPackagePipeResponse.getCostCode()) &&
+                Objects.equals(getP6id(), getBidActivityMatchesByTestPackagePipeResponse.getP6id()) &&
+                Objects.equals(getP6description(), getBidActivityMatchesByTestPackagePipeResponse.getP6description()) &&
+                Objects.equals(getAssignedContractor(), getBidActivityMatchesByTestPackagePipeResponse.getAssignedContractor()) &&
+                Objects.equals(getArea(), getBidActivityMatchesByTestPackagePipeResponse.getArea()) &&
+                Objects.equals(getLocation(), getBidActivityMatchesByTestPackagePipeResponse.getLocation()) &&
+                Objects.equals(getStructure(), getBidActivityMatchesByTestPackagePipeResponse.getStructure()) &&
+                Objects.equals(getCu(), getBidActivityMatchesByTestPackagePipeResponse.getCu()) &&
+                Objects.equals(getElevation(), getBidActivityMatchesByTestPackagePipeResponse.getElevation()) &&
                 Objects.equals(getLineNumber(), getBidActivityMatchesByTestPackagePipeResponse.getLineNumber()) &&
                 Objects.equals(getEngDrawingNumber(), getBidActivityMatchesByTestPackagePipeResponse.getEngDrawingNumber()) &&
                 Objects.equals(getSheetNumber(), getBidActivityMatchesByTestPackagePipeResponse.getSheetNumber()) &&
-                Objects.equals(getRevisionNumber(), getBidActivityMatchesByTestPackagePipeResponse.getRevisionNumber()) &&
+                Objects.equals(getDrawingRev(), getBidActivityMatchesByTestPackagePipeResponse.getDrawingRev()) &&
+                Objects.equals(getDescription(), getBidActivityMatchesByTestPackagePipeResponse.getDescription()) &&
+                Objects.equals(getActivityType(), getBidActivityMatchesByTestPackagePipeResponse.getActivityType()) &&
+                Objects.equals(getActivitySubType(), getBidActivityMatchesByTestPackagePipeResponse.getActivitySubType()) &&
+                Objects.equals(getClientMaterialSpec(), getBidActivityMatchesByTestPackagePipeResponse.getClientMaterialSpec()) &&
+                Objects.equals(getPerformanceMaterialSpec(), getBidActivityMatchesByTestPackagePipeResponse.getPerformanceMaterialSpec()) &&
+                Objects.equals(getSize(), getBidActivityMatchesByTestPackagePipeResponse.getSize()) &&
                 Objects.equals(getSystem(), getBidActivityMatchesByTestPackagePipeResponse.getSystem()) &&
                 Objects.equals(getService(), getBidActivityMatchesByTestPackagePipeResponse.getService()) &&
-                Objects.equals(getClientPipeSpec(), getBidActivityMatchesByTestPackagePipeResponse.getClientPipeSpec()) &&
-                Objects.equals(getMaterialCode(), getBidActivityMatchesByTestPackagePipeResponse.getMaterialCode()) &&
-                Objects.equals(getDescription(), getBidActivityMatchesByTestPackagePipeResponse.getDescription()) &&
                 Objects.equals(getComponentNumber(), getBidActivityMatchesByTestPackagePipeResponse.getComponentNumber()) &&
-                Objects.equals(getEct(), getBidActivityMatchesByTestPackagePipeResponse.getEct()) &&
-                Objects.equals(getPipingActivityType(), getBidActivityMatchesByTestPackagePipeResponse.getPipingActivityType()) &&
-                Objects.equals(getPipeSize(), getBidActivityMatchesByTestPackagePipeResponse.getPipeSize()) &&
                 Objects.equals(getTakeOffQuantity(), getBidActivityMatchesByTestPackagePipeResponse.getTakeOffQuantity()) &&
                 Objects.equals(getQuantityUnit(), getBidActivityMatchesByTestPackagePipeResponse.getQuantityUnit()) &&
                 Objects.equals(getEstimatedHours(), getBidActivityMatchesByTestPackagePipeResponse.getEstimatedHours()) &&
@@ -664,45 +715,49 @@ public class GetBidActivityMatchesByTestPackagePipeResponse implements Serializa
                 Objects.equals(getWbs10(), getBidActivityMatchesByTestPackagePipeResponse.getWbs10()) &&
                 Objects.equals(getRev(), getBidActivityMatchesByTestPackagePipeResponse.getRev()) &&
                 Objects.equals(getTimeStamp(), getBidActivityMatchesByTestPackagePipeResponse.getTimeStamp()) &&
-                Objects.equals(getReadyForTestingInstalled(), getBidActivityMatchesByTestPackagePipeResponse.getReadyForTestingInstalled()) &&
+                Objects.equals(getRftinstalled(), getBidActivityMatchesByTestPackagePipeResponse.getRftinstalled()) &&
                 Objects.equals(getHydroInstalled(), getBidActivityMatchesByTestPackagePipeResponse.getHydroInstalled()) &&
-                Objects.equals(getClientTurnoverInstalled(), getBidActivityMatchesByTestPackagePipeResponse.getClientTurnoverInstalled()) &&
-                Objects.equals(getReadyForTestingHours(), getBidActivityMatchesByTestPackagePipeResponse.getReadyForTestingHours()) &&
+                Objects.equals(getCtoinstalled(), getBidActivityMatchesByTestPackagePipeResponse.getCtoinstalled()) &&
+                Objects.equals(getRfthours(), getBidActivityMatchesByTestPackagePipeResponse.getRfthours()) &&
                 Objects.equals(getHydroHours(), getBidActivityMatchesByTestPackagePipeResponse.getHydroHours()) &&
-                Objects.equals(getClientTurnoverHours(), getBidActivityMatchesByTestPackagePipeResponse.getClientTurnoverHours()) &&
-                Objects.equals(getEarnedReadyForTestingHours(), getBidActivityMatchesByTestPackagePipeResponse.getEarnedReadyForTestingHours()) &&
+                Objects.equals(getCtohours(), getBidActivityMatchesByTestPackagePipeResponse.getCtohours()) &&
+                Objects.equals(getEarnedRfthours(), getBidActivityMatchesByTestPackagePipeResponse.getEarnedRfthours()) &&
                 Objects.equals(getEarnedHydroHours(), getBidActivityMatchesByTestPackagePipeResponse.getEarnedHydroHours()) &&
-                Objects.equals(getEarnedClientTurnoverHours(), getBidActivityMatchesByTestPackagePipeResponse.getEarnedClientTurnoverHours());
+                Objects.equals(getEarnedCtohours(), getBidActivityMatchesByTestPackagePipeResponse.getEarnedCtohours());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
+        return Objects.hash(getUid(),
                 getBidId(),
+                getProjectServicesRep(),
                 getScope(),
                 getPhase(),
-                getArea(),
-                getLocation(),
-                getElevation(),
-                getCu(),
-                getP6id(),
-                getP6description(),
                 getStage(),
                 getTestPackageNumber(),
+                getWorkPackage(),
                 getCostCode(),
+                getP6id(),
+                getP6description(),
+                getAssignedContractor(),
+                getArea(),
+                getLocation(),
+                getStructure(),
+                getCu(),
+                getElevation(),
                 getLineNumber(),
                 getEngDrawingNumber(),
                 getSheetNumber(),
-                getRevisionNumber(),
+                getDrawingRev(),
+                getDescription(),
+                getActivityType(),
+                getActivitySubType(),
+                getClientMaterialSpec(),
+                getPerformanceMaterialSpec(),
+                getSize(),
                 getSystem(),
                 getService(),
-                getClientPipeSpec(),
-                getMaterialCode(),
-                getDescription(),
                 getComponentNumber(),
-                getEct(),
-                getPipingActivityType(),
-                getPipeSize(),
                 getTakeOffQuantity(),
                 getQuantityUnit(),
                 getEstimatedHours(),
@@ -718,14 +773,14 @@ public class GetBidActivityMatchesByTestPackagePipeResponse implements Serializa
                 getWbs10(),
                 getRev(),
                 getTimeStamp(),
-                getReadyForTestingInstalled(),
+                getRftinstalled(),
                 getHydroInstalled(),
-                getClientTurnoverInstalled(),
-                getReadyForTestingHours(),
+                getCtoinstalled(),
+                getRfthours(),
                 getHydroHours(),
-                getClientTurnoverHours(),
-                getEarnedReadyForTestingHours(),
+                getCtohours(),
+                getEarnedRfthours(),
                 getEarnedHydroHours(),
-                getEarnedClientTurnoverHours());
+                getEarnedCtohours());
     }
 }

@@ -21,41 +21,21 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
     @ColumnAlias("BidID")
     private Integer bidId;
 
-    @JsonProperty("Scope")
-    @ColumnAlias("Scope")
-    private String scope;
+    @JsonProperty("ProjectServicesRep")
+    @ColumnAlias("ProjectServicesRep")
+    private String projectServicesRep;
 
     @JsonProperty("EWONumber")
     @ColumnAlias("EWONumber")
     private Integer ewonumber;
 
+    @JsonProperty("Scope")
+    @ColumnAlias("Scope")
+    private String scope;
+
     @JsonProperty("Phase")
     @ColumnAlias("Phase")
     private String phase;
-
-    @JsonProperty("Area")
-    @ColumnAlias("Area")
-    private String area;
-
-    @JsonProperty("Location")
-    @ColumnAlias("Location")
-    private String location;
-
-    @JsonProperty("Elevation")
-    @ColumnAlias("Elevation")
-    private String elevation;
-
-    @JsonProperty("CU")
-    @ColumnAlias("CU")
-    private String cu;
-
-    @JsonProperty("P6ID")
-    @ColumnAlias("P6ID")
-    private String p6id;
-
-    @JsonProperty("P6Description")
-    @ColumnAlias("P6Description")
-    private String p6description;
 
     @JsonProperty("Stage")
     @ColumnAlias("Stage")
@@ -65,9 +45,45 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
     @ColumnAlias("TestPackageNumber")
     private String testPackageNumber;
 
+    @JsonProperty("WorkPackage")
+    @ColumnAlias("WorkPackage")
+    private String workPackage;
+
     @JsonProperty("CostCode")
     @ColumnAlias("CostCode")
     private String costCode;
+
+    @JsonProperty("P6ID")
+    @ColumnAlias("P6ID")
+    private String p6id;
+
+    @JsonProperty("P6Description")
+    @ColumnAlias("P6Description")
+    private String p6description;
+
+    @JsonProperty("Area")
+    @ColumnAlias("Area")
+    private String area;
+
+    @JsonProperty("Location")
+    @ColumnAlias("Location")
+    private String location;
+
+    @JsonProperty("Structure")
+    @ColumnAlias("Structure")
+    private String structure;
+
+    @JsonProperty("CU")
+    @ColumnAlias("CU")
+    private String cu;
+
+    @JsonProperty("Elevation")
+    @ColumnAlias("Elevation")
+    private String elevation;
+
+    @JsonProperty("SortGroup1")
+    @ColumnAlias("SortGroup1")
+    private String sortGroup1;
 
     @JsonProperty("PieceMark")
     @ColumnAlias("PieceMark")
@@ -85,10 +101,6 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
     @ColumnAlias("ActivityType")
     private String activityType;
 
-    @JsonProperty("MaterialType")
-    @ColumnAlias("MaterialType")
-    private String materialType;
-
     @JsonProperty("ClientMaterialSpec")
     @ColumnAlias("ClientMaterialSpec")
     private String clientMaterialSpec;
@@ -97,21 +109,33 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
     @ColumnAlias("PerformanceMaterialSpec")
     private String performanceMaterialSpec;
 
+    @JsonProperty("MaterialType")
+    @ColumnAlias("MaterialType")
+    private String materialType;
+
     @JsonProperty("Length")
     @ColumnAlias("Length")
-    private Float length;
+    private Double length;
 
     @JsonProperty("Weight")
     @ColumnAlias("Weight")
     private Double weight;
 
-    @JsonProperty("WeldCount")
-    @ColumnAlias("WeldCount")
-    private BigInteger weldCount;
+    @JsonProperty("System")
+    @ColumnAlias("System")
+    private String system;
+
+    @JsonProperty("Service")
+    @ColumnAlias("Service")
+    private String service;
 
     @JsonProperty("TakeOffQuantity")
     @ColumnAlias("TakeOffQuantity")
     private BigDecimal takeOffQuantity;
+
+    @JsonProperty("WeldCount")
+    @ColumnAlias("WeldCount")
+    private BigInteger weldCount;
 
     @JsonProperty("SteelHours")
     @ColumnAlias("SteelHours")
@@ -177,12 +201,12 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
         this.bidId = bidId;
     }
 
-    public String getScope() {
-        return this.scope;
+    public String getProjectServicesRep() {
+        return this.projectServicesRep;
     }
 
-    public void setScope(String scope) {
-        this.scope = scope;
+    public void setProjectServicesRep(String projectServicesRep) {
+        this.projectServicesRep = projectServicesRep;
     }
 
     public Integer getEwonumber() {
@@ -193,60 +217,20 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
         this.ewonumber = ewonumber;
     }
 
+    public String getScope() {
+        return this.scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
+
     public String getPhase() {
         return this.phase;
     }
 
     public void setPhase(String phase) {
         this.phase = phase;
-    }
-
-    public String getArea() {
-        return this.area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
-
-    public String getLocation() {
-        return this.location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getElevation() {
-        return this.elevation;
-    }
-
-    public void setElevation(String elevation) {
-        this.elevation = elevation;
-    }
-
-    public String getCu() {
-        return this.cu;
-    }
-
-    public void setCu(String cu) {
-        this.cu = cu;
-    }
-
-    public String getP6id() {
-        return this.p6id;
-    }
-
-    public void setP6id(String p6id) {
-        this.p6id = p6id;
-    }
-
-    public String getP6description() {
-        return this.p6description;
-    }
-
-    public void setP6description(String p6description) {
-        this.p6description = p6description;
     }
 
     public String getStage() {
@@ -265,12 +249,84 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
         this.testPackageNumber = testPackageNumber;
     }
 
+    public String getWorkPackage() {
+        return this.workPackage;
+    }
+
+    public void setWorkPackage(String workPackage) {
+        this.workPackage = workPackage;
+    }
+
     public String getCostCode() {
         return this.costCode;
     }
 
     public void setCostCode(String costCode) {
         this.costCode = costCode;
+    }
+
+    public String getP6id() {
+        return this.p6id;
+    }
+
+    public void setP6id(String p6id) {
+        this.p6id = p6id;
+    }
+
+    public String getP6description() {
+        return this.p6description;
+    }
+
+    public void setP6description(String p6description) {
+        this.p6description = p6description;
+    }
+
+    public String getArea() {
+        return this.area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getLocation() {
+        return this.location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getStructure() {
+        return this.structure;
+    }
+
+    public void setStructure(String structure) {
+        this.structure = structure;
+    }
+
+    public String getCu() {
+        return this.cu;
+    }
+
+    public void setCu(String cu) {
+        this.cu = cu;
+    }
+
+    public String getElevation() {
+        return this.elevation;
+    }
+
+    public void setElevation(String elevation) {
+        this.elevation = elevation;
+    }
+
+    public String getSortGroup1() {
+        return this.sortGroup1;
+    }
+
+    public void setSortGroup1(String sortGroup1) {
+        this.sortGroup1 = sortGroup1;
     }
 
     public String getPieceMark() {
@@ -305,14 +361,6 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
         this.activityType = activityType;
     }
 
-    public String getMaterialType() {
-        return this.materialType;
-    }
-
-    public void setMaterialType(String materialType) {
-        this.materialType = materialType;
-    }
-
     public String getClientMaterialSpec() {
         return this.clientMaterialSpec;
     }
@@ -329,11 +377,19 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
         this.performanceMaterialSpec = performanceMaterialSpec;
     }
 
-    public Float getLength() {
+    public String getMaterialType() {
+        return this.materialType;
+    }
+
+    public void setMaterialType(String materialType) {
+        this.materialType = materialType;
+    }
+
+    public Double getLength() {
         return this.length;
     }
 
-    public void setLength(Float length) {
+    public void setLength(Double length) {
         this.length = length;
     }
 
@@ -345,12 +401,20 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
         this.weight = weight;
     }
 
-    public BigInteger getWeldCount() {
-        return this.weldCount;
+    public String getSystem() {
+        return this.system;
     }
 
-    public void setWeldCount(BigInteger weldCount) {
-        this.weldCount = weldCount;
+    public void setSystem(String system) {
+        this.system = system;
+    }
+
+    public String getService() {
+        return this.service;
+    }
+
+    public void setService(String service) {
+        this.service = service;
     }
 
     public BigDecimal getTakeOffQuantity() {
@@ -359,6 +423,14 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
 
     public void setTakeOffQuantity(BigDecimal takeOffQuantity) {
         this.takeOffQuantity = takeOffQuantity;
+    }
+
+    public BigInteger getWeldCount() {
+        return this.weldCount;
+    }
+
+    public void setWeldCount(BigInteger weldCount) {
+        this.weldCount = weldCount;
     }
 
     public BigDecimal getSteelHours() {
@@ -479,29 +551,35 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
         if (!(o instanceof GetBidActivityMatchesByTestPackageSteelResponse)) return false;
         final GetBidActivityMatchesByTestPackageSteelResponse getBidActivityMatchesByTestPackageSteelResponse = (GetBidActivityMatchesByTestPackageSteelResponse) o;
         return Objects.equals(getBidId(), getBidActivityMatchesByTestPackageSteelResponse.getBidId()) &&
-                Objects.equals(getScope(), getBidActivityMatchesByTestPackageSteelResponse.getScope()) &&
+                Objects.equals(getProjectServicesRep(), getBidActivityMatchesByTestPackageSteelResponse.getProjectServicesRep()) &&
                 Objects.equals(getEwonumber(), getBidActivityMatchesByTestPackageSteelResponse.getEwonumber()) &&
+                Objects.equals(getScope(), getBidActivityMatchesByTestPackageSteelResponse.getScope()) &&
                 Objects.equals(getPhase(), getBidActivityMatchesByTestPackageSteelResponse.getPhase()) &&
-                Objects.equals(getArea(), getBidActivityMatchesByTestPackageSteelResponse.getArea()) &&
-                Objects.equals(getLocation(), getBidActivityMatchesByTestPackageSteelResponse.getLocation()) &&
-                Objects.equals(getElevation(), getBidActivityMatchesByTestPackageSteelResponse.getElevation()) &&
-                Objects.equals(getCu(), getBidActivityMatchesByTestPackageSteelResponse.getCu()) &&
-                Objects.equals(getP6id(), getBidActivityMatchesByTestPackageSteelResponse.getP6id()) &&
-                Objects.equals(getP6description(), getBidActivityMatchesByTestPackageSteelResponse.getP6description()) &&
                 Objects.equals(getStage(), getBidActivityMatchesByTestPackageSteelResponse.getStage()) &&
                 Objects.equals(getTestPackageNumber(), getBidActivityMatchesByTestPackageSteelResponse.getTestPackageNumber()) &&
+                Objects.equals(getWorkPackage(), getBidActivityMatchesByTestPackageSteelResponse.getWorkPackage()) &&
                 Objects.equals(getCostCode(), getBidActivityMatchesByTestPackageSteelResponse.getCostCode()) &&
+                Objects.equals(getP6id(), getBidActivityMatchesByTestPackageSteelResponse.getP6id()) &&
+                Objects.equals(getP6description(), getBidActivityMatchesByTestPackageSteelResponse.getP6description()) &&
+                Objects.equals(getArea(), getBidActivityMatchesByTestPackageSteelResponse.getArea()) &&
+                Objects.equals(getLocation(), getBidActivityMatchesByTestPackageSteelResponse.getLocation()) &&
+                Objects.equals(getStructure(), getBidActivityMatchesByTestPackageSteelResponse.getStructure()) &&
+                Objects.equals(getCu(), getBidActivityMatchesByTestPackageSteelResponse.getCu()) &&
+                Objects.equals(getElevation(), getBidActivityMatchesByTestPackageSteelResponse.getElevation()) &&
+                Objects.equals(getSortGroup1(), getBidActivityMatchesByTestPackageSteelResponse.getSortGroup1()) &&
                 Objects.equals(getPieceMark(), getBidActivityMatchesByTestPackageSteelResponse.getPieceMark()) &&
                 Objects.equals(getPieceMarkRev(), getBidActivityMatchesByTestPackageSteelResponse.getPieceMarkRev()) &&
                 Objects.equals(getDescription(), getBidActivityMatchesByTestPackageSteelResponse.getDescription()) &&
                 Objects.equals(getActivityType(), getBidActivityMatchesByTestPackageSteelResponse.getActivityType()) &&
-                Objects.equals(getMaterialType(), getBidActivityMatchesByTestPackageSteelResponse.getMaterialType()) &&
                 Objects.equals(getClientMaterialSpec(), getBidActivityMatchesByTestPackageSteelResponse.getClientMaterialSpec()) &&
                 Objects.equals(getPerformanceMaterialSpec(), getBidActivityMatchesByTestPackageSteelResponse.getPerformanceMaterialSpec()) &&
+                Objects.equals(getMaterialType(), getBidActivityMatchesByTestPackageSteelResponse.getMaterialType()) &&
                 Objects.equals(getLength(), getBidActivityMatchesByTestPackageSteelResponse.getLength()) &&
                 Objects.equals(getWeight(), getBidActivityMatchesByTestPackageSteelResponse.getWeight()) &&
-                Objects.equals(getWeldCount(), getBidActivityMatchesByTestPackageSteelResponse.getWeldCount()) &&
+                Objects.equals(getSystem(), getBidActivityMatchesByTestPackageSteelResponse.getSystem()) &&
+                Objects.equals(getService(), getBidActivityMatchesByTestPackageSteelResponse.getService()) &&
                 Objects.equals(getTakeOffQuantity(), getBidActivityMatchesByTestPackageSteelResponse.getTakeOffQuantity()) &&
+                Objects.equals(getWeldCount(), getBidActivityMatchesByTestPackageSteelResponse.getWeldCount()) &&
                 Objects.equals(getSteelHours(), getBidActivityMatchesByTestPackageSteelResponse.getSteelHours()) &&
                 Objects.equals(getWeldHours(), getBidActivityMatchesByTestPackageSteelResponse.getWeldHours()) &&
                 Objects.equals(getWbs1(), getBidActivityMatchesByTestPackageSteelResponse.getWbs1()) &&
@@ -521,29 +599,35 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
     @Override
     public int hashCode() {
         return Objects.hash(getBidId(),
-                getScope(),
+                getProjectServicesRep(),
                 getEwonumber(),
+                getScope(),
                 getPhase(),
-                getArea(),
-                getLocation(),
-                getElevation(),
-                getCu(),
-                getP6id(),
-                getP6description(),
                 getStage(),
                 getTestPackageNumber(),
+                getWorkPackage(),
                 getCostCode(),
+                getP6id(),
+                getP6description(),
+                getArea(),
+                getLocation(),
+                getStructure(),
+                getCu(),
+                getElevation(),
+                getSortGroup1(),
                 getPieceMark(),
                 getPieceMarkRev(),
                 getDescription(),
                 getActivityType(),
-                getMaterialType(),
                 getClientMaterialSpec(),
                 getPerformanceMaterialSpec(),
+                getMaterialType(),
                 getLength(),
                 getWeight(),
-                getWeldCount(),
+                getSystem(),
+                getService(),
                 getTakeOffQuantity(),
+                getWeldCount(),
                 getSteelHours(),
                 getWeldHours(),
                 getWbs1(),

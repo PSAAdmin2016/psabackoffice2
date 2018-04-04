@@ -29,11 +29,9 @@ import org.hibernate.annotations.FetchMode;
 public class PipeDemo implements Serializable {
 
     private Integer activityId;
-    private String demoDrawingNumber;
-    private String demoLineNumber;
-    private String demoSheetNumber;
+    private Integer demoBidId;
+    private String demoDescription;
     private Short demoQuantity;
-    private Float demoSize;
     private String demoNotes;
     private Short activityType;
     private Short demoTimeInForm;
@@ -51,31 +49,22 @@ public class PipeDemo implements Serializable {
         this.activityId = activityId;
     }
 
-    @Column(name = "`DemoDrawingNumber`", nullable = true, length = 45)
-    public String getDemoDrawingNumber() {
-        return this.demoDrawingNumber;
+    @Column(name = "`DemoBidID`", nullable = true, scale = 0, precision = 10)
+    public Integer getDemoBidId() {
+        return this.demoBidId;
     }
 
-    public void setDemoDrawingNumber(String demoDrawingNumber) {
-        this.demoDrawingNumber = demoDrawingNumber;
+    public void setDemoBidId(Integer demoBidId) {
+        this.demoBidId = demoBidId;
     }
 
-    @Column(name = "`DemoLineNumber`", nullable = true, length = 45)
-    public String getDemoLineNumber() {
-        return this.demoLineNumber;
+    @Column(name = "`DemoDescription`", nullable = true, length = 255)
+    public String getDemoDescription() {
+        return this.demoDescription;
     }
 
-    public void setDemoLineNumber(String demoLineNumber) {
-        this.demoLineNumber = demoLineNumber;
-    }
-
-    @Column(name = "`DemoSheetNumber`", nullable = true, length = 3)
-    public String getDemoSheetNumber() {
-        return this.demoSheetNumber;
-    }
-
-    public void setDemoSheetNumber(String demoSheetNumber) {
-        this.demoSheetNumber = demoSheetNumber;
+    public void setDemoDescription(String demoDescription) {
+        this.demoDescription = demoDescription;
     }
 
     @Column(name = "`DemoQuantity`", nullable = true, scale = 0, precision = 5)
@@ -85,15 +74,6 @@ public class PipeDemo implements Serializable {
 
     public void setDemoQuantity(Short demoQuantity) {
         this.demoQuantity = demoQuantity;
-    }
-
-    @Column(name = "`DemoSize`", nullable = true, scale = 2, precision = 5)
-    public Float getDemoSize() {
-        return this.demoSize;
-    }
-
-    public void setDemoSize(Float demoSize) {
-        this.demoSize = demoSize;
     }
 
     @Column(name = "`DemoNotes`", nullable = true, length = 255)

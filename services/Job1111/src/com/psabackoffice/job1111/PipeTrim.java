@@ -29,18 +29,12 @@ import org.hibernate.annotations.FetchMode;
 public class PipeTrim implements Serializable {
 
     private Integer activityId;
-    private String trimActivitySelect;
-    private Float trimSize;
+    private Integer trimBidId;
     private Short trimQuantity;
-    private String trimHandleType;
-    private String trimInstrumentType;
-    private String trimDrawingNumber;
-    private String trimLineNumber;
-    private String trimSheetNumber;
-    private Short trimTimeInForm;
     private Short trimRework;
     private String trimNotes;
     private Short activityType;
+    private Short trimTimeInForm;
     private short rev;
     private Timestamp timeStamp;
     private SubmissionActivityStatus submissionActivityStatus;
@@ -55,22 +49,13 @@ public class PipeTrim implements Serializable {
         this.activityId = activityId;
     }
 
-    @Column(name = "`TrimActivitySelect`", nullable = true, length = 32)
-    public String getTrimActivitySelect() {
-        return this.trimActivitySelect;
+    @Column(name = "`TrimBidID`", nullable = true, scale = 0, precision = 10)
+    public Integer getTrimBidId() {
+        return this.trimBidId;
     }
 
-    public void setTrimActivitySelect(String trimActivitySelect) {
-        this.trimActivitySelect = trimActivitySelect;
-    }
-
-    @Column(name = "`TrimSize`", nullable = true, scale = 2, precision = 5)
-    public Float getTrimSize() {
-        return this.trimSize;
-    }
-
-    public void setTrimSize(Float trimSize) {
-        this.trimSize = trimSize;
+    public void setTrimBidId(Integer trimBidId) {
+        this.trimBidId = trimBidId;
     }
 
     @Column(name = "`TrimQuantity`", nullable = true, scale = 0, precision = 3)
@@ -80,60 +65,6 @@ public class PipeTrim implements Serializable {
 
     public void setTrimQuantity(Short trimQuantity) {
         this.trimQuantity = trimQuantity;
-    }
-
-    @Column(name = "`TrimHandleType`", nullable = true, length = 8)
-    public String getTrimHandleType() {
-        return this.trimHandleType;
-    }
-
-    public void setTrimHandleType(String trimHandleType) {
-        this.trimHandleType = trimHandleType;
-    }
-
-    @Column(name = "`TrimInstrumentType`", nullable = true, length = 12)
-    public String getTrimInstrumentType() {
-        return this.trimInstrumentType;
-    }
-
-    public void setTrimInstrumentType(String trimInstrumentType) {
-        this.trimInstrumentType = trimInstrumentType;
-    }
-
-    @Column(name = "`TrimDrawingNumber`", nullable = true, length = 45)
-    public String getTrimDrawingNumber() {
-        return this.trimDrawingNumber;
-    }
-
-    public void setTrimDrawingNumber(String trimDrawingNumber) {
-        this.trimDrawingNumber = trimDrawingNumber;
-    }
-
-    @Column(name = "`TrimLineNumber`", nullable = true, length = 45)
-    public String getTrimLineNumber() {
-        return this.trimLineNumber;
-    }
-
-    public void setTrimLineNumber(String trimLineNumber) {
-        this.trimLineNumber = trimLineNumber;
-    }
-
-    @Column(name = "`TrimSheetNumber`", nullable = true, length = 3)
-    public String getTrimSheetNumber() {
-        return this.trimSheetNumber;
-    }
-
-    public void setTrimSheetNumber(String trimSheetNumber) {
-        this.trimSheetNumber = trimSheetNumber;
-    }
-
-    @Column(name = "`TrimTimeInForm`", nullable = true, scale = 0, precision = 5)
-    public Short getTrimTimeInForm() {
-        return this.trimTimeInForm;
-    }
-
-    public void setTrimTimeInForm(Short trimTimeInForm) {
-        this.trimTimeInForm = trimTimeInForm;
     }
 
     @Column(name = "`TrimRework`", nullable = true, scale = 0, precision = 3)
@@ -161,6 +92,15 @@ public class PipeTrim implements Serializable {
 
     public void setActivityType(Short activityType) {
         this.activityType = activityType;
+    }
+
+    @Column(name = "`TrimTimeInForm`", nullable = true, scale = 0, precision = 5)
+    public Short getTrimTimeInForm() {
+        return this.trimTimeInForm;
+    }
+
+    public void setTrimTimeInForm(Short trimTimeInForm) {
+        this.trimTimeInForm = trimTimeInForm;
     }
 
     @Column(name = "`Rev`", nullable = false, scale = 0, precision = 3)

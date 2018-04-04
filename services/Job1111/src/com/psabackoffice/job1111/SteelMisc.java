@@ -29,7 +29,7 @@ import org.hibernate.annotations.FetchMode;
 public class SteelMisc implements Serializable {
 
     private Integer activityId;
-    private String miscArea;
+    private String miscSortGroup1;
     private String miscPieceNumber;
     private Short miscQuantity;
     private Short miscRework;
@@ -50,13 +50,13 @@ public class SteelMisc implements Serializable {
         this.activityId = activityId;
     }
 
-    @Column(name = "`MiscArea`", nullable = true, length = 45)
-    public String getMiscArea() {
-        return this.miscArea;
+    @Column(name = "`MiscSortGroup1`", nullable = true, length = 45)
+    public String getMiscSortGroup1() {
+        return this.miscSortGroup1;
     }
 
-    public void setMiscArea(String miscArea) {
-        this.miscArea = miscArea;
+    public void setMiscSortGroup1(String miscSortGroup1) {
+        this.miscSortGroup1 = miscSortGroup1;
     }
 
     @Column(name = "`MiscPieceNumber`", nullable = true, length = 45)

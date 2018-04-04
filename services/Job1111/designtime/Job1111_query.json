@@ -3,18 +3,18 @@
     "name" : "CheckSASLock",
     "description" : "No description is provided",
     "version" : "V1",
-    "queryString" : "SELECT sas.LockField \nFROM SubmissionActivityStatus sas\nWHERE ActivityID = :FieldActivityID",
-    "countQueryString" : "select count(*) from (SELECT sas.LockField \nFROM SubmissionActivityStatus sas\nWHERE ActivityID = :FieldActivityID) wmTempTable",
+    "queryString" : "SELECT sas.LockField \nFROM SubmissionActivityStatus sas\nWHERE ActivityID = :ActivityID",
+    "countQueryString" : "select count(*) from (SELECT sas.LockField \nFROM SubmissionActivityStatus sas\nWHERE ActivityID = :ActivityID) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "FieldActivityID",
+      "name" : "ActivityID",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
+      "variableName" : "",
+      "testValue" : "648",
       "required" : true
     } ],
     "request" : {
@@ -43,35 +43,35 @@
     "name" : "CreateSSNote",
     "description" : "Creates a Submission Note",
     "version" : "V1",
-    "queryString" : "INSERT INTO SASNotes (`ActivityID`, `UserID` ,`Notes`) \nVALUES (:FieldActivityID, :CreatedBy ,:Note)",
+    "queryString" : "INSERT INTO SASNotes (`ActivityID`, `UserID` ,`Notes`) \nVALUES (:ActivityID, :CreatedBy ,:Note)",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
     "type" : "INSERT",
     "parameters" : [ {
-      "name" : "FieldActivityID",
-      "type" : "string",
+      "name" : "ActivityID",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
+      "variableName" : "",
+      "testValue" : "648",
       "required" : true
     }, {
       "name" : "CreatedBy",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
-      "required" : false
+      "required" : true
     }, {
       "name" : "Note",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "TestNote",
-      "required" : false
+      "required" : true
     } ],
     "request" : {
       "wrapped" : true,
@@ -89,8 +89,8 @@
     "name" : "GetActivitiesPendingApproval",
     "description" : "Get all activities pending PS Approval",
     "version" : "V1",
-    "queryString" : "SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \npe.ErectionSpool1 AS Spool1,COALESCE(pe.ErectionSpool2, 'N/A') AS Spool2, \npe.ErectionLineNumber AS Line1, pe.ErectionDrawingNumber AS Drawing1, pe.ErectionSheetNumber AS Sheet1, \npe.ErectionLineNumber AS Line2, pe.ErectionDrawingNumber AS Drawing2, pe.ErectionSheetNumber AS Sheet2, \npe.ErectionPipeSize AS Size, pe.ErectionNotes AS Notes,\n(COALESCE(pe.ErectionLengthSpool1,0) + COALESCE(pe.ErectionLengthSpool2,0) + COALESCE(pe.ErectionLengthSpool3,0) + COALESCE(pe.ErectionLengthSpool4,0) + COALESCE(pe.ErectionLengthSpool5,0) + COALESCE(pe.ErectionLengthSpool6,0)) AS Quantity, \n'N/A' AS Area, 'N/A' AS PercentClaim, pe.ErectionRework AS Rework\nFROM SubmissionActivityStatus sas\n\n\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PipeErection pe\n\tON pe.ActivityID = sas.ActivityID\n\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n \n \nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \npc.ConnectionSpool1, pc.ConnectionSpool2, \npc.ConnectionLineNumber AS Line1, pc.ConnectionDrawingNumber AS DWG1, pc.ConnectionSheetNumber AS Sheet1,\nCOALESCE(sl.LineNumber,'N/A') AS Line2, COALESCE(sl.DrawingNumber,'N/A') AS DWG2, COALESCE(sl.Sheetnumber,'N/A') AS Sheet2,\npc.ConnectionSize , pc.ConnectionNotes, pc.ConnectionQuantity AS ConnectionInstalled\n, 'N/A' AS Area, 'N/A' AS PercentClaim, pc.ConnectionRework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PipeConnection pc\n\tON pc.ActivityID = sas.ActivityID\nLEFT JOIN REF_SpoolList sl\n\tON sl.SpoolNumber = pc.ConnectionSpool2\n\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \npw.WeldSpool1, pw.WeldSpool2, \npw.WeldLineNumber, pw.WeldDrawingNumber, pw.WeldSheetNumber, \nCOALESCE(sl.LineNumber,'N/A') AS Line2, COALESCE(sl.DrawingNumber,'N/A') AS DWG2, COALESCE(sl.Sheetnumber,'N/A') AS Sheet2,\npw.WeldSize , pw.WeldNotes, COALESCE((pw.WeldPercentCompleted),0) AS WeldInstalled\n, 'N/A' AS Area, 'N/A' AS PercentClaim, pw.WeldRework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus \nJOIN PipeWeld pw\n\tON pw.ActivityID = sas.ActivityID\nLEFT JOIN REF_SpoolList sl\n\tON sl.SpoolNumber = pw.WeldSpool2\n    \nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \npt.TrimLineNumber, pt.TrimDrawingNumber, pt.TrimSheetNumber, \npt.TrimLineNumber AS Line2, pt.TrimDrawingNumber AS DWG2, pt.TrimSheetNumber AS Sheet2,\npt.TrimSize , pt.TrimNotes, pt.TrimQuantity\n, 'N/A' AS Area, 'N/A' AS PercentClaim, pt.TrimRework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus      \nJOIN PipeTrim pt\n\tON pt.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \npsu.SupportLineNumber, psu.SupportDrawingNumber, psu.SupportSheetNumber, \npsu.SupportLineNumber AS Line2, psu.SupportDrawingNumber AS DWG2, psu.SupportSheetNumber AS Sheet2,\n'N/A' AS SupportSize , psu.SupportNotes, COALESCE((psu.SupportPercentCompleted),0) AS SupportInstalled\n, 'N/A' AS Area, 'N/A' AS PercentClaim, psu.SupportRework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PipeSupports psu\n\tON psu.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \npte.TestingTestPackageNumber, 'N/A' AS DrawingNumber, pte.TestingRework AS SheetNumber, \npte.TestingTestPackageNumber AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2,\n'N/A' AS Size , pte.TestingNotes, 1 AS TestingQuantity, \n'N/A' AS Area, 'N/A' AS PercentClaim, pte.TestingRework AS Rework\n            \nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PipeTesting pte\n\tON pte.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \npd.DemoLineNumber, pd.DemoDrawingNumber, pd.DemoSheetNumber, \npd.DemoLineNumber AS Line2, pd.DemoDrawingNumber AS DWG2, pd.DemoSheetNumber AS Sheet2,\n'N/A' AS DemoSize , pd.DemoNotes, COALESCE(pd.DemoQuantity,0) AS DemoQuantity,\n'N/A' AS Area, 'N/A' AS PercentClaim, 0 AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PipeDemo pd\n\tON pd.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n \nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \npm.MiscLineNumber, pm.MiscDrawingNumber, pm.MiscSheetNumber, \npm.MiscLineNumber AS Line2, pm.MiscDrawingNumber AS DWG2, pm.MiscSheetNumber AS Sheet2,\n'N/A' AS MiscSize , pm.MiscNotes, pm.MiscQuantity AS MiscInstalled,\n'N/A' AS Area, 'N/A' AS PercentClaim, pm.MiscRework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\t\nJOIN PipeMisc pm\n\tON pm.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \newo.EWOLineNumber, ewo.EWODrawingNumber, ewo.EWOSheetNumber, \newo.EWOLineNumber AS Line2, ewo.EWODrawingNumber AS DWG2, ewo.EWOSheetNumber AS Sheet2,\n'N/A' AS EWOSize , ewo.EWONotes, 'N/A' AS TestingEarned,\n'N/A' AS Area, 'N/A' AS PercentClaim, ewo.EWORework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN SubsEWO ewo\n\tON ewo.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n \nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, \nstlfa.FAPieceNumber AS Spool1, 'N/A' AS Spool2, \n'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \n'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \nstlfa.FANotes, stlfa.FAQuantity, stlfa.FAArea, stlfa.FAPercentCompleted AS PercentClaim, stlfa.FARework AS Rework\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN SteelFA stlfa\n\tON stlfa.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, \nstld.DemoBidID AS Spool1, 'N/A' AS Spool2, \n'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \n'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \nstld.DemoNotes, stld.DemoQuantity, std.Area, stld.DemoPercentCompleted AS PercentClaim, 0 AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN SteelDemo stld\n\tON stld.ActivityID = sas.ActivityID\nJOIN SteelTrackerDetails std\n\tON std.BidID = stld.DemoBidID\n\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \nstlsp.SellTestPackageNumber AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \nstlsp.SellTestPackageNumber AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \nstlsp.SellNotes, 1, 'N/A', 1.00 AS PercentClaim, 0 AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN SteelSellPackage stlsp\n\tON stlsp.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, \nstlm.MiscPieceNumber AS Spool1, 'N/A' AS Spool2, \n'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \n'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \nstlm.MiscNotes, stlm.MiscQuantity, stlm.MiscArea, 1.00 AS PercentClaim, stlm.MiscRework AS Rework\n \nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN SteelMisc stlm\n\tON stlm.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'CIVIL' AS Craft, \ncfa.FABidID AS Spool1, 'N/A' AS Spool2, \n'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \n'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \ncfa.FANotes, IF(cfa.ActivityType = 70, (cfa.FAPercentCompleted * ctd.TakeOffQuantity), cfa.FAQuantity) AS Quantity, 'N/A' AS Area, cfa.FAPercentCompleted AS PercentClaim, cfa.FARework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN CivilFA cfa\n\tON cfa.ActivityID = sas.ActivityID\nJOIN CivilTrackerDetails ctd\n\tON ctd.BidID =  cfa.FABidID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'CIVIL' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \ncsp.SellTestPackageNumber AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \ncsp.SellTestPackageNumber AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \ncsp.SellNotes, 'N/A' AS Quantity, 'N/A' AS Area, 'N/A' PercentClaim, 0 AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN CivilSellPackage csp\n\tON csp.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'EQUIP' AS Craft,\nefa.FATagNumber AS Spool1, efa.FABidID AS Spool2, \nefa.FAActivitySelect AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \n'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \nefa.FANotes, efa.FAQuantity AS Quantity, 'N/A' AS Area, efa.FAPercentCompleted AS PercentClaim, efa.FARework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN EquipFA efa\n\tON efa.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)",
-    "countQueryString" : "select count(*) from (SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \npe.ErectionSpool1 AS Spool1,COALESCE(pe.ErectionSpool2, 'N/A') AS Spool2, \npe.ErectionLineNumber AS Line1, pe.ErectionDrawingNumber AS Drawing1, pe.ErectionSheetNumber AS Sheet1, \npe.ErectionLineNumber AS Line2, pe.ErectionDrawingNumber AS Drawing2, pe.ErectionSheetNumber AS Sheet2, \npe.ErectionPipeSize AS Size, pe.ErectionNotes AS Notes,\n(COALESCE(pe.ErectionLengthSpool1,0) + COALESCE(pe.ErectionLengthSpool2,0) + COALESCE(pe.ErectionLengthSpool3,0) + COALESCE(pe.ErectionLengthSpool4,0) + COALESCE(pe.ErectionLengthSpool5,0) + COALESCE(pe.ErectionLengthSpool6,0)) AS Quantity, \n'N/A' AS Area, 'N/A' AS PercentClaim, pe.ErectionRework AS Rework\nFROM SubmissionActivityStatus sas\n\n\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PipeErection pe\n\tON pe.ActivityID = sas.ActivityID\n\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n \n \nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \npc.ConnectionSpool1, pc.ConnectionSpool2, \npc.ConnectionLineNumber AS Line1, pc.ConnectionDrawingNumber AS DWG1, pc.ConnectionSheetNumber AS Sheet1,\nCOALESCE(sl.LineNumber,'N/A') AS Line2, COALESCE(sl.DrawingNumber,'N/A') AS DWG2, COALESCE(sl.Sheetnumber,'N/A') AS Sheet2,\npc.ConnectionSize , pc.ConnectionNotes, pc.ConnectionQuantity AS ConnectionInstalled\n, 'N/A' AS Area, 'N/A' AS PercentClaim, pc.ConnectionRework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PipeConnection pc\n\tON pc.ActivityID = sas.ActivityID\nLEFT JOIN REF_SpoolList sl\n\tON sl.SpoolNumber = pc.ConnectionSpool2\n\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \npw.WeldSpool1, pw.WeldSpool2, \npw.WeldLineNumber, pw.WeldDrawingNumber, pw.WeldSheetNumber, \nCOALESCE(sl.LineNumber,'N/A') AS Line2, COALESCE(sl.DrawingNumber,'N/A') AS DWG2, COALESCE(sl.Sheetnumber,'N/A') AS Sheet2,\npw.WeldSize , pw.WeldNotes, COALESCE((pw.WeldPercentCompleted),0) AS WeldInstalled\n, 'N/A' AS Area, 'N/A' AS PercentClaim, pw.WeldRework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus \nJOIN PipeWeld pw\n\tON pw.ActivityID = sas.ActivityID\nLEFT JOIN REF_SpoolList sl\n\tON sl.SpoolNumber = pw.WeldSpool2\n    \nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \npt.TrimLineNumber, pt.TrimDrawingNumber, pt.TrimSheetNumber, \npt.TrimLineNumber AS Line2, pt.TrimDrawingNumber AS DWG2, pt.TrimSheetNumber AS Sheet2,\npt.TrimSize , pt.TrimNotes, pt.TrimQuantity\n, 'N/A' AS Area, 'N/A' AS PercentClaim, pt.TrimRework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus      \nJOIN PipeTrim pt\n\tON pt.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \npsu.SupportLineNumber, psu.SupportDrawingNumber, psu.SupportSheetNumber, \npsu.SupportLineNumber AS Line2, psu.SupportDrawingNumber AS DWG2, psu.SupportSheetNumber AS Sheet2,\n'N/A' AS SupportSize , psu.SupportNotes, COALESCE((psu.SupportPercentCompleted),0) AS SupportInstalled\n, 'N/A' AS Area, 'N/A' AS PercentClaim, psu.SupportRework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PipeSupports psu\n\tON psu.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \npte.TestingTestPackageNumber, 'N/A' AS DrawingNumber, pte.TestingRework AS SheetNumber, \npte.TestingTestPackageNumber AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2,\n'N/A' AS Size , pte.TestingNotes, 1 AS TestingQuantity, \n'N/A' AS Area, 'N/A' AS PercentClaim, pte.TestingRework AS Rework\n            \nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PipeTesting pte\n\tON pte.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \npd.DemoLineNumber, pd.DemoDrawingNumber, pd.DemoSheetNumber, \npd.DemoLineNumber AS Line2, pd.DemoDrawingNumber AS DWG2, pd.DemoSheetNumber AS Sheet2,\n'N/A' AS DemoSize , pd.DemoNotes, COALESCE(pd.DemoQuantity,0) AS DemoQuantity,\n'N/A' AS Area, 'N/A' AS PercentClaim, 0 AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PipeDemo pd\n\tON pd.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n \nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \npm.MiscLineNumber, pm.MiscDrawingNumber, pm.MiscSheetNumber, \npm.MiscLineNumber AS Line2, pm.MiscDrawingNumber AS DWG2, pm.MiscSheetNumber AS Sheet2,\n'N/A' AS MiscSize , pm.MiscNotes, pm.MiscQuantity AS MiscInstalled,\n'N/A' AS Area, 'N/A' AS PercentClaim, pm.MiscRework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\t\nJOIN PipeMisc pm\n\tON pm.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \newo.EWOLineNumber, ewo.EWODrawingNumber, ewo.EWOSheetNumber, \newo.EWOLineNumber AS Line2, ewo.EWODrawingNumber AS DWG2, ewo.EWOSheetNumber AS Sheet2,\n'N/A' AS EWOSize , ewo.EWONotes, 'N/A' AS TestingEarned,\n'N/A' AS Area, 'N/A' AS PercentClaim, ewo.EWORework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN SubsEWO ewo\n\tON ewo.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n \nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, \nstlfa.FAPieceNumber AS Spool1, 'N/A' AS Spool2, \n'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \n'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \nstlfa.FANotes, stlfa.FAQuantity, stlfa.FAArea, stlfa.FAPercentCompleted AS PercentClaim, stlfa.FARework AS Rework\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN SteelFA stlfa\n\tON stlfa.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, \nstld.DemoBidID AS Spool1, 'N/A' AS Spool2, \n'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \n'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \nstld.DemoNotes, stld.DemoQuantity, std.Area, stld.DemoPercentCompleted AS PercentClaim, 0 AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN SteelDemo stld\n\tON stld.ActivityID = sas.ActivityID\nJOIN SteelTrackerDetails std\n\tON std.BidID = stld.DemoBidID\n\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \nstlsp.SellTestPackageNumber AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \nstlsp.SellTestPackageNumber AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \nstlsp.SellNotes, 1, 'N/A', 1.00 AS PercentClaim, 0 AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN SteelSellPackage stlsp\n\tON stlsp.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, \nstlm.MiscPieceNumber AS Spool1, 'N/A' AS Spool2, \n'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \n'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \nstlm.MiscNotes, stlm.MiscQuantity, stlm.MiscArea, 1.00 AS PercentClaim, stlm.MiscRework AS Rework\n \nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN SteelMisc stlm\n\tON stlm.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'CIVIL' AS Craft, \ncfa.FABidID AS Spool1, 'N/A' AS Spool2, \n'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \n'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \ncfa.FANotes, IF(cfa.ActivityType = 70, (cfa.FAPercentCompleted * ctd.TakeOffQuantity), cfa.FAQuantity) AS Quantity, 'N/A' AS Area, cfa.FAPercentCompleted AS PercentClaim, cfa.FARework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN CivilFA cfa\n\tON cfa.ActivityID = sas.ActivityID\nJOIN CivilTrackerDetails ctd\n\tON ctd.BidID =  cfa.FABidID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'CIVIL' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \ncsp.SellTestPackageNumber AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \ncsp.SellTestPackageNumber AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \ncsp.SellNotes, 'N/A' AS Quantity, 'N/A' AS Area, 'N/A' PercentClaim, 0 AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN CivilSellPackage csp\n\tON csp.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'EQUIP' AS Craft,\nefa.FATagNumber AS Spool1, efa.FABidID AS Spool2, \nefa.FAActivitySelect AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \n'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \nefa.FANotes, efa.FAQuantity AS Quantity, 'N/A' AS Area, efa.FAPercentCompleted AS PercentClaim, efa.FARework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN EquipFA efa\n\tON efa.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)) wmTempTable",
+    "queryString" : "SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \npe.ErectionSpool1 AS Spool1,COALESCE(pe.ErectionSpool2, 'N/A') AS Spool2, \npe.ErectionLineNumber AS Line1, pe.ErectionDrawingNumber AS Drawing1, pe.ErectionSheetNumber AS Sheet1, \npe.ErectionLineNumber AS Line2, pe.ErectionDrawingNumber AS Drawing2, pe.ErectionSheetNumber AS Sheet2, \npe.ErectionPipeSize AS Size, pe.ErectionNotes AS Notes,\n(COALESCE(pe.ErectionLengthSpool1,0) + COALESCE(pe.ErectionLengthSpool2,0) + COALESCE(pe.ErectionLengthSpool3,0) + COALESCE(pe.ErectionLengthSpool4,0) + COALESCE(pe.ErectionLengthSpool5,0) + COALESCE(pe.ErectionLengthSpool6,0)) AS Quantity, \n'N/A' AS Area, 'N/A' AS PercentClaim, pe.ErectionRework AS Rework\nFROM SubmissionActivityStatus sas\n\n\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PipeErection pe\n\tON pe.ActivityID = sas.ActivityID\n\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n \n \nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \npc.ConnectionSpool1, pc.ConnectionSpool2, \npc.ConnectionLineNumber AS Line1, pc.ConnectionDrawingNumber AS DWG1, pc.ConnectionSheetNumber AS Sheet1,\nCOALESCE(sl.LineNumber,'N/A') AS Line2, COALESCE(sl.DrawingNumber,'N/A') AS DWG2, COALESCE(sl.Sheetnumber,'N/A') AS Sheet2,\npc.ConnectionSize , pc.ConnectionNotes, pc.ConnectionQuantity AS ConnectionInstalled\n, 'N/A' AS Area, 'N/A' AS PercentClaim, pc.ConnectionRework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PipeConnection pc\n\tON pc.ActivityID = sas.ActivityID\nLEFT JOIN REF_SpoolList sl\n\tON sl.SpoolNumber = pc.ConnectionSpool2\n\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \npw.WeldSpool1, pw.WeldSpool2, \npw.WeldLineNumber, pw.WeldDrawingNumber, pw.WeldSheetNumber, \nCOALESCE(sl.LineNumber,'N/A') AS Line2, COALESCE(sl.DrawingNumber,'N/A') AS DWG2, COALESCE(sl.Sheetnumber,'N/A') AS Sheet2,\npw.WeldSize , pw.WeldNotes, COALESCE((pw.WeldPercentCompleted),0) AS WeldInstalled\n, 'N/A' AS Area, 'N/A' AS PercentClaim, pw.WeldRework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus \nJOIN PipeWeld pw\n\tON pw.ActivityID = sas.ActivityID\nLEFT JOIN REF_SpoolList sl\n\tON sl.SpoolNumber = pw.WeldSpool2\n    \nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \npt.TrimLineNumber, pt.TrimDrawingNumber, pt.TrimSheetNumber, \npt.TrimLineNumber AS Line2, pt.TrimDrawingNumber AS DWG2, pt.TrimSheetNumber AS Sheet2,\npt.TrimSize , pt.TrimNotes, pt.TrimQuantity\n, 'N/A' AS Area, 'N/A' AS PercentClaim, pt.TrimRework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus      \nJOIN PipeTrim pt\n\tON pt.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \npsu.SupportLineNumber, psu.SupportDrawingNumber, psu.SupportSheetNumber, \npsu.SupportLineNumber AS Line2, psu.SupportDrawingNumber AS DWG2, psu.SupportSheetNumber AS Sheet2,\n'N/A' AS SupportSize , psu.SupportNotes, COALESCE((psu.SupportPercentCompleted),0) AS SupportInstalled\n, 'N/A' AS Area, 'N/A' AS PercentClaim, psu.SupportRework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PipeSupports psu\n\tON psu.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \npte.TestingTestPackageNumber, 'N/A' AS DrawingNumber, pte.TestingRework AS SheetNumber, \npte.TestingTestPackageNumber AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2,\n'N/A' AS Size , pte.TestingNotes, 1 AS TestingQuantity, \n'N/A' AS Area, 'N/A' AS PercentClaim, pte.TestingRework AS Rework\n            \nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PipeTesting pte\n\tON pte.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \npd.DemoLineNumber, pd.DemoDrawingNumber, pd.DemoSheetNumber, \npd.DemoLineNumber AS Line2, pd.DemoDrawingNumber AS DWG2, pd.DemoSheetNumber AS Sheet2,\n'N/A' AS DemoSize , pd.DemoNotes, COALESCE(pd.DemoQuantity,0) AS DemoQuantity,\n'N/A' AS Area, 'N/A' AS PercentClaim, 0 AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PipeDemo pd\n\tON pd.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n \nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \npm.MiscLineNumber, pm.MiscDrawingNumber, pm.MiscSheetNumber, \npm.MiscLineNumber AS Line2, pm.MiscDrawingNumber AS DWG2, pm.MiscSheetNumber AS Sheet2,\n'N/A' AS MiscSize , pm.MiscNotes, pm.MiscQuantity AS MiscInstalled,\n'N/A' AS Area, 'N/A' AS PercentClaim, pm.MiscRework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\t\nJOIN PipeMisc pm\n\tON pm.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \newo.EWOLineNumber, ewo.EWODrawingNumber, ewo.EWOSheetNumber, \newo.EWOLineNumber AS Line2, ewo.EWODrawingNumber AS DWG2, ewo.EWOSheetNumber AS Sheet2,\n'N/A' AS EWOSize , ewo.EWONotes, 'N/A' AS TestingEarned,\n'N/A' AS Area, 'N/A' AS PercentClaim, ewo.EWORework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN SubsEWO ewo\n\tON ewo.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n \nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, \nstlfa.FAPieceNumber AS Spool1, 'N/A' AS Spool2, \n'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \n'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \nstlfa.FANotes, stlfa.FAQuantity, stlfa.FASortGroup1, stlfa.FAPercentCompleted AS PercentClaim, stlfa.FARework AS Rework\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN SteelFA stlfa\n\tON stlfa.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, \nstld.DemoBidID AS Spool1, 'N/A' AS Spool2, \n'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \n'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \nstld.DemoNotes, stld.DemoQuantity, std.Area, stld.DemoPercentCompleted AS PercentClaim, 0 AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN SteelDemo stld\n\tON stld.ActivityID = sas.ActivityID\nJOIN SteelTrackerDetails std\n\tON std.BidID = stld.DemoBidID\n\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \nstlsp.SellTestPackageNumber AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \nstlsp.SellTestPackageNumber AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \nstlsp.SellNotes, 1, 'N/A', 1.00 AS PercentClaim, 0 AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN SteelSellPackage stlsp\n\tON stlsp.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, \nstlm.MiscPieceNumber AS Spool1, 'N/A' AS Spool2, \n'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \n'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \nstlm.MiscNotes, stlm.MiscQuantity, stlm.MiscSortGroup1, 1.00 AS PercentClaim, stlm.MiscRework AS Rework\n \nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN SteelMisc stlm\n\tON stlm.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'CIVIL' AS Craft, \ncfa.FABidID AS Spool1, 'N/A' AS Spool2, \n'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \n'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \ncfa.FANotes, IF(cfa.ActivityType = 70, (cfa.FAPercentCompleted * ctd.TakeOffQuantity), cfa.FAQuantity) AS Quantity, 'N/A' AS Area, cfa.FAPercentCompleted AS PercentClaim, cfa.FARework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN CivilFA cfa\n\tON cfa.ActivityID = sas.ActivityID\nJOIN CivilTrackerDetails ctd\n\tON ctd.BidID =  cfa.FABidID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'CIVIL' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \ncsp.SellTestPackageNumber AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \ncsp.SellTestPackageNumber AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \ncsp.SellNotes, 'N/A' AS Quantity, 'N/A' AS Area, 'N/A' PercentClaim, 0 AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN CivilSellPackage csp\n\tON csp.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'EQUIP' AS Craft,\nefa.FATagNumber AS Spool1, efa.FABidID AS Spool2, \nefa.FAActivitySelect AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \n'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \nefa.FANotes, efa.FAQuantity AS Quantity, 'N/A' AS Area, efa.FAPercentCompleted AS PercentClaim, efa.FARework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN EquipFA efa\n\tON efa.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)",
+    "countQueryString" : "select count(*) from (SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \npe.ErectionSpool1 AS Spool1,COALESCE(pe.ErectionSpool2, 'N/A') AS Spool2, \npe.ErectionLineNumber AS Line1, pe.ErectionDrawingNumber AS Drawing1, pe.ErectionSheetNumber AS Sheet1, \npe.ErectionLineNumber AS Line2, pe.ErectionDrawingNumber AS Drawing2, pe.ErectionSheetNumber AS Sheet2, \npe.ErectionPipeSize AS Size, pe.ErectionNotes AS Notes,\n(COALESCE(pe.ErectionLengthSpool1,0) + COALESCE(pe.ErectionLengthSpool2,0) + COALESCE(pe.ErectionLengthSpool3,0) + COALESCE(pe.ErectionLengthSpool4,0) + COALESCE(pe.ErectionLengthSpool5,0) + COALESCE(pe.ErectionLengthSpool6,0)) AS Quantity, \n'N/A' AS Area, 'N/A' AS PercentClaim, pe.ErectionRework AS Rework\nFROM SubmissionActivityStatus sas\n\n\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PipeErection pe\n\tON pe.ActivityID = sas.ActivityID\n\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n \n \nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \npc.ConnectionSpool1, pc.ConnectionSpool2, \npc.ConnectionLineNumber AS Line1, pc.ConnectionDrawingNumber AS DWG1, pc.ConnectionSheetNumber AS Sheet1,\nCOALESCE(sl.LineNumber,'N/A') AS Line2, COALESCE(sl.DrawingNumber,'N/A') AS DWG2, COALESCE(sl.Sheetnumber,'N/A') AS Sheet2,\npc.ConnectionSize , pc.ConnectionNotes, pc.ConnectionQuantity AS ConnectionInstalled\n, 'N/A' AS Area, 'N/A' AS PercentClaim, pc.ConnectionRework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PipeConnection pc\n\tON pc.ActivityID = sas.ActivityID\nLEFT JOIN REF_SpoolList sl\n\tON sl.SpoolNumber = pc.ConnectionSpool2\n\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \npw.WeldSpool1, pw.WeldSpool2, \npw.WeldLineNumber, pw.WeldDrawingNumber, pw.WeldSheetNumber, \nCOALESCE(sl.LineNumber,'N/A') AS Line2, COALESCE(sl.DrawingNumber,'N/A') AS DWG2, COALESCE(sl.Sheetnumber,'N/A') AS Sheet2,\npw.WeldSize , pw.WeldNotes, COALESCE((pw.WeldPercentCompleted),0) AS WeldInstalled\n, 'N/A' AS Area, 'N/A' AS PercentClaim, pw.WeldRework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus \nJOIN PipeWeld pw\n\tON pw.ActivityID = sas.ActivityID\nLEFT JOIN REF_SpoolList sl\n\tON sl.SpoolNumber = pw.WeldSpool2\n    \nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \npt.TrimLineNumber, pt.TrimDrawingNumber, pt.TrimSheetNumber, \npt.TrimLineNumber AS Line2, pt.TrimDrawingNumber AS DWG2, pt.TrimSheetNumber AS Sheet2,\npt.TrimSize , pt.TrimNotes, pt.TrimQuantity\n, 'N/A' AS Area, 'N/A' AS PercentClaim, pt.TrimRework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus      \nJOIN PipeTrim pt\n\tON pt.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \npsu.SupportLineNumber, psu.SupportDrawingNumber, psu.SupportSheetNumber, \npsu.SupportLineNumber AS Line2, psu.SupportDrawingNumber AS DWG2, psu.SupportSheetNumber AS Sheet2,\n'N/A' AS SupportSize , psu.SupportNotes, COALESCE((psu.SupportPercentCompleted),0) AS SupportInstalled\n, 'N/A' AS Area, 'N/A' AS PercentClaim, psu.SupportRework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PipeSupports psu\n\tON psu.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \npte.TestingTestPackageNumber, 'N/A' AS DrawingNumber, pte.TestingRework AS SheetNumber, \npte.TestingTestPackageNumber AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2,\n'N/A' AS Size , pte.TestingNotes, 1 AS TestingQuantity, \n'N/A' AS Area, 'N/A' AS PercentClaim, pte.TestingRework AS Rework\n            \nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PipeTesting pte\n\tON pte.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \npd.DemoLineNumber, pd.DemoDrawingNumber, pd.DemoSheetNumber, \npd.DemoLineNumber AS Line2, pd.DemoDrawingNumber AS DWG2, pd.DemoSheetNumber AS Sheet2,\n'N/A' AS DemoSize , pd.DemoNotes, COALESCE(pd.DemoQuantity,0) AS DemoQuantity,\n'N/A' AS Area, 'N/A' AS PercentClaim, 0 AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PipeDemo pd\n\tON pd.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n \nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \npm.MiscLineNumber, pm.MiscDrawingNumber, pm.MiscSheetNumber, \npm.MiscLineNumber AS Line2, pm.MiscDrawingNumber AS DWG2, pm.MiscSheetNumber AS Sheet2,\n'N/A' AS MiscSize , pm.MiscNotes, pm.MiscQuantity AS MiscInstalled,\n'N/A' AS Area, 'N/A' AS PercentClaim, pm.MiscRework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\t\nJOIN PipeMisc pm\n\tON pm.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \newo.EWOLineNumber, ewo.EWODrawingNumber, ewo.EWOSheetNumber, \newo.EWOLineNumber AS Line2, ewo.EWODrawingNumber AS DWG2, ewo.EWOSheetNumber AS Sheet2,\n'N/A' AS EWOSize , ewo.EWONotes, 'N/A' AS TestingEarned,\n'N/A' AS Area, 'N/A' AS PercentClaim, ewo.EWORework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN SubsEWO ewo\n\tON ewo.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n \nUNION\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, \nstlfa.FAPieceNumber AS Spool1, 'N/A' AS Spool2, \n'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \n'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \nstlfa.FANotes, stlfa.FAQuantity, stlfa.FASortGroup1, stlfa.FAPercentCompleted AS PercentClaim, stlfa.FARework AS Rework\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN SteelFA stlfa\n\tON stlfa.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, \nstld.DemoBidID AS Spool1, 'N/A' AS Spool2, \n'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \n'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \nstld.DemoNotes, stld.DemoQuantity, std.Area, stld.DemoPercentCompleted AS PercentClaim, 0 AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN SteelDemo stld\n\tON stld.ActivityID = sas.ActivityID\nJOIN SteelTrackerDetails std\n\tON std.BidID = stld.DemoBidID\n\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \nstlsp.SellTestPackageNumber AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \nstlsp.SellTestPackageNumber AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \nstlsp.SellNotes, 1, 'N/A', 1.00 AS PercentClaim, 0 AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN SteelSellPackage stlsp\n\tON stlsp.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, \nstlm.MiscPieceNumber AS Spool1, 'N/A' AS Spool2, \n'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \n'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \nstlm.MiscNotes, stlm.MiscQuantity, stlm.MiscSortGroup1, 1.00 AS PercentClaim, stlm.MiscRework AS Rework\n \nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN SteelMisc stlm\n\tON stlm.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'CIVIL' AS Craft, \ncfa.FABidID AS Spool1, 'N/A' AS Spool2, \n'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \n'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \ncfa.FANotes, IF(cfa.ActivityType = 70, (cfa.FAPercentCompleted * ctd.TakeOffQuantity), cfa.FAQuantity) AS Quantity, 'N/A' AS Area, cfa.FAPercentCompleted AS PercentClaim, cfa.FARework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN CivilFA cfa\n\tON cfa.ActivityID = sas.ActivityID\nJOIN CivilTrackerDetails ctd\n\tON ctd.BidID =  cfa.FABidID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'CIVIL' AS Craft, \n'N/A' AS Spool1, 'N/A' AS Spool2, \ncsp.SellTestPackageNumber AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \ncsp.SellTestPackageNumber AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \ncsp.SellNotes, 'N/A' AS Quantity, 'N/A' AS Area, 'N/A' PercentClaim, 0 AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN CivilSellPackage csp\n\tON csp.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)\n\n\n\nUNION\n\n\n\nSELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'EQUIP' AS Craft,\nefa.FATagNumber AS Spool1, efa.FABidID AS Spool2, \nefa.FAActivitySelect AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, \n'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , \nefa.FANotes, efa.FAQuantity AS Quantity, 'N/A' AS Area, efa.FAPercentCompleted AS PercentClaim, efa.FARework AS Rework\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityTypes at\n\tON at.ID =sas.ActivityType\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN EquipFA efa\n\tON efa.ActivityID = sas.ActivityID\nWHERE sas.fk_ActivityStatus IN (2,7,9,11)\nAND (sas.LockField IS NULL OR sas.LockField = :UserID)) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -300,8 +300,8 @@
     "name" : "GetActivitiesPendingReview",
     "description" : "Get all activities pending Supervisor review BY SuperID",
     "version" : "V1",
-    "queryString" : "SELECT sas.*, at.ActivityType AS ActivityTypeName, sd.ReceivedTime, u.FirstName, u.LastName, CONCAT(u.FirstName, \" \", u.LastName) AS NameFull, ats.Status,\nIF(sas.ActivityType IN (10,11,20,21,22,23,30,31,32,33,34,35,39,40,41,42,43,50,51,52,53,54,59,90,91,92,93),'PIPE',\nIF(sas.ActivityType IN (60,61,62,63,64,65,66,67,68,96),'STEEL',\nIF(sas.ActivityType IN (70,71,72,77,97),'CIVIL',\nIF(sas.ActivityType IN (80,81,82,83,84,85,98),'EQUIP.',''\n)))) AS Craft\nFROM SubmissionActivityStatus sas\nJOIN SubsDetails sd\n\tON sd.SubmissionID = sas.SubmissionID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\n\nWHERE sas.ActivityType != 0\nAND sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\nORDER BY sas.ActivityID DESC",
-    "countQueryString" : "select count(*) from (SELECT sas.*, at.ActivityType AS ActivityTypeName, sd.ReceivedTime, u.FirstName, u.LastName, CONCAT(u.FirstName, \" \", u.LastName) AS NameFull, ats.Status,\nIF(sas.ActivityType IN (10,11,20,21,22,23,30,31,32,33,34,35,39,40,41,42,43,50,51,52,53,54,59,90,91,92,93),'PIPE',\nIF(sas.ActivityType IN (60,61,62,63,64,65,66,67,68,96),'STEEL',\nIF(sas.ActivityType IN (70,71,72,77,97),'CIVIL',\nIF(sas.ActivityType IN (80,81,82,83,84,85,98),'EQUIP.',''\n)))) AS Craft\nFROM SubmissionActivityStatus sas\nJOIN SubsDetails sd\n\tON sd.SubmissionID = sas.SubmissionID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\n\nWHERE sas.ActivityType != 0\nAND sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\nORDER BY sas.ActivityID DESC) wmTempTable",
+    "queryString" : "SELECT sas.*, at.ActivityType AS ActivityTypeName, sd.ReceivedTime, u.FirstName, u.LastName, CONCAT(u.FirstName, \" \", u.LastName) AS NameFull, ats.Status,\nIF(sas.ActivityType IN (10,11,20,21,22,23,24,25,30,31,32,33,38,39,40,41,42,43,50,51,52,53,59,90,91,92,93),'PIPE',\nIF(sas.ActivityType IN (60,61,62,63,64,65,66,67,68,96),'STEEL',\nIF(sas.ActivityType IN (70,71,72),'CIVIL',\nIF(sas.ActivityType IN (80,98),'EQUIP.',''\n)))) AS Craft\nFROM SubmissionActivityStatus sas\nJOIN SubsDetails sd\n\tON sd.SubmissionID = sas.SubmissionID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\n\nWHERE sas.ActivityType != 0\nAND sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\nORDER BY sas.ActivityID DESC",
+    "countQueryString" : "select count(*) from (SELECT sas.*, at.ActivityType AS ActivityTypeName, sd.ReceivedTime, u.FirstName, u.LastName, CONCAT(u.FirstName, \" \", u.LastName) AS NameFull, ats.Status,\nIF(sas.ActivityType IN (10,11,20,21,22,23,24,25,30,31,32,33,38,39,40,41,42,43,50,51,52,53,59,90,91,92,93),'PIPE',\nIF(sas.ActivityType IN (60,61,62,63,64,65,66,67,68,96),'STEEL',\nIF(sas.ActivityType IN (70,71,72),'CIVIL',\nIF(sas.ActivityType IN (80,98),'EQUIP.',''\n)))) AS Craft\nFROM SubmissionActivityStatus sas\nJOIN SubsDetails sd\n\tON sd.SubmissionID = sas.SubmissionID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\n\nWHERE sas.ActivityType != 0\nAND sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\nORDER BY sas.ActivityID DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -310,7 +310,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "47",
       "required" : false
     } ],
@@ -366,7 +366,7 @@
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
+          "typeRef" : "java.lang.Short",
           "list" : false
         }
       }, {
@@ -375,7 +375,7 @@
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
+          "typeRef" : "java.lang.Long",
           "list" : false
         }
       }, {
@@ -482,7 +482,7 @@
     "type" : "SELECT",
     "parameters" : [ {
       "name" : "SuperID",
-      "type" : "string",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
@@ -605,14 +605,14 @@
     "name" : "GetActivitiesPendingReviewSteel",
     "description" : "Get All activities pending super review for Steel.",
     "version" : "V2",
-    "queryString" : "SELECT fas.SubmissionID, fas.fk_ActivityStatus, fas.Status, fas.ReceivedTime, fas.NameFull, fas.PieceMark, fas.Area,\nSUM(QuantityShake) AS QuantityShake,\nSUM(QuantityErect) AS QuantityErect,\nSUM(QuantityBoltOut) AS QuantityBoltOut,\nSUM(QuantityImp) AS QuantityImp,\nSUM(QuantitySell) AS QuantitySell,\nSUM(QuantityWeld) AS QuantityWeld\nFROM (\nSELECT sd.SubmissionID, sas.fk_ActivityStatus, ats.Status, sd.ReceivedTime, \nCONCAT(u.FirstName, \" \", u.LastName) AS NameFull, \n(COALESCE(stls.FAArea,COALESCE(stle.FAArea,COALESCE(stlb.FAArea, COALESCE(stli.FAArea, COALESCE(stlsell.FAArea, COALESCE(stlw.FAArea,'N/A'))))))) AS Area,\n\n(COALESCE(stls.FAPieceNumber,COALESCE(stle.FAPieceNumber,COALESCE(stlb.FAPieceNumber, COALESCE(stli.FAPieceNumber, COALESCE(stlsell.FAPieceNumber, COALESCE(stlw.FAPieceNumber,'N/A'))))))) AS PieceMark,\n\n(COALESCE(stls.FAQuantity,0) * COALESCE(stls.FAPercent,0)) AS QuantityShake,\n(COALESCE(stle.FAQuantity,0) * COALESCE(stle.FAPercent,0)) AS QuantityErect,\n(COALESCE(stlb.FAQuantity,0) * COALESCE(stlb.FAPercent,0)) AS QuantityBoltOut,\n(COALESCE(stli.FAQuantity,0) * COALESCE(stli.FAPercent,0)) AS QuantityImp,\n(COALESCE(stlsell.FAQuantity,0) * COALESCE(stlsell.FAPercent,0)) AS QuantitySell,\n(COALESCE(stlw.FAQuantity,0) * COALESCE(stlw.FAPercent,0)) AS QuantityWeld\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nLEFT JOIN SteelFA stls\n\tON stls.ActivityID = sas.ActivityID AND stls.ActivityType = 61\nLEFT JOIN SteelFA stle\n\tON stle.ActivityID = sas.ActivityID AND stle.ActivityType = 62\nLEFT JOIN SteelFA stlb\n\tON stlb.ActivityID = sas.ActivityID AND stlb.ActivityType = 63\nLEFT JOIN SteelFA stli\n\tON stli.ActivityID = sas.ActivityID AND stli.ActivityType = 64\nLEFT JOIN SteelFA stlsell\n\tON stlsell.ActivityID = sas.ActivityID AND stlsell.ActivityType = 65\nLEFT JOIN SteelFA stlw\n\tON stlw.ActivityID = sas.ActivityID AND stlw.ActivityType = 68\n\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nWHERE sas.ActivityType IN (61,62,63,64,65,68)\nAND sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\n\nORDER BY sd.SubmissionID DESC ) fas\nGROUP BY fas.SubmissionID, fas.PieceMark, fas.fk_ActivityStatus",
-    "countQueryString" : "select count(*) from (SELECT fas.SubmissionID, fas.fk_ActivityStatus, fas.Status, fas.ReceivedTime, fas.NameFull, fas.PieceMark, fas.Area,\nSUM(QuantityShake) AS QuantityShake,\nSUM(QuantityErect) AS QuantityErect,\nSUM(QuantityBoltOut) AS QuantityBoltOut,\nSUM(QuantityImp) AS QuantityImp,\nSUM(QuantitySell) AS QuantitySell,\nSUM(QuantityWeld) AS QuantityWeld\nFROM (\nSELECT sd.SubmissionID, sas.fk_ActivityStatus, ats.Status, sd.ReceivedTime, \nCONCAT(u.FirstName, \" \", u.LastName) AS NameFull, \n(COALESCE(stls.FAArea,COALESCE(stle.FAArea,COALESCE(stlb.FAArea, COALESCE(stli.FAArea, COALESCE(stlsell.FAArea, COALESCE(stlw.FAArea,'N/A'))))))) AS Area,\n\n(COALESCE(stls.FAPieceNumber,COALESCE(stle.FAPieceNumber,COALESCE(stlb.FAPieceNumber, COALESCE(stli.FAPieceNumber, COALESCE(stlsell.FAPieceNumber, COALESCE(stlw.FAPieceNumber,'N/A'))))))) AS PieceMark,\n\n(COALESCE(stls.FAQuantity,0) * COALESCE(stls.FAPercent,0)) AS QuantityShake,\n(COALESCE(stle.FAQuantity,0) * COALESCE(stle.FAPercent,0)) AS QuantityErect,\n(COALESCE(stlb.FAQuantity,0) * COALESCE(stlb.FAPercent,0)) AS QuantityBoltOut,\n(COALESCE(stli.FAQuantity,0) * COALESCE(stli.FAPercent,0)) AS QuantityImp,\n(COALESCE(stlsell.FAQuantity,0) * COALESCE(stlsell.FAPercent,0)) AS QuantitySell,\n(COALESCE(stlw.FAQuantity,0) * COALESCE(stlw.FAPercent,0)) AS QuantityWeld\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nLEFT JOIN SteelFA stls\n\tON stls.ActivityID = sas.ActivityID AND stls.ActivityType = 61\nLEFT JOIN SteelFA stle\n\tON stle.ActivityID = sas.ActivityID AND stle.ActivityType = 62\nLEFT JOIN SteelFA stlb\n\tON stlb.ActivityID = sas.ActivityID AND stlb.ActivityType = 63\nLEFT JOIN SteelFA stli\n\tON stli.ActivityID = sas.ActivityID AND stli.ActivityType = 64\nLEFT JOIN SteelFA stlsell\n\tON stlsell.ActivityID = sas.ActivityID AND stlsell.ActivityType = 65\nLEFT JOIN SteelFA stlw\n\tON stlw.ActivityID = sas.ActivityID AND stlw.ActivityType = 68\n\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nWHERE sas.ActivityType IN (61,62,63,64,65,68)\nAND sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\n\nORDER BY sd.SubmissionID DESC ) fas\nGROUP BY fas.SubmissionID, fas.PieceMark, fas.fk_ActivityStatus) wmTempTable",
+    "queryString" : "SELECT fas.SubmissionID, fas.fk_ActivityStatus, fas.Status, fas.ReceivedTime, fas.NameFull, fas.PieceMark, fas.SortGroup1,\nSUM(QuantityShake) AS QuantityShake,\nSUM(QuantityErect) AS QuantityErect,\nSUM(QuantityBoltOut) AS QuantityBoltOut,\nSUM(QuantityImp) AS QuantityImp,\nSUM(QuantitySell) AS QuantitySell,\nSUM(QuantityWeld) AS QuantityWeld\nFROM (\nSELECT sd.SubmissionID, sas.fk_ActivityStatus, ats.Status, sd.ReceivedTime, \nCONCAT(u.FirstName, \" \", u.LastName) AS NameFull, \n(COALESCE(stls.FASortGroup1,COALESCE(stle.FASortGroup1,COALESCE(stlb.FASortGroup1, COALESCE(stli.FASortGroup1, COALESCE(stlsell.FASortGroup1, COALESCE(stlw.FASortGroup1,'N/A'))))))) AS SortGroup1,\n\n(COALESCE(stls.FAPieceNumber,COALESCE(stle.FAPieceNumber,COALESCE(stlb.FAPieceNumber, COALESCE(stli.FAPieceNumber, COALESCE(stlsell.FAPieceNumber, COALESCE(stlw.FAPieceNumber,'N/A'))))))) AS PieceMark,\n\n(COALESCE(stls.FAQuantity,0) * COALESCE(stls.FAPercentCompleted,0)) AS QuantityShake,\n(COALESCE(stle.FAQuantity,0) * COALESCE(stle.FAPercentCompleted,0)) AS QuantityErect,\n(COALESCE(stlb.FAQuantity,0) * COALESCE(stlb.FAPercentCompleted,0)) AS QuantityBoltOut,\n(COALESCE(stli.FAQuantity,0) * COALESCE(stli.FAPercentCompleted,0)) AS QuantityImp,\n(COALESCE(stlsell.FAQuantity,0) * COALESCE(stlsell.FAPercentCompleted,0)) AS QuantitySell,\n(COALESCE(stlw.FAQuantity,0) * COALESCE(stlw.FAPercentCompleted,0)) AS QuantityWeld\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nLEFT JOIN SteelFA stls\n\tON stls.ActivityID = sas.ActivityID AND stls.ActivityType = 61\nLEFT JOIN SteelFA stle\n\tON stle.ActivityID = sas.ActivityID AND stle.ActivityType = 62\nLEFT JOIN SteelFA stlb\n\tON stlb.ActivityID = sas.ActivityID AND stlb.ActivityType = 63\nLEFT JOIN SteelFA stli\n\tON stli.ActivityID = sas.ActivityID AND stli.ActivityType = 64\nLEFT JOIN SteelFA stlsell\n\tON stlsell.ActivityID = sas.ActivityID AND stlsell.ActivityType = 65\nLEFT JOIN SteelFA stlw\n\tON stlw.ActivityID = sas.ActivityID AND stlw.ActivityType = 68\n\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nWHERE sas.ActivityType IN (61,62,63,64,65,68)\nAND sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\n\nORDER BY sd.SubmissionID DESC ) fas\nGROUP BY fas.SubmissionID, fas.PieceMark, fas.fk_ActivityStatus",
+    "countQueryString" : "select count(*) from (SELECT fas.SubmissionID, fas.fk_ActivityStatus, fas.Status, fas.ReceivedTime, fas.NameFull, fas.PieceMark, fas.SortGroup1,\nSUM(QuantityShake) AS QuantityShake,\nSUM(QuantityErect) AS QuantityErect,\nSUM(QuantityBoltOut) AS QuantityBoltOut,\nSUM(QuantityImp) AS QuantityImp,\nSUM(QuantitySell) AS QuantitySell,\nSUM(QuantityWeld) AS QuantityWeld\nFROM (\nSELECT sd.SubmissionID, sas.fk_ActivityStatus, ats.Status, sd.ReceivedTime, \nCONCAT(u.FirstName, \" \", u.LastName) AS NameFull, \n(COALESCE(stls.FASortGroup1,COALESCE(stle.FASortGroup1,COALESCE(stlb.FASortGroup1, COALESCE(stli.FASortGroup1, COALESCE(stlsell.FASortGroup1, COALESCE(stlw.FASortGroup1,'N/A'))))))) AS SortGroup1,\n\n(COALESCE(stls.FAPieceNumber,COALESCE(stle.FAPieceNumber,COALESCE(stlb.FAPieceNumber, COALESCE(stli.FAPieceNumber, COALESCE(stlsell.FAPieceNumber, COALESCE(stlw.FAPieceNumber,'N/A'))))))) AS PieceMark,\n\n(COALESCE(stls.FAQuantity,0) * COALESCE(stls.FAPercentCompleted,0)) AS QuantityShake,\n(COALESCE(stle.FAQuantity,0) * COALESCE(stle.FAPercentCompleted,0)) AS QuantityErect,\n(COALESCE(stlb.FAQuantity,0) * COALESCE(stlb.FAPercentCompleted,0)) AS QuantityBoltOut,\n(COALESCE(stli.FAQuantity,0) * COALESCE(stli.FAPercentCompleted,0)) AS QuantityImp,\n(COALESCE(stlsell.FAQuantity,0) * COALESCE(stlsell.FAPercentCompleted,0)) AS QuantitySell,\n(COALESCE(stlw.FAQuantity,0) * COALESCE(stlw.FAPercentCompleted,0)) AS QuantityWeld\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nLEFT JOIN SteelFA stls\n\tON stls.ActivityID = sas.ActivityID AND stls.ActivityType = 61\nLEFT JOIN SteelFA stle\n\tON stle.ActivityID = sas.ActivityID AND stle.ActivityType = 62\nLEFT JOIN SteelFA stlb\n\tON stlb.ActivityID = sas.ActivityID AND stlb.ActivityType = 63\nLEFT JOIN SteelFA stli\n\tON stli.ActivityID = sas.ActivityID AND stli.ActivityType = 64\nLEFT JOIN SteelFA stlsell\n\tON stlsell.ActivityID = sas.ActivityID AND stlsell.ActivityType = 65\nLEFT JOIN SteelFA stlw\n\tON stlw.ActivityID = sas.ActivityID AND stlw.ActivityType = 68\n\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nWHERE sas.ActivityType IN (61,62,63,64,65,68)\nAND sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\n\nORDER BY sd.SubmissionID DESC ) fas\nGROUP BY fas.SubmissionID, fas.PieceMark, fas.fk_ActivityStatus) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
       "name" : "SuperID",
-      "type" : "string",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
@@ -684,8 +684,8 @@
           "list" : false
         }
       }, {
-        "name" : "Area",
-        "fieldName" : "area",
+        "name" : "SortGroup1",
+        "fieldName" : "sortGroup1",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -753,14 +753,14 @@
     "name" : "GetActivitiesPendingReviewSteelActivities",
     "description" : "Returns individual activities for given submission/pieceMark/Status.  Populates the Super Review steel detailed list",
     "version" : "V2",
-    "queryString" : "SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, at.ID AS ActivityTypeID,\nstl.ActivityID, stl.FAArea, stl.FAPieceNumber, stl.FAQuantity, stl.FAPercent, stl.FARework, stl.FANotes\n\n\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nJOIN SteelFA stl\n\tON stl.ActivityID = sas.ActivityID \n    \nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nWHERE sas.SubmissionID = :SubmissionID\nAND stl.FAPiecenumber = :PieceMark\nAND sas.fk_ActivityStatus = :StatusID\n\nORDER BY sas.ActivityType",
-    "countQueryString" : "select count(*) from (SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, at.ID AS ActivityTypeID,\nstl.ActivityID, stl.FAArea, stl.FAPieceNumber, stl.FAQuantity, stl.FAPercent, stl.FARework, stl.FANotes\n\n\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nJOIN SteelFA stl\n\tON stl.ActivityID = sas.ActivityID \n    \nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nWHERE sas.SubmissionID = :SubmissionID\nAND stl.FAPiecenumber = :PieceMark\nAND sas.fk_ActivityStatus = :StatusID\n\nORDER BY sas.ActivityType) wmTempTable",
+    "queryString" : "SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, at.ID AS ActivityTypeID,\nstl.ActivityID, stl.FASortGroup1, stl.FAPieceNumber, stl.FAQuantity, stl.FAPercentCompleted, stl.FARework, stl.FANotes\n\n\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nJOIN SteelFA stl\n\tON stl.ActivityID = sas.ActivityID \n    \nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nWHERE sas.SubmissionID = :SubmissionID\nAND stl.FAPiecenumber = :PieceMark\nAND sas.fk_ActivityStatus = :StatusID\n\nORDER BY sas.ActivityType",
+    "countQueryString" : "select count(*) from (SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, at.ID AS ActivityTypeID,\nstl.ActivityID, stl.FASortGroup1, stl.FAPieceNumber, stl.FAQuantity, stl.FAPercentCompleted, stl.FARework, stl.FANotes\n\n\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nJOIN SteelFA stl\n\tON stl.ActivityID = sas.ActivityID \n    \nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nWHERE sas.SubmissionID = :SubmissionID\nAND stl.FAPiecenumber = :PieceMark\nAND sas.fk_ActivityStatus = :StatusID\n\nORDER BY sas.ActivityType) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
       "name" : "SubmissionID",
-      "type" : "string",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
@@ -776,7 +776,7 @@
       "required" : true
     }, {
       "name" : "StatusID",
-      "type" : "string",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
@@ -839,8 +839,8 @@
           "list" : false
         }
       }, {
-        "name" : "FAArea",
-        "fieldName" : "faarea",
+        "name" : "FASortGroup1",
+        "fieldName" : "fasortGroup1",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -866,8 +866,8 @@
           "list" : false
         }
       }, {
-        "name" : "FAPercent",
-        "fieldName" : "fapercent",
+        "name" : "FAPercentCompleted",
+        "fieldName" : "fapercentCompleted",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -899,8 +899,8 @@
     "name" : "GetActivityHistoryCivilFA",
     "description" : "name",
     "version" : "V1",
-    "queryString" : "SELECT cfa.* \nFROM CivilFA cfa\nWHERE ActivityID = :ActivityID\n\nUNION\n\nSELECT cfar.fk_OrgActivityId, cfar.FABidID, cfar.FAFoundation, cfar.FADescription, cfar.FADrawingNumber, cfar.FADetailDrawingNumber, cfar.FAPercentComplete, cfar.FAQuantity, cfar.FARework, \ncfar.FANotes, cfar.ActivityType, cfar.FATimeInForm, cfar.Rev, cfar.TimeStamp\nFROM CivilFAREV cfar\nWHERE cfar.fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT cfa.* \nFROM CivilFA cfa\nWHERE ActivityID = :ActivityID\n\nUNION\n\nSELECT cfar.fk_OrgActivityId, cfar.FABidID, cfar.FAFoundation, cfar.FADescription, cfar.FADrawingNumber, cfar.FADetailDrawingNumber, cfar.FAPercentComplete, cfar.FAQuantity, cfar.FARework, \ncfar.FANotes, cfar.ActivityType, cfar.FATimeInForm, cfar.Rev, cfar.TimeStamp\nFROM CivilFAREV cfar\nWHERE cfar.fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT cfa.* \nFROM CivilFA cfa\nWHERE ActivityID = :ActivityID\n\nUNION\n\nSELECT cfar.fk_OrgActivityId, cfar.FABidID, cfar.FAQuantity, cfar.FAPercentCompleted,  cfar.FARework, cfar.FANotes, cfar.ActivityType, cfar.FATimeInForm, cfar.Rev, cfar.TimeStamp\nFROM CivilFAREV cfar\nWHERE cfar.fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT cfa.* \nFROM CivilFA cfa\nWHERE ActivityID = :ActivityID\n\nUNION\n\nSELECT cfar.fk_OrgActivityId, cfar.FABidID, cfar.FAQuantity, cfar.FAPercentCompleted,  cfar.FARework, cfar.FANotes, cfar.ActivityType, cfar.FATimeInForm, cfar.Rev, cfar.TimeStamp\nFROM CivilFAREV cfar\nWHERE cfar.fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -909,8 +909,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "2",
+      "variableName" : "",
+      "testValue" : "2506",
       "required" : true
     } ],
     "request" : {
@@ -942,57 +942,21 @@
           "list" : false
         }
       }, {
-        "name" : "FAFoundation",
-        "fieldName" : "fafoundation",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "FADescription",
-        "fieldName" : "fadescription",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "FADrawingNumber",
-        "fieldName" : "fadrawingNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "FADetailDrawingNumber",
-        "fieldName" : "fadetailDrawingNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "FAPercentComplete",
-        "fieldName" : "fapercentComplete",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Float",
-          "list" : false
-        }
-      }, {
         "name" : "FAQuantity",
         "fieldName" : "faquantity",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "FAPercentCompleted",
+        "fieldName" : "fapercentCompleted",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Float",
           "list" : false
         }
       }, {
@@ -1052,142 +1016,12 @@
       } ]
     }
   },
-  "GetActivityHistoryCivilMisc" : {
-    "name" : "GetActivityHistoryCivilMisc",
-    "description" : "Name",
-    "version" : "V1",
-    "queryString" : "SELECT cm.* \nFROM CivilMisc cm\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT cmr.fk_OrgActivityId, cmr.MiscFoundation, cmr.MiscDrawingNumber, cmr.MiscDetailDrawingNumber, cmr.MiscPercentComplete, cmr.MiscRework, cmr.MiscNotes, cmr.ActivityType, \ncmr.MiscTimeInForm, cmr.Rev, cmr.TimeStamp\nFROM CivilMiscREV cmr\nWHERE cmr.fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT cm.* \nFROM CivilMisc cm\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT cmr.fk_OrgActivityId, cmr.MiscFoundation, cmr.MiscDrawingNumber, cmr.MiscDetailDrawingNumber, cmr.MiscPercentComplete, cmr.MiscRework, cmr.MiscNotes, cmr.ActivityType, \ncmr.MiscTimeInForm, cmr.Rev, cmr.TimeStamp\nFROM CivilMiscREV cmr\nWHERE cmr.fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
-    "nativeSql" : true,
-    "fetchCount" : true,
-    "type" : "SELECT",
-    "parameters" : [ {
-      "name" : "ActivityID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "21",
-      "required" : true
-    } ],
-    "request" : {
-      "wrapped" : false,
-      "typeRef" : null,
-      "method" : "GET"
-    },
-    "identifiers" : [ ],
-    "response" : {
-      "typeRef" : "com.psabackoffice.job1111.models.query.GetActivityHistoryCivilMiscResponse",
-      "returns" : "CUSTOM",
-      "responseType" : "PAGINATED",
-      "properties" : [ {
-        "name" : "ActivityID",
-        "fieldName" : "activityId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "MiscFoundation",
-        "fieldName" : "miscFoundation",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "MiscDrawingNumber",
-        "fieldName" : "miscDrawingNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "MiscDetailDrawingNumber",
-        "fieldName" : "miscDetailDrawingNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "MiscPercentComplete",
-        "fieldName" : "miscPercentComplete",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Float",
-          "list" : false
-        }
-      }, {
-        "name" : "MiscRework",
-        "fieldName" : "miscRework",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "MiscNotes",
-        "fieldName" : "miscNotes",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ActivityType",
-        "fieldName" : "activityType",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "MiscTimeInForm",
-        "fieldName" : "miscTimeInForm",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "Rev",
-        "fieldName" : "rev",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "TimeStamp",
-        "fieldName" : "timeStamp",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.sql.Timestamp",
-          "list" : false
-        }
-      } ]
-    }
-  },
   "GetActivityHistoryEquipFA" : {
     "name" : "GetActivityHistoryEquipFA",
     "description" : "name",
     "version" : "V2",
-    "queryString" : "SELECT efa.* \nFROM EquipFA efa\nWHERE ActivityID = :ActivityID\n\nUNION\n\nSELECT efar.fk_OrgActivityID, efar.FABidID, efar.FATagNumber, efar.FAActivitySelect, efar.FAQuantity, efar.FAPercentComplete, efar.FARework, efar.FANotes, efar.ActivityType, efar.FATimeInForm, efar.Rev, efar.TimeStamp\nFROM EquipFAREV efar\nWHERE efar.fk_OrgActivityID = :ActivityID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT efa.* \nFROM EquipFA efa\nWHERE ActivityID = :ActivityID\n\nUNION\n\nSELECT efar.fk_OrgActivityID, efar.FABidID, efar.FATagNumber, efar.FAActivitySelect, efar.FAQuantity, efar.FAPercentComplete, efar.FARework, efar.FANotes, efar.ActivityType, efar.FATimeInForm, efar.Rev, efar.TimeStamp\nFROM EquipFAREV efar\nWHERE efar.fk_OrgActivityID = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT efa.* \nFROM EquipFA efa\nWHERE ActivityID = :ActivityID\n\nUNION\n\nSELECT efar.fk_OrgActivityID, efar.FABidID, efar.FATagNumber, efar.FAActivitySelect, efar.FAQuantity, efar.FAPercentCompleted, efar.FARework, efar.FANotes, efar.ActivityType, efar.FATimeInForm, efar.Rev, efar.TimeStamp\nFROM EquipFAREV efar\nWHERE efar.fk_OrgActivityID = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT efa.* \nFROM EquipFA efa\nWHERE ActivityID = :ActivityID\n\nUNION\n\nSELECT efar.fk_OrgActivityID, efar.FABidID, efar.FATagNumber, efar.FAActivitySelect, efar.FAQuantity, efar.FAPercentCompleted, efar.FARework, efar.FANotes, efar.ActivityType, efar.FATimeInForm, efar.Rev, efar.TimeStamp\nFROM EquipFAREV efar\nWHERE efar.fk_OrgActivityID = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -1196,8 +1030,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "3",
+      "variableName" : "",
+      "testValue" : "2709",
       "required" : true
     } ],
     "request" : {
@@ -1256,8 +1090,8 @@
           "list" : false
         }
       }, {
-        "name" : "FAPercentComplete",
-        "fieldName" : "fapercentComplete",
+        "name" : "FAPercentCompleted",
+        "fieldName" : "fapercentCompleted",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -1321,12 +1155,12 @@
       } ]
     }
   },
-  "GetActivityHistoryPipeBoltup" : {
-    "name" : "GetActivityHistoryPipeBoltup",
-    "description" : "No description is provided",
-    "version" : "V1",
-    "queryString" : "SELECT pb.* \nFROM PipeBoltUp pb\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT pbr.fk_OrgActivityId, pbr.BoltUpSpool1, pbr.BoltUpSpool2, pbr.BoltUpDrawingNumber, pbr.BoltUpLineNumber, pbr.BoltUpSheetNumber, pbr.BoltUpTimeInForm, \npbr.BoltUpSize, pbr.BoltUpQuantity, pbr.BoltUpRework, pbr.BoltUpNotes, pbr.ActivityType, pbr.Rev, pbr.TimeStamp\nFROM PipeBoltUpREV pbr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT pb.* \nFROM PipeBoltUp pb\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT pbr.fk_OrgActivityId, pbr.BoltUpSpool1, pbr.BoltUpSpool2, pbr.BoltUpDrawingNumber, pbr.BoltUpLineNumber, pbr.BoltUpSheetNumber, pbr.BoltUpTimeInForm, \npbr.BoltUpSize, pbr.BoltUpQuantity, pbr.BoltUpRework, pbr.BoltUpNotes, pbr.ActivityType, pbr.Rev, pbr.TimeStamp\nFROM PipeBoltUpREV pbr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
+  "GetActivityHistoryPipeConnection" : {
+    "name" : "GetActivityHistoryPipeConnection",
+    "description" : "Get the change history for a given Pipe Connection ActivityID",
+    "version" : "V2",
+    "queryString" : "SELECT pc.* \nFROM PipeConnection pc\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT pcr.fk_OrgActivityId, pcr.ConnectionSpool1, pcr.ConnectionSpool2, pcr.ConnectionDrawingNumber, pcr.ConnectionLineNumber, pcr.ConnectionSheetNumber, pcr.ConnectionSize, \npcr.ConnectionQuantity, pcr.ConnectionRework, pcr.ConnectionNotes, pcr.ActivityType, pcr.ConnectionTimeInForm, pcr.Rev, pcr.TimeStamp\nFROM PipeConnectionREV pcr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT pc.* \nFROM PipeConnection pc\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT pcr.fk_OrgActivityId, pcr.ConnectionSpool1, pcr.ConnectionSpool2, pcr.ConnectionDrawingNumber, pcr.ConnectionLineNumber, pcr.ConnectionSheetNumber, pcr.ConnectionSize, \npcr.ConnectionQuantity, pcr.ConnectionRework, pcr.ConnectionNotes, pcr.ActivityType, pcr.ConnectionTimeInForm, pcr.Rev, pcr.TimeStamp\nFROM PipeConnectionREV pcr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -1335,8 +1169,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "10",
+      "variableName" : "",
+      "testValue" : "2689",
       "required" : true
     } ],
     "request" : {
@@ -1346,7 +1180,7 @@
     },
     "identifiers" : [ ],
     "response" : {
-      "typeRef" : "com.psabackoffice.job1111.models.query.GetActivityHistoryPipeBoltupResponse",
+      "typeRef" : "com.psabackoffice.job1111.models.query.GetActivityHistoryPipeConnectionResponse",
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
@@ -1359,8 +1193,8 @@
           "list" : false
         }
       }, {
-        "name" : "BoltUpSpool1",
-        "fieldName" : "boltUpSpool1",
+        "name" : "ConnectionSpool1",
+        "fieldName" : "connectionSpool1",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -1368,8 +1202,8 @@
           "list" : false
         }
       }, {
-        "name" : "BoltUpSpool2",
-        "fieldName" : "boltUpSpool2",
+        "name" : "ConnectionSpool2",
+        "fieldName" : "connectionSpool2",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -1377,8 +1211,8 @@
           "list" : false
         }
       }, {
-        "name" : "BoltUpDrawingNumber",
-        "fieldName" : "boltUpDrawingNumber",
+        "name" : "ConnectionDrawingNumber",
+        "fieldName" : "connectionDrawingNumber",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -1386,8 +1220,8 @@
           "list" : false
         }
       }, {
-        "name" : "BoltUpLineNumber",
-        "fieldName" : "boltUpLineNumber",
+        "name" : "ConnectionLineNumber",
+        "fieldName" : "connectionLineNumber",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -1395,8 +1229,8 @@
           "list" : false
         }
       }, {
-        "name" : "BoltUpSheetNumber",
-        "fieldName" : "boltUpSheetNumber",
+        "name" : "ConnectionSheetNumber",
+        "fieldName" : "connectionSheetNumber",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -1404,17 +1238,8 @@
           "list" : false
         }
       }, {
-        "name" : "BoltUpTimeInForm",
-        "fieldName" : "boltUpTimeInForm",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "BoltUpSize",
-        "fieldName" : "boltUpSize",
+        "name" : "ConnectionSize",
+        "fieldName" : "connectionSize",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -1422,8 +1247,8 @@
           "list" : false
         }
       }, {
-        "name" : "BoltUpQuantity",
-        "fieldName" : "boltUpQuantity",
+        "name" : "ConnectionQuantity",
+        "fieldName" : "connectionQuantity",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -1431,8 +1256,8 @@
           "list" : false
         }
       }, {
-        "name" : "BoltUpRework",
-        "fieldName" : "boltUpRework",
+        "name" : "ConnectionRework",
+        "fieldName" : "connectionRework",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -1440,8 +1265,8 @@
           "list" : false
         }
       }, {
-        "name" : "BoltUpNotes",
-        "fieldName" : "boltUpNotes",
+        "name" : "ConnectionNotes",
+        "fieldName" : "connectionNotes",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -1455,6 +1280,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Short",
+          "list" : false
+        }
+      }, {
+        "name" : "ConnectionTimeInForm",
+        "fieldName" : "connectionTimeInForm",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
           "list" : false
         }
       }, {
@@ -1492,8 +1326,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "11",
+      "variableName" : "",
+      "testValue" : "2688",
       "required" : true
     } ],
     "request" : {
@@ -1622,8 +1456,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "5",
+      "variableName" : "",
+      "testValue" : "2698",
       "required" : true
     } ],
     "request" : {
@@ -1869,8 +1703,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "12",
+      "variableName" : "",
+      "testValue" : "1921",
       "required" : true
     } ],
     "request" : {
@@ -1934,7 +1768,7 @@
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Double",
+          "typeRef" : "java.math.BigDecimal",
           "list" : false
         }
       }, {
@@ -1999,8 +1833,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "13",
+      "variableName" : "",
+      "testValue" : "2690",
       "required" : true
     } ],
     "request" : {
@@ -2174,8 +2008,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "6",
+      "variableName" : "",
+      "testValue" : "2677",
       "required" : true
     } ],
     "request" : {
@@ -2267,8 +2101,8 @@
     "name" : "GetActivityHistoryPipeTrim",
     "description" : "No description is provided",
     "version" : "V1",
-    "queryString" : "SELECT pt.* \nFROM PipeTrim pt\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT  ptr.fk_OrgActivityId, \nptr.TrimActivitySelect, ptr.TrimSize, ptr.TrimQuantity, ptr.TrimHandleType, ptr.TrimInstrumentType, ptr.TrimDrawingNumber, ptr.TrimLineNumber, ptr.TrimSheetNumber, ptr.TrimTimeInForm, ptr.TrimRework, ptr.TrimNotes ,\n\nptr.ActivityType, ptr.Rev, ptr.TimeStamp\nFROM PipeTrimREV ptr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT pt.* \nFROM PipeTrim pt\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT  ptr.fk_OrgActivityId, \nptr.TrimActivitySelect, ptr.TrimSize, ptr.TrimQuantity, ptr.TrimHandleType, ptr.TrimInstrumentType, ptr.TrimDrawingNumber, ptr.TrimLineNumber, ptr.TrimSheetNumber, ptr.TrimTimeInForm, ptr.TrimRework, ptr.TrimNotes ,\n\nptr.ActivityType, ptr.Rev, ptr.TimeStamp\nFROM PipeTrimREV ptr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT pt.* \nFROM PipeTrim pt\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT  ptr.fk_OrgActivityId, ptr.TrimBidID, ptr.TrimQuantity, ptr.TrimRework, ptr.TrimNotes , ptr.ActivityType, ptr.TrimTimeInForm, ptr.Rev, ptr.TimeStamp\n\nFROM PipeTrimREV ptr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT pt.* \nFROM PipeTrim pt\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT  ptr.fk_OrgActivityId, ptr.TrimBidID, ptr.TrimQuantity, ptr.TrimRework, ptr.TrimNotes , ptr.ActivityType, ptr.TrimTimeInForm, ptr.Rev, ptr.TimeStamp\n\nFROM PipeTrimREV ptr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -2277,8 +2111,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "14",
+      "variableName" : "",
+      "testValue" : "2695",
       "required" : true
     } ],
     "request" : {
@@ -2301,21 +2135,12 @@
           "list" : false
         }
       }, {
-        "name" : "TrimActivitySelect",
-        "fieldName" : "trimActivitySelect",
+        "name" : "TrimBidID",
+        "fieldName" : "trimBidId",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "TrimSize",
-        "fieldName" : "trimSize",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Float",
+          "typeRef" : "java.lang.Integer",
           "list" : false
         }
       }, {
@@ -2325,60 +2150,6 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "TrimHandleType",
-        "fieldName" : "trimHandleType",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "TrimInstrumentType",
-        "fieldName" : "trimInstrumentType",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "TrimDrawingNumber",
-        "fieldName" : "trimDrawingNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "TrimLineNumber",
-        "fieldName" : "trimLineNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "TrimSheetNumber",
-        "fieldName" : "trimSheetNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "TrimTimeInForm",
-        "fieldName" : "trimTimeInForm",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
           "list" : false
         }
       }, {
@@ -2406,6 +2177,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Short",
+          "list" : false
+        }
+      }, {
+        "name" : "TrimTimeInForm",
+        "fieldName" : "trimTimeInForm",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
           "list" : false
         }
       }, {
@@ -2443,8 +2223,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
+      "variableName" : "",
+      "testValue" : "2691",
       "required" : true
     } ],
     "request" : {
@@ -2678,10 +2458,10 @@
   },
   "GetActivityHistoryStatus" : {
     "name" : "GetActivityHistoryStatus",
-    "description" : "name",
+    "description" : "Get the status change history for a given ActivityID",
     "version" : "V1",
-    "queryString" : "SELECT sas.ActivityID, CONCAT(ats.Status, ' - ', IF(sas.LockField = 1, 'Locked', COALESCE(sas.LockField,'Unlocked'))) AS Status, CONCAT(u.FirstName, ' ', u.LastName) AS LastModifiedBy, sas.TimeStamp\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nLEFT JOIN PSA.tblUserPSA u\n\tON u.ID = fk_LastModifiedBy\n    \nWHERE sas.ActivityID = :ActivityID\n\n\n\nUNION ALL\n\n\n\nSELECT sasr.*\nFROM (SELECT sasr.fk_ActivityID, CONCAT(ats.Status, ' - ', IF(sasr.LockField = 1, 'Locked', COALESCE(sasr.LockField,'Unlocked'))) AS Status, CONCAT(u.FirstName, ' ', u.LastName) AS LastModifiedBy, sasr.TimeStamp\n\nFROM SubmissionActivityStatusREV sasr\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sasr.fk_ActivityStatus\nLEFT JOIN PSA.tblUserPSA u\n\tON u.ID = fk_LastModifiedBy\n\nWHERE sasr.fk_ActivityID = :ActivityID\nORDER BY sasr.TimeStamp DESC) sasr",
-    "countQueryString" : "select count(*) from (SELECT sas.ActivityID, CONCAT(ats.Status, ' - ', IF(sas.LockField = 1, 'Locked', COALESCE(sas.LockField,'Unlocked'))) AS Status, CONCAT(u.FirstName, ' ', u.LastName) AS LastModifiedBy, sas.TimeStamp\n\nFROM SubmissionActivityStatus sas\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nLEFT JOIN PSA.tblUserPSA u\n\tON u.ID = fk_LastModifiedBy\n    \nWHERE sas.ActivityID = :ActivityID\n\n\n\nUNION ALL\n\n\n\nSELECT sasr.*\nFROM (SELECT sasr.fk_ActivityID, CONCAT(ats.Status, ' - ', IF(sasr.LockField = 1, 'Locked', COALESCE(sasr.LockField,'Unlocked'))) AS Status, CONCAT(u.FirstName, ' ', u.LastName) AS LastModifiedBy, sasr.TimeStamp\n\nFROM SubmissionActivityStatusREV sasr\nLEFT JOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sasr.fk_ActivityStatus\nLEFT JOIN PSA.tblUserPSA u\n\tON u.ID = fk_LastModifiedBy\n\nWHERE sasr.fk_ActivityID = :ActivityID\nORDER BY sasr.TimeStamp DESC) sasr) wmTempTable",
+    "queryString" : "SELECT sas.ActivityID, CONCAT(ats.Status, ' - ', IF(sas.LockField IS NOT NULL, 'Locked', COALESCE(sas.LockField,'Unlocked'))) AS Status, CONCAT(u.FirstName, ' ', u.LastName) AS LastModifiedBy, sas.TimeStamp\n\nFROM SubmissionActivityStatus sas\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nLEFT JOIN PSA.tblUserPSA u\n\tON u.ID = fk_LastModifiedBy\n    \nWHERE sas.ActivityID = :ActivityID\n\n\n\nUNION ALL\n\n\n\nSELECT sasr.*\nFROM (SELECT sasr.fk_ActivityID, CONCAT(ats.Status, ' - ', IF(sasr.LockField IS NOT NULL, 'Locked', COALESCE(sasr.LockField,'Unlocked'))) AS Status, CONCAT(u.FirstName, ' ', u.LastName) AS LastModifiedBy, sasr.TimeStamp\n\nFROM SubmissionActivityStatusREV sasr\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sasr.fk_ActivityStatus\nLEFT JOIN PSA.tblUserPSA u\n\tON u.ID = fk_LastModifiedBy\n\nWHERE sasr.fk_ActivityID = :ActivityID) sasr\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT sas.ActivityID, CONCAT(ats.Status, ' - ', IF(sas.LockField IS NOT NULL, 'Locked', COALESCE(sas.LockField,'Unlocked'))) AS Status, CONCAT(u.FirstName, ' ', u.LastName) AS LastModifiedBy, sas.TimeStamp\n\nFROM SubmissionActivityStatus sas\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nLEFT JOIN PSA.tblUserPSA u\n\tON u.ID = fk_LastModifiedBy\n    \nWHERE sas.ActivityID = :ActivityID\n\n\n\nUNION ALL\n\n\n\nSELECT sasr.*\nFROM (SELECT sasr.fk_ActivityID, CONCAT(ats.Status, ' - ', IF(sasr.LockField IS NOT NULL, 'Locked', COALESCE(sasr.LockField,'Unlocked'))) AS Status, CONCAT(u.FirstName, ' ', u.LastName) AS LastModifiedBy, sasr.TimeStamp\n\nFROM SubmissionActivityStatusREV sasr\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sasr.fk_ActivityStatus\nLEFT JOIN PSA.tblUserPSA u\n\tON u.ID = fk_LastModifiedBy\n\nWHERE sasr.fk_ActivityID = :ActivityID) sasr\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -2690,8 +2470,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
+      "variableName" : "",
+      "testValue" : "2717",
       "required" : true
     } ],
     "request" : {
@@ -2743,142 +2523,12 @@
       } ]
     }
   },
-  "GetActivityHistorySteelBoltout" : {
-    "name" : "GetActivityHistorySteelBoltout",
-    "description" : "name",
-    "version" : "V1",
-    "queryString" : "SELECT stlb.* \nFROM SteelBoltOut stlb\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlbr.fk_OrgActivityId, stlbr.FAArea, stlbr.FAPieceNumber, stlbr.FABoltoutQuantity, stlbr.FABoltoutPercent, stlbr.FARework, stlbr.FANotes, stlbr.ActivityType, stlbr.FATimeInForm, stlbr.Rev, stlbr.TimeStamp\nFROM SteelBoltOutREV stlbr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT stlb.* \nFROM SteelBoltOut stlb\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlbr.fk_OrgActivityId, stlbr.FAArea, stlbr.FAPieceNumber, stlbr.FABoltoutQuantity, stlbr.FABoltoutPercent, stlbr.FARework, stlbr.FANotes, stlbr.ActivityType, stlbr.FATimeInForm, stlbr.Rev, stlbr.TimeStamp\nFROM SteelBoltOutREV stlbr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
-    "nativeSql" : true,
-    "fetchCount" : true,
-    "type" : "SELECT",
-    "parameters" : [ {
-      "name" : "ActivityID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "15",
-      "required" : true
-    } ],
-    "request" : {
-      "wrapped" : false,
-      "typeRef" : null,
-      "method" : "GET"
-    },
-    "identifiers" : [ ],
-    "response" : {
-      "typeRef" : "com.psabackoffice.job1111.models.query.GetActivityHistorySteelBoltoutResponse",
-      "returns" : "CUSTOM",
-      "responseType" : "PAGINATED",
-      "properties" : [ {
-        "name" : "ActivityID",
-        "fieldName" : "activityId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "FAArea",
-        "fieldName" : "faarea",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "FAPieceNumber",
-        "fieldName" : "fapieceNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "FABoltOutQuantity",
-        "fieldName" : "faboltOutQuantity",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "FABoltOutPercent",
-        "fieldName" : "faboltOutPercent",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Float",
-          "list" : false
-        }
-      }, {
-        "name" : "FARework",
-        "fieldName" : "farework",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "FANotes",
-        "fieldName" : "fanotes",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ActivityType",
-        "fieldName" : "activityType",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "FATimeInForm",
-        "fieldName" : "fatimeInForm",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "Rev",
-        "fieldName" : "rev",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "TimeStamp",
-        "fieldName" : "timeStamp",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.sql.Timestamp",
-          "list" : false
-        }
-      } ]
-    }
-  },
   "GetActivityHistorySteelDemo" : {
     "name" : "GetActivityHistorySteelDemo",
     "description" : "name",
     "version" : "V1",
-    "queryString" : "SELECT stld.* \nFROM SteelDemo stld\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stldr.fk_OrgActivityId, stldr.DemoArea, stldr.DemoSteelType, stldr.DemoSize, stldr.DemoQuantity, stldr.DemoNotes, stldr.ActivityType, stldr.DemoTimeInForm, stldr.Rev, stldr.TimeStamp\nFROM SteelDemoREV stldr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT stld.* \nFROM SteelDemo stld\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stldr.fk_OrgActivityId, stldr.DemoArea, stldr.DemoSteelType, stldr.DemoSize, stldr.DemoQuantity, stldr.DemoNotes, stldr.ActivityType, stldr.DemoTimeInForm, stldr.Rev, stldr.TimeStamp\nFROM SteelDemoREV stldr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT stld.* \nFROM SteelDemo stld\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stldr.fk_OrgActivityId, stldr.DemoBidID, stldr.DemoQuantity, stldr.DemoPercentCompleted, stldr.DemoNotes, stldr.ActivityType, stldr.DemoTimeInForm, stldr.Rev, stldr.TimeStamp\nFROM SteelDemoREV stldr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT stld.* \nFROM SteelDemo stld\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stldr.fk_OrgActivityId, stldr.DemoBidID, stldr.DemoQuantity, stldr.DemoPercentCompleted, stldr.DemoNotes, stldr.ActivityType, stldr.DemoTimeInForm, stldr.Rev, stldr.TimeStamp\nFROM SteelDemoREV stldr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -2887,8 +2537,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "16",
+      "variableName" : "",
+      "testValue" : "3120",
       "required" : true
     } ],
     "request" : {
@@ -2911,30 +2561,12 @@
           "list" : false
         }
       }, {
-        "name" : "DemoArea",
-        "fieldName" : "demoArea",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "DemoSteelType",
-        "fieldName" : "demoSteelType",
+        "name" : "DemoBidID",
+        "fieldName" : "demoBidId",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "DemoSize",
-        "fieldName" : "demoSize",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
           "list" : false
         }
       }, {
@@ -2944,6 +2576,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "DemoPercentCompleted",
+        "fieldName" : "demoPercentCompleted",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Float",
           "list" : false
         }
       }, {
@@ -2994,12 +2635,12 @@
       } ]
     }
   },
-  "GetActivityHistorySteelErect" : {
-    "name" : "GetActivityHistorySteelErect",
-    "description" : "name",
-    "version" : "V1",
-    "queryString" : "SELECT stle.* \nFROM SteelErect stle\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stler.fk_OrgActivityId, stler.FAArea, stler.FAPieceNumber, stler.FAErectQuantity, stler.FAErectPercent, stler.FARework, stler.FANotes, stler.ActivityType, stler.FATimeInForm, stler.Rev, stler.TimeStamp\nFROM SteelErectREV stler\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT stle.* \nFROM SteelErect stle\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stler.fk_OrgActivityId, stler.FAArea, stler.FAPieceNumber, stler.FAErectQuantity, stler.FAErectPercent, stler.FARework, stler.FANotes, stler.ActivityType, stler.FATimeInForm, stler.Rev, stler.TimeStamp\nFROM SteelErectREV stler\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
+  "GetActivityHistorySteelFA" : {
+    "name" : "GetActivityHistorySteelFA",
+    "description" : "Get the Activity change history for a given SteelFA activityID",
+    "version" : "V2",
+    "queryString" : "SELECT stlfa.* \nFROM SteelFA stlfa\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlfar.fk_OrgActivityId, stlfar.FASortGroup1, stlfar.FAPieceNumber, stlfar.FAQuantity, stlfar.FAPercentCompleted, stlfar.FARework, stlfar.FANotes, stlfar.ActivityType, stlfar.FATimeInForm, stlfar.Rev, stlfar.TimeStamp\nFROM SteelFAREV stlfar\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT stlfa.* \nFROM SteelFA stlfa\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlfar.fk_OrgActivityId, stlfar.FASortGroup1, stlfar.FAPieceNumber, stlfar.FAQuantity, stlfar.FAPercentCompleted, stlfar.FARework, stlfar.FANotes, stlfar.ActivityType, stlfar.FATimeInForm, stlfar.Rev, stlfar.TimeStamp\nFROM SteelFAREV stlfar\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -3008,8 +2649,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "17",
+      "variableName" : "",
+      "testValue" : "3118",
       "required" : true
     } ],
     "request" : {
@@ -3019,7 +2660,7 @@
     },
     "identifiers" : [ ],
     "response" : {
-      "typeRef" : "com.psabackoffice.job1111.models.query.GetActivityHistorySteelErectResponse",
+      "typeRef" : "com.psabackoffice.job1111.models.query.GetActivityHistorySteelFaResponse",
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
@@ -3032,8 +2673,8 @@
           "list" : false
         }
       }, {
-        "name" : "FAArea",
-        "fieldName" : "faarea",
+        "name" : "FASortGroup1",
+        "fieldName" : "fasortGroup1",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -3050,111 +2691,8 @@
           "list" : false
         }
       }, {
-        "name" : "FAErectQuantity",
-        "fieldName" : "faerectQuantity",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "FAErectPercent",
-        "fieldName" : "faerectPercent",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Float",
-          "list" : false
-        }
-      }, {
-        "name" : "FARework",
-        "fieldName" : "farework",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "FANotes",
-        "fieldName" : "fanotes",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ActivityType",
-        "fieldName" : "activityType",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "FATimeInForm",
-        "fieldName" : "fatimeInForm",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "Rev",
-        "fieldName" : "rev",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "TimeStamp",
-        "fieldName" : "timeStamp",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.sql.Timestamp",
-          "list" : false
-        }
-      } ]
-    }
-  },
-  "GetActivityHistorySteelImp" : {
-    "name" : "GetActivityHistorySteelImp",
-    "description" : "name",
-    "version" : "V1",
-    "queryString" : "SELECT stli.* \nFROM SteelImp stli\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlir.fk_OrgActivityId, stlir.FAArea, stlir.FAPieceNumber, stlir.FAImpQuantity, stlir.FAImpPercent, stlir.FARework, stlir.FANotes, stlir.ActivityType, stlir.FATimeInForm, stlir.Rev, stlir.TimeStamp\nFROM SteelImpREV stlir\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT stli.* \nFROM SteelImp stli\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlir.fk_OrgActivityId, stlir.FAArea, stlir.FAPieceNumber, stlir.FAImpQuantity, stlir.FAImpPercent, stlir.FARework, stlir.FANotes, stlir.ActivityType, stlir.FATimeInForm, stlir.Rev, stlir.TimeStamp\nFROM SteelImpREV stlir\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
-    "nativeSql" : true,
-    "fetchCount" : true,
-    "type" : "SELECT",
-    "parameters" : [ {
-      "name" : "ActivityID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "18",
-      "required" : true
-    } ],
-    "request" : {
-      "wrapped" : false,
-      "typeRef" : null,
-      "method" : "GET"
-    },
-    "identifiers" : [ ],
-    "response" : {
-      "typeRef" : "com.psabackoffice.job1111.models.query.GetActivityHistorySteelImpResponse",
-      "returns" : "CUSTOM",
-      "responseType" : "PAGINATED",
-      "properties" : [ {
-        "name" : "ActivityID",
-        "fieldName" : "activityId",
+        "name" : "FAQuantity",
+        "fieldName" : "faquantity",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -3162,35 +2700,8 @@
           "list" : false
         }
       }, {
-        "name" : "FAArea",
-        "fieldName" : "faarea",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "FAPieceNumber",
-        "fieldName" : "fapieceNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "FAImpQuantity",
-        "fieldName" : "faimpQuantity",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "FAImpPercent",
-        "fieldName" : "faimpPercent",
+        "name" : "FAPercentCompleted",
+        "fieldName" : "fapercentCompleted",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -3258,8 +2769,8 @@
     "name" : "GetActivityHistorySteelMisc",
     "description" : "name",
     "version" : "V1",
-    "queryString" : "SELECT stlm.* \nFROM SteelMisc stlm\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlmr.fk_OrgActivityId, stlmr.MiscArea, stlmr.MiscPieceNumber, stlmr.MiscQuantity, stlmr.MiscRework, stlmr.MiscNotes, stlmr.ActivityType, stlmr.MiscTimeInForm, stlmr.Rev, stlmr.TimeStamp\nFROM SteelMiscREV stlmr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT stlm.* \nFROM SteelMisc stlm\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlmr.fk_OrgActivityId, stlmr.MiscArea, stlmr.MiscPieceNumber, stlmr.MiscQuantity, stlmr.MiscRework, stlmr.MiscNotes, stlmr.ActivityType, stlmr.MiscTimeInForm, stlmr.Rev, stlmr.TimeStamp\nFROM SteelMiscREV stlmr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
+    "queryString" : "SELECT stlm.* \nFROM SteelMisc stlm\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlmr.fk_OrgActivityId, stlmr.MiscSortGroup1, stlmr.MiscPieceNumber, stlmr.MiscQuantity, stlmr.MiscRework, stlmr.MiscNotes, stlmr.ActivityType, stlmr.MiscTimeInForm, stlmr.Rev, stlmr.TimeStamp\nFROM SteelMiscREV stlmr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT stlm.* \nFROM SteelMisc stlm\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlmr.fk_OrgActivityId, stlmr.MiscSortGroup1, stlmr.MiscPieceNumber, stlmr.MiscQuantity, stlmr.MiscRework, stlmr.MiscNotes, stlmr.ActivityType, stlmr.MiscTimeInForm, stlmr.Rev, stlmr.TimeStamp\nFROM SteelMiscREV stlmr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -3268,8 +2779,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "19",
+      "variableName" : "",
+      "testValue" : "3123",
       "required" : true
     } ],
     "request" : {
@@ -3292,8 +2803,8 @@
           "list" : false
         }
       }, {
-        "name" : "MiscArea",
-        "fieldName" : "miscArea",
+        "name" : "MiscSortGroup1",
+        "fieldName" : "miscSortGroup1",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -3315,7 +2826,7 @@
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
+          "typeRef" : "java.lang.Integer",
           "list" : false
         }
       }, {
@@ -3375,384 +2886,12 @@
       } ]
     }
   },
-  "GetActivityHistorySteelSell" : {
-    "name" : "GetActivityHistorySteelSell",
-    "description" : "name",
-    "version" : "V1",
-    "queryString" : "SELECT stlsell.* \nFROM SteelSell stlsell\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlsellr.fk_OrgActivityId, stlsellr.FAArea, stlsellr.FAPieceNumber, stlsellr.FASellQuantity, stlsellr.FARework, stlsellr.FANotes, stlsellr.ActivityType, stlsellr.FATimeInForm, stlsellr.Rev, stlsellr.TimeStamp\nFROM SteelSellREV stlsellr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT stlsell.* \nFROM SteelSell stlsell\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlsellr.fk_OrgActivityId, stlsellr.FAArea, stlsellr.FAPieceNumber, stlsellr.FASellQuantity, stlsellr.FARework, stlsellr.FANotes, stlsellr.ActivityType, stlsellr.FATimeInForm, stlsellr.Rev, stlsellr.TimeStamp\nFROM SteelSellREV stlsellr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
-    "nativeSql" : true,
-    "fetchCount" : true,
-    "type" : "SELECT",
-    "parameters" : [ {
-      "name" : "ActivityID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "20",
-      "required" : true
-    } ],
-    "request" : {
-      "wrapped" : false,
-      "typeRef" : null,
-      "method" : "GET"
-    },
-    "identifiers" : [ ],
-    "response" : {
-      "typeRef" : "com.psabackoffice.job1111.models.query.GetActivityHistorySteelSellResponse",
-      "returns" : "CUSTOM",
-      "responseType" : "PAGINATED",
-      "properties" : [ {
-        "name" : "ActivityID",
-        "fieldName" : "activityId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "FAArea",
-        "fieldName" : "faarea",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "FAPieceNumber",
-        "fieldName" : "fapieceNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "FASellQuantity",
-        "fieldName" : "fasellQuantity",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "FARework",
-        "fieldName" : "farework",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "FANotes",
-        "fieldName" : "fanotes",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ActivityType",
-        "fieldName" : "activityType",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "FATimeInForm",
-        "fieldName" : "fatimeInForm",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "Rev",
-        "fieldName" : "rev",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "TimeStamp",
-        "fieldName" : "timeStamp",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.sql.Timestamp",
-          "list" : false
-        }
-      } ]
-    }
-  },
-  "GetActivityHistorySteelShake" : {
-    "name" : "GetActivityHistorySteelShake",
-    "description" : "name",
-    "version" : "V1",
-    "queryString" : "SELECT stls.* \nFROM SteelShake stls\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlsr.fk_OrgActivityId, stlsr.FAArea, stlsr.FAPieceNumber, stlsr.FAShakeQuantity, stlsr.FARework, stlsr.FANotes, stlsr.ActivityType, stlsr.FATimeInForm, stlsr.Rev, stlsr.TimeStamp\nFROM SteelShakeREV stlsr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT stls.* \nFROM SteelShake stls\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlsr.fk_OrgActivityId, stlsr.FAArea, stlsr.FAPieceNumber, stlsr.FAShakeQuantity, stlsr.FARework, stlsr.FANotes, stlsr.ActivityType, stlsr.FATimeInForm, stlsr.Rev, stlsr.TimeStamp\nFROM SteelShakeREV stlsr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
-    "nativeSql" : true,
-    "fetchCount" : true,
-    "type" : "SELECT",
-    "parameters" : [ {
-      "name" : "ActivityID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "4",
-      "required" : true
-    } ],
-    "request" : {
-      "wrapped" : false,
-      "typeRef" : null,
-      "method" : "GET"
-    },
-    "identifiers" : [ ],
-    "response" : {
-      "typeRef" : "com.psabackoffice.job1111.models.query.GetActivityHistorySteelShakeResponse",
-      "returns" : "CUSTOM",
-      "responseType" : "PAGINATED",
-      "properties" : [ {
-        "name" : "ActivityID",
-        "fieldName" : "activityId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "FAArea",
-        "fieldName" : "faarea",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "FAPieceNumber",
-        "fieldName" : "fapieceNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "FAShakeQuantity",
-        "fieldName" : "fashakeQuantity",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "FARework",
-        "fieldName" : "farework",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "FANotes",
-        "fieldName" : "fanotes",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ActivityType",
-        "fieldName" : "activityType",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "FATimeInForm",
-        "fieldName" : "fatimeInForm",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "Rev",
-        "fieldName" : "rev",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "TimeStamp",
-        "fieldName" : "timeStamp",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.sql.Timestamp",
-          "list" : false
-        }
-      } ]
-    }
-  },
-  "GetActivityHistorySteelWeld" : {
-    "name" : "GetActivityHistorySteelWeld",
-    "description" : "name",
-    "version" : "V1",
-    "queryString" : "SELECT stlw.* \nFROM SteelWeld stlw\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlwr.fk_OrgActivityId, stlwr.FAArea, stlwr.FAPieceNumber, stlwr.FAWeldQuantity, stlwr.FAWeldPercent, stlwr.FARework, stlwr.FANotes, stlwr.ActivityType, stlwr.FATimeInForm, stlwr.Rev, stlwr.TimeStamp\nFROM SteelWeldREV stlwr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT stlw.* \nFROM SteelWeld stlw\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT stlwr.fk_OrgActivityId, stlwr.FAArea, stlwr.FAPieceNumber, stlwr.FAWeldQuantity, stlwr.FAWeldPercent, stlwr.FARework, stlwr.FANotes, stlwr.ActivityType, stlwr.FATimeInForm, stlwr.Rev, stlwr.TimeStamp\nFROM SteelWeldREV stlwr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
-    "nativeSql" : true,
-    "fetchCount" : true,
-    "type" : "SELECT",
-    "parameters" : [ {
-      "name" : "ActivityID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "22",
-      "required" : true
-    } ],
-    "request" : {
-      "wrapped" : false,
-      "typeRef" : null,
-      "method" : "GET"
-    },
-    "identifiers" : [ ],
-    "response" : {
-      "typeRef" : "com.psabackoffice.job1111.models.query.GetActivityHistorySteelWeldResponse",
-      "returns" : "CUSTOM",
-      "responseType" : "PAGINATED",
-      "properties" : [ {
-        "name" : "ActivityID",
-        "fieldName" : "activityId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "FAArea",
-        "fieldName" : "faarea",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "FAPieceNumber",
-        "fieldName" : "fapieceNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "FAWeldQuantity",
-        "fieldName" : "faweldQuantity",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "FAWeldPercent",
-        "fieldName" : "faweldPercent",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Float",
-          "list" : false
-        }
-      }, {
-        "name" : "FARework",
-        "fieldName" : "farework",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "FANotes",
-        "fieldName" : "fanotes",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ActivityType",
-        "fieldName" : "activityType",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "FATimeInForm",
-        "fieldName" : "fatimeInForm",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "Rev",
-        "fieldName" : "rev",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "TimeStamp",
-        "fieldName" : "timeStamp",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.sql.Timestamp",
-          "list" : false
-        }
-      } ]
-    }
-  },
   "GetBidActivityMatchesByTestPackageCivil" : {
     "name" : "GetBidActivityMatchesByTestPackageCivil",
     "description" : "Get Bid items with the supplied TestPackage",
     "version" : "V1",
-    "queryString" : "SELECT ctd.UID, ctd.BidID, ctd.EWONumber, ctd.Scope, ctd.Phase, ctd.Stage, ctd.TestPackageNumber, ctd.CostCode, ctd.P6ID, ctd.AssignedContractor, ctd.Area, ctd.Location, ctd.Structure, ctd.Grouping, \nctd.FoundationDescription, ctd.CU, ctd.P6Description, ctd.EngDrawingNumber, ctd.SheetNumber, ctd.DrawingRev, ctd.DetailDrawingNumber, ctd.DetailRev, ctd.DetailName, ctd.Description, ctd.ActivityType, \nctd.ActivitySubType, ctd.System, ctd.Service, ctd.TakeOffQuantity, ctd.QuantityUnit, ctd.EstimatedHours, \nctd.WBS1, ctd.WBS2, ctd.WBS3, ctd.WBS4, ctd.WBS5, ctd.WBS6, ctd.WBS7, ctd.WBS8, ctd.WBS9, ctd.WBS10, \n\n\ncount(ctd.BidID) AS SellPunchCount,\nsum(ctd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'CivilSellPunchHoursPercent')) AS SellPunchHours,\nsum(COALESCE(ercs.InstalledSellPunch,0)) AS SellPunchInstalled,\n\nsum(COALESCE(ctd.EstimatedHours,0) * (SELECT Value1 FROM SETTINGS WHERE Label = 'CivilSellPunchHoursPercent') * COALESCE(ercs.InstalledSellPunch,0)) AS EarnedSellPunchHours,\n\n\nctd.Rev, ctd.TimeStamp\n\nFROM CivilTrackerDetails ctd\n\nLEFT JOIN (SELECT sas.ActivityType, cs.SellTestPackageNumber, 1 AS InstalledSellPunch\n\t\t\tFROM CivilSellPackage cs \n            JOIN SubmissionActivityStatus sas\n\t\t\t\tON sas.ActivityID = cs.ActivityID AND sas.fk_ActivityStatus IN (5,12)) ercs\n\tON ercs.SellTestPackageNumber = ctd.TestPackageNumber AND ctd.ActivityType != \"Demo\"\n\nWHERE ctd.TestPackageNumber = :TestPackage\nGROUP BY BidID\nORDER By ctd.EngDrawingNumber, ctd.SheetNumber, ctd.DetailDrawingNumber, ctd.DetailName, ctd.Description",
-    "countQueryString" : "select count(*) from (SELECT ctd.UID, ctd.BidID, ctd.EWONumber, ctd.Scope, ctd.Phase, ctd.Stage, ctd.TestPackageNumber, ctd.CostCode, ctd.P6ID, ctd.AssignedContractor, ctd.Area, ctd.Location, ctd.Structure, ctd.Grouping, \nctd.FoundationDescription, ctd.CU, ctd.P6Description, ctd.EngDrawingNumber, ctd.SheetNumber, ctd.DrawingRev, ctd.DetailDrawingNumber, ctd.DetailRev, ctd.DetailName, ctd.Description, ctd.ActivityType, \nctd.ActivitySubType, ctd.System, ctd.Service, ctd.TakeOffQuantity, ctd.QuantityUnit, ctd.EstimatedHours, \nctd.WBS1, ctd.WBS2, ctd.WBS3, ctd.WBS4, ctd.WBS5, ctd.WBS6, ctd.WBS7, ctd.WBS8, ctd.WBS9, ctd.WBS10, \n\n\ncount(ctd.BidID) AS SellPunchCount,\nsum(ctd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'CivilSellPunchHoursPercent')) AS SellPunchHours,\nsum(COALESCE(ercs.InstalledSellPunch,0)) AS SellPunchInstalled,\n\nsum(COALESCE(ctd.EstimatedHours,0) * (SELECT Value1 FROM SETTINGS WHERE Label = 'CivilSellPunchHoursPercent') * COALESCE(ercs.InstalledSellPunch,0)) AS EarnedSellPunchHours,\n\n\nctd.Rev, ctd.TimeStamp\n\nFROM CivilTrackerDetails ctd\n\nLEFT JOIN (SELECT sas.ActivityType, cs.SellTestPackageNumber, 1 AS InstalledSellPunch\n\t\t\tFROM CivilSellPackage cs \n            JOIN SubmissionActivityStatus sas\n\t\t\t\tON sas.ActivityID = cs.ActivityID AND sas.fk_ActivityStatus IN (5,12)) ercs\n\tON ercs.SellTestPackageNumber = ctd.TestPackageNumber AND ctd.ActivityType != \"Demo\"\n\nWHERE ctd.TestPackageNumber = :TestPackage\nGROUP BY BidID\nORDER By ctd.EngDrawingNumber, ctd.SheetNumber, ctd.DetailDrawingNumber, ctd.DetailName, ctd.Description) wmTempTable",
+    "queryString" : "SELECT ctd.UID, ctd.BidID, ctd.ProjectServicesRep, ctd.EWONumber, ctd.Scope, ctd.Phase, ctd.Stage, ctd.TestPackageNumber, ctd.WorkPackage, ctd.CostCode, ctd.P6ID, ctd.P6Description, ctd.AssignedContractor, \nctd.Area, ctd.Location, ctd.Structure, ctd.CU, ctd.Elevation, \nctd.SortGroup1, ctd.SortGroup2, ctd.SortGroup3, ctd.EngDrawingNumber, ctd.SheetNumber, ctd.DrawingRev, ctd.DetailDrawingNumber, ctd.DetailRev, ctd.DetailName, ctd.Description, ctd.ActivityType, \nctd.ActivitySubType, ctd.System, ctd.Service, ctd.TakeOffQuantity, ctd.QuantityUnit, ctd.EstimatedHours, \nctd.WBS1, ctd.WBS2, ctd.WBS3, ctd.WBS4, ctd.WBS5, ctd.WBS6, ctd.WBS7, ctd.WBS8, ctd.WBS9, ctd.WBS10, \n\ncount(ctd.BidID) AS SellPunchCount,\nsum(ctd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'CivilSellPunchHoursPercent')) AS SellPunchHours,\nsum(COALESCE(ercs.InstalledSellPunch,0)) AS SellPunchInstalled,\n\nsum(COALESCE(ctd.EstimatedHours,0) * (SELECT Value1 FROM SETTINGS WHERE Label = 'CivilSellPunchHoursPercent') * COALESCE(ercs.InstalledSellPunch,0)) AS EarnedSellPunchHours,\n\nctd.Rev, ctd.TimeStamp\n\nFROM CivilTrackerDetails ctd\n\nLEFT JOIN (SELECT sas.ActivityType, cs.SellTestPackageNumber, 1 AS InstalledSellPunch\n\t\t\tFROM CivilSellPackage cs \n            JOIN SubmissionActivityStatus sas\n\t\t\t\tON sas.ActivityID = cs.ActivityID AND sas.fk_ActivityStatus IN (5,12)) ercs\n\tON ercs.SellTestPackageNumber = ctd.TestPackageNumber \n    \nWHERE ctd.TestPackageNumber = :TestPackage\nAND ctd.ActivityType != \"Demo\"\nGROUP BY BidID\nORDER By ctd.EngDrawingNumber, ctd.SheetNumber, ctd.DetailDrawingNumber, ctd.DetailName, ctd.Description",
+    "countQueryString" : "select count(*) from (SELECT ctd.UID, ctd.BidID, ctd.ProjectServicesRep, ctd.EWONumber, ctd.Scope, ctd.Phase, ctd.Stage, ctd.TestPackageNumber, ctd.WorkPackage, ctd.CostCode, ctd.P6ID, ctd.P6Description, ctd.AssignedContractor, \nctd.Area, ctd.Location, ctd.Structure, ctd.CU, ctd.Elevation, \nctd.SortGroup1, ctd.SortGroup2, ctd.SortGroup3, ctd.EngDrawingNumber, ctd.SheetNumber, ctd.DrawingRev, ctd.DetailDrawingNumber, ctd.DetailRev, ctd.DetailName, ctd.Description, ctd.ActivityType, \nctd.ActivitySubType, ctd.System, ctd.Service, ctd.TakeOffQuantity, ctd.QuantityUnit, ctd.EstimatedHours, \nctd.WBS1, ctd.WBS2, ctd.WBS3, ctd.WBS4, ctd.WBS5, ctd.WBS6, ctd.WBS7, ctd.WBS8, ctd.WBS9, ctd.WBS10, \n\ncount(ctd.BidID) AS SellPunchCount,\nsum(ctd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'CivilSellPunchHoursPercent')) AS SellPunchHours,\nsum(COALESCE(ercs.InstalledSellPunch,0)) AS SellPunchInstalled,\n\nsum(COALESCE(ctd.EstimatedHours,0) * (SELECT Value1 FROM SETTINGS WHERE Label = 'CivilSellPunchHoursPercent') * COALESCE(ercs.InstalledSellPunch,0)) AS EarnedSellPunchHours,\n\nctd.Rev, ctd.TimeStamp\n\nFROM CivilTrackerDetails ctd\n\nLEFT JOIN (SELECT sas.ActivityType, cs.SellTestPackageNumber, 1 AS InstalledSellPunch\n\t\t\tFROM CivilSellPackage cs \n            JOIN SubmissionActivityStatus sas\n\t\t\t\tON sas.ActivityID = cs.ActivityID AND sas.fk_ActivityStatus IN (5,12)) ercs\n\tON ercs.SellTestPackageNumber = ctd.TestPackageNumber \n    \nWHERE ctd.TestPackageNumber = :TestPackage\nAND ctd.ActivityType != \"Demo\"\nGROUP BY BidID\nORDER By ctd.EngDrawingNumber, ctd.SheetNumber, ctd.DetailDrawingNumber, ctd.DetailName, ctd.Description) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -3761,8 +2900,8 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
+      "variableName" : "",
+      "testValue" : "7",
       "required" : false
     } ],
     "request" : {
@@ -3791,6 +2930,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "ProjectServicesRep",
+        "fieldName" : "projectServicesRep",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
           "list" : false
         }
       }, {
@@ -3839,6 +2987,15 @@
           "list" : false
         }
       }, {
+        "name" : "WorkPackage",
+        "fieldName" : "workPackage",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
         "name" : "CostCode",
         "fieldName" : "costCode",
         "optional" : false,
@@ -3850,6 +3007,15 @@
       }, {
         "name" : "P6ID",
         "fieldName" : "p6id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "P6Description",
+        "fieldName" : "p6description",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -3893,24 +3059,6 @@
           "list" : false
         }
       }, {
-        "name" : "Grouping",
-        "fieldName" : "grouping",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "FoundationDescription",
-        "fieldName" : "foundationDescription",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
         "name" : "CU",
         "fieldName" : "cu",
         "optional" : false,
@@ -3920,8 +3068,35 @@
           "list" : false
         }
       }, {
-        "name" : "P6Description",
-        "fieldName" : "p6description",
+        "name" : "Elevation",
+        "fieldName" : "elevation",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "SortGroup1",
+        "fieldName" : "sortGroup1",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "SortGroup2",
+        "fieldName" : "sortGroup2",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "SortGroup3",
+        "fieldName" : "sortGroup3",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4051,7 +3226,7 @@
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Double",
+          "typeRef" : "java.math.BigDecimal",
           "list" : false
         }
       }, {
@@ -4205,8 +3380,8 @@
     "name" : "GetBidActivityMatchesByTestPackagePipe",
     "description" : "No description is provided",
     "version" : "V1",
-    "queryString" : "SELECT ptd.ID, ptd.BidID, ptd.Scope, ptd.Phase, ptd.Area, ptd.Location, ptd.Elevation, ptd.CU, ptd.P6ID, ptd.P6Description, ptd.Stage, ptd.TestPackageNumber, ptd.CostCode, ptd.LineNumber, ptd.EngDrawingNumber, ptd.SheetNumber, \nptd.RevisionNumber, ptd.System, ptd.Service, ptd.ClientPipeSpec, ptd.MaterialCode, ptd.Description, ptd.ComponentNumber, ptd.ECT, ptd.PipingActivityType, ptd.PipeSize, ptd.TakeOffQuantity, ptd.QuantityUnit, ptd.EstimatedHours, \nptd.WBS1, ptd.WBS2, ptd.WBS3, ptd.WBS4, ptd.WBS5, ptd.WBS6, ptd.WBS7, ptd.WBS8, ptd.WBS9, ptd.WBS10, ptd.Rev, ptd.TimeStamp,\n\nReadyForTestingInstalled,\nHydroInstalled,\nClientTurnoverInstalled,\n\nste.ReadyForTestingHours AS ReadyForTestingHours,\nste.ReadyForTestingHours AS HydroHours,\nste.ReadyForTestingHours AS ClientTurnoverHours,\n\nert.EarnedReadyForTestingHours AS EarnedReadyForTestingHours,\nert.EarnedReadyForTestingHours AS EarnedHydroHours,\nert.EarnedReadyForTestingHours AS EarnedClientTurnoverHours\n\nFROM PipeTrackerDetails ptd\n\n\tLEFT JOIN (SELECT ptd.BidID,\nsum(COALESCE(pteR.InstalledReadyForTesting, 0)) AS ReadyForTestingInstalled,\nsum(COALESCE(pteH.InstalledHydro, 0)) AS HydroInstalled,\nsum(COALESCE(pteC.InstalledClientTurnover, 0)) AS ClientTurnoverInstalled,\n\nsum(COALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'CompleteForTestPercent') * pteR.InstalledReadyForTesting, 0)) AS EarnedReadyForTestingHours,\nsum(COALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'HydroHoursPercent') * pteH.InstalledHydro, 0)) AS EarnedHydroHours,\nsum(COALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'ClientTurnoverPercent') * pteC.InstalledClientTurnover, 0)) AS EarnedClientTurnoverHours\n\n\nFROM PipeTrackerDetails ptd\n\nLEFT JOIN (SELECT pte.ActivityType, pte.TestingTestPackageNumber, 1 AS InstalledReadyForTesting\n\t\t\tFROM PipeTesting pte\n            JOIN SubmissionActivityStatus sas\n\t\t\t\tON sas.ActivityID = pte.ActivityID AND sas.fk_ActivityStatus IN (5,12)) pteR\n\tON pteR.TestingTestPackageNumber = ptd.TestPackageNumber AND pteR.ActivityType = 41 AND ptd.ECT != \"D\"\n    \nLEFT JOIN (SELECT pte.ActivityType, pte.TestingTestPackageNumber, 1 AS InstalledHydro\n\t\t\tFROM PipeTesting pte\n            JOIN SubmissionActivityStatus sas\n\t\t\t\tON sas.ActivityID = pte.ActivityID AND sas.fk_ActivityStatus IN (5,12)) pteH\n\tON pteH.TestingTestPackageNumber = ptd.TestPackageNumber AND pteH.ActivityType = 42 AND ptd.ECT != \"D\"\n    \nLEFT JOIN (SELECT pte.ActivityType, pte.TestingTestPackageNumber, 1 AS InstalledClientTurnover\n\t\t\tFROM PipeTesting pte\n            JOIN SubmissionActivityStatus sas\n\t\t\t\tON sas.ActivityID = pte.ActivityID AND sas.fk_ActivityStatus IN (5,12)) pteC\n\tON pteC.TestingTestPackageNumber = ptd.TestPackageNumber AND pteC.ActivityType = 43 AND ptd.ECT != \"D\"\n) ert\n\tON ert.BidID = ptd.BidID\n    \nLEFT JOIN (SELECT ptd.BidID, \n\t\t\t\tCOALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent'),0) AS TestingHours,\n                COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'CompleteForTestPercent')),0) AS ReadyForTestingHours,\n                COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'HydroHoursPercent')),0) AS HydroHours,\n                COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'ClientTurnoverPercent')),0) AS ClientTurnoverHours\n\t\t\t\tFROM `PipeTrackerDetails` ptd\n\t\t\t\tWHERE ptd.ECT != 'D') ste\n\tON ste.BidID = ptd.BidID\n\nWHERE ptd.TestPackageNumber = :TestPackage\nORDER BY ptd.EngDrawingNumber, ptd.SheetNumber",
-    "countQueryString" : "select count(*) from (SELECT ptd.ID, ptd.BidID, ptd.Scope, ptd.Phase, ptd.Area, ptd.Location, ptd.Elevation, ptd.CU, ptd.P6ID, ptd.P6Description, ptd.Stage, ptd.TestPackageNumber, ptd.CostCode, ptd.LineNumber, ptd.EngDrawingNumber, ptd.SheetNumber, \nptd.RevisionNumber, ptd.System, ptd.Service, ptd.ClientPipeSpec, ptd.MaterialCode, ptd.Description, ptd.ComponentNumber, ptd.ECT, ptd.PipingActivityType, ptd.PipeSize, ptd.TakeOffQuantity, ptd.QuantityUnit, ptd.EstimatedHours, \nptd.WBS1, ptd.WBS2, ptd.WBS3, ptd.WBS4, ptd.WBS5, ptd.WBS6, ptd.WBS7, ptd.WBS8, ptd.WBS9, ptd.WBS10, ptd.Rev, ptd.TimeStamp,\n\nReadyForTestingInstalled,\nHydroInstalled,\nClientTurnoverInstalled,\n\nste.ReadyForTestingHours AS ReadyForTestingHours,\nste.ReadyForTestingHours AS HydroHours,\nste.ReadyForTestingHours AS ClientTurnoverHours,\n\nert.EarnedReadyForTestingHours AS EarnedReadyForTestingHours,\nert.EarnedReadyForTestingHours AS EarnedHydroHours,\nert.EarnedReadyForTestingHours AS EarnedClientTurnoverHours\n\nFROM PipeTrackerDetails ptd\n\n\tLEFT JOIN (SELECT ptd.BidID,\nsum(COALESCE(pteR.InstalledReadyForTesting, 0)) AS ReadyForTestingInstalled,\nsum(COALESCE(pteH.InstalledHydro, 0)) AS HydroInstalled,\nsum(COALESCE(pteC.InstalledClientTurnover, 0)) AS ClientTurnoverInstalled,\n\nsum(COALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'CompleteForTestPercent') * pteR.InstalledReadyForTesting, 0)) AS EarnedReadyForTestingHours,\nsum(COALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'HydroHoursPercent') * pteH.InstalledHydro, 0)) AS EarnedHydroHours,\nsum(COALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'ClientTurnoverPercent') * pteC.InstalledClientTurnover, 0)) AS EarnedClientTurnoverHours\n\n\nFROM PipeTrackerDetails ptd\n\nLEFT JOIN (SELECT pte.ActivityType, pte.TestingTestPackageNumber, 1 AS InstalledReadyForTesting\n\t\t\tFROM PipeTesting pte\n            JOIN SubmissionActivityStatus sas\n\t\t\t\tON sas.ActivityID = pte.ActivityID AND sas.fk_ActivityStatus IN (5,12)) pteR\n\tON pteR.TestingTestPackageNumber = ptd.TestPackageNumber AND pteR.ActivityType = 41 AND ptd.ECT != \"D\"\n    \nLEFT JOIN (SELECT pte.ActivityType, pte.TestingTestPackageNumber, 1 AS InstalledHydro\n\t\t\tFROM PipeTesting pte\n            JOIN SubmissionActivityStatus sas\n\t\t\t\tON sas.ActivityID = pte.ActivityID AND sas.fk_ActivityStatus IN (5,12)) pteH\n\tON pteH.TestingTestPackageNumber = ptd.TestPackageNumber AND pteH.ActivityType = 42 AND ptd.ECT != \"D\"\n    \nLEFT JOIN (SELECT pte.ActivityType, pte.TestingTestPackageNumber, 1 AS InstalledClientTurnover\n\t\t\tFROM PipeTesting pte\n            JOIN SubmissionActivityStatus sas\n\t\t\t\tON sas.ActivityID = pte.ActivityID AND sas.fk_ActivityStatus IN (5,12)) pteC\n\tON pteC.TestingTestPackageNumber = ptd.TestPackageNumber AND pteC.ActivityType = 43 AND ptd.ECT != \"D\"\n) ert\n\tON ert.BidID = ptd.BidID\n    \nLEFT JOIN (SELECT ptd.BidID, \n\t\t\t\tCOALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent'),0) AS TestingHours,\n                COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'CompleteForTestPercent')),0) AS ReadyForTestingHours,\n                COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'HydroHoursPercent')),0) AS HydroHours,\n                COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'ClientTurnoverPercent')),0) AS ClientTurnoverHours\n\t\t\t\tFROM `PipeTrackerDetails` ptd\n\t\t\t\tWHERE ptd.ECT != 'D') ste\n\tON ste.BidID = ptd.BidID\n\nWHERE ptd.TestPackageNumber = :TestPackage\nORDER BY ptd.EngDrawingNumber, ptd.SheetNumber) wmTempTable",
+    "queryString" : "SELECT ptd.UID, ptd.BidID, ptd.ProjectServicesRep, ptd.Scope, ptd.Phase, ptd.Stage, ptd.TestPackageNumber, ptd.WorkPackage, ptd.CostCode, ptd.P6ID, ptd.P6Description, ptd.AssignedContractor, \nptd.Area, ptd.Location, ptd.Structure, ptd.CU, ptd.Elevation, ptd.LineNumber, ptd.EngDrawingNumber, ptd.SheetNumber, ptd.DrawingRev, ptd.Description, ptd.ActivityType, ptd.ActivitySubType, ptd.ClientMaterialSpec, ptd.PerformanceMaterialSpec, ptd.Size, ptd.System, ptd.Service, ptd.ComponentNumber, ptd.TakeOffQuantity, ptd.QuantityUnit, ptd.EstimatedHours, \nptd.WBS1, ptd.WBS2, ptd.WBS3, ptd.WBS4, ptd.WBS5, ptd.WBS6, ptd.WBS7, ptd.WBS8, ptd.WBS9, ptd.WBS10, ptd.Rev, ptd.TimeStamp,\n\nert.RFTInstalled,\nert.HydroInstalled,\nert.CTOInstalled,\n\nIF(ptd.ActivityType != 'D', (ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'ReadyForTestPercent')),0) AS RFTHours,\nIF(ptd.ActivityType != 'D', (ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'HydroHoursPercent')),0) AS HydroHours,\nIF(ptd.ActivityType != 'D', (ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'ClientTurnoverPercent')),0) AS CTOHours,\n\nert.EarnedRFTHours AS EarnedRFTHours,\nert.EarnedHydroHours AS EarnedHydroHours,\nert.EarnedCTOHours AS EarnedCTOHours\n\nFROM PipeTrackerDetails ptd\n\nLEFT JOIN (SELECT ptd.UID,\nCOALESCE(pteR.InstalledRFT, 0) AS RFTInstalled,\nCOALESCE(pteH.InstalledHydro, 0) AS HydroInstalled,\nCOALESCE(pteC.InstalledCTO, 0) AS CTOInstalled,\n\nCOALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'CompleteForTestPercent') * pteR.InstalledRFT, 0) AS EarnedRFTHours,\nCOALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'HydroHoursPercent') * pteH.InstalledHydro, 0) AS EarnedHydroHours,\nCOALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'ClientTurnoverPercent') * pteC.InstalledCTO, 0) AS EarnedCTOHours\n\n\nFROM PipeTrackerDetails ptd\n\nLEFT JOIN (SELECT pte.ActivityType, pte.TestingTestPackageNumber, 1 AS InstalledRFT\n\t\t\tFROM PipeTesting pte\n            JOIN SubmissionActivityStatus sas\n\t\t\t\tON pte.ActivityID = sas.ActivityID AND sas.fk_ActivityStatus IN (5,12)) pteR\n\tON pteR.TestingTestPackageNumber = ptd.TestPackageNumber AND pteR.ActivityType = 41 \n    \nLEFT JOIN (SELECT pte.ActivityType, pte.TestingTestPackageNumber, 1 AS InstalledHydro\n\t\t\tFROM PipeTesting pte\n            JOIN SubmissionActivityStatus sas\n\t\t\t\tON sas.ActivityID = pte.ActivityID AND sas.fk_ActivityStatus IN (5,12)) pteH\n\tON pteH.TestingTestPackageNumber = ptd.TestPackageNumber AND pteH.ActivityType = 42 \n    \nLEFT JOIN (SELECT pte.ActivityType, pte.TestingTestPackageNumber, 1 AS InstalledCTO\n\t\t\tFROM PipeTesting pte\n            JOIN SubmissionActivityStatus sas\n\t\t\t\tON sas.ActivityID = pte.ActivityID AND sas.fk_ActivityStatus IN (5,12)) pteC\n\tON pteC.TestingTestPackageNumber = ptd.TestPackageNumber AND pteC.ActivityType = 43 \n\nWHERE ptd.TestPackageNumber = :TestPackage\nAND ptd.ActivityType != \"D\"\n) ert\n\tON ert.UID = ptd.UID\n    \nWHERE ptd.TestPackageNumber = :TestPackage\nAND ptd.ActivityType != \"D\"\nORDER BY ptd.EngDrawingNumber, ptd.SheetNumber",
+    "countQueryString" : "select count(*) from (SELECT ptd.UID, ptd.BidID, ptd.ProjectServicesRep, ptd.Scope, ptd.Phase, ptd.Stage, ptd.TestPackageNumber, ptd.WorkPackage, ptd.CostCode, ptd.P6ID, ptd.P6Description, ptd.AssignedContractor, \nptd.Area, ptd.Location, ptd.Structure, ptd.CU, ptd.Elevation, ptd.LineNumber, ptd.EngDrawingNumber, ptd.SheetNumber, ptd.DrawingRev, ptd.Description, ptd.ActivityType, ptd.ActivitySubType, ptd.ClientMaterialSpec, ptd.PerformanceMaterialSpec, ptd.Size, ptd.System, ptd.Service, ptd.ComponentNumber, ptd.TakeOffQuantity, ptd.QuantityUnit, ptd.EstimatedHours, \nptd.WBS1, ptd.WBS2, ptd.WBS3, ptd.WBS4, ptd.WBS5, ptd.WBS6, ptd.WBS7, ptd.WBS8, ptd.WBS9, ptd.WBS10, ptd.Rev, ptd.TimeStamp,\n\nert.RFTInstalled,\nert.HydroInstalled,\nert.CTOInstalled,\n\nIF(ptd.ActivityType != 'D', (ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'ReadyForTestPercent')),0) AS RFTHours,\nIF(ptd.ActivityType != 'D', (ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'HydroHoursPercent')),0) AS HydroHours,\nIF(ptd.ActivityType != 'D', (ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'ClientTurnoverPercent')),0) AS CTOHours,\n\nert.EarnedRFTHours AS EarnedRFTHours,\nert.EarnedHydroHours AS EarnedHydroHours,\nert.EarnedCTOHours AS EarnedCTOHours\n\nFROM PipeTrackerDetails ptd\n\nLEFT JOIN (SELECT ptd.UID,\nCOALESCE(pteR.InstalledRFT, 0) AS RFTInstalled,\nCOALESCE(pteH.InstalledHydro, 0) AS HydroInstalled,\nCOALESCE(pteC.InstalledCTO, 0) AS CTOInstalled,\n\nCOALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'CompleteForTestPercent') * pteR.InstalledRFT, 0) AS EarnedRFTHours,\nCOALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'HydroHoursPercent') * pteH.InstalledHydro, 0) AS EarnedHydroHours,\nCOALESCE(ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'TestingHoursPercent')*(SELECT Value1 FROM SETTINGS WHERE Label = 'ClientTurnoverPercent') * pteC.InstalledCTO, 0) AS EarnedCTOHours\n\n\nFROM PipeTrackerDetails ptd\n\nLEFT JOIN (SELECT pte.ActivityType, pte.TestingTestPackageNumber, 1 AS InstalledRFT\n\t\t\tFROM PipeTesting pte\n            JOIN SubmissionActivityStatus sas\n\t\t\t\tON pte.ActivityID = sas.ActivityID AND sas.fk_ActivityStatus IN (5,12)) pteR\n\tON pteR.TestingTestPackageNumber = ptd.TestPackageNumber AND pteR.ActivityType = 41 \n    \nLEFT JOIN (SELECT pte.ActivityType, pte.TestingTestPackageNumber, 1 AS InstalledHydro\n\t\t\tFROM PipeTesting pte\n            JOIN SubmissionActivityStatus sas\n\t\t\t\tON sas.ActivityID = pte.ActivityID AND sas.fk_ActivityStatus IN (5,12)) pteH\n\tON pteH.TestingTestPackageNumber = ptd.TestPackageNumber AND pteH.ActivityType = 42 \n    \nLEFT JOIN (SELECT pte.ActivityType, pte.TestingTestPackageNumber, 1 AS InstalledCTO\n\t\t\tFROM PipeTesting pte\n            JOIN SubmissionActivityStatus sas\n\t\t\t\tON sas.ActivityID = pte.ActivityID AND sas.fk_ActivityStatus IN (5,12)) pteC\n\tON pteC.TestingTestPackageNumber = ptd.TestPackageNumber AND pteC.ActivityType = 43 \n\nWHERE ptd.TestPackageNumber = :TestPackage\nAND ptd.ActivityType != \"D\"\n) ert\n\tON ert.UID = ptd.UID\n    \nWHERE ptd.TestPackageNumber = :TestPackage\nAND ptd.ActivityType != \"D\"\nORDER BY ptd.EngDrawingNumber, ptd.SheetNumber) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -4215,9 +3390,9 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
-      "required" : false
+      "variableName" : "",
+      "testValue" : "7",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -4230,8 +3405,8 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
+        "name" : "UID",
+        "fieldName" : "uid",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4248,6 +3423,15 @@
           "list" : false
         }
       }, {
+        "name" : "ProjectServicesRep",
+        "fieldName" : "projectServicesRep",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
         "name" : "Scope",
         "fieldName" : "scope",
         "optional" : false,
@@ -4259,60 +3443,6 @@
       }, {
         "name" : "Phase",
         "fieldName" : "phase",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Area",
-        "fieldName" : "area",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Location",
-        "fieldName" : "location",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Elevation",
-        "fieldName" : "elevation",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "CU",
-        "fieldName" : "cu",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "P6ID",
-        "fieldName" : "p6id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "P6Description",
-        "fieldName" : "p6description",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4338,8 +3468,89 @@
           "list" : false
         }
       }, {
+        "name" : "WorkPackage",
+        "fieldName" : "workPackage",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
         "name" : "CostCode",
         "fieldName" : "costCode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "P6ID",
+        "fieldName" : "p6id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "P6Description",
+        "fieldName" : "p6description",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "AssignedContractor",
+        "fieldName" : "assignedContractor",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Area",
+        "fieldName" : "area",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Location",
+        "fieldName" : "location",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Structure",
+        "fieldName" : "structure",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "CU",
+        "fieldName" : "cu",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Elevation",
+        "fieldName" : "elevation",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4374,12 +3585,66 @@
           "list" : false
         }
       }, {
-        "name" : "RevisionNumber",
-        "fieldName" : "revisionNumber",
+        "name" : "DrawingRev",
+        "fieldName" : "drawingRev",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Short",
+          "list" : false
+        }
+      }, {
+        "name" : "Description",
+        "fieldName" : "description",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ActivityType",
+        "fieldName" : "activityType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ActivitySubType",
+        "fieldName" : "activitySubType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ClientMaterialSpec",
+        "fieldName" : "clientMaterialSpec",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "PerformanceMaterialSpec",
+        "fieldName" : "performanceMaterialSpec",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Size",
+        "fieldName" : "size",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Float",
           "list" : false
         }
       }, {
@@ -4401,66 +3666,12 @@
           "list" : false
         }
       }, {
-        "name" : "ClientPipeSpec",
-        "fieldName" : "clientPipeSpec",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "MaterialCode",
-        "fieldName" : "materialCode",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Description",
-        "fieldName" : "description",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
         "name" : "ComponentNumber",
         "fieldName" : "componentNumber",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ECT",
-        "fieldName" : "ect",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "PipingActivityType",
-        "fieldName" : "pipingActivityType",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "PipeSize",
-        "fieldName" : "pipeSize",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Float",
           "list" : false
         }
       }, {
@@ -4487,7 +3698,7 @@
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Double",
+          "typeRef" : "java.math.BigDecimal",
           "list" : false
         }
       }, {
@@ -4599,12 +3810,12 @@
           "list" : false
         }
       }, {
-        "name" : "ReadyForTestingInstalled",
-        "fieldName" : "readyForTestingInstalled",
+        "name" : "RFTInstalled",
+        "fieldName" : "rftinstalled",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.math.BigInteger",
+          "typeRef" : "java.lang.Integer",
           "list" : false
         }
       }, {
@@ -4613,21 +3824,21 @@
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.math.BigInteger",
+          "typeRef" : "java.lang.Integer",
           "list" : false
         }
       }, {
-        "name" : "ClientTurnoverInstalled",
-        "fieldName" : "clientTurnoverInstalled",
+        "name" : "CTOInstalled",
+        "fieldName" : "ctoinstalled",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.math.BigInteger",
+          "typeRef" : "java.lang.Integer",
           "list" : false
         }
       }, {
-        "name" : "ReadyForTestingHours",
-        "fieldName" : "readyForTestingHours",
+        "name" : "RFTHours",
+        "fieldName" : "rfthours",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4644,8 +3855,8 @@
           "list" : false
         }
       }, {
-        "name" : "ClientTurnoverHours",
-        "fieldName" : "clientTurnoverHours",
+        "name" : "CTOHours",
+        "fieldName" : "ctohours",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4653,8 +3864,8 @@
           "list" : false
         }
       }, {
-        "name" : "EarnedReadyForTestingHours",
-        "fieldName" : "earnedReadyForTestingHours",
+        "name" : "EarnedRFTHours",
+        "fieldName" : "earnedRfthours",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4671,8 +3882,8 @@
           "list" : false
         }
       }, {
-        "name" : "EarnedClientTurnoverHours",
-        "fieldName" : "earnedClientTurnoverHours",
+        "name" : "EarnedCTOHours",
+        "fieldName" : "earnedCtohours",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4686,8 +3897,8 @@
     "name" : "GetBidActivityMatchesByTestPackageSteel",
     "description" : "Name",
     "version" : "V1",
-    "queryString" : "SELECT std.BidID, std.Scope, std.EWONumber, std.Phase, std.Area, std.Location, std.Elevation, std.CU, std.P6ID, std.P6Description, std.Stage, std.TestPackageNumber, std.CostCode, std.PieceMark, \nstd.PieceMarkRev, std.Description, std.ActivityType, std.MaterialType, std.ClientMaterialSpec, std.PerformanceMaterialSpec, std.Length, std.Weight, \nstd.WeldCount, std.TakeOffQuantity, std.SteelHours, std.WeldHours, \nstd.WBS1, std.WBS2, std.WBS3, std.WBS4, std.WBS5, std.WBS6, std.WBS7, std.WBS8, std.WBS9, std.WBS10,\n\n### Installed Quantities ###\nsum(COALESCE(stlsell.FASellQuantity,0)) AS InstalledSell,\n\n### Remaining Quantities ###\n(COALESCE(std.TakeOffQuantity,0) - sum(COALESCE(stlsell.FASellQuantity,0))) AS RemainingSell\n\nFROM (SELECT BidID, Scope, EWONumber, Phase, Area, Location, Elevation, CU, P6ID, P6Description, Stage, TestPackageNumber, CostCode, PieceMark, PieceMarkRev, Description, ActivityType, MaterialType, ClientMaterialSpec, PerformanceMaterialSpec, Length, Weight, \n\t\tsum(WeldCount) AS WeldCount, sum(TakeOffQuantity) AS TakeOffQuantity, sum(SteelHours) AS SteelHours, sum(WeldHours) AS WeldHours,\n        WBS1, WBS2, WBS3, WBS4, WBS5, WBS6, WBS7, WBS8, WBS9, WBS10\n\t\tFROM SteelTrackerDetails \n\t\tGROUP BY BidID) std\n        \nLEFT JOIN SubmissionActivityStatus sas\n\tON sas.fk_BidIDAssigned = std.BidID AND sas.ActivityType = 65 AND sas.fk_ActivityStatus IN (5,12)\n    \nLEFT JOIN SteelSell stlsell\n\tON stlsell.ActivityID = sas.ActivityID AND stlsell.FARework = 0\n  \nWHERE TestPackageNumber = :TestPackage\nGROUP BY BidID\nORDER BY std.Area, std.PieceMark",
-    "countQueryString" : "select count(*) from (SELECT std.BidID, std.Scope, std.EWONumber, std.Phase, std.Area, std.Location, std.Elevation, std.CU, std.P6ID, std.P6Description, std.Stage, std.TestPackageNumber, std.CostCode, std.PieceMark, \nstd.PieceMarkRev, std.Description, std.ActivityType, std.MaterialType, std.ClientMaterialSpec, std.PerformanceMaterialSpec, std.Length, std.Weight, \nstd.WeldCount, std.TakeOffQuantity, std.SteelHours, std.WeldHours, \nstd.WBS1, std.WBS2, std.WBS3, std.WBS4, std.WBS5, std.WBS6, std.WBS7, std.WBS8, std.WBS9, std.WBS10,\n\n### Installed Quantities ###\nsum(COALESCE(stlsell.FASellQuantity,0)) AS InstalledSell,\n\n### Remaining Quantities ###\n(COALESCE(std.TakeOffQuantity,0) - sum(COALESCE(stlsell.FASellQuantity,0))) AS RemainingSell\n\nFROM (SELECT BidID, Scope, EWONumber, Phase, Area, Location, Elevation, CU, P6ID, P6Description, Stage, TestPackageNumber, CostCode, PieceMark, PieceMarkRev, Description, ActivityType, MaterialType, ClientMaterialSpec, PerformanceMaterialSpec, Length, Weight, \n\t\tsum(WeldCount) AS WeldCount, sum(TakeOffQuantity) AS TakeOffQuantity, sum(SteelHours) AS SteelHours, sum(WeldHours) AS WeldHours,\n        WBS1, WBS2, WBS3, WBS4, WBS5, WBS6, WBS7, WBS8, WBS9, WBS10\n\t\tFROM SteelTrackerDetails \n\t\tGROUP BY BidID) std\n        \nLEFT JOIN SubmissionActivityStatus sas\n\tON sas.fk_BidIDAssigned = std.BidID AND sas.ActivityType = 65 AND sas.fk_ActivityStatus IN (5,12)\n    \nLEFT JOIN SteelSell stlsell\n\tON stlsell.ActivityID = sas.ActivityID AND stlsell.FARework = 0\n  \nWHERE TestPackageNumber = :TestPackage\nGROUP BY BidID\nORDER BY std.Area, std.PieceMark) wmTempTable",
+    "queryString" : "SELECT std.BidID, std.ProjectServicesRep, std.EWONumber, std.Scope, std.Phase, std.Stage, std.TestPackageNumber, std.WorkPackage, std.CostCode, std.P6ID, std.P6Description, std.Area, std.Location, std.Structure, std.CU, std.Elevation,   \nstd.SortGroup1, std.PieceMark, std.PieceMarkRev, std.Description, std.ActivityType, std.ClientMaterialSpec, std.PerformanceMaterialSpec, std.MaterialType, std.Length, std.Weight, std.System, std.Service,\nstd.TakeOffQuantity, std.WeldCount, std.SteelHours, std.WeldHours, \nstd.WBS1, std.WBS2, std.WBS3, std.WBS4, std.WBS5, std.WBS6, std.WBS7, std.WBS8, std.WBS9, std.WBS10,\n\n### Installed Quantities ###\nsum(COALESCE(stlsell.FAQuantity,0)) AS InstalledSell,\n\n### Remaining Quantities ###\n(COALESCE(std.TakeOffQuantity,0) - sum(COALESCE(stlsell.FAQuantity,0))) AS RemainingSell\n\nFROM (SELECT BidID, ProjectServicesRep, EWONumber, Scope, Phase, Stage, TestPackageNumber, WorkPackage, CostCode, P6ID, P6Description, Area, Location, Structure, CU, Elevation, SortGroup1,  PieceMark, PieceMarkRev, Description, ActivityType, ClientMaterialSpec, PerformanceMaterialSpec, MaterialType, Length, Weight, System, Service,\n\t\tsum(TakeOffQuantity) AS TakeOffQuantity, sum(WeldCount) AS WeldCount, sum(SteelHours) AS SteelHours, sum(WeldHours) AS WeldHours,\n        WBS1, WBS2, WBS3, WBS4, WBS5, WBS6, WBS7, WBS8, WBS9, WBS10\n\t\tFROM SteelTrackerDetails \n        WHERE TestPackageNumber = :TestPackage\n\t\tGROUP BY BidID) std\n\nLEFT JOIN SubmissionActivityStatus sas\n\tON sas.fk_BidIDAssigned = std.BidID AND sas.ActivityType = 65 AND sas.fk_ActivityStatus IN (5,12)\n    \nLEFT JOIN SteelFA stlsell\n\tON stlsell.ActivityID = sas.ActivityID AND stlsell.FARework = 0\n  \nGROUP BY BidID\nORDER BY std.SortGroup1, std.PieceMark",
+    "countQueryString" : "select count(*) from (SELECT std.BidID, std.ProjectServicesRep, std.EWONumber, std.Scope, std.Phase, std.Stage, std.TestPackageNumber, std.WorkPackage, std.CostCode, std.P6ID, std.P6Description, std.Area, std.Location, std.Structure, std.CU, std.Elevation,   \nstd.SortGroup1, std.PieceMark, std.PieceMarkRev, std.Description, std.ActivityType, std.ClientMaterialSpec, std.PerformanceMaterialSpec, std.MaterialType, std.Length, std.Weight, std.System, std.Service,\nstd.TakeOffQuantity, std.WeldCount, std.SteelHours, std.WeldHours, \nstd.WBS1, std.WBS2, std.WBS3, std.WBS4, std.WBS5, std.WBS6, std.WBS7, std.WBS8, std.WBS9, std.WBS10,\n\n### Installed Quantities ###\nsum(COALESCE(stlsell.FAQuantity,0)) AS InstalledSell,\n\n### Remaining Quantities ###\n(COALESCE(std.TakeOffQuantity,0) - sum(COALESCE(stlsell.FAQuantity,0))) AS RemainingSell\n\nFROM (SELECT BidID, ProjectServicesRep, EWONumber, Scope, Phase, Stage, TestPackageNumber, WorkPackage, CostCode, P6ID, P6Description, Area, Location, Structure, CU, Elevation, SortGroup1,  PieceMark, PieceMarkRev, Description, ActivityType, ClientMaterialSpec, PerformanceMaterialSpec, MaterialType, Length, Weight, System, Service,\n\t\tsum(TakeOffQuantity) AS TakeOffQuantity, sum(WeldCount) AS WeldCount, sum(SteelHours) AS SteelHours, sum(WeldHours) AS WeldHours,\n        WBS1, WBS2, WBS3, WBS4, WBS5, WBS6, WBS7, WBS8, WBS9, WBS10\n\t\tFROM SteelTrackerDetails \n        WHERE TestPackageNumber = :TestPackage\n\t\tGROUP BY BidID) std\n\nLEFT JOIN SubmissionActivityStatus sas\n\tON sas.fk_BidIDAssigned = std.BidID AND sas.ActivityType = 65 AND sas.fk_ActivityStatus IN (5,12)\n    \nLEFT JOIN SteelFA stlsell\n\tON stlsell.ActivityID = sas.ActivityID AND stlsell.FARework = 0\n  \nGROUP BY BidID\nORDER BY std.SortGroup1, std.PieceMark) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -4696,8 +3907,8 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
+      "variableName" : "",
+      "testValue" : "4",
       "required" : false
     } ],
     "request" : {
@@ -4720,8 +3931,8 @@
           "list" : false
         }
       }, {
-        "name" : "Scope",
-        "fieldName" : "scope",
+        "name" : "ProjectServicesRep",
+        "fieldName" : "projectServicesRep",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4738,62 +3949,17 @@
           "list" : false
         }
       }, {
+        "name" : "Scope",
+        "fieldName" : "scope",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
         "name" : "Phase",
         "fieldName" : "phase",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Area",
-        "fieldName" : "area",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Location",
-        "fieldName" : "location",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Elevation",
-        "fieldName" : "elevation",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "CU",
-        "fieldName" : "cu",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "P6ID",
-        "fieldName" : "p6id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "P6Description",
-        "fieldName" : "p6description",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4819,8 +3985,89 @@
           "list" : false
         }
       }, {
+        "name" : "WorkPackage",
+        "fieldName" : "workPackage",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
         "name" : "CostCode",
         "fieldName" : "costCode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "P6ID",
+        "fieldName" : "p6id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "P6Description",
+        "fieldName" : "p6description",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Area",
+        "fieldName" : "area",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Location",
+        "fieldName" : "location",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Structure",
+        "fieldName" : "structure",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "CU",
+        "fieldName" : "cu",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Elevation",
+        "fieldName" : "elevation",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "SortGroup1",
+        "fieldName" : "sortGroup1",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4864,15 +4111,6 @@
           "list" : false
         }
       }, {
-        "name" : "MaterialType",
-        "fieldName" : "materialType",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
         "name" : "ClientMaterialSpec",
         "fieldName" : "clientMaterialSpec",
         "optional" : false,
@@ -4891,12 +4129,21 @@
           "list" : false
         }
       }, {
+        "name" : "MaterialType",
+        "fieldName" : "materialType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
         "name" : "Length",
         "fieldName" : "length",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Float",
+          "typeRef" : "java.lang.Double",
           "list" : false
         }
       }, {
@@ -4909,12 +4156,21 @@
           "list" : false
         }
       }, {
-        "name" : "WeldCount",
-        "fieldName" : "weldCount",
+        "name" : "System",
+        "fieldName" : "system",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.math.BigInteger",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Service",
+        "fieldName" : "service",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
           "list" : false
         }
       }, {
@@ -4924,6 +4180,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.math.BigDecimal",
+          "list" : false
+        }
+      }, {
+        "name" : "WeldCount",
+        "fieldName" : "weldCount",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.math.BigInteger",
           "list" : false
         }
       }, {
