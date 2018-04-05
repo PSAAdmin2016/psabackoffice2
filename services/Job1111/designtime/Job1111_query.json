@@ -4324,8 +4324,8 @@
     "name" : "GetBidActivityMatchesCivil",
     "description" : "Name",
     "version" : "V1",
-    "queryString" : "SELECT \nmin(UID) AS UID, min(BidID) AS BidID, EWONumber, Scope, Phase, Stage, TestPackageNumber, CostCode, P6ID, AssignedContractor, Area, Location, Structure, Grouping, FoundationDescription, CU, P6Description, \nEngDrawingNumber, SheetNumber, DrawingRev, DetailDrawingNumber, DetailRev, DetailName, Description, ActivityType, ActivitySubType, System, Service, \nsum(TakeOffQuantity) AS TakeOffQuantity, QuantityUnit, sum(EstimatedHours) AS EstimatedHours, \nWBS1, WBS2, WBS3, WBS4, WBS5, WBS6, WBS7, WBS8, WBS9, WBS10\n\nFROM CivilTrackerDetails\nWHERE BidID = :BidID\nOR \n(FoundationDescription LIKE :Foundation\nAND EngDrawingNumber LIKE :DrawingNumber\nAND DetailDrawingNumber LIKE :DetailDrawingNumber)\nGROUP BY BidID",
-    "countQueryString" : "select count(*) from (SELECT \nmin(UID) AS UID, min(BidID) AS BidID, EWONumber, Scope, Phase, Stage, TestPackageNumber, CostCode, P6ID, AssignedContractor, Area, Location, Structure, Grouping, FoundationDescription, CU, P6Description, \nEngDrawingNumber, SheetNumber, DrawingRev, DetailDrawingNumber, DetailRev, DetailName, Description, ActivityType, ActivitySubType, System, Service, \nsum(TakeOffQuantity) AS TakeOffQuantity, QuantityUnit, sum(EstimatedHours) AS EstimatedHours, \nWBS1, WBS2, WBS3, WBS4, WBS5, WBS6, WBS7, WBS8, WBS9, WBS10\n\nFROM CivilTrackerDetails\nWHERE BidID = :BidID\nOR \n(FoundationDescription LIKE :Foundation\nAND EngDrawingNumber LIKE :DrawingNumber\nAND DetailDrawingNumber LIKE :DetailDrawingNumber)\nGROUP BY BidID) wmTempTable",
+    "queryString" : "SELECT \nmin(UID) AS UID, min(BidID) AS BidID, ProjectServicesRep, EWONumber, Scope, Phase, Stage, TestPackageNumber, WorkPackage, CostCode, P6ID, P6Description, AssignedContractor, Area, Location, Structure, CU, Elevation, \nSortGroup1, SortGroup2, SortGroup3, EngDrawingNumber, SheetNumber, DrawingRev, DetailDrawingNumber, DetailRev, DetailName, Description, ActivityType, ActivitySubType, System, Service, \nsum(TakeOffQuantity) AS TakeOffQuantity, QuantityUnit, sum(EstimatedHours) AS EstimatedHours, \nWBS1, WBS2, WBS3, WBS4, WBS5, WBS6, WBS7, WBS8, WBS9, WBS10\n\nFROM CivilTrackerDetails\nWHERE BidID = :BidID\nGROUP BY BidID",
+    "countQueryString" : "select count(*) from (SELECT \nmin(UID) AS UID, min(BidID) AS BidID, ProjectServicesRep, EWONumber, Scope, Phase, Stage, TestPackageNumber, WorkPackage, CostCode, P6ID, P6Description, AssignedContractor, Area, Location, Structure, CU, Elevation, \nSortGroup1, SortGroup2, SortGroup3, EngDrawingNumber, SheetNumber, DrawingRev, DetailDrawingNumber, DetailRev, DetailName, Description, ActivityType, ActivitySubType, System, Service, \nsum(TakeOffQuantity) AS TakeOffQuantity, QuantityUnit, sum(EstimatedHours) AS EstimatedHours, \nWBS1, WBS2, WBS3, WBS4, WBS5, WBS6, WBS7, WBS8, WBS9, WBS10\n\nFROM CivilTrackerDetails\nWHERE BidID = :BidID\nGROUP BY BidID) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -4334,33 +4334,9 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "2",
-      "required" : false
-    }, {
-      "name" : "Foundation",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "%",
-      "required" : false
-    }, {
-      "name" : "DrawingNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "%",
-      "required" : false
-    }, {
-      "name" : "DetailDrawingNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "%",
-      "required" : false
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -4373,39 +4349,12 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ActivitySubType",
-        "fieldName" : "activitySubType",
+        "name" : "UID",
+        "fieldName" : "uid",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ActivityType",
-        "fieldName" : "activityType",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Area",
-        "fieldName" : "area",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "AssignedContractor",
-        "fieldName" : "assignedContractor",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
+          "typeRef" : "java.lang.Integer",
           "list" : false
         }
       }, {
@@ -4418,66 +4367,12 @@
           "list" : false
         }
       }, {
-        "name" : "CU",
-        "fieldName" : "cu",
+        "name" : "ProjectServicesRep",
+        "fieldName" : "projectServicesRep",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "CostCode",
-        "fieldName" : "costCode",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Description",
-        "fieldName" : "description",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "DetailDrawingNumber",
-        "fieldName" : "detailDrawingNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "DetailName",
-        "fieldName" : "detailName",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "DetailRev",
-        "fieldName" : "detailRev",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Byte",
-          "list" : false
-        }
-      }, {
-        "name" : "DrawingRev",
-        "fieldName" : "drawingRev",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Byte",
           "list" : false
         }
       }, {
@@ -4490,62 +4385,8 @@
           "list" : false
         }
       }, {
-        "name" : "EngDrawingNumber",
-        "fieldName" : "engDrawingNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "EstimatedHours",
-        "fieldName" : "estimatedHours",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.math.BigDecimal",
-          "list" : false
-        }
-      }, {
-        "name" : "FoundationDescription",
-        "fieldName" : "foundationDescription",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Grouping",
-        "fieldName" : "grouping",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Location",
-        "fieldName" : "location",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "P6Description",
-        "fieldName" : "p6description",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "P6ID",
-        "fieldName" : "p6id",
+        "name" : "Scope",
+        "fieldName" : "scope",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4562,44 +4403,80 @@
           "list" : false
         }
       }, {
-        "name" : "QuantityUnit",
-        "fieldName" : "quantityUnit",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Scope",
-        "fieldName" : "scope",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Service",
-        "fieldName" : "service",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "SheetNumber",
-        "fieldName" : "sheetNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Byte",
-          "list" : false
-        }
-      }, {
         "name" : "Stage",
         "fieldName" : "stage",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "TestPackageNumber",
+        "fieldName" : "testPackageNumber",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "WorkPackage",
+        "fieldName" : "workPackage",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "CostCode",
+        "fieldName" : "costCode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "P6ID",
+        "fieldName" : "p6id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "P6Description",
+        "fieldName" : "p6description",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "AssignedContractor",
+        "fieldName" : "assignedContractor",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Area",
+        "fieldName" : "area",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Location",
+        "fieldName" : "location",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4616,8 +4493,143 @@
           "list" : false
         }
       }, {
+        "name" : "CU",
+        "fieldName" : "cu",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Elevation",
+        "fieldName" : "elevation",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "SortGroup1",
+        "fieldName" : "sortGroup1",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "SortGroup2",
+        "fieldName" : "sortGroup2",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "SortGroup3",
+        "fieldName" : "sortGroup3",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "EngDrawingNumber",
+        "fieldName" : "engDrawingNumber",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "SheetNumber",
+        "fieldName" : "sheetNumber",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Short",
+          "list" : false
+        }
+      }, {
+        "name" : "DrawingRev",
+        "fieldName" : "drawingRev",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Short",
+          "list" : false
+        }
+      }, {
+        "name" : "DetailDrawingNumber",
+        "fieldName" : "detailDrawingNumber",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "DetailRev",
+        "fieldName" : "detailRev",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Short",
+          "list" : false
+        }
+      }, {
+        "name" : "DetailName",
+        "fieldName" : "detailName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Description",
+        "fieldName" : "description",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ActivityType",
+        "fieldName" : "activityType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ActivitySubType",
+        "fieldName" : "activitySubType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
         "name" : "System",
         "fieldName" : "system",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Service",
+        "fieldName" : "service",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4634,8 +4646,8 @@
           "list" : false
         }
       }, {
-        "name" : "TestPackageNumber",
-        "fieldName" : "testPackageNumber",
+        "name" : "QuantityUnit",
+        "fieldName" : "quantityUnit",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4643,26 +4655,17 @@
           "list" : false
         }
       }, {
-        "name" : "UID",
-        "fieldName" : "uid",
+        "name" : "EstimatedHours",
+        "fieldName" : "estimatedHours",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
+          "typeRef" : "java.math.BigDecimal",
           "list" : false
         }
       }, {
         "name" : "WBS1",
         "fieldName" : "wbs1",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "WBS10",
-        "fieldName" : "wbs10",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4741,6 +4744,15 @@
           "typeRef" : "java.lang.String",
           "list" : false
         }
+      }, {
+        "name" : "WBS10",
+        "fieldName" : "wbs10",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
       } ]
     }
   },
@@ -4748,35 +4760,19 @@
     "name" : "GetBidActivityMatchesEquip",
     "description" : "Get all Equip Tracker Details that math the given FA",
     "version" : "V2",
-    "queryString" : "SELECT \nmin(UID) AS UID, min(BidID) AS BidID, EWONumber, Scope, Phase, Stage, TestPackageNumber, CostCode, P6ID, AssignedContractor, Area, Location, Structure, CU, Elevation, P6Description, \nEngDrawingNumber, SheetNumber, DrawingRev, ComponentNumber, Description, EquipmentType, ActivityType, ClientMaterialSpec, PerformanceMaterialSpec, System, Service, \nsum(TakeOffQuantity) AS TakeOffQuantity, QuantityUnit, sum(EstimatedHours) AS EstimatedHours, \nWBS1, WBS2, WBS3, WBS4, WBS5, WBS6, WBS7, WBS8, WBS9, WBS10\n\n\nFROM EquipTrackerDetails\nWHERE BidID = :BidID\nOR \n(ComponentNumber LIKE :TagNumber\nAND Description LIKE :Description)\nGROUP BY BidID",
-    "countQueryString" : "select count(*) from (SELECT \nmin(UID) AS UID, min(BidID) AS BidID, EWONumber, Scope, Phase, Stage, TestPackageNumber, CostCode, P6ID, AssignedContractor, Area, Location, Structure, CU, Elevation, P6Description, \nEngDrawingNumber, SheetNumber, DrawingRev, ComponentNumber, Description, EquipmentType, ActivityType, ClientMaterialSpec, PerformanceMaterialSpec, System, Service, \nsum(TakeOffQuantity) AS TakeOffQuantity, QuantityUnit, sum(EstimatedHours) AS EstimatedHours, \nWBS1, WBS2, WBS3, WBS4, WBS5, WBS6, WBS7, WBS8, WBS9, WBS10\n\n\nFROM EquipTrackerDetails\nWHERE BidID = :BidID\nOR \n(ComponentNumber LIKE :TagNumber\nAND Description LIKE :Description)\nGROUP BY BidID) wmTempTable",
+    "queryString" : "SELECT \nmin(UID) AS UID, min(BidID) AS BidID, ProjectServicesRep, EWONumber, Scope, Phase, Stage, TestPackageNumber, WorkPackage, CostCode, P6ID, P6Description, AssignedContractor, Area, Location, Structure, CU, Elevation, EngDrawingNumber, SheetNumber, DrawingRev, ComponentNumber, Description, EquipmentType, ActivityType, ClientMaterialSpec, PerformanceMaterialSpec, System, Service, \nsum(TakeOffQuantity) AS TakeOffQuantity, QuantityUnit, sum(EstimatedHours) AS EstimatedHours, \nWBS1, WBS2, WBS3, WBS4, WBS5, WBS6, WBS7, WBS8, WBS9, WBS10\n\n\nFROM EquipTrackerDetails\nWHERE BidID = :BidID\nGROUP BY BidID",
+    "countQueryString" : "select count(*) from (SELECT \nmin(UID) AS UID, min(BidID) AS BidID, ProjectServicesRep, EWONumber, Scope, Phase, Stage, TestPackageNumber, WorkPackage, CostCode, P6ID, P6Description, AssignedContractor, Area, Location, Structure, CU, Elevation, EngDrawingNumber, SheetNumber, DrawingRev, ComponentNumber, Description, EquipmentType, ActivityType, ClientMaterialSpec, PerformanceMaterialSpec, System, Service, \nsum(TakeOffQuantity) AS TakeOffQuantity, QuantityUnit, sum(EstimatedHours) AS EstimatedHours, \nWBS1, WBS2, WBS3, WBS4, WBS5, WBS6, WBS7, WBS8, WBS9, WBS10\n\n\nFROM EquipTrackerDetails\nWHERE BidID = :BidID\nGROUP BY BidID) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
       "name" : "BidID",
-      "type" : "string",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "%",
-      "required" : false
-    }, {
-      "name" : "TagNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "%",
-      "required" : false
-    }, {
-      "name" : "Description",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "%",
-      "required" : false
+      "variableName" : "",
+      "testValue" : "2",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -4804,6 +4800,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "ProjectServicesRep",
+        "fieldName" : "projectServicesRep",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
           "list" : false
         }
       }, {
@@ -4852,6 +4857,15 @@
           "list" : false
         }
       }, {
+        "name" : "WorkPackage",
+        "fieldName" : "workPackage",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
         "name" : "CostCode",
         "fieldName" : "costCode",
         "optional" : false,
@@ -4863,6 +4877,15 @@
       }, {
         "name" : "P6ID",
         "fieldName" : "p6id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "P6Description",
+        "fieldName" : "p6description",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4917,15 +4940,6 @@
       }, {
         "name" : "Elevation",
         "fieldName" : "elevation",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "P6Description",
-        "fieldName" : "p6description",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -5155,17 +5169,25 @@
     "name" : "GetBidActivityMatchesPipe",
     "description" : "Get the Bid Activities that match the input parameters.",
     "version" : "V1",
-    "queryString" : "SELECT min(ptd.ID) AS ID, ptd.BidID, ptd.Scope, ptd.Phase, ptd.Area, ptd.Location, ptd.Structure, ptd.Elevation, ptd.CU, ptd.P6ID, ptd.P6Description, ptd.Stage, ptd.TestPackageNumber, ptd.AssignedContractor, ptd.CostCode, ptd.LineNumber, ptd.EngDrawingNumber, ptd.SheetNumber, \nptd.RevisionNumber, ptd.System, ptd.Service, ptd.ClientPipeSpec, ptd.MaterialCode, ptd.Description, ptd.ComponentNumber, ptd.ECT, ptd.PipingActivityType, ptd.PipeSize, sum(ptd.TakeOffQuantity) AS TakeOffQuantity, ptd.QuantityUnit, sum(ptd.EstimatedHours) AS EstimatedHours, \nptd.WBS1, ptd.WBS2, ptd.WBS3, ptd.WBS4, ptd.WBS5, ptd.WBS6, ptd.WBS7, ptd.WBS8, ptd.WBS9, ptd.WBS10, ptd.Rev, ptd.TimeStamp,\n\nsum(COALESCE(ptd.TakeOffQuantity,0)\n-COALESCE(er.InstalledFootage,0)\n-COALESCE(er.InstalledBoltUps,0)\n-COALESCE(er.InstalledWelds,0)\n-COALESCE(er.InstalledCuts,0)\n-COALESCE(er.InstalledTrim,0)\n-COALESCE(er.InstalledSupports,0)\n-COALESCE(er.InstalledMisc,0)\n-COALESCE(er.InstalledDemo,0)) AS RemainingQuant\n\n\nFROM PipeTrackerDetails ptd\n\n\tLEFT JOIN (SELECT ptd.ID, ptd.BidID,\nsum(COALESCE(pe.ErectionLengthSpool1,0) + COALESCE(pe.ErectionLengthSpool2,0) + COALESCE(pe.ErectionLengthSpool3,0) + COALESCE(pe.ErectionLengthSpool4,0) + COALESCE(pe.ErectionLengthSpool5,0) + COALESCE(pe.ErectionLengthSpool6,0) + COALESCE(pme.MiscQuantity,0)) AS InstalledFootage,\nsum(COALESCE(pb.BoltUpQuantity,0) + COALESCE(pmb.MiscQuantity,0)) AS InstalledBoltUps, \nsum(COALESCE((pw.WeldPercentCompleted),0) + COALESCE(pmw.MiscQuantity,0)) AS InstalledWelds,\nsum(COALESCE((pcut.WeldPercentCompleted),0) + COALESCE(pmcut.MiscQuantity,0)) AS InstalledCuts,\nsum(COALESCE(pt.TrimQuantity,0) + COALESCE(pmt.MiscQuantity,0)) AS InstalledTrim,\nsum(COALESCE((psu.SupportPercentCompleted * psu.SupportQuantity),0) + COALESCE(pmsu.MiscQuantity,0)) AS InstalledSupports,\nsum(COALESCE(IF(ptd.PipingActivityType = 'MISC' AND ptd.ECT != 'D', pm.MiscQuantity,0),0)) AS InstalledMisc,\nsum(COALESCE(pd.DemoQuantity,0) + COALESCE(pmd.MiscQuantity,0)) AS InstalledDemo\n\n\nFROM SubmissionActivityStatus sas\n\tJOIN PSA.REF_ActivityTypes at\n\t\tON at.ID = sas.ActivityType\n        \n\tLEFT JOIN PipeErection pe\n\t\tON pe.ActivityID = sas.ActivityID AND pe.ErectionRework = 0\n\tLEFT JOIN PipeBoltUp pb\n\t\tON pb.ActivityID = sas.ActivityID AND pb.BoltUpRework = 0\n\tLEFT JOIN PipeWeld pw\n\t\tON pw.ActivityID = sas.ActivityID AND pw.WeldRework = 0 AND sas.ActivityType = 22\n\tLEFT JOIN PipeWeld pcut\n\t\tON pcut.ActivityID = sas.ActivityID AND pcut.WeldRework = 0 AND sas.ActivityType = 23\n\tLEFT JOIN PipeTrim pt\n\t\tON pt.ActivityID = sas.ActivityID AND pt.TrimRework = 0\n\tLEFT JOIN PipeSupports psu\n\t\tON psu.ActivityID = sas.ActivityID and psu.SupportRework = 0\n\tLEFT JOIN PipeDemo pd\n\t\tON pd.ActivityID = sas.ActivityID\n    LEFT JOIN PipeMisc pm\n\t\tON pm.ActivityID = sas.ActivityID AND pm.MiscRework = 0\n        \n\n    LEFT JOIN (SELECT min(ID) AS ID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ECT, PipingActivityType\n\t\t\t\tFROM `PipeTrackerDetails`\n\t\t\t\tGROUP BY BidID)ptd\n\t\tON ptd.BidID = sas.fk_BidIDAssigned\n        \n\tLEFT JOIN PipeMisc pme\n\t\tON pme.ActivityID = sas.ActivityID AND ptd.PipingActivityType = 'PE'\n\tLEFT JOIN PipeMisc pmb\n\t\tON pmb.ActivityID = sas.ActivityID AND ptd.PipingActivityType = 'BU'\n\tLEFT JOIN PipeMisc pmw\n\t\tON pmw.ActivityID = sas.ActivityID AND ptd.PipingActivityType = 'W'\n\tLEFT JOIN PipeMisc pmcut\n\t\tON pmcut.ActivityID = sas.ActivityID AND ptd.ECT != 'D' AND ptd.PipingActivityType = 'CUT'\n\tLEFT JOIN PipeMisc pmt\n\t\tON pm.ActivityID = sas.ActivityID AND ptd.ECT = 'T' AND ptd.PipingActivityType != 'MISC' AND ptd.PipingActivityType != 'S'\n\tLEFT JOIN PipeMisc pmsu\n\t\tON pm.ActivityID = sas.ActivityID AND ptd.PipingActivityType = 'S'\n\tLEFT JOIN PipeMisc pmd\n\t\tON pm.ActivityID = sas.ActivityID AND ptd.ECT = 'D'\n\n        \nWHERE fk_ActivityStatus IN (5,12)\nGROUP BY ptd.BidID) er\n\t\tON er.ID = ptd.ID\nWHERE `LineNumber` LIKE :LineNumber\nAND `EngDrawingNumber` LIKE :DrawingNumber\nAND `SheetNumber` LIKE :SheetNumber\nAND `ECT` LIKE :ECT\nAND `PipingActivityType` LIKE :ECTType\n\nGROUP BY ptd.BidID",
-    "countQueryString" : "select count(*) from (SELECT min(ptd.ID) AS ID, ptd.BidID, ptd.Scope, ptd.Phase, ptd.Area, ptd.Location, ptd.Structure, ptd.Elevation, ptd.CU, ptd.P6ID, ptd.P6Description, ptd.Stage, ptd.TestPackageNumber, ptd.AssignedContractor, ptd.CostCode, ptd.LineNumber, ptd.EngDrawingNumber, ptd.SheetNumber, \nptd.RevisionNumber, ptd.System, ptd.Service, ptd.ClientPipeSpec, ptd.MaterialCode, ptd.Description, ptd.ComponentNumber, ptd.ECT, ptd.PipingActivityType, ptd.PipeSize, sum(ptd.TakeOffQuantity) AS TakeOffQuantity, ptd.QuantityUnit, sum(ptd.EstimatedHours) AS EstimatedHours, \nptd.WBS1, ptd.WBS2, ptd.WBS3, ptd.WBS4, ptd.WBS5, ptd.WBS6, ptd.WBS7, ptd.WBS8, ptd.WBS9, ptd.WBS10, ptd.Rev, ptd.TimeStamp,\n\nsum(COALESCE(ptd.TakeOffQuantity,0)\n-COALESCE(er.InstalledFootage,0)\n-COALESCE(er.InstalledBoltUps,0)\n-COALESCE(er.InstalledWelds,0)\n-COALESCE(er.InstalledCuts,0)\n-COALESCE(er.InstalledTrim,0)\n-COALESCE(er.InstalledSupports,0)\n-COALESCE(er.InstalledMisc,0)\n-COALESCE(er.InstalledDemo,0)) AS RemainingQuant\n\n\nFROM PipeTrackerDetails ptd\n\n\tLEFT JOIN (SELECT ptd.ID, ptd.BidID,\nsum(COALESCE(pe.ErectionLengthSpool1,0) + COALESCE(pe.ErectionLengthSpool2,0) + COALESCE(pe.ErectionLengthSpool3,0) + COALESCE(pe.ErectionLengthSpool4,0) + COALESCE(pe.ErectionLengthSpool5,0) + COALESCE(pe.ErectionLengthSpool6,0) + COALESCE(pme.MiscQuantity,0)) AS InstalledFootage,\nsum(COALESCE(pb.BoltUpQuantity,0) + COALESCE(pmb.MiscQuantity,0)) AS InstalledBoltUps, \nsum(COALESCE((pw.WeldPercentCompleted),0) + COALESCE(pmw.MiscQuantity,0)) AS InstalledWelds,\nsum(COALESCE((pcut.WeldPercentCompleted),0) + COALESCE(pmcut.MiscQuantity,0)) AS InstalledCuts,\nsum(COALESCE(pt.TrimQuantity,0) + COALESCE(pmt.MiscQuantity,0)) AS InstalledTrim,\nsum(COALESCE((psu.SupportPercentCompleted * psu.SupportQuantity),0) + COALESCE(pmsu.MiscQuantity,0)) AS InstalledSupports,\nsum(COALESCE(IF(ptd.PipingActivityType = 'MISC' AND ptd.ECT != 'D', pm.MiscQuantity,0),0)) AS InstalledMisc,\nsum(COALESCE(pd.DemoQuantity,0) + COALESCE(pmd.MiscQuantity,0)) AS InstalledDemo\n\n\nFROM SubmissionActivityStatus sas\n\tJOIN PSA.REF_ActivityTypes at\n\t\tON at.ID = sas.ActivityType\n        \n\tLEFT JOIN PipeErection pe\n\t\tON pe.ActivityID = sas.ActivityID AND pe.ErectionRework = 0\n\tLEFT JOIN PipeBoltUp pb\n\t\tON pb.ActivityID = sas.ActivityID AND pb.BoltUpRework = 0\n\tLEFT JOIN PipeWeld pw\n\t\tON pw.ActivityID = sas.ActivityID AND pw.WeldRework = 0 AND sas.ActivityType = 22\n\tLEFT JOIN PipeWeld pcut\n\t\tON pcut.ActivityID = sas.ActivityID AND pcut.WeldRework = 0 AND sas.ActivityType = 23\n\tLEFT JOIN PipeTrim pt\n\t\tON pt.ActivityID = sas.ActivityID AND pt.TrimRework = 0\n\tLEFT JOIN PipeSupports psu\n\t\tON psu.ActivityID = sas.ActivityID and psu.SupportRework = 0\n\tLEFT JOIN PipeDemo pd\n\t\tON pd.ActivityID = sas.ActivityID\n    LEFT JOIN PipeMisc pm\n\t\tON pm.ActivityID = sas.ActivityID AND pm.MiscRework = 0\n        \n\n    LEFT JOIN (SELECT min(ID) AS ID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ECT, PipingActivityType\n\t\t\t\tFROM `PipeTrackerDetails`\n\t\t\t\tGROUP BY BidID)ptd\n\t\tON ptd.BidID = sas.fk_BidIDAssigned\n        \n\tLEFT JOIN PipeMisc pme\n\t\tON pme.ActivityID = sas.ActivityID AND ptd.PipingActivityType = 'PE'\n\tLEFT JOIN PipeMisc pmb\n\t\tON pmb.ActivityID = sas.ActivityID AND ptd.PipingActivityType = 'BU'\n\tLEFT JOIN PipeMisc pmw\n\t\tON pmw.ActivityID = sas.ActivityID AND ptd.PipingActivityType = 'W'\n\tLEFT JOIN PipeMisc pmcut\n\t\tON pmcut.ActivityID = sas.ActivityID AND ptd.ECT != 'D' AND ptd.PipingActivityType = 'CUT'\n\tLEFT JOIN PipeMisc pmt\n\t\tON pm.ActivityID = sas.ActivityID AND ptd.ECT = 'T' AND ptd.PipingActivityType != 'MISC' AND ptd.PipingActivityType != 'S'\n\tLEFT JOIN PipeMisc pmsu\n\t\tON pm.ActivityID = sas.ActivityID AND ptd.PipingActivityType = 'S'\n\tLEFT JOIN PipeMisc pmd\n\t\tON pm.ActivityID = sas.ActivityID AND ptd.ECT = 'D'\n\n        \nWHERE fk_ActivityStatus IN (5,12)\nGROUP BY ptd.BidID) er\n\t\tON er.ID = ptd.ID\nWHERE `LineNumber` LIKE :LineNumber\nAND `EngDrawingNumber` LIKE :DrawingNumber\nAND `SheetNumber` LIKE :SheetNumber\nAND `ECT` LIKE :ECT\nAND `PipingActivityType` LIKE :ECTType\n\nGROUP BY ptd.BidID) wmTempTable",
+    "queryString" : "SELECT min(ptd.UID) AS UID, ptd.BidID, ptd.ProjectServicesRep, ptd.EWONumber, ptd.Scope, ptd.Phase, ptd.Stage, ptd.TestPackageNumber, ptd.WorkPackage, ptd.CostCode, ptd.P6ID, ptd.P6Description, ptd.AssignedContractor, ptd.Area, ptd.Location, ptd.Structure, ptd.CU, ptd.Elevation, \nptd.LineNumber, ptd.EngDrawingNumber, ptd.SheetNumber, ptd.DrawingRev, ptd.Description, ptd.ActivityType, ptd.ActivitySubType,  ptd.ClientMaterialSpec, ptd.PerformanceMaterialSpec, ptd.Size, ptd.System, ptd.Service, ptd.ComponentNumber, \nsum(ptd.TakeOffQuantity) AS TakeOffQuantity, ptd.QuantityUnit, sum(ptd.EstimatedHours) AS EstimatedHours, \nptd.WBS1, ptd.WBS2, ptd.WBS3, ptd.WBS4, ptd.WBS5, ptd.WBS6, ptd.WBS7, ptd.WBS8, ptd.WBS9, ptd.WBS10,\n\nsum(COALESCE(ptd.TakeOffQuantity,0)\n-COALESCE(er.InstalledFootage,0)\n-COALESCE(er.InstalledBoltUps,0)\n-COALESCE(er.InstalledWelds,0)\n-COALESCE(er.InstalledCuts,0)\n-COALESCE(er.InstalledTrim,0)\n-COALESCE(er.InstalledSupports,0)\n-COALESCE(er.InstalledMisc,0)\n-COALESCE(er.InstalledDemo,0)) AS RemainingQuantity\n\n\nFROM PipeTrackerDetails ptd\n\n\tLEFT JOIN (SELECT ptd.UID, ptd.BidID,\n###Installed Quantities Calculations ###\n\tsum(COALESCE(pe.ErectionLengthSpool1,0) + COALESCE(pe.ErectionLengthSpool2,0) + COALESCE(pe.ErectionLengthSpool3,0) + COALESCE(pe.ErectionLengthSpool4,0) + COALESCE(pe.ErectionLengthSpool5,0) + COALESCE(pe.ErectionLengthSpool6,0) + COALESCE(pme.MiscQuantity,0)) AS InstalledFootage,\n    sum(COALESCE(pcb.ConnectionQuantity,0) + COALESCE(pmcb.MiscQuantity,0)) AS InstalledBoltUps, \n\tsum(COALESCE(pw.WeldPercentCompleted,0) + COALESCE(pmw.MiscQuantity,0)) AS InstalledWelds,\n\tsum(COALESCE(pcut.WeldPercentCompleted,0) + COALESCE(pmcut.MiscQuantity,0)) AS InstalledCuts,\n\tsum(COALESCE(pcs.ConnectionQuantity,0) + COALESCE(pmcs.MiscQuantity,0)) AS InstalledScrewJoints,\n\tsum(COALESCE(pco.ConnectionQuantity,0) + COALESCE(pmco.MiscQuantity,0)) AS InstalledOtherConnections,\n\tsum(COALESCE(pt.TrimQuantity,0) + COALESCE(pmt.MiscQuantity,0)) AS InstalledTrim,\n\tsum(COALESCE((psu.SupportPercentCompleted * psu.SupportQuantity),0) + COALESCE(pmsu.MiscQuantity,0)) AS InstalledSupports,\n\tsum(COALESCE(pm.MiscQuantity,0)) AS InstalledMisc,\n\tsum(COALESCE(pd.DemoQuantity,0) + COALESCE(pmd.MiscQuantity,0)) AS InstalledDemo\n\n\n\tFROM SubmissionActivityStatus sas\n\tJOIN PSA.REF_ActivityTypes at\n\t\tON at.ID = sas.ActivityType\n        \n\tLEFT JOIN `Job1111`.PipeErection pe\n\t\tON pe.ActivityID = sas.ActivityID AND pe.ErectionRework = 0\n\tLEFT JOIN `Job1111`.PipeConnection pcb\n\t\tON pcb.ActivityID = sas.ActivityID AND sas.ActivityType = 21 AND pcb.ConnectionRework = 0 \n\tLEFT JOIN `Job1111`.PipeWeld pw\n\t\tON pw.ActivityID = sas.ActivityID AND sas.ActivityType = 22  AND  pw.WeldRework = 0\n\tLEFT JOIN `Job1111`.PipeConnection pcs\n\t\tON pcs.ActivityID = sas.ActivityID AND sas.ActivityType = 24 AND pcs.ConnectionRework = 0\n\tLEFT JOIN `Job1111`.PipeConnection pco\n\t\tON pco.ActivityID = sas.ActivityID AND sas.ActivityType = 25 AND pco.ConnectionRework = 0\n\tLEFT JOIN `Job1111`.PipeWeld pcut\n\t\tON pcut.ActivityID = sas.ActivityID AND sas.ActivityType = 23 AND pcut.WeldRework = 0\n\tLEFT JOIN `Job1111`.PipeTrim pt\n\t\tON pt.ActivityID = sas.ActivityID AND pt.TrimRework = 0\n\tLEFT JOIN `Job1111`.PipeSupports psu\n\t\tON psu.ActivityID = sas.ActivityID AND psu.SupportRework = 0\n\tLEFT JOIN `Job1111`.PipeDemo pd\n\t\tON pd.ActivityID = sas.ActivityID\n        \n\n    LEFT JOIN (SELECT min(UID) AS UID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ActivityType, ActivitySubType\n\t\t\t\tFROM `PipeTrackerDetails`\n\t\t\t\tGROUP BY BidID)ptd\n\t\tON ptd.BidID = sas.fk_BidIDAssigned\n        \n/* #### Begining of Misc activities assigned joins #### */\t\n\tLEFT JOIN `Job1111`.PipeMisc pm\n\t\tON pm.ActivityID = sas.ActivityID AND ptd.ActivityType = \"MISC\"  AND pm.MiscRework = 0\n\tLEFT JOIN `Job1111`.PipeMisc pme\n\t\tON pme.ActivityID = sas.ActivityID AND ptd.ActivitySubType = \"PE\" AND pme.MiscRework = 0\t\n\tLEFT JOIN `Job1111`.PipeMisc pmcb\n\t\tON pmcb.ActivityID = sas.ActivityID AND ptd.ActivitySubType = \"BU\" AND pmcb.MiscRework = 0\t\n\tLEFT JOIN `Job1111`.PipeMisc pmw\n\t\tON pmw.ActivityID = sas.ActivityID AND ptd.ActivitySubType = \"W\" AND pmw.MiscRework = 0\t\n\tLEFT JOIN `Job1111`.PipeMisc pmcs\n\t\tON pmcs.ActivityID = sas.ActivityID AND ptd.ActivitySubType = \"SCREW\" AND pmcs.MiscRework = 0\n\tLEFT JOIN `Job1111`.PipeMisc pmco\n\t\tON pmco.ActivityID = sas.ActivityID AND ptd.ActivityType = \"C\" AND ptd.ActivitySubType = \"Other\" AND pmco.MiscRework = 0\t\t\n\tLEFT JOIN `Job1111`.PipeMisc pmcut\n\t\tON pmcut.ActivityID = sas.ActivityID AND ptd.ActivityType = \"C\" AND ptd.ActivitySubType = \"CUT\" AND pmcut.MiscRework = 0\n\tLEFT JOIN `Job1111`.PipeMisc pmt\n\t\tON pmt.ActivityID = sas.ActivityID AND ptd.ActivityType = \"T\" AND pmt.MiscRework = 0\t   \n\tLEFT JOIN `Job1111`.PipeMisc pmsu\n\t\tON pmsu.ActivityID = sas.ActivityID AND ptd.ActivitySubType = \"S\" AND pmsu.MiscRework = 0\n\tLEFT JOIN `Job1111`.PipeMisc pmd\n\t\tON pmd.ActivityID = sas.ActivityID  AND ptd.ActivityType = \"D\" AND pmd.MiscRework = 0\n\n        \nWHERE fk_ActivityStatus IN (5,12)\nGROUP BY ptd.BidID) er\n\t\tON er.UID = ptd.UID\nWHERE er.BidID = :BidID\nOR\n(LineNumber LIKE :LineNumber\nAND EngDrawingNumber LIKE :DrawingNumber\nAND SheetNumber LIKE :SheetNumber\nAND ActivityType LIKE :ActivityType\nAND ActivitySubType LIKE :ActivitySubType\n)\nGROUP BY ptd.BidID",
+    "countQueryString" : "select count(*) from (SELECT min(ptd.UID) AS UID, ptd.BidID, ptd.ProjectServicesRep, ptd.EWONumber, ptd.Scope, ptd.Phase, ptd.Stage, ptd.TestPackageNumber, ptd.WorkPackage, ptd.CostCode, ptd.P6ID, ptd.P6Description, ptd.AssignedContractor, ptd.Area, ptd.Location, ptd.Structure, ptd.CU, ptd.Elevation, \nptd.LineNumber, ptd.EngDrawingNumber, ptd.SheetNumber, ptd.DrawingRev, ptd.Description, ptd.ActivityType, ptd.ActivitySubType,  ptd.ClientMaterialSpec, ptd.PerformanceMaterialSpec, ptd.Size, ptd.System, ptd.Service, ptd.ComponentNumber, \nsum(ptd.TakeOffQuantity) AS TakeOffQuantity, ptd.QuantityUnit, sum(ptd.EstimatedHours) AS EstimatedHours, \nptd.WBS1, ptd.WBS2, ptd.WBS3, ptd.WBS4, ptd.WBS5, ptd.WBS6, ptd.WBS7, ptd.WBS8, ptd.WBS9, ptd.WBS10,\n\nsum(COALESCE(ptd.TakeOffQuantity,0)\n-COALESCE(er.InstalledFootage,0)\n-COALESCE(er.InstalledBoltUps,0)\n-COALESCE(er.InstalledWelds,0)\n-COALESCE(er.InstalledCuts,0)\n-COALESCE(er.InstalledTrim,0)\n-COALESCE(er.InstalledSupports,0)\n-COALESCE(er.InstalledMisc,0)\n-COALESCE(er.InstalledDemo,0)) AS RemainingQuantity\n\n\nFROM PipeTrackerDetails ptd\n\n\tLEFT JOIN (SELECT ptd.UID, ptd.BidID,\n###Installed Quantities Calculations ###\n\tsum(COALESCE(pe.ErectionLengthSpool1,0) + COALESCE(pe.ErectionLengthSpool2,0) + COALESCE(pe.ErectionLengthSpool3,0) + COALESCE(pe.ErectionLengthSpool4,0) + COALESCE(pe.ErectionLengthSpool5,0) + COALESCE(pe.ErectionLengthSpool6,0) + COALESCE(pme.MiscQuantity,0)) AS InstalledFootage,\n    sum(COALESCE(pcb.ConnectionQuantity,0) + COALESCE(pmcb.MiscQuantity,0)) AS InstalledBoltUps, \n\tsum(COALESCE(pw.WeldPercentCompleted,0) + COALESCE(pmw.MiscQuantity,0)) AS InstalledWelds,\n\tsum(COALESCE(pcut.WeldPercentCompleted,0) + COALESCE(pmcut.MiscQuantity,0)) AS InstalledCuts,\n\tsum(COALESCE(pcs.ConnectionQuantity,0) + COALESCE(pmcs.MiscQuantity,0)) AS InstalledScrewJoints,\n\tsum(COALESCE(pco.ConnectionQuantity,0) + COALESCE(pmco.MiscQuantity,0)) AS InstalledOtherConnections,\n\tsum(COALESCE(pt.TrimQuantity,0) + COALESCE(pmt.MiscQuantity,0)) AS InstalledTrim,\n\tsum(COALESCE((psu.SupportPercentCompleted * psu.SupportQuantity),0) + COALESCE(pmsu.MiscQuantity,0)) AS InstalledSupports,\n\tsum(COALESCE(pm.MiscQuantity,0)) AS InstalledMisc,\n\tsum(COALESCE(pd.DemoQuantity,0) + COALESCE(pmd.MiscQuantity,0)) AS InstalledDemo\n\n\n\tFROM SubmissionActivityStatus sas\n\tJOIN PSA.REF_ActivityTypes at\n\t\tON at.ID = sas.ActivityType\n        \n\tLEFT JOIN `Job1111`.PipeErection pe\n\t\tON pe.ActivityID = sas.ActivityID AND pe.ErectionRework = 0\n\tLEFT JOIN `Job1111`.PipeConnection pcb\n\t\tON pcb.ActivityID = sas.ActivityID AND sas.ActivityType = 21 AND pcb.ConnectionRework = 0 \n\tLEFT JOIN `Job1111`.PipeWeld pw\n\t\tON pw.ActivityID = sas.ActivityID AND sas.ActivityType = 22  AND  pw.WeldRework = 0\n\tLEFT JOIN `Job1111`.PipeConnection pcs\n\t\tON pcs.ActivityID = sas.ActivityID AND sas.ActivityType = 24 AND pcs.ConnectionRework = 0\n\tLEFT JOIN `Job1111`.PipeConnection pco\n\t\tON pco.ActivityID = sas.ActivityID AND sas.ActivityType = 25 AND pco.ConnectionRework = 0\n\tLEFT JOIN `Job1111`.PipeWeld pcut\n\t\tON pcut.ActivityID = sas.ActivityID AND sas.ActivityType = 23 AND pcut.WeldRework = 0\n\tLEFT JOIN `Job1111`.PipeTrim pt\n\t\tON pt.ActivityID = sas.ActivityID AND pt.TrimRework = 0\n\tLEFT JOIN `Job1111`.PipeSupports psu\n\t\tON psu.ActivityID = sas.ActivityID AND psu.SupportRework = 0\n\tLEFT JOIN `Job1111`.PipeDemo pd\n\t\tON pd.ActivityID = sas.ActivityID\n        \n\n    LEFT JOIN (SELECT min(UID) AS UID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ActivityType, ActivitySubType\n\t\t\t\tFROM `PipeTrackerDetails`\n\t\t\t\tGROUP BY BidID)ptd\n\t\tON ptd.BidID = sas.fk_BidIDAssigned\n        \n/* #### Begining of Misc activities assigned joins #### */\t\n\tLEFT JOIN `Job1111`.PipeMisc pm\n\t\tON pm.ActivityID = sas.ActivityID AND ptd.ActivityType = \"MISC\"  AND pm.MiscRework = 0\n\tLEFT JOIN `Job1111`.PipeMisc pme\n\t\tON pme.ActivityID = sas.ActivityID AND ptd.ActivitySubType = \"PE\" AND pme.MiscRework = 0\t\n\tLEFT JOIN `Job1111`.PipeMisc pmcb\n\t\tON pmcb.ActivityID = sas.ActivityID AND ptd.ActivitySubType = \"BU\" AND pmcb.MiscRework = 0\t\n\tLEFT JOIN `Job1111`.PipeMisc pmw\n\t\tON pmw.ActivityID = sas.ActivityID AND ptd.ActivitySubType = \"W\" AND pmw.MiscRework = 0\t\n\tLEFT JOIN `Job1111`.PipeMisc pmcs\n\t\tON pmcs.ActivityID = sas.ActivityID AND ptd.ActivitySubType = \"SCREW\" AND pmcs.MiscRework = 0\n\tLEFT JOIN `Job1111`.PipeMisc pmco\n\t\tON pmco.ActivityID = sas.ActivityID AND ptd.ActivityType = \"C\" AND ptd.ActivitySubType = \"Other\" AND pmco.MiscRework = 0\t\t\n\tLEFT JOIN `Job1111`.PipeMisc pmcut\n\t\tON pmcut.ActivityID = sas.ActivityID AND ptd.ActivityType = \"C\" AND ptd.ActivitySubType = \"CUT\" AND pmcut.MiscRework = 0\n\tLEFT JOIN `Job1111`.PipeMisc pmt\n\t\tON pmt.ActivityID = sas.ActivityID AND ptd.ActivityType = \"T\" AND pmt.MiscRework = 0\t   \n\tLEFT JOIN `Job1111`.PipeMisc pmsu\n\t\tON pmsu.ActivityID = sas.ActivityID AND ptd.ActivitySubType = \"S\" AND pmsu.MiscRework = 0\n\tLEFT JOIN `Job1111`.PipeMisc pmd\n\t\tON pmd.ActivityID = sas.ActivityID  AND ptd.ActivityType = \"D\" AND pmd.MiscRework = 0\n\n        \nWHERE fk_ActivityStatus IN (5,12)\nGROUP BY ptd.BidID) er\n\t\tON er.UID = ptd.UID\nWHERE er.BidID = :BidID\nOR\n(LineNumber LIKE :LineNumber\nAND EngDrawingNumber LIKE :DrawingNumber\nAND SheetNumber LIKE :SheetNumber\nAND ActivityType LIKE :ActivityType\nAND ActivitySubType LIKE :ActivitySubType\n)\nGROUP BY ptd.BidID) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
+      "name" : "BidID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : null,
+      "required" : false
+    }, {
       "name" : "LineNumber",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : false
     }, {
@@ -5173,7 +5195,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : false
     }, {
@@ -5181,23 +5203,23 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : false
     }, {
-      "name" : "ECT",
+      "name" : "ActivityType",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : false
     }, {
-      "name" : "ECTType",
+      "name" : "ActivitySubType",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : false
     } ],
@@ -5212,8 +5234,8 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "ID",
-        "fieldName" : "id",
+        "name" : "UID",
+        "fieldName" : "uid",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -5223,6 +5245,24 @@
       }, {
         "name" : "BidID",
         "fieldName" : "bidId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "ProjectServicesRep",
+        "fieldName" : "projectServicesRep",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "EWONumber",
+        "fieldName" : "ewonumber",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -5241,6 +5281,69 @@
       }, {
         "name" : "Phase",
         "fieldName" : "phase",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Stage",
+        "fieldName" : "stage",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "TestPackageNumber",
+        "fieldName" : "testPackageNumber",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "WorkPackage",
+        "fieldName" : "workPackage",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "CostCode",
+        "fieldName" : "costCode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "P6ID",
+        "fieldName" : "p6id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "P6Description",
+        "fieldName" : "p6description",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "AssignedContractor",
+        "fieldName" : "assignedContractor",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -5275,15 +5378,6 @@
           "list" : false
         }
       }, {
-        "name" : "Elevation",
-        "fieldName" : "elevation",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
         "name" : "CU",
         "fieldName" : "cu",
         "optional" : false,
@@ -5293,53 +5387,8 @@
           "list" : false
         }
       }, {
-        "name" : "P6ID",
-        "fieldName" : "p6id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "P6Description",
-        "fieldName" : "p6description",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Stage",
-        "fieldName" : "stage",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "TestPackageNumber",
-        "fieldName" : "testPackageNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "AssignedContractor",
-        "fieldName" : "assignedContractor",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "CostCode",
-        "fieldName" : "costCode",
+        "name" : "Elevation",
+        "fieldName" : "elevation",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -5374,12 +5423,66 @@
           "list" : false
         }
       }, {
-        "name" : "RevisionNumber",
-        "fieldName" : "revisionNumber",
+        "name" : "DrawingRev",
+        "fieldName" : "drawingRev",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Short",
+          "list" : false
+        }
+      }, {
+        "name" : "Description",
+        "fieldName" : "description",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ActivityType",
+        "fieldName" : "activityType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ActivitySubType",
+        "fieldName" : "activitySubType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ClientMaterialSpec",
+        "fieldName" : "clientMaterialSpec",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "PerformanceMaterialSpec",
+        "fieldName" : "performanceMaterialSpec",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Size",
+        "fieldName" : "size",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Float",
           "list" : false
         }
       }, {
@@ -5401,66 +5504,12 @@
           "list" : false
         }
       }, {
-        "name" : "ClientPipeSpec",
-        "fieldName" : "clientPipeSpec",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "MaterialCode",
-        "fieldName" : "materialCode",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Description",
-        "fieldName" : "description",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
         "name" : "ComponentNumber",
         "fieldName" : "componentNumber",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ECT",
-        "fieldName" : "ect",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "PipingActivityType",
-        "fieldName" : "pipingActivityType",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "PipeSize",
-        "fieldName" : "pipeSize",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Float",
           "list" : false
         }
       }, {
@@ -5581,26 +5630,8 @@
           "list" : false
         }
       }, {
-        "name" : "Rev",
-        "fieldName" : "rev",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "TimeStamp",
-        "fieldName" : "timeStamp",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.sql.Timestamp",
-          "list" : false
-        }
-      }, {
-        "name" : "RemainingQuant",
-        "fieldName" : "remainingQuant",
+        "name" : "RemainingQuantity",
+        "fieldName" : "remainingQuantity",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -5614,17 +5645,25 @@
     "name" : "GetBidActivityMatchesSteel",
     "description" : "above",
     "version" : "V1",
-    "queryString" : "SELECT \nmin(std.UID) AS UID, min(std.BidID) AS BidID, std.EWONumber, std.Scope, std.Phase,  std.Stage, std.TestPackageNumber, std.CostCode, std.P6ID, std.AssignedContractor, std.Area, std.Location, std.Structure, std.CU, \nstd.Elevation, std.P6Description, std.PieceMark, std.PieceMarkRev, std.Description, std.ActivityType, std.ClientMaterialSpec, std.PerformanceMaterialSpec, std.MaterialType, sum(std.Length) AS Length, \nsum(std.Weight) AS Weight, std.System, std.Service, sum(std.TakeOffQuantity) AS TakeOffQuantity, sum(std.WeldCount) AS WeldCount, sum(std.SteelHours) AS SteelHours, sum(std.WeldHours) WeldHours,\nstd.WBS1, std.WBS2, std.WBS3, std.WBS4, std.WBS5, std.WBS6, std.WBS7, std.WBS8, std.WBS9, std.WBS10\n\nFROM SteelTrackerDetails std\nWHERE Area LIKE :Area\nAND PieceMark LIKE :PieceMark\nAND ActivityType LIKE :BidActivityType\nAND MaterialType LIKE :SteelType\nGROUP BY Area, PieceMark",
-    "countQueryString" : "select count(*) from (SELECT \nmin(std.UID) AS UID, min(std.BidID) AS BidID, std.EWONumber, std.Scope, std.Phase,  std.Stage, std.TestPackageNumber, std.CostCode, std.P6ID, std.AssignedContractor, std.Area, std.Location, std.Structure, std.CU, \nstd.Elevation, std.P6Description, std.PieceMark, std.PieceMarkRev, std.Description, std.ActivityType, std.ClientMaterialSpec, std.PerformanceMaterialSpec, std.MaterialType, sum(std.Length) AS Length, \nsum(std.Weight) AS Weight, std.System, std.Service, sum(std.TakeOffQuantity) AS TakeOffQuantity, sum(std.WeldCount) AS WeldCount, sum(std.SteelHours) AS SteelHours, sum(std.WeldHours) WeldHours,\nstd.WBS1, std.WBS2, std.WBS3, std.WBS4, std.WBS5, std.WBS6, std.WBS7, std.WBS8, std.WBS9, std.WBS10\n\nFROM SteelTrackerDetails std\nWHERE Area LIKE :Area\nAND PieceMark LIKE :PieceMark\nAND ActivityType LIKE :BidActivityType\nAND MaterialType LIKE :SteelType\nGROUP BY Area, PieceMark) wmTempTable",
+    "queryString" : "SELECT \nmin(std.UID) AS UID, min(std.BidID) AS BidID, std.ProjectServicesRep, std.EWONumber, std.Scope, std.Phase,  std.Stage, std.TestPackageNumber, std.WorkPackage, std.CostCode, std.P6ID,  std.P6Description, std.AssignedContractor, std.Area, std.Location, std.Structure, std.CU, std.Elevation, \nstd.SortGroup1, std.PieceMark, std.PieceMarkRev, std.Description, std.ActivityType, std.ClientMaterialSpec, std.PerformanceMaterialSpec, std.MaterialType, sum(std.Length) AS Length, \nsum(std.Weight) AS Weight, std.System, std.Service, sum(std.TakeOffQuantity) AS TakeOffQuantity, sum(std.WeldCount) AS WeldCount, sum(std.SteelHours) AS SteelHours, sum(std.WeldHours) WeldHours,\nstd.WBS1, std.WBS2, std.WBS3, std.WBS4, std.WBS5, std.WBS6, std.WBS7, std.WBS8, std.WBS9, std.WBS10\n\nFROM SteelTrackerDetails std\nWHERE (BidID = :BidID AND ActivityType != 'E')\nOR \n(SortGroup1 LIKE :SortGroup1\nAND PieceMark LIKE :PieceMark\nAND ActivityType = 'E')\nGROUP BY SortGroup1, PieceMark",
+    "countQueryString" : "select count(*) from (SELECT \nmin(std.UID) AS UID, min(std.BidID) AS BidID, std.ProjectServicesRep, std.EWONumber, std.Scope, std.Phase,  std.Stage, std.TestPackageNumber, std.WorkPackage, std.CostCode, std.P6ID,  std.P6Description, std.AssignedContractor, std.Area, std.Location, std.Structure, std.CU, std.Elevation, \nstd.SortGroup1, std.PieceMark, std.PieceMarkRev, std.Description, std.ActivityType, std.ClientMaterialSpec, std.PerformanceMaterialSpec, std.MaterialType, sum(std.Length) AS Length, \nsum(std.Weight) AS Weight, std.System, std.Service, sum(std.TakeOffQuantity) AS TakeOffQuantity, sum(std.WeldCount) AS WeldCount, sum(std.SteelHours) AS SteelHours, sum(std.WeldHours) WeldHours,\nstd.WBS1, std.WBS2, std.WBS3, std.WBS4, std.WBS5, std.WBS6, std.WBS7, std.WBS8, std.WBS9, std.WBS10\n\nFROM SteelTrackerDetails std\nWHERE (BidID = :BidID AND ActivityType != 'E')\nOR \n(SortGroup1 LIKE :SortGroup1\nAND PieceMark LIKE :PieceMark\nAND ActivityType = 'E')\nGROUP BY SortGroup1, PieceMark) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
-      "name" : "Area",
+      "name" : "BidID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : null,
+      "required" : false
+    }, {
+      "name" : "SortGroup1",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : false
     }, {
@@ -5632,23 +5671,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "%",
-      "required" : false
-    }, {
-      "name" : "BidActivityType",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "%",
-      "required" : false
-    }, {
-      "name" : "SteelType",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : false
     } ],
@@ -5678,6 +5701,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "ProjectServicesRep",
+        "fieldName" : "projectServicesRep",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
           "list" : false
         }
       }, {
@@ -5726,6 +5758,15 @@
           "list" : false
         }
       }, {
+        "name" : "WorkPackage",
+        "fieldName" : "workPackage",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
         "name" : "CostCode",
         "fieldName" : "costCode",
         "optional" : false,
@@ -5737,6 +5778,15 @@
       }, {
         "name" : "P6ID",
         "fieldName" : "p6id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "P6Description",
+        "fieldName" : "p6description",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -5798,8 +5848,8 @@
           "list" : false
         }
       }, {
-        "name" : "P6Description",
-        "fieldName" : "p6description",
+        "name" : "SortGroup1",
+        "fieldName" : "sortGroup1",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -6038,17 +6088,17 @@
     "name" : "GetBidActivityQuantitesEquip",
     "description" : "name",
     "version" : "V2",
-    "queryString" : "SELECT etd.BidID,\nsum(etd.TakeOffQuantity) AS TakeOffQuantity, etd.QuantityUnit,\n\nsum(COALESCE(etd.EstimatedHours,0)) AS FAHours,\nsum(COALESCE(er.InstalledPercent,0)) AS InstalledPercent\n\nFROM (SELECT BidID, TakeOffQuantity, QuantityUnit, EstimatedHours FROM EquipTrackerDetails WHERE BidID = :BidID GROUP BY BidID) etd\nLEFT JOIN(SELECT etd.BidID,\nCOALESCE(efa.FAPercentComplete,0) AS InstalledPercent\n\nFROM SubmissionActivityStatus sas \nLEFT JOIN EquipTrackerDetails etd\n    ON etd.BidID = sas.fk_BidIDAssigned\nLEFT JOIN EquipFA efa\n\tON efa.ActivityID = sas.ActivityID AND efa.FARework = 0\n\nWHERE sas.fk_BidIDAssigned = :BidID\nAND sas.ActivityType = 80\nAND sas.fk_ActivityStatus IN(5,12)\n) er\n\tON er.BidID = etd.BidID\nGROUP BY etd.BidID",
-    "countQueryString" : "select count(*) from (SELECT etd.BidID,\nsum(etd.TakeOffQuantity) AS TakeOffQuantity, etd.QuantityUnit,\n\nsum(COALESCE(etd.EstimatedHours,0)) AS FAHours,\nsum(COALESCE(er.InstalledPercent,0)) AS InstalledPercent\n\nFROM (SELECT BidID, TakeOffQuantity, QuantityUnit, EstimatedHours FROM EquipTrackerDetails WHERE BidID = :BidID GROUP BY BidID) etd\nLEFT JOIN(SELECT etd.BidID,\nCOALESCE(efa.FAPercentComplete,0) AS InstalledPercent\n\nFROM SubmissionActivityStatus sas \nLEFT JOIN EquipTrackerDetails etd\n    ON etd.BidID = sas.fk_BidIDAssigned\nLEFT JOIN EquipFA efa\n\tON efa.ActivityID = sas.ActivityID AND efa.FARework = 0\n\nWHERE sas.fk_BidIDAssigned = :BidID\nAND sas.ActivityType = 80\nAND sas.fk_ActivityStatus IN(5,12)\n) er\n\tON er.BidID = etd.BidID\nGROUP BY etd.BidID) wmTempTable",
+    "queryString" : "SELECT etd.BidID,\nsum(etd.TakeOffQuantity) AS TakeOffQuantity, \netd.QuantityUnit,\nsum(COALESCE(etd.EstimatedHours,0)) AS FAHours,\nsum(COALESCE(er.InstalledPercent,0)) AS InstalledPercent\n\nFROM EquipTrackerDetails etd\nLEFT JOIN (SELECT MIN(etd.UID) AS UID,\n\t\t\tsum(efa.FAPercentCompleted) AS InstalledPercent\n            FROM SubmissionActivityStatus sas\n            JOIN EquipTrackerDetails etd\n\t\t\t\tON etd.BidID = sas.fk_BidIDAssigned\n\t\t\tJOIN EquipFA efa\n\t\t\t\tON efa.ActivityID = sas.ActivityID\n\t\t\tWHERE sas.fk_BidIDAssigned = :BidID\n            AND sas.fk_ActivityStatus IN(5,12)\n            GROUP BY etd.BidID\n\t\t\t)er\n\tON er.UID = etd.UID\n\nWHERE BidID = :BidID\nGROUP BY etd.BidID",
+    "countQueryString" : "select count(*) from (SELECT etd.BidID,\nsum(etd.TakeOffQuantity) AS TakeOffQuantity, \netd.QuantityUnit,\nsum(COALESCE(etd.EstimatedHours,0)) AS FAHours,\nsum(COALESCE(er.InstalledPercent,0)) AS InstalledPercent\n\nFROM EquipTrackerDetails etd\nLEFT JOIN (SELECT MIN(etd.UID) AS UID,\n\t\t\tsum(efa.FAPercentCompleted) AS InstalledPercent\n            FROM SubmissionActivityStatus sas\n            JOIN EquipTrackerDetails etd\n\t\t\t\tON etd.BidID = sas.fk_BidIDAssigned\n\t\t\tJOIN EquipFA efa\n\t\t\t\tON efa.ActivityID = sas.ActivityID\n\t\t\tWHERE sas.fk_BidIDAssigned = :BidID\n            AND sas.fk_ActivityStatus IN(5,12)\n            GROUP BY etd.BidID\n\t\t\t)er\n\tON er.UID = etd.UID\n\nWHERE BidID = :BidID\nGROUP BY etd.BidID) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
       "name" : "BidID",
-      "type" : "string",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
       "required" : true
     } ],

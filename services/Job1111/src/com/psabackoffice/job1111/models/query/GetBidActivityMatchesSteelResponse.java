@@ -25,6 +25,10 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
     @ColumnAlias("BidID")
     private Integer bidId;
 
+    @JsonProperty("ProjectServicesRep")
+    @ColumnAlias("ProjectServicesRep")
+    private String projectServicesRep;
+
     @JsonProperty("EWONumber")
     @ColumnAlias("EWONumber")
     private Integer ewonumber;
@@ -45,6 +49,10 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
     @ColumnAlias("TestPackageNumber")
     private String testPackageNumber;
 
+    @JsonProperty("WorkPackage")
+    @ColumnAlias("WorkPackage")
+    private String workPackage;
+
     @JsonProperty("CostCode")
     @ColumnAlias("CostCode")
     private String costCode;
@@ -52,6 +60,10 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
     @JsonProperty("P6ID")
     @ColumnAlias("P6ID")
     private String p6id;
+
+    @JsonProperty("P6Description")
+    @ColumnAlias("P6Description")
+    private String p6description;
 
     @JsonProperty("AssignedContractor")
     @ColumnAlias("AssignedContractor")
@@ -77,9 +89,9 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
     @ColumnAlias("Elevation")
     private String elevation;
 
-    @JsonProperty("P6Description")
-    @ColumnAlias("P6Description")
-    private String p6description;
+    @JsonProperty("SortGroup1")
+    @ColumnAlias("SortGroup1")
+    private String sortGroup1;
 
     @JsonProperty("PieceMark")
     @ColumnAlias("PieceMark")
@@ -197,6 +209,14 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
         this.bidId = bidId;
     }
 
+    public String getProjectServicesRep() {
+        return this.projectServicesRep;
+    }
+
+    public void setProjectServicesRep(String projectServicesRep) {
+        this.projectServicesRep = projectServicesRep;
+    }
+
     public Integer getEwonumber() {
         return this.ewonumber;
     }
@@ -237,6 +257,14 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
         this.testPackageNumber = testPackageNumber;
     }
 
+    public String getWorkPackage() {
+        return this.workPackage;
+    }
+
+    public void setWorkPackage(String workPackage) {
+        this.workPackage = workPackage;
+    }
+
     public String getCostCode() {
         return this.costCode;
     }
@@ -251,6 +279,14 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
 
     public void setP6id(String p6id) {
         this.p6id = p6id;
+    }
+
+    public String getP6description() {
+        return this.p6description;
+    }
+
+    public void setP6description(String p6description) {
+        this.p6description = p6description;
     }
 
     public String getAssignedContractor() {
@@ -301,12 +337,12 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
         this.elevation = elevation;
     }
 
-    public String getP6description() {
-        return this.p6description;
+    public String getSortGroup1() {
+        return this.sortGroup1;
     }
 
-    public void setP6description(String p6description) {
-        this.p6description = p6description;
+    public void setSortGroup1(String sortGroup1) {
+        this.sortGroup1 = sortGroup1;
     }
 
     public String getPieceMark() {
@@ -516,20 +552,23 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
         final GetBidActivityMatchesSteelResponse getBidActivityMatchesSteelResponse = (GetBidActivityMatchesSteelResponse) o;
         return Objects.equals(getUid(), getBidActivityMatchesSteelResponse.getUid()) &&
                 Objects.equals(getBidId(), getBidActivityMatchesSteelResponse.getBidId()) &&
+                Objects.equals(getProjectServicesRep(), getBidActivityMatchesSteelResponse.getProjectServicesRep()) &&
                 Objects.equals(getEwonumber(), getBidActivityMatchesSteelResponse.getEwonumber()) &&
                 Objects.equals(getScope(), getBidActivityMatchesSteelResponse.getScope()) &&
                 Objects.equals(getPhase(), getBidActivityMatchesSteelResponse.getPhase()) &&
                 Objects.equals(getStage(), getBidActivityMatchesSteelResponse.getStage()) &&
                 Objects.equals(getTestPackageNumber(), getBidActivityMatchesSteelResponse.getTestPackageNumber()) &&
+                Objects.equals(getWorkPackage(), getBidActivityMatchesSteelResponse.getWorkPackage()) &&
                 Objects.equals(getCostCode(), getBidActivityMatchesSteelResponse.getCostCode()) &&
                 Objects.equals(getP6id(), getBidActivityMatchesSteelResponse.getP6id()) &&
+                Objects.equals(getP6description(), getBidActivityMatchesSteelResponse.getP6description()) &&
                 Objects.equals(getAssignedContractor(), getBidActivityMatchesSteelResponse.getAssignedContractor()) &&
                 Objects.equals(getArea(), getBidActivityMatchesSteelResponse.getArea()) &&
                 Objects.equals(getLocation(), getBidActivityMatchesSteelResponse.getLocation()) &&
                 Objects.equals(getStructure(), getBidActivityMatchesSteelResponse.getStructure()) &&
                 Objects.equals(getCu(), getBidActivityMatchesSteelResponse.getCu()) &&
                 Objects.equals(getElevation(), getBidActivityMatchesSteelResponse.getElevation()) &&
-                Objects.equals(getP6description(), getBidActivityMatchesSteelResponse.getP6description()) &&
+                Objects.equals(getSortGroup1(), getBidActivityMatchesSteelResponse.getSortGroup1()) &&
                 Objects.equals(getPieceMark(), getBidActivityMatchesSteelResponse.getPieceMark()) &&
                 Objects.equals(getPieceMarkRev(), getBidActivityMatchesSteelResponse.getPieceMarkRev()) &&
                 Objects.equals(getDescription(), getBidActivityMatchesSteelResponse.getDescription()) &&
@@ -561,20 +600,23 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
     public int hashCode() {
         return Objects.hash(getUid(),
                 getBidId(),
+                getProjectServicesRep(),
                 getEwonumber(),
                 getScope(),
                 getPhase(),
                 getStage(),
                 getTestPackageNumber(),
+                getWorkPackage(),
                 getCostCode(),
                 getP6id(),
+                getP6description(),
                 getAssignedContractor(),
                 getArea(),
                 getLocation(),
                 getStructure(),
                 getCu(),
                 getElevation(),
-                getP6description(),
+                getSortGroup1(),
                 getPieceMark(),
                 getPieceMarkRev(),
                 getDescription(),

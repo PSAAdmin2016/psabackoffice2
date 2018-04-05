@@ -8,7 +8,6 @@ package com.psabackoffice.job1111.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,13 +16,21 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 public class GetBidActivityMatchesPipeResponse implements Serializable {
 
 
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
+    @JsonProperty("UID")
+    @ColumnAlias("UID")
+    private Integer uid;
 
     @JsonProperty("BidID")
     @ColumnAlias("BidID")
     private Integer bidId;
+
+    @JsonProperty("ProjectServicesRep")
+    @ColumnAlias("ProjectServicesRep")
+    private String projectServicesRep;
+
+    @JsonProperty("EWONumber")
+    @ColumnAlias("EWONumber")
+    private Integer ewonumber;
 
     @JsonProperty("Scope")
     @ColumnAlias("Scope")
@@ -32,6 +39,34 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
     @JsonProperty("Phase")
     @ColumnAlias("Phase")
     private String phase;
+
+    @JsonProperty("Stage")
+    @ColumnAlias("Stage")
+    private String stage;
+
+    @JsonProperty("TestPackageNumber")
+    @ColumnAlias("TestPackageNumber")
+    private String testPackageNumber;
+
+    @JsonProperty("WorkPackage")
+    @ColumnAlias("WorkPackage")
+    private String workPackage;
+
+    @JsonProperty("CostCode")
+    @ColumnAlias("CostCode")
+    private String costCode;
+
+    @JsonProperty("P6ID")
+    @ColumnAlias("P6ID")
+    private String p6id;
+
+    @JsonProperty("P6Description")
+    @ColumnAlias("P6Description")
+    private String p6description;
+
+    @JsonProperty("AssignedContractor")
+    @ColumnAlias("AssignedContractor")
+    private String assignedContractor;
 
     @JsonProperty("Area")
     @ColumnAlias("Area")
@@ -45,37 +80,13 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
     @ColumnAlias("Structure")
     private String structure;
 
-    @JsonProperty("Elevation")
-    @ColumnAlias("Elevation")
-    private String elevation;
-
     @JsonProperty("CU")
     @ColumnAlias("CU")
     private String cu;
 
-    @JsonProperty("P6ID")
-    @ColumnAlias("P6ID")
-    private String p6id;
-
-    @JsonProperty("P6Description")
-    @ColumnAlias("P6Description")
-    private String p6description;
-
-    @JsonProperty("Stage")
-    @ColumnAlias("Stage")
-    private String stage;
-
-    @JsonProperty("TestPackageNumber")
-    @ColumnAlias("TestPackageNumber")
-    private String testPackageNumber;
-
-    @JsonProperty("AssignedContractor")
-    @ColumnAlias("AssignedContractor")
-    private String assignedContractor;
-
-    @JsonProperty("CostCode")
-    @ColumnAlias("CostCode")
-    private String costCode;
+    @JsonProperty("Elevation")
+    @ColumnAlias("Elevation")
+    private String elevation;
 
     @JsonProperty("LineNumber")
     @ColumnAlias("LineNumber")
@@ -89,9 +100,33 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
     @ColumnAlias("SheetNumber")
     private Short sheetNumber;
 
-    @JsonProperty("RevisionNumber")
-    @ColumnAlias("RevisionNumber")
-    private Short revisionNumber;
+    @JsonProperty("DrawingRev")
+    @ColumnAlias("DrawingRev")
+    private Short drawingRev;
+
+    @JsonProperty("Description")
+    @ColumnAlias("Description")
+    private String description;
+
+    @JsonProperty("ActivityType")
+    @ColumnAlias("ActivityType")
+    private String activityType;
+
+    @JsonProperty("ActivitySubType")
+    @ColumnAlias("ActivitySubType")
+    private String activitySubType;
+
+    @JsonProperty("ClientMaterialSpec")
+    @ColumnAlias("ClientMaterialSpec")
+    private String clientMaterialSpec;
+
+    @JsonProperty("PerformanceMaterialSpec")
+    @ColumnAlias("PerformanceMaterialSpec")
+    private String performanceMaterialSpec;
+
+    @JsonProperty("Size")
+    @ColumnAlias("Size")
+    private Float size;
 
     @JsonProperty("System")
     @ColumnAlias("System")
@@ -101,33 +136,9 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
     @ColumnAlias("Service")
     private String service;
 
-    @JsonProperty("ClientPipeSpec")
-    @ColumnAlias("ClientPipeSpec")
-    private String clientPipeSpec;
-
-    @JsonProperty("MaterialCode")
-    @ColumnAlias("MaterialCode")
-    private String materialCode;
-
-    @JsonProperty("Description")
-    @ColumnAlias("Description")
-    private String description;
-
     @JsonProperty("ComponentNumber")
     @ColumnAlias("ComponentNumber")
     private String componentNumber;
-
-    @JsonProperty("ECT")
-    @ColumnAlias("ECT")
-    private String ect;
-
-    @JsonProperty("PipingActivityType")
-    @ColumnAlias("PipingActivityType")
-    private String pipingActivityType;
-
-    @JsonProperty("PipeSize")
-    @ColumnAlias("PipeSize")
-    private Float pipeSize;
 
     @JsonProperty("TakeOffQuantity")
     @ColumnAlias("TakeOffQuantity")
@@ -181,24 +192,16 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
     @ColumnAlias("WBS10")
     private String wbs10;
 
-    @JsonProperty("Rev")
-    @ColumnAlias("Rev")
-    private Short rev;
+    @JsonProperty("RemainingQuantity")
+    @ColumnAlias("RemainingQuantity")
+    private BigDecimal remainingQuantity;
 
-    @JsonProperty("TimeStamp")
-    @ColumnAlias("TimeStamp")
-    private Timestamp timeStamp;
-
-    @JsonProperty("RemainingQuant")
-    @ColumnAlias("RemainingQuant")
-    private BigDecimal remainingQuant;
-
-    public Integer getId() {
-        return this.id;
+    public Integer getUid() {
+        return this.uid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
     public Integer getBidId() {
@@ -207,6 +210,22 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
 
     public void setBidId(Integer bidId) {
         this.bidId = bidId;
+    }
+
+    public String getProjectServicesRep() {
+        return this.projectServicesRep;
+    }
+
+    public void setProjectServicesRep(String projectServicesRep) {
+        this.projectServicesRep = projectServicesRep;
+    }
+
+    public Integer getEwonumber() {
+        return this.ewonumber;
+    }
+
+    public void setEwonumber(Integer ewonumber) {
+        this.ewonumber = ewonumber;
     }
 
     public String getScope() {
@@ -223,6 +242,62 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
 
     public void setPhase(String phase) {
         this.phase = phase;
+    }
+
+    public String getStage() {
+        return this.stage;
+    }
+
+    public void setStage(String stage) {
+        this.stage = stage;
+    }
+
+    public String getTestPackageNumber() {
+        return this.testPackageNumber;
+    }
+
+    public void setTestPackageNumber(String testPackageNumber) {
+        this.testPackageNumber = testPackageNumber;
+    }
+
+    public String getWorkPackage() {
+        return this.workPackage;
+    }
+
+    public void setWorkPackage(String workPackage) {
+        this.workPackage = workPackage;
+    }
+
+    public String getCostCode() {
+        return this.costCode;
+    }
+
+    public void setCostCode(String costCode) {
+        this.costCode = costCode;
+    }
+
+    public String getP6id() {
+        return this.p6id;
+    }
+
+    public void setP6id(String p6id) {
+        this.p6id = p6id;
+    }
+
+    public String getP6description() {
+        return this.p6description;
+    }
+
+    public void setP6description(String p6description) {
+        this.p6description = p6description;
+    }
+
+    public String getAssignedContractor() {
+        return this.assignedContractor;
+    }
+
+    public void setAssignedContractor(String assignedContractor) {
+        this.assignedContractor = assignedContractor;
     }
 
     public String getArea() {
@@ -249,14 +324,6 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
         this.structure = structure;
     }
 
-    public String getElevation() {
-        return this.elevation;
-    }
-
-    public void setElevation(String elevation) {
-        this.elevation = elevation;
-    }
-
     public String getCu() {
         return this.cu;
     }
@@ -265,52 +332,12 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
         this.cu = cu;
     }
 
-    public String getP6id() {
-        return this.p6id;
+    public String getElevation() {
+        return this.elevation;
     }
 
-    public void setP6id(String p6id) {
-        this.p6id = p6id;
-    }
-
-    public String getP6description() {
-        return this.p6description;
-    }
-
-    public void setP6description(String p6description) {
-        this.p6description = p6description;
-    }
-
-    public String getStage() {
-        return this.stage;
-    }
-
-    public void setStage(String stage) {
-        this.stage = stage;
-    }
-
-    public String getTestPackageNumber() {
-        return this.testPackageNumber;
-    }
-
-    public void setTestPackageNumber(String testPackageNumber) {
-        this.testPackageNumber = testPackageNumber;
-    }
-
-    public String getAssignedContractor() {
-        return this.assignedContractor;
-    }
-
-    public void setAssignedContractor(String assignedContractor) {
-        this.assignedContractor = assignedContractor;
-    }
-
-    public String getCostCode() {
-        return this.costCode;
-    }
-
-    public void setCostCode(String costCode) {
-        this.costCode = costCode;
+    public void setElevation(String elevation) {
+        this.elevation = elevation;
     }
 
     public String getLineNumber() {
@@ -337,12 +364,60 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
         this.sheetNumber = sheetNumber;
     }
 
-    public Short getRevisionNumber() {
-        return this.revisionNumber;
+    public Short getDrawingRev() {
+        return this.drawingRev;
     }
 
-    public void setRevisionNumber(Short revisionNumber) {
-        this.revisionNumber = revisionNumber;
+    public void setDrawingRev(Short drawingRev) {
+        this.drawingRev = drawingRev;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getActivityType() {
+        return this.activityType;
+    }
+
+    public void setActivityType(String activityType) {
+        this.activityType = activityType;
+    }
+
+    public String getActivitySubType() {
+        return this.activitySubType;
+    }
+
+    public void setActivitySubType(String activitySubType) {
+        this.activitySubType = activitySubType;
+    }
+
+    public String getClientMaterialSpec() {
+        return this.clientMaterialSpec;
+    }
+
+    public void setClientMaterialSpec(String clientMaterialSpec) {
+        this.clientMaterialSpec = clientMaterialSpec;
+    }
+
+    public String getPerformanceMaterialSpec() {
+        return this.performanceMaterialSpec;
+    }
+
+    public void setPerformanceMaterialSpec(String performanceMaterialSpec) {
+        this.performanceMaterialSpec = performanceMaterialSpec;
+    }
+
+    public Float getSize() {
+        return this.size;
+    }
+
+    public void setSize(Float size) {
+        this.size = size;
     }
 
     public String getSystem() {
@@ -361,60 +436,12 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
         this.service = service;
     }
 
-    public String getClientPipeSpec() {
-        return this.clientPipeSpec;
-    }
-
-    public void setClientPipeSpec(String clientPipeSpec) {
-        this.clientPipeSpec = clientPipeSpec;
-    }
-
-    public String getMaterialCode() {
-        return this.materialCode;
-    }
-
-    public void setMaterialCode(String materialCode) {
-        this.materialCode = materialCode;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getComponentNumber() {
         return this.componentNumber;
     }
 
     public void setComponentNumber(String componentNumber) {
         this.componentNumber = componentNumber;
-    }
-
-    public String getEct() {
-        return this.ect;
-    }
-
-    public void setEct(String ect) {
-        this.ect = ect;
-    }
-
-    public String getPipingActivityType() {
-        return this.pipingActivityType;
-    }
-
-    public void setPipingActivityType(String pipingActivityType) {
-        this.pipingActivityType = pipingActivityType;
-    }
-
-    public Float getPipeSize() {
-        return this.pipeSize;
-    }
-
-    public void setPipeSize(Float pipeSize) {
-        this.pipeSize = pipeSize;
     }
 
     public BigDecimal getTakeOffQuantity() {
@@ -521,28 +548,12 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
         this.wbs10 = wbs10;
     }
 
-    public Short getRev() {
-        return this.rev;
+    public BigDecimal getRemainingQuantity() {
+        return this.remainingQuantity;
     }
 
-    public void setRev(Short rev) {
-        this.rev = rev;
-    }
-
-    public Timestamp getTimeStamp() {
-        return this.timeStamp;
-    }
-
-    public void setTimeStamp(Timestamp timeStamp) {
-        this.timeStamp = timeStamp;
-    }
-
-    public BigDecimal getRemainingQuant() {
-        return this.remainingQuant;
-    }
-
-    public void setRemainingQuant(BigDecimal remainingQuant) {
-        this.remainingQuant = remainingQuant;
+    public void setRemainingQuantity(BigDecimal remainingQuantity) {
+        this.remainingQuantity = remainingQuantity;
     }
 
     @Override
@@ -550,34 +561,37 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetBidActivityMatchesPipeResponse)) return false;
         final GetBidActivityMatchesPipeResponse getBidActivityMatchesPipeResponse = (GetBidActivityMatchesPipeResponse) o;
-        return Objects.equals(getId(), getBidActivityMatchesPipeResponse.getId()) &&
+        return Objects.equals(getUid(), getBidActivityMatchesPipeResponse.getUid()) &&
                 Objects.equals(getBidId(), getBidActivityMatchesPipeResponse.getBidId()) &&
+                Objects.equals(getProjectServicesRep(), getBidActivityMatchesPipeResponse.getProjectServicesRep()) &&
+                Objects.equals(getEwonumber(), getBidActivityMatchesPipeResponse.getEwonumber()) &&
                 Objects.equals(getScope(), getBidActivityMatchesPipeResponse.getScope()) &&
                 Objects.equals(getPhase(), getBidActivityMatchesPipeResponse.getPhase()) &&
+                Objects.equals(getStage(), getBidActivityMatchesPipeResponse.getStage()) &&
+                Objects.equals(getTestPackageNumber(), getBidActivityMatchesPipeResponse.getTestPackageNumber()) &&
+                Objects.equals(getWorkPackage(), getBidActivityMatchesPipeResponse.getWorkPackage()) &&
+                Objects.equals(getCostCode(), getBidActivityMatchesPipeResponse.getCostCode()) &&
+                Objects.equals(getP6id(), getBidActivityMatchesPipeResponse.getP6id()) &&
+                Objects.equals(getP6description(), getBidActivityMatchesPipeResponse.getP6description()) &&
+                Objects.equals(getAssignedContractor(), getBidActivityMatchesPipeResponse.getAssignedContractor()) &&
                 Objects.equals(getArea(), getBidActivityMatchesPipeResponse.getArea()) &&
                 Objects.equals(getLocation(), getBidActivityMatchesPipeResponse.getLocation()) &&
                 Objects.equals(getStructure(), getBidActivityMatchesPipeResponse.getStructure()) &&
-                Objects.equals(getElevation(), getBidActivityMatchesPipeResponse.getElevation()) &&
                 Objects.equals(getCu(), getBidActivityMatchesPipeResponse.getCu()) &&
-                Objects.equals(getP6id(), getBidActivityMatchesPipeResponse.getP6id()) &&
-                Objects.equals(getP6description(), getBidActivityMatchesPipeResponse.getP6description()) &&
-                Objects.equals(getStage(), getBidActivityMatchesPipeResponse.getStage()) &&
-                Objects.equals(getTestPackageNumber(), getBidActivityMatchesPipeResponse.getTestPackageNumber()) &&
-                Objects.equals(getAssignedContractor(), getBidActivityMatchesPipeResponse.getAssignedContractor()) &&
-                Objects.equals(getCostCode(), getBidActivityMatchesPipeResponse.getCostCode()) &&
+                Objects.equals(getElevation(), getBidActivityMatchesPipeResponse.getElevation()) &&
                 Objects.equals(getLineNumber(), getBidActivityMatchesPipeResponse.getLineNumber()) &&
                 Objects.equals(getEngDrawingNumber(), getBidActivityMatchesPipeResponse.getEngDrawingNumber()) &&
                 Objects.equals(getSheetNumber(), getBidActivityMatchesPipeResponse.getSheetNumber()) &&
-                Objects.equals(getRevisionNumber(), getBidActivityMatchesPipeResponse.getRevisionNumber()) &&
+                Objects.equals(getDrawingRev(), getBidActivityMatchesPipeResponse.getDrawingRev()) &&
+                Objects.equals(getDescription(), getBidActivityMatchesPipeResponse.getDescription()) &&
+                Objects.equals(getActivityType(), getBidActivityMatchesPipeResponse.getActivityType()) &&
+                Objects.equals(getActivitySubType(), getBidActivityMatchesPipeResponse.getActivitySubType()) &&
+                Objects.equals(getClientMaterialSpec(), getBidActivityMatchesPipeResponse.getClientMaterialSpec()) &&
+                Objects.equals(getPerformanceMaterialSpec(), getBidActivityMatchesPipeResponse.getPerformanceMaterialSpec()) &&
+                Objects.equals(getSize(), getBidActivityMatchesPipeResponse.getSize()) &&
                 Objects.equals(getSystem(), getBidActivityMatchesPipeResponse.getSystem()) &&
                 Objects.equals(getService(), getBidActivityMatchesPipeResponse.getService()) &&
-                Objects.equals(getClientPipeSpec(), getBidActivityMatchesPipeResponse.getClientPipeSpec()) &&
-                Objects.equals(getMaterialCode(), getBidActivityMatchesPipeResponse.getMaterialCode()) &&
-                Objects.equals(getDescription(), getBidActivityMatchesPipeResponse.getDescription()) &&
                 Objects.equals(getComponentNumber(), getBidActivityMatchesPipeResponse.getComponentNumber()) &&
-                Objects.equals(getEct(), getBidActivityMatchesPipeResponse.getEct()) &&
-                Objects.equals(getPipingActivityType(), getBidActivityMatchesPipeResponse.getPipingActivityType()) &&
-                Objects.equals(getPipeSize(), getBidActivityMatchesPipeResponse.getPipeSize()) &&
                 Objects.equals(getTakeOffQuantity(), getBidActivityMatchesPipeResponse.getTakeOffQuantity()) &&
                 Objects.equals(getQuantityUnit(), getBidActivityMatchesPipeResponse.getQuantityUnit()) &&
                 Objects.equals(getEstimatedHours(), getBidActivityMatchesPipeResponse.getEstimatedHours()) &&
@@ -591,41 +605,42 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
                 Objects.equals(getWbs8(), getBidActivityMatchesPipeResponse.getWbs8()) &&
                 Objects.equals(getWbs9(), getBidActivityMatchesPipeResponse.getWbs9()) &&
                 Objects.equals(getWbs10(), getBidActivityMatchesPipeResponse.getWbs10()) &&
-                Objects.equals(getRev(), getBidActivityMatchesPipeResponse.getRev()) &&
-                Objects.equals(getTimeStamp(), getBidActivityMatchesPipeResponse.getTimeStamp()) &&
-                Objects.equals(getRemainingQuant(), getBidActivityMatchesPipeResponse.getRemainingQuant());
+                Objects.equals(getRemainingQuantity(), getBidActivityMatchesPipeResponse.getRemainingQuantity());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
+        return Objects.hash(getUid(),
                 getBidId(),
+                getProjectServicesRep(),
+                getEwonumber(),
                 getScope(),
                 getPhase(),
+                getStage(),
+                getTestPackageNumber(),
+                getWorkPackage(),
+                getCostCode(),
+                getP6id(),
+                getP6description(),
+                getAssignedContractor(),
                 getArea(),
                 getLocation(),
                 getStructure(),
-                getElevation(),
                 getCu(),
-                getP6id(),
-                getP6description(),
-                getStage(),
-                getTestPackageNumber(),
-                getAssignedContractor(),
-                getCostCode(),
+                getElevation(),
                 getLineNumber(),
                 getEngDrawingNumber(),
                 getSheetNumber(),
-                getRevisionNumber(),
+                getDrawingRev(),
+                getDescription(),
+                getActivityType(),
+                getActivitySubType(),
+                getClientMaterialSpec(),
+                getPerformanceMaterialSpec(),
+                getSize(),
                 getSystem(),
                 getService(),
-                getClientPipeSpec(),
-                getMaterialCode(),
-                getDescription(),
                 getComponentNumber(),
-                getEct(),
-                getPipingActivityType(),
-                getPipeSize(),
                 getTakeOffQuantity(),
                 getQuantityUnit(),
                 getEstimatedHours(),
@@ -639,8 +654,6 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
                 getWbs8(),
                 getWbs9(),
                 getWbs10(),
-                getRev(),
-                getTimeStamp(),
-                getRemainingQuant());
+                getRemainingQuantity());
     }
 }

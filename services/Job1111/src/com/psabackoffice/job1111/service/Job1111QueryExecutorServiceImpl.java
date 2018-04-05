@@ -992,7 +992,7 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<GetBidActivityQuantitesEquipResponse> executeGetBidActivityQuantitesEquip(String bidId, Pageable pageable) {
+    public Page<GetBidActivityQuantitesEquipResponse> executeGetBidActivityQuantitesEquip(Integer bidId, Pageable pageable) {
         Map params = new HashMap(1);
 
         params.put("BidID", bidId);
@@ -1002,7 +1002,7 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Downloadable exportGetBidActivityQuantitesEquip(ExportType exportType, String bidId, Pageable pageable) {
+    public Downloadable exportGetBidActivityQuantitesEquip(ExportType exportType, Integer bidId, Pageable pageable) {
         Map params = new HashMap(1);
 
         params.put("BidID", bidId);
@@ -1099,28 +1099,30 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<GetBidActivityMatchesPipeResponse> executeGetBidActivityMatchesPipe(String lineNumber, String drawingNumber, String sheetNumber, String ect, String ecttype, Pageable pageable) {
-        Map params = new HashMap(5);
+    public Page<GetBidActivityMatchesPipeResponse> executeGetBidActivityMatchesPipe(Integer bidId, String lineNumber, String drawingNumber, String sheetNumber, String activityType, String activitySubType, Pageable pageable) {
+        Map params = new HashMap(6);
 
+        params.put("BidID", bidId);
         params.put("LineNumber", lineNumber);
         params.put("DrawingNumber", drawingNumber);
         params.put("SheetNumber", sheetNumber);
-        params.put("ECT", ect);
-        params.put("ECTType", ecttype);
+        params.put("ActivityType", activityType);
+        params.put("ActivitySubType", activitySubType);
 
         return queryExecutor.executeNamedQuery("GetBidActivityMatchesPipe", params, GetBidActivityMatchesPipeResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Downloadable exportGetBidActivityMatchesPipe(ExportType exportType, String lineNumber, String drawingNumber, String sheetNumber, String ect, String ecttype, Pageable pageable) {
-        Map params = new HashMap(5);
+    public Downloadable exportGetBidActivityMatchesPipe(ExportType exportType, Integer bidId, String lineNumber, String drawingNumber, String sheetNumber, String activityType, String activitySubType, Pageable pageable) {
+        Map params = new HashMap(6);
 
+        params.put("BidID", bidId);
         params.put("LineNumber", lineNumber);
         params.put("DrawingNumber", drawingNumber);
         params.put("SheetNumber", sheetNumber);
-        params.put("ECT", ect);
-        params.put("ECTType", ecttype);
+        params.put("ActivityType", activityType);
+        params.put("ActivitySubType", activitySubType);
 
         return queryExecutor.exportNamedQueryData("GetBidActivityMatchesPipe", params, exportType, GetBidActivityMatchesPipeResponse.class, pageable);
     }
@@ -1168,26 +1170,24 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<GetBidActivityMatchesSteelResponse> executeGetBidActivityMatchesSteel(String area, String pieceMark, String bidActivityType, String steelType, Pageable pageable) {
-        Map params = new HashMap(4);
+    public Page<GetBidActivityMatchesSteelResponse> executeGetBidActivityMatchesSteel(Integer bidId, String sortGroup1, String pieceMark, Pageable pageable) {
+        Map params = new HashMap(3);
 
-        params.put("Area", area);
+        params.put("BidID", bidId);
+        params.put("SortGroup1", sortGroup1);
         params.put("PieceMark", pieceMark);
-        params.put("BidActivityType", bidActivityType);
-        params.put("SteelType", steelType);
 
         return queryExecutor.executeNamedQuery("GetBidActivityMatchesSteel", params, GetBidActivityMatchesSteelResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Downloadable exportGetBidActivityMatchesSteel(ExportType exportType, String area, String pieceMark, String bidActivityType, String steelType, Pageable pageable) {
-        Map params = new HashMap(4);
+    public Downloadable exportGetBidActivityMatchesSteel(ExportType exportType, Integer bidId, String sortGroup1, String pieceMark, Pageable pageable) {
+        Map params = new HashMap(3);
 
-        params.put("Area", area);
+        params.put("BidID", bidId);
+        params.put("SortGroup1", sortGroup1);
         params.put("PieceMark", pieceMark);
-        params.put("BidActivityType", bidActivityType);
-        params.put("SteelType", steelType);
 
         return queryExecutor.exportNamedQueryData("GetBidActivityMatchesSteel", params, exportType, GetBidActivityMatchesSteelResponse.class, pageable);
     }
@@ -1804,26 +1804,20 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<GetBidActivityMatchesCivilResponse> executeGetBidActivityMatchesCivil(Integer bidId, String foundation, String drawingNumber, String detailDrawingNumber, Pageable pageable) {
-        Map params = new HashMap(4);
+    public Page<GetBidActivityMatchesCivilResponse> executeGetBidActivityMatchesCivil(Integer bidId, Pageable pageable) {
+        Map params = new HashMap(1);
 
         params.put("BidID", bidId);
-        params.put("Foundation", foundation);
-        params.put("DrawingNumber", drawingNumber);
-        params.put("DetailDrawingNumber", detailDrawingNumber);
 
         return queryExecutor.executeNamedQuery("GetBidActivityMatchesCivil", params, GetBidActivityMatchesCivilResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Downloadable exportGetBidActivityMatchesCivil(ExportType exportType, Integer bidId, String foundation, String drawingNumber, String detailDrawingNumber, Pageable pageable) {
-        Map params = new HashMap(4);
+    public Downloadable exportGetBidActivityMatchesCivil(ExportType exportType, Integer bidId, Pageable pageable) {
+        Map params = new HashMap(1);
 
         params.put("BidID", bidId);
-        params.put("Foundation", foundation);
-        params.put("DrawingNumber", drawingNumber);
-        params.put("DetailDrawingNumber", detailDrawingNumber);
 
         return queryExecutor.exportNamedQueryData("GetBidActivityMatchesCivil", params, exportType, GetBidActivityMatchesCivilResponse.class, pageable);
     }
@@ -2001,24 +1995,20 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<GetBidActivityMatchesEquipResponse> executeGetBidActivityMatchesEquip(String bidId, String tagNumber, String description, Pageable pageable) {
-        Map params = new HashMap(3);
+    public Page<GetBidActivityMatchesEquipResponse> executeGetBidActivityMatchesEquip(Integer bidId, Pageable pageable) {
+        Map params = new HashMap(1);
 
         params.put("BidID", bidId);
-        params.put("TagNumber", tagNumber);
-        params.put("Description", description);
 
         return queryExecutor.executeNamedQuery("GetBidActivityMatchesEquip", params, GetBidActivityMatchesEquipResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Downloadable exportGetBidActivityMatchesEquip(ExportType exportType, String bidId, String tagNumber, String description, Pageable pageable) {
-        Map params = new HashMap(3);
+    public Downloadable exportGetBidActivityMatchesEquip(ExportType exportType, Integer bidId, Pageable pageable) {
+        Map params = new HashMap(1);
 
         params.put("BidID", bidId);
-        params.put("TagNumber", tagNumber);
-        params.put("Description", description);
 
         return queryExecutor.exportNamedQueryData("GetBidActivityMatchesEquip", params, exportType, GetBidActivityMatchesEquipResponse.class, pageable);
     }

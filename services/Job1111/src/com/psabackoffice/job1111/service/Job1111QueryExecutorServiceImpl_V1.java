@@ -666,14 +666,15 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetBidActivityMatchesPipe(Pageable pageable, String lineNumber, String drawingNumber, String sheetNumber, String ect, String ecttype) {
-        Map params = new HashMap(5);
+    public Page<Object> executeGetBidActivityMatchesPipe(Pageable pageable, Integer bidId, String lineNumber, String drawingNumber, String sheetNumber, String activityType, String activitySubType) {
+        Map params = new HashMap(6);
 
+        params.put("BidID", bidId);
         params.put("LineNumber", lineNumber);
         params.put("DrawingNumber", drawingNumber);
         params.put("SheetNumber", sheetNumber);
-        params.put("ECT", ect);
-        params.put("ECTType", ecttype);
+        params.put("ActivityType", activityType);
+        params.put("ActivitySubType", activitySubType);
 
         return queryExecutor.executeNamedQuery("GetBidActivityMatchesPipe", params, Object.class, pageable);
     }
@@ -721,13 +722,12 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetBidActivityMatchesSteel(Pageable pageable, String area, String pieceMark, String bidActivityType, String steelType) {
-        Map params = new HashMap(4);
+    public Page<Object> executeGetBidActivityMatchesSteel(Pageable pageable, Integer bidId, String sortGroup1, String pieceMark) {
+        Map params = new HashMap(3);
 
-        params.put("Area", area);
+        params.put("BidID", bidId);
+        params.put("SortGroup1", sortGroup1);
         params.put("PieceMark", pieceMark);
-        params.put("BidActivityType", bidActivityType);
-        params.put("SteelType", steelType);
 
         return queryExecutor.executeNamedQuery("GetBidActivityMatchesSteel", params, Object.class, pageable);
     }
@@ -1060,13 +1060,10 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetBidActivityMatchesCivil(Pageable pageable, Integer bidId, String foundation, String drawingNumber, String detailDrawingNumber) {
-        Map params = new HashMap(4);
+    public Page<Object> executeGetBidActivityMatchesCivil(Pageable pageable, Integer bidId) {
+        Map params = new HashMap(1);
 
         params.put("BidID", bidId);
-        params.put("Foundation", foundation);
-        params.put("DrawingNumber", drawingNumber);
-        params.put("DetailDrawingNumber", detailDrawingNumber);
 
         return queryExecutor.executeNamedQuery("GetBidActivityMatchesCivil", params, Object.class, pageable);
     }

@@ -184,7 +184,7 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetActivityHistoryPipeDemo(Pageable pageable, Integer activityId);
 
     @Deprecated
-    public Page<Object> executeGetBidActivityMatchesPipe(Pageable pageable, String lineNumber, String drawingNumber, String sheetNumber, String ect, String ecttype);
+    public Page<Object> executeGetBidActivityMatchesPipe(Pageable pageable, Integer bidId, String lineNumber, String drawingNumber, String sheetNumber, String activityType, String activitySubType);
 
     @Deprecated
     public int executeUpdateSteelBoltoutQuantity(Integer quantity, BigDecimal percent, Integer fieldActivityId);
@@ -193,7 +193,7 @@ public interface Job1111QueryExecutorService_V1 {
     public int executeUpdatePipeWeld(String spool1, String spool2, String drawingNumber, String lineNumber, String sheetNumber, String lineSpec, String weldNumber, String stencil, BigDecimal size, String thickness, String weldType, String weldPosition, String material, String procedure, Byte complete, Byte shared, BigInteger percentComplete, Byte rework, String notes, Integer fieldActivityId);
 
     @Deprecated
-    public Page<Object> executeGetBidActivityMatchesSteel(Pageable pageable, String area, String pieceMark, String bidActivityType, String steelType);
+    public Page<Object> executeGetBidActivityMatchesSteel(Pageable pageable, Integer bidId, String sortGroup1, String pieceMark);
 
     @Deprecated
     public int executeUpdateSettingCivilWork(BigDecimal value1);
@@ -283,7 +283,7 @@ public interface Job1111QueryExecutorService_V1 {
     public int executeUpdateSettingPipeMechPercent(BigDecimal value1);
 
     @Deprecated
-    public Page<Object> executeGetBidActivityMatchesCivil(Pageable pageable, Integer bidId, String foundation, String drawingNumber, String detailDrawingNumber);
+    public Page<Object> executeGetBidActivityMatchesCivil(Pageable pageable, Integer bidId);
 
     @Deprecated
     public int executeUpdateSteelSell(String area, String piece, Integer quantity, Byte rework, String notes, Integer fieldActivityId);

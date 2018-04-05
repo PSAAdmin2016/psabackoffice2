@@ -190,9 +190,9 @@ public interface Job1111QueryExecutorService {
 
     Downloadable exportGetActivityHistoryStatus(ExportType exportType, Integer activityId, Pageable pageable);
 
-    Page<GetBidActivityQuantitesEquipResponse> executeGetBidActivityQuantitesEquip(String bidId, Pageable pageable);
+    Page<GetBidActivityQuantitesEquipResponse> executeGetBidActivityQuantitesEquip(Integer bidId, Pageable pageable);
 
-    Downloadable exportGetBidActivityQuantitesEquip(ExportType exportType, String bidId, Pageable pageable);
+    Downloadable exportGetBidActivityQuantitesEquip(ExportType exportType, Integer bidId, Pageable pageable);
 
     Integer executeUpdatePipeCutPrep(UpdatePipeCutPrepRequest updatePipeCutPrepRequest);
 
@@ -210,17 +210,17 @@ public interface Job1111QueryExecutorService {
 
     Downloadable exportGetActivityHistoryPipeDemo(ExportType exportType, Integer activityId, Pageable pageable);
 
-    Page<GetBidActivityMatchesPipeResponse> executeGetBidActivityMatchesPipe(String lineNumber, String drawingNumber, String sheetNumber, String ect, String ecttype, Pageable pageable);
+    Page<GetBidActivityMatchesPipeResponse> executeGetBidActivityMatchesPipe(Integer bidId, String lineNumber, String drawingNumber, String sheetNumber, String activityType, String activitySubType, Pageable pageable);
 
-    Downloadable exportGetBidActivityMatchesPipe(ExportType exportType, String lineNumber, String drawingNumber, String sheetNumber, String ect, String ecttype, Pageable pageable);
+    Downloadable exportGetBidActivityMatchesPipe(ExportType exportType, Integer bidId, String lineNumber, String drawingNumber, String sheetNumber, String activityType, String activitySubType, Pageable pageable);
 
     Integer executeUpdateSteelBoltoutQuantity(UpdateSteelBoltoutQuantityRequest updateSteelBoltoutQuantityRequest);
 
     Integer executeUpdatePipeWeld(UpdatePipeWeldRequest updatePipeWeldRequest);
 
-    Page<GetBidActivityMatchesSteelResponse> executeGetBidActivityMatchesSteel(String area, String pieceMark, String bidActivityType, String steelType, Pageable pageable);
+    Page<GetBidActivityMatchesSteelResponse> executeGetBidActivityMatchesSteel(Integer bidId, String sortGroup1, String pieceMark, Pageable pageable);
 
-    Downloadable exportGetBidActivityMatchesSteel(ExportType exportType, String area, String pieceMark, String bidActivityType, String steelType, Pageable pageable);
+    Downloadable exportGetBidActivityMatchesSteel(ExportType exportType, Integer bidId, String sortGroup1, String pieceMark, Pageable pageable);
 
     Integer executeUpdateSettingCivilWork(UpdateSettingCivilWorkRequest updateSettingCivilWorkRequest);
 
@@ -330,9 +330,9 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdateSettingPipeMechPercent(UpdateSettingPipeMechPercentRequest updateSettingPipeMechPercentRequest);
 
-    Page<GetBidActivityMatchesCivilResponse> executeGetBidActivityMatchesCivil(Integer bidId, String foundation, String drawingNumber, String detailDrawingNumber, Pageable pageable);
+    Page<GetBidActivityMatchesCivilResponse> executeGetBidActivityMatchesCivil(Integer bidId, Pageable pageable);
 
-    Downloadable exportGetBidActivityMatchesCivil(ExportType exportType, Integer bidId, String foundation, String drawingNumber, String detailDrawingNumber, Pageable pageable);
+    Downloadable exportGetBidActivityMatchesCivil(ExportType exportType, Integer bidId, Pageable pageable);
 
     Integer executeUpdateSteelSell(UpdateSteelSellRequest updateSteelSellRequest);
 
@@ -364,9 +364,9 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdateSteelFAQuantity(UpdateSteelFaquantityRequest updateSteelFaquantityRequest);
 
-    Page<GetBidActivityMatchesEquipResponse> executeGetBidActivityMatchesEquip(String bidId, String tagNumber, String description, Pageable pageable);
+    Page<GetBidActivityMatchesEquipResponse> executeGetBidActivityMatchesEquip(Integer bidId, Pageable pageable);
 
-    Downloadable exportGetBidActivityMatchesEquip(ExportType exportType, String bidId, String tagNumber, String description, Pageable pageable);
+    Downloadable exportGetBidActivityMatchesEquip(ExportType exportType, Integer bidId, Pageable pageable);
 
     Page<GetSettingSteelBoltoutPercentResponse> executeGetSettingSteelBoltoutPercent(Pageable pageable);
 

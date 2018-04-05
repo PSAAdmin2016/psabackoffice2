@@ -21,6 +21,9 @@ public class GetBidActivityMatchesEquipResponse implements Serializable {
     @ColumnAlias("BidID")
     private Integer bidId;
 
+    @ColumnAlias("ProjectServicesRep")
+    private String projectServicesRep;
+
     @ColumnAlias("EWONumber")
     private Integer ewonumber;
 
@@ -36,11 +39,17 @@ public class GetBidActivityMatchesEquipResponse implements Serializable {
     @ColumnAlias("TestPackageNumber")
     private String testPackageNumber;
 
+    @ColumnAlias("WorkPackage")
+    private String workPackage;
+
     @ColumnAlias("CostCode")
     private String costCode;
 
     @ColumnAlias("P6ID")
     private String p6id;
+
+    @ColumnAlias("P6Description")
+    private String p6description;
 
     @ColumnAlias("AssignedContractor")
     private String assignedContractor;
@@ -59,9 +68,6 @@ public class GetBidActivityMatchesEquipResponse implements Serializable {
 
     @ColumnAlias("Elevation")
     private String elevation;
-
-    @ColumnAlias("P6Description")
-    private String p6description;
 
     @ColumnAlias("EngDrawingNumber")
     private String engDrawingNumber;
@@ -151,6 +157,14 @@ public class GetBidActivityMatchesEquipResponse implements Serializable {
         this.bidId = bidId;
     }
 
+    public String getProjectServicesRep() {
+        return this.projectServicesRep;
+    }
+
+    public void setProjectServicesRep(String projectServicesRep) {
+        this.projectServicesRep = projectServicesRep;
+    }
+
     public Integer getEwonumber() {
         return this.ewonumber;
     }
@@ -191,6 +205,14 @@ public class GetBidActivityMatchesEquipResponse implements Serializable {
         this.testPackageNumber = testPackageNumber;
     }
 
+    public String getWorkPackage() {
+        return this.workPackage;
+    }
+
+    public void setWorkPackage(String workPackage) {
+        this.workPackage = workPackage;
+    }
+
     public String getCostCode() {
         return this.costCode;
     }
@@ -205,6 +227,14 @@ public class GetBidActivityMatchesEquipResponse implements Serializable {
 
     public void setP6id(String p6id) {
         this.p6id = p6id;
+    }
+
+    public String getP6description() {
+        return this.p6description;
+    }
+
+    public void setP6description(String p6description) {
+        this.p6description = p6description;
     }
 
     public String getAssignedContractor() {
@@ -253,14 +283,6 @@ public class GetBidActivityMatchesEquipResponse implements Serializable {
 
     public void setElevation(String elevation) {
         this.elevation = elevation;
-    }
-
-    public String getP6description() {
-        return this.p6description;
-    }
-
-    public void setP6description(String p6description) {
-        this.p6description = p6description;
     }
 
     public String getEngDrawingNumber() {
@@ -462,20 +484,22 @@ public class GetBidActivityMatchesEquipResponse implements Serializable {
         final GetBidActivityMatchesEquipResponse getBidActivityMatchesEquipResponse = (GetBidActivityMatchesEquipResponse) o;
         return Objects.equals(getUid(), getBidActivityMatchesEquipResponse.getUid()) &&
                 Objects.equals(getBidId(), getBidActivityMatchesEquipResponse.getBidId()) &&
+                Objects.equals(getProjectServicesRep(), getBidActivityMatchesEquipResponse.getProjectServicesRep()) &&
                 Objects.equals(getEwonumber(), getBidActivityMatchesEquipResponse.getEwonumber()) &&
                 Objects.equals(getScope(), getBidActivityMatchesEquipResponse.getScope()) &&
                 Objects.equals(getPhase(), getBidActivityMatchesEquipResponse.getPhase()) &&
                 Objects.equals(getStage(), getBidActivityMatchesEquipResponse.getStage()) &&
                 Objects.equals(getTestPackageNumber(), getBidActivityMatchesEquipResponse.getTestPackageNumber()) &&
+                Objects.equals(getWorkPackage(), getBidActivityMatchesEquipResponse.getWorkPackage()) &&
                 Objects.equals(getCostCode(), getBidActivityMatchesEquipResponse.getCostCode()) &&
                 Objects.equals(getP6id(), getBidActivityMatchesEquipResponse.getP6id()) &&
+                Objects.equals(getP6description(), getBidActivityMatchesEquipResponse.getP6description()) &&
                 Objects.equals(getAssignedContractor(), getBidActivityMatchesEquipResponse.getAssignedContractor()) &&
                 Objects.equals(getArea(), getBidActivityMatchesEquipResponse.getArea()) &&
                 Objects.equals(getLocation(), getBidActivityMatchesEquipResponse.getLocation()) &&
                 Objects.equals(getStructure(), getBidActivityMatchesEquipResponse.getStructure()) &&
                 Objects.equals(getCu(), getBidActivityMatchesEquipResponse.getCu()) &&
                 Objects.equals(getElevation(), getBidActivityMatchesEquipResponse.getElevation()) &&
-                Objects.equals(getP6description(), getBidActivityMatchesEquipResponse.getP6description()) &&
                 Objects.equals(getEngDrawingNumber(), getBidActivityMatchesEquipResponse.getEngDrawingNumber()) &&
                 Objects.equals(getSheetNumber(), getBidActivityMatchesEquipResponse.getSheetNumber()) &&
                 Objects.equals(getDrawingRev(), getBidActivityMatchesEquipResponse.getDrawingRev()) &&
@@ -506,20 +530,22 @@ public class GetBidActivityMatchesEquipResponse implements Serializable {
     public int hashCode() {
         return Objects.hash(getUid(),
                 getBidId(),
+                getProjectServicesRep(),
                 getEwonumber(),
                 getScope(),
                 getPhase(),
                 getStage(),
                 getTestPackageNumber(),
+                getWorkPackage(),
                 getCostCode(),
                 getP6id(),
+                getP6description(),
                 getAssignedContractor(),
                 getArea(),
                 getLocation(),
                 getStructure(),
                 getCu(),
                 getElevation(),
-                getP6description(),
                 getEngDrawingNumber(),
                 getSheetNumber(),
                 getDrawingRev(),
