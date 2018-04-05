@@ -23,11 +23,11 @@ public class GetBidActivityQuantitiesSteelResponse implements Serializable {
 
     @JsonProperty("SteelQuantity")
     @ColumnAlias("SteelQuantity")
-    private BigDecimal steelQuantity;
+    private Double steelQuantity;
 
     @JsonProperty("WeldQuantity")
     @ColumnAlias("WeldQuantity")
-    private BigInteger weldQuantity;
+    private Short weldQuantity;
 
     @JsonProperty("ShakeHours")
     @ColumnAlias("ShakeHours")
@@ -67,23 +67,23 @@ public class GetBidActivityQuantitiesSteelResponse implements Serializable {
 
     @JsonProperty("InstalledErect")
     @ColumnAlias("InstalledErect")
-    private BigInteger installedErect;
+    private BigDecimal installedErect;
 
     @JsonProperty("InstalledBoltout")
     @ColumnAlias("InstalledBoltout")
-    private BigInteger installedBoltout;
+    private BigDecimal installedBoltout;
 
     @JsonProperty("InstalledImp")
     @ColumnAlias("InstalledImp")
-    private BigInteger installedImp;
+    private BigDecimal installedImp;
 
     @JsonProperty("InstalledWeld")
     @ColumnAlias("InstalledWeld")
-    private BigInteger installedWeld;
+    private BigDecimal installedWeld;
 
     @JsonProperty("InstalledSell")
     @ColumnAlias("InstalledSell")
-    private BigInteger installedSell;
+    private BigDecimal installedSell;
 
     @JsonProperty("InstalledDemo")
     @ColumnAlias("InstalledDemo")
@@ -101,19 +101,19 @@ public class GetBidActivityQuantitiesSteelResponse implements Serializable {
         this.bidId = bidId;
     }
 
-    public BigDecimal getSteelQuantity() {
+    public Double getSteelQuantity() {
         return this.steelQuantity;
     }
 
-    public void setSteelQuantity(BigDecimal steelQuantity) {
+    public void setSteelQuantity(Double steelQuantity) {
         this.steelQuantity = steelQuantity;
     }
 
-    public BigInteger getWeldQuantity() {
+    public Short getWeldQuantity() {
         return this.weldQuantity;
     }
 
-    public void setWeldQuantity(BigInteger weldQuantity) {
+    public void setWeldQuantity(Short weldQuantity) {
         this.weldQuantity = weldQuantity;
     }
 
@@ -189,43 +189,43 @@ public class GetBidActivityQuantitiesSteelResponse implements Serializable {
         this.installedShake = installedShake;
     }
 
-    public BigInteger getInstalledErect() {
+    public BigDecimal getInstalledErect() {
         return this.installedErect;
     }
 
-    public void setInstalledErect(BigInteger installedErect) {
+    public void setInstalledErect(BigDecimal installedErect) {
         this.installedErect = installedErect;
     }
 
-    public BigInteger getInstalledBoltout() {
+    public BigDecimal getInstalledBoltout() {
         return this.installedBoltout;
     }
 
-    public void setInstalledBoltout(BigInteger installedBoltout) {
+    public void setInstalledBoltout(BigDecimal installedBoltout) {
         this.installedBoltout = installedBoltout;
     }
 
-    public BigInteger getInstalledImp() {
+    public BigDecimal getInstalledImp() {
         return this.installedImp;
     }
 
-    public void setInstalledImp(BigInteger installedImp) {
+    public void setInstalledImp(BigDecimal installedImp) {
         this.installedImp = installedImp;
     }
 
-    public BigInteger getInstalledWeld() {
+    public BigDecimal getInstalledWeld() {
         return this.installedWeld;
     }
 
-    public void setInstalledWeld(BigInteger installedWeld) {
+    public void setInstalledWeld(BigDecimal installedWeld) {
         this.installedWeld = installedWeld;
     }
 
-    public BigInteger getInstalledSell() {
+    public BigDecimal getInstalledSell() {
         return this.installedSell;
     }
 
-    public void setInstalledSell(BigInteger installedSell) {
+    public void setInstalledSell(BigDecimal installedSell) {
         this.installedSell = installedSell;
     }
 

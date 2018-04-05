@@ -19,7 +19,7 @@ public class GetBidActivityQuantitesEquipResponse implements Serializable {
     private Integer bidId;
 
     @ColumnAlias("TakeOffQuantity")
-    private BigDecimal takeOffQuantity;
+    private Double takeOffQuantity;
 
     @ColumnAlias("QuantityUnit")
     private String quantityUnit;
@@ -38,11 +38,11 @@ public class GetBidActivityQuantitesEquipResponse implements Serializable {
         this.bidId = bidId;
     }
 
-    public BigDecimal getTakeOffQuantity() {
+    public Double getTakeOffQuantity() {
         return this.takeOffQuantity;
     }
 
-    public void setTakeOffQuantity(BigDecimal takeOffQuantity) {
+    public void setTakeOffQuantity(Double takeOffQuantity) {
         this.takeOffQuantity = takeOffQuantity;
     }
 

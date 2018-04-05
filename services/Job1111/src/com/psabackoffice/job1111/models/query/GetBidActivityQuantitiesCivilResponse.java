@@ -22,7 +22,7 @@ public class GetBidActivityQuantitiesCivilResponse implements Serializable {
 
     @JsonProperty("TakeOffQuantity")
     @ColumnAlias("TakeOffQuantity")
-    private BigDecimal takeOffQuantity;
+    private Double takeOffQuantity;
 
     @JsonProperty("QuantityUnit")
     @ColumnAlias("QuantityUnit")
@@ -48,11 +48,11 @@ public class GetBidActivityQuantitiesCivilResponse implements Serializable {
         this.bidId = bidId;
     }
 
-    public BigDecimal getTakeOffQuantity() {
+    public Double getTakeOffQuantity() {
         return this.takeOffQuantity;
     }
 
-    public void setTakeOffQuantity(BigDecimal takeOffQuantity) {
+    public void setTakeOffQuantity(Double takeOffQuantity) {
         this.takeOffQuantity = takeOffQuantity;
     }
 

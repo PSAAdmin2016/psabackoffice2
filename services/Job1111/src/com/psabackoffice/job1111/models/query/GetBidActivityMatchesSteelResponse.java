@@ -8,7 +8,7 @@ package com.psabackoffice.job1111.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -123,11 +123,11 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
 
     @JsonProperty("Length")
     @ColumnAlias("Length")
-    private BigDecimal length;
+    private Double length;
 
     @JsonProperty("Weight")
     @ColumnAlias("Weight")
-    private BigDecimal weight;
+    private Double weight;
 
     @JsonProperty("System")
     @ColumnAlias("System")
@@ -139,11 +139,11 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
 
     @JsonProperty("TakeOffQuantity")
     @ColumnAlias("TakeOffQuantity")
-    private BigDecimal takeOffQuantity;
+    private Double takeOffQuantity;
 
     @JsonProperty("WeldCount")
     @ColumnAlias("WeldCount")
-    private BigInteger weldCount;
+    private Short weldCount;
 
     @JsonProperty("SteelHours")
     @ColumnAlias("SteelHours")
@@ -192,6 +192,14 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
     @JsonProperty("WBS10")
     @ColumnAlias("WBS10")
     private String wbs10;
+
+    @JsonProperty("Rev")
+    @ColumnAlias("Rev")
+    private Short rev;
+
+    @JsonProperty("TimeStamp")
+    @ColumnAlias("TimeStamp")
+    private Timestamp timeStamp;
 
     public Integer getUid() {
         return this.uid;
@@ -401,19 +409,19 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
         this.materialType = materialType;
     }
 
-    public BigDecimal getLength() {
+    public Double getLength() {
         return this.length;
     }
 
-    public void setLength(BigDecimal length) {
+    public void setLength(Double length) {
         this.length = length;
     }
 
-    public BigDecimal getWeight() {
+    public Double getWeight() {
         return this.weight;
     }
 
-    public void setWeight(BigDecimal weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 
@@ -433,19 +441,19 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
         this.service = service;
     }
 
-    public BigDecimal getTakeOffQuantity() {
+    public Double getTakeOffQuantity() {
         return this.takeOffQuantity;
     }
 
-    public void setTakeOffQuantity(BigDecimal takeOffQuantity) {
+    public void setTakeOffQuantity(Double takeOffQuantity) {
         this.takeOffQuantity = takeOffQuantity;
     }
 
-    public BigInteger getWeldCount() {
+    public Short getWeldCount() {
         return this.weldCount;
     }
 
-    public void setWeldCount(BigInteger weldCount) {
+    public void setWeldCount(Short weldCount) {
         this.weldCount = weldCount;
     }
 
@@ -545,6 +553,22 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
         this.wbs10 = wbs10;
     }
 
+    public Short getRev() {
+        return this.rev;
+    }
+
+    public void setRev(Short rev) {
+        this.rev = rev;
+    }
+
+    public Timestamp getTimeStamp() {
+        return this.timeStamp;
+    }
+
+    public void setTimeStamp(Timestamp timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -593,7 +617,9 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
                 Objects.equals(getWbs7(), getBidActivityMatchesSteelResponse.getWbs7()) &&
                 Objects.equals(getWbs8(), getBidActivityMatchesSteelResponse.getWbs8()) &&
                 Objects.equals(getWbs9(), getBidActivityMatchesSteelResponse.getWbs9()) &&
-                Objects.equals(getWbs10(), getBidActivityMatchesSteelResponse.getWbs10());
+                Objects.equals(getWbs10(), getBidActivityMatchesSteelResponse.getWbs10()) &&
+                Objects.equals(getRev(), getBidActivityMatchesSteelResponse.getRev()) &&
+                Objects.equals(getTimeStamp(), getBidActivityMatchesSteelResponse.getTimeStamp());
     }
 
     @Override
@@ -641,6 +667,8 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
                 getWbs7(),
                 getWbs8(),
                 getWbs9(),
-                getWbs10());
+                getWbs10(),
+                getRev(),
+                getTimeStamp());
     }
 }

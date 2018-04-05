@@ -7,7 +7,6 @@ package com.psabackoffice.job1111.models.query;
 
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -47,19 +46,19 @@ public class GetBidWorkHistoryCivilResponse implements Serializable {
 
     @JsonProperty("Quantity")
     @ColumnAlias("Quantity")
-    private BigInteger quantity;
+    private Integer quantity;
 
     @JsonProperty("PercentClaimed")
     @ColumnAlias("PercentClaimed")
     private Float percentClaimed;
 
-    @JsonProperty("Notes")
-    @ColumnAlias("Notes")
-    private String notes;
+    @JsonProperty("FANotes")
+    @ColumnAlias("FANotes")
+    private String fanotes;
 
-    @JsonProperty("Rework")
-    @ColumnAlias("Rework")
-    private Integer rework;
+    @JsonProperty("FARework")
+    @ColumnAlias("FARework")
+    private Short farework;
 
     public Integer getSubmissionId() {
         return this.submissionId;
@@ -117,11 +116,11 @@ public class GetBidWorkHistoryCivilResponse implements Serializable {
         this.reviewedTime = reviewedTime;
     }
 
-    public BigInteger getQuantity() {
+    public Integer getQuantity() {
         return this.quantity;
     }
 
-    public void setQuantity(BigInteger quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
@@ -133,20 +132,20 @@ public class GetBidWorkHistoryCivilResponse implements Serializable {
         this.percentClaimed = percentClaimed;
     }
 
-    public String getNotes() {
-        return this.notes;
+    public String getFanotes() {
+        return this.fanotes;
     }
 
-    public void setNotes(String notes) {
-        this.notes = notes;
+    public void setFanotes(String fanotes) {
+        this.fanotes = fanotes;
     }
 
-    public Integer getRework() {
-        return this.rework;
+    public Short getFarework() {
+        return this.farework;
     }
 
-    public void setRework(Integer rework) {
-        this.rework = rework;
+    public void setFarework(Short farework) {
+        this.farework = farework;
     }
 
     @Override
@@ -163,8 +162,8 @@ public class GetBidWorkHistoryCivilResponse implements Serializable {
                 Objects.equals(getReviewedTime(), getBidWorkHistoryCivilResponse.getReviewedTime()) &&
                 Objects.equals(getQuantity(), getBidWorkHistoryCivilResponse.getQuantity()) &&
                 Objects.equals(getPercentClaimed(), getBidWorkHistoryCivilResponse.getPercentClaimed()) &&
-                Objects.equals(getNotes(), getBidWorkHistoryCivilResponse.getNotes()) &&
-                Objects.equals(getRework(), getBidWorkHistoryCivilResponse.getRework());
+                Objects.equals(getFanotes(), getBidWorkHistoryCivilResponse.getFanotes()) &&
+                Objects.equals(getFarework(), getBidWorkHistoryCivilResponse.getFarework());
     }
 
     @Override
@@ -178,7 +177,7 @@ public class GetBidWorkHistoryCivilResponse implements Serializable {
                 getReviewedTime(),
                 getQuantity(),
                 getPercentClaimed(),
-                getNotes(),
-                getRework());
+                getFanotes(),
+                getFarework());
     }
 }

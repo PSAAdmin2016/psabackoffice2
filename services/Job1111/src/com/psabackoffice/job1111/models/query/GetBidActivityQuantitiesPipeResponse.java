@@ -18,7 +18,7 @@ public class GetBidActivityQuantitiesPipeResponse implements Serializable {
 
     @JsonProperty("TakeOffQuantity")
     @ColumnAlias("TakeOffQuantity")
-    private BigDecimal takeOffQuantity;
+    private Double takeOffQuantity;
 
     @JsonProperty("QuantityUnit")
     @ColumnAlias("QuantityUnit")
@@ -28,11 +28,11 @@ public class GetBidActivityQuantitiesPipeResponse implements Serializable {
     @ColumnAlias("EstimatedHours")
     private BigDecimal estimatedHours;
 
-    public BigDecimal getTakeOffQuantity() {
+    public Double getTakeOffQuantity() {
         return this.takeOffQuantity;
     }
 
-    public void setTakeOffQuantity(BigDecimal takeOffQuantity) {
+    public void setTakeOffQuantity(Double takeOffQuantity) {
         this.takeOffQuantity = takeOffQuantity;
     }
 

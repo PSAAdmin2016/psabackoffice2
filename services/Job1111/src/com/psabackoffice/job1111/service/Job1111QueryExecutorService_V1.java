@@ -22,9 +22,6 @@ import com.psabackoffice.job1111.models.query.*;
 public interface Job1111QueryExecutorService_V1 {
 
     @Deprecated
-    public Page<Object> executeGetBidChangeLogByID(Pageable pageable, Integer id);
-
-    @Deprecated
     public Page<Object> executeGetBidWorkHistorySteel(Pageable pageable, Integer bidId);
 
     @Deprecated

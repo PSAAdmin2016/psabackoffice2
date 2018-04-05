@@ -38,26 +38,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<GetBidChangeLogByIdResponse> executeGetBidChangeLogByID(Integer id, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("ID", id);
-
-        return queryExecutor.executeNamedQuery("GetBidChangeLogByID", params, GetBidChangeLogByIdResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Downloadable exportGetBidChangeLogByID(ExportType exportType, Integer id, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("ID", id);
-
-        return queryExecutor.exportNamedQueryData("GetBidChangeLogByID", params, exportType, GetBidChangeLogByIdResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
     public Page<GetBidWorkHistorySteelResponse> executeGetBidWorkHistorySteel(Integer bidId, Pageable pageable) {
         Map params = new HashMap(1);
 

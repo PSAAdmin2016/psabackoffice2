@@ -8,6 +8,7 @@ package com.psabackoffice.job1111.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
@@ -103,7 +104,7 @@ public class GetBidActivityMatchesEquipResponse implements Serializable {
     private String service;
 
     @ColumnAlias("TakeOffQuantity")
-    private BigDecimal takeOffQuantity;
+    private Double takeOffQuantity;
 
     @ColumnAlias("QuantityUnit")
     private String quantityUnit;
@@ -140,6 +141,12 @@ public class GetBidActivityMatchesEquipResponse implements Serializable {
 
     @ColumnAlias("WBS10")
     private String wbs10;
+
+    @ColumnAlias("Rev")
+    private Short rev;
+
+    @ColumnAlias("TimeStamp")
+    private Timestamp timeStamp;
 
     public Integer getUid() {
         return this.uid;
@@ -373,11 +380,11 @@ public class GetBidActivityMatchesEquipResponse implements Serializable {
         this.service = service;
     }
 
-    public BigDecimal getTakeOffQuantity() {
+    public Double getTakeOffQuantity() {
         return this.takeOffQuantity;
     }
 
-    public void setTakeOffQuantity(BigDecimal takeOffQuantity) {
+    public void setTakeOffQuantity(Double takeOffQuantity) {
         this.takeOffQuantity = takeOffQuantity;
     }
 
@@ -477,6 +484,22 @@ public class GetBidActivityMatchesEquipResponse implements Serializable {
         this.wbs10 = wbs10;
     }
 
+    public Short getRev() {
+        return this.rev;
+    }
+
+    public void setRev(Short rev) {
+        this.rev = rev;
+    }
+
+    public Timestamp getTimeStamp() {
+        return this.timeStamp;
+    }
+
+    public void setTimeStamp(Timestamp timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -523,7 +546,9 @@ public class GetBidActivityMatchesEquipResponse implements Serializable {
                 Objects.equals(getWbs7(), getBidActivityMatchesEquipResponse.getWbs7()) &&
                 Objects.equals(getWbs8(), getBidActivityMatchesEquipResponse.getWbs8()) &&
                 Objects.equals(getWbs9(), getBidActivityMatchesEquipResponse.getWbs9()) &&
-                Objects.equals(getWbs10(), getBidActivityMatchesEquipResponse.getWbs10());
+                Objects.equals(getWbs10(), getBidActivityMatchesEquipResponse.getWbs10()) &&
+                Objects.equals(getRev(), getBidActivityMatchesEquipResponse.getRev()) &&
+                Objects.equals(getTimeStamp(), getBidActivityMatchesEquipResponse.getTimeStamp());
     }
 
     @Override
@@ -569,6 +594,8 @@ public class GetBidActivityMatchesEquipResponse implements Serializable {
                 getWbs7(),
                 getWbs8(),
                 getWbs9(),
-                getWbs10());
+                getWbs10(),
+                getRev(),
+                getTimeStamp());
     }
 }

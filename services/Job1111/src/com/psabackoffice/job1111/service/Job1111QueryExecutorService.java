@@ -18,10 +18,6 @@ import com.psabackoffice.job1111.models.query.*;
 
 public interface Job1111QueryExecutorService {
 
-    Page<GetBidChangeLogByIdResponse> executeGetBidChangeLogByID(Integer id, Pageable pageable);
-
-    Downloadable exportGetBidChangeLogByID(ExportType exportType, Integer id, Pageable pageable);
-
     Page<GetBidWorkHistorySteelResponse> executeGetBidWorkHistorySteel(Integer bidId, Pageable pageable);
 
     Downloadable exportGetBidWorkHistorySteel(ExportType exportType, Integer bidId, Pageable pageable);

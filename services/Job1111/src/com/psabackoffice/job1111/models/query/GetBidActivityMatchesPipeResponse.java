@@ -8,6 +8,7 @@ package com.psabackoffice.job1111.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -142,7 +143,7 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
 
     @JsonProperty("TakeOffQuantity")
     @ColumnAlias("TakeOffQuantity")
-    private BigDecimal takeOffQuantity;
+    private Double takeOffQuantity;
 
     @JsonProperty("QuantityUnit")
     @ColumnAlias("QuantityUnit")
@@ -191,6 +192,14 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
     @JsonProperty("WBS10")
     @ColumnAlias("WBS10")
     private String wbs10;
+
+    @JsonProperty("Rev")
+    @ColumnAlias("Rev")
+    private Short rev;
+
+    @JsonProperty("TimeStamp")
+    @ColumnAlias("TimeStamp")
+    private Timestamp timeStamp;
 
     @JsonProperty("RemainingQuantity")
     @ColumnAlias("RemainingQuantity")
@@ -444,11 +453,11 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
         this.componentNumber = componentNumber;
     }
 
-    public BigDecimal getTakeOffQuantity() {
+    public Double getTakeOffQuantity() {
         return this.takeOffQuantity;
     }
 
-    public void setTakeOffQuantity(BigDecimal takeOffQuantity) {
+    public void setTakeOffQuantity(Double takeOffQuantity) {
         this.takeOffQuantity = takeOffQuantity;
     }
 
@@ -548,6 +557,22 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
         this.wbs10 = wbs10;
     }
 
+    public Short getRev() {
+        return this.rev;
+    }
+
+    public void setRev(Short rev) {
+        this.rev = rev;
+    }
+
+    public Timestamp getTimeStamp() {
+        return this.timeStamp;
+    }
+
+    public void setTimeStamp(Timestamp timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
     public BigDecimal getRemainingQuantity() {
         return this.remainingQuantity;
     }
@@ -605,6 +630,8 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
                 Objects.equals(getWbs8(), getBidActivityMatchesPipeResponse.getWbs8()) &&
                 Objects.equals(getWbs9(), getBidActivityMatchesPipeResponse.getWbs9()) &&
                 Objects.equals(getWbs10(), getBidActivityMatchesPipeResponse.getWbs10()) &&
+                Objects.equals(getRev(), getBidActivityMatchesPipeResponse.getRev()) &&
+                Objects.equals(getTimeStamp(), getBidActivityMatchesPipeResponse.getTimeStamp()) &&
                 Objects.equals(getRemainingQuantity(), getBidActivityMatchesPipeResponse.getRemainingQuantity());
     }
 
@@ -654,6 +681,8 @@ public class GetBidActivityMatchesPipeResponse implements Serializable {
                 getWbs8(),
                 getWbs9(),
                 getWbs10(),
+                getRev(),
+                getTimeStamp(),
                 getRemainingQuantity());
     }
 }

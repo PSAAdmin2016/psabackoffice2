@@ -38,16 +38,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetBidChangeLogByID(Pageable pageable, Integer id) {
-        Map params = new HashMap(1);
-
-        params.put("ID", id);
-
-        return queryExecutor.executeNamedQuery("GetBidChangeLogByID", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
     public Page<Object> executeGetBidWorkHistorySteel(Pageable pageable, Integer bidId) {
         Map params = new HashMap(1);
 

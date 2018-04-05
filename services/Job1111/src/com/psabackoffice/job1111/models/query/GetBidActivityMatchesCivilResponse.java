@@ -8,6 +8,7 @@ package com.psabackoffice.job1111.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -146,7 +147,7 @@ public class GetBidActivityMatchesCivilResponse implements Serializable {
 
     @JsonProperty("TakeOffQuantity")
     @ColumnAlias("TakeOffQuantity")
-    private BigDecimal takeOffQuantity;
+    private Double takeOffQuantity;
 
     @JsonProperty("QuantityUnit")
     @ColumnAlias("QuantityUnit")
@@ -195,6 +196,14 @@ public class GetBidActivityMatchesCivilResponse implements Serializable {
     @JsonProperty("WBS10")
     @ColumnAlias("WBS10")
     private String wbs10;
+
+    @JsonProperty("Rev")
+    @ColumnAlias("Rev")
+    private Short rev;
+
+    @JsonProperty("TimeStamp")
+    @ColumnAlias("TimeStamp")
+    private Timestamp timeStamp;
 
     public Integer getUid() {
         return this.uid;
@@ -452,11 +461,11 @@ public class GetBidActivityMatchesCivilResponse implements Serializable {
         this.service = service;
     }
 
-    public BigDecimal getTakeOffQuantity() {
+    public Double getTakeOffQuantity() {
         return this.takeOffQuantity;
     }
 
-    public void setTakeOffQuantity(BigDecimal takeOffQuantity) {
+    public void setTakeOffQuantity(Double takeOffQuantity) {
         this.takeOffQuantity = takeOffQuantity;
     }
 
@@ -556,6 +565,22 @@ public class GetBidActivityMatchesCivilResponse implements Serializable {
         this.wbs10 = wbs10;
     }
 
+    public Short getRev() {
+        return this.rev;
+    }
+
+    public void setRev(Short rev) {
+        this.rev = rev;
+    }
+
+    public Timestamp getTimeStamp() {
+        return this.timeStamp;
+    }
+
+    public void setTimeStamp(Timestamp timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -605,7 +630,9 @@ public class GetBidActivityMatchesCivilResponse implements Serializable {
                 Objects.equals(getWbs7(), getBidActivityMatchesCivilResponse.getWbs7()) &&
                 Objects.equals(getWbs8(), getBidActivityMatchesCivilResponse.getWbs8()) &&
                 Objects.equals(getWbs9(), getBidActivityMatchesCivilResponse.getWbs9()) &&
-                Objects.equals(getWbs10(), getBidActivityMatchesCivilResponse.getWbs10());
+                Objects.equals(getWbs10(), getBidActivityMatchesCivilResponse.getWbs10()) &&
+                Objects.equals(getRev(), getBidActivityMatchesCivilResponse.getRev()) &&
+                Objects.equals(getTimeStamp(), getBidActivityMatchesCivilResponse.getTimeStamp());
     }
 
     @Override
@@ -654,6 +681,8 @@ public class GetBidActivityMatchesCivilResponse implements Serializable {
                 getWbs7(),
                 getWbs8(),
                 getWbs9(),
-                getWbs10());
+                getWbs10(),
+                getRev(),
+                getTimeStamp());
     }
 }
