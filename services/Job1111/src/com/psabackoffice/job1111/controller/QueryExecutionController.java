@@ -71,25 +71,6 @@ public class QueryExecutionController {
         return queryService.exportGetBidWorkHistorySteel(exportType, bidId, pageable);
     }
 
-    @RequestMapping(value = "/queries/GetErectionTotal", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Gets the Total footage of a given Erection Activity")
-    public Page<GetErectionTotalResponse> executeGetErectionTotal(@RequestParam(value = "ActivityId", required = false) Integer activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetErectionTotal");
-        Page<GetErectionTotalResponse> _result = queryService.executeGetErectionTotal(activityId, pageable);
-        LOGGER.debug("got the result for named query: GetErectionTotal, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetErectionTotal")
-    @RequestMapping(value = "/queries/GetErectionTotal/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetErectionTotal(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ActivityId", required = false) Integer activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetErectionTotal");
-
-        return queryService.exportGetErectionTotal(exportType, activityId, pageable);
-    }
-
     @RequestMapping(value = "/queries/GetQuantitiesTestPackageSteel", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Name")
@@ -344,7 +325,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetDrawingByTestPackageSteel", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
-    public Page<GetDrawingByTestPackageSteelResponse> executeGetDrawingByTestPackageSteel(@RequestParam(value = "TestPackage", required = false) Integer testPackage, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetDrawingByTestPackageSteelResponse> executeGetDrawingByTestPackageSteel(@RequestParam(value = "TestPackage") String testPackage, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetDrawingByTestPackageSteel");
         Page<GetDrawingByTestPackageSteelResponse> _result = queryService.executeGetDrawingByTestPackageSteel(testPackage, pageable);
         LOGGER.debug("got the result for named query: GetDrawingByTestPackageSteel, result:{}", _result);
@@ -354,7 +335,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetDrawingByTestPackageSteel")
     @RequestMapping(value = "/queries/GetDrawingByTestPackageSteel/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetDrawingByTestPackageSteel(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "TestPackage", required = false) Integer testPackage, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetDrawingByTestPackageSteel(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "TestPackage") String testPackage, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetDrawingByTestPackageSteel");
 
         return queryService.exportGetDrawingByTestPackageSteel(exportType, testPackage, pageable);
@@ -363,7 +344,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetQuantityBoltUpInstalled", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Gets the Quantity of units installed BY BidID")
-    public Page<GetQuantityBoltUpInstalledResponse> executeGetQuantityBoltUpInstalled(@RequestParam(value = "BidID", required = false) Integer bidId, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetQuantityBoltUpInstalledResponse> executeGetQuantityBoltUpInstalled(@RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetQuantityBoltUpInstalled");
         Page<GetQuantityBoltUpInstalledResponse> _result = queryService.executeGetQuantityBoltUpInstalled(bidId, pageable);
         LOGGER.debug("got the result for named query: GetQuantityBoltUpInstalled, result:{}", _result);
@@ -373,7 +354,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetQuantityBoltUpInstalled")
     @RequestMapping(value = "/queries/GetQuantityBoltUpInstalled/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetQuantityBoltUpInstalled(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID", required = false) Integer bidId, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetQuantityBoltUpInstalled(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetQuantityBoltUpInstalled");
 
         return queryService.exportGetQuantityBoltUpInstalled(exportType, bidId, pageable);
@@ -427,16 +408,6 @@ public class QueryExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/queries/UpdateCivilMiscQuantity", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "name")
-    public Integer executeUpdateCivilMiscQuantity(@Valid @RequestBody UpdateCivilMiscQuantityRequest updateCivilMiscQuantityRequest, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: UpdateCivilMiscQuantity");
-        Integer _result = queryService.executeUpdateCivilMiscQuantity(updateCivilMiscQuantityRequest);
-        LOGGER.debug("got the result for named query: UpdateCivilMiscQuantity, result:{}", _result);
-        return _result;
-    }
-
     @RequestMapping(value = "/queries/GetReportDPRSteelDetailed", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
@@ -454,16 +425,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetReportDPRSteelDetailed");
 
         return queryService.exportGetReportDPRSteelDetailed(exportType, pm, constM, siteM, areaM, super_, gf, foreman, startDate, endDate, pageable);
-    }
-
-    @RequestMapping(value = "/queries/UpdateCivilMisc", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "name")
-    public Integer executeUpdateCivilMisc(@Valid @RequestBody UpdateCivilMiscRequest updateCivilMiscRequest, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: UpdateCivilMisc");
-        Integer _result = queryService.executeUpdateCivilMisc(updateCivilMiscRequest);
-        LOGGER.debug("got the result for named query: UpdateCivilMisc, result:{}", _result);
-        return _result;
     }
 
     @RequestMapping(value = "/queries/UpdateSteelWeld", method = RequestMethod.PUT)
@@ -778,7 +739,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetQuantityMiscInstalled", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "No description is provided")
-    public Page<GetQuantityMiscInstalledResponse> executeGetQuantityMiscInstalled(@RequestParam(value = "BidID", required = false) Integer bidId, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetQuantityMiscInstalledResponse> executeGetQuantityMiscInstalled(@RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetQuantityMiscInstalled");
         Page<GetQuantityMiscInstalledResponse> _result = queryService.executeGetQuantityMiscInstalled(bidId, pageable);
         LOGGER.debug("got the result for named query: GetQuantityMiscInstalled, result:{}", _result);
@@ -788,7 +749,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetQuantityMiscInstalled")
     @RequestMapping(value = "/queries/GetQuantityMiscInstalled/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetQuantityMiscInstalled(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID", required = false) Integer bidId, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetQuantityMiscInstalled(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetQuantityMiscInstalled");
 
         return queryService.exportGetQuantityMiscInstalled(exportType, bidId, pageable);
@@ -841,6 +802,25 @@ public class QueryExecutionController {
         Integer _result = queryService.executeUpdateSettingCivilPunch(updateSettingCivilPunchRequest);
         LOGGER.debug("got the result for named query: UpdateSettingCivilPunch, result:{}", _result);
         return _result;
+    }
+
+    @RequestMapping(value = "/queries/GetQuantityLFInstalledByActivityID", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Gets the Total footage of a given Erection Activity")
+    public Page<GetQuantityLfinstalledByActivityIdResponse> executeGetQuantityLFInstalledByActivityID(@RequestParam(value = "ActivityId") Integer activityId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetQuantityLFInstalledByActivityID");
+        Page<GetQuantityLfinstalledByActivityIdResponse> _result = queryService.executeGetQuantityLFInstalledByActivityID(activityId, pageable);
+        LOGGER.debug("got the result for named query: GetQuantityLFInstalledByActivityID, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetQuantityLFInstalledByActivityID")
+    @RequestMapping(value = "/queries/GetQuantityLFInstalledByActivityID/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetQuantityLFInstalledByActivityID(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ActivityId") Integer activityId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetQuantityLFInstalledByActivityID");
+
+        return queryService.exportGetQuantityLFInstalledByActivityID(exportType, activityId, pageable);
     }
 
     @RequestMapping(value = "/queries/GetActivityHistoryStatus", method = RequestMethod.GET)
@@ -1016,6 +996,25 @@ public class QueryExecutionController {
         return queryService.exportGetBidActivityMatchesSteel(exportType, bidId, sortGroup1, pieceMark, pageable);
     }
 
+    @RequestMapping(value = "/queries/GetQuantityLFInstalledByBidID", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Gets the Total footage installed by all PSA activities assigned to a BidID BY BidID")
+    public Page<GetQuantityLfinstalledByBidIdResponse> executeGetQuantityLFInstalledByBidID(@RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetQuantityLFInstalledByBidID");
+        Page<GetQuantityLfinstalledByBidIdResponse> _result = queryService.executeGetQuantityLFInstalledByBidID(bidId, pageable);
+        LOGGER.debug("got the result for named query: GetQuantityLFInstalledByBidID, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetQuantityLFInstalledByBidID")
+    @RequestMapping(value = "/queries/GetQuantityLFInstalledByBidID/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetQuantityLFInstalledByBidID(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetQuantityLFInstalledByBidID");
+
+        return queryService.exportGetQuantityLFInstalledByBidID(exportType, bidId, pageable);
+    }
+
     @RequestMapping(value = "/queries/UpdateSettingCivilWork", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
@@ -1029,9 +1028,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetNoteCount", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Gets the number of notes BY PSAActivityID")
-    public Page<GetNoteCountResponse> executeGetNoteCount(@RequestParam(value = "FieldActivityID") Integer fieldActivityId, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetNoteCountResponse> executeGetNoteCount(@RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetNoteCount");
-        Page<GetNoteCountResponse> _result = queryService.executeGetNoteCount(fieldActivityId, pageable);
+        Page<GetNoteCountResponse> _result = queryService.executeGetNoteCount(activityId, pageable);
         LOGGER.debug("got the result for named query: GetNoteCount, result:{}", _result);
         return _result;
     }
@@ -1039,16 +1038,16 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetNoteCount")
     @RequestMapping(value = "/queries/GetNoteCount/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetNoteCount(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "FieldActivityID") Integer fieldActivityId, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetNoteCount(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetNoteCount");
 
-        return queryService.exportGetNoteCount(exportType, fieldActivityId, pageable);
+        return queryService.exportGetNoteCount(exportType, activityId, pageable);
     }
 
     @RequestMapping(value = "/queries/GetReportDWRByDate", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get Daily Weld Report BY Date Range")
-    public Page<GetReportDwrbyDateResponse> executeGetReportDWRByDate(@RequestParam(value = "BeginDate", required = false) Date beginDate, @RequestParam(value = "EndDate", required = false) Date endDate, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetReportDwrbyDateResponse> executeGetReportDWRByDate(@RequestParam(value = "BeginDate") Date beginDate, @RequestParam(value = "EndDate") Date endDate, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetReportDWRByDate");
         Page<GetReportDwrbyDateResponse> _result = queryService.executeGetReportDWRByDate(beginDate, endDate, pageable);
         LOGGER.debug("got the result for named query: GetReportDWRByDate, result:{}", _result);
@@ -1058,7 +1057,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetReportDWRByDate")
     @RequestMapping(value = "/queries/GetReportDWRByDate/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetReportDWRByDate(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BeginDate", required = false) Date beginDate, @RequestParam(value = "EndDate", required = false) Date endDate, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetReportDWRByDate(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BeginDate") Date beginDate, @RequestParam(value = "EndDate") Date endDate, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetReportDWRByDate");
 
         return queryService.exportGetReportDWRByDate(exportType, beginDate, endDate, pageable);
@@ -1096,7 +1095,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetQuantitySupportsInstalled", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get the number of Supports installed BY BidID")
-    public Page<GetQuantitySupportsInstalledResponse> executeGetQuantitySupportsInstalled(@RequestParam(value = "BidID", required = false) Integer bidId, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetQuantitySupportsInstalledResponse> executeGetQuantitySupportsInstalled(@RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetQuantitySupportsInstalled");
         Page<GetQuantitySupportsInstalledResponse> _result = queryService.executeGetQuantitySupportsInstalled(bidId, pageable);
         LOGGER.debug("got the result for named query: GetQuantitySupportsInstalled, result:{}", _result);
@@ -1106,7 +1105,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetQuantitySupportsInstalled")
     @RequestMapping(value = "/queries/GetQuantitySupportsInstalled/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetQuantitySupportsInstalled(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID", required = false) Integer bidId, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetQuantitySupportsInstalled(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetQuantitySupportsInstalled");
 
         return queryService.exportGetQuantitySupportsInstalled(exportType, bidId, pageable);
@@ -1135,7 +1134,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetQuantityCutPrepInstalled", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get Cut/Prep installed Quantity BY BidId")
-    public Page<GetQuantityCutPrepInstalledResponse> executeGetQuantityCutPrepInstalled(@RequestParam(value = "BidID", required = false) Integer bidId, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetQuantityCutPrepInstalledResponse> executeGetQuantityCutPrepInstalled(@RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetQuantityCutPrepInstalled");
         Page<GetQuantityCutPrepInstalledResponse> _result = queryService.executeGetQuantityCutPrepInstalled(bidId, pageable);
         LOGGER.debug("got the result for named query: GetQuantityCutPrepInstalled, result:{}", _result);
@@ -1145,7 +1144,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetQuantityCutPrepInstalled")
     @RequestMapping(value = "/queries/GetQuantityCutPrepInstalled/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetQuantityCutPrepInstalled(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID", required = false) Integer bidId, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetQuantityCutPrepInstalled(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetQuantityCutPrepInstalled");
 
         return queryService.exportGetQuantityCutPrepInstalled(exportType, bidId, pageable);
@@ -1251,7 +1250,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetReportDPRSteelCondensed", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get Daily Progress Report (steel)  Input users, and date range")
-    public Page<GetReportDprsteelCondensedResponse> executeGetReportDPRSteelCondensed(@RequestParam(value = "PM", required = false) String pm, @RequestParam(value = "ConstM", required = false) String constM, @RequestParam(value = "SiteM", required = false) String siteM, @RequestParam(value = "AreaM", required = false) String areaM, @RequestParam(value = "Super", required = false) String super_, @RequestParam(value = "GF", required = false) String gf, @RequestParam(value = "Foreman", required = false) String foreman, @RequestParam(value = "StartDate", required = false) Date startDate, @RequestParam(value = "EndDate", required = false) Date endDate, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetReportDprsteelCondensedResponse> executeGetReportDPRSteelCondensed(@RequestParam(value = "PM") String pm, @RequestParam(value = "ConstM") String constM, @RequestParam(value = "SiteM") String siteM, @RequestParam(value = "AreaM") String areaM, @RequestParam(value = "Super") String super_, @RequestParam(value = "GF") String gf, @RequestParam(value = "Foreman") String foreman, @RequestParam(value = "StartDate") Date startDate, @RequestParam(value = "EndDate") Date endDate, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetReportDPRSteelCondensed");
         Page<GetReportDprsteelCondensedResponse> _result = queryService.executeGetReportDPRSteelCondensed(pm, constM, siteM, areaM, super_, gf, foreman, startDate, endDate, pageable);
         LOGGER.debug("got the result for named query: GetReportDPRSteelCondensed, result:{}", _result);
@@ -1261,7 +1260,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetReportDPRSteelCondensed")
     @RequestMapping(value = "/queries/GetReportDPRSteelCondensed/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetReportDPRSteelCondensed(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "PM", required = false) String pm, @RequestParam(value = "ConstM", required = false) String constM, @RequestParam(value = "SiteM", required = false) String siteM, @RequestParam(value = "AreaM", required = false) String areaM, @RequestParam(value = "Super", required = false) String super_, @RequestParam(value = "GF", required = false) String gf, @RequestParam(value = "Foreman", required = false) String foreman, @RequestParam(value = "StartDate", required = false) Date startDate, @RequestParam(value = "EndDate", required = false) Date endDate, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetReportDPRSteelCondensed(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "PM") String pm, @RequestParam(value = "ConstM") String constM, @RequestParam(value = "SiteM") String siteM, @RequestParam(value = "AreaM") String areaM, @RequestParam(value = "Super") String super_, @RequestParam(value = "GF") String gf, @RequestParam(value = "Foreman") String foreman, @RequestParam(value = "StartDate") Date startDate, @RequestParam(value = "EndDate") Date endDate, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetReportDPRSteelCondensed");
 
         return queryService.exportGetReportDPRSteelCondensed(exportType, pm, constM, siteM, areaM, super_, gf, foreman, startDate, endDate, pageable);
@@ -1318,7 +1317,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetQuantityTrimInstalled", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get the sum of all Trim activities installed BY Bid ID")
-    public Page<GetQuantityTrimInstalledResponse> executeGetQuantityTrimInstalled(@RequestParam(value = "BidID", required = false) Integer bidId, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetQuantityTrimInstalledResponse> executeGetQuantityTrimInstalled(@RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetQuantityTrimInstalled");
         Page<GetQuantityTrimInstalledResponse> _result = queryService.executeGetQuantityTrimInstalled(bidId, pageable);
         LOGGER.debug("got the result for named query: GetQuantityTrimInstalled, result:{}", _result);
@@ -1328,7 +1327,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetQuantityTrimInstalled")
     @RequestMapping(value = "/queries/GetQuantityTrimInstalled/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetQuantityTrimInstalled(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID", required = false) Integer bidId, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetQuantityTrimInstalled(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetQuantityTrimInstalled");
 
         return queryService.exportGetQuantityTrimInstalled(exportType, bidId, pageable);
@@ -1472,9 +1471,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetBidWorkHistorySteelExpanded", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Gets the Bid Work History, with each Field activity having its own row.  Of the given SubID")
-    public Page<GetBidWorkHistorySteelExpandedResponse> executeGetBidWorkHistorySteelExpanded(@RequestParam(value = "BidID", required = false) Integer bidId, @RequestParam(value = "SubID", required = false) Integer subId, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetBidWorkHistorySteelExpandedResponse> executeGetBidWorkHistorySteelExpanded(@RequestParam(value = "BidID", required = false) Integer bidId, @RequestParam(value = "SubmissionID", required = false) Integer submissionId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetBidWorkHistorySteelExpanded");
-        Page<GetBidWorkHistorySteelExpandedResponse> _result = queryService.executeGetBidWorkHistorySteelExpanded(bidId, subId, pageable);
+        Page<GetBidWorkHistorySteelExpandedResponse> _result = queryService.executeGetBidWorkHistorySteelExpanded(bidId, submissionId, pageable);
         LOGGER.debug("got the result for named query: GetBidWorkHistorySteelExpanded, result:{}", _result);
         return _result;
     }
@@ -1482,10 +1481,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetBidWorkHistorySteelExpanded")
     @RequestMapping(value = "/queries/GetBidWorkHistorySteelExpanded/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetBidWorkHistorySteelExpanded(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID", required = false) Integer bidId, @RequestParam(value = "SubID", required = false) Integer subId, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetBidWorkHistorySteelExpanded(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID", required = false) Integer bidId, @RequestParam(value = "SubmissionID", required = false) Integer submissionId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetBidWorkHistorySteelExpanded");
 
-        return queryService.exportGetBidWorkHistorySteelExpanded(exportType, bidId, subId, pageable);
+        return queryService.exportGetBidWorkHistorySteelExpanded(exportType, bidId, submissionId, pageable);
     }
 
     @RequestMapping(value = "/queries/GetSuperRecentActivites", method = RequestMethod.GET)
@@ -1596,8 +1595,8 @@ public class QueryExecutionController {
 
     @RequestMapping(value = "/queries/GetQuantityDemoRemoved", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "...")
-    public Page<GetQuantityDemoRemovedResponse> executeGetQuantityDemoRemoved(@RequestParam(value = "BidID", required = false) Integer bidId, Pageable pageable, HttpServletRequest _request) {
+    @ApiOperation(value = "name")
+    public Page<GetQuantityDemoRemovedResponse> executeGetQuantityDemoRemoved(@RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetQuantityDemoRemoved");
         Page<GetQuantityDemoRemovedResponse> _result = queryService.executeGetQuantityDemoRemoved(bidId, pageable);
         LOGGER.debug("got the result for named query: GetQuantityDemoRemoved, result:{}", _result);
@@ -1607,7 +1606,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetQuantityDemoRemoved")
     @RequestMapping(value = "/queries/GetQuantityDemoRemoved/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetQuantityDemoRemoved(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID", required = false) Integer bidId, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetQuantityDemoRemoved(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetQuantityDemoRemoved");
 
         return queryService.exportGetQuantityDemoRemoved(exportType, bidId, pageable);
@@ -1675,7 +1674,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetQuantityWeldInstalled", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get the number of Welds installed BY BidID")
-    public Page<GetQuantityWeldInstalledResponse> executeGetQuantityWeldInstalled(@RequestParam(value = "BidID", required = false) Integer bidId, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetQuantityWeldInstalledResponse> executeGetQuantityWeldInstalled(@RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetQuantityWeldInstalled");
         Page<GetQuantityWeldInstalledResponse> _result = queryService.executeGetQuantityWeldInstalled(bidId, pageable);
         LOGGER.debug("got the result for named query: GetQuantityWeldInstalled, result:{}", _result);
@@ -1685,7 +1684,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetQuantityWeldInstalled")
     @RequestMapping(value = "/queries/GetQuantityWeldInstalled/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetQuantityWeldInstalled(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID", required = false) Integer bidId, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetQuantityWeldInstalled(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetQuantityWeldInstalled");
 
         return queryService.exportGetQuantityWeldInstalled(exportType, bidId, pageable);
@@ -1742,7 +1741,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetDrawingsByTestPackagePipe", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
-    public Page<GetDrawingsByTestPackagePipeResponse> executeGetDrawingsByTestPackagePipe(@RequestParam(value = "TestPackage", required = false) String testPackage, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetDrawingsByTestPackagePipeResponse> executeGetDrawingsByTestPackagePipe(@RequestParam(value = "TestPackage") String testPackage, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetDrawingsByTestPackagePipe");
         Page<GetDrawingsByTestPackagePipeResponse> _result = queryService.executeGetDrawingsByTestPackagePipe(testPackage, pageable);
         LOGGER.debug("got the result for named query: GetDrawingsByTestPackagePipe, result:{}", _result);
@@ -1752,29 +1751,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetDrawingsByTestPackagePipe")
     @RequestMapping(value = "/queries/GetDrawingsByTestPackagePipe/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetDrawingsByTestPackagePipe(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "TestPackage", required = false) String testPackage, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetDrawingsByTestPackagePipe(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "TestPackage") String testPackage, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetDrawingsByTestPackagePipe");
 
         return queryService.exportGetDrawingsByTestPackagePipe(exportType, testPackage, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetQuantityLFInstalled", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Gets the Total footage installed by all PSA activities assigned to a BidID BY BidID")
-    public Page<GetQuantityLfinstalledResponse> executeGetQuantityLFInstalled(@RequestParam(value = "BidID", required = false) Integer bidId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetQuantityLFInstalled");
-        Page<GetQuantityLfinstalledResponse> _result = queryService.executeGetQuantityLFInstalled(bidId, pageable);
-        LOGGER.debug("got the result for named query: GetQuantityLFInstalled, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetQuantityLFInstalled")
-    @RequestMapping(value = "/queries/GetQuantityLFInstalled/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetQuantityLFInstalled(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID", required = false) Integer bidId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetQuantityLFInstalled");
-
-        return queryService.exportGetQuantityLFInstalled(exportType, bidId, pageable);
     }
 
     @RequestMapping(value = "/queries/GetSettingSteelShakePercent", method = RequestMethod.GET)
@@ -1837,7 +1817,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetBidWorkHistoryPipe", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get all activities assigned/ earning hours against bid ID")
-    public Page<GetBidWorkHistoryPipeResponse> executeGetBidWorkHistoryPipe(@RequestParam(value = "BidID", required = false) Integer bidId, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetBidWorkHistoryPipeResponse> executeGetBidWorkHistoryPipe(@RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetBidWorkHistoryPipe");
         Page<GetBidWorkHistoryPipeResponse> _result = queryService.executeGetBidWorkHistoryPipe(bidId, pageable);
         LOGGER.debug("got the result for named query: GetBidWorkHistoryPipe, result:{}", _result);
@@ -1847,7 +1827,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetBidWorkHistoryPipe")
     @RequestMapping(value = "/queries/GetBidWorkHistoryPipe/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetBidWorkHistoryPipe(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID", required = false) Integer bidId, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetBidWorkHistoryPipe(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetBidWorkHistoryPipe");
 
         return queryService.exportGetBidWorkHistoryPipe(exportType, bidId, pageable);
@@ -1925,7 +1905,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetDrawingByTestPackageCivil", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
-    public Page<GetDrawingByTestPackageCivilResponse> executeGetDrawingByTestPackageCivil(@RequestParam(value = "TestPackage", required = false) Integer testPackage, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetDrawingByTestPackageCivilResponse> executeGetDrawingByTestPackageCivil(@RequestParam(value = "TestPackage") String testPackage, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetDrawingByTestPackageCivil");
         Page<GetDrawingByTestPackageCivilResponse> _result = queryService.executeGetDrawingByTestPackageCivil(testPackage, pageable);
         LOGGER.debug("got the result for named query: GetDrawingByTestPackageCivil, result:{}", _result);
@@ -1935,7 +1915,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetDrawingByTestPackageCivil")
     @RequestMapping(value = "/queries/GetDrawingByTestPackageCivil/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetDrawingByTestPackageCivil(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "TestPackage", required = false) Integer testPackage, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetDrawingByTestPackageCivil(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "TestPackage") String testPackage, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetDrawingByTestPackageCivil");
 
         return queryService.exportGetDrawingByTestPackageCivil(exportType, testPackage, pageable);
@@ -1983,9 +1963,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetNotesByFieldActivityID", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Gets all notes tied to a specified ID")
-    public Page<GetNotesByFieldActivityIdResponse> executeGetNotesByFieldActivityID(@RequestParam(value = "FieldActivityID") Integer fieldActivityId, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetNotesByFieldActivityIdResponse> executeGetNotesByFieldActivityID(@RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetNotesByFieldActivityID");
-        Page<GetNotesByFieldActivityIdResponse> _result = queryService.executeGetNotesByFieldActivityID(fieldActivityId, pageable);
+        Page<GetNotesByFieldActivityIdResponse> _result = queryService.executeGetNotesByFieldActivityID(activityId, pageable);
         LOGGER.debug("got the result for named query: GetNotesByFieldActivityID, result:{}", _result);
         return _result;
     }
@@ -1993,10 +1973,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetNotesByFieldActivityID")
     @RequestMapping(value = "/queries/GetNotesByFieldActivityID/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetNotesByFieldActivityID(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "FieldActivityID") Integer fieldActivityId, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetNotesByFieldActivityID(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ActivityID") Integer activityId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetNotesByFieldActivityID");
 
-        return queryService.exportGetNotesByFieldActivityID(exportType, fieldActivityId, pageable);
+        return queryService.exportGetNotesByFieldActivityID(exportType, activityId, pageable);
     }
 
     @RequestMapping(value = "/queries/UpdateSteelSellPackage", method = RequestMethod.PUT)

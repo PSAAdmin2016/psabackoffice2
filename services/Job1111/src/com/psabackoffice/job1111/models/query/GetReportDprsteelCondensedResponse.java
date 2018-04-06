@@ -18,9 +18,9 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 public class GetReportDprsteelCondensedResponse implements Serializable {
 
 
-    @JsonProperty("Area")
-    @ColumnAlias("Area")
-    private String area;
+    @JsonProperty("SortGroup1")
+    @ColumnAlias("SortGroup1")
+    private String sortGroup1;
 
     @JsonProperty("PieceNumber")
     @ColumnAlias("PieceNumber")
@@ -62,12 +62,12 @@ public class GetReportDprsteelCondensedResponse implements Serializable {
     @ColumnAlias("ReceivedTime")
     private Timestamp receivedTime;
 
-    public String getArea() {
-        return this.area;
+    public String getSortGroup1() {
+        return this.sortGroup1;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setSortGroup1(String sortGroup1) {
+        this.sortGroup1 = sortGroup1;
     }
 
     public String getPieceNumber() {
@@ -155,7 +155,7 @@ public class GetReportDprsteelCondensedResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetReportDprsteelCondensedResponse)) return false;
         final GetReportDprsteelCondensedResponse getReportDprsteelCondensedResponse = (GetReportDprsteelCondensedResponse) o;
-        return Objects.equals(getArea(), getReportDprsteelCondensedResponse.getArea()) &&
+        return Objects.equals(getSortGroup1(), getReportDprsteelCondensedResponse.getSortGroup1()) &&
                 Objects.equals(getPieceNumber(), getReportDprsteelCondensedResponse.getPieceNumber()) &&
                 Objects.equals(getShakeQuantity(), getReportDprsteelCondensedResponse.getShakeQuantity()) &&
                 Objects.equals(getErectQuantity(), getReportDprsteelCondensedResponse.getErectQuantity()) &&
@@ -170,7 +170,7 @@ public class GetReportDprsteelCondensedResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getArea(),
+        return Objects.hash(getSortGroup1(),
                 getPieceNumber(),
                 getShakeQuantity(),
                 getErectQuantity(),

@@ -19,13 +19,13 @@ public class GetDrawingByTestPackageSteelResponse implements Serializable {
     @ColumnAlias("Area")
     private String area;
 
-    @JsonProperty("Description")
-    @ColumnAlias("Description")
-    private String description;
-
     @JsonProperty("PieceMark")
     @ColumnAlias("PieceMark")
     private String pieceMark;
+
+    @JsonProperty("Description")
+    @ColumnAlias("Description")
+    private String description;
 
     public String getArea() {
         return this.area;
@@ -33,14 +33,6 @@ public class GetDrawingByTestPackageSteelResponse implements Serializable {
 
     public void setArea(String area) {
         this.area = area;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getPieceMark() {
@@ -51,20 +43,28 @@ public class GetDrawingByTestPackageSteelResponse implements Serializable {
         this.pieceMark = pieceMark;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof GetDrawingByTestPackageSteelResponse)) return false;
         final GetDrawingByTestPackageSteelResponse getDrawingByTestPackageSteelResponse = (GetDrawingByTestPackageSteelResponse) o;
         return Objects.equals(getArea(), getDrawingByTestPackageSteelResponse.getArea()) &&
-                Objects.equals(getDescription(), getDrawingByTestPackageSteelResponse.getDescription()) &&
-                Objects.equals(getPieceMark(), getDrawingByTestPackageSteelResponse.getPieceMark());
+                Objects.equals(getPieceMark(), getDrawingByTestPackageSteelResponse.getPieceMark()) &&
+                Objects.equals(getDescription(), getDrawingByTestPackageSteelResponse.getDescription());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getArea(),
-                getDescription(),
-                getPieceMark());
+                getPieceMark(),
+                getDescription());
     }
 }

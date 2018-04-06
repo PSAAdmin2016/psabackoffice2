@@ -18,23 +18,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UpdateCivilFaquantityRequest implements Serializable {
 
 
-    @JsonProperty("Percent")
-    private BigDecimal percent;
-
     @JsonProperty("Quantity")
+    @NotNull
     private Integer quantity;
 
-    @JsonProperty("FieldActivityID")
+    @JsonProperty("Percent")
     @NotNull
-    private Integer fieldActivityId;
+    private BigDecimal percent;
 
-    public BigDecimal getPercent() {
-        return this.percent;
-    }
-
-    public void setPercent(BigDecimal percent) {
-        this.percent = percent;
-    }
+    @JsonProperty("ActivityID")
+    @NotNull
+    private Integer activityId;
 
     public Integer getQuantity() {
         return this.quantity;
@@ -44,12 +38,20 @@ public class UpdateCivilFaquantityRequest implements Serializable {
         this.quantity = quantity;
     }
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public BigDecimal getPercent() {
+        return this.percent;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setPercent(BigDecimal percent) {
+        this.percent = percent;
+    }
+
+    public Integer getActivityId() {
+        return this.activityId;
+    }
+
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     @Override
@@ -57,15 +59,15 @@ public class UpdateCivilFaquantityRequest implements Serializable {
         if (this == o) return true;
         if (!(o instanceof UpdateCivilFaquantityRequest)) return false;
         final UpdateCivilFaquantityRequest updateCivilFaquantityRequest = (UpdateCivilFaquantityRequest) o;
-        return Objects.equals(getPercent(), updateCivilFaquantityRequest.getPercent()) &&
-                Objects.equals(getQuantity(), updateCivilFaquantityRequest.getQuantity()) &&
-                Objects.equals(getFieldActivityId(), updateCivilFaquantityRequest.getFieldActivityId());
+        return Objects.equals(getQuantity(), updateCivilFaquantityRequest.getQuantity()) &&
+                Objects.equals(getPercent(), updateCivilFaquantityRequest.getPercent()) &&
+                Objects.equals(getActivityId(), updateCivilFaquantityRequest.getActivityId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPercent(),
-                getQuantity(),
-                getFieldActivityId());
+        return Objects.hash(getQuantity(),
+                getPercent(),
+                getActivityId());
     }
 }

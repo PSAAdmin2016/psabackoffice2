@@ -19,14 +19,15 @@ public class UpdateCivilSellPackageRequest implements Serializable {
 
 
     @JsonProperty("TestPackageNumber")
+    @NotNull
     private String testPackageNumber;
 
     @JsonProperty("Notes")
     private String notes;
 
-    @JsonProperty("FieldActivityID")
+    @JsonProperty("ActivityID")
     @NotNull
-    private Integer fieldActivityId;
+    private String activityId;
 
     public String getTestPackageNumber() {
         return this.testPackageNumber;
@@ -44,12 +45,12 @@ public class UpdateCivilSellPackageRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public String getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(String activityId) {
+        this.activityId = activityId;
     }
 
     @Override
@@ -59,13 +60,13 @@ public class UpdateCivilSellPackageRequest implements Serializable {
         final UpdateCivilSellPackageRequest updateCivilSellPackageRequest = (UpdateCivilSellPackageRequest) o;
         return Objects.equals(getTestPackageNumber(), updateCivilSellPackageRequest.getTestPackageNumber()) &&
                 Objects.equals(getNotes(), updateCivilSellPackageRequest.getNotes()) &&
-                Objects.equals(getFieldActivityId(), updateCivilSellPackageRequest.getFieldActivityId());
+                Objects.equals(getActivityId(), updateCivilSellPackageRequest.getActivityId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getTestPackageNumber(),
                 getNotes(),
-                getFieldActivityId());
+                getActivityId());
     }
 }

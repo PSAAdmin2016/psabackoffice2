@@ -47,7 +47,7 @@ public class GetBidWorkHistoryEquipResponse implements Serializable {
     private String notes;
 
     @ColumnAlias("Rework")
-    private Integer rework;
+    private Short rework;
 
     public Integer getSubmissionId() {
         return this.submissionId;
@@ -129,11 +129,11 @@ public class GetBidWorkHistoryEquipResponse implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getRework() {
+    public Short getRework() {
         return this.rework;
     }
 
-    public void setRework(Integer rework) {
+    public void setRework(Short rework) {
         this.rework = rework;
     }
 

@@ -58,26 +58,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<GetErectionTotalResponse> executeGetErectionTotal(Integer activityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("ActivityId", activityId);
-
-        return queryExecutor.executeNamedQuery("GetErectionTotal", params, GetErectionTotalResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Downloadable exportGetErectionTotal(ExportType exportType, Integer activityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("ActivityId", activityId);
-
-        return queryExecutor.exportNamedQueryData("GetErectionTotal", params, exportType, GetErectionTotalResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
     public Page<GetQuantitiesTestPackageSteelResponse> executeGetQuantitiesTestPackageSteel(String testPackage, Pageable pageable) {
         Map params = new HashMap(1);
 
@@ -370,7 +350,7 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<GetDrawingByTestPackageSteelResponse> executeGetDrawingByTestPackageSteel(Integer testPackage, Pageable pageable) {
+    public Page<GetDrawingByTestPackageSteelResponse> executeGetDrawingByTestPackageSteel(String testPackage, Pageable pageable) {
         Map params = new HashMap(1);
 
         params.put("TestPackage", testPackage);
@@ -380,7 +360,7 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Downloadable exportGetDrawingByTestPackageSteel(ExportType exportType, Integer testPackage, Pageable pageable) {
+    public Downloadable exportGetDrawingByTestPackageSteel(ExportType exportType, String testPackage, Pageable pageable) {
         Map params = new HashMap(1);
 
         params.put("TestPackage", testPackage);
@@ -462,17 +442,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         return queryExecutor.executeNamedQueryForUpdate("UpdatePipeMisc", params);
     }
 
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public Integer executeUpdateCivilMiscQuantity(UpdateCivilMiscQuantityRequest updateCivilMiscQuantityRequest) {
-        Map params = new HashMap(2);
-
-        params.put("Percent", updateCivilMiscQuantityRequest.getPercent());
-        params.put("FieldActivityID", updateCivilMiscQuantityRequest.getFieldActivityId());
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateCivilMiscQuantity", params);
-    }
-
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
     public Page<GetReportDprsteelDetailedResponse> executeGetReportDPRSteelDetailed(String pm, String constM, String siteM, String areaM, String super_, String gf, String foreman, Date startDate, Date endDate, Pageable pageable) {
@@ -507,22 +476,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         params.put("EndDate", endDate);
 
         return queryExecutor.exportNamedQueryData("GetReportDPRSteelDetailed", params, exportType, GetReportDprsteelDetailedResponse.class, pageable);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public Integer executeUpdateCivilMisc(UpdateCivilMiscRequest updateCivilMiscRequest) {
-        Map params = new HashMap(7);
-
-        params.put("Foundation", updateCivilMiscRequest.getFoundation());
-        params.put("Drawing", updateCivilMiscRequest.getDrawing());
-        params.put("DetailDrawing", updateCivilMiscRequest.getDetailDrawing());
-        params.put("Percent", updateCivilMiscRequest.getPercent());
-        params.put("Rework", updateCivilMiscRequest.getRework());
-        params.put("Notes", updateCivilMiscRequest.getNotes());
-        params.put("FieldActivityID", updateCivilMiscRequest.getFieldActivityId());
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateCivilMisc", params);
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -952,6 +905,26 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
+    public Page<GetQuantityLfinstalledByActivityIdResponse> executeGetQuantityLFInstalledByActivityID(Integer activityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("ActivityId", activityId);
+
+        return queryExecutor.executeNamedQuery("GetQuantityLFInstalledByActivityID", params, GetQuantityLfinstalledByActivityIdResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Downloadable exportGetQuantityLFInstalledByActivityID(ExportType exportType, Integer activityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("ActivityId", activityId);
+
+        return queryExecutor.exportNamedQueryData("GetQuantityLFInstalledByActivityID", params, exportType, GetQuantityLfinstalledByActivityIdResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
     public Page<GetActivityHistoryStatusResponse> executeGetActivityHistoryStatus(Integer activityId, Pageable pageable) {
         Map params = new HashMap(1);
 
@@ -1172,6 +1145,26 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         return queryExecutor.exportNamedQueryData("GetBidActivityMatchesSteel", params, exportType, GetBidActivityMatchesSteelResponse.class, pageable);
     }
 
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<GetQuantityLfinstalledByBidIdResponse> executeGetQuantityLFInstalledByBidID(Integer bidId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("BidID", bidId);
+
+        return queryExecutor.executeNamedQuery("GetQuantityLFInstalledByBidID", params, GetQuantityLfinstalledByBidIdResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Downloadable exportGetQuantityLFInstalledByBidID(ExportType exportType, Integer bidId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("BidID", bidId);
+
+        return queryExecutor.exportNamedQueryData("GetQuantityLFInstalledByBidID", params, exportType, GetQuantityLfinstalledByBidIdResponse.class, pageable);
+    }
+
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public Integer executeUpdateSettingCivilWork(UpdateSettingCivilWorkRequest updateSettingCivilWorkRequest) {
@@ -1184,20 +1177,20 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<GetNoteCountResponse> executeGetNoteCount(Integer fieldActivityId, Pageable pageable) {
+    public Page<GetNoteCountResponse> executeGetNoteCount(Integer activityId, Pageable pageable) {
         Map params = new HashMap(1);
 
-        params.put("FieldActivityID", fieldActivityId);
+        params.put("ActivityID", activityId);
 
         return queryExecutor.executeNamedQuery("GetNoteCount", params, GetNoteCountResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Downloadable exportGetNoteCount(ExportType exportType, Integer fieldActivityId, Pageable pageable) {
+    public Downloadable exportGetNoteCount(ExportType exportType, Integer activityId, Pageable pageable) {
         Map params = new HashMap(1);
 
-        params.put("FieldActivityID", fieldActivityId);
+        params.put("ActivityID", activityId);
 
         return queryExecutor.exportNamedQueryData("GetNoteCount", params, exportType, GetNoteCountResponse.class, pageable);
     }
@@ -1325,7 +1318,7 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         params.put("Percent", updateEquipFaRequest.getPercent());
         params.put("Rework", updateEquipFaRequest.getRework());
         params.put("Notes", updateEquipFaRequest.getNotes());
-        params.put("FieldActivityID", updateEquipFaRequest.getFieldActivityId());
+        params.put("ActivityID", updateEquipFaRequest.getActivityId());
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateEquipFA", params);
     }
@@ -1672,17 +1665,13 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public Integer executeUpdateCivilFA(UpdateCivilFaRequest updateCivilFaRequest) {
-        Map params = new HashMap(9);
+        Map params = new HashMap(5);
 
-        params.put("Description", updateCivilFaRequest.getDescription());
-        params.put("Foundation", updateCivilFaRequest.getFoundation());
-        params.put("Drawing", updateCivilFaRequest.getDrawing());
-        params.put("DetailDrawing", updateCivilFaRequest.getDetailDrawing());
-        params.put("Percent", updateCivilFaRequest.getPercent());
         params.put("Quantity", updateCivilFaRequest.getQuantity());
+        params.put("Percent", updateCivilFaRequest.getPercent());
         params.put("Rework", updateCivilFaRequest.getRework());
         params.put("Notes", updateCivilFaRequest.getNotes());
-        params.put("FieldActivityID", updateCivilFaRequest.getFieldActivityId());
+        params.put("ActivityID", updateCivilFaRequest.getActivityId());
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateCivilFA", params);
     }
@@ -1702,22 +1691,22 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<GetBidWorkHistorySteelExpandedResponse> executeGetBidWorkHistorySteelExpanded(Integer bidId, Integer subId, Pageable pageable) {
+    public Page<GetBidWorkHistorySteelExpandedResponse> executeGetBidWorkHistorySteelExpanded(Integer bidId, Integer submissionId, Pageable pageable) {
         Map params = new HashMap(2);
 
         params.put("BidID", bidId);
-        params.put("SubID", subId);
+        params.put("SubmissionID", submissionId);
 
         return queryExecutor.executeNamedQuery("GetBidWorkHistorySteelExpanded", params, GetBidWorkHistorySteelExpandedResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Downloadable exportGetBidWorkHistorySteelExpanded(ExportType exportType, Integer bidId, Integer subId, Pageable pageable) {
+    public Downloadable exportGetBidWorkHistorySteelExpanded(ExportType exportType, Integer bidId, Integer submissionId, Pageable pageable) {
         Map params = new HashMap(2);
 
         params.put("BidID", bidId);
-        params.put("SubID", subId);
+        params.put("SubmissionID", submissionId);
 
         return queryExecutor.exportNamedQueryData("GetBidWorkHistorySteelExpanded", params, exportType, GetBidWorkHistorySteelExpandedResponse.class, pageable);
     }
@@ -1878,9 +1867,9 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
     public Integer executeUpdateCivilFAQuantity(UpdateCivilFaquantityRequest updateCivilFaquantityRequest) {
         Map params = new HashMap(3);
 
-        params.put("Percent", updateCivilFaquantityRequest.getPercent());
         params.put("Quantity", updateCivilFaquantityRequest.getQuantity());
-        params.put("FieldActivityID", updateCivilFaquantityRequest.getFieldActivityId());
+        params.put("Percent", updateCivilFaquantityRequest.getPercent());
+        params.put("ActivityID", updateCivilFaquantityRequest.getActivityId());
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateCivilFAQuantity", params);
     }
@@ -1918,7 +1907,7 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
         params.put("TestPackageNumber", updateCivilSellPackageRequest.getTestPackageNumber());
         params.put("Notes", updateCivilSellPackageRequest.getNotes());
-        params.put("FieldActivityID", updateCivilSellPackageRequest.getFieldActivityId());
+        params.put("ActivityID", updateCivilSellPackageRequest.getActivityId());
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateCivilSellPackage", params);
     }
@@ -2029,26 +2018,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         params.put("TestPackage", testPackage);
 
         return queryExecutor.exportNamedQueryData("GetDrawingsByTestPackagePipe", params, exportType, GetDrawingsByTestPackagePipeResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<GetQuantityLfinstalledResponse> executeGetQuantityLFInstalled(Integer bidId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("BidID", bidId);
-
-        return queryExecutor.executeNamedQuery("GetQuantityLFInstalled", params, GetQuantityLfinstalledResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Downloadable exportGetQuantityLFInstalled(ExportType exportType, Integer bidId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("BidID", bidId);
-
-        return queryExecutor.exportNamedQueryData("GetQuantityLFInstalled", params, exportType, GetQuantityLfinstalledResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -2222,7 +2191,7 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<GetDrawingByTestPackageCivilResponse> executeGetDrawingByTestPackageCivil(Integer testPackage, Pageable pageable) {
+    public Page<GetDrawingByTestPackageCivilResponse> executeGetDrawingByTestPackageCivil(String testPackage, Pageable pageable) {
         Map params = new HashMap(1);
 
         params.put("TestPackage", testPackage);
@@ -2232,7 +2201,7 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Downloadable exportGetDrawingByTestPackageCivil(ExportType exportType, Integer testPackage, Pageable pageable) {
+    public Downloadable exportGetDrawingByTestPackageCivil(ExportType exportType, String testPackage, Pageable pageable) {
         Map params = new HashMap(1);
 
         params.put("TestPackage", testPackage);
@@ -2290,20 +2259,20 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<GetNotesByFieldActivityIdResponse> executeGetNotesByFieldActivityID(Integer fieldActivityId, Pageable pageable) {
+    public Page<GetNotesByFieldActivityIdResponse> executeGetNotesByFieldActivityID(Integer activityId, Pageable pageable) {
         Map params = new HashMap(1);
 
-        params.put("FieldActivityID", fieldActivityId);
+        params.put("ActivityID", activityId);
 
         return queryExecutor.executeNamedQuery("GetNotesByFieldActivityID", params, GetNotesByFieldActivityIdResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Downloadable exportGetNotesByFieldActivityID(ExportType exportType, Integer fieldActivityId, Pageable pageable) {
+    public Downloadable exportGetNotesByFieldActivityID(ExportType exportType, Integer activityId, Pageable pageable) {
         Map params = new HashMap(1);
 
-        params.put("FieldActivityID", fieldActivityId);
+        params.put("ActivityID", activityId);
 
         return queryExecutor.exportNamedQueryData("GetNotesByFieldActivityID", params, exportType, GetNotesByFieldActivityIdResponse.class, pageable);
     }

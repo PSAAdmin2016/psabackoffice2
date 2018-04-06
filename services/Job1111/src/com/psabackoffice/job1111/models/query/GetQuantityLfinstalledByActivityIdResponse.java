@@ -12,7 +12,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class GetErectionTotalResponse implements Serializable {
+public class GetQuantityLfinstalledByActivityIdResponse implements Serializable {
 
 
     @JsonProperty("Total")
@@ -30,9 +30,9 @@ public class GetErectionTotalResponse implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GetErectionTotalResponse)) return false;
-        final GetErectionTotalResponse getErectionTotalResponse = (GetErectionTotalResponse) o;
-        return Objects.equals(getTotal(), getErectionTotalResponse.getTotal());
+        if (!(o instanceof GetQuantityLfinstalledByActivityIdResponse)) return false;
+        final GetQuantityLfinstalledByActivityIdResponse getQuantityLfinstalledByActivityIdResponse = (GetQuantityLfinstalledByActivityIdResponse) o;
+        return Objects.equals(getTotal(), getQuantityLfinstalledByActivityIdResponse.getTotal());
     }
 
     @Override

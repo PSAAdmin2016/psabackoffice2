@@ -18,80 +18,39 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UpdateCivilFaRequest implements Serializable {
 
 
-    @JsonProperty("Description")
-    private String description;
-
-    @JsonProperty("Foundation")
-    private String foundation;
-
-    @JsonProperty("Drawing")
-    private String drawing;
-
-    @JsonProperty("DetailDrawing")
-    private String detailDrawing;
+    @JsonProperty("Quantity")
+    @NotNull
+    private String quantity;
 
     @JsonProperty("Percent")
-    private BigDecimal percent;
-
-    @JsonProperty("Quantity")
-    private Integer quantity;
+    @NotNull
+    private String percent;
 
     @JsonProperty("Rework")
+    @NotNull
     private Integer rework;
 
     @JsonProperty("Notes")
     private String notes;
 
-    @JsonProperty("FieldActivityID")
+    @JsonProperty("ActivityID")
     @NotNull
-    private Integer fieldActivityId;
+    private String activityId;
 
-    public String getDescription() {
-        return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getFoundation() {
-        return this.foundation;
-    }
-
-    public void setFoundation(String foundation) {
-        this.foundation = foundation;
-    }
-
-    public String getDrawing() {
-        return this.drawing;
-    }
-
-    public void setDrawing(String drawing) {
-        this.drawing = drawing;
-    }
-
-    public String getDetailDrawing() {
-        return this.detailDrawing;
-    }
-
-    public void setDetailDrawing(String detailDrawing) {
-        this.detailDrawing = detailDrawing;
-    }
-
-    public BigDecimal getPercent() {
-        return this.percent;
-    }
-
-    public void setPercent(BigDecimal percent) {
-        this.percent = percent;
-    }
-
-    public Integer getQuantity() {
+    public String getQuantity() {
         return this.quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
+    }
+
+    public String getPercent() {
+        return this.percent;
+    }
+
+    public void setPercent(String percent) {
+        this.percent = percent;
     }
 
     public Integer getRework() {
@@ -110,12 +69,12 @@ public class UpdateCivilFaRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public String getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(String activityId) {
+        this.activityId = activityId;
     }
 
     @Override
@@ -123,27 +82,19 @@ public class UpdateCivilFaRequest implements Serializable {
         if (this == o) return true;
         if (!(o instanceof UpdateCivilFaRequest)) return false;
         final UpdateCivilFaRequest updateCivilFaRequest = (UpdateCivilFaRequest) o;
-        return Objects.equals(getDescription(), updateCivilFaRequest.getDescription()) &&
-                Objects.equals(getFoundation(), updateCivilFaRequest.getFoundation()) &&
-                Objects.equals(getDrawing(), updateCivilFaRequest.getDrawing()) &&
-                Objects.equals(getDetailDrawing(), updateCivilFaRequest.getDetailDrawing()) &&
+        return Objects.equals(getQuantity(), updateCivilFaRequest.getQuantity()) &&
                 Objects.equals(getPercent(), updateCivilFaRequest.getPercent()) &&
-                Objects.equals(getQuantity(), updateCivilFaRequest.getQuantity()) &&
                 Objects.equals(getRework(), updateCivilFaRequest.getRework()) &&
                 Objects.equals(getNotes(), updateCivilFaRequest.getNotes()) &&
-                Objects.equals(getFieldActivityId(), updateCivilFaRequest.getFieldActivityId());
+                Objects.equals(getActivityId(), updateCivilFaRequest.getActivityId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getDescription(),
-                getFoundation(),
-                getDrawing(),
-                getDetailDrawing(),
+        return Objects.hash(getQuantity(),
                 getPercent(),
-                getQuantity(),
                 getRework(),
                 getNotes(),
-                getFieldActivityId());
+                getActivityId());
     }
 }

@@ -7,6 +7,7 @@ package com.psabackoffice.job1111.models.query;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -15,6 +16,10 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetBidWorkHistoryPipeResponse implements Serializable {
 
+
+    @JsonProperty("SubmissionID")
+    @ColumnAlias("SubmissionID")
+    private Integer submissionId;
 
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
@@ -26,15 +31,11 @@ public class GetBidWorkHistoryPipeResponse implements Serializable {
 
     @JsonProperty("Quantity")
     @ColumnAlias("Quantity")
-    private Double quantity;
+    private BigDecimal quantity;
 
     @JsonProperty("Notes")
     @ColumnAlias("Notes")
     private String notes;
-
-    @JsonProperty("Rev")
-    @ColumnAlias("Rev")
-    private Short rev;
 
     @JsonProperty("Rework")
     @ColumnAlias("Rework")
@@ -56,6 +57,14 @@ public class GetBidWorkHistoryPipeResponse implements Serializable {
     @ColumnAlias("ReviewedTime")
     private Timestamp reviewedTime;
 
+    public Integer getSubmissionId() {
+        return this.submissionId;
+    }
+
+    public void setSubmissionId(Integer submissionId) {
+        this.submissionId = submissionId;
+    }
+
     public Integer getActivityId() {
         return this.activityId;
     }
@@ -72,11 +81,11 @@ public class GetBidWorkHistoryPipeResponse implements Serializable {
         this.activityType = activityType;
     }
 
-    public Double getQuantity() {
+    public BigDecimal getQuantity() {
         return this.quantity;
     }
 
-    public void setQuantity(Double quantity) {
+    public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
     }
 
@@ -86,14 +95,6 @@ public class GetBidWorkHistoryPipeResponse implements Serializable {
 
     public void setNotes(String notes) {
         this.notes = notes;
-    }
-
-    public Short getRev() {
-        return this.rev;
-    }
-
-    public void setRev(Short rev) {
-        this.rev = rev;
     }
 
     public String getRework() {
@@ -141,11 +142,11 @@ public class GetBidWorkHistoryPipeResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetBidWorkHistoryPipeResponse)) return false;
         final GetBidWorkHistoryPipeResponse getBidWorkHistoryPipeResponse = (GetBidWorkHistoryPipeResponse) o;
-        return Objects.equals(getActivityId(), getBidWorkHistoryPipeResponse.getActivityId()) &&
+        return Objects.equals(getSubmissionId(), getBidWorkHistoryPipeResponse.getSubmissionId()) &&
+                Objects.equals(getActivityId(), getBidWorkHistoryPipeResponse.getActivityId()) &&
                 Objects.equals(getActivityType(), getBidWorkHistoryPipeResponse.getActivityType()) &&
                 Objects.equals(getQuantity(), getBidWorkHistoryPipeResponse.getQuantity()) &&
                 Objects.equals(getNotes(), getBidWorkHistoryPipeResponse.getNotes()) &&
-                Objects.equals(getRev(), getBidWorkHistoryPipeResponse.getRev()) &&
                 Objects.equals(getRework(), getBidWorkHistoryPipeResponse.getRework()) &&
                 Objects.equals(getForeman(), getBidWorkHistoryPipeResponse.getForeman()) &&
                 Objects.equals(getSupervisor(), getBidWorkHistoryPipeResponse.getSupervisor()) &&
@@ -155,11 +156,11 @@ public class GetBidWorkHistoryPipeResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getActivityId(),
+        return Objects.hash(getSubmissionId(),
+                getActivityId(),
                 getActivityType(),
                 getQuantity(),
                 getNotes(),
-                getRev(),
                 getRework(),
                 getForeman(),
                 getSupervisor(),

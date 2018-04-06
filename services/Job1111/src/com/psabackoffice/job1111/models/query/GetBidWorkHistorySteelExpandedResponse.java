@@ -50,7 +50,7 @@ public class GetBidWorkHistorySteelExpandedResponse implements Serializable {
 
     @JsonProperty("Percent")
     @ColumnAlias("Percent")
-    private String percent;
+    private Float percent;
 
     @JsonProperty("Notes")
     @ColumnAlias("Notes")
@@ -124,11 +124,11 @@ public class GetBidWorkHistorySteelExpandedResponse implements Serializable {
         this.quantity = quantity;
     }
 
-    public String getPercent() {
+    public Float getPercent() {
         return this.percent;
     }
 
-    public void setPercent(String percent) {
+    public void setPercent(Float percent) {
         this.percent = percent;
     }
 

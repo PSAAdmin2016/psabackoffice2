@@ -5,27 +5,29 @@
     <sql-query name="GetBidWorkHistorySteel">
         <![CDATA[
         SELECT sas.SubmissionID, 
+
+sum(COALESCE(stls.FAQuantity,0)) AS ShakeQuantity,
+sum(COALESCE(stle.FAQuantity,0)) AS ErectQuantity,
+sum(COALESCE(stle.FAPercentCompleted,0)) AS ErectPercent,
+sum(COALESCE(stlb.FAQuantity,0)) AS BoltoutQuantity,
+sum(COALESCE(stlb.FAPercentCompleted,0)) AS BoltoutPercent,
+sum(COALESCE(stli.FAQuantity,0)) AS ImpQuantity,
+sum(COALESCE(stli.FAPercentCompleted,0)) AS ImpPercent,
+sum(COALESCE(stlw.FAQuantity,0)) AS WeldQuantity,
+sum(COALESCE(stlw.FAPercentCompleted,0)) AS WeldPercent,
+sum(COALESCE(stlsell.FAQuantity,0)) AS SellQuantity,
+sum(COALESCE(stld.DemoQuantity,0)) AS DemoQuantity,
+sum(COALESCE(stlm.MiscQuantity,0)) AS MiscQuantity,
+
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
 sd.CompleteTime, 
-max(sasr.TimeStamp) AS ReviewedTime,
-
-sum(COALESCE(stls.FAShakeQuantity,0)) AS ShakeQuantity,
-sum(COALESCE(stle.FAErectQuantity,0)) AS ErectQuantity,
-sum(COALESCE(stle.FAErectPercent,0)) AS ErectPercent,
-sum(COALESCE(stlb.FABoltOutQuantity,0)) AS BoltoutQuantity,
-sum(COALESCE(stlb.FABoltOutPercent,0)) AS BoltoutPercent,
-sum(COALESCE(stli.FAImpQuantity,0)) AS ImpQuantity,
-sum(COALESCE(stli.FAImpPercent,0)) AS ImpPercent,
-sum(COALESCE(stlw.FAWeldQuantity,0)) AS WeldQuantity,
-sum(COALESCE(stlw.FAWeldPercent,0)) AS WeldPercent,
-sum(COALESCE(stlsell.FASellQuantity,0)) AS SellQuantity,
-sum(COALESCE(stld.DemoQuantity,0)) AS DemoQuantity,
-sum(COALESCE(stlm.MiscQuantity,0)) AS MiscQuantity
+max(sasr.TimeStamp) AS ReviewedTime
 
 
 FROM SubmissionActivityStatus sas
 
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sas.SubmissionID = sd.SubmissionId
 LEFT JOIN PSA.tblCrews tc
@@ -36,35 +38,25 @@ LEFT JOIN PSA.tblUserPSA u1
 		ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-        
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp
-			FROM SubmissionActivityStatusREV sasr
-            WHERE sasr.fk_ActivityStatus = 2
-            AND sasr.ActivityType IN (61,62,63,64,65,67,68,96)
-            GROUP BY sasr.fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = sas.ActivityID 
 
-LEFT JOIN SteelShake stls
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+        
+#### Assigned Activities Joins #####    
+LEFT JOIN SteelFA stls
 	ON stls.ActivityID = sas.ActivityID
-    
-LEFT JOIN SteelErect stle
+LEFT JOIN SteelFA stle
 	ON stle.ActivityID = sas.ActivityID
-    
-LEFT JOIN SteelBoltOut stlb
+LEFT JOIN SteelFA stlb
 	ON stlb.ActivityID = sas.ActivityID
-    
-LEFT JOIN SteelImp stli
+LEFT JOIN SteelFA stli
 	ON stli.ActivityID = sas.ActivityID
-    
-LEFT JOIN SteelWeld stlw
+LEFT JOIN SteelFA stlw
 	ON stlw.ActivityID = sas.ActivityID
-    
-LEFT JOIN SteelSell stlsell
+LEFT JOIN SteelFA stlsell
 	ON stlsell.ActivityID = sas.ActivityID
-    
 LEFT JOIN SteelDemo stld
 	ON stld.ActivityID = sas.ActivityID
-    
 LEFT JOIN SteelMisc stlm
 	ON stlm.ActivityID = sas.ActivityID
 
@@ -81,27 +73,29 @@ GROUP BY sas.SubmissionID
     <sql-query name="GetBidWorkHistorySteel__count">
         <![CDATA[
         select count(*) from (SELECT sas.SubmissionID, 
+
+sum(COALESCE(stls.FAQuantity,0)) AS ShakeQuantity,
+sum(COALESCE(stle.FAQuantity,0)) AS ErectQuantity,
+sum(COALESCE(stle.FAPercentCompleted,0)) AS ErectPercent,
+sum(COALESCE(stlb.FAQuantity,0)) AS BoltoutQuantity,
+sum(COALESCE(stlb.FAPercentCompleted,0)) AS BoltoutPercent,
+sum(COALESCE(stli.FAQuantity,0)) AS ImpQuantity,
+sum(COALESCE(stli.FAPercentCompleted,0)) AS ImpPercent,
+sum(COALESCE(stlw.FAQuantity,0)) AS WeldQuantity,
+sum(COALESCE(stlw.FAPercentCompleted,0)) AS WeldPercent,
+sum(COALESCE(stlsell.FAQuantity,0)) AS SellQuantity,
+sum(COALESCE(stld.DemoQuantity,0)) AS DemoQuantity,
+sum(COALESCE(stlm.MiscQuantity,0)) AS MiscQuantity,
+
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
 sd.CompleteTime, 
-max(sasr.TimeStamp) AS ReviewedTime,
-
-sum(COALESCE(stls.FAShakeQuantity,0)) AS ShakeQuantity,
-sum(COALESCE(stle.FAErectQuantity,0)) AS ErectQuantity,
-sum(COALESCE(stle.FAErectPercent,0)) AS ErectPercent,
-sum(COALESCE(stlb.FABoltOutQuantity,0)) AS BoltoutQuantity,
-sum(COALESCE(stlb.FABoltOutPercent,0)) AS BoltoutPercent,
-sum(COALESCE(stli.FAImpQuantity,0)) AS ImpQuantity,
-sum(COALESCE(stli.FAImpPercent,0)) AS ImpPercent,
-sum(COALESCE(stlw.FAWeldQuantity,0)) AS WeldQuantity,
-sum(COALESCE(stlw.FAWeldPercent,0)) AS WeldPercent,
-sum(COALESCE(stlsell.FASellQuantity,0)) AS SellQuantity,
-sum(COALESCE(stld.DemoQuantity,0)) AS DemoQuantity,
-sum(COALESCE(stlm.MiscQuantity,0)) AS MiscQuantity
+max(sasr.TimeStamp) AS ReviewedTime
 
 
 FROM SubmissionActivityStatus sas
 
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sas.SubmissionID = sd.SubmissionId
 LEFT JOIN PSA.tblCrews tc
@@ -112,35 +106,25 @@ LEFT JOIN PSA.tblUserPSA u1
 		ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-        
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp
-			FROM SubmissionActivityStatusREV sasr
-            WHERE sasr.fk_ActivityStatus = 2
-            AND sasr.ActivityType IN (61,62,63,64,65,67,68,96)
-            GROUP BY sasr.fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = sas.ActivityID 
 
-LEFT JOIN SteelShake stls
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+        
+#### Assigned Activities Joins #####    
+LEFT JOIN SteelFA stls
 	ON stls.ActivityID = sas.ActivityID
-    
-LEFT JOIN SteelErect stle
+LEFT JOIN SteelFA stle
 	ON stle.ActivityID = sas.ActivityID
-    
-LEFT JOIN SteelBoltOut stlb
+LEFT JOIN SteelFA stlb
 	ON stlb.ActivityID = sas.ActivityID
-    
-LEFT JOIN SteelImp stli
+LEFT JOIN SteelFA stli
 	ON stli.ActivityID = sas.ActivityID
-    
-LEFT JOIN SteelWeld stlw
+LEFT JOIN SteelFA stlw
 	ON stlw.ActivityID = sas.ActivityID
-    
-LEFT JOIN SteelSell stlsell
+LEFT JOIN SteelFA stlsell
 	ON stlsell.ActivityID = sas.ActivityID
-    
 LEFT JOIN SteelDemo stld
 	ON stld.ActivityID = sas.ActivityID
-    
 LEFT JOIN SteelMisc stlm
 	ON stlm.ActivityID = sas.ActivityID
 
@@ -152,24 +136,6 @@ AND sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.SubmissionID) wmTempTable
         ]]>
     <query-param name="BidID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetErectionTotal">
-        <![CDATA[
-        SELECT e.ErectionLengthSpool1 + e.ErectionLengthSpool2 + e.ErectionLengthSpool3 + e.ErectionLengthSpool4 + e.ErectionLengthSpool5 + e.ErectionLengthSpool6 AS Total
-FROM PipeErection e
-WHERE ActivityID = :ActivityId
-        ]]>
-    <query-param name="ActivityId" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetErectionTotal__count">
-        <![CDATA[
-        select count(*) from (SELECT e.ErectionLengthSpool1 + e.ErectionLengthSpool2 + e.ErectionLengthSpool3 + e.ErectionLengthSpool4 + e.ErectionLengthSpool5 + e.ErectionLengthSpool6 AS Total
-FROM PipeErection e
-WHERE ActivityID = :ActivityId) wmTempTable
-        ]]>
-    <query-param name="ActivityId" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetQuantitiesTestPackageSteel">
@@ -1536,7 +1502,7 @@ COALESCE(cfa.FAQuantity,0) AS Quantity,
 
 (COALESCE(cfa.FAPercentCompleted,0)  * 100) AS PercentClaimed,
 
-cfa.FANotes, 
+COALESCE(cfa.FANotes, '') AS Notes,
 cfa.FARework
 
 
@@ -1553,6 +1519,7 @@ LEFT JOIN PSA.tblUserPSA u1
 	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
+
 LEFT JOIN SubmissionActivityStatusREV sasr
 	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
         
@@ -1586,7 +1553,7 @@ COALESCE(cfa.FAQuantity,0) AS Quantity,
 
 (COALESCE(cfa.FAPercentCompleted,0)  * 100) AS PercentClaimed,
 
-cfa.FANotes, 
+COALESCE(cfa.FANotes, '') AS Notes,
 cfa.FARework
 
 
@@ -1603,6 +1570,7 @@ LEFT JOIN PSA.tblUserPSA u1
 	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
+
 LEFT JOIN SubmissionActivityStatusREV sasr
 	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
         
@@ -1630,7 +1598,7 @@ FROM SteelTrackerDetails std
 WHERE std.TestPackageNumber = :TestPackage
 ORDER BY std.Area, std.PieceMark
         ]]>
-    <query-param name="TestPackage" type="java.lang.Integer"/>
+    <query-param name="TestPackage" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="GetDrawingByTestPackageSteel__count">
@@ -1640,31 +1608,25 @@ FROM SteelTrackerDetails std
 WHERE std.TestPackageNumber = :TestPackage
 ORDER BY std.Area, std.PieceMark) wmTempTable
         ]]>
-    <query-param name="TestPackage" type="java.lang.Integer"/>
+    <query-param name="TestPackage" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="GetQuantityBoltUpInstalled">
         <![CDATA[
-        SELECT COALESCE(sum(COALESCE(pb.BoltUpQuantity,0) + COALESCE(pmb.MiscQuantity,0)),0) AS Total
+        SELECT SUM(COALESCE(pcb.ConnectionQuantity,0) + COALESCE(pmb.MiscQuantity,0)) AS Total
 
 FROM SubmissionActivityStatus sas
 
-	LEFT JOIN PipeBoltUp pb
-		ON pb.ActivityID = sas.ActivityID AND pb.BoltUpRework = 0
-	
-	LEFT JOIN PipeMisc pm
-		ON pm.ActivityID = sas.ActivityID AND pm.MiscRework = 0
+LEFT JOIN PipeConnection pcb
+	ON pcb.ActivityID = sas.ActivityID AND pcb.ConnectionRework = 0
+LEFT JOIN PipeMisc pm
+	ON pm.ActivityID = sas.ActivityID AND pm.MiscRework = 0
 
+LEFT JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = sas.fk_BidIDAssigned
     
-    LEFT JOIN (SELECT min(ID) AS ID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ECT, PipingActivityType
-				FROM `PipeTrackerDetails`
-				GROUP BY BidID) ptd
-		ON ptd.BidID = sas.fk_BidIDAssigned
-        
-                
-	LEFT JOIN PipeMisc pmb
-				ON pmb.ActivityID = sas.ActivityID AND ptd.PipingActivityType = "BU" AND pmb.MiscRework = 0
-
+LEFT JOIN PipeMisc pmb
+	ON pmb.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "BU" AND pmb.MiscRework = 0
 
 WHERE sas.ActivityType IN (21, 91)
 AND sas.fk_ActivityStatus IN (5,12) 
@@ -1675,26 +1637,20 @@ AND fk_BidIDAssigned = :BidID
 
     <sql-query name="GetQuantityBoltUpInstalled__count">
         <![CDATA[
-        select count(*) from (SELECT COALESCE(sum(COALESCE(pb.BoltUpQuantity,0) + COALESCE(pmb.MiscQuantity,0)),0) AS Total
+        select count(*) from (SELECT SUM(COALESCE(pcb.ConnectionQuantity,0) + COALESCE(pmb.MiscQuantity,0)) AS Total
 
 FROM SubmissionActivityStatus sas
 
-	LEFT JOIN PipeBoltUp pb
-		ON pb.ActivityID = sas.ActivityID AND pb.BoltUpRework = 0
-	
-	LEFT JOIN PipeMisc pm
-		ON pm.ActivityID = sas.ActivityID AND pm.MiscRework = 0
+LEFT JOIN PipeConnection pcb
+	ON pcb.ActivityID = sas.ActivityID AND pcb.ConnectionRework = 0
+LEFT JOIN PipeMisc pm
+	ON pm.ActivityID = sas.ActivityID AND pm.MiscRework = 0
 
+LEFT JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = sas.fk_BidIDAssigned
     
-    LEFT JOIN (SELECT min(ID) AS ID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ECT, PipingActivityType
-				FROM `PipeTrackerDetails`
-				GROUP BY BidID) ptd
-		ON ptd.BidID = sas.fk_BidIDAssigned
-        
-                
-	LEFT JOIN PipeMisc pmb
-				ON pmb.ActivityID = sas.ActivityID AND ptd.PipingActivityType = "BU" AND pmb.MiscRework = 0
-
+LEFT JOIN PipeMisc pmb
+	ON pmb.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "BU" AND pmb.MiscRework = 0
 
 WHERE sas.ActivityType IN (21, 91)
 AND sas.fk_ActivityStatus IN (5,12) 
@@ -1772,28 +1728,17 @@ WHERE ActivityID = :FieldActivityID
     <query-param name="FieldActivityID" type="java.lang.Integer"/>
     </sql-query>
 
-    <sql-query name="UpdateCivilMiscQuantity">
-        <![CDATA[
-        UPDATE `CivilMisc` 
-SET 
-`MiscPercentComplete`= :Percent
-WHERE `ActivityID`= :FieldActivityID
-        ]]>
-    <query-param name="Percent" type="java.math.BigDecimal"/>
-    <query-param name="FieldActivityID" type="java.lang.Integer"/>
-    </sql-query>
-
     <sql-query name="GetReportDPRSteelDetailed">
         <![CDATA[
         SELECT  
-(IF(stls.FAArea IS NOT NULL, stls.FAArea,
-IF(stle.FAArea IS NOT NULL, stle.FAArea,
-IF(stlb.FAArea IS NOT NULL, stlb.FAArea,
-IF(stli.FAArea IS NOT NULL, stli.FAArea,
-IF(stlw.FAArea IS NOT NULL, stlw.FAArea,
-IF(stlsell.FAArea IS NOT NULL, stlsell.FAArea,
-IF(stlm.MiscArea IS NOT NULL, stlm.MiscArea,0)
-))))))) AS Area,
+(IF(stls.FASortGroup1 IS NOT NULL, stls.FASortGroup1,
+IF(stle.FASortGroup1 IS NOT NULL, stle.FASortGroup1,
+IF(stlb.FASortGroup1 IS NOT NULL, stlb.FASortGroup1,
+IF(stli.FASortGroup1 IS NOT NULL, stli.FASortGroup1,
+IF(stlw.FASortGroup1 IS NOT NULL, stlw.FASortGroup1,
+IF(stlsell.FASortGroup1 IS NOT NULL, stlsell.FASortGroup1,
+IF(stlm.MiscSortGroup1 IS NOT NULL, stlm.MiscSortGroup1,0)
+))))))) AS SortGroup1,
 
 (IF(stls.FAPieceNumber IS NOT NULL, stls.FAPieceNumber,
 IF(stle.FAPieceNumber IS NOT NULL, stle.FAPieceNumber,
@@ -1804,16 +1749,16 @@ IF(stlsell.FAPieceNumber IS NOT NULL, stlsell.FAPieceNumber,
 IF(stlm.MiscPieceNumber IS NOT NULL, stlm.MiscPieceNumber,0)
 ))))))) AS PieceNumber,
 
-COALESCE(stls.FAShakeQuantity,0) AS ShakeQuantity,
-COALESCE(stle.FAErectQuantity,0) AS ErectQuantity,
-CONCAT(TRUNCATE(COALESCE(stle.FAErectPercent,0) * 100,0), '%') AS ErectPercent,
-COALESCE(stlb.FABoltOutQuantity,0) AS BoltoutQuantity,
-CONCAT(TRUNCATE(COALESCE(stlb.FABoltOutPercent,0) * 100,0), '%') AS BoltoutPercent,
-COALESCE(stli.FAImpQuantity,0) AS ImpQuantity,
-CONCAT(TRUNCATE(COALESCE(stli.FAImpPercent,0) * 100,0), '%') AS ImpPercent,
-COALESCE(stlw.FAWeldQuantity,0) AS WeldQuantity,
-CONCAT(TRUNCATE(COALESCE(stlw.FAWeldPercent,0) * 100,0), '%') AS WeldPercent,
-COALESCE(stlsell.FASellQuantity,0) AS SellQuantity,
+COALESCE(stls.FAQuantity,0) AS ShakeQuantity,
+COALESCE(stle.FAQuantity,0) AS ErectQuantity,
+CONCAT(TRUNCATE(COALESCE(stle.FAPercentCompleted,0) * 100,0), '%') AS ErectPercent,
+COALESCE(stlb.FAQuantity,0) AS BoltoutQuantity,
+CONCAT(TRUNCATE(COALESCE(stlb.FAPercentCompleted,0) * 100,0), '%') AS BoltoutPercent,
+COALESCE(stli.FAQuantity,0) AS ImpQuantity,
+CONCAT(TRUNCATE(COALESCE(stli.FAPercentCompleted,0) * 100,0), '%') AS ImpPercent,
+COALESCE(stlw.FAQuantity,0) AS WeldQuantity,
+CONCAT(TRUNCATE(COALESCE(stlw.FAPercentCompleted,0) * 100,0), '%') AS WeldPercent,
+COALESCE(stlsell.FAQuantity,0) AS SellQuantity,
 COALESCE(stld.DemoQuantity,0) AS DemoQuantity,
 COALESCE(stlm.MiscQuantity,0) AS MiscQuantity,
 DATE(sd.ReceivedTime) AS ReceivedTime,
@@ -1821,27 +1766,30 @@ DATE(sd.ReceivedTime) AS ReceivedTime,
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN SubsDetails sd
+JOIN SubsDetails sd
 	ON sas.SubmissionID = sd.SubmissionId
-LEFT JOIN PSA.REF_ActivityStatuses ats
-    ON ats.ID = sas.fk_ActivityStatus
 LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 
-LEFT JOIN SteelShake stls
-	ON stls.ActivityID = sas.ActivityID
-LEFT JOIN SteelErect stle
-	ON stle.ActivityID = sas.ActivityID
-LEFT JOIN SteelBoltOut stlb
-	ON stlb.ActivityID = sas.ActivityID
-LEFT JOIN SteelImp stli
-	ON stli.ActivityID = sas.ActivityID
-LEFT JOIN SteelWeld stlw
-	ON stlw.ActivityID = sas.ActivityID
-LEFT JOIN SteelSell stlsell
-	ON stlsell.ActivityID = sas.ActivityID
+JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+
+LEFT JOIN SteelFA stls
+	ON stls.ActivityID = sas.ActivityID AND sas.ActivityType = 61
+LEFT JOIN SteelFA stle
+	ON stle.ActivityID = sas.ActivityID AND sas.ActivityType = 62
+LEFT JOIN SteelFA stlb
+	ON stlb.ActivityID = sas.ActivityID AND sas.ActivityType = 63
+LEFT JOIN SteelFA stli
+	ON stli.ActivityID = sas.ActivityID AND sas.ActivityType = 64
+LEFT JOIN SteelFA stlw
+	ON stlw.ActivityID = sas.ActivityID AND sas.ActivityType = 68
+LEFT JOIN SteelFA stlsell
+	ON stlsell.ActivityID = sas.ActivityID AND sas.ActivityType = 65
 LEFT JOIN SteelDemo stld
 	ON stld.ActivityID = sas.ActivityID
 LEFT JOIN SteelMisc stlm
@@ -1874,14 +1822,14 @@ GROUP BY sas.ActivityID, Date(sd.ReceivedTime)
     <sql-query name="GetReportDPRSteelDetailed__count">
         <![CDATA[
         select count(*) from (SELECT  
-(IF(stls.FAArea IS NOT NULL, stls.FAArea,
-IF(stle.FAArea IS NOT NULL, stle.FAArea,
-IF(stlb.FAArea IS NOT NULL, stlb.FAArea,
-IF(stli.FAArea IS NOT NULL, stli.FAArea,
-IF(stlw.FAArea IS NOT NULL, stlw.FAArea,
-IF(stlsell.FAArea IS NOT NULL, stlsell.FAArea,
-IF(stlm.MiscArea IS NOT NULL, stlm.MiscArea,0)
-))))))) AS Area,
+(IF(stls.FASortGroup1 IS NOT NULL, stls.FASortGroup1,
+IF(stle.FASortGroup1 IS NOT NULL, stle.FASortGroup1,
+IF(stlb.FASortGroup1 IS NOT NULL, stlb.FASortGroup1,
+IF(stli.FASortGroup1 IS NOT NULL, stli.FASortGroup1,
+IF(stlw.FASortGroup1 IS NOT NULL, stlw.FASortGroup1,
+IF(stlsell.FASortGroup1 IS NOT NULL, stlsell.FASortGroup1,
+IF(stlm.MiscSortGroup1 IS NOT NULL, stlm.MiscSortGroup1,0)
+))))))) AS SortGroup1,
 
 (IF(stls.FAPieceNumber IS NOT NULL, stls.FAPieceNumber,
 IF(stle.FAPieceNumber IS NOT NULL, stle.FAPieceNumber,
@@ -1892,16 +1840,16 @@ IF(stlsell.FAPieceNumber IS NOT NULL, stlsell.FAPieceNumber,
 IF(stlm.MiscPieceNumber IS NOT NULL, stlm.MiscPieceNumber,0)
 ))))))) AS PieceNumber,
 
-COALESCE(stls.FAShakeQuantity,0) AS ShakeQuantity,
-COALESCE(stle.FAErectQuantity,0) AS ErectQuantity,
-CONCAT(TRUNCATE(COALESCE(stle.FAErectPercent,0) * 100,0), '%') AS ErectPercent,
-COALESCE(stlb.FABoltOutQuantity,0) AS BoltoutQuantity,
-CONCAT(TRUNCATE(COALESCE(stlb.FABoltOutPercent,0) * 100,0), '%') AS BoltoutPercent,
-COALESCE(stli.FAImpQuantity,0) AS ImpQuantity,
-CONCAT(TRUNCATE(COALESCE(stli.FAImpPercent,0) * 100,0), '%') AS ImpPercent,
-COALESCE(stlw.FAWeldQuantity,0) AS WeldQuantity,
-CONCAT(TRUNCATE(COALESCE(stlw.FAWeldPercent,0) * 100,0), '%') AS WeldPercent,
-COALESCE(stlsell.FASellQuantity,0) AS SellQuantity,
+COALESCE(stls.FAQuantity,0) AS ShakeQuantity,
+COALESCE(stle.FAQuantity,0) AS ErectQuantity,
+CONCAT(TRUNCATE(COALESCE(stle.FAPercentCompleted,0) * 100,0), '%') AS ErectPercent,
+COALESCE(stlb.FAQuantity,0) AS BoltoutQuantity,
+CONCAT(TRUNCATE(COALESCE(stlb.FAPercentCompleted,0) * 100,0), '%') AS BoltoutPercent,
+COALESCE(stli.FAQuantity,0) AS ImpQuantity,
+CONCAT(TRUNCATE(COALESCE(stli.FAPercentCompleted,0) * 100,0), '%') AS ImpPercent,
+COALESCE(stlw.FAQuantity,0) AS WeldQuantity,
+CONCAT(TRUNCATE(COALESCE(stlw.FAPercentCompleted,0) * 100,0), '%') AS WeldPercent,
+COALESCE(stlsell.FAQuantity,0) AS SellQuantity,
 COALESCE(stld.DemoQuantity,0) AS DemoQuantity,
 COALESCE(stlm.MiscQuantity,0) AS MiscQuantity,
 DATE(sd.ReceivedTime) AS ReceivedTime,
@@ -1909,27 +1857,30 @@ DATE(sd.ReceivedTime) AS ReceivedTime,
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN SubsDetails sd
+JOIN SubsDetails sd
 	ON sas.SubmissionID = sd.SubmissionId
-LEFT JOIN PSA.REF_ActivityStatuses ats
-    ON ats.ID = sas.fk_ActivityStatus
 LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 
-LEFT JOIN SteelShake stls
-	ON stls.ActivityID = sas.ActivityID
-LEFT JOIN SteelErect stle
-	ON stle.ActivityID = sas.ActivityID
-LEFT JOIN SteelBoltOut stlb
-	ON stlb.ActivityID = sas.ActivityID
-LEFT JOIN SteelImp stli
-	ON stli.ActivityID = sas.ActivityID
-LEFT JOIN SteelWeld stlw
-	ON stlw.ActivityID = sas.ActivityID
-LEFT JOIN SteelSell stlsell
-	ON stlsell.ActivityID = sas.ActivityID
+JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+
+LEFT JOIN SteelFA stls
+	ON stls.ActivityID = sas.ActivityID AND sas.ActivityType = 61
+LEFT JOIN SteelFA stle
+	ON stle.ActivityID = sas.ActivityID AND sas.ActivityType = 62
+LEFT JOIN SteelFA stlb
+	ON stlb.ActivityID = sas.ActivityID AND sas.ActivityType = 63
+LEFT JOIN SteelFA stli
+	ON stli.ActivityID = sas.ActivityID AND sas.ActivityType = 64
+LEFT JOIN SteelFA stlw
+	ON stlw.ActivityID = sas.ActivityID AND sas.ActivityType = 68
+LEFT JOIN SteelFA stlsell
+	ON stlsell.ActivityID = sas.ActivityID AND sas.ActivityType = 65
 LEFT JOIN SteelDemo stld
 	ON stld.ActivityID = sas.ActivityID
 LEFT JOIN SteelMisc stlm
@@ -1957,27 +1908,6 @@ GROUP BY sas.ActivityID, Date(sd.ReceivedTime)) wmTempTable
     <query-param name="Foreman" type="java.lang.String"/>
     <query-param name="StartDate" type="java.sql.Date"/>
     <query-param name="EndDate" type="java.sql.Date"/>
-    </sql-query>
-
-    <sql-query name="UpdateCivilMisc">
-        <![CDATA[
-        UPDATE `CivilMisc` 
-SET 
-`MiscFoundation` = :Foundation,
-`MiscDrawingNumber` = :Drawing,
-`MiscDetailDrawingNumber` = :DetailDrawing,
-`MiscPercentComplete`= :Percent,
-`MiscRework` = :Rework,
-`MiscNotes` = :Notes
-WHERE `ActivityID`= :FieldActivityID
-        ]]>
-    <query-param name="Foundation" type="java.lang.String"/>
-    <query-param name="Drawing" type="java.lang.String"/>
-    <query-param name="DetailDrawing" type="java.lang.String"/>
-    <query-param name="Percent" type="java.math.BigDecimal"/>
-    <query-param name="Rework" type="java.lang.Integer"/>
-    <query-param name="Notes" type="java.lang.String"/>
-    <query-param name="FieldActivityID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="UpdateSteelWeld">
@@ -2161,14 +2091,13 @@ CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor,
 sd.CompleteTime, 
 max(sasr.TimeStamp) AS ReviewedTime,
 
-
 ### Quantities Installed ###
 sum(COALESCE(efa.FAQuantity,0)) AS Quantity,
 
-(COALESCE(efa.FAPercentComplete,0) * 100) AS PercentClaimed,
+(COALESCE(efa.FAPercentCompleted,0) * 100) AS PercentClaimed,
 
-IF(efa.FANotes IS NOT NULL, efa.FANotes, '') AS Notes,
-(efa.FARework = 1) AS Rework
+COALESCE(efa.FANotes, '') AS Notes,
+efa.FARework AS Rework
 
 
 
@@ -2186,27 +2115,20 @@ LEFT JOIN PSA.tblUserPSA u1
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
         
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp
-			FROM SubmissionActivityStatusREV sasr
-            WHERE sasr.fk_ActivityStatus = 2
-            AND sasr.ActivityType = 80
-            GROUP BY sasr.fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = sas.ActivityID 
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2 
 
 #### Assigned Activities Joins #####    
 JOIN PSA.REF_ActivityTypes at
 	ON at.ID = sas.ActivityType
-LEFT JOIN EquipFA efa
+JOIN EquipFA efa
 	ON efa.ActivityID = sas.ActivityID
 
-LEFT JOIN (SELECT min(UID) AS UID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours
-			FROM `EquipTrackerDetails`
-			GROUP BY BidID) etd
+LEFT JOIN EquipTrackerDetails etd
 	ON etd.BidID = sas.fk_BidIDAssigned
 
 WHERE sas.fk_BidIDAssigned = :BidID
-AND fk_ActivityStatus IN (5,12)
-AND sas.ActivityType = 80
+AND sas.fk_ActivityStatus IN (5,12)
 
 GROUP BY sas.ActivityID
         ]]>
@@ -2221,14 +2143,13 @@ CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor,
 sd.CompleteTime, 
 max(sasr.TimeStamp) AS ReviewedTime,
 
-
 ### Quantities Installed ###
 sum(COALESCE(efa.FAQuantity,0)) AS Quantity,
 
-(COALESCE(efa.FAPercentComplete,0) * 100) AS PercentClaimed,
+(COALESCE(efa.FAPercentCompleted,0) * 100) AS PercentClaimed,
 
-IF(efa.FANotes IS NOT NULL, efa.FANotes, '') AS Notes,
-(efa.FARework = 1) AS Rework
+COALESCE(efa.FANotes, '') AS Notes,
+efa.FARework AS Rework
 
 
 
@@ -2246,27 +2167,20 @@ LEFT JOIN PSA.tblUserPSA u1
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
         
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp
-			FROM SubmissionActivityStatusREV sasr
-            WHERE sasr.fk_ActivityStatus = 2
-            AND sasr.ActivityType = 80
-            GROUP BY sasr.fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = sas.ActivityID 
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2 
 
 #### Assigned Activities Joins #####    
 JOIN PSA.REF_ActivityTypes at
 	ON at.ID = sas.ActivityType
-LEFT JOIN EquipFA efa
+JOIN EquipFA efa
 	ON efa.ActivityID = sas.ActivityID
 
-LEFT JOIN (SELECT min(UID) AS UID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours
-			FROM `EquipTrackerDetails`
-			GROUP BY BidID) etd
+LEFT JOIN EquipTrackerDetails etd
 	ON etd.BidID = sas.fk_BidIDAssigned
 
 WHERE sas.fk_BidIDAssigned = :BidID
-AND fk_ActivityStatus IN (5,12)
-AND sas.ActivityType = 80
+AND sas.fk_ActivityStatus IN (5,12)
 
 GROUP BY sas.ActivityID) wmTempTable
         ]]>
@@ -2407,9 +2321,9 @@ WHERE `ActivityID`= :FieldActivityID
         SELECT sas.ActivityID, at.ActivityType, ats.Status, sas.TimeStamp
 
 FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
+JOIN PSA.REF_ActivityTypes at
 	on at.ID = sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats 
+JOIN PSA.REF_ActivityStatuses ats 
 	on ats.ID = sas.fk_ActivityStatus
 
 WHERE sas.TimeStamp BETWEEN now() - INTERVAL 2 DAY AND NOW()
@@ -2425,9 +2339,9 @@ ORDER BY sas.TimeStamp DESC
         select count(*) from (SELECT sas.ActivityID, at.ActivityType, ats.Status, sas.TimeStamp
 
 FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
+JOIN PSA.REF_ActivityTypes at
 	on at.ID = sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats 
+JOIN PSA.REF_ActivityStatuses ats 
 	on ats.ID = sas.fk_ActivityStatus
 
 WHERE sas.TimeStamp BETWEEN now() - INTERVAL 2 DAY AND NOW()
@@ -2602,7 +2516,7 @@ ORDER BY TimeStamp DESC) wmTempTable
         <![CDATA[
         SELECT *
 FROM SETTINGS
-WHERE Label = 'CompleteForTestPercent'
+WHERE Label = 'ReadyForTestPercent'
         ]]>
     </sql-query>
 
@@ -2610,7 +2524,7 @@ WHERE Label = 'CompleteForTestPercent'
         <![CDATA[
         select count(*) from (SELECT *
 FROM SETTINGS
-WHERE Label = 'CompleteForTestPercent') wmTempTable
+WHERE Label = 'ReadyForTestPercent') wmTempTable
         ]]>
     </sql-query>
 
@@ -2716,16 +2630,14 @@ WHERE BidID = :BidID) wmTempTable
 
     <sql-query name="GetQuantityMiscInstalled">
         <![CDATA[
-        SELECT COALESCE(sum(pm.MiscQuantity),0) AS Total
+        SELECT SUM(COALESCE(pm.MiscQuantity,0)) AS Total
 
 FROM SubmissionActivityStatus sas
 
-JOIN (SELECT min(ID) AS ID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ECT, PipingActivityType
-				FROM `PipeTrackerDetails`
-				GROUP BY BidID) ptd
-		ON ptd.BidID = sas.fk_BidIDAssigned
+JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = sas.fk_BidIDAssigned
 JOIN PipeMisc pm
-	ON pm.ActivityID = sas.ActivityID AND ptd.ECT != "D" AND ptd.PipingActivityType = "MISC"  AND pm.MiscRework = 0
+	ON pm.ActivityID = sas.ActivityID AND ptd.ActivityType != "MISC" AND pm.MiscRework = 0
 
 WHERE sas.fk_ActivityStatus IN (5,12) 
 AND fk_BidIDAssigned = :BidID
@@ -2735,16 +2647,14 @@ AND fk_BidIDAssigned = :BidID
 
     <sql-query name="GetQuantityMiscInstalled__count">
         <![CDATA[
-        select count(*) from (SELECT COALESCE(sum(pm.MiscQuantity),0) AS Total
+        select count(*) from (SELECT SUM(COALESCE(pm.MiscQuantity,0)) AS Total
 
 FROM SubmissionActivityStatus sas
 
-JOIN (SELECT min(ID) AS ID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ECT, PipingActivityType
-				FROM `PipeTrackerDetails`
-				GROUP BY BidID) ptd
-		ON ptd.BidID = sas.fk_BidIDAssigned
+JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = sas.fk_BidIDAssigned
 JOIN PipeMisc pm
-	ON pm.ActivityID = sas.ActivityID AND ptd.ECT != "D" AND ptd.PipingActivityType = "MISC"  AND pm.MiscRework = 0
+	ON pm.ActivityID = sas.ActivityID AND ptd.ActivityType != "MISC" AND pm.MiscRework = 0
 
 WHERE sas.fk_ActivityStatus IN (5,12) 
 AND fk_BidIDAssigned = :BidID) wmTempTable
@@ -2808,6 +2718,26 @@ SET `Value1`= :Value1
 WHERE `Label`='CivilSellPunchHoursPercent'
         ]]>
     <query-param name="Value1" type="java.math.BigDecimal"/>
+    </sql-query>
+
+    <sql-query name="GetQuantityLFInstalledByActivityID">
+        <![CDATA[
+        SELECT COALESCE(e.ErectionLengthSpool1,0) + COALESCE(e.ErectionLengthSpool2,0) + COALESCE(e.ErectionLengthSpool3,0) + COALESCE(e.ErectionLengthSpool4,0) + COALESCE(e.ErectionLengthSpool5,0) + COALESCE(e.ErectionLengthSpool6,0) AS Total
+
+FROM PipeErection e
+WHERE ActivityID = :ActivityId
+        ]]>
+    <query-param name="ActivityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetQuantityLFInstalledByActivityID__count">
+        <![CDATA[
+        select count(*) from (SELECT COALESCE(e.ErectionLengthSpool1,0) + COALESCE(e.ErectionLengthSpool2,0) + COALESCE(e.ErectionLengthSpool3,0) + COALESCE(e.ErectionLengthSpool4,0) + COALESCE(e.ErectionLengthSpool5,0) + COALESCE(e.ErectionLengthSpool6,0) AS Total
+
+FROM PipeErection e
+WHERE ActivityID = :ActivityId) wmTempTable
+        ]]>
+    <query-param name="ActivityId" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetActivityHistoryStatus">
@@ -3349,6 +3279,64 @@ ORDER BY SortGroup1, PieceMark) wmTempTable
     <query-param name="PieceMark" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="GetQuantityLFInstalledByBidID">
+        <![CDATA[
+        SELECT SUM(
+COALESCE(pe.ErectionLengthSpool1,0) + 
+COALESCE(pe.ErectionLengthSpool2,0) + 
+COALESCE(pe.ErectionLengthSpool3,0) + 
+COALESCE(pe.ErectionLengthSpool4,0) + 
+COALESCE(pe.ErectionLengthSpool5,0) + 
+COALESCE(pe.ErectionLengthSpool6,0) +
+COALESCE(pme.MiscQuantity,0)
+) AS Total 
+
+FROM SubmissionActivityStatus sas
+LEFT JOIN PipeErection pe
+	ON pe.ActivityID = sas.ActivityID AND pe.ErectionRework = 0
+	
+LEFT JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = sas.fk_BidIDAssigned
+	
+LEFT JOIN PipeMisc pme
+	ON pme.ActivityID = sas.ActivityID AND ptd.ActivityType = "PE" AND pme.MiscRework = 0
+
+WHERE sas.ActivityType IN (11, 91)
+AND sas.fk_ActivityStatus IN (5,12)
+AND fk_BidIDAssigned = :BidID
+        ]]>
+    <query-param name="BidID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetQuantityLFInstalledByBidID__count">
+        <![CDATA[
+        select count(*) from (SELECT SUM(
+COALESCE(pe.ErectionLengthSpool1,0) + 
+COALESCE(pe.ErectionLengthSpool2,0) + 
+COALESCE(pe.ErectionLengthSpool3,0) + 
+COALESCE(pe.ErectionLengthSpool4,0) + 
+COALESCE(pe.ErectionLengthSpool5,0) + 
+COALESCE(pe.ErectionLengthSpool6,0) +
+COALESCE(pme.MiscQuantity,0)
+) AS Total 
+
+FROM SubmissionActivityStatus sas
+LEFT JOIN PipeErection pe
+	ON pe.ActivityID = sas.ActivityID AND pe.ErectionRework = 0
+	
+LEFT JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = sas.fk_BidIDAssigned
+	
+LEFT JOIN PipeMisc pme
+	ON pme.ActivityID = sas.ActivityID AND ptd.ActivityType = "PE" AND pme.MiscRework = 0
+
+WHERE sas.ActivityType IN (11, 91)
+AND sas.fk_ActivityStatus IN (5,12)
+AND fk_BidIDAssigned = :BidID) wmTempTable
+        ]]>
+    <query-param name="BidID" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="UpdateSettingCivilWork">
         <![CDATA[
         UPDATE SETTINGS
@@ -3362,18 +3350,18 @@ WHERE `Label`='CivilWorkHoursPercent'
         <![CDATA[
         SELECT count(sasn.ID) AS NoteCount
 FROM SASNotes sasn
-WHERE sasn.ActivityID = :FieldActivityID
+WHERE sasn.ActivityID = :ActivityID
         ]]>
-    <query-param name="FieldActivityID" type="java.lang.Integer"/>
+    <query-param name="ActivityID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetNoteCount__count">
         <![CDATA[
         select count(*) from (SELECT count(sasn.ID) AS NoteCount
 FROM SASNotes sasn
-WHERE sasn.ActivityID = :FieldActivityID) wmTempTable
+WHERE sasn.ActivityID = :ActivityID) wmTempTable
         ]]>
-    <query-param name="FieldActivityID" type="java.lang.Integer"/>
+    <query-param name="ActivityID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetReportDWRByDate">
@@ -3388,7 +3376,7 @@ JOIN PipeWeld pw
 	ON pw.ActivityID = sas.ActivityID AND pw.ActivityType = 22
 
 JOIN SubsDetails sd
-	ON sd.SubmissionId = sas.SubmissionID
+	ON sd.SubmissionID = sas.SubmissionID
     
 WHERE sd.ReceivedTime BETWEEN :BeginDate and :EndDate
 
@@ -3410,7 +3398,7 @@ JOIN PipeWeld pw
 	ON pw.ActivityID = sas.ActivityID AND pw.ActivityType = 22
 
 JOIN SubsDetails sd
-	ON sd.SubmissionId = sas.SubmissionID
+	ON sd.SubmissionID = sas.SubmissionID
     
 WHERE sd.ReceivedTime BETWEEN :BeginDate and :EndDate
 
@@ -3473,20 +3461,18 @@ WHERE `Label`='SteelSellHoursPercent'
 
     <sql-query name="GetQuantitySupportsInstalled">
         <![CDATA[
-        SELECT COALESCE(sum(COALESCE((psu.SupportPercentCompleted * psu.SupportQuantity),0) + COALESCE(pmpsu.MiscQuantity,0)),0) AS Total
+        SELECT sum(COALESCE(psu.SupportPercentCompleted,0) * COALESCE(psu.SupportQuantity,0) + COALESCE(pmpsu.MiscQuantity,0)) AS Total
 
 FROM SubmissionActivityStatus sas
 
-    LEFT JOIN (SELECT min(ID) AS ID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ECT, PipingActivityType
-				FROM `PipeTrackerDetails`
-				GROUP BY BidID) ptd
-		ON ptd.BidID = sas.fk_BidIDAssigned
+LEFT JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = sas.fk_BidIDAssigned
+
+LEFT JOIN PipeSupports psu
+	ON psu.ActivityID = sas.ActivityID AND psu.SupportRework = 0
 	
-	LEFT JOIN PipeSupports psu
-		ON psu.ActivityID = sas.ActivityID AND psu.SupportRework = 0
-        
-	LEFT JOIN PipeMisc pmpsu
-		ON pmpsu.ActivityID = sas.ActivityID AND ptd.PipingActivityType = "S" AND pmpsu.MiscRework = 0
+LEFT JOIN PipeMisc pmpsu
+	ON pmpsu.ActivityID = sas.ActivityID AND ptd.ActivityType = "S" AND pmpsu.MiscRework = 0
 
 WHERE sas.ActivityType IN (32, 91)
 AND sas.fk_ActivityStatus IN (5,12)
@@ -3497,20 +3483,18 @@ AND fk_BidIDAssigned = :BidID
 
     <sql-query name="GetQuantitySupportsInstalled__count">
         <![CDATA[
-        select count(*) from (SELECT COALESCE(sum(COALESCE((psu.SupportPercentCompleted * psu.SupportQuantity),0) + COALESCE(pmpsu.MiscQuantity,0)),0) AS Total
+        select count(*) from (SELECT sum(COALESCE(psu.SupportPercentCompleted,0) * COALESCE(psu.SupportQuantity,0) + COALESCE(pmpsu.MiscQuantity,0)) AS Total
 
 FROM SubmissionActivityStatus sas
 
-    LEFT JOIN (SELECT min(ID) AS ID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ECT, PipingActivityType
-				FROM `PipeTrackerDetails`
-				GROUP BY BidID) ptd
-		ON ptd.BidID = sas.fk_BidIDAssigned
+LEFT JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = sas.fk_BidIDAssigned
+
+LEFT JOIN PipeSupports psu
+	ON psu.ActivityID = sas.ActivityID AND psu.SupportRework = 0
 	
-	LEFT JOIN PipeSupports psu
-		ON psu.ActivityID = sas.ActivityID AND psu.SupportRework = 0
-        
-	LEFT JOIN PipeMisc pmpsu
-		ON pmpsu.ActivityID = sas.ActivityID AND ptd.PipingActivityType = "S" AND pmpsu.MiscRework = 0
+LEFT JOIN PipeMisc pmpsu
+	ON pmpsu.ActivityID = sas.ActivityID AND ptd.ActivityType = "S" AND pmpsu.MiscRework = 0
 
 WHERE sas.ActivityType IN (32, 91)
 AND sas.fk_ActivityStatus IN (5,12)
@@ -3544,22 +3528,18 @@ WHERE `Label`='SteelShakeHoursPercent'
 
     <sql-query name="GetQuantityCutPrepInstalled">
         <![CDATA[
-        SELECT COALESCE(sum(COALESCE(pcut.WeldPercentCompleted,0) + COALESCE(pmc.MiscQuantity,0)),0) AS Total
+        SELECT SUM(COALESCE(pcut.WeldPercentCompleted,0) + COALESCE(pmc.MiscQuantity,0)) AS Total
 
 FROM SubmissionActivityStatus sas
 
-	LEFT JOIN PipeWeld pcut
-		ON pcut.ActivityID = sas.ActivityID AND sas.ActivityType = 23 AND pcut.WeldRework = 0
+LEFT JOIN PipeWeld pcut
+	ON pcut.ActivityID = sas.ActivityID AND pcut.WeldRework = 0
+    
+LEFT JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = sas.fk_BidIDAssigned
         
-    LEFT JOIN (SELECT min(ID) AS ID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ECT, PipingActivityType
-				FROM `PipeTrackerDetails`
-				GROUP BY BidID) ptd
-		ON ptd.BidID = sas.fk_BidIDAssigned
-	        
-	LEFT JOIN PipeMisc pmc
-		ON pmc.ActivityID = sas.ActivityID AND ptd.ECT != "D" AND ptd.PipingActivityType = "CUT" AND pmc.MiscRework = 0
-
-
+LEFT JOIN PipeMisc pmc
+	ON pmc.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "CUT" AND pmc.MiscRework = 0
 
 WHERE sas.ActivityType IN (23, 91)
 AND sas.fk_ActivityStatus IN (5,12)
@@ -3570,22 +3550,18 @@ AND fk_BidIDAssigned = :BidID
 
     <sql-query name="GetQuantityCutPrepInstalled__count">
         <![CDATA[
-        select count(*) from (SELECT COALESCE(sum(COALESCE(pcut.WeldPercentCompleted,0) + COALESCE(pmc.MiscQuantity,0)),0) AS Total
+        select count(*) from (SELECT SUM(COALESCE(pcut.WeldPercentCompleted,0) + COALESCE(pmc.MiscQuantity,0)) AS Total
 
 FROM SubmissionActivityStatus sas
 
-	LEFT JOIN PipeWeld pcut
-		ON pcut.ActivityID = sas.ActivityID AND sas.ActivityType = 23 AND pcut.WeldRework = 0
+LEFT JOIN PipeWeld pcut
+	ON pcut.ActivityID = sas.ActivityID AND pcut.WeldRework = 0
+    
+LEFT JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = sas.fk_BidIDAssigned
         
-    LEFT JOIN (SELECT min(ID) AS ID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ECT, PipingActivityType
-				FROM `PipeTrackerDetails`
-				GROUP BY BidID) ptd
-		ON ptd.BidID = sas.fk_BidIDAssigned
-	        
-	LEFT JOIN PipeMisc pmc
-		ON pmc.ActivityID = sas.ActivityID AND ptd.ECT != "D" AND ptd.PipingActivityType = "CUT" AND pmc.MiscRework = 0
-
-
+LEFT JOIN PipeMisc pmc
+	ON pmc.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "CUT" AND pmc.MiscRework = 0
 
 WHERE sas.ActivityType IN (23, 91)
 AND sas.fk_ActivityStatus IN (5,12)
@@ -3601,18 +3577,18 @@ SET
 `FATagNumber`= :TagNumber, 
 `FAActivitySelect`= :Activity, 
 `FAQuantity`= :Quantity,
-`FAPercentComplete`= :Percent,
+`FAPercentCompleted`= :Percent,
 `FARework`= :Rework,
 `FANotes`= :Notes 
-WHERE `ActivityID`= :FieldActivityID
+WHERE `ActivityID`= :ActivityID
         ]]>
     <query-param name="TagNumber" type="java.lang.String"/>
     <query-param name="Activity" type="java.lang.String"/>
-    <query-param name="Quantity" type="java.math.BigDecimal"/>
-    <query-param name="Percent" type="java.lang.String"/>
-    <query-param name="Rework" type="java.lang.String"/>
+    <query-param name="Quantity" type="java.lang.Integer"/>
+    <query-param name="Percent" type="java.math.BigDecimal"/>
+    <query-param name="Rework" type="java.lang.Integer"/>
     <query-param name="Notes" type="java.lang.String"/>
-    <query-param name="FieldActivityID" type="java.lang.Integer"/>
+    <query-param name="ActivityID" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="GetActivityHistorySteelFA">
@@ -4106,7 +4082,7 @@ WHERE `Label`='HydroHoursPercent'
 
     <sql-query name="GetReportDPRSteelCondensed">
         <![CDATA[
-        SELECT Area, PieceNumber, 
+        SELECT SortGroup1, PieceNumber, 
 sum(ShakeQuantity) AS ShakeQuantity, 
 sum(ErectQuantity) AS ErectQuantity, 
 sum(BoltoutQuantity) AS BoltoutQuantity, 
@@ -4117,8 +4093,8 @@ sum(DemoQuantity) AS DemoQuantity,
 sum(MiscQuantity) AS MiscQuantity, 
 ReceivedTime 
 FROM(SELECT  
-stls.FAArea AS Area, stls.FAPieceNumber AS PieceNumber, 
-sum(COALESCE(stls.FAShakeQuantity,0)) AS ShakeQuantity,
+stls.FASortGroup1 AS SortGroup1, stls.FAPieceNumber AS PieceNumber, 
+sum(COALESCE(stls.FAQuantity,0)) AS ShakeQuantity,
 0 AS ErectQuantity,
 0 AS BoltoutQuantity,
 0 AS ImpQuantity,
@@ -4136,8 +4112,8 @@ LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-JOIN SteelShake stls
-	ON stls.ActivityID = sas.ActivityID
+JOIN SteelFA stls
+	ON stls.ActivityID = sas.ActivityID AND sas.ActivityID = 61
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4149,7 +4125,7 @@ WHERE ((
 	AND (tcr.GF LIKE :GF OR tcr.Foreman LIKE :Foreman)
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
-GROUP BY Area, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
 
 
 
@@ -4158,9 +4134,9 @@ UNION
 
 
 SELECT  
-stle.FAArea AS Area, stle.FAPieceNumber AS PieceNumber,
+stle.FASortGroup1 AS SortGroup1, stle.FAPieceNumber AS PieceNumber,
 0,
-TRUNCATE(sum(COALESCE(stle.FAErectQuantity * stle.FAErectPercent,0)),2),
+TRUNCATE(sum(COALESCE(stle.FAQuantity * stle.FAPercentCompleted,0)),2),
 0,0,0,0,0,0,
 sd.ReceivedTime
 
@@ -4172,8 +4148,8 @@ LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-JOIN SteelErect stle
-	ON stle.ActivityID = sas.ActivityID 
+JOIN SteelFA stle
+	ON stle.ActivityID = sas.ActivityID AND sas.Activitytype = 62
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4186,7 +4162,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY Area, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
 
 
 
@@ -4195,9 +4171,9 @@ UNION
 
 
 SELECT  
-stlb.FAArea AS Area, stlb.FAPieceNumber AS PieceNumber,
+stlb.FASortGroup1 AS SortGroup1, stlb.FAPieceNumber AS PieceNumber,
 0,0,
-TRUNCATE(sum(COALESCE(stlb.FABoltoutQuantity * stlb.FABoltoutPercent,0)),2),
+TRUNCATE(sum(COALESCE(stlb.FAQuantity * stlb.FAPercentCompleted,0)),2),
 0,0,0,0,0,
 sd.ReceivedTime
 
@@ -4209,8 +4185,8 @@ LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-JOIN SteelBoltOut stlb
-	ON stlb.ActivityID = sas.ActivityID
+JOIN SteelFA stlb
+	ON stlb.ActivityID = sas.ActivityID AND sas.ActivityType = 63
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4223,7 +4199,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY Area, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
 
 
 
@@ -4232,9 +4208,9 @@ UNION
 
 
 SELECT  
-stli.FAArea AS Area, stli.FAPieceNumber AS PieceNumber,
+stli.FASortGroup1 AS SortGroup1, stli.FAPieceNumber AS PieceNumber,
 0,0,0,
-TRUNCATE(sum(COALESCE(stli.FAImpQuantity * stli.FAImpPercent,0)),2),
+TRUNCATE(sum(COALESCE(stli.FAQuantity * stli.FAPercentCompleted,0)),2),
 0,0,0,0,
 sd.ReceivedTime
 
@@ -4246,8 +4222,8 @@ LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-JOIN SteelImp stli
-	ON stli.ActivityID = sas.ActivityID
+JOIN SteelFA stli
+	ON stli.ActivityID = sas.ActivityID AND sas.ActivityType = 64
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4260,7 +4236,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY Area, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
 
 
 
@@ -4269,9 +4245,9 @@ UNION
 
 
 SELECT  
-stlw.FAArea AS Area, stlw.FAPieceNumber AS PieceNumber,
+stlw.FASortGroup1 AS SortGroup1, stlw.FAPieceNumber AS PieceNumber,
 0,0,0,0,
-TRUNCATE(sum(COALESCE(stlw.FAWeldQuantity * stlw.FAWeldPercent,0)),2),
+TRUNCATE(sum(COALESCE(stlw.FAQuantity * stlw.FAPercentCompleted,0)),2),
 0,0,0,
 sd.ReceivedTime
 
@@ -4283,8 +4259,8 @@ LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-JOIN SteelWeld stlw
-	ON stlw.ActivityID = sas.ActivityID
+JOIN SteelFA stlw
+	ON stlw.ActivityID = sas.ActivityID AND sas.ActivityType = 68
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4297,7 +4273,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY Area, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
 
 
 
@@ -4306,9 +4282,9 @@ UNION
 
 
 SELECT  
-stlsell.FAArea AS Area, stlsell.FAPieceNumber AS PieceNumber,
+stlsell.FASortGroup1 AS SortGroup1, stlsell.FAPieceNumber AS PieceNumber,
 0,0,0,0,0,
-TRUNCATE(sum(COALESCE(stlsell.FASellQuantity,0)),2),
+TRUNCATE(sum(COALESCE(stlsell.FAQuantity,0)),2),
 0,0,
 sd.ReceivedTime
 
@@ -4320,8 +4296,8 @@ LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-JOIN SteelSell stlsell
-	ON stlsell.ActivityID = sas.ActivityID 
+JOIN SteelFA stlsell
+	ON stlsell.ActivityID = sas.ActivityID AND sas.ActivityType = 65
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4334,7 +4310,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY Area, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
 
 
 
@@ -4343,9 +4319,9 @@ UNION
 
 
 SELECT  
-stld.DemoArea AS Area, 0 AS PieceNumber,
+std.SortGroup1 AS SortGroup1, std.Description AS PieceNumber,
 0,0,0,0,0,0,
-TRUNCATE(sum(COALESCE(stld.DemoQuantity,0)),2),
+TRUNCATE(sum(COALESCE(stld.DemoPercentCompleted * std.TakeOffQuantity,0)),2),
 0,
 sd.ReceivedTime
 
@@ -4357,8 +4333,11 @@ LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+    
 JOIN SteelDemo stld
 	ON stld.ActivityID = sas.ActivityID
+JOIN SteelTrackerDetails std
+	ON std.BidID = stld.DemoBidID
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4371,7 +4350,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY Area, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
 
 
 
@@ -4380,9 +4359,9 @@ UNION
 
 
 SELECT  
-stlm.MiscArea AS Area, stlm.MiscPieceNumber AS PieceNumber,
+std.SortGroup1 AS SortGroup1, std.Description AS PieceNumber,
 0,0,0,0,0,0,0,
-TRUNCATE(sum(COALESCE(stlm.MiscQuantity,0)),2),
+TRUNCATE(sum(COALESCE(stlm.MiscPercentCompleted * std.TakeOffQuantity,0)),2),
 
 sd.ReceivedTime
 
@@ -4394,8 +4373,11 @@ LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+    
 JOIN SteelMisc stlm
 	ON stlm.ActivityID = sas.ActivityID
+JOIN SteelTrackerDetails std
+	ON std.BidID = stlm.MiscBidID
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4408,9 +4390,9 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY Area, PieceNumber, Date(sd.ReceivedTime)
+GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)
 ) t
-GROUP BY t.Area, t.PieceNumber, Date(t.ReceivedTime)
+GROUP BY t.SortGroup1, t.PieceNumber, Date(t.ReceivedTime)
         ]]>
     <query-param name="PM" type="java.lang.String"/>
     <query-param name="ConstM" type="java.lang.String"/>
@@ -4425,7 +4407,7 @@ GROUP BY t.Area, t.PieceNumber, Date(t.ReceivedTime)
 
     <sql-query name="GetReportDPRSteelCondensed__count">
         <![CDATA[
-        select count(*) from (SELECT Area, PieceNumber, 
+        select count(*) from (SELECT SortGroup1, PieceNumber, 
 sum(ShakeQuantity) AS ShakeQuantity, 
 sum(ErectQuantity) AS ErectQuantity, 
 sum(BoltoutQuantity) AS BoltoutQuantity, 
@@ -4436,8 +4418,8 @@ sum(DemoQuantity) AS DemoQuantity,
 sum(MiscQuantity) AS MiscQuantity, 
 ReceivedTime 
 FROM(SELECT  
-stls.FAArea AS Area, stls.FAPieceNumber AS PieceNumber, 
-sum(COALESCE(stls.FAShakeQuantity,0)) AS ShakeQuantity,
+stls.FASortGroup1 AS SortGroup1, stls.FAPieceNumber AS PieceNumber, 
+sum(COALESCE(stls.FAQuantity,0)) AS ShakeQuantity,
 0 AS ErectQuantity,
 0 AS BoltoutQuantity,
 0 AS ImpQuantity,
@@ -4455,8 +4437,8 @@ LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-JOIN SteelShake stls
-	ON stls.ActivityID = sas.ActivityID
+JOIN SteelFA stls
+	ON stls.ActivityID = sas.ActivityID AND sas.ActivityID = 61
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4468,7 +4450,7 @@ WHERE ((
 	AND (tcr.GF LIKE :GF OR tcr.Foreman LIKE :Foreman)
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
-GROUP BY Area, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
 
 
 
@@ -4477,9 +4459,9 @@ UNION
 
 
 SELECT  
-stle.FAArea AS Area, stle.FAPieceNumber AS PieceNumber,
+stle.FASortGroup1 AS SortGroup1, stle.FAPieceNumber AS PieceNumber,
 0,
-TRUNCATE(sum(COALESCE(stle.FAErectQuantity * stle.FAErectPercent,0)),2),
+TRUNCATE(sum(COALESCE(stle.FAQuantity * stle.FAPercentCompleted,0)),2),
 0,0,0,0,0,0,
 sd.ReceivedTime
 
@@ -4491,8 +4473,8 @@ LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-JOIN SteelErect stle
-	ON stle.ActivityID = sas.ActivityID 
+JOIN SteelFA stle
+	ON stle.ActivityID = sas.ActivityID AND sas.Activitytype = 62
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4505,7 +4487,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY Area, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
 
 
 
@@ -4514,9 +4496,9 @@ UNION
 
 
 SELECT  
-stlb.FAArea AS Area, stlb.FAPieceNumber AS PieceNumber,
+stlb.FASortGroup1 AS SortGroup1, stlb.FAPieceNumber AS PieceNumber,
 0,0,
-TRUNCATE(sum(COALESCE(stlb.FABoltoutQuantity * stlb.FABoltoutPercent,0)),2),
+TRUNCATE(sum(COALESCE(stlb.FAQuantity * stlb.FAPercentCompleted,0)),2),
 0,0,0,0,0,
 sd.ReceivedTime
 
@@ -4528,8 +4510,8 @@ LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-JOIN SteelBoltOut stlb
-	ON stlb.ActivityID = sas.ActivityID
+JOIN SteelFA stlb
+	ON stlb.ActivityID = sas.ActivityID AND sas.ActivityType = 63
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4542,7 +4524,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY Area, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
 
 
 
@@ -4551,9 +4533,9 @@ UNION
 
 
 SELECT  
-stli.FAArea AS Area, stli.FAPieceNumber AS PieceNumber,
+stli.FASortGroup1 AS SortGroup1, stli.FAPieceNumber AS PieceNumber,
 0,0,0,
-TRUNCATE(sum(COALESCE(stli.FAImpQuantity * stli.FAImpPercent,0)),2),
+TRUNCATE(sum(COALESCE(stli.FAQuantity * stli.FAPercentCompleted,0)),2),
 0,0,0,0,
 sd.ReceivedTime
 
@@ -4565,8 +4547,8 @@ LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-JOIN SteelImp stli
-	ON stli.ActivityID = sas.ActivityID
+JOIN SteelFA stli
+	ON stli.ActivityID = sas.ActivityID AND sas.ActivityType = 64
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4579,7 +4561,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY Area, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
 
 
 
@@ -4588,9 +4570,9 @@ UNION
 
 
 SELECT  
-stlw.FAArea AS Area, stlw.FAPieceNumber AS PieceNumber,
+stlw.FASortGroup1 AS SortGroup1, stlw.FAPieceNumber AS PieceNumber,
 0,0,0,0,
-TRUNCATE(sum(COALESCE(stlw.FAWeldQuantity * stlw.FAWeldPercent,0)),2),
+TRUNCATE(sum(COALESCE(stlw.FAQuantity * stlw.FAPercentCompleted,0)),2),
 0,0,0,
 sd.ReceivedTime
 
@@ -4602,8 +4584,8 @@ LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-JOIN SteelWeld stlw
-	ON stlw.ActivityID = sas.ActivityID
+JOIN SteelFA stlw
+	ON stlw.ActivityID = sas.ActivityID AND sas.ActivityType = 68
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4616,7 +4598,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY Area, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
 
 
 
@@ -4625,9 +4607,9 @@ UNION
 
 
 SELECT  
-stlsell.FAArea AS Area, stlsell.FAPieceNumber AS PieceNumber,
+stlsell.FASortGroup1 AS SortGroup1, stlsell.FAPieceNumber AS PieceNumber,
 0,0,0,0,0,
-TRUNCATE(sum(COALESCE(stlsell.FASellQuantity,0)),2),
+TRUNCATE(sum(COALESCE(stlsell.FAQuantity,0)),2),
 0,0,
 sd.ReceivedTime
 
@@ -4639,8 +4621,8 @@ LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-JOIN SteelSell stlsell
-	ON stlsell.ActivityID = sas.ActivityID 
+JOIN SteelFA stlsell
+	ON stlsell.ActivityID = sas.ActivityID AND sas.ActivityType = 65
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4653,7 +4635,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY Area, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
 
 
 
@@ -4662,9 +4644,9 @@ UNION
 
 
 SELECT  
-stld.DemoArea AS Area, 0 AS PieceNumber,
+std.SortGroup1 AS SortGroup1, std.Description AS PieceNumber,
 0,0,0,0,0,0,
-TRUNCATE(sum(COALESCE(stld.DemoQuantity,0)),2),
+TRUNCATE(sum(COALESCE(stld.DemoPercentCompleted * std.TakeOffQuantity,0)),2),
 0,
 sd.ReceivedTime
 
@@ -4676,8 +4658,11 @@ LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+    
 JOIN SteelDemo stld
 	ON stld.ActivityID = sas.ActivityID
+JOIN SteelTrackerDetails std
+	ON std.BidID = stld.DemoBidID
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4690,7 +4675,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY Area, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
 
 
 
@@ -4699,9 +4684,9 @@ UNION
 
 
 SELECT  
-stlm.MiscArea AS Area, stlm.MiscPieceNumber AS PieceNumber,
+std.SortGroup1 AS SortGroup1, std.Description AS PieceNumber,
 0,0,0,0,0,0,0,
-TRUNCATE(sum(COALESCE(stlm.MiscQuantity,0)),2),
+TRUNCATE(sum(COALESCE(stlm.MiscPercentCompleted * std.TakeOffQuantity,0)),2),
 
 sd.ReceivedTime
 
@@ -4713,8 +4698,11 @@ LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+    
 JOIN SteelMisc stlm
 	ON stlm.ActivityID = sas.ActivityID
+JOIN SteelTrackerDetails std
+	ON std.BidID = stlm.MiscBidID
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4727,9 +4715,9 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY Area, PieceNumber, Date(sd.ReceivedTime)
+GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)
 ) t
-GROUP BY t.Area, t.PieceNumber, Date(t.ReceivedTime)) wmTempTable
+GROUP BY t.SortGroup1, t.PieceNumber, Date(t.ReceivedTime)) wmTempTable
         ]]>
     <query-param name="PM" type="java.lang.String"/>
     <query-param name="ConstM" type="java.lang.String"/>
@@ -5481,24 +5469,21 @@ WHERE Label = 'ClientTurnoverPercent') wmTempTable
 
     <sql-query name="GetQuantityTrimInstalled">
         <![CDATA[
-        SELECT COALESCE(SUM(COALESCE(pt.TrimQuantity,0) + COALESCE(pmt.MiscQuantity,0)),0) AS Total
+        SELECT SUM(COALESCE(pt.TrimQuantity,0) + COALESCE(pmt.MiscQuantity,0)) AS Total
 
 FROM SubmissionActivityStatus sas
 
-    LEFT JOIN (SELECT min(ID) AS ID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ECT, PipingActivityType
-				FROM `PipeTrackerDetails`
-				GROUP BY BidID) ptd
-		ON ptd.BidID = sas.fk_BidIDAssigned
+LEFT JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = sas.fk_BidIDAssigned
+
+LEFT JOIN PipeTrim pt
+	ON pt.ActivityID = sas.ActivityID AND pt.TrimRework = 0
 	
-   LEFT JOIN PipeTrim pt
-		ON pt.ActivityID = sas.ActivityID AND pt.TrimRework = 0
-        
-	LEFT JOIN PipeMisc pmt
-		ON pmt.ActivityID = sas.ActivityID AND ptd.ECT = "T" AND ptd.PipingActivityType IN ("V","Plug","HpLp","Other","Blind") AND pmt.MiscRework = 0
+LEFT JOIN PipeMisc pmt
+	ON pmt.ActivityID = sas.ActivityID AND ptd.ActivityType = "T" AND pmt.MiscRework = 0
 
 
-
-WHERE sas.ActivityType IN (30,31,33,34,35,39,91)
+WHERE sas.ActivityType IN (30,31,33,39,91)
 AND sas.fk_ActivityStatus IN (5,12)
 AND fk_BidIDAssigned = :BidID
         ]]>
@@ -5507,24 +5492,21 @@ AND fk_BidIDAssigned = :BidID
 
     <sql-query name="GetQuantityTrimInstalled__count">
         <![CDATA[
-        select count(*) from (SELECT COALESCE(SUM(COALESCE(pt.TrimQuantity,0) + COALESCE(pmt.MiscQuantity,0)),0) AS Total
+        select count(*) from (SELECT SUM(COALESCE(pt.TrimQuantity,0) + COALESCE(pmt.MiscQuantity,0)) AS Total
 
 FROM SubmissionActivityStatus sas
 
-    LEFT JOIN (SELECT min(ID) AS ID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ECT, PipingActivityType
-				FROM `PipeTrackerDetails`
-				GROUP BY BidID) ptd
-		ON ptd.BidID = sas.fk_BidIDAssigned
+LEFT JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = sas.fk_BidIDAssigned
+
+LEFT JOIN PipeTrim pt
+	ON pt.ActivityID = sas.ActivityID AND pt.TrimRework = 0
 	
-   LEFT JOIN PipeTrim pt
-		ON pt.ActivityID = sas.ActivityID AND pt.TrimRework = 0
-        
-	LEFT JOIN PipeMisc pmt
-		ON pmt.ActivityID = sas.ActivityID AND ptd.ECT = "T" AND ptd.PipingActivityType IN ("V","Plug","HpLp","Other","Blind") AND pmt.MiscRework = 0
+LEFT JOIN PipeMisc pmt
+	ON pmt.ActivityID = sas.ActivityID AND ptd.ActivityType = "T" AND pmt.MiscRework = 0
 
 
-
-WHERE sas.ActivityType IN (30,31,33,34,35,39,91)
+WHERE sas.ActivityType IN (30,31,33,39,91)
 AND sas.fk_ActivityStatus IN (5,12)
 AND fk_BidIDAssigned = :BidID) wmTempTable
         ]]>
@@ -5566,11 +5548,11 @@ ORDER BY TimeStamp DESC) wmTempTable
     <sql-query name="GetReportDPREquip">
         <![CDATA[
         SELECT 
-sas.ActivityID AS FieldActivityId, at.ActivityType AS ActivityTypeName,  
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName,  
 
 efa.FATagNumber AS TagNumber, 
 efa.FAActivitySelect AS Description,
-CONCAT(efa.FAPercentComplete*100,"%") AS QuantityInstalled,
+CONCAT(efa.FAPercentCompleted * 100,"%") AS QuantityInstalled,
 ats.Status AS CurrentStatus,
 efa.FARework AS Rework,
 efa.FANotes AS Notes,
@@ -5578,16 +5560,18 @@ DATE(sd.ReceivedTime) AS DateSubmitted
 
 FROM SubmissionActivityStatus sas
 
-JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
-JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
 JOIN SubsDetails sd
-	ON sd.SubmissionId = sas.SubmissionID
+	ON sd.SubmissionID = sas.SubmissionID
 LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+    
+JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+    
 JOIN EquipFA efa
 	ON efa.ActivityID = sas.ActivityID 
         
@@ -5608,11 +5592,11 @@ AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate + INTERVAL 1 day
     <sql-query name="GetReportDPREquip__count">
         <![CDATA[
         select count(*) from (SELECT 
-sas.ActivityID AS FieldActivityId, at.ActivityType AS ActivityTypeName,  
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName,  
 
 efa.FATagNumber AS TagNumber, 
 efa.FAActivitySelect AS Description,
-CONCAT(efa.FAPercentComplete*100,"%") AS QuantityInstalled,
+CONCAT(efa.FAPercentCompleted * 100,"%") AS QuantityInstalled,
 ats.Status AS CurrentStatus,
 efa.FARework AS Rework,
 efa.FANotes AS Notes,
@@ -5620,16 +5604,18 @@ DATE(sd.ReceivedTime) AS DateSubmitted
 
 FROM SubmissionActivityStatus sas
 
-JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
-JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
 JOIN SubsDetails sd
-	ON sd.SubmissionId = sas.SubmissionID
+	ON sd.SubmissionID = sas.SubmissionID
 LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+    
+JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+    
 JOIN EquipFA efa
 	ON efa.ActivityID = sas.ActivityID 
         
@@ -5693,11 +5679,12 @@ WHERE Label = 'CivilSellPunchHoursPercent') wmTempTable
     <sql-query name="GetReportDPRPipe">
         <![CDATA[
         SELECT 
-sas.ActivityID AS FieldActivityId, sas.ActivityType, at.ActivityType AS ActivityTypeName,  
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName, 
+
 pe.ErectionDrawingNumber AS DrawingNumber, 
 pe.ErectionSheetNumber AS SheetNumber, 
 pe.ErectionSpool1 AS Spool1, 
-IF(pe.ErectionSpool3 IS NULL OR pe.ErectionSpool3 = '', pe.ErectionSpool2,  CONCAT(pe.ErectionSpool2, '...')) AS Spool2,
+IF(pe.ErectionSpool3 IS NULL OR pe.ErectionSpool3 = '', COALESCE(pe.ErectionSpool2, ''),  CONCAT(pe.ErectionSpool2, '...')) AS Spool2,
 pe.ErectionPipeSize AS Size, 
 (pe.ErectionLengthSpool1 + pe.ErectionLengthSpool2 + pe.ErectionLengthSpool3 + pe.ErectionLengthSpool4 + pe.ErectionLengthSpool5 + pe.ErectionLengthSpool6) AS QuantityInstalled,
 ats.Status AS CurrentStatus,
@@ -5706,22 +5693,22 @@ pe.ErectionRework AS Rework,
 DATE(sd.ReceivedTime) AS DateSubmitted
 
 FROM SubmissionActivityStatus sas
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+        
 JOIN PSA.REF_ActivityTypes at
-		ON at.ID = sas.ActivityType
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+    
+JOIN PipeErection pe
+	ON pe.ActivityID = sas.ActivityID
         
-	LEFT JOIN PSA.REF_ActivityStatuses ats
-		ON ats.ID = sas.fk_ActivityStatus
-    LEFT JOIN SubsDetails sd
-		ON sd.SubmissionId = sas.SubmissionID
-	LEFT JOIN PSA.tblCrews tc
-		ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-	LEFT JOIN PSA.tblCrewsRev tcr
-		ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-    LEFT JOIN PipeErection pe
-		ON pe.ActivityID = sas.ActivityID
-        
-WHERE sas.ActivityType = 11
-AND (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
+WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
 AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
 AND (tc.AreaManager LIKE :ManagerID OR tc.SiteManager LIKE :ManagerID OR tc.ConstructionManager LIKE :ManagerID OR tc.ProjectManager LIKE :ManagerID OR
 	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)     
@@ -5734,36 +5721,36 @@ UNION
 
 
 SELECT
-sas.ActivityID AS FieldActivityId, sas.ActivityType, at.ActivityType, 
-pb.BoltUpDrawingNumber, 
-pb.BoltUpSheetNumber, 
-pb.BoltUpSpool1, 
-pb.BoltUpSpool2, 
-pb.BoltUpSize, 
-pb.BoltUpQuantity, 
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName, 
+
+pc.ConnectionDrawingNumber, 
+pc.ConnectionSheetNumber, 
+COALESCE(pc.ConnectionSpool1,'N/A'), 
+COALESCE(pc.ConnectionSpool2,'N/A'), 
+pc.ConnectionSize, 
+pc.ConnectionQuantity, 
 ats.Status,
-pb.BoltUpNotes,
-pb.BoltUpRework,
+pc.ConnectionNotes,
+pc.ConnectionRework,
 DATE(sd.ReceivedTime) 
 
 FROM SubmissionActivityStatus sas
-
-JOIN PSA.REF_ActivityTypes at
-		ON at.ID = sas.ActivityType
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
         
-	LEFT JOIN PSA.REF_ActivityStatuses ats
-		ON ats.ID = sas.fk_ActivityStatus
-	LEFT JOIN SubsDetails sd
-		ON sd.SubmissionId = sas.SubmissionID
-	LEFT JOIN PSA.tblCrews tc
-		ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-	LEFT JOIN PSA.tblCrewsRev tcr
-		ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-    LEFT JOIN PipeBoltUp pb
-        ON pb.ActivityID = sas.ActivityID
+JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
     
-WHERE sas.ActivityType = 21
-AND (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
+JOIN PipeConnection pc
+	ON pc.ActivityID = sas.ActivityID
+    
+WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
 AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
 AND (tc.AreaManager LIKE :ManagerID OR tc.SiteManager LIKE :ManagerID OR tc.ConstructionManager LIKE :ManagerID OR tc.ProjectManager LIKE :ManagerID OR
 	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)      
@@ -5776,36 +5763,37 @@ UNION
 
 
 SELECT
-sas.ActivityID AS FieldActivityId, sas.ActivityType, at.ActivityType, 
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName,
+ 
 pw.WeldDrawingNumber, 
 pw.WeldSheetNumber, 
 pw.WeldSpool1, 
 pw.WeldSpool2, 
 pw.WeldSize, 
-COALESCE((pw.WeldPercentCompleted * .01),0), 
+pw.WeldPercentCompleted, 
 ats.Status,
 pw.WeldNotes,
 pw.WeldRework,
 DATE(sd.ReceivedTime) 
 
 FROM SubmissionActivityStatus sas
-
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+    
+    
 JOIN PSA.REF_ActivityTypes at
-		ON at.ID = sas.ActivityType
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+    
+JOIN PipeWeld pw
+	ON pw.ActivityID = sas.ActivityID AND pw.ActivityType = 22
         
-	LEFT JOIN PSA.REF_ActivityStatuses ats
-		ON ats.ID = sas.fk_ActivityStatus
-	LEFT JOIN SubsDetails sd
-		ON sd.SubmissionId = sas.SubmissionID
-	LEFT JOIN PSA.tblCrews tc
-		ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-	LEFT JOIN PSA.tblCrewsRev tcr
-		ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-    LEFT JOIN PipeWeld pw
-        ON pw.ActivityID = sas.ActivityID
-        
-WHERE sas.ActivityType = 22
-AND (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
+WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
 AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
 AND (tc.AreaManager LIKE :ManagerID OR tc.SiteManager LIKE :ManagerID OR tc.ConstructionManager LIKE :ManagerID OR tc.ProjectManager LIKE :ManagerID OR
 	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)    
@@ -5818,36 +5806,36 @@ UNION
 
 
 SELECT
-sas.ActivityID AS FieldActivityId, sas.ActivityType, at.ActivityType, 
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName, 
+
 pcut.WeldDrawingNumber, 
 pcut.WeldSheetNumber, 
 'N/A', 
 'N/A', 
 pcut.WeldSize, 
- COALESCE((pcut.WeldPercentCompleted * .01),0), 
+pcut.WeldPercentCompleted, 
 ats.Status,
 pcut.WeldNotes,
 pcut.WeldRework,
 DATE(sd.ReceivedTime) 
 
 FROM SubmissionActivityStatus sas
-
-JOIN PSA.REF_ActivityTypes at
-		ON at.ID = sas.ActivityType
-        
-	LEFT JOIN PSA.REF_ActivityStatuses ats
-		ON ats.ID = sas.fk_ActivityStatus
-	LEFT JOIN SubsDetails sd
-		ON sd.SubmissionId = sas.SubmissionID
-	LEFT JOIN PSA.tblCrews tc
-		ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-	LEFT JOIN PSA.tblCrewsRev tcr
-		ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\
-    LEFT JOIN PipeWeld pcut
-        ON pcut.ActivityID = sas.ActivityID
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
     
-WHERE sas.ActivityType = 23
-AND (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
+JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+    
+JOIN PipeWeld pcut
+	ON pcut.ActivityID = sas.ActivityID AND pcut.ActivityType = 23
+    
+WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
 AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
 AND (tc.AreaManager LIKE :ManagerID OR tc.SiteManager LIKE :ManagerID OR tc.ConstructionManager LIKE :ManagerID OR tc.ProjectManager LIKE :ManagerID OR
 	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)       
@@ -5860,12 +5848,13 @@ UNION
 
 
 SELECT
-sas.ActivityID AS FieldActivityId, sas.ActivityType, at.ActivityType, 
-pt.TrimDrawingNumber, 
-pt.TrimSheetNumber, 
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName, 
+
+ptd.EngDrawingNumber, 
+ptd.SheetNumber, 
+ptd.Description, 
 'N/A', 
-'N/A', 
-pt.TrimSize, 
+ptd.Size, 
 pt.TrimQuantity, 
 ats.Status,
 pt.TrimNotes,
@@ -5873,23 +5862,24 @@ pt.TrimRework,
 DATE(sd.ReceivedTime) 
 
 FROM SubmissionActivityStatus sas
-
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+    
 JOIN PSA.REF_ActivityTypes at
-		ON at.ID = sas.ActivityType
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+    
+JOIN PipeTrim pt
+	ON pt.ActivityID = sas.ActivityID
+JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = pt.TrimBidID
         
-	LEFT JOIN PSA.REF_ActivityStatuses ats
-		ON ats.ID = sas.fk_ActivityStatus
-	LEFT JOIN SubsDetails sd
-		ON sd.SubmissionId = sas.SubmissionID
-	LEFT JOIN PSA.tblCrews tc
-		ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-	LEFT JOIN PSA.tblCrewsRev tcr
-		ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-    LEFT JOIN PipeTrim pt
-		ON pt.ActivityID = sas.ActivityID
-        
-WHERE sas.ActivityType IN (30,31,33,34,35,39)
-AND (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
+WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
 AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
 AND (tc.AreaManager LIKE :ManagerID OR tc.SiteManager LIKE :ManagerID OR tc.ConstructionManager LIKE :ManagerID OR tc.ProjectManager LIKE :ManagerID OR
 	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)    
@@ -5902,36 +5892,38 @@ UNION
 
 
 SELECT
-sas.ActivityID AS FieldActivityId, sas.ActivityType, at.ActivityType, 
-psu.SupportDrawingNumber, 
-psu.SupportSheetNumber, 
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName, 
+
+ptd.EngDrawingNumber, 
+ptd.SheetNumber, 
+ptd.Description, 
 'N/A', 
 'N/A', 
-'N/A', 
-IF(psu.SupportComplete = 1, psu.SupportQuantity, COALESCE((psu.SupportPercentCompleted * .01),0)), 
+(psu.SupportQuantity * psu.SupportPercentCompleted) AS Quantity, 
 ats.Status,
-CONCAT(psu.SupportType, '-: ', psu.SupportPartNumber, '-: ', psu.SupportNotes),
+psu.SupportNotes,
 psu.SupportRework,
 DATE(sd.ReceivedTime) 
 
 FROM SubmissionActivityStatus sas
-
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+    
 JOIN PSA.REF_ActivityTypes at
-		ON at.ID = sas.ActivityType
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+    
+JOIN PipeSupports psu
+	ON psu.ActivityID = sas.ActivityID 
+JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = psu.SupportBidID
         
-	LEFT JOIN PSA.REF_ActivityStatuses ats
-		ON ats.ID = sas.fk_ActivityStatus
-	LEFT JOIN SubsDetails sd
-		ON sd.SubmissionId = sas.SubmissionID
-	LEFT JOIN PSA.tblCrews tc
-		ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-	LEFT JOIN PSA.tblCrewsRev tcr
-		ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-	LEFT JOIN PipeSupports psu
-		ON psu.ActivityID = sas.ActivityID 
-        
-WHERE sas.ActivityType = 32
-AND (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
+WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
 AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
 AND (tc.AreaManager LIKE :ManagerID OR tc.SiteManager LIKE :ManagerID OR tc.ConstructionManager LIKE :ManagerID OR tc.ProjectManager LIKE :ManagerID OR
 	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)    
@@ -5944,12 +5936,13 @@ UNION
 
 
 SELECT
-sas.ActivityID AS FieldActivityId, sas.ActivityType, at.ActivityType, 
-pd.DemoDrawingNumber, 
-pd.DemoSheetNumber, 
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName, 
+
+ptd.EngDrawingNumber, 
+ptd.SheetNumber, 
+ptd.Description, 
 'N/A', 
 'N/A', 
-pd.DemoSize, 
 pd.DemoQuantity, 
 ats.Status,
 pd.DemoNotes,
@@ -5957,20 +5950,22 @@ pd.DemoNotes,
 DATE(sd.ReceivedTime) 
 
 FROM SubmissionActivityStatus sas
-
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+    
 JOIN PSA.REF_ActivityTypes at
-		ON at.ID = sas.ActivityType
-        
-	LEFT JOIN PSA.REF_ActivityStatuses ats
-		ON ats.ID = sas.fk_ActivityStatus
-	LEFT JOIN SubsDetails sd
-		ON sd.SubmissionId = sas.SubmissionID
-	LEFT JOIN PSA.tblCrews tc
-		ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-	LEFT JOIN PSA.tblCrewsRev tcr
-		ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-    LEFT JOIN PipeDemo pd
-		ON pd.ActivityID = sas.ActivityID
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+    
+JOIN PipeDemo pd
+	ON pd.ActivityID = sas.ActivityID
+JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = pd.DemoBidID
         
 WHERE sas.ActivityType IN (51,52,53,59)
 AND (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
@@ -5986,7 +5981,8 @@ UNION
 
 
 SELECT
-sas.ActivityID AS FieldActivityId, sas.ActivityType, at.ActivityType, 
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName, 
+
 pm.MiscDrawingNumber, 
 pm.MiscSheetNumber, 
 'N/A', 
@@ -5999,20 +5995,20 @@ pm.MiscRework,
 DATE(sd.ReceivedTime) 
 
 FROM SubmissionActivityStatus sas
-
+JOIN SubsDetails sd
+	ON sd.SubmissionId = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+    
 JOIN PSA.REF_ActivityTypes at
-		ON at.ID = sas.ActivityType
-        
-	LEFT JOIN PSA.REF_ActivityStatuses ats
-		ON ats.ID = sas.fk_ActivityStatus
-	LEFT JOIN SubsDetails sd
-		ON sd.SubmissionId = sas.SubmissionID
-	LEFT JOIN PSA.tblCrews tc
-		ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-	LEFT JOIN PSA.tblCrewsRev tcr
-		ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-    LEFT JOIN PipeMisc pm
-		ON pm.ActivityID = sas.ActivityID
+	ON at.ID = sas.ActivityType
+LEFT JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+    
+LEFT JOIN PipeMisc pm
+	ON pm.ActivityID = sas.ActivityID
         
 WHERE sas.ActivityType = 91
 AND (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)  
@@ -6031,11 +6027,12 @@ AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate + INTERVAL 1 day
     <sql-query name="GetReportDPRPipe__count">
         <![CDATA[
         select count(*) from (SELECT 
-sas.ActivityID AS FieldActivityId, sas.ActivityType, at.ActivityType AS ActivityTypeName,  
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName, 
+
 pe.ErectionDrawingNumber AS DrawingNumber, 
 pe.ErectionSheetNumber AS SheetNumber, 
 pe.ErectionSpool1 AS Spool1, 
-IF(pe.ErectionSpool3 IS NULL OR pe.ErectionSpool3 = '', pe.ErectionSpool2,  CONCAT(pe.ErectionSpool2, '...')) AS Spool2,
+IF(pe.ErectionSpool3 IS NULL OR pe.ErectionSpool3 = '', COALESCE(pe.ErectionSpool2, ''),  CONCAT(pe.ErectionSpool2, '...')) AS Spool2,
 pe.ErectionPipeSize AS Size, 
 (pe.ErectionLengthSpool1 + pe.ErectionLengthSpool2 + pe.ErectionLengthSpool3 + pe.ErectionLengthSpool4 + pe.ErectionLengthSpool5 + pe.ErectionLengthSpool6) AS QuantityInstalled,
 ats.Status AS CurrentStatus,
@@ -6044,22 +6041,22 @@ pe.ErectionRework AS Rework,
 DATE(sd.ReceivedTime) AS DateSubmitted
 
 FROM SubmissionActivityStatus sas
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+        
 JOIN PSA.REF_ActivityTypes at
-		ON at.ID = sas.ActivityType
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+    
+JOIN PipeErection pe
+	ON pe.ActivityID = sas.ActivityID
         
-	LEFT JOIN PSA.REF_ActivityStatuses ats
-		ON ats.ID = sas.fk_ActivityStatus
-    LEFT JOIN SubsDetails sd
-		ON sd.SubmissionId = sas.SubmissionID
-	LEFT JOIN PSA.tblCrews tc
-		ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-	LEFT JOIN PSA.tblCrewsRev tcr
-		ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-    LEFT JOIN PipeErection pe
-		ON pe.ActivityID = sas.ActivityID
-        
-WHERE sas.ActivityType = 11
-AND (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
+WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
 AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
 AND (tc.AreaManager LIKE :ManagerID OR tc.SiteManager LIKE :ManagerID OR tc.ConstructionManager LIKE :ManagerID OR tc.ProjectManager LIKE :ManagerID OR
 	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)     
@@ -6072,36 +6069,36 @@ UNION
 
 
 SELECT
-sas.ActivityID AS FieldActivityId, sas.ActivityType, at.ActivityType, 
-pb.BoltUpDrawingNumber, 
-pb.BoltUpSheetNumber, 
-pb.BoltUpSpool1, 
-pb.BoltUpSpool2, 
-pb.BoltUpSize, 
-pb.BoltUpQuantity, 
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName, 
+
+pc.ConnectionDrawingNumber, 
+pc.ConnectionSheetNumber, 
+COALESCE(pc.ConnectionSpool1,'N/A'), 
+COALESCE(pc.ConnectionSpool2,'N/A'), 
+pc.ConnectionSize, 
+pc.ConnectionQuantity, 
 ats.Status,
-pb.BoltUpNotes,
-pb.BoltUpRework,
+pc.ConnectionNotes,
+pc.ConnectionRework,
 DATE(sd.ReceivedTime) 
 
 FROM SubmissionActivityStatus sas
-
-JOIN PSA.REF_ActivityTypes at
-		ON at.ID = sas.ActivityType
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
         
-	LEFT JOIN PSA.REF_ActivityStatuses ats
-		ON ats.ID = sas.fk_ActivityStatus
-	LEFT JOIN SubsDetails sd
-		ON sd.SubmissionId = sas.SubmissionID
-	LEFT JOIN PSA.tblCrews tc
-		ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-	LEFT JOIN PSA.tblCrewsRev tcr
-		ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-    LEFT JOIN PipeBoltUp pb
-        ON pb.ActivityID = sas.ActivityID
+JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
     
-WHERE sas.ActivityType = 21
-AND (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
+JOIN PipeConnection pc
+	ON pc.ActivityID = sas.ActivityID
+    
+WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
 AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
 AND (tc.AreaManager LIKE :ManagerID OR tc.SiteManager LIKE :ManagerID OR tc.ConstructionManager LIKE :ManagerID OR tc.ProjectManager LIKE :ManagerID OR
 	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)      
@@ -6114,36 +6111,37 @@ UNION
 
 
 SELECT
-sas.ActivityID AS FieldActivityId, sas.ActivityType, at.ActivityType, 
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName,
+ 
 pw.WeldDrawingNumber, 
 pw.WeldSheetNumber, 
 pw.WeldSpool1, 
 pw.WeldSpool2, 
 pw.WeldSize, 
-COALESCE((pw.WeldPercentCompleted * .01),0), 
+pw.WeldPercentCompleted, 
 ats.Status,
 pw.WeldNotes,
 pw.WeldRework,
 DATE(sd.ReceivedTime) 
 
 FROM SubmissionActivityStatus sas
-
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+    
+    
 JOIN PSA.REF_ActivityTypes at
-		ON at.ID = sas.ActivityType
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+    
+JOIN PipeWeld pw
+	ON pw.ActivityID = sas.ActivityID AND pw.ActivityType = 22
         
-	LEFT JOIN PSA.REF_ActivityStatuses ats
-		ON ats.ID = sas.fk_ActivityStatus
-	LEFT JOIN SubsDetails sd
-		ON sd.SubmissionId = sas.SubmissionID
-	LEFT JOIN PSA.tblCrews tc
-		ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-	LEFT JOIN PSA.tblCrewsRev tcr
-		ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-    LEFT JOIN PipeWeld pw
-        ON pw.ActivityID = sas.ActivityID
-        
-WHERE sas.ActivityType = 22
-AND (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
+WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
 AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
 AND (tc.AreaManager LIKE :ManagerID OR tc.SiteManager LIKE :ManagerID OR tc.ConstructionManager LIKE :ManagerID OR tc.ProjectManager LIKE :ManagerID OR
 	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)    
@@ -6156,36 +6154,36 @@ UNION
 
 
 SELECT
-sas.ActivityID AS FieldActivityId, sas.ActivityType, at.ActivityType, 
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName, 
+
 pcut.WeldDrawingNumber, 
 pcut.WeldSheetNumber, 
 'N/A', 
 'N/A', 
 pcut.WeldSize, 
- COALESCE((pcut.WeldPercentCompleted * .01),0), 
+pcut.WeldPercentCompleted, 
 ats.Status,
 pcut.WeldNotes,
 pcut.WeldRework,
 DATE(sd.ReceivedTime) 
 
 FROM SubmissionActivityStatus sas
-
-JOIN PSA.REF_ActivityTypes at
-		ON at.ID = sas.ActivityType
-        
-	LEFT JOIN PSA.REF_ActivityStatuses ats
-		ON ats.ID = sas.fk_ActivityStatus
-	LEFT JOIN SubsDetails sd
-		ON sd.SubmissionId = sas.SubmissionID
-	LEFT JOIN PSA.tblCrews tc
-		ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-	LEFT JOIN PSA.tblCrewsRev tcr
-		ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\
-    LEFT JOIN PipeWeld pcut
-        ON pcut.ActivityID = sas.ActivityID
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
     
-WHERE sas.ActivityType = 23
-AND (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
+JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+    
+JOIN PipeWeld pcut
+	ON pcut.ActivityID = sas.ActivityID AND pcut.ActivityType = 23
+    
+WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
 AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
 AND (tc.AreaManager LIKE :ManagerID OR tc.SiteManager LIKE :ManagerID OR tc.ConstructionManager LIKE :ManagerID OR tc.ProjectManager LIKE :ManagerID OR
 	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)       
@@ -6198,12 +6196,13 @@ UNION
 
 
 SELECT
-sas.ActivityID AS FieldActivityId, sas.ActivityType, at.ActivityType, 
-pt.TrimDrawingNumber, 
-pt.TrimSheetNumber, 
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName, 
+
+ptd.EngDrawingNumber, 
+ptd.SheetNumber, 
+ptd.Description, 
 'N/A', 
-'N/A', 
-pt.TrimSize, 
+ptd.Size, 
 pt.TrimQuantity, 
 ats.Status,
 pt.TrimNotes,
@@ -6211,23 +6210,24 @@ pt.TrimRework,
 DATE(sd.ReceivedTime) 
 
 FROM SubmissionActivityStatus sas
-
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+    
 JOIN PSA.REF_ActivityTypes at
-		ON at.ID = sas.ActivityType
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+    
+JOIN PipeTrim pt
+	ON pt.ActivityID = sas.ActivityID
+JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = pt.TrimBidID
         
-	LEFT JOIN PSA.REF_ActivityStatuses ats
-		ON ats.ID = sas.fk_ActivityStatus
-	LEFT JOIN SubsDetails sd
-		ON sd.SubmissionId = sas.SubmissionID
-	LEFT JOIN PSA.tblCrews tc
-		ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-	LEFT JOIN PSA.tblCrewsRev tcr
-		ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-    LEFT JOIN PipeTrim pt
-		ON pt.ActivityID = sas.ActivityID
-        
-WHERE sas.ActivityType IN (30,31,33,34,35,39)
-AND (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
+WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
 AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
 AND (tc.AreaManager LIKE :ManagerID OR tc.SiteManager LIKE :ManagerID OR tc.ConstructionManager LIKE :ManagerID OR tc.ProjectManager LIKE :ManagerID OR
 	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)    
@@ -6240,36 +6240,38 @@ UNION
 
 
 SELECT
-sas.ActivityID AS FieldActivityId, sas.ActivityType, at.ActivityType, 
-psu.SupportDrawingNumber, 
-psu.SupportSheetNumber, 
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName, 
+
+ptd.EngDrawingNumber, 
+ptd.SheetNumber, 
+ptd.Description, 
 'N/A', 
 'N/A', 
-'N/A', 
-IF(psu.SupportComplete = 1, psu.SupportQuantity, COALESCE((psu.SupportPercentCompleted * .01),0)), 
+(psu.SupportQuantity * psu.SupportPercentCompleted) AS Quantity, 
 ats.Status,
-CONCAT(psu.SupportType, '-: ', psu.SupportPartNumber, '-: ', psu.SupportNotes),
+psu.SupportNotes,
 psu.SupportRework,
 DATE(sd.ReceivedTime) 
 
 FROM SubmissionActivityStatus sas
-
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+    
 JOIN PSA.REF_ActivityTypes at
-		ON at.ID = sas.ActivityType
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+    
+JOIN PipeSupports psu
+	ON psu.ActivityID = sas.ActivityID 
+JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = psu.SupportBidID
         
-	LEFT JOIN PSA.REF_ActivityStatuses ats
-		ON ats.ID = sas.fk_ActivityStatus
-	LEFT JOIN SubsDetails sd
-		ON sd.SubmissionId = sas.SubmissionID
-	LEFT JOIN PSA.tblCrews tc
-		ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-	LEFT JOIN PSA.tblCrewsRev tcr
-		ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-	LEFT JOIN PipeSupports psu
-		ON psu.ActivityID = sas.ActivityID 
-        
-WHERE sas.ActivityType = 32
-AND (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
+WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
 AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
 AND (tc.AreaManager LIKE :ManagerID OR tc.SiteManager LIKE :ManagerID OR tc.ConstructionManager LIKE :ManagerID OR tc.ProjectManager LIKE :ManagerID OR
 	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)    
@@ -6282,12 +6284,13 @@ UNION
 
 
 SELECT
-sas.ActivityID AS FieldActivityId, sas.ActivityType, at.ActivityType, 
-pd.DemoDrawingNumber, 
-pd.DemoSheetNumber, 
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName, 
+
+ptd.EngDrawingNumber, 
+ptd.SheetNumber, 
+ptd.Description, 
 'N/A', 
 'N/A', 
-pd.DemoSize, 
 pd.DemoQuantity, 
 ats.Status,
 pd.DemoNotes,
@@ -6295,20 +6298,22 @@ pd.DemoNotes,
 DATE(sd.ReceivedTime) 
 
 FROM SubmissionActivityStatus sas
-
+JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+    
 JOIN PSA.REF_ActivityTypes at
-		ON at.ID = sas.ActivityType
-        
-	LEFT JOIN PSA.REF_ActivityStatuses ats
-		ON ats.ID = sas.fk_ActivityStatus
-	LEFT JOIN SubsDetails sd
-		ON sd.SubmissionId = sas.SubmissionID
-	LEFT JOIN PSA.tblCrews tc
-		ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-	LEFT JOIN PSA.tblCrewsRev tcr
-		ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-    LEFT JOIN PipeDemo pd
-		ON pd.ActivityID = sas.ActivityID
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+    
+JOIN PipeDemo pd
+	ON pd.ActivityID = sas.ActivityID
+JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = pd.DemoBidID
         
 WHERE sas.ActivityType IN (51,52,53,59)
 AND (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
@@ -6324,7 +6329,8 @@ UNION
 
 
 SELECT
-sas.ActivityID AS FieldActivityId, sas.ActivityType, at.ActivityType, 
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName, 
+
 pm.MiscDrawingNumber, 
 pm.MiscSheetNumber, 
 'N/A', 
@@ -6337,20 +6343,20 @@ pm.MiscRework,
 DATE(sd.ReceivedTime) 
 
 FROM SubmissionActivityStatus sas
-
+JOIN SubsDetails sd
+	ON sd.SubmissionId = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+    
 JOIN PSA.REF_ActivityTypes at
-		ON at.ID = sas.ActivityType
-        
-	LEFT JOIN PSA.REF_ActivityStatuses ats
-		ON ats.ID = sas.fk_ActivityStatus
-	LEFT JOIN SubsDetails sd
-		ON sd.SubmissionId = sas.SubmissionID
-	LEFT JOIN PSA.tblCrews tc
-		ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-	LEFT JOIN PSA.tblCrewsRev tcr
-		ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-    LEFT JOIN PipeMisc pm
-		ON pm.ActivityID = sas.ActivityID
+	ON at.ID = sas.ActivityType
+LEFT JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+    
+LEFT JOIN PipeMisc pm
+	ON pm.ActivityID = sas.ActivityID
         
 WHERE sas.ActivityType = 91
 AND (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)  
@@ -6396,25 +6402,17 @@ WHERE ActivityID= :FieldActivityID
         <![CDATA[
         UPDATE `CivilFA` 
 SET 
-`FADescription`= :Description, 
-`FAFoundation`= :Foundation, 
-`FADrawingNumber`= :Drawing,
-`FADetailDrawingNumber`= :DetailDrawing,
-`FAPercentComplete`= :Percent,
 `FAQuantity`= :Quantity,
+`FAPercentCompleted`= :Percent,
 `FARework`= :Rework,
 `FANotes`= :Notes 
-WHERE `ActivityID`= :FieldActivityID
+WHERE `ActivityID`= :ActivityID
         ]]>
-    <query-param name="Description" type="java.lang.String"/>
-    <query-param name="Foundation" type="java.lang.String"/>
-    <query-param name="Drawing" type="java.lang.String"/>
-    <query-param name="DetailDrawing" type="java.lang.String"/>
-    <query-param name="Percent" type="java.math.BigDecimal"/>
-    <query-param name="Quantity" type="java.lang.Integer"/>
+    <query-param name="Quantity" type="java.lang.String"/>
+    <query-param name="Percent" type="java.lang.String"/>
     <query-param name="Rework" type="java.lang.Integer"/>
     <query-param name="Notes" type="java.lang.String"/>
-    <query-param name="FieldActivityID" type="java.lang.Integer"/>
+    <query-param name="ActivityID" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="UpdateSS">
@@ -6440,16 +6438,15 @@ CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor,
 sd.CompleteTime, 
 max(sasr.TimeStamp) AS ReviewedTime,
 at.ActivityType AS ActivityTypeName,
-COALESCE(stls.FAShakeQuantity,0) AS Quantity, 
-'1' AS Percent,
-stls.FANotes AS Notes,
-stls.FARework AS Rework
+COALESCE(stlfa.FAQuantity,0) AS Quantity, 
+1.00 AS Percent,
+stlfa.FANotes AS Notes,
+stlfa.FARework AS Rework
 
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sas.SubmissionID = sd.SubmissionId
 LEFT JOIN PSA.tblCrews tc
@@ -6461,19 +6458,17 @@ LEFT JOIN PSA.tblUserPSA u1
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
         
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp
-			FROM SubmissionActivityStatusREV sasr
-            WHERE sasr.fk_ActivityStatus = 2
-            AND sasr.ActivityType = 61
-            GROUP BY sasr.fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = sas.ActivityID 
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
-LEFT JOIN SteelShake stls
-	ON stls.ActivityID = sas.ActivityID
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN SteelFA stlfa
+	ON stlfa.ActivityID = sas.ActivityID AND stlfa.ActivityType = 61
 
 WHERE sas.fk_BidIDAssigned = :BidID
-AND sas.SubmissionID = :SubID
-AND sas.ActivityType = 61
+AND sas.SubmissionID = :SubmissionID
 AND sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.ActivityID
 
@@ -6488,16 +6483,15 @@ sd.CompleteTime,
 max(sasr.TimeStamp) AS ReviewedTime,
 
 at.ActivityType,
-COALESCE(stle.FAErectQuantity,0) AS ErectQuantity,
-COALESCE(stle.FAErectPercent,0) AS ErectPercent,
-stle.FANotes,
-stle.FARework
+COALESCE(stlfa.FAQuantity,0) AS ErectQuantity,
+COALESCE(stlfa.FAPercentCompleted,0) AS ErectPercent,
+stlfa.FANotes,
+stlfa.FARework
 
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sas.SubmissionID = sd.SubmissionId
 LEFT JOIN PSA.tblCrews tc
@@ -6508,21 +6502,20 @@ LEFT JOIN PSA.tblUserPSA u1
 		ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp
-			FROM SubmissionActivityStatusREV sasr
-            WHERE sasr.fk_ActivityStatus = 2
-            AND sasr.ActivityType = 62
-            GROUP BY sasr.fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = sas.ActivityID 
+
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
 
-LEFT JOIN SteelErect stle
-	ON stle.ActivityID = sas.ActivityID
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN SteelFA stlfa
+	ON stlfa.ActivityID = sas.ActivityID AND stlfa.ActivityType = 62
 
 
 WHERE sas.fk_BidIDAssigned = :BidID
-AND sas.SubmissionID = :SubID
-AND sas.ActivityType = 62
+AND sas.SubmissionID = :SubmissionID
 AND sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.ActivityID
 
@@ -6539,16 +6532,15 @@ sd.CompleteTime,
 max(sasr.TimeStamp) AS ReviewedTime,
 
 at.ActivityType,
-COALESCE(stlb.FABoltOutQuantity,0) AS BoltoutQuantity,
-COALESCE(stlb.FABoltOutPercent,0) AS BoltoutPercent, 
-stlb.FANotes,
-stlb.FARework
+COALESCE(stlfa.FAQuantity,0) AS BoltoutQuantity,
+COALESCE(stlfa.FAPercentCompleted,0) AS BoltoutPercent, 
+stlfa.FANotes,
+stlfa.FARework
 
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sas.SubmissionID = sd.SubmissionId
 LEFT JOIN PSA.tblCrews tc
@@ -6559,21 +6551,20 @@ LEFT JOIN PSA.tblUserPSA u1
 		ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp
-			FROM SubmissionActivityStatusREV sasr
-            WHERE sasr.fk_ActivityStatus = 2
-            AND sasr.ActivityType = 63
-            GROUP BY sasr.fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = sas.ActivityID 
+
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
 
-LEFT JOIN SteelBoltOut stlb
-	ON stlb.ActivityID = sas.ActivityID
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN SteelFA stlfa
+	ON stlfa.ActivityID = sas.ActivityID AND stlfa.ActivityType = 63
  
 
 WHERE sas.fk_BidIDAssigned = :BidID
-AND sas.SubmissionID = :SubID
-AND sas.ActivityType = 63
+AND sas.SubmissionID = :SubmissionID
 AND sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.ActivityID
 
@@ -6589,16 +6580,15 @@ sd.CompleteTime,
 max(sasr.TimeStamp) AS ReviewedTime,
 
 at.ActivityType,
-COALESCE(stli.FAImpQuantity,0) AS ImpQuantity,
-COALESCE(stli.FAImpPercent,0) AS ImpPercent, 
-stli.FANotes,
-stli.FARework
+COALESCE(stlfa.FAQuantity,0) AS ImpQuantity,
+COALESCE(stlfa.FAPercentCompleted,0) AS ImpPercent, 
+stlfa.FANotes,
+stlfa.FARework
 
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sas.SubmissionID = sd.SubmissionId
 LEFT JOIN PSA.tblCrews tc
@@ -6609,20 +6599,19 @@ LEFT JOIN PSA.tblUserPSA u1
 		ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp
-			FROM SubmissionActivityStatusREV sasr
-            WHERE sasr.fk_ActivityStatus = 2
-            AND sasr.ActivityType =64
-            GROUP BY sasr.fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = sas.ActivityID 
 
-LEFT JOIN SteelImp stli
-	ON stli.ActivityID = sas.ActivityID
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN SteelFA stlfa
+	ON stlfa.ActivityID = sas.ActivityID AND stlfa.ActivityType = 64
  
 
 WHERE sas.fk_BidIDAssigned = :BidID
-AND sas.SubmissionID = :SubID
-AND sas.ActivityType = 64
+AND sas.SubmissionID = :SubmissionID
 AND sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.ActivityID
 
@@ -6638,16 +6627,15 @@ sd.CompleteTime,
 max(sasr.TimeStamp) AS ReviewedTime,
 
 at.ActivityType,
-COALESCE(stlw.FAWeldQuantity,0) AS WeldQuantity,
-COALESCE(stlw.FAWeldPercent,0) AS WeldPercent,
-stlw.FANotes,
-stlw.FARework
+COALESCE(stlfa.FAQuantity,0) AS WeldQuantity,
+COALESCE(stlfa.FAPercentCompleted,0) AS WeldPercent,
+stlfa.FANotes,
+stlfa.FARework
 
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sas.SubmissionID = sd.SubmissionId
 LEFT JOIN PSA.tblCrews tc
@@ -6658,19 +6646,18 @@ LEFT JOIN PSA.tblUserPSA u1
 		ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp
-			FROM SubmissionActivityStatusREV sasr
-            WHERE sasr.fk_ActivityStatus = 2
-            AND sasr.ActivityType = 68
-            GROUP BY sasr.fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = sas.ActivityID 
 
-LEFT JOIN SteelWeld stlw
-	ON stlw.ActivityID = sas.ActivityID
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN SteelFA stlfa
+	ON stlfa.ActivityID = sas.ActivityID AND stlfa.ActivityType = 68
  
 WHERE sas.fk_BidIDAssigned = :BidID
-AND sas.SubmissionID = :SubID
-AND sas.ActivityType = 68
+AND sas.SubmissionID = :SubmissionID
 AND sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.ActivityID
 
@@ -6686,15 +6673,14 @@ sd.CompleteTime,
 max(sasr.TimeStamp) AS ReviewedTime,
 
 at.ActivityType,
-COALESCE(stlsell.FASellQuantity,0) AS SellQuantity, 
-'1' AS Percent, 
-stlsell.FANotes,
-stlsell.FARework
+COALESCE(stlfa.FAQuantity,0) AS SellQuantity, 
+1.00 AS Percent, 
+stlfa.FANotes,
+stlfa.FARework
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sas.SubmissionID = sd.SubmissionId
 LEFT JOIN PSA.tblCrews tc
@@ -6705,26 +6691,26 @@ LEFT JOIN PSA.tblUserPSA u1
 		ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp
-			FROM SubmissionActivityStatusREV sasr
-            WHERE sasr.fk_ActivityStatus = 2
-            AND sasr.ActivityType = 65
-            GROUP BY sasr.fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = sas.ActivityID 
 
-    
-LEFT JOIN SteelSell stlsell
-	ON stlsell.ActivityID = sas.ActivityID
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+
+ 
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType   
+JOIN SteelFA stlfa
+	ON stlfa.ActivityID = sas.ActivityID AND stlfa.ActivityType = 65
  
 
 WHERE sas.fk_BidIDAssigned = :BidID
-AND sas.SubmissionID = :SubID
-AND sas.ActivityType = 65
+AND sas.SubmissionID = :SubmissionID
 AND sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.ActivityID
 
 
 UNION
+
 
 
 
@@ -6736,15 +6722,14 @@ max(sasr.TimeStamp) AS ReviewedTime,
 
 at.ActivityType,
 COALESCE(stld.DemoQuantity,0) AS DemoQuantity, 
-'1' AS Percent, 
+COALESCE(stld.DemoPercentCompleted,0) AS Percent, 
 stld.DemoNotes,
 0 AS Rework
 
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sas.SubmissionID = sd.SubmissionId
 LEFT JOIN PSA.tblCrews tc
@@ -6755,20 +6740,19 @@ LEFT JOIN PSA.tblUserPSA u1
 		ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp
-			FROM SubmissionActivityStatusREV sasr
-            WHERE sasr.fk_ActivityStatus = 2
-            AND sasr.ActivityType = 67
-            GROUP BY sasr.fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = sas.ActivityID 
+
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
 
-LEFT JOIN SteelDemo stld
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN SteelDemo stld
 	ON stld.ActivityID = sas.ActivityID
  
 WHERE sas.fk_BidIDAssigned = :BidID
-AND sas.SubmissionID = :SubID
-AND sas.ActivityType = 67
+AND sas.SubmissionID = :SubmissionID
 AND sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.ActivityID
 
@@ -6785,15 +6769,14 @@ max(sasr.TimeStamp) AS ReviewedTime,
 
 at.ActivityType,
 COALESCE(stlm.MiscQuantity,0) AS MiscQuantity, 
-'1' AS Percent,
+1.00 AS Percent,
 stlm.MiscNotes,
 stlm.MiscRework
 
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sas.SubmissionID = sd.SubmissionId
 LEFT JOIN PSA.tblCrews tc
@@ -6804,25 +6787,23 @@ LEFT JOIN PSA.tblUserPSA u1
 		ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp
-			FROM SubmissionActivityStatusREV sasr
-            WHERE sasr.fk_ActivityStatus = 2
-            AND sasr.ActivityType = 96
-            GROUP BY sasr.fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = sas.ActivityID 
 
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
-LEFT JOIN SteelMisc stlm
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN SteelMisc stlm
 	ON stlm.ActivityID = sas.ActivityID
     
 WHERE sas.fk_BidIDAssigned = :BidID
-AND sas.SubmissionID = :SubID
-AND sas.ActivityType = 96
+AND sas.SubmissionID = :SubmissionID
 AND sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.ActivityID
         ]]>
     <query-param name="BidID" type="java.lang.Integer"/>
-    <query-param name="SubID" type="java.lang.Integer"/>
+    <query-param name="SubmissionID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetBidWorkHistorySteelExpanded__count">
@@ -6833,16 +6814,15 @@ CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor,
 sd.CompleteTime, 
 max(sasr.TimeStamp) AS ReviewedTime,
 at.ActivityType AS ActivityTypeName,
-COALESCE(stls.FAShakeQuantity,0) AS Quantity, 
-'1' AS Percent,
-stls.FANotes AS Notes,
-stls.FARework AS Rework
+COALESCE(stlfa.FAQuantity,0) AS Quantity, 
+1.00 AS Percent,
+stlfa.FANotes AS Notes,
+stlfa.FARework AS Rework
 
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sas.SubmissionID = sd.SubmissionId
 LEFT JOIN PSA.tblCrews tc
@@ -6854,19 +6834,17 @@ LEFT JOIN PSA.tblUserPSA u1
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
         
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp
-			FROM SubmissionActivityStatusREV sasr
-            WHERE sasr.fk_ActivityStatus = 2
-            AND sasr.ActivityType = 61
-            GROUP BY sasr.fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = sas.ActivityID 
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
-LEFT JOIN SteelShake stls
-	ON stls.ActivityID = sas.ActivityID
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN SteelFA stlfa
+	ON stlfa.ActivityID = sas.ActivityID AND stlfa.ActivityType = 61
 
 WHERE sas.fk_BidIDAssigned = :BidID
-AND sas.SubmissionID = :SubID
-AND sas.ActivityType = 61
+AND sas.SubmissionID = :SubmissionID
 AND sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.ActivityID
 
@@ -6881,16 +6859,15 @@ sd.CompleteTime,
 max(sasr.TimeStamp) AS ReviewedTime,
 
 at.ActivityType,
-COALESCE(stle.FAErectQuantity,0) AS ErectQuantity,
-COALESCE(stle.FAErectPercent,0) AS ErectPercent,
-stle.FANotes,
-stle.FARework
+COALESCE(stlfa.FAQuantity,0) AS ErectQuantity,
+COALESCE(stlfa.FAPercentCompleted,0) AS ErectPercent,
+stlfa.FANotes,
+stlfa.FARework
 
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sas.SubmissionID = sd.SubmissionId
 LEFT JOIN PSA.tblCrews tc
@@ -6901,21 +6878,20 @@ LEFT JOIN PSA.tblUserPSA u1
 		ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp
-			FROM SubmissionActivityStatusREV sasr
-            WHERE sasr.fk_ActivityStatus = 2
-            AND sasr.ActivityType = 62
-            GROUP BY sasr.fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = sas.ActivityID 
+
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
 
-LEFT JOIN SteelErect stle
-	ON stle.ActivityID = sas.ActivityID
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN SteelFA stlfa
+	ON stlfa.ActivityID = sas.ActivityID AND stlfa.ActivityType = 62
 
 
 WHERE sas.fk_BidIDAssigned = :BidID
-AND sas.SubmissionID = :SubID
-AND sas.ActivityType = 62
+AND sas.SubmissionID = :SubmissionID
 AND sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.ActivityID
 
@@ -6932,16 +6908,15 @@ sd.CompleteTime,
 max(sasr.TimeStamp) AS ReviewedTime,
 
 at.ActivityType,
-COALESCE(stlb.FABoltOutQuantity,0) AS BoltoutQuantity,
-COALESCE(stlb.FABoltOutPercent,0) AS BoltoutPercent, 
-stlb.FANotes,
-stlb.FARework
+COALESCE(stlfa.FAQuantity,0) AS BoltoutQuantity,
+COALESCE(stlfa.FAPercentCompleted,0) AS BoltoutPercent, 
+stlfa.FANotes,
+stlfa.FARework
 
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sas.SubmissionID = sd.SubmissionId
 LEFT JOIN PSA.tblCrews tc
@@ -6952,21 +6927,20 @@ LEFT JOIN PSA.tblUserPSA u1
 		ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp
-			FROM SubmissionActivityStatusREV sasr
-            WHERE sasr.fk_ActivityStatus = 2
-            AND sasr.ActivityType = 63
-            GROUP BY sasr.fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = sas.ActivityID 
+
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
 
-LEFT JOIN SteelBoltOut stlb
-	ON stlb.ActivityID = sas.ActivityID
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN SteelFA stlfa
+	ON stlfa.ActivityID = sas.ActivityID AND stlfa.ActivityType = 63
  
 
 WHERE sas.fk_BidIDAssigned = :BidID
-AND sas.SubmissionID = :SubID
-AND sas.ActivityType = 63
+AND sas.SubmissionID = :SubmissionID
 AND sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.ActivityID
 
@@ -6982,16 +6956,15 @@ sd.CompleteTime,
 max(sasr.TimeStamp) AS ReviewedTime,
 
 at.ActivityType,
-COALESCE(stli.FAImpQuantity,0) AS ImpQuantity,
-COALESCE(stli.FAImpPercent,0) AS ImpPercent, 
-stli.FANotes,
-stli.FARework
+COALESCE(stlfa.FAQuantity,0) AS ImpQuantity,
+COALESCE(stlfa.FAPercentCompleted,0) AS ImpPercent, 
+stlfa.FANotes,
+stlfa.FARework
 
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sas.SubmissionID = sd.SubmissionId
 LEFT JOIN PSA.tblCrews tc
@@ -7002,20 +6975,19 @@ LEFT JOIN PSA.tblUserPSA u1
 		ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp
-			FROM SubmissionActivityStatusREV sasr
-            WHERE sasr.fk_ActivityStatus = 2
-            AND sasr.ActivityType =64
-            GROUP BY sasr.fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = sas.ActivityID 
 
-LEFT JOIN SteelImp stli
-	ON stli.ActivityID = sas.ActivityID
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN SteelFA stlfa
+	ON stlfa.ActivityID = sas.ActivityID AND stlfa.ActivityType = 64
  
 
 WHERE sas.fk_BidIDAssigned = :BidID
-AND sas.SubmissionID = :SubID
-AND sas.ActivityType = 64
+AND sas.SubmissionID = :SubmissionID
 AND sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.ActivityID
 
@@ -7031,16 +7003,15 @@ sd.CompleteTime,
 max(sasr.TimeStamp) AS ReviewedTime,
 
 at.ActivityType,
-COALESCE(stlw.FAWeldQuantity,0) AS WeldQuantity,
-COALESCE(stlw.FAWeldPercent,0) AS WeldPercent,
-stlw.FANotes,
-stlw.FARework
+COALESCE(stlfa.FAQuantity,0) AS WeldQuantity,
+COALESCE(stlfa.FAPercentCompleted,0) AS WeldPercent,
+stlfa.FANotes,
+stlfa.FARework
 
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sas.SubmissionID = sd.SubmissionId
 LEFT JOIN PSA.tblCrews tc
@@ -7051,19 +7022,18 @@ LEFT JOIN PSA.tblUserPSA u1
 		ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp
-			FROM SubmissionActivityStatusREV sasr
-            WHERE sasr.fk_ActivityStatus = 2
-            AND sasr.ActivityType = 68
-            GROUP BY sasr.fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = sas.ActivityID 
 
-LEFT JOIN SteelWeld stlw
-	ON stlw.ActivityID = sas.ActivityID
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN SteelFA stlfa
+	ON stlfa.ActivityID = sas.ActivityID AND stlfa.ActivityType = 68
  
 WHERE sas.fk_BidIDAssigned = :BidID
-AND sas.SubmissionID = :SubID
-AND sas.ActivityType = 68
+AND sas.SubmissionID = :SubmissionID
 AND sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.ActivityID
 
@@ -7079,15 +7049,14 @@ sd.CompleteTime,
 max(sasr.TimeStamp) AS ReviewedTime,
 
 at.ActivityType,
-COALESCE(stlsell.FASellQuantity,0) AS SellQuantity, 
-'1' AS Percent, 
-stlsell.FANotes,
-stlsell.FARework
+COALESCE(stlfa.FAQuantity,0) AS SellQuantity, 
+1.00 AS Percent, 
+stlfa.FANotes,
+stlfa.FARework
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sas.SubmissionID = sd.SubmissionId
 LEFT JOIN PSA.tblCrews tc
@@ -7098,26 +7067,26 @@ LEFT JOIN PSA.tblUserPSA u1
 		ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp
-			FROM SubmissionActivityStatusREV sasr
-            WHERE sasr.fk_ActivityStatus = 2
-            AND sasr.ActivityType = 65
-            GROUP BY sasr.fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = sas.ActivityID 
 
-    
-LEFT JOIN SteelSell stlsell
-	ON stlsell.ActivityID = sas.ActivityID
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+
+ 
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType   
+JOIN SteelFA stlfa
+	ON stlfa.ActivityID = sas.ActivityID AND stlfa.ActivityType = 65
  
 
 WHERE sas.fk_BidIDAssigned = :BidID
-AND sas.SubmissionID = :SubID
-AND sas.ActivityType = 65
+AND sas.SubmissionID = :SubmissionID
 AND sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.ActivityID
 
 
 UNION
+
 
 
 
@@ -7129,15 +7098,14 @@ max(sasr.TimeStamp) AS ReviewedTime,
 
 at.ActivityType,
 COALESCE(stld.DemoQuantity,0) AS DemoQuantity, 
-'1' AS Percent, 
+COALESCE(stld.DemoPercentCompleted,0) AS Percent, 
 stld.DemoNotes,
 0 AS Rework
 
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sas.SubmissionID = sd.SubmissionId
 LEFT JOIN PSA.tblCrews tc
@@ -7148,20 +7116,19 @@ LEFT JOIN PSA.tblUserPSA u1
 		ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp
-			FROM SubmissionActivityStatusREV sasr
-            WHERE sasr.fk_ActivityStatus = 2
-            AND sasr.ActivityType = 67
-            GROUP BY sasr.fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = sas.ActivityID 
+
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
 
-LEFT JOIN SteelDemo stld
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN SteelDemo stld
 	ON stld.ActivityID = sas.ActivityID
  
 WHERE sas.fk_BidIDAssigned = :BidID
-AND sas.SubmissionID = :SubID
-AND sas.ActivityType = 67
+AND sas.SubmissionID = :SubmissionID
 AND sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.ActivityID
 
@@ -7178,15 +7145,14 @@ max(sasr.TimeStamp) AS ReviewedTime,
 
 at.ActivityType,
 COALESCE(stlm.MiscQuantity,0) AS MiscQuantity, 
-'1' AS Percent,
+1.00 AS Percent,
 stlm.MiscNotes,
 stlm.MiscRework
 
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sas.SubmissionID = sd.SubmissionId
 LEFT JOIN PSA.tblCrews tc
@@ -7197,25 +7163,23 @@ LEFT JOIN PSA.tblUserPSA u1
 		ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp
-			FROM SubmissionActivityStatusREV sasr
-            WHERE sasr.fk_ActivityStatus = 2
-            AND sasr.ActivityType = 96
-            GROUP BY sasr.fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = sas.ActivityID 
 
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
-LEFT JOIN SteelMisc stlm
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN SteelMisc stlm
 	ON stlm.ActivityID = sas.ActivityID
     
 WHERE sas.fk_BidIDAssigned = :BidID
-AND sas.SubmissionID = :SubID
-AND sas.ActivityType = 96
+AND sas.SubmissionID = :SubmissionID
 AND sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.ActivityID) wmTempTable
         ]]>
     <query-param name="BidID" type="java.lang.Integer"/>
-    <query-param name="SubID" type="java.lang.Integer"/>
+    <query-param name="SubmissionID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetSuperRecentActivites">
@@ -7231,9 +7195,8 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 
 WHERE sas.TimeStamp BETWEEN now() - INTERVAL 2 DAY AND NOW() 
 AND sas.ActivityType <> 0
-AND sas.fk_ActivityStatus <> 10 
-AND sas.fk_ActivityStatus <> 11
-AND (sas.fk_LastModifiedBy = :UserID OR sas.fk_LastModifiedBy = :SelectedSuper)
+AND sas.fk_ActivityStatus NOT IN (10, 11) 
+AND sas.fk_LastModifiedBy IN (:UserID , :SelectedSuper)
 ORDER BY sas.TimeStamp DESC
         ]]>
     <query-param name="UserID" type="java.lang.Integer"/>
@@ -7253,9 +7216,8 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 
 WHERE sas.TimeStamp BETWEEN now() - INTERVAL 2 DAY AND NOW() 
 AND sas.ActivityType <> 0
-AND sas.fk_ActivityStatus <> 10 
-AND sas.fk_ActivityStatus <> 11
-AND (sas.fk_LastModifiedBy = :UserID OR sas.fk_LastModifiedBy = :SelectedSuper)
+AND sas.fk_ActivityStatus NOT IN (10, 11) 
+AND sas.fk_LastModifiedBy IN (:UserID , :SelectedSuper)
 ORDER BY sas.TimeStamp DESC) wmTempTable
         ]]>
     <query-param name="UserID" type="java.lang.Integer"/>
@@ -7265,13 +7227,12 @@ ORDER BY sas.TimeStamp DESC) wmTempTable
     <sql-query name="GetReportDPRCivil">
         <![CDATA[
         SELECT 
-sas.ActivityID AS FieldActivityId, sas.ActivityType, at.ActivityType AS ActivityTypeName,  
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName,  
 
-cfa.FAFoundation AS Foundation, 
-cfa.FADescription AS Description, 
-cfa.FADrawingNumber AS DrawingNumber, 
-cfa.FADetailDrawingNumber AS DetailDrawing,
-IF(sas.ActivityType = 70, CONCAT(cfa.FAPercentComplete*100,"%") , CONCAT(cfa.FAQuantity," yds") ) AS QuantityInstalled,
+ctd.EngDrawingNumber, ctd.SheetNumber, ctd.DetailDrawingNumber, ctd.DetailName, ctd.Description,
+
+IF(sas.ActivityType = 70, CONCAT(cfa.FAPercentCompleted * 100,"%") , CONCAT(cfa.FAQuantity," yds") ) AS QuantityInstalled,
+
 ats.Status AS CurrentStatus,
 cfa.FARework AS Rework,
 cfa.FANotes AS Notes,
@@ -7279,21 +7240,23 @@ DATE(sd.ReceivedTime) AS DateSubmitted
 
 FROM SubmissionActivityStatus sas
 
-JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
-JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
 JOIN SubsDetails sd
-	ON sd.SubmissionId = sas.SubmissionID
+	ON sd.SubmissionID = sas.SubmissionID
 LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+    
+JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
 
 JOIN CivilFA cfa
 	ON cfa.ActivityID = sas.ActivityID
+JOIN CivilTrackerDetails ctd
+	ON ctd.BidID = cfa.FABidID
         
-
 
 WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
 AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
@@ -7310,30 +7273,31 @@ UNION
 
 
 SELECT 
-sas.ActivityID AS FieldActivityId, sas.ActivityType, at.ActivityType AS ActivityTypeName,  
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName,  
 
-'N/A' AS Foundation, 
-CONCAT('Test Package: ',csell.SellTestPackageNumber) AS Description, 
-'N/A' AS DrawingNumber, 
-'N/A' AS DetailDrawing,
+'N/A' AS EngDrawingNumber, 'N/A' AS SheetNumber, 'N/A' AS DetailDrawingNumber, 'N/A' AS DetailName, 
+CONCAT('Test Package: ',csell.SellTestPackageNumber) AS Description,
+
 1 AS QuantityInstalled,
 ats.Status AS CurrentStatus,
-'0' AS Rework,
+0 AS Rework,
 csell.SellNotes AS Notes,
 DATE(sd.ReceivedTime) AS DateSubmitted
 
 FROM SubmissionActivityStatus sas
 
-JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
-JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
 JOIN SubsDetails sd
 	ON sd.SubmissionId = sas.SubmissionID
 LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+
+JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+    
 JOIN CivilSellPackage csell
 	ON csell.ActivityID = sas.ActivityID
 
@@ -7353,13 +7317,12 @@ AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate + INTERVAL 1 day
     <sql-query name="GetReportDPRCivil__count">
         <![CDATA[
         select count(*) from (SELECT 
-sas.ActivityID AS FieldActivityId, sas.ActivityType, at.ActivityType AS ActivityTypeName,  
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName,  
 
-cfa.FAFoundation AS Foundation, 
-cfa.FADescription AS Description, 
-cfa.FADrawingNumber AS DrawingNumber, 
-cfa.FADetailDrawingNumber AS DetailDrawing,
-IF(sas.ActivityType = 70, CONCAT(cfa.FAPercentComplete*100,"%") , CONCAT(cfa.FAQuantity," yds") ) AS QuantityInstalled,
+ctd.EngDrawingNumber, ctd.SheetNumber, ctd.DetailDrawingNumber, ctd.DetailName, ctd.Description,
+
+IF(sas.ActivityType = 70, CONCAT(cfa.FAPercentCompleted * 100,"%") , CONCAT(cfa.FAQuantity," yds") ) AS QuantityInstalled,
+
 ats.Status AS CurrentStatus,
 cfa.FARework AS Rework,
 cfa.FANotes AS Notes,
@@ -7367,21 +7330,23 @@ DATE(sd.ReceivedTime) AS DateSubmitted
 
 FROM SubmissionActivityStatus sas
 
-JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
-JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
 JOIN SubsDetails sd
-	ON sd.SubmissionId = sas.SubmissionID
+	ON sd.SubmissionID = sas.SubmissionID
 LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+    
+JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
 
 JOIN CivilFA cfa
 	ON cfa.ActivityID = sas.ActivityID
+JOIN CivilTrackerDetails ctd
+	ON ctd.BidID = cfa.FABidID
         
-
 
 WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
 AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
@@ -7398,30 +7363,31 @@ UNION
 
 
 SELECT 
-sas.ActivityID AS FieldActivityId, sas.ActivityType, at.ActivityType AS ActivityTypeName,  
+sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName,  
 
-'N/A' AS Foundation, 
-CONCAT('Test Package: ',csell.SellTestPackageNumber) AS Description, 
-'N/A' AS DrawingNumber, 
-'N/A' AS DetailDrawing,
+'N/A' AS EngDrawingNumber, 'N/A' AS SheetNumber, 'N/A' AS DetailDrawingNumber, 'N/A' AS DetailName, 
+CONCAT('Test Package: ',csell.SellTestPackageNumber) AS Description,
+
 1 AS QuantityInstalled,
 ats.Status AS CurrentStatus,
-'0' AS Rework,
+0 AS Rework,
 csell.SellNotes AS Notes,
 DATE(sd.ReceivedTime) AS DateSubmitted
 
 FROM SubmissionActivityStatus sas
 
-JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
-JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
 JOIN SubsDetails sd
 	ON sd.SubmissionId = sas.SubmissionID
 LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+
+JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN PSA.REF_ActivityStatuses ats
+	ON ats.ID = sas.fk_ActivityStatus
+    
 JOIN CivilSellPackage csell
 	ON csell.ActivityID = sas.ActivityID
 
@@ -7629,21 +7595,17 @@ WHERE `ActivityID`= :FieldActivityID
 
     <sql-query name="GetQuantityDemoRemoved">
         <![CDATA[
-        SELECT COALESCE(sum(COALESCE(pd.DemoQuantity, 0) + COALESCE(pmd.MiscQuantity,0)),0) AS Total
+        SELECT SUM(COALESCE(pd.DemoQuantity, 0) + COALESCE(pmd.MiscQuantity,0)) AS Total
+
 FROM SubmissionActivityStatus sas
+LEFT JOIN PipeDemo pd
+	ON pd.ActivityID = sas.ActivityID 
 
-    LEFT JOIN (SELECT min(ID) AS ID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ECT, PipingActivityType
-				FROM `PipeTrackerDetails`
-				GROUP BY BidID) ptd
-		ON ptd.BidID = sas.fk_BidIDAssigned
+LEFT JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = sas.fk_BidIDAssigned	
 	
-    LEFT JOIN PipeDemo pd
-		ON pd.ActivityID = sas.ActivityID 
-        
-	LEFT JOIN PipeMisc pmd
-				ON pmd.ActivityID = sas.ActivityID AND ptd.ECT = "D" AND pmd.MiscRework = 0
-
-
+LEFT JOIN PipeMisc pmd
+			ON pmd.ActivityID = sas.ActivityID AND ptd.ActivityType = "D" AND pmd.MiscRework = 0
 
 WHERE sas.ActivityType IN (51,52,53,59,91)
 AND sas.fk_ActivityStatus IN (5,12)
@@ -7654,21 +7616,17 @@ AND fk_BidIDAssigned = :BidID
 
     <sql-query name="GetQuantityDemoRemoved__count">
         <![CDATA[
-        select count(*) from (SELECT COALESCE(sum(COALESCE(pd.DemoQuantity, 0) + COALESCE(pmd.MiscQuantity,0)),0) AS Total
+        select count(*) from (SELECT SUM(COALESCE(pd.DemoQuantity, 0) + COALESCE(pmd.MiscQuantity,0)) AS Total
+
 FROM SubmissionActivityStatus sas
+LEFT JOIN PipeDemo pd
+	ON pd.ActivityID = sas.ActivityID 
 
-    LEFT JOIN (SELECT min(ID) AS ID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ECT, PipingActivityType
-				FROM `PipeTrackerDetails`
-				GROUP BY BidID) ptd
-		ON ptd.BidID = sas.fk_BidIDAssigned
+LEFT JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = sas.fk_BidIDAssigned	
 	
-    LEFT JOIN PipeDemo pd
-		ON pd.ActivityID = sas.ActivityID 
-        
-	LEFT JOIN PipeMisc pmd
-				ON pmd.ActivityID = sas.ActivityID AND ptd.ECT = "D" AND pmd.MiscRework = 0
-
-
+LEFT JOIN PipeMisc pmd
+			ON pmd.ActivityID = sas.ActivityID AND ptd.ActivityType = "D" AND pmd.MiscRework = 0
 
 WHERE sas.ActivityType IN (51,52,53,59,91)
 AND sas.fk_ActivityStatus IN (5,12)
@@ -7681,13 +7639,13 @@ AND fk_BidIDAssigned = :BidID) wmTempTable
         <![CDATA[
         UPDATE `CivilFA` 
 SET 
-`FAPercentComplete`= :Percent,
-`FAQuantity`= :Quantity
-WHERE `ActivityID`= :FieldActivityID
+`FAQuantity`= :Quantity,
+`FAPercentCompleted`= :Percent
+WHERE `ActivityID`= :ActivityID
         ]]>
-    <query-param name="Percent" type="java.math.BigDecimal"/>
     <query-param name="Quantity" type="java.lang.Integer"/>
-    <query-param name="FieldActivityID" type="java.lang.Integer"/>
+    <query-param name="Percent" type="java.math.BigDecimal"/>
+    <query-param name="ActivityID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="UpdateSettingPipeTestingPercent">
@@ -7726,11 +7684,11 @@ WHERE `ActivityID`= :FieldActivityID
 SET 
 `SellTestPackageNumber`= :TestPackageNumber, 
 `SellNotes`= :Notes 
-WHERE `ActivityID`= :FieldActivityID
+WHERE `ActivityID`= :ActivityID
         ]]>
     <query-param name="TestPackageNumber" type="java.lang.String"/>
     <query-param name="Notes" type="java.lang.String"/>
-    <query-param name="FieldActivityID" type="java.lang.Integer"/>
+    <query-param name="ActivityID" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="GetSettingPipeMechPercent">
@@ -7751,22 +7709,18 @@ WHERE Label = 'MechHoursPercent') wmTempTable
 
     <sql-query name="GetQuantityWeldInstalled">
         <![CDATA[
-        SELECT COALESCE(sum(COALESCE(pw.WeldPercentCompleted,0) + COALESCE(pmw.MiscQuantity,0)),0) AS Total
+        SELECT SUM(COALESCE(pw.WeldPercentCompleted,0) + COALESCE(pmw.MiscQuantity,0)) AS Total
 
 FROM SubmissionActivityStatus sas
 
-    LEFT JOIN (SELECT min(ID) AS ID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ECT, PipingActivityType
-				FROM `PipeTrackerDetails`
-				GROUP BY BidID) ptd
-		ON ptd.BidID = sas.fk_BidIDAssigned
-        
-	LEFT JOIN `Job1112`.PipeWeld pw
-				ON pw.ActivityID = sas.ActivityID AND sas.ActivityType = 22 AND  pw.WeldRework = 0
+LEFT JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = sas.fk_BidIDAssigned
 	
-	LEFT JOIN `Job1112`.PipeMisc pmw
-				ON pmw.ActivityID = sas.ActivityID AND ptd.PipingActivityType = "W" AND pmw.MiscRework = 0
-        
+LEFT JOIN PipeWeld pw
+	ON pw.ActivityID = sas.ActivityID AND  pw.WeldRework = 0
 
+LEFT JOIN PipeMisc pmw
+	ON pmw.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "W" AND pmw.MiscRework = 0
 
 WHERE sas.ActivityType IN (22, 91) 
 AND sas.fk_ActivityStatus IN (5,12)
@@ -7777,22 +7731,18 @@ AND fk_BidIDAssigned = :BidID
 
     <sql-query name="GetQuantityWeldInstalled__count">
         <![CDATA[
-        select count(*) from (SELECT COALESCE(sum(COALESCE(pw.WeldPercentCompleted,0) + COALESCE(pmw.MiscQuantity,0)),0) AS Total
+        select count(*) from (SELECT SUM(COALESCE(pw.WeldPercentCompleted,0) + COALESCE(pmw.MiscQuantity,0)) AS Total
 
 FROM SubmissionActivityStatus sas
 
-    LEFT JOIN (SELECT min(ID) AS ID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ECT, PipingActivityType
-				FROM `PipeTrackerDetails`
-				GROUP BY BidID) ptd
-		ON ptd.BidID = sas.fk_BidIDAssigned
-        
-	LEFT JOIN `Job1112`.PipeWeld pw
-				ON pw.ActivityID = sas.ActivityID AND sas.ActivityType = 22 AND  pw.WeldRework = 0
+LEFT JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = sas.fk_BidIDAssigned
 	
-	LEFT JOIN `Job1112`.PipeMisc pmw
-				ON pmw.ActivityID = sas.ActivityID AND ptd.PipingActivityType = "W" AND pmw.MiscRework = 0
-        
+LEFT JOIN PipeWeld pw
+	ON pw.ActivityID = sas.ActivityID AND  pw.WeldRework = 0
 
+LEFT JOIN PipeMisc pmw
+	ON pmw.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "W" AND pmw.MiscRework = 0
 
 WHERE sas.ActivityType IN (22, 91) 
 AND sas.fk_ActivityStatus IN (5,12)
@@ -7859,70 +7809,6 @@ WHERE ptd.TestPackageNumber = :TestPackage
 ORDER BY ptd.EngDrawingNumber, ptd.SheetNumber) wmTempTable
         ]]>
     <query-param name="TestPackage" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="GetQuantityLFInstalled">
-        <![CDATA[
-        SELECT COALESCE(sum(
-COALESCE(pe.ErectionLengthSpool1,0) + 
-COALESCE(pe.ErectionLengthSpool2,0) + 
-COALESCE(pe.ErectionLengthSpool3,0) + 
-COALESCE(pe.ErectionLengthSpool4,0) + 
-COALESCE(pe.ErectionLengthSpool5,0) + 
-COALESCE(pe.ErectionLengthSpool6,0) +
-COALESCE(pme.MiscQuantity,0)
-),0) AS Total 
-FROM SubmissionActivityStatus sas
-
-	LEFT JOIN PipeErection pe
-				ON pe.ActivityID = sas.ActivityID AND pe.ErectionRework = 0
-		
-    LEFT JOIN (SELECT min(ID) AS ID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ECT, PipingActivityType
-				FROM `PipeTrackerDetails`
-				GROUP BY BidID) ptd
-		ON ptd.BidID = sas.fk_BidIDAssigned
-        
-    LEFT JOIN PipeMisc pme
-				ON pme.ActivityID = sas.ActivityID AND ptd.PipingActivityType = "PE" AND pme.MiscRework = 0
-
-WHERE sas.ActivityType IN (11, 91)
-AND sas.fk_ActivityStatus IN (5,12)
-AND fk_BidIDAssigned = :BidID
-GROUP BY BidID
-        ]]>
-    <query-param name="BidID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetQuantityLFInstalled__count">
-        <![CDATA[
-        select count(*) from (SELECT COALESCE(sum(
-COALESCE(pe.ErectionLengthSpool1,0) + 
-COALESCE(pe.ErectionLengthSpool2,0) + 
-COALESCE(pe.ErectionLengthSpool3,0) + 
-COALESCE(pe.ErectionLengthSpool4,0) + 
-COALESCE(pe.ErectionLengthSpool5,0) + 
-COALESCE(pe.ErectionLengthSpool6,0) +
-COALESCE(pme.MiscQuantity,0)
-),0) AS Total 
-FROM SubmissionActivityStatus sas
-
-	LEFT JOIN PipeErection pe
-				ON pe.ActivityID = sas.ActivityID AND pe.ErectionRework = 0
-		
-    LEFT JOIN (SELECT min(ID) AS ID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours, ECT, PipingActivityType
-				FROM `PipeTrackerDetails`
-				GROUP BY BidID) ptd
-		ON ptd.BidID = sas.fk_BidIDAssigned
-        
-    LEFT JOIN PipeMisc pme
-				ON pme.ActivityID = sas.ActivityID AND ptd.PipingActivityType = "PE" AND pme.MiscRework = 0
-
-WHERE sas.ActivityType IN (11, 91)
-AND sas.fk_ActivityStatus IN (5,12)
-AND fk_BidIDAssigned = :BidID
-GROUP BY BidID) wmTempTable
-        ]]>
-    <query-param name="BidID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetSettingSteelShakePercent">
@@ -8131,11 +8017,16 @@ ORDER BY ptd.EngDrawingNumber, ptd.SheetNumber) wmTempTable
 
     <sql-query name="GetBidWorkHistoryPipe">
         <![CDATA[
-        SELECT sas.ActivityID, at.ActivityType, 
+        SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType, 
  
-COALESCE((pe.ErectionLengthSpool1 + pe.ErectionLengthSpool2 + pe.ErectionLengthSpool3 + pe.ErectionLengthSpool4 + pe.ErectionLengthSpool5 + pe.ErectionLengthSpool6),0) AS Quantity,
+(COALESCE(pe.ErectionLengthSpool1, 0) + 
+COALESCE(pe.ErectionLengthSpool2, 0) + 
+COALESCE(pe.ErectionLengthSpool3, 0) + 
+COALESCE(pe.ErectionLengthSpool4, 0) + 
+COALESCE(pe.ErectionLengthSpool5, 0) + 
+COALESCE(pe.ErectionLengthSpool6, 0)
+) AS Quantity,
 pe.ErectionNotes AS Notes,
-pe.Rev,
 pe.ErectionRework AS Rework,
 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
@@ -8144,8 +8035,7 @@ sd.CompleteTime, max(sasr.TimeStamp) AS ReviewedTime
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sd.SubmissionId = sas.SubmissionID
 left JOIN PSA.tblCrews tc
@@ -8156,8 +8046,13 @@ LEFT JOIN PSA.tblUserPSA u1
 	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
+    
 LEFT JOIN SubmissionActivityStatusREV sasr
 	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+
+#### Assigned Activities Joins #####     
+JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
 JOIN PipeErection pe
 	ON pe.ActivityID = sas.ActivityID
 	
@@ -8170,12 +8065,11 @@ GROUP BY sas.ActivityID
 UNION ALL
 
 
-SELECT sas.ActivityID, at.ActivityType,  
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType,  
  
-pb.BoltUpQuantity AS Quantity,
-pb.BoltUpNotes AS Notes,
-pb.Rev,
-pb.BoltUpRework,
+pc.ConnectionQuantity AS Quantity,
+pc.ConnectionNotes AS Notes,
+pc.ConnectionRework,
 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
@@ -8183,8 +8077,7 @@ sd.CompleteTime, max(sasr.TimeStamp) AS ReviewedTime
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sd.SubmissionId = sas.SubmissionID
 left JOIN PSA.tblCrews tc
@@ -8195,10 +8088,15 @@ LEFT JOIN PSA.tblUserPSA u1
 	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
+    
 LEFT JOIN SubmissionActivityStatusREV sasr
 	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
-JOIN PipeBoltUp pb
-	ON pb.ActivityID = sas.ActivityID
+ 
+ #### Assigned Activities Joins ##### 
+JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN PipeConnection pc
+	ON pc.ActivityID = sas.ActivityID
 	
 WHERE sas.fk_BidIDAssigned = :BidID
 AND sas.fk_ActivityStatus IN (5,12)
@@ -8209,11 +8107,10 @@ GROUP BY sas.ActivityID
 UNION ALL
 
 
-SELECT sas.ActivityID, at.ActivityType,  
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType,  
  
 COALESCE((pw.WeldPercentCompleted),0) AS Quantity,
 pw.WeldNotes AS Notes,
-pw.Rev,
 pw.WeldRework,
 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
@@ -8222,8 +8119,7 @@ sd.CompleteTime, max(sasr.TimeStamp) AS ReviewedTime
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sd.SubmissionId = sas.SubmissionID
 left JOIN PSA.tblCrews tc
@@ -8234,8 +8130,13 @@ LEFT JOIN PSA.tblUserPSA u1
 	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
+    
 LEFT JOIN SubmissionActivityStatusREV sasr
 	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+    
+#### Assigned Activities Joins ##### 
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
 JOIN PipeWeld pw
 	ON pw.ActivityID = sas.ActivityID
 	
@@ -8245,14 +8146,14 @@ AND sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.ActivityID
 
 
+
 UNION ALL
 
 
-SELECT sas.ActivityID, at.ActivityType,  
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType,  
  
 pt.TrimQuantity AS Quantity,
 pt.TrimNotes AS Notes,  
-pt.Rev,
 pt.TrimRework,
 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
@@ -8261,8 +8162,7 @@ sd.CompleteTime, max(sasr.TimeStamp) AS ReviewedTime
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sd.SubmissionId = sas.SubmissionID
 left JOIN PSA.tblCrews tc
@@ -8273,8 +8173,13 @@ LEFT JOIN PSA.tblUserPSA u1
 	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
+    
 LEFT JOIN SubmissionActivityStatusREV sasr
 	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType   
 JOIN PipeTrim pt
 	ON pt.ActivityID = sas.ActivityID
 	
@@ -8287,11 +8192,10 @@ GROUP BY sas.ActivityID
 UNION ALL
 
 
-SELECT sas.ActivityID, at.ActivityType,  
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType,  
  
 IF(psu.SupportComplete = 1, psu.SupportQuantity, COALESCE((psu.SupportPercentCompleted),0)) AS Quantity,
 psu.SupportNotes AS Notes,  
-psu.Rev,
 psu.SupportRework,
 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
@@ -8300,8 +8204,7 @@ sd.CompleteTime, max(sasr.TimeStamp) AS ReviewedTime
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sd.SubmissionId = sas.SubmissionID
 left JOIN PSA.tblCrews tc
@@ -8312,8 +8215,13 @@ LEFT JOIN PSA.tblUserPSA u1
 	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
+    
 LEFT JOIN SubmissionActivityStatusREV sasr
 	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType 
 JOIN PipeSupports psu
 	ON psu.ActivityID = sas.ActivityID
 	
@@ -8326,11 +8234,10 @@ GROUP BY sas.ActivityID
 UNION ALL
 
 
-SELECT sas.ActivityID, at.ActivityType,  
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType,  
  
 pd.DemoQuantity AS Quantity,
 pd.DemoNotes AS Notes, 
-pd.Rev,
 '0',
 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
@@ -8339,8 +8246,7 @@ sd.CompleteTime, max(sasr.TimeStamp) AS ReviewedTime
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sd.SubmissionId = sas.SubmissionID
 left JOIN PSA.tblCrews tc
@@ -8351,8 +8257,13 @@ LEFT JOIN PSA.tblUserPSA u1
 	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
+    
 LEFT JOIN SubmissionActivityStatusREV sasr
 	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+    
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType 
 JOIN PipeDemo pd
 	ON pd.ActivityID = sas.ActivityID
 	
@@ -8365,11 +8276,10 @@ GROUP BY sas.ActivityID
 UNION ALL
 
 
-SELECT sas.ActivityID, at.ActivityType,  
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType,  
  
 pm.MiscQuantity AS Quantity,
 pm.MiscNotes AS Notes,
-pm.Rev,
 pm.MiscRework,
 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
@@ -8378,8 +8288,7 @@ sd.CompleteTime, max(sasr.TimeStamp) AS ReviewedTime
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sd.SubmissionId = sas.SubmissionID
 left JOIN PSA.tblCrews tc
@@ -8390,8 +8299,13 @@ LEFT JOIN PSA.tblUserPSA u1
 	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
+    
 LEFT JOIN SubmissionActivityStatusREV sasr
 	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+    
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType 
 JOIN PipeMisc pm
 	ON pm.ActivityID = sas.ActivityID
 	
@@ -8404,148 +8318,148 @@ GROUP BY sas.ActivityID
 UNION ALL
 
 
-SELECT pteR.ActivityID, at.ActivityType, 
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType, 
  
 1 AS Quantity,
-pteR.TestingNotes AS Notes,
-pteR.Rev,
-pteR.TestingRework,
+pt.TestingNotes AS Notes,
+pt.TestingRework,
 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
-sd.CompleteTime, sasr.TimeStamp AS ReviewedTime 
+sd.CompleteTime, max(sasr.TimeStamp) AS ReviewedTime 
 
-FROM PipeTrackerDetails ptd
+FROM SubmissionActivityStatus sas
 
-LEFT JOIN (SELECT sas.ActivityID, sas.SubmissionID, 
-			 sas.ActivityType, ste.TestingTestPackageNumber, ste.TestingNotes, ste.Rev, ste.TestingRework
-			FROM PipeTesting ste
-			JOIN SubmissionActivityStatus sas
-				ON sas.ActivityID = ste.ActivityID AND sas.ActivityType = 41 AND sas.fk_ActivityStatus IN (5,12)) pteR
-	ON pteR.TestingTestPackageNumber = ptd.TestPackageNumber AND ptd.ECT != 'D'
-
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = pteR.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
-	ON sd.SubmissionID = pteR.SubmissionID
-left JOIN PSA.tblCrews tc
+	ON sd.SubmissionID = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-left JOIN PSA.tblCrewsRev tcr
-	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-LEFT JOIN PSA.tblUserPSA u1
-	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
-LEFT JOIN PSA.tblUserPSA u2
-	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp, sasr.fk_ActivityStatus
-			FROM SubmissionActivityStatusREV sasr
-			WHERE sasr.fk_ActivityStatus = 2
-			GROUP BY fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = pteR.ActivityID 
-    
-WHERE ptd.BidID = :BidID
-AND pteR.ActivityID IS NOT NULL
-
-UNION ALL
-
-
-SELECT pteH.ActivityID, at.ActivityType, 
- 
-1 AS Quantity,
-pteH.TestingNotes AS Notes,
-pteH.Rev,
-pteH.TestingRework,
-
-CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
-CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
-sd.CompleteTime, sasr.TimeStamp AS ReviewedTime 
-
-FROM PipeTrackerDetails ptd
-
-LEFT JOIN (SELECT sas.ActivityID, sas.SubmissionID,  
-			 sas.ActivityType, ste.TestingTestPackageNumber, ste.TestingNotes, ste.Rev, ste.TestingRework
-			FROM PipeTesting ste
-			JOIN SubmissionActivityStatus sas
-				ON sas.ActivityID = sas.ActivityID AND sas.ActivityType = 42 AND sas.fk_ActivityStatus IN (5,12) ) pteH
-	ON pteH.TestingTestPackageNumber = ptd.TestPackageNumber AND ptd.ECT != 'D' 
-
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = pteH.ActivityType
-LEFT JOIN SubsDetails sd
-	ON sd.SubmissionID = pteH.SubmissionID
-left JOIN PSA.tblCrews tc
-	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-left JOIN PSA.tblCrewsRev tcr
+LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 LEFT JOIN PSA.tblUserPSA u1
 	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
     
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp, sasr.fk_ActivityStatus
-			FROM SubmissionActivityStatusREV sasr
-			WHERE sasr.fk_ActivityStatus = 2
-			GROUP BY fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = pteH.ActivityID 
-        
-WHERE ptd.BidID = :BidID
-AND pteH.ActivityID IS NOT NULL
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType     
+JOIN PipeTesting pt
+	ON pt.ActivityID = sas.ActivityID AND sas.ActivityType = 41
+JOIN PipeTrackerDetails ptd
+	ON ptd.TestPackageNumber = pt.TestingTestPackageNumber & ptd.BidID = :BidID
+    
+WHERE sas.fk_ActivityStatus IN (5,12)
+
+GROUP BY sas.ActivityID
+
+
 
 
 UNION ALL
 
 
-SELECT pteC.ActivityID, at.ActivityType,
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType, 
  
 1 AS Quantity,
-pteC.TestingNotes AS Notes,
-pteC.Rev,
-pteC.TestingRework,
+pt.TestingNotes AS Notes,
+pt.TestingRework,
 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
-sd.CompleteTime, sasr.TimeStamp AS ReviewedTime 
+sd.CompleteTime, max(sasr.TimeStamp) AS ReviewedTime 
 
-FROM PipeTrackerDetails ptd
+FROM SubmissionActivityStatus sas
 
-LEFT JOIN (SELECT sas.ActivityID, sas.SubmissionID, 
-			 sas.ActivityType, ste.TestingTestPackageNumber, ste.TestingNotes, ste.Rev, ste.TestingRework
-			FROM PipeTesting ste
-			JOIN SubmissionActivityStatus sas
-				ON sas.ActivityID = ste.ActivityID AND sas.ActivityType = 43 AND sas.fk_ActivityStatus IN (5,12)) pteC
-	ON pteC.TestingTestPackageNumber = ptd.TestPackageNumber AND ptd.ECT != 'D'
-
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = pteC.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
-	ON sd.SubmissionID = pteC.SubmissionID
-left JOIN PSA.tblCrews tc
+	ON sd.SubmissionID = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-left JOIN PSA.tblCrewsRev tcr
+LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 LEFT JOIN PSA.tblUserPSA u1
 	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
     
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp, sasr.fk_ActivityStatus
-			FROM SubmissionActivityStatusREV sasr
-			WHERE sasr.fk_ActivityStatus = 2
-			GROUP BY fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = pteC.ActivityID 
-WHERE ptd.BidID = :BidID
-AND pteC.ActivityID IS NOT NULL
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType     
+JOIN PipeTesting pt
+	ON pt.ActivityID = sas.ActivityID AND sas.ActivityType = 42
+JOIN PipeTrackerDetails ptd
+	ON ptd.TestPackageNumber = pt.TestingTestPackageNumber & ptd.BidID = :BidID
+    
+WHERE sas.fk_ActivityStatus IN (5,12)
+
+GROUP BY sas.ActivityID
+
+
+UNION ALL
+
+
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType, 
+ 
+1 AS Quantity,
+pt.TestingNotes AS Notes,
+pt.TestingRework,
+
+CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
+CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
+sd.CompleteTime, max(sasr.TimeStamp) AS ReviewedTime 
+
+FROM SubmissionActivityStatus sas
+
+####User Info Joins ####
+LEFT JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+LEFT JOIN PSA.tblUserPSA u1
+	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
+LEFT JOIN PSA.tblUserPSA u2
+	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
+    
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType     
+JOIN PipeTesting pt
+	ON pt.ActivityID = sas.ActivityID AND sas.ActivityType = 43
+JOIN PipeTrackerDetails ptd
+	ON ptd.TestPackageNumber = pt.TestingTestPackageNumber & ptd.BidID = :BidID
+    
+WHERE sas.fk_ActivityStatus IN (5,12)
+
+GROUP BY sas.ActivityID
         ]]>
     <query-param name="BidID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetBidWorkHistoryPipe__count">
         <![CDATA[
-        select count(*) from (SELECT sas.ActivityID, at.ActivityType, 
+        select count(*) from (SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType, 
  
-COALESCE((pe.ErectionLengthSpool1 + pe.ErectionLengthSpool2 + pe.ErectionLengthSpool3 + pe.ErectionLengthSpool4 + pe.ErectionLengthSpool5 + pe.ErectionLengthSpool6),0) AS Quantity,
+(COALESCE(pe.ErectionLengthSpool1, 0) + 
+COALESCE(pe.ErectionLengthSpool2, 0) + 
+COALESCE(pe.ErectionLengthSpool3, 0) + 
+COALESCE(pe.ErectionLengthSpool4, 0) + 
+COALESCE(pe.ErectionLengthSpool5, 0) + 
+COALESCE(pe.ErectionLengthSpool6, 0)
+) AS Quantity,
 pe.ErectionNotes AS Notes,
-pe.Rev,
 pe.ErectionRework AS Rework,
 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
@@ -8554,8 +8468,7 @@ sd.CompleteTime, max(sasr.TimeStamp) AS ReviewedTime
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sd.SubmissionId = sas.SubmissionID
 left JOIN PSA.tblCrews tc
@@ -8566,8 +8479,13 @@ LEFT JOIN PSA.tblUserPSA u1
 	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
+    
 LEFT JOIN SubmissionActivityStatusREV sasr
 	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+
+#### Assigned Activities Joins #####     
+JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
 JOIN PipeErection pe
 	ON pe.ActivityID = sas.ActivityID
 	
@@ -8580,12 +8498,11 @@ GROUP BY sas.ActivityID
 UNION ALL
 
 
-SELECT sas.ActivityID, at.ActivityType,  
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType,  
  
-pb.BoltUpQuantity AS Quantity,
-pb.BoltUpNotes AS Notes,
-pb.Rev,
-pb.BoltUpRework,
+pc.ConnectionQuantity AS Quantity,
+pc.ConnectionNotes AS Notes,
+pc.ConnectionRework,
 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
@@ -8593,8 +8510,7 @@ sd.CompleteTime, max(sasr.TimeStamp) AS ReviewedTime
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sd.SubmissionId = sas.SubmissionID
 left JOIN PSA.tblCrews tc
@@ -8605,10 +8521,15 @@ LEFT JOIN PSA.tblUserPSA u1
 	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
+    
 LEFT JOIN SubmissionActivityStatusREV sasr
 	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
-JOIN PipeBoltUp pb
-	ON pb.ActivityID = sas.ActivityID
+ 
+ #### Assigned Activities Joins ##### 
+JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN PipeConnection pc
+	ON pc.ActivityID = sas.ActivityID
 	
 WHERE sas.fk_BidIDAssigned = :BidID
 AND sas.fk_ActivityStatus IN (5,12)
@@ -8619,11 +8540,10 @@ GROUP BY sas.ActivityID
 UNION ALL
 
 
-SELECT sas.ActivityID, at.ActivityType,  
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType,  
  
 COALESCE((pw.WeldPercentCompleted),0) AS Quantity,
 pw.WeldNotes AS Notes,
-pw.Rev,
 pw.WeldRework,
 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
@@ -8632,8 +8552,7 @@ sd.CompleteTime, max(sasr.TimeStamp) AS ReviewedTime
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sd.SubmissionId = sas.SubmissionID
 left JOIN PSA.tblCrews tc
@@ -8644,8 +8563,13 @@ LEFT JOIN PSA.tblUserPSA u1
 	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
+    
 LEFT JOIN SubmissionActivityStatusREV sasr
 	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+    
+#### Assigned Activities Joins ##### 
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
 JOIN PipeWeld pw
 	ON pw.ActivityID = sas.ActivityID
 	
@@ -8655,14 +8579,14 @@ AND sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.ActivityID
 
 
+
 UNION ALL
 
 
-SELECT sas.ActivityID, at.ActivityType,  
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType,  
  
 pt.TrimQuantity AS Quantity,
 pt.TrimNotes AS Notes,  
-pt.Rev,
 pt.TrimRework,
 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
@@ -8671,8 +8595,7 @@ sd.CompleteTime, max(sasr.TimeStamp) AS ReviewedTime
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sd.SubmissionId = sas.SubmissionID
 left JOIN PSA.tblCrews tc
@@ -8683,8 +8606,13 @@ LEFT JOIN PSA.tblUserPSA u1
 	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
+    
 LEFT JOIN SubmissionActivityStatusREV sasr
 	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType   
 JOIN PipeTrim pt
 	ON pt.ActivityID = sas.ActivityID
 	
@@ -8697,11 +8625,10 @@ GROUP BY sas.ActivityID
 UNION ALL
 
 
-SELECT sas.ActivityID, at.ActivityType,  
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType,  
  
 IF(psu.SupportComplete = 1, psu.SupportQuantity, COALESCE((psu.SupportPercentCompleted),0)) AS Quantity,
 psu.SupportNotes AS Notes,  
-psu.Rev,
 psu.SupportRework,
 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
@@ -8710,8 +8637,7 @@ sd.CompleteTime, max(sasr.TimeStamp) AS ReviewedTime
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sd.SubmissionId = sas.SubmissionID
 left JOIN PSA.tblCrews tc
@@ -8722,8 +8648,13 @@ LEFT JOIN PSA.tblUserPSA u1
 	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
+    
 LEFT JOIN SubmissionActivityStatusREV sasr
 	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType 
 JOIN PipeSupports psu
 	ON psu.ActivityID = sas.ActivityID
 	
@@ -8736,11 +8667,10 @@ GROUP BY sas.ActivityID
 UNION ALL
 
 
-SELECT sas.ActivityID, at.ActivityType,  
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType,  
  
 pd.DemoQuantity AS Quantity,
 pd.DemoNotes AS Notes, 
-pd.Rev,
 '0',
 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
@@ -8749,8 +8679,7 @@ sd.CompleteTime, max(sasr.TimeStamp) AS ReviewedTime
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sd.SubmissionId = sas.SubmissionID
 left JOIN PSA.tblCrews tc
@@ -8761,8 +8690,13 @@ LEFT JOIN PSA.tblUserPSA u1
 	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
+    
 LEFT JOIN SubmissionActivityStatusREV sasr
 	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+    
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType 
 JOIN PipeDemo pd
 	ON pd.ActivityID = sas.ActivityID
 	
@@ -8775,11 +8709,10 @@ GROUP BY sas.ActivityID
 UNION ALL
 
 
-SELECT sas.ActivityID, at.ActivityType,  
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType,  
  
 pm.MiscQuantity AS Quantity,
 pm.MiscNotes AS Notes,
-pm.Rev,
 pm.MiscRework,
 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
@@ -8788,8 +8721,7 @@ sd.CompleteTime, max(sasr.TimeStamp) AS ReviewedTime
 
 FROM SubmissionActivityStatus sas
 
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
 	ON sd.SubmissionId = sas.SubmissionID
 left JOIN PSA.tblCrews tc
@@ -8800,8 +8732,13 @@ LEFT JOIN PSA.tblUserPSA u1
 	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
+    
 LEFT JOIN SubmissionActivityStatusREV sasr
 	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+    
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType 
 JOIN PipeMisc pm
 	ON pm.ActivityID = sas.ActivityID
 	
@@ -8814,137 +8751,132 @@ GROUP BY sas.ActivityID
 UNION ALL
 
 
-SELECT pteR.ActivityID, at.ActivityType, 
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType, 
  
 1 AS Quantity,
-pteR.TestingNotes AS Notes,
-pteR.Rev,
-pteR.TestingRework,
+pt.TestingNotes AS Notes,
+pt.TestingRework,
 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
-sd.CompleteTime, sasr.TimeStamp AS ReviewedTime 
+sd.CompleteTime, max(sasr.TimeStamp) AS ReviewedTime 
 
-FROM PipeTrackerDetails ptd
+FROM SubmissionActivityStatus sas
 
-LEFT JOIN (SELECT sas.ActivityID, sas.SubmissionID, 
-			 sas.ActivityType, ste.TestingTestPackageNumber, ste.TestingNotes, ste.Rev, ste.TestingRework
-			FROM PipeTesting ste
-			JOIN SubmissionActivityStatus sas
-				ON sas.ActivityID = ste.ActivityID AND sas.ActivityType = 41 AND sas.fk_ActivityStatus IN (5,12)) pteR
-	ON pteR.TestingTestPackageNumber = ptd.TestPackageNumber AND ptd.ECT != 'D'
-
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = pteR.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
-	ON sd.SubmissionID = pteR.SubmissionID
-left JOIN PSA.tblCrews tc
+	ON sd.SubmissionID = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-left JOIN PSA.tblCrewsRev tcr
-	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-LEFT JOIN PSA.tblUserPSA u1
-	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
-LEFT JOIN PSA.tblUserPSA u2
-	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp, sasr.fk_ActivityStatus
-			FROM SubmissionActivityStatusREV sasr
-			WHERE sasr.fk_ActivityStatus = 2
-			GROUP BY fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = pteR.ActivityID 
-    
-WHERE ptd.BidID = :BidID
-AND pteR.ActivityID IS NOT NULL
-
-UNION ALL
-
-
-SELECT pteH.ActivityID, at.ActivityType, 
- 
-1 AS Quantity,
-pteH.TestingNotes AS Notes,
-pteH.Rev,
-pteH.TestingRework,
-
-CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
-CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
-sd.CompleteTime, sasr.TimeStamp AS ReviewedTime 
-
-FROM PipeTrackerDetails ptd
-
-LEFT JOIN (SELECT sas.ActivityID, sas.SubmissionID,  
-			 sas.ActivityType, ste.TestingTestPackageNumber, ste.TestingNotes, ste.Rev, ste.TestingRework
-			FROM PipeTesting ste
-			JOIN SubmissionActivityStatus sas
-				ON sas.ActivityID = sas.ActivityID AND sas.ActivityType = 42 AND sas.fk_ActivityStatus IN (5,12) ) pteH
-	ON pteH.TestingTestPackageNumber = ptd.TestPackageNumber AND ptd.ECT != 'D' 
-
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = pteH.ActivityType
-LEFT JOIN SubsDetails sd
-	ON sd.SubmissionID = pteH.SubmissionID
-left JOIN PSA.tblCrews tc
-	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-left JOIN PSA.tblCrewsRev tcr
+LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 LEFT JOIN PSA.tblUserPSA u1
 	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
     
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp, sasr.fk_ActivityStatus
-			FROM SubmissionActivityStatusREV sasr
-			WHERE sasr.fk_ActivityStatus = 2
-			GROUP BY fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = pteH.ActivityID 
-        
-WHERE ptd.BidID = :BidID
-AND pteH.ActivityID IS NOT NULL
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType     
+JOIN PipeTesting pt
+	ON pt.ActivityID = sas.ActivityID AND sas.ActivityType = 41
+JOIN PipeTrackerDetails ptd
+	ON ptd.TestPackageNumber = pt.TestingTestPackageNumber & ptd.BidID = :BidID
+    
+WHERE sas.fk_ActivityStatus IN (5,12)
+
+GROUP BY sas.ActivityID
+
+
 
 
 UNION ALL
 
 
-SELECT pteC.ActivityID, at.ActivityType,
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType, 
  
 1 AS Quantity,
-pteC.TestingNotes AS Notes,
-pteC.Rev,
-pteC.TestingRework,
+pt.TestingNotes AS Notes,
+pt.TestingRework,
 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
-sd.CompleteTime, sasr.TimeStamp AS ReviewedTime 
+sd.CompleteTime, max(sasr.TimeStamp) AS ReviewedTime 
 
-FROM PipeTrackerDetails ptd
+FROM SubmissionActivityStatus sas
 
-LEFT JOIN (SELECT sas.ActivityID, sas.SubmissionID, 
-			 sas.ActivityType, ste.TestingTestPackageNumber, ste.TestingNotes, ste.Rev, ste.TestingRework
-			FROM PipeTesting ste
-			JOIN SubmissionActivityStatus sas
-				ON sas.ActivityID = ste.ActivityID AND sas.ActivityType = 43 AND sas.fk_ActivityStatus IN (5,12)) pteC
-	ON pteC.TestingTestPackageNumber = ptd.TestPackageNumber AND ptd.ECT != 'D'
-
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID = pteC.ActivityType
+####User Info Joins ####
 LEFT JOIN SubsDetails sd
-	ON sd.SubmissionID = pteC.SubmissionID
-left JOIN PSA.tblCrews tc
+	ON sd.SubmissionID = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-left JOIN PSA.tblCrewsRev tcr
+LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 LEFT JOIN PSA.tblUserPSA u1
 	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
     
-LEFT JOIN (SELECT sasr.fk_ActivityID, max(sasr.TimeStamp) AS TimeStamp, sasr.fk_ActivityStatus
-			FROM SubmissionActivityStatusREV sasr
-			WHERE sasr.fk_ActivityStatus = 2
-			GROUP BY fk_ActivityID) sasr
-	ON sasr.fk_ActivityID = pteC.ActivityID 
-WHERE ptd.BidID = :BidID
-AND pteC.ActivityID IS NOT NULL) wmTempTable
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType     
+JOIN PipeTesting pt
+	ON pt.ActivityID = sas.ActivityID AND sas.ActivityType = 42
+JOIN PipeTrackerDetails ptd
+	ON ptd.TestPackageNumber = pt.TestingTestPackageNumber & ptd.BidID = :BidID
+    
+WHERE sas.fk_ActivityStatus IN (5,12)
+
+GROUP BY sas.ActivityID
+
+
+UNION ALL
+
+
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType, 
+ 
+1 AS Quantity,
+pt.TestingNotes AS Notes,
+pt.TestingRework,
+
+CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
+CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
+sd.CompleteTime, max(sasr.TimeStamp) AS ReviewedTime 
+
+FROM SubmissionActivityStatus sas
+
+####User Info Joins ####
+LEFT JOIN SubsDetails sd
+	ON sd.SubmissionID = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+LEFT JOIN PSA.tblUserPSA u1
+	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
+LEFT JOIN PSA.tblUserPSA u2
+	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
+    
+LEFT JOIN SubmissionActivityStatusREV sasr
+	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+
+#### Assigned Activities Joins #####  
+LEFT JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType     
+JOIN PipeTesting pt
+	ON pt.ActivityID = sas.ActivityID AND sas.ActivityType = 43
+JOIN PipeTrackerDetails ptd
+	ON ptd.TestPackageNumber = pt.TestingTestPackageNumber & ptd.BidID = :BidID
+    
+WHERE sas.fk_ActivityStatus IN (5,12)
+
+GROUP BY sas.ActivityID) wmTempTable
         ]]>
     <query-param name="BidID" type="java.lang.Integer"/>
     </sql-query>
@@ -9074,22 +9006,22 @@ WHERE ActivityID= :FieldActivityID
 
     <sql-query name="GetDrawingByTestPackageCivil">
         <![CDATA[
-        SELECT DISTINCT ctd.EngDrawingNumber, ctd.DetailDrawingNumber, ctd.FoundationDescription
+        SELECT DISTINCT ctd.EngDrawingNumber, ctd.SheetNumber, ctd.DetailDrawingNumber
 FROM CivilTrackerDetails ctd
 WHERE ctd.TestPackageNumber = :TestPackage
-ORDER BY ctd.EngDrawingNumber, ctd.DetailDrawingNumber
+ORDER BY ctd.EngDrawingNumber, ctd.SheetNumber, ctd.DetailDrawingNumber
         ]]>
-    <query-param name="TestPackage" type="java.lang.Integer"/>
+    <query-param name="TestPackage" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="GetDrawingByTestPackageCivil__count">
         <![CDATA[
-        select count(*) from (SELECT DISTINCT ctd.EngDrawingNumber, ctd.DetailDrawingNumber, ctd.FoundationDescription
+        select count(*) from (SELECT DISTINCT ctd.EngDrawingNumber, ctd.SheetNumber, ctd.DetailDrawingNumber
 FROM CivilTrackerDetails ctd
 WHERE ctd.TestPackageNumber = :TestPackage
-ORDER BY ctd.EngDrawingNumber, ctd.DetailDrawingNumber) wmTempTable
+ORDER BY ctd.EngDrawingNumber, ctd.SheetNumber, ctd.DetailDrawingNumber) wmTempTable
         ]]>
-    <query-param name="TestPackage" type="java.lang.Integer"/>
+    <query-param name="TestPackage" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="UpdateSteelBoltout">
@@ -9191,22 +9123,22 @@ VALUES (:ActivityID, :CreatedBy ,:Note)
         <![CDATA[
         SELECT sasn.Notes, sasn.TimeStamp, u.Email
 FROM SASNotes sasn
-	JOIN PSA.tblUserPSA u
-		ON u.ID = sasn.UserID
-WHERE sasn.ActivityID = :FieldActivityID
+JOIN PSA.tblUserPSA u
+	ON u.ID = sasn.UserID
+WHERE sasn.ActivityID = :ActivityID
         ]]>
-    <query-param name="FieldActivityID" type="java.lang.Integer"/>
+    <query-param name="ActivityID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetNotesByFieldActivityID__count">
         <![CDATA[
         select count(*) from (SELECT sasn.Notes, sasn.TimeStamp, u.Email
 FROM SASNotes sasn
-	JOIN PSA.tblUserPSA u
-		ON u.ID = sasn.UserID
-WHERE sasn.ActivityID = :FieldActivityID) wmTempTable
+JOIN PSA.tblUserPSA u
+	ON u.ID = sasn.UserID
+WHERE sasn.ActivityID = :ActivityID) wmTempTable
         ]]>
-    <query-param name="FieldActivityID" type="java.lang.Integer"/>
+    <query-param name="ActivityID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="UpdateSteelSellPackage">

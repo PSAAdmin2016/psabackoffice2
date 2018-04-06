@@ -52,9 +52,9 @@ public class GetBidWorkHistoryCivilResponse implements Serializable {
     @ColumnAlias("PercentClaimed")
     private Float percentClaimed;
 
-    @JsonProperty("FANotes")
-    @ColumnAlias("FANotes")
-    private String fanotes;
+    @JsonProperty("Notes")
+    @ColumnAlias("Notes")
+    private String notes;
 
     @JsonProperty("FARework")
     @ColumnAlias("FARework")
@@ -132,12 +132,12 @@ public class GetBidWorkHistoryCivilResponse implements Serializable {
         this.percentClaimed = percentClaimed;
     }
 
-    public String getFanotes() {
-        return this.fanotes;
+    public String getNotes() {
+        return this.notes;
     }
 
-    public void setFanotes(String fanotes) {
-        this.fanotes = fanotes;
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
     public Short getFarework() {
@@ -162,7 +162,7 @@ public class GetBidWorkHistoryCivilResponse implements Serializable {
                 Objects.equals(getReviewedTime(), getBidWorkHistoryCivilResponse.getReviewedTime()) &&
                 Objects.equals(getQuantity(), getBidWorkHistoryCivilResponse.getQuantity()) &&
                 Objects.equals(getPercentClaimed(), getBidWorkHistoryCivilResponse.getPercentClaimed()) &&
-                Objects.equals(getFanotes(), getBidWorkHistoryCivilResponse.getFanotes()) &&
+                Objects.equals(getNotes(), getBidWorkHistoryCivilResponse.getNotes()) &&
                 Objects.equals(getFarework(), getBidWorkHistoryCivilResponse.getFarework());
     }
 
@@ -177,7 +177,7 @@ public class GetBidWorkHistoryCivilResponse implements Serializable {
                 getReviewedTime(),
                 getQuantity(),
                 getPercentClaimed(),
-                getFanotes(),
+                getNotes(),
                 getFarework());
     }
 }

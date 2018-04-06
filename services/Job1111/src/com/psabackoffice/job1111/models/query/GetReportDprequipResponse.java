@@ -15,8 +15,11 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 public class GetReportDprequipResponse implements Serializable {
 
 
-    @ColumnAlias("FieldActivityId")
-    private Integer fieldActivityId;
+    @ColumnAlias("ActivityID")
+    private Integer activityId;
+
+    @ColumnAlias("ActivityTypeID")
+    private Short activityTypeId;
 
     @ColumnAlias("ActivityTypeName")
     private String activityTypeName;
@@ -42,12 +45,20 @@ public class GetReportDprequipResponse implements Serializable {
     @ColumnAlias("DateSubmitted")
     private Date dateSubmitted;
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
+    }
+
+    public Short getActivityTypeId() {
+        return this.activityTypeId;
+    }
+
+    public void setActivityTypeId(Short activityTypeId) {
+        this.activityTypeId = activityTypeId;
     }
 
     public String getActivityTypeName() {
@@ -119,7 +130,8 @@ public class GetReportDprequipResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetReportDprequipResponse)) return false;
         final GetReportDprequipResponse getReportDprequipResponse = (GetReportDprequipResponse) o;
-        return Objects.equals(getFieldActivityId(), getReportDprequipResponse.getFieldActivityId()) &&
+        return Objects.equals(getActivityId(), getReportDprequipResponse.getActivityId()) &&
+                Objects.equals(getActivityTypeId(), getReportDprequipResponse.getActivityTypeId()) &&
                 Objects.equals(getActivityTypeName(), getReportDprequipResponse.getActivityTypeName()) &&
                 Objects.equals(getTagNumber(), getReportDprequipResponse.getTagNumber()) &&
                 Objects.equals(getDescription(), getReportDprequipResponse.getDescription()) &&
@@ -132,7 +144,8 @@ public class GetReportDprequipResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getFieldActivityId(),
+        return Objects.hash(getActivityId(),
+                getActivityTypeId(),
                 getActivityTypeName(),
                 getTagNumber(),
                 getDescription(),

@@ -7,6 +7,7 @@ package com.psabackoffice.job1111.models.query;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -16,13 +17,13 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 public class GetReportDprpipeResponse implements Serializable {
 
 
-    @JsonProperty("FieldActivityId")
-    @ColumnAlias("FieldActivityId")
-    private Integer fieldActivityId;
+    @JsonProperty("ActivityID")
+    @ColumnAlias("ActivityID")
+    private Integer activityId;
 
-    @JsonProperty("ActivityType")
-    @ColumnAlias("ActivityType")
-    private Short activityType;
+    @JsonProperty("ActivityTypeID")
+    @ColumnAlias("ActivityTypeID")
+    private Short activityTypeId;
 
     @JsonProperty("ActivityTypeName")
     @ColumnAlias("ActivityTypeName")
@@ -50,7 +51,7 @@ public class GetReportDprpipeResponse implements Serializable {
 
     @JsonProperty("QuantityInstalled")
     @ColumnAlias("QuantityInstalled")
-    private Double quantityInstalled;
+    private BigDecimal quantityInstalled;
 
     @JsonProperty("CurrentStatus")
     @ColumnAlias("CurrentStatus")
@@ -68,20 +69,20 @@ public class GetReportDprpipeResponse implements Serializable {
     @ColumnAlias("DateSubmitted")
     private Date dateSubmitted;
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
-    public Short getActivityType() {
-        return this.activityType;
+    public Short getActivityTypeId() {
+        return this.activityTypeId;
     }
 
-    public void setActivityType(Short activityType) {
-        this.activityType = activityType;
+    public void setActivityTypeId(Short activityTypeId) {
+        this.activityTypeId = activityTypeId;
     }
 
     public String getActivityTypeName() {
@@ -132,11 +133,11 @@ public class GetReportDprpipeResponse implements Serializable {
         this.size = size;
     }
 
-    public Double getQuantityInstalled() {
+    public BigDecimal getQuantityInstalled() {
         return this.quantityInstalled;
     }
 
-    public void setQuantityInstalled(Double quantityInstalled) {
+    public void setQuantityInstalled(BigDecimal quantityInstalled) {
         this.quantityInstalled = quantityInstalled;
     }
 
@@ -177,8 +178,8 @@ public class GetReportDprpipeResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetReportDprpipeResponse)) return false;
         final GetReportDprpipeResponse getReportDprpipeResponse = (GetReportDprpipeResponse) o;
-        return Objects.equals(getFieldActivityId(), getReportDprpipeResponse.getFieldActivityId()) &&
-                Objects.equals(getActivityType(), getReportDprpipeResponse.getActivityType()) &&
+        return Objects.equals(getActivityId(), getReportDprpipeResponse.getActivityId()) &&
+                Objects.equals(getActivityTypeId(), getReportDprpipeResponse.getActivityTypeId()) &&
                 Objects.equals(getActivityTypeName(), getReportDprpipeResponse.getActivityTypeName()) &&
                 Objects.equals(getDrawingNumber(), getReportDprpipeResponse.getDrawingNumber()) &&
                 Objects.equals(getSheetNumber(), getReportDprpipeResponse.getSheetNumber()) &&
@@ -194,8 +195,8 @@ public class GetReportDprpipeResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getFieldActivityId(),
-                getActivityType(),
+        return Objects.hash(getActivityId(),
+                getActivityTypeId(),
                 getActivityTypeName(),
                 getDrawingNumber(),
                 getSheetNumber(),

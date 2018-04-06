@@ -16,9 +16,9 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 public class GetReportDprsteelDetailedResponse implements Serializable {
 
 
-    @JsonProperty("Area")
-    @ColumnAlias("Area")
-    private String area;
+    @JsonProperty("SortGroup1")
+    @ColumnAlias("SortGroup1")
+    private String sortGroup1;
 
     @JsonProperty("PieceNumber")
     @ColumnAlias("PieceNumber")
@@ -70,7 +70,7 @@ public class GetReportDprsteelDetailedResponse implements Serializable {
 
     @JsonProperty("MiscQuantity")
     @ColumnAlias("MiscQuantity")
-    private Integer miscQuantity;
+    private Short miscQuantity;
 
     @JsonProperty("ReceivedTime")
     @ColumnAlias("ReceivedTime")
@@ -80,12 +80,12 @@ public class GetReportDprsteelDetailedResponse implements Serializable {
     @ColumnAlias("CurrentStatus")
     private String currentStatus;
 
-    public String getArea() {
-        return this.area;
+    public String getSortGroup1() {
+        return this.sortGroup1;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setSortGroup1(String sortGroup1) {
+        this.sortGroup1 = sortGroup1;
     }
 
     public String getPieceNumber() {
@@ -184,11 +184,11 @@ public class GetReportDprsteelDetailedResponse implements Serializable {
         this.demoQuantity = demoQuantity;
     }
 
-    public Integer getMiscQuantity() {
+    public Short getMiscQuantity() {
         return this.miscQuantity;
     }
 
-    public void setMiscQuantity(Integer miscQuantity) {
+    public void setMiscQuantity(Short miscQuantity) {
         this.miscQuantity = miscQuantity;
     }
 
@@ -213,7 +213,7 @@ public class GetReportDprsteelDetailedResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetReportDprsteelDetailedResponse)) return false;
         final GetReportDprsteelDetailedResponse getReportDprsteelDetailedResponse = (GetReportDprsteelDetailedResponse) o;
-        return Objects.equals(getArea(), getReportDprsteelDetailedResponse.getArea()) &&
+        return Objects.equals(getSortGroup1(), getReportDprsteelDetailedResponse.getSortGroup1()) &&
                 Objects.equals(getPieceNumber(), getReportDprsteelDetailedResponse.getPieceNumber()) &&
                 Objects.equals(getShakeQuantity(), getReportDprsteelDetailedResponse.getShakeQuantity()) &&
                 Objects.equals(getErectQuantity(), getReportDprsteelDetailedResponse.getErectQuantity()) &&
@@ -233,7 +233,7 @@ public class GetReportDprsteelDetailedResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getArea(),
+        return Objects.hash(getSortGroup1(),
                 getPieceNumber(),
                 getShakeQuantity(),
                 getErectQuantity(),

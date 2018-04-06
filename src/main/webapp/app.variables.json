@@ -1036,10 +1036,10 @@
     "owner" : "App",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ ],
-    "type" : "com.psabackoffice.job1111.models.query.GetErectionTotalResponse",
+    "type" : "com.psabackoffice.job1111.models.query.GetQuantityLfinstalledByActivityIdResponse",
     "service" : "Job1111",
-    "operation" : "executeGetErectionTotal",
-    "operationId" : "QueryExecutionController_executeGetErectionTotal",
+    "operation" : "executeGetQuantityLFInstalledByActivityID",
+    "operationId" : "QueryExecutionController_executeGetQuantityLFInstalledByActivityID",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : {

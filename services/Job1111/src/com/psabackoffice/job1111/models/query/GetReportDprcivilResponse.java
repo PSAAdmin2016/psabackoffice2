@@ -15,26 +15,29 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 public class GetReportDprcivilResponse implements Serializable {
 
 
-    @ColumnAlias("FieldActivityId")
-    private Integer fieldActivityId;
+    @ColumnAlias("ActivityID")
+    private Integer activityId;
 
-    @ColumnAlias("ActivityType")
-    private Short activityType;
+    @ColumnAlias("ActivityTypeID")
+    private Short activityTypeId;
 
     @ColumnAlias("ActivityTypeName")
     private String activityTypeName;
 
-    @ColumnAlias("Foundation")
-    private String foundation;
+    @ColumnAlias("EngDrawingNumber")
+    private String engDrawingNumber;
+
+    @ColumnAlias("SheetNumber")
+    private String sheetNumber;
+
+    @ColumnAlias("DetailDrawingNumber")
+    private String detailDrawingNumber;
+
+    @ColumnAlias("DetailName")
+    private String detailName;
 
     @ColumnAlias("Description")
     private String description;
-
-    @ColumnAlias("DrawingNumber")
-    private String drawingNumber;
-
-    @ColumnAlias("DetailDrawing")
-    private String detailDrawing;
 
     @ColumnAlias("QuantityInstalled")
     private String quantityInstalled;
@@ -43,7 +46,7 @@ public class GetReportDprcivilResponse implements Serializable {
     private String currentStatus;
 
     @ColumnAlias("Rework")
-    private String rework;
+    private Long rework;
 
     @ColumnAlias("Notes")
     private String notes;
@@ -51,20 +54,20 @@ public class GetReportDprcivilResponse implements Serializable {
     @ColumnAlias("DateSubmitted")
     private Date dateSubmitted;
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
-    public Short getActivityType() {
-        return this.activityType;
+    public Short getActivityTypeId() {
+        return this.activityTypeId;
     }
 
-    public void setActivityType(Short activityType) {
-        this.activityType = activityType;
+    public void setActivityTypeId(Short activityTypeId) {
+        this.activityTypeId = activityTypeId;
     }
 
     public String getActivityTypeName() {
@@ -75,12 +78,36 @@ public class GetReportDprcivilResponse implements Serializable {
         this.activityTypeName = activityTypeName;
     }
 
-    public String getFoundation() {
-        return this.foundation;
+    public String getEngDrawingNumber() {
+        return this.engDrawingNumber;
     }
 
-    public void setFoundation(String foundation) {
-        this.foundation = foundation;
+    public void setEngDrawingNumber(String engDrawingNumber) {
+        this.engDrawingNumber = engDrawingNumber;
+    }
+
+    public String getSheetNumber() {
+        return this.sheetNumber;
+    }
+
+    public void setSheetNumber(String sheetNumber) {
+        this.sheetNumber = sheetNumber;
+    }
+
+    public String getDetailDrawingNumber() {
+        return this.detailDrawingNumber;
+    }
+
+    public void setDetailDrawingNumber(String detailDrawingNumber) {
+        this.detailDrawingNumber = detailDrawingNumber;
+    }
+
+    public String getDetailName() {
+        return this.detailName;
+    }
+
+    public void setDetailName(String detailName) {
+        this.detailName = detailName;
     }
 
     public String getDescription() {
@@ -89,22 +116,6 @@ public class GetReportDprcivilResponse implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getDrawingNumber() {
-        return this.drawingNumber;
-    }
-
-    public void setDrawingNumber(String drawingNumber) {
-        this.drawingNumber = drawingNumber;
-    }
-
-    public String getDetailDrawing() {
-        return this.detailDrawing;
-    }
-
-    public void setDetailDrawing(String detailDrawing) {
-        this.detailDrawing = detailDrawing;
     }
 
     public String getQuantityInstalled() {
@@ -123,11 +134,11 @@ public class GetReportDprcivilResponse implements Serializable {
         this.currentStatus = currentStatus;
     }
 
-    public String getRework() {
+    public Long getRework() {
         return this.rework;
     }
 
-    public void setRework(String rework) {
+    public void setRework(Long rework) {
         this.rework = rework;
     }
 
@@ -152,13 +163,14 @@ public class GetReportDprcivilResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetReportDprcivilResponse)) return false;
         final GetReportDprcivilResponse getReportDprcivilResponse = (GetReportDprcivilResponse) o;
-        return Objects.equals(getFieldActivityId(), getReportDprcivilResponse.getFieldActivityId()) &&
-                Objects.equals(getActivityType(), getReportDprcivilResponse.getActivityType()) &&
+        return Objects.equals(getActivityId(), getReportDprcivilResponse.getActivityId()) &&
+                Objects.equals(getActivityTypeId(), getReportDprcivilResponse.getActivityTypeId()) &&
                 Objects.equals(getActivityTypeName(), getReportDprcivilResponse.getActivityTypeName()) &&
-                Objects.equals(getFoundation(), getReportDprcivilResponse.getFoundation()) &&
+                Objects.equals(getEngDrawingNumber(), getReportDprcivilResponse.getEngDrawingNumber()) &&
+                Objects.equals(getSheetNumber(), getReportDprcivilResponse.getSheetNumber()) &&
+                Objects.equals(getDetailDrawingNumber(), getReportDprcivilResponse.getDetailDrawingNumber()) &&
+                Objects.equals(getDetailName(), getReportDprcivilResponse.getDetailName()) &&
                 Objects.equals(getDescription(), getReportDprcivilResponse.getDescription()) &&
-                Objects.equals(getDrawingNumber(), getReportDprcivilResponse.getDrawingNumber()) &&
-                Objects.equals(getDetailDrawing(), getReportDprcivilResponse.getDetailDrawing()) &&
                 Objects.equals(getQuantityInstalled(), getReportDprcivilResponse.getQuantityInstalled()) &&
                 Objects.equals(getCurrentStatus(), getReportDprcivilResponse.getCurrentStatus()) &&
                 Objects.equals(getRework(), getReportDprcivilResponse.getRework()) &&
@@ -168,13 +180,14 @@ public class GetReportDprcivilResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getFieldActivityId(),
-                getActivityType(),
+        return Objects.hash(getActivityId(),
+                getActivityTypeId(),
                 getActivityTypeName(),
-                getFoundation(),
+                getEngDrawingNumber(),
+                getSheetNumber(),
+                getDetailDrawingNumber(),
+                getDetailName(),
                 getDescription(),
-                getDrawingNumber(),
-                getDetailDrawing(),
                 getQuantityInstalled(),
                 getCurrentStatus(),
                 getRework(),

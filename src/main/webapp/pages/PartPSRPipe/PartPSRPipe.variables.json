@@ -3226,10 +3226,10 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ ],
-    "type" : "com.psabackoffice.job1111.models.query.GetQuantityLfinstalledResponse",
+    "type" : "com.psabackoffice.job1111.models.query.GetQuantityLfinstalledByBidIdResponse",
     "service" : "Job1111",
-    "operation" : "executeGetQuantityLFInstalled",
-    "operationId" : "QueryExecutionController_executeGetQuantityLFInstalled",
+    "operation" : "executeGetQuantityLFInstalledByBidID",
+    "operationId" : "QueryExecutionController_executeGetQuantityLFInstalledByBidID",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : {

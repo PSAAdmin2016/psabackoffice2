@@ -15,25 +15,17 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 public class GetDrawingByTestPackageCivilResponse implements Serializable {
 
 
-    @JsonProperty("DetailDrawingNumber")
-    @ColumnAlias("DetailDrawingNumber")
-    private String detailDrawingNumber;
-
     @JsonProperty("EngDrawingNumber")
     @ColumnAlias("EngDrawingNumber")
     private String engDrawingNumber;
 
-    @JsonProperty("FoundationDescription")
-    @ColumnAlias("FoundationDescription")
-    private String foundationDescription;
+    @JsonProperty("SheetNumber")
+    @ColumnAlias("SheetNumber")
+    private Short sheetNumber;
 
-    public String getDetailDrawingNumber() {
-        return this.detailDrawingNumber;
-    }
-
-    public void setDetailDrawingNumber(String detailDrawingNumber) {
-        this.detailDrawingNumber = detailDrawingNumber;
-    }
+    @JsonProperty("DetailDrawingNumber")
+    @ColumnAlias("DetailDrawingNumber")
+    private String detailDrawingNumber;
 
     public String getEngDrawingNumber() {
         return this.engDrawingNumber;
@@ -43,12 +35,20 @@ public class GetDrawingByTestPackageCivilResponse implements Serializable {
         this.engDrawingNumber = engDrawingNumber;
     }
 
-    public String getFoundationDescription() {
-        return this.foundationDescription;
+    public Short getSheetNumber() {
+        return this.sheetNumber;
     }
 
-    public void setFoundationDescription(String foundationDescription) {
-        this.foundationDescription = foundationDescription;
+    public void setSheetNumber(Short sheetNumber) {
+        this.sheetNumber = sheetNumber;
+    }
+
+    public String getDetailDrawingNumber() {
+        return this.detailDrawingNumber;
+    }
+
+    public void setDetailDrawingNumber(String detailDrawingNumber) {
+        this.detailDrawingNumber = detailDrawingNumber;
     }
 
     @Override
@@ -56,15 +56,15 @@ public class GetDrawingByTestPackageCivilResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetDrawingByTestPackageCivilResponse)) return false;
         final GetDrawingByTestPackageCivilResponse getDrawingByTestPackageCivilResponse = (GetDrawingByTestPackageCivilResponse) o;
-        return Objects.equals(getDetailDrawingNumber(), getDrawingByTestPackageCivilResponse.getDetailDrawingNumber()) &&
-                Objects.equals(getEngDrawingNumber(), getDrawingByTestPackageCivilResponse.getEngDrawingNumber()) &&
-                Objects.equals(getFoundationDescription(), getDrawingByTestPackageCivilResponse.getFoundationDescription());
+        return Objects.equals(getEngDrawingNumber(), getDrawingByTestPackageCivilResponse.getEngDrawingNumber()) &&
+                Objects.equals(getSheetNumber(), getDrawingByTestPackageCivilResponse.getSheetNumber()) &&
+                Objects.equals(getDetailDrawingNumber(), getDrawingByTestPackageCivilResponse.getDetailDrawingNumber());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getDetailDrawingNumber(),
-                getEngDrawingNumber(),
-                getFoundationDescription());
+        return Objects.hash(getEngDrawingNumber(),
+                getSheetNumber(),
+                getDetailDrawingNumber());
     }
 }

@@ -22,22 +22,6 @@ public class GetBidWorkHistorySteelResponse implements Serializable {
     @ColumnAlias("SubmissionID")
     private Integer submissionId;
 
-    @JsonProperty("Foreman")
-    @ColumnAlias("Foreman")
-    private String foreman;
-
-    @JsonProperty("Supervisor")
-    @ColumnAlias("Supervisor")
-    private String supervisor;
-
-    @JsonProperty("CompleteTime")
-    @ColumnAlias("CompleteTime")
-    private Timestamp completeTime;
-
-    @JsonProperty("ReviewedTime")
-    @ColumnAlias("ReviewedTime")
-    private Timestamp reviewedTime;
-
     @JsonProperty("ShakeQuantity")
     @ColumnAlias("ShakeQuantity")
     private BigInteger shakeQuantity;
@@ -86,44 +70,28 @@ public class GetBidWorkHistorySteelResponse implements Serializable {
     @ColumnAlias("MiscQuantity")
     private BigInteger miscQuantity;
 
+    @JsonProperty("Foreman")
+    @ColumnAlias("Foreman")
+    private String foreman;
+
+    @JsonProperty("Supervisor")
+    @ColumnAlias("Supervisor")
+    private String supervisor;
+
+    @JsonProperty("CompleteTime")
+    @ColumnAlias("CompleteTime")
+    private Timestamp completeTime;
+
+    @JsonProperty("ReviewedTime")
+    @ColumnAlias("ReviewedTime")
+    private Timestamp reviewedTime;
+
     public Integer getSubmissionId() {
         return this.submissionId;
     }
 
     public void setSubmissionId(Integer submissionId) {
         this.submissionId = submissionId;
-    }
-
-    public String getForeman() {
-        return this.foreman;
-    }
-
-    public void setForeman(String foreman) {
-        this.foreman = foreman;
-    }
-
-    public String getSupervisor() {
-        return this.supervisor;
-    }
-
-    public void setSupervisor(String supervisor) {
-        this.supervisor = supervisor;
-    }
-
-    public Timestamp getCompleteTime() {
-        return this.completeTime;
-    }
-
-    public void setCompleteTime(Timestamp completeTime) {
-        this.completeTime = completeTime;
-    }
-
-    public Timestamp getReviewedTime() {
-        return this.reviewedTime;
-    }
-
-    public void setReviewedTime(Timestamp reviewedTime) {
-        this.reviewedTime = reviewedTime;
     }
 
     public BigInteger getShakeQuantity() {
@@ -222,16 +190,44 @@ public class GetBidWorkHistorySteelResponse implements Serializable {
         this.miscQuantity = miscQuantity;
     }
 
+    public String getForeman() {
+        return this.foreman;
+    }
+
+    public void setForeman(String foreman) {
+        this.foreman = foreman;
+    }
+
+    public String getSupervisor() {
+        return this.supervisor;
+    }
+
+    public void setSupervisor(String supervisor) {
+        this.supervisor = supervisor;
+    }
+
+    public Timestamp getCompleteTime() {
+        return this.completeTime;
+    }
+
+    public void setCompleteTime(Timestamp completeTime) {
+        this.completeTime = completeTime;
+    }
+
+    public Timestamp getReviewedTime() {
+        return this.reviewedTime;
+    }
+
+    public void setReviewedTime(Timestamp reviewedTime) {
+        this.reviewedTime = reviewedTime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof GetBidWorkHistorySteelResponse)) return false;
         final GetBidWorkHistorySteelResponse getBidWorkHistorySteelResponse = (GetBidWorkHistorySteelResponse) o;
         return Objects.equals(getSubmissionId(), getBidWorkHistorySteelResponse.getSubmissionId()) &&
-                Objects.equals(getForeman(), getBidWorkHistorySteelResponse.getForeman()) &&
-                Objects.equals(getSupervisor(), getBidWorkHistorySteelResponse.getSupervisor()) &&
-                Objects.equals(getCompleteTime(), getBidWorkHistorySteelResponse.getCompleteTime()) &&
-                Objects.equals(getReviewedTime(), getBidWorkHistorySteelResponse.getReviewedTime()) &&
                 Objects.equals(getShakeQuantity(), getBidWorkHistorySteelResponse.getShakeQuantity()) &&
                 Objects.equals(getErectQuantity(), getBidWorkHistorySteelResponse.getErectQuantity()) &&
                 Objects.equals(getErectPercent(), getBidWorkHistorySteelResponse.getErectPercent()) &&
@@ -243,16 +239,16 @@ public class GetBidWorkHistorySteelResponse implements Serializable {
                 Objects.equals(getWeldPercent(), getBidWorkHistorySteelResponse.getWeldPercent()) &&
                 Objects.equals(getSellQuantity(), getBidWorkHistorySteelResponse.getSellQuantity()) &&
                 Objects.equals(getDemoQuantity(), getBidWorkHistorySteelResponse.getDemoQuantity()) &&
-                Objects.equals(getMiscQuantity(), getBidWorkHistorySteelResponse.getMiscQuantity());
+                Objects.equals(getMiscQuantity(), getBidWorkHistorySteelResponse.getMiscQuantity()) &&
+                Objects.equals(getForeman(), getBidWorkHistorySteelResponse.getForeman()) &&
+                Objects.equals(getSupervisor(), getBidWorkHistorySteelResponse.getSupervisor()) &&
+                Objects.equals(getCompleteTime(), getBidWorkHistorySteelResponse.getCompleteTime()) &&
+                Objects.equals(getReviewedTime(), getBidWorkHistorySteelResponse.getReviewedTime());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getSubmissionId(),
-                getForeman(),
-                getSupervisor(),
-                getCompleteTime(),
-                getReviewedTime(),
                 getShakeQuantity(),
                 getErectQuantity(),
                 getErectPercent(),
@@ -264,6 +260,10 @@ public class GetBidWorkHistorySteelResponse implements Serializable {
                 getWeldPercent(),
                 getSellQuantity(),
                 getDemoQuantity(),
-                getMiscQuantity());
+                getMiscQuantity(),
+                getForeman(),
+                getSupervisor(),
+                getCompleteTime(),
+                getReviewedTime());
     }
 }

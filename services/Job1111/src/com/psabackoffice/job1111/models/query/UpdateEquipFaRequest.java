@@ -19,26 +19,31 @@ public class UpdateEquipFaRequest implements Serializable {
 
 
     @JsonProperty("TagNumber")
+    @NotNull
     private String tagNumber;
 
     @JsonProperty("Activity")
+    @NotNull
     private String activity;
 
     @JsonProperty("Quantity")
-    private BigDecimal quantity;
+    @NotNull
+    private Integer quantity;
 
     @JsonProperty("Percent")
-    private String percent;
+    @NotNull
+    private BigDecimal percent;
 
     @JsonProperty("Rework")
-    private String rework;
+    @NotNull
+    private Integer rework;
 
     @JsonProperty("Notes")
     private String notes;
 
-    @JsonProperty("FieldActivityID")
+    @JsonProperty("ActivityID")
     @NotNull
-    private Integer fieldActivityId;
+    private String activityId;
 
     public String getTagNumber() {
         return this.tagNumber;
@@ -56,27 +61,27 @@ public class UpdateEquipFaRequest implements Serializable {
         this.activity = activity;
     }
 
-    public BigDecimal getQuantity() {
+    public Integer getQuantity() {
         return this.quantity;
     }
 
-    public void setQuantity(BigDecimal quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public String getPercent() {
+    public BigDecimal getPercent() {
         return this.percent;
     }
 
-    public void setPercent(String percent) {
+    public void setPercent(BigDecimal percent) {
         this.percent = percent;
     }
 
-    public String getRework() {
+    public Integer getRework() {
         return this.rework;
     }
 
-    public void setRework(String rework) {
+    public void setRework(Integer rework) {
         this.rework = rework;
     }
 
@@ -88,12 +93,12 @@ public class UpdateEquipFaRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public String getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(String activityId) {
+        this.activityId = activityId;
     }
 
     @Override
@@ -107,7 +112,7 @@ public class UpdateEquipFaRequest implements Serializable {
                 Objects.equals(getPercent(), updateEquipFaRequest.getPercent()) &&
                 Objects.equals(getRework(), updateEquipFaRequest.getRework()) &&
                 Objects.equals(getNotes(), updateEquipFaRequest.getNotes()) &&
-                Objects.equals(getFieldActivityId(), updateEquipFaRequest.getFieldActivityId());
+                Objects.equals(getActivityId(), updateEquipFaRequest.getActivityId());
     }
 
     @Override
@@ -118,6 +123,6 @@ public class UpdateEquipFaRequest implements Serializable {
                 getPercent(),
                 getRework(),
                 getNotes(),
-                getFieldActivityId());
+                getActivityId());
     }
 }
