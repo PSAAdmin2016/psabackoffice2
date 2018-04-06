@@ -30,7 +30,6 @@ public class PipeDemo implements Serializable {
 
     private Integer activityId;
     private Integer demoBidId;
-    private String demoDescription;
     private Short demoQuantity;
     private String demoNotes;
     private Short activityType;
@@ -56,15 +55,6 @@ public class PipeDemo implements Serializable {
 
     public void setDemoBidId(Integer demoBidId) {
         this.demoBidId = demoBidId;
-    }
-
-    @Column(name = "`DemoDescription`", nullable = true, length = 255)
-    public String getDemoDescription() {
-        return this.demoDescription;
-    }
-
-    public void setDemoDescription(String demoDescription) {
-        this.demoDescription = demoDescription;
     }
 
     @Column(name = "`DemoQuantity`", nullable = true, scale = 0, precision = 5)

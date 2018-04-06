@@ -32,11 +32,11 @@ public class PipeMisc implements Serializable {
     private String miscDrawingNumber;
     private String miscLineNumber;
     private String miscSheetNumber;
-    private Short miscTimeInForm;
     private Double miscQuantity;
     private Short miscRework;
     private String miscNotes;
     private Short activityType;
+    private Short miscTimeInForm;
     private short rev;
     private Timestamp timeStamp;
     private SubmissionActivityStatus submissionActivityStatus;
@@ -78,15 +78,6 @@ public class PipeMisc implements Serializable {
         this.miscSheetNumber = miscSheetNumber;
     }
 
-    @Column(name = "`MiscTimeInForm`", nullable = true, scale = 0, precision = 5)
-    public Short getMiscTimeInForm() {
-        return this.miscTimeInForm;
-    }
-
-    public void setMiscTimeInForm(Short miscTimeInForm) {
-        this.miscTimeInForm = miscTimeInForm;
-    }
-
     @Column(name = "`MiscQuantity`", nullable = true, scale = 6, precision = 18)
     public Double getMiscQuantity() {
         return this.miscQuantity;
@@ -121,6 +112,15 @@ public class PipeMisc implements Serializable {
 
     public void setActivityType(Short activityType) {
         this.activityType = activityType;
+    }
+
+    @Column(name = "`MiscTimeInForm`", nullable = true, scale = 0, precision = 5)
+    public Short getMiscTimeInForm() {
+        return this.miscTimeInForm;
+    }
+
+    public void setMiscTimeInForm(Short miscTimeInForm) {
+        this.miscTimeInForm = miscTimeInForm;
     }
 
     @Column(name = "`Rev`", nullable = false, scale = 0, precision = 3)

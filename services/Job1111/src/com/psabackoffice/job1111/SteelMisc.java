@@ -29,9 +29,8 @@ import org.hibernate.annotations.FetchMode;
 public class SteelMisc implements Serializable {
 
     private Integer activityId;
-    private String miscSortGroup1;
-    private String miscPieceNumber;
-    private Short miscQuantity;
+    private Integer miscBidId;
+    private Float miscPercentCompleted;
     private Short miscRework;
     private String miscNotes;
     private Short activityType;
@@ -50,31 +49,22 @@ public class SteelMisc implements Serializable {
         this.activityId = activityId;
     }
 
-    @Column(name = "`MiscSortGroup1`", nullable = true, length = 45)
-    public String getMiscSortGroup1() {
-        return this.miscSortGroup1;
+    @Column(name = "`MiscBidID`", nullable = true, scale = 0, precision = 10)
+    public Integer getMiscBidId() {
+        return this.miscBidId;
     }
 
-    public void setMiscSortGroup1(String miscSortGroup1) {
-        this.miscSortGroup1 = miscSortGroup1;
+    public void setMiscBidId(Integer miscBidId) {
+        this.miscBidId = miscBidId;
     }
 
-    @Column(name = "`MiscPieceNumber`", nullable = true, length = 45)
-    public String getMiscPieceNumber() {
-        return this.miscPieceNumber;
+    @Column(name = "`MiscPercentCompleted`", nullable = true, scale = 2, precision = 3)
+    public Float getMiscPercentCompleted() {
+        return this.miscPercentCompleted;
     }
 
-    public void setMiscPieceNumber(String miscPieceNumber) {
-        this.miscPieceNumber = miscPieceNumber;
-    }
-
-    @Column(name = "`MiscQuantity`", nullable = true, scale = 0, precision = 5)
-    public Short getMiscQuantity() {
-        return this.miscQuantity;
-    }
-
-    public void setMiscQuantity(Short miscQuantity) {
-        this.miscQuantity = miscQuantity;
+    public void setMiscPercentCompleted(Float miscPercentCompleted) {
+        this.miscPercentCompleted = miscPercentCompleted;
     }
 
     @Column(name = "`MiscRework`", nullable = true, scale = 0, precision = 3)

@@ -29,19 +29,13 @@ import org.hibernate.annotations.FetchMode;
 public class PipeSupports implements Serializable {
 
     private Integer activityId;
-    private Short supportType;
-    private String supportPartNumber;
+    private Integer supportBidId;
     private Float supportQuantity;
-    private String supportDrawingNumber;
-    private String supportLineNumber;
-    private String supportSheetNumber;
-    private Short supportTimeInForm;
-    private Short supportComplete;
-    private Short supportShared;
     private Integer supportPercentCompleted;
     private Short supportRework;
     private String supportNotes;
     private Short activityType;
+    private Short supportTimeInForm;
     private short rev;
     private Timestamp timeStamp;
     private SubmissionActivityStatus submissionActivityStatus;
@@ -56,22 +50,13 @@ public class PipeSupports implements Serializable {
         this.activityId = activityId;
     }
 
-    @Column(name = "`SupportType`", nullable = true, scale = 0, precision = 3)
-    public Short getSupportType() {
-        return this.supportType;
+    @Column(name = "`SupportBidID`", nullable = true, scale = 0, precision = 10)
+    public Integer getSupportBidId() {
+        return this.supportBidId;
     }
 
-    public void setSupportType(Short supportType) {
-        this.supportType = supportType;
-    }
-
-    @Column(name = "`SupportPartNumber`", nullable = true, length = 45)
-    public String getSupportPartNumber() {
-        return this.supportPartNumber;
-    }
-
-    public void setSupportPartNumber(String supportPartNumber) {
-        this.supportPartNumber = supportPartNumber;
+    public void setSupportBidId(Integer supportBidId) {
+        this.supportBidId = supportBidId;
     }
 
     @Column(name = "`SupportQuantity`", nullable = true, scale = 2, precision = 5)
@@ -81,60 +66,6 @@ public class PipeSupports implements Serializable {
 
     public void setSupportQuantity(Float supportQuantity) {
         this.supportQuantity = supportQuantity;
-    }
-
-    @Column(name = "`SupportDrawingNumber`", nullable = true, length = 45)
-    public String getSupportDrawingNumber() {
-        return this.supportDrawingNumber;
-    }
-
-    public void setSupportDrawingNumber(String supportDrawingNumber) {
-        this.supportDrawingNumber = supportDrawingNumber;
-    }
-
-    @Column(name = "`SupportLineNumber`", nullable = true, length = 45)
-    public String getSupportLineNumber() {
-        return this.supportLineNumber;
-    }
-
-    public void setSupportLineNumber(String supportLineNumber) {
-        this.supportLineNumber = supportLineNumber;
-    }
-
-    @Column(name = "`SupportSheetNumber`", nullable = true, length = 3)
-    public String getSupportSheetNumber() {
-        return this.supportSheetNumber;
-    }
-
-    public void setSupportSheetNumber(String supportSheetNumber) {
-        this.supportSheetNumber = supportSheetNumber;
-    }
-
-    @Column(name = "`SupportTimeInForm`", nullable = true, scale = 0, precision = 5)
-    public Short getSupportTimeInForm() {
-        return this.supportTimeInForm;
-    }
-
-    public void setSupportTimeInForm(Short supportTimeInForm) {
-        this.supportTimeInForm = supportTimeInForm;
-    }
-
-    @Column(name = "`SupportComplete`", nullable = true, scale = 0, precision = 3)
-    public Short getSupportComplete() {
-        return this.supportComplete;
-    }
-
-    public void setSupportComplete(Short supportComplete) {
-        this.supportComplete = supportComplete;
-    }
-
-    @Column(name = "`SupportShared`", nullable = true, scale = 0, precision = 3)
-    public Short getSupportShared() {
-        return this.supportShared;
-    }
-
-    public void setSupportShared(Short supportShared) {
-        this.supportShared = supportShared;
     }
 
     @Column(name = "`SupportPercentCompleted`", nullable = true, scale = 2, precision = 3)
@@ -171,6 +102,15 @@ public class PipeSupports implements Serializable {
 
     public void setActivityType(Short activityType) {
         this.activityType = activityType;
+    }
+
+    @Column(name = "`SupportTimeInForm`", nullable = true, scale = 0, precision = 5)
+    public Short getSupportTimeInForm() {
+        return this.supportTimeInForm;
+    }
+
+    public void setSupportTimeInForm(Short supportTimeInForm) {
+        this.supportTimeInForm = supportTimeInForm;
     }
 
     @Column(name = "`Rev`", nullable = false, scale = 0, precision = 3)

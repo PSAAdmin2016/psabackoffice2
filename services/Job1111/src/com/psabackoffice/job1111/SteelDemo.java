@@ -30,7 +30,6 @@ public class SteelDemo implements Serializable {
 
     private Integer activityId;
     private Integer demoBidId;
-    private Integer demoQuantity;
     private Float demoPercentCompleted;
     private String demoNotes;
     private Short activityType;
@@ -56,15 +55,6 @@ public class SteelDemo implements Serializable {
 
     public void setDemoBidId(Integer demoBidId) {
         this.demoBidId = demoBidId;
-    }
-
-    @Column(name = "`DemoQuantity`", nullable = true, scale = 0, precision = 7)
-    public Integer getDemoQuantity() {
-        return this.demoQuantity;
-    }
-
-    public void setDemoQuantity(Integer demoQuantity) {
-        this.demoQuantity = demoQuantity;
     }
 
     @Column(name = "`DemoPercentCompleted`", nullable = true, scale = 2, precision = 3)
