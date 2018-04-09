@@ -18,6 +18,9 @@ public class GetActivityHistoryPipeConnectionResponse implements Serializable {
     @ColumnAlias("ActivityID")
     private Integer activityId;
 
+    @ColumnAlias("ConnectionBidID")
+    private Integer connectionBidId;
+
     @ColumnAlias("ConnectionSpool1")
     private String connectionSpool1;
 
@@ -63,6 +66,14 @@ public class GetActivityHistoryPipeConnectionResponse implements Serializable {
 
     public void setActivityId(Integer activityId) {
         this.activityId = activityId;
+    }
+
+    public Integer getConnectionBidId() {
+        return this.connectionBidId;
+    }
+
+    public void setConnectionBidId(Integer connectionBidId) {
+        this.connectionBidId = connectionBidId;
     }
 
     public String getConnectionSpool1() {
@@ -175,6 +186,7 @@ public class GetActivityHistoryPipeConnectionResponse implements Serializable {
         if (!(o instanceof GetActivityHistoryPipeConnectionResponse)) return false;
         final GetActivityHistoryPipeConnectionResponse getActivityHistoryPipeConnectionResponse = (GetActivityHistoryPipeConnectionResponse) o;
         return Objects.equals(getActivityId(), getActivityHistoryPipeConnectionResponse.getActivityId()) &&
+                Objects.equals(getConnectionBidId(), getActivityHistoryPipeConnectionResponse.getConnectionBidId()) &&
                 Objects.equals(getConnectionSpool1(), getActivityHistoryPipeConnectionResponse.getConnectionSpool1()) &&
                 Objects.equals(getConnectionSpool2(), getActivityHistoryPipeConnectionResponse.getConnectionSpool2()) &&
                 Objects.equals(getConnectionDrawingNumber(), getActivityHistoryPipeConnectionResponse.getConnectionDrawingNumber()) &&
@@ -193,6 +205,7 @@ public class GetActivityHistoryPipeConnectionResponse implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getActivityId(),
+                getConnectionBidId(),
                 getConnectionSpool1(),
                 getConnectionSpool2(),
                 getConnectionDrawingNumber(),

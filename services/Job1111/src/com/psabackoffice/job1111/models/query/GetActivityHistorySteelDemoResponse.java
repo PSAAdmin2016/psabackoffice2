@@ -24,10 +24,6 @@ public class GetActivityHistorySteelDemoResponse implements Serializable {
     @ColumnAlias("DemoBidID")
     private Integer demoBidId;
 
-    @JsonProperty("DemoQuantity")
-    @ColumnAlias("DemoQuantity")
-    private Integer demoQuantity;
-
     @JsonProperty("DemoPercentCompleted")
     @ColumnAlias("DemoPercentCompleted")
     private Float demoPercentCompleted;
@@ -66,14 +62,6 @@ public class GetActivityHistorySteelDemoResponse implements Serializable {
 
     public void setDemoBidId(Integer demoBidId) {
         this.demoBidId = demoBidId;
-    }
-
-    public Integer getDemoQuantity() {
-        return this.demoQuantity;
-    }
-
-    public void setDemoQuantity(Integer demoQuantity) {
-        this.demoQuantity = demoQuantity;
     }
 
     public Float getDemoPercentCompleted() {
@@ -131,7 +119,6 @@ public class GetActivityHistorySteelDemoResponse implements Serializable {
         final GetActivityHistorySteelDemoResponse getActivityHistorySteelDemoResponse = (GetActivityHistorySteelDemoResponse) o;
         return Objects.equals(getActivityId(), getActivityHistorySteelDemoResponse.getActivityId()) &&
                 Objects.equals(getDemoBidId(), getActivityHistorySteelDemoResponse.getDemoBidId()) &&
-                Objects.equals(getDemoQuantity(), getActivityHistorySteelDemoResponse.getDemoQuantity()) &&
                 Objects.equals(getDemoPercentCompleted(), getActivityHistorySteelDemoResponse.getDemoPercentCompleted()) &&
                 Objects.equals(getDemoNotes(), getActivityHistorySteelDemoResponse.getDemoNotes()) &&
                 Objects.equals(getActivityType(), getActivityHistorySteelDemoResponse.getActivityType()) &&
@@ -144,7 +131,6 @@ public class GetActivityHistorySteelDemoResponse implements Serializable {
     public int hashCode() {
         return Objects.hash(getActivityId(),
                 getDemoBidId(),
-                getDemoQuantity(),
                 getDemoPercentCompleted(),
                 getDemoNotes(),
                 getActivityType(),

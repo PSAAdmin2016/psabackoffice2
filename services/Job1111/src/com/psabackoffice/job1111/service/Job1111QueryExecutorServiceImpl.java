@@ -1452,7 +1452,7 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<GetActivitiesPendingApprovalResponse> executeGetActivitiesPendingApproval(Integer userId, Pageable pageable) {
+    public Page<GetActivitiesPendingApprovalResponse> executeGetActivitiesPendingApproval(String userId, Pageable pageable) {
         Map params = new HashMap(1);
 
         params.put("UserID", userId);
@@ -1462,7 +1462,7 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Downloadable exportGetActivitiesPendingApproval(ExportType exportType, Integer userId, Pageable pageable) {
+    public Downloadable exportGetActivitiesPendingApproval(ExportType exportType, String userId, Pageable pageable) {
         Map params = new HashMap(1);
 
         params.put("UserID", userId);

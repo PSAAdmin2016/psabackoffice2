@@ -69,17 +69,3 @@ Application.$controller("FeedBackLiveForm1Controller", ["$scope",
 
     }
 ]);
-
-Application.$controller("FeedBackNotesTable1Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
-]);
-
-Application.$controller("FeedBackNotesLiveForm1_1Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
-]);

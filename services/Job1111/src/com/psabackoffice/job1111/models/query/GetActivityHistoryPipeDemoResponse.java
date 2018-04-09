@@ -20,25 +20,13 @@ public class GetActivityHistoryPipeDemoResponse implements Serializable {
     @ColumnAlias("ActivityID")
     private Integer activityId;
 
-    @JsonProperty("DemoDrawingNumber")
-    @ColumnAlias("DemoDrawingNumber")
-    private String demoDrawingNumber;
-
-    @JsonProperty("DemoLineNumber")
-    @ColumnAlias("DemoLineNumber")
-    private String demoLineNumber;
-
-    @JsonProperty("DemoSheetNumber")
-    @ColumnAlias("DemoSheetNumber")
-    private String demoSheetNumber;
+    @JsonProperty("DemoBidID")
+    @ColumnAlias("DemoBidID")
+    private String demoBidId;
 
     @JsonProperty("DemoQuantity")
     @ColumnAlias("DemoQuantity")
     private Short demoQuantity;
-
-    @JsonProperty("DemoSize")
-    @ColumnAlias("DemoSize")
-    private Float demoSize;
 
     @JsonProperty("DemoNotes")
     @ColumnAlias("DemoNotes")
@@ -68,28 +56,12 @@ public class GetActivityHistoryPipeDemoResponse implements Serializable {
         this.activityId = activityId;
     }
 
-    public String getDemoDrawingNumber() {
-        return this.demoDrawingNumber;
+    public String getDemoBidId() {
+        return this.demoBidId;
     }
 
-    public void setDemoDrawingNumber(String demoDrawingNumber) {
-        this.demoDrawingNumber = demoDrawingNumber;
-    }
-
-    public String getDemoLineNumber() {
-        return this.demoLineNumber;
-    }
-
-    public void setDemoLineNumber(String demoLineNumber) {
-        this.demoLineNumber = demoLineNumber;
-    }
-
-    public String getDemoSheetNumber() {
-        return this.demoSheetNumber;
-    }
-
-    public void setDemoSheetNumber(String demoSheetNumber) {
-        this.demoSheetNumber = demoSheetNumber;
+    public void setDemoBidId(String demoBidId) {
+        this.demoBidId = demoBidId;
     }
 
     public Short getDemoQuantity() {
@@ -98,14 +70,6 @@ public class GetActivityHistoryPipeDemoResponse implements Serializable {
 
     public void setDemoQuantity(Short demoQuantity) {
         this.demoQuantity = demoQuantity;
-    }
-
-    public Float getDemoSize() {
-        return this.demoSize;
-    }
-
-    public void setDemoSize(Float demoSize) {
-        this.demoSize = demoSize;
     }
 
     public String getDemoNotes() {
@@ -154,11 +118,8 @@ public class GetActivityHistoryPipeDemoResponse implements Serializable {
         if (!(o instanceof GetActivityHistoryPipeDemoResponse)) return false;
         final GetActivityHistoryPipeDemoResponse getActivityHistoryPipeDemoResponse = (GetActivityHistoryPipeDemoResponse) o;
         return Objects.equals(getActivityId(), getActivityHistoryPipeDemoResponse.getActivityId()) &&
-                Objects.equals(getDemoDrawingNumber(), getActivityHistoryPipeDemoResponse.getDemoDrawingNumber()) &&
-                Objects.equals(getDemoLineNumber(), getActivityHistoryPipeDemoResponse.getDemoLineNumber()) &&
-                Objects.equals(getDemoSheetNumber(), getActivityHistoryPipeDemoResponse.getDemoSheetNumber()) &&
+                Objects.equals(getDemoBidId(), getActivityHistoryPipeDemoResponse.getDemoBidId()) &&
                 Objects.equals(getDemoQuantity(), getActivityHistoryPipeDemoResponse.getDemoQuantity()) &&
-                Objects.equals(getDemoSize(), getActivityHistoryPipeDemoResponse.getDemoSize()) &&
                 Objects.equals(getDemoNotes(), getActivityHistoryPipeDemoResponse.getDemoNotes()) &&
                 Objects.equals(getActivityType(), getActivityHistoryPipeDemoResponse.getActivityType()) &&
                 Objects.equals(getDemoTimeInForm(), getActivityHistoryPipeDemoResponse.getDemoTimeInForm()) &&
@@ -169,11 +130,8 @@ public class GetActivityHistoryPipeDemoResponse implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getActivityId(),
-                getDemoDrawingNumber(),
-                getDemoLineNumber(),
-                getDemoSheetNumber(),
+                getDemoBidId(),
                 getDemoQuantity(),
-                getDemoSize(),
                 getDemoNotes(),
                 getActivityType(),
                 getDemoTimeInForm(),

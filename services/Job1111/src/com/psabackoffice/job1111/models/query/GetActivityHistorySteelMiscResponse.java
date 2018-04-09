@@ -20,17 +20,13 @@ public class GetActivityHistorySteelMiscResponse implements Serializable {
     @ColumnAlias("ActivityID")
     private Integer activityId;
 
-    @JsonProperty("MiscSortGroup1")
-    @ColumnAlias("MiscSortGroup1")
-    private String miscSortGroup1;
+    @JsonProperty("MiscBidID")
+    @ColumnAlias("MiscBidID")
+    private Integer miscBidId;
 
-    @JsonProperty("MiscPieceNumber")
-    @ColumnAlias("MiscPieceNumber")
-    private String miscPieceNumber;
-
-    @JsonProperty("MiscQuantity")
-    @ColumnAlias("MiscQuantity")
-    private Integer miscQuantity;
+    @JsonProperty("MiscPercentCompleted")
+    @ColumnAlias("MiscPercentCompleted")
+    private Float miscPercentCompleted;
 
     @JsonProperty("MiscRework")
     @ColumnAlias("MiscRework")
@@ -64,28 +60,20 @@ public class GetActivityHistorySteelMiscResponse implements Serializable {
         this.activityId = activityId;
     }
 
-    public String getMiscSortGroup1() {
-        return this.miscSortGroup1;
+    public Integer getMiscBidId() {
+        return this.miscBidId;
     }
 
-    public void setMiscSortGroup1(String miscSortGroup1) {
-        this.miscSortGroup1 = miscSortGroup1;
+    public void setMiscBidId(Integer miscBidId) {
+        this.miscBidId = miscBidId;
     }
 
-    public String getMiscPieceNumber() {
-        return this.miscPieceNumber;
+    public Float getMiscPercentCompleted() {
+        return this.miscPercentCompleted;
     }
 
-    public void setMiscPieceNumber(String miscPieceNumber) {
-        this.miscPieceNumber = miscPieceNumber;
-    }
-
-    public Integer getMiscQuantity() {
-        return this.miscQuantity;
-    }
-
-    public void setMiscQuantity(Integer miscQuantity) {
-        this.miscQuantity = miscQuantity;
+    public void setMiscPercentCompleted(Float miscPercentCompleted) {
+        this.miscPercentCompleted = miscPercentCompleted;
     }
 
     public Short getMiscRework() {
@@ -142,9 +130,8 @@ public class GetActivityHistorySteelMiscResponse implements Serializable {
         if (!(o instanceof GetActivityHistorySteelMiscResponse)) return false;
         final GetActivityHistorySteelMiscResponse getActivityHistorySteelMiscResponse = (GetActivityHistorySteelMiscResponse) o;
         return Objects.equals(getActivityId(), getActivityHistorySteelMiscResponse.getActivityId()) &&
-                Objects.equals(getMiscSortGroup1(), getActivityHistorySteelMiscResponse.getMiscSortGroup1()) &&
-                Objects.equals(getMiscPieceNumber(), getActivityHistorySteelMiscResponse.getMiscPieceNumber()) &&
-                Objects.equals(getMiscQuantity(), getActivityHistorySteelMiscResponse.getMiscQuantity()) &&
+                Objects.equals(getMiscBidId(), getActivityHistorySteelMiscResponse.getMiscBidId()) &&
+                Objects.equals(getMiscPercentCompleted(), getActivityHistorySteelMiscResponse.getMiscPercentCompleted()) &&
                 Objects.equals(getMiscRework(), getActivityHistorySteelMiscResponse.getMiscRework()) &&
                 Objects.equals(getMiscNotes(), getActivityHistorySteelMiscResponse.getMiscNotes()) &&
                 Objects.equals(getActivityType(), getActivityHistorySteelMiscResponse.getActivityType()) &&
@@ -156,9 +143,8 @@ public class GetActivityHistorySteelMiscResponse implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getActivityId(),
-                getMiscSortGroup1(),
-                getMiscPieceNumber(),
-                getMiscQuantity(),
+                getMiscBidId(),
+                getMiscPercentCompleted(),
                 getMiscRework(),
                 getMiscNotes(),
                 getActivityType(),

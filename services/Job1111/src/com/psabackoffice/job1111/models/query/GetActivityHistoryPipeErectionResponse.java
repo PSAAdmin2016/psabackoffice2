@@ -20,6 +20,10 @@ public class GetActivityHistoryPipeErectionResponse implements Serializable {
     @ColumnAlias("ActivityID")
     private Integer activityId;
 
+    @JsonProperty("ErectionBidID")
+    @ColumnAlias("ErectionBidID")
+    private Integer erectionBidId;
+
     @JsonProperty("ErectionSpool1")
     @ColumnAlias("ErectionSpool1")
     private String erectionSpool1;
@@ -118,6 +122,14 @@ public class GetActivityHistoryPipeErectionResponse implements Serializable {
 
     public void setActivityId(Integer activityId) {
         this.activityId = activityId;
+    }
+
+    public Integer getErectionBidId() {
+        return this.erectionBidId;
+    }
+
+    public void setErectionBidId(Integer erectionBidId) {
+        this.erectionBidId = erectionBidId;
     }
 
     public String getErectionSpool1() {
@@ -310,6 +322,7 @@ public class GetActivityHistoryPipeErectionResponse implements Serializable {
         if (!(o instanceof GetActivityHistoryPipeErectionResponse)) return false;
         final GetActivityHistoryPipeErectionResponse getActivityHistoryPipeErectionResponse = (GetActivityHistoryPipeErectionResponse) o;
         return Objects.equals(getActivityId(), getActivityHistoryPipeErectionResponse.getActivityId()) &&
+                Objects.equals(getErectionBidId(), getActivityHistoryPipeErectionResponse.getErectionBidId()) &&
                 Objects.equals(getErectionSpool1(), getActivityHistoryPipeErectionResponse.getErectionSpool1()) &&
                 Objects.equals(getErectionLengthSpool1(), getActivityHistoryPipeErectionResponse.getErectionLengthSpool1()) &&
                 Objects.equals(getErectionSpool2(), getActivityHistoryPipeErectionResponse.getErectionSpool2()) &&
@@ -338,6 +351,7 @@ public class GetActivityHistoryPipeErectionResponse implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getActivityId(),
+                getErectionBidId(),
                 getErectionSpool1(),
                 getErectionLengthSpool1(),
                 getErectionSpool2(),

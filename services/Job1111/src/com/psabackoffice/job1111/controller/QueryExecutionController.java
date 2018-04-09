@@ -1269,7 +1269,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetActivitiesPendingApproval", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get all activities pending PS Approval")
-    public Page<GetActivitiesPendingApprovalResponse> executeGetActivitiesPendingApproval(@RequestParam(value = "UserID", required = false) Integer userId, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetActivitiesPendingApprovalResponse> executeGetActivitiesPendingApproval(@RequestParam(value = "UserID") String userId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetActivitiesPendingApproval");
         Page<GetActivitiesPendingApprovalResponse> _result = queryService.executeGetActivitiesPendingApproval(userId, pageable);
         LOGGER.debug("got the result for named query: GetActivitiesPendingApproval, result:{}", _result);
@@ -1279,7 +1279,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetActivitiesPendingApproval")
     @RequestMapping(value = "/queries/GetActivitiesPendingApproval/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetActivitiesPendingApproval(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "UserID", required = false) Integer userId, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetActivitiesPendingApproval(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "UserID") String userId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetActivitiesPendingApproval");
 
         return queryService.exportGetActivitiesPendingApproval(exportType, userId, pageable);

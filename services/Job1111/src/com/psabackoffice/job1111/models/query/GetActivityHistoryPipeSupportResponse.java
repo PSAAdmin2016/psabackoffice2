@@ -20,41 +20,13 @@ public class GetActivityHistoryPipeSupportResponse implements Serializable {
     @ColumnAlias("ActivityID")
     private Integer activityId;
 
-    @JsonProperty("SupportType")
-    @ColumnAlias("SupportType")
-    private Short supportType;
-
-    @JsonProperty("SupportPartNumber")
-    @ColumnAlias("SupportPartNumber")
-    private String supportPartNumber;
+    @JsonProperty("SupportBidID")
+    @ColumnAlias("SupportBidID")
+    private Integer supportBidId;
 
     @JsonProperty("SupportQuantity")
     @ColumnAlias("SupportQuantity")
     private Float supportQuantity;
-
-    @JsonProperty("SupportDrawingNumber")
-    @ColumnAlias("SupportDrawingNumber")
-    private String supportDrawingNumber;
-
-    @JsonProperty("SupportLineNumber")
-    @ColumnAlias("SupportLineNumber")
-    private String supportLineNumber;
-
-    @JsonProperty("SupportSheetNumber")
-    @ColumnAlias("SupportSheetNumber")
-    private String supportSheetNumber;
-
-    @JsonProperty("SupportTimeInForm")
-    @ColumnAlias("SupportTimeInForm")
-    private Integer supportTimeInForm;
-
-    @JsonProperty("SupportComplete")
-    @ColumnAlias("SupportComplete")
-    private Short supportComplete;
-
-    @JsonProperty("SupportShared")
-    @ColumnAlias("SupportShared")
-    private Short supportShared;
 
     @JsonProperty("SupportPercentCompleted")
     @ColumnAlias("SupportPercentCompleted")
@@ -72,6 +44,10 @@ public class GetActivityHistoryPipeSupportResponse implements Serializable {
     @ColumnAlias("ActivityType")
     private Short activityType;
 
+    @JsonProperty("SupportTimeInForm")
+    @ColumnAlias("SupportTimeInForm")
+    private Integer supportTimeInForm;
+
     @JsonProperty("Rev")
     @ColumnAlias("Rev")
     private Short rev;
@@ -88,20 +64,12 @@ public class GetActivityHistoryPipeSupportResponse implements Serializable {
         this.activityId = activityId;
     }
 
-    public Short getSupportType() {
-        return this.supportType;
+    public Integer getSupportBidId() {
+        return this.supportBidId;
     }
 
-    public void setSupportType(Short supportType) {
-        this.supportType = supportType;
-    }
-
-    public String getSupportPartNumber() {
-        return this.supportPartNumber;
-    }
-
-    public void setSupportPartNumber(String supportPartNumber) {
-        this.supportPartNumber = supportPartNumber;
+    public void setSupportBidId(Integer supportBidId) {
+        this.supportBidId = supportBidId;
     }
 
     public Float getSupportQuantity() {
@@ -110,54 +78,6 @@ public class GetActivityHistoryPipeSupportResponse implements Serializable {
 
     public void setSupportQuantity(Float supportQuantity) {
         this.supportQuantity = supportQuantity;
-    }
-
-    public String getSupportDrawingNumber() {
-        return this.supportDrawingNumber;
-    }
-
-    public void setSupportDrawingNumber(String supportDrawingNumber) {
-        this.supportDrawingNumber = supportDrawingNumber;
-    }
-
-    public String getSupportLineNumber() {
-        return this.supportLineNumber;
-    }
-
-    public void setSupportLineNumber(String supportLineNumber) {
-        this.supportLineNumber = supportLineNumber;
-    }
-
-    public String getSupportSheetNumber() {
-        return this.supportSheetNumber;
-    }
-
-    public void setSupportSheetNumber(String supportSheetNumber) {
-        this.supportSheetNumber = supportSheetNumber;
-    }
-
-    public Integer getSupportTimeInForm() {
-        return this.supportTimeInForm;
-    }
-
-    public void setSupportTimeInForm(Integer supportTimeInForm) {
-        this.supportTimeInForm = supportTimeInForm;
-    }
-
-    public Short getSupportComplete() {
-        return this.supportComplete;
-    }
-
-    public void setSupportComplete(Short supportComplete) {
-        this.supportComplete = supportComplete;
-    }
-
-    public Short getSupportShared() {
-        return this.supportShared;
-    }
-
-    public void setSupportShared(Short supportShared) {
-        this.supportShared = supportShared;
     }
 
     public Float getSupportPercentCompleted() {
@@ -192,6 +112,14 @@ public class GetActivityHistoryPipeSupportResponse implements Serializable {
         this.activityType = activityType;
     }
 
+    public Integer getSupportTimeInForm() {
+        return this.supportTimeInForm;
+    }
+
+    public void setSupportTimeInForm(Integer supportTimeInForm) {
+        this.supportTimeInForm = supportTimeInForm;
+    }
+
     public Short getRev() {
         return this.rev;
     }
@@ -214,19 +142,13 @@ public class GetActivityHistoryPipeSupportResponse implements Serializable {
         if (!(o instanceof GetActivityHistoryPipeSupportResponse)) return false;
         final GetActivityHistoryPipeSupportResponse getActivityHistoryPipeSupportResponse = (GetActivityHistoryPipeSupportResponse) o;
         return Objects.equals(getActivityId(), getActivityHistoryPipeSupportResponse.getActivityId()) &&
-                Objects.equals(getSupportType(), getActivityHistoryPipeSupportResponse.getSupportType()) &&
-                Objects.equals(getSupportPartNumber(), getActivityHistoryPipeSupportResponse.getSupportPartNumber()) &&
+                Objects.equals(getSupportBidId(), getActivityHistoryPipeSupportResponse.getSupportBidId()) &&
                 Objects.equals(getSupportQuantity(), getActivityHistoryPipeSupportResponse.getSupportQuantity()) &&
-                Objects.equals(getSupportDrawingNumber(), getActivityHistoryPipeSupportResponse.getSupportDrawingNumber()) &&
-                Objects.equals(getSupportLineNumber(), getActivityHistoryPipeSupportResponse.getSupportLineNumber()) &&
-                Objects.equals(getSupportSheetNumber(), getActivityHistoryPipeSupportResponse.getSupportSheetNumber()) &&
-                Objects.equals(getSupportTimeInForm(), getActivityHistoryPipeSupportResponse.getSupportTimeInForm()) &&
-                Objects.equals(getSupportComplete(), getActivityHistoryPipeSupportResponse.getSupportComplete()) &&
-                Objects.equals(getSupportShared(), getActivityHistoryPipeSupportResponse.getSupportShared()) &&
                 Objects.equals(getSupportPercentCompleted(), getActivityHistoryPipeSupportResponse.getSupportPercentCompleted()) &&
                 Objects.equals(getSupportRework(), getActivityHistoryPipeSupportResponse.getSupportRework()) &&
                 Objects.equals(getSupportNotes(), getActivityHistoryPipeSupportResponse.getSupportNotes()) &&
                 Objects.equals(getActivityType(), getActivityHistoryPipeSupportResponse.getActivityType()) &&
+                Objects.equals(getSupportTimeInForm(), getActivityHistoryPipeSupportResponse.getSupportTimeInForm()) &&
                 Objects.equals(getRev(), getActivityHistoryPipeSupportResponse.getRev()) &&
                 Objects.equals(getTimeStamp(), getActivityHistoryPipeSupportResponse.getTimeStamp());
     }
@@ -234,19 +156,13 @@ public class GetActivityHistoryPipeSupportResponse implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getActivityId(),
-                getSupportType(),
-                getSupportPartNumber(),
+                getSupportBidId(),
                 getSupportQuantity(),
-                getSupportDrawingNumber(),
-                getSupportLineNumber(),
-                getSupportSheetNumber(),
-                getSupportTimeInForm(),
-                getSupportComplete(),
-                getSupportShared(),
                 getSupportPercentCompleted(),
                 getSupportRework(),
                 getSupportNotes(),
                 getActivityType(),
+                getSupportTimeInForm(),
                 getRev(),
                 getTimeStamp());
     }

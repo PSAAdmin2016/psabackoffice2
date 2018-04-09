@@ -232,7 +232,7 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetReportDPRSteelCondensed(Pageable pageable, String pm, String constM, String siteM, String areaM, String super_, String gf, String foreman, Date startDate, Date endDate);
 
     @Deprecated
-    public Page<Object> executeGetActivitiesPendingApproval(Pageable pageable, Integer userId);
+    public Page<Object> executeGetActivitiesPendingApproval(Pageable pageable, String userId);
 
     @Deprecated
     public int executeUpdatePipeTrimQuantity(String quantity, Integer fieldActivityId);
