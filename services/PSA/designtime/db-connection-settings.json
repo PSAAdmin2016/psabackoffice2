@@ -1,6 +1,6 @@
 {
   "username" : "PSAAdmin",
-  "password" : "7b6a43524a151e3b4a686a7511507770477c612a43",
+  "password" : "7b6a43524a151e3b4a686a751153757c422a313a6b124c1a",
   "url" : "jdbc:mysql://35.188.112.35:3306/PSA?useUnicode=yes&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull",
   "driverClass" : "com.mysql.jdbc.Driver",
   "dialect" : "com.wavemaker.runtime.data.dialect.MySQLDialect",
@@ -177,5 +177,5 @@
     "reason" : null,
     "message" : null
   },
-  "readOnly" : false
+  "readOnly" : true
 }
