@@ -21,6 +21,7 @@ Application.$controller("TestLabPageController", ["$scope", function($scope) {
             var varReturn = body.replace('{{USERNAME}}', userName);
             varReturn = varReturn.replace('{{PASSWORD}}', password);
             return varReturn;
+            //remove this text
         }
 
     };
