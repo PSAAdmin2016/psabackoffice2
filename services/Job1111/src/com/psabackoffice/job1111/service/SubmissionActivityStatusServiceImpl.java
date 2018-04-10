@@ -32,12 +32,10 @@ import com.psabackoffice.job1111.CivilFa;
 import com.psabackoffice.job1111.CivilSellPackage;
 import com.psabackoffice.job1111.EquipFa;
 import com.psabackoffice.job1111.PipeConnection;
-import com.psabackoffice.job1111.PipeDemo;
 import com.psabackoffice.job1111.PipeErection;
+import com.psabackoffice.job1111.PipeFa;
 import com.psabackoffice.job1111.PipeMisc;
-import com.psabackoffice.job1111.PipeSupports;
 import com.psabackoffice.job1111.PipeTesting;
-import com.psabackoffice.job1111.PipeTrim;
 import com.psabackoffice.job1111.PipeWeld;
 import com.psabackoffice.job1111.Sasnotes;
 import com.psabackoffice.job1111.SteelDemo;
@@ -87,18 +85,8 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
 
     @Lazy
     @Autowired
-	@Qualifier("Job1111.PipeDemoService")
-	private PipeDemoService pipeDemoService;
-
-    @Lazy
-    @Autowired
 	@Qualifier("Job1111.SteelMiscService")
 	private SteelMiscService steelMiscService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.PipeTrimService")
-	private PipeTrimService pipeTrimService;
 
     @Lazy
     @Autowired
@@ -137,8 +125,8 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
 
     @Lazy
     @Autowired
-	@Qualifier("Job1111.PipeSupportsService")
-	private PipeSupportsService pipeSupportsService;
+	@Qualifier("Job1111.PipeFaService")
+	private PipeFaService pipeFaService;
 
     @Lazy
     @Autowired
@@ -197,12 +185,10 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
         CivilSellPackage civilSellPackage = submissionActivityStatus.getCivilSellPackage();
         EquipFa equipFa = submissionActivityStatus.getEquipFa();
         PipeConnection pipeConnection = submissionActivityStatus.getPipeConnection();
-        PipeDemo pipeDemo = submissionActivityStatus.getPipeDemo();
         PipeErection pipeErection = submissionActivityStatus.getPipeErection();
+        PipeFa pipeFa = submissionActivityStatus.getPipeFa();
         PipeMisc pipeMisc = submissionActivityStatus.getPipeMisc();
-        PipeSupports pipeSupports = submissionActivityStatus.getPipeSupports();
         PipeTesting pipeTesting = submissionActivityStatus.getPipeTesting();
-        PipeTrim pipeTrim = submissionActivityStatus.getPipeTrim();
         PipeWeld pipeWeld = submissionActivityStatus.getPipeWeld();
         List<Sasnotes> sasnoteses = submissionActivityStatus.getSasnoteses();
         SteelDemo steelDemo = submissionActivityStatus.getSteelDemo();
@@ -228,28 +214,20 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
             pipeConnection.setSubmissionActivityStatus(submissionActivityStatus);
         }
 
-        if(pipeDemo != null && Hibernate.isInitialized(pipeDemo)) {
-            pipeDemo.setSubmissionActivityStatus(submissionActivityStatus);
-        }
-
         if(pipeErection != null && Hibernate.isInitialized(pipeErection)) {
             pipeErection.setSubmissionActivityStatus(submissionActivityStatus);
+        }
+
+        if(pipeFa != null && Hibernate.isInitialized(pipeFa)) {
+            pipeFa.setSubmissionActivityStatus(submissionActivityStatus);
         }
 
         if(pipeMisc != null && Hibernate.isInitialized(pipeMisc)) {
             pipeMisc.setSubmissionActivityStatus(submissionActivityStatus);
         }
 
-        if(pipeSupports != null && Hibernate.isInitialized(pipeSupports)) {
-            pipeSupports.setSubmissionActivityStatus(submissionActivityStatus);
-        }
-
         if(pipeTesting != null && Hibernate.isInitialized(pipeTesting)) {
             pipeTesting.setSubmissionActivityStatus(submissionActivityStatus);
-        }
-
-        if(pipeTrim != null && Hibernate.isInitialized(pipeTrim)) {
-            pipeTrim.setSubmissionActivityStatus(submissionActivityStatus);
         }
 
         if(pipeWeld != null && Hibernate.isInitialized(pipeWeld)) {
@@ -445,28 +423,10 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service PipeDemoService instance
-	 */
-	protected void setPipeDemoService(PipeDemoService service) {
-        this.pipeDemoService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
 	 * @param service SteelMiscService instance
 	 */
 	protected void setSteelMiscService(SteelMiscService service) {
         this.steelMiscService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service PipeTrimService instance
-	 */
-	protected void setPipeTrimService(PipeTrimService service) {
-        this.pipeTrimService = service;
     }
 
     /**
@@ -535,10 +495,10 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service PipeSupportsService instance
+	 * @param service PipeFaService instance
 	 */
-	protected void setPipeSupportsService(PipeSupportsService service) {
-        this.pipeSupportsService = service;
+	protected void setPipeFaService(PipeFaService service) {
+        this.pipeFaService = service;
     }
 
     /**

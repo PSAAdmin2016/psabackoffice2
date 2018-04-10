@@ -18,26 +18,27 @@ public class UpdatePipeMiscQuantityRequest implements Serializable {
 
 
     @JsonProperty("Quantity")
-    private Integer quantity;
-
-    @JsonProperty("FieldActivityID")
     @NotNull
-    private Integer fieldActivityId;
+    private BigDecimal quantity;
 
-    public Integer getQuantity() {
+    @JsonProperty("ActivityID")
+    @NotNull
+    private Integer activityId;
+
+    public BigDecimal getQuantity() {
         return this.quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
     }
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     @Override
@@ -46,12 +47,12 @@ public class UpdatePipeMiscQuantityRequest implements Serializable {
         if (!(o instanceof UpdatePipeMiscQuantityRequest)) return false;
         final UpdatePipeMiscQuantityRequest updatePipeMiscQuantityRequest = (UpdatePipeMiscQuantityRequest) o;
         return Objects.equals(getQuantity(), updatePipeMiscQuantityRequest.getQuantity()) &&
-                Objects.equals(getFieldActivityId(), updatePipeMiscQuantityRequest.getFieldActivityId());
+                Objects.equals(getActivityId(), updatePipeMiscQuantityRequest.getActivityId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getQuantity(),
-                getFieldActivityId());
+                getActivityId());
     }
 }

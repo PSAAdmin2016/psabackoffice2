@@ -7,7 +7,6 @@ package com.psabackoffice.job1111.models.query;
 
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,7 +21,7 @@ public class GetSettingPipeHydroPercentResponse implements Serializable {
 
     @JsonProperty("Value1")
     @ColumnAlias("Value1")
-    private BigDecimal value1;
+    private Float value1;
 
     @JsonProperty("Value2")
     @ColumnAlias("Value2")
@@ -36,11 +35,11 @@ public class GetSettingPipeHydroPercentResponse implements Serializable {
         this.label = label;
     }
 
-    public BigDecimal getValue1() {
+    public Float getValue1() {
         return this.value1;
     }
 
-    public void setValue1(BigDecimal value1) {
+    public void setValue1(Float value1) {
         this.value1 = value1;
     }
 

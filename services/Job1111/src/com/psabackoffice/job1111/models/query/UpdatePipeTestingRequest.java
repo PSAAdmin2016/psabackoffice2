@@ -8,7 +8,6 @@ package com.psabackoffice.job1111.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
@@ -19,17 +18,19 @@ public class UpdatePipeTestingRequest implements Serializable {
 
 
     @JsonProperty("TestPackageNumber")
+    @NotNull
     private String testPackageNumber;
 
     @JsonProperty("Rework")
+    @NotNull
     private Integer rework;
 
     @JsonProperty("Notes")
     private String notes;
 
-    @JsonProperty("FieldActivityID")
+    @JsonProperty("ActivityID")
     @NotNull
-    private Integer fieldActivityId;
+    private Integer activityId;
 
     public String getTestPackageNumber() {
         return this.testPackageNumber;
@@ -55,12 +56,12 @@ public class UpdatePipeTestingRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     @Override
@@ -71,7 +72,7 @@ public class UpdatePipeTestingRequest implements Serializable {
         return Objects.equals(getTestPackageNumber(), updatePipeTestingRequest.getTestPackageNumber()) &&
                 Objects.equals(getRework(), updatePipeTestingRequest.getRework()) &&
                 Objects.equals(getNotes(), updatePipeTestingRequest.getNotes()) &&
-                Objects.equals(getFieldActivityId(), updatePipeTestingRequest.getFieldActivityId());
+                Objects.equals(getActivityId(), updatePipeTestingRequest.getActivityId());
     }
 
     @Override
@@ -79,6 +80,6 @@ public class UpdatePipeTestingRequest implements Serializable {
         return Objects.hash(getTestPackageNumber(),
                 getRework(),
                 getNotes(),
-                getFieldActivityId());
+                getActivityId());
     }
 }

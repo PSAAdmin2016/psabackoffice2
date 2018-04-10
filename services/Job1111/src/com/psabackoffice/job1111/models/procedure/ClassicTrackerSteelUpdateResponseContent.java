@@ -7,6 +7,7 @@ package com.psabackoffice.job1111.models.procedure;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
@@ -24,6 +25,10 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
     @JsonProperty("BidID")
     @ColumnAlias("BidID")
     private Integer bidId;
+
+    @JsonProperty("ProjectServicesRep")
+    @ColumnAlias("ProjectServicesRep")
+    private String projectServicesRep;
 
     @JsonProperty("EWONumber")
     @ColumnAlias("EWONumber")
@@ -45,6 +50,10 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
     @ColumnAlias("TestPackageNumber")
     private String testPackageNumber;
 
+    @JsonProperty("WorkPackage")
+    @ColumnAlias("WorkPackage")
+    private String workPackage;
+
     @JsonProperty("CostCode")
     @ColumnAlias("CostCode")
     private String costCode;
@@ -52,6 +61,10 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
     @JsonProperty("P6ID")
     @ColumnAlias("P6ID")
     private String p6id;
+
+    @JsonProperty("P6Description")
+    @ColumnAlias("P6Description")
+    private String p6description;
 
     @JsonProperty("AssignedContractor")
     @ColumnAlias("AssignedContractor")
@@ -77,9 +90,9 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
     @ColumnAlias("Elevation")
     private String elevation;
 
-    @JsonProperty("P6Description")
-    @ColumnAlias("P6Description")
-    private String p6description;
+    @JsonProperty("SortGroup1")
+    @ColumnAlias("SortGroup1")
+    private String sortGroup1;
 
     @JsonProperty("PieceMark")
     @ColumnAlias("PieceMark")
@@ -111,11 +124,11 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
 
     @JsonProperty("Length")
     @ColumnAlias("Length")
-    private Float length;
+    private Double length;
 
     @JsonProperty("Weight")
     @ColumnAlias("Weight")
-    private Float weight;
+    private Double weight;
 
     @JsonProperty("System")
     @ColumnAlias("System")
@@ -135,39 +148,39 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
 
     @JsonProperty("HoursShake")
     @ColumnAlias("HoursShake")
-    private Double hoursShake;
+    private BigDecimal hoursShake;
 
     @JsonProperty("HoursErect")
     @ColumnAlias("HoursErect")
-    private Double hoursErect;
+    private BigDecimal hoursErect;
 
     @JsonProperty("HoursBoltout")
     @ColumnAlias("HoursBoltout")
-    private Double hoursBoltout;
+    private BigDecimal hoursBoltout;
 
     @JsonProperty("HoursImp")
     @ColumnAlias("HoursImp")
-    private Double hoursImp;
+    private BigDecimal hoursImp;
 
     @JsonProperty("HoursWeld")
     @ColumnAlias("HoursWeld")
-    private Double hoursWeld;
+    private BigDecimal hoursWeld;
 
     @JsonProperty("HoursSell")
     @ColumnAlias("HoursSell")
-    private Double hoursSell;
+    private BigDecimal hoursSell;
 
     @JsonProperty("HoursDemo")
     @ColumnAlias("HoursDemo")
-    private Double hoursDemo;
+    private BigDecimal hoursDemo;
 
     @JsonProperty("HoursMisc")
     @ColumnAlias("HoursMisc")
-    private Double hoursMisc;
+    private BigDecimal hoursMisc;
 
     @JsonProperty("HoursAll")
     @ColumnAlias("HoursAll")
-    private Double hoursAll;
+    private BigDecimal hoursAll;
 
     @JsonProperty("InstalledShake")
     @ColumnAlias("InstalledShake")
@@ -203,39 +216,39 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
 
     @JsonProperty("EarnedShakeHours")
     @ColumnAlias("EarnedShakeHours")
-    private Double earnedShakeHours;
+    private BigDecimal earnedShakeHours;
 
     @JsonProperty("EarnedErectHours")
     @ColumnAlias("EarnedErectHours")
-    private Double earnedErectHours;
+    private BigDecimal earnedErectHours;
 
     @JsonProperty("EarnedBoltoutHours")
     @ColumnAlias("EarnedBoltoutHours")
-    private Double earnedBoltoutHours;
+    private BigDecimal earnedBoltoutHours;
 
     @JsonProperty("EarnedImpHours")
     @ColumnAlias("EarnedImpHours")
-    private Double earnedImpHours;
+    private BigDecimal earnedImpHours;
 
     @JsonProperty("EarnedWeldHours")
     @ColumnAlias("EarnedWeldHours")
-    private Double earnedWeldHours;
+    private BigDecimal earnedWeldHours;
 
     @JsonProperty("EarnedSellHours")
     @ColumnAlias("EarnedSellHours")
-    private Double earnedSellHours;
+    private BigDecimal earnedSellHours;
 
     @JsonProperty("EarnedDemoHours")
     @ColumnAlias("EarnedDemoHours")
-    private Double earnedDemoHours;
+    private BigDecimal earnedDemoHours;
 
     @JsonProperty("EarnedMiscHours")
     @ColumnAlias("EarnedMiscHours")
-    private Double earnedMiscHours;
+    private BigDecimal earnedMiscHours;
 
     @JsonProperty("EarnedAllHours")
     @ColumnAlias("EarnedAllHours")
-    private Double earnedAllHours;
+    private BigDecimal earnedAllHours;
 
     @JsonProperty("WBS1")
     @ColumnAlias("WBS1")
@@ -297,6 +310,14 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
         this.bidId = bidId;
     }
 
+    public String getProjectServicesRep() {
+        return this.projectServicesRep;
+    }
+
+    public void setProjectServicesRep(String projectServicesRep) {
+        this.projectServicesRep = projectServicesRep;
+    }
+
     public String getEwonumber() {
         return this.ewonumber;
     }
@@ -337,6 +358,14 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
         this.testPackageNumber = testPackageNumber;
     }
 
+    public String getWorkPackage() {
+        return this.workPackage;
+    }
+
+    public void setWorkPackage(String workPackage) {
+        this.workPackage = workPackage;
+    }
+
     public String getCostCode() {
         return this.costCode;
     }
@@ -351,6 +380,14 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
 
     public void setP6id(String p6id) {
         this.p6id = p6id;
+    }
+
+    public String getP6description() {
+        return this.p6description;
+    }
+
+    public void setP6description(String p6description) {
+        this.p6description = p6description;
     }
 
     public String getAssignedContractor() {
@@ -401,12 +438,12 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
         this.elevation = elevation;
     }
 
-    public String getP6description() {
-        return this.p6description;
+    public String getSortGroup1() {
+        return this.sortGroup1;
     }
 
-    public void setP6description(String p6description) {
-        this.p6description = p6description;
+    public void setSortGroup1(String sortGroup1) {
+        this.sortGroup1 = sortGroup1;
     }
 
     public String getPieceMark() {
@@ -465,19 +502,19 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
         this.materialType = materialType;
     }
 
-    public Float getLength() {
+    public Double getLength() {
         return this.length;
     }
 
-    public void setLength(Float length) {
+    public void setLength(Double length) {
         this.length = length;
     }
 
-    public Float getWeight() {
+    public Double getWeight() {
         return this.weight;
     }
 
-    public void setWeight(Float weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 
@@ -513,75 +550,75 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
         this.quantityWeld = quantityWeld;
     }
 
-    public Double getHoursShake() {
+    public BigDecimal getHoursShake() {
         return this.hoursShake;
     }
 
-    public void setHoursShake(Double hoursShake) {
+    public void setHoursShake(BigDecimal hoursShake) {
         this.hoursShake = hoursShake;
     }
 
-    public Double getHoursErect() {
+    public BigDecimal getHoursErect() {
         return this.hoursErect;
     }
 
-    public void setHoursErect(Double hoursErect) {
+    public void setHoursErect(BigDecimal hoursErect) {
         this.hoursErect = hoursErect;
     }
 
-    public Double getHoursBoltout() {
+    public BigDecimal getHoursBoltout() {
         return this.hoursBoltout;
     }
 
-    public void setHoursBoltout(Double hoursBoltout) {
+    public void setHoursBoltout(BigDecimal hoursBoltout) {
         this.hoursBoltout = hoursBoltout;
     }
 
-    public Double getHoursImp() {
+    public BigDecimal getHoursImp() {
         return this.hoursImp;
     }
 
-    public void setHoursImp(Double hoursImp) {
+    public void setHoursImp(BigDecimal hoursImp) {
         this.hoursImp = hoursImp;
     }
 
-    public Double getHoursWeld() {
+    public BigDecimal getHoursWeld() {
         return this.hoursWeld;
     }
 
-    public void setHoursWeld(Double hoursWeld) {
+    public void setHoursWeld(BigDecimal hoursWeld) {
         this.hoursWeld = hoursWeld;
     }
 
-    public Double getHoursSell() {
+    public BigDecimal getHoursSell() {
         return this.hoursSell;
     }
 
-    public void setHoursSell(Double hoursSell) {
+    public void setHoursSell(BigDecimal hoursSell) {
         this.hoursSell = hoursSell;
     }
 
-    public Double getHoursDemo() {
+    public BigDecimal getHoursDemo() {
         return this.hoursDemo;
     }
 
-    public void setHoursDemo(Double hoursDemo) {
+    public void setHoursDemo(BigDecimal hoursDemo) {
         this.hoursDemo = hoursDemo;
     }
 
-    public Double getHoursMisc() {
+    public BigDecimal getHoursMisc() {
         return this.hoursMisc;
     }
 
-    public void setHoursMisc(Double hoursMisc) {
+    public void setHoursMisc(BigDecimal hoursMisc) {
         this.hoursMisc = hoursMisc;
     }
 
-    public Double getHoursAll() {
+    public BigDecimal getHoursAll() {
         return this.hoursAll;
     }
 
-    public void setHoursAll(Double hoursAll) {
+    public void setHoursAll(BigDecimal hoursAll) {
         this.hoursAll = hoursAll;
     }
 
@@ -649,75 +686,75 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
         this.installedMisc = installedMisc;
     }
 
-    public Double getEarnedShakeHours() {
+    public BigDecimal getEarnedShakeHours() {
         return this.earnedShakeHours;
     }
 
-    public void setEarnedShakeHours(Double earnedShakeHours) {
+    public void setEarnedShakeHours(BigDecimal earnedShakeHours) {
         this.earnedShakeHours = earnedShakeHours;
     }
 
-    public Double getEarnedErectHours() {
+    public BigDecimal getEarnedErectHours() {
         return this.earnedErectHours;
     }
 
-    public void setEarnedErectHours(Double earnedErectHours) {
+    public void setEarnedErectHours(BigDecimal earnedErectHours) {
         this.earnedErectHours = earnedErectHours;
     }
 
-    public Double getEarnedBoltoutHours() {
+    public BigDecimal getEarnedBoltoutHours() {
         return this.earnedBoltoutHours;
     }
 
-    public void setEarnedBoltoutHours(Double earnedBoltoutHours) {
+    public void setEarnedBoltoutHours(BigDecimal earnedBoltoutHours) {
         this.earnedBoltoutHours = earnedBoltoutHours;
     }
 
-    public Double getEarnedImpHours() {
+    public BigDecimal getEarnedImpHours() {
         return this.earnedImpHours;
     }
 
-    public void setEarnedImpHours(Double earnedImpHours) {
+    public void setEarnedImpHours(BigDecimal earnedImpHours) {
         this.earnedImpHours = earnedImpHours;
     }
 
-    public Double getEarnedWeldHours() {
+    public BigDecimal getEarnedWeldHours() {
         return this.earnedWeldHours;
     }
 
-    public void setEarnedWeldHours(Double earnedWeldHours) {
+    public void setEarnedWeldHours(BigDecimal earnedWeldHours) {
         this.earnedWeldHours = earnedWeldHours;
     }
 
-    public Double getEarnedSellHours() {
+    public BigDecimal getEarnedSellHours() {
         return this.earnedSellHours;
     }
 
-    public void setEarnedSellHours(Double earnedSellHours) {
+    public void setEarnedSellHours(BigDecimal earnedSellHours) {
         this.earnedSellHours = earnedSellHours;
     }
 
-    public Double getEarnedDemoHours() {
+    public BigDecimal getEarnedDemoHours() {
         return this.earnedDemoHours;
     }
 
-    public void setEarnedDemoHours(Double earnedDemoHours) {
+    public void setEarnedDemoHours(BigDecimal earnedDemoHours) {
         this.earnedDemoHours = earnedDemoHours;
     }
 
-    public Double getEarnedMiscHours() {
+    public BigDecimal getEarnedMiscHours() {
         return this.earnedMiscHours;
     }
 
-    public void setEarnedMiscHours(Double earnedMiscHours) {
+    public void setEarnedMiscHours(BigDecimal earnedMiscHours) {
         this.earnedMiscHours = earnedMiscHours;
     }
 
-    public Double getEarnedAllHours() {
+    public BigDecimal getEarnedAllHours() {
         return this.earnedAllHours;
     }
 
-    public void setEarnedAllHours(Double earnedAllHours) {
+    public void setEarnedAllHours(BigDecimal earnedAllHours) {
         this.earnedAllHours = earnedAllHours;
     }
 
@@ -816,20 +853,23 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
         final ClassicTrackerSteelUpdateResponseContent classicTrackerSteelUpdateResponseContent = (ClassicTrackerSteelUpdateResponseContent) o;
         return Objects.equals(getUid(), classicTrackerSteelUpdateResponseContent.getUid()) &&
                 Objects.equals(getBidId(), classicTrackerSteelUpdateResponseContent.getBidId()) &&
+                Objects.equals(getProjectServicesRep(), classicTrackerSteelUpdateResponseContent.getProjectServicesRep()) &&
                 Objects.equals(getEwonumber(), classicTrackerSteelUpdateResponseContent.getEwonumber()) &&
                 Objects.equals(getScope(), classicTrackerSteelUpdateResponseContent.getScope()) &&
                 Objects.equals(getPhase(), classicTrackerSteelUpdateResponseContent.getPhase()) &&
                 Objects.equals(getStage(), classicTrackerSteelUpdateResponseContent.getStage()) &&
                 Objects.equals(getTestPackageNumber(), classicTrackerSteelUpdateResponseContent.getTestPackageNumber()) &&
+                Objects.equals(getWorkPackage(), classicTrackerSteelUpdateResponseContent.getWorkPackage()) &&
                 Objects.equals(getCostCode(), classicTrackerSteelUpdateResponseContent.getCostCode()) &&
                 Objects.equals(getP6id(), classicTrackerSteelUpdateResponseContent.getP6id()) &&
+                Objects.equals(getP6description(), classicTrackerSteelUpdateResponseContent.getP6description()) &&
                 Objects.equals(getAssignedContractor(), classicTrackerSteelUpdateResponseContent.getAssignedContractor()) &&
                 Objects.equals(getArea(), classicTrackerSteelUpdateResponseContent.getArea()) &&
                 Objects.equals(getLocation(), classicTrackerSteelUpdateResponseContent.getLocation()) &&
                 Objects.equals(getStructure(), classicTrackerSteelUpdateResponseContent.getStructure()) &&
                 Objects.equals(getCu(), classicTrackerSteelUpdateResponseContent.getCu()) &&
                 Objects.equals(getElevation(), classicTrackerSteelUpdateResponseContent.getElevation()) &&
-                Objects.equals(getP6description(), classicTrackerSteelUpdateResponseContent.getP6description()) &&
+                Objects.equals(getSortGroup1(), classicTrackerSteelUpdateResponseContent.getSortGroup1()) &&
                 Objects.equals(getPieceMark(), classicTrackerSteelUpdateResponseContent.getPieceMark()) &&
                 Objects.equals(getPieceMarkRev(), classicTrackerSteelUpdateResponseContent.getPieceMarkRev()) &&
                 Objects.equals(getDescription(), classicTrackerSteelUpdateResponseContent.getDescription()) &&
@@ -886,20 +926,23 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
     public int hashCode() {
         return Objects.hash(getUid(),
                 getBidId(),
+                getProjectServicesRep(),
                 getEwonumber(),
                 getScope(),
                 getPhase(),
                 getStage(),
                 getTestPackageNumber(),
+                getWorkPackage(),
                 getCostCode(),
                 getP6id(),
+                getP6description(),
                 getAssignedContractor(),
                 getArea(),
                 getLocation(),
                 getStructure(),
                 getCu(),
                 getElevation(),
-                getP6description(),
+                getSortGroup1(),
                 getPieceMark(),
                 getPieceMarkRev(),
                 getDescription(),

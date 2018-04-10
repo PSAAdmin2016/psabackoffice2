@@ -12,22 +12,22 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class CreateLooseHoursActivitySteelResponse implements Serializable {
+public class CreateLooseHoursActivitiesCivilResponse implements Serializable {
 
 
     @JsonProperty("ReturnStatus")
     @ColumnAlias("ReturnStatus")
-    private Boolean returnStatus;
+    private Integer returnStatus;
 
     @JsonProperty("ErrorText")
     @ColumnAlias("ErrorText")
     private String errorText;
 
-    public Boolean getReturnStatus() {
+    public Integer getReturnStatus() {
         return this.returnStatus;
     }
 
-    public void setReturnStatus(Boolean returnStatus) {
+    public void setReturnStatus(Integer returnStatus) {
         this.returnStatus = returnStatus;
     }
 
@@ -42,10 +42,10 @@ public class CreateLooseHoursActivitySteelResponse implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof CreateLooseHoursActivitySteelResponse)) return false;
-        final CreateLooseHoursActivitySteelResponse createLooseHoursActivitySteelResponse = (CreateLooseHoursActivitySteelResponse) o;
-        return Objects.equals(getReturnStatus(), createLooseHoursActivitySteelResponse.getReturnStatus()) &&
-                Objects.equals(getErrorText(), createLooseHoursActivitySteelResponse.getErrorText());
+        if (!(o instanceof CreateLooseHoursActivitiesCivilResponse)) return false;
+        final CreateLooseHoursActivitiesCivilResponse createLooseHoursActivitiesCivilResponse = (CreateLooseHoursActivitiesCivilResponse) o;
+        return Objects.equals(getReturnStatus(), createLooseHoursActivitiesCivilResponse.getReturnStatus()) &&
+                Objects.equals(getErrorText(), createLooseHoursActivitiesCivilResponse.getErrorText());
     }
 
     @Override

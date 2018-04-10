@@ -87,11 +87,11 @@ public class GetBidActivityQuantitiesSteelResponse implements Serializable {
 
     @JsonProperty("InstalledDemo")
     @ColumnAlias("InstalledDemo")
-    private BigInteger installedDemo;
+    private BigDecimal installedDemo;
 
     @JsonProperty("InstalledMisc")
     @ColumnAlias("InstalledMisc")
-    private BigInteger installedMisc;
+    private BigDecimal installedMisc;
 
     public Integer getBidId() {
         return this.bidId;
@@ -229,19 +229,19 @@ public class GetBidActivityQuantitiesSteelResponse implements Serializable {
         this.installedSell = installedSell;
     }
 
-    public BigInteger getInstalledDemo() {
+    public BigDecimal getInstalledDemo() {
         return this.installedDemo;
     }
 
-    public void setInstalledDemo(BigInteger installedDemo) {
+    public void setInstalledDemo(BigDecimal installedDemo) {
         this.installedDemo = installedDemo;
     }
 
-    public BigInteger getInstalledMisc() {
+    public BigDecimal getInstalledMisc() {
         return this.installedMisc;
     }
 
-    public void setInstalledMisc(BigInteger installedMisc) {
+    public void setInstalledMisc(BigDecimal installedMisc) {
         this.installedMisc = installedMisc;
     }
 

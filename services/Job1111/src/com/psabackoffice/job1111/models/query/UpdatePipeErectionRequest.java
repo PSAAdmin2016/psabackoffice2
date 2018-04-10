@@ -17,10 +17,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UpdatePipeErectionRequest implements Serializable {
 
 
+    @JsonProperty("BidID")
+    private Integer bidId;
+
     @JsonProperty("Spool1")
+    @NotNull
     private String spool1;
 
     @JsonProperty("Spool1Length")
+    @NotNull
     private Integer spool1length;
 
     @JsonProperty("Spool2")
@@ -54,29 +59,43 @@ public class UpdatePipeErectionRequest implements Serializable {
     private Integer spool6length;
 
     @JsonProperty("OnCords")
+    @NotNull
     private Byte onCords;
 
     @JsonProperty("DrawingNumber")
+    @NotNull
     private String drawingNumber;
 
     @JsonProperty("LineNumber")
+    @NotNull
     private String lineNumber;
 
     @JsonProperty("SheetNumber")
+    @NotNull
     private String sheetNumber;
 
     @JsonProperty("Size")
+    @NotNull
     private BigDecimal size;
 
     @JsonProperty("Rework")
+    @NotNull
     private Integer rework;
 
     @JsonProperty("Notes")
     private String notes;
 
-    @JsonProperty("FieldActivityID")
+    @JsonProperty("ActivityID")
     @NotNull
-    private Integer fieldActivityId;
+    private Integer activityId;
+
+    public Integer getBidId() {
+        return this.bidId;
+    }
+
+    public void setBidId(Integer bidId) {
+        this.bidId = bidId;
+    }
 
     public String getSpool1() {
         return this.spool1;
@@ -230,12 +249,12 @@ public class UpdatePipeErectionRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     @Override
@@ -243,7 +262,8 @@ public class UpdatePipeErectionRequest implements Serializable {
         if (this == o) return true;
         if (!(o instanceof UpdatePipeErectionRequest)) return false;
         final UpdatePipeErectionRequest updatePipeErectionRequest = (UpdatePipeErectionRequest) o;
-        return Objects.equals(getSpool1(), updatePipeErectionRequest.getSpool1()) &&
+        return Objects.equals(getBidId(), updatePipeErectionRequest.getBidId()) &&
+                Objects.equals(getSpool1(), updatePipeErectionRequest.getSpool1()) &&
                 Objects.equals(getSpool1length(), updatePipeErectionRequest.getSpool1length()) &&
                 Objects.equals(getSpool2(), updatePipeErectionRequest.getSpool2()) &&
                 Objects.equals(getSpool2length(), updatePipeErectionRequest.getSpool2length()) &&
@@ -262,12 +282,13 @@ public class UpdatePipeErectionRequest implements Serializable {
                 Objects.equals(getSize(), updatePipeErectionRequest.getSize()) &&
                 Objects.equals(getRework(), updatePipeErectionRequest.getRework()) &&
                 Objects.equals(getNotes(), updatePipeErectionRequest.getNotes()) &&
-                Objects.equals(getFieldActivityId(), updatePipeErectionRequest.getFieldActivityId());
+                Objects.equals(getActivityId(), updatePipeErectionRequest.getActivityId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getSpool1(),
+        return Objects.hash(getBidId(),
+                getSpool1(),
                 getSpool1length(),
                 getSpool2(),
                 getSpool2length(),
@@ -286,6 +307,6 @@ public class UpdatePipeErectionRequest implements Serializable {
                 getSize(),
                 getRework(),
                 getNotes(),
-                getFieldActivityId());
+                getActivityId());
     }
 }

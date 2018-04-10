@@ -17,17 +17,17 @@ public class CreateLooseHoursActivitiesPipeResponse implements Serializable {
 
     @JsonProperty("ReturnStatus")
     @ColumnAlias("ReturnStatus")
-    private Boolean returnStatus;
+    private Integer returnStatus;
 
     @JsonProperty("ErrorText")
     @ColumnAlias("ErrorText")
     private String errorText;
 
-    public Boolean getReturnStatus() {
+    public Integer getReturnStatus() {
         return this.returnStatus;
     }
 
-    public void setReturnStatus(Boolean returnStatus) {
+    public void setReturnStatus(Integer returnStatus) {
         this.returnStatus = returnStatus;
     }
 

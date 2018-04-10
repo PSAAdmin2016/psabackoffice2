@@ -17,52 +17,48 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class CreateManualActivityEquipRequest implements Serializable {
 
 
-    @JsonProperty("varTagNumber")
+    @JsonProperty("varBidID")
     @NotNull
-    private String varTagNumber;
+    private Integer varBidId;
 
-    @JsonProperty("varActivitySelect")
+    @JsonProperty("varQuantity")
     @NotNull
-    private String varActivitySelect;
+    private Integer varQuantity;
 
-    @JsonProperty("varPercentComplete")
+    @JsonProperty("varPercentCompleted")
     @NotNull
-    private BigDecimal varPercentComplete;
+    private BigDecimal varPercentCompleted;
 
     @JsonProperty("varNotes")
     @NotNull
     private String varNotes;
 
-    @JsonProperty("varUserId")
+    @JsonProperty("varUserID")
     @NotNull
     private Integer varUserId;
 
-    @JsonProperty("varBidID")
-    @NotNull
-    private Integer varBidId;
-
-    public String getVarTagNumber() {
-        return this.varTagNumber;
+    public Integer getVarBidId() {
+        return this.varBidId;
     }
 
-    public void setVarTagNumber(String varTagNumber) {
-        this.varTagNumber = varTagNumber;
+    public void setVarBidId(Integer varBidId) {
+        this.varBidId = varBidId;
     }
 
-    public String getVarActivitySelect() {
-        return this.varActivitySelect;
+    public Integer getVarQuantity() {
+        return this.varQuantity;
     }
 
-    public void setVarActivitySelect(String varActivitySelect) {
-        this.varActivitySelect = varActivitySelect;
+    public void setVarQuantity(Integer varQuantity) {
+        this.varQuantity = varQuantity;
     }
 
-    public BigDecimal getVarPercentComplete() {
-        return this.varPercentComplete;
+    public BigDecimal getVarPercentCompleted() {
+        return this.varPercentCompleted;
     }
 
-    public void setVarPercentComplete(BigDecimal varPercentComplete) {
-        this.varPercentComplete = varPercentComplete;
+    public void setVarPercentCompleted(BigDecimal varPercentCompleted) {
+        this.varPercentCompleted = varPercentCompleted;
     }
 
     public String getVarNotes() {
@@ -81,34 +77,24 @@ public class CreateManualActivityEquipRequest implements Serializable {
         this.varUserId = varUserId;
     }
 
-    public Integer getVarBidId() {
-        return this.varBidId;
-    }
-
-    public void setVarBidId(Integer varBidId) {
-        this.varBidId = varBidId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof CreateManualActivityEquipRequest)) return false;
         final CreateManualActivityEquipRequest createManualActivityEquipRequest = (CreateManualActivityEquipRequest) o;
-        return Objects.equals(getVarTagNumber(), createManualActivityEquipRequest.getVarTagNumber()) &&
-                Objects.equals(getVarActivitySelect(), createManualActivityEquipRequest.getVarActivitySelect()) &&
-                Objects.equals(getVarPercentComplete(), createManualActivityEquipRequest.getVarPercentComplete()) &&
+        return Objects.equals(getVarBidId(), createManualActivityEquipRequest.getVarBidId()) &&
+                Objects.equals(getVarQuantity(), createManualActivityEquipRequest.getVarQuantity()) &&
+                Objects.equals(getVarPercentCompleted(), createManualActivityEquipRequest.getVarPercentCompleted()) &&
                 Objects.equals(getVarNotes(), createManualActivityEquipRequest.getVarNotes()) &&
-                Objects.equals(getVarUserId(), createManualActivityEquipRequest.getVarUserId()) &&
-                Objects.equals(getVarBidId(), createManualActivityEquipRequest.getVarBidId());
+                Objects.equals(getVarUserId(), createManualActivityEquipRequest.getVarUserId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getVarTagNumber(),
-                getVarActivitySelect(),
-                getVarPercentComplete(),
+        return Objects.hash(getVarBidId(),
+                getVarQuantity(),
+                getVarPercentCompleted(),
                 getVarNotes(),
-                getVarUserId(),
-                getVarBidId());
+                getVarUserId());
     }
 }

@@ -8,34 +8,37 @@ package com.psabackoffice.job1111.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateSsRequest implements Serializable {
+public class UpdateSasbidIdRequest implements Serializable {
 
 
-    @JsonProperty("ActivityStatus")
-    private Integer activityStatus;
+    @JsonProperty("ActivityStatusID")
+    @NotNull
+    private Integer activityStatusId;
 
     @JsonProperty("UserID")
+    @NotNull
     private Integer userId;
 
     @JsonProperty("BidID")
+    @NotNull
     private Integer bidId;
 
-    @JsonProperty("FieldActivityID")
-    private Integer fieldActivityId;
+    @JsonProperty("ActivityID")
+    @NotNull
+    private Integer activityId;
 
-    public Integer getActivityStatus() {
-        return this.activityStatus;
+    public Integer getActivityStatusId() {
+        return this.activityStatusId;
     }
 
-    public void setActivityStatus(Integer activityStatus) {
-        this.activityStatus = activityStatus;
+    public void setActivityStatusId(Integer activityStatusId) {
+        this.activityStatusId = activityStatusId;
     }
 
     public Integer getUserId() {
@@ -54,30 +57,30 @@ public class UpdateSsRequest implements Serializable {
         this.bidId = bidId;
     }
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UpdateSsRequest)) return false;
-        final UpdateSsRequest updateSsRequest = (UpdateSsRequest) o;
-        return Objects.equals(getActivityStatus(), updateSsRequest.getActivityStatus()) &&
-                Objects.equals(getUserId(), updateSsRequest.getUserId()) &&
-                Objects.equals(getBidId(), updateSsRequest.getBidId()) &&
-                Objects.equals(getFieldActivityId(), updateSsRequest.getFieldActivityId());
+        if (!(o instanceof UpdateSasbidIdRequest)) return false;
+        final UpdateSasbidIdRequest updateSasbidIdRequest = (UpdateSasbidIdRequest) o;
+        return Objects.equals(getActivityStatusId(), updateSasbidIdRequest.getActivityStatusId()) &&
+                Objects.equals(getUserId(), updateSasbidIdRequest.getUserId()) &&
+                Objects.equals(getBidId(), updateSasbidIdRequest.getBidId()) &&
+                Objects.equals(getActivityId(), updateSasbidIdRequest.getActivityId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getActivityStatus(),
+        return Objects.hash(getActivityStatusId(),
                 getUserId(),
                 getBidId(),
-                getFieldActivityId());
+                getActivityId());
     }
 }

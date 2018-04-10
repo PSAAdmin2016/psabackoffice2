@@ -24,54 +24,54 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.psabackoffice.job1111.PipeTrim;
+import com.psabackoffice.job1111.PipeFa;
 
 
 /**
- * ServiceImpl object for domain model class PipeTrim.
+ * ServiceImpl object for domain model class PipeFa.
  *
- * @see PipeTrim
+ * @see PipeFa
  */
-@Service("Job1111.PipeTrimService")
+@Service("Job1111.PipeFaService")
 @Validated
-public class PipeTrimServiceImpl implements PipeTrimService {
+public class PipeFaServiceImpl implements PipeFaService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PipeTrimServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PipeFaServiceImpl.class);
 
 
     @Autowired
-    @Qualifier("Job1111.PipeTrimDao")
-    private WMGenericDao<PipeTrim, Integer> wmGenericDao;
+    @Qualifier("Job1111.PipeFaDao")
+    private WMGenericDao<PipeFa, Integer> wmGenericDao;
 
-    public void setWMGenericDao(WMGenericDao<PipeTrim, Integer> wmGenericDao) {
+    public void setWMGenericDao(WMGenericDao<PipeFa, Integer> wmGenericDao) {
         this.wmGenericDao = wmGenericDao;
     }
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-	public PipeTrim create(PipeTrim pipeTrim) {
-        LOGGER.debug("Creating a new PipeTrim with information: {}", pipeTrim);
+	public PipeFa create(PipeFa pipeFa) {
+        LOGGER.debug("Creating a new PipeFa with information: {}", pipeFa);
 
-        PipeTrim pipeTrimCreated = this.wmGenericDao.create(pipeTrim);
+        PipeFa pipeFaCreated = this.wmGenericDao.create(pipeFa);
         // reloading object from database to get database defined & server defined values.
-        return this.wmGenericDao.refresh(pipeTrimCreated);
+        return this.wmGenericDao.refresh(pipeFaCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public PipeTrim getById(Integer pipetrimId) throws EntityNotFoundException {
-        LOGGER.debug("Finding PipeTrim by id: {}", pipetrimId);
-        return this.wmGenericDao.findById(pipetrimId);
+	public PipeFa getById(Integer pipefaId) throws EntityNotFoundException {
+        LOGGER.debug("Finding PipeFa by id: {}", pipefaId);
+        return this.wmGenericDao.findById(pipefaId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public PipeTrim findById(Integer pipetrimId) {
-        LOGGER.debug("Finding PipeTrim by id: {}", pipetrimId);
+	public PipeFa findById(Integer pipefaId) {
+        LOGGER.debug("Finding PipeFa by id: {}", pipefaId);
         try {
-            return this.wmGenericDao.findById(pipetrimId);
+            return this.wmGenericDao.findById(pipefaId);
         } catch(EntityNotFoundException ex) {
-            LOGGER.debug("No PipeTrim found with id: {}", pipetrimId, ex);
+            LOGGER.debug("No PipeFa found with id: {}", pipefaId, ex);
             return null;
         }
     }
@@ -79,23 +79,23 @@ public class PipeTrimServiceImpl implements PipeTrimService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public PipeTrim update(PipeTrim pipeTrim) throws EntityNotFoundException {
-        LOGGER.debug("Updating PipeTrim with information: {}", pipeTrim);
+	public PipeFa update(PipeFa pipeFa) throws EntityNotFoundException {
+        LOGGER.debug("Updating PipeFa with information: {}", pipeFa);
 
-        this.wmGenericDao.update(pipeTrim);
-        this.wmGenericDao.refresh(pipeTrim);
+        this.wmGenericDao.update(pipeFa);
+        this.wmGenericDao.refresh(pipeFa);
 
-        return pipeTrim;
+        return pipeFa;
     }
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public PipeTrim delete(Integer pipetrimId) throws EntityNotFoundException {
-        LOGGER.debug("Deleting PipeTrim with id: {}", pipetrimId);
-        PipeTrim deleted = this.wmGenericDao.findById(pipetrimId);
+	public PipeFa delete(Integer pipefaId) throws EntityNotFoundException {
+        LOGGER.debug("Deleting PipeFa with id: {}", pipefaId);
+        PipeFa deleted = this.wmGenericDao.findById(pipefaId);
         if (deleted == null) {
-            LOGGER.debug("No PipeTrim found with id: {}", pipetrimId);
-            throw new EntityNotFoundException(String.valueOf(pipetrimId));
+            LOGGER.debug("No PipeFa found with id: {}", pipefaId);
+            throw new EntityNotFoundException(String.valueOf(pipefaId));
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
@@ -103,29 +103,29 @@ public class PipeTrimServiceImpl implements PipeTrimService {
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public void delete(PipeTrim pipeTrim) {
-        LOGGER.debug("Deleting PipeTrim with {}", pipeTrim);
-        this.wmGenericDao.delete(pipeTrim);
+	public void delete(PipeFa pipeFa) {
+        LOGGER.debug("Deleting PipeFa with {}", pipeFa);
+        this.wmGenericDao.delete(pipeFa);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public Page<PipeTrim> findAll(QueryFilter[] queryFilters, Pageable pageable) {
-        LOGGER.debug("Finding all PipeTrims");
+	public Page<PipeFa> findAll(QueryFilter[] queryFilters, Pageable pageable) {
+        LOGGER.debug("Finding all PipeFas");
         return this.wmGenericDao.search(queryFilters, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<PipeTrim> findAll(String query, Pageable pageable) {
-        LOGGER.debug("Finding all PipeTrims");
+    public Page<PipeFa> findAll(String query, Pageable pageable) {
+        LOGGER.debug("Finding all PipeFas");
         return this.wmGenericDao.searchByQuery(query, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
     public Downloadable export(ExportType exportType, String query, Pageable pageable) {
-        LOGGER.debug("exporting data in the service Job1111 for table PipeTrim to {} format", exportType);
+        LOGGER.debug("exporting data in the service Job1111 for table PipeFa to {} format", exportType);
         return this.wmGenericDao.export(exportType, query, pageable);
     }
 

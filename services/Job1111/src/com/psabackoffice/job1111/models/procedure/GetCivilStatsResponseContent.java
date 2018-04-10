@@ -21,6 +21,10 @@ public class GetCivilStatsResponseContent implements Serializable {
     @ColumnAlias("BidID")
     private Integer bidId;
 
+    @JsonProperty("ProjectServicesRep")
+    @ColumnAlias("ProjectServicesRep")
+    private String projectServicesRep;
+
     @JsonProperty("Scope")
     @ColumnAlias("Scope")
     private String scope;
@@ -37,6 +41,10 @@ public class GetCivilStatsResponseContent implements Serializable {
     @ColumnAlias("TestPackageNumber")
     private String testPackageNumber;
 
+    @JsonProperty("WorkPackage")
+    @ColumnAlias("WorkPackage")
+    private String workPackage;
+
     @JsonProperty("CostCode")
     @ColumnAlias("CostCode")
     private String costCode;
@@ -44,6 +52,10 @@ public class GetCivilStatsResponseContent implements Serializable {
     @JsonProperty("P6ID")
     @ColumnAlias("P6ID")
     private String p6id;
+
+    @JsonProperty("P6Description")
+    @ColumnAlias("P6Description")
+    private String p6description;
 
     @JsonProperty("AssignedContractor")
     @ColumnAlias("AssignedContractor")
@@ -65,17 +77,21 @@ public class GetCivilStatsResponseContent implements Serializable {
     @ColumnAlias("CU")
     private String cu;
 
-    @JsonProperty("Grouping")
-    @ColumnAlias("Grouping")
-    private String grouping;
+    @JsonProperty("Elevation")
+    @ColumnAlias("Elevation")
+    private String elevation;
 
-    @JsonProperty("FoundationDescription")
-    @ColumnAlias("FoundationDescription")
-    private String foundationDescription;
+    @JsonProperty("SortGroup1")
+    @ColumnAlias("SortGroup1")
+    private String sortGroup1;
 
-    @JsonProperty("P6Description")
-    @ColumnAlias("P6Description")
-    private String p6description;
+    @JsonProperty("SortGroup2")
+    @ColumnAlias("SortGroup2")
+    private String sortGroup2;
+
+    @JsonProperty("SortGroup3")
+    @ColumnAlias("SortGroup3")
+    private String sortGroup3;
 
     @JsonProperty("System")
     @ColumnAlias("System")
@@ -165,10 +181,6 @@ public class GetCivilStatsResponseContent implements Serializable {
     @ColumnAlias("CountDemo")
     private BigDecimal countDemo;
 
-    @JsonProperty("CountMisc")
-    @ColumnAlias("CountMisc")
-    private BigDecimal countMisc;
-
     @JsonProperty("HoursExcavation")
     @ColumnAlias("HoursExcavation")
     private BigDecimal hoursExcavation;
@@ -200,10 +212,6 @@ public class GetCivilStatsResponseContent implements Serializable {
     @JsonProperty("HoursDemo")
     @ColumnAlias("HoursDemo")
     private BigDecimal hoursDemo;
-
-    @JsonProperty("HoursMisc")
-    @ColumnAlias("HoursMisc")
-    private BigDecimal hoursMisc;
 
     @JsonProperty("HoursAllCivil")
     @ColumnAlias("HoursAllCivil")
@@ -245,10 +253,6 @@ public class GetCivilStatsResponseContent implements Serializable {
     @ColumnAlias("InstalledDemo")
     private BigDecimal installedDemo;
 
-    @JsonProperty("InstalledMisc")
-    @ColumnAlias("InstalledMisc")
-    private BigDecimal installedMisc;
-
     @JsonProperty("EarnedExcavationHours")
     @ColumnAlias("EarnedExcavationHours")
     private BigDecimal earnedExcavationHours;
@@ -280,10 +284,6 @@ public class GetCivilStatsResponseContent implements Serializable {
     @JsonProperty("EarnedDemoHours")
     @ColumnAlias("EarnedDemoHours")
     private BigDecimal earnedDemoHours;
-
-    @JsonProperty("EarnedMiscHours")
-    @ColumnAlias("EarnedMiscHours")
-    private BigDecimal earnedMiscHours;
 
     @JsonProperty("EarnedAllCivilHours")
     @ColumnAlias("EarnedAllCivilHours")
@@ -325,10 +325,6 @@ public class GetCivilStatsResponseContent implements Serializable {
     @ColumnAlias("RemainingDemo")
     private BigDecimal remainingDemo;
 
-    @JsonProperty("RemainingMisc")
-    @ColumnAlias("RemainingMisc")
-    private BigDecimal remainingMisc;
-
     @JsonProperty("RemainingExcavationHours")
     @ColumnAlias("RemainingExcavationHours")
     private BigDecimal remainingExcavationHours;
@@ -361,10 +357,6 @@ public class GetCivilStatsResponseContent implements Serializable {
     @ColumnAlias("RemainingDemoHours")
     private BigDecimal remainingDemoHours;
 
-    @JsonProperty("RemainingMiscHours")
-    @ColumnAlias("RemainingMiscHours")
-    private BigDecimal remainingMiscHours;
-
     @JsonProperty("RemainingAllCivilHours")
     @ColumnAlias("RemainingAllCivilHours")
     private BigDecimal remainingAllCivilHours;
@@ -387,6 +379,14 @@ public class GetCivilStatsResponseContent implements Serializable {
 
     public void setBidId(Integer bidId) {
         this.bidId = bidId;
+    }
+
+    public String getProjectServicesRep() {
+        return this.projectServicesRep;
+    }
+
+    public void setProjectServicesRep(String projectServicesRep) {
+        this.projectServicesRep = projectServicesRep;
     }
 
     public String getScope() {
@@ -421,6 +421,14 @@ public class GetCivilStatsResponseContent implements Serializable {
         this.testPackageNumber = testPackageNumber;
     }
 
+    public String getWorkPackage() {
+        return this.workPackage;
+    }
+
+    public void setWorkPackage(String workPackage) {
+        this.workPackage = workPackage;
+    }
+
     public String getCostCode() {
         return this.costCode;
     }
@@ -435,6 +443,14 @@ public class GetCivilStatsResponseContent implements Serializable {
 
     public void setP6id(String p6id) {
         this.p6id = p6id;
+    }
+
+    public String getP6description() {
+        return this.p6description;
+    }
+
+    public void setP6description(String p6description) {
+        this.p6description = p6description;
     }
 
     public String getAssignedContractor() {
@@ -477,28 +493,36 @@ public class GetCivilStatsResponseContent implements Serializable {
         this.cu = cu;
     }
 
-    public String getGrouping() {
-        return this.grouping;
+    public String getElevation() {
+        return this.elevation;
     }
 
-    public void setGrouping(String grouping) {
-        this.grouping = grouping;
+    public void setElevation(String elevation) {
+        this.elevation = elevation;
     }
 
-    public String getFoundationDescription() {
-        return this.foundationDescription;
+    public String getSortGroup1() {
+        return this.sortGroup1;
     }
 
-    public void setFoundationDescription(String foundationDescription) {
-        this.foundationDescription = foundationDescription;
+    public void setSortGroup1(String sortGroup1) {
+        this.sortGroup1 = sortGroup1;
     }
 
-    public String getP6description() {
-        return this.p6description;
+    public String getSortGroup2() {
+        return this.sortGroup2;
     }
 
-    public void setP6description(String p6description) {
-        this.p6description = p6description;
+    public void setSortGroup2(String sortGroup2) {
+        this.sortGroup2 = sortGroup2;
+    }
+
+    public String getSortGroup3() {
+        return this.sortGroup3;
+    }
+
+    public void setSortGroup3(String sortGroup3) {
+        this.sortGroup3 = sortGroup3;
     }
 
     public String getSystem() {
@@ -677,14 +701,6 @@ public class GetCivilStatsResponseContent implements Serializable {
         this.countDemo = countDemo;
     }
 
-    public BigDecimal getCountMisc() {
-        return this.countMisc;
-    }
-
-    public void setCountMisc(BigDecimal countMisc) {
-        this.countMisc = countMisc;
-    }
-
     public BigDecimal getHoursExcavation() {
         return this.hoursExcavation;
     }
@@ -747,14 +763,6 @@ public class GetCivilStatsResponseContent implements Serializable {
 
     public void setHoursDemo(BigDecimal hoursDemo) {
         this.hoursDemo = hoursDemo;
-    }
-
-    public BigDecimal getHoursMisc() {
-        return this.hoursMisc;
-    }
-
-    public void setHoursMisc(BigDecimal hoursMisc) {
-        this.hoursMisc = hoursMisc;
     }
 
     public BigDecimal getHoursAllCivil() {
@@ -837,14 +845,6 @@ public class GetCivilStatsResponseContent implements Serializable {
         this.installedDemo = installedDemo;
     }
 
-    public BigDecimal getInstalledMisc() {
-        return this.installedMisc;
-    }
-
-    public void setInstalledMisc(BigDecimal installedMisc) {
-        this.installedMisc = installedMisc;
-    }
-
     public BigDecimal getEarnedExcavationHours() {
         return this.earnedExcavationHours;
     }
@@ -907,14 +907,6 @@ public class GetCivilStatsResponseContent implements Serializable {
 
     public void setEarnedDemoHours(BigDecimal earnedDemoHours) {
         this.earnedDemoHours = earnedDemoHours;
-    }
-
-    public BigDecimal getEarnedMiscHours() {
-        return this.earnedMiscHours;
-    }
-
-    public void setEarnedMiscHours(BigDecimal earnedMiscHours) {
-        this.earnedMiscHours = earnedMiscHours;
     }
 
     public BigDecimal getEarnedAllCivilHours() {
@@ -997,14 +989,6 @@ public class GetCivilStatsResponseContent implements Serializable {
         this.remainingDemo = remainingDemo;
     }
 
-    public BigDecimal getRemainingMisc() {
-        return this.remainingMisc;
-    }
-
-    public void setRemainingMisc(BigDecimal remainingMisc) {
-        this.remainingMisc = remainingMisc;
-    }
-
     public BigDecimal getRemainingExcavationHours() {
         return this.remainingExcavationHours;
     }
@@ -1069,14 +1053,6 @@ public class GetCivilStatsResponseContent implements Serializable {
         this.remainingDemoHours = remainingDemoHours;
     }
 
-    public BigDecimal getRemainingMiscHours() {
-        return this.remainingMiscHours;
-    }
-
-    public void setRemainingMiscHours(BigDecimal remainingMiscHours) {
-        this.remainingMiscHours = remainingMiscHours;
-    }
-
     public BigDecimal getRemainingAllCivilHours() {
         return this.remainingAllCivilHours;
     }
@@ -1115,20 +1091,24 @@ public class GetCivilStatsResponseContent implements Serializable {
         if (!(o instanceof GetCivilStatsResponseContent)) return false;
         final GetCivilStatsResponseContent getCivilStatsResponseContent = (GetCivilStatsResponseContent) o;
         return Objects.equals(getBidId(), getCivilStatsResponseContent.getBidId()) &&
+                Objects.equals(getProjectServicesRep(), getCivilStatsResponseContent.getProjectServicesRep()) &&
                 Objects.equals(getScope(), getCivilStatsResponseContent.getScope()) &&
                 Objects.equals(getPhase(), getCivilStatsResponseContent.getPhase()) &&
                 Objects.equals(getStage(), getCivilStatsResponseContent.getStage()) &&
                 Objects.equals(getTestPackageNumber(), getCivilStatsResponseContent.getTestPackageNumber()) &&
+                Objects.equals(getWorkPackage(), getCivilStatsResponseContent.getWorkPackage()) &&
                 Objects.equals(getCostCode(), getCivilStatsResponseContent.getCostCode()) &&
                 Objects.equals(getP6id(), getCivilStatsResponseContent.getP6id()) &&
+                Objects.equals(getP6description(), getCivilStatsResponseContent.getP6description()) &&
                 Objects.equals(getAssignedContractor(), getCivilStatsResponseContent.getAssignedContractor()) &&
                 Objects.equals(getArea(), getCivilStatsResponseContent.getArea()) &&
                 Objects.equals(getLocation(), getCivilStatsResponseContent.getLocation()) &&
                 Objects.equals(getStructure(), getCivilStatsResponseContent.getStructure()) &&
                 Objects.equals(getCu(), getCivilStatsResponseContent.getCu()) &&
-                Objects.equals(getGrouping(), getCivilStatsResponseContent.getGrouping()) &&
-                Objects.equals(getFoundationDescription(), getCivilStatsResponseContent.getFoundationDescription()) &&
-                Objects.equals(getP6description(), getCivilStatsResponseContent.getP6description()) &&
+                Objects.equals(getElevation(), getCivilStatsResponseContent.getElevation()) &&
+                Objects.equals(getSortGroup1(), getCivilStatsResponseContent.getSortGroup1()) &&
+                Objects.equals(getSortGroup2(), getCivilStatsResponseContent.getSortGroup2()) &&
+                Objects.equals(getSortGroup3(), getCivilStatsResponseContent.getSortGroup3()) &&
                 Objects.equals(getSystem(), getCivilStatsResponseContent.getSystem()) &&
                 Objects.equals(getService(), getCivilStatsResponseContent.getService()) &&
                 Objects.equals(getActivityType(), getCivilStatsResponseContent.getActivityType()) &&
@@ -1151,7 +1131,6 @@ public class GetCivilStatsResponseContent implements Serializable {
                 Objects.equals(getCountAnchor(), getCivilStatsResponseContent.getCountAnchor()) &&
                 Objects.equals(getCountGrout(), getCivilStatsResponseContent.getCountGrout()) &&
                 Objects.equals(getCountDemo(), getCivilStatsResponseContent.getCountDemo()) &&
-                Objects.equals(getCountMisc(), getCivilStatsResponseContent.getCountMisc()) &&
                 Objects.equals(getHoursExcavation(), getCivilStatsResponseContent.getHoursExcavation()) &&
                 Objects.equals(getHoursForm(), getCivilStatsResponseContent.getHoursForm()) &&
                 Objects.equals(getHoursRebar(), getCivilStatsResponseContent.getHoursRebar()) &&
@@ -1160,7 +1139,6 @@ public class GetCivilStatsResponseContent implements Serializable {
                 Objects.equals(getHoursAnchor(), getCivilStatsResponseContent.getHoursAnchor()) &&
                 Objects.equals(getHoursGrout(), getCivilStatsResponseContent.getHoursGrout()) &&
                 Objects.equals(getHoursDemo(), getCivilStatsResponseContent.getHoursDemo()) &&
-                Objects.equals(getHoursMisc(), getCivilStatsResponseContent.getHoursMisc()) &&
                 Objects.equals(getHoursAllCivil(), getCivilStatsResponseContent.getHoursAllCivil()) &&
                 Objects.equals(getHoursSellPunch(), getCivilStatsResponseContent.getHoursSellPunch()) &&
                 Objects.equals(getInstalledExcavation(), getCivilStatsResponseContent.getInstalledExcavation()) &&
@@ -1171,7 +1149,6 @@ public class GetCivilStatsResponseContent implements Serializable {
                 Objects.equals(getInstalledAnchor(), getCivilStatsResponseContent.getInstalledAnchor()) &&
                 Objects.equals(getInstalledGrout(), getCivilStatsResponseContent.getInstalledGrout()) &&
                 Objects.equals(getInstalledDemo(), getCivilStatsResponseContent.getInstalledDemo()) &&
-                Objects.equals(getInstalledMisc(), getCivilStatsResponseContent.getInstalledMisc()) &&
                 Objects.equals(getEarnedExcavationHours(), getCivilStatsResponseContent.getEarnedExcavationHours()) &&
                 Objects.equals(getEarnedFormHours(), getCivilStatsResponseContent.getEarnedFormHours()) &&
                 Objects.equals(getEarnedRebarHours(), getCivilStatsResponseContent.getEarnedRebarHours()) &&
@@ -1180,7 +1157,6 @@ public class GetCivilStatsResponseContent implements Serializable {
                 Objects.equals(getEarnedAnchorHours(), getCivilStatsResponseContent.getEarnedAnchorHours()) &&
                 Objects.equals(getEarnedGroutHours(), getCivilStatsResponseContent.getEarnedGroutHours()) &&
                 Objects.equals(getEarnedDemoHours(), getCivilStatsResponseContent.getEarnedDemoHours()) &&
-                Objects.equals(getEarnedMiscHours(), getCivilStatsResponseContent.getEarnedMiscHours()) &&
                 Objects.equals(getEarnedAllCivilHours(), getCivilStatsResponseContent.getEarnedAllCivilHours()) &&
                 Objects.equals(getEarnedSellPunchHours(), getCivilStatsResponseContent.getEarnedSellPunchHours()) &&
                 Objects.equals(getRemainingExcavation(), getCivilStatsResponseContent.getRemainingExcavation()) &&
@@ -1191,7 +1167,6 @@ public class GetCivilStatsResponseContent implements Serializable {
                 Objects.equals(getRemainingAnchor(), getCivilStatsResponseContent.getRemainingAnchor()) &&
                 Objects.equals(getRemainingGrout(), getCivilStatsResponseContent.getRemainingGrout()) &&
                 Objects.equals(getRemainingDemo(), getCivilStatsResponseContent.getRemainingDemo()) &&
-                Objects.equals(getRemainingMisc(), getCivilStatsResponseContent.getRemainingMisc()) &&
                 Objects.equals(getRemainingExcavationHours(), getCivilStatsResponseContent.getRemainingExcavationHours()) &&
                 Objects.equals(getRemainingFormHours(), getCivilStatsResponseContent.getRemainingFormHours()) &&
                 Objects.equals(getRemainingRebarHours(), getCivilStatsResponseContent.getRemainingRebarHours()) &&
@@ -1200,7 +1175,6 @@ public class GetCivilStatsResponseContent implements Serializable {
                 Objects.equals(getRemainingAnchorHours(), getCivilStatsResponseContent.getRemainingAnchorHours()) &&
                 Objects.equals(getRemainingGroutHours(), getCivilStatsResponseContent.getRemainingGroutHours()) &&
                 Objects.equals(getRemainingDemoHours(), getCivilStatsResponseContent.getRemainingDemoHours()) &&
-                Objects.equals(getRemainingMiscHours(), getCivilStatsResponseContent.getRemainingMiscHours()) &&
                 Objects.equals(getRemainingAllCivilHours(), getCivilStatsResponseContent.getRemainingAllCivilHours()) &&
                 Objects.equals(getRemainingSellPunchHours(), getCivilStatsResponseContent.getRemainingSellPunchHours()) &&
                 Objects.equals(getCivilPercentComplete(), getCivilStatsResponseContent.getCivilPercentComplete()) &&
@@ -1210,20 +1184,24 @@ public class GetCivilStatsResponseContent implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getBidId(),
+                getProjectServicesRep(),
                 getScope(),
                 getPhase(),
                 getStage(),
                 getTestPackageNumber(),
+                getWorkPackage(),
                 getCostCode(),
                 getP6id(),
+                getP6description(),
                 getAssignedContractor(),
                 getArea(),
                 getLocation(),
                 getStructure(),
                 getCu(),
-                getGrouping(),
-                getFoundationDescription(),
-                getP6description(),
+                getElevation(),
+                getSortGroup1(),
+                getSortGroup2(),
+                getSortGroup3(),
                 getSystem(),
                 getService(),
                 getActivityType(),
@@ -1246,7 +1224,6 @@ public class GetCivilStatsResponseContent implements Serializable {
                 getCountAnchor(),
                 getCountGrout(),
                 getCountDemo(),
-                getCountMisc(),
                 getHoursExcavation(),
                 getHoursForm(),
                 getHoursRebar(),
@@ -1255,7 +1232,6 @@ public class GetCivilStatsResponseContent implements Serializable {
                 getHoursAnchor(),
                 getHoursGrout(),
                 getHoursDemo(),
-                getHoursMisc(),
                 getHoursAllCivil(),
                 getHoursSellPunch(),
                 getInstalledExcavation(),
@@ -1266,7 +1242,6 @@ public class GetCivilStatsResponseContent implements Serializable {
                 getInstalledAnchor(),
                 getInstalledGrout(),
                 getInstalledDemo(),
-                getInstalledMisc(),
                 getEarnedExcavationHours(),
                 getEarnedFormHours(),
                 getEarnedRebarHours(),
@@ -1275,7 +1250,6 @@ public class GetCivilStatsResponseContent implements Serializable {
                 getEarnedAnchorHours(),
                 getEarnedGroutHours(),
                 getEarnedDemoHours(),
-                getEarnedMiscHours(),
                 getEarnedAllCivilHours(),
                 getEarnedSellPunchHours(),
                 getRemainingExcavation(),
@@ -1286,7 +1260,6 @@ public class GetCivilStatsResponseContent implements Serializable {
                 getRemainingAnchor(),
                 getRemainingGrout(),
                 getRemainingDemo(),
-                getRemainingMisc(),
                 getRemainingExcavationHours(),
                 getRemainingFormHours(),
                 getRemainingRebarHours(),
@@ -1295,7 +1268,6 @@ public class GetCivilStatsResponseContent implements Serializable {
                 getRemainingAnchorHours(),
                 getRemainingGroutHours(),
                 getRemainingDemoHours(),
-                getRemainingMiscHours(),
                 getRemainingAllCivilHours(),
                 getRemainingSellPunchHours(),
                 getCivilPercentComplete(),

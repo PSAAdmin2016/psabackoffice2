@@ -18,71 +18,71 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.psabackoffice.job1111.PipeSupports;
+import com.psabackoffice.job1111.PipeFa;
 
 /**
- * Service object for domain model class {@link PipeSupports}.
+ * Service object for domain model class {@link PipeFa}.
  */
-public interface PipeSupportsService {
+public interface PipeFaService {
 
     /**
-     * Creates a new PipeSupports. It does cascade insert for all the children in a single transaction.
+     * Creates a new PipeFa. It does cascade insert for all the children in a single transaction.
      *
-     * This method overrides the input field values using Server side or database managed properties defined on PipeSupports if any.
+     * This method overrides the input field values using Server side or database managed properties defined on PipeFa if any.
      *
-     * @param pipeSupports Details of the PipeSupports to be created; value cannot be null.
-     * @return The newly created PipeSupports.
+     * @param pipeFa Details of the PipeFa to be created; value cannot be null.
+     * @return The newly created PipeFa.
      */
-	PipeSupports create(@Valid PipeSupports pipeSupports);
+	PipeFa create(@Valid PipeFa pipeFa);
 
 
 	/**
-	 * Returns PipeSupports by given id if exists.
+	 * Returns PipeFa by given id if exists.
 	 *
-	 * @param pipesupportsId The id of the PipeSupports to get; value cannot be null.
-	 * @return PipeSupports associated with the given pipesupportsId.
-     * @throws EntityNotFoundException If no PipeSupports is found.
+	 * @param pipefaId The id of the PipeFa to get; value cannot be null.
+	 * @return PipeFa associated with the given pipefaId.
+     * @throws EntityNotFoundException If no PipeFa is found.
 	 */
-	PipeSupports getById(Integer pipesupportsId) throws EntityNotFoundException;
+	PipeFa getById(Integer pipefaId) throws EntityNotFoundException;
 
     /**
-	 * Find and return the PipeSupports by given id if exists, returns null otherwise.
+	 * Find and return the PipeFa by given id if exists, returns null otherwise.
 	 *
-	 * @param pipesupportsId The id of the PipeSupports to get; value cannot be null.
-	 * @return PipeSupports associated with the given pipesupportsId.
+	 * @param pipefaId The id of the PipeFa to get; value cannot be null.
+	 * @return PipeFa associated with the given pipefaId.
 	 */
-	PipeSupports findById(Integer pipesupportsId);
+	PipeFa findById(Integer pipefaId);
 
 
 	/**
-	 * Updates the details of an existing PipeSupports. It replaces all fields of the existing PipeSupports with the given pipeSupports.
+	 * Updates the details of an existing PipeFa. It replaces all fields of the existing PipeFa with the given pipeFa.
 	 *
-     * This method overrides the input field values using Server side or database managed properties defined on PipeSupports if any.
+     * This method overrides the input field values using Server side or database managed properties defined on PipeFa if any.
      *
-	 * @param pipeSupports The details of the PipeSupports to be updated; value cannot be null.
-	 * @return The updated PipeSupports.
-	 * @throws EntityNotFoundException if no PipeSupports is found with given input.
+	 * @param pipeFa The details of the PipeFa to be updated; value cannot be null.
+	 * @return The updated PipeFa.
+	 * @throws EntityNotFoundException if no PipeFa is found with given input.
 	 */
-	PipeSupports update(@Valid PipeSupports pipeSupports) throws EntityNotFoundException;
+	PipeFa update(@Valid PipeFa pipeFa) throws EntityNotFoundException;
 
     /**
-	 * Deletes an existing PipeSupports with the given id.
+	 * Deletes an existing PipeFa with the given id.
 	 *
-	 * @param pipesupportsId The id of the PipeSupports to be deleted; value cannot be null.
-	 * @return The deleted PipeSupports.
-	 * @throws EntityNotFoundException if no PipeSupports found with the given id.
+	 * @param pipefaId The id of the PipeFa to be deleted; value cannot be null.
+	 * @return The deleted PipeFa.
+	 * @throws EntityNotFoundException if no PipeFa found with the given id.
 	 */
-	PipeSupports delete(Integer pipesupportsId) throws EntityNotFoundException;
+	PipeFa delete(Integer pipefaId) throws EntityNotFoundException;
 
     /**
-	 * Deletes an existing PipeSupports with the given object.
+	 * Deletes an existing PipeFa with the given object.
 	 *
-	 * @param pipeSupports The instance of the PipeSupports to be deleted; value cannot be null.
+	 * @param pipeFa The instance of the PipeFa to be deleted; value cannot be null.
 	 */
-	void delete(PipeSupports pipeSupports);
+	void delete(PipeFa pipeFa);
 
 	/**
-	 * Find all PipeSupports matching the given QueryFilter(s).
+	 * Find all PipeFas matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.
      * This method returns Paginated results.
 	 *
@@ -90,30 +90,30 @@ public interface PipeSupportsService {
 	 *
      * @param queryFilters Array of queryFilters to filter the results; No filters applied if the input is null/empty.
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of matching PipeSupports.
+     * @return Paginated list of matching PipeFas.
      *
      * @see QueryFilter
      * @see Pageable
      * @see Page
 	 */
     @Deprecated
-	Page<PipeSupports> findAll(QueryFilter[] queryFilters, Pageable pageable);
+	Page<PipeFa> findAll(QueryFilter[] queryFilters, Pageable pageable);
 
     /**
-	 * Find all PipeSupports matching the given input query. This method returns Paginated results.
+	 * Find all PipeFas matching the given input query. This method returns Paginated results.
      * Note: Go through the documentation for <u>query</u> syntax.
 	 *
      * @param query The query to filter the results; No filters applied if the input is null/empty.
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of matching PipeSupports.
+     * @return Paginated list of matching PipeFas.
      *
      * @see Pageable
      * @see Page
 	 */
-    Page<PipeSupports> findAll(String query, Pageable pageable);
+    Page<PipeFa> findAll(String query, Pageable pageable);
 
     /**
-	 * Exports all PipeSupports matching the given input query to the given exportType format.
+	 * Exports all PipeFas matching the given input query to the given exportType format.
      * Note: Go through the documentation for <u>query</u> syntax.
 	 *
      * @param exportType The format in which to export the data; value cannot be null.
@@ -128,11 +128,11 @@ public interface PipeSupportsService {
     Downloadable export(ExportType exportType, String query, Pageable pageable);
 
 	/**
-	 * Retrieve the count of the PipeSupports in the repository with matching query.
+	 * Retrieve the count of the PipeFas in the repository with matching query.
      * Note: Go through the documentation for <u>query</u> syntax.
      *
      * @param query query to filter results. No filters applied if the input is null/empty.
-	 * @return The count of the PipeSupports.
+	 * @return The count of the PipeFa.
 	 */
 	long count(String query);
 

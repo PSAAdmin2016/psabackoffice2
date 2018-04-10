@@ -17,47 +17,39 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UpdateSteelMiscRequest implements Serializable {
 
 
-    @JsonProperty("Area")
-    private String area;
+    @JsonProperty("BidID")
+    @NotNull
+    private Integer bidId;
 
-    @JsonProperty("Piece")
-    private String piece;
-
-    @JsonProperty("Quantity")
-    private Integer quantity;
+    @JsonProperty("PercentCompleted")
+    @NotNull
+    private BigDecimal percentCompleted;
 
     @JsonProperty("Rework")
+    @NotNull
     private Byte rework;
 
     @JsonProperty("Notes")
     private String notes;
 
-    @JsonProperty("FieldActivityID")
+    @JsonProperty("ActivityID")
     @NotNull
-    private Integer fieldActivityId;
+    private Integer activityId;
 
-    public String getArea() {
-        return this.area;
+    public Integer getBidId() {
+        return this.bidId;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setBidId(Integer bidId) {
+        this.bidId = bidId;
     }
 
-    public String getPiece() {
-        return this.piece;
+    public BigDecimal getPercentCompleted() {
+        return this.percentCompleted;
     }
 
-    public void setPiece(String piece) {
-        this.piece = piece;
-    }
-
-    public Integer getQuantity() {
-        return this.quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setPercentCompleted(BigDecimal percentCompleted) {
+        this.percentCompleted = percentCompleted;
     }
 
     public Byte getRework() {
@@ -76,12 +68,12 @@ public class UpdateSteelMiscRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     @Override
@@ -89,21 +81,19 @@ public class UpdateSteelMiscRequest implements Serializable {
         if (this == o) return true;
         if (!(o instanceof UpdateSteelMiscRequest)) return false;
         final UpdateSteelMiscRequest updateSteelMiscRequest = (UpdateSteelMiscRequest) o;
-        return Objects.equals(getArea(), updateSteelMiscRequest.getArea()) &&
-                Objects.equals(getPiece(), updateSteelMiscRequest.getPiece()) &&
-                Objects.equals(getQuantity(), updateSteelMiscRequest.getQuantity()) &&
+        return Objects.equals(getBidId(), updateSteelMiscRequest.getBidId()) &&
+                Objects.equals(getPercentCompleted(), updateSteelMiscRequest.getPercentCompleted()) &&
                 Objects.equals(getRework(), updateSteelMiscRequest.getRework()) &&
                 Objects.equals(getNotes(), updateSteelMiscRequest.getNotes()) &&
-                Objects.equals(getFieldActivityId(), updateSteelMiscRequest.getFieldActivityId());
+                Objects.equals(getActivityId(), updateSteelMiscRequest.getActivityId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getArea(),
-                getPiece(),
-                getQuantity(),
+        return Objects.hash(getBidId(),
+                getPercentCompleted(),
                 getRework(),
                 getNotes(),
-                getFieldActivityId());
+                getActivityId());
     }
 }

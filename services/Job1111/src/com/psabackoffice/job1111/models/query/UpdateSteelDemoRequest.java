@@ -17,55 +17,35 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UpdateSteelDemoRequest implements Serializable {
 
 
-    @JsonProperty("Area")
-    private String area;
+    @JsonProperty("BidID")
+    @NotNull
+    private Integer bidId;
 
-    @JsonProperty("SteelType")
-    private Integer steelType;
-
-    @JsonProperty("Size")
-    private String size;
-
-    @JsonProperty("Quantity")
-    private Integer quantity;
+    @JsonProperty("Percentcompleted")
+    @NotNull
+    private BigDecimal percentcompleted;
 
     @JsonProperty("Notes")
     private String notes;
 
-    @JsonProperty("FieldActivityID")
+    @JsonProperty("ActivityID")
     @NotNull
-    private Integer fieldActivityId;
+    private Integer activityId;
 
-    public String getArea() {
-        return this.area;
+    public Integer getBidId() {
+        return this.bidId;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setBidId(Integer bidId) {
+        this.bidId = bidId;
     }
 
-    public Integer getSteelType() {
-        return this.steelType;
+    public BigDecimal getPercentcompleted() {
+        return this.percentcompleted;
     }
 
-    public void setSteelType(Integer steelType) {
-        this.steelType = steelType;
-    }
-
-    public String getSize() {
-        return this.size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public Integer getQuantity() {
-        return this.quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setPercentcompleted(BigDecimal percentcompleted) {
+        this.percentcompleted = percentcompleted;
     }
 
     public String getNotes() {
@@ -76,12 +56,12 @@ public class UpdateSteelDemoRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     @Override
@@ -89,21 +69,17 @@ public class UpdateSteelDemoRequest implements Serializable {
         if (this == o) return true;
         if (!(o instanceof UpdateSteelDemoRequest)) return false;
         final UpdateSteelDemoRequest updateSteelDemoRequest = (UpdateSteelDemoRequest) o;
-        return Objects.equals(getArea(), updateSteelDemoRequest.getArea()) &&
-                Objects.equals(getSteelType(), updateSteelDemoRequest.getSteelType()) &&
-                Objects.equals(getSize(), updateSteelDemoRequest.getSize()) &&
-                Objects.equals(getQuantity(), updateSteelDemoRequest.getQuantity()) &&
+        return Objects.equals(getBidId(), updateSteelDemoRequest.getBidId()) &&
+                Objects.equals(getPercentcompleted(), updateSteelDemoRequest.getPercentcompleted()) &&
                 Objects.equals(getNotes(), updateSteelDemoRequest.getNotes()) &&
-                Objects.equals(getFieldActivityId(), updateSteelDemoRequest.getFieldActivityId());
+                Objects.equals(getActivityId(), updateSteelDemoRequest.getActivityId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getArea(),
-                getSteelType(),
-                getSize(),
-                getQuantity(),
+        return Objects.hash(getBidId(),
+                getPercentcompleted(),
                 getNotes(),
-                getFieldActivityId());
+                getActivityId());
     }
 }

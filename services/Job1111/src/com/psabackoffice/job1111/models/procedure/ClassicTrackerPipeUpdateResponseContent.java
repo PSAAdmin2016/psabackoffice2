@@ -7,6 +7,7 @@ package com.psabackoffice.job1111.models.procedure;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
@@ -17,13 +18,21 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
 
 
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private Integer id;
+    @JsonProperty("UID")
+    @ColumnAlias("UID")
+    private Integer uid;
 
     @JsonProperty("BidID")
     @ColumnAlias("BidID")
     private Integer bidId;
+
+    @JsonProperty("ProjectServicesRep")
+    @ColumnAlias("ProjectServicesRep")
+    private String projectServicesRep;
+
+    @JsonProperty("EWONumber")
+    @ColumnAlias("EWONumber")
+    private String ewonumber;
 
     @JsonProperty("Scope")
     @ColumnAlias("Scope")
@@ -41,6 +50,10 @@ public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
     @ColumnAlias("TestPackageNumber")
     private String testPackageNumber;
 
+    @JsonProperty("WorkPackage")
+    @ColumnAlias("WorkPackage")
+    private String workPackage;
+
     @JsonProperty("CostCode")
     @ColumnAlias("CostCode")
     private String costCode;
@@ -48,6 +61,10 @@ public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
     @JsonProperty("P6ID")
     @ColumnAlias("P6ID")
     private String p6id;
+
+    @JsonProperty("P6Description")
+    @ColumnAlias("P6Description")
+    private String p6description;
 
     @JsonProperty("AssignedContractor")
     @ColumnAlias("AssignedContractor")
@@ -72,10 +89,6 @@ public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
     @JsonProperty("Elevation")
     @ColumnAlias("Elevation")
     private String elevation;
-
-    @JsonProperty("P6Description")
-    @ColumnAlias("P6Description")
-    private String p6description;
 
     @JsonProperty("LineNumber")
     @ColumnAlias("LineNumber")
@@ -131,7 +144,7 @@ public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
 
     @JsonProperty("TakeOffQuantity")
     @ColumnAlias("TakeOffQuantity")
-    private Float takeOffQuantity;
+    private Double takeOffQuantity;
 
     @JsonProperty("QuantityUnit")
     @ColumnAlias("QuantityUnit")
@@ -139,55 +152,55 @@ public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
 
     @JsonProperty("EstimatedHours")
     @ColumnAlias("EstimatedHours")
-    private Double estimatedHours;
+    private BigDecimal estimatedHours;
 
     @JsonProperty("HoursMech")
     @ColumnAlias("HoursMech")
-    private Double hoursMech;
+    private BigDecimal hoursMech;
 
     @JsonProperty("HoursTesting")
     @ColumnAlias("HoursTesting")
-    private Double hoursTesting;
+    private BigDecimal hoursTesting;
 
-    @JsonProperty("HoursReadyForTesting")
-    @ColumnAlias("HoursReadyForTesting")
-    private Double hoursReadyForTesting;
+    @JsonProperty("HoursRFT")
+    @ColumnAlias("HoursRFT")
+    private BigDecimal hoursRft;
 
     @JsonProperty("HoursHydro")
     @ColumnAlias("HoursHydro")
-    private Double hoursHydro;
+    private BigDecimal hoursHydro;
 
-    @JsonProperty("HoursClientTurnover")
-    @ColumnAlias("HoursClientTurnover")
-    private Double hoursClientTurnover;
+    @JsonProperty("HoursCTO")
+    @ColumnAlias("HoursCTO")
+    private BigDecimal hoursCto;
 
     @JsonProperty("QuantityInstalled")
     @ColumnAlias("QuantityInstalled")
-    private Float quantityInstalled;
+    private Double quantityInstalled;
 
     @JsonProperty("HoursEarnedTotal")
     @ColumnAlias("HoursEarnedTotal")
-    private Double hoursEarnedTotal;
+    private BigDecimal hoursEarnedTotal;
 
     @JsonProperty("HoursEarnedMech")
     @ColumnAlias("HoursEarnedMech")
-    private Double hoursEarnedMech;
+    private BigDecimal hoursEarnedMech;
 
     @JsonProperty("HoursEarnedTesting")
     @ColumnAlias("HoursEarnedTesting")
-    private Double hoursEarnedTesting;
+    private BigDecimal hoursEarnedTesting;
 
     @JsonProperty("HoursEarnedRFT")
     @ColumnAlias("HoursEarnedRFT")
-    private Double hoursEarnedRft;
+    private BigDecimal hoursEarnedRft;
 
     @JsonProperty("HoursEarnedHydro")
     @ColumnAlias("HoursEarnedHydro")
-    private Double hoursEarnedHydro;
+    private BigDecimal hoursEarnedHydro;
 
     @JsonProperty("HoursEarnedCTO")
     @ColumnAlias("HoursEarnedCTO")
-    private Double hoursEarnedCto;
+    private BigDecimal hoursEarnedCto;
 
     @JsonProperty("WBS1")
     @ColumnAlias("WBS1")
@@ -233,12 +246,12 @@ public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
 
-    public Integer getId() {
-        return this.id;
+    public Integer getUid() {
+        return this.uid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
     public Integer getBidId() {
@@ -247,6 +260,22 @@ public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
 
     public void setBidId(Integer bidId) {
         this.bidId = bidId;
+    }
+
+    public String getProjectServicesRep() {
+        return this.projectServicesRep;
+    }
+
+    public void setProjectServicesRep(String projectServicesRep) {
+        this.projectServicesRep = projectServicesRep;
+    }
+
+    public String getEwonumber() {
+        return this.ewonumber;
+    }
+
+    public void setEwonumber(String ewonumber) {
+        this.ewonumber = ewonumber;
     }
 
     public String getScope() {
@@ -281,6 +310,14 @@ public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
         this.testPackageNumber = testPackageNumber;
     }
 
+    public String getWorkPackage() {
+        return this.workPackage;
+    }
+
+    public void setWorkPackage(String workPackage) {
+        this.workPackage = workPackage;
+    }
+
     public String getCostCode() {
         return this.costCode;
     }
@@ -295,6 +332,14 @@ public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
 
     public void setP6id(String p6id) {
         this.p6id = p6id;
+    }
+
+    public String getP6description() {
+        return this.p6description;
+    }
+
+    public void setP6description(String p6description) {
+        this.p6description = p6description;
     }
 
     public String getAssignedContractor() {
@@ -343,14 +388,6 @@ public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
 
     public void setElevation(String elevation) {
         this.elevation = elevation;
-    }
-
-    public String getP6description() {
-        return this.p6description;
-    }
-
-    public void setP6description(String p6description) {
-        this.p6description = p6description;
     }
 
     public String getLineNumber() {
@@ -457,11 +494,11 @@ public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
         this.componentNumber = componentNumber;
     }
 
-    public Float getTakeOffQuantity() {
+    public Double getTakeOffQuantity() {
         return this.takeOffQuantity;
     }
 
-    public void setTakeOffQuantity(Float takeOffQuantity) {
+    public void setTakeOffQuantity(Double takeOffQuantity) {
         this.takeOffQuantity = takeOffQuantity;
     }
 
@@ -473,107 +510,107 @@ public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
         this.quantityUnit = quantityUnit;
     }
 
-    public Double getEstimatedHours() {
+    public BigDecimal getEstimatedHours() {
         return this.estimatedHours;
     }
 
-    public void setEstimatedHours(Double estimatedHours) {
+    public void setEstimatedHours(BigDecimal estimatedHours) {
         this.estimatedHours = estimatedHours;
     }
 
-    public Double getHoursMech() {
+    public BigDecimal getHoursMech() {
         return this.hoursMech;
     }
 
-    public void setHoursMech(Double hoursMech) {
+    public void setHoursMech(BigDecimal hoursMech) {
         this.hoursMech = hoursMech;
     }
 
-    public Double getHoursTesting() {
+    public BigDecimal getHoursTesting() {
         return this.hoursTesting;
     }
 
-    public void setHoursTesting(Double hoursTesting) {
+    public void setHoursTesting(BigDecimal hoursTesting) {
         this.hoursTesting = hoursTesting;
     }
 
-    public Double getHoursReadyForTesting() {
-        return this.hoursReadyForTesting;
+    public BigDecimal getHoursRft() {
+        return this.hoursRft;
     }
 
-    public void setHoursReadyForTesting(Double hoursReadyForTesting) {
-        this.hoursReadyForTesting = hoursReadyForTesting;
+    public void setHoursRft(BigDecimal hoursRft) {
+        this.hoursRft = hoursRft;
     }
 
-    public Double getHoursHydro() {
+    public BigDecimal getHoursHydro() {
         return this.hoursHydro;
     }
 
-    public void setHoursHydro(Double hoursHydro) {
+    public void setHoursHydro(BigDecimal hoursHydro) {
         this.hoursHydro = hoursHydro;
     }
 
-    public Double getHoursClientTurnover() {
-        return this.hoursClientTurnover;
+    public BigDecimal getHoursCto() {
+        return this.hoursCto;
     }
 
-    public void setHoursClientTurnover(Double hoursClientTurnover) {
-        this.hoursClientTurnover = hoursClientTurnover;
+    public void setHoursCto(BigDecimal hoursCto) {
+        this.hoursCto = hoursCto;
     }
 
-    public Float getQuantityInstalled() {
+    public Double getQuantityInstalled() {
         return this.quantityInstalled;
     }
 
-    public void setQuantityInstalled(Float quantityInstalled) {
+    public void setQuantityInstalled(Double quantityInstalled) {
         this.quantityInstalled = quantityInstalled;
     }
 
-    public Double getHoursEarnedTotal() {
+    public BigDecimal getHoursEarnedTotal() {
         return this.hoursEarnedTotal;
     }
 
-    public void setHoursEarnedTotal(Double hoursEarnedTotal) {
+    public void setHoursEarnedTotal(BigDecimal hoursEarnedTotal) {
         this.hoursEarnedTotal = hoursEarnedTotal;
     }
 
-    public Double getHoursEarnedMech() {
+    public BigDecimal getHoursEarnedMech() {
         return this.hoursEarnedMech;
     }
 
-    public void setHoursEarnedMech(Double hoursEarnedMech) {
+    public void setHoursEarnedMech(BigDecimal hoursEarnedMech) {
         this.hoursEarnedMech = hoursEarnedMech;
     }
 
-    public Double getHoursEarnedTesting() {
+    public BigDecimal getHoursEarnedTesting() {
         return this.hoursEarnedTesting;
     }
 
-    public void setHoursEarnedTesting(Double hoursEarnedTesting) {
+    public void setHoursEarnedTesting(BigDecimal hoursEarnedTesting) {
         this.hoursEarnedTesting = hoursEarnedTesting;
     }
 
-    public Double getHoursEarnedRft() {
+    public BigDecimal getHoursEarnedRft() {
         return this.hoursEarnedRft;
     }
 
-    public void setHoursEarnedRft(Double hoursEarnedRft) {
+    public void setHoursEarnedRft(BigDecimal hoursEarnedRft) {
         this.hoursEarnedRft = hoursEarnedRft;
     }
 
-    public Double getHoursEarnedHydro() {
+    public BigDecimal getHoursEarnedHydro() {
         return this.hoursEarnedHydro;
     }
 
-    public void setHoursEarnedHydro(Double hoursEarnedHydro) {
+    public void setHoursEarnedHydro(BigDecimal hoursEarnedHydro) {
         this.hoursEarnedHydro = hoursEarnedHydro;
     }
 
-    public Double getHoursEarnedCto() {
+    public BigDecimal getHoursEarnedCto() {
         return this.hoursEarnedCto;
     }
 
-    public void setHoursEarnedCto(Double hoursEarnedCto) {
+    public void setHoursEarnedCto(BigDecimal hoursEarnedCto) {
         this.hoursEarnedCto = hoursEarnedCto;
     }
 
@@ -670,21 +707,24 @@ public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
         if (this == o) return true;
         if (!(o instanceof ClassicTrackerPipeUpdateResponseContent)) return false;
         final ClassicTrackerPipeUpdateResponseContent classicTrackerPipeUpdateResponseContent = (ClassicTrackerPipeUpdateResponseContent) o;
-        return Objects.equals(getId(), classicTrackerPipeUpdateResponseContent.getId()) &&
+        return Objects.equals(getUid(), classicTrackerPipeUpdateResponseContent.getUid()) &&
                 Objects.equals(getBidId(), classicTrackerPipeUpdateResponseContent.getBidId()) &&
+                Objects.equals(getProjectServicesRep(), classicTrackerPipeUpdateResponseContent.getProjectServicesRep()) &&
+                Objects.equals(getEwonumber(), classicTrackerPipeUpdateResponseContent.getEwonumber()) &&
                 Objects.equals(getScope(), classicTrackerPipeUpdateResponseContent.getScope()) &&
                 Objects.equals(getPhase(), classicTrackerPipeUpdateResponseContent.getPhase()) &&
                 Objects.equals(getStage(), classicTrackerPipeUpdateResponseContent.getStage()) &&
                 Objects.equals(getTestPackageNumber(), classicTrackerPipeUpdateResponseContent.getTestPackageNumber()) &&
+                Objects.equals(getWorkPackage(), classicTrackerPipeUpdateResponseContent.getWorkPackage()) &&
                 Objects.equals(getCostCode(), classicTrackerPipeUpdateResponseContent.getCostCode()) &&
                 Objects.equals(getP6id(), classicTrackerPipeUpdateResponseContent.getP6id()) &&
+                Objects.equals(getP6description(), classicTrackerPipeUpdateResponseContent.getP6description()) &&
                 Objects.equals(getAssignedContractor(), classicTrackerPipeUpdateResponseContent.getAssignedContractor()) &&
                 Objects.equals(getArea(), classicTrackerPipeUpdateResponseContent.getArea()) &&
                 Objects.equals(getLocation(), classicTrackerPipeUpdateResponseContent.getLocation()) &&
                 Objects.equals(getStructure(), classicTrackerPipeUpdateResponseContent.getStructure()) &&
                 Objects.equals(getCu(), classicTrackerPipeUpdateResponseContent.getCu()) &&
                 Objects.equals(getElevation(), classicTrackerPipeUpdateResponseContent.getElevation()) &&
-                Objects.equals(getP6description(), classicTrackerPipeUpdateResponseContent.getP6description()) &&
                 Objects.equals(getLineNumber(), classicTrackerPipeUpdateResponseContent.getLineNumber()) &&
                 Objects.equals(getEngDrawingNumber(), classicTrackerPipeUpdateResponseContent.getEngDrawingNumber()) &&
                 Objects.equals(getSheetNumber(), classicTrackerPipeUpdateResponseContent.getSheetNumber()) &&
@@ -703,9 +743,9 @@ public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
                 Objects.equals(getEstimatedHours(), classicTrackerPipeUpdateResponseContent.getEstimatedHours()) &&
                 Objects.equals(getHoursMech(), classicTrackerPipeUpdateResponseContent.getHoursMech()) &&
                 Objects.equals(getHoursTesting(), classicTrackerPipeUpdateResponseContent.getHoursTesting()) &&
-                Objects.equals(getHoursReadyForTesting(), classicTrackerPipeUpdateResponseContent.getHoursReadyForTesting()) &&
+                Objects.equals(getHoursRft(), classicTrackerPipeUpdateResponseContent.getHoursRft()) &&
                 Objects.equals(getHoursHydro(), classicTrackerPipeUpdateResponseContent.getHoursHydro()) &&
-                Objects.equals(getHoursClientTurnover(), classicTrackerPipeUpdateResponseContent.getHoursClientTurnover()) &&
+                Objects.equals(getHoursCto(), classicTrackerPipeUpdateResponseContent.getHoursCto()) &&
                 Objects.equals(getQuantityInstalled(), classicTrackerPipeUpdateResponseContent.getQuantityInstalled()) &&
                 Objects.equals(getHoursEarnedTotal(), classicTrackerPipeUpdateResponseContent.getHoursEarnedTotal()) &&
                 Objects.equals(getHoursEarnedMech(), classicTrackerPipeUpdateResponseContent.getHoursEarnedMech()) &&
@@ -728,21 +768,24 @@ public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
+        return Objects.hash(getUid(),
                 getBidId(),
+                getProjectServicesRep(),
+                getEwonumber(),
                 getScope(),
                 getPhase(),
                 getStage(),
                 getTestPackageNumber(),
+                getWorkPackage(),
                 getCostCode(),
                 getP6id(),
+                getP6description(),
                 getAssignedContractor(),
                 getArea(),
                 getLocation(),
                 getStructure(),
                 getCu(),
                 getElevation(),
-                getP6description(),
                 getLineNumber(),
                 getEngDrawingNumber(),
                 getSheetNumber(),
@@ -761,9 +804,9 @@ public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
                 getEstimatedHours(),
                 getHoursMech(),
                 getHoursTesting(),
-                getHoursReadyForTesting(),
+                getHoursRft(),
                 getHoursHydro(),
-                getHoursClientTurnover(),
+                getHoursCto(),
                 getQuantityInstalled(),
                 getHoursEarnedTotal(),
                 getHoursEarnedMech(),

@@ -78,16 +78,13 @@
     "table" : "PipeConnection",
     "schema" : null
   }, {
-    "table" : "PipeDemo",
-    "schema" : null
-  }, {
     "table" : "PipeErection",
     "schema" : null
   }, {
-    "table" : "PipeMisc",
+    "table" : "PipeFA",
     "schema" : null
   }, {
-    "table" : "PipeSupports",
+    "table" : "PipeMisc",
     "schema" : null
   }, {
     "table" : "PipeTesting",
@@ -97,9 +94,6 @@
     "schema" : null
   }, {
     "table" : "PipeTrackerDetails",
-    "schema" : null
-  }, {
-    "table" : "PipeTrim",
     "schema" : null
   }, {
     "table" : "PipeWeld",

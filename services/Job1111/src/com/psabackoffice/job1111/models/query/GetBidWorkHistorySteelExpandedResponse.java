@@ -7,6 +7,7 @@ package com.psabackoffice.job1111.models.query;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -46,7 +47,7 @@ public class GetBidWorkHistorySteelExpandedResponse implements Serializable {
 
     @JsonProperty("Quantity")
     @ColumnAlias("Quantity")
-    private Long quantity;
+    private BigDecimal quantity;
 
     @JsonProperty("Percent")
     @ColumnAlias("Percent")
@@ -116,11 +117,11 @@ public class GetBidWorkHistorySteelExpandedResponse implements Serializable {
         this.activityTypeName = activityTypeName;
     }
 
-    public Long getQuantity() {
+    public BigDecimal getQuantity() {
         return this.quantity;
     }
 
-    public void setQuantity(Long quantity) {
+    public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
     }
 

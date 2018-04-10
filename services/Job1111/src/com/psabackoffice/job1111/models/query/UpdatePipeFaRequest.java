@@ -14,45 +14,38 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateSteelWeldRequest implements Serializable {
+public class UpdatePipeFaRequest implements Serializable {
 
 
-    @JsonProperty("Area")
-    private String area;
-
-    @JsonProperty("Piece")
-    private String piece;
+    @JsonProperty("BidID")
+    @NotNull
+    private Integer bidId;
 
     @JsonProperty("Quantity")
+    @NotNull
     private Integer quantity;
 
     @JsonProperty("Percent")
+    @NotNull
     private BigDecimal percent;
 
     @JsonProperty("Rework")
-    private Character rework;
+    @NotNull
+    private Integer rework;
 
     @JsonProperty("Notes")
     private String notes;
 
-    @JsonProperty("FieldActivityID")
+    @JsonProperty("ActivityID")
     @NotNull
-    private Integer fieldActivityId;
+    private Integer activityId;
 
-    public String getArea() {
-        return this.area;
+    public Integer getBidId() {
+        return this.bidId;
     }
 
-    public void setArea(String area) {
-        this.area = area;
-    }
-
-    public String getPiece() {
-        return this.piece;
-    }
-
-    public void setPiece(String piece) {
-        this.piece = piece;
+    public void setBidId(Integer bidId) {
+        this.bidId = bidId;
     }
 
     public Integer getQuantity() {
@@ -71,11 +64,11 @@ public class UpdateSteelWeldRequest implements Serializable {
         this.percent = percent;
     }
 
-    public Character getRework() {
+    public Integer getRework() {
         return this.rework;
     }
 
-    public void setRework(Character rework) {
+    public void setRework(Integer rework) {
         this.rework = rework;
     }
 
@@ -87,36 +80,34 @@ public class UpdateSteelWeldRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UpdateSteelWeldRequest)) return false;
-        final UpdateSteelWeldRequest updateSteelWeldRequest = (UpdateSteelWeldRequest) o;
-        return Objects.equals(getArea(), updateSteelWeldRequest.getArea()) &&
-                Objects.equals(getPiece(), updateSteelWeldRequest.getPiece()) &&
-                Objects.equals(getQuantity(), updateSteelWeldRequest.getQuantity()) &&
-                Objects.equals(getPercent(), updateSteelWeldRequest.getPercent()) &&
-                Objects.equals(getRework(), updateSteelWeldRequest.getRework()) &&
-                Objects.equals(getNotes(), updateSteelWeldRequest.getNotes()) &&
-                Objects.equals(getFieldActivityId(), updateSteelWeldRequest.getFieldActivityId());
+        if (!(o instanceof UpdatePipeFaRequest)) return false;
+        final UpdatePipeFaRequest updatePipeFaRequest = (UpdatePipeFaRequest) o;
+        return Objects.equals(getBidId(), updatePipeFaRequest.getBidId()) &&
+                Objects.equals(getQuantity(), updatePipeFaRequest.getQuantity()) &&
+                Objects.equals(getPercent(), updatePipeFaRequest.getPercent()) &&
+                Objects.equals(getRework(), updatePipeFaRequest.getRework()) &&
+                Objects.equals(getNotes(), updatePipeFaRequest.getNotes()) &&
+                Objects.equals(getActivityId(), updatePipeFaRequest.getActivityId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getArea(),
-                getPiece(),
+        return Objects.hash(getBidId(),
                 getQuantity(),
                 getPercent(),
                 getRework(),
                 getNotes(),
-                getFieldActivityId());
+                getActivityId());
     }
 }

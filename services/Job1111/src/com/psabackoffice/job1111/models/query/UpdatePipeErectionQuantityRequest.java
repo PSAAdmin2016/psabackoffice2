@@ -20,9 +20,9 @@ public class UpdatePipeErectionQuantityRequest implements Serializable {
     @JsonProperty("Spool1Length")
     private Integer spool1length;
 
-    @JsonProperty("FieldActivityID")
+    @JsonProperty("ActivityID")
     @NotNull
-    private Integer fieldActivityId;
+    private Integer activityId;
 
     public Integer getSpool1length() {
         return this.spool1length;
@@ -32,12 +32,12 @@ public class UpdatePipeErectionQuantityRequest implements Serializable {
         this.spool1length = spool1length;
     }
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     @Override
@@ -46,12 +46,12 @@ public class UpdatePipeErectionQuantityRequest implements Serializable {
         if (!(o instanceof UpdatePipeErectionQuantityRequest)) return false;
         final UpdatePipeErectionQuantityRequest updatePipeErectionQuantityRequest = (UpdatePipeErectionQuantityRequest) o;
         return Objects.equals(getSpool1length(), updatePipeErectionQuantityRequest.getSpool1length()) &&
-                Objects.equals(getFieldActivityId(), updatePipeErectionQuantityRequest.getFieldActivityId());
+                Objects.equals(getActivityId(), updatePipeErectionQuantityRequest.getActivityId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getSpool1length(),
-                getFieldActivityId());
+                getActivityId());
     }
 }

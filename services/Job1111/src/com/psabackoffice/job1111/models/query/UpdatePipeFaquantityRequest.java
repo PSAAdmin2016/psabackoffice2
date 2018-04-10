@@ -14,18 +14,20 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateSteelBoltoutQuantityRequest implements Serializable {
+public class UpdatePipeFaquantityRequest implements Serializable {
 
 
     @JsonProperty("Quantity")
+    @NotNull
     private Integer quantity;
 
     @JsonProperty("Percent")
+    @NotNull
     private BigDecimal percent;
 
-    @JsonProperty("FieldActivityID")
+    @JsonProperty("ActivityID")
     @NotNull
-    private Integer fieldActivityId;
+    private Integer activityId;
 
     public Integer getQuantity() {
         return this.quantity;
@@ -43,28 +45,28 @@ public class UpdateSteelBoltoutQuantityRequest implements Serializable {
         this.percent = percent;
     }
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UpdateSteelBoltoutQuantityRequest)) return false;
-        final UpdateSteelBoltoutQuantityRequest updateSteelBoltoutQuantityRequest = (UpdateSteelBoltoutQuantityRequest) o;
-        return Objects.equals(getQuantity(), updateSteelBoltoutQuantityRequest.getQuantity()) &&
-                Objects.equals(getPercent(), updateSteelBoltoutQuantityRequest.getPercent()) &&
-                Objects.equals(getFieldActivityId(), updateSteelBoltoutQuantityRequest.getFieldActivityId());
+        if (!(o instanceof UpdatePipeFaquantityRequest)) return false;
+        final UpdatePipeFaquantityRequest updatePipeFaquantityRequest = (UpdatePipeFaquantityRequest) o;
+        return Objects.equals(getQuantity(), updatePipeFaquantityRequest.getQuantity()) &&
+                Objects.equals(getPercent(), updatePipeFaquantityRequest.getPercent()) &&
+                Objects.equals(getActivityId(), updatePipeFaquantityRequest.getActivityId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getQuantity(),
                 getPercent(),
-                getFieldActivityId());
+                getActivityId());
     }
 }

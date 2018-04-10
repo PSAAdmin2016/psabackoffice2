@@ -21,10 +21,10 @@
       "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.Line1",
       "type" : "string"
     } ],
-    "type" : "com.psabackoffice.job1111.models.procedure.CreateLooseHoursActivitySteelResponse",
+    "type" : "com.psabackoffice.job1111.models.procedure.CreateLooseHoursActivitiesSteelResponse",
     "service" : "Job1111",
-    "operation" : "executeCreateLooseHoursActivitySteel",
-    "operationId" : "ProcedureExecutionController_executeCreateLooseHoursActivitySteel",
+    "operation" : "executeCreateLooseHoursActivitiesSteel",
+    "operationId" : "ProcedureExecutionController_executeCreateLooseHoursActivitiesSteel",
     "operationType" : "post",
     "serviceType" : "DataService",
     "dataSet" : [ ],

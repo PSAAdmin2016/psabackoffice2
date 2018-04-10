@@ -8,7 +8,6 @@ package com.psabackoffice.job1111.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
@@ -19,9 +18,11 @@ public class UpdatePipeWeldRequest implements Serializable {
 
 
     @JsonProperty("Spool1")
+    @NotNull
     private String spool1;
 
     @JsonProperty("Spool2")
+    @NotNull
     private String spool2;
 
     @JsonProperty("DrawingNumber")
@@ -34,42 +35,54 @@ public class UpdatePipeWeldRequest implements Serializable {
     private String sheetNumber;
 
     @JsonProperty("LineSpec")
+    @NotNull
     private String lineSpec;
 
     @JsonProperty("WeldNumber")
     private String weldNumber;
 
     @JsonProperty("Stencil")
+    @NotNull
     private String stencil;
 
     @JsonProperty("Size")
+    @NotNull
     private BigDecimal size;
 
     @JsonProperty("Thickness")
+    @NotNull
     private String thickness;
 
     @JsonProperty("WeldType")
+    @NotNull
     private String weldType;
 
     @JsonProperty("WeldPosition")
+    @NotNull
     private String weldPosition;
 
     @JsonProperty("Material")
+    @NotNull
     private String material;
 
     @JsonProperty("Procedure")
+    @NotNull
     private String procedure;
 
     @JsonProperty("Complete")
+    @NotNull
     private Byte complete;
 
     @JsonProperty("Shared")
+    @NotNull
     private Byte shared;
 
-    @JsonProperty("PercentComplete")
-    private BigInteger percentComplete;
+    @JsonProperty("PercentCompleted")
+    @NotNull
+    private BigDecimal percentCompleted;
 
     @JsonProperty("Rework")
+    @NotNull
     private Byte rework;
 
     @JsonProperty("Notes")
@@ -207,12 +220,12 @@ public class UpdatePipeWeldRequest implements Serializable {
         this.shared = shared;
     }
 
-    public BigInteger getPercentComplete() {
-        return this.percentComplete;
+    public BigDecimal getPercentCompleted() {
+        return this.percentCompleted;
     }
 
-    public void setPercentComplete(BigInteger percentComplete) {
-        this.percentComplete = percentComplete;
+    public void setPercentCompleted(BigDecimal percentCompleted) {
+        this.percentCompleted = percentCompleted;
     }
 
     public Byte getRework() {
@@ -260,7 +273,7 @@ public class UpdatePipeWeldRequest implements Serializable {
                 Objects.equals(getProcedure(), updatePipeWeldRequest.getProcedure()) &&
                 Objects.equals(getComplete(), updatePipeWeldRequest.getComplete()) &&
                 Objects.equals(getShared(), updatePipeWeldRequest.getShared()) &&
-                Objects.equals(getPercentComplete(), updatePipeWeldRequest.getPercentComplete()) &&
+                Objects.equals(getPercentCompleted(), updatePipeWeldRequest.getPercentCompleted()) &&
                 Objects.equals(getRework(), updatePipeWeldRequest.getRework()) &&
                 Objects.equals(getNotes(), updatePipeWeldRequest.getNotes()) &&
                 Objects.equals(getFieldActivityId(), updatePipeWeldRequest.getFieldActivityId());
@@ -284,7 +297,7 @@ public class UpdatePipeWeldRequest implements Serializable {
                 getProcedure(),
                 getComplete(),
                 getShared(),
-                getPercentComplete(),
+                getPercentCompleted(),
                 getRework(),
                 getNotes(),
                 getFieldActivityId());

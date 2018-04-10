@@ -14,14 +14,14 @@ import org.springframework.stereotype.Repository;
 
 import com.wavemaker.runtime.data.dao.WMGenericDaoImpl;
 
-import com.psabackoffice.job1111.PipeTrim;
+import com.psabackoffice.job1111.PipeFa;
 
 /**
- * Specifies methods used to obtain and modify PipeTrim related information
+ * Specifies methods used to obtain and modify PipeFa related information
  * which is stored in the database.
  */
-@Repository("Job1111.PipeTrimDao")
-public class PipeTrimDao extends WMGenericDaoImpl<PipeTrim, Integer> {
+@Repository("Job1111.PipeFaDao")
+public class PipeFaDao extends WMGenericDaoImpl<PipeFa, Integer> {
 
     @Autowired
     @Qualifier("Job1111Template")

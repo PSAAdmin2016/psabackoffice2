@@ -14,8 +14,6 @@ public interface Job1111ProcedureExecutorService {
 
     GetEquipEarnedHoursResponse executeGetEquipEarnedHours(String groupedBy, String crewId, String crewRev, String foremanId, String superintendentId, String projectManagerId, String constructionManagerId, String siteManagerId, String areaManagerId, Date inputDate, Integer runMode);
 
-    CreateLooseHoursActivitySteelResponse executeCreateLooseHoursActivitySteel(CreateLooseHoursActivitySteelRequest createLooseHoursActivitySteelRequest);
-
     GetSteelPcotResponse executeGetSteelPCOT(Integer runMode);
 
     ClassicTrackerEquipUpdateResponse executeClassicTrackerEquipUpdate(Integer runMode, Integer updateBidId);
@@ -25,8 +23,6 @@ public interface Job1111ProcedureExecutorService {
     LockSsactivityResponse executeLockSSActivity(Integer userId, Integer fieldActivityId);
 
     GetCivilEarnedHoursResponse executeGetCivilEarnedHours(String groupedBy, String crewId, String crewRev, String foremanId, String superintendentId, String projectManagerId, String constructionManagerId, String siteManagerId, String areaManagerId, Date inputDate, Integer runMode);
-
-    CreateLooseHoursActivityCivilResponse executeCreateLooseHoursActivityCivil(CreateLooseHoursActivityCivilRequest createLooseHoursActivityCivilRequest);
 
     GetPipePcotResponse executeGetPipePCOT(Integer runMode);
 
@@ -57,6 +53,10 @@ public interface Job1111ProcedureExecutorService {
     GetSteelStatsResponse executeGetSteelStats(String groupedBy, Integer runMode);
 
     ClassicTrackerCivilUpdateResponse executeClassicTrackerCivilUpdate(Integer runMode, Integer updateBidId);
+
+    CreateLooseHoursActivitiesSteelResponse executeCreateLooseHoursActivitiesSteel(CreateLooseHoursActivitiesSteelRequest createLooseHoursActivitiesSteelRequest);
+
+    CreateLooseHoursActivitiesCivilResponse executeCreateLooseHoursActivitiesCivil(CreateLooseHoursActivitiesCivilRequest createLooseHoursActivitiesCivilRequest);
 
     CreateLooseHoursActivitiesPipeResponse executeCreateLooseHoursActivitiesPipe(CreateLooseHoursActivitiesPipeRequest createLooseHoursActivitiesPipeRequest);
 

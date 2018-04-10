@@ -21,10 +21,6 @@ public class CreateLooseHoursActivitiesPipeRequest implements Serializable {
     @NotNull
     private Integer submissionId;
 
-    @JsonProperty("ActivityId")
-    @NotNull
-    private Integer activityId;
-
     @JsonProperty("UserId")
     @NotNull
     private Integer userId;
@@ -39,14 +35,6 @@ public class CreateLooseHoursActivitiesPipeRequest implements Serializable {
 
     public void setSubmissionId(Integer submissionId) {
         this.submissionId = submissionId;
-    }
-
-    public Integer getActivityId() {
-        return this.activityId;
-    }
-
-    public void setActivityId(Integer activityId) {
-        this.activityId = activityId;
     }
 
     public Integer getUserId() {
@@ -71,7 +59,6 @@ public class CreateLooseHoursActivitiesPipeRequest implements Serializable {
         if (!(o instanceof CreateLooseHoursActivitiesPipeRequest)) return false;
         final CreateLooseHoursActivitiesPipeRequest createLooseHoursActivitiesPipeRequest = (CreateLooseHoursActivitiesPipeRequest) o;
         return Objects.equals(getSubmissionId(), createLooseHoursActivitiesPipeRequest.getSubmissionId()) &&
-                Objects.equals(getActivityId(), createLooseHoursActivitiesPipeRequest.getActivityId()) &&
                 Objects.equals(getUserId(), createLooseHoursActivitiesPipeRequest.getUserId()) &&
                 Objects.equals(getTestPackage(), createLooseHoursActivitiesPipeRequest.getTestPackage());
     }
@@ -79,7 +66,6 @@ public class CreateLooseHoursActivitiesPipeRequest implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getSubmissionId(),
-                getActivityId(),
                 getUserId(),
                 getTestPackage());
     }

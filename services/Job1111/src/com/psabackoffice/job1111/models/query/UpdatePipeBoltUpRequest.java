@@ -8,7 +8,6 @@ package com.psabackoffice.job1111.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
@@ -17,6 +16,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UpdatePipeBoltUpRequest implements Serializable {
 
+
+    @JsonProperty("BidID")
+    private Integer bidId;
 
     @JsonProperty("Spool1")
     private String spool1;
@@ -34,20 +36,31 @@ public class UpdatePipeBoltUpRequest implements Serializable {
     private String sheetNumber;
 
     @JsonProperty("Size")
+    @NotNull
     private BigDecimal size;
 
     @JsonProperty("Quantity")
+    @NotNull
     private Integer quantity;
 
     @JsonProperty("Rework")
+    @NotNull
     private Integer rework;
 
     @JsonProperty("Notes")
     private String notes;
 
-    @JsonProperty("FieldActivityID")
+    @JsonProperty("ActivityID")
     @NotNull
-    private Integer fieldActivityId;
+    private Integer activityId;
+
+    public Integer getBidId() {
+        return this.bidId;
+    }
+
+    public void setBidId(Integer bidId) {
+        this.bidId = bidId;
+    }
 
     public String getSpool1() {
         return this.spool1;
@@ -121,12 +134,12 @@ public class UpdatePipeBoltUpRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     @Override
@@ -134,7 +147,8 @@ public class UpdatePipeBoltUpRequest implements Serializable {
         if (this == o) return true;
         if (!(o instanceof UpdatePipeBoltUpRequest)) return false;
         final UpdatePipeBoltUpRequest updatePipeBoltUpRequest = (UpdatePipeBoltUpRequest) o;
-        return Objects.equals(getSpool1(), updatePipeBoltUpRequest.getSpool1()) &&
+        return Objects.equals(getBidId(), updatePipeBoltUpRequest.getBidId()) &&
+                Objects.equals(getSpool1(), updatePipeBoltUpRequest.getSpool1()) &&
                 Objects.equals(getSpool2(), updatePipeBoltUpRequest.getSpool2()) &&
                 Objects.equals(getDrawingNumber(), updatePipeBoltUpRequest.getDrawingNumber()) &&
                 Objects.equals(getLineNumber(), updatePipeBoltUpRequest.getLineNumber()) &&
@@ -143,12 +157,13 @@ public class UpdatePipeBoltUpRequest implements Serializable {
                 Objects.equals(getQuantity(), updatePipeBoltUpRequest.getQuantity()) &&
                 Objects.equals(getRework(), updatePipeBoltUpRequest.getRework()) &&
                 Objects.equals(getNotes(), updatePipeBoltUpRequest.getNotes()) &&
-                Objects.equals(getFieldActivityId(), updatePipeBoltUpRequest.getFieldActivityId());
+                Objects.equals(getActivityId(), updatePipeBoltUpRequest.getActivityId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getSpool1(),
+        return Objects.hash(getBidId(),
+                getSpool1(),
                 getSpool2(),
                 getDrawingNumber(),
                 getLineNumber(),
@@ -157,6 +172,6 @@ public class UpdatePipeBoltUpRequest implements Serializable {
                 getQuantity(),
                 getRework(),
                 getNotes(),
-                getFieldActivityId());
+                getActivityId());
     }
 }

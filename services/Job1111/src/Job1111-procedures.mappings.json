@@ -120,64 +120,6 @@
       "parameterType" : "OUT"
     } ]
   },
-  "CreateLooseHoursActivitySteel" : {
-    "procedureString" : "call CreateLooseHoursActivitySteel(?, ?, ?, ?, ?, ?)",
-    "parameters" : [ {
-      "name" : "SubmissionId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ActivityId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "9",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "UserId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "2",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "TestPackage",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
   "GetSteelPCOT" : {
     "procedureString" : "call GetSteelPCOT(?, ?, ?)",
     "parameters" : [ {
@@ -216,7 +158,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "2",
       "required" : true,
       "parameterType" : "IN"
@@ -225,7 +167,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
       "required" : false,
       "parameterType" : "IN"
@@ -234,7 +176,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -243,83 +185,65 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
     } ]
   },
   "CreateManualActivitySteel" : {
-    "procedureString" : "call CreateManualActivitySteel(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    "procedureString" : "call CreateManualActivitySteel(?, ?, ?, ?, ?, ?, ?, ?)",
     "parameters" : [ {
-      "name" : "ActivityType",
+      "name" : "varBidID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "61",
+      "variableName" : "",
+      "testValue" : "77",
       "required" : true,
       "parameterType" : "IN"
     }, {
-      "name" : "Area",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "Area",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "PieceNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "Piece",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "Quantity",
+      "name" : "varActivityType",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "8",
+      "variableName" : "",
+      "testValue" : "63",
       "required" : true,
       "parameterType" : "IN"
     }, {
-      "name" : "Percent",
+      "name" : "varQuantity",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
+      "testValue" : "3",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "varPercentCompleted",
+      "type" : "big_decimal",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
       "testValue" : "1",
       "required" : true,
       "parameterType" : "IN"
     }, {
-      "name" : "Notes",
+      "name" : "varNotes",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "Test 2",
-      "required" : true,
+      "variableName" : "",
+      "testValue" : "another test",
+      "required" : false,
       "parameterType" : "IN"
     }, {
-      "name" : "UserId",
+      "name" : "varUserID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "BidID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
       "required" : true,
       "parameterType" : "IN"
@@ -328,7 +252,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "false",
       "required" : true,
       "parameterType" : "OUT"
@@ -337,7 +261,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -504,64 +428,6 @@
       "parameterType" : "OUT"
     } ]
   },
-  "CreateLooseHoursActivityCivil" : {
-    "procedureString" : "call CreateLooseHoursActivityCivil(?, ?, ?, ?, ?, ?)",
-    "parameters" : [ {
-      "name" : "SubmissionId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ActivityId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "8",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "UserId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "2",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "TestPackage",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ReturnStatus",
-      "type" : "boolean",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    }, {
-      "name" : "ErrorText",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : null,
-      "required" : true,
-      "parameterType" : "OUT"
-    } ]
-  },
   "GetPipePCOT" : {
     "procedureString" : "call GetPipePCOT(?, ?, ?)",
     "parameters" : [ {
@@ -600,8 +466,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
+      "variableName" : "",
+      "testValue" : "2",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -609,7 +475,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
       "required" : false,
       "parameterType" : "IN"
@@ -618,7 +484,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -627,7 +493,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -665,68 +531,41 @@
     } ]
   },
   "CreateManualActivityPipe" : {
-    "procedureString" : "call CreateManualActivityPipe(?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    "procedureString" : "call CreateManualActivityPipe(?, ?, ?, ?, ?, ?)",
     "parameters" : [ {
-      "name" : "MiscDrawingNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "BobDwg",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "MiscLineNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "BobLine",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "MiscSheetNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "2",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "MiscQuantity",
+      "name" : "varBidID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "3",
       "required" : true,
       "parameterType" : "IN"
     }, {
-      "name" : "MiscNotes",
+      "name" : "varQuantity",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "4",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "varNotes",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "BobNote",
-      "required" : true,
+      "variableName" : "",
+      "testValue" : "Procedure Call test",
+      "required" : false,
       "parameterType" : "IN"
     }, {
-      "name" : "UserId",
+      "name" : "varUserID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "BidID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "7",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -734,8 +573,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : null,
+      "variableName" : "",
+      "testValue" : "false",
       "required" : true,
       "parameterType" : "OUT"
     }, {
@@ -743,7 +582,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -877,7 +716,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
       "required" : false,
       "parameterType" : "IN"
@@ -886,8 +725,8 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : null,
+      "variableName" : "",
+      "testValue" : "false",
       "required" : true,
       "parameterType" : "OUT"
     }, {
@@ -895,7 +734,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -939,8 +778,8 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "WBS10",
+      "variableName" : "",
+      "testValue" : "BidID",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -948,8 +787,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
+      "variableName" : "",
+      "testValue" : "2",
       "required" : false,
       "parameterType" : "IN"
     }, {
@@ -957,8 +796,8 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : null,
+      "variableName" : "",
+      "testValue" : "false",
       "required" : true,
       "parameterType" : "OUT"
     }, {
@@ -966,7 +805,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -979,7 +818,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "WBS10",
       "required" : true,
       "parameterType" : "IN"
@@ -988,8 +827,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
+      "variableName" : "",
+      "testValue" : "2",
       "required" : false,
       "parameterType" : "IN"
     }, {
@@ -997,8 +836,8 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : null,
+      "variableName" : "",
+      "testValue" : "false",
       "required" : true,
       "parameterType" : "OUT"
     }, {
@@ -1006,7 +845,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -1134,41 +973,32 @@
     } ]
   },
   "CreateManualActivityCivil" : {
-    "procedureString" : "call CreateManualActivityCivil(?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    "procedureString" : "call CreateManualActivityCivil(?, ?, ?, ?, ?, ?, ?)",
     "parameters" : [ {
-      "name" : "varFoundation",
-      "type" : "string",
+      "name" : "varBidID",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
+      "variableName" : "",
+      "testValue" : "100",
       "required" : true,
       "parameterType" : "IN"
     }, {
-      "name" : "varDrawingNumber",
-      "type" : "string",
+      "name" : "varQuantity",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
+      "variableName" : "",
+      "testValue" : "9",
       "required" : true,
       "parameterType" : "IN"
     }, {
-      "name" : "varDetailDrawingNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "varPercentComplete",
+      "name" : "varPercentCompleted",
       "type" : "big_decimal",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : ".9",
+      "variableName" : "",
+      "testValue" : ".8",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -1176,8 +1006,8 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "Test Notes",
+      "variableName" : "",
+      "testValue" : "Test Procedure Call",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -1185,25 +1015,16 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "varBidID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
       "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "ReturnStatus",
-      "type" : "integer",
+      "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "false",
       "required" : true,
       "parameterType" : "OUT"
@@ -1212,7 +1033,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -1225,8 +1046,8 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "P6ID",
+      "variableName" : "",
+      "testValue" : "BidID",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -1234,8 +1055,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
+      "variableName" : "",
+      "testValue" : "2",
       "required" : false,
       "parameterType" : "IN"
     }, {
@@ -1243,8 +1064,8 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : null,
+      "variableName" : "",
+      "testValue" : "false",
       "required" : true,
       "parameterType" : "OUT"
     }, {
@@ -1252,39 +1073,39 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
     } ]
   },
   "CreateManualActivityEquip" : {
-    "procedureString" : "call CreateManualActivityEquip(?, ?, ?, ?, ?, ?, ?, ?)",
+    "procedureString" : "call CreateManualActivityEquip(?, ?, ?, ?, ?, ?, ?)",
     "parameters" : [ {
-      "name" : "varTagNumber",
-      "type" : "string",
+      "name" : "varBidID",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "tag",
+      "variableName" : "",
+      "testValue" : "10",
       "required" : true,
       "parameterType" : "IN"
     }, {
-      "name" : "varActivitySelect",
-      "type" : "string",
+      "name" : "varQuantity",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "act",
+      "variableName" : "",
+      "testValue" : "3",
       "required" : true,
       "parameterType" : "IN"
     }, {
-      "name" : "varPercentComplete",
+      "name" : "varPercentCompleted",
       "type" : "big_decimal",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : ".33",
+      "variableName" : "",
+      "testValue" : ".6",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -1292,25 +1113,16 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "note",
+      "variableName" : "",
+      "testValue" : "Procedure Call test",
       "required" : true,
       "parameterType" : "IN"
     }, {
-      "name" : "varUserId",
+      "name" : "varUserID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "2",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "varBidID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
       "required" : true,
       "parameterType" : "IN"
@@ -1319,8 +1131,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : null,
+      "variableName" : "",
+      "testValue" : "false",
       "required" : true,
       "parameterType" : "OUT"
     }, {
@@ -1328,7 +1140,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -1341,8 +1153,8 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "WBS10",
+      "variableName" : "",
+      "testValue" : "BidID",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -1350,8 +1162,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
+      "variableName" : "",
+      "testValue" : "2",
       "required" : false,
       "parameterType" : "IN"
     }, {
@@ -1359,8 +1171,8 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : null,
+      "variableName" : "",
+      "testValue" : "false",
       "required" : true,
       "parameterType" : "OUT"
     }, {
@@ -1368,7 +1180,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -1381,8 +1193,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
+      "variableName" : "",
+      "testValue" : "2",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -1390,7 +1202,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
       "required" : false,
       "parameterType" : "IN"
@@ -1399,7 +1211,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -1408,30 +1220,21 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
     } ]
   },
-  "CreateLooseHoursActivitiesPipe" : {
-    "procedureString" : "call CreateLooseHoursActivityPipe(?, ?, ?, ?, ?, ?)",
+  "CreateLooseHoursActivitiesSteel" : {
+    "procedureString" : "call CreateLooseHoursActivitySteel(?, ?, ?, ?, ?)",
     "parameters" : [ {
       "name" : "SubmissionId",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
-      "required" : true,
-      "parameterType" : "IN"
-    }, {
-      "name" : "ActivityId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "6",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -1439,7 +1242,56 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "TestPackage",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "8",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "false",
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "CreateLooseHoursActivitiesCivil" : {
+    "procedureString" : "call CreateLooseHoursActivityCivil(?, ?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "SubmissionId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "UserId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
       "testValue" : "2",
       "required" : true,
       "parameterType" : "IN"
@@ -1448,17 +1300,17 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
       "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "ReturnStatus",
-      "type" : "boolean",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : null,
+      "variableName" : "",
+      "testValue" : "false",
       "required" : true,
       "parameterType" : "OUT"
     }, {
@@ -1466,7 +1318,56 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
+  "CreateLooseHoursActivitiesPipe" : {
+    "procedureString" : "call CreateLooseHoursActivityPipe(?, ?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "SubmissionId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "UserId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "TestPackage",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "false",
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -1479,8 +1380,8 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
+      "variableName" : "",
+      "testValue" : "2",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -1488,7 +1389,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
       "required" : false,
       "parameterType" : "IN"
@@ -1497,7 +1398,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -1506,7 +1407,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"

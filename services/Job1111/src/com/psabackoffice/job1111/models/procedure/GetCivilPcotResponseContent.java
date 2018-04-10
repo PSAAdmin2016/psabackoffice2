@@ -7,6 +7,7 @@ package com.psabackoffice.job1111.models.procedure;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -39,7 +40,7 @@ public class GetCivilPcotResponseContent implements Serializable {
 
     @JsonProperty("TotalHoursEarned")
     @ColumnAlias("TotalHoursEarned")
-    private Double totalHoursEarned;
+    private BigDecimal totalHoursEarned;
 
     public Integer getId() {
         return this.id;
@@ -81,11 +82,11 @@ public class GetCivilPcotResponseContent implements Serializable {
         this.totalPercentComplete = totalPercentComplete;
     }
 
-    public Double getTotalHoursEarned() {
+    public BigDecimal getTotalHoursEarned() {
         return this.totalHoursEarned;
     }
 
-    public void setTotalHoursEarned(Double totalHoursEarned) {
+    public void setTotalHoursEarned(BigDecimal totalHoursEarned) {
         this.totalHoursEarned = totalHoursEarned;
     }
 

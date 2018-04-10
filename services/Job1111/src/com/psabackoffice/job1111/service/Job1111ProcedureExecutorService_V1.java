@@ -16,19 +16,13 @@ import com.psabackoffice.job1111.models.procedure.*;
 public interface Job1111ProcedureExecutorService_V1 {
 
     @Deprecated
-    List<Object> executeCreateLooseHoursActivitySteel(Integer submissionId, Integer activityId, Integer userId, String testPackage);
-
-    @Deprecated
     List<Object> executeGetSteelPCOT(Integer runMode);
 
     @Deprecated
-    List<Object> executeCreateManualActivitySteel(Integer activityType, String area, String pieceNumber, Integer quantity, Integer percent, String notes, Integer userId, Integer bidId);
+    List<Object> executeCreateManualActivitySteel(Integer varBidId, Integer varActivityType, Integer varQuantity, BigDecimal varPercentCompleted, String varNotes, Integer varUserId);
 
     @Deprecated
     List<Object> executeLockSSActivity(Integer userId, Integer fieldActivityId);
-
-    @Deprecated
-    List<Object> executeCreateLooseHoursActivityCivil(Integer submissionId, Integer activityId, Integer userId, String testPackage);
 
     @Deprecated
     List<Object> executeGetPipePCOT(Integer runMode);
@@ -40,7 +34,7 @@ public interface Job1111ProcedureExecutorService_V1 {
     List<Object> executeGetJobPCOT(Integer runMode);
 
     @Deprecated
-    List<Object> executeCreateManualActivityPipe(String miscDrawingNumber, String miscLineNumber, String miscSheetNumber, Integer miscQuantity, String miscNotes, Integer userId, Integer bidId);
+    List<Object> executeCreateManualActivityPipe(Integer varBidId, Integer varQuantity, String varNotes, Integer varUserId);
 
     @Deprecated
     List<Object> executeGetCivilPCOT(Integer runMode);
@@ -52,7 +46,7 @@ public interface Job1111ProcedureExecutorService_V1 {
     List<Object> executeGetCivilStats(String groupedBy, Integer runMode);
 
     @Deprecated
-    List<Object> executeCreateManualActivityCivil(String varFoundation, String varDrawingNumber, String varDetailDrawingNumber, BigDecimal varPercentComplete, String varNotes, Integer varUserId, Integer varBidId);
+    List<Object> executeCreateManualActivityCivil(Integer varBidId, Integer varQuantity, BigDecimal varPercentCompleted, String varNotes, Integer varUserId);
 
     @Deprecated
     List<Object> executeGetSteelStats(String groupedBy, Integer runMode);
@@ -61,7 +55,13 @@ public interface Job1111ProcedureExecutorService_V1 {
     List<Object> executeClassicTrackerCivilUpdate(Integer runMode, Integer updateBidId);
 
     @Deprecated
-    List<Object> executeCreateLooseHoursActivitiesPipe(Integer submissionId, Integer activityId, Integer userId, String testPackage);
+    List<Object> executeCreateLooseHoursActivitiesSteel(Integer submissionId, Integer userId, String testPackage);
+
+    @Deprecated
+    List<Object> executeCreateLooseHoursActivitiesCivil(Integer submissionId, Integer userId, String testPackage);
+
+    @Deprecated
+    List<Object> executeCreateLooseHoursActivitiesPipe(Integer submissionId, Integer userId, String testPackage);
 
     @Deprecated
     List<Object> executeClassicTrackerSteelUpdate(Integer runMode, Integer updateBidId);

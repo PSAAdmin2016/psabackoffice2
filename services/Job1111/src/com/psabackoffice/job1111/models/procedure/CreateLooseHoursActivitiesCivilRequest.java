@@ -7,22 +7,19 @@ package com.psabackoffice.job1111.models.procedure;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CreateLooseHoursActivitySteelRequest implements Serializable {
+public class CreateLooseHoursActivitiesCivilRequest implements Serializable {
 
 
     @JsonProperty("SubmissionId")
     @NotNull
     private Integer submissionId;
-
-    @JsonProperty("ActivityId")
-    @NotNull
-    private Integer activityId;
 
     @JsonProperty("UserId")
     @NotNull
@@ -38,14 +35,6 @@ public class CreateLooseHoursActivitySteelRequest implements Serializable {
 
     public void setSubmissionId(Integer submissionId) {
         this.submissionId = submissionId;
-    }
-
-    public Integer getActivityId() {
-        return this.activityId;
-    }
-
-    public void setActivityId(Integer activityId) {
-        this.activityId = activityId;
     }
 
     public Integer getUserId() {
@@ -67,18 +56,16 @@ public class CreateLooseHoursActivitySteelRequest implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof CreateLooseHoursActivitySteelRequest)) return false;
-        final CreateLooseHoursActivitySteelRequest createLooseHoursActivitySteelRequest = (CreateLooseHoursActivitySteelRequest) o;
-        return Objects.equals(getSubmissionId(), createLooseHoursActivitySteelRequest.getSubmissionId()) &&
-                Objects.equals(getActivityId(), createLooseHoursActivitySteelRequest.getActivityId()) &&
-                Objects.equals(getUserId(), createLooseHoursActivitySteelRequest.getUserId()) &&
-                Objects.equals(getTestPackage(), createLooseHoursActivitySteelRequest.getTestPackage());
+        if (!(o instanceof CreateLooseHoursActivitiesCivilRequest)) return false;
+        final CreateLooseHoursActivitiesCivilRequest createLooseHoursActivitiesCivilRequest = (CreateLooseHoursActivitiesCivilRequest) o;
+        return Objects.equals(getSubmissionId(), createLooseHoursActivitiesCivilRequest.getSubmissionId()) &&
+                Objects.equals(getUserId(), createLooseHoursActivitiesCivilRequest.getUserId()) &&
+                Objects.equals(getTestPackage(), createLooseHoursActivitiesCivilRequest.getTestPackage());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getSubmissionId(),
-                getActivityId(),
                 getUserId(),
                 getTestPackage());
     }

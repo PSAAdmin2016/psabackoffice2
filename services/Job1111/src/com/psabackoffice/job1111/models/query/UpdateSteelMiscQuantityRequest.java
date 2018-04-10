@@ -17,27 +17,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UpdateSteelMiscQuantityRequest implements Serializable {
 
 
-    @JsonProperty("Quantity")
-    private Integer quantity;
-
-    @JsonProperty("FieldActivityID")
+    @JsonProperty("PercentCompleted")
     @NotNull
-    private Float fieldActivityId;
+    private BigDecimal percentCompleted;
 
-    public Integer getQuantity() {
-        return this.quantity;
+    @JsonProperty("ActivityID")
+    @NotNull
+    private Integer activityId;
+
+    public BigDecimal getPercentCompleted() {
+        return this.percentCompleted;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setPercentCompleted(BigDecimal percentCompleted) {
+        this.percentCompleted = percentCompleted;
     }
 
-    public Float getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Float fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     @Override
@@ -45,13 +46,13 @@ public class UpdateSteelMiscQuantityRequest implements Serializable {
         if (this == o) return true;
         if (!(o instanceof UpdateSteelMiscQuantityRequest)) return false;
         final UpdateSteelMiscQuantityRequest updateSteelMiscQuantityRequest = (UpdateSteelMiscQuantityRequest) o;
-        return Objects.equals(getQuantity(), updateSteelMiscQuantityRequest.getQuantity()) &&
-                Objects.equals(getFieldActivityId(), updateSteelMiscQuantityRequest.getFieldActivityId());
+        return Objects.equals(getPercentCompleted(), updateSteelMiscQuantityRequest.getPercentCompleted()) &&
+                Objects.equals(getActivityId(), updateSteelMiscQuantityRequest.getActivityId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getQuantity(),
-                getFieldActivityId());
+        return Objects.hash(getPercentCompleted(),
+                getActivityId());
     }
 }

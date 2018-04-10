@@ -19,6 +19,9 @@ public class GetEquipStatsResponseContent implements Serializable {
     @ColumnAlias("BidID")
     private Integer bidId;
 
+    @ColumnAlias("ProjectServicesRep")
+    private String projectServicesRep;
+
     @ColumnAlias("Scope")
     private String scope;
 
@@ -31,11 +34,17 @@ public class GetEquipStatsResponseContent implements Serializable {
     @ColumnAlias("TestPackageNumber")
     private String testPackageNumber;
 
+    @ColumnAlias("WorkPackage")
+    private String workPackage;
+
     @ColumnAlias("CostCode")
     private String costCode;
 
     @ColumnAlias("P6ID")
     private String p6id;
+
+    @ColumnAlias("P6Description")
+    private String p6description;
 
     @ColumnAlias("AssignedContractor")
     private String assignedContractor;
@@ -54,9 +63,6 @@ public class GetEquipStatsResponseContent implements Serializable {
 
     @ColumnAlias("Elevation")
     private String elevation;
-
-    @ColumnAlias("P6Description")
-    private String p6description;
 
     @ColumnAlias("System")
     private String system;
@@ -210,6 +216,14 @@ public class GetEquipStatsResponseContent implements Serializable {
         this.bidId = bidId;
     }
 
+    public String getProjectServicesRep() {
+        return this.projectServicesRep;
+    }
+
+    public void setProjectServicesRep(String projectServicesRep) {
+        this.projectServicesRep = projectServicesRep;
+    }
+
     public String getScope() {
         return this.scope;
     }
@@ -242,6 +256,14 @@ public class GetEquipStatsResponseContent implements Serializable {
         this.testPackageNumber = testPackageNumber;
     }
 
+    public String getWorkPackage() {
+        return this.workPackage;
+    }
+
+    public void setWorkPackage(String workPackage) {
+        this.workPackage = workPackage;
+    }
+
     public String getCostCode() {
         return this.costCode;
     }
@@ -256,6 +278,14 @@ public class GetEquipStatsResponseContent implements Serializable {
 
     public void setP6id(String p6id) {
         this.p6id = p6id;
+    }
+
+    public String getP6description() {
+        return this.p6description;
+    }
+
+    public void setP6description(String p6description) {
+        this.p6description = p6description;
     }
 
     public String getAssignedContractor() {
@@ -304,14 +334,6 @@ public class GetEquipStatsResponseContent implements Serializable {
 
     public void setElevation(String elevation) {
         this.elevation = elevation;
-    }
-
-    public String getP6description() {
-        return this.p6description;
-    }
-
-    public void setP6description(String p6description) {
-        this.p6description = p6description;
     }
 
     public String getSystem() {
@@ -704,19 +726,21 @@ public class GetEquipStatsResponseContent implements Serializable {
         if (!(o instanceof GetEquipStatsResponseContent)) return false;
         final GetEquipStatsResponseContent getEquipStatsResponseContent = (GetEquipStatsResponseContent) o;
         return Objects.equals(getBidId(), getEquipStatsResponseContent.getBidId()) &&
+                Objects.equals(getProjectServicesRep(), getEquipStatsResponseContent.getProjectServicesRep()) &&
                 Objects.equals(getScope(), getEquipStatsResponseContent.getScope()) &&
                 Objects.equals(getPhase(), getEquipStatsResponseContent.getPhase()) &&
                 Objects.equals(getStage(), getEquipStatsResponseContent.getStage()) &&
                 Objects.equals(getTestPackageNumber(), getEquipStatsResponseContent.getTestPackageNumber()) &&
+                Objects.equals(getWorkPackage(), getEquipStatsResponseContent.getWorkPackage()) &&
                 Objects.equals(getCostCode(), getEquipStatsResponseContent.getCostCode()) &&
                 Objects.equals(getP6id(), getEquipStatsResponseContent.getP6id()) &&
+                Objects.equals(getP6description(), getEquipStatsResponseContent.getP6description()) &&
                 Objects.equals(getAssignedContractor(), getEquipStatsResponseContent.getAssignedContractor()) &&
                 Objects.equals(getArea(), getEquipStatsResponseContent.getArea()) &&
                 Objects.equals(getLocation(), getEquipStatsResponseContent.getLocation()) &&
                 Objects.equals(getStructure(), getEquipStatsResponseContent.getStructure()) &&
                 Objects.equals(getCu(), getEquipStatsResponseContent.getCu()) &&
                 Objects.equals(getElevation(), getEquipStatsResponseContent.getElevation()) &&
-                Objects.equals(getP6description(), getEquipStatsResponseContent.getP6description()) &&
                 Objects.equals(getSystem(), getEquipStatsResponseContent.getSystem()) &&
                 Objects.equals(getService(), getEquipStatsResponseContent.getService()) &&
                 Objects.equals(getEquipmentType(), getEquipStatsResponseContent.getEquipmentType()) &&
@@ -770,19 +794,21 @@ public class GetEquipStatsResponseContent implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getBidId(),
+                getProjectServicesRep(),
                 getScope(),
                 getPhase(),
                 getStage(),
                 getTestPackageNumber(),
+                getWorkPackage(),
                 getCostCode(),
                 getP6id(),
+                getP6description(),
                 getAssignedContractor(),
                 getArea(),
                 getLocation(),
                 getStructure(),
                 getCu(),
                 getElevation(),
-                getP6description(),
                 getSystem(),
                 getService(),
                 getEquipmentType(),

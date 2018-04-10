@@ -56,16 +56,6 @@ public class ProcedureExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/procedure/execute/CreateLooseHoursActivitySteel", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "name")
-    public List<CreateLooseHoursActivitySteelResponse> executeCreateLooseHoursActivitySteel(@Valid @RequestBody CreateLooseHoursActivitySteelRequest createLooseHoursActivitySteelRequest, HttpServletRequest _request) {
-        LOGGER.debug("Executing named procedure: CreateLooseHoursActivitySteel");
-        CreateLooseHoursActivitySteelResponse _result = procedureService.executeCreateLooseHoursActivitySteel(createLooseHoursActivitySteelRequest);
-        LOGGER.debug("got the result for v1 named procedure: CreateLooseHoursActivitySteel, result:{}", _result);
-        return Collections.singletonList(_result);
-    }
-
     @RequestMapping(value = "/procedure/execute/GetSteelPCOT", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get Steel Percent Complete Over Time Table. RunMode null,0,1 Select from Cache. RunMode 2 Update Cache then select. RunMode 3 Update Cache NO Select")
@@ -114,16 +104,6 @@ public class ProcedureExecutionController {
         GetCivilEarnedHoursResponse _result = procedureService.executeGetCivilEarnedHours(groupedBy, crewId, crewRev, foremanId, superintendentId, projectManagerId, constructionManagerId, siteManagerId, areaManagerId, inputDate, runMode);
         LOGGER.debug("got the result for named procedure: GetCivilEarnedHours, result:{}", _result);
         return _result;
-    }
-
-    @RequestMapping(value = "/procedure/execute/CreateLooseHoursActivityCivil", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Name")
-    public List<CreateLooseHoursActivityCivilResponse> executeCreateLooseHoursActivityCivil(@Valid @RequestBody CreateLooseHoursActivityCivilRequest createLooseHoursActivityCivilRequest, HttpServletRequest _request) {
-        LOGGER.debug("Executing named procedure: CreateLooseHoursActivityCivil");
-        CreateLooseHoursActivityCivilResponse _result = procedureService.executeCreateLooseHoursActivityCivil(createLooseHoursActivityCivilRequest);
-        LOGGER.debug("got the result for v1 named procedure: CreateLooseHoursActivityCivil, result:{}", _result);
-        return Collections.singletonList(_result);
     }
 
     @RequestMapping(value = "/procedure/execute/GetPipePCOT", method = RequestMethod.GET)
@@ -273,6 +253,26 @@ public class ProcedureExecutionController {
         LOGGER.debug("Executing named procedure: ClassicTrackerCivilUpdate");
         ClassicTrackerCivilUpdateResponse _result = procedureService.executeClassicTrackerCivilUpdate(runMode, updateBidId);
         LOGGER.debug("got the result for v1 named procedure: ClassicTrackerCivilUpdate, result:{}", _result);
+        return Collections.singletonList(_result);
+    }
+
+    @RequestMapping(value = "/procedure/execute/CreateLooseHoursActivitiesSteel", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "name")
+    public List<CreateLooseHoursActivitiesSteelResponse> executeCreateLooseHoursActivitiesSteel(@Valid @RequestBody CreateLooseHoursActivitiesSteelRequest createLooseHoursActivitiesSteelRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named procedure: CreateLooseHoursActivitiesSteel");
+        CreateLooseHoursActivitiesSteelResponse _result = procedureService.executeCreateLooseHoursActivitiesSteel(createLooseHoursActivitiesSteelRequest);
+        LOGGER.debug("got the result for v1 named procedure: CreateLooseHoursActivitiesSteel, result:{}", _result);
+        return Collections.singletonList(_result);
+    }
+
+    @RequestMapping(value = "/procedure/execute/CreateLooseHoursActivitiesCivil", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Name")
+    public List<CreateLooseHoursActivitiesCivilResponse> executeCreateLooseHoursActivitiesCivil(@Valid @RequestBody CreateLooseHoursActivitiesCivilRequest createLooseHoursActivitiesCivilRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named procedure: CreateLooseHoursActivitiesCivil");
+        CreateLooseHoursActivitiesCivilResponse _result = procedureService.executeCreateLooseHoursActivitiesCivil(createLooseHoursActivitiesCivilRequest);
+        LOGGER.debug("got the result for v1 named procedure: CreateLooseHoursActivitiesCivil, result:{}", _result);
         return Collections.singletonList(_result);
     }
 

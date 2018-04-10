@@ -70,7 +70,7 @@ public class EquipFa implements Serializable {
         this.fatagNumber = fatagNumber;
     }
 
-    @Column(name = "`FAActivitySelect`", nullable = true, length = 45)
+    @Column(name = "`FAActivitySelect`", nullable = true, length = 255)
     public String getFaactivitySelect() {
         return this.faactivitySelect;
     }

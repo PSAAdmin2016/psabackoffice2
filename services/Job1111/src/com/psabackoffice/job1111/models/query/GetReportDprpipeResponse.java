@@ -7,7 +7,6 @@ package com.psabackoffice.job1111.models.query;
 
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -47,11 +46,11 @@ public class GetReportDprpipeResponse implements Serializable {
 
     @JsonProperty("Size")
     @ColumnAlias("Size")
-    private String size;
+    private Float size;
 
     @JsonProperty("QuantityInstalled")
     @ColumnAlias("QuantityInstalled")
-    private BigDecimal quantityInstalled;
+    private Double quantityInstalled;
 
     @JsonProperty("CurrentStatus")
     @ColumnAlias("CurrentStatus")
@@ -63,7 +62,7 @@ public class GetReportDprpipeResponse implements Serializable {
 
     @JsonProperty("Rework")
     @ColumnAlias("Rework")
-    private Long rework;
+    private Short rework;
 
     @JsonProperty("DateSubmitted")
     @ColumnAlias("DateSubmitted")
@@ -125,19 +124,19 @@ public class GetReportDprpipeResponse implements Serializable {
         this.spool2 = spool2;
     }
 
-    public String getSize() {
+    public Float getSize() {
         return this.size;
     }
 
-    public void setSize(String size) {
+    public void setSize(Float size) {
         this.size = size;
     }
 
-    public BigDecimal getQuantityInstalled() {
+    public Double getQuantityInstalled() {
         return this.quantityInstalled;
     }
 
-    public void setQuantityInstalled(BigDecimal quantityInstalled) {
+    public void setQuantityInstalled(Double quantityInstalled) {
         this.quantityInstalled = quantityInstalled;
     }
 
@@ -157,11 +156,11 @@ public class GetReportDprpipeResponse implements Serializable {
         this.notes = notes;
     }
 
-    public Long getRework() {
+    public Short getRework() {
         return this.rework;
     }
 
-    public void setRework(Long rework) {
+    public void setRework(Short rework) {
         this.rework = rework;
     }
 

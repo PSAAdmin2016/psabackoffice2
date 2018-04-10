@@ -8,7 +8,6 @@ package com.psabackoffice.job1111.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
@@ -19,14 +18,15 @@ public class UpdateSteelSellPackageRequest implements Serializable {
 
 
     @JsonProperty("TestPackage")
+    @NotNull
     private String testPackage;
 
     @JsonProperty("Notes")
     private String notes;
 
-    @JsonProperty("FieldActivityID")
+    @JsonProperty("ActivityID")
     @NotNull
-    private Integer fieldActivityId;
+    private Integer activityId;
 
     public String getTestPackage() {
         return this.testPackage;
@@ -44,12 +44,12 @@ public class UpdateSteelSellPackageRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     @Override
@@ -59,13 +59,13 @@ public class UpdateSteelSellPackageRequest implements Serializable {
         final UpdateSteelSellPackageRequest updateSteelSellPackageRequest = (UpdateSteelSellPackageRequest) o;
         return Objects.equals(getTestPackage(), updateSteelSellPackageRequest.getTestPackage()) &&
                 Objects.equals(getNotes(), updateSteelSellPackageRequest.getNotes()) &&
-                Objects.equals(getFieldActivityId(), updateSteelSellPackageRequest.getFieldActivityId());
+                Objects.equals(getActivityId(), updateSteelSellPackageRequest.getActivityId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getTestPackage(),
                 getNotes(),
-                getFieldActivityId());
+                getActivityId());
     }
 }

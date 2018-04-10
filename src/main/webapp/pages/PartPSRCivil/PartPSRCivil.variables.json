@@ -304,10 +304,10 @@
       "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityID",
       "type" : "integer"
     } ],
-    "type" : "com.psabackoffice.job1111.models.procedure.CreateLooseHoursActivityCivilResponse",
+    "type" : "com.psabackoffice.job1111.models.procedure.CreateLooseHoursActivitiesCivilResponse",
     "service" : "Job1111",
-    "operation" : "executeCreateLooseHoursActivityCivil",
-    "operationId" : "ProcedureExecutionController_executeCreateLooseHoursActivityCivil",
+    "operation" : "executeCreateLooseHoursActivitiesCivil",
+    "operationId" : "ProcedureExecutionController_executeCreateLooseHoursActivitiesCivil",
     "operationType" : "post",
     "serviceType" : "DataService",
     "dataSet" : [ ],

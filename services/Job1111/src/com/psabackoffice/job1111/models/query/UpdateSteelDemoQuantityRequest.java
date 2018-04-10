@@ -8,7 +8,6 @@ package com.psabackoffice.job1111.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
@@ -18,27 +17,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UpdateSteelDemoQuantityRequest implements Serializable {
 
 
-    @JsonProperty("Quantity")
-    private Integer quantity;
-
-    @JsonProperty("FieldActivityID")
+    @JsonProperty("PercentCompleted")
     @NotNull
-    private Integer fieldActivityId;
+    private BigDecimal percentCompleted;
 
-    public Integer getQuantity() {
-        return this.quantity;
+    @JsonProperty("ActivityID")
+    @NotNull
+    private Integer activityId;
+
+    public BigDecimal getPercentCompleted() {
+        return this.percentCompleted;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setPercentCompleted(BigDecimal percentCompleted) {
+        this.percentCompleted = percentCompleted;
     }
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     @Override
@@ -46,13 +46,13 @@ public class UpdateSteelDemoQuantityRequest implements Serializable {
         if (this == o) return true;
         if (!(o instanceof UpdateSteelDemoQuantityRequest)) return false;
         final UpdateSteelDemoQuantityRequest updateSteelDemoQuantityRequest = (UpdateSteelDemoQuantityRequest) o;
-        return Objects.equals(getQuantity(), updateSteelDemoQuantityRequest.getQuantity()) &&
-                Objects.equals(getFieldActivityId(), updateSteelDemoQuantityRequest.getFieldActivityId());
+        return Objects.equals(getPercentCompleted(), updateSteelDemoQuantityRequest.getPercentCompleted()) &&
+                Objects.equals(getActivityId(), updateSteelDemoQuantityRequest.getActivityId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getQuantity(),
-                getFieldActivityId());
+        return Objects.hash(getPercentCompleted(),
+                getActivityId());
     }
 }

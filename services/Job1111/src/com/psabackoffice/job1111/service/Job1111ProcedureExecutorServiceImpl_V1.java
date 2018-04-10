@@ -32,18 +32,6 @@ public class Job1111ProcedureExecutorServiceImpl_V1 implements Job1111ProcedureE
     @Qualifier("Job1111WMProcedureExecutor")
     private WMProcedureExecutor procedureExecutor;
 
-    public List<Object> executeCreateLooseHoursActivitySteel(Integer submissionId, Integer activityId, Integer userId, String testPackage) {
-        Map params = new HashMap(6);
-
-        params.put("SubmissionId", submissionId);
-        params.put("ActivityId", activityId);
-        params.put("UserId", userId);
-        params.put("TestPackage", testPackage);
-
-        return procedureExecutor.executeNamedProcedure("CreateLooseHoursActivitySteel", params);
-
-    }
-
     public List<Object> executeGetSteelPCOT(Integer runMode) {
         Map params = new HashMap(3);
 
@@ -53,17 +41,15 @@ public class Job1111ProcedureExecutorServiceImpl_V1 implements Job1111ProcedureE
 
     }
 
-    public List<Object> executeCreateManualActivitySteel(Integer activityType, String area, String pieceNumber, Integer quantity, Integer percent, String notes, Integer userId, Integer bidId) {
-        Map params = new HashMap(10);
+    public List<Object> executeCreateManualActivitySteel(Integer varBidId, Integer varActivityType, Integer varQuantity, BigDecimal varPercentCompleted, String varNotes, Integer varUserId) {
+        Map params = new HashMap(8);
 
-        params.put("ActivityType", activityType);
-        params.put("Area", area);
-        params.put("PieceNumber", pieceNumber);
-        params.put("Quantity", quantity);
-        params.put("Percent", percent);
-        params.put("Notes", notes);
-        params.put("UserId", userId);
-        params.put("BidID", bidId);
+        params.put("varBidID", varBidId);
+        params.put("varActivityType", varActivityType);
+        params.put("varQuantity", varQuantity);
+        params.put("varPercentCompleted", varPercentCompleted);
+        params.put("varNotes", varNotes);
+        params.put("varUserID", varUserId);
 
         return procedureExecutor.executeNamedProcedure("CreateManualActivitySteel", params);
 
@@ -76,18 +62,6 @@ public class Job1111ProcedureExecutorServiceImpl_V1 implements Job1111ProcedureE
         params.put("FieldActivityID", fieldActivityId);
 
         return procedureExecutor.executeNamedProcedure("LockSSActivity", params);
-
-    }
-
-    public List<Object> executeCreateLooseHoursActivityCivil(Integer submissionId, Integer activityId, Integer userId, String testPackage) {
-        Map params = new HashMap(6);
-
-        params.put("SubmissionId", submissionId);
-        params.put("ActivityId", activityId);
-        params.put("UserId", userId);
-        params.put("TestPackage", testPackage);
-
-        return procedureExecutor.executeNamedProcedure("CreateLooseHoursActivityCivil", params);
 
     }
 
@@ -119,16 +93,13 @@ public class Job1111ProcedureExecutorServiceImpl_V1 implements Job1111ProcedureE
 
     }
 
-    public List<Object> executeCreateManualActivityPipe(String miscDrawingNumber, String miscLineNumber, String miscSheetNumber, Integer miscQuantity, String miscNotes, Integer userId, Integer bidId) {
-        Map params = new HashMap(9);
+    public List<Object> executeCreateManualActivityPipe(Integer varBidId, Integer varQuantity, String varNotes, Integer varUserId) {
+        Map params = new HashMap(6);
 
-        params.put("MiscDrawingNumber", miscDrawingNumber);
-        params.put("MiscLineNumber", miscLineNumber);
-        params.put("MiscSheetNumber", miscSheetNumber);
-        params.put("MiscQuantity", miscQuantity);
-        params.put("MiscNotes", miscNotes);
-        params.put("UserId", userId);
-        params.put("BidID", bidId);
+        params.put("varBidID", varBidId);
+        params.put("varQuantity", varQuantity);
+        params.put("varNotes", varNotes);
+        params.put("varUserID", varUserId);
 
         return procedureExecutor.executeNamedProcedure("CreateManualActivityPipe", params);
 
@@ -163,16 +134,14 @@ public class Job1111ProcedureExecutorServiceImpl_V1 implements Job1111ProcedureE
 
     }
 
-    public List<Object> executeCreateManualActivityCivil(String varFoundation, String varDrawingNumber, String varDetailDrawingNumber, BigDecimal varPercentComplete, String varNotes, Integer varUserId, Integer varBidId) {
-        Map params = new HashMap(9);
+    public List<Object> executeCreateManualActivityCivil(Integer varBidId, Integer varQuantity, BigDecimal varPercentCompleted, String varNotes, Integer varUserId) {
+        Map params = new HashMap(7);
 
-        params.put("varFoundation", varFoundation);
-        params.put("varDrawingNumber", varDrawingNumber);
-        params.put("varDetailDrawingNumber", varDetailDrawingNumber);
-        params.put("varPercentComplete", varPercentComplete);
+        params.put("varBidID", varBidId);
+        params.put("varQuantity", varQuantity);
+        params.put("varPercentCompleted", varPercentCompleted);
         params.put("varNotes", varNotes);
         params.put("varUserId", varUserId);
-        params.put("varBidID", varBidId);
 
         return procedureExecutor.executeNamedProcedure("CreateManualActivityCivil", params);
 
@@ -198,11 +167,32 @@ public class Job1111ProcedureExecutorServiceImpl_V1 implements Job1111ProcedureE
 
     }
 
-    public List<Object> executeCreateLooseHoursActivitiesPipe(Integer submissionId, Integer activityId, Integer userId, String testPackage) {
-        Map params = new HashMap(6);
+    public List<Object> executeCreateLooseHoursActivitiesSteel(Integer submissionId, Integer userId, String testPackage) {
+        Map params = new HashMap(5);
 
         params.put("SubmissionId", submissionId);
-        params.put("ActivityId", activityId);
+        params.put("UserId", userId);
+        params.put("TestPackage", testPackage);
+
+        return procedureExecutor.executeNamedProcedure("CreateLooseHoursActivitiesSteel", params);
+
+    }
+
+    public List<Object> executeCreateLooseHoursActivitiesCivil(Integer submissionId, Integer userId, String testPackage) {
+        Map params = new HashMap(5);
+
+        params.put("SubmissionId", submissionId);
+        params.put("UserId", userId);
+        params.put("TestPackage", testPackage);
+
+        return procedureExecutor.executeNamedProcedure("CreateLooseHoursActivitiesCivil", params);
+
+    }
+
+    public List<Object> executeCreateLooseHoursActivitiesPipe(Integer submissionId, Integer userId, String testPackage) {
+        Map params = new HashMap(5);
+
+        params.put("SubmissionId", submissionId);
         params.put("UserId", userId);
         params.put("TestPackage", testPackage);
 

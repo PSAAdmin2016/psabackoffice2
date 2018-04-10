@@ -21,6 +21,10 @@ public class GetSteelStatsResponseContent implements Serializable {
     @ColumnAlias("BidID")
     private Integer bidId;
 
+    @JsonProperty("ProjectServicesRep")
+    @ColumnAlias("ProjectServicesRep")
+    private String projectServicesRep;
+
     @JsonProperty("Scope")
     @ColumnAlias("Scope")
     private String scope;
@@ -37,6 +41,10 @@ public class GetSteelStatsResponseContent implements Serializable {
     @ColumnAlias("TestPackageNumber")
     private String testPackageNumber;
 
+    @JsonProperty("WorkPackage")
+    @ColumnAlias("WorkPackage")
+    private String workPackage;
+
     @JsonProperty("CostCode")
     @ColumnAlias("CostCode")
     private String costCode;
@@ -44,6 +52,10 @@ public class GetSteelStatsResponseContent implements Serializable {
     @JsonProperty("P6ID")
     @ColumnAlias("P6ID")
     private String p6id;
+
+    @JsonProperty("P6Description")
+    @ColumnAlias("P6Description")
+    private String p6description;
 
     @JsonProperty("AssignedContractor")
     @ColumnAlias("AssignedContractor")
@@ -69,9 +81,9 @@ public class GetSteelStatsResponseContent implements Serializable {
     @ColumnAlias("Elevation")
     private String elevation;
 
-    @JsonProperty("P6Description")
-    @ColumnAlias("P6Description")
-    private String p6description;
+    @JsonProperty("SortGroup1")
+    @ColumnAlias("SortGroup1")
+    private String sortGroup1;
 
     @JsonProperty("PieceMark")
     @ColumnAlias("PieceMark")
@@ -317,6 +329,14 @@ public class GetSteelStatsResponseContent implements Serializable {
         this.bidId = bidId;
     }
 
+    public String getProjectServicesRep() {
+        return this.projectServicesRep;
+    }
+
+    public void setProjectServicesRep(String projectServicesRep) {
+        this.projectServicesRep = projectServicesRep;
+    }
+
     public String getScope() {
         return this.scope;
     }
@@ -349,6 +369,14 @@ public class GetSteelStatsResponseContent implements Serializable {
         this.testPackageNumber = testPackageNumber;
     }
 
+    public String getWorkPackage() {
+        return this.workPackage;
+    }
+
+    public void setWorkPackage(String workPackage) {
+        this.workPackage = workPackage;
+    }
+
     public String getCostCode() {
         return this.costCode;
     }
@@ -363,6 +391,14 @@ public class GetSteelStatsResponseContent implements Serializable {
 
     public void setP6id(String p6id) {
         this.p6id = p6id;
+    }
+
+    public String getP6description() {
+        return this.p6description;
+    }
+
+    public void setP6description(String p6description) {
+        this.p6description = p6description;
     }
 
     public String getAssignedContractor() {
@@ -413,12 +449,12 @@ public class GetSteelStatsResponseContent implements Serializable {
         this.elevation = elevation;
     }
 
-    public String getP6description() {
-        return this.p6description;
+    public String getSortGroup1() {
+        return this.sortGroup1;
     }
 
-    public void setP6description(String p6description) {
-        this.p6description = p6description;
+    public void setSortGroup1(String sortGroup1) {
+        this.sortGroup1 = sortGroup1;
     }
 
     public String getPieceMark() {
@@ -899,19 +935,22 @@ public class GetSteelStatsResponseContent implements Serializable {
         if (!(o instanceof GetSteelStatsResponseContent)) return false;
         final GetSteelStatsResponseContent getSteelStatsResponseContent = (GetSteelStatsResponseContent) o;
         return Objects.equals(getBidId(), getSteelStatsResponseContent.getBidId()) &&
+                Objects.equals(getProjectServicesRep(), getSteelStatsResponseContent.getProjectServicesRep()) &&
                 Objects.equals(getScope(), getSteelStatsResponseContent.getScope()) &&
                 Objects.equals(getPhase(), getSteelStatsResponseContent.getPhase()) &&
                 Objects.equals(getStage(), getSteelStatsResponseContent.getStage()) &&
                 Objects.equals(getTestPackageNumber(), getSteelStatsResponseContent.getTestPackageNumber()) &&
+                Objects.equals(getWorkPackage(), getSteelStatsResponseContent.getWorkPackage()) &&
                 Objects.equals(getCostCode(), getSteelStatsResponseContent.getCostCode()) &&
                 Objects.equals(getP6id(), getSteelStatsResponseContent.getP6id()) &&
+                Objects.equals(getP6description(), getSteelStatsResponseContent.getP6description()) &&
                 Objects.equals(getAssignedContractor(), getSteelStatsResponseContent.getAssignedContractor()) &&
                 Objects.equals(getArea(), getSteelStatsResponseContent.getArea()) &&
                 Objects.equals(getLocation(), getSteelStatsResponseContent.getLocation()) &&
                 Objects.equals(getStructure(), getSteelStatsResponseContent.getStructure()) &&
                 Objects.equals(getCu(), getSteelStatsResponseContent.getCu()) &&
                 Objects.equals(getElevation(), getSteelStatsResponseContent.getElevation()) &&
-                Objects.equals(getP6description(), getSteelStatsResponseContent.getP6description()) &&
+                Objects.equals(getSortGroup1(), getSteelStatsResponseContent.getSortGroup1()) &&
                 Objects.equals(getPieceMark(), getSteelStatsResponseContent.getPieceMark()) &&
                 Objects.equals(getWbs1(), getSteelStatsResponseContent.getWbs1()) &&
                 Objects.equals(getWbs2(), getSteelStatsResponseContent.getWbs2()) &&
@@ -976,19 +1015,22 @@ public class GetSteelStatsResponseContent implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getBidId(),
+                getProjectServicesRep(),
                 getScope(),
                 getPhase(),
                 getStage(),
                 getTestPackageNumber(),
+                getWorkPackage(),
                 getCostCode(),
                 getP6id(),
+                getP6description(),
                 getAssignedContractor(),
                 getArea(),
                 getLocation(),
                 getStructure(),
                 getCu(),
                 getElevation(),
-                getP6description(),
+                getSortGroup1(),
                 getPieceMark(),
                 getWbs1(),
                 getWbs2(),

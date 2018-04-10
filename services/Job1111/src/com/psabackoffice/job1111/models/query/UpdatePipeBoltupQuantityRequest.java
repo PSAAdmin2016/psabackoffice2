@@ -17,27 +17,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UpdatePipeBoltupQuantityRequest implements Serializable {
 
 
-    @JsonProperty("BoltUpQuantity")
-    private Integer boltUpQuantity;
-
-    @JsonProperty("FieldActivityID")
+    @JsonProperty("Quantity")
     @NotNull
-    private Integer fieldActivityId;
+    private Integer quantity;
 
-    public Integer getBoltUpQuantity() {
-        return this.boltUpQuantity;
+    @JsonProperty("ActivityID")
+    @NotNull
+    private Integer activityId;
+
+    public Integer getQuantity() {
+        return this.quantity;
     }
 
-    public void setBoltUpQuantity(Integer boltUpQuantity) {
-        this.boltUpQuantity = boltUpQuantity;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     @Override
@@ -45,13 +46,13 @@ public class UpdatePipeBoltupQuantityRequest implements Serializable {
         if (this == o) return true;
         if (!(o instanceof UpdatePipeBoltupQuantityRequest)) return false;
         final UpdatePipeBoltupQuantityRequest updatePipeBoltupQuantityRequest = (UpdatePipeBoltupQuantityRequest) o;
-        return Objects.equals(getBoltUpQuantity(), updatePipeBoltupQuantityRequest.getBoltUpQuantity()) &&
-                Objects.equals(getFieldActivityId(), updatePipeBoltupQuantityRequest.getFieldActivityId());
+        return Objects.equals(getQuantity(), updatePipeBoltupQuantityRequest.getQuantity()) &&
+                Objects.equals(getActivityId(), updatePipeBoltupQuantityRequest.getActivityId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getBoltUpQuantity(),
-                getFieldActivityId());
+        return Objects.hash(getQuantity(),
+                getActivityId());
     }
 }

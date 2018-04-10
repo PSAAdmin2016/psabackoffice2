@@ -17,9 +17,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UpdateSteelFaRequest implements Serializable {
 
 
-    @JsonProperty("Area")
+    @JsonProperty("FASortGroup1")
     @NotNull
-    private String area;
+    private String fasortGroup1;
 
     @JsonProperty("Piece")
     @NotNull
@@ -29,9 +29,9 @@ public class UpdateSteelFaRequest implements Serializable {
     @NotNull
     private Integer quantity;
 
-    @JsonProperty("Percent")
+    @JsonProperty("PercentCompleted")
     @NotNull
-    private BigDecimal percent;
+    private BigDecimal percentCompleted;
 
     @JsonProperty("Rework")
     @NotNull
@@ -45,16 +45,16 @@ public class UpdateSteelFaRequest implements Serializable {
     @NotNull
     private Short activityType;
 
-    @JsonProperty("FieldActivityID")
+    @JsonProperty("ActivityID")
     @NotNull
-    private Short fieldActivityId;
+    private Integer activityId;
 
-    public String getArea() {
-        return this.area;
+    public String getFasortGroup1() {
+        return this.fasortGroup1;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setFasortGroup1(String fasortGroup1) {
+        this.fasortGroup1 = fasortGroup1;
     }
 
     public String getPiece() {
@@ -73,12 +73,12 @@ public class UpdateSteelFaRequest implements Serializable {
         this.quantity = quantity;
     }
 
-    public BigDecimal getPercent() {
-        return this.percent;
+    public BigDecimal getPercentCompleted() {
+        return this.percentCompleted;
     }
 
-    public void setPercent(BigDecimal percent) {
-        this.percent = percent;
+    public void setPercentCompleted(BigDecimal percentCompleted) {
+        this.percentCompleted = percentCompleted;
     }
 
     public Short getRework() {
@@ -105,12 +105,12 @@ public class UpdateSteelFaRequest implements Serializable {
         this.activityType = activityType;
     }
 
-    public Short getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Short fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     @Override
@@ -118,25 +118,25 @@ public class UpdateSteelFaRequest implements Serializable {
         if (this == o) return true;
         if (!(o instanceof UpdateSteelFaRequest)) return false;
         final UpdateSteelFaRequest updateSteelFaRequest = (UpdateSteelFaRequest) o;
-        return Objects.equals(getArea(), updateSteelFaRequest.getArea()) &&
+        return Objects.equals(getFasortGroup1(), updateSteelFaRequest.getFasortGroup1()) &&
                 Objects.equals(getPiece(), updateSteelFaRequest.getPiece()) &&
                 Objects.equals(getQuantity(), updateSteelFaRequest.getQuantity()) &&
-                Objects.equals(getPercent(), updateSteelFaRequest.getPercent()) &&
+                Objects.equals(getPercentCompleted(), updateSteelFaRequest.getPercentCompleted()) &&
                 Objects.equals(getRework(), updateSteelFaRequest.getRework()) &&
                 Objects.equals(getNotes(), updateSteelFaRequest.getNotes()) &&
                 Objects.equals(getActivityType(), updateSteelFaRequest.getActivityType()) &&
-                Objects.equals(getFieldActivityId(), updateSteelFaRequest.getFieldActivityId());
+                Objects.equals(getActivityId(), updateSteelFaRequest.getActivityId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getArea(),
+        return Objects.hash(getFasortGroup1(),
                 getPiece(),
                 getQuantity(),
-                getPercent(),
+                getPercentCompleted(),
                 getRework(),
                 getNotes(),
                 getActivityType(),
-                getFieldActivityId());
+                getActivityId());
     }
 }

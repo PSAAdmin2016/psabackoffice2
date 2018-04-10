@@ -7,6 +7,7 @@ package com.psabackoffice.job1111.models.procedure;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
@@ -24,6 +25,10 @@ public class ClassicTrackerCivilUpdateResponseContent implements Serializable {
     @JsonProperty("BidID")
     @ColumnAlias("BidID")
     private Integer bidId;
+
+    @JsonProperty("ProjectServicesRep")
+    @ColumnAlias("ProjectServicesRep")
+    private String projectServicesRep;
 
     @JsonProperty("EWONumber")
     @ColumnAlias("EWONumber")
@@ -45,6 +50,10 @@ public class ClassicTrackerCivilUpdateResponseContent implements Serializable {
     @ColumnAlias("TestPackageNumber")
     private String testPackageNumber;
 
+    @JsonProperty("WorkPackage")
+    @ColumnAlias("WorkPackage")
+    private String workPackage;
+
     @JsonProperty("CostCode")
     @ColumnAlias("CostCode")
     private String costCode;
@@ -52,6 +61,10 @@ public class ClassicTrackerCivilUpdateResponseContent implements Serializable {
     @JsonProperty("P6ID")
     @ColumnAlias("P6ID")
     private String p6id;
+
+    @JsonProperty("P6Description")
+    @ColumnAlias("P6Description")
+    private String p6description;
 
     @JsonProperty("AssignedContractor")
     @ColumnAlias("AssignedContractor")
@@ -73,17 +86,21 @@ public class ClassicTrackerCivilUpdateResponseContent implements Serializable {
     @ColumnAlias("CU")
     private String cu;
 
-    @JsonProperty("Grouping")
-    @ColumnAlias("Grouping")
-    private String grouping;
+    @JsonProperty("Elevation")
+    @ColumnAlias("Elevation")
+    private String elevation;
 
-    @JsonProperty("FoundationDescription")
-    @ColumnAlias("FoundationDescription")
-    private String foundationDescription;
+    @JsonProperty("SortGroup1")
+    @ColumnAlias("SortGroup1")
+    private String sortGroup1;
 
-    @JsonProperty("P6Description")
-    @ColumnAlias("P6Description")
-    private String p6description;
+    @JsonProperty("SortGroup2")
+    @ColumnAlias("SortGroup2")
+    private String sortGroup2;
+
+    @JsonProperty("SortGroup3")
+    @ColumnAlias("SortGroup3")
+    private String sortGroup3;
 
     @JsonProperty("EngDrawingNumber")
     @ColumnAlias("EngDrawingNumber")
@@ -139,15 +156,15 @@ public class ClassicTrackerCivilUpdateResponseContent implements Serializable {
 
     @JsonProperty("CivilWorkHours")
     @ColumnAlias("CivilWorkHours")
-    private Double civilWorkHours;
+    private BigDecimal civilWorkHours;
 
     @JsonProperty("SellPunchHours")
     @ColumnAlias("SellPunchHours")
-    private Double sellPunchHours;
+    private BigDecimal sellPunchHours;
 
     @JsonProperty("TotalEstimatedHours")
     @ColumnAlias("TotalEstimatedHours")
-    private Double totalEstimatedHours;
+    private BigDecimal totalEstimatedHours;
 
     @JsonProperty("InstalledQuantity")
     @ColumnAlias("InstalledQuantity")
@@ -155,15 +172,15 @@ public class ClassicTrackerCivilUpdateResponseContent implements Serializable {
 
     @JsonProperty("EarnedWorkHours")
     @ColumnAlias("EarnedWorkHours")
-    private Double earnedWorkHours;
+    private BigDecimal earnedWorkHours;
 
     @JsonProperty("EarnedSellPunch")
     @ColumnAlias("EarnedSellPunch")
-    private Double earnedSellPunch;
+    private BigDecimal earnedSellPunch;
 
     @JsonProperty("EarnedAllHours")
     @ColumnAlias("EarnedAllHours")
-    private Double earnedAllHours;
+    private BigDecimal earnedAllHours;
 
     @JsonProperty("WBS1")
     @ColumnAlias("WBS1")
@@ -225,6 +242,14 @@ public class ClassicTrackerCivilUpdateResponseContent implements Serializable {
         this.bidId = bidId;
     }
 
+    public String getProjectServicesRep() {
+        return this.projectServicesRep;
+    }
+
+    public void setProjectServicesRep(String projectServicesRep) {
+        this.projectServicesRep = projectServicesRep;
+    }
+
     public Integer getEwonumber() {
         return this.ewonumber;
     }
@@ -265,6 +290,14 @@ public class ClassicTrackerCivilUpdateResponseContent implements Serializable {
         this.testPackageNumber = testPackageNumber;
     }
 
+    public String getWorkPackage() {
+        return this.workPackage;
+    }
+
+    public void setWorkPackage(String workPackage) {
+        this.workPackage = workPackage;
+    }
+
     public String getCostCode() {
         return this.costCode;
     }
@@ -279,6 +312,14 @@ public class ClassicTrackerCivilUpdateResponseContent implements Serializable {
 
     public void setP6id(String p6id) {
         this.p6id = p6id;
+    }
+
+    public String getP6description() {
+        return this.p6description;
+    }
+
+    public void setP6description(String p6description) {
+        this.p6description = p6description;
     }
 
     public String getAssignedContractor() {
@@ -321,28 +362,36 @@ public class ClassicTrackerCivilUpdateResponseContent implements Serializable {
         this.cu = cu;
     }
 
-    public String getGrouping() {
-        return this.grouping;
+    public String getElevation() {
+        return this.elevation;
     }
 
-    public void setGrouping(String grouping) {
-        this.grouping = grouping;
+    public void setElevation(String elevation) {
+        this.elevation = elevation;
     }
 
-    public String getFoundationDescription() {
-        return this.foundationDescription;
+    public String getSortGroup1() {
+        return this.sortGroup1;
     }
 
-    public void setFoundationDescription(String foundationDescription) {
-        this.foundationDescription = foundationDescription;
+    public void setSortGroup1(String sortGroup1) {
+        this.sortGroup1 = sortGroup1;
     }
 
-    public String getP6description() {
-        return this.p6description;
+    public String getSortGroup2() {
+        return this.sortGroup2;
     }
 
-    public void setP6description(String p6description) {
-        this.p6description = p6description;
+    public void setSortGroup2(String sortGroup2) {
+        this.sortGroup2 = sortGroup2;
+    }
+
+    public String getSortGroup3() {
+        return this.sortGroup3;
+    }
+
+    public void setSortGroup3(String sortGroup3) {
+        this.sortGroup3 = sortGroup3;
     }
 
     public String getEngDrawingNumber() {
@@ -449,27 +498,27 @@ public class ClassicTrackerCivilUpdateResponseContent implements Serializable {
         this.quantityUnit = quantityUnit;
     }
 
-    public Double getCivilWorkHours() {
+    public BigDecimal getCivilWorkHours() {
         return this.civilWorkHours;
     }
 
-    public void setCivilWorkHours(Double civilWorkHours) {
+    public void setCivilWorkHours(BigDecimal civilWorkHours) {
         this.civilWorkHours = civilWorkHours;
     }
 
-    public Double getSellPunchHours() {
+    public BigDecimal getSellPunchHours() {
         return this.sellPunchHours;
     }
 
-    public void setSellPunchHours(Double sellPunchHours) {
+    public void setSellPunchHours(BigDecimal sellPunchHours) {
         this.sellPunchHours = sellPunchHours;
     }
 
-    public Double getTotalEstimatedHours() {
+    public BigDecimal getTotalEstimatedHours() {
         return this.totalEstimatedHours;
     }
 
-    public void setTotalEstimatedHours(Double totalEstimatedHours) {
+    public void setTotalEstimatedHours(BigDecimal totalEstimatedHours) {
         this.totalEstimatedHours = totalEstimatedHours;
     }
 
@@ -481,27 +530,27 @@ public class ClassicTrackerCivilUpdateResponseContent implements Serializable {
         this.installedQuantity = installedQuantity;
     }
 
-    public Double getEarnedWorkHours() {
+    public BigDecimal getEarnedWorkHours() {
         return this.earnedWorkHours;
     }
 
-    public void setEarnedWorkHours(Double earnedWorkHours) {
+    public void setEarnedWorkHours(BigDecimal earnedWorkHours) {
         this.earnedWorkHours = earnedWorkHours;
     }
 
-    public Double getEarnedSellPunch() {
+    public BigDecimal getEarnedSellPunch() {
         return this.earnedSellPunch;
     }
 
-    public void setEarnedSellPunch(Double earnedSellPunch) {
+    public void setEarnedSellPunch(BigDecimal earnedSellPunch) {
         this.earnedSellPunch = earnedSellPunch;
     }
 
-    public Double getEarnedAllHours() {
+    public BigDecimal getEarnedAllHours() {
         return this.earnedAllHours;
     }
 
-    public void setEarnedAllHours(Double earnedAllHours) {
+    public void setEarnedAllHours(BigDecimal earnedAllHours) {
         this.earnedAllHours = earnedAllHours;
     }
 
@@ -600,21 +649,25 @@ public class ClassicTrackerCivilUpdateResponseContent implements Serializable {
         final ClassicTrackerCivilUpdateResponseContent classicTrackerCivilUpdateResponseContent = (ClassicTrackerCivilUpdateResponseContent) o;
         return Objects.equals(getUid(), classicTrackerCivilUpdateResponseContent.getUid()) &&
                 Objects.equals(getBidId(), classicTrackerCivilUpdateResponseContent.getBidId()) &&
+                Objects.equals(getProjectServicesRep(), classicTrackerCivilUpdateResponseContent.getProjectServicesRep()) &&
                 Objects.equals(getEwonumber(), classicTrackerCivilUpdateResponseContent.getEwonumber()) &&
                 Objects.equals(getScope(), classicTrackerCivilUpdateResponseContent.getScope()) &&
                 Objects.equals(getPhase(), classicTrackerCivilUpdateResponseContent.getPhase()) &&
                 Objects.equals(getStage(), classicTrackerCivilUpdateResponseContent.getStage()) &&
                 Objects.equals(getTestPackageNumber(), classicTrackerCivilUpdateResponseContent.getTestPackageNumber()) &&
+                Objects.equals(getWorkPackage(), classicTrackerCivilUpdateResponseContent.getWorkPackage()) &&
                 Objects.equals(getCostCode(), classicTrackerCivilUpdateResponseContent.getCostCode()) &&
                 Objects.equals(getP6id(), classicTrackerCivilUpdateResponseContent.getP6id()) &&
+                Objects.equals(getP6description(), classicTrackerCivilUpdateResponseContent.getP6description()) &&
                 Objects.equals(getAssignedContractor(), classicTrackerCivilUpdateResponseContent.getAssignedContractor()) &&
                 Objects.equals(getArea(), classicTrackerCivilUpdateResponseContent.getArea()) &&
                 Objects.equals(getLocation(), classicTrackerCivilUpdateResponseContent.getLocation()) &&
                 Objects.equals(getStructure(), classicTrackerCivilUpdateResponseContent.getStructure()) &&
                 Objects.equals(getCu(), classicTrackerCivilUpdateResponseContent.getCu()) &&
-                Objects.equals(getGrouping(), classicTrackerCivilUpdateResponseContent.getGrouping()) &&
-                Objects.equals(getFoundationDescription(), classicTrackerCivilUpdateResponseContent.getFoundationDescription()) &&
-                Objects.equals(getP6description(), classicTrackerCivilUpdateResponseContent.getP6description()) &&
+                Objects.equals(getElevation(), classicTrackerCivilUpdateResponseContent.getElevation()) &&
+                Objects.equals(getSortGroup1(), classicTrackerCivilUpdateResponseContent.getSortGroup1()) &&
+                Objects.equals(getSortGroup2(), classicTrackerCivilUpdateResponseContent.getSortGroup2()) &&
+                Objects.equals(getSortGroup3(), classicTrackerCivilUpdateResponseContent.getSortGroup3()) &&
                 Objects.equals(getEngDrawingNumber(), classicTrackerCivilUpdateResponseContent.getEngDrawingNumber()) &&
                 Objects.equals(getSheetNumber(), classicTrackerCivilUpdateResponseContent.getSheetNumber()) &&
                 Objects.equals(getDrawingRev(), classicTrackerCivilUpdateResponseContent.getDrawingRev()) &&
@@ -652,21 +705,25 @@ public class ClassicTrackerCivilUpdateResponseContent implements Serializable {
     public int hashCode() {
         return Objects.hash(getUid(),
                 getBidId(),
+                getProjectServicesRep(),
                 getEwonumber(),
                 getScope(),
                 getPhase(),
                 getStage(),
                 getTestPackageNumber(),
+                getWorkPackage(),
                 getCostCode(),
                 getP6id(),
+                getP6description(),
                 getAssignedContractor(),
                 getArea(),
                 getLocation(),
                 getStructure(),
                 getCu(),
-                getGrouping(),
-                getFoundationDescription(),
-                getP6description(),
+                getElevation(),
+                getSortGroup1(),
+                getSortGroup2(),
+                getSortGroup3(),
                 getEngDrawingNumber(),
                 getSheetNumber(),
                 getDrawingRev(),

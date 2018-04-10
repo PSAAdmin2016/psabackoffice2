@@ -64,11 +64,11 @@ public class GetBidWorkHistorySteelResponse implements Serializable {
 
     @JsonProperty("DemoQuantity")
     @ColumnAlias("DemoQuantity")
-    private BigInteger demoQuantity;
+    private BigDecimal demoQuantity;
 
     @JsonProperty("MiscQuantity")
     @ColumnAlias("MiscQuantity")
-    private BigInteger miscQuantity;
+    private BigDecimal miscQuantity;
 
     @JsonProperty("Foreman")
     @ColumnAlias("Foreman")
@@ -174,19 +174,19 @@ public class GetBidWorkHistorySteelResponse implements Serializable {
         this.sellQuantity = sellQuantity;
     }
 
-    public BigInteger getDemoQuantity() {
+    public BigDecimal getDemoQuantity() {
         return this.demoQuantity;
     }
 
-    public void setDemoQuantity(BigInteger demoQuantity) {
+    public void setDemoQuantity(BigDecimal demoQuantity) {
         this.demoQuantity = demoQuantity;
     }
 
-    public BigInteger getMiscQuantity() {
+    public BigDecimal getMiscQuantity() {
         return this.miscQuantity;
     }
 
-    public void setMiscQuantity(BigInteger miscQuantity) {
+    public void setMiscQuantity(BigDecimal miscQuantity) {
         this.miscQuantity = miscQuantity;
     }
 

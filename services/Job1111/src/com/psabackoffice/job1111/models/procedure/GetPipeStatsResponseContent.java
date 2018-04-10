@@ -21,6 +21,10 @@ public class GetPipeStatsResponseContent implements Serializable {
     @ColumnAlias("BidID")
     private Integer bidId;
 
+    @JsonProperty("ProjectServicesRep")
+    @ColumnAlias("ProjectServicesRep")
+    private String projectServicesRep;
+
     @JsonProperty("Scope")
     @ColumnAlias("Scope")
     private String scope;
@@ -36,6 +40,10 @@ public class GetPipeStatsResponseContent implements Serializable {
     @JsonProperty("TestPackageNumber")
     @ColumnAlias("TestPackageNumber")
     private String testPackageNumber;
+
+    @JsonProperty("WorkPackage")
+    @ColumnAlias("WorkPackage")
+    private String workPackage;
 
     @JsonProperty("CostCode")
     @ColumnAlias("CostCode")
@@ -137,6 +145,14 @@ public class GetPipeStatsResponseContent implements Serializable {
     @ColumnAlias("CountWeld")
     private BigDecimal countWeld;
 
+    @JsonProperty("CountScrewJoint")
+    @ColumnAlias("CountScrewJoint")
+    private BigDecimal countScrewJoint;
+
+    @JsonProperty("CountOtherConnection")
+    @ColumnAlias("CountOtherConnection")
+    private BigDecimal countOtherConnection;
+
     @JsonProperty("CountCut")
     @ColumnAlias("CountCut")
     private BigDecimal countCut;
@@ -169,6 +185,14 @@ public class GetPipeStatsResponseContent implements Serializable {
     @ColumnAlias("HoursWeld")
     private BigDecimal hoursWeld;
 
+    @JsonProperty("HoursScrewJoint")
+    @ColumnAlias("HoursScrewJoint")
+    private BigDecimal hoursScrewJoint;
+
+    @JsonProperty("HoursOtherConnection")
+    @ColumnAlias("HoursOtherConnection")
+    private BigDecimal hoursOtherConnection;
+
     @JsonProperty("HoursCut")
     @ColumnAlias("HoursCut")
     private BigDecimal hoursCut;
@@ -189,25 +213,29 @@ public class GetPipeStatsResponseContent implements Serializable {
     @ColumnAlias("HoursDemo")
     private BigDecimal hoursDemo;
 
-    @JsonProperty("HoursReadyForTesting")
-    @ColumnAlias("HoursReadyForTesting")
-    private BigDecimal hoursReadyForTesting;
+    @JsonProperty("HoursRFT")
+    @ColumnAlias("HoursRFT")
+    private BigDecimal hoursRft;
 
     @JsonProperty("HoursHydro")
     @ColumnAlias("HoursHydro")
     private BigDecimal hoursHydro;
 
-    @JsonProperty("HoursClientTurnover")
-    @ColumnAlias("HoursClientTurnover")
-    private BigDecimal hoursClientTurnover;
-
-    @JsonProperty("HoursALLMech")
-    @ColumnAlias("HoursALLMech")
-    private BigDecimal hoursAllmech;
+    @JsonProperty("HoursCTO")
+    @ColumnAlias("HoursCTO")
+    private BigDecimal hoursCto;
 
     @JsonProperty("HoursTesting")
     @ColumnAlias("HoursTesting")
     private BigDecimal hoursTesting;
+
+    @JsonProperty("HoursMech")
+    @ColumnAlias("HoursMech")
+    private BigDecimal hoursMech;
+
+    @JsonProperty("HoursAll")
+    @ColumnAlias("HoursAll")
+    private BigDecimal hoursAll;
 
     @JsonProperty("InstalledFootage")
     @ColumnAlias("InstalledFootage")
@@ -220,6 +248,14 @@ public class GetPipeStatsResponseContent implements Serializable {
     @JsonProperty("InstalledWelds")
     @ColumnAlias("InstalledWelds")
     private BigDecimal installedWelds;
+
+    @JsonProperty("InstalledScrewJoints")
+    @ColumnAlias("InstalledScrewJoints")
+    private BigDecimal installedScrewJoints;
+
+    @JsonProperty("InstalledOtherConnections")
+    @ColumnAlias("InstalledOtherConnections")
+    private BigDecimal installedOtherConnections;
 
     @JsonProperty("InstalledCuts")
     @ColumnAlias("InstalledCuts")
@@ -253,6 +289,14 @@ public class GetPipeStatsResponseContent implements Serializable {
     @ColumnAlias("EarnedWeldHours")
     private BigDecimal earnedWeldHours;
 
+    @JsonProperty("EarnedScrewJointHours")
+    @ColumnAlias("EarnedScrewJointHours")
+    private BigDecimal earnedScrewJointHours;
+
+    @JsonProperty("EarnedOtherConnectionHours")
+    @ColumnAlias("EarnedOtherConnectionHours")
+    private BigDecimal earnedOtherConnectionHours;
+
     @JsonProperty("EarnedCutHours")
     @ColumnAlias("EarnedCutHours")
     private BigDecimal earnedCutHours;
@@ -273,25 +317,29 @@ public class GetPipeStatsResponseContent implements Serializable {
     @ColumnAlias("EarnedDemoHours")
     private BigDecimal earnedDemoHours;
 
-    @JsonProperty("EarnedReadyForTestingHours")
-    @ColumnAlias("EarnedReadyForTestingHours")
-    private BigDecimal earnedReadyForTestingHours;
+    @JsonProperty("EarnedRFTHours")
+    @ColumnAlias("EarnedRFTHours")
+    private BigDecimal earnedRfthours;
 
     @JsonProperty("EarnedHydroHours")
     @ColumnAlias("EarnedHydroHours")
     private BigDecimal earnedHydroHours;
 
-    @JsonProperty("EarnedClientTurnoverHours")
-    @ColumnAlias("EarnedClientTurnoverHours")
-    private BigDecimal earnedClientTurnoverHours;
-
-    @JsonProperty("EarnedALLMech")
-    @ColumnAlias("EarnedALLMech")
-    private BigDecimal earnedAllmech;
+    @JsonProperty("EarnedCTOHours")
+    @ColumnAlias("EarnedCTOHours")
+    private BigDecimal earnedCtohours;
 
     @JsonProperty("EarnedTestingHours")
     @ColumnAlias("EarnedTestingHours")
     private BigDecimal earnedTestingHours;
+
+    @JsonProperty("EarnedMechHours")
+    @ColumnAlias("EarnedMechHours")
+    private BigDecimal earnedMechHours;
+
+    @JsonProperty("EarnedAllHours")
+    @ColumnAlias("EarnedAllHours")
+    private BigDecimal earnedAllHours;
 
     @JsonProperty("RemainingFootage")
     @ColumnAlias("RemainingFootage")
@@ -304,6 +352,14 @@ public class GetPipeStatsResponseContent implements Serializable {
     @JsonProperty("RemainingWelds")
     @ColumnAlias("RemainingWelds")
     private BigDecimal remainingWelds;
+
+    @JsonProperty("RemainingScrewJoints")
+    @ColumnAlias("RemainingScrewJoints")
+    private BigDecimal remainingScrewJoints;
+
+    @JsonProperty("RemainingOtherConnections")
+    @ColumnAlias("RemainingOtherConnections")
+    private BigDecimal remainingOtherConnections;
 
     @JsonProperty("RemainingCuts")
     @ColumnAlias("RemainingCuts")
@@ -337,6 +393,14 @@ public class GetPipeStatsResponseContent implements Serializable {
     @ColumnAlias("RemainingWeldHours")
     private BigDecimal remainingWeldHours;
 
+    @JsonProperty("RemainingScrewJointHours")
+    @ColumnAlias("RemainingScrewJointHours")
+    private BigDecimal remainingScrewJointHours;
+
+    @JsonProperty("RemainingOtherConnectionHours")
+    @ColumnAlias("RemainingOtherConnectionHours")
+    private BigDecimal remainingOtherConnectionHours;
+
     @JsonProperty("RemainingCutHours")
     @ColumnAlias("RemainingCutHours")
     private BigDecimal remainingCutHours;
@@ -357,25 +421,29 @@ public class GetPipeStatsResponseContent implements Serializable {
     @ColumnAlias("RemainingDemoHours")
     private BigDecimal remainingDemoHours;
 
-    @JsonProperty("RemainingReadyForTestingHours")
-    @ColumnAlias("RemainingReadyForTestingHours")
-    private BigDecimal remainingReadyForTestingHours;
+    @JsonProperty("RemainingRFTHours")
+    @ColumnAlias("RemainingRFTHours")
+    private BigDecimal remainingRfthours;
 
     @JsonProperty("RemainingHydroHours")
     @ColumnAlias("RemainingHydroHours")
     private BigDecimal remainingHydroHours;
 
-    @JsonProperty("RemainingClientTurnoverHours")
-    @ColumnAlias("RemainingClientTurnoverHours")
-    private BigDecimal remainingClientTurnoverHours;
-
-    @JsonProperty("RemainingALLMechHours")
-    @ColumnAlias("RemainingALLMechHours")
-    private BigDecimal remainingAllmechHours;
+    @JsonProperty("RemainingCTOHours")
+    @ColumnAlias("RemainingCTOHours")
+    private BigDecimal remainingCtohours;
 
     @JsonProperty("RemainingTestingHours")
     @ColumnAlias("RemainingTestingHours")
     private BigDecimal remainingTestingHours;
+
+    @JsonProperty("RemainingMechHours")
+    @ColumnAlias("RemainingMechHours")
+    private BigDecimal remainingMechHours;
+
+    @JsonProperty("RemainingAllHours")
+    @ColumnAlias("RemainingAllHours")
+    private BigDecimal remainingAllHours;
 
     @JsonProperty("MechPercentComplete")
     @ColumnAlias("MechPercentComplete")
@@ -391,6 +459,14 @@ public class GetPipeStatsResponseContent implements Serializable {
 
     public void setBidId(Integer bidId) {
         this.bidId = bidId;
+    }
+
+    public String getProjectServicesRep() {
+        return this.projectServicesRep;
+    }
+
+    public void setProjectServicesRep(String projectServicesRep) {
+        this.projectServicesRep = projectServicesRep;
     }
 
     public String getScope() {
@@ -423,6 +499,14 @@ public class GetPipeStatsResponseContent implements Serializable {
 
     public void setTestPackageNumber(String testPackageNumber) {
         this.testPackageNumber = testPackageNumber;
+    }
+
+    public String getWorkPackage() {
+        return this.workPackage;
+    }
+
+    public void setWorkPackage(String workPackage) {
+        this.workPackage = workPackage;
     }
 
     public String getCostCode() {
@@ -625,6 +709,22 @@ public class GetPipeStatsResponseContent implements Serializable {
         this.countWeld = countWeld;
     }
 
+    public BigDecimal getCountScrewJoint() {
+        return this.countScrewJoint;
+    }
+
+    public void setCountScrewJoint(BigDecimal countScrewJoint) {
+        this.countScrewJoint = countScrewJoint;
+    }
+
+    public BigDecimal getCountOtherConnection() {
+        return this.countOtherConnection;
+    }
+
+    public void setCountOtherConnection(BigDecimal countOtherConnection) {
+        this.countOtherConnection = countOtherConnection;
+    }
+
     public BigDecimal getCountCut() {
         return this.countCut;
     }
@@ -689,6 +789,22 @@ public class GetPipeStatsResponseContent implements Serializable {
         this.hoursWeld = hoursWeld;
     }
 
+    public BigDecimal getHoursScrewJoint() {
+        return this.hoursScrewJoint;
+    }
+
+    public void setHoursScrewJoint(BigDecimal hoursScrewJoint) {
+        this.hoursScrewJoint = hoursScrewJoint;
+    }
+
+    public BigDecimal getHoursOtherConnection() {
+        return this.hoursOtherConnection;
+    }
+
+    public void setHoursOtherConnection(BigDecimal hoursOtherConnection) {
+        this.hoursOtherConnection = hoursOtherConnection;
+    }
+
     public BigDecimal getHoursCut() {
         return this.hoursCut;
     }
@@ -729,12 +845,12 @@ public class GetPipeStatsResponseContent implements Serializable {
         this.hoursDemo = hoursDemo;
     }
 
-    public BigDecimal getHoursReadyForTesting() {
-        return this.hoursReadyForTesting;
+    public BigDecimal getHoursRft() {
+        return this.hoursRft;
     }
 
-    public void setHoursReadyForTesting(BigDecimal hoursReadyForTesting) {
-        this.hoursReadyForTesting = hoursReadyForTesting;
+    public void setHoursRft(BigDecimal hoursRft) {
+        this.hoursRft = hoursRft;
     }
 
     public BigDecimal getHoursHydro() {
@@ -745,20 +861,12 @@ public class GetPipeStatsResponseContent implements Serializable {
         this.hoursHydro = hoursHydro;
     }
 
-    public BigDecimal getHoursClientTurnover() {
-        return this.hoursClientTurnover;
+    public BigDecimal getHoursCto() {
+        return this.hoursCto;
     }
 
-    public void setHoursClientTurnover(BigDecimal hoursClientTurnover) {
-        this.hoursClientTurnover = hoursClientTurnover;
-    }
-
-    public BigDecimal getHoursAllmech() {
-        return this.hoursAllmech;
-    }
-
-    public void setHoursAllmech(BigDecimal hoursAllmech) {
-        this.hoursAllmech = hoursAllmech;
+    public void setHoursCto(BigDecimal hoursCto) {
+        this.hoursCto = hoursCto;
     }
 
     public BigDecimal getHoursTesting() {
@@ -767,6 +875,22 @@ public class GetPipeStatsResponseContent implements Serializable {
 
     public void setHoursTesting(BigDecimal hoursTesting) {
         this.hoursTesting = hoursTesting;
+    }
+
+    public BigDecimal getHoursMech() {
+        return this.hoursMech;
+    }
+
+    public void setHoursMech(BigDecimal hoursMech) {
+        this.hoursMech = hoursMech;
+    }
+
+    public BigDecimal getHoursAll() {
+        return this.hoursAll;
+    }
+
+    public void setHoursAll(BigDecimal hoursAll) {
+        this.hoursAll = hoursAll;
     }
 
     public BigDecimal getInstalledFootage() {
@@ -791,6 +915,22 @@ public class GetPipeStatsResponseContent implements Serializable {
 
     public void setInstalledWelds(BigDecimal installedWelds) {
         this.installedWelds = installedWelds;
+    }
+
+    public BigDecimal getInstalledScrewJoints() {
+        return this.installedScrewJoints;
+    }
+
+    public void setInstalledScrewJoints(BigDecimal installedScrewJoints) {
+        this.installedScrewJoints = installedScrewJoints;
+    }
+
+    public BigDecimal getInstalledOtherConnections() {
+        return this.installedOtherConnections;
+    }
+
+    public void setInstalledOtherConnections(BigDecimal installedOtherConnections) {
+        this.installedOtherConnections = installedOtherConnections;
     }
 
     public BigDecimal getInstalledCuts() {
@@ -857,6 +997,22 @@ public class GetPipeStatsResponseContent implements Serializable {
         this.earnedWeldHours = earnedWeldHours;
     }
 
+    public BigDecimal getEarnedScrewJointHours() {
+        return this.earnedScrewJointHours;
+    }
+
+    public void setEarnedScrewJointHours(BigDecimal earnedScrewJointHours) {
+        this.earnedScrewJointHours = earnedScrewJointHours;
+    }
+
+    public BigDecimal getEarnedOtherConnectionHours() {
+        return this.earnedOtherConnectionHours;
+    }
+
+    public void setEarnedOtherConnectionHours(BigDecimal earnedOtherConnectionHours) {
+        this.earnedOtherConnectionHours = earnedOtherConnectionHours;
+    }
+
     public BigDecimal getEarnedCutHours() {
         return this.earnedCutHours;
     }
@@ -897,12 +1053,12 @@ public class GetPipeStatsResponseContent implements Serializable {
         this.earnedDemoHours = earnedDemoHours;
     }
 
-    public BigDecimal getEarnedReadyForTestingHours() {
-        return this.earnedReadyForTestingHours;
+    public BigDecimal getEarnedRfthours() {
+        return this.earnedRfthours;
     }
 
-    public void setEarnedReadyForTestingHours(BigDecimal earnedReadyForTestingHours) {
-        this.earnedReadyForTestingHours = earnedReadyForTestingHours;
+    public void setEarnedRfthours(BigDecimal earnedRfthours) {
+        this.earnedRfthours = earnedRfthours;
     }
 
     public BigDecimal getEarnedHydroHours() {
@@ -913,20 +1069,12 @@ public class GetPipeStatsResponseContent implements Serializable {
         this.earnedHydroHours = earnedHydroHours;
     }
 
-    public BigDecimal getEarnedClientTurnoverHours() {
-        return this.earnedClientTurnoverHours;
+    public BigDecimal getEarnedCtohours() {
+        return this.earnedCtohours;
     }
 
-    public void setEarnedClientTurnoverHours(BigDecimal earnedClientTurnoverHours) {
-        this.earnedClientTurnoverHours = earnedClientTurnoverHours;
-    }
-
-    public BigDecimal getEarnedAllmech() {
-        return this.earnedAllmech;
-    }
-
-    public void setEarnedAllmech(BigDecimal earnedAllmech) {
-        this.earnedAllmech = earnedAllmech;
+    public void setEarnedCtohours(BigDecimal earnedCtohours) {
+        this.earnedCtohours = earnedCtohours;
     }
 
     public BigDecimal getEarnedTestingHours() {
@@ -935,6 +1083,22 @@ public class GetPipeStatsResponseContent implements Serializable {
 
     public void setEarnedTestingHours(BigDecimal earnedTestingHours) {
         this.earnedTestingHours = earnedTestingHours;
+    }
+
+    public BigDecimal getEarnedMechHours() {
+        return this.earnedMechHours;
+    }
+
+    public void setEarnedMechHours(BigDecimal earnedMechHours) {
+        this.earnedMechHours = earnedMechHours;
+    }
+
+    public BigDecimal getEarnedAllHours() {
+        return this.earnedAllHours;
+    }
+
+    public void setEarnedAllHours(BigDecimal earnedAllHours) {
+        this.earnedAllHours = earnedAllHours;
     }
 
     public BigDecimal getRemainingFootage() {
@@ -959,6 +1123,22 @@ public class GetPipeStatsResponseContent implements Serializable {
 
     public void setRemainingWelds(BigDecimal remainingWelds) {
         this.remainingWelds = remainingWelds;
+    }
+
+    public BigDecimal getRemainingScrewJoints() {
+        return this.remainingScrewJoints;
+    }
+
+    public void setRemainingScrewJoints(BigDecimal remainingScrewJoints) {
+        this.remainingScrewJoints = remainingScrewJoints;
+    }
+
+    public BigDecimal getRemainingOtherConnections() {
+        return this.remainingOtherConnections;
+    }
+
+    public void setRemainingOtherConnections(BigDecimal remainingOtherConnections) {
+        this.remainingOtherConnections = remainingOtherConnections;
     }
 
     public BigDecimal getRemainingCuts() {
@@ -1025,6 +1205,22 @@ public class GetPipeStatsResponseContent implements Serializable {
         this.remainingWeldHours = remainingWeldHours;
     }
 
+    public BigDecimal getRemainingScrewJointHours() {
+        return this.remainingScrewJointHours;
+    }
+
+    public void setRemainingScrewJointHours(BigDecimal remainingScrewJointHours) {
+        this.remainingScrewJointHours = remainingScrewJointHours;
+    }
+
+    public BigDecimal getRemainingOtherConnectionHours() {
+        return this.remainingOtherConnectionHours;
+    }
+
+    public void setRemainingOtherConnectionHours(BigDecimal remainingOtherConnectionHours) {
+        this.remainingOtherConnectionHours = remainingOtherConnectionHours;
+    }
+
     public BigDecimal getRemainingCutHours() {
         return this.remainingCutHours;
     }
@@ -1065,12 +1261,12 @@ public class GetPipeStatsResponseContent implements Serializable {
         this.remainingDemoHours = remainingDemoHours;
     }
 
-    public BigDecimal getRemainingReadyForTestingHours() {
-        return this.remainingReadyForTestingHours;
+    public BigDecimal getRemainingRfthours() {
+        return this.remainingRfthours;
     }
 
-    public void setRemainingReadyForTestingHours(BigDecimal remainingReadyForTestingHours) {
-        this.remainingReadyForTestingHours = remainingReadyForTestingHours;
+    public void setRemainingRfthours(BigDecimal remainingRfthours) {
+        this.remainingRfthours = remainingRfthours;
     }
 
     public BigDecimal getRemainingHydroHours() {
@@ -1081,20 +1277,12 @@ public class GetPipeStatsResponseContent implements Serializable {
         this.remainingHydroHours = remainingHydroHours;
     }
 
-    public BigDecimal getRemainingClientTurnoverHours() {
-        return this.remainingClientTurnoverHours;
+    public BigDecimal getRemainingCtohours() {
+        return this.remainingCtohours;
     }
 
-    public void setRemainingClientTurnoverHours(BigDecimal remainingClientTurnoverHours) {
-        this.remainingClientTurnoverHours = remainingClientTurnoverHours;
-    }
-
-    public BigDecimal getRemainingAllmechHours() {
-        return this.remainingAllmechHours;
-    }
-
-    public void setRemainingAllmechHours(BigDecimal remainingAllmechHours) {
-        this.remainingAllmechHours = remainingAllmechHours;
+    public void setRemainingCtohours(BigDecimal remainingCtohours) {
+        this.remainingCtohours = remainingCtohours;
     }
 
     public BigDecimal getRemainingTestingHours() {
@@ -1103,6 +1291,22 @@ public class GetPipeStatsResponseContent implements Serializable {
 
     public void setRemainingTestingHours(BigDecimal remainingTestingHours) {
         this.remainingTestingHours = remainingTestingHours;
+    }
+
+    public BigDecimal getRemainingMechHours() {
+        return this.remainingMechHours;
+    }
+
+    public void setRemainingMechHours(BigDecimal remainingMechHours) {
+        this.remainingMechHours = remainingMechHours;
+    }
+
+    public BigDecimal getRemainingAllHours() {
+        return this.remainingAllHours;
+    }
+
+    public void setRemainingAllHours(BigDecimal remainingAllHours) {
+        this.remainingAllHours = remainingAllHours;
     }
 
     public BigDecimal getMechPercentComplete() {
@@ -1127,10 +1331,12 @@ public class GetPipeStatsResponseContent implements Serializable {
         if (!(o instanceof GetPipeStatsResponseContent)) return false;
         final GetPipeStatsResponseContent getPipeStatsResponseContent = (GetPipeStatsResponseContent) o;
         return Objects.equals(getBidId(), getPipeStatsResponseContent.getBidId()) &&
+                Objects.equals(getProjectServicesRep(), getPipeStatsResponseContent.getProjectServicesRep()) &&
                 Objects.equals(getScope(), getPipeStatsResponseContent.getScope()) &&
                 Objects.equals(getPhase(), getPipeStatsResponseContent.getPhase()) &&
                 Objects.equals(getStage(), getPipeStatsResponseContent.getStage()) &&
                 Objects.equals(getTestPackageNumber(), getPipeStatsResponseContent.getTestPackageNumber()) &&
+                Objects.equals(getWorkPackage(), getPipeStatsResponseContent.getWorkPackage()) &&
                 Objects.equals(getCostCode(), getPipeStatsResponseContent.getCostCode()) &&
                 Objects.equals(getP6id(), getPipeStatsResponseContent.getP6id()) &&
                 Objects.equals(getP6description(), getPipeStatsResponseContent.getP6description()) &&
@@ -1156,6 +1362,8 @@ public class GetPipeStatsResponseContent implements Serializable {
                 Objects.equals(getCountErectionFootage(), getPipeStatsResponseContent.getCountErectionFootage()) &&
                 Objects.equals(getCountBoltUp(), getPipeStatsResponseContent.getCountBoltUp()) &&
                 Objects.equals(getCountWeld(), getPipeStatsResponseContent.getCountWeld()) &&
+                Objects.equals(getCountScrewJoint(), getPipeStatsResponseContent.getCountScrewJoint()) &&
+                Objects.equals(getCountOtherConnection(), getPipeStatsResponseContent.getCountOtherConnection()) &&
                 Objects.equals(getCountCut(), getPipeStatsResponseContent.getCountCut()) &&
                 Objects.equals(getCountTrimActivities(), getPipeStatsResponseContent.getCountTrimActivities()) &&
                 Objects.equals(getCountSupports(), getPipeStatsResponseContent.getCountSupports()) &&
@@ -1164,19 +1372,24 @@ public class GetPipeStatsResponseContent implements Serializable {
                 Objects.equals(getHoursErection(), getPipeStatsResponseContent.getHoursErection()) &&
                 Objects.equals(getHoursBoltUp(), getPipeStatsResponseContent.getHoursBoltUp()) &&
                 Objects.equals(getHoursWeld(), getPipeStatsResponseContent.getHoursWeld()) &&
+                Objects.equals(getHoursScrewJoint(), getPipeStatsResponseContent.getHoursScrewJoint()) &&
+                Objects.equals(getHoursOtherConnection(), getPipeStatsResponseContent.getHoursOtherConnection()) &&
                 Objects.equals(getHoursCut(), getPipeStatsResponseContent.getHoursCut()) &&
                 Objects.equals(getHoursTrim(), getPipeStatsResponseContent.getHoursTrim()) &&
                 Objects.equals(getHoursSupports(), getPipeStatsResponseContent.getHoursSupports()) &&
                 Objects.equals(getHoursMisc(), getPipeStatsResponseContent.getHoursMisc()) &&
                 Objects.equals(getHoursDemo(), getPipeStatsResponseContent.getHoursDemo()) &&
-                Objects.equals(getHoursReadyForTesting(), getPipeStatsResponseContent.getHoursReadyForTesting()) &&
+                Objects.equals(getHoursRft(), getPipeStatsResponseContent.getHoursRft()) &&
                 Objects.equals(getHoursHydro(), getPipeStatsResponseContent.getHoursHydro()) &&
-                Objects.equals(getHoursClientTurnover(), getPipeStatsResponseContent.getHoursClientTurnover()) &&
-                Objects.equals(getHoursAllmech(), getPipeStatsResponseContent.getHoursAllmech()) &&
+                Objects.equals(getHoursCto(), getPipeStatsResponseContent.getHoursCto()) &&
                 Objects.equals(getHoursTesting(), getPipeStatsResponseContent.getHoursTesting()) &&
+                Objects.equals(getHoursMech(), getPipeStatsResponseContent.getHoursMech()) &&
+                Objects.equals(getHoursAll(), getPipeStatsResponseContent.getHoursAll()) &&
                 Objects.equals(getInstalledFootage(), getPipeStatsResponseContent.getInstalledFootage()) &&
                 Objects.equals(getInstalledBoltUps(), getPipeStatsResponseContent.getInstalledBoltUps()) &&
                 Objects.equals(getInstalledWelds(), getPipeStatsResponseContent.getInstalledWelds()) &&
+                Objects.equals(getInstalledScrewJoints(), getPipeStatsResponseContent.getInstalledScrewJoints()) &&
+                Objects.equals(getInstalledOtherConnections(), getPipeStatsResponseContent.getInstalledOtherConnections()) &&
                 Objects.equals(getInstalledCuts(), getPipeStatsResponseContent.getInstalledCuts()) &&
                 Objects.equals(getInstalledTrim(), getPipeStatsResponseContent.getInstalledTrim()) &&
                 Objects.equals(getInstalledSupports(), getPipeStatsResponseContent.getInstalledSupports()) &&
@@ -1185,19 +1398,24 @@ public class GetPipeStatsResponseContent implements Serializable {
                 Objects.equals(getEarnedErectionHours(), getPipeStatsResponseContent.getEarnedErectionHours()) &&
                 Objects.equals(getEarnedBoltUpHours(), getPipeStatsResponseContent.getEarnedBoltUpHours()) &&
                 Objects.equals(getEarnedWeldHours(), getPipeStatsResponseContent.getEarnedWeldHours()) &&
+                Objects.equals(getEarnedScrewJointHours(), getPipeStatsResponseContent.getEarnedScrewJointHours()) &&
+                Objects.equals(getEarnedOtherConnectionHours(), getPipeStatsResponseContent.getEarnedOtherConnectionHours()) &&
                 Objects.equals(getEarnedCutHours(), getPipeStatsResponseContent.getEarnedCutHours()) &&
                 Objects.equals(getEarnedTrimHours(), getPipeStatsResponseContent.getEarnedTrimHours()) &&
                 Objects.equals(getEarnedSupportHours(), getPipeStatsResponseContent.getEarnedSupportHours()) &&
                 Objects.equals(getEarnedMiscHours(), getPipeStatsResponseContent.getEarnedMiscHours()) &&
                 Objects.equals(getEarnedDemoHours(), getPipeStatsResponseContent.getEarnedDemoHours()) &&
-                Objects.equals(getEarnedReadyForTestingHours(), getPipeStatsResponseContent.getEarnedReadyForTestingHours()) &&
+                Objects.equals(getEarnedRfthours(), getPipeStatsResponseContent.getEarnedRfthours()) &&
                 Objects.equals(getEarnedHydroHours(), getPipeStatsResponseContent.getEarnedHydroHours()) &&
-                Objects.equals(getEarnedClientTurnoverHours(), getPipeStatsResponseContent.getEarnedClientTurnoverHours()) &&
-                Objects.equals(getEarnedAllmech(), getPipeStatsResponseContent.getEarnedAllmech()) &&
+                Objects.equals(getEarnedCtohours(), getPipeStatsResponseContent.getEarnedCtohours()) &&
                 Objects.equals(getEarnedTestingHours(), getPipeStatsResponseContent.getEarnedTestingHours()) &&
+                Objects.equals(getEarnedMechHours(), getPipeStatsResponseContent.getEarnedMechHours()) &&
+                Objects.equals(getEarnedAllHours(), getPipeStatsResponseContent.getEarnedAllHours()) &&
                 Objects.equals(getRemainingFootage(), getPipeStatsResponseContent.getRemainingFootage()) &&
                 Objects.equals(getRemainingBoltUps(), getPipeStatsResponseContent.getRemainingBoltUps()) &&
                 Objects.equals(getRemainingWelds(), getPipeStatsResponseContent.getRemainingWelds()) &&
+                Objects.equals(getRemainingScrewJoints(), getPipeStatsResponseContent.getRemainingScrewJoints()) &&
+                Objects.equals(getRemainingOtherConnections(), getPipeStatsResponseContent.getRemainingOtherConnections()) &&
                 Objects.equals(getRemainingCuts(), getPipeStatsResponseContent.getRemainingCuts()) &&
                 Objects.equals(getRemainingTrimActivities(), getPipeStatsResponseContent.getRemainingTrimActivities()) &&
                 Objects.equals(getRemainingSupports(), getPipeStatsResponseContent.getRemainingSupports()) &&
@@ -1206,16 +1424,19 @@ public class GetPipeStatsResponseContent implements Serializable {
                 Objects.equals(getRemainingErectionHours(), getPipeStatsResponseContent.getRemainingErectionHours()) &&
                 Objects.equals(getRemainingBoltUpHours(), getPipeStatsResponseContent.getRemainingBoltUpHours()) &&
                 Objects.equals(getRemainingWeldHours(), getPipeStatsResponseContent.getRemainingWeldHours()) &&
+                Objects.equals(getRemainingScrewJointHours(), getPipeStatsResponseContent.getRemainingScrewJointHours()) &&
+                Objects.equals(getRemainingOtherConnectionHours(), getPipeStatsResponseContent.getRemainingOtherConnectionHours()) &&
                 Objects.equals(getRemainingCutHours(), getPipeStatsResponseContent.getRemainingCutHours()) &&
                 Objects.equals(getRemainingTrimHours(), getPipeStatsResponseContent.getRemainingTrimHours()) &&
                 Objects.equals(getRemainingSupportHours(), getPipeStatsResponseContent.getRemainingSupportHours()) &&
                 Objects.equals(getRemainingMiscHours(), getPipeStatsResponseContent.getRemainingMiscHours()) &&
                 Objects.equals(getRemainingDemoHours(), getPipeStatsResponseContent.getRemainingDemoHours()) &&
-                Objects.equals(getRemainingReadyForTestingHours(), getPipeStatsResponseContent.getRemainingReadyForTestingHours()) &&
+                Objects.equals(getRemainingRfthours(), getPipeStatsResponseContent.getRemainingRfthours()) &&
                 Objects.equals(getRemainingHydroHours(), getPipeStatsResponseContent.getRemainingHydroHours()) &&
-                Objects.equals(getRemainingClientTurnoverHours(), getPipeStatsResponseContent.getRemainingClientTurnoverHours()) &&
-                Objects.equals(getRemainingAllmechHours(), getPipeStatsResponseContent.getRemainingAllmechHours()) &&
+                Objects.equals(getRemainingCtohours(), getPipeStatsResponseContent.getRemainingCtohours()) &&
                 Objects.equals(getRemainingTestingHours(), getPipeStatsResponseContent.getRemainingTestingHours()) &&
+                Objects.equals(getRemainingMechHours(), getPipeStatsResponseContent.getRemainingMechHours()) &&
+                Objects.equals(getRemainingAllHours(), getPipeStatsResponseContent.getRemainingAllHours()) &&
                 Objects.equals(getMechPercentComplete(), getPipeStatsResponseContent.getMechPercentComplete()) &&
                 Objects.equals(getPercentComplete(), getPipeStatsResponseContent.getPercentComplete());
     }
@@ -1223,10 +1444,12 @@ public class GetPipeStatsResponseContent implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getBidId(),
+                getProjectServicesRep(),
                 getScope(),
                 getPhase(),
                 getStage(),
                 getTestPackageNumber(),
+                getWorkPackage(),
                 getCostCode(),
                 getP6id(),
                 getP6description(),
@@ -1252,6 +1475,8 @@ public class GetPipeStatsResponseContent implements Serializable {
                 getCountErectionFootage(),
                 getCountBoltUp(),
                 getCountWeld(),
+                getCountScrewJoint(),
+                getCountOtherConnection(),
                 getCountCut(),
                 getCountTrimActivities(),
                 getCountSupports(),
@@ -1260,19 +1485,24 @@ public class GetPipeStatsResponseContent implements Serializable {
                 getHoursErection(),
                 getHoursBoltUp(),
                 getHoursWeld(),
+                getHoursScrewJoint(),
+                getHoursOtherConnection(),
                 getHoursCut(),
                 getHoursTrim(),
                 getHoursSupports(),
                 getHoursMisc(),
                 getHoursDemo(),
-                getHoursReadyForTesting(),
+                getHoursRft(),
                 getHoursHydro(),
-                getHoursClientTurnover(),
-                getHoursAllmech(),
+                getHoursCto(),
                 getHoursTesting(),
+                getHoursMech(),
+                getHoursAll(),
                 getInstalledFootage(),
                 getInstalledBoltUps(),
                 getInstalledWelds(),
+                getInstalledScrewJoints(),
+                getInstalledOtherConnections(),
                 getInstalledCuts(),
                 getInstalledTrim(),
                 getInstalledSupports(),
@@ -1281,19 +1511,24 @@ public class GetPipeStatsResponseContent implements Serializable {
                 getEarnedErectionHours(),
                 getEarnedBoltUpHours(),
                 getEarnedWeldHours(),
+                getEarnedScrewJointHours(),
+                getEarnedOtherConnectionHours(),
                 getEarnedCutHours(),
                 getEarnedTrimHours(),
                 getEarnedSupportHours(),
                 getEarnedMiscHours(),
                 getEarnedDemoHours(),
-                getEarnedReadyForTestingHours(),
+                getEarnedRfthours(),
                 getEarnedHydroHours(),
-                getEarnedClientTurnoverHours(),
-                getEarnedAllmech(),
+                getEarnedCtohours(),
                 getEarnedTestingHours(),
+                getEarnedMechHours(),
+                getEarnedAllHours(),
                 getRemainingFootage(),
                 getRemainingBoltUps(),
                 getRemainingWelds(),
+                getRemainingScrewJoints(),
+                getRemainingOtherConnections(),
                 getRemainingCuts(),
                 getRemainingTrimActivities(),
                 getRemainingSupports(),
@@ -1302,16 +1537,19 @@ public class GetPipeStatsResponseContent implements Serializable {
                 getRemainingErectionHours(),
                 getRemainingBoltUpHours(),
                 getRemainingWeldHours(),
+                getRemainingScrewJointHours(),
+                getRemainingOtherConnectionHours(),
                 getRemainingCutHours(),
                 getRemainingTrimHours(),
                 getRemainingSupportHours(),
                 getRemainingMiscHours(),
                 getRemainingDemoHours(),
-                getRemainingReadyForTestingHours(),
+                getRemainingRfthours(),
                 getRemainingHydroHours(),
-                getRemainingClientTurnoverHours(),
-                getRemainingAllmechHours(),
+                getRemainingCtohours(),
                 getRemainingTestingHours(),
+                getRemainingMechHours(),
+                getRemainingAllHours(),
                 getMechPercentComplete(),
                 getPercentComplete());
     }

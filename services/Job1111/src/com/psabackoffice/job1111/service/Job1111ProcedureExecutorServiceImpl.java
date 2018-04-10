@@ -54,19 +54,6 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public CreateLooseHoursActivitySteelResponse executeCreateLooseHoursActivitySteel(CreateLooseHoursActivitySteelRequest createLooseHoursActivitySteelRequest) {
-        Map params = new HashMap(6);
-
-        params.put("SubmissionId", createLooseHoursActivitySteelRequest.getSubmissionId());
-        params.put("ActivityId", createLooseHoursActivitySteelRequest.getActivityId());
-        params.put("UserId", createLooseHoursActivitySteelRequest.getUserId());
-        params.put("TestPackage", createLooseHoursActivitySteelRequest.getTestPackage());
-
-        return procedureExecutor.executeNamedProcedure("CreateLooseHoursActivitySteel", params, CreateLooseHoursActivitySteelResponse.class);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
     public GetSteelPcotResponse executeGetSteelPCOT(Integer runMode) {
         Map params = new HashMap(3);
 
@@ -89,16 +76,14 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public CreateManualActivitySteelResponse executeCreateManualActivitySteel(CreateManualActivitySteelRequest createManualActivitySteelRequest) {
-        Map params = new HashMap(10);
+        Map params = new HashMap(8);
 
-        params.put("ActivityType", createManualActivitySteelRequest.getActivityType());
-        params.put("Area", createManualActivitySteelRequest.getArea());
-        params.put("PieceNumber", createManualActivitySteelRequest.getPieceNumber());
-        params.put("Quantity", createManualActivitySteelRequest.getQuantity());
-        params.put("Percent", createManualActivitySteelRequest.getPercent());
-        params.put("Notes", createManualActivitySteelRequest.getNotes());
-        params.put("UserId", createManualActivitySteelRequest.getUserId());
-        params.put("BidID", createManualActivitySteelRequest.getBidId());
+        params.put("varBidID", createManualActivitySteelRequest.getVarBidId());
+        params.put("varActivityType", createManualActivitySteelRequest.getVarActivityType());
+        params.put("varQuantity", createManualActivitySteelRequest.getVarQuantity());
+        params.put("varPercentCompleted", createManualActivitySteelRequest.getVarPercentCompleted());
+        params.put("varNotes", createManualActivitySteelRequest.getVarNotes());
+        params.put("varUserID", createManualActivitySteelRequest.getVarUserId());
 
         return procedureExecutor.executeNamedProcedure("CreateManualActivitySteel", params, CreateManualActivitySteelResponse.class);
     }
@@ -136,19 +121,6 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public CreateLooseHoursActivityCivilResponse executeCreateLooseHoursActivityCivil(CreateLooseHoursActivityCivilRequest createLooseHoursActivityCivilRequest) {
-        Map params = new HashMap(6);
-
-        params.put("SubmissionId", createLooseHoursActivityCivilRequest.getSubmissionId());
-        params.put("ActivityId", createLooseHoursActivityCivilRequest.getActivityId());
-        params.put("UserId", createLooseHoursActivityCivilRequest.getUserId());
-        params.put("TestPackage", createLooseHoursActivityCivilRequest.getTestPackage());
-
-        return procedureExecutor.executeNamedProcedure("CreateLooseHoursActivityCivil", params, CreateLooseHoursActivityCivilResponse.class);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
     public GetPipePcotResponse executeGetPipePCOT(Integer runMode) {
         Map params = new HashMap(3);
 
@@ -181,15 +153,12 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public CreateManualActivityPipeResponse executeCreateManualActivityPipe(CreateManualActivityPipeRequest createManualActivityPipeRequest) {
-        Map params = new HashMap(9);
+        Map params = new HashMap(6);
 
-        params.put("MiscDrawingNumber", createManualActivityPipeRequest.getMiscDrawingNumber());
-        params.put("MiscLineNumber", createManualActivityPipeRequest.getMiscLineNumber());
-        params.put("MiscSheetNumber", createManualActivityPipeRequest.getMiscSheetNumber());
-        params.put("MiscQuantity", createManualActivityPipeRequest.getMiscQuantity());
-        params.put("MiscNotes", createManualActivityPipeRequest.getMiscNotes());
-        params.put("UserId", createManualActivityPipeRequest.getUserId());
-        params.put("BidID", createManualActivityPipeRequest.getBidId());
+        params.put("varBidID", createManualActivityPipeRequest.getVarBidId());
+        params.put("varQuantity", createManualActivityPipeRequest.getVarQuantity());
+        params.put("varNotes", createManualActivityPipeRequest.getVarNotes());
+        params.put("varUserID", createManualActivityPipeRequest.getVarUserId());
 
         return procedureExecutor.executeNamedProcedure("CreateManualActivityPipe", params, CreateManualActivityPipeResponse.class);
     }
@@ -279,15 +248,13 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public CreateManualActivityCivilResponse executeCreateManualActivityCivil(CreateManualActivityCivilRequest createManualActivityCivilRequest) {
-        Map params = new HashMap(9);
+        Map params = new HashMap(7);
 
-        params.put("varFoundation", createManualActivityCivilRequest.getVarFoundation());
-        params.put("varDrawingNumber", createManualActivityCivilRequest.getVarDrawingNumber());
-        params.put("varDetailDrawingNumber", createManualActivityCivilRequest.getVarDetailDrawingNumber());
-        params.put("varPercentComplete", createManualActivityCivilRequest.getVarPercentComplete());
+        params.put("varBidID", createManualActivityCivilRequest.getVarBidId());
+        params.put("varQuantity", createManualActivityCivilRequest.getVarQuantity());
+        params.put("varPercentCompleted", createManualActivityCivilRequest.getVarPercentCompleted());
         params.put("varNotes", createManualActivityCivilRequest.getVarNotes());
         params.put("varUserId", createManualActivityCivilRequest.getVarUserId());
-        params.put("varBidID", createManualActivityCivilRequest.getVarBidId());
 
         return procedureExecutor.executeNamedProcedure("CreateManualActivityCivil", params, CreateManualActivityCivilResponse.class);
     }
@@ -306,14 +273,13 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public CreateManualActivityEquipResponse executeCreateManualActivityEquip(CreateManualActivityEquipRequest createManualActivityEquipRequest) {
-        Map params = new HashMap(8);
+        Map params = new HashMap(7);
 
-        params.put("varTagNumber", createManualActivityEquipRequest.getVarTagNumber());
-        params.put("varActivitySelect", createManualActivityEquipRequest.getVarActivitySelect());
-        params.put("varPercentComplete", createManualActivityEquipRequest.getVarPercentComplete());
-        params.put("varNotes", createManualActivityEquipRequest.getVarNotes());
-        params.put("varUserId", createManualActivityEquipRequest.getVarUserId());
         params.put("varBidID", createManualActivityEquipRequest.getVarBidId());
+        params.put("varQuantity", createManualActivityEquipRequest.getVarQuantity());
+        params.put("varPercentCompleted", createManualActivityEquipRequest.getVarPercentCompleted());
+        params.put("varNotes", createManualActivityEquipRequest.getVarNotes());
+        params.put("varUserID", createManualActivityEquipRequest.getVarUserId());
 
         return procedureExecutor.executeNamedProcedure("CreateManualActivityEquip", params, CreateManualActivityEquipResponse.class);
     }
@@ -342,11 +308,34 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
+    public CreateLooseHoursActivitiesSteelResponse executeCreateLooseHoursActivitiesSteel(CreateLooseHoursActivitiesSteelRequest createLooseHoursActivitiesSteelRequest) {
+        Map params = new HashMap(5);
+
+        params.put("SubmissionId", createLooseHoursActivitiesSteelRequest.getSubmissionId());
+        params.put("UserId", createLooseHoursActivitiesSteelRequest.getUserId());
+        params.put("TestPackage", createLooseHoursActivitiesSteelRequest.getTestPackage());
+
+        return procedureExecutor.executeNamedProcedure("CreateLooseHoursActivitiesSteel", params, CreateLooseHoursActivitiesSteelResponse.class);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public CreateLooseHoursActivitiesCivilResponse executeCreateLooseHoursActivitiesCivil(CreateLooseHoursActivitiesCivilRequest createLooseHoursActivitiesCivilRequest) {
+        Map params = new HashMap(5);
+
+        params.put("SubmissionId", createLooseHoursActivitiesCivilRequest.getSubmissionId());
+        params.put("UserId", createLooseHoursActivitiesCivilRequest.getUserId());
+        params.put("TestPackage", createLooseHoursActivitiesCivilRequest.getTestPackage());
+
+        return procedureExecutor.executeNamedProcedure("CreateLooseHoursActivitiesCivil", params, CreateLooseHoursActivitiesCivilResponse.class);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
     public CreateLooseHoursActivitiesPipeResponse executeCreateLooseHoursActivitiesPipe(CreateLooseHoursActivitiesPipeRequest createLooseHoursActivitiesPipeRequest) {
-        Map params = new HashMap(6);
+        Map params = new HashMap(5);
 
         params.put("SubmissionId", createLooseHoursActivitiesPipeRequest.getSubmissionId());
-        params.put("ActivityId", createLooseHoursActivitiesPipeRequest.getActivityId());
         params.put("UserId", createLooseHoursActivitiesPipeRequest.getUserId());
         params.put("TestPackage", createLooseHoursActivitiesPipeRequest.getTestPackage());
 

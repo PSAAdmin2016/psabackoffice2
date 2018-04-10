@@ -14,34 +14,35 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateCivilSellPackageRequest implements Serializable {
+public class UpdateSasstatusRequest implements Serializable {
 
 
-    @JsonProperty("TestPackageNumber")
+    @JsonProperty("ActivityStatusID")
     @NotNull
-    private String testPackageNumber;
+    private Integer activityStatusId;
 
-    @JsonProperty("Notes")
-    private String notes;
+    @JsonProperty("UserID")
+    @NotNull
+    private String userId;
 
     @JsonProperty("ActivityID")
     @NotNull
     private String activityId;
 
-    public String getTestPackageNumber() {
-        return this.testPackageNumber;
+    public Integer getActivityStatusId() {
+        return this.activityStatusId;
     }
 
-    public void setTestPackageNumber(String testPackageNumber) {
-        this.testPackageNumber = testPackageNumber;
+    public void setActivityStatusId(Integer activityStatusId) {
+        this.activityStatusId = activityStatusId;
     }
 
-    public String getNotes() {
-        return this.notes;
+    public String getUserId() {
+        return this.userId;
     }
 
-    public void setNotes(String notes) {
-        this.notes = notes;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getActivityId() {
@@ -55,17 +56,17 @@ public class UpdateCivilSellPackageRequest implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UpdateCivilSellPackageRequest)) return false;
-        final UpdateCivilSellPackageRequest updateCivilSellPackageRequest = (UpdateCivilSellPackageRequest) o;
-        return Objects.equals(getTestPackageNumber(), updateCivilSellPackageRequest.getTestPackageNumber()) &&
-                Objects.equals(getNotes(), updateCivilSellPackageRequest.getNotes()) &&
-                Objects.equals(getActivityId(), updateCivilSellPackageRequest.getActivityId());
+        if (!(o instanceof UpdateSasstatusRequest)) return false;
+        final UpdateSasstatusRequest updateSasstatusRequest = (UpdateSasstatusRequest) o;
+        return Objects.equals(getActivityStatusId(), updateSasstatusRequest.getActivityStatusId()) &&
+                Objects.equals(getUserId(), updateSasstatusRequest.getUserId()) &&
+                Objects.equals(getActivityId(), updateSasstatusRequest.getActivityId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getTestPackageNumber(),
-                getNotes(),
+        return Objects.hash(getActivityStatusId(),
+                getUserId(),
                 getActivityId());
     }
 }

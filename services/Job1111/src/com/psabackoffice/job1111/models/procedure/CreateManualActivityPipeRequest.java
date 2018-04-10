@@ -7,6 +7,7 @@ package com.psabackoffice.job1111.models.procedure;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
@@ -16,88 +17,51 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class CreateManualActivityPipeRequest implements Serializable {
 
 
-    @JsonProperty("MiscDrawingNumber")
+    @JsonProperty("varBidID")
     @NotNull
-    private String miscDrawingNumber;
+    private Integer varBidId;
 
-    @JsonProperty("MiscLineNumber")
+    @JsonProperty("varQuantity")
     @NotNull
-    private String miscLineNumber;
+    private Integer varQuantity;
 
-    @JsonProperty("MiscSheetNumber")
+    @JsonProperty("varNotes")
+    private String varNotes;
+
+    @JsonProperty("varUserID")
     @NotNull
-    private String miscSheetNumber;
+    private Integer varUserId;
 
-    @JsonProperty("MiscQuantity")
-    @NotNull
-    private Integer miscQuantity;
-
-    @JsonProperty("MiscNotes")
-    @NotNull
-    private String miscNotes;
-
-    @JsonProperty("UserId")
-    @NotNull
-    private Integer userId;
-
-    @JsonProperty("BidID")
-    @NotNull
-    private Integer bidId;
-
-    public String getMiscDrawingNumber() {
-        return this.miscDrawingNumber;
+    public Integer getVarBidId() {
+        return this.varBidId;
     }
 
-    public void setMiscDrawingNumber(String miscDrawingNumber) {
-        this.miscDrawingNumber = miscDrawingNumber;
+    public void setVarBidId(Integer varBidId) {
+        this.varBidId = varBidId;
     }
 
-    public String getMiscLineNumber() {
-        return this.miscLineNumber;
+    public Integer getVarQuantity() {
+        return this.varQuantity;
     }
 
-    public void setMiscLineNumber(String miscLineNumber) {
-        this.miscLineNumber = miscLineNumber;
+    public void setVarQuantity(Integer varQuantity) {
+        this.varQuantity = varQuantity;
     }
 
-    public String getMiscSheetNumber() {
-        return this.miscSheetNumber;
+    public String getVarNotes() {
+        return this.varNotes;
     }
 
-    public void setMiscSheetNumber(String miscSheetNumber) {
-        this.miscSheetNumber = miscSheetNumber;
+    public void setVarNotes(String varNotes) {
+        this.varNotes = varNotes;
     }
 
-    public Integer getMiscQuantity() {
-        return this.miscQuantity;
+    public Integer getVarUserId() {
+        return this.varUserId;
     }
 
-    public void setMiscQuantity(Integer miscQuantity) {
-        this.miscQuantity = miscQuantity;
-    }
-
-    public String getMiscNotes() {
-        return this.miscNotes;
-    }
-
-    public void setMiscNotes(String miscNotes) {
-        this.miscNotes = miscNotes;
-    }
-
-    public Integer getUserId() {
-        return this.userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Integer getBidId() {
-        return this.bidId;
-    }
-
-    public void setBidId(Integer bidId) {
-        this.bidId = bidId;
+    public void setVarUserId(Integer varUserId) {
+        this.varUserId = varUserId;
     }
 
     @Override
@@ -105,23 +69,17 @@ public class CreateManualActivityPipeRequest implements Serializable {
         if (this == o) return true;
         if (!(o instanceof CreateManualActivityPipeRequest)) return false;
         final CreateManualActivityPipeRequest createManualActivityPipeRequest = (CreateManualActivityPipeRequest) o;
-        return Objects.equals(getMiscDrawingNumber(), createManualActivityPipeRequest.getMiscDrawingNumber()) &&
-                Objects.equals(getMiscLineNumber(), createManualActivityPipeRequest.getMiscLineNumber()) &&
-                Objects.equals(getMiscSheetNumber(), createManualActivityPipeRequest.getMiscSheetNumber()) &&
-                Objects.equals(getMiscQuantity(), createManualActivityPipeRequest.getMiscQuantity()) &&
-                Objects.equals(getMiscNotes(), createManualActivityPipeRequest.getMiscNotes()) &&
-                Objects.equals(getUserId(), createManualActivityPipeRequest.getUserId()) &&
-                Objects.equals(getBidId(), createManualActivityPipeRequest.getBidId());
+        return Objects.equals(getVarBidId(), createManualActivityPipeRequest.getVarBidId()) &&
+                Objects.equals(getVarQuantity(), createManualActivityPipeRequest.getVarQuantity()) &&
+                Objects.equals(getVarNotes(), createManualActivityPipeRequest.getVarNotes()) &&
+                Objects.equals(getVarUserId(), createManualActivityPipeRequest.getVarUserId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getMiscDrawingNumber(),
-                getMiscLineNumber(),
-                getMiscSheetNumber(),
-                getMiscQuantity(),
-                getMiscNotes(),
-                getUserId(),
-                getBidId());
+        return Objects.hash(getVarBidId(),
+                getVarQuantity(),
+                getVarNotes(),
+                getVarUserId());
     }
 }

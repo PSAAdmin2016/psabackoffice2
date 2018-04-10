@@ -17,27 +17,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UpdatePipeWeldQuantityRequest implements Serializable {
 
 
-    @JsonProperty("PercentComplete")
-    private BigDecimal percentComplete;
-
-    @JsonProperty("FieldActivityID")
+    @JsonProperty("PercentCompleted")
     @NotNull
-    private Integer fieldActivityId;
+    private BigDecimal percentCompleted;
 
-    public BigDecimal getPercentComplete() {
-        return this.percentComplete;
+    @JsonProperty("ActivityID")
+    @NotNull
+    private Integer activityId;
+
+    public BigDecimal getPercentCompleted() {
+        return this.percentCompleted;
     }
 
-    public void setPercentComplete(BigDecimal percentComplete) {
-        this.percentComplete = percentComplete;
+    public void setPercentCompleted(BigDecimal percentCompleted) {
+        this.percentCompleted = percentCompleted;
     }
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     @Override
@@ -45,13 +46,13 @@ public class UpdatePipeWeldQuantityRequest implements Serializable {
         if (this == o) return true;
         if (!(o instanceof UpdatePipeWeldQuantityRequest)) return false;
         final UpdatePipeWeldQuantityRequest updatePipeWeldQuantityRequest = (UpdatePipeWeldQuantityRequest) o;
-        return Objects.equals(getPercentComplete(), updatePipeWeldQuantityRequest.getPercentComplete()) &&
-                Objects.equals(getFieldActivityId(), updatePipeWeldQuantityRequest.getFieldActivityId());
+        return Objects.equals(getPercentCompleted(), updatePipeWeldQuantityRequest.getPercentCompleted()) &&
+                Objects.equals(getActivityId(), updatePipeWeldQuantityRequest.getActivityId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPercentComplete(),
-                getFieldActivityId());
+        return Objects.hash(getPercentCompleted(),
+                getActivityId());
     }
 }

@@ -7,6 +7,7 @@ package com.psabackoffice.job1111.models.procedure;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
@@ -16,100 +17,75 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class CreateManualActivitySteelRequest implements Serializable {
 
 
-    @JsonProperty("ActivityType")
+    @JsonProperty("varBidID")
     @NotNull
-    private Integer activityType;
+    private Integer varBidId;
 
-    @JsonProperty("Area")
+    @JsonProperty("varActivityType")
     @NotNull
-    private String area;
+    private Integer varActivityType;
 
-    @JsonProperty("PieceNumber")
+    @JsonProperty("varQuantity")
     @NotNull
-    private String pieceNumber;
+    private Integer varQuantity;
 
-    @JsonProperty("Quantity")
+    @JsonProperty("varPercentCompleted")
     @NotNull
-    private Integer quantity;
+    private BigDecimal varPercentCompleted;
 
-    @JsonProperty("Percent")
+    @JsonProperty("varNotes")
+    private String varNotes;
+
+    @JsonProperty("varUserID")
     @NotNull
-    private Integer percent;
+    private Integer varUserId;
 
-    @JsonProperty("Notes")
-    @NotNull
-    private String notes;
-
-    @JsonProperty("UserId")
-    @NotNull
-    private Integer userId;
-
-    @JsonProperty("BidID")
-    @NotNull
-    private Integer bidId;
-
-    public Integer getActivityType() {
-        return this.activityType;
+    public Integer getVarBidId() {
+        return this.varBidId;
     }
 
-    public void setActivityType(Integer activityType) {
-        this.activityType = activityType;
+    public void setVarBidId(Integer varBidId) {
+        this.varBidId = varBidId;
     }
 
-    public String getArea() {
-        return this.area;
+    public Integer getVarActivityType() {
+        return this.varActivityType;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setVarActivityType(Integer varActivityType) {
+        this.varActivityType = varActivityType;
     }
 
-    public String getPieceNumber() {
-        return this.pieceNumber;
+    public Integer getVarQuantity() {
+        return this.varQuantity;
     }
 
-    public void setPieceNumber(String pieceNumber) {
-        this.pieceNumber = pieceNumber;
+    public void setVarQuantity(Integer varQuantity) {
+        this.varQuantity = varQuantity;
     }
 
-    public Integer getQuantity() {
-        return this.quantity;
+    public BigDecimal getVarPercentCompleted() {
+        return this.varPercentCompleted;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setVarPercentCompleted(BigDecimal varPercentCompleted) {
+        this.varPercentCompleted = varPercentCompleted;
     }
 
-    public Integer getPercent() {
-        return this.percent;
+    public String getVarNotes() {
+        return this.varNotes;
     }
 
-    public void setPercent(Integer percent) {
-        this.percent = percent;
+    public void setVarNotes(String varNotes) {
+        this.varNotes = varNotes;
     }
 
-    public String getNotes() {
-        return this.notes;
+    public Integer getVarUserId() {
+        return this.varUserId;
     }
 
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public Integer getUserId() {
-        return this.userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Integer getBidId() {
-        return this.bidId;
-    }
-
-    public void setBidId(Integer bidId) {
-        this.bidId = bidId;
+    public void setVarUserId(Integer varUserId) {
+        this.varUserId = varUserId;
     }
 
     @Override
@@ -117,25 +93,21 @@ public class CreateManualActivitySteelRequest implements Serializable {
         if (this == o) return true;
         if (!(o instanceof CreateManualActivitySteelRequest)) return false;
         final CreateManualActivitySteelRequest createManualActivitySteelRequest = (CreateManualActivitySteelRequest) o;
-        return Objects.equals(getActivityType(), createManualActivitySteelRequest.getActivityType()) &&
-                Objects.equals(getArea(), createManualActivitySteelRequest.getArea()) &&
-                Objects.equals(getPieceNumber(), createManualActivitySteelRequest.getPieceNumber()) &&
-                Objects.equals(getQuantity(), createManualActivitySteelRequest.getQuantity()) &&
-                Objects.equals(getPercent(), createManualActivitySteelRequest.getPercent()) &&
-                Objects.equals(getNotes(), createManualActivitySteelRequest.getNotes()) &&
-                Objects.equals(getUserId(), createManualActivitySteelRequest.getUserId()) &&
-                Objects.equals(getBidId(), createManualActivitySteelRequest.getBidId());
+        return Objects.equals(getVarBidId(), createManualActivitySteelRequest.getVarBidId()) &&
+                Objects.equals(getVarActivityType(), createManualActivitySteelRequest.getVarActivityType()) &&
+                Objects.equals(getVarQuantity(), createManualActivitySteelRequest.getVarQuantity()) &&
+                Objects.equals(getVarPercentCompleted(), createManualActivitySteelRequest.getVarPercentCompleted()) &&
+                Objects.equals(getVarNotes(), createManualActivitySteelRequest.getVarNotes()) &&
+                Objects.equals(getVarUserId(), createManualActivitySteelRequest.getVarUserId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getActivityType(),
-                getArea(),
-                getPieceNumber(),
-                getQuantity(),
-                getPercent(),
-                getNotes(),
-                getUserId(),
-                getBidId());
+        return Objects.hash(getVarBidId(),
+                getVarActivityType(),
+                getVarQuantity(),
+                getVarPercentCompleted(),
+                getVarNotes(),
+                getVarUserId());
     }
 }

@@ -53,12 +53,10 @@ public class SubmissionActivityStatus implements Serializable {
     private CivilSellPackage civilSellPackage;
     private EquipFa equipFa;
     private PipeConnection pipeConnection;
-    private PipeDemo pipeDemo;
     private PipeErection pipeErection;
+    private PipeFa pipeFa;
     private PipeMisc pipeMisc;
-    private PipeSupports pipeSupports;
     private PipeTesting pipeTesting;
-    private PipeTrim pipeTrim;
     private PipeWeld pipeWeld;
     private List<Sasnotes> sasnoteses;
     private SteelDemo steelDemo;
@@ -213,23 +211,23 @@ public class SubmissionActivityStatus implements Serializable {
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
     @Cascade({CascadeType.SAVE_UPDATE})
     @Fetch(FetchMode.JOIN)
-    public PipeDemo getPipeDemo() {
-        return this.pipeDemo;
-    }
-
-    public void setPipeDemo(PipeDemo pipeDemo) {
-        this.pipeDemo = pipeDemo;
-    }
-
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
-    @Cascade({CascadeType.SAVE_UPDATE})
-    @Fetch(FetchMode.JOIN)
     public PipeErection getPipeErection() {
         return this.pipeErection;
     }
 
     public void setPipeErection(PipeErection pipeErection) {
         this.pipeErection = pipeErection;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
+    @Cascade({CascadeType.SAVE_UPDATE})
+    @Fetch(FetchMode.JOIN)
+    public PipeFa getPipeFa() {
+        return this.pipeFa;
+    }
+
+    public void setPipeFa(PipeFa pipeFa) {
+        this.pipeFa = pipeFa;
     }
 
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
@@ -246,34 +244,12 @@ public class SubmissionActivityStatus implements Serializable {
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
     @Cascade({CascadeType.SAVE_UPDATE})
     @Fetch(FetchMode.JOIN)
-    public PipeSupports getPipeSupports() {
-        return this.pipeSupports;
-    }
-
-    public void setPipeSupports(PipeSupports pipeSupports) {
-        this.pipeSupports = pipeSupports;
-    }
-
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
-    @Cascade({CascadeType.SAVE_UPDATE})
-    @Fetch(FetchMode.JOIN)
     public PipeTesting getPipeTesting() {
         return this.pipeTesting;
     }
 
     public void setPipeTesting(PipeTesting pipeTesting) {
         this.pipeTesting = pipeTesting;
-    }
-
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
-    @Cascade({CascadeType.SAVE_UPDATE})
-    @Fetch(FetchMode.JOIN)
-    public PipeTrim getPipeTrim() {
-        return this.pipeTrim;
-    }
-
-    public void setPipeTrim(PipeTrim pipeTrim) {
-        this.pipeTrim = pipeTrim;
     }
 
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
@@ -378,23 +354,17 @@ public class SubmissionActivityStatus implements Serializable {
         if(pipeConnection != null) {
             pipeConnection.setSubmissionActivityStatus(this);
         }
-        if(pipeDemo != null) {
-            pipeDemo.setSubmissionActivityStatus(this);
-        }
         if(pipeErection != null) {
             pipeErection.setSubmissionActivityStatus(this);
+        }
+        if(pipeFa != null) {
+            pipeFa.setSubmissionActivityStatus(this);
         }
         if(pipeMisc != null) {
             pipeMisc.setSubmissionActivityStatus(this);
         }
-        if(pipeSupports != null) {
-            pipeSupports.setSubmissionActivityStatus(this);
-        }
         if(pipeTesting != null) {
             pipeTesting.setSubmissionActivityStatus(this);
-        }
-        if(pipeTrim != null) {
-            pipeTrim.setSubmissionActivityStatus(this);
         }
         if(pipeWeld != null) {
             pipeWeld.setSubmissionActivityStatus(this);

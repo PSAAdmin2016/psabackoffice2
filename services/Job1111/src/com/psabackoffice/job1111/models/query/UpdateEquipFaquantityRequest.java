@@ -17,27 +17,40 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UpdateEquipFaquantityRequest implements Serializable {
 
 
-    @JsonProperty("Percent")
-    private String percent;
-
-    @JsonProperty("FieldActivityID")
+    @JsonProperty("Quantity")
     @NotNull
-    private Integer fieldActivityId;
+    private Integer quantity;
 
-    public String getPercent() {
+    @JsonProperty("Percent")
+    @NotNull
+    private BigDecimal percent;
+
+    @JsonProperty("ActivityID")
+    @NotNull
+    private Integer activityId;
+
+    public Integer getQuantity() {
+        return this.quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public BigDecimal getPercent() {
         return this.percent;
     }
 
-    public void setPercent(String percent) {
+    public void setPercent(BigDecimal percent) {
         this.percent = percent;
     }
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     @Override
@@ -45,13 +58,15 @@ public class UpdateEquipFaquantityRequest implements Serializable {
         if (this == o) return true;
         if (!(o instanceof UpdateEquipFaquantityRequest)) return false;
         final UpdateEquipFaquantityRequest updateEquipFaquantityRequest = (UpdateEquipFaquantityRequest) o;
-        return Objects.equals(getPercent(), updateEquipFaquantityRequest.getPercent()) &&
-                Objects.equals(getFieldActivityId(), updateEquipFaquantityRequest.getFieldActivityId());
+        return Objects.equals(getQuantity(), updateEquipFaquantityRequest.getQuantity()) &&
+                Objects.equals(getPercent(), updateEquipFaquantityRequest.getPercent()) &&
+                Objects.equals(getActivityId(), updateEquipFaquantityRequest.getActivityId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPercent(),
-                getFieldActivityId());
+        return Objects.hash(getQuantity(),
+                getPercent(),
+                getActivityId());
     }
 }

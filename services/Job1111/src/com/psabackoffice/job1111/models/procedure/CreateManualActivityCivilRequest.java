@@ -17,21 +17,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class CreateManualActivityCivilRequest implements Serializable {
 
 
-    @JsonProperty("varFoundation")
+    @JsonProperty("varBidID")
     @NotNull
-    private String varFoundation;
+    private Integer varBidId;
 
-    @JsonProperty("varDrawingNumber")
+    @JsonProperty("varQuantity")
     @NotNull
-    private String varDrawingNumber;
+    private Integer varQuantity;
 
-    @JsonProperty("varDetailDrawingNumber")
+    @JsonProperty("varPercentCompleted")
     @NotNull
-    private String varDetailDrawingNumber;
-
-    @JsonProperty("varPercentComplete")
-    @NotNull
-    private BigDecimal varPercentComplete;
+    private BigDecimal varPercentCompleted;
 
     @JsonProperty("varNotes")
     @NotNull
@@ -41,40 +37,28 @@ public class CreateManualActivityCivilRequest implements Serializable {
     @NotNull
     private Integer varUserId;
 
-    @JsonProperty("varBidID")
-    @NotNull
-    private Integer varBidId;
-
-    public String getVarFoundation() {
-        return this.varFoundation;
+    public Integer getVarBidId() {
+        return this.varBidId;
     }
 
-    public void setVarFoundation(String varFoundation) {
-        this.varFoundation = varFoundation;
+    public void setVarBidId(Integer varBidId) {
+        this.varBidId = varBidId;
     }
 
-    public String getVarDrawingNumber() {
-        return this.varDrawingNumber;
+    public Integer getVarQuantity() {
+        return this.varQuantity;
     }
 
-    public void setVarDrawingNumber(String varDrawingNumber) {
-        this.varDrawingNumber = varDrawingNumber;
+    public void setVarQuantity(Integer varQuantity) {
+        this.varQuantity = varQuantity;
     }
 
-    public String getVarDetailDrawingNumber() {
-        return this.varDetailDrawingNumber;
+    public BigDecimal getVarPercentCompleted() {
+        return this.varPercentCompleted;
     }
 
-    public void setVarDetailDrawingNumber(String varDetailDrawingNumber) {
-        this.varDetailDrawingNumber = varDetailDrawingNumber;
-    }
-
-    public BigDecimal getVarPercentComplete() {
-        return this.varPercentComplete;
-    }
-
-    public void setVarPercentComplete(BigDecimal varPercentComplete) {
-        this.varPercentComplete = varPercentComplete;
+    public void setVarPercentCompleted(BigDecimal varPercentCompleted) {
+        this.varPercentCompleted = varPercentCompleted;
     }
 
     public String getVarNotes() {
@@ -93,36 +77,24 @@ public class CreateManualActivityCivilRequest implements Serializable {
         this.varUserId = varUserId;
     }
 
-    public Integer getVarBidId() {
-        return this.varBidId;
-    }
-
-    public void setVarBidId(Integer varBidId) {
-        this.varBidId = varBidId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof CreateManualActivityCivilRequest)) return false;
         final CreateManualActivityCivilRequest createManualActivityCivilRequest = (CreateManualActivityCivilRequest) o;
-        return Objects.equals(getVarFoundation(), createManualActivityCivilRequest.getVarFoundation()) &&
-                Objects.equals(getVarDrawingNumber(), createManualActivityCivilRequest.getVarDrawingNumber()) &&
-                Objects.equals(getVarDetailDrawingNumber(), createManualActivityCivilRequest.getVarDetailDrawingNumber()) &&
-                Objects.equals(getVarPercentComplete(), createManualActivityCivilRequest.getVarPercentComplete()) &&
+        return Objects.equals(getVarBidId(), createManualActivityCivilRequest.getVarBidId()) &&
+                Objects.equals(getVarQuantity(), createManualActivityCivilRequest.getVarQuantity()) &&
+                Objects.equals(getVarPercentCompleted(), createManualActivityCivilRequest.getVarPercentCompleted()) &&
                 Objects.equals(getVarNotes(), createManualActivityCivilRequest.getVarNotes()) &&
-                Objects.equals(getVarUserId(), createManualActivityCivilRequest.getVarUserId()) &&
-                Objects.equals(getVarBidId(), createManualActivityCivilRequest.getVarBidId());
+                Objects.equals(getVarUserId(), createManualActivityCivilRequest.getVarUserId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getVarFoundation(),
-                getVarDrawingNumber(),
-                getVarDetailDrawingNumber(),
-                getVarPercentComplete(),
+        return Objects.hash(getVarBidId(),
+                getVarQuantity(),
+                getVarPercentCompleted(),
                 getVarNotes(),
-                getVarUserId(),
-                getVarBidId());
+                getVarUserId());
     }
 }

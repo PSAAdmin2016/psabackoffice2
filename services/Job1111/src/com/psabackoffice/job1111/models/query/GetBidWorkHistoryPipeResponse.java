@@ -39,7 +39,7 @@ public class GetBidWorkHistoryPipeResponse implements Serializable {
 
     @JsonProperty("Rework")
     @ColumnAlias("Rework")
-    private String rework;
+    private Short rework;
 
     @JsonProperty("Foreman")
     @ColumnAlias("Foreman")
@@ -97,11 +97,11 @@ public class GetBidWorkHistoryPipeResponse implements Serializable {
         this.notes = notes;
     }
 
-    public String getRework() {
+    public Short getRework() {
         return this.rework;
     }
 
-    public void setRework(String rework) {
+    public void setRework(Short rework) {
         this.rework = rework;
     }
 

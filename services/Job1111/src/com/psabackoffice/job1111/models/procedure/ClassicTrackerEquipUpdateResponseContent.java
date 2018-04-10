@@ -7,6 +7,7 @@ package com.psabackoffice.job1111.models.procedure;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
@@ -21,6 +22,9 @@ public class ClassicTrackerEquipUpdateResponseContent implements Serializable {
 
     @ColumnAlias("BidID")
     private Integer bidId;
+
+    @ColumnAlias("ProjectServicesRep")
+    private String projectServicesRep;
 
     @ColumnAlias("EWONumber")
     private Integer ewonumber;
@@ -37,11 +41,17 @@ public class ClassicTrackerEquipUpdateResponseContent implements Serializable {
     @ColumnAlias("TestPackageNumber")
     private String testPackageNumber;
 
+    @ColumnAlias("WorkPackage")
+    private String workPackage;
+
     @ColumnAlias("CostCode")
     private String costCode;
 
     @ColumnAlias("P6ID")
     private String p6id;
+
+    @ColumnAlias("P6Description")
+    private String p6description;
 
     @ColumnAlias("AssignedContractor")
     private String assignedContractor;
@@ -60,9 +70,6 @@ public class ClassicTrackerEquipUpdateResponseContent implements Serializable {
 
     @ColumnAlias("Elevation")
     private String elevation;
-
-    @ColumnAlias("P6Description")
-    private String p6description;
 
     @ColumnAlias("EngDrawingNumber")
     private String engDrawingNumber;
@@ -104,13 +111,13 @@ public class ClassicTrackerEquipUpdateResponseContent implements Serializable {
     private String quantityUnit;
 
     @ColumnAlias("EstimatedHours")
-    private Double estimatedHours;
+    private BigDecimal estimatedHours;
 
     @ColumnAlias("InstalledQuantity")
-    private Double installedQuantity;
+    private BigDecimal installedQuantity;
 
     @ColumnAlias("EarnedHours")
-    private Double earnedHours;
+    private BigDecimal earnedHours;
 
     @ColumnAlias("WBS1")
     private String wbs1;
@@ -161,6 +168,14 @@ public class ClassicTrackerEquipUpdateResponseContent implements Serializable {
         this.bidId = bidId;
     }
 
+    public String getProjectServicesRep() {
+        return this.projectServicesRep;
+    }
+
+    public void setProjectServicesRep(String projectServicesRep) {
+        this.projectServicesRep = projectServicesRep;
+    }
+
     public Integer getEwonumber() {
         return this.ewonumber;
     }
@@ -201,6 +216,14 @@ public class ClassicTrackerEquipUpdateResponseContent implements Serializable {
         this.testPackageNumber = testPackageNumber;
     }
 
+    public String getWorkPackage() {
+        return this.workPackage;
+    }
+
+    public void setWorkPackage(String workPackage) {
+        this.workPackage = workPackage;
+    }
+
     public String getCostCode() {
         return this.costCode;
     }
@@ -215,6 +238,14 @@ public class ClassicTrackerEquipUpdateResponseContent implements Serializable {
 
     public void setP6id(String p6id) {
         this.p6id = p6id;
+    }
+
+    public String getP6description() {
+        return this.p6description;
+    }
+
+    public void setP6description(String p6description) {
+        this.p6description = p6description;
     }
 
     public String getAssignedContractor() {
@@ -263,14 +294,6 @@ public class ClassicTrackerEquipUpdateResponseContent implements Serializable {
 
     public void setElevation(String elevation) {
         this.elevation = elevation;
-    }
-
-    public String getP6description() {
-        return this.p6description;
-    }
-
-    public void setP6description(String p6description) {
-        this.p6description = p6description;
     }
 
     public String getEngDrawingNumber() {
@@ -377,27 +400,27 @@ public class ClassicTrackerEquipUpdateResponseContent implements Serializable {
         this.quantityUnit = quantityUnit;
     }
 
-    public Double getEstimatedHours() {
+    public BigDecimal getEstimatedHours() {
         return this.estimatedHours;
     }
 
-    public void setEstimatedHours(Double estimatedHours) {
+    public void setEstimatedHours(BigDecimal estimatedHours) {
         this.estimatedHours = estimatedHours;
     }
 
-    public Double getInstalledQuantity() {
+    public BigDecimal getInstalledQuantity() {
         return this.installedQuantity;
     }
 
-    public void setInstalledQuantity(Double installedQuantity) {
+    public void setInstalledQuantity(BigDecimal installedQuantity) {
         this.installedQuantity = installedQuantity;
     }
 
-    public Double getEarnedHours() {
+    public BigDecimal getEarnedHours() {
         return this.earnedHours;
     }
 
-    public void setEarnedHours(Double earnedHours) {
+    public void setEarnedHours(BigDecimal earnedHours) {
         this.earnedHours = earnedHours;
     }
 
@@ -496,20 +519,22 @@ public class ClassicTrackerEquipUpdateResponseContent implements Serializable {
         final ClassicTrackerEquipUpdateResponseContent classicTrackerEquipUpdateResponseContent = (ClassicTrackerEquipUpdateResponseContent) o;
         return Objects.equals(getUid(), classicTrackerEquipUpdateResponseContent.getUid()) &&
                 Objects.equals(getBidId(), classicTrackerEquipUpdateResponseContent.getBidId()) &&
+                Objects.equals(getProjectServicesRep(), classicTrackerEquipUpdateResponseContent.getProjectServicesRep()) &&
                 Objects.equals(getEwonumber(), classicTrackerEquipUpdateResponseContent.getEwonumber()) &&
                 Objects.equals(getScope(), classicTrackerEquipUpdateResponseContent.getScope()) &&
                 Objects.equals(getPhase(), classicTrackerEquipUpdateResponseContent.getPhase()) &&
                 Objects.equals(getStage(), classicTrackerEquipUpdateResponseContent.getStage()) &&
                 Objects.equals(getTestPackageNumber(), classicTrackerEquipUpdateResponseContent.getTestPackageNumber()) &&
+                Objects.equals(getWorkPackage(), classicTrackerEquipUpdateResponseContent.getWorkPackage()) &&
                 Objects.equals(getCostCode(), classicTrackerEquipUpdateResponseContent.getCostCode()) &&
                 Objects.equals(getP6id(), classicTrackerEquipUpdateResponseContent.getP6id()) &&
+                Objects.equals(getP6description(), classicTrackerEquipUpdateResponseContent.getP6description()) &&
                 Objects.equals(getAssignedContractor(), classicTrackerEquipUpdateResponseContent.getAssignedContractor()) &&
                 Objects.equals(getArea(), classicTrackerEquipUpdateResponseContent.getArea()) &&
                 Objects.equals(getLocation(), classicTrackerEquipUpdateResponseContent.getLocation()) &&
                 Objects.equals(getStructure(), classicTrackerEquipUpdateResponseContent.getStructure()) &&
                 Objects.equals(getCu(), classicTrackerEquipUpdateResponseContent.getCu()) &&
                 Objects.equals(getElevation(), classicTrackerEquipUpdateResponseContent.getElevation()) &&
-                Objects.equals(getP6description(), classicTrackerEquipUpdateResponseContent.getP6description()) &&
                 Objects.equals(getEngDrawingNumber(), classicTrackerEquipUpdateResponseContent.getEngDrawingNumber()) &&
                 Objects.equals(getSheetNumber(), classicTrackerEquipUpdateResponseContent.getSheetNumber()) &&
                 Objects.equals(getDrawingRev(), classicTrackerEquipUpdateResponseContent.getDrawingRev()) &&
@@ -543,20 +568,22 @@ public class ClassicTrackerEquipUpdateResponseContent implements Serializable {
     public int hashCode() {
         return Objects.hash(getUid(),
                 getBidId(),
+                getProjectServicesRep(),
                 getEwonumber(),
                 getScope(),
                 getPhase(),
                 getStage(),
                 getTestPackageNumber(),
+                getWorkPackage(),
                 getCostCode(),
                 getP6id(),
+                getP6description(),
                 getAssignedContractor(),
                 getArea(),
                 getLocation(),
                 getStructure(),
                 getCu(),
                 getElevation(),
-                getP6description(),
                 getEngDrawingNumber(),
                 getSheetNumber(),
                 getDrawingRev(),

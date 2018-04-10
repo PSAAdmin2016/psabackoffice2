@@ -17,17 +17,17 @@ public class CreateManualActivityCivilResponse implements Serializable {
 
     @JsonProperty("ReturnStatus")
     @ColumnAlias("ReturnStatus")
-    private Integer returnStatus;
+    private String returnStatus;
 
     @JsonProperty("ErrorText")
     @ColumnAlias("ErrorText")
     private String errorText;
 
-    public Integer getReturnStatus() {
+    public String getReturnStatus() {
         return this.returnStatus;
     }
 
-    public void setReturnStatus(Integer returnStatus) {
+    public void setReturnStatus(String returnStatus) {
         this.returnStatus = returnStatus;
     }
 

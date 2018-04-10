@@ -27,17 +27,20 @@ public class UpdatePipeMiscRequest implements Serializable {
     private String sheetNumber;
 
     @JsonProperty("Quantity")
-    private Integer quantity;
+    @NotNull
+    private BigDecimal quantity;
 
     @JsonProperty("Rework")
+    @NotNull
     private Integer rework;
 
     @JsonProperty("Notes")
+    @NotNull
     private String notes;
 
-    @JsonProperty("FieldActivityID")
+    @JsonProperty("ActivityID")
     @NotNull
-    private Integer fieldActivityId;
+    private Integer activityId;
 
     public String getDrawingNumber() {
         return this.drawingNumber;
@@ -63,11 +66,11 @@ public class UpdatePipeMiscRequest implements Serializable {
         this.sheetNumber = sheetNumber;
     }
 
-    public Integer getQuantity() {
+    public BigDecimal getQuantity() {
         return this.quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
     }
 
@@ -87,12 +90,12 @@ public class UpdatePipeMiscRequest implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getFieldActivityId() {
-        return this.fieldActivityId;
+    public Integer getActivityId() {
+        return this.activityId;
     }
 
-    public void setFieldActivityId(Integer fieldActivityId) {
-        this.fieldActivityId = fieldActivityId;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
     @Override
@@ -106,7 +109,7 @@ public class UpdatePipeMiscRequest implements Serializable {
                 Objects.equals(getQuantity(), updatePipeMiscRequest.getQuantity()) &&
                 Objects.equals(getRework(), updatePipeMiscRequest.getRework()) &&
                 Objects.equals(getNotes(), updatePipeMiscRequest.getNotes()) &&
-                Objects.equals(getFieldActivityId(), updatePipeMiscRequest.getFieldActivityId());
+                Objects.equals(getActivityId(), updatePipeMiscRequest.getActivityId());
     }
 
     @Override
@@ -117,6 +120,6 @@ public class UpdatePipeMiscRequest implements Serializable {
                 getQuantity(),
                 getRework(),
                 getNotes(),
-                getFieldActivityId());
+                getActivityId());
     }
 }
