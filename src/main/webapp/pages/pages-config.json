@@ -91,15 +91,11 @@
   "type" : "PARTIAL",
   "params" : [ ]
 }, {
-  "name" : "PartFAPipeBoltUp",
+  "name" : "PartFAPipeConnection",
   "type" : "PARTIAL",
   "params" : [ ]
 }, {
   "name" : "PartFAPipeDemo",
-  "type" : "PARTIAL",
-  "params" : [ ]
-}, {
-  "name" : "PartFAPipeEWO",
   "type" : "PARTIAL",
   "params" : [ ]
 }, {
@@ -108,6 +104,10 @@
   "params" : [ ]
 }, {
   "name" : "PartFAPipeMisc",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
+  "name" : "PartFAPipeStandard",
   "type" : "PARTIAL",
   "params" : [ ]
 }, {

@@ -15,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -37,6 +38,7 @@ public class SteelDemo implements Serializable {
     private short rev;
     private Timestamp timeStamp;
     private SubmissionActivityStatus submissionActivityStatus;
+    private SteelTrackerDetails steelTrackerDetails;
 
     @Id
     @Column(name = "`ActivityID`", nullable = false, scale = 0, precision = 10)
@@ -124,6 +126,21 @@ public class SteelDemo implements Serializable {
         }
 
         this.submissionActivityStatus = submissionActivityStatus;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`DemoBidID`", referencedColumnName = "`BidID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`SteelDemo_BidID_to_STDBidID`"))
+    @Fetch(FetchMode.JOIN)
+    public SteelTrackerDetails getSteelTrackerDetails() {
+        return this.steelTrackerDetails;
+    }
+
+    public void setSteelTrackerDetails(SteelTrackerDetails steelTrackerDetails) {
+        if(steelTrackerDetails != null) {
+            this.demoBidId = steelTrackerDetails.getBidId();
+        }
+
+        this.steelTrackerDetails = steelTrackerDetails;
     }
 
     @Override

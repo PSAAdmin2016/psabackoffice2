@@ -8,11 +8,11 @@
                             <wm-label caption="Pipe Erection" show="true" fontweight="bold" fontsize="13" name="label1"></wm-label>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn9">
-                            <wm-checkbox caption="Rework" class="checkbox-custom" hint="Activity can NOT be accepted if it is Rework." disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionRework"
+                            <wm-checkbox caption="Rework" class="checkbox-custom" hint="Activity can NOT be accepted if it is Rework." disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionRework"
                                 checkedvalue="1" uncheckedvalue="0" readonlygrid="true" show="true" padding="unset unset unset 0px" margin="0px unset unset unset" name="checkboxErectionRework"></wm-checkbox>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn25" horizontalalign="center">
-                            <wm-checkbox caption="On Coordinates" class="checkbox-custom" checkedvalue="1" uncheckedvalue="0" readonlygrid="true" datavalue="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionOnCords" padding="unset unset unset 0px"
+                            <wm-checkbox caption="On Coordinates" class="checkbox-custom" checkedvalue="1" uncheckedvalue="0" readonlygrid="true" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionOnCords" padding="unset unset unset 0px"
                                 name="checkboxErectionOnCoords" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false"></wm-checkbox>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="1" name="gridcolumn26_1"></wm-gridcolumn>
@@ -22,8 +22,8 @@
                             <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite1">
                                 <wm-label class="col-md-3 control-label" caption="Spool 1" name="label2"></wm-label>
                                 <wm-container class="col-md-9" name="container1">
-                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool1" readonly="false" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" type="text"
-                                        name="textErectionSpool1" placeholder="Enter Spool Number"></wm-text>
+                                    <wm-text datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool1" readonly="false" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" type="text" name="textErectionSpool1"
+                                        placeholder="Enter Spool Number"></wm-text>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
@@ -31,8 +31,8 @@
                             <wm-composite captionposition="top" name="composite2">
                                 <wm-label class="col-md-3 control-label" caption="Length" name="label3"></wm-label>
                                 <wm-container class="col-md-9" name="container2">
-                                    <wm-text type="number" datavalue="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionLengthSpool1" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textErectionLength1"
-                                        placeholder="Enter Length" hint="Length to the nearest foot" step="1"></wm-text>
+                                    <wm-text type="number" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionLengthSpool1" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textErectionLength1" placeholder="Enter Length"
+                                        hint="Length to the nearest foot" step="1"></wm-text>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
@@ -41,7 +41,7 @@
                             <wm-composite captionposition="top" name="composite13">
                                 <wm-label class="col-md-3 control-label" caption="Size" name="label14"></wm-label>
                                 <wm-container class="col-md-9" name="container13">
-                                    <wm-select datavalue="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionPipeSize" dataset="bind:Variables.PSARefPipeSizesData.dataSet" datafield="value" displayfield="label" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false"
+                                    <wm-select datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionPipeSize" dataset="bind:Variables.PSARefPipeSizesData.dataSet" datafield="value" displayfield="label" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false"
                                         name="selectErectionPipeSize"></wm-select>
                                 </wm-container>
                             </wm-composite>
@@ -50,99 +50,99 @@
                     </wm-gridrow>
                     <wm-gridrow paddingunit="%" name="gridrow7">
                         <wm-gridcolumn columnwidth="3" name="gridcolumn12">
-                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool2 != '' &amp;&amp; $parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool2 != NULL"
+                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool2 != '' &amp;&amp; $parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool2 != NULL"
                                 name="composite3">
                                 <wm-label class="col-md-3 control-label" caption="Spool 2" name="label4"></wm-label>
                                 <wm-container class="col-md-9" name="container3">
-                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool2" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textErectionSpool2" placeholder="Enter Spool Number"></wm-text>
+                                    <wm-text datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool2" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textErectionSpool2" placeholder="Enter Spool Number"></wm-text>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="2" name="gridcolumn13">
-                            <wm-composite captionposition="top" show="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool2 != '' &amp;&amp; $parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool2 != NULL" name="composite4">
+                            <wm-composite captionposition="top" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool2 != '' &amp;&amp; $parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool2 != NULL" name="composite4">
                                 <wm-label class="col-md-3 control-label" caption="Length" name="label5"></wm-label>
                                 <wm-container class="col-md-9" name="container4">
-                                    <wm-text type="number" datavalue="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionLengthSpool2" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textErectionLength2"
-                                        placeholder="Enter Length" hint="Length to the nearest foot" step="1"></wm-text>
+                                    <wm-text type="number" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionLengthSpool2" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textErectionLength2" placeholder="Enter Length"
+                                        hint="Length to the nearest foot" step="1"></wm-text>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow paddingunit="%" name="gridrow8">
                         <wm-gridcolumn columnwidth="3" name="gridcolumn14">
-                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool3 != '' &amp;&amp; $parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool3 != NULL"
+                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool3 != '' &amp;&amp; $parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool3 != NULL"
                                 name="composite5">
                                 <wm-label class="col-md-3 control-label" caption="Spool 3" name="label6"></wm-label>
                                 <wm-container class="col-md-9" name="container5">
-                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool3" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" name="textErectionSpool3" placeholder="Enter Spool Number"></wm-text>
+                                    <wm-text datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool3" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" name="textErectionSpool3" placeholder="Enter Spool Number"></wm-text>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="2" name="gridcolumn15">
-                            <wm-composite captionposition="top" show="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool3 != '' &amp;&amp; $parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool3 != NULL" name="composite6">
+                            <wm-composite captionposition="top" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool3 != '' &amp;&amp; $parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool3 != NULL" name="composite6">
                                 <wm-label class="col-md-3 control-label" caption="Length" name="label7"></wm-label>
                                 <wm-container class="col-md-9" name="container6">
-                                    <wm-text type="number" datavalue="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionLengthSpool3" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textErectionLength3"
-                                        placeholder="Enter Length" hint="Length to the nearest foot" step="1"></wm-text>
+                                    <wm-text type="number" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionLengthSpool3" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textErectionLength3" placeholder="Enter Length"
+                                        hint="Length to the nearest foot" step="1"></wm-text>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow paddingunit="%" name="gridrow9">
                         <wm-gridcolumn columnwidth="3" name="gridcolumn16">
-                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool4 != '' &amp;&amp; $parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool4 != NULL"
+                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool4 != '' &amp;&amp; $parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool4 != NULL"
                                 name="composite7">
                                 <wm-label class="col-md-3 control-label" caption="Spool 4" name="label8"></wm-label>
                                 <wm-container class="col-md-9" name="container7">
-                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool4" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textErectionSpool4" placeholder="Enter Spool Number"></wm-text>
+                                    <wm-text datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool4" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textErectionSpool4" placeholder="Enter Spool Number"></wm-text>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="2" name="gridcolumn17">
-                            <wm-composite captionposition="top" show="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool4 != '' &amp;&amp; $parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool4 != NULL" name="composite8">
+                            <wm-composite captionposition="top" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool4 != '' &amp;&amp; $parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool4 != NULL" name="composite8">
                                 <wm-label class="col-md-3 control-label" caption="Length" name="label9"></wm-label>
                                 <wm-container class="col-md-9" name="container8">
-                                    <wm-text type="number" datavalue="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionLengthSpool4" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textErectionLength4"
-                                        placeholder="Enter Length" hint="Length to the nearest foot" step="1"></wm-text>
+                                    <wm-text type="number" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionLengthSpool4" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textErectionLength4" placeholder="Enter Length"
+                                        hint="Length to the nearest foot" step="1"></wm-text>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow paddingunit="%" name="gridrow10">
                         <wm-gridcolumn columnwidth="3" name="gridcolumn18">
-                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool5 != '' &amp;&amp; $parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool5 != NULL"
+                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool5 != '' &amp;&amp; $parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool5 != NULL"
                                 name="composite9">
                                 <wm-label class="col-md-3 control-label" caption="Spool 5" name="label10"></wm-label>
                                 <wm-container class="col-md-9" name="container9">
-                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool5" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textErectionSpool5" placeholder="Enter Spool Number"></wm-text>
+                                    <wm-text datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool5" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textErectionSpool5" placeholder="Enter Spool Number"></wm-text>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="2" name="gridcolumn19">
-                            <wm-composite captionposition="top" show="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool5 != '' &amp;&amp; $parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool5 != NULL" name="composite10">
+                            <wm-composite captionposition="top" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool5 != '' &amp;&amp; $parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool5 != NULL" name="composite10">
                                 <wm-label class="col-md-3 control-label" caption="Length" name="label11"></wm-label>
                                 <wm-container class="col-md-9" name="container10">
-                                    <wm-text type="number" datavalue="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionLengthSpool5" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textErectionLength5"
-                                        placeholder="Enter Length" hint="Length to the nearest foot" step="1"></wm-text>
+                                    <wm-text type="number" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionLengthSpool5" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textErectionLength5" placeholder="Enter Length"
+                                        hint="Length to the nearest foot" step="1"></wm-text>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow paddingunit="%" name="gridrow11">
                         <wm-gridcolumn columnwidth="3" name="gridcolumn20">
-                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool6 != '' &amp;&amp; $parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool6 != NULL"
+                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool6 != '' &amp;&amp; $parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool6 != NULL"
                                 name="composite11">
                                 <wm-label class="col-md-3 control-label" caption="Spool 6" name="label12"></wm-label>
                                 <wm-container class="col-md-9" name="container11">
-                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool6" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" name="textErectionSpool6" placeholder="Enter Spool Number"></wm-text>
+                                    <wm-text datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool6" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" name="textErectionSpool6" placeholder="Enter Spool Number"></wm-text>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="2" name="gridcolumn21">
-                            <wm-composite captionposition="top" show="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool6 != '' &amp;&amp; $parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSpool6 != NULL" name="composite12">
+                            <wm-composite captionposition="top" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool6 != '' &amp;&amp; $parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSpool6 != NULL" name="composite12">
                                 <wm-label class="col-md-3 control-label" caption="Length" name="label13"></wm-label>
                                 <wm-container class="col-md-9" name="container12">
-                                    <wm-text type="number" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionLengthSpool6" readonlygrid="true" name="textErectionLength6"
+                                    <wm-text type="number" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionLengthSpool6" readonlygrid="true" name="textErectionLength6"
                                         placeholder="Enter Length" hint="Length to the nearest foot" step="1"></wm-text>
                                 </wm-container>
                             </wm-composite>
@@ -174,7 +174,7 @@ Widgets.textErectionLength6.datavalue" placeholder=""></wm-text>
                             <wm-composite captionposition="top" name="composite16">
                                 <wm-label class="col-md-3 control-label" caption="Drawing Number" readonlygrid="true" name="label16"></wm-label>
                                 <wm-container class="col-md-9" width="100%" name="container15">
-                                    <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionDrawingNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" name="textErectionDrawing"
+                                    <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionDrawingNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" name="textErectionDrawing"
                                         placeholder="Enter Drawing Number"></wm-text>
                                 </wm-container>
                             </wm-composite>
@@ -183,7 +183,7 @@ Widgets.textErectionLength6.datavalue" placeholder=""></wm-text>
                             <wm-composite captionposition="top" name="composite17">
                                 <wm-label class="col-md-3 control-label" caption="Sheet" name="label17"></wm-label>
                                 <wm-container class="col-md-9" name="container16">
-                                    <wm-text datavalue="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionSheetNumber" width="70%" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textErectionSheet" placeholder="Enter Sheet Number"></wm-text>
+                                    <wm-text datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSheetNumber" width="70%" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textErectionSheet" placeholder="Enter Sheet Number"></wm-text>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
@@ -193,7 +193,7 @@ Widgets.textErectionLength6.datavalue" placeholder=""></wm-text>
                             <wm-composite captionposition="top" name="composite18">
                                 <wm-label class="col-md-3 control-label" caption="Line Number" name="label18"></wm-label>
                                 <wm-container class="col-md-9" width="100%" name="container17">
-                                    <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionLineNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textErectionLine" placeholder="Enter Line Number"></wm-text>
+                                    <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionLineNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textErectionLine" placeholder="Enter Line Number"></wm-text>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
@@ -204,8 +204,7 @@ Widgets.textErectionLength6.datavalue" placeholder=""></wm-text>
                             <wm-composite captionposition="top" name="composite19">
                                 <wm-label class="col-md-3 control-label" caption="Notes" name="label19"></wm-label>
                                 <wm-container class="col-md-9" name="container18">
-                                    <wm-textarea datavalue="bind:$parent.Variables.liveGetPipeErection.dataSet.data[$i].erectionNotes" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" name="textareaErectionNotes"
-                                        placeholder="Input Notes Here"></wm-textarea>
+                                    <wm-textarea datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionNotes" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" name="textareaErectionNotes" placeholder="Input Notes Here"></wm-textarea>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>

@@ -32,6 +32,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
+import com.psabackoffice.job1111.PipeFa;
 import com.psabackoffice.job1111.PipeTrackerDetails;
 import com.psabackoffice.job1111.service.PipeTrackerDetailsService;
 
@@ -150,6 +151,14 @@ public class PipeTrackerDetailsController {
         return pipeTrackerDetailsService.getAggregatedValues(aggregationInfo, pageable);
     }
 
+    @RequestMapping(value="/{id:.+}/pipeFas", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the pipeFas instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<PipeFa> findAssociatedPipeFas(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated pipeFas");
+        return pipeTrackerDetailsService.findAssociatedPipeFas(id, pageable);
+    }
 
     /**
 	 * This setter method should only be used by unit tests

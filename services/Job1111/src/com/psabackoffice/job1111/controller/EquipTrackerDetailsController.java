@@ -32,6 +32,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
+import com.psabackoffice.job1111.EquipFa;
 import com.psabackoffice.job1111.EquipTrackerDetails;
 import com.psabackoffice.job1111.service.EquipTrackerDetailsService;
 
@@ -150,6 +151,14 @@ public class EquipTrackerDetailsController {
         return equipTrackerDetailsService.getAggregatedValues(aggregationInfo, pageable);
     }
 
+    @RequestMapping(value="/{id:.+}/equipFas", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the equipFas instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<EquipFa> findAssociatedEquipFas(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated equipFas");
+        return equipTrackerDetailsService.findAssociatedEquipFas(id, pageable);
+    }
 
     /**
 	 * This setter method should only be used by unit tests

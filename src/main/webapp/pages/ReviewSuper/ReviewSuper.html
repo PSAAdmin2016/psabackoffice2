@@ -35,7 +35,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                 <wm-table shownavigation="false" gridfirstrowselect="true" dataset="bind:Variables.serviceGetFAs.dataSet" on-select="gridSuperReviewActivitiesSelect($event, $scope, $rowData)" class="panel-default" height="250px" name="gridSuperReviewActivities"
                                     filtermode="multicolumn" navigation="None" spacing="condensed" on-datarender="gridSuperReviewActivitiesDatarender($scope, $data)">
                                     <wm-table-column binding="activityId" caption="Field Activity ID" width="10%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="number"></wm-table-column>
-                                    <wm-table-column binding="status" caption="Status" width="10%" col-ng-class="{'yellow':row.status == 'Progress Returned', 'orange':row.status == 'Supervisor Modified' || row.Status == 'Progress Returned Mod', 'blue':row.status == 'Returned To List'}"
+                                    <wm-table-column binding="status" caption="Status" width="12%" col-ng-class="{'yellow':row.status == 'Progress Returned', 'orange':row.status == 'Supervisor Modified' || row.Status == 'Progress Returned Mod', 'blue':row.status == 'Returned To List'}"
                                         edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
                                     <wm-table-column binding="craft" caption="Craft" width="10%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
                                     <wm-table-column binding="activityTypeName" caption="Activity Type" width="10%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
@@ -157,7 +157,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                     <wm-composite padding="unset unset unset 2%" name="composite7">
                                         <wm-label class="col-md-3" caption="Submission Started" name="label9"></wm-label>
                                         <wm-container class="col-md-9" name="container7">
-                                            <wm-datetime datavalue="bind:Variables.liveGetSubsDetails.firstRecord.startTime" width="60%" readonly="true" readonlygrid="true" name="datetime1" showbuttonbar="false"></wm-datetime>
+                                            <wm-datetime datavalue="bind:Variables.liveGetActivityDetails.firstRecord.subsDetails.startTime" width="60%" readonly="true" readonlygrid="true" name="datetime1" showbuttonbar="false"></wm-datetime>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -167,7 +167,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                     <wm-composite padding="unset unset unset 2%" name="composite8">
                                         <wm-label class="col-md-3" caption="Submission Completed" name="label10"></wm-label>
                                         <wm-container class="col-md-9" name="container8">
-                                            <wm-datetime datavalue="bind:Variables.liveGetSubsDetails.firstRecord.completeTime" width="60%" readonly="true" name="datetime2" showbuttonbar="false"></wm-datetime>
+                                            <wm-datetime datavalue="bind:Variables.liveGetActivityDetails.firstRecord.subsDetails.completeTime" width="60%" readonly="true" name="datetime2" showbuttonbar="false"></wm-datetime>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -177,7 +177,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                     <wm-composite padding="unset unset unset 2%" name="composite9">
                                         <wm-label class="col-md-3" caption="Submission Recieved" name="label11"></wm-label>
                                         <wm-container class="col-md-9" name="container9">
-                                            <wm-datetime datavalue="bind:Variables.liveGetSubsDetails.firstRecord.receivedTime" width="60%" readonly="true" name="datetime3" outputformat="timestamp" showbuttonbar="false"></wm-datetime>
+                                            <wm-datetime datavalue="bind:Variables.liveGetActivityDetails.firstRecord.subsDetails.receivedTime" width="60%" readonly="true" name="datetime3" outputformat="timestamp" showbuttonbar="false"></wm-datetime>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>

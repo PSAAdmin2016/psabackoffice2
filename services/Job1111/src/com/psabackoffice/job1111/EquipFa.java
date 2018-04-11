@@ -15,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -40,6 +41,7 @@ public class EquipFa implements Serializable {
     private Short fatimeInForm;
     private short rev;
     private Timestamp timeStamp;
+    private EquipTrackerDetails equipTrackerDetails;
     private SubmissionActivityStatus submissionActivityStatus;
 
     @Id
@@ -149,6 +151,21 @@ public class EquipFa implements Serializable {
 
     public void setTimeStamp(Timestamp timeStamp) {
         this.timeStamp = timeStamp;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`FABidID`", referencedColumnName = "`BidID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`EquipFA_BidID_to_ETDBidID`"))
+    @Fetch(FetchMode.JOIN)
+    public EquipTrackerDetails getEquipTrackerDetails() {
+        return this.equipTrackerDetails;
+    }
+
+    public void setEquipTrackerDetails(EquipTrackerDetails equipTrackerDetails) {
+        if(equipTrackerDetails != null) {
+            this.fabidId = equipTrackerDetails.getBidId();
+        }
+
+        this.equipTrackerDetails = equipTrackerDetails;
     }
 
     @OneToOne(fetch = FetchType.EAGER)

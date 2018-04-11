@@ -18,6 +18,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.psabackoffice.job1111.EquipFa;
 import com.psabackoffice.job1111.EquipTrackerDetails;
 
 /**
@@ -149,6 +150,17 @@ public interface EquipTrackerDetailsService {
 	 */
 	Page<Map<String, Object>> getAggregatedValues(AggregationInfo aggregationInfo, Pageable pageable);
 
+    /*
+     * Returns the associated equipFas for given EquipTrackerDetails id.
+     *
+     * @param uid value of uid; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated EquipFa instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<EquipFa> findAssociatedEquipFas(Integer uid, Pageable pageable);
 
 }
 

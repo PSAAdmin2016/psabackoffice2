@@ -1,0 +1,87 @@
+<wm-partial data-ng-controller="PartFAPipeStandardPageController" name="partial1">
+    <wm-layoutgrid name="layoutgrid1">
+        <wm-gridrow name="gridrow1">
+            <wm-gridcolumn columnwidth="6" name="gridcolumn1">
+                <wm-layoutgrid name="layoutgrid3">
+                    <wm-gridrow name="gridrow4">
+                        <wm-gridcolumn columnwidth="3" name="gridcolumn6">
+                            <wm-label caption="Cut / Prep" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 23" fontweight="bold" fontsize="13" name="label1" width="100%" deferload="true"></wm-label>
+                            <wm-label caption="Valve" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 31" fontweight="bold" fontsize="13" width="100%" deferload="true" name="label7"></wm-label>
+                            <wm-label caption="Plug" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 32" fontweight="bold" fontsize="13" width="100%" deferload="true" name="label8_1"></wm-label>
+                            <wm-label caption="Blind" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 33" fontweight="bold" fontsize="13" width="100%" deferload="true" name="label9_1"></wm-label>
+                            <wm-label caption="Support" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 38" fontweight="bold" fontsize="13" width="100%" deferload="true" name="label10_1"></wm-label>
+                            <wm-label caption="Other Trim" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 39" fontweight="bold" fontsize="13" width="100%" deferload="true" name="label11_1"></wm-label>
+                            <wm-label caption="Demo - Pipe Removal" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 51" fontweight="bold" fontsize="13" width="100%" deferload="true" name="label12"></wm-label>
+                            <wm-label caption="Demo - UnBolt" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 52" fontweight="bold" fontsize="13" width="100%" deferload="true" name="label13"></wm-label>
+                            <wm-label caption="Demo - Pipe Cut" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 53" fontweight="bold" fontsize="13" width="100%" deferload="true" name="label14"></wm-label>
+                            <wm-label caption="Pipe Misc Field Activity" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 90" fontweight="bold" fontsize="13" width="100%" deferload="true" name="label15"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn7">
+                            <wm-checkbox caption="Rework" hint="Activity can NOT be accepted if it is Rework." disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.faRework"
+                                checkedvalue="1" uncheckedvalue="0" readonlygrid="true" show="true" padding="unset unset unset 0px" margin="0px unset unset unset" width="100%" name="checkboxBoltUpRework" class="checkbox-custom"></wm-checkbox>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow9_1">
+                        <wm-gridcolumn columnwidth="3" name="gridcolumn17_1">
+                            <wm-composite captionposition="top" name="composite3">
+                                <wm-label class="col-md-3 control-label" caption="Size" name="label5"></wm-label>
+                                <wm-container class="col-md-9" name="container3">
+                                    <wm-select datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.pipeTrackerDetails.size" dataset="bind:Variables.PSARefPipeSizesData.dataSet" datafield="value" displayfield="label" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false"
+                                        name="selectBoltUpSize"></wm-select>
+                                </wm-container>
+                            </wm-composite>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="9" name="gridcolumn18_1"></wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
+            </wm-gridcolumn>
+            <wm-gridcolumn columnwidth="6" name="gridcolumn2">
+                <wm-layoutgrid name="layoutgrid4">
+                    <wm-gridrow name="gridrow9">
+                        <wm-gridcolumn columnwidth="8" name="gridcolumn15">
+                            <wm-composite captionposition="top" name="composite6">
+                                <wm-label class="col-md-3 control-label" caption="Drawing Number" readonlygrid="true" name="label8"></wm-label>
+                                <wm-container class="col-md-9" width="100%" name="container6">
+                                    <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.pipeTrackerDetails.engDrawingNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true"
+                                        name="textBoltUpDrawing" placeholder="Enter Drawing Number"></wm-text>
+                                </wm-container>
+                            </wm-composite>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="3" name="gridcolumn16">
+                            <wm-composite captionposition="top" name="composite7">
+                                <wm-label class="col-md-3 control-label" caption="Sheet" name="label9"></wm-label>
+                                <wm-container class="col-md-9" name="container7">
+                                    <wm-text datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.pipeTrackerDetails.sheetNumber" width="70%" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" type="number"
+                                        minvalue="1" maxvalue="99" step="1" name="textBoltUpSheet" placeholder="Enter Sheet Number"></wm-text>
+                                </wm-container>
+                            </wm-composite>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow10">
+                        <wm-gridcolumn columnwidth="8" name="gridcolumn17">
+                            <wm-composite captionposition="top" name="composite8">
+                                <wm-label class="col-md-3 control-label" caption="Line Number" readonlygrid="true" name="label10"></wm-label>
+                                <wm-container class="col-md-9" width="100%" name="container8">
+                                    <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.pipeTrackerDetails.lineNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true"
+                                        name="textBoltUpLine" placeholder="Enter Line Number"></wm-text>
+                                </wm-container>
+                            </wm-composite>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="3" horizontalalign="left" name="gridcolumn18"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow11">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn19">
+                            <wm-composite captionposition="top" name="composite9">
+                                <wm-label class="col-md-3 control-label" caption="Notes" name="label11"></wm-label>
+                                <wm-container class="col-md-9" name="container9">
+                                    <wm-textarea datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.faNotes" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textareaBoltUpNotes"
+                                        placeholder="Input notes here"></wm-textarea>
+                                </wm-container>
+                            </wm-composite>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
+            </wm-gridcolumn>
+        </wm-gridrow>
+    </wm-layoutgrid>
+</wm-partial>

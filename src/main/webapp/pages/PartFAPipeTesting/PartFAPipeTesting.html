@@ -11,7 +11,7 @@
                                         <wm-label caption="Testing" show="true" fontweight="bold" readonlygrid="true" fontsize="13" name="label1"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn10_1" horizontalalign="center">
-                                        <wm-checkbox caption="Rework" class="checkbox-custom" hint="Activity can NOT be accepted if it is Rework." disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetPipeTesting.dataSet.data[$i].testingRework"
+                                        <wm-checkbox caption="Rework" class="checkbox-custom" hint="Activity can NOT be accepted if it is Rework." disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeTesting.testingRework"
                                             checkedvalue="1" uncheckedvalue="0" readonlygrid="true" show="true" padding="unset unset unset 0px" name="checkboxTestingRework"></wm-checkbox>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="5" name="gridcolumn13"></wm-gridcolumn>
@@ -24,8 +24,8 @@
                             <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="true" name="composite1">
                                 <wm-label class="col-md-3 control-label" caption="Test Package Number" name="label2"></wm-label>
                                 <wm-container class="col-md-9" name="container1">
-                                    <wm-text disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" width="30%" type="text" minvalue="1" maxvalue="32700" datavalue="bind:$parent.Variables.liveGetPipeTesting.dataSet.data[$i].testingTestPackageNumber"
-                                        name="textTestingTestPackageNumber" placeholder="Enter test package number"></wm-text>
+                                    <wm-text disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" width="30%" type="text" minvalue="1" maxvalue="32700" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeTesting.testingTestPackageNumber
+" name="textTestingTestPackageNumber" placeholder="Enter test package number"></wm-text>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
@@ -41,7 +41,7 @@
                     </wm-gridrow>
                     <wm-gridrow name="gridrow8">
                         <wm-gridcolumn columnwidth="12" name="gridcolumn10">
-                            <wm-table readonlygrid="true" title="" dataset="bind:$parent.Variables.serviceGetDrawingsByTestPackagePipe.dataSet" navigation="None" height="150px" name="gridTestPackageDrawings" spacing="condensed">
+                            <wm-table readonlygrid="true" title="" dataset="bind:Variables.serviceGetDrawingsByTestPackage.dataSet" navigation="None" height="150px" name="gridTestPackageDrawings" spacing="condensed">
                                 <wm-table-column binding="EngDrawingNumber" caption="Drawing" backgroundcolor="" textcolor="" readonly="true" col-class="" col-ng-class="" accessroles="" pcdisplay="true" mobiledisplay="true"></wm-table-column>
                                 <wm-table-column binding="LineNumber" caption="Line" backgroundcolor="" textcolor="" readonly="true" col-class="" col-ng-class="" accessroles="" pcdisplay="true" mobiledisplay="true"></wm-table-column>
                                 <wm-table-column binding="SheetNumber" caption="Sheet" width="10%" backgroundcolor="" textcolor="" readonly="true" col-class="" col-ng-class="" accessroles="" pcdisplay="true" mobiledisplay="true"></wm-table-column>
@@ -53,8 +53,7 @@
                             <wm-composite captionposition="top" name="composite2">
                                 <wm-label class="col-md-3 control-label" caption="Notes" name="label4"></wm-label>
                                 <wm-container class="col-md-9" name="container3">
-                                    <wm-textarea datavalue="bind:$parent.Variables.liveGetPipeTesting.dataSet.data[$i].testingNotes" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textareaTestingNotes"
-                                        placeholder="Input Notes here"></wm-textarea>
+                                    <wm-textarea datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeTesting.testingNotes" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textareaTestingNotes" placeholder="Input Notes here"></wm-textarea>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>

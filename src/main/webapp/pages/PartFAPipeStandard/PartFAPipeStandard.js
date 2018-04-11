@@ -1,4 +1,4 @@
-Application.$controller("PartFAPipeEWOPageController", ["$scope", function ($scope) {
+Application.$controller("PartFAPipeStandardPageController", ["$scope", function ($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */

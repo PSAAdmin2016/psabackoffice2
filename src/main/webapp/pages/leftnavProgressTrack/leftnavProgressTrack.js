@@ -19,12 +19,12 @@ Application.$controller("leftnavProgressTrackPageController", ["$scope", functio
 
 
     $scope.anchor1Click = function($event, $isolateScope) {
-        $scope.savePageSettings();
+        //$scope.savePageSettings();
     };
 
 
     $scope.anchor2Click = function($event, $isolateScope) {
-        $scope.savePageSettings();
+        //$scope.savePageSettings();
     };
 
 }]);
