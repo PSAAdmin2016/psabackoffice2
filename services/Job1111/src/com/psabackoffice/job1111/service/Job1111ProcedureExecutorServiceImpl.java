@@ -90,11 +90,12 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public LockSsactivityResponse executeLockSSActivity(Integer userId, Integer fieldActivityId) {
-        Map params = new HashMap(4);
+    public LockSsactivityResponse executeLockSSActivity(Integer runMode, Integer userId, Integer activityId) {
+        Map params = new HashMap(5);
 
+        params.put("RunMode", runMode);
         params.put("UserID", userId);
-        params.put("FieldActivityID", fieldActivityId);
+        params.put("ActivityID", activityId);
 
         return procedureExecutor.executeNamedProcedure("LockSSActivity", params, LockSsactivityResponse.class);
     }

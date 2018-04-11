@@ -7,7 +7,6 @@ package com.psabackoffice.job1111.models.procedure;
 
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,10 +15,6 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 public class LockSsactivityResponse implements Serializable {
 
 
-    @JsonProperty("content")
-    @ColumnAlias("content")
-    private List<LockSsactivityResponseContent> content;
-
     @JsonProperty("ReturnStatus")
     @ColumnAlias("ReturnStatus")
     private Boolean returnStatus;
@@ -27,14 +22,6 @@ public class LockSsactivityResponse implements Serializable {
     @JsonProperty("ErrorText")
     @ColumnAlias("ErrorText")
     private String errorText;
-
-    public List<LockSsactivityResponseContent> getContent() {
-        return this.content;
-    }
-
-    public void setContent(List<LockSsactivityResponseContent> content) {
-        this.content = content;
-    }
 
     public Boolean getReturnStatus() {
         return this.returnStatus;
@@ -57,15 +44,13 @@ public class LockSsactivityResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof LockSsactivityResponse)) return false;
         final LockSsactivityResponse lockSsactivityResponse = (LockSsactivityResponse) o;
-        return Objects.equals(getContent(), lockSsactivityResponse.getContent()) &&
-                Objects.equals(getReturnStatus(), lockSsactivityResponse.getReturnStatus()) &&
+        return Objects.equals(getReturnStatus(), lockSsactivityResponse.getReturnStatus()) &&
                 Objects.equals(getErrorText(), lockSsactivityResponse.getErrorText());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getContent(),
-                getReturnStatus(),
+        return Objects.hash(getReturnStatus(),
                 getErrorText());
     }
 }

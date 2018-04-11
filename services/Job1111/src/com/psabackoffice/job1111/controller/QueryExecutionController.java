@@ -463,25 +463,6 @@ public class QueryExecutionController {
         return queryService.exportGetBidWorkHistoryEquip(exportType, bidId, pageable);
     }
 
-    @RequestMapping(value = "/queries/GetActivitiesPendingReview", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Get all activities pending Supervisor review BY SuperID")
-    public Page<GetActivitiesPendingReviewResponse> executeGetActivitiesPendingReview(@RequestParam(value = "SuperID", required = false) Integer superId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetActivitiesPendingReview");
-        Page<GetActivitiesPendingReviewResponse> _result = queryService.executeGetActivitiesPendingReview(superId, pageable);
-        LOGGER.debug("got the result for named query: GetActivitiesPendingReview, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetActivitiesPendingReview")
-    @RequestMapping(value = "/queries/GetActivitiesPendingReview/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetActivitiesPendingReview(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "SuperID", required = false) Integer superId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetActivitiesPendingReview");
-
-        return queryService.exportGetActivitiesPendingReview(exportType, superId, pageable);
-    }
-
     @RequestMapping(value = "/queries/UpdatePipeBoltupQuantity", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "No description is provided")
@@ -1241,25 +1222,6 @@ public class QueryExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/queries/CheckSASLock", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "No description is provided")
-    public Page<CheckSaslockResponse> executeCheckSASLock(@RequestParam(value = "ActivityID") String activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: CheckSASLock");
-        Page<CheckSaslockResponse> _result = queryService.executeCheckSASLock(activityId, pageable);
-        LOGGER.debug("got the result for named query: CheckSASLock, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query CheckSASLock")
-    @RequestMapping(value = "/queries/CheckSASLock/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportCheckSASLock(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ActivityID") String activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: CheckSASLock");
-
-        return queryService.exportCheckSASLock(exportType, activityId, pageable);
-    }
-
     @RequestMapping(value = "/queries/GetSettingCivilPunch", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
@@ -1671,16 +1633,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetBidWorkHistoryPipe");
 
         return queryService.exportGetBidWorkHistoryPipe(exportType, bidId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/UnLockSSActivity", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "No description is provided")
-    public Integer executeUnLockSSActivity(@Valid @RequestBody UnLockSsactivityRequest unLockSsactivityRequest, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: UnLockSSActivity");
-        Integer _result = queryService.executeUnLockSSActivity(unLockSsactivityRequest);
-        LOGGER.debug("got the result for named query: UnLockSSActivity, result:{}", _result);
-        return _result;
     }
 
     @RequestMapping(value = "/queries/UpdateSteelDemoQuantity", method = RequestMethod.PUT)

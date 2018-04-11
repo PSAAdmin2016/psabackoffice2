@@ -68,14 +68,14 @@ public class TblUserPsa implements Serializable {
     private List<FeedBack> feedBacks;
     private List<FeedBackNotes> feedBackNoteses;
     private List<Settingsuser> settingsusers;
-    private List<TblCrews> tblCrewsesForProjectManager;
-    private List<TblCrews> tblCrewsesForAreaManager;
     private List<TblCrews> tblCrewsesForSiteManager;
     private List<TblCrews> tblCrewsesForGf;
     private List<TblCrews> tblCrewsesForLeadman;
     private List<TblCrews> tblCrewsesForConstructionManager;
     private List<TblCrews> tblCrewsesForSuperintendent;
     private TblCrews tblCrewsForForeman;
+    private List<TblCrews> tblCrewsesForProjectManager;
+    private List<TblCrews> tblCrewsesForAreaManager;
     private TblUserCreds tblUserCreds;
     private List<TblUserJobNumbers> tblUserJobNumberses;
     private List<TblUserRoles> tblUserRoleses;
@@ -342,28 +342,6 @@ public class TblUserPsa implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsaByProjectManager")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
-    public List<TblCrews> getTblCrewsesForProjectManager() {
-        return this.tblCrewsesForProjectManager;
-    }
-
-    public void setTblCrewsesForProjectManager(List<TblCrews> tblCrewsesForProjectManager) {
-        this.tblCrewsesForProjectManager = tblCrewsesForProjectManager;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsaByAreaManager")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
-    public List<TblCrews> getTblCrewsesForAreaManager() {
-        return this.tblCrewsesForAreaManager;
-    }
-
-    public void setTblCrewsesForAreaManager(List<TblCrews> tblCrewsesForAreaManager) {
-        this.tblCrewsesForAreaManager = tblCrewsesForAreaManager;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsaBySiteManager")
     @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
     public List<TblCrews> getTblCrewsesForSiteManager() {
@@ -428,6 +406,28 @@ public class TblUserPsa implements Serializable {
         this.tblCrewsForForeman = tblCrewsForForeman;
     }
 
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsaByProjectManager")
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+    public List<TblCrews> getTblCrewsesForProjectManager() {
+        return this.tblCrewsesForProjectManager;
+    }
+
+    public void setTblCrewsesForProjectManager(List<TblCrews> tblCrewsesForProjectManager) {
+        this.tblCrewsesForProjectManager = tblCrewsesForProjectManager;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsaByAreaManager")
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+    public List<TblCrews> getTblCrewsesForAreaManager() {
+        return this.tblCrewsesForAreaManager;
+    }
+
+    public void setTblCrewsesForAreaManager(List<TblCrews> tblCrewsesForAreaManager) {
+        this.tblCrewsesForAreaManager = tblCrewsesForAreaManager;
+    }
+
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "tblUserPsa")
     @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
     public TblUserCreds getTblUserCreds() {
@@ -487,16 +487,6 @@ public class TblUserPsa implements Serializable {
                 settingsuser.setTblUserPsa(this);
             }
         }
-        if(tblCrewsesForProjectManager != null) {
-            for(TblCrews tblCrews : tblCrewsesForProjectManager) {
-                tblCrews.setTblUserPsaByProjectManager(this);
-            }
-        }
-        if(tblCrewsesForAreaManager != null) {
-            for(TblCrews tblCrews : tblCrewsesForAreaManager) {
-                tblCrews.setTblUserPsaByAreaManager(this);
-            }
-        }
         if(tblCrewsesForSiteManager != null) {
             for(TblCrews tblCrews : tblCrewsesForSiteManager) {
                 tblCrews.setTblUserPsaBySiteManager(this);
@@ -524,6 +514,16 @@ public class TblUserPsa implements Serializable {
         }
         if(tblCrewsForForeman != null) {
             tblCrewsForForeman.setTblUserPsaByForeman(this);
+        }
+        if(tblCrewsesForProjectManager != null) {
+            for(TblCrews tblCrews : tblCrewsesForProjectManager) {
+                tblCrews.setTblUserPsaByProjectManager(this);
+            }
+        }
+        if(tblCrewsesForAreaManager != null) {
+            for(TblCrews tblCrews : tblCrewsesForAreaManager) {
+                tblCrews.setTblUserPsaByAreaManager(this);
+            }
         }
         if(tblUserCreds != null) {
             tblUserCreds.setTblUserPsa(this);

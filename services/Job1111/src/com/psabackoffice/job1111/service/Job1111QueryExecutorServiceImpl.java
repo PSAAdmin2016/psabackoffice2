@@ -505,26 +505,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         return queryExecutor.exportNamedQueryData("GetBidWorkHistoryEquip", params, exportType, GetBidWorkHistoryEquipResponse.class, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<GetActivitiesPendingReviewResponse> executeGetActivitiesPendingReview(Integer superId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("SuperID", superId);
-
-        return queryExecutor.executeNamedQuery("GetActivitiesPendingReview", params, GetActivitiesPendingReviewResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Downloadable exportGetActivitiesPendingReview(ExportType exportType, Integer superId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("SuperID", superId);
-
-        return queryExecutor.exportNamedQueryData("GetActivitiesPendingReview", params, exportType, GetActivitiesPendingReviewResponse.class, pageable);
-    }
-
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public Integer executeUpdatePipeBoltupQuantity(UpdatePipeBoltupQuantityRequest updatePipeBoltupQuantityRequest) {
@@ -1398,26 +1378,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<CheckSaslockResponse> executeCheckSASLock(String activityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("ActivityID", activityId);
-
-        return queryExecutor.executeNamedQuery("CheckSASLock", params, CheckSaslockResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Downloadable exportCheckSASLock(ExportType exportType, String activityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("ActivityID", activityId);
-
-        return queryExecutor.exportNamedQueryData("CheckSASLock", params, exportType, CheckSaslockResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
     public Page<GetSettingCivilPunchResponse> executeGetSettingCivilPunch(Pageable pageable) {
         Map params = new HashMap(0);
 
@@ -1881,16 +1841,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         params.put("BidID", bidId);
 
         return queryExecutor.exportNamedQueryData("GetBidWorkHistoryPipe", params, exportType, GetBidWorkHistoryPipeResponse.class, pageable);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public Integer executeUnLockSSActivity(UnLockSsactivityRequest unLockSsactivityRequest) {
-        Map params = new HashMap(1);
-
-        params.put("FieldActivityID", unLockSsactivityRequest.getFieldActivityId());
-
-        return queryExecutor.executeNamedQueryForUpdate("UnLockSSActivity", params);
     }
 
     @Transactional(value = "Job1111TransactionManager")

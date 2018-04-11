@@ -2143,70 +2143,6 @@ GROUP BY sas.ActivityID) wmTempTable
     <query-param name="BidID" type="java.lang.String"/>
     </sql-query>
 
-    <sql-query name="GetActivitiesPendingReview">
-        <![CDATA[
-        SELECT sas.*, at.ActivityType AS ActivityTypeName, sd.ReceivedTime, u.FirstName, u.LastName, CONCAT(u.FirstName, " ", u.LastName) AS NameFull, ats.Status,
-IF(sas.ActivityType IN (11,21,22,23,24,25,31,32,33,38,39,41,42,43,51,52,53,59,90,91,92),'PIPE',
-IF(sas.ActivityType IN (60,61,62,63,64,65,66,67,68,96),'STEEL',
-IF(sas.ActivityType IN (70,71,72),'CIVIL',
-IF(sas.ActivityType IN (80,98),'EQUIP.',''
-)))) AS Craft
-FROM SubmissionActivityStatus sas
-JOIN SubsDetails sd
-	ON sd.SubmissionID = sas.SubmissionID
-JOIN PSA.REF_ActivityTypes at
-	ON  at.ID = sas.ActivityType
-JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN PSA.tblUserPSA u
-	ON u.ID = sd.UserID
-
-LEFT JOIN PSA.tblCrews tc
-	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-LEFT JOIN PSA.tblCrewsRev tcr
-	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-
-
-WHERE sas.ActivityType != 0
-AND sas.fk_ActivityStatus in (1,4,6,8,10)
-AND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)
-ORDER BY sas.ActivityID DESC
-        ]]>
-    <query-param name="SuperID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetActivitiesPendingReview__count">
-        <![CDATA[
-        select count(*) from (SELECT sas.*, at.ActivityType AS ActivityTypeName, sd.ReceivedTime, u.FirstName, u.LastName, CONCAT(u.FirstName, " ", u.LastName) AS NameFull, ats.Status,
-IF(sas.ActivityType IN (11,21,22,23,24,25,31,32,33,38,39,41,42,43,51,52,53,59,90,91,92),'PIPE',
-IF(sas.ActivityType IN (60,61,62,63,64,65,66,67,68,96),'STEEL',
-IF(sas.ActivityType IN (70,71,72),'CIVIL',
-IF(sas.ActivityType IN (80,98),'EQUIP.',''
-)))) AS Craft
-FROM SubmissionActivityStatus sas
-JOIN SubsDetails sd
-	ON sd.SubmissionID = sas.SubmissionID
-JOIN PSA.REF_ActivityTypes at
-	ON  at.ID = sas.ActivityType
-JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN PSA.tblUserPSA u
-	ON u.ID = sd.UserID
-
-LEFT JOIN PSA.tblCrews tc
-	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-LEFT JOIN PSA.tblCrewsRev tcr
-	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-
-
-WHERE sas.ActivityType != 0
-AND sas.fk_ActivityStatus in (1,4,6,8,10)
-AND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)
-ORDER BY sas.ActivityID DESC) wmTempTable
-        ]]>
-    <query-param name="SuperID" type="java.lang.Integer"/>
-    </sql-query>
-
     <sql-query name="UpdatePipeBoltupQuantity">
         <![CDATA[
         UPDATE PipeConnection
@@ -5495,24 +5431,6 @@ WHERE `Label`='SteelImpHoursPercent'
     <query-param name="Value1" type="java.math.BigDecimal"/>
     </sql-query>
 
-    <sql-query name="CheckSASLock">
-        <![CDATA[
-        SELECT sas.LockField 
-FROM SubmissionActivityStatus sas
-WHERE ActivityID = :ActivityID
-        ]]>
-    <query-param name="ActivityID" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="CheckSASLock__count">
-        <![CDATA[
-        select count(*) from (SELECT sas.LockField 
-FROM SubmissionActivityStatus sas
-WHERE ActivityID = :ActivityID) wmTempTable
-        ]]>
-    <query-param name="ActivityID" type="java.lang.String"/>
-    </sql-query>
-
     <sql-query name="GetSettingCivilPunch">
         <![CDATA[
         SELECT * 
@@ -8093,15 +8011,6 @@ WHERE sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.ActivityID) wmTempTable
         ]]>
     <query-param name="BidID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="UnLockSSActivity">
-        <![CDATA[
-        UPDATE SubmissionActivityStatus sas
-SET sas.LockField = null
-WHERE sas.ActivityID = :FieldActivityID
-        ]]>
-    <query-param name="FieldActivityID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="UpdateSteelDemoQuantity">

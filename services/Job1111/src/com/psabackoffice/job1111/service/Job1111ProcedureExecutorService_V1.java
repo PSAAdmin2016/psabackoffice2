@@ -22,7 +22,7 @@ public interface Job1111ProcedureExecutorService_V1 {
     List<Object> executeCreateManualActivitySteel(Integer varBidId, Integer varActivityType, Integer varQuantity, BigDecimal varPercentCompleted, String varNotes, Integer varUserId);
 
     @Deprecated
-    List<Object> executeLockSSActivity(Integer userId, Integer fieldActivityId);
+    List<Object> executeLockSSActivity(Integer runMode, Integer userId, Integer activityId);
 
     @Deprecated
     List<Object> executeGetPipePCOT(Integer runMode);

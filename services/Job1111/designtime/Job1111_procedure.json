@@ -2983,7 +2983,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "ForemanID",
       "required" : true,
       "parameterType" : "IN"
@@ -2992,7 +2992,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -3001,7 +3001,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -3010,7 +3010,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -3019,7 +3019,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -3028,7 +3028,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -3037,7 +3037,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -3046,7 +3046,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -3055,7 +3055,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -3064,8 +3064,8 @@
       "type" : "date",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "2017-01-06",
+      "variableName" : "",
+      "testValue" : "2018-03-09",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -3073,7 +3073,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
       "required" : true,
       "parameterType" : "IN"
@@ -3082,8 +3082,8 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : null,
+      "variableName" : "",
+      "testValue" : "false",
       "required" : true,
       "parameterType" : "OUT"
     }, {
@@ -3091,7 +3091,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -3436,7 +3436,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "WBS10",
+      "testValue" : "BidID",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -4318,7 +4318,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "ForemanID",
       "required" : true,
       "parameterType" : "IN"
@@ -4327,7 +4327,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -4336,7 +4336,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -4345,7 +4345,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -4354,7 +4354,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -4363,7 +4363,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -4372,7 +4372,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -4381,7 +4381,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -4390,7 +4390,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -4399,8 +4399,8 @@
       "type" : "date",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "2017-03-27",
+      "variableName" : "",
+      "testValue" : "2018-02-27",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -4408,7 +4408,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
       "required" : true,
       "parameterType" : "IN"
@@ -4417,8 +4417,8 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : null,
+      "variableName" : "",
+      "testValue" : "false",
       "required" : true,
       "parameterType" : "OUT"
     }, {
@@ -4426,7 +4426,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -4643,7 +4643,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
       "required" : false,
       "parameterType" : "IN"
@@ -4652,8 +4652,8 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : null,
+      "variableName" : "",
+      "testValue" : "false",
       "required" : true,
       "parameterType" : "OUT"
     }, {
@@ -4661,7 +4661,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -4716,7 +4716,7 @@
             "optional" : false,
             "fieldType" : {
               "type" : "PRIMITIVE",
-              "typeRef" : "java.lang.Double",
+              "typeRef" : "java.math.BigDecimal",
               "list" : false
             }
           } ]
@@ -5410,7 +5410,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
       "required" : false,
       "parameterType" : "IN"
@@ -5419,7 +5419,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -5428,7 +5428,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -5537,8 +5537,8 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "SuperintendentID",
+      "variableName" : "",
+      "testValue" : "ForemanID",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -5546,7 +5546,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -5555,7 +5555,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -5564,7 +5564,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -5573,7 +5573,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -5582,7 +5582,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -5591,7 +5591,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -5600,7 +5600,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -5609,7 +5609,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -5618,8 +5618,8 @@
       "type" : "date",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "2016-07-07",
+      "variableName" : "",
+      "testValue" : "2018-02-27",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -5627,7 +5627,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
       "required" : true,
       "parameterType" : "IN"
@@ -5636,7 +5636,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -5645,7 +5645,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "",
       "required" : true,
       "parameterType" : "OUT"
@@ -5862,7 +5862,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
       "required" : false,
       "parameterType" : "IN"
@@ -5871,7 +5871,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -5880,8 +5880,8 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : null,
+      "variableName" : "",
+      "testValue" : "",
       "required" : true,
       "parameterType" : "OUT"
     } ],
@@ -5932,6 +5932,24 @@
           }, {
             "name" : "BoltUpPercentComplete",
             "fieldName" : "boltUpPercentComplete",
+            "optional" : false,
+            "fieldType" : {
+              "type" : "PRIMITIVE",
+              "typeRef" : "java.lang.Float",
+              "list" : false
+            }
+          }, {
+            "name" : "ScrewJointPercentComplete",
+            "fieldName" : "screwJointPercentComplete",
+            "optional" : false,
+            "fieldType" : {
+              "type" : "PRIMITIVE",
+              "typeRef" : "java.lang.Float",
+              "list" : false
+            }
+          }, {
+            "name" : "OtherConnectionPercentComplete",
+            "fieldName" : "otherConnectionPercentComplete",
             "optional" : false,
             "fieldType" : {
               "type" : "PRIMITIVE",
@@ -6052,7 +6070,7 @@
             "optional" : false,
             "fieldType" : {
               "type" : "PRIMITIVE",
-              "typeRef" : "java.lang.Double",
+              "typeRef" : "java.math.BigDecimal",
               "list" : false
             }
           } ]
@@ -6116,7 +6134,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : null,
+      "testValue" : "",
       "required" : true,
       "parameterType" : "OUT"
     } ],
@@ -7151,7 +7169,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "ForemanID",
       "required" : true,
       "parameterType" : "IN"
@@ -7160,7 +7178,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -7169,7 +7187,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -7178,7 +7196,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -7187,7 +7205,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -7196,7 +7214,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -7205,7 +7223,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -7214,7 +7232,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -7223,7 +7241,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "%",
       "required" : true,
       "parameterType" : "IN"
@@ -7232,8 +7250,8 @@
       "type" : "date",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "2016-10-21",
+      "variableName" : "",
+      "testValue" : "2018-02-27",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -7241,7 +7259,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
       "required" : true,
       "parameterType" : "IN"
@@ -7250,8 +7268,8 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : null,
+      "variableName" : "",
+      "testValue" : "false",
       "required" : true,
       "parameterType" : "OUT"
     }, {
@@ -7259,8 +7277,8 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : null,
+      "variableName" : "",
+      "testValue" : "",
       "required" : true,
       "parameterType" : "OUT"
     } ],
@@ -7476,7 +7494,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1",
       "required" : false,
       "parameterType" : "IN"
@@ -7485,8 +7503,8 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : null,
+      "variableName" : "",
+      "testValue" : "false",
       "required" : true,
       "parameterType" : "OUT"
     }, {
@@ -7494,8 +7512,8 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : null,
+      "variableName" : "",
+      "testValue" : "",
       "required" : true,
       "parameterType" : "OUT"
     } ],
@@ -7676,7 +7694,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : null,
+      "testValue" : "",
       "required" : true,
       "parameterType" : "OUT"
     } ],
@@ -8406,25 +8424,34 @@
   },
   "LockSSActivity" : {
     "name" : "LockSSActivity",
-    "description" : "Locks a SS Activity for approval.  Returns True if lock achieved, False if not.",
+    "description" : "Locks/Unlocks a SAS Activity for approval.  Returns True if lock/Unlock achieved, False if not.\n\nRunMode 1 = Lock ActivityID\nRunMode 2 = Unlock ActivityID",
     "version" : "V1",
-    "procedureString" : "call LockSSActivity(:UserID, :FieldActivityID, :ReturnStatus, :ErrorText)",
+    "procedureString" : "call SASLock(:RunMode, :UserID, :ActivityID, :ReturnStatus, :ErrorText)",
     "parameters" : [ {
+      "name" : "RunMode",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
       "name" : "UserID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "2",
+      "variableName" : "",
+      "testValue" : "1",
       "required" : true,
       "parameterType" : "IN"
     }, {
-      "name" : "FieldActivityID",
+      "name" : "ActivityID",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1",
+      "variableName" : "",
+      "testValue" : "648",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -8432,7 +8459,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -8441,7 +8468,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -8456,25 +8483,6 @@
       "returns" : "CUSTOM",
       "responseType" : "SINGLE",
       "properties" : [ {
-        "name" : "content",
-        "fieldName" : "content",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "CUSTOM",
-          "typeRef" : "com.psabackoffice.job1111.models.procedure.LockSsactivityResponseContent",
-          "list" : true,
-          "properties" : [ {
-            "name" : "LockField",
-            "fieldName" : "lockField",
-            "optional" : false,
-            "fieldType" : {
-              "type" : "PRIMITIVE",
-              "typeRef" : "java.lang.Integer",
-              "list" : false
-            }
-          } ]
-        }
-      }, {
         "name" : "ReturnStatus",
         "fieldName" : "returnStatus",
         "optional" : false,

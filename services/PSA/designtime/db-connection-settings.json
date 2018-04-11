@@ -75,13 +75,7 @@
     "table" : "REF_GenericPipeSpools",
     "schema" : null
   }, {
-    "table" : "REF_HandleTypes",
-    "schema" : null
-  }, {
     "table" : "REF_ImportableTables",
-    "schema" : null
-  }, {
-    "table" : "REF_InstTypes",
     "schema" : null
   }, {
     "table" : "REF_JobTitles",
@@ -103,18 +97,6 @@
     "schema" : null
   }, {
     "table" : "REF_StateAbbreviations",
-    "schema" : null
-  }, {
-    "table" : "REF_SteelTypes",
-    "schema" : null
-  }, {
-    "table" : "REF_TrimActivities",
-    "schema" : null
-  }, {
-    "table" : "REF_ValveTypes",
-    "schema" : null
-  }, {
-    "table" : "REF_Weather",
     "schema" : null
   }, {
     "table" : "REF_WeldMaterials",

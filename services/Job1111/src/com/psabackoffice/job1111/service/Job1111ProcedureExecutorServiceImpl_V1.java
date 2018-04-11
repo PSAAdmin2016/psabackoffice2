@@ -55,11 +55,12 @@ public class Job1111ProcedureExecutorServiceImpl_V1 implements Job1111ProcedureE
 
     }
 
-    public List<Object> executeLockSSActivity(Integer userId, Integer fieldActivityId) {
-        Map params = new HashMap(4);
+    public List<Object> executeLockSSActivity(Integer runMode, Integer userId, Integer activityId) {
+        Map params = new HashMap(5);
 
+        params.put("RunMode", runMode);
         params.put("UserID", userId);
-        params.put("FieldActivityID", fieldActivityId);
+        params.put("ActivityID", activityId);
 
         return procedureExecutor.executeNamedProcedure("LockSSActivity", params);
 

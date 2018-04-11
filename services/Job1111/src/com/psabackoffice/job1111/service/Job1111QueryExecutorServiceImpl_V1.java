@@ -233,16 +233,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         return queryExecutor.executeNamedQuery("GetSettingPipeTestingPercent", params, Object.class, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<Object> executeGetActivitiesPendingReview(Pageable pageable, Integer superId) {
-        Map params = new HashMap(1);
-
-        params.put("SuperID", superId);
-
-        return queryExecutor.executeNamedQuery("GetActivitiesPendingReview", params, Object.class, pageable);
-    }
-
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public int executeUpdatePipeBoltupQuantity(Integer quantity, Integer activityId) {
@@ -709,16 +699,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeCheckSASLock(Pageable pageable, String activityId) {
-        Map params = new HashMap(1);
-
-        params.put("ActivityID", activityId);
-
-        return queryExecutor.executeNamedQuery("CheckSASLock", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
     public Page<Object> executeGetSettingCivilPunch(Pageable pageable) {
         Map params = new HashMap(0);
 
@@ -935,16 +915,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("BidID", bidId);
 
         return queryExecutor.executeNamedQuery("GetBidWorkHistoryPipe", params, Object.class, pageable);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public int executeUnLockSSActivity(Integer fieldActivityId) {
-        Map params = new HashMap(1);
-
-        params.put("FieldActivityID", fieldActivityId);
-
-        return queryExecutor.executeNamedQueryForUpdate("UnLockSSActivity", params);
     }
 
     @Transactional(value = "Job1111TransactionManager")

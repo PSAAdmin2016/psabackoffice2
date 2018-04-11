@@ -17,19 +17,12 @@ Application.$controller("ReviewLandingPageController", ["$scope", function($scop
         $scope.Variables.PSARefWeldTypesData.listRecords();
         $scope.Variables.PSARefWeldPositionsData.listRecords();
         $scope.Variables.PSARefWeldMaterialsData.listRecords();
-        $scope.Variables.PSARefTrimActivitiesData.listRecords();
         $scope.Variables.PSARefPipeSizesData.listRecords();
         $scope.Variables.PSARefPipeSchedulesData.listRecords();
-        $scope.Variables.PSARefInstTypesData.listRecords();
         $scope.Variables.PSARefGenericPipeSpoolsData.listRecords();
-        $scope.Variables.PSARefHandleTypesData.listRecords();
         $scope.Variables.PSARefActivityTypesData.listRecords();
         $scope.Variables.PSARefActivityStatusesData.listRecords();
         $scope.Variables.PSARefActivityRejectionsData.listRecords();
-
-        //$scope.Variables.serviceGetRefPrecip.invoke();
-        //$scope.Variables.serviceGetRefTemps.invoke();
-        //$scope.Variables.serviceGetRefWind.invoke();
     };
 
 

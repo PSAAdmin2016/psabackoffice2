@@ -38,8 +38,8 @@ public class FileImporter {
     //File Import function
     public String importFile(String jobNumber, String tableName, String fileName ){
         Connection connection = null;
-        String path = "/root/WaveMaker/appdata/PSABackOffice/uploads/jobData/" + jobNumber + "/" + tableName + "/" + fileName; //UNCOMMENT in Dev Enviroment
-        //String path = "/home/tomcat/WaveMaker/appdata/PSABackOffice/uploads/jobData/" + jobNumber + "/" + tableName + "/" + fileName; //UNCOMMENT in Production Enviroment
+        //String path = "/root/WaveMaker/appdata/PSABackOffice/uploads/jobData/" + jobNumber + "/" + tableName + "/" + fileName; //UNCOMMENT in Dev Enviroment
+        String path = "/home/tomcat/WaveMaker/appdata/PSABackOffice/uploads/jobData/" + jobNumber + "/" + tableName + "/" + fileName; //UNCOMMENT in Production Enviroment
         
             try{
                 //Connect to DB

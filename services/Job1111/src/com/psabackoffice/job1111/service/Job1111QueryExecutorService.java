@@ -104,10 +104,6 @@ public interface Job1111QueryExecutorService {
 
     Downloadable exportGetBidWorkHistoryEquip(ExportType exportType, String bidId, Pageable pageable);
 
-    Page<GetActivitiesPendingReviewResponse> executeGetActivitiesPendingReview(Integer superId, Pageable pageable);
-
-    Downloadable exportGetActivitiesPendingReview(ExportType exportType, Integer superId, Pageable pageable);
-
     Integer executeUpdatePipeBoltupQuantity(UpdatePipeBoltupQuantityRequest updatePipeBoltupQuantityRequest);
 
     Page<GetPsrecentActivitiesResponse> executeGetPSRecentActivities(Integer userId, Pageable pageable);
@@ -266,10 +262,6 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdateSettingSteelImp(UpdateSettingSteelImpRequest updateSettingSteelImpRequest);
 
-    Page<CheckSaslockResponse> executeCheckSASLock(String activityId, Pageable pageable);
-
-    Downloadable exportCheckSASLock(ExportType exportType, String activityId, Pageable pageable);
-
     Page<GetSettingCivilPunchResponse> executeGetSettingCivilPunch(Pageable pageable);
 
     Downloadable exportGetSettingCivilPunch(ExportType exportType, Pageable pageable);
@@ -355,8 +347,6 @@ public interface Job1111QueryExecutorService {
     Page<GetBidWorkHistoryPipeResponse> executeGetBidWorkHistoryPipe(Integer bidId, Pageable pageable);
 
     Downloadable exportGetBidWorkHistoryPipe(ExportType exportType, Integer bidId, Pageable pageable);
-
-    Integer executeUnLockSSActivity(UnLockSsactivityRequest unLockSsactivityRequest);
 
     Integer executeUpdateSteelDemoQuantity(UpdateSteelDemoQuantityRequest updateSteelDemoQuantityRequest);
 

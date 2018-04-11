@@ -88,10 +88,10 @@ public class ProcedureExecutionController {
 
     @RequestMapping(value = "/procedure/execute/LockSSActivity", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Locks a SS Activity for approval.  Returns True if lock achieved, False if not.")
-    public List<LockSsactivityResponse> executeLockSSActivity(@RequestParam(value = "UserID") Integer userId, @RequestParam(value = "FieldActivityID") Integer fieldActivityId, HttpServletRequest _request) {
+    @ApiOperation(value = "Locks/Unlocks a SAS Activity for approval.  Returns True if lock/Unlock achieved, False if not.  RunMode 1 = Lock ActivityID RunMode 2 = Unlock ActivityID")
+    public List<LockSsactivityResponse> executeLockSSActivity(@RequestParam(value = "RunMode") Integer runMode, @RequestParam(value = "UserID") Integer userId, @RequestParam(value = "ActivityID") Integer activityId, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: LockSSActivity");
-        LockSsactivityResponse _result = procedureService.executeLockSSActivity(userId, fieldActivityId);
+        LockSsactivityResponse _result = procedureService.executeLockSSActivity(runMode, userId, activityId);
         LOGGER.debug("got the result for v1 named procedure: LockSSActivity, result:{}", _result);
         return Collections.singletonList(_result);
     }

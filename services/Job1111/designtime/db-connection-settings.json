@@ -12,30 +12,6 @@
   "port" : "3306",
   "schemaName" : null,
   "tableFilter" : [ {
-    "table" : "CacheStats_CivilPCOT",
-    "schema" : null
-  }, {
-    "table" : "CacheStats_CivilStats",
-    "schema" : null
-  }, {
-    "table" : "CacheStats_EquipPCOT",
-    "schema" : null
-  }, {
-    "table" : "CacheStats_EquipStats",
-    "schema" : null
-  }, {
-    "table" : "CacheStats_PipePCOT",
-    "schema" : null
-  }, {
-    "table" : "CacheStats_PipeStats",
-    "schema" : null
-  }, {
-    "table" : "CacheStats_SteelPCOT",
-    "schema" : null
-  }, {
-    "table" : "CacheStats_SteelStats",
-    "schema" : null
-  }, {
     "table" : "CivilFA",
     "schema" : null
   }, {
@@ -55,24 +31,6 @@
     "schema" : null
   }, {
     "table" : "EquipTrackerDetails",
-    "schema" : null
-  }, {
-    "table" : "LandingSpoolList",
-    "schema" : null
-  }, {
-    "table" : "LandingTrackerCivil",
-    "schema" : null
-  }, {
-    "table" : "LandingTrackerEquip",
-    "schema" : null
-  }, {
-    "table" : "LandingTrackerPipe",
-    "schema" : null
-  }, {
-    "table" : "LandingTrackerSteel",
-    "schema" : null
-  }, {
-    "table" : "LandingWeldSpecProcedures",
     "schema" : null
   }, {
     "table" : "PipeConnection",

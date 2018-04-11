@@ -75,9 +75,6 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetSettingPipeTestingPercent(Pageable pageable);
 
     @Deprecated
-    public Page<Object> executeGetActivitiesPendingReview(Pageable pageable, Integer superId);
-
-    @Deprecated
     public int executeUpdatePipeBoltupQuantity(Integer quantity, Integer activityId);
 
     @Deprecated
@@ -201,9 +198,6 @@ public interface Job1111QueryExecutorService_V1 {
     public int executeUpdateSettingSteelImp(BigDecimal value1);
 
     @Deprecated
-    public Page<Object> executeCheckSASLock(Pageable pageable, String activityId);
-
-    @Deprecated
     public Page<Object> executeGetSettingCivilPunch(Pageable pageable);
 
     @Deprecated
@@ -262,9 +256,6 @@ public interface Job1111QueryExecutorService_V1 {
 
     @Deprecated
     public Page<Object> executeGetBidWorkHistoryPipe(Pageable pageable, Integer bidId);
-
-    @Deprecated
-    public int executeUnLockSSActivity(Integer fieldActivityId);
 
     @Deprecated
     public int executeUpdateSteelDemoQuantity(BigDecimal percentCompleted, Integer activityId);

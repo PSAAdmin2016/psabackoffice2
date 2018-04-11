@@ -44,9 +44,11 @@ public class FileImporter {
             try{
                 //Connect to DB
                 connection = datasource.getConnection(); 
+
                 //SQL Statement 
                 connection.createStatement().execute("TRUNCATE " + tableName);
                 connection.createStatement().execute("LOAD DATA LOCAL INFILE " + "'" + path + "'" + "INTO TABLE `" + tableName + "` FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n'");
+
                 return "1";
             } catch(SQLException e){
                 return "INFILE Failure : " + path + " : " + tableName + " : " + e;

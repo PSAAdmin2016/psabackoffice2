@@ -20,7 +20,7 @@ public interface Job1111ProcedureExecutorService {
 
     CreateManualActivitySteelResponse executeCreateManualActivitySteel(CreateManualActivitySteelRequest createManualActivitySteelRequest);
 
-    LockSsactivityResponse executeLockSSActivity(Integer userId, Integer fieldActivityId);
+    LockSsactivityResponse executeLockSSActivity(Integer runMode, Integer userId, Integer activityId);
 
     GetCivilEarnedHoursResponse executeGetCivilEarnedHours(String groupedBy, String crewId, String crewRev, String foremanId, String superintendentId, String projectManagerId, String constructionManagerId, String siteManagerId, String areaManagerId, Date inputDate, Integer runMode);
 
