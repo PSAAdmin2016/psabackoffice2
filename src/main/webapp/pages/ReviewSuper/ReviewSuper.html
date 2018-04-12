@@ -25,7 +25,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                         </wm-composite>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="8" name="gridcolumn11" padding=".7% unset unset 1%">
-                        <wm-button class="btn-default" caption="Refresh" type="button" iconclass="glyphicon glyphicon-refresh" on-click="buttonRefreshClick($event, $scope)" paddingunit="%" name="buttonRefresh"></wm-button>
+                        <wm-button class="btn-default" caption="Refresh" type="button" iconclass="glyphicon glyphicon-refresh" on-click="Variables.serviceGetFAs.invoke();Variables.serviceGetFAsSteel.invoke()" paddingunit="%" name="buttonRefresh"></wm-button>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">

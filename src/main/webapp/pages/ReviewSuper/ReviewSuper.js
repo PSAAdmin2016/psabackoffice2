@@ -19,12 +19,6 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
     };
 
 
-    $scope.buttonRefreshClick = function($event, $isolateScope) {
-        $scope.Variables.serviceGetFAs.invoke();
-        $scope.Variables.serviceGetFAsSteel.invoke();
-    };
-
-
     $scope.btnAcceptClick = function($event, $isolateScope) {
         if ($scope.Variables.staticTabSelect.dataSet.dataValue == '1') {
             switch ($scope.Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus) {
@@ -81,17 +75,11 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
     $scope.btnSaveClick = function($event, $isolateScope) {
         $scope.Variables.staticEditMode.dataSet.dataValue = false; //disable all fields
         if ($scope.Variables.staticTabSelect.dataSet.dataValue == '1') {
-
-        }
-
-        //Update changes to Field Activities
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 22) {
-            $scope.Widgets.containerFADetails.Variables.serviceUpdateWeld.invoke();
-        } else if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 23) {
-            $scope.Widgets.containerFADetails.Variables.serviceUpdateCutPrep.invoke();
-        } else {
+            //Update changes to Field Activities
             $scope.Widgets.containerFADetails.Variables.serviceUpdateActivity.invoke();
         }
+
+
 
         //Update changes to Field Activity status (SS)
 
@@ -342,6 +330,9 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
             case 33:
             case 38:
             case 39:
+            case 51:
+            case 52:
+            case 53:
             case 90:
                 $scope.Widgets.containerFADetails.content = 'PartFAPipeStandard';
                 break;

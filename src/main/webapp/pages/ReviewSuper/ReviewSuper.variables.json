@@ -2472,7 +2472,7 @@
     "dataBinding" : [ {
       "target" : "SuperID",
       "value" : "bind:Widgets.selectSuperintendant.datavalue",
-      "type" : "string"
+      "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivitiesPendingReviewSteelResponse",
     "service" : "Job1111",
@@ -2482,7 +2482,7 @@
     "serviceType" : "DataService",
     "dataSet" : [ ],
     "isList" : true,
-    "maxResults" : 20,
+    "maxResults" : 100,
     "startUpdate" : false,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",

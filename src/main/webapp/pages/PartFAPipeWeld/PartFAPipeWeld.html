@@ -27,7 +27,7 @@
                             <wm-label caption="TO:" show="bind:Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 22" fontsize="14" name="label4"></wm-label>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="5" name="gridcolumn9">
-                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.activityType == 22" name="composite2">
+                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="true" name="composite2">
                                 <wm-label class="col-md-3 control-label" caption="Spool 2" name="label5"></wm-label>
                                 <wm-container class="col-md-9" width="95%" name="container2">
                                     <wm-text datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeWeld.weldSpool2" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" width="100%" name="textWeldSpool2"

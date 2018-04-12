@@ -1,62 +1,7 @@
 {
-  "serviceUpdateCutPrep" : {
-    "_id" : "wm-serviceUpdateCutPrep-wm.ServiceVariable-1476111880136",
-    "name" : "serviceUpdateCutPrep",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "DrawingNumber",
-      "value" : "bind:Widgets.textWeldDrawing.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "LineNumber",
-      "value" : "bind:Widgets.textWeldLine.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "SheetNumber",
-      "value" : "bind:Widgets.textWeldSheet.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "Size",
-      "value" : "bind:Widgets.selectWeldSize.datavalue",
-      "type" : "number"
-    }, {
-      "target" : "Thickness",
-      "value" : "bind:Widgets.selectWeldThickness.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "Rework",
-      "value" : "bind:Widgets.checkboxWeldRework.datavalue",
-      "type" : "integer"
-    }, {
-      "target" : "Notes",
-      "value" : "bind:Widgets.textareaWeldNotes.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "FieldActivityID",
-      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityID",
-      "type" : "integer"
-    } ],
-    "type" : "integer",
-    "service" : "Job1111",
-    "operation" : "executeUpdatePipeCutPrep",
-    "operationId" : "QueryExecutionController_executeUpdatePipeCutPrep",
-    "operationType" : "put",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : false,
-    "maxResults" : 3,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
-  },
-  "serviceUpdateWeld" : {
+  "serviceUpdateActivity" : {
     "_id" : "wm-serviceUpdateWeld-wm.ServiceVariable-1476111843952",
-    "name" : "serviceUpdateWeld",
+    "name" : "serviceUpdateActivity",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
@@ -124,10 +69,6 @@
       "value" : "bind:Widgets.checkboxWeldShared.datavalue",
       "type" : "string"
     }, {
-      "target" : "PercentComplete",
-      "value" : "bind:Widgets.selectWeldPercentComplete.datavalue",
-      "type" : "integer"
-    }, {
       "target" : "Rework",
       "value" : "bind:Widgets.checkboxWeldRework.datavalue",
       "type" : "string"
@@ -139,6 +80,10 @@
       "target" : "FieldActivityID",
       "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityID",
       "type" : "integer"
+    }, {
+      "target" : "PercentCompleted",
+      "value" : "bind:Widgets.selectWeldPercentComplete.datavalue",
+      "type" : "number"
     } ],
     "type" : "integer",
     "service" : "Job1111",

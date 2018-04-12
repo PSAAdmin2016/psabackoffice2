@@ -1,1 +1,29 @@
-{ }
+{
+  "serviceUpdateActivity" : {
+    "_id" : "wm-serviceUpdateActivity-wm.ServiceVariable-1523555002471",
+    "name" : "serviceUpdateActivity",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "ActivityID",
+      "value" : "bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityId",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "Job1111",
+    "operation" : "executeUpdatePipeFA",
+    "operationId" : "QueryExecutionController_executeUpdatePipeFA",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 1,
+    "onBeforeUpdate" : "serviceUpdateActivityonBeforeUpdate($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  }
+}

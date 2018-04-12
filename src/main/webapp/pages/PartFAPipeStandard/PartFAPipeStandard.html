@@ -16,22 +16,98 @@
                             <wm-label caption="Demo - Pipe Cut" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 53" fontweight="bold" fontsize="13" width="100%" deferload="true" name="label14"></wm-label>
                             <wm-label caption="Pipe Misc Field Activity" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 90" fontweight="bold" fontsize="13" width="100%" deferload="true" name="label15"></wm-label>
                         </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="4" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn7">
+                        <wm-gridcolumn columnwidth="3" padding="0px unset unset unset" horizontalalign="center" name="gridcolumn7">
                             <wm-checkbox caption="Rework" hint="Activity can NOT be accepted if it is Rework." disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.faRework"
-                                checkedvalue="1" uncheckedvalue="0" readonlygrid="true" show="true" padding="unset unset unset 0px" margin="0px unset unset unset" width="100%" name="checkboxBoltUpRework" class="checkbox-custom"></wm-checkbox>
+                                checkedvalue="1" uncheckedvalue="0" readonlygrid="true" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType != 51 &amp;&amp; 
+$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType != 52 &amp;&amp; 
+$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType != 53" padding="unset unset unset 0px" margin="0px unset unset unset" width="100%" name="checkboxFARework" class="checkbox-custom"></wm-checkbox>
                         </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="6" name="gridcolumn20"></wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow9_1">
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn17_1">
-                            <wm-composite captionposition="top" name="composite3">
-                                <wm-label class="col-md-3 control-label" caption="Size" name="label5"></wm-label>
-                                <wm-container class="col-md-9" name="container3">
-                                    <wm-select datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.pipeTrackerDetails.size" dataset="bind:Variables.PSARefPipeSizesData.dataSet" datafield="value" displayfield="label" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false"
-                                        name="selectBoltUpSize"></wm-select>
+                        <wm-gridcolumn columnwidth="9" name="gridcolumn18_1">
+                            <wm-container name="container8_1" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 23 || 
+$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 31 || 
+$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 32 || 
+$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 33 || 
+$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 39" deferload="true">
+                                <wm-layoutgrid name="layoutgrid4_1">
+                                    <wm-gridrow name="gridrow8">
+                                        <wm-gridcolumn columnwidth="3" name="gridcolumn18_2">
+                                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="true" name="composite8_1">
+                                                <wm-label class="col-md-3 control-label" caption="Quantity" name="label19"></wm-label>
+                                                <wm-container class="col-md-9" width="95%" name="container11">
+                                                    <wm-text disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" type="number" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.faquantity"
+                                                        minvalue="0" maxvalue="99" placeholder="Enter Quantity" name="textFAQuantity1"></wm-text>
+                                                </wm-container>
+                                            </wm-composite>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="9" name="gridcolumn19_1"></wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-container>
+                            <wm-container name="container9_1" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 38" deferload="true">
+                                <wm-layoutgrid name="layoutgrid5">
+                                    <wm-gridrow name="gridrow10_1">
+                                        <wm-gridcolumn columnwidth="3" name="gridcolumn23">
+                                            <wm-composite captionposition="top" marginunit="%" paddingunit="%" show="true" name="composite9_1">
+                                                <wm-label class="col-md-3 control-label" caption="Quantity" name="label20"></wm-label>
+                                                <wm-container class="col-md-9" width="95%" name="container12">
+                                                    <wm-text disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true" type="number" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.faquantity"
+                                                        minvalue="0" maxvalue="99" placeholder="Enter Quantity" name="textFAQuantity2"></wm-text>
+                                                </wm-container>
+                                            </wm-composite>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="1" name="gridcolumn17_2" horizontalalign="center" padding="7% unset unset unset">
+                                            <wm-label caption="@" show="true" fontsize="14" name="label17"></wm-label>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="8" name="gridcolumn18_3">
+                                            <wm-composite captionposition="top" name="composite7_1">
+                                                <wm-label class="col-md-3 control-label" caption="Percent Completed" name="label18"></wm-label>
+                                                <wm-container class="col-md-9" name="container7_1" width="35%">
+                                                    <wm-select datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.fapercentCompleted" dataset="bind:Variables.PSARefPercentListData.dataSet" datafield="decimalValue" displayfield="label"
+                                                        disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="selectFAPercent2"></wm-select>
+                                                </wm-container>
+                                            </wm-composite>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-container>
+                            <wm-container name="container10" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 51 || 
+$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 52 || 
+$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 53 || 
+$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 90" deferload="true">
+                                <wm-layoutgrid name="layoutgrid6">
+                                    <wm-gridrow name="gridrow11_1">
+                                        <wm-gridcolumn columnwidth="3" name="gridcolumn26">
+                                            <wm-composite captionposition="top" name="composite11">
+                                                <wm-label class="col-md-3 control-label" caption="Percent Completed" name="label23" width="100%"></wm-label>
+                                                <wm-container class="col-md-9" width="95%" name="container14">
+                                                    <wm-select datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.fapercentCompleted" dataset="bind:Variables.PSARefPercentListData.dataSet" datafield="decimalValue" displayfield="label"
+                                                        disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="selectFAPercent3"></wm-select>
+                                                </wm-container>
+                                            </wm-composite>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="1" name="gridcolumn20_1"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="8" name="gridcolumn27" horizontalalign="left" padding="7% unset unset unset">
+                                            <wm-label caption="bind:'Total: ' + (Widgets.selectFAPercent3.datavalue * $parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.pipeTrackerDetails.takeOffQuantity) + ' ' + $parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.pipeTrackerDetails.quantityUnit"
+                                                show="true" fontsize="14" name="label22" padding="unset 3% unset unset" width="90%"></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-container>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="3" name="gridcolumn22_1"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow10_2">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn22">
+                            <wm-composite name="composite10" width="70%" captionposition="top">
+                                <wm-label class="col-md-3 control-label" name="label23_1" caption="Activity Description"></wm-label>
+                                <wm-container class="col-md-9" name="container13">
+                                    <wm-textarea name="textareaDescription" readonly="true" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.pipeTrackerDetails.description"></wm-textarea>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="9" name="gridcolumn18_1"></wm-gridcolumn>
                     </wm-gridrow>
                 </wm-layoutgrid>
             </wm-gridcolumn>
@@ -43,7 +119,7 @@
                                 <wm-label class="col-md-3 control-label" caption="Drawing Number" readonlygrid="true" name="label8"></wm-label>
                                 <wm-container class="col-md-9" width="100%" name="container6">
                                     <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.pipeTrackerDetails.engDrawingNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true"
-                                        name="textBoltUpDrawing" placeholder="Enter Drawing Number"></wm-text>
+                                        name="textFADrawing" placeholder="Enter Drawing Number"></wm-text>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
@@ -52,7 +128,7 @@
                                 <wm-label class="col-md-3 control-label" caption="Sheet" name="label9"></wm-label>
                                 <wm-container class="col-md-9" name="container7">
                                     <wm-text datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.pipeTrackerDetails.sheetNumber" width="70%" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" type="number"
-                                        minvalue="1" maxvalue="99" step="1" name="textBoltUpSheet" placeholder="Enter Sheet Number"></wm-text>
+                                        minvalue="1" maxvalue="99" step="1" name="textFASheet" placeholder="Enter Sheet Number"></wm-text>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
@@ -63,7 +139,7 @@
                                 <wm-label class="col-md-3 control-label" caption="Line Number" readonlygrid="true" name="label10"></wm-label>
                                 <wm-container class="col-md-9" width="100%" name="container8">
                                     <wm-text width="90%" datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.pipeTrackerDetails.lineNumber" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" readonlygrid="true"
-                                        name="textBoltUpLine" placeholder="Enter Line Number"></wm-text>
+                                        name="textFALine" placeholder="Enter Line Number"></wm-text>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
@@ -74,7 +150,7 @@
                             <wm-composite captionposition="top" name="composite9">
                                 <wm-label class="col-md-3 control-label" caption="Notes" name="label11"></wm-label>
                                 <wm-container class="col-md-9" name="container9">
-                                    <wm-textarea datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.faNotes" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textareaBoltUpNotes"
+                                    <wm-textarea datavalue="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.fanotes" readonlygrid="true" disabled="bind:$parent.Variables.staticEditMode.dataSet.dataValue == false" name="textareaFANotes"
                                         placeholder="Input notes here"></wm-textarea>
                                 </wm-container>
                             </wm-composite>

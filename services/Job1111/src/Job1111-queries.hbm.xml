@@ -841,7 +841,7 @@ ORDER BY TimeStamp DESC) wmTempTable
         <![CDATA[
         SELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,
 at.ActivityType AS ActivityTypeName, sd.ReceivedTime, CONCAT(u.FirstName, " ", u.LastName) AS NameFull, ats.Status, 
-NULL AS Description, 'Pipe' AS Craft,  NULL AS BidID
+ptd.Description AS Description, 'Pipe' AS Craft,  NULL AS BidID
 
 FROM SubmissionActivityStatus sas
 JOIN SubsDetails sd
@@ -857,6 +857,11 @@ LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+
+LEFT JOIN PipeFA pfa
+    ON pfa.ActivityID = sas.ActivityID
+LEFT JOIN PipeTrackerDetails ptd
+    ON ptd.BidID = pfa.FABidID
 
 
 WHERE sas.ActivityType IN (11,21,22,23,24,25,31,32,33,38,39,41,42,43,51,52,53,59,90,91,92)
@@ -998,7 +1003,7 @@ ORDER BY ActivityID DESC
         <![CDATA[
         select count(*) from (SELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,
 at.ActivityType AS ActivityTypeName, sd.ReceivedTime, CONCAT(u.FirstName, " ", u.LastName) AS NameFull, ats.Status, 
-NULL AS Description, 'Pipe' AS Craft,  NULL AS BidID
+ptd.Description AS Description, 'Pipe' AS Craft,  NULL AS BidID
 
 FROM SubmissionActivityStatus sas
 JOIN SubsDetails sd
@@ -1014,6 +1019,11 @@ LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+
+LEFT JOIN PipeFA pfa
+    ON pfa.ActivityID = sas.ActivityID
+LEFT JOIN PipeTrackerDetails ptd
+    ON ptd.BidID = pfa.FABidID
 
 
 WHERE sas.ActivityType IN (11,21,22,23,24,25,31,32,33,38,39,41,42,43,51,52,53,59,90,91,92)

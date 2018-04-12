@@ -95,10 +95,6 @@
   "type" : "PARTIAL",
   "params" : [ ]
 }, {
-  "name" : "PartFAPipeDemo",
-  "type" : "PARTIAL",
-  "params" : [ ]
-}, {
   "name" : "PartFAPipeErection",
   "type" : "PARTIAL",
   "params" : [ ]
@@ -111,15 +107,7 @@
   "type" : "PARTIAL",
   "params" : [ ]
 }, {
-  "name" : "PartFAPipeSupport",
-  "type" : "PARTIAL",
-  "params" : [ ]
-}, {
   "name" : "PartFAPipeTesting",
-  "type" : "PARTIAL",
-  "params" : [ ]
-}, {
-  "name" : "PartFAPipeTrim",
   "type" : "PARTIAL",
   "params" : [ ]
 }, {
