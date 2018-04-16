@@ -207,7 +207,7 @@ public interface Job1111QueryExecutorService_V1 {
     public int executeUpdatePipeBoltUp(Integer bidId, String spool1, String spool2, String drawingNumber, String lineNumber, String sheetNumber, BigDecimal size, Integer quantity, Integer rework, String notes, Integer activityId);
 
     @Deprecated
-    public int executeUpdateCivilFA(String quantity, String percent, Integer rework, String notes, String activityId);
+    public int executeUpdateCivilFA(Integer bidId, Integer quantity, BigDecimal percent, Integer rework, String notes, Integer activityId);
 
     @Deprecated
     public Page<Object> executeGetBidWorkHistorySteelExpanded(Pageable pageable, Integer bidId, Integer submissionId);

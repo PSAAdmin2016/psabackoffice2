@@ -17,13 +17,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UpdateEquipFaRequest implements Serializable {
 
 
-    @JsonProperty("TagNumber")
+    @JsonProperty("BidID")
     @NotNull
-    private String tagNumber;
-
-    @JsonProperty("Activity")
-    @NotNull
-    private String activity;
+    private Integer bidId;
 
     @JsonProperty("Quantity")
     @NotNull
@@ -44,20 +40,12 @@ public class UpdateEquipFaRequest implements Serializable {
     @NotNull
     private String activityId;
 
-    public String getTagNumber() {
-        return this.tagNumber;
+    public Integer getBidId() {
+        return this.bidId;
     }
 
-    public void setTagNumber(String tagNumber) {
-        this.tagNumber = tagNumber;
-    }
-
-    public String getActivity() {
-        return this.activity;
-    }
-
-    public void setActivity(String activity) {
-        this.activity = activity;
+    public void setBidId(Integer bidId) {
+        this.bidId = bidId;
     }
 
     public Integer getQuantity() {
@@ -105,8 +93,7 @@ public class UpdateEquipFaRequest implements Serializable {
         if (this == o) return true;
         if (!(o instanceof UpdateEquipFaRequest)) return false;
         final UpdateEquipFaRequest updateEquipFaRequest = (UpdateEquipFaRequest) o;
-        return Objects.equals(getTagNumber(), updateEquipFaRequest.getTagNumber()) &&
-                Objects.equals(getActivity(), updateEquipFaRequest.getActivity()) &&
+        return Objects.equals(getBidId(), updateEquipFaRequest.getBidId()) &&
                 Objects.equals(getQuantity(), updateEquipFaRequest.getQuantity()) &&
                 Objects.equals(getPercent(), updateEquipFaRequest.getPercent()) &&
                 Objects.equals(getRework(), updateEquipFaRequest.getRework()) &&
@@ -116,8 +103,7 @@ public class UpdateEquipFaRequest implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getTagNumber(),
-                getActivity(),
+        return Objects.hash(getBidId(),
                 getQuantity(),
                 getPercent(),
                 getRework(),

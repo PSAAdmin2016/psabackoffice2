@@ -31,8 +31,6 @@ public class EquipFa implements Serializable {
 
     private Integer activityId;
     private Integer fabidId;
-    private String fatagNumber;
-    private String faactivitySelect;
     private short faquantity;
     private float fapercentCompleted;
     private Short farework;
@@ -61,24 +59,6 @@ public class EquipFa implements Serializable {
 
     public void setFabidId(Integer fabidId) {
         this.fabidId = fabidId;
-    }
-
-    @Column(name = "`FATagNumber`", nullable = true, length = 45)
-    public String getFatagNumber() {
-        return this.fatagNumber;
-    }
-
-    public void setFatagNumber(String fatagNumber) {
-        this.fatagNumber = fatagNumber;
-    }
-
-    @Column(name = "`FAActivitySelect`", nullable = true, length = 255)
-    public String getFaactivitySelect() {
-        return this.faactivitySelect;
-    }
-
-    public void setFaactivitySelect(String faactivitySelect) {
-        this.faactivitySelect = faactivitySelect;
     }
 
     @Column(name = "`FAQuantity`", nullable = false, scale = 0, precision = 5)

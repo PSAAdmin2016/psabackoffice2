@@ -17,13 +17,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UpdateCivilFaRequest implements Serializable {
 
 
+    @JsonProperty("BidID")
+    @NotNull
+    private Integer bidId;
+
     @JsonProperty("Quantity")
     @NotNull
-    private String quantity;
+    private Integer quantity;
 
     @JsonProperty("Percent")
     @NotNull
-    private String percent;
+    private BigDecimal percent;
 
     @JsonProperty("Rework")
     @NotNull
@@ -34,21 +38,29 @@ public class UpdateCivilFaRequest implements Serializable {
 
     @JsonProperty("ActivityID")
     @NotNull
-    private String activityId;
+    private Integer activityId;
 
-    public String getQuantity() {
+    public Integer getBidId() {
+        return this.bidId;
+    }
+
+    public void setBidId(Integer bidId) {
+        this.bidId = bidId;
+    }
+
+    public Integer getQuantity() {
         return this.quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public String getPercent() {
+    public BigDecimal getPercent() {
         return this.percent;
     }
 
-    public void setPercent(String percent) {
+    public void setPercent(BigDecimal percent) {
         this.percent = percent;
     }
 
@@ -68,11 +80,11 @@ public class UpdateCivilFaRequest implements Serializable {
         this.notes = notes;
     }
 
-    public String getActivityId() {
+    public Integer getActivityId() {
         return this.activityId;
     }
 
-    public void setActivityId(String activityId) {
+    public void setActivityId(Integer activityId) {
         this.activityId = activityId;
     }
 
@@ -81,7 +93,8 @@ public class UpdateCivilFaRequest implements Serializable {
         if (this == o) return true;
         if (!(o instanceof UpdateCivilFaRequest)) return false;
         final UpdateCivilFaRequest updateCivilFaRequest = (UpdateCivilFaRequest) o;
-        return Objects.equals(getQuantity(), updateCivilFaRequest.getQuantity()) &&
+        return Objects.equals(getBidId(), updateCivilFaRequest.getBidId()) &&
+                Objects.equals(getQuantity(), updateCivilFaRequest.getQuantity()) &&
                 Objects.equals(getPercent(), updateCivilFaRequest.getPercent()) &&
                 Objects.equals(getRework(), updateCivilFaRequest.getRework()) &&
                 Objects.equals(getNotes(), updateCivilFaRequest.getNotes()) &&
@@ -90,7 +103,8 @@ public class UpdateCivilFaRequest implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getQuantity(),
+        return Objects.hash(getBidId(),
+                getQuantity(),
                 getPercent(),
                 getRework(),
                 getNotes(),

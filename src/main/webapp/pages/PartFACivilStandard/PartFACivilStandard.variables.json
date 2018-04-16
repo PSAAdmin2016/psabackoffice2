@@ -5,40 +5,8 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "Quantity",
-      "value" : "bind:Widgets.textQuant.datavalue",
-      "type" : "integer"
-    }, {
-      "target" : "Foundation",
-      "value" : "bind:Widgets.textFoundation.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "DetailDrawing",
-      "value" : "bind:Widgets.textDetailDrawing.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "Notes",
-      "value" : "bind:Widgets.textareaNotes.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "Drawing",
-      "value" : "bind:Widgets.textDrawing.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "Percent",
-      "value" : "bind:Widgets.selectPercent.datavalue",
-      "type" : "number"
-    }, {
-      "target" : "Rework",
-      "value" : "bind:Widgets.checkbox1.datavalue",
-      "type" : "integer"
-    }, {
-      "target" : "Description",
-      "value" : "bind:Widgets.textActivity.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "FieldActivityID",
-      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityID",
+      "target" : "ActivityID",
+      "value" : "bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityId",
       "type" : "integer"
     } ],
     "type" : "integer",
@@ -51,6 +19,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onBeforeUpdate" : "serviceUpdateActivityonBeforeUpdate($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

@@ -5,28 +5,20 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "Area",
-      "value" : "bind:Widgets.textArea.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "Size",
-      "value" : "bind:Widgets.textSize.datavalue",
-      "type" : "string"
-    }, {
       "target" : "Notes",
       "value" : "bind:Widgets.textareaNotes.datavalue",
       "type" : "string"
     }, {
-      "target" : "SteelType",
-      "value" : "bind:Widgets.selectSteelType.datavalue",
+      "target" : "Percentcompleted",
+      "value" : "bind:Widgets.selectDemoPercent.datavalue",
+      "type" : "number"
+    }, {
+      "target" : "ActivityID",
+      "value" : "bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityId",
       "type" : "integer"
     }, {
-      "target" : "Quantity",
-      "value" : "bind:Widgets.textQuantity.datavalue",
-      "type" : "integer"
-    }, {
-      "target" : "FieldActivityID",
-      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityID",
+      "target" : "BidID",
+      "value" : "bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].steelDemo.demoBidId",
       "type" : "integer"
     } ],
     "type" : "integer",

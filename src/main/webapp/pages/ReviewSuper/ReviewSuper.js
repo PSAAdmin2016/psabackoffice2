@@ -19,34 +19,35 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
     };
 
 
+    $scope.buttonRefreshClick = function($event, $isolateScope) {
+        $scope.Variables.serviceGetFAs.invoke();
+        $scope.Variables.serviceGetFAsSteel.invoke();
+    };
+
+
     $scope.btnAcceptClick = function($event, $isolateScope) {
+        //### Pipe FAs ###
         if ($scope.Variables.staticTabSelect.dataSet.dataValue == '1') {
-            switch ($scope.Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus) {
+            switch ($scope.Widgets.gridSuperReviewActivities.selecteditem.fkActivityStatus) {
                 case 1:
                 case 10:
-                    $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "2");
+                    $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", "2");
                     break;
                 case 6:
                 case 8:
-                    $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "7");
+                    $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", "7");
                     break;
                 case 4:
-                    $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "9");
+                    $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", "9");
             }
-            $scope.Variables.serviceUpdateSS.invoke();
-        } else if ($scope.Variables.staticTabSelect.dataSet.dataValue == '2') {
-            switch ($scope.Widgets.gridSuperReviewSteel.selecteditem.fk_ActivityStatus) {
-                case 1:
-                case 10:
-                    $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "2");
-                    break;
-                case 6:
-                case 8:
-                    $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "7");
-                    break;
-                case 4:
-                    $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "9");
-            }
+            $scope.Variables.serviceUpdateSAS.invoke({},
+                function(data) {
+                    $scope.Variables.serviceGetFAs.invoke();
+                });
+        }
+
+        //### Steel FAs ###
+        if ($scope.Variables.staticTabSelect.dataSet.dataValue == '2') {
             //Need logic for looping through all FA's that make up the one row selected in the gridSuperReviewSteel.  
             //OR pass a List to the querry if that works right.
             //OR Build an array of objects to pass to an UpdateSS LiveVariable -> setInput() -> invoke()
@@ -57,8 +58,11 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
 
     $scope.btnRejectClick = function($event, $isolateScope) {
-        $scope.Variables.serviceUpdateSS.setInput("ActivityStatus", "3");
-        $scope.Variables.serviceUpdateSS.invoke();
+        $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", "3");
+        $scope.Variables.serviceUpdateSAS.invoke({},
+            function(data) {
+                $scope.Variables.serviceGetFAs.invoke();
+            });
     };
 
 
@@ -74,21 +78,29 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
     $scope.btnSaveClick = function($event, $isolateScope) {
         $scope.Variables.staticEditMode.dataSet.dataValue = false; //disable all fields
+
+        //### Pipe FAs ###
         if ($scope.Variables.staticTabSelect.dataSet.dataValue == '1') {
-            //Update changes to Field Activities
             $scope.Widgets.containerFADetails.Variables.serviceUpdateActivity.invoke();
+
+            //Update changes to Field Activity status (SAS)
+            if ($scope.Widgets.gridSuperReviewActivities.selecteditem.fkActivityStatus == 6 || $scope.Widgets.gridSuperReviewActivities.selecteditem.fkActivityStatus == 8) {
+                $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", "8"); // Progress Rejected Mod
+            } else {
+                $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", "4"); //Supervisor Modified
+            }
+            $scope.Variables.serviceUpdateSAS.invoke({},
+                function(data) {
+                    $scope.Variables.serviceGetFAs.invoke();
+                });
+        }
+
+        //### Steel FAs ###
+        if ($scope.Variables.staticTabSelect.dataSet.dataValue == '2') {
+
         }
 
 
-
-        //Update changes to Field Activity status (SS)
-
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus == 6 || $scope.Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus == 8) {
-            $scope.Variables.serviceUpdateSS.dataBinding.ActivityStatus = 8; // Progress Rejected Mod
-        } else {
-            $scope.Variables.serviceUpdateSS.dataBinding.ActivityStatus = 4; //Supervisor Modified
-        }
-        $scope.Variables.serviceUpdateSS.invoke();
     };
 
 
@@ -162,7 +174,7 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
                 'PageLoadSheet': '',
                 'PageLoadECT': '',
                 'PageLoadECTSubType': '',
-                'PageLoadTestPackage': $scope.Variables.liveGetPipeTesting.dataSet.data[0].testingTestPackageNumber,
+                'PageLoadTestPackage': $scope.Variables.liveGetPipeSellPackage.dataSet.data[0].testingTestPackageNumber,
                 'PageLoadFiltered': true
             });
             //Fire Nav Call
@@ -301,7 +313,6 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
                 }
             }
         });
-
     };
 
 
@@ -365,16 +376,28 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
     };
 
 
-    $scope.gridSuperReviewSteelSelect = function($event, $rowData) {
-        $scope.Variables.staticEditMode.dataSet.dataValue = false;
-        if ($scope.Variables.staticTabSelect.dataSet.dataValue == '2') {
-            if ($scope.Widgets.containerFADetails.Variables.staticEditMode.dataSet.dataValue) {
-                $scope.Widgets.containerFADetails.Variables.staticEditMode.setValue("dataValue", false);
-                $scope.Widgets.containerFADetails.Widgets.gridSteelFA.cancelRow();
-            }
-            $scope.Variables.liveGetSubsDetails.setFilter('submissionId', $rowData.submissionId);
-            $scope.Variables.liveGetSubsDetails.listRecords();
+    $scope.gridSuperReviewSteelSelect = function($event, $isolateScope, $rowData) {
+
+        if ($rowData.submissionId === undefined) { //Skip logic if Nothing selected.
+            return;
         }
+        if ($scope.Variables.staticTabSelect.dataSet.dataValue != '2') { //Skip logic if Tab Not selected.
+            return;
+        }
+
+        if ($scope.Widgets.containerFADetails.Variables && $scope.Widgets.containerFADetails.Variables.staticEditMode && $scope.Widgets.containerFADetails.Variables.staticEditMode.dataSet.dataValue) {
+            $scope.Widgets.containerFADetails.Variables.staticEditMode.setValue("dataValue", false);
+            $scope.Widgets.containerFADetails.Widgets.gridSteelFA.cancelRow();
+        }
+        /*
+                $scope.Variables.liveGetSubsDetails.listRecords({
+                    filterFields: {
+                        "submissionId": {
+                            "value": $rowData.submissionId
+                        }
+                    }
+                });
+        */
     };
 
 
@@ -387,22 +410,20 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
     $scope.tabFAsSelect = function($event, $isolateScope) {
         $scope.Variables.staticTabSelect.setValue('dataValue', '1');
-        //$scope.Variables.liveGetSubsDetails.setFilter('submissionId', $scope.Widgets.gridSuperReviewActivities.selecteditem.submissionId);
-        //$scope.Variables.liveGetSubsDetails.listRecords();
-        //$scope.gridSuperReviewActivitiesSelect(null, null, $scope.Widgets.gridSuperReviewActivities.selecteditem);
+        $scope.gridSuperReviewActivitiesSelect(null, null, $scope.Widgets.gridSuperReviewActivities.selecteditem);
     };
 
 
     $scope.tabSteelSelect = function($event, $isolateScope) {
         $scope.Variables.staticTabSelect.setValue('dataValue', '2');
         $scope.Widgets.containerFADetails.content = 'PartFASteelStandard';
+        $scope.gridSuperReviewSteelSelect(null, null, $scope.Widgets.gridSuperReviewSteel.selecteditem);
     };
 
 
     $scope.liveGetSubsSignaturesonSuccess = function(variable, data) { //SubsSignatures Called by On Success event in liveGetSubsDetails variable
         //$scope.signaturePad.fromDataURL(data[0].signatureData);
     };
-
 
 }]);
 

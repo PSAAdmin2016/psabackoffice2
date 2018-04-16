@@ -1,4 +1,31 @@
 {
+  "serviceGetDrawingsByTestPackage" : {
+    "_id" : "wm-serviceGetDrawingsByTestPackageSteel-wm.ServiceVariable-1483736665707",
+    "name" : "serviceGetDrawingsByTestPackage",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "TestPackage",
+      "value" : "bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].steelSellPackage.sellTestPackageNumber",
+      "type" : "string"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.query.GetDrawingByTestPackageSteelResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetDrawingByTestPackageSteel",
+    "operationId" : "QueryExecutionController_executeGetDrawingByTestPackageSteel",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 200,
+    "designMaxResults" : 10,
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
   "serviceUpdateActivity" : {
     "_id" : "wm-serviceUpdateTesting-wm.ServiceVariable-1476111931924",
     "name" : "serviceUpdateActivity",

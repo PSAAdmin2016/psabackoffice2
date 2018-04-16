@@ -43,7 +43,7 @@
       },
       "constraintList" : null,
       "fieldName" : "fabidId",
-      "foreignKey" : false,
+      "foreignKey" : true,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "hidden" : false,
@@ -52,8 +52,8 @@
       "name" : "FABidID",
       "nullable" : true,
       "oldName" : "FABidID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
       "partOfUniqueKey" : false,
       "period" : false,
@@ -315,6 +315,35 @@
       "virtual" : false
     },
     "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "civilTrackerDetails",
+      "mappings" : [ {
+        "sourceColumn" : "FABidID",
+        "targetColumn" : "BidID"
+      } ],
+      "name" : "CivilFA_BidID_to_CTDBidID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "CivilFA",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "CivilTrackerDetails",
+      "virtual" : false
+    }, {
       "cardinality" : "OneToOne",
       "cascadeOptions" : {
         "cascadeRemove" : "NONE",
@@ -3584,64 +3613,6 @@
       "scale" : 0,
       "sequenceSchema" : null,
       "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null,
-        "type" : "user-defined"
-      },
-      "constraintList" : null,
-      "fieldName" : "fatagNumber",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "hidden" : false,
-      "javaType" : "string",
-      "length" : 45,
-      "name" : "FATagNumber",
-      "nullable" : true,
-      "oldName" : "FATagNumber",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "period" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null,
-        "type" : "user-defined"
-      },
-      "constraintList" : null,
-      "fieldName" : "faactivitySelect",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "hidden" : false,
-      "javaType" : "string",
-      "length" : 255,
-      "name" : "FAActivitySelect",
-      "nullable" : true,
-      "oldName" : "FAActivitySelect",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "period" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "string",
       "unique" : false
     }, {
       "columnValue" : {
@@ -8167,35 +8138,6 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "OneToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "NONE",
-        "cascadeReplace" : true
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "submissionActivityStatus",
-      "mappings" : [ {
-        "sourceColumn" : "ActivityID",
-        "targetColumn" : "ActivityID"
-      } ],
-      "name" : "PipeFA_ActivityID_to_SASActivityID",
-      "parentFetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "PipeFA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "SubmissionActivityStatus",
-      "virtual" : false
-    }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
         "cascadeRemove" : "NONE",
@@ -8223,6 +8165,35 @@
       "sourceTable" : "PipeFA",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "PipeTrackerDetails",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "submissionActivityStatus",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "PipeFA_ActivityID_to_SASActivityID",
+      "parentFetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "PipeFA",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SubmissionActivityStatus",
       "virtual" : false
     } ],
     "schema" : null,
@@ -13521,35 +13492,6 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "OneToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "NONE",
-        "cascadeReplace" : true
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "submissionActivityStatus",
-      "mappings" : [ {
-        "sourceColumn" : "ActivityID",
-        "targetColumn" : "ActivityID"
-      } ],
-      "name" : "SteelDemo_ActivityID_to_SASActivityID",
-      "parentFetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "SteelDemo",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "SubmissionActivityStatus",
-      "virtual" : false
-    }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
         "cascadeRemove" : "NONE",
@@ -13577,6 +13519,35 @@
       "sourceTable" : "SteelDemo",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "SteelTrackerDetails",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "submissionActivityStatus",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "SteelDemo_ActivityID_to_SASActivityID",
+      "parentFetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "SteelDemo",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SubmissionActivityStatus",
       "virtual" : false
     } ],
     "schema" : null,
@@ -14238,35 +14209,6 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "ManyToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "NONE",
-        "cascadeReplace" : true
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "steelTrackerDetails",
-      "mappings" : [ {
-        "sourceColumn" : "MiscBidID",
-        "targetColumn" : "BidID"
-      } ],
-      "name" : "SteelMisc_BidID_to_STDBidID",
-      "parentFetchOptions" : {
-        "fetch" : false,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "SteelMisc",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "SteelTrackerDetails",
-      "virtual" : false
-    }, {
       "cardinality" : "OneToOne",
       "cascadeOptions" : {
         "cascadeRemove" : "NONE",
@@ -14294,6 +14236,35 @@
       "sourceTable" : "SteelMisc",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "SubmissionActivityStatus",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "steelTrackerDetails",
+      "mappings" : [ {
+        "sourceColumn" : "MiscBidID",
+        "targetColumn" : "BidID"
+      } ],
+      "name" : "SteelMisc_BidID_to_STDBidID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "SteelMisc",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SteelTrackerDetails",
       "virtual" : false
     } ],
     "schema" : null,

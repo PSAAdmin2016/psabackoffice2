@@ -15,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -38,6 +39,7 @@ public class CivilFa implements Serializable {
     private Short fatimeInForm;
     private short rev;
     private Timestamp timeStamp;
+    private CivilTrackerDetails civilTrackerDetails;
     private SubmissionActivityStatus submissionActivityStatus;
 
     @Id
@@ -129,6 +131,21 @@ public class CivilFa implements Serializable {
 
     public void setTimeStamp(Timestamp timeStamp) {
         this.timeStamp = timeStamp;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`FABidID`", referencedColumnName = "`BidID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`CivilFA_BidID_to_CTDBidID`"))
+    @Fetch(FetchMode.JOIN)
+    public CivilTrackerDetails getCivilTrackerDetails() {
+        return this.civilTrackerDetails;
+    }
+
+    public void setCivilTrackerDetails(CivilTrackerDetails civilTrackerDetails) {
+        if(civilTrackerDetails != null) {
+            this.fabidId = civilTrackerDetails.getBidId();
+        }
+
+        this.civilTrackerDetails = civilTrackerDetails;
     }
 
     @OneToOne(fetch = FetchType.EAGER)

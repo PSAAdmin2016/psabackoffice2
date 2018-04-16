@@ -9662,14 +9662,22 @@
     "name" : "UpdateCivilFA",
     "description" : "name",
     "version" : "V1",
-    "queryString" : "UPDATE `CivilFA` \nSET \n`FAQuantity`= :Quantity,\n`FAPercentCompleted`= :Percent,\n`FARework`= :Rework,\n`FANotes`= :Notes \nWHERE `ActivityID`= :ActivityID",
+    "queryString" : "UPDATE `CivilFA` \nSET \n`FABidID` = :BidID,\n`FAQuantity`= :Quantity,\n`FAPercentCompleted`= :Percent,\n`FARework`= :Rework,\n`FANotes`= :Notes \nWHERE `ActivityID`= :ActivityID",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
     "type" : "UPDATE",
     "parameters" : [ {
+      "name" : "BidID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1",
+      "required" : true
+    }, {
       "name" : "Quantity",
-      "type" : "string",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
@@ -9677,7 +9685,7 @@
       "required" : true
     }, {
       "name" : "Percent",
-      "type" : "string",
+      "type" : "big_decimal",
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
@@ -9701,7 +9709,7 @@
       "required" : false
     }, {
       "name" : "ActivityID",
-      "type" : "string",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
@@ -9816,22 +9824,14 @@
     "name" : "UpdateEquipFA",
     "description" : "name",
     "version" : "V2",
-    "queryString" : "UPDATE `EquipFA` \nSET \n`FATagNumber`= :TagNumber, \n`FAActivitySelect`= :Activity, \n`FAQuantity`= :Quantity,\n`FAPercentCompleted`= :Percent,\n`FARework`= :Rework,\n`FANotes`= :Notes \nWHERE `ActivityID`= :ActivityID",
+    "queryString" : "UPDATE `EquipFA` \nSET \n`FABidID`= :BidID,\n`FAQuantity`= :Quantity,\n`FAPercentCompleted`= :Percent,\n`FARework`= :Rework,\n`FANotes`= :Notes \nWHERE `ActivityID`= :ActivityID",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
     "type" : "UPDATE",
     "parameters" : [ {
-      "name" : "TagNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : true
-    }, {
-      "name" : "Activity",
-      "type" : "string",
+      "name" : "BidID",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
@@ -10891,7 +10891,7 @@
       "required" : true
     }, {
       "name" : "UserID",
-      "type" : "string",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
@@ -10899,7 +10899,7 @@
       "required" : true
     }, {
       "name" : "ActivityID",
-      "type" : "string",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",

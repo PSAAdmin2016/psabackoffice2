@@ -75,10 +75,6 @@
   "type" : "PAGE",
   "params" : [ ]
 }, {
-  "name" : "PartFACivilMisc",
-  "type" : "PARTIAL",
-  "params" : [ ]
-}, {
   "name" : "PartFACivilSellPackage",
   "type" : "PARTIAL",
   "params" : [ ]
@@ -115,10 +111,6 @@
   "type" : "PARTIAL",
   "params" : [ ]
 }, {
-  "name" : "PartFASteelBoltOut",
-  "type" : "PARTIAL",
-  "params" : [ ]
-}, {
   "name" : "PartFASteelDemo",
   "type" : "PARTIAL",
   "params" : [ ]
@@ -127,15 +119,7 @@
   "type" : "PARTIAL",
   "params" : [ ]
 }, {
-  "name" : "PartFASteelImpact",
-  "type" : "PARTIAL",
-  "params" : [ ]
-}, {
   "name" : "PartFASteelMisc",
-  "type" : "PARTIAL",
-  "params" : [ ]
-}, {
-  "name" : "PartFASteelSell",
   "type" : "PARTIAL",
   "params" : [ ]
 }, {
@@ -143,15 +127,7 @@
   "type" : "PARTIAL",
   "params" : [ ]
 }, {
-  "name" : "PartFASteelShake",
-  "type" : "PARTIAL",
-  "params" : [ ]
-}, {
   "name" : "PartFASteelStandard",
-  "type" : "PARTIAL",
-  "params" : [ ]
-}, {
-  "name" : "PartFASteelWeld",
   "type" : "PARTIAL",
   "params" : [ ]
 }, {

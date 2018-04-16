@@ -17,7 +17,7 @@ Application.$controller("PartFASteelSellPackagePageController", ["$scope", funct
 }]);
 
 
-Application.$controller("grid1Controller", ["$scope",
+Application.$controller("gridPieceMarksController", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;

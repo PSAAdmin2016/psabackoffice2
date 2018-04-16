@@ -5,18 +5,6 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "Area",
-      "value" : "bind:Widgets.textArea.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "Piece",
-      "value" : "bind:Widgets.textPiece.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "Quantity",
-      "value" : "bind:Widgets.textQuant.datavalue",
-      "type" : "integer"
-    }, {
       "target" : "Rework",
       "value" : "bind:Widgets.checkboxRework.datavalue",
       "type" : "string"
@@ -25,9 +13,17 @@
       "value" : "bind:Widgets.textareaNotes.datavalue",
       "type" : "string"
     }, {
-      "target" : "FieldActivityID",
-      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityID",
+      "target" : "BidID",
+      "value" : "bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].steelMisc.miscBidId",
       "type" : "integer"
+    }, {
+      "target" : "ActivityID",
+      "value" : "bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityId",
+      "type" : "integer"
+    }, {
+      "target" : "PercentCompleted",
+      "value" : "bind:Widgets.selectPercentCompleted.datavalue",
+      "type" : "number"
     } ],
     "type" : "integer",
     "service" : "Job1111",

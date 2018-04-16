@@ -23,11 +23,11 @@ public class UpdateSasstatusRequest implements Serializable {
 
     @JsonProperty("UserID")
     @NotNull
-    private String userId;
+    private Integer userId;
 
     @JsonProperty("ActivityID")
     @NotNull
-    private String activityId;
+    private Integer activityId;
 
     public Integer getActivityStatusId() {
         return this.activityStatusId;
@@ -37,19 +37,19 @@ public class UpdateSasstatusRequest implements Serializable {
         this.activityStatusId = activityStatusId;
     }
 
-    public String getUserId() {
+    public Integer getUserId() {
         return this.userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public String getActivityId() {
+    public Integer getActivityId() {
         return this.activityId;
     }
 
-    public void setActivityId(String activityId) {
+    public void setActivityId(Integer activityId) {
         this.activityId = activityId;
     }
 

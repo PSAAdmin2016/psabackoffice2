@@ -6,7 +6,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "TestPackage",
-      "value" : "bind:Variables.liveGetPipeTesting.dataSet.data[$i].testingTestPackageNumber",
+      "value" : "bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].pipeTesting.testingTestPackageNumber",
       "type" : "string"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetDrawingsByTestPackagePipeResponse",
@@ -19,8 +19,8 @@
     "isList" : true,
     "maxResults" : 200,
     "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : true,
+    "startUpdate" : true,
+    "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,

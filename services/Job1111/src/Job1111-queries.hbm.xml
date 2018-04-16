@@ -2652,8 +2652,8 @@ sas.fk_LastModifiedBy = :UserID
 WHERE sas.ActivityID = :ActivityID
         ]]>
     <query-param name="ActivityStatusID" type="java.lang.Integer"/>
-    <query-param name="UserID" type="java.lang.String"/>
-    <query-param name="ActivityID" type="java.lang.String"/>
+    <query-param name="UserID" type="java.lang.Integer"/>
+    <query-param name="ActivityID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetBidActivityQuantitesEquip">
@@ -3337,16 +3337,14 @@ AND fk_BidIDAssigned = :BidID) wmTempTable
         <![CDATA[
         UPDATE `EquipFA` 
 SET 
-`FATagNumber`= :TagNumber, 
-`FAActivitySelect`= :Activity, 
+`FABidID`= :BidID,
 `FAQuantity`= :Quantity,
 `FAPercentCompleted`= :Percent,
 `FARework`= :Rework,
 `FANotes`= :Notes 
 WHERE `ActivityID`= :ActivityID
         ]]>
-    <query-param name="TagNumber" type="java.lang.String"/>
-    <query-param name="Activity" type="java.lang.String"/>
+    <query-param name="BidID" type="java.lang.Integer"/>
     <query-param name="Quantity" type="java.lang.Integer"/>
     <query-param name="Percent" type="java.math.BigDecimal"/>
     <query-param name="Rework" type="java.lang.Integer"/>
@@ -5837,17 +5835,19 @@ WHERE ActivityID= :ActivityID
         <![CDATA[
         UPDATE `CivilFA` 
 SET 
+`FABidID` = :BidID,
 `FAQuantity`= :Quantity,
 `FAPercentCompleted`= :Percent,
 `FARework`= :Rework,
 `FANotes`= :Notes 
 WHERE `ActivityID`= :ActivityID
         ]]>
-    <query-param name="Quantity" type="java.lang.String"/>
-    <query-param name="Percent" type="java.lang.String"/>
+    <query-param name="BidID" type="java.lang.Integer"/>
+    <query-param name="Quantity" type="java.lang.Integer"/>
+    <query-param name="Percent" type="java.math.BigDecimal"/>
     <query-param name="Rework" type="java.lang.Integer"/>
     <query-param name="Notes" type="java.lang.String"/>
-    <query-param name="ActivityID" type="java.lang.String"/>
+    <query-param name="ActivityID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetBidWorkHistorySteelExpanded">

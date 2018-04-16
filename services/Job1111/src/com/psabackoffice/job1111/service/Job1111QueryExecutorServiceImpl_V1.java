@@ -742,9 +742,10 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateCivilFA(String quantity, String percent, Integer rework, String notes, String activityId) {
-        Map params = new HashMap(5);
+    public int executeUpdateCivilFA(Integer bidId, Integer quantity, BigDecimal percent, Integer rework, String notes, Integer activityId) {
+        Map params = new HashMap(6);
 
+        params.put("BidID", bidId);
         params.put("Quantity", quantity);
         params.put("Percent", percent);
         params.put("Rework", rework);

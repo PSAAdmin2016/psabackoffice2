@@ -1131,10 +1131,9 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public Integer executeUpdateEquipFA(UpdateEquipFaRequest updateEquipFaRequest) {
-        Map params = new HashMap(7);
+        Map params = new HashMap(6);
 
-        params.put("TagNumber", updateEquipFaRequest.getTagNumber());
-        params.put("Activity", updateEquipFaRequest.getActivity());
+        params.put("BidID", updateEquipFaRequest.getBidId());
         params.put("Quantity", updateEquipFaRequest.getQuantity());
         params.put("Percent", updateEquipFaRequest.getPercent());
         params.put("Rework", updateEquipFaRequest.getRework());
@@ -1445,8 +1444,9 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public Integer executeUpdateCivilFA(UpdateCivilFaRequest updateCivilFaRequest) {
-        Map params = new HashMap(5);
+        Map params = new HashMap(6);
 
+        params.put("BidID", updateCivilFaRequest.getBidId());
         params.put("Quantity", updateCivilFaRequest.getQuantity());
         params.put("Percent", updateCivilFaRequest.getPercent());
         params.put("Rework", updateCivilFaRequest.getRework());

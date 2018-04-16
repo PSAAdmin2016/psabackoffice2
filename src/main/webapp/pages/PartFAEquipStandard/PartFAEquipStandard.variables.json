@@ -7,30 +7,26 @@
     "dataBinding" : [ {
       "target" : "Rework",
       "value" : "bind:Widgets.checkbox1.datavalue",
-      "type" : "string"
+      "type" : "integer"
     }, {
       "target" : "Percent",
-      "value" : "bind:Widgets.selectPercent.datavalue",
-      "type" : "string"
+      "value" : "bind:Widgets.selectPercentCompleted.datavalue",
+      "type" : "number"
     }, {
       "target" : "Notes",
       "value" : "bind:Widgets.textareaNotes.datavalue",
       "type" : "string"
     }, {
-      "target" : "Activity",
-      "value" : "bind:Widgets.textActivity.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "TagNumber",
-      "value" : "bind:Widgets.textTagNumber.datavalue",
-      "type" : "string"
-    }, {
       "target" : "Quantity",
-      "value" : "bind:Widgets.textQuantity.datavalue",
-      "type" : "number"
+      "value" : "1",
+      "type" : "integer"
     }, {
-      "target" : "FieldActivityID",
-      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityID",
+      "target" : "ActivityID",
+      "value" : "bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityId",
+      "type" : "string"
+    }, {
+      "target" : "BidID",
+      "value" : "bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].equipFa.fabidId",
       "type" : "integer"
     } ],
     "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
