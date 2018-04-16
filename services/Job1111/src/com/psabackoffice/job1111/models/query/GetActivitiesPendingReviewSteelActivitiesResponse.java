@@ -24,7 +24,7 @@ public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serial
     private String activityType;
 
     @ColumnAlias("ActivityTypeID")
-    private Integer activityTypeId;
+    private Short activityTypeId;
 
     @ColumnAlias("ActivityID")
     private Integer activityId;
@@ -71,11 +71,11 @@ public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serial
         this.activityType = activityType;
     }
 
-    public Integer getActivityTypeId() {
+    public Short getActivityTypeId() {
         return this.activityTypeId;
     }
 
-    public void setActivityTypeId(Integer activityTypeId) {
+    public void setActivityTypeId(Short activityTypeId) {
         this.activityTypeId = activityTypeId;
     }
 

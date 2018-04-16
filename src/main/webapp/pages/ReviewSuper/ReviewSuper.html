@@ -52,7 +52,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                         readonly="false">
                                         <wm-checkbox scopedatavalue="row['Select']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                     </wm-table-column>
-                                    <wm-table-column binding="area" caption="Area" width="10%" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                                    <wm-table-column binding="sortGroup1" caption="Area" width="10%" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
                                     <wm-table-column binding="pieceMark" caption="Piece Mark" width="15%" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
                                     <wm-table-column binding="status" caption="Status" width="10%" col-ng-class="{'yellow':row.status == 'Progress Returned', 'orange':row.status == 'Supervisor Modified' || row.Status == 'Progress Returned Mod', 'blue':row.status == 'Returned To List'}"
                                         edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>

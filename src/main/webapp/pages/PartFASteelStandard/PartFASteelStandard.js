@@ -30,16 +30,28 @@ Application.$controller("PartFASteelStandardPageController", ["$scope", function
 
 
     $scope.gridSteelFARowupdate = function($event, $isolateScope, $rowData) {
-        $scope.Variables.serviceUpdateSteelFA.invoke();
+        $scope.Variables.serviceUpdateSteelFA.invoke({},
+            function(data) {
+
+                $scope.Variables.serviceUpdateSAS.setInput("ActivityID", $rowData.activityId);
+                $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", 4);
+
+                $scope.Variables.serviceUpdateSAS.invoke({},
+                    function(data) {
+                        $scope.$parent.Variables.serviceGetFAsSteel.invoke();
+                    }
+                );
+            }
+        );
     };
 
 
     $scope.serviceUpdateSteelFAonBeforeUpdate = function(variable, inputData) {
         inputData.Quantity = $scope.Widgets.gridSteelFA.formfields.faquantity.getProperty('value');
-        inputData.Percent = $scope.Widgets.gridSteelFA.formfields.fapercent.getProperty('value');
+        inputData.PercentCompleted = $scope.Widgets.gridSteelFA.formfields.fapercent.getProperty('value');
         inputData.Rework = $scope.Widgets.gridSteelFA.formfields.farework.getProperty('value');
+        inputData.Notes = $scope.Widgets.gridSteelFA.formfields.fanotes.getProperty('value');
     };
-
 }]);
 
 
@@ -51,8 +63,15 @@ Application.$controller("gridSteelFAController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRowAction = function($event, $rowData) { //REJECT
-            $scope.Variables.serviceUpdateSASReject.setInput("FieldActivityID", $rowData.activityId);
-            $scope.Variables.serviceUpdateSASReject.invoke() //ReInvokes serviceGetSteelFAData onSuccess
+            $scope.Variables.serviceUpdateSAS.setInput("ActivityID", $rowData.activityId);
+            $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", 3);
+            $scope.Variables.serviceUpdateSAS.invoke({},
+                function(data) {
+                    $scope.Variables.serviceGetSteelFAData.invoke();
+                    $scope.$parent.Variables.serviceGetFAsSteel.invoke();
+                }
+            );
+
             $scope.Widgets.gridSteelFA.cancelRow();
             $scope.Variables.staticEditMode.setValue("dataValue", false);
         };

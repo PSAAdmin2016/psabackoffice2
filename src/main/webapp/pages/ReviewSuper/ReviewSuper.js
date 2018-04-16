@@ -99,8 +99,6 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
         if ($scope.Variables.staticTabSelect.dataSet.dataValue == '2') {
 
         }
-
-
     };
 
 
@@ -389,6 +387,7 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
             $scope.Widgets.containerFADetails.Variables.staticEditMode.setValue("dataValue", false);
             $scope.Widgets.containerFADetails.Widgets.gridSteelFA.cancelRow();
         }
+
         /*
                 $scope.Variables.liveGetSubsDetails.listRecords({
                     filterFields: {

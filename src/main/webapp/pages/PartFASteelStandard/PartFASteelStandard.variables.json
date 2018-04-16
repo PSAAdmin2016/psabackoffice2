@@ -321,7 +321,7 @@
     "dataBinding" : [ {
       "target" : "SubmissionID",
       "value" : "bind:$parent.Widgets.gridSuperReviewSteel.selecteditem.submissionId",
-      "type" : "string"
+      "type" : "integer"
     }, {
       "target" : "PieceMark",
       "value" : "bind:$parent.Widgets.gridSuperReviewSteel.selecteditem.pieceMark",
@@ -329,7 +329,7 @@
     }, {
       "target" : "StatusID",
       "value" : "bind:$parent.Widgets.gridSuperReviewSteel.selecteditem.fkActivityStatus",
-      "type" : "string"
+      "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivitiesPendingReviewSteelActivitiesResponse",
     "service" : "Job1111",
@@ -347,34 +347,25 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
   },
-  "serviceUpdateSASReject" : {
-    "_id" : "wm-serviceUpdateSAS-wm.ServiceVariable-1520540108680",
-    "name" : "serviceUpdateSASReject",
+  "serviceUpdateSAS" : {
+    "_id" : "wm-serviceUpdateSASReject-wm.ServiceVariable-1523909707204",
+    "name" : "serviceUpdateSAS",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "ActivityStatus",
-      "value" : "3",
-      "type" : "integer"
-    }, {
       "target" : "UserID",
       "value" : "bind:Variables.loggedInUser.dataSet.id",
       "type" : "integer"
-    }, {
-      "target" : "FieldActivityID",
-      "value" : "bind:Widgets.gridSteelFA.selecteditem.activityId",
-      "type" : "integer"
     } ],
-    "type" : "integer",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "Job1111",
-    "operation" : "executeUpdateSS",
-    "operationId" : "QueryExecutionController_executeUpdateSS",
+    "operation" : "executeUpdateSASStatus",
+    "operationId" : "QueryExecutionController_executeUpdateSASStatus",
     "operationType" : "put",
     "serviceType" : "DataService",
     "dataSet" : [ ],
     "isList" : false,
-    "maxResults" : 3,
-    "onSuccess" : "Variables.serviceGetSteelFAData.invoke()",
+    "maxResults" : 1,
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -388,14 +379,6 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "Notes",
-      "value" : "bind:Widgets.gridSteelFA.selecteditem.fanotes",
-      "type" : "string"
-    }, {
-      "target" : "Area",
-      "value" : "bind:Widgets.gridSteelFA.selecteditem.faarea",
-      "type" : "string"
-    }, {
       "target" : "Piece",
       "value" : "bind:Widgets.gridSteelFA.selecteditem.fapieceNumber",
       "type" : "string"
@@ -403,6 +386,14 @@
       "target" : "ActivityType",
       "value" : "bind:Widgets.gridSteelFA.selecteditem.activityTypeId",
       "type" : "integer"
+    }, {
+      "target" : "ActivityID",
+      "value" : "bind:Widgets.gridSteelFA.selecteditem.activityId",
+      "type" : "integer"
+    }, {
+      "target" : "FASortGroup1",
+      "value" : "bind:Widgets.gridSteelFA.selecteditem.fasortGroup1",
+      "type" : "string"
     } ],
     "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "Job1111",
