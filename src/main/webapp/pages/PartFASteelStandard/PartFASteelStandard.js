@@ -18,6 +18,15 @@ Application.$controller("PartFASteelStandardPageController", ["$scope", function
     $scope.gridSteelFARowclick = function($event, $isolateScope, $rowData) {
         $scope.Widgets.gridSteelFA.cancelRow();
         $scope.Variables.staticEditMode.setValue("dataValue", false);
+
+        $scope.Variables.liveGetSubDetails.listRecords({
+            filterFields: {
+                "submissionId": {
+                    "value": $rowData.activityId
+                }
+            }
+        });
+
     };
 
 
@@ -32,10 +41,8 @@ Application.$controller("PartFASteelStandardPageController", ["$scope", function
     $scope.gridSteelFARowupdate = function($event, $isolateScope, $rowData) {
         $scope.Variables.serviceUpdateSteelFA.invoke({},
             function(data) {
-
                 $scope.Variables.serviceUpdateSAS.setInput("ActivityID", $rowData.activityId);
                 $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", 4);
-
                 $scope.Variables.serviceUpdateSAS.invoke({},
                     function(data) {
                         $scope.$parent.Variables.serviceGetFAsSteel.invoke();

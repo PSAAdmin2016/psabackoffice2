@@ -776,6 +776,32 @@ ORDER BY TimeStamp DESC) wmTempTable
     <query-param name="ActivityID" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="GetSuperSubDetails">
+        <![CDATA[
+        SELECT u.FullName, u.Email, sd.StartTime, sd.CompleteTime, sd.ReceivedTime, ssig.SignatureData 
+FROM SubsDetails sd
+JOIN PSA.tblUserPSA u
+	ON u.ID = sd.UserID
+LEFT JOIN SubsSignatures ssig
+	On ssig.SubmissionID = sd.SubmissionID
+WHERE sd.SubmissionID = :SubmissionID
+        ]]>
+    <query-param name="SubmissionID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetSuperSubDetails__count">
+        <![CDATA[
+        select count(*) from (SELECT u.FullName, u.Email, sd.StartTime, sd.CompleteTime, sd.ReceivedTime, ssig.SignatureData 
+FROM SubsDetails sd
+JOIN PSA.tblUserPSA u
+	ON u.ID = sd.UserID
+LEFT JOIN SubsSignatures ssig
+	On ssig.SubmissionID = sd.SubmissionID
+WHERE sd.SubmissionID = :SubmissionID) wmTempTable
+        ]]>
+    <query-param name="SubmissionID" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="UpdateSteelFA">
         <![CDATA[
         UPDATE `SteelFA` 

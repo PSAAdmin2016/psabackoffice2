@@ -301,6 +301,9 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
             return;
         }
 
+        $scope.Variables.serviceGetSubsDetails.setInput('SubmissionID', $rowData.submissionId);
+        $scope.Variables.serviceGetSubsDetails.invoke();
+
         $scope.Variables.staticEditMode.dataSet.dataValue = false;
 
         // Update liveGetActivityDetails with newly selected Row
@@ -383,20 +386,13 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
             return;
         }
 
+        $scope.Variables.serviceGetSubsDetails.setInput('SubmissionID', $rowData.submissionId);
+        $scope.Variables.serviceGetSubsDetails.invoke();
+
         if ($scope.Widgets.containerFADetails.Variables && $scope.Widgets.containerFADetails.Variables.staticEditMode && $scope.Widgets.containerFADetails.Variables.staticEditMode.dataSet.dataValue) {
             $scope.Widgets.containerFADetails.Variables.staticEditMode.setValue("dataValue", false);
             $scope.Widgets.containerFADetails.Widgets.gridSteelFA.cancelRow();
         }
-
-        /*
-                $scope.Variables.liveGetSubsDetails.listRecords({
-                    filterFields: {
-                        "submissionId": {
-                            "value": $rowData.submissionId
-                        }
-                    }
-                });
-        */
     };
 
 
@@ -420,9 +416,14 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
     };
 
 
-    $scope.liveGetSubsSignaturesonSuccess = function(variable, data) { //SubsSignatures Called by On Success event in liveGetSubsDetails variable
-        //$scope.signaturePad.fromDataURL(data[0].signatureData);
+    $scope.serviceGetSubsDetailsonSuccess = function(variable, data) {
+        if (data[0].signatureData) {
+            debugger;
+            $scope.signaturePad.fromDataURL(data[0].signatureData);
+        }
+
     };
+
 
 }]);
 

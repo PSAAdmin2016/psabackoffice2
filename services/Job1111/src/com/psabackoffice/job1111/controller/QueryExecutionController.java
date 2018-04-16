@@ -127,6 +127,25 @@ public class QueryExecutionController {
         return queryService.exportGetActivityHistoryPipeErection(exportType, activityId, pageable);
     }
 
+    @RequestMapping(value = "/queries/GetSuperSubDetails", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Return condensed listing of Submission Details info")
+    public Page<GetSuperSubDetailsResponse> executeGetSuperSubDetails(@RequestParam(value = "SubmissionID") Integer submissionId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: GetSuperSubDetails");
+        Page<GetSuperSubDetailsResponse> _result = queryService.executeGetSuperSubDetails(submissionId, pageable);
+        LOGGER.debug("got the result for named query: GetSuperSubDetails, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetSuperSubDetails")
+    @RequestMapping(value = "/queries/GetSuperSubDetails/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetSuperSubDetails(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "SubmissionID") Integer submissionId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: GetSuperSubDetails");
+
+        return queryService.exportGetSuperSubDetails(exportType, submissionId, pageable);
+    }
+
     @RequestMapping(value = "/queries/UpdateSteelFA", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Update Steel FA record without timeinform/rev/timestamp")

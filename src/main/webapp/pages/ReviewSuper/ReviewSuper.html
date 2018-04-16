@@ -157,7 +157,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                     <wm-composite padding="unset unset unset 2%" name="composite7">
                                         <wm-label class="col-md-3" caption="Submission Started" name="label9"></wm-label>
                                         <wm-container class="col-md-9" name="container7">
-                                            <wm-datetime datavalue="bind:Variables.liveGetActivityDetails.firstRecord.subsDetails.startTime" width="60%" readonly="true" readonlygrid="true" name="datetime1" showbuttonbar="false"></wm-datetime>
+                                            <wm-datetime datavalue="bind:Variables.serviceGetSubsDetails.firstRecord.startTime" width="60%" readonly="true" readonlygrid="true" name="datetime1" showbuttonbar="false"></wm-datetime>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -167,7 +167,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                     <wm-composite padding="unset unset unset 2%" name="composite8">
                                         <wm-label class="col-md-3" caption="Submission Completed" name="label10"></wm-label>
                                         <wm-container class="col-md-9" name="container8">
-                                            <wm-datetime datavalue="bind:Variables.liveGetActivityDetails.firstRecord.subsDetails.completeTime" width="60%" readonly="true" name="datetime2" showbuttonbar="false"></wm-datetime>
+                                            <wm-datetime datavalue="bind:Variables.serviceGetSubsDetails.firstRecord.completeTime" width="60%" readonly="true" name="datetime2" showbuttonbar="false"></wm-datetime>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -177,7 +177,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                     <wm-composite padding="unset unset unset 2%" name="composite9">
                                         <wm-label class="col-md-3" caption="Submission Recieved" name="label11"></wm-label>
                                         <wm-container class="col-md-9" name="container9">
-                                            <wm-datetime datavalue="bind:Variables.liveGetActivityDetails.firstRecord.subsDetails.receivedTime" width="60%" readonly="true" name="datetime3" outputformat="timestamp" showbuttonbar="false"></wm-datetime>
+                                            <wm-datetime datavalue="bind:Variables.serviceGetSubsDetails.firstRecord.receivedTime" width="60%" readonly="true" name="datetime3" outputformat="timestamp" showbuttonbar="false"></wm-datetime>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -186,7 +186,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn49_2" padding="2% unset unset unset">
                                     <wm-composite captionposition="top" margin="unset unset 1px unset" name="composite11" padding="unset unset unset 2%">
                                         <wm-label class="col-md-3 control-label" caption="Name" width="11%" name="label13" fontweight="bold" textdecoration="underline"></wm-label>
-                                        <wm-label caption="bind:Variables.liveGetUser.firstRecord.firstName + ' ' + Variables.liveGetUser.firstRecord.lastName" class="col-md-3" name="labelName" fontsize="17" height="12px"></wm-label>
+                                        <wm-label caption="bind:Variables.serviceGetSubsDetails.dataSet[$i].fullName" class="col-md-3" name="labelName" fontsize="17" height="12px"></wm-label>
                                     </wm-composite>
                                 </wm-gridcolumn>
                             </wm-gridrow>
@@ -194,7 +194,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn50" padding="1% unset unset unset">
                                     <wm-composite captionposition="top" margin="unset unset 1px unset" name="composite12" padding="unset unset unset 2%">
                                         <wm-label class="col-md-3 control-label" caption="Email" width="11%" name="label14" fontweight="bold" textdecoration="underline"></wm-label>
-                                        <wm-label caption="bind:Variables.liveGetUser.firstRecord.email" class="col-md-3" fontsize="17" height="12px" name="labelEmail"></wm-label>
+                                        <wm-label caption="bind:Variables.serviceGetSubsDetails.firstRecord.email" class="col-md-3" fontsize="17" height="12px" name="labelEmail"></wm-label>
                                     </wm-composite>
                                 </wm-gridcolumn>
                             </wm-gridrow>

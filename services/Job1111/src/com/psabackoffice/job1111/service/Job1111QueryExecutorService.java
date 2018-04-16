@@ -34,6 +34,10 @@ public interface Job1111QueryExecutorService {
 
     Downloadable exportGetActivityHistoryPipeErection(ExportType exportType, Integer activityId, Pageable pageable);
 
+    Page<GetSuperSubDetailsResponse> executeGetSuperSubDetails(Integer submissionId, Pageable pageable);
+
+    Downloadable exportGetSuperSubDetails(ExportType exportType, Integer submissionId, Pageable pageable);
+
     Integer executeUpdateSteelFA(UpdateSteelFaRequest updateSteelFaRequest);
 
     Page<GetActivityHistoryPipeWeldResponse> executeGetActivityHistoryPipeWeld(Integer activityId, Pageable pageable);

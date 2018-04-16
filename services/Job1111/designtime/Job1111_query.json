@@ -9658,6 +9658,91 @@
       } ]
     }
   },
+  "GetSuperSubDetails" : {
+    "name" : "GetSuperSubDetails",
+    "description" : "Return condensed listing of Submission Details info",
+    "version" : "V2",
+    "queryString" : "SELECT u.FullName, u.Email, sd.StartTime, sd.CompleteTime, sd.ReceivedTime, ssig.SignatureData \nFROM SubsDetails sd\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nLEFT JOIN SubsSignatures ssig\n\tOn ssig.SubmissionID = sd.SubmissionID\nWHERE sd.SubmissionID = :SubmissionID",
+    "countQueryString" : "select count(*) from (SELECT u.FullName, u.Email, sd.StartTime, sd.CompleteTime, sd.ReceivedTime, ssig.SignatureData \nFROM SubsDetails sd\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nLEFT JOIN SubsSignatures ssig\n\tOn ssig.SubmissionID = sd.SubmissionID\nWHERE sd.SubmissionID = :SubmissionID) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "SubmissionID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "466",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.psabackoffice.job1111.models.query.GetSuperSubDetailsResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "FullName",
+        "fieldName" : "fullName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Email",
+        "fieldName" : "email",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "StartTime",
+        "fieldName" : "startTime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Timestamp",
+          "list" : false
+        }
+      }, {
+        "name" : "CompleteTime",
+        "fieldName" : "completeTime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Timestamp",
+          "list" : false
+        }
+      }, {
+        "name" : "ReceivedTime",
+        "fieldName" : "receivedTime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Timestamp",
+          "list" : false
+        }
+      }, {
+        "name" : "SignatureData",
+        "fieldName" : "signatureData",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "UpdateCivilFA" : {
     "name" : "UpdateCivilFA",
     "description" : "name",

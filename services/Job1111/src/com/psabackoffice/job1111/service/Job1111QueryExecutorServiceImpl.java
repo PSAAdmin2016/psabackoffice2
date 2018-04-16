@@ -113,6 +113,26 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         return queryExecutor.exportNamedQueryData("GetActivityHistoryPipeErection", params, exportType, GetActivityHistoryPipeErectionResponse.class, pageable);
     }
 
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<GetSuperSubDetailsResponse> executeGetSuperSubDetails(Integer submissionId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("SubmissionID", submissionId);
+
+        return queryExecutor.executeNamedQuery("GetSuperSubDetails", params, GetSuperSubDetailsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Downloadable exportGetSuperSubDetails(ExportType exportType, Integer submissionId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("SubmissionID", submissionId);
+
+        return queryExecutor.exportNamedQueryData("GetSuperSubDetails", params, exportType, GetSuperSubDetailsResponse.class, pageable);
+    }
+
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public Integer executeUpdateSteelFA(UpdateSteelFaRequest updateSteelFaRequest) {
