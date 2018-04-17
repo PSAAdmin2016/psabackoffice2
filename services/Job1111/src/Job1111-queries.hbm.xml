@@ -776,32 +776,6 @@ ORDER BY TimeStamp DESC) wmTempTable
     <query-param name="ActivityID" type="java.lang.Integer"/>
     </sql-query>
 
-    <sql-query name="GetSuperSubDetails">
-        <![CDATA[
-        SELECT u.FullName, u.Email, sd.StartTime, sd.CompleteTime, sd.ReceivedTime, ssig.SignatureData 
-FROM SubsDetails sd
-JOIN PSA.tblUserPSA u
-	ON u.ID = sd.UserID
-LEFT JOIN SubsSignatures ssig
-	On ssig.SubmissionID = sd.SubmissionID
-WHERE sd.SubmissionID = :SubmissionID
-        ]]>
-    <query-param name="SubmissionID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetSuperSubDetails__count">
-        <![CDATA[
-        select count(*) from (SELECT u.FullName, u.Email, sd.StartTime, sd.CompleteTime, sd.ReceivedTime, ssig.SignatureData 
-FROM SubsDetails sd
-JOIN PSA.tblUserPSA u
-	ON u.ID = sd.UserID
-LEFT JOIN SubsSignatures ssig
-	On ssig.SubmissionID = sd.SubmissionID
-WHERE sd.SubmissionID = :SubmissionID) wmTempTable
-        ]]>
-    <query-param name="SubmissionID" type="java.lang.Integer"/>
-    </sql-query>
-
     <sql-query name="UpdateSteelFA">
         <![CDATA[
         UPDATE `SteelFA` 
@@ -959,8 +933,10 @@ IF(sas.ActivityType IN (70,71), ctd.Description, IF(sas.ActivityType = 72, 'Sell
 FROM SubmissionActivityStatus sas
 JOIN SubsDetails sd
 	ON sd.SubmissionID = sas.SubmissionID
-JOIN CivilFA cfa
-	On cfa.ActivityID = sas.ActivityID
+LEFT JOIN CivilFA cfa
+	ON cfa.ActivityID = sas.ActivityID
+LEFT JOIN CivilSellPackage csell
+	ON csell.ActivityID = sas.ActivityID
     
 LEFT JOIN CivilTrackerDetails ctd
 	ON ctd.BidID = cfa.FABidID
@@ -980,6 +956,7 @@ LEFT JOIN PSA.tblCrewsRev tcr
 
 
 WHERE sas.fk_ActivityStatus in (1,4,6,8,10)
+AND sas.ActivityType IN (70,71,72)
 AND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)
 
 
@@ -1121,8 +1098,10 @@ IF(sas.ActivityType IN (70,71), ctd.Description, IF(sas.ActivityType = 72, 'Sell
 FROM SubmissionActivityStatus sas
 JOIN SubsDetails sd
 	ON sd.SubmissionID = sas.SubmissionID
-JOIN CivilFA cfa
-	On cfa.ActivityID = sas.ActivityID
+LEFT JOIN CivilFA cfa
+	ON cfa.ActivityID = sas.ActivityID
+LEFT JOIN CivilSellPackage csell
+	ON csell.ActivityID = sas.ActivityID
     
 LEFT JOIN CivilTrackerDetails ctd
 	ON ctd.BidID = cfa.FABidID
@@ -1142,6 +1121,7 @@ LEFT JOIN PSA.tblCrewsRev tcr
 
 
 WHERE sas.fk_ActivityStatus in (1,4,6,8,10)
+AND sas.ActivityType IN (70,71,72)
 AND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)
 
 
@@ -7081,7 +7061,7 @@ WHERE `ActivityID`= :ActivityID
         ]]>
     <query-param name="TestPackageNumber" type="java.lang.String"/>
     <query-param name="Notes" type="java.lang.String"/>
-    <query-param name="ActivityID" type="java.lang.String"/>
+    <query-param name="ActivityID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetSettingPipeMechPercent">
@@ -8236,6 +8216,32 @@ WHERE `ActivityID`= :ActivityID
     <query-param name="TestPackage" type="java.lang.String"/>
     <query-param name="Notes" type="java.lang.String"/>
     <query-param name="ActivityID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetSubDetailsSuper">
+        <![CDATA[
+        SELECT u.FullName, u.Email, sd.StartTime, sd.CompleteTime, sd.ReceivedTime, ssig.SignatureData 
+FROM SubsDetails sd
+JOIN PSA.tblUserPSA u
+	ON u.ID = sd.UserID
+LEFT JOIN SubsSignatures ssig
+	On ssig.SubmissionID = sd.SubmissionID
+WHERE sd.SubmissionID = :SubmissionID
+        ]]>
+    <query-param name="SubmissionID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetSubDetailsSuper__count">
+        <![CDATA[
+        select count(*) from (SELECT u.FullName, u.Email, sd.StartTime, sd.CompleteTime, sd.ReceivedTime, ssig.SignatureData 
+FROM SubsDetails sd
+JOIN PSA.tblUserPSA u
+	ON u.ID = sd.UserID
+LEFT JOIN SubsSignatures ssig
+	On ssig.SubmissionID = sd.SubmissionID
+WHERE sd.SubmissionID = :SubmissionID) wmTempTable
+        ]]>
+    <query-param name="SubmissionID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="UpdateSettingSteelBoltout">

@@ -40,10 +40,12 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
                 case 4:
                     $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", "9");
             }
+
             $scope.Variables.serviceUpdateSAS.invoke({},
                 function(data) {
                     $scope.Variables.serviceGetFAs.invoke();
-                });
+                }
+            );
         }
 
         //### Steel FAs ###
@@ -62,7 +64,8 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
         $scope.Variables.serviceUpdateSAS.invoke({},
             function(data) {
                 $scope.Variables.serviceGetFAs.invoke();
-            });
+            }
+        );
     };
 
 
@@ -79,26 +82,20 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
     $scope.btnSaveClick = function($event, $isolateScope) {
         $scope.Variables.staticEditMode.dataSet.dataValue = false; //disable all fields
 
-        //### Pipe FAs ###
-        if ($scope.Variables.staticTabSelect.dataSet.dataValue == '1') {
-            $scope.Widgets.containerFADetails.Variables.serviceUpdateActivity.invoke();
+        $scope.Widgets.containerFADetails.Variables.serviceUpdateActivity.invoke();
 
-            //Update changes to Field Activity status (SAS)
-            if ($scope.Widgets.gridSuperReviewActivities.selecteditem.fkActivityStatus == 6 || $scope.Widgets.gridSuperReviewActivities.selecteditem.fkActivityStatus == 8) {
-                $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", "8"); // Progress Rejected Mod
-            } else {
-                $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", "4"); //Supervisor Modified
+        //Update changes to Field Activity status (SAS)
+        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.fkActivityStatus == 6 || $scope.Widgets.gridSuperReviewActivities.selecteditem.fkActivityStatus == 8) {
+            $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", "8"); // Progress Rejected Mod
+        } else {
+            $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", "4"); //Supervisor Modified
+        }
+
+        $scope.Variables.serviceUpdateSAS.invoke({},
+            function(data) {
+                $scope.Variables.serviceGetFAs.invoke();
             }
-            $scope.Variables.serviceUpdateSAS.invoke({},
-                function(data) {
-                    $scope.Variables.serviceGetFAs.invoke();
-                });
-        }
-
-        //### Steel FAs ###
-        if ($scope.Variables.staticTabSelect.dataSet.dataValue == '2') {
-
-        }
+        );
     };
 
 
@@ -172,7 +169,7 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
                 'PageLoadSheet': '',
                 'PageLoadECT': '',
                 'PageLoadECTSubType': '',
-                'PageLoadTestPackage': $scope.Variables.liveGetPipeSellPackage.dataSet.data[0].testingTestPackageNumber,
+                'PageLoadTestPackage': $scope.Variables.liveGetActivityDetails.dataSet.data[0].pipeTesting.testingTestPackageNumber,
                 'PageLoadFiltered': true
             });
             //Fire Nav Call
@@ -317,7 +314,7 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
     };
 
 
-    $scope.liveGetActivityDetailsonSuccess = function(variable, data) {
+    $scope.liveGetActivityDetailsonSuccess = function(variable, data) { //Load the correct Partial page into container based on type of item selected from Grid.
         switch (data[0].activityType) {
             // Pipe Activities
             case 11:
@@ -389,10 +386,11 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
         $scope.Variables.serviceGetSubsDetails.setInput('SubmissionID', $rowData.submissionId);
         $scope.Variables.serviceGetSubsDetails.invoke();
 
-        if ($scope.Widgets.containerFADetails.Variables && $scope.Widgets.containerFADetails.Variables.staticEditMode && $scope.Widgets.containerFADetails.Variables.staticEditMode.dataSet.dataValue) {
+        if ($scope.Widgets.containerFADetails.Variables && $scope.Widgets.containerFADetails.Variables.staticEditMode && $scope.Widgets.containerFADetails.Variables.staticEditMode.dataSet.dataValue) { //Cancel Edit mode if user selects different row
             $scope.Widgets.containerFADetails.Variables.staticEditMode.setValue("dataValue", false);
             $scope.Widgets.containerFADetails.Widgets.gridSteelFA.cancelRow();
         }
+
     };
 
 
@@ -417,11 +415,9 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
 
     $scope.serviceGetSubsDetailsonSuccess = function(variable, data) {
-        if (data[0].signatureData) {
-            debugger;
-            $scope.signaturePad.fromDataURL(data[0].signatureData);
+        if (data.numberOfElements > 0 && data.content[0].signatureData) { //If there is signature data Set the signature container
+            $scope.signaturePad.fromDataURL(data.content[0].signatureData);
         }
-
     };
 
 

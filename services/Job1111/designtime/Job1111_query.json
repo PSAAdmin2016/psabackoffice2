@@ -260,8 +260,8 @@
     "name" : "GetActivitiesPendingReviewFAs",
     "description" : "Gets all activities pending super review for Pipe Civil Equip, AND Non Piece mark steel work.",
     "version" : "V2",
-    "queryString" : "SELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,\nat.ActivityType AS ActivityTypeName, sd.ReceivedTime, CONCAT(u.FirstName, \" \", u.LastName) AS NameFull, ats.Status, \nptd.Description AS Description, 'Pipe' AS Craft,  NULL AS BidID\n\nFROM SubmissionActivityStatus sas\nJOIN SubsDetails sd\n\tON sd.SubmissionID = sas.SubmissionID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nLEFT JOIN PipeFA pfa\n    ON pfa.ActivityID = sas.ActivityID\nLEFT JOIN PipeTrackerDetails ptd\n    ON ptd.BidID = pfa.FABidID\n\n\nWHERE sas.ActivityType IN (11,21,22,23,24,25,31,32,33,38,39,41,42,43,51,52,53,59,90,91,92)\nAND sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\n\n\n\nUNION\n\n\n\nSELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,at.ActivityType AS ActivityTypeName, sd.ReceivedTime, \nCONCAT(u.FirstName, \" \", u.LastName) AS NameFull, ats.Status,\nCASE sas.ActivityType\nWHEN 67 THEN\n\tstd.Description\nWHEN 66 THEN\n\t'Sell Package'\nWHEN 96 THEN\n\t'MISC'\nELSE\n\tNULL\nEND AS Description, \n'Steel' AS Craft, stld.DemoBidID\n\nFROM SubmissionActivityStatus sas\nJOIN SubsDetails sd\n\tON sd.SubmissionID = sas.SubmissionID\nLEFT JOIN SteelDemo stld\n\tON stld.ActivityID = sas.ActivityID\nLEFT JOIN SteelSellPackage stlsell\n\tON stlsell.ActivityID = sas.ActivityID\nLEFT JOIN SteelMisc stlm\n\tON stlm.ActivityID = sas.ActivityID\n    \nLEFT JOIN SteelTrackerDetails std\n\tON std.BidID = stld.DemoBidID\n    \nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\n\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\n\nWHERE sas.ActivityType IN (66,67,96)\nAND sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\n\n\n\nUNION\n\n\n\nSELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,\nat.ActivityType AS ActivityTypeName, sd.ReceivedTime, CONCAT(u.FirstName, \" \", u.LastName) AS NameFull, ats.Status,\nIF(sas.ActivityType IN (70,71), ctd.Description, IF(sas.ActivityType = 72, 'Sell Package', 'MISC') ) AS Description, \n'Civil' AS Craft, cfa.FABidID\n\nFROM SubmissionActivityStatus sas\nJOIN SubsDetails sd\n\tON sd.SubmissionID = sas.SubmissionID\nJOIN CivilFA cfa\n\tOn cfa.ActivityID = sas.ActivityID\n    \nLEFT JOIN CivilTrackerDetails ctd\n\tON ctd.BidID = cfa.FABidID\n    \nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\n\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\n\nWHERE sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\n\n\n\nUNION\n\n\n\nSELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,\nat.ActivityType AS ActivityTypeName, sd.ReceivedTime, CONCAT(u.FirstName, \" \", u.LastName) AS NameFull, ats.Status,\netd.Description, 'Equip' AS Craft, efa.FABidID\n\nFROM SubmissionActivityStatus sas\nJOIN SubsDetails sd\n\tON sd.SubmissionID = sas.SubmissionID\nJOIN EquipFA efa\n\tON efa.ActivityID = sas.ActivityID\n    \nLEFT JOIN EquipTrackerDetails etd\n\tON etd.BidID = efa.FABidID\n    \nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\n\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\n\nWHERE sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\n\n\n\nORDER BY ActivityID DESC",
-    "countQueryString" : "select count(*) from (SELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,\nat.ActivityType AS ActivityTypeName, sd.ReceivedTime, CONCAT(u.FirstName, \" \", u.LastName) AS NameFull, ats.Status, \nptd.Description AS Description, 'Pipe' AS Craft,  NULL AS BidID\n\nFROM SubmissionActivityStatus sas\nJOIN SubsDetails sd\n\tON sd.SubmissionID = sas.SubmissionID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nLEFT JOIN PipeFA pfa\n    ON pfa.ActivityID = sas.ActivityID\nLEFT JOIN PipeTrackerDetails ptd\n    ON ptd.BidID = pfa.FABidID\n\n\nWHERE sas.ActivityType IN (11,21,22,23,24,25,31,32,33,38,39,41,42,43,51,52,53,59,90,91,92)\nAND sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\n\n\n\nUNION\n\n\n\nSELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,at.ActivityType AS ActivityTypeName, sd.ReceivedTime, \nCONCAT(u.FirstName, \" \", u.LastName) AS NameFull, ats.Status,\nCASE sas.ActivityType\nWHEN 67 THEN\n\tstd.Description\nWHEN 66 THEN\n\t'Sell Package'\nWHEN 96 THEN\n\t'MISC'\nELSE\n\tNULL\nEND AS Description, \n'Steel' AS Craft, stld.DemoBidID\n\nFROM SubmissionActivityStatus sas\nJOIN SubsDetails sd\n\tON sd.SubmissionID = sas.SubmissionID\nLEFT JOIN SteelDemo stld\n\tON stld.ActivityID = sas.ActivityID\nLEFT JOIN SteelSellPackage stlsell\n\tON stlsell.ActivityID = sas.ActivityID\nLEFT JOIN SteelMisc stlm\n\tON stlm.ActivityID = sas.ActivityID\n    \nLEFT JOIN SteelTrackerDetails std\n\tON std.BidID = stld.DemoBidID\n    \nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\n\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\n\nWHERE sas.ActivityType IN (66,67,96)\nAND sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\n\n\n\nUNION\n\n\n\nSELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,\nat.ActivityType AS ActivityTypeName, sd.ReceivedTime, CONCAT(u.FirstName, \" \", u.LastName) AS NameFull, ats.Status,\nIF(sas.ActivityType IN (70,71), ctd.Description, IF(sas.ActivityType = 72, 'Sell Package', 'MISC') ) AS Description, \n'Civil' AS Craft, cfa.FABidID\n\nFROM SubmissionActivityStatus sas\nJOIN SubsDetails sd\n\tON sd.SubmissionID = sas.SubmissionID\nJOIN CivilFA cfa\n\tOn cfa.ActivityID = sas.ActivityID\n    \nLEFT JOIN CivilTrackerDetails ctd\n\tON ctd.BidID = cfa.FABidID\n    \nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\n\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\n\nWHERE sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\n\n\n\nUNION\n\n\n\nSELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,\nat.ActivityType AS ActivityTypeName, sd.ReceivedTime, CONCAT(u.FirstName, \" \", u.LastName) AS NameFull, ats.Status,\netd.Description, 'Equip' AS Craft, efa.FABidID\n\nFROM SubmissionActivityStatus sas\nJOIN SubsDetails sd\n\tON sd.SubmissionID = sas.SubmissionID\nJOIN EquipFA efa\n\tON efa.ActivityID = sas.ActivityID\n    \nLEFT JOIN EquipTrackerDetails etd\n\tON etd.BidID = efa.FABidID\n    \nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\n\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\n\nWHERE sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\n\n\n\nORDER BY ActivityID DESC) wmTempTable",
+    "queryString" : "SELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,\nat.ActivityType AS ActivityTypeName, sd.ReceivedTime, CONCAT(u.FirstName, \" \", u.LastName) AS NameFull, ats.Status, \nptd.Description AS Description, 'Pipe' AS Craft,  NULL AS BidID\n\nFROM SubmissionActivityStatus sas\nJOIN SubsDetails sd\n\tON sd.SubmissionID = sas.SubmissionID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nLEFT JOIN PipeFA pfa\n    ON pfa.ActivityID = sas.ActivityID\nLEFT JOIN PipeTrackerDetails ptd\n    ON ptd.BidID = pfa.FABidID\n\n\nWHERE sas.ActivityType IN (11,21,22,23,24,25,31,32,33,38,39,41,42,43,51,52,53,59,90,91,92)\nAND sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\n\n\n\nUNION\n\n\n\nSELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,at.ActivityType AS ActivityTypeName, sd.ReceivedTime, \nCONCAT(u.FirstName, \" \", u.LastName) AS NameFull, ats.Status,\nCASE sas.ActivityType\nWHEN 67 THEN\n\tstd.Description\nWHEN 66 THEN\n\t'Sell Package'\nWHEN 96 THEN\n\t'MISC'\nELSE\n\tNULL\nEND AS Description, \n'Steel' AS Craft, stld.DemoBidID\n\nFROM SubmissionActivityStatus sas\nJOIN SubsDetails sd\n\tON sd.SubmissionID = sas.SubmissionID\nLEFT JOIN SteelDemo stld\n\tON stld.ActivityID = sas.ActivityID\nLEFT JOIN SteelSellPackage stlsell\n\tON stlsell.ActivityID = sas.ActivityID\nLEFT JOIN SteelMisc stlm\n\tON stlm.ActivityID = sas.ActivityID\n    \nLEFT JOIN SteelTrackerDetails std\n\tON std.BidID = stld.DemoBidID\n    \nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\n\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\n\nWHERE sas.ActivityType IN (66,67,96)\nAND sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\n\n\n\nUNION\n\n\n\nSELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,\nat.ActivityType AS ActivityTypeName, sd.ReceivedTime, CONCAT(u.FirstName, \" \", u.LastName) AS NameFull, ats.Status,\nIF(sas.ActivityType IN (70,71), ctd.Description, IF(sas.ActivityType = 72, 'Sell Package', 'MISC') ) AS Description, \n'Civil' AS Craft, cfa.FABidID\n\nFROM SubmissionActivityStatus sas\nJOIN SubsDetails sd\n\tON sd.SubmissionID = sas.SubmissionID\nLEFT JOIN CivilFA cfa\n\tON cfa.ActivityID = sas.ActivityID\nLEFT JOIN CivilSellPackage csell\n\tON csell.ActivityID = sas.ActivityID\n    \nLEFT JOIN CivilTrackerDetails ctd\n\tON ctd.BidID = cfa.FABidID\n    \nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\n\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\n\nWHERE sas.fk_ActivityStatus in (1,4,6,8,10)\nAND sas.ActivityType IN (70,71,72)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\n\n\n\nUNION\n\n\n\nSELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,\nat.ActivityType AS ActivityTypeName, sd.ReceivedTime, CONCAT(u.FirstName, \" \", u.LastName) AS NameFull, ats.Status,\netd.Description, 'Equip' AS Craft, efa.FABidID\n\nFROM SubmissionActivityStatus sas\nJOIN SubsDetails sd\n\tON sd.SubmissionID = sas.SubmissionID\nJOIN EquipFA efa\n\tON efa.ActivityID = sas.ActivityID\n    \nLEFT JOIN EquipTrackerDetails etd\n\tON etd.BidID = efa.FABidID\n    \nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\n\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\n\nWHERE sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\n\n\n\nORDER BY ActivityID DESC",
+    "countQueryString" : "select count(*) from (SELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,\nat.ActivityType AS ActivityTypeName, sd.ReceivedTime, CONCAT(u.FirstName, \" \", u.LastName) AS NameFull, ats.Status, \nptd.Description AS Description, 'Pipe' AS Craft,  NULL AS BidID\n\nFROM SubmissionActivityStatus sas\nJOIN SubsDetails sd\n\tON sd.SubmissionID = sas.SubmissionID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nLEFT JOIN PipeFA pfa\n    ON pfa.ActivityID = sas.ActivityID\nLEFT JOIN PipeTrackerDetails ptd\n    ON ptd.BidID = pfa.FABidID\n\n\nWHERE sas.ActivityType IN (11,21,22,23,24,25,31,32,33,38,39,41,42,43,51,52,53,59,90,91,92)\nAND sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\n\n\n\nUNION\n\n\n\nSELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,at.ActivityType AS ActivityTypeName, sd.ReceivedTime, \nCONCAT(u.FirstName, \" \", u.LastName) AS NameFull, ats.Status,\nCASE sas.ActivityType\nWHEN 67 THEN\n\tstd.Description\nWHEN 66 THEN\n\t'Sell Package'\nWHEN 96 THEN\n\t'MISC'\nELSE\n\tNULL\nEND AS Description, \n'Steel' AS Craft, stld.DemoBidID\n\nFROM SubmissionActivityStatus sas\nJOIN SubsDetails sd\n\tON sd.SubmissionID = sas.SubmissionID\nLEFT JOIN SteelDemo stld\n\tON stld.ActivityID = sas.ActivityID\nLEFT JOIN SteelSellPackage stlsell\n\tON stlsell.ActivityID = sas.ActivityID\nLEFT JOIN SteelMisc stlm\n\tON stlm.ActivityID = sas.ActivityID\n    \nLEFT JOIN SteelTrackerDetails std\n\tON std.BidID = stld.DemoBidID\n    \nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\n\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\n\nWHERE sas.ActivityType IN (66,67,96)\nAND sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\n\n\n\nUNION\n\n\n\nSELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,\nat.ActivityType AS ActivityTypeName, sd.ReceivedTime, CONCAT(u.FirstName, \" \", u.LastName) AS NameFull, ats.Status,\nIF(sas.ActivityType IN (70,71), ctd.Description, IF(sas.ActivityType = 72, 'Sell Package', 'MISC') ) AS Description, \n'Civil' AS Craft, cfa.FABidID\n\nFROM SubmissionActivityStatus sas\nJOIN SubsDetails sd\n\tON sd.SubmissionID = sas.SubmissionID\nLEFT JOIN CivilFA cfa\n\tON cfa.ActivityID = sas.ActivityID\nLEFT JOIN CivilSellPackage csell\n\tON csell.ActivityID = sas.ActivityID\n    \nLEFT JOIN CivilTrackerDetails ctd\n\tON ctd.BidID = cfa.FABidID\n    \nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\n\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\n\nWHERE sas.fk_ActivityStatus in (1,4,6,8,10)\nAND sas.ActivityType IN (70,71,72)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\n\n\n\nUNION\n\n\n\nSELECT sd.SubmissionID, sas.ActivityID, sas.ActivityType, sas.fk_ActivityStatus,\nat.ActivityType AS ActivityTypeName, sd.ReceivedTime, CONCAT(u.FirstName, \" \", u.LastName) AS NameFull, ats.Status,\netd.Description, 'Equip' AS Craft, efa.FABidID\n\nFROM SubmissionActivityStatus sas\nJOIN SubsDetails sd\n\tON sd.SubmissionID = sas.SubmissionID\nJOIN EquipFA efa\n\tON efa.ActivityID = sas.ActivityID\n    \nLEFT JOIN EquipTrackerDetails etd\n\tON etd.BidID = efa.FABidID\n    \nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\n\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\n\nWHERE sas.fk_ActivityStatus in (1,4,6,8,10)\nAND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)\n\n\n\nORDER BY ActivityID DESC) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -9583,6 +9583,91 @@
       } ]
     }
   },
+  "GetSubDetailsSuper" : {
+    "name" : "GetSubDetailsSuper",
+    "description" : "Return condensed listing of Submission Details info",
+    "version" : "V2",
+    "queryString" : "SELECT u.FullName, u.Email, sd.StartTime, sd.CompleteTime, sd.ReceivedTime, ssig.SignatureData \nFROM SubsDetails sd\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nLEFT JOIN SubsSignatures ssig\n\tOn ssig.SubmissionID = sd.SubmissionID\nWHERE sd.SubmissionID = :SubmissionID",
+    "countQueryString" : "select count(*) from (SELECT u.FullName, u.Email, sd.StartTime, sd.CompleteTime, sd.ReceivedTime, ssig.SignatureData \nFROM SubsDetails sd\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nLEFT JOIN SubsSignatures ssig\n\tOn ssig.SubmissionID = sd.SubmissionID\nWHERE sd.SubmissionID = :SubmissionID) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "SubmissionID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "466",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.psabackoffice.job1111.models.query.GetSubDetailsSuperResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "FullName",
+        "fieldName" : "fullName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Email",
+        "fieldName" : "email",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "StartTime",
+        "fieldName" : "startTime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Timestamp",
+          "list" : false
+        }
+      }, {
+        "name" : "CompleteTime",
+        "fieldName" : "completeTime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Timestamp",
+          "list" : false
+        }
+      }, {
+        "name" : "ReceivedTime",
+        "fieldName" : "receivedTime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Timestamp",
+          "list" : false
+        }
+      }, {
+        "name" : "SignatureData",
+        "fieldName" : "signatureData",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "GetSuperRecentActivites" : {
     "name" : "GetSuperRecentActivites",
     "description" : "Get recent activites modified by a given user super review page",
@@ -9653,91 +9738,6 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.sql.Timestamp",
-          "list" : false
-        }
-      } ]
-    }
-  },
-  "GetSuperSubDetails" : {
-    "name" : "GetSuperSubDetails",
-    "description" : "Return condensed listing of Submission Details info",
-    "version" : "V2",
-    "queryString" : "SELECT u.FullName, u.Email, sd.StartTime, sd.CompleteTime, sd.ReceivedTime, ssig.SignatureData \nFROM SubsDetails sd\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nLEFT JOIN SubsSignatures ssig\n\tOn ssig.SubmissionID = sd.SubmissionID\nWHERE sd.SubmissionID = :SubmissionID",
-    "countQueryString" : "select count(*) from (SELECT u.FullName, u.Email, sd.StartTime, sd.CompleteTime, sd.ReceivedTime, ssig.SignatureData \nFROM SubsDetails sd\nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nLEFT JOIN SubsSignatures ssig\n\tOn ssig.SubmissionID = sd.SubmissionID\nWHERE sd.SubmissionID = :SubmissionID) wmTempTable",
-    "nativeSql" : true,
-    "fetchCount" : true,
-    "type" : "SELECT",
-    "parameters" : [ {
-      "name" : "SubmissionID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "466",
-      "required" : true
-    } ],
-    "request" : {
-      "wrapped" : false,
-      "typeRef" : null,
-      "method" : "GET"
-    },
-    "identifiers" : [ ],
-    "response" : {
-      "typeRef" : "com.psabackoffice.job1111.models.query.GetSuperSubDetailsResponse",
-      "returns" : "CUSTOM",
-      "responseType" : "PAGINATED",
-      "properties" : [ {
-        "name" : "FullName",
-        "fieldName" : "fullName",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Email",
-        "fieldName" : "email",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "StartTime",
-        "fieldName" : "startTime",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.sql.Timestamp",
-          "list" : false
-        }
-      }, {
-        "name" : "CompleteTime",
-        "fieldName" : "completeTime",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.sql.Timestamp",
-          "list" : false
-        }
-      }, {
-        "name" : "ReceivedTime",
-        "fieldName" : "receivedTime",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.sql.Timestamp",
-          "list" : false
-        }
-      }, {
-        "name" : "SignatureData",
-        "fieldName" : "signatureData",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
           "list" : false
         }
       } ]
@@ -9886,7 +9886,7 @@
       "required" : false
     }, {
       "name" : "ActivityID",
-      "type" : "string",
+      "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
@@ -11702,7 +11702,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "2",
+      "testValue" : "7",
       "required" : true
     }, {
       "name" : "Notes",

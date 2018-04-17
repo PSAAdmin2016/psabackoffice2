@@ -1,4 +1,31 @@
 {
+  "serviceGetDrawingsByTestPackageCivil" : {
+    "_id" : "wm-serviceGetDrawingsByTestPackageCivil-wm.ServiceVariable-1483736628264",
+    "name" : "serviceGetDrawingsByTestPackageCivil",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "TestPackage",
+      "value" : "bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].civilSellPackage.sellTestPackageNumber",
+      "type" : "string"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.query.GetDrawingByTestPackageCivilResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetDrawingByTestPackageCivil",
+    "operationId" : "QueryExecutionController_executeGetDrawingByTestPackageCivil",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 200,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
   "serviceUpdateActivity" : {
     "_id" : "wm-serviceUpdateTesting-wm.ServiceVariable-1476111931924",
     "name" : "serviceUpdateActivity",
@@ -13,9 +40,9 @@
       "value" : "bind:Widgets.textareaNotes.datavalue",
       "type" : "string"
     }, {
-      "target" : "FieldActivityID",
-      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityID",
-      "type" : "integer"
+      "target" : "ActivityID",
+      "value" : "bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityId",
+      "type" : "string"
     } ],
     "type" : "integer",
     "service" : "Job1111",

@@ -44,8 +44,8 @@
       "value" : "bind:Widgets.textareaTestingNotes.datavalue",
       "type" : "string"
     }, {
-      "target" : "FieldActivityID",
-      "value" : "bind:$parent.Widgets.gridSuperReviewActivities.selecteditem.ActivityID",
+      "target" : "ActivityID",
+      "value" : "bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityId",
       "type" : "integer"
     } ],
     "type" : "integer",

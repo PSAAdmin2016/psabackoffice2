@@ -12,7 +12,7 @@ import java.util.Objects;
 
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class GetSuperSubDetailsResponse implements Serializable {
+public class GetSubDetailsSuperResponse implements Serializable {
 
 
     @ColumnAlias("FullName")
@@ -84,14 +84,14 @@ public class GetSuperSubDetailsResponse implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GetSuperSubDetailsResponse)) return false;
-        final GetSuperSubDetailsResponse getSuperSubDetailsResponse = (GetSuperSubDetailsResponse) o;
-        return Objects.equals(getFullName(), getSuperSubDetailsResponse.getFullName()) &&
-                Objects.equals(getEmail(), getSuperSubDetailsResponse.getEmail()) &&
-                Objects.equals(getStartTime(), getSuperSubDetailsResponse.getStartTime()) &&
-                Objects.equals(getCompleteTime(), getSuperSubDetailsResponse.getCompleteTime()) &&
-                Objects.equals(getReceivedTime(), getSuperSubDetailsResponse.getReceivedTime()) &&
-                Objects.equals(getSignatureData(), getSuperSubDetailsResponse.getSignatureData());
+        if (!(o instanceof GetSubDetailsSuperResponse)) return false;
+        final GetSubDetailsSuperResponse getSubDetailsSuperResponse = (GetSubDetailsSuperResponse) o;
+        return Objects.equals(getFullName(), getSubDetailsSuperResponse.getFullName()) &&
+                Objects.equals(getEmail(), getSubDetailsSuperResponse.getEmail()) &&
+                Objects.equals(getStartTime(), getSubDetailsSuperResponse.getStartTime()) &&
+                Objects.equals(getCompleteTime(), getSubDetailsSuperResponse.getCompleteTime()) &&
+                Objects.equals(getReceivedTime(), getSubDetailsSuperResponse.getReceivedTime()) &&
+                Objects.equals(getSignatureData(), getSubDetailsSuperResponse.getSignatureData());
     }
 
     @Override

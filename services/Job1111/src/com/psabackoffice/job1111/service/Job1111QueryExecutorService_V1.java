@@ -231,7 +231,7 @@ public interface Job1111QueryExecutorService_V1 {
     public int executeUpdateSettingPipeTestingPercent(BigDecimal value1);
 
     @Deprecated
-    public int executeUpdateCivilSellPackage(String testPackageNumber, String notes, String activityId);
+    public int executeUpdateCivilSellPackage(String testPackageNumber, String notes, Integer activityId);
 
     @Deprecated
     public Page<Object> executeGetSettingPipeMechPercent(Pageable pageable);

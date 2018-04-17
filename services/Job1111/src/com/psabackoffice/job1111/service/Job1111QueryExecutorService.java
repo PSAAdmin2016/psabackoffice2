@@ -34,10 +34,6 @@ public interface Job1111QueryExecutorService {
 
     Downloadable exportGetActivityHistoryPipeErection(ExportType exportType, Integer activityId, Pageable pageable);
 
-    Page<GetSuperSubDetailsResponse> executeGetSuperSubDetails(Integer submissionId, Pageable pageable);
-
-    Downloadable exportGetSuperSubDetails(ExportType exportType, Integer submissionId, Pageable pageable);
-
     Integer executeUpdateSteelFA(UpdateSteelFaRequest updateSteelFaRequest);
 
     Page<GetActivityHistoryPipeWeldResponse> executeGetActivityHistoryPipeWeld(Integer activityId, Pageable pageable);
@@ -375,6 +371,10 @@ public interface Job1111QueryExecutorService {
     Downloadable exportGetNotesByFieldActivityID(ExportType exportType, Integer activityId, Pageable pageable);
 
     Integer executeUpdateSteelSellPackage(UpdateSteelSellPackageRequest updateSteelSellPackageRequest);
+
+    Page<GetSubDetailsSuperResponse> executeGetSubDetailsSuper(Integer submissionId, Pageable pageable);
+
+    Downloadable exportGetSubDetailsSuper(ExportType exportType, Integer submissionId, Pageable pageable);
 
     Integer executeUpdateSettingSteelBoltout(UpdateSettingSteelBoltoutRequest updateSettingSteelBoltoutRequest);
 

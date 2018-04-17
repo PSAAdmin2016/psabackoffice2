@@ -26,7 +26,7 @@ public class UpdateCivilSellPackageRequest implements Serializable {
 
     @JsonProperty("ActivityID")
     @NotNull
-    private String activityId;
+    private Integer activityId;
 
     public String getTestPackageNumber() {
         return this.testPackageNumber;
@@ -44,11 +44,11 @@ public class UpdateCivilSellPackageRequest implements Serializable {
         this.notes = notes;
     }
 
-    public String getActivityId() {
+    public Integer getActivityId() {
         return this.activityId;
     }
 
-    public void setActivityId(String activityId) {
+    public void setActivityId(Integer activityId) {
         this.activityId = activityId;
     }
 

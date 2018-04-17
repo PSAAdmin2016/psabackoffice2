@@ -831,7 +831,7 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public int executeUpdateCivilSellPackage(String testPackageNumber, String notes, String activityId) {
+    public int executeUpdateCivilSellPackage(String testPackageNumber, String notes, Integer activityId) {
         Map params = new HashMap(3);
 
         params.put("TestPackageNumber", testPackageNumber);
