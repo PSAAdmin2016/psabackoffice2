@@ -50,7 +50,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                     navigation="None" spacing="condensed" on-datarender="gridSuperReviewActivitiesDatarender($scope, $data)" name="gridSuperReviewSteel">
                                     <wm-table-column binding="Select" caption="Select" widget-type="checkbox" width="4%" edit-widget-type="checkbox" type="boolean" defaultvalue="false" searchable="false" show="true" checkedvalue="true" uncheckedvalue="false"
                                         readonly="false">
-                                        <wm-checkbox scopedatavalue="row['Select']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                                        <wm-checkbox scopedatavalue="row['Select']" class="" data-ng-class=""></wm-checkbox>
                                     </wm-table-column>
                                     <wm-table-column binding="sortGroup1" caption="Area" width="10%" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
                                     <wm-table-column binding="pieceMark" caption="Piece Mark" width="15%" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>

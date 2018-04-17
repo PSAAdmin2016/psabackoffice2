@@ -51,6 +51,8 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
         //### Steel FAs ###
         if ($scope.Variables.staticTabSelect.dataSet.dataValue == '2') {
             console.log("Logic for Accept Steel Piece Work not built yet.");
+            $scope.Widgets.gridSuperReviewSteel
+            debugger;
             //Need logic for looping through all FA's that make up the one row selected in the gridSuperReviewSteel.  
             //OR pass a List to the querry if that works right.
             //OR Build an array of objects to pass to an UpdateSS LiveVariable -> setInput() -> invoke()
@@ -476,7 +478,6 @@ Application.$controller("gridSuperReviewSteelController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-
 
     }
 ]);
