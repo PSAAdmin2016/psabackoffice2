@@ -18,15 +18,6 @@ Application.$controller("PartFASteelStandardPageController", ["$scope", function
     $scope.gridSteelFARowclick = function($event, $isolateScope, $rowData) {
         $scope.Widgets.gridSteelFA.cancelRow();
         $scope.Variables.staticEditMode.setValue("dataValue", false);
-
-        $scope.Variables.liveGetSubDetails.listRecords({
-            filterFields: {
-                "submissionId": {
-                    "value": $rowData.activityId
-                }
-            }
-        });
-
     };
 
 
@@ -39,25 +30,52 @@ Application.$controller("PartFASteelStandardPageController", ["$scope", function
 
 
     $scope.gridSteelFARowupdate = function($event, $isolateScope, $rowData) {
-        $scope.Variables.serviceUpdateSteelFA.invoke({},
+        $scope.Variables.liveUpdateSteelActivity.setInput("activityId", $rowData.activityId);
+
+        if ($rowData.fkActivityStatus == 6 || $rowData.fkActivityStatus == 8) {
+            $scope.Variables.liveUpdateSteelActivity.setInput("fkActivityStatus", 8); // Progress Rejected Mod
+        } else {
+            $scope.Variables.liveUpdateSteelActivity.setInput("fkActivityStatus", 4); //Supervisor Modified
+        }
+
+        if ($rowData.activityTypeId == 61 || $rowData.activityTypeId == 65 || $rowData.activityTypeId == 68) {
+            $scope.Variables.liveUpdateSteelActivity.setInput({
+                "steelFa": {
+                    "fasortGroup1": $rowData.fasortGroup1,
+                    "fapieceNumber": $rowData.fapieceNumber,
+                    "activityType": $rowData.activityTypeId,
+                    "fatimeInForm": $rowData.fatimeInForm,
+                    "faquantity": $scope.Widgets.gridSteelFA.formfields.faquantity.getProperty('value'),
+                    "fapercentCompleted": 1.00,
+                    "farework": $scope.Widgets.gridSteelFA.formfields.farework.getProperty('value'),
+                    "fanotes": $scope.Widgets.gridSteelFA.formfields.fanotes.getProperty('value')
+                }
+            });
+        } else {
+            $scope.Variables.liveUpdateSteelActivity.setInput({
+                "steelFa": {
+                    "fasortGroup1": $rowData.fasortGroup1,
+                    "fapieceNumber": $rowData.fapieceNumber,
+                    "activityType": $rowData.activityTypeId,
+                    "fatimeInForm": $rowData.fatimeInForm,
+                    "faquantity": $scope.Widgets.gridSteelFA.formfields.faquantity.getProperty('value'),
+                    "fapercentCompleted": $scope.Widgets.gridSteelFA.formfields.fapercent.getProperty('value'),
+                    "farework": $scope.Widgets.gridSteelFA.formfields.farework.getProperty('value'),
+                    "fanotes": $scope.Widgets.gridSteelFA.formfields.fanotes.getProperty('value')
+                }
+            });
+        }
+
+        $scope.Variables.liveUpdateSteelActivity.updateRecord({
+            row: {
+                "submissionId": $scope.$parent.Widgets.gridSuperReviewSteel.selecteditem.submissionId,
+                "activityType": $scope.Widgets.gridSteelFA.selecteditem.activityTypeId,
+                "fkLastModifiedBy": $scope.Variables.loggedInUser.dataSet.id
+            },
             function(data) {
-                $scope.Variables.serviceUpdateSAS.setInput("ActivityID", $rowData.activityId);
-                $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", 4);
-                $scope.Variables.serviceUpdateSAS.invoke({},
-                    function(data) {
-                        $scope.$parent.Variables.serviceGetFAsSteel.invoke();
-                    }
-                );
+                $scope.Variables.serviceGetSteelFAData.invoke();
             }
-        );
-    };
-
-
-    $scope.serviceUpdateSteelFAonBeforeUpdate = function(variable, inputData) {
-        inputData.Quantity = $scope.Widgets.gridSteelFA.formfields.faquantity.getProperty('value');
-        inputData.PercentCompleted = $scope.Widgets.gridSteelFA.formfields.fapercent.getProperty('value');
-        inputData.Rework = $scope.Widgets.gridSteelFA.formfields.farework.getProperty('value');
-        inputData.Notes = $scope.Widgets.gridSteelFA.formfields.fanotes.getProperty('value');
+        });
     };
 }]);
 
@@ -74,8 +92,7 @@ Application.$controller("gridSteelFAController", ["$scope",
             $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", 3);
             $scope.Variables.serviceUpdateSAS.invoke({},
                 function(data) {
-                    $scope.Variables.serviceGetSteelFAData.invoke();
-                    $scope.$parent.Variables.serviceGetFAsSteel.invoke();
+                    $scope.$parent.$parent.$parent.Variables.serviceGetFAsSteel.invoke();
                 }
             );
 

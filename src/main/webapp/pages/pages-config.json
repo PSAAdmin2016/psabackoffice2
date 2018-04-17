@@ -115,10 +115,6 @@
   "type" : "PARTIAL",
   "params" : [ ]
 }, {
-  "name" : "PartFASteelErect",
-  "type" : "PARTIAL",
-  "params" : [ ]
-}, {
   "name" : "PartFASteelMisc",
   "type" : "PARTIAL",
   "params" : [ ]

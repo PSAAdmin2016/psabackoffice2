@@ -14,8 +14,9 @@
                     <wm-table-column binding="faquantity" caption="Quantity" width="7%" edit-widget-type="number" type="string" show="true" readonly="false"></wm-table-column>
                     <wm-table-column binding="fapercent" caption="Percent" width="7%" edit-widget-type="select" type="string" dataset="bind:Variables.staticPercentListQuarter.dataSet" datafield="dataValue" displayfield="label" show="true"
                         readonly="false" required="true">{{(row.fapercentCompleted * 100) + "%"}}</wm-table-column>
-                    <wm-table-column binding="farework" caption="Rework" widget-type="checkbox" width="3%" edit-widget-type="checkbox" type="string" show="true" readonly="false">
-                        <wm-checkbox scopedatavalue="row['farework']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                    <wm-table-column binding="farework" caption="Rework" widget-type="checkbox" width="3%" edit-widget-type="checkbox" type="string" show="true" checkedvalue="1" uncheckedvalue="0"
+                        readonly="false">
+                        <wm-checkbox scopedatavalue="row['farework']" checkedvalue="1" uncheckedvalue="0" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                     </wm-table-column>
                     <wm-table-column binding="fanotes" caption="Notes" edit-widget-type="textarea" type="string" show="true" readonly="false"></wm-table-column>
                     <wm-table-column binding="status" caption="Status" width="6%" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>

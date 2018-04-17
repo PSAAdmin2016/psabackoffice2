@@ -47,6 +47,9 @@ public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serial
     @ColumnAlias("FANotes")
     private String fanotes;
 
+    @ColumnAlias("FATimeInForm")
+    private Short fatimeInForm;
+
     public Short getFkActivityStatus() {
         return this.fkActivityStatus;
     }
@@ -135,6 +138,14 @@ public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serial
         this.fanotes = fanotes;
     }
 
+    public Short getFatimeInForm() {
+        return this.fatimeInForm;
+    }
+
+    public void setFatimeInForm(Short fatimeInForm) {
+        this.fatimeInForm = fatimeInForm;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -150,7 +161,8 @@ public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serial
                 Objects.equals(getFaquantity(), getActivitiesPendingReviewSteelActivitiesResponse.getFaquantity()) &&
                 Objects.equals(getFapercentCompleted(), getActivitiesPendingReviewSteelActivitiesResponse.getFapercentCompleted()) &&
                 Objects.equals(getFarework(), getActivitiesPendingReviewSteelActivitiesResponse.getFarework()) &&
-                Objects.equals(getFanotes(), getActivitiesPendingReviewSteelActivitiesResponse.getFanotes());
+                Objects.equals(getFanotes(), getActivitiesPendingReviewSteelActivitiesResponse.getFanotes()) &&
+                Objects.equals(getFatimeInForm(), getActivitiesPendingReviewSteelActivitiesResponse.getFatimeInForm());
     }
 
     @Override
@@ -165,6 +177,7 @@ public class GetActivitiesPendingReviewSteelActivitiesResponse implements Serial
                 getFaquantity(),
                 getFapercentCompleted(),
                 getFarework(),
-                getFanotes());
+                getFanotes(),
+                getFatimeInForm());
     }
 }

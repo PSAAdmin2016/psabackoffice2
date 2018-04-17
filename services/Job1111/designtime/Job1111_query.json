@@ -538,8 +538,8 @@
     "name" : "GetActivitiesPendingReviewSteelActivities",
     "description" : "Returns individual activities for given submission/pieceMark/Status.  Populates the Super Review steel detailed list",
     "version" : "V2",
-    "queryString" : "SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, at.ID AS ActivityTypeID,\nstl.ActivityID, stl.FASortGroup1, stl.FAPieceNumber, stl.FAQuantity, stl.FAPercentCompleted, stl.FARework, stl.FANotes\n\n\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nJOIN SteelFA stl\n\tON stl.ActivityID = sas.ActivityID \n    \nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nWHERE sas.SubmissionID = :SubmissionID\nAND stl.FAPiecenumber = :PieceMark\nAND sas.fk_ActivityStatus = :StatusID\n\nORDER BY sas.ActivityType",
-    "countQueryString" : "select count(*) from (SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, at.ID AS ActivityTypeID,\nstl.ActivityID, stl.FASortGroup1, stl.FAPieceNumber, stl.FAQuantity, stl.FAPercentCompleted, stl.FARework, stl.FANotes\n\n\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nJOIN SteelFA stl\n\tON stl.ActivityID = sas.ActivityID \n    \nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nWHERE sas.SubmissionID = :SubmissionID\nAND stl.FAPiecenumber = :PieceMark\nAND sas.fk_ActivityStatus = :StatusID\n\nORDER BY sas.ActivityType) wmTempTable",
+    "queryString" : "SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, at.ID AS ActivityTypeID,\nstl.ActivityID, stl.FASortGroup1, stl.FAPieceNumber, stl.FAQuantity, stl.FAPercentCompleted, stl.FARework, stl.FANotes, stl.FATimeInForm\n\n\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nJOIN SteelFA stl\n\tON stl.ActivityID = sas.ActivityID \n    \nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nWHERE sas.SubmissionID = :SubmissionID\nAND stl.FAPiecenumber = :PieceMark\nAND sas.fk_ActivityStatus = :StatusID\n\nORDER BY sas.ActivityType",
+    "countQueryString" : "select count(*) from (SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, at.ID AS ActivityTypeID,\nstl.ActivityID, stl.FASortGroup1, stl.FAPieceNumber, stl.FAQuantity, stl.FAPercentCompleted, stl.FARework, stl.FANotes, stl.FATimeInForm\n\n\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nJOIN SteelFA stl\n\tON stl.ActivityID = sas.ActivityID \n    \nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nWHERE sas.SubmissionID = :SubmissionID\nAND stl.FAPiecenumber = :PieceMark\nAND sas.fk_ActivityStatus = :StatusID\n\nORDER BY sas.ActivityType) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -557,7 +557,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "2b",
+      "testValue" : "10B1",
       "required" : true
     }, {
       "name" : "StatusID",
@@ -565,7 +565,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "1",
+      "testValue" : "4",
       "required" : true
     } ],
     "request" : {
@@ -675,6 +675,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "FATimeInForm",
+        "fieldName" : "fatimeInForm",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Short",
           "list" : false
         }
       } ]
