@@ -103,192 +103,163 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
 
     $scope.buttonResearchClick = function($event, $isolateScope) {
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 11) {
-            $scope.Variables.navigationToClassicPipe.setData({
-                'PageLoadDrawing': $scope.Variables.liveGetPipeErection.dataSet.data[0].erectionDrawingNumber,
-                'PageLoadSheet': $scope.Variables.liveGetPipeErection.dataSet.data[0].erectionSheetNumber,
-                'PageLoadECT': 'E',
-                'PageLoadECTSubType': 'PE',
-                'PageLoadTestPackage': '',
-                'PageLoadFiltered': true
-            });
-            //Fire Nav Call
-            $scope.Variables.navigationToClassicPipe.invoke();
+        if ($scope.Variables.staticTabSelect.dataSet.dataValue == '1') {
+            switch ($scope.Widgets.gridSuperReviewActivities.selecteditem.activityType) {
+                // Pipe Activities
+                case 11:
+                    $scope.Variables.navigationToClassicPipe.setData({
+                        'PageLoadBidID': '',
+                        'PageLoadDrawing': $scope.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionDrawingNumber,
+                        'PageLoadSheet': $scope.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSheetNumber,
+                        'PageLoadActivityType': 'E',
+                        'PageLoadActivitySubType': 'PE',
+                        'PageLoadTestPackage': '',
+                        'PageLoadFiltered': true
+                    });
+                    $scope.Variables.navigationToClassicPipe.invoke();
+                    break;
+                case 22:
+                    $scope.Variables.navigationToClassicPipe.setData({
+                        'PageLoadBidID': '',
+                        'PageLoadDrawing': $scope.Variables.liveGetActivityDetails.dataSet.data[0].pipeWeld.weldDrawingNumber,
+                        'PageLoadSheet': $scope.Variables.liveGetActivityDetails.dataSet.data[0].pipeWeld.weldSheetNumber,
+                        'PageLoadActivityType': 'C',
+                        'PageLoadActivitySubType': 'W',
+                        'PageLoadTestPackage': '',
+                        'PageLoadFiltered': true
+                    });
+                    $scope.Variables.navigationToClassicPipe.invoke();
+                    break;
+                case 21:
+                case 24:
+                case 25:
+                    $scope.Variables.navigationToClassicPipe.setData({
+                        'PageLoadBidID': $scope.Variables.liveGetActivityDetails.dataSet.data[0].pipeConnection.connectionBidId,
+                        'PageLoadDrawing': $scope.Variables.liveGetActivityDetails.dataSet.data[0].pipeConnection.connectionDrawingNumber,
+                        'PageLoadSheet': $scope.Variables.liveGetActivityDetails.dataSet.data[0].pipeConnection.connectionSheetNumber,
+                        'PageLoadActivityType': 'C',
+                        'PageLoadActivitySubType': '',
+                        'PageLoadTestPackage': '',
+                        'PageLoadFiltered': true
+                    });
+                    $scope.Variables.navigationToClassicPipe.invoke();
+                    break;
+                case 41:
+                case 42:
+                case 43:
+                    $scope.Variables.navigationToClassicPipe.setData({
+                        'PageLoadBidID': '',
+                        'PageLoadDrawing': '',
+                        'PageLoadSheet': '',
+                        'PageLoadActivityType': '',
+                        'PageLoadActivitySubType': '',
+                        'PageLoadTestPackage': $scope.Variables.liveGetActivityDetails.dataSet.data[0].pipeTesting.testingTestPackageNumber,
+                        'PageLoadFiltered': true
+                    });
+                    $scope.Variables.navigationToClassicPipe.invoke();
+                    break;
+                case 23:
+                case 31:
+                case 32:
+                case 33:
+                case 38:
+                case 39:
+                case 51:
+                case 52:
+                case 53:
+                case 90:
+                    $scope.Variables.navigationToClassicPipe.setData({
+                        'PageLoadBidID': $scope.Variables.liveGetActivityDetails.dataSet.data[0].pipeFa.fabidId,
+                        'PageLoadDrawing': '',
+                        'PageLoadSheet': '',
+                        'PageLoadActivityType': '',
+                        'PageLoadActivitySubType': '',
+                        'PageLoadTestPackage': '',
+                        'PageLoadFiltered': true
+                    });
+                    $scope.Variables.navigationToClassicPipe.invoke();
+                    break;
+                case 91:
+                    $scope.Variables.navigationToClassicPipe.setData({
+                        'PageLoadBidID': '',
+                        'PageLoadDrawing': $scope.Variables.liveGetActivityDetails.dataSet.data[0].pipeMisc.miscDrawingNumber,
+                        'PageLoadSheet': $scope.Variables.liveGetActivityDetails.dataSet.data[0].pipeMisc.miscSheetNumber,
+                        'PageLoadActivityType': 'MISC',
+                        'PageLoadActivitySubType': '',
+                        'PageLoadTestPackage': '',
+                        'PageLoadFiltered': true
+                    });
+                    $scope.Variables.navigationToClassicPipe.invoke();
+                    break;
+                    // Steel Activities (Non Piece work)
+                case 66:
+                    $scope.Variables.navigationToClassicPipe.setData({
+                        'PageLoadBidID': '',
+                        'PageLoadArea': '',
+                        'PageLoadPieceMark': '',
+                        'PageLoadTestPackage': $scope.Variables.liveGetActivityDetails.dataSet.data[0].steelSellPackage.sellTestPackageNumber,
+                        'PageLoadFiltered': true
+                    });
+                    $scope.Variables.navigationToClassicSteel.invoke();
+                    break;
+                case 67:
+                    $scope.Variables.navigationToClassicPipe.setData({
+                        'PageLoadBidID': $scope.Variables.liveGetActivityDetails.dataSet.data[0].steelDemo.demoBidId,
+                        'PageLoadArea': '',
+                        'PageLoadPieceMark': '',
+                        'PageLoadTestPackage': '',
+                        'PageLoadFiltered': true
+                    });
+                    $scope.Variables.navigationToClassicSteel.invoke();
+                    break;
+                case 96:
+                    $scope.Variables.navigationToClassicPipe.setData({
+                        'PageLoadBidID': $scope.Variables.liveGetActivityDetails.dataSet.data[0].steelMisc.miscBidId,
+                        'PageLoadArea': '',
+                        'PageLoadPieceMark': '',
+                        'PageLoadTestPackage': '',
+                        'PageLoadFiltered': true
+                    });
+                    $scope.Variables.navigationToClassicSteel.invoke();
+                    break;
+                    // Civil Activities
+                case 70:
+                case 71:
+                    $scope.Variables.navigationToClassicCivil.setData({
+                        'PageLoadBidID': $scope.Variables.liveGetActivityDetails.dataSet.data[0].civilFa.fabidId,
+                        'PageLoadTestPackage': '',
+                        'PageLoadFiltered': true
+                    });
+                    $scope.Variables.navigationToClassicCivil.invoke();
+                    break;
+                case 72:
+                    $scope.Variables.navigationToClassicCivil.setData({
+                        'PageLoadBidID': '',
+                        'PageLoadTestPackage': $scope.Variables.liveGetActivityDetails.dataSet.data[0].civilSellPackage.sellTestPackageNumber,
+                        'PageLoadFiltered': true
+                    });
+                    $scope.Variables.navigationToClassicCivil.invoke();
+                    break;
+                    // Equip Activities
+                case 80:
+                    $scope.Variables.navigationToClassicEquip.setData({
+                        'PageLoadBidID': $scope.Variables.liveGetActivityDetails.dataSet.data[0].equipFa.fabidId,
+                        'PageLoadFiltered': true
+                    });
+                    $scope.Variables.navigationToClassicEquip.invoke();
+                    break;
+            }
         }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 21) {
-            $scope.Variables.navigationToClassicPipe.setData({
-                'PageLoadDrawing': $scope.Variables.liveGetPipeBoltUp.dataSet.data[0].boltUpDrawingNumber,
-                'PageLoadSheet': $scope.Variables.liveGetPipeBoltUp.dataSet.data[0].boltUpSheetNumber,
-                'PageLoadECT': 'C',
-                'PageLoadECTSubType': 'BU',
-                'PageLoadTestPackage': '',
-                'PageLoadFiltered': true
-            });
-            //Fire Nav Call
-            $scope.Variables.navigationToClassicPipe.invoke();
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 22 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 23) {
-            // Set DWG & Sheet of Nav call 
-            $scope.Variables.navigationToClassicPipe.setData({
-                'PageLoadDrawing': $scope.Variables.liveGetPipeWeld.dataSet.data[0].weldDrawingNumber,
-                'PageLoadSheet': $scope.Variables.liveGetPipeWeld.dataSet.data[0].weldSheetNumber,
-                'PageLoadECT': 'C',
-                'PageLoadECTSubType': 'W',
-                'PageLoadTestPackage': '',
-                'PageLoadFiltered': true
-            });
-            //Fire Nav Call
-            $scope.Variables.navigationToClassicPipe.invoke();
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 31 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 33 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 34 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 35 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 39) {
-            // Set DWG & Sheet of Nav call 
-            $scope.Variables.navigationToClassicPipe.setData({
-                'PageLoadDrawing': $scope.Variables.liveGetPipeTrim.dataSet.data[0].trimDrawingNumber,
-                'PageLoadSheet': $scope.Variables.liveGetPipeTrim.dataSet.data[0].trimSheetNumber,
-                'PageLoadECT': 'T',
-                'PageLoadECTSubType': '',
-                'PageLoadTestPackage': '',
-                'PageLoadFiltered': true
-            });
-            //Fire Nav Call
-            $scope.Variables.navigationToClassicPipe.invoke();
 
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 32) {
+        if ($scope.Variables.staticTabSelect.dataSet.dataValue == '2') {
             $scope.Variables.navigationToClassicPipe.setData({
-                'PageLoadDrawing': $scope.Variables.liveGetPipeSupports.dataSet.data[0].supportDrawingNumber,
-                'PageLoadSheet': $scope.Variables.liveGetPipeSupports.dataSet.data[0].supportSheetNumber,
-                'PageLoadECT': 'T',
-                'PageLoadECTSubType': 'S',
+                'PageLoadBidID': '',
+                'PageLoadArea': $scope.Widgets.gridSuperReviewSteel.selecteditem.sortGroup1,
+                'PageLoadPieceMark': $scope.Widgets.gridSuperReviewSteel.selecteditem.pieceMark,
                 'PageLoadTestPackage': '',
                 'PageLoadFiltered': true
             });
-            //Fire Nav Call
-            $scope.Variables.navigationToClassicPipe.invoke();
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 41 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 42 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 43) {
-            $scope.Variables.navigationToClassicPipe.setData({
-                'PageLoadDrawing': '',
-                'PageLoadSheet': '',
-                'PageLoadECT': '',
-                'PageLoadECTSubType': '',
-                'PageLoadTestPackage': $scope.Variables.liveGetActivityDetails.dataSet.data[0].pipeTesting.testingTestPackageNumber,
-                'PageLoadFiltered': true
-            });
-            //Fire Nav Call
-            $scope.Variables.navigationToClassicPipe.invoke();
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 51 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 52 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 53 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 59) {
-            $scope.Variables.navigationToClassicPipe.setData({
-                'PageLoadDrawing': $scope.Variables.liveGetPipeDemo.dataSet.data[0].demoDrawingNumber,
-                'PageLoadSheet': $scope.Variables.liveGetPipeDemo.dataSet.data[0].demoSheetNumber,
-                'PageLoadECT': 'D',
-                'PageLoadECTSubType': '',
-                'PageLoadTestPackage': '',
-                'PageLoadFiltered': true
-            });
-            //Fire Nav Call
-            $scope.Variables.navigationToClassicPipe.invoke();
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 91) {
-            $scope.Variables.navigationToClassicPipe.setData({
-                'PageLoadDrawing': $scope.Variables.liveGetPipeMisc.dataSet.data[0].miscDrawingNumber,
-                'PageLoadSheet': $scope.Variables.liveGetPipeMisc.dataSet.data[0].miscSheetNumber,
-                'PageLoadECT': 'T',
-                'PageLoadECTSubType': 'MISC',
-                'PageLoadTestPackage': '',
-                'PageLoadFiltered': true
-            });
-            //Fire Nav Call
-            $scope.Variables.navigationToClassicPipe.invoke();
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 61) {
-            $scope.Variables.navigationToClassicSteel.setData({
-                'PageLoadArea': $scope.Variables.liveGetSteelShake.dataSet.data[0].faarea,
-                'PageLoadPieceMark': $scope.Variables.liveGetSteelShake.dataSet.data[0].fapieceNumber,
-                'PageLoadFiltered': true
-            });
-            //Fire Nav Call
             $scope.Variables.navigationToClassicSteel.invoke();
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 62) {
-            $scope.Variables.navigationToClassicSteel.setData({
-                'PageLoadArea': $scope.Variables.liveGetSteelErect.dataSet.data[0].faarea,
-                'PageLoadPieceMark': $scope.Variables.liveGetSteelErect.dataSet.data[0].fapieceNumber,
-                'PageLoadFiltered': true
-            });
-            //Fire Nav Call
-            $scope.Variables.navigationToClassicSteel.invoke();
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 63) {
-            $scope.Variables.navigationToClassicSteel.setData({
-                'PageLoadArea': $scope.Variables.liveGetSteelBoltOut.dataSet.data[0].faarea,
-                'PageLoadPieceMark': $scope.Variables.liveGetSteelBoltOut.dataSet.data[0].fapieceNumber,
-                'PageLoadFiltered': true
-            });
-            //Fire Nav Call
-            $scope.Variables.navigationToClassicSteel.invoke();
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 64) {
-            $scope.Variables.navigationToClassicSteel.setData({
-                'PageLoadArea': $scope.Variables.liveGetSteelImp.dataSet.data[0].faarea,
-                'PageLoadPieceMark': $scope.Variables.liveGetSteelImp.dataSet.data[0].fapieceNumber,
-                'PageLoadFiltered': true
-            });
-            //Fire Nav Call
-            $scope.Variables.navigationToClassicSteel.invoke();
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 68) {
-            $scope.Variables.navigationToClassicSteel.setData({
-                'PageLoadArea': $scope.Variables.liveGetSteelWeld.dataSet.data[0].faarea,
-                'PageLoadPieceMark': $scope.Variables.liveGetSteelWeld.dataSet.data[0].fapieceNumber,
-                'PageLoadFiltered': true
-            });
-            //Fire Nav Call
-            $scope.Variables.navigationToClassicSteel.invoke();
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 65) {
-            $scope.Variables.navigationToClassicSteel.setData({
-                'PageLoadArea': $scope.Variables.liveGetSteelSell.dataSet.data[0].faarea,
-                'PageLoadPieceMark': $scope.Variables.liveGetSteelSell.dataSet.data[0].fapieceNumber,
-                'PageLoadFiltered': true
-            });
-            //Fire Nav Call
-            $scope.Variables.navigationToClassicSteel.invoke();
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 67) {
-            $scope.Variables.navigationToClassicSteel.setData({
-                'PageLoadArea': $scope.Variables.liveGetSteelDemo.dataSet.data[0].faarea,
-                'PageLoadPieceMark': $scope.Variables.liveGetSteelDemo.dataSet.data[0].fapieceNumber,
-                'PageLoadFiltered': true
-            });
-            //Fire Nav Call
-            $scope.Variables.navigationToClassicSteel.invoke();
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 96) {
-            $scope.Variables.navigationToClassicSteel.setData({
-                'PageLoadArea': $scope.Variables.liveGetSteelMisc.dataSet.data[0].faarea,
-                'PageLoadPieceMark': $scope.Variables.liveGetSteelMisc.dataSet.data[0].fapieceNumber,
-                'PageLoadFiltered': true
-            });
-            //Fire Nav Call
-            $scope.Variables.navigationToClassicSteel.invoke();
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 70 || $scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 71) {
-            $scope.Variables.navigationToClassicCivil.setData({
-                'PageLoadBidID': $scope.Variables.liveGetCivilFA.dataSet.data[0].fabidId,
-                'PageLoadFiltered': true
-            });
-            //Fire Nav Call
-            $scope.Variables.navigationToClassicCivil.invoke();
-        }
-        if ($scope.Widgets.gridSuperReviewActivities.selecteditem.ActivityType == 80) {
-            $scope.Variables.navigationToClassicEquip.setData({
-                'PageLoadBidID': $scope.Variables.liveGetEquipFA.dataSet.data[0].fabidId,
-                'PageLoadFiltered': true
-            });
-            //Fire Nav Call
-            $scope.Variables.navigationToClassicEquip.invoke();
         }
     };
 

@@ -41,8 +41,8 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                     <wm-table-column binding="activityTypeName" caption="Activity Type" width="10%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
                                     <wm-table-column binding="nameFull" caption="Foreman" width="15%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
                                     <wm-table-column binding="description" caption="Description" width="35%" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
-                                    <wm-table-column binding="receivedTime" caption="Received Time" textalignment="center" edit-widget-type="text" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate"
-                                        searchable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="receivedTime" caption="Received Time" textalignment="center" edit-widget-type="text" type="string" readonly="true" datepattern="MM-dd-yy hh:mm a" formatpattern="toDate" searchable="false"
+                                        show="true"></wm-table-column>
                                 </wm-table>
                             </wm-tabpane>
                             <wm-tabpane name="tabSteel" title="Steel Piece Work" badgetype="primary" on-select="tabSteelSelect($event, $scope)" badgevalue="bind:Variables.serviceGetFAsSteel.dataSet.totalElements">
@@ -63,7 +63,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                     <wm-table-column binding="quantityImp" caption="Impact" textalignment="center" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
                                     <wm-table-column binding="quantityWeld" caption="Weld" textalignment="center" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
                                     <wm-table-column binding="quantitySell" caption="Sell/Punch" textalignment="center" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true"></wm-table-column>
-                                    <wm-table-column binding="receivedTime" caption="Received Time" textalignment="center" edit-widget-type="text" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate"
+                                    <wm-table-column binding="receivedTime" caption="Received Time" width="10%" textalignment="center" edit-widget-type="text" type="string" readonly="true" datepattern="MM-dd-yy hh:mm a" formatpattern="toDate"
                                         searchable="false" show="true"></wm-table-column>
                                 </wm-table>
                             </wm-tabpane>
@@ -122,24 +122,26 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                             <wm-layoutgrid name="layoutgrid5">
                                 <wm-gridrow name="gridrow12" padding="0px unset">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn26" horizontalalign="center">
-                                        <wm-icon name="icon4" iconsize="2em" iconposition="left" iconclass="weather wi-thermometer" hint="Tempurature"></wm-icon>
+                                        <wm-icon name="icon4" iconsize="1.5em" iconposition="left" iconclass="weather wi-thermometer" hint="Tempurature"></wm-icon>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn31" horizontalalign="center">
-                                        <wm-icon iconsize="2em" iconposition="left" name="icon5" iconclass="weather wi-strong-wind" hint="Wind Sped"></wm-icon>
+                                        <wm-icon iconsize="1.5em" iconposition="left" name="icon5" iconclass="weather wi-strong-wind" hint="Wind Sped"></wm-icon>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn27" horizontalalign="center">
-                                        <wm-icon iconsize="2em" iconposition="left" name="icon6" iconclass="weather wi-showers" hint="Precipitation in Inches"></wm-icon>
+                                        <wm-icon iconsize="1.5em" iconposition="left" name="icon6" iconclass="weather wi-showers" hint="Precipitation in Inches"></wm-icon>
+                                        <wm-icon iconsize="1.5em" iconposition="left" iconclass="weather wi-lightning" hint="ThunderStorms" name="icon7" show="bind:Variables.liveGetWeatherHistory.firstRecord.thunderStorms == 1"></wm-icon>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow13" padding="0px unset">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn28" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" name="label8" class="p" fontsize="2" fontunit="em" caption="70 F"></wm-label>
+                                        <wm-label class="p" fontsize="1.5" fontunit="em" caption="bind:Variables.liveGetWeatherHistory.firstRecord.tempMax + ' / ' + Variables.liveGetWeatherHistory.firstRecord.tempMin + 'F°'" name="label8" margin="5% unset unset unset"
+                                            hint="Hi / Low temp."></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn29" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" class="p" fontsize="1.5" fontunit="em" caption="24 mph" name="label9" margin="5% unset unset unset"></wm-label>
+                                        <wm-label padding="unset 0.5em" class="p" fontsize="1.5" fontunit="em" caption="bind:Variables.liveGetWeatherHistory.firstRecord.windSpeed + ' mph'" name="label9" margin="5% unset unset unset"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn32" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" class="p" fontsize="1.5" fontunit="em" caption=".75&quot;" margin="5% unset unset unset" name="label10"></wm-label>
+                                        <wm-label padding="unset 0.5em" class="p" fontsize="1.5" fontunit="em" caption="bind:Variables.liveGetWeatherHistory.firstRecord.precip + '&quot;'" margin="5% unset unset unset" name="label10" hint="Inches of precipitation"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -157,7 +159,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                     <wm-composite padding="unset unset unset 2%" name="composite7">
                                         <wm-label class="col-md-3" caption="Submission Started" name="label9"></wm-label>
                                         <wm-container class="col-md-9" name="container7">
-                                            <wm-datetime datavalue="bind:Variables.serviceGetSubsDetails.firstRecord.startTime" width="60%" readonly="true" readonlygrid="true" name="datetime1" showbuttonbar="false"></wm-datetime>
+                                            <wm-datetime datavalue="bind:Variables.serviceGetSubsDetails.firstRecord.startTime" width="50%" readonly="true" readonlygrid="true" name="datetime1" showbuttonbar="false" disabled="false" datepattern="MM-dd-yy hh:mm a"></wm-datetime>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -167,7 +169,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                     <wm-composite padding="unset unset unset 2%" name="composite8">
                                         <wm-label class="col-md-3" caption="Submission Completed" name="label10"></wm-label>
                                         <wm-container class="col-md-9" name="container8">
-                                            <wm-datetime datavalue="bind:Variables.serviceGetSubsDetails.firstRecord.completeTime" width="60%" readonly="true" name="datetime2" showbuttonbar="false"></wm-datetime>
+                                            <wm-datetime datavalue="bind:Variables.serviceGetSubsDetails.firstRecord.completeTime" width="50%" readonly="true" name="datetime2" showbuttonbar="false" datepattern="MM-dd-yy hh:mm a"></wm-datetime>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -177,7 +179,7 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                     <wm-composite padding="unset unset unset 2%" name="composite9">
                                         <wm-label class="col-md-3" caption="Submission Recieved" name="label11"></wm-label>
                                         <wm-container class="col-md-9" name="container9">
-                                            <wm-datetime datavalue="bind:Variables.serviceGetSubsDetails.firstRecord.receivedTime" width="60%" readonly="true" name="datetime3" outputformat="timestamp" showbuttonbar="false"></wm-datetime>
+                                            <wm-datetime datavalue="bind:Variables.serviceGetSubsDetails.firstRecord.receivedTime" width="50%" readonly="true" name="datetime3" outputformat="timestamp" showbuttonbar="false" datepattern="MM-dd-yy hh:mm a"></wm-datetime>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>

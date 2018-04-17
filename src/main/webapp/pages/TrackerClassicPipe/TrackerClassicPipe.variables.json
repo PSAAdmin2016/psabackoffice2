@@ -274,10 +274,10 @@
     "matchMode" : "anywhere",
     "propertiesMap" : {
       "columns" : [ {
-        "fieldName" : "id",
+        "fieldName" : "uid",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
-        "columnName" : "ID",
+        "columnName" : "UID",
         "isPrimaryKey" : true,
         "notNull" : true,
         "length" : 0,
@@ -294,6 +294,30 @@
         "notNull" : false,
         "length" : 0,
         "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
+        "fieldName" : "projectServicesRep",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "ProjectServicesRep",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 45,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
+        "fieldName" : "ewonumber",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "EWONumber",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 45,
+        "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
         "scale" : 0
@@ -346,6 +370,18 @@
         "isRelated" : false,
         "scale" : 0
       }, {
+        "fieldName" : "workPackage",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "WorkPackage",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 45,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
         "fieldName" : "costCode",
         "type" : "string",
         "fullyQualifiedType" : "string",
@@ -365,6 +401,18 @@
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 45,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
+        "fieldName" : "p6description",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "P6Description",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -437,18 +485,6 @@
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 45,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "scale" : 0
-      }, {
-        "fieldName" : "p6description",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "P6Description",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 255,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -670,10 +706,10 @@
         "isRelated" : false,
         "scale" : 6
       }, {
-        "fieldName" : "hoursReadyForTesting",
-        "type" : "double",
-        "fullyQualifiedType" : "double",
-        "columnName" : "HoursReadyForTesting",
+        "fieldName" : "hoursRft",
+        "type" : "big_decimal",
+        "fullyQualifiedType" : "big_decimal",
+        "columnName" : "HoursRFT",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 0,
@@ -694,10 +730,10 @@
         "isRelated" : false,
         "scale" : 6
       }, {
-        "fieldName" : "hoursClientTurnover",
-        "type" : "double",
-        "fullyQualifiedType" : "double",
-        "columnName" : "HoursClientTurnover",
+        "fieldName" : "hoursCto",
+        "type" : "big_decimal",
+        "fullyQualifiedType" : "big_decimal",
+        "columnName" : "HoursCTO",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 0,
@@ -925,7 +961,7 @@
       "entityName" : "PipeTrackerClassic",
       "fullyQualifiedName" : "com.psabackoffice.job1111.PipeTrackerClassic",
       "tableType" : "TABLE",
-      "primaryFields" : [ "id" ]
+      "primaryFields" : [ "uid" ]
     },
     "isDefault" : true,
     "bindCount" : 1,

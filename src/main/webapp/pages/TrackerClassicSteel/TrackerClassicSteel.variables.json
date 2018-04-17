@@ -45,6 +45,19 @@
         "isRelated" : false,
         "scale" : 0
       }, {
+        "fieldName" : "projectServicesRep",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "ProjectServicesRep",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 45,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "1",
+        "scale" : 0
+      }, {
         "fieldName" : "ewonumber",
         "type" : "string",
         "fullyQualifiedType" : "string",
@@ -105,6 +118,19 @@
         "isRelated" : false,
         "scale" : 0
       }, {
+        "fieldName" : "workPackage",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "WorkPackage",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 45,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "0",
+        "scale" : 0
+      }, {
         "fieldName" : "costCode",
         "type" : "string",
         "fullyQualifiedType" : "string",
@@ -124,6 +150,18 @@
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 45,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
+        "fieldName" : "p6description",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "P6Description",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -201,13 +239,13 @@
         "isRelated" : false,
         "scale" : 0
       }, {
-        "fieldName" : "p6description",
+        "fieldName" : "sortGroup1",
         "type" : "string",
         "fullyQualifiedType" : "string",
-        "columnName" : "P6Description",
+        "columnName" : "SortGroup1",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 255,
+        "length" : 45,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,

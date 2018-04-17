@@ -1,475 +1,541 @@
-<wm-page data-ng-controller="TrackerClassicSteelPageController" pagetitle="Tracker Classic Steel" name="page1"> 
-    <wm-header content="header" name="header1"></wm-header> 
-    <wm-content name="content1"> 
-        <wm-left-panel columnwidth="1" content="leftnavTrackers" name="left_panel1"></wm-left-panel> 
-        <wm-page-content columnwidth="11" name="page_content1"> 
-            <wm-layoutgrid name="layoutgrid1"> 
-                <wm-gridrow name="gridrow1"> 
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn1"> 
-                        <wm-button class="btn-success" caption="Back" type="button" margin="1%" iconclass="wi wi-back" show="bind:pageParams.PageLoadFiltered" on-click="Variables.navigationBack.invoke()" name="buttonNavBack"></wm-button> 
-                    </wm-gridcolumn> 
-                    <wm-gridcolumn columnwidth="11" name="gridcolumn2"></wm-gridcolumn> 
-                </wm-gridrow> 
-                <wm-gridrow name="gridrow2"> 
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn3"> 
-                        <wm-livefilter title="Filters" dataset="bind:Variables.liveGetClassicTracker.dataSet" captionalign="left" captionposition="top" iconclass="glyphicon glyphicon-filter" collapsible="true" expanded="false" pagesize="100" class="panel-primary" name="livefilterClassicTrackerSteel"> 
-                            <wm-layoutgrid name="layoutgrid1"> 
-                                <wm-gridrow name="gridrow45"> 
-                                    <wm-gridcolumn columnwidth="8" backgroundcolor="#d3d3d3" name="gridcolumn79"> 
-                                        <wm-label padding="unset 0.5em" name="label27_1" caption="Physical Grouping Filters" fontweight="bold"></wm-label> 
-                                    </wm-gridcolumn> 
-                                </wm-gridrow> 
-                                <wm-gridrow name="gridrow1"> 
-                                    <wm-gridcolumn name="gridcolumn1" columnwidth="1"> 
-                                        <wm-filter-field name="area" field="area" related-field="Area" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Area" key="area" placeholder="Search..." datafield="key" searchkey="value" displaylabel="value" defaultvalue="bind:pageParams.PageLoadArea" value="bind:pageParams.PageLoadArea" _value="bind:pageParams.PageLoadArea"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn82"> 
-                                        <wm-filter-field name="location" field="location" related-field="Location" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Location" key="location" placeholder="Search..." datafield="key" searchkey="value" displaylabel="value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn81_1"> 
-                                        <wm-filter-field name="elevation" field="elevation" related-field="Elevation" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Elevation" key="elevation" placeholder="Search..." datafield="key" searchkey="value" displaylabel="value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                </wm-gridrow> 
-                                <wm-gridrow name="gridrow46"> 
-                                    <wm-gridcolumn columnwidth="8" backgroundcolor="#d3d3d3" name="gridcolumn83"> 
-                                        <wm-label padding="unset 0.5em" caption="Logical Grouping Filters" fontweight="bold" name="label28_1"></wm-label> 
-                                    </wm-gridcolumn> 
-                                </wm-gridrow> 
-                                <wm-gridrow name="gridrow47"> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn90_1"> 
-                                        <wm-filter-field name="scope" field="scope" displayname="Scope" widget="select" is-range="false" placeholder="Select..." type="string" is-primary-key="false" generator="assigned" show="true" key="scope" matchmode="start" datafield="key" displayfield="value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn92"> 
-                                        <wm-filter-field name="ewonumber" field="ewonumber" displayname="EWO #" widget="autocomplete" is-range="false" placeholder="Enter value" multiple="multiple" type="string" is-primary-key="false" generator="assigned" show="true" key="ewonumber" matchmode="start" datafield="key" searchkey="value" displaylabel="value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn93"> 
-                                        <wm-filter-field name="phase" field="phase" displayname="Phase" widget="autocomplete" is-range="false" placeholder="Search..." multiple="multiple" type="string" is-primary-key="false" generator="assigned" show="true" key="phase" matchmode="start" datafield="key" searchkey="value" displaylabel="value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn94"> 
-                                        <wm-filter-field name="stage" field="stage" related-field="Stage" widget="select" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Stage" key="stage" placeholder="Select..." datafield="key" displayfield="value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn95"> 
-                                        <wm-filter-field name="cu" field="cu" related-field="Cu" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="CU" key="cu" placeholder="Search..." datafield="key" searchkey="value" displaylabel="value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn96"> 
-                                        <wm-filter-field name="p6id" field="p6id" related-field="P6 Id" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="P6 ID" key="p6id" placeholder="Search..." datafield="key" searchkey="value" displaylabel="value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn97"> 
-                                        <wm-filter-field name="costCode" field="costCode" related-field="Cost Code" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Cost Code" key="costCode" placeholder="Search..." datafield="key" searchkey="value" displaylabel="value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn98"> 
-                                        <wm-filter-field name="testPackageNumber" field="testPackageNumber" related-field="Test Package Number" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Test Package" key="testPackageNumber" placeholder="Search..." datafield="key" searchkey="value" displaylabel="value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                </wm-gridrow> 
-                                <wm-gridrow name="gridrow48"> 
-                                    <wm-gridcolumn columnwidth="8" backgroundcolor="#d3d3d3" name="gridcolumn112"> 
-                                        <wm-label padding="unset 0.5em" caption="Item Specific Filters" fontweight="bold" name="label29_1"></wm-label> 
-                                    </wm-gridcolumn> 
-                                </wm-gridrow> 
-                                <wm-gridrow name="gridrow49"> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn126"> 
-                                        <wm-filter-field name="uid" field="uid" displayname="UID" widget="number" is-range="false" placeholder="Enter value..." multiple="multiple" type="integer" step="1" is-primary-key="true" generator="assigned" show="true" inputtype="number" key="uid"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn128"> 
-                                        <wm-filter-field name="bidId" field="bidId" displayname="Bid ID" widget="number" is-range="false" placeholder="Enter value..." multiple="multiple" type="integer" step="1" is-primary-key="false" generator="assigned" show="true" inputtype="number" key="bidId"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn129"> 
-                                        <wm-filter-field name="pieceMark" field="pieceMark" related-field="Piece Mark" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Piece Mark" key="pieceMark" placeholder="Search..." datafield="key" searchkey="value" displaylabel="value" defaultvalue="bind:pageParams.PageLoadPieceMark" value="bind:pageParams.PageLoadPieceMark"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn130"> 
-                                        <wm-filter-field name="revisionNumber" field="revisionNumber" related-field="Revision Number" widget="number" is-range="false" show="true" type="byte" is-primary-key="false" generator="assigned" matchmode="anywhere" inputtype="number" displayname="Rev." key="revisionNumber" placeholder="Enter value..."></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn131"> 
-                                        <wm-filter-field name="description" field="description" related-field="Description" widget="text" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" inputtype="text" displayname="Description" key="description" placeholder="Enter value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn132"> 
-                                        <wm-filter-field name="activityType" field="activityType" related-field="Activity Type" widget="select" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Activity Type" key="activityType" placeholder="Select..." datafield="key" displayfield="value" multiple="multiple" hint="Ctrl+Click for multi-select" height="65px"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn133"> 
-                                        <wm-filter-field name="materialType" field="materialType" related-field="Material Type" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Material Type" key="materialType" placeholder="Enter value" datafield="key" searchkey="value" displaylabel="value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn134"> 
-                                        <wm-filter-field name="clientMaterialSpec" field="clientMaterialSpec" related-field="Client Material Spec" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Client Material Spec" key="clientMaterialSpec" placeholder="Enter value" datafield="key" searchkey="value" displaylabel="value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn95_1"> 
-                                        <wm-filter-field name="performanceMaterialSpec" field="performanceMaterialSpec" related-field="Performance Material Spec" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Perf. Material Spec" key="performanceMaterialSpec" placeholder="Enter value" datafield="key" searchkey="value" displaylabel="value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                </wm-gridrow> 
-                                <wm-gridrow name="gridrow2"> 
-                                    <wm-gridcolumn name="gridcolumn2" backgroundcolor="#d3d3d3" columnwidth="8"> 
-                                        <wm-label padding="unset 0.5em" caption="Site Custom Filters" fontweight="bold" name="label30_1"></wm-label> 
-                                    </wm-gridcolumn> 
-                                </wm-gridrow> 
-                                <wm-gridrow name="gridrow3"> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn140"> 
-                                        <wm-filter-field name="wbs1" field="wbs1" related-field="Wbs1" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Wbs1" key="wbs1" placeholder="Search..." datafield="key" searchkey="value" displaylabel="value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn141"> 
-                                        <wm-filter-field name="wbs2" field="wbs2" related-field="Wbs2" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Wbs2" key="wbs2" placeholder="Search..." datafield="key" searchkey="value" displaylabel="value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn142"> 
-                                        <wm-filter-field name="wbs3" field="wbs3" related-field="Wbs3" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Wbs3" key="wbs3" placeholder="Search..." datafield="key" searchkey="value" displaylabel="value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn143"> 
-                                        <wm-filter-field name="wbs4" field="wbs4" related-field="Wbs4" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Wbs4" key="wbs4" placeholder="Search..." datafield="key" searchkey="value" displaylabel="value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn144"> 
-                                        <wm-filter-field name="wbs5" field="wbs5" related-field="Wbs5" widget="text" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" inputtype="text" displayname="Wbs5" key="wbs5" placeholder="Enter value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn145"> 
-                                        <wm-filter-field name="wbs6" field="wbs6" related-field="Wbs6" widget="text" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" inputtype="text" displayname="Wbs6" key="wbs6" placeholder="Enter value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn146"> 
-                                        <wm-filter-field name="wbs7" field="wbs7" related-field="Wbs7" widget="text" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" inputtype="text" displayname="Wbs7" key="wbs7" placeholder="Enter value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn147"> 
-                                        <wm-filter-field name="wbs8" field="wbs8" related-field="Wbs8" widget="text" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" inputtype="text" displayname="Wbs8" key="wbs8" placeholder="Enter value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn148"> 
-                                        <wm-filter-field name="wbs9" field="wbs9" related-field="Wbs9" widget="text" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" inputtype="text" displayname="Wbs9" key="wbs9" placeholder="Enter value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn97_1"> 
-                                        <wm-filter-field name="wbs10" field="wbs10" related-field="Wbs10" widget="text" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" inputtype="text" displayname="Wbs10" key="wbs10" placeholder="Enter value"></wm-filter-field> 
-                                    </wm-gridcolumn> 
-                                </wm-gridrow> 
-                            </wm-layoutgrid> 
-                            <wm-filter-action key="filter" display-name="Filter" show="true" class="btn-primary" iconclass="wi wi-filter-list" title="Filter" action="filter()" shortcutkey="" disabled="false" type="button"></wm-filter-action> 
-                            <wm-filter-action key="clear" display-name="Clear" show="true" class="btn-secondary" iconclass="wi wi-trash" title="Clear" action="clearFilter()" shortcutkey="" disabled="false" type="button"></wm-filter-action> 
-                        </wm-livefilter> 
-                    </wm-gridcolumn> 
-                </wm-gridrow> 
-                <wm-gridrow name="gridrow11_1"> 
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn14"> 
-                        <wm-table gridfirstrowselect="false" dataset="bind:Widgets.livefilterClassicTrackerSteel.result" navigation="Classic" height="640px" showrecordcount="true" fontsize="10" on-rowdblclick="Widgets.dialogBidWorkHistory.open()" pagesize="100" class="panel-default" on-columnselect="gridClassicTrackerSteelColumnselect($event, $data)" on-columndeselect="gridClassicTrackerSteelColumndeselect($event, $data)" editmode="dialog" spacing="condensed" name="gridClassicTrackerSteel" enablesort="true" exportdatasize="50000"> 
-                            <wm-table-column binding="uid" caption="ID" type="integer" width="60px" primary-key="true" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="bidId" caption="Bid ID" type="integer" width="60px" primary-key="false" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="ewonumber" caption="EWO #" type="string" width="70px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="scope" caption="Scope" type="string" width="70px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="phase" caption="Phase" type="string" width="70px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="stage" caption="Stage" type="string" width="70px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="testPackageNumber" caption="Test Package" type="string" width="70px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="costCode" caption="Cost Code" type="string" width="80px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="p6id" caption="P6 ID" type="string" width="60px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="assignedContractor" caption="Assigned Contractor" type="string" width="130px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="area" caption="Area" type="string" width="140px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="location" caption="Location" type="string" width="70px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="structure" caption="Structure" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="cu" caption="Cu" type="string" width="70px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="elevation" caption="Elevation" type="string" width="70px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="p6description" caption="P6 Description" type="string" width="80px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="pieceMark" caption="Piece Mark" type="string" width="100px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="pieceMarkRev" caption="REV" type="short" width="60px" primary-key="false" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="description" caption="Description" type="string" width="150px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="activityType" caption="Activity Type" type="string" width="70px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="clientMaterialSpec" caption="Client Material Spec" type="string" width="100px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="performanceMaterialSpec" caption="Performance Material Spec" type="string" width="100px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="materialType" caption="Steel Type" type="string" width="70px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
+<wm-page data-ng-controller="TrackerClassicSteelPageController" pagetitle="Tracker Classic Steel" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="1" content="leftnavTrackers" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="11" name="page_content1">
+            <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow1">
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn1">
+                        <wm-button class="btn-success" caption="Back" type="button" margin="1%" iconclass="wi wi-back" show="bind:pageParams.PageLoadFiltered" on-click="Variables.navigationBack.invoke()" name="buttonNavBack"></wm-button>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="11" name="gridcolumn2"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow2">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn3">
+                        <wm-livefilter title="Filters" dataset="bind:Variables.liveGetClassicTracker.dataSet" captionalign="left" captionposition="top" iconclass="glyphicon glyphicon-filter" collapsible="true" expanded="false" pagesize="100" class="panel-primary"
+                            name="livefilterClassicTrackerSteel">
+                            <wm-layoutgrid name="layoutgrid1">
+                                <wm-gridrow name="gridrow45">
+                                    <wm-gridcolumn columnwidth="8" backgroundcolor="#d3d3d3" name="gridcolumn79">
+                                        <wm-label padding="unset 0.5em" name="label27_1" caption="Physical Grouping Filters" fontweight="bold"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow1">
+                                    <wm-gridcolumn name="gridcolumn1" columnwidth="1">
+                                        <wm-filter-field name="area" field="area" related-field="Area" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Area" key="area"
+                                            placeholder="Search..." datafield="key" searchkey="value" displaylabel="value" defaultvalue="bind:pageParams.PageLoadArea" value="bind:pageParams.PageLoadArea" _value="bind:pageParams.PageLoadArea"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn82">
+                                        <wm-filter-field name="location" field="location" related-field="Location" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Location"
+                                            key="location" placeholder="Search..." datafield="key" searchkey="value" displaylabel="value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn81_1">
+                                        <wm-filter-field name="elevation" field="elevation" related-field="Elevation" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Elevation"
+                                            key="elevation" placeholder="Search..." datafield="key" searchkey="value" displaylabel="value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow46">
+                                    <wm-gridcolumn columnwidth="8" backgroundcolor="#d3d3d3" name="gridcolumn83">
+                                        <wm-label padding="unset 0.5em" caption="Logical Grouping Filters" fontweight="bold" name="label28_1"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow47">
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn90_1">
+                                        <wm-filter-field name="scope" field="scope" displayname="Scope" widget="select" is-range="false" placeholder="Select..." type="string" is-primary-key="false" generator="assigned" show="true" key="scope" matchmode="start"
+                                            datafield="key" displayfield="value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn92">
+                                        <wm-filter-field name="ewonumber" field="ewonumber" displayname="EWO #" widget="autocomplete" is-range="false" placeholder="Enter value" multiple="multiple" type="string" is-primary-key="false" generator="assigned"
+                                            show="true" key="ewonumber" matchmode="start" datafield="key" searchkey="value" displaylabel="value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn93">
+                                        <wm-filter-field name="phase" field="phase" displayname="Phase" widget="autocomplete" is-range="false" placeholder="Search..." multiple="multiple" type="string" is-primary-key="false" generator="assigned" show="true"
+                                            key="phase" matchmode="start" datafield="key" searchkey="value" displaylabel="value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn94">
+                                        <wm-filter-field name="stage" field="stage" related-field="Stage" widget="select" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Stage" key="stage"
+                                            placeholder="Select..." datafield="key" displayfield="value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn95">
+                                        <wm-filter-field name="cu" field="cu" related-field="Cu" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="CU" key="cu" placeholder="Search..."
+                                            datafield="key" searchkey="value" displaylabel="value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn96">
+                                        <wm-filter-field name="p6id" field="p6id" related-field="P6 Id" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="P6 ID" key="p6id"
+                                            placeholder="Search..." datafield="key" searchkey="value" displaylabel="value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn97">
+                                        <wm-filter-field name="costCode" field="costCode" related-field="Cost Code" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Cost Code"
+                                            key="costCode" placeholder="Search..." datafield="key" searchkey="value" displaylabel="value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn98">
+                                        <wm-filter-field name="testPackageNumber" field="testPackageNumber" related-field="Test Package Number" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere"
+                                            displayname="Test Package" key="testPackageNumber" placeholder="Search..." datafield="key" searchkey="value" displaylabel="value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow48">
+                                    <wm-gridcolumn columnwidth="8" backgroundcolor="#d3d3d3" name="gridcolumn112">
+                                        <wm-label padding="unset 0.5em" caption="Item Specific Filters" fontweight="bold" name="label29_1"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow49">
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn126">
+                                        <wm-filter-field name="uid" field="uid" displayname="UID" widget="number" is-range="false" placeholder="Enter value..." multiple="multiple" type="integer" step="1" is-primary-key="true" generator="assigned" show="true"
+                                            inputtype="number" key="uid"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn128">
+                                        <wm-filter-field name="bidId" field="bidId" displayname="Bid ID" widget="number" is-range="false" placeholder="Enter value..." multiple="multiple" type="integer" step="1" is-primary-key="false" generator="assigned"
+                                            show="true" inputtype="number" key="bidId"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn129">
+                                        <wm-filter-field name="pieceMark" field="pieceMark" related-field="Piece Mark" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Piece Mark"
+                                            key="pieceMark" placeholder="Search..." datafield="key" searchkey="value" displaylabel="value" defaultvalue="bind:pageParams.PageLoadPieceMark" value="bind:pageParams.PageLoadPieceMark"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn130">
+                                        <wm-filter-field name="revisionNumber" field="revisionNumber" related-field="Revision Number" widget="number" is-range="false" show="true" type="byte" is-primary-key="false" generator="assigned" matchmode="anywhere"
+                                            inputtype="number" displayname="Rev." key="revisionNumber" placeholder="Enter value..."></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn131">
+                                        <wm-filter-field name="description" field="description" related-field="Description" widget="text" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" inputtype="text"
+                                            displayname="Description" key="description" placeholder="Enter value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn132">
+                                        <wm-filter-field name="activityType" field="activityType" related-field="Activity Type" widget="select" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Activity Type"
+                                            key="activityType" placeholder="Select..." datafield="key" displayfield="value" multiple="multiple" hint="Ctrl+Click for multi-select" height="65px"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn133">
+                                        <wm-filter-field name="materialType" field="materialType" related-field="Material Type" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere"
+                                            displayname="Material Type" key="materialType" placeholder="Enter value" datafield="key" searchkey="value" displaylabel="value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn134">
+                                        <wm-filter-field name="clientMaterialSpec" field="clientMaterialSpec" related-field="Client Material Spec" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned"
+                                            matchmode="anywhere" displayname="Client Material Spec" key="clientMaterialSpec" placeholder="Enter value" datafield="key" searchkey="value" displaylabel="value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn95_1">
+                                        <wm-filter-field name="performanceMaterialSpec" field="performanceMaterialSpec" related-field="Performance Material Spec" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned"
+                                            matchmode="anywhere" displayname="Perf. Material Spec" key="performanceMaterialSpec" placeholder="Enter value" datafield="key" searchkey="value" displaylabel="value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow2">
+                                    <wm-gridcolumn name="gridcolumn2" backgroundcolor="#d3d3d3" columnwidth="8">
+                                        <wm-label padding="unset 0.5em" caption="Site Custom Filters" fontweight="bold" name="label30_1"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow3">
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn140">
+                                        <wm-filter-field name="wbs1" field="wbs1" related-field="Wbs1" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Wbs1" key="wbs1"
+                                            placeholder="Search..." datafield="key" searchkey="value" displaylabel="value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn141">
+                                        <wm-filter-field name="wbs2" field="wbs2" related-field="Wbs2" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Wbs2" key="wbs2"
+                                            placeholder="Search..." datafield="key" searchkey="value" displaylabel="value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn142">
+                                        <wm-filter-field name="wbs3" field="wbs3" related-field="Wbs3" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Wbs3" key="wbs3"
+                                            placeholder="Search..." datafield="key" searchkey="value" displaylabel="value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn143">
+                                        <wm-filter-field name="wbs4" field="wbs4" related-field="Wbs4" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Wbs4" key="wbs4"
+                                            placeholder="Search..." datafield="key" searchkey="value" displaylabel="value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn144">
+                                        <wm-filter-field name="wbs5" field="wbs5" related-field="Wbs5" widget="text" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" inputtype="text" displayname="Wbs5"
+                                            key="wbs5" placeholder="Enter value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn145">
+                                        <wm-filter-field name="wbs6" field="wbs6" related-field="Wbs6" widget="text" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" inputtype="text" displayname="Wbs6"
+                                            key="wbs6" placeholder="Enter value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn146">
+                                        <wm-filter-field name="wbs7" field="wbs7" related-field="Wbs7" widget="text" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" inputtype="text" displayname="Wbs7"
+                                            key="wbs7" placeholder="Enter value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn147">
+                                        <wm-filter-field name="wbs8" field="wbs8" related-field="Wbs8" widget="text" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" inputtype="text" displayname="Wbs8"
+                                            key="wbs8" placeholder="Enter value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn148">
+                                        <wm-filter-field name="wbs9" field="wbs9" related-field="Wbs9" widget="text" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" inputtype="text" displayname="Wbs9"
+                                            key="wbs9" placeholder="Enter value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn97_1">
+                                        <wm-filter-field name="wbs10" field="wbs10" related-field="Wbs10" widget="text" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" inputtype="text" displayname="Wbs10"
+                                            key="wbs10" placeholder="Enter value"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                            <wm-filter-action key="filter" display-name="Filter" show="true" class="btn-primary" iconclass="wi wi-filter-list" title="Filter" action="filter()" shortcutkey="" disabled="false" type="button"></wm-filter-action>
+                            <wm-filter-action key="clear" display-name="Clear" show="true" class="btn-secondary" iconclass="wi wi-trash" title="Clear" action="clearFilter()" shortcutkey="" disabled="false" type="button"></wm-filter-action>
+                        </wm-livefilter>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow11_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn14">
+                        <wm-table gridfirstrowselect="false" dataset="bind:Widgets.livefilterClassicTrackerSteel.result" navigation="Classic" height="640px" showrecordcount="true" fontsize="10" on-rowdblclick="Widgets.dialogBidWorkHistory.open()" pagesize="100"
+                            class="panel-default" on-columnselect="gridClassicTrackerSteelColumnselect($event, $data)" on-columndeselect="gridClassicTrackerSteelColumndeselect($event, $data)" editmode="dialog" spacing="condensed" name="gridClassicTrackerSteel"
+                            enablesort="true" exportdatasize="50000">
+                            <wm-table-column binding="uid" caption="ID" type="integer" width="60px" primary-key="true" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="bidId" caption="Bid ID" type="integer" width="60px" primary-key="false" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="ewonumber" caption="EWO #" type="string" width="70px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="scope" caption="Scope" type="string" width="70px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="phase" caption="Phase" type="string" width="70px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="stage" caption="Stage" type="string" width="70px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="testPackageNumber" caption="Test Package" type="string" width="70px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="costCode" caption="Cost Code" type="string" width="80px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="p6id" caption="P6 ID" type="string" width="60px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="assignedContractor" caption="Assigned Contractor" type="string" width="130px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="area" caption="Area" type="string" width="140px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="location" caption="Location" type="string" width="70px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="structure" caption="Structure" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="cu" caption="Cu" type="string" width="70px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="elevation" caption="Elevation" type="string" width="70px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="p6description" caption="P6 Description" type="string" width="80px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="pieceMark" caption="Piece Mark" type="string" width="100px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="pieceMarkRev" caption="REV" type="short" width="60px" primary-key="false" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="description" caption="Description" type="string" width="150px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="activityType" caption="Activity Type" type="string" width="70px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="clientMaterialSpec" caption="Client Material Spec" type="string" width="100px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="performanceMaterialSpec" caption="Performance Material Spec" type="string" width="100px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="materialType" caption="Steel Type" type="string" width="70px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
                             <wm-table-column binding="length" caption="Length" type="float" width="70px" primary-key="false" generator="assigned" edit-widget-type="number" show="true" readonly="false">
-                                 {{inchToFeet(row.length)}} 
-                            </wm-table-column> 
-                            <wm-table-column binding="weight" caption="Weight (Tons)" type="float" width="80px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="3" edit-widget-type="number" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="system" caption="System" type="string" width="80px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="service" caption="Service" type="string" width="80px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="quantityTakeOff" caption="Quantity Take Off" type="float" width="70px" primary-key="false" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="quantityWeld" caption="Quantity Weld" type="short" width="70px" primary-key="false" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-table-column> 
+                                {{inchToFeet(row.length)}}
+                            </wm-table-column>
+                            <wm-table-column binding="weight" caption="Weight (Tons)" type="float" width="80px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="3" edit-widget-type="number" show="true"
+                                readonly="false"></wm-table-column>
+                            <wm-table-column binding="system" caption="System" type="string" width="80px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="service" caption="Service" type="string" width="80px" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="quantityTakeOff" caption="Quantity Take Off" type="float" width="70px" primary-key="false" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="quantityWeld" caption="Quantity Weld" type="short" width="70px" primary-key="false" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-table-column>
                             <wm-table-column binding="hoursShake" caption="Hours Shake" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column> 
+Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column>
                             <wm-table-column binding="hoursErect" caption="Hours Erect" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="hoursBoltout" caption="Hours Boltout" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column> 
+Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column>
+                            <wm-table-column binding="hoursBoltout" caption="Hours Boltout" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number"
+                                show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
+Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column>
                             <wm-table-column binding="hoursImp" caption="Hours Impact" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column> 
+Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column>
                             <wm-table-column binding="hoursWeld" caption="Hours Weld" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column> 
+Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column>
                             <wm-table-column binding="hoursSell" caption="Hours Sell" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column> 
+Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column>
                             <wm-table-column binding="hoursDemo" caption="Hours Demo" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column> 
+Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column>
                             <wm-table-column binding="hoursMisc" caption="Hours Misc" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column> 
+Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column>
                             <wm-table-column binding="hoursAll" caption="Hours All" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="installedShake" caption="Installed Shake" type="integer" width="70px" textalignment="center" primary-key="false" generator="assigned" col-class="lightgreen" edit-widget-type="number" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="installedErect" caption="Installed Erect" type="float" width="70px" textalignment="center" primary-key="false" generator="assigned" col-class="lightgreen" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="installedBoltout" caption="Installed Boltout" type="float" width="70px" textalignment="center" primary-key="false" generator="assigned" col-class="lightgreen" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="installedImp" caption="Installed Impact" type="float" width="70px" textalignment="center" primary-key="false" generator="assigned" col-class="lightgreen" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="installedWeld" caption="Installed Weld" type="float" width="70px" textalignment="center" primary-key="false" generator="assigned" col-class="lightgreen" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="installedSell" caption="Installed Sell" type="integer" width="70px" textalignment="center" primary-key="false" generator="assigned" col-class="lightgreen" edit-widget-type="number" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="installedDemo" caption="Removed Demo" type="integer" width="70px" textalignment="center" primary-key="false" generator="assigned" col-class="lightgreen" edit-widget-type="number" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="installedMisc" caption="Installed Misc" type="float" width="70px" textalignment="center" primary-key="false" generator="assigned" col-class="lightgreen" edit-widget-type="number" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="earnedShakeHours" caption="Earned Shake Hours" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" sortable="false" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="earnedErectHours" caption="Earned Erect Hours" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" sortable="false" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="earnedBoltoutHours" caption="Earned Boltout Hours" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" sortable="false" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="earnedImpHours" caption="Earned Impact Hours" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" sortable="false" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="earnedWeldHours" caption="Earned Weld Hours" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" sortable="false" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="earnedSellHours" caption="Earned Sell Hours" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" sortable="false" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="earnedDemoHours" caption="Earned Demo Hours" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" sortable="false" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="earnedMiscHours" caption="Earned Misc Hours" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" sortable="false" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="earnedAllHours" caption="Earned All Hours" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="wbs1" caption="Wbs1" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="wbs2" caption="Wbs2" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="wbs3" caption="Wbs3" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="wbs4" caption="Wbs4" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="wbs5" caption="Wbs5" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="wbs6" caption="Wbs6" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="wbs7" caption="Wbs7" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="wbs8" caption="Wbs8" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="wbs9" caption="Wbs9" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="wbs10" caption="Wbs10" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-column binding="timeStamp" caption="Time Stamp" type="timestamp" primary-key="false" generator="assigned" datepattern="MM/dd/yyyy" formatpattern="toDate" edit-widget-type="timestamp" show="true" readonly="false"></wm-table-column> 
-                            <wm-table-action key="customButton" display-name="Hide Columns" show="true" class="btn-primary" iconclass="" title="Hide" action="customButtonAction($event)" shortcutkey="" disabled="false" position="header"></wm-table-action> 
-                            <wm-table-action key="customButton1" display-name="Show All" show="bind:Variables.staticShowSteelClassicShowAllButton.dataSet.show" class="btn-primary" iconclass="" title="ShowAll" action="customButton1Action($event)" shortcutkey="" disabled="false" position="header"></wm-table-action> 
-                            <wm-table-action key="customButton2" display-name="Refresh" show="true" class="btn-primary" iconclass="" title="Custom button" action="Variables.serviceUpdateClassicTrackerFull.invoke()" accessroles="SuperUser" shortcutkey="" disabled="false" position="header"></wm-table-action> 
-                        </wm-table> 
-                    </wm-gridcolumn> 
-                </wm-gridrow> 
-                <wm-gridrow name="gridrow12"> 
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn48"></wm-gridcolumn> 
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn49"></wm-gridcolumn> 
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn50"></wm-gridcolumn> 
-                </wm-gridrow> 
-            </wm-layoutgrid> 
-        </wm-page-content> 
-    </wm-content> 
-    <wm-footer content="footer" name="footer1"></wm-footer> 
-    <wm-view class="dialog-view" name="viewBidWorkHistory" show="false"> 
-        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogBidWorkHistory" width="75%" title="Assigned Field Activities" iconclass="wi wi-edit" on-opened="Variables.serviceGetBidWorkHistory.invoke()"> 
-            <wm-layoutgrid name="layoutgrid4"> 
-                <wm-gridrow name="gridrow13" padding="unset 1%"> 
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn58_1"> 
-                        <wm-label width="100%" caption="Submission #" fontweight="bold" name="label21" hint="DFR Submission Number"></wm-label> 
-                    </wm-gridcolumn> 
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn67" horizontalalign="left" padding="unset 0%"> 
-                        <wm-layoutgrid name="layoutgrid8"> 
-                            <wm-gridrow name="gridrow21" padding="unset 0px"> 
-                                <wm-gridcolumn columnwidth="6" name="gridcolumn55"> 
-                                    <wm-layoutgrid name="layoutgrid9"> 
-                                        <wm-gridrow name="gridrow23"> 
-                                            <wm-gridcolumn columnwidth="3" name="gridcolumn59" horizontalalign="left"> 
-                                                <wm-label width="100%" caption="Shake" fontweight="bold" name="label16"></wm-label> 
-                                            </wm-gridcolumn> 
-                                            <wm-gridcolumn columnwidth="3" name="gridcolumn60" horizontalalign="left"> 
-                                                <wm-label width="100%" caption="Erect" fontweight="bold" name="label20_2"></wm-label> 
-                                            </wm-gridcolumn> 
-                                            <wm-gridcolumn columnwidth="3" name="gridcolumn67_1" horizontalalign="left"> 
-                                                <wm-label width="100%" caption="Boltout" fontweight="bold" name="label21_3"></wm-label> 
-                                            </wm-gridcolumn> 
-                                            <wm-gridcolumn columnwidth="3" name="gridcolumn68_2" horizontalalign="left"> 
-                                                <wm-label width="100%" caption="Impact" fontweight="bold" name="label22"></wm-label> 
-                                            </wm-gridcolumn> 
-                                        </wm-gridrow> 
-                                    </wm-layoutgrid> 
-                                </wm-gridcolumn> 
-                                <wm-gridcolumn columnwidth="6" name="gridcolumn56" horizontalalign="left"> 
-                                    <wm-layoutgrid name="layoutgrid10"> 
-                                        <wm-gridrow name="gridrow25"> 
-                                            <wm-gridcolumn columnwidth="3" name="gridcolumn63" horizontalalign="left"> 
-                                                <wm-label width="100%" caption="Weld" fontweight="bold" name="label23_2"></wm-label> 
-                                            </wm-gridcolumn> 
-                                            <wm-gridcolumn columnwidth="3" name="gridcolumn64_1" horizontalalign="left"> 
-                                                <wm-label width="100%" caption="Sell" fontweight="bold" name="label24"></wm-label> 
-                                            </wm-gridcolumn> 
-                                            <wm-gridcolumn columnwidth="3" name="gridcolumn69" horizontalalign="left"> 
-                                                <wm-label width="100%" caption="Demo" fontweight="bold" name="label25" hint="Handrail=ft. Grading=sqft. Steel=ton"></wm-label> 
-                                            </wm-gridcolumn> 
-                                            <wm-gridcolumn columnwidth="3" name="gridcolumn70" horizontalalign="left"> 
-                                                <wm-label width="100%" caption="Misc" fontweight="bold" name="label26"></wm-label> 
-                                            </wm-gridcolumn> 
-                                        </wm-gridrow> 
-                                    </wm-layoutgrid> 
-                                </wm-gridcolumn> 
-                            </wm-gridrow> 
-                        </wm-layoutgrid> 
-                    </wm-gridcolumn> 
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn68"> 
-                        <wm-label caption="Foreman" fontweight="bold" name="label18"></wm-label> 
-                    </wm-gridcolumn> 
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn72"> 
-                        <wm-label caption="Supervisor" fontweight="bold" name="label17" margin="unset unset unset 2%"></wm-label> 
-                    </wm-gridcolumn> 
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn70_1"> 
-                        <wm-label width="100%" caption="Completed" fontweight="bold" name="label19"></wm-label> 
-                    </wm-gridcolumn> 
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn71"> 
-                        <wm-label width="100%" caption="Reviewed" fontweight="bold" name="label20" hint="Reviewed and Accepted by Supervisor"></wm-label> 
-                    </wm-gridcolumn> 
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn66_1"></wm-gridcolumn> 
-                </wm-gridrow> 
-                <wm-gridrow name="gridrow14" padding="unset 0%"> 
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn61" padding="unset 0%"> 
-                        <wm-list listclass="list-group" itemclass="list-group-item" template="true" dataset="bind:Variables.serviceGetBidWorkHistory.dataSet" navigation="Classic" name="livelistBidWorkHistory" showrecordcount="true" margin="unset unset unset 0px" padding="unset unset unset 0px"> 
-                            <wm-listtemplate layout="blank" name="listtemplate1"> 
-                                <wm-container class="blank" data-template-ctr="true" name="container1" margin="unset 0px" padding="unset 0px"> 
-                                    <wm-layoutgrid class="gridlayout" name="layoutgrid3" margin="unset 0px" padding="unset 0px"> 
-                                        <wm-gridrow name="gridrow12" padding="unset 0px"> 
-                                            <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn48_1" horizontalalign="left" padding=".5% unset unset unset"> 
-                                                <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].SubmissionID" name="label10" fontsize="10" height="100%" fontweight="bold"></wm-label> 
-                                            </wm-gridcolumn> 
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn74" horizontalalign="left"> 
-                                                <wm-layoutgrid name="layoutgrid11"> 
-                                                    <wm-gridrow name="gridrow27" padding="unset 0px"> 
-                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn69_1"> 
-                                                            <wm-layoutgrid name="layoutgrid12"> 
-                                                                <wm-gridrow name="gridrow29"> 
-                                                                    <wm-gridcolumn columnwidth="3" name="gridcolumn81" padding="2% unset unset unset" horizontalalign="left"> 
-                                                                        <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].ShakeQuantity" fontsize="10" name="label27"></wm-label> 
-                                                                    </wm-gridcolumn> 
-                                                                    <wm-gridcolumn columnwidth="3" name="gridcolumn82_1" padding="2% unset unset unset" horizontalalign="left"> 
-                                                                        <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].ErectQuantity + ' @' + Variables.serviceGetBidWorkHistory.dataSet[$i].ErectPercent * 100 | suffix: '%'" fontsize="10" name="label28"></wm-label> 
-                                                                    </wm-gridcolumn> 
-                                                                    <wm-gridcolumn columnwidth="3" name="gridcolumn85" padding="2% unset unset unset" horizontalalign="left"> 
-                                                                        <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].BoltoutQuantity + ' @' + Variables.serviceGetBidWorkHistory.dataSet[$i].BoltoutPercent * 100 | suffix: '%'" fontsize="10" name="label29"></wm-label> 
-                                                                    </wm-gridcolumn> 
-                                                                    <wm-gridcolumn columnwidth="3" name="gridcolumn86_1" padding="2% unset unset unset" horizontalalign="left"> 
-                                                                        <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].ImpQuantity + ' @' + Variables.serviceGetBidWorkHistory.dataSet[$i].ImpPercent * 100 | suffix: '%'" fontsize="10" name="label30"></wm-label> 
-                                                                    </wm-gridcolumn> 
-                                                                </wm-gridrow> 
-                                                            </wm-layoutgrid> 
-                                                        </wm-gridcolumn> 
-                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn78"> 
-                                                            <wm-layoutgrid name="layoutgrid13"> 
-                                                                <wm-gridrow name="gridrow31"> 
-                                                                    <wm-gridcolumn columnwidth="3" name="gridcolumn87_1" padding="2% unset unset unset" horizontalalign="left"> 
-                                                                        <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].WeldQuantity + ' @' + Variables.serviceGetBidWorkHistory.dataSet[$i].WeldPercent * 100 | suffix: '%'" fontsize="10" name="label31"></wm-label> 
-                                                                    </wm-gridcolumn> 
-                                                                    <wm-gridcolumn columnwidth="3" name="gridcolumn88_1" padding="2% unset unset unset" horizontalalign="left"> 
-                                                                        <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].SellQuantity" fontsize="10" name="label32"></wm-label> 
-                                                                    </wm-gridcolumn> 
-                                                                    <wm-gridcolumn columnwidth="3" name="gridcolumn89" padding="2% unset unset unset" horizontalalign="left"> 
-                                                                        <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].DemoQuantity" fontsize="10" name="label33" hint="Handrail=ft. Grading=sqft. Steel=ton"></wm-label> 
-                                                                    </wm-gridcolumn> 
-                                                                    <wm-gridcolumn columnwidth="3" name="gridcolumn90" padding="2% unset unset unset" horizontalalign="left"> 
-                                                                        <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].MiscQuantity" fontsize="10" name="label34"></wm-label> 
-                                                                    </wm-gridcolumn> 
-                                                                </wm-gridrow> 
-                                                            </wm-layoutgrid> 
-                                                        </wm-gridcolumn> 
-                                                    </wm-gridrow> 
-                                                </wm-layoutgrid> 
-                                            </wm-gridcolumn> 
-                                            <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn52" padding=".5% unset unset unset"> 
-                                                <wm-label caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].Foreman" name="label5" fontsize="10"></wm-label> 
-                                            </wm-gridcolumn> 
-                                            <wm-gridcolumn columnwidth="1" name="gridcolumn75_1" padding=".5% unset unset unset"> 
-                                                <wm-label caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].Supervisor" name="label8" fontsize="10" margin="unset unset unset 2%"></wm-label> 
-                                            </wm-gridcolumn> 
-                                            <wm-gridcolumn columnwidth="1" name="gridcolumn76_1" padding=".5% unset unset unset"> 
-                                                <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].CompleteTime | toDate: 'MM-dd-yy hh:mm a'" name="label12" fontsize="10"></wm-label> 
-                                            </wm-gridcolumn> 
-                                            <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn55_1" padding=".5% unset unset unset"> 
-                                                <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].ReviewedTime | toDate: 'MM-dd-yy hh:mm a'" name="label11" fontsize="10"></wm-label> 
-                                            </wm-gridcolumn> 
-                                            <wm-gridcolumn columnwidth="1" name="gridcolumn68_1" horizontalalign="right" padding=".5% unset unset unset"> 
-                                                <wm-popover popoverwidth="67%" popoverheight="500" name="popoverActivityHistory" class="btn-sm" caption="Expand" iconclass="fa fa-expand" backgroundcolor="#5fb4ff" color="#000000" height="28" textalign="center" contentsource="partial" content="PopSteelFAExpanded" on-show="Variables.serviceGetBidWorkHistoryExpanded.invoke()" borderstyle="solid" bordercolor="#bfd8ef" borderwidth="1px" margin="unset 1%" padding="2% 3%" hint="View the history of the selected item."></wm-popover> 
-                                            </wm-gridcolumn> 
-                                        </wm-gridrow> 
-                                    </wm-layoutgrid> 
-                                </wm-container> 
-                            </wm-listtemplate> 
-                        </wm-list> 
-                    </wm-gridcolumn> 
-                </wm-gridrow> 
-                <wm-gridrow name="gridrow15"> 
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn64"></wm-gridcolumn> 
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn65"></wm-gridcolumn> 
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn66"></wm-gridcolumn> 
-                </wm-gridrow> 
-                <wm-gridrow name="gridrow25_1"> 
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn63_1"></wm-gridcolumn> 
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn64_2"></wm-gridcolumn> 
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn65_1"></wm-gridcolumn> 
-                </wm-gridrow> 
-            </wm-layoutgrid> 
-            <wm-dialogactions name="dialogactions1"> 
-                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="buttonWorkHistoryCancel" iconclass="wi wi-cancel"></wm-button> 
-                <wm-button class="btn-primary" caption="New" name="buttonNew" iconclass="glyphicon glyphicon-plus" show="true" on-click="Widgets.dialogManualEntry.open()" hint="Add New Field Activity" disabled="false"></wm-button> 
-            </wm-dialogactions> 
-        </wm-dialog> 
-    </wm-view> 
-    <wm-view class="dialog-view" name="viewQuantityOverride" show="false"> 
-        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogQuantityOverride" width="25%" title="New Quantity" iconclass="wi wi-edit"> 
-            <wm-form captionposition="top" title="" enctype="application/x-www-form-urlencoded" method="get" dataset="bind:Variables.Job1111ExecuteGetBidWorkHistory.dataSet" captionalign="left" name="formNewQuantity" width="100%" on-submit="formNewQuantitySubmit($event, $scope, $formData)"> 
-                <wm-layoutgrid name="layoutgrid6_1"> 
-                    <wm-gridrow name="gridrow19_2"> 
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn75"></wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn76"></wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn77_1"></wm-gridcolumn> 
-                    </wm-gridrow> 
-                    <wm-gridrow name="gridrow20_1"> 
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn78_1"></wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn79_1"> 
-                            <wm-composite name="composite5" captionposition="top" show="bind:Variables.Job1111ExecuteGetBidWorkHistory.dataSet[$i].ActivityType != 'Weld'"> 
-                                <wm-label class="col-md-3 control-label" name="label23" caption="New Quantity"></wm-label> 
-                                <wm-container class="col-md-9" name="container4" width="60%"> 
-                                    <wm-text name="textOverrideQuantity" type="number" placeholder="Quantity" tabindex="1" minvalue="1" maxvalue="100" step="1" required="bind:Variables.Job1111ExecuteGetBidWorkHistory.dataSet[$i].ActivityType != 'Weld'" show="true"></wm-text> 
-                                </wm-container> 
-                            </wm-composite> 
-                            <wm-form-field displayname="New Percent Complete" widget="select" show="bind:inItem.ActivityTypeName == 'Erection' || inItem.ActivityTypeName == 'BoltOut' || inItem.ActivityTypeName == 'Impact' || inItem.ActivityTypeName == 'Weld'" type="custom" name="selectNewPercent" required="bind:inItem.ActivityTypeName == 'Erection' || inItem.ActivityTypeName == 'BoltOut' || inItem.ActivityTypeName == 'Impact' || inItem.ActivityTypeName == 'Weld'" dataset="bind:Variables.staticPercentListQuarter.dataSet" datafield="dataValue" displayexpression="bind:$[dataValue] * 100  | suffix: '%'" defaultvalue="1"></wm-form-field> 
-                        </wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn80_1"></wm-gridcolumn> 
-                    </wm-gridrow> 
-                    <wm-gridrow name="gridrow21_2"> 
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn81_1"></wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn82"></wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn83_1"> 
-                            <wm-button class="btn-secondary" caption="Cancel" on-click="Widgets.dialogQuantityOverride.close()" name="button9_1" tabindex="2" width="49%" margin="3% unset unset 1%" type="button"></wm-button> 
-                            <wm-button class="btn-primary" caption="Save" name="buttonNewQuantitySaveold" backgroundcolor="#0B9642" iconclass="fa fa-save" tabindex="3" type="submit" width="49%" margin="3% unset unset 1%"></wm-button> 
-                        </wm-gridcolumn> 
-                    </wm-gridrow> 
-                </wm-layoutgrid> 
-            </wm-form> 
-            <wm-dialogactions name="dialogactions3"></wm-dialogactions> 
-        </wm-dialog> 
-    </wm-view> 
-    <wm-view class="dialog-view" name="viewManualEntry" show="false"> 
-        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogManualEntry" title="New Manual Entry" iconclass="wi wi-edit"> 
-            <wm-form captionposition="top" title="" enctype="application/x-www-form-urlencoded" method="get" dataset="bind:Variables.serviceCreateManualActivity.dataSet" captionalign="left" name="formNewManualEntry" on-success="Widgets.dialogManualEntry.close()" margin="unset unset 0px unset"> 
-                <wm-layoutgrid columns="1" name="layoutgrid7"> 
-                    <wm-gridrow name="gridrow23_1"> 
-                        <wm-gridcolumn columnwidth="6" name="gridcolumn86"> 
-                            <wm-form-field displayname="Select Activity Type" widget="select" show="true" type="custom" name="selectActivityType" dataset="bind:Variables.serviceGetActivityTypes.dataSet" datafield="ID" displayfield="ActivityType"></wm-form-field> 
-                        </wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="6" name="gridcolumn94_1"></wm-gridcolumn> 
-                    </wm-gridrow> 
-                    <wm-gridrow name="gridrow24"> 
-                        <wm-gridcolumn columnwidth="6" name="gridcolumn87"> 
-                            <wm-composite name="composite3" captionposition="top"> 
-                                <wm-label class="col-md-3 control-label" name="label20_1" caption="Quantity"></wm-label> 
-                                <wm-container class="col-md-9" name="container2"> 
-                                    <wm-text name="textManualQuantity" type="number" placeholder="Enter Quantity" width="50%" required="true" minvalue="1" maxvalue="10000" step="1"></wm-text> 
-                                </wm-container> 
-                            </wm-composite> 
-                            <wm-form-field displayname="Percent Comp" widget="select" show="bind:Widgets.formNewManualEntry.formWidgets.selectActivityType.datavalue == 62 || Widgets.formNewManualEntry.formWidgets.selectActivityType.datavalue == 63 || Widgets.formNewManualEntry.formWidgets.selectActivityType.datavalue == 64 || Widgets.formNewManualEntry.formWidgets.selectActivityType.datavalue == 68" type="custom" name="selectPercent" dataset="bind:Variables.staticPercentListQuarter.dataSet" datafield="dataValue" displayexpression="bind:$[dataValue] * 100  | suffix: '%'" defaultvalue="1" width="40%"></wm-form-field> 
-                        </wm-gridcolumn> 
-                        <wm-gridcolumn columnwidth="6" name="gridcolumn88"> 
-                            <wm-composite name="composite4" captionposition="top"> 
-                                <wm-label class="col-md-3 control-label" name="label21_1" caption="Notes"></wm-label> 
-                                <wm-container class="col-md-9" name="container3"> 
-                                    <wm-textarea name="textareaManualNotes" placeholder="Place description here" required="true" maxchars="200"></wm-textarea> 
-                                </wm-container> 
-                            </wm-composite> 
-                        </wm-gridcolumn> 
-                    </wm-gridrow> 
-                </wm-layoutgrid> 
-                <wm-buttongroup horizontalalign="right" class="form-action col-md-12" name="buttongroup1"> 
-                    <wm-button caption="Cancel" type="button" class="btn-secondary" name="button11" margin="3% 1% unset unset" on-click="Widgets.dialogManualEntry.close()"></wm-button> 
-                    <wm-button caption="Save" type="submit" class="btn-primary" name="buttonNewManualEntrySave" margin="3% unset unset unset" backgroundcolor="#0B9642" iconclass="fa fa-save"></wm-button> 
-                </wm-buttongroup> 
-            </wm-form> 
-            <wm-dialogactions name="dialogactions3_1"></wm-dialogactions> 
-        </wm-dialog> 
-    </wm-view> 
-    <wm-view class="dialog-view" name="viewActivityHistory"> 
-        <wm-pagedialog name="dialogActivityHistory" content="ActivityHistorySteel" title="Field Activity History" showactions="true" oktext="CLOSE" width="65%" height="425"></wm-pagedialog> 
-    </wm-view> 
+Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column>
+                            <wm-table-column binding="installedShake" caption="Installed Shake" type="integer" width="70px" textalignment="center" primary-key="false" generator="assigned" col-class="lightgreen" edit-widget-type="number"
+                                show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="installedErect" caption="Installed Erect" type="float" width="70px" textalignment="center" primary-key="false" generator="assigned" col-class="lightgreen" formatpattern="numberToString"
+                                fractionsize="2" edit-widget-type="number" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="installedBoltout" caption="Installed Boltout" type="float" width="70px" textalignment="center" primary-key="false" generator="assigned" col-class="lightgreen" formatpattern="numberToString"
+                                fractionsize="2" edit-widget-type="number" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="installedImp" caption="Installed Impact" type="float" width="70px" textalignment="center" primary-key="false" generator="assigned" col-class="lightgreen" formatpattern="numberToString"
+                                fractionsize="2" edit-widget-type="number" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="installedWeld" caption="Installed Weld" type="float" width="70px" textalignment="center" primary-key="false" generator="assigned" col-class="lightgreen" formatpattern="numberToString"
+                                fractionsize="2" edit-widget-type="number" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="installedSell" caption="Installed Sell" type="integer" width="70px" textalignment="center" primary-key="false" generator="assigned" col-class="lightgreen" edit-widget-type="number"
+                                show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="installedDemo" caption="Removed Demo" type="integer" width="70px" textalignment="center" primary-key="false" generator="assigned" col-class="lightgreen" edit-widget-type="number"
+                                show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="installedMisc" caption="Installed Misc" type="float" width="70px" textalignment="center" primary-key="false" generator="assigned" col-class="lightgreen" edit-widget-type="number"
+                                show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="earnedShakeHours" caption="Earned Shake Hours" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number"
+                                sortable="false" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
+Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column>
+                            <wm-table-column binding="earnedErectHours" caption="Earned Erect Hours" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number"
+                                sortable="false" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
+Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column>
+                            <wm-table-column binding="earnedBoltoutHours" caption="Earned Boltout Hours" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number"
+                                sortable="false" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
+Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column>
+                            <wm-table-column binding="earnedImpHours" caption="Earned Impact Hours" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number"
+                                sortable="false" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
+Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column>
+                            <wm-table-column binding="earnedWeldHours" caption="Earned Weld Hours" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number"
+                                sortable="false" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
+Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column>
+                            <wm-table-column binding="earnedSellHours" caption="Earned Sell Hours" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number"
+                                sortable="false" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
+Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column>
+                            <wm-table-column binding="earnedDemoHours" caption="Earned Demo Hours" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number"
+                                sortable="false" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
+Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column>
+                            <wm-table-column binding="earnedMiscHours" caption="Earned Misc Hours" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number"
+                                sortable="false" show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
+Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column>
+                            <wm-table-column binding="earnedAllHours" caption="Earned All Hours" type="double" width="70px" primary-key="false" generator="assigned" formatpattern="numberToString" fractionsize="2" edit-widget-type="number"
+                                show="bind:Variables.loggedInUser.dataSet.roles != 'Iron-GF' || 
+Variables.loggedInUser.dataSet.roles != 'Iron-Superintendent Non-Staff'" readonly="false"></wm-table-column>
+                            <wm-table-column binding="wbs1" caption="Wbs1" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="wbs2" caption="Wbs2" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="wbs3" caption="Wbs3" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="wbs4" caption="Wbs4" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="wbs5" caption="Wbs5" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="wbs6" caption="Wbs6" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="wbs7" caption="Wbs7" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="wbs8" caption="Wbs8" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="wbs9" caption="Wbs9" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="wbs10" caption="Wbs10" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="timeStamp" caption="Time Stamp" type="timestamp" primary-key="false" generator="assigned" datepattern="MM/dd/yyyy" formatpattern="toDate" edit-widget-type="timestamp" show="true"
+                                readonly="false"></wm-table-column>
+                            <wm-table-action key="customButton" display-name="Hide Columns" show="true" class="btn-primary" iconclass="" title="Hide" action="customButtonAction($event)" shortcutkey="" disabled="false" position="header"></wm-table-action>
+                            <wm-table-action key="customButton1" display-name="Show All" show="bind:Variables.staticShowSteelClassicShowAllButton.dataSet.show" class="btn-primary" iconclass="" title="ShowAll" action="customButton1Action($event)"
+                                shortcutkey="" disabled="false" position="header"></wm-table-action>
+                            <wm-table-action key="customButton2" display-name="Refresh" show="true" class="btn-primary" iconclass="" title="Custom button" action="Variables.serviceUpdateClassicTrackerFull.invoke()" accessroles="SuperUser"
+                                shortcutkey="" disabled="false" position="header"></wm-table-action>
+                        </wm-table>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow12">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn48"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn49"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn50"></wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="viewBidWorkHistory" show="false">
+        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogBidWorkHistory" width="75%" title="Assigned Field Activities" iconclass="wi wi-edit" on-opened="Variables.serviceGetBidWorkHistory.invoke()">
+            <wm-layoutgrid name="layoutgrid4">
+                <wm-gridrow name="gridrow13" padding="unset 1%">
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn58_1">
+                        <wm-label width="100%" caption="Submission #" fontweight="bold" name="label21" hint="DFR Submission Number"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn67" horizontalalign="left" padding="unset 0%">
+                        <wm-layoutgrid name="layoutgrid8">
+                            <wm-gridrow name="gridrow21" padding="unset 0px">
+                                <wm-gridcolumn columnwidth="6" name="gridcolumn55">
+                                    <wm-layoutgrid name="layoutgrid9">
+                                        <wm-gridrow name="gridrow23">
+                                            <wm-gridcolumn columnwidth="3" name="gridcolumn59" horizontalalign="left">
+                                                <wm-label width="100%" caption="Shake" fontweight="bold" name="label16"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="3" name="gridcolumn60" horizontalalign="left">
+                                                <wm-label width="100%" caption="Erect" fontweight="bold" name="label20_2"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="3" name="gridcolumn67_1" horizontalalign="left">
+                                                <wm-label width="100%" caption="Boltout" fontweight="bold" name="label21_3"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="3" name="gridcolumn68_2" horizontalalign="left">
+                                                <wm-label width="100%" caption="Impact" fontweight="bold" name="label22"></wm-label>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
+                                </wm-gridcolumn>
+                                <wm-gridcolumn columnwidth="6" name="gridcolumn56" horizontalalign="left">
+                                    <wm-layoutgrid name="layoutgrid10">
+                                        <wm-gridrow name="gridrow25">
+                                            <wm-gridcolumn columnwidth="3" name="gridcolumn63" horizontalalign="left">
+                                                <wm-label width="100%" caption="Weld" fontweight="bold" name="label23_2"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="3" name="gridcolumn64_1" horizontalalign="left">
+                                                <wm-label width="100%" caption="Sell" fontweight="bold" name="label24"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="3" name="gridcolumn69" horizontalalign="left">
+                                                <wm-label width="100%" caption="Demo" fontweight="bold" name="label25" hint="Handrail=ft. Grading=sqft. Steel=ton"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="3" name="gridcolumn70" horizontalalign="left">
+                                                <wm-label width="100%" caption="Misc" fontweight="bold" name="label26"></wm-label>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                        </wm-layoutgrid>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn68">
+                        <wm-label caption="Foreman" fontweight="bold" name="label18"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn72">
+                        <wm-label caption="Supervisor" fontweight="bold" name="label17" margin="unset unset unset 2%"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn70_1">
+                        <wm-label width="100%" caption="Completed" fontweight="bold" name="label19"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn71">
+                        <wm-label width="100%" caption="Reviewed" fontweight="bold" name="label20" hint="Reviewed and Accepted by Supervisor"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn66_1"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow14" padding="unset 0%">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn61" padding="unset 0%">
+                        <wm-list listclass="list-group" itemclass="list-group-item" template="true" dataset="bind:Variables.serviceGetBidWorkHistory.dataSet" navigation="Classic" name="livelistBidWorkHistory" showrecordcount="true" margin="unset unset unset 0px"
+                            padding="unset unset unset 0px">
+                            <wm-listtemplate layout="blank" name="listtemplate1">
+                                <wm-container class="blank" data-template-ctr="true" name="container1" margin="unset 0px" padding="unset 0px">
+                                    <wm-layoutgrid class="gridlayout" name="layoutgrid3" margin="unset 0px" padding="unset 0px">
+                                        <wm-gridrow name="gridrow12" padding="unset 0px">
+                                            <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn48_1" horizontalalign="left" padding=".5% unset unset unset">
+                                                <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].SubmissionID" name="label10" fontsize="10" height="100%" fontweight="bold"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="6" name="gridcolumn74" horizontalalign="left">
+                                                <wm-layoutgrid name="layoutgrid11">
+                                                    <wm-gridrow name="gridrow27" padding="unset 0px">
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn69_1">
+                                                            <wm-layoutgrid name="layoutgrid12">
+                                                                <wm-gridrow name="gridrow29">
+                                                                    <wm-gridcolumn columnwidth="3" name="gridcolumn81" padding="2% unset unset unset" horizontalalign="left">
+                                                                        <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].ShakeQuantity" fontsize="10" name="label27"></wm-label>
+                                                                    </wm-gridcolumn>
+                                                                    <wm-gridcolumn columnwidth="3" name="gridcolumn82_1" padding="2% unset unset unset" horizontalalign="left">
+                                                                        <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].ErectQuantity + ' @' + Variables.serviceGetBidWorkHistory.dataSet[$i].ErectPercent * 100 | suffix: '%'"
+                                                                            fontsize="10" name="label28"></wm-label>
+                                                                    </wm-gridcolumn>
+                                                                    <wm-gridcolumn columnwidth="3" name="gridcolumn85" padding="2% unset unset unset" horizontalalign="left">
+                                                                        <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].BoltoutQuantity + ' @' + Variables.serviceGetBidWorkHistory.dataSet[$i].BoltoutPercent * 100 | suffix: '%'"
+                                                                            fontsize="10" name="label29"></wm-label>
+                                                                    </wm-gridcolumn>
+                                                                    <wm-gridcolumn columnwidth="3" name="gridcolumn86_1" padding="2% unset unset unset" horizontalalign="left">
+                                                                        <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].ImpQuantity + ' @' + Variables.serviceGetBidWorkHistory.dataSet[$i].ImpPercent * 100 | suffix: '%'"
+                                                                            fontsize="10" name="label30"></wm-label>
+                                                                    </wm-gridcolumn>
+                                                                </wm-gridrow>
+                                                            </wm-layoutgrid>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn78">
+                                                            <wm-layoutgrid name="layoutgrid13">
+                                                                <wm-gridrow name="gridrow31">
+                                                                    <wm-gridcolumn columnwidth="3" name="gridcolumn87_1" padding="2% unset unset unset" horizontalalign="left">
+                                                                        <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].WeldQuantity + ' @' + Variables.serviceGetBidWorkHistory.dataSet[$i].WeldPercent * 100 | suffix: '%'"
+                                                                            fontsize="10" name="label31"></wm-label>
+                                                                    </wm-gridcolumn>
+                                                                    <wm-gridcolumn columnwidth="3" name="gridcolumn88_1" padding="2% unset unset unset" horizontalalign="left">
+                                                                        <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].SellQuantity" fontsize="10" name="label32"></wm-label>
+                                                                    </wm-gridcolumn>
+                                                                    <wm-gridcolumn columnwidth="3" name="gridcolumn89" padding="2% unset unset unset" horizontalalign="left">
+                                                                        <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].DemoQuantity" fontsize="10" name="label33" hint="Handrail=ft. Grading=sqft. Steel=ton"></wm-label>
+                                                                    </wm-gridcolumn>
+                                                                    <wm-gridcolumn columnwidth="3" name="gridcolumn90" padding="2% unset unset unset" horizontalalign="left">
+                                                                        <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].MiscQuantity" fontsize="10" name="label34"></wm-label>
+                                                                    </wm-gridcolumn>
+                                                                </wm-gridrow>
+                                                            </wm-layoutgrid>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                </wm-layoutgrid>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn52" padding=".5% unset unset unset">
+                                                <wm-label caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].Foreman" name="label5" fontsize="10"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="1" name="gridcolumn75_1" padding=".5% unset unset unset">
+                                                <wm-label caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].Supervisor" name="label8" fontsize="10" margin="unset unset unset 2%"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="1" name="gridcolumn76_1" padding=".5% unset unset unset">
+                                                <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].CompleteTime | toDate: 'MM-dd-yy hh:mm a'" name="label12" fontsize="10"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn55_1" padding=".5% unset unset unset">
+                                                <wm-label width="100%" caption="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].ReviewedTime | toDate: 'MM-dd-yy hh:mm a'" name="label11" fontsize="10"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="1" name="gridcolumn68_1" horizontalalign="right" padding=".5% unset unset unset">
+                                                <wm-popover popoverwidth="67%" popoverheight="500" name="popoverActivityHistory" class="btn-sm" caption="Expand" iconclass="fa fa-expand" backgroundcolor="#5fb4ff" color="#000000" height="28" textalign="center"
+                                                    contentsource="partial" content="PopSteelFAExpanded" on-show="Variables.serviceGetBidWorkHistoryExpanded.invoke()" borderstyle="solid" bordercolor="#bfd8ef" borderwidth="1px" margin="unset 1%" padding="2% 3%"
+                                                    hint="View the history of the selected item."></wm-popover>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
+                                </wm-container>
+                            </wm-listtemplate>
+                        </wm-list>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow15">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn64"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn65"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn66"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow25_1">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn63_1"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn64_2"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn65_1"></wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions1">
+                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="buttonWorkHistoryCancel" iconclass="wi wi-cancel"></wm-button>
+                <wm-button class="btn-primary" caption="New" name="buttonNew" iconclass="glyphicon glyphicon-plus" show="true" on-click="Widgets.dialogManualEntry.open()" hint="Add New Field Activity" disabled="false"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewQuantityOverride" show="false">
+        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogQuantityOverride" width="25%" title="New Quantity" iconclass="wi wi-edit">
+            <wm-form captionposition="top" title="" enctype="application/x-www-form-urlencoded" method="get" dataset="bind:Variables.Job1111ExecuteGetBidWorkHistory.dataSet" captionalign="left" name="formNewQuantity" width="100%" on-submit="formNewQuantitySubmit($event, $scope, $formData)">
+                <wm-layoutgrid name="layoutgrid6_1">
+                    <wm-gridrow name="gridrow19_2">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn75"></wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn76"></wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn77_1"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow20_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn78_1"></wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn79_1">
+                            <wm-composite name="composite5" captionposition="top" show="bind:Variables.Job1111ExecuteGetBidWorkHistory.dataSet[$i].ActivityType != 'Weld'">
+                                <wm-label class="col-md-3 control-label" name="label23" caption="New Quantity"></wm-label>
+                                <wm-container class="col-md-9" name="container4" width="60%">
+                                    <wm-text name="textOverrideQuantity" type="number" placeholder="Quantity" tabindex="1" minvalue="1" maxvalue="100" step="1" required="bind:Variables.Job1111ExecuteGetBidWorkHistory.dataSet[$i].ActivityType != 'Weld'" show="true"></wm-text>
+                                </wm-container>
+                            </wm-composite>
+                            <wm-form-field displayname="New Percent Complete" widget="select" show="bind:inItem.ActivityTypeName == 'Erection' || inItem.ActivityTypeName == 'BoltOut' || inItem.ActivityTypeName == 'Impact' || inItem.ActivityTypeName == 'Weld'"
+                                type="custom" name="selectNewPercent" required="bind:inItem.ActivityTypeName == 'Erection' || inItem.ActivityTypeName == 'BoltOut' || inItem.ActivityTypeName == 'Impact' || inItem.ActivityTypeName == 'Weld'" dataset="bind:Variables.staticPercentListQuarter.dataSet"
+                                datafield="dataValue" displayexpression="bind:$[dataValue] * 100  | suffix: '%'" defaultvalue="1"></wm-form-field>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn80_1"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow21_2">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn81_1"></wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn82"></wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn83_1">
+                            <wm-button class="btn-secondary" caption="Cancel" on-click="Widgets.dialogQuantityOverride.close()" name="button9_1" tabindex="2" width="49%" margin="3% unset unset 1%" type="button"></wm-button>
+                            <wm-button class="btn-primary" caption="Save" name="buttonNewQuantitySaveold" backgroundcolor="#0B9642" iconclass="fa fa-save" tabindex="3" type="submit" width="49%" margin="3% unset unset 1%"></wm-button>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
+            </wm-form>
+            <wm-dialogactions name="dialogactions3"></wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewManualEntry" show="false">
+        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogManualEntry" title="New Manual Entry" iconclass="wi wi-edit">
+            <wm-form captionposition="top" title="" enctype="application/x-www-form-urlencoded" method="get" dataset="bind:Variables.serviceCreateManualActivity.dataSet" captionalign="left" name="formNewManualEntry" on-success="Widgets.dialogManualEntry.close()"
+                margin="unset unset 0px unset">
+                <wm-layoutgrid columns="1" name="layoutgrid7">
+                    <wm-gridrow name="gridrow23_1">
+                        <wm-gridcolumn columnwidth="6" name="gridcolumn86">
+                            <wm-form-field displayname="Select Activity Type" widget="select" show="true" type="custom" name="selectActivityType" dataset="bind:Variables.serviceGetActivityTypes.dataSet" datafield="ID" displayfield="ActivityType"></wm-form-field>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="6" name="gridcolumn94_1"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow24">
+                        <wm-gridcolumn columnwidth="6" name="gridcolumn87">
+                            <wm-composite name="composite3" captionposition="top">
+                                <wm-label class="col-md-3 control-label" name="label20_1" caption="Quantity"></wm-label>
+                                <wm-container class="col-md-9" name="container2">
+                                    <wm-text name="textManualQuantity" type="number" placeholder="Enter Quantity" width="50%" required="true" minvalue="1" maxvalue="10000" step="1"></wm-text>
+                                </wm-container>
+                            </wm-composite>
+                            <wm-form-field displayname="Percent Comp" widget="select" show="bind:Widgets.formNewManualEntry.formWidgets.selectActivityType.datavalue == 62 || Widgets.formNewManualEntry.formWidgets.selectActivityType.datavalue == 63 || Widgets.formNewManualEntry.formWidgets.selectActivityType.datavalue == 64 || Widgets.formNewManualEntry.formWidgets.selectActivityType.datavalue == 68"
+                                type="custom" name="selectPercent" dataset="bind:Variables.staticPercentListQuarter.dataSet" datafield="dataValue" displayexpression="bind:$[dataValue] * 100  | suffix: '%'" defaultvalue="1" width="40%"></wm-form-field>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="6" name="gridcolumn88">
+                            <wm-composite name="composite4" captionposition="top">
+                                <wm-label class="col-md-3 control-label" name="label21_1" caption="Notes"></wm-label>
+                                <wm-container class="col-md-9" name="container3">
+                                    <wm-textarea name="textareaManualNotes" placeholder="Place description here" required="true" maxchars="200"></wm-textarea>
+                                </wm-container>
+                            </wm-composite>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
+                <wm-buttongroup horizontalalign="right" class="form-action col-md-12" name="buttongroup1">
+                    <wm-button caption="Cancel" type="button" class="btn-secondary" name="button11" margin="3% 1% unset unset" on-click="Widgets.dialogManualEntry.close()"></wm-button>
+                    <wm-button caption="Save" type="submit" class="btn-primary" name="buttonNewManualEntrySave" margin="3% unset unset unset" backgroundcolor="#0B9642" iconclass="fa fa-save"></wm-button>
+                </wm-buttongroup>
+            </wm-form>
+            <wm-dialogactions name="dialogactions3_1"></wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewActivityHistory">
+        <wm-pagedialog name="dialogActivityHistory" content="ActivityHistorySteel" title="Field Activity History" showactions="true" oktext="CLOSE" width="65%" height="425"></wm-pagedialog>
+    </wm-view>
 </wm-page>
