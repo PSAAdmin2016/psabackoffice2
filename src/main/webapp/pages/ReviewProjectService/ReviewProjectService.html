@@ -58,7 +58,7 @@
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="viewNotes" show="false">
         <wm-dialog dialogtype="design-dialog" modal="true" name="dialogNotes" title="Notes" iconclass="glyphicon glyphicon-edit">
-            <wm-table readonlygrid="true" insertrow="false" updaterow="false" deleterow="false" dataset="bind:Variables.serviceGetNotesByFieldActivityID.dataSet" name="gridNotes" showheader="false" enablesort="false" shownavigation="false" class="panel-default">
+            <wm-table readonlygrid="true" insertrow="false" updaterow="false" deleterow="false" dataset="bind:Variables.serviceGetSASNotes.dataSet" name="gridNotes" showheader="false" enablesort="false" shownavigation="false" class="panel-default">
                 <wm-table-column binding="Notes" caption="Notes" type="string" readonly="true" pcdisplay="true" mobiledisplay="true"></wm-table-column>
                 <wm-table-column binding="Email" caption="Email" type="string" readonly="true" pcdisplay="true" mobiledisplay="true"></wm-table-column>
             </wm-table>
@@ -72,10 +72,10 @@
         <wm-dialog dialogtype="design-dialog" modal="true" name="dialogNotesNewPSReview" width="25%" title="New Note" iconclass="glyphicon glyphicon-edit">
             <wm-textarea name="textareaSSNoteNew" placeholder="Type Note here" updateon="default" on-keyup="textareaSSNoteNewKeyup($event, $scope)" required="true" maxchars="252"></wm-textarea>
             <wm-label width="20%" caption="Remaining:" fontsize="10" textalign="right" name="label283_1"></wm-label>
-            <wm-label width="20%" caption="252" fontsize="10" textalign="right" name="labelTextCountNewNote"></wm-label>
+            <wm-label width="20%" caption="bind:252 - Widgets.textareaSSNoteNew.datavalue.length" fontsize="10" textalign="left" name="labelTextCountNewNote" padding="unset unset unset 1%"></wm-label>
             <wm-dialogactions name="dialogactions6">
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button22"></wm-button>
-                <wm-button class="btn-primary" caption="Save" name="buttonNoteSave" type="submit" on-click="Widgets.dialogNotesNewPSReview.close();Variables.serviceCreateSSNote.invoke()"></wm-button>
+                <wm-button class="btn-primary" caption="Save" name="buttonNoteSave" type="submit" on-click="Widgets.dialogNotesNewPSReview.close();Variables.serviceCreateSASNote.invoke()"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>

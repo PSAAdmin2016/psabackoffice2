@@ -24,13 +24,6 @@ Application.$controller("FeedBackPageController", ["$scope", "$timeout", functio
 
     };
 
-    $scope.textareaFeedBackKeyup = function($event, $isolateScope) {
-        if ((Date.now() - $scope.Variables.staticVariableMachineStateTimer2.dataSet.dataValue) > 300) {
-            $scope.Variables.staticVariableMachineStateTimer2.dataSet.dataValue = Date.now();
-            $scope.Widgets.labelTextCount.caption = 1022 - $scope.Widgets.textareaFeedBack.datavalue.length;
-        }
-    };
-
 
     $scope.button2Click = function($event, $isolateScope) {
         $timeout(function() {

@@ -85,9 +85,9 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                             </wm-gridrow>
                             <wm-gridrow name="gridrow21">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn49">
-                                    <wm-button class="btn-default" caption="View/Add Notes" type="button" show="bind:Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus == 6 || Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus == 4  || Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus == 8  || Widgets.gridSuperReviewActivities.selecteditem.fk_ActivityStatus == 10 || Variables.EditMode.dataSet.dataValue"
-                                        backgroundcolor="#e7dd51" marginunit="%" on-click="Variables.serviceGetNotesByActivityID.invoke();Widgets.dialogNotes.open()" iconclass="glyphicon glyphicon-list-alt" animation="slideInRight" hint="Add a note for project services, or view a note sent to you."
-                                        name="btnReviewNotes" width="50%" margin="unset unset 5% 2%"></wm-button>
+                                    <wm-button class="btn-default" caption="bind:Variables.staticTabSelect.dataSet.dataValue == '1' ? 'VIEW/ADD NOTES' : 'VIEW NOTES'" type="button" show="true" backgroundcolor="#e7dd51" marginunit="%" on-click="Variables.serviceGetSASNotes.invoke();Widgets.dialogNotes.open()"
+                                        iconclass="glyphicon glyphicon-list-alt" animation="slideInRight" hint="View or attach notes to this activity for project services review." name="btnReviewNotes" width="50%" margin="unset unset 5% 2%" badgevalue="bind:Variables.serviceGetSASNotes.dataSet.totalElements
+"></wm-button>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                         </wm-layoutgrid>
@@ -219,24 +219,33 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="viewNotes" show="false">
         <wm-dialog dialogtype="design-dialog" modal="true" name="dialogNotes" title="Notes" iconclass="glyphicon glyphicon-edit">
-            <wm-table readonlygrid="true" insertrow="false" updaterow="false" deleterow="false" dataset="bind:Variables.serviceGetNotesByActivityID.dataSet" name="gridNotes" showheader="false" enablesort="false" shownavigation="false" class="panel-default">
+            <wm-table readonlygrid="true" insertrow="false" updaterow="false" deleterow="false" dataset="bind:Variables.serviceGetSASNotes.dataSet" name="gridNotes" showheader="false" enablesort="false" shownavigation="false" class="panel-default">
                 <wm-table-column binding="Notes" caption="Notes" type="string" readonly="true" pcdisplay="true" mobiledisplay="true"></wm-table-column>
                 <wm-table-column binding="Email" caption="Email" type="string" readonly="true" pcdisplay="true" mobiledisplay="true"></wm-table-column>
             </wm-table>
             <wm-dialogactions name="dialogactions5">
                 <wm-button class="btn-secondary" caption="Exit" on-click="closeDialog()" name="button20"></wm-button>
-                <wm-button class="btn-primary" caption="New" name="buttonNoteNew" iconclass="glyphicon glyphicon-plus" on-click="Widgets.dialogNotesNew.open()"></wm-button>
+                <wm-button class="btn-primary" caption="New" name="buttonNoteNew" iconclass="glyphicon glyphicon-plus" on-click="Widgets.dialogNotesNew.open()" disabled="bind:Variables.staticTabSelect.dataSet.dataValue == '2'" hint="New notes disabled in &quot;Steel Piece Work&quot; tab"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewNotesNEW" show="false">
         <wm-dialog dialogtype="design-dialog" modal="true" name="dialogNotesNew" width="25%" title="New Note" iconclass="glyphicon glyphicon-edit">
-            <wm-textarea name="textareaSSNoteNew" placeholder="Type Note here" updateon="default" on-keyup="textareaSSNoteNewKeyup($event, $scope)" required="true" maxchars="252"></wm-textarea>
+            <wm-form errormessage="" captionposition="top" title="" enctype="application/x-www-form-urlencoded" method="post" dataset="bind:Variables.serviceCreateSASNote.dataSet" captionalign="left" name="FormCreateSASNote" on-success="Widgets.dialogNotesNew.close()"
+                on-beforesubmit="FormCreateSASNoteBeforesubmit($event, $scope, $data)">
+                <wm-layoutgrid columns="1" name="layoutgrid8">
+                    <wm-gridrow name="gridrow22">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn43">
+                            <wm-form-field readonly="false" name="Note" displayname="Note" key="Note" type="string" show="true" widget="textarea" placeholder="Type Note here" required="true" maxchars="252" autofocus="true" updateon="default"></wm-form-field>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
+            </wm-form>
             <wm-label width="20%" caption="Remaining:" fontsize="10" textalign="right" name="label283_1"></wm-label>
-            <wm-label width="20%" caption="252" fontsize="10" textalign="right" name="labelTextCountNewNote"></wm-label>
+            <wm-label width="20%" caption="bind:252 - Widgets.FormCreateSASNote.formWidgets.Note.datavalue.length" fontsize="10" textalign="left" name="labelTextCountNewNote" padding="unset unset unset 1%"></wm-label>
             <wm-dialogactions name="dialogactions6">
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button22"></wm-button>
-                <wm-button class="btn-primary" caption="Save" name="buttonNoteSave" type="submit" on-click="Variables.serviceCreateSSNote.invoke();Widgets.dialogNotesNew.close()"></wm-button>
+                <wm-button class="btn-primary" caption="Save" name="buttonNoteSave" type="button" on-click="buttonNoteSaveClick($event, $scope)"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>

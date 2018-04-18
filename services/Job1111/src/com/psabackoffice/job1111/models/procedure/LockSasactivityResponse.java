@@ -12,7 +12,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class LockSsactivityResponse implements Serializable {
+public class LockSasactivityResponse implements Serializable {
 
 
     @JsonProperty("ReturnStatus")
@@ -42,10 +42,10 @@ public class LockSsactivityResponse implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof LockSsactivityResponse)) return false;
-        final LockSsactivityResponse lockSsactivityResponse = (LockSsactivityResponse) o;
-        return Objects.equals(getReturnStatus(), lockSsactivityResponse.getReturnStatus()) &&
-                Objects.equals(getErrorText(), lockSsactivityResponse.getErrorText());
+        if (!(o instanceof LockSasactivityResponse)) return false;
+        final LockSasactivityResponse lockSasactivityResponse = (LockSasactivityResponse) o;
+        return Objects.equals(getReturnStatus(), lockSasactivityResponse.getReturnStatus()) &&
+                Objects.equals(getErrorText(), lockSasactivityResponse.getErrorText());
     }
 
     @Override

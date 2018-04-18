@@ -26,7 +26,6 @@ public class UpdateSasbidIdRequest implements Serializable {
     private Integer userId;
 
     @JsonProperty("BidID")
-    @NotNull
     private Integer bidId;
 
     @JsonProperty("ActivityID")

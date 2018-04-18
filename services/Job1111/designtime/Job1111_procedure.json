@@ -8422,8 +8422,8 @@
       } ]
     }
   },
-  "LockSSActivity" : {
-    "name" : "LockSSActivity",
+  "LockSASActivity" : {
+    "name" : "LockSASActivity",
     "description" : "Locks/Unlocks a SAS Activity for approval.  Returns True if lock/Unlock achieved, False if not.\n\nRunMode 1 = Lock ActivityID\nRunMode 2 = Unlock ActivityID",
     "version" : "V1",
     "procedureString" : "call SASLock(:RunMode, :UserID, :ActivityID, :ReturnStatus, :ErrorText)",
@@ -8460,7 +8460,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : null,
+      "testValue" : "false",
       "required" : true,
       "parameterType" : "OUT"
     }, {
@@ -8479,7 +8479,7 @@
       "method" : "GET"
     },
     "response" : {
-      "typeRef" : "com.psabackoffice.job1111.models.procedure.LockSsactivityResponse",
+      "typeRef" : "com.psabackoffice.job1111.models.procedure.LockSasactivityResponse",
       "returns" : "CUSTOM",
       "responseType" : "SINGLE",
       "properties" : [ {

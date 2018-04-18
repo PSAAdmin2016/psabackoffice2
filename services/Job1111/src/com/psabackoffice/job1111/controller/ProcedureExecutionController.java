@@ -86,16 +86,6 @@ public class ProcedureExecutionController {
         return Collections.singletonList(_result);
     }
 
-    @RequestMapping(value = "/procedure/execute/LockSSActivity", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Locks/Unlocks a SAS Activity for approval.  Returns True if lock/Unlock achieved, False if not.  RunMode 1 = Lock ActivityID RunMode 2 = Unlock ActivityID")
-    public List<LockSsactivityResponse> executeLockSSActivity(@RequestParam(value = "RunMode") Integer runMode, @RequestParam(value = "UserID") Integer userId, @RequestParam(value = "ActivityID") Integer activityId, HttpServletRequest _request) {
-        LOGGER.debug("Executing named procedure: LockSSActivity");
-        LockSsactivityResponse _result = procedureService.executeLockSSActivity(runMode, userId, activityId);
-        LOGGER.debug("got the result for v1 named procedure: LockSSActivity, result:{}", _result);
-        return Collections.singletonList(_result);
-    }
-
     @RequestMapping(value = "/procedure/execute/GetCivilEarnedHours", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Valid GroupedBy are:   CrewID,  ForemanID,  SuperintendentID,  ProjectManagerID,  ConstructionManagerID,  SiteManagerID,  AreaManagerID")
@@ -104,6 +94,16 @@ public class ProcedureExecutionController {
         GetCivilEarnedHoursResponse _result = procedureService.executeGetCivilEarnedHours(groupedBy, crewId, crewRev, foremanId, superintendentId, projectManagerId, constructionManagerId, siteManagerId, areaManagerId, inputDate, runMode);
         LOGGER.debug("got the result for named procedure: GetCivilEarnedHours, result:{}", _result);
         return _result;
+    }
+
+    @RequestMapping(value = "/procedure/execute/LockSASActivity", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Locks/Unlocks a SAS Activity for approval.  Returns True if lock/Unlock achieved, False if not.  RunMode 1 = Lock ActivityID RunMode 2 = Unlock ActivityID")
+    public List<LockSasactivityResponse> executeLockSASActivity(@RequestParam(value = "RunMode") Integer runMode, @RequestParam(value = "UserID") Integer userId, @RequestParam(value = "ActivityID") Integer activityId, HttpServletRequest _request) {
+        LOGGER.debug("Executing named procedure: LockSASActivity");
+        LockSasactivityResponse _result = procedureService.executeLockSASActivity(runMode, userId, activityId);
+        LOGGER.debug("got the result for v1 named procedure: LockSASActivity, result:{}", _result);
+        return Collections.singletonList(_result);
     }
 
     @RequestMapping(value = "/procedure/execute/GetPipePCOT", method = RequestMethod.GET)

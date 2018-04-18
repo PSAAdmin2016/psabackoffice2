@@ -75,29 +75,32 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
 
 
     $scope.gridApprovalReviewSelect = function($event, $data) {
-        if ($scope.Widgets.gridApprovalReview.selecteditem.Craft == 'PIPE') { //Load correct partial based on selected activity
-            $scope.Widgets.containerActivityMatches.content = 'PartPSRPipe';
-            $timeout(function() {
-                invokePartialFn('gridApprovalReviewSelectPipe');
-            });
-        }
-        if ($scope.Widgets.gridApprovalReview.selecteditem.Craft == 'STEEL') {
-            $scope.Widgets.containerActivityMatches.content = 'PartPSRSteel';
-            $timeout(function() {
-                invokePartialFn('gridApprovalReviewSelectSteel');
-            });
-        }
-        if ($scope.Widgets.gridApprovalReview.selecteditem.Craft == 'CIVIL') {
-            $scope.Widgets.containerActivityMatches.content = 'PartPSRCivil';
-            $timeout(function() {
-                invokePartialFn('gridApprovalReviewSelectCivil');
-            });
-        }
-        if ($scope.Widgets.gridApprovalReview.selecteditem.Craft == 'EQUIP') {
-            $scope.Widgets.containerActivityMatches.content = 'PartPSREquip';
-            $timeout(function() {
-                invokePartialFn('gridApprovalReviewSelectEquip');
-            });
+        //Load correct partial based on selected activity
+        switch ($scope.Widgets.gridApprovalReview.selecteditem.Craft) {
+            case 'PIPE':
+                $scope.Widgets.containerActivityMatches.content = 'PartPSRPipe';
+                $timeout(function() {
+                    invokePartialFn('gridApprovalReviewSelectPipe');
+                });
+                break;
+            case 'STEEL':
+                $scope.Widgets.containerActivityMatches.content = 'PartPSRSteel';
+                $timeout(function() {
+                    invokePartialFn('gridApprovalReviewSelectSteel');
+                });
+                break;
+            case 'CIVIL':
+                $scope.Widgets.containerActivityMatches.content = 'PartPSRCivil';
+                $timeout(function() {
+                    invokePartialFn('gridApprovalReviewSelectCivil');
+                });
+                break;
+            case 'EQUIP':
+                $scope.Widgets.containerActivityMatches.content = 'PartPSREquip';
+                $timeout(function() {
+                    invokePartialFn('gridApprovalReviewSelectEquip');
+                });
+                break;
         }
     };
 
@@ -108,7 +111,6 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
 
 
     $scope.gridApprovalReviewDatarender = function($isolateScope, $data) {
-        debugger;
         var pageSettings = $scope.Variables.SettingsPageUser.getData().data.find(x => x.label === $scope.activePageName);
         var pageSettingsJSON = {};
 
@@ -156,11 +158,9 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
         if ($rootScope.gridApprovalReviewDeselectCivil()) {
             $rootScope.gridApprovalReviewDeselectCivil();
         }
-        /*
         if ($rootScope.gridApprovalReviewDeselectEquip()) {
             $rootScope.gridApprovalReviewDeselectEquip();
         }
-*/
     };
 }]);
 
@@ -188,12 +188,6 @@ Application.$controller("dialogNotesNewPSReviewController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
-        $scope.textareaSSNoteNewKeyup = function($event, $isolateScope) {
-            if ((Date.now() - $scope.Variables.staticVariableMachineStateTimer.dataValue) > 300) {
-                $scope.Variables.staticVariableMachineStateTimer.dataValue = Date.now();
-                $scope.Widgets.labelTextCountNewNote.caption = 252 - $scope.Widgets.textareaSSNoteNew.datavalue.length;
-            }
-        };
     }
 ]);
 

@@ -160,10 +160,10 @@
       "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityID",
       "type" : "integer"
     } ],
-    "type" : "com.psabackoffice.job1111.models.procedure.LockSsactivityResponse",
+    "type" : "com.psabackoffice.job1111.models.procedure.LockSasactivityResponse",
     "service" : "Job1111",
-    "operation" : "executeLockSSActivity",
-    "operationId" : "ProcedureExecutionController_executeLockSSActivity",
+    "operation" : "executeLockSASActivity",
+    "operationId" : "ProcedureExecutionController_executeLockSASActivity",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],

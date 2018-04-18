@@ -65,18 +65,36 @@ Application.$controller("PartFASteelStandardPageController", ["$scope", function
                 }
             });
         }
-
         $scope.Variables.liveUpdateSteelActivity.updateRecord({
             row: {
                 "submissionId": $scope.$parent.Widgets.gridSuperReviewSteel.selecteditem.submissionId,
                 "activityType": $scope.Widgets.gridSteelFA.selecteditem.activityTypeId,
                 "fkLastModifiedBy": $scope.Variables.loggedInUser.dataSet.id
-            },
-            function(data) {
-                $scope.Variables.serviceGetSteelFAData.invoke();
             }
         });
     };
+
+
+    $scope.liveUpdateSteelActivityonSuccess = function(variable, data) {
+        $scope.$parent.Variables.serviceGetFAsSteel.invoke(); //Updates serviceGetSteelFAData on success
+    };
+
+
+    $scope.serviceGetSteelFADataonSuccess = function(variable, data) {
+        var ActivityIDs = [0];
+        for (var i = 0; i < data.totalElements; i++) {
+            if (!isNaN(data.content[i].activityId)) {
+                ActivityIDs.push(data.content[i].activityId);
+            }
+        }
+
+        $scope.$parent.Variables.serviceGetSASNotes.invoke({
+            "inputFields": {
+                "ActivityID": ActivityIDs
+            }
+        });
+    };
+
 }]);
 
 
@@ -92,7 +110,7 @@ Application.$controller("gridSteelFAController", ["$scope",
             $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", 3);
             $scope.Variables.serviceUpdateSAS.invoke({},
                 function(data) {
-                    $scope.$parent.$parent.$parent.Variables.serviceGetFAsSteel.invoke();
+                    $scope.$parent.$parent.$parent.Variables.serviceGetFAsSteel.invoke(); //Updates serviceGetSteelFAData on success
                 }
             );
 

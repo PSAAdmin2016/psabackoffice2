@@ -8,6 +8,7 @@ package com.psabackoffice.job1111.service;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -66,6 +67,9 @@ public interface Job1111QueryExecutorService_V1 {
     public int executeUpdatePipeMisc(String drawingNumber, String lineNumber, String sheetNumber, BigDecimal quantity, Integer rework, String notes, Integer activityId);
 
     @Deprecated
+    public int executeCreateSASNote(Integer activityId, Integer createdBy, String note);
+
+    @Deprecated
     public Page<Object> executeGetReportDPRSteelDetailed(Pageable pageable, String pm, String constM, String siteM, String areaM, String super_, String gf, String foreman, Date startDate, Date endDate);
 
     @Deprecated
@@ -73,6 +77,9 @@ public interface Job1111QueryExecutorService_V1 {
 
     @Deprecated
     public Page<Object> executeGetSettingPipeTestingPercent(Pageable pageable);
+
+    @Deprecated
+    public Page<Object> executeGetNotesByActivityID(Pageable pageable, List<Integer> activityId);
 
     @Deprecated
     public int executeUpdatePipeBoltupQuantity(Integer quantity, Integer activityId);
@@ -183,7 +190,7 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetReportDPRSteelCondensed(Pageable pageable, String pm, String constM, String siteM, String areaM, String super_, String gf, String foreman, Date startDate, Date endDate);
 
     @Deprecated
-    public Page<Object> executeGetActivitiesPendingApproval(Pageable pageable, String userId);
+    public Page<Object> executeGetActivitiesPendingApproval(Pageable pageable, Integer userId);
 
     @Deprecated
     public Page<Object> executeGetSettingPipeCTOPercent(Pageable pageable);
@@ -271,12 +278,6 @@ public interface Job1111QueryExecutorService_V1 {
 
     @Deprecated
     public Page<Object> executeGetBidActivityQuantitiesCivil(Pageable pageable, Integer bidId);
-
-    @Deprecated
-    public int executeCreateSSNote(Integer activityId, Integer createdBy, String note);
-
-    @Deprecated
-    public Page<Object> executeGetNotesByFieldActivityID(Pageable pageable, Integer activityId);
 
     @Deprecated
     public int executeUpdateSteelSellPackage(String testPackage, String notes, Integer activityId);

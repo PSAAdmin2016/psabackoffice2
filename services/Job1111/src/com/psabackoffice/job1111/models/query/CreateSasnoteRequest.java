@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CreateSsnoteRequest implements Serializable {
+public class CreateSasnoteRequest implements Serializable {
 
 
     @JsonProperty("ActivityID")
@@ -56,11 +56,11 @@ public class CreateSsnoteRequest implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof CreateSsnoteRequest)) return false;
-        final CreateSsnoteRequest createSsnoteRequest = (CreateSsnoteRequest) o;
-        return Objects.equals(getActivityId(), createSsnoteRequest.getActivityId()) &&
-                Objects.equals(getCreatedBy(), createSsnoteRequest.getCreatedBy()) &&
-                Objects.equals(getNote(), createSsnoteRequest.getNote());
+        if (!(o instanceof CreateSasnoteRequest)) return false;
+        final CreateSasnoteRequest createSasnoteRequest = (CreateSasnoteRequest) o;
+        return Objects.equals(getActivityId(), createSasnoteRequest.getActivityId()) &&
+                Objects.equals(getCreatedBy(), createSasnoteRequest.getCreatedBy()) &&
+                Objects.equals(getNote(), createSasnoteRequest.getNote());
     }
 
     @Override

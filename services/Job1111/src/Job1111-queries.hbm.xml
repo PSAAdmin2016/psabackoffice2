@@ -1702,6 +1702,16 @@ WHERE ActivityID = :ActivityID
     <query-param name="ActivityID" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="CreateSASNote">
+        <![CDATA[
+        INSERT INTO SASNotes (`ActivityID`, `UserID` ,`Notes`) 
+VALUES (:ActivityID, :CreatedBy ,:Note)
+        ]]>
+    <query-param name="ActivityID" type="java.lang.Integer"/>
+    <query-param name="CreatedBy" type="java.lang.Integer"/>
+    <query-param name="Note" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="GetReportDPRSteelDetailed">
         <![CDATA[
         SELECT  
@@ -2157,6 +2167,28 @@ AND sas.fk_ActivityStatus IN (5,12)
 GROUP BY sas.ActivityID) wmTempTable
         ]]>
     <query-param name="BidID" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="GetNotesByActivityID">
+        <![CDATA[
+        SELECT sasn.Notes, sasn.TimeStamp, u.Email
+FROM SASNotes sasn
+JOIN PSA.tblUserPSA u
+	ON u.ID = sasn.UserID
+WHERE sasn.ActivityID IN :ActivityID
+        ]]>
+    <query-param name="ActivityID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetNotesByActivityID__count">
+        <![CDATA[
+        select count(*) from (SELECT sasn.Notes, sasn.TimeStamp, u.Email
+FROM SASNotes sasn
+JOIN PSA.tblUserPSA u
+	ON u.ID = sasn.UserID
+WHERE sasn.ActivityID IN :ActivityID) wmTempTable
+        ]]>
+    <query-param name="ActivityID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="UpdatePipeBoltupQuantity">
@@ -4505,7 +4537,7 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 JOIN PipeErection pe
 	ON pe.ActivityID = sas.ActivityID
 
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
  
  
@@ -4529,7 +4561,7 @@ JOIN PipeConnection pc
 LEFT JOIN REF_SpoolList sl
 	ON sl.SpoolNumber = pc.ConnectionSpool2
 
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
  
  
@@ -4553,7 +4585,7 @@ JOIN PipeConnection pc
 LEFT JOIN PipeTrackerDetails ptd
 	ON ptd.BidID = pc.ConnectionBidID
 
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 UNION
@@ -4576,7 +4608,7 @@ JOIN PipeWeld pw
 LEFT JOIN REF_SpoolList sl
 	ON sl.SpoolNumber = pw.WeldSpool2
     
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 
@@ -4584,45 +4616,24 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pt.TrimBidID AS Spool1, 'N/A' AS Spool2, 
+pfa.FABidID AS Spool1, 'N/A' AS Spool2, 
 ptd.LineNumber, ptd.EngDrawingNumber, ptd.SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2,
-'N/A' , pt.TrimNotes, pt.TrimQuantity
-, 'N/A' AS Area, 1.00 AS PercentClaim, pt.TrimRework AS Rework
+'N/A' , pfa.FANotes, pfa.FAQuantity
+, 'N/A' AS Area, FAPercentCompleted AS PercentClaim, pfa.FARework AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
 	ON at.ID =sas.ActivityType
 LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus      
-JOIN PipeTrim pt
-	ON pt.ActivityID = sas.ActivityID
+JOIN PipeFA pfa
+	ON pfa.ActivityID = sas.ActivityID
 LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = pt.TrimBidID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+	ON ptd.BidID = pfa.FABidID
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
-UNION
-
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-psu.SupportBidID AS Spool1, 'N/A' AS Spool2, 
-ptd.LineNumber, ptd.EngDrawingNumber, ptd.SheetNumber, 
-'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2,
-'N/A' AS SupportSize , psu.SupportNotes, psu.SupportQuantity AS SupportInstalled,
-'N/A' AS Area, psu.SupportPercentCompleted AS PercentClaim, psu.SupportRework AS Rework
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN PipeSupports psu
-	ON psu.ActivityID = sas.ActivityID
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = psu.SupportBidID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 
 UNION
@@ -4642,34 +4653,12 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
 JOIN PipeTesting pte
 	ON pte.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 
 UNION
 
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pd.DemoBidID AS Spool1, 'N/A' AS Spool2, 
-ptd.LineNumber, ptd.EngDrawingNumber, ptd.SheetNumber, 
-'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2,
-'N/A' AS DemoSize , pd.DemoNotes, pd.DemoQuantity AS DemoQuantity,
-'N/A' AS Area, 1.00 AS PercentClaim, 0 AS Rework
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN PipeDemo pd
-	ON pd.ActivityID = sas.ActivityID
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = pd.DemoBidID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
-
- 
-UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
@@ -4686,32 +4675,12 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus	
 JOIN PipeMisc pm
 	ON pm.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 
 UNION
 
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-'N/A' AS Spool1, 'N/A' AS Spool2, 
-ewo.EWOLineNumber, ewo.EWODrawingNumber, ewo.EWOSheetNumber, 
-'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2,
-'N/A' AS EWOSize , ewo.EWONotes, ewo.EWOHours AS TestingEarned,
-'N/A' AS Area, 1.00 AS PercentClaim, ewo.EWORework AS Rework
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN SubsEWO ewo
-	ON ewo.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
-
- 
-UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
@@ -4726,7 +4695,7 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
 JOIN SteelFA stlfa
 	ON stlfa.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 
@@ -4751,7 +4720,7 @@ JOIN SteelDemo stld
 JOIN SteelTrackerDetails std
 	ON std.BidID = stld.DemoBidID
 
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 
@@ -4773,7 +4742,7 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
 JOIN SteelSellPackage stlsp
 	ON stlsp.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 
@@ -4795,7 +4764,7 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
 JOIN SteelMisc stlm
 	ON stlm.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 
@@ -4819,7 +4788,7 @@ JOIN CivilFA cfa
 	ON cfa.ActivityID = sas.ActivityID
 JOIN CivilTrackerDetails ctd
 	ON ctd.BidID =  cfa.FABidID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 
@@ -4842,7 +4811,7 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
 JOIN CivilSellPackage csp
 	ON csp.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 
@@ -4852,8 +4821,8 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'EQUIP' AS Craft,
-efa.FABidID AS Spool1, efa.FATagNumber AS Spool2, 
-efa.FAActivitySelect AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
+efa.FABidID AS Spool1, etd.ComponentNumber AS Spool2, 
+etd.Description AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 efa.FANotes, efa.FAQuantity AS Quantity, 'N/A' AS Area, efa.FAPercentCompleted AS PercentClaim, efa.FARework AS Rework
 
@@ -4864,10 +4833,12 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
 JOIN EquipFA efa
 	ON efa.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+LEFT JOIN EquipTrackerDetails etd
+	ON etd.BidID = efa.FABidID
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
         ]]>
-    <query-param name="UserID" type="java.lang.String"/>
+    <query-param name="UserID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetActivitiesPendingApproval__count">
@@ -4889,7 +4860,7 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 JOIN PipeErection pe
 	ON pe.ActivityID = sas.ActivityID
 
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
  
  
@@ -4913,7 +4884,7 @@ JOIN PipeConnection pc
 LEFT JOIN REF_SpoolList sl
 	ON sl.SpoolNumber = pc.ConnectionSpool2
 
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
  
  
@@ -4937,7 +4908,7 @@ JOIN PipeConnection pc
 LEFT JOIN PipeTrackerDetails ptd
 	ON ptd.BidID = pc.ConnectionBidID
 
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 UNION
@@ -4960,7 +4931,7 @@ JOIN PipeWeld pw
 LEFT JOIN REF_SpoolList sl
 	ON sl.SpoolNumber = pw.WeldSpool2
     
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 
@@ -4968,45 +4939,24 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pt.TrimBidID AS Spool1, 'N/A' AS Spool2, 
+pfa.FABidID AS Spool1, 'N/A' AS Spool2, 
 ptd.LineNumber, ptd.EngDrawingNumber, ptd.SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2,
-'N/A' , pt.TrimNotes, pt.TrimQuantity
-, 'N/A' AS Area, 1.00 AS PercentClaim, pt.TrimRework AS Rework
+'N/A' , pfa.FANotes, pfa.FAQuantity
+, 'N/A' AS Area, FAPercentCompleted AS PercentClaim, pfa.FARework AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
 	ON at.ID =sas.ActivityType
 LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus      
-JOIN PipeTrim pt
-	ON pt.ActivityID = sas.ActivityID
+JOIN PipeFA pfa
+	ON pfa.ActivityID = sas.ActivityID
 LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = pt.TrimBidID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+	ON ptd.BidID = pfa.FABidID
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
-UNION
-
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-psu.SupportBidID AS Spool1, 'N/A' AS Spool2, 
-ptd.LineNumber, ptd.EngDrawingNumber, ptd.SheetNumber, 
-'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2,
-'N/A' AS SupportSize , psu.SupportNotes, psu.SupportQuantity AS SupportInstalled,
-'N/A' AS Area, psu.SupportPercentCompleted AS PercentClaim, psu.SupportRework AS Rework
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN PipeSupports psu
-	ON psu.ActivityID = sas.ActivityID
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = psu.SupportBidID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 
 UNION
@@ -5026,34 +4976,12 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
 JOIN PipeTesting pte
 	ON pte.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 
 UNION
 
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-pd.DemoBidID AS Spool1, 'N/A' AS Spool2, 
-ptd.LineNumber, ptd.EngDrawingNumber, ptd.SheetNumber, 
-'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2,
-'N/A' AS DemoSize , pd.DemoNotes, pd.DemoQuantity AS DemoQuantity,
-'N/A' AS Area, 1.00 AS PercentClaim, 0 AS Rework
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN PipeDemo pd
-	ON pd.ActivityID = sas.ActivityID
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = pd.DemoBidID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
-
- 
-UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
@@ -5070,32 +4998,12 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus	
 JOIN PipeMisc pm
 	ON pm.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 
 UNION
 
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, 
-'N/A' AS Spool1, 'N/A' AS Spool2, 
-ewo.EWOLineNumber, ewo.EWODrawingNumber, ewo.EWOSheetNumber, 
-'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2,
-'N/A' AS EWOSize , ewo.EWONotes, ewo.EWOHours AS TestingEarned,
-'N/A' AS Area, 1.00 AS PercentClaim, ewo.EWORework AS Rework
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN SubsEWO ewo
-	ON ewo.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
-
- 
-UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, 
@@ -5110,7 +5018,7 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
 JOIN SteelFA stlfa
 	ON stlfa.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 
@@ -5135,7 +5043,7 @@ JOIN SteelDemo stld
 JOIN SteelTrackerDetails std
 	ON std.BidID = stld.DemoBidID
 
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 
@@ -5157,7 +5065,7 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
 JOIN SteelSellPackage stlsp
 	ON stlsp.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 
@@ -5179,7 +5087,7 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
 JOIN SteelMisc stlm
 	ON stlm.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 
@@ -5203,7 +5111,7 @@ JOIN CivilFA cfa
 	ON cfa.ActivityID = sas.ActivityID
 JOIN CivilTrackerDetails ctd
 	ON ctd.BidID =  cfa.FABidID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 
@@ -5226,7 +5134,7 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
 JOIN CivilSellPackage csp
 	ON csp.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)
 
 
@@ -5236,8 +5144,8 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'EQUIP' AS Craft,
-efa.FABidID AS Spool1, efa.FATagNumber AS Spool2, 
-efa.FAActivitySelect AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
+efa.FABidID AS Spool1, etd.ComponentNumber AS Spool2, 
+etd.Description AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
 efa.FANotes, efa.FAQuantity AS Quantity, 'N/A' AS Area, efa.FAPercentCompleted AS PercentClaim, efa.FARework AS Rework
 
@@ -5248,10 +5156,12 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
 JOIN EquipFA efa
 	ON efa.ActivityID = sas.ActivityID
-WHERE sas.fk_ActivityStatus IN (2,7,9,11)
+LEFT JOIN EquipTrackerDetails etd
+	ON etd.BidID = efa.FABidID
+WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
 AND (sas.LockField IS NULL OR sas.LockField = :UserID)) wmTempTable
         ]]>
-    <query-param name="UserID" type="java.lang.String"/>
+    <query-param name="UserID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetSettingPipeCTOPercent">
@@ -6629,7 +6539,7 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 
 WHERE sas.TimeStamp BETWEEN now() - INTERVAL 2 DAY AND NOW() 
 AND sas.ActivityType <> 0
-AND sas.fk_ActivityStatus NOT IN (10, 11) 
+AND sas.fk_ActivityStatus NOT IN (1,4,6,8,10) 
 AND sas.fk_LastModifiedBy IN (:UserID , :SelectedSuper)
 ORDER BY sas.TimeStamp DESC
         ]]>
@@ -6650,7 +6560,7 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 
 WHERE sas.TimeStamp BETWEEN now() - INTERVAL 2 DAY AND NOW() 
 AND sas.ActivityType <> 0
-AND sas.fk_ActivityStatus NOT IN (10, 11) 
+AND sas.fk_ActivityStatus NOT IN (1,4,6,8,10) 
 AND sas.fk_LastModifiedBy IN (:UserID , :SelectedSuper)
 ORDER BY sas.TimeStamp DESC) wmTempTable
         ]]>
@@ -7142,7 +7052,15 @@ WHERE `ActivityID`= :ActivityID
         SELECT *
 FROM EquipTrackerDetails
 WHERE BidID = :BidID
-GROUP BY BidID
+        ]]>
+    <query-param name="BidID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetBidActivityMatchesEquip__count">
+        <![CDATA[
+        select count(*) from (SELECT *
+FROM EquipTrackerDetails
+WHERE BidID = :BidID) wmTempTable
         ]]>
     <query-param name="BidID" type="java.lang.Integer"/>
     </sql-query>
@@ -8171,38 +8089,6 @@ LEFT JOIN (SELECT ctd.BidID,
 WHERE ctd.BidID = :BidID) wmTempTable
         ]]>
     <query-param name="BidID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="CreateSSNote">
-        <![CDATA[
-        INSERT INTO SASNotes (`ActivityID`, `UserID` ,`Notes`) 
-VALUES (:ActivityID, :CreatedBy ,:Note)
-        ]]>
-    <query-param name="ActivityID" type="java.lang.Integer"/>
-    <query-param name="CreatedBy" type="java.lang.Integer"/>
-    <query-param name="Note" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="GetNotesByFieldActivityID">
-        <![CDATA[
-        SELECT sasn.Notes, sasn.TimeStamp, u.Email
-FROM SASNotes sasn
-JOIN PSA.tblUserPSA u
-	ON u.ID = sasn.UserID
-WHERE sasn.ActivityID = :ActivityID
-        ]]>
-    <query-param name="ActivityID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetNotesByFieldActivityID__count">
-        <![CDATA[
-        select count(*) from (SELECT sasn.Notes, sasn.TimeStamp, u.Email
-FROM SASNotes sasn
-JOIN PSA.tblUserPSA u
-	ON u.ID = sasn.UserID
-WHERE sasn.ActivityID = :ActivityID) wmTempTable
-        ]]>
-    <query-param name="ActivityID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="UpdateSteelSellPackage">

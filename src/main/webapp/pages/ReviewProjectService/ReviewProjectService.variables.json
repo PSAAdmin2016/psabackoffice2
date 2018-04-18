@@ -55,9 +55,9 @@
     "dataSet" : [ ],
     "pageTransitions" : "none"
   },
-  "serviceCreateSSNote" : {
+  "serviceCreateSASNote" : {
     "_id" : "wm-Job1111ExecuteCreateSSNote-wm.ServiceVariable-1457040761432",
-    "name" : "serviceCreateSSNote",
+    "name" : "serviceCreateSASNote",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
@@ -65,18 +65,14 @@
       "value" : "bind:Variables.loggedInUser.dataSet.id",
       "type" : "integer"
     }, {
-      "target" : "Note",
-      "value" : "bind:Widgets.textareaSSNoteNew.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "FieldActivityID",
+      "target" : "ActivityID",
       "value" : "bind:Widgets.gridApprovalReview.selecteditem.ActivityID",
-      "type" : "string"
+      "type" : "integer"
     } ],
     "type" : "integer",
     "service" : "Job1111",
-    "operation" : "executeCreateSSNote",
-    "operationId" : "QueryExecutionController_executeCreateSSNote",
+    "operation" : "executeCreateSASNote",
+    "operationId" : "QueryExecutionController_executeCreateSASNote",
     "operationType" : "post",
     "serviceType" : "DataService",
     "dataSet" : {
@@ -86,7 +82,6 @@
     "firstRow" : 0,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onResult" : "Variables.serviceGetNotesByFieldActivityID.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -151,37 +146,6 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
   },
-  "serviceGetNotesByFieldActivityID" : {
-    "_id" : "wm-Job1111ExecuteGetNotesByPSAActivityID-wm.ServiceVariable-1457038180972",
-    "name" : "serviceGetNotesByFieldActivityID",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "FieldActivityID",
-      "value" : "bind:Widgets.gridApprovalReview.selecteditem.ActivityID",
-      "type" : "integer"
-    } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetNotesByFieldActivityIdResponse",
-    "service" : "Job1111",
-    "operation" : "executeGetNotesByFieldActivityID",
-    "operationId" : "QueryExecutionController_executeGetNotesByFieldActivityID",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : {
-      "dataValue" : ""
-    },
-    "isList" : true,
-    "firstRow" : 0,
-    "maxResults" : 75,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "isDefault" : true,
-    "controller" : "QueryExecution"
-  },
   "serviceGetPSRecentActivities" : {
     "_id" : "wm-Job1111ExecuteGetPSRecentActivities-wm.ServiceVariable-1464286247551",
     "name" : "serviceGetPSRecentActivities",
@@ -213,6 +177,38 @@
     "isDefault" : true,
     "controller" : "QueryExecution"
   },
+  "serviceGetSASNotes" : {
+    "_id" : "wm-Job1111ExecuteGetNotesByPSAActivityID-wm.ServiceVariable-1457038180972",
+    "name" : "serviceGetSASNotes",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "isList" : true,
+      "target" : "ActivityID",
+      "value" : "bind:Widgets.gridApprovalReview.selecteditem.ActivityID",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.query.GetNotesByActivityIdResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetNotesByActivityID",
+    "operationId" : "QueryExecutionController_executeGetNotesByActivityID",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "isList" : true,
+    "firstRow" : 0,
+    "maxResults" : 75,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "QueryExecution"
+  },
   "serviceGetTestingPercent" : {
     "_id" : "wm-serviceGetTestingPercent-wm.ServiceVariable-1473991044179",
     "name" : "serviceGetTestingPercent",
@@ -236,9 +232,9 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
   },
-  "serviceUpdateSSApproval" : {
-    "_id" : "wm-Job1111ExecuteUpdateSSApproval-wm.ServiceVariable-1456860296403",
-    "name" : "serviceUpdateSSApproval",
+  "serviceUpdateSAS" : {
+    "_id" : "wm-serviceUpdateSAS-wm.ServiceVariable-1524080993715",
+    "name" : "serviceUpdateSAS",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
@@ -246,33 +242,26 @@
       "value" : "bind:Variables.loggedInUser.dataSet.id",
       "type" : "integer"
     }, {
-      "target" : "FieldActivityID",
+      "target" : "ActivityID",
       "value" : "bind:Widgets.gridApprovalReview.selecteditem.ActivityID",
       "type" : "integer"
     } ],
-    "type" : "integer",
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "Job1111",
-    "operation" : "executeUpdateSS",
-    "operationId" : "QueryExecutionController_executeUpdateSS",
+    "operation" : "executeUpdateSASBidID",
+    "operationId" : "QueryExecutionController_executeUpdateSASBidID",
     "operationType" : "put",
     "serviceType" : "DataService",
-    "dataSet" : {
-      "dataValue" : ""
-    },
+    "dataSet" : [ ],
     "isList" : false,
-    "firstRow" : 0,
-    "maxResults" : 3,
-    "designMaxResults" : 10,
-    "onResult" : "Variables.serviceGetActivitiesPendingApproval.invoke()",
+    "maxResults" : 20,
+    "onSuccess" : "Variables.serviceGetActivitiesPendingApproval.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
-    "isDefault" : true,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page",
-    "spinnerMessage" : "Updating..."
+    "controller" : "QueryExecution"
   },
   "serviceUpdateSSReturnToListPS" : {
     "_id" : "wm-Job1111ExecuteUpdateSSReturnToListPS-wm.ServiceVariable-1464297686390",

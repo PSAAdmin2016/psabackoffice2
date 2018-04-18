@@ -504,9 +504,9 @@
     "dataSet" : [ ],
     "pageTransitions" : "none"
   },
-  "serviceCreateSSNote" : {
+  "serviceCreateSASNote" : {
     "_id" : "wm-serviceCreateSSNote-wm.ServiceVariable-1476123206600",
-    "name" : "serviceCreateSSNote",
+    "name" : "serviceCreateSASNote",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
@@ -515,24 +515,20 @@
       "type" : "integer"
     }, {
       "target" : "Note",
-      "value" : "bind:Widgets.textareaSSNoteNew.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "FieldActivityID",
-      "value" : "bind:Widgets.gridSuperReviewActivities.selecteditem.ActivityID",
+      "value" : "bind:Widgets.textareaSASNoteNew.datavalue",
       "type" : "string"
     } ],
-    "type" : "integer",
+    "type" : "java.lang.Integer",
     "service" : "Job1111",
-    "operation" : "executeCreateSSNote",
-    "operationId" : "QueryExecutionController_executeCreateSSNote",
+    "operation" : "executeCreateSASNote",
+    "operationId" : "QueryExecutionController_executeCreateSASNote",
     "operationType" : "post",
     "serviceType" : "DataService",
     "dataSet" : [ ],
     "isList" : false,
-    "maxResults" : 3,
+    "maxResults" : 1,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.serviceGetNotesByActivityID.invoke()",
+    "onSuccess" : "Variables.serviceGetSASNotes.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -585,6 +581,7 @@
     "dataSet" : [ ],
     "isList" : true,
     "maxResults" : 100,
+    "onSuccess" : "Javascript",
     "startUpdate" : false,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",
@@ -592,20 +589,16 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
   },
-  "serviceGetNotesByActivityID" : {
+  "serviceGetSASNotes" : {
     "_id" : "wm-serviceGetNotesByPSAActivityID-wm.ServiceVariable-1477005335849",
-    "name" : "serviceGetNotesByActivityID",
+    "name" : "serviceGetSASNotes",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "FieldActivityID",
-      "value" : "bind:Widgets.gridSuperReviewActivities.selecteditem.ActivityID",
-      "type" : "integer"
-    } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetNotesByFieldActivityIdResponse",
+    "dataBinding" : [ ],
+    "type" : "com.psabackoffice.job1111.models.query.GetNotesByActivityIdResponse",
     "service" : "Job1111",
-    "operation" : "executeGetNotesByFieldActivityID",
-    "operationId" : "QueryExecutionController_executeGetNotesByFieldActivityID",
+    "operation" : "executeGetNotesByActivityID",
+    "operationId" : "QueryExecutionController_executeGetNotesByActivityID",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],
@@ -766,7 +759,7 @@
       "type" : "integer"
     }, {
       "target" : "ActivityID",
-      "value" : "bind:Widgets.livelistRecentActivities.currentItem.ActivityID",
+      "value" : "bind:Widgets.livelistRecentActivities.selecteditem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",

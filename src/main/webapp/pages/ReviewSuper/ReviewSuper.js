@@ -285,6 +285,13 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
                 }
             }
         });
+
+        // Update serviceGetNotes with newly selected Row
+        $scope.Variables.serviceGetSASNotes.invoke({
+            "inputFields": {
+                "ActivityID": $rowData.activityId
+            }
+        });
     };
 
 
@@ -357,14 +364,19 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
             return;
         }
 
+        // Update serviceGetSubsDetails with newly selected Row
         $scope.Variables.serviceGetSubsDetails.setInput('SubmissionID', $rowData.submissionId);
         $scope.Variables.serviceGetSubsDetails.invoke();
 
-        if ($scope.Widgets.containerFADetails.Variables && $scope.Widgets.containerFADetails.Variables.staticEditMode && $scope.Widgets.containerFADetails.Variables.staticEditMode.dataSet.dataValue) { //Cancel Edit mode if user selects different row
+        //Cancel Edit mode if user selects different row
+        if ($scope.Widgets.containerFADetails.Variables && $scope.Widgets.containerFADetails.Variables.staticEditMode && $scope.Widgets.containerFADetails.Variables.staticEditMode.dataSet.dataValue) {
             $scope.Widgets.containerFADetails.Variables.staticEditMode.setValue("dataValue", false);
             $scope.Widgets.containerFADetails.Widgets.gridSteelFA.cancelRow();
         }
 
+        // Update serviceGetNotes with newly selected Row
+        // Since this will use the results of Widgets.containterFADetails.Variables.getSteelActivitiesData.  It needs to be run via its OnSuccess event for steel
+        //$scope.Variables.serviceGetSASNotes.invoke();
     };
 
 
@@ -388,12 +400,18 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
     };
 
 
+    $scope.serviceGetFAsSteelonSuccess = function(variable, data) {
+        if ($scope.Variables.staticTabSelect.dataSet.dataValue == '2') {
+            $scope.Widgets.containerFADetails.Variables.serviceGetSteelFAData.invoke();
+        }
+    };
+
+
     $scope.serviceGetSubsDetailsonSuccess = function(variable, data) {
         if (data.numberOfElements > 0 && data.content[0].signatureData) { //If there is signature data Set the signature container
             $scope.signaturePad.fromDataURL(data.content[0].signatureData);
         }
     };
-
 
 }]);
 
@@ -407,12 +425,23 @@ Application.$controller("gridSuperReviewActivitiesController", ["$scope",
     }
 ]);
 
+
+Application.$controller("gridSuperReviewSteelController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+    }
+]);
+
+
 Application.$controller("dialogNotesController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
     }
 ]);
+
 
 Application.$controller("gridNotesController", ["$scope",
     function($scope) {
@@ -421,6 +450,7 @@ Application.$controller("gridNotesController", ["$scope",
 
     }
 ]);
+
 
 Application.$controller("dialogNotesNewController", ["$scope",
     function($scope) {
@@ -435,20 +465,27 @@ Application.$controller("dialogNotesNewController", ["$scope",
             }
         };
 
+
+        $scope.buttonNoteSaveClick = function($event, $isolateScope) {
+            $scope.Widgets.FormCreateSASNote.submit();
+        };
+
+
+        $scope.FormCreateSASNoteBeforesubmit = function($event, $isolateScope, $data) {
+            if ($scope.Variables.staticTabSelect.dataSet.dataValue == '1') {
+                $data.ActivityID = $scope.Widgets.gridSuperReviewActivities.selecteditem.activityId;
+            } else if ($scope.Variables.staticTabSelect.dataSet.dataValue == '2') {
+                // Need to figure out the logic for what "activityID" to assign the notes too in this case...
+                $data.ActivityID = null;
+            }
+        };
     }
 ]);
+
 
 Application.$controller("dialogRecentActivitiesController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-    }
-]);
-
-Application.$controller("gridSuperReviewSteelController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-
     }
 ]);

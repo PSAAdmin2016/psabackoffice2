@@ -9,6 +9,7 @@ package com.psabackoffice.job1111.service;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -196,6 +197,18 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         return queryExecutor.executeNamedQueryForUpdate("UpdatePipeMisc", params);
     }
 
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public int executeCreateSASNote(Integer activityId, Integer createdBy, String note) {
+        Map params = new HashMap(3);
+
+        params.put("ActivityID", activityId);
+        params.put("CreatedBy", createdBy);
+        params.put("Note", note);
+
+        return queryExecutor.executeNamedQueryForUpdate("CreateSASNote", params);
+    }
+
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
     public Page<Object> executeGetReportDPRSteelDetailed(Pageable pageable, String pm, String constM, String siteM, String areaM, String super_, String gf, String foreman, Date startDate, Date endDate) {
@@ -231,6 +244,16 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
 
         return queryExecutor.executeNamedQuery("GetSettingPipeTestingPercent", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<Object> executeGetNotesByActivityID(Pageable pageable, List<Integer> activityId) {
+        Map params = new HashMap(1);
+
+        params.put("ActivityID", activityId);
+
+        return queryExecutor.executeNamedQuery("GetNotesByActivityID", params, Object.class, pageable);
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -650,7 +673,7 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetActivitiesPendingApproval(Pageable pageable, String userId) {
+    public Page<Object> executeGetActivitiesPendingApproval(Pageable pageable, Integer userId) {
         Map params = new HashMap(1);
 
         params.put("UserID", userId);
@@ -970,28 +993,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("BidID", bidId);
 
         return queryExecutor.executeNamedQuery("GetBidActivityQuantitiesCivil", params, Object.class, pageable);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public int executeCreateSSNote(Integer activityId, Integer createdBy, String note) {
-        Map params = new HashMap(3);
-
-        params.put("ActivityID", activityId);
-        params.put("CreatedBy", createdBy);
-        params.put("Note", note);
-
-        return queryExecutor.executeNamedQueryForUpdate("CreateSSNote", params);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<Object> executeGetNotesByFieldActivityID(Pageable pageable, Integer activityId) {
-        Map params = new HashMap(1);
-
-        params.put("ActivityID", activityId);
-
-        return queryExecutor.executeNamedQuery("GetNotesByFieldActivityID", params, Object.class, pageable);
     }
 
     @Transactional(value = "Job1111TransactionManager")

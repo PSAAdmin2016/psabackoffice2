@@ -90,18 +90,6 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-    public LockSsactivityResponse executeLockSSActivity(Integer runMode, Integer userId, Integer activityId) {
-        Map params = new HashMap(5);
-
-        params.put("RunMode", runMode);
-        params.put("UserID", userId);
-        params.put("ActivityID", activityId);
-
-        return procedureExecutor.executeNamedProcedure("LockSSActivity", params, LockSsactivityResponse.class);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
     public GetCivilEarnedHoursResponse executeGetCivilEarnedHours(String groupedBy, String crewId, String crewRev, String foremanId, String superintendentId, String projectManagerId, String constructionManagerId, String siteManagerId, String areaManagerId, Date inputDate, Integer runMode) {
         Map params = new HashMap(13);
 
@@ -118,6 +106,18 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
         params.put("RunMode", runMode);
 
         return procedureExecutor.executeNamedProcedure("GetCivilEarnedHours", params, GetCivilEarnedHoursResponse.class);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public LockSasactivityResponse executeLockSASActivity(Integer runMode, Integer userId, Integer activityId) {
+        Map params = new HashMap(5);
+
+        params.put("RunMode", runMode);
+        params.put("UserID", userId);
+        params.put("ActivityID", activityId);
+
+        return procedureExecutor.executeNamedProcedure("LockSASActivity", params, LockSasactivityResponse.class);
     }
 
     @Transactional(value = "Job1111TransactionManager")

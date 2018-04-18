@@ -9,6 +9,7 @@ package com.psabackoffice.job1111.service;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -396,6 +397,18 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         return queryExecutor.executeNamedQueryForUpdate("UpdatePipeMisc", params);
     }
 
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public Integer executeCreateSASNote(CreateSasnoteRequest createSasnoteRequest) {
+        Map params = new HashMap(3);
+
+        params.put("ActivityID", createSasnoteRequest.getActivityId());
+        params.put("CreatedBy", createSasnoteRequest.getCreatedBy());
+        params.put("Note", createSasnoteRequest.getNote());
+
+        return queryExecutor.executeNamedQueryForUpdate("CreateSASNote", params);
+    }
+
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
     public Page<GetReportDprsteelDetailedResponse> executeGetReportDPRSteelDetailed(String pm, String constM, String siteM, String areaM, String super_, String gf, String foreman, Date startDate, Date endDate, Pageable pageable) {
@@ -503,6 +516,26 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         params.put("BidID", bidId);
 
         return queryExecutor.exportNamedQueryData("GetBidWorkHistoryEquip", params, exportType, GetBidWorkHistoryEquipResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Page<GetNotesByActivityIdResponse> executeGetNotesByActivityID(List<Integer> activityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("ActivityID", activityId);
+
+        return queryExecutor.executeNamedQuery("GetNotesByActivityID", params, GetNotesByActivityIdResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
+    public Downloadable exportGetNotesByActivityID(ExportType exportType, List<Integer> activityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("ActivityID", activityId);
+
+        return queryExecutor.exportNamedQueryData("GetNotesByActivityID", params, exportType, GetNotesByActivityIdResponse.class, pageable);
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -1261,7 +1294,7 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<GetActivitiesPendingApprovalResponse> executeGetActivitiesPendingApproval(String userId, Pageable pageable) {
+    public Page<GetActivitiesPendingApprovalResponse> executeGetActivitiesPendingApproval(Integer userId, Pageable pageable) {
         Map params = new HashMap(1);
 
         params.put("UserID", userId);
@@ -1271,7 +1304,7 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Downloadable exportGetActivitiesPendingApproval(ExportType exportType, String userId, Pageable pageable) {
+    public Downloadable exportGetActivitiesPendingApproval(ExportType exportType, Integer userId, Pageable pageable) {
         Map params = new HashMap(1);
 
         params.put("UserID", userId);
@@ -1925,38 +1958,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         params.put("BidID", bidId);
 
         return queryExecutor.exportNamedQueryData("GetBidActivityQuantitiesCivil", params, exportType, GetBidActivityQuantitiesCivilResponse.class, pageable);
-    }
-
-    @Transactional(value = "Job1111TransactionManager")
-    @Override
-    public Integer executeCreateSSNote(CreateSsnoteRequest createSsnoteRequest) {
-        Map params = new HashMap(3);
-
-        params.put("ActivityID", createSsnoteRequest.getActivityId());
-        params.put("CreatedBy", createSsnoteRequest.getCreatedBy());
-        params.put("Note", createSsnoteRequest.getNote());
-
-        return queryExecutor.executeNamedQueryForUpdate("CreateSSNote", params);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<GetNotesByFieldActivityIdResponse> executeGetNotesByFieldActivityID(Integer activityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("ActivityID", activityId);
-
-        return queryExecutor.executeNamedQuery("GetNotesByFieldActivityID", params, GetNotesByFieldActivityIdResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Downloadable exportGetNotesByFieldActivityID(ExportType exportType, Integer activityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("ActivityID", activityId);
-
-        return queryExecutor.exportNamedQueryData("GetNotesByFieldActivityID", params, exportType, GetNotesByFieldActivityIdResponse.class, pageable);
     }
 
     @Transactional(value = "Job1111TransactionManager")
