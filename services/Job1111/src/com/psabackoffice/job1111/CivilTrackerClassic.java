@@ -40,8 +40,8 @@ public class CivilTrackerClassic implements Serializable {
     private String location;
     private String structure;
     private String cu;
-    private String elevation;
-    private String sortGroup1;
+    private String elevation = "1";
+    private String sortGroup1 = "1";
     private String sortGroup2;
     private String sortGroup3;
     private String engDrawingNumber;

@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class EquipTrackerClassicController {
     @ApiOperation(value = "Returns the EquipTrackerClassic instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public EquipTrackerClassic getEquipTrackerClassic(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public EquipTrackerClassic getEquipTrackerClassic(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting EquipTrackerClassic with id: {}" , id);
 
         EquipTrackerClassic foundEquipTrackerClassic = equipTrackerClassicService.getById(id);
@@ -78,7 +77,7 @@ public class EquipTrackerClassicController {
     @ApiOperation(value = "Updates the EquipTrackerClassic instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public EquipTrackerClassic editEquipTrackerClassic(@PathVariable("id") Integer id, @RequestBody EquipTrackerClassic equipTrackerClassic) throws EntityNotFoundException {
+    public EquipTrackerClassic editEquipTrackerClassic(@PathVariable("id") Integer id, @RequestBody EquipTrackerClassic equipTrackerClassic) {
         LOGGER.debug("Editing EquipTrackerClassic with id: {}" , equipTrackerClassic.getUid());
 
         equipTrackerClassic.setUid(id);
@@ -91,7 +90,7 @@ public class EquipTrackerClassicController {
     @ApiOperation(value = "Deletes the EquipTrackerClassic instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteEquipTrackerClassic(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteEquipTrackerClassic(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting EquipTrackerClassic with id: {}" , id);
 
         EquipTrackerClassic deletedEquipTrackerClassic = equipTrackerClassicService.delete(id);
@@ -107,7 +106,7 @@ public class EquipTrackerClassicController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<EquipTrackerClassic> searchEquipTrackerClassicsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering EquipTrackerClassics list");
+        LOGGER.debug("Rendering EquipTrackerClassics list by query filter:{}", (Object) queryFilters);
         return equipTrackerClassicService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class EquipTrackerClassicController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<EquipTrackerClassic> findEquipTrackerClassics(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering EquipTrackerClassics list");
+        LOGGER.debug("Rendering EquipTrackerClassics list by filter:", query);
         return equipTrackerClassicService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class EquipTrackerClassicController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<EquipTrackerClassic> filterEquipTrackerClassics(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering EquipTrackerClassics list");
+        LOGGER.debug("Rendering EquipTrackerClassics list by filter", query);
         return equipTrackerClassicService.findAll(query, pageable);
     }
 

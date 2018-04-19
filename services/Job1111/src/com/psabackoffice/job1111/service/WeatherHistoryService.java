@@ -43,7 +43,7 @@ public interface WeatherHistoryService {
 	 * @return WeatherHistory associated with the given weatherhistoryId.
      * @throws EntityNotFoundException If no WeatherHistory is found.
 	 */
-	WeatherHistory getById(Integer weatherhistoryId) throws EntityNotFoundException;
+	WeatherHistory getById(Integer weatherhistoryId);
 
     /**
 	 * Find and return the WeatherHistory by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface WeatherHistoryService {
 	 * @return The updated WeatherHistory.
 	 * @throws EntityNotFoundException if no WeatherHistory is found with given input.
 	 */
-	WeatherHistory update(@Valid WeatherHistory weatherHistory) throws EntityNotFoundException;
+	WeatherHistory update(@Valid WeatherHistory weatherHistory);
 
     /**
 	 * Deletes an existing WeatherHistory with the given id.
@@ -72,7 +72,7 @@ public interface WeatherHistoryService {
 	 * @return The deleted WeatherHistory.
 	 * @throws EntityNotFoundException if no WeatherHistory found with the given id.
 	 */
-	WeatherHistory delete(Integer weatherhistoryId) throws EntityNotFoundException;
+	WeatherHistory delete(Integer weatherhistoryId);
 
     /**
 	 * Deletes an existing WeatherHistory with the given object.

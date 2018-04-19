@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class PipeTrackerClassicController {
     @ApiOperation(value = "Returns the PipeTrackerClassic instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public PipeTrackerClassic getPipeTrackerClassic(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public PipeTrackerClassic getPipeTrackerClassic(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting PipeTrackerClassic with id: {}" , id);
 
         PipeTrackerClassic foundPipeTrackerClassic = pipeTrackerClassicService.getById(id);
@@ -78,7 +77,7 @@ public class PipeTrackerClassicController {
     @ApiOperation(value = "Updates the PipeTrackerClassic instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public PipeTrackerClassic editPipeTrackerClassic(@PathVariable("id") Integer id, @RequestBody PipeTrackerClassic pipeTrackerClassic) throws EntityNotFoundException {
+    public PipeTrackerClassic editPipeTrackerClassic(@PathVariable("id") Integer id, @RequestBody PipeTrackerClassic pipeTrackerClassic) {
         LOGGER.debug("Editing PipeTrackerClassic with id: {}" , pipeTrackerClassic.getUid());
 
         pipeTrackerClassic.setUid(id);
@@ -91,7 +90,7 @@ public class PipeTrackerClassicController {
     @ApiOperation(value = "Deletes the PipeTrackerClassic instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deletePipeTrackerClassic(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deletePipeTrackerClassic(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting PipeTrackerClassic with id: {}" , id);
 
         PipeTrackerClassic deletedPipeTrackerClassic = pipeTrackerClassicService.delete(id);
@@ -107,7 +106,7 @@ public class PipeTrackerClassicController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeTrackerClassic> searchPipeTrackerClassicsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering PipeTrackerClassics list");
+        LOGGER.debug("Rendering PipeTrackerClassics list by query filter:{}", (Object) queryFilters);
         return pipeTrackerClassicService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class PipeTrackerClassicController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeTrackerClassic> findPipeTrackerClassics(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering PipeTrackerClassics list");
+        LOGGER.debug("Rendering PipeTrackerClassics list by filter:", query);
         return pipeTrackerClassicService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class PipeTrackerClassicController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeTrackerClassic> filterPipeTrackerClassics(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering PipeTrackerClassics list");
+        LOGGER.debug("Rendering PipeTrackerClassics list by filter", query);
         return pipeTrackerClassicService.findAll(query, pageable);
     }
 

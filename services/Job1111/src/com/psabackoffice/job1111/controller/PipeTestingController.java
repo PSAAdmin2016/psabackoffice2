@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class PipeTestingController {
     @ApiOperation(value = "Returns the PipeTesting instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public PipeTesting getPipeTesting(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public PipeTesting getPipeTesting(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting PipeTesting with id: {}" , id);
 
         PipeTesting foundPipeTesting = pipeTestingService.getById(id);
@@ -78,7 +77,7 @@ public class PipeTestingController {
     @ApiOperation(value = "Updates the PipeTesting instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public PipeTesting editPipeTesting(@PathVariable("id") Integer id, @RequestBody PipeTesting pipeTesting) throws EntityNotFoundException {
+    public PipeTesting editPipeTesting(@PathVariable("id") Integer id, @RequestBody PipeTesting pipeTesting) {
         LOGGER.debug("Editing PipeTesting with id: {}" , pipeTesting.getActivityId());
 
         pipeTesting.setActivityId(id);
@@ -91,7 +90,7 @@ public class PipeTestingController {
     @ApiOperation(value = "Deletes the PipeTesting instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deletePipeTesting(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deletePipeTesting(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting PipeTesting with id: {}" , id);
 
         PipeTesting deletedPipeTesting = pipeTestingService.delete(id);
@@ -107,7 +106,7 @@ public class PipeTestingController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeTesting> searchPipeTestingsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering PipeTestings list");
+        LOGGER.debug("Rendering PipeTestings list by query filter:{}", (Object) queryFilters);
         return pipeTestingService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class PipeTestingController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeTesting> findPipeTestings(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering PipeTestings list");
+        LOGGER.debug("Rendering PipeTestings list by filter:", query);
         return pipeTestingService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class PipeTestingController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeTesting> filterPipeTestings(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering PipeTestings list");
+        LOGGER.debug("Rendering PipeTestings list by filter", query);
         return pipeTestingService.findAll(query, pageable);
     }
 

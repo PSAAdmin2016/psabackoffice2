@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -68,7 +67,7 @@ public class SubmissionActivityStatusController {
     @ApiOperation(value = "Returns the SubmissionActivityStatus instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SubmissionActivityStatus getSubmissionActivityStatus(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public SubmissionActivityStatus getSubmissionActivityStatus(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting SubmissionActivityStatus with id: {}" , id);
 
         SubmissionActivityStatus foundSubmissionActivityStatus = submissionActivityStatusService.getById(id);
@@ -80,7 +79,7 @@ public class SubmissionActivityStatusController {
     @ApiOperation(value = "Updates the SubmissionActivityStatus instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SubmissionActivityStatus editSubmissionActivityStatus(@PathVariable("id") Integer id, @RequestBody SubmissionActivityStatus submissionActivityStatus) throws EntityNotFoundException {
+    public SubmissionActivityStatus editSubmissionActivityStatus(@PathVariable("id") Integer id, @RequestBody SubmissionActivityStatus submissionActivityStatus) {
         LOGGER.debug("Editing SubmissionActivityStatus with id: {}" , submissionActivityStatus.getActivityId());
 
         submissionActivityStatus.setActivityId(id);
@@ -93,7 +92,7 @@ public class SubmissionActivityStatusController {
     @ApiOperation(value = "Deletes the SubmissionActivityStatus instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteSubmissionActivityStatus(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteSubmissionActivityStatus(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting SubmissionActivityStatus with id: {}" , id);
 
         SubmissionActivityStatus deletedSubmissionActivityStatus = submissionActivityStatusService.delete(id);
@@ -109,7 +108,7 @@ public class SubmissionActivityStatusController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SubmissionActivityStatus> searchSubmissionActivityStatusesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering SubmissionActivityStatuses list");
+        LOGGER.debug("Rendering SubmissionActivityStatuses list by query filter:{}", (Object) queryFilters);
         return submissionActivityStatusService.findAll(queryFilters, pageable);
     }
 
@@ -117,7 +116,7 @@ public class SubmissionActivityStatusController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SubmissionActivityStatus> findSubmissionActivityStatuses(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SubmissionActivityStatuses list");
+        LOGGER.debug("Rendering SubmissionActivityStatuses list by filter:", query);
         return submissionActivityStatusService.findAll(query, pageable);
     }
 
@@ -125,7 +124,7 @@ public class SubmissionActivityStatusController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SubmissionActivityStatus> filterSubmissionActivityStatuses(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SubmissionActivityStatuses list");
+        LOGGER.debug("Rendering SubmissionActivityStatuses list by filter", query);
         return submissionActivityStatusService.findAll(query, pageable);
     }
 

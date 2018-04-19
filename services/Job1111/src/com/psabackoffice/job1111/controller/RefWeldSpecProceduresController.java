@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class RefWeldSpecProceduresController {
     @ApiOperation(value = "Returns the RefWeldSpecProcedures instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefWeldSpecProcedures getRefWeldSpecProcedures(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefWeldSpecProcedures getRefWeldSpecProcedures(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefWeldSpecProcedures with id: {}" , id);
 
         RefWeldSpecProcedures foundRefWeldSpecProcedures = refWeldSpecProceduresService.getById(id);
@@ -78,7 +77,7 @@ public class RefWeldSpecProceduresController {
     @ApiOperation(value = "Updates the RefWeldSpecProcedures instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefWeldSpecProcedures editRefWeldSpecProcedures(@PathVariable("id") Integer id, @RequestBody RefWeldSpecProcedures refWeldSpecProcedures) throws EntityNotFoundException {
+    public RefWeldSpecProcedures editRefWeldSpecProcedures(@PathVariable("id") Integer id, @RequestBody RefWeldSpecProcedures refWeldSpecProcedures) {
         LOGGER.debug("Editing RefWeldSpecProcedures with id: {}" , refWeldSpecProcedures.getId());
 
         refWeldSpecProcedures.setId(id);
@@ -91,7 +90,7 @@ public class RefWeldSpecProceduresController {
     @ApiOperation(value = "Deletes the RefWeldSpecProcedures instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefWeldSpecProcedures(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefWeldSpecProcedures(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefWeldSpecProcedures with id: {}" , id);
 
         RefWeldSpecProcedures deletedRefWeldSpecProcedures = refWeldSpecProceduresService.delete(id);
@@ -107,7 +106,7 @@ public class RefWeldSpecProceduresController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefWeldSpecProcedures> searchRefWeldSpecProceduresByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefWeldSpecProcedures list");
+        LOGGER.debug("Rendering RefWeldSpecProcedures list by query filter:{}", (Object) queryFilters);
         return refWeldSpecProceduresService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class RefWeldSpecProceduresController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefWeldSpecProcedures> findRefWeldSpecProcedures(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefWeldSpecProcedures list");
+        LOGGER.debug("Rendering RefWeldSpecProcedures list by filter:", query);
         return refWeldSpecProceduresService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class RefWeldSpecProceduresController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefWeldSpecProcedures> filterRefWeldSpecProcedures(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefWeldSpecProcedures list");
+        LOGGER.debug("Rendering RefWeldSpecProcedures list by filter", query);
         return refWeldSpecProceduresService.findAll(query, pageable);
     }
 

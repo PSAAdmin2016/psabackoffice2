@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class SteelMiscController {
     @ApiOperation(value = "Returns the SteelMisc instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SteelMisc getSteelMisc(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public SteelMisc getSteelMisc(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting SteelMisc with id: {}" , id);
 
         SteelMisc foundSteelMisc = steelMiscService.getById(id);
@@ -78,7 +77,7 @@ public class SteelMiscController {
     @ApiOperation(value = "Updates the SteelMisc instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SteelMisc editSteelMisc(@PathVariable("id") Integer id, @RequestBody SteelMisc steelMisc) throws EntityNotFoundException {
+    public SteelMisc editSteelMisc(@PathVariable("id") Integer id, @RequestBody SteelMisc steelMisc) {
         LOGGER.debug("Editing SteelMisc with id: {}" , steelMisc.getActivityId());
 
         steelMisc.setActivityId(id);
@@ -91,7 +90,7 @@ public class SteelMiscController {
     @ApiOperation(value = "Deletes the SteelMisc instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteSteelMisc(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteSteelMisc(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting SteelMisc with id: {}" , id);
 
         SteelMisc deletedSteelMisc = steelMiscService.delete(id);
@@ -107,7 +106,7 @@ public class SteelMiscController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SteelMisc> searchSteelMiscsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering SteelMiscs list");
+        LOGGER.debug("Rendering SteelMiscs list by query filter:{}", (Object) queryFilters);
         return steelMiscService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class SteelMiscController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SteelMisc> findSteelMiscs(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SteelMiscs list");
+        LOGGER.debug("Rendering SteelMiscs list by filter:", query);
         return steelMiscService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class SteelMiscController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SteelMisc> filterSteelMiscs(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SteelMiscs list");
+        LOGGER.debug("Rendering SteelMiscs list by filter", query);
         return steelMiscService.findAll(query, pageable);
     }
 

@@ -193,14 +193,10 @@ public class SubsDetails implements Serializable {
     @PostPersist
     public void onPostPersist() {
         if(submissionActivityStatuses != null) {
-            for(SubmissionActivityStatus submissionActivityStatus : submissionActivityStatuses) {
-                submissionActivityStatus.setSubsDetails(this);
-            }
+            submissionActivityStatuses.forEach(submissionActivityStatus -> submissionActivityStatus.setSubsDetails(this));
         }
         if(subsSignatureses != null) {
-            for(SubsSignatures subsSignatures : subsSignatureses) {
-                subsSignatures.setSubsDetails(this);
-            }
+            subsSignatureses.forEach(subsSignatures -> subsSignatures.setSubsDetails(this));
         }
     }
 

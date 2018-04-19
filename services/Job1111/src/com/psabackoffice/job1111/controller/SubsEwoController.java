@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class SubsEwoController {
     @ApiOperation(value = "Returns the SubsEwo instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SubsEwo getSubsEwo(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public SubsEwo getSubsEwo(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting SubsEwo with id: {}" , id);
 
         SubsEwo foundSubsEwo = subsEwoService.getById(id);
@@ -78,7 +77,7 @@ public class SubsEwoController {
     @ApiOperation(value = "Updates the SubsEwo instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SubsEwo editSubsEwo(@PathVariable("id") Integer id, @RequestBody SubsEwo subsEwo) throws EntityNotFoundException {
+    public SubsEwo editSubsEwo(@PathVariable("id") Integer id, @RequestBody SubsEwo subsEwo) {
         LOGGER.debug("Editing SubsEwo with id: {}" , subsEwo.getId());
 
         subsEwo.setId(id);
@@ -91,7 +90,7 @@ public class SubsEwoController {
     @ApiOperation(value = "Deletes the SubsEwo instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteSubsEwo(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteSubsEwo(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting SubsEwo with id: {}" , id);
 
         SubsEwo deletedSubsEwo = subsEwoService.delete(id);
@@ -107,7 +106,7 @@ public class SubsEwoController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SubsEwo> searchSubsEwosByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering SubsEwos list");
+        LOGGER.debug("Rendering SubsEwos list by query filter:{}", (Object) queryFilters);
         return subsEwoService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class SubsEwoController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SubsEwo> findSubsEwos(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SubsEwos list");
+        LOGGER.debug("Rendering SubsEwos list by filter:", query);
         return subsEwoService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class SubsEwoController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SubsEwo> filterSubsEwos(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SubsEwos list");
+        LOGGER.debug("Rendering SubsEwos list by filter", query);
         return subsEwoService.findAll(query, pageable);
     }
 

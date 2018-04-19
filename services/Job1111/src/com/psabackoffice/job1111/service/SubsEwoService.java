@@ -43,7 +43,7 @@ public interface SubsEwoService {
 	 * @return SubsEwo associated with the given subsewoId.
      * @throws EntityNotFoundException If no SubsEwo is found.
 	 */
-	SubsEwo getById(Integer subsewoId) throws EntityNotFoundException;
+	SubsEwo getById(Integer subsewoId);
 
     /**
 	 * Find and return the SubsEwo by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface SubsEwoService {
 	 * @return The updated SubsEwo.
 	 * @throws EntityNotFoundException if no SubsEwo is found with given input.
 	 */
-	SubsEwo update(@Valid SubsEwo subsEwo) throws EntityNotFoundException;
+	SubsEwo update(@Valid SubsEwo subsEwo);
 
     /**
 	 * Deletes an existing SubsEwo with the given id.
@@ -72,7 +72,7 @@ public interface SubsEwoService {
 	 * @return The deleted SubsEwo.
 	 * @throws EntityNotFoundException if no SubsEwo found with the given id.
 	 */
-	SubsEwo delete(Integer subsewoId) throws EntityNotFoundException;
+	SubsEwo delete(Integer subsewoId);
 
     /**
 	 * Deletes an existing SubsEwo with the given object.

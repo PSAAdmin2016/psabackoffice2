@@ -23,13 +23,13 @@ public class SteelTrackerClassic implements Serializable {
 
     private Integer uid;
     private Integer bidId;
-    private String projectServicesRep;
+    private String projectServicesRep = "1";
     private String ewonumber;
     private String scope;
     private String phase;
     private String stage;
     private String testPackageNumber;
-    private String workPackage;
+    private String workPackage = "0";
     private String costCode;
     private String p6id;
     private String p6description;

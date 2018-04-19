@@ -54,13 +54,13 @@ public class PipeTrackerDetails implements Serializable {
     private String lineNumber;
     private String engDrawingNumber;
     private Short sheetNumber;
-    private Short drawingRev;
+    private Short drawingRev = 0;
     private String description;
-    private String activityType;
-    private String activitySubType;
-    private String clientMaterialSpec;
-    private String performanceMaterialSpec;
-    private Float size;
+    private String activityType = "0";
+    private String activitySubType = "0";
+    private String clientMaterialSpec = "1";
+    private String performanceMaterialSpec = "1";
+    private Float size = 0.00F;
     private String system;
     private String service;
     private String componentNumber;
@@ -511,9 +511,7 @@ public class PipeTrackerDetails implements Serializable {
     @PostPersist
     public void onPostPersist() {
         if(pipeFas != null) {
-            for(PipeFa pipeFa : pipeFas) {
-                pipeFa.setPipeTrackerDetails(this);
-            }
+            pipeFas.forEach(pipeFa -> pipeFa.setPipeTrackerDetails(this));
         }
     }
 

@@ -59,7 +59,7 @@ public class PipeTestingServiceImpl implements PipeTestingService {
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public PipeTesting getById(Integer pipetestingId) throws EntityNotFoundException {
+	public PipeTesting getById(Integer pipetestingId) {
         LOGGER.debug("Finding PipeTesting by id: {}", pipetestingId);
         return this.wmGenericDao.findById(pipetestingId);
     }
@@ -79,7 +79,7 @@ public class PipeTestingServiceImpl implements PipeTestingService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public PipeTesting update(PipeTesting pipeTesting) throws EntityNotFoundException {
+	public PipeTesting update(PipeTesting pipeTesting) {
         LOGGER.debug("Updating PipeTesting with information: {}", pipeTesting);
 
         this.wmGenericDao.update(pipeTesting);
@@ -90,7 +90,7 @@ public class PipeTestingServiceImpl implements PipeTestingService {
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public PipeTesting delete(Integer pipetestingId) throws EntityNotFoundException {
+	public PipeTesting delete(Integer pipetestingId) {
         LOGGER.debug("Deleting PipeTesting with id: {}", pipetestingId);
         PipeTesting deleted = this.wmGenericDao.findById(pipetestingId);
         if (deleted == null) {

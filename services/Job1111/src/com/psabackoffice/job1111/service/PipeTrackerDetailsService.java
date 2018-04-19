@@ -44,7 +44,7 @@ public interface PipeTrackerDetailsService {
 	 * @return PipeTrackerDetails associated with the given pipetrackerdetailsId.
      * @throws EntityNotFoundException If no PipeTrackerDetails is found.
 	 */
-	PipeTrackerDetails getById(Integer pipetrackerdetailsId) throws EntityNotFoundException;
+	PipeTrackerDetails getById(Integer pipetrackerdetailsId);
 
     /**
 	 * Find and return the PipeTrackerDetails by given id if exists, returns null otherwise.
@@ -64,7 +64,7 @@ public interface PipeTrackerDetailsService {
 	 * @return The updated PipeTrackerDetails.
 	 * @throws EntityNotFoundException if no PipeTrackerDetails is found with given input.
 	 */
-	PipeTrackerDetails update(@Valid PipeTrackerDetails pipeTrackerDetails) throws EntityNotFoundException;
+	PipeTrackerDetails update(@Valid PipeTrackerDetails pipeTrackerDetails);
 
     /**
 	 * Deletes an existing PipeTrackerDetails with the given id.
@@ -73,7 +73,7 @@ public interface PipeTrackerDetailsService {
 	 * @return The deleted PipeTrackerDetails.
 	 * @throws EntityNotFoundException if no PipeTrackerDetails found with the given id.
 	 */
-	PipeTrackerDetails delete(Integer pipetrackerdetailsId) throws EntityNotFoundException;
+	PipeTrackerDetails delete(Integer pipetrackerdetailsId);
 
     /**
 	 * Deletes an existing PipeTrackerDetails with the given object.

@@ -43,7 +43,7 @@ public interface CivilTrackerClassicService {
 	 * @return CivilTrackerClassic associated with the given civiltrackerclassicId.
      * @throws EntityNotFoundException If no CivilTrackerClassic is found.
 	 */
-	CivilTrackerClassic getById(Integer civiltrackerclassicId) throws EntityNotFoundException;
+	CivilTrackerClassic getById(Integer civiltrackerclassicId);
 
     /**
 	 * Find and return the CivilTrackerClassic by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface CivilTrackerClassicService {
 	 * @return The updated CivilTrackerClassic.
 	 * @throws EntityNotFoundException if no CivilTrackerClassic is found with given input.
 	 */
-	CivilTrackerClassic update(@Valid CivilTrackerClassic civilTrackerClassic) throws EntityNotFoundException;
+	CivilTrackerClassic update(@Valid CivilTrackerClassic civilTrackerClassic);
 
     /**
 	 * Deletes an existing CivilTrackerClassic with the given id.
@@ -72,7 +72,7 @@ public interface CivilTrackerClassicService {
 	 * @return The deleted CivilTrackerClassic.
 	 * @throws EntityNotFoundException if no CivilTrackerClassic found with the given id.
 	 */
-	CivilTrackerClassic delete(Integer civiltrackerclassicId) throws EntityNotFoundException;
+	CivilTrackerClassic delete(Integer civiltrackerclassicId);
 
     /**
 	 * Deletes an existing CivilTrackerClassic with the given object.

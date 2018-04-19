@@ -43,7 +43,7 @@ public interface EquipFaService {
 	 * @return EquipFa associated with the given equipfaId.
      * @throws EntityNotFoundException If no EquipFa is found.
 	 */
-	EquipFa getById(Integer equipfaId) throws EntityNotFoundException;
+	EquipFa getById(Integer equipfaId);
 
     /**
 	 * Find and return the EquipFa by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface EquipFaService {
 	 * @return The updated EquipFa.
 	 * @throws EntityNotFoundException if no EquipFa is found with given input.
 	 */
-	EquipFa update(@Valid EquipFa equipFa) throws EntityNotFoundException;
+	EquipFa update(@Valid EquipFa equipFa);
 
     /**
 	 * Deletes an existing EquipFa with the given id.
@@ -72,7 +72,7 @@ public interface EquipFaService {
 	 * @return The deleted EquipFa.
 	 * @throws EntityNotFoundException if no EquipFa found with the given id.
 	 */
-	EquipFa delete(Integer equipfaId) throws EntityNotFoundException;
+	EquipFa delete(Integer equipfaId);
 
     /**
 	 * Deletes an existing EquipFa with the given object.

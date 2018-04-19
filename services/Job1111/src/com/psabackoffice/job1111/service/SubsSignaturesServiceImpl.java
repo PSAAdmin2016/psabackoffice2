@@ -59,7 +59,7 @@ public class SubsSignaturesServiceImpl implements SubsSignaturesService {
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public SubsSignatures getById(Integer subssignaturesId) throws EntityNotFoundException {
+	public SubsSignatures getById(Integer subssignaturesId) {
         LOGGER.debug("Finding SubsSignatures by id: {}", subssignaturesId);
         return this.wmGenericDao.findById(subssignaturesId);
     }
@@ -79,7 +79,7 @@ public class SubsSignaturesServiceImpl implements SubsSignaturesService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public SubsSignatures update(SubsSignatures subsSignatures) throws EntityNotFoundException {
+	public SubsSignatures update(SubsSignatures subsSignatures) {
         LOGGER.debug("Updating SubsSignatures with information: {}", subsSignatures);
 
         this.wmGenericDao.update(subsSignatures);
@@ -90,7 +90,7 @@ public class SubsSignaturesServiceImpl implements SubsSignaturesService {
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public SubsSignatures delete(Integer subssignaturesId) throws EntityNotFoundException {
+	public SubsSignatures delete(Integer subssignaturesId) {
         LOGGER.debug("Deleting SubsSignatures with id: {}", subssignaturesId);
         SubsSignatures deleted = this.wmGenericDao.findById(subssignaturesId);
         if (deleted == null) {

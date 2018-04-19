@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -68,7 +67,7 @@ public class SteelTrackerDetailsController {
     @ApiOperation(value = "Returns the SteelTrackerDetails instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SteelTrackerDetails getSteelTrackerDetails(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public SteelTrackerDetails getSteelTrackerDetails(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting SteelTrackerDetails with id: {}" , id);
 
         SteelTrackerDetails foundSteelTrackerDetails = steelTrackerDetailsService.getById(id);
@@ -80,7 +79,7 @@ public class SteelTrackerDetailsController {
     @ApiOperation(value = "Updates the SteelTrackerDetails instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SteelTrackerDetails editSteelTrackerDetails(@PathVariable("id") Integer id, @RequestBody SteelTrackerDetails steelTrackerDetails) throws EntityNotFoundException {
+    public SteelTrackerDetails editSteelTrackerDetails(@PathVariable("id") Integer id, @RequestBody SteelTrackerDetails steelTrackerDetails) {
         LOGGER.debug("Editing SteelTrackerDetails with id: {}" , steelTrackerDetails.getUid());
 
         steelTrackerDetails.setUid(id);
@@ -93,7 +92,7 @@ public class SteelTrackerDetailsController {
     @ApiOperation(value = "Deletes the SteelTrackerDetails instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteSteelTrackerDetails(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteSteelTrackerDetails(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting SteelTrackerDetails with id: {}" , id);
 
         SteelTrackerDetails deletedSteelTrackerDetails = steelTrackerDetailsService.delete(id);
@@ -109,7 +108,7 @@ public class SteelTrackerDetailsController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SteelTrackerDetails> searchSteelTrackerDetailsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering SteelTrackerDetails list");
+        LOGGER.debug("Rendering SteelTrackerDetails list by query filter:{}", (Object) queryFilters);
         return steelTrackerDetailsService.findAll(queryFilters, pageable);
     }
 
@@ -117,7 +116,7 @@ public class SteelTrackerDetailsController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SteelTrackerDetails> findSteelTrackerDetails(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SteelTrackerDetails list");
+        LOGGER.debug("Rendering SteelTrackerDetails list by filter:", query);
         return steelTrackerDetailsService.findAll(query, pageable);
     }
 
@@ -125,7 +124,7 @@ public class SteelTrackerDetailsController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SteelTrackerDetails> filterSteelTrackerDetails(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SteelTrackerDetails list");
+        LOGGER.debug("Rendering SteelTrackerDetails list by filter", query);
         return steelTrackerDetailsService.findAll(query, pageable);
     }
 

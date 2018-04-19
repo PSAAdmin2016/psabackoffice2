@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class SteelTrackerClassicController {
     @ApiOperation(value = "Returns the SteelTrackerClassic instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SteelTrackerClassic getSteelTrackerClassic(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public SteelTrackerClassic getSteelTrackerClassic(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting SteelTrackerClassic with id: {}" , id);
 
         SteelTrackerClassic foundSteelTrackerClassic = steelTrackerClassicService.getById(id);
@@ -78,7 +77,7 @@ public class SteelTrackerClassicController {
     @ApiOperation(value = "Updates the SteelTrackerClassic instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SteelTrackerClassic editSteelTrackerClassic(@PathVariable("id") Integer id, @RequestBody SteelTrackerClassic steelTrackerClassic) throws EntityNotFoundException {
+    public SteelTrackerClassic editSteelTrackerClassic(@PathVariable("id") Integer id, @RequestBody SteelTrackerClassic steelTrackerClassic) {
         LOGGER.debug("Editing SteelTrackerClassic with id: {}" , steelTrackerClassic.getUid());
 
         steelTrackerClassic.setUid(id);
@@ -91,7 +90,7 @@ public class SteelTrackerClassicController {
     @ApiOperation(value = "Deletes the SteelTrackerClassic instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteSteelTrackerClassic(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteSteelTrackerClassic(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting SteelTrackerClassic with id: {}" , id);
 
         SteelTrackerClassic deletedSteelTrackerClassic = steelTrackerClassicService.delete(id);
@@ -107,7 +106,7 @@ public class SteelTrackerClassicController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SteelTrackerClassic> searchSteelTrackerClassicsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering SteelTrackerClassics list");
+        LOGGER.debug("Rendering SteelTrackerClassics list by query filter:{}", (Object) queryFilters);
         return steelTrackerClassicService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class SteelTrackerClassicController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SteelTrackerClassic> findSteelTrackerClassics(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SteelTrackerClassics list");
+        LOGGER.debug("Rendering SteelTrackerClassics list by filter:", query);
         return steelTrackerClassicService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class SteelTrackerClassicController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SteelTrackerClassic> filterSteelTrackerClassics(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SteelTrackerClassics list");
+        LOGGER.debug("Rendering SteelTrackerClassics list by filter", query);
         return steelTrackerClassicService.findAll(query, pageable);
     }
 

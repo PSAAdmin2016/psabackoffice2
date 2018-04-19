@@ -116,10 +116,11 @@ Application.$controller("dialogRejectionController", ["$scope",
             $scope.Variables.serviceUnLockSASActivity.invoke();
 
             $scope.$parent.$parent.Variables.serviceUpdateSAS.setInput("ActivityStatusID", 6);
+            $scope.$parent.$parent.Variables.serviceUpdateSAS.setInput("RejectID", $scope.Widgets.formReject.formWidgets.selectRejectReason.datavalue);
             $scope.$parent.$parent.Variables.serviceUpdateSAS.setInput("BidID", null);
             $scope.$parent.$parent.Variables.serviceUpdateSAS.invoke(); //Updates GetActivitiesPendingApproval
 
-            $scope.$parent.$parent.Variables.serviceCreateSASNote.setInput("Note", $scope.Widgets.textareaSASNoteReject.datavalue);
+            $scope.$parent.$parent.Variables.serviceCreateSASNote.setInput("Note", $scope.Widgets.formReject.formWidgets.textareaSASNoteReject.datavalue);
             $scope.$parent.$parent.Variables.serviceCreateSASNote.invoke();
         };
 

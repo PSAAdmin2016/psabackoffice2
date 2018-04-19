@@ -59,7 +59,7 @@ public class SasnotesServiceImpl implements SasnotesService {
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public Sasnotes getById(Integer sasnotesId) throws EntityNotFoundException {
+	public Sasnotes getById(Integer sasnotesId) {
         LOGGER.debug("Finding Sasnotes by id: {}", sasnotesId);
         return this.wmGenericDao.findById(sasnotesId);
     }
@@ -79,7 +79,7 @@ public class SasnotesServiceImpl implements SasnotesService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public Sasnotes update(Sasnotes sasnotes) throws EntityNotFoundException {
+	public Sasnotes update(Sasnotes sasnotes) {
         LOGGER.debug("Updating Sasnotes with information: {}", sasnotes);
 
         this.wmGenericDao.update(sasnotes);
@@ -90,7 +90,7 @@ public class SasnotesServiceImpl implements SasnotesService {
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public Sasnotes delete(Integer sasnotesId) throws EntityNotFoundException {
+	public Sasnotes delete(Integer sasnotesId) {
         LOGGER.debug("Deleting Sasnotes with id: {}", sasnotesId);
         Sasnotes deleted = this.wmGenericDao.findById(sasnotesId);
         if (deleted == null) {

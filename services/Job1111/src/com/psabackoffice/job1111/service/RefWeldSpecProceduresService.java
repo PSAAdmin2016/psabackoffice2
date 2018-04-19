@@ -43,7 +43,7 @@ public interface RefWeldSpecProceduresService {
 	 * @return RefWeldSpecProcedures associated with the given refweldspecproceduresId.
      * @throws EntityNotFoundException If no RefWeldSpecProcedures is found.
 	 */
-	RefWeldSpecProcedures getById(Integer refweldspecproceduresId) throws EntityNotFoundException;
+	RefWeldSpecProcedures getById(Integer refweldspecproceduresId);
 
     /**
 	 * Find and return the RefWeldSpecProcedures by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface RefWeldSpecProceduresService {
 	 * @return The updated RefWeldSpecProcedures.
 	 * @throws EntityNotFoundException if no RefWeldSpecProcedures is found with given input.
 	 */
-	RefWeldSpecProcedures update(@Valid RefWeldSpecProcedures refWeldSpecProcedures) throws EntityNotFoundException;
+	RefWeldSpecProcedures update(@Valid RefWeldSpecProcedures refWeldSpecProcedures);
 
     /**
 	 * Deletes an existing RefWeldSpecProcedures with the given id.
@@ -72,7 +72,7 @@ public interface RefWeldSpecProceduresService {
 	 * @return The deleted RefWeldSpecProcedures.
 	 * @throws EntityNotFoundException if no RefWeldSpecProcedures found with the given id.
 	 */
-	RefWeldSpecProcedures delete(Integer refweldspecproceduresId) throws EntityNotFoundException;
+	RefWeldSpecProcedures delete(Integer refweldspecproceduresId);
 
     /**
 	 * Deletes an existing RefWeldSpecProcedures with the given object.

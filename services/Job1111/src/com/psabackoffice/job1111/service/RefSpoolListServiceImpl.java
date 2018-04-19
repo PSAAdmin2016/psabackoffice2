@@ -59,7 +59,7 @@ public class RefSpoolListServiceImpl implements RefSpoolListService {
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public RefSpoolList getById(String refspoollistId) throws EntityNotFoundException {
+	public RefSpoolList getById(String refspoollistId) {
         LOGGER.debug("Finding RefSpoolList by id: {}", refspoollistId);
         return this.wmGenericDao.findById(refspoollistId);
     }
@@ -79,7 +79,7 @@ public class RefSpoolListServiceImpl implements RefSpoolListService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public RefSpoolList update(RefSpoolList refSpoolList) throws EntityNotFoundException {
+	public RefSpoolList update(RefSpoolList refSpoolList) {
         LOGGER.debug("Updating RefSpoolList with information: {}", refSpoolList);
 
         this.wmGenericDao.update(refSpoolList);
@@ -90,7 +90,7 @@ public class RefSpoolListServiceImpl implements RefSpoolListService {
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public RefSpoolList delete(String refspoollistId) throws EntityNotFoundException {
+	public RefSpoolList delete(String refspoollistId) {
         LOGGER.debug("Deleting RefSpoolList with id: {}", refspoollistId);
         RefSpoolList deleted = this.wmGenericDao.findById(refspoollistId);
         if (deleted == null) {

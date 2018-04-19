@@ -10916,7 +10916,7 @@
     "name" : "UpdateSASBidID",
     "description" : "Update the SAS BidIDAssigned column as well as set status and LastModified.  (this is used for the Assign button)",
     "version" : "V2",
-    "queryString" : "UPDATE SubmissionActivityStatus sas\nSET \nsas.fk_ActivityStatus = :ActivityStatusID,\nsas.fk_LastModifiedBy = :UserID,\nsas.fk_BidIDAssigned = :BidID \nWHERE sas.ActivityID = :ActivityID",
+    "queryString" : "UPDATE SubmissionActivityStatus sas\nSET \nsas.fk_ActivityStatus = :ActivityStatusID,\nsas.RejectID = :RejectID,\nsas.fk_LastModifiedBy = :UserID,\nsas.fk_BidIDAssigned = :BidID \nWHERE sas.ActivityID = :ActivityID",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -10929,6 +10929,14 @@
       "variableName" : "",
       "testValue" : "2",
       "required" : true
+    }, {
+      "name" : "RejectID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "7",
+      "required" : false
     }, {
       "name" : "UserID",
       "type" : "integer",

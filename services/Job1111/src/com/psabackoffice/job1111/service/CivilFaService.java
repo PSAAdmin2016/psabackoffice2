@@ -43,7 +43,7 @@ public interface CivilFaService {
 	 * @return CivilFa associated with the given civilfaId.
      * @throws EntityNotFoundException If no CivilFa is found.
 	 */
-	CivilFa getById(Integer civilfaId) throws EntityNotFoundException;
+	CivilFa getById(Integer civilfaId);
 
     /**
 	 * Find and return the CivilFa by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface CivilFaService {
 	 * @return The updated CivilFa.
 	 * @throws EntityNotFoundException if no CivilFa is found with given input.
 	 */
-	CivilFa update(@Valid CivilFa civilFa) throws EntityNotFoundException;
+	CivilFa update(@Valid CivilFa civilFa);
 
     /**
 	 * Deletes an existing CivilFa with the given id.
@@ -72,7 +72,7 @@ public interface CivilFaService {
 	 * @return The deleted CivilFa.
 	 * @throws EntityNotFoundException if no CivilFa found with the given id.
 	 */
-	CivilFa delete(Integer civilfaId) throws EntityNotFoundException;
+	CivilFa delete(Integer civilfaId);
 
     /**
 	 * Deletes an existing CivilFa with the given object.

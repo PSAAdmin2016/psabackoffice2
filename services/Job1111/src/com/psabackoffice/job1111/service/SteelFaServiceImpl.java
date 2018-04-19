@@ -59,7 +59,7 @@ public class SteelFaServiceImpl implements SteelFaService {
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public SteelFa getById(Integer steelfaId) throws EntityNotFoundException {
+	public SteelFa getById(Integer steelfaId) {
         LOGGER.debug("Finding SteelFa by id: {}", steelfaId);
         return this.wmGenericDao.findById(steelfaId);
     }
@@ -79,7 +79,7 @@ public class SteelFaServiceImpl implements SteelFaService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public SteelFa update(SteelFa steelFa) throws EntityNotFoundException {
+	public SteelFa update(SteelFa steelFa) {
         LOGGER.debug("Updating SteelFa with information: {}", steelFa);
 
         this.wmGenericDao.update(steelFa);
@@ -90,7 +90,7 @@ public class SteelFaServiceImpl implements SteelFaService {
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public SteelFa delete(Integer steelfaId) throws EntityNotFoundException {
+	public SteelFa delete(Integer steelfaId) {
         LOGGER.debug("Deleting SteelFa with id: {}", steelfaId);
         SteelFa deleted = this.wmGenericDao.findById(steelfaId);
         if (deleted == null) {

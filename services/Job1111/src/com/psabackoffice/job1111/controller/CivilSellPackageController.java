@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class CivilSellPackageController {
     @ApiOperation(value = "Returns the CivilSellPackage instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public CivilSellPackage getCivilSellPackage(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public CivilSellPackage getCivilSellPackage(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting CivilSellPackage with id: {}" , id);
 
         CivilSellPackage foundCivilSellPackage = civilSellPackageService.getById(id);
@@ -78,7 +77,7 @@ public class CivilSellPackageController {
     @ApiOperation(value = "Updates the CivilSellPackage instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public CivilSellPackage editCivilSellPackage(@PathVariable("id") Integer id, @RequestBody CivilSellPackage civilSellPackage) throws EntityNotFoundException {
+    public CivilSellPackage editCivilSellPackage(@PathVariable("id") Integer id, @RequestBody CivilSellPackage civilSellPackage) {
         LOGGER.debug("Editing CivilSellPackage with id: {}" , civilSellPackage.getActivityId());
 
         civilSellPackage.setActivityId(id);
@@ -91,7 +90,7 @@ public class CivilSellPackageController {
     @ApiOperation(value = "Deletes the CivilSellPackage instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteCivilSellPackage(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteCivilSellPackage(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting CivilSellPackage with id: {}" , id);
 
         CivilSellPackage deletedCivilSellPackage = civilSellPackageService.delete(id);
@@ -107,7 +106,7 @@ public class CivilSellPackageController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<CivilSellPackage> searchCivilSellPackagesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering CivilSellPackages list");
+        LOGGER.debug("Rendering CivilSellPackages list by query filter:{}", (Object) queryFilters);
         return civilSellPackageService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class CivilSellPackageController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<CivilSellPackage> findCivilSellPackages(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering CivilSellPackages list");
+        LOGGER.debug("Rendering CivilSellPackages list by filter:", query);
         return civilSellPackageService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class CivilSellPackageController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<CivilSellPackage> filterCivilSellPackages(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering CivilSellPackages list");
+        LOGGER.debug("Rendering CivilSellPackages list by filter", query);
         return civilSellPackageService.findAll(query, pageable);
     }
 

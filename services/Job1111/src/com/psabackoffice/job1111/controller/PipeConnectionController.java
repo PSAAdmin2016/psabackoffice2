@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class PipeConnectionController {
     @ApiOperation(value = "Returns the PipeConnection instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public PipeConnection getPipeConnection(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public PipeConnection getPipeConnection(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting PipeConnection with id: {}" , id);
 
         PipeConnection foundPipeConnection = pipeConnectionService.getById(id);
@@ -78,7 +77,7 @@ public class PipeConnectionController {
     @ApiOperation(value = "Updates the PipeConnection instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public PipeConnection editPipeConnection(@PathVariable("id") Integer id, @RequestBody PipeConnection pipeConnection) throws EntityNotFoundException {
+    public PipeConnection editPipeConnection(@PathVariable("id") Integer id, @RequestBody PipeConnection pipeConnection) {
         LOGGER.debug("Editing PipeConnection with id: {}" , pipeConnection.getActivityId());
 
         pipeConnection.setActivityId(id);
@@ -91,7 +90,7 @@ public class PipeConnectionController {
     @ApiOperation(value = "Deletes the PipeConnection instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deletePipeConnection(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deletePipeConnection(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting PipeConnection with id: {}" , id);
 
         PipeConnection deletedPipeConnection = pipeConnectionService.delete(id);
@@ -107,7 +106,7 @@ public class PipeConnectionController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeConnection> searchPipeConnectionsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering PipeConnections list");
+        LOGGER.debug("Rendering PipeConnections list by query filter:{}", (Object) queryFilters);
         return pipeConnectionService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class PipeConnectionController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeConnection> findPipeConnections(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering PipeConnections list");
+        LOGGER.debug("Rendering PipeConnections list by filter:", query);
         return pipeConnectionService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class PipeConnectionController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeConnection> filterPipeConnections(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering PipeConnections list");
+        LOGGER.debug("Rendering PipeConnections list by filter", query);
         return pipeConnectionService.findAll(query, pageable);
     }
 

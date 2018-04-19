@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class WeatherHistoryController {
     @ApiOperation(value = "Returns the WeatherHistory instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public WeatherHistory getWeatherHistory(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public WeatherHistory getWeatherHistory(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting WeatherHistory with id: {}" , id);
 
         WeatherHistory foundWeatherHistory = weatherHistoryService.getById(id);
@@ -78,7 +77,7 @@ public class WeatherHistoryController {
     @ApiOperation(value = "Updates the WeatherHistory instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public WeatherHistory editWeatherHistory(@PathVariable("id") Integer id, @RequestBody WeatherHistory weatherHistory) throws EntityNotFoundException {
+    public WeatherHistory editWeatherHistory(@PathVariable("id") Integer id, @RequestBody WeatherHistory weatherHistory) {
         LOGGER.debug("Editing WeatherHistory with id: {}" , weatherHistory.getId());
 
         weatherHistory.setId(id);
@@ -91,7 +90,7 @@ public class WeatherHistoryController {
     @ApiOperation(value = "Deletes the WeatherHistory instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteWeatherHistory(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteWeatherHistory(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting WeatherHistory with id: {}" , id);
 
         WeatherHistory deletedWeatherHistory = weatherHistoryService.delete(id);
@@ -107,7 +106,7 @@ public class WeatherHistoryController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<WeatherHistory> searchWeatherHistoriesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering WeatherHistories list");
+        LOGGER.debug("Rendering WeatherHistories list by query filter:{}", (Object) queryFilters);
         return weatherHistoryService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class WeatherHistoryController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<WeatherHistory> findWeatherHistories(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering WeatherHistories list");
+        LOGGER.debug("Rendering WeatherHistories list by filter:", query);
         return weatherHistoryService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class WeatherHistoryController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<WeatherHistory> filterWeatherHistories(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering WeatherHistories list");
+        LOGGER.debug("Rendering WeatherHistories list by filter", query);
         return weatherHistoryService.findAll(query, pageable);
     }
 

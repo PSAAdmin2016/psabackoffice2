@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -68,7 +67,7 @@ public class SubsDetailsController {
     @ApiOperation(value = "Returns the SubsDetails instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SubsDetails getSubsDetails(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public SubsDetails getSubsDetails(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting SubsDetails with id: {}" , id);
 
         SubsDetails foundSubsDetails = subsDetailsService.getById(id);
@@ -80,7 +79,7 @@ public class SubsDetailsController {
     @ApiOperation(value = "Updates the SubsDetails instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SubsDetails editSubsDetails(@PathVariable("id") Integer id, @RequestBody SubsDetails subsDetails) throws EntityNotFoundException {
+    public SubsDetails editSubsDetails(@PathVariable("id") Integer id, @RequestBody SubsDetails subsDetails) {
         LOGGER.debug("Editing SubsDetails with id: {}" , subsDetails.getSubmissionId());
 
         subsDetails.setSubmissionId(id);
@@ -93,7 +92,7 @@ public class SubsDetailsController {
     @ApiOperation(value = "Deletes the SubsDetails instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteSubsDetails(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteSubsDetails(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting SubsDetails with id: {}" , id);
 
         SubsDetails deletedSubsDetails = subsDetailsService.delete(id);
@@ -109,7 +108,7 @@ public class SubsDetailsController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SubsDetails> searchSubsDetailsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering SubsDetails list");
+        LOGGER.debug("Rendering SubsDetails list by query filter:{}", (Object) queryFilters);
         return subsDetailsService.findAll(queryFilters, pageable);
     }
 
@@ -117,7 +116,7 @@ public class SubsDetailsController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SubsDetails> findSubsDetails(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SubsDetails list");
+        LOGGER.debug("Rendering SubsDetails list by filter:", query);
         return subsDetailsService.findAll(query, pageable);
     }
 
@@ -125,7 +124,7 @@ public class SubsDetailsController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SubsDetails> filterSubsDetails(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SubsDetails list");
+        LOGGER.debug("Rendering SubsDetails list by filter", query);
         return subsDetailsService.findAll(query, pageable);
     }
 

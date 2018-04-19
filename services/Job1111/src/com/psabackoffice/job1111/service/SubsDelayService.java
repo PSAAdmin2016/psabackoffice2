@@ -43,7 +43,7 @@ public interface SubsDelayService {
 	 * @return SubsDelay associated with the given subsdelayId.
      * @throws EntityNotFoundException If no SubsDelay is found.
 	 */
-	SubsDelay getById(Integer subsdelayId) throws EntityNotFoundException;
+	SubsDelay getById(Integer subsdelayId);
 
     /**
 	 * Find and return the SubsDelay by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface SubsDelayService {
 	 * @return The updated SubsDelay.
 	 * @throws EntityNotFoundException if no SubsDelay is found with given input.
 	 */
-	SubsDelay update(@Valid SubsDelay subsDelay) throws EntityNotFoundException;
+	SubsDelay update(@Valid SubsDelay subsDelay);
 
     /**
 	 * Deletes an existing SubsDelay with the given id.
@@ -72,7 +72,7 @@ public interface SubsDelayService {
 	 * @return The deleted SubsDelay.
 	 * @throws EntityNotFoundException if no SubsDelay found with the given id.
 	 */
-	SubsDelay delete(Integer subsdelayId) throws EntityNotFoundException;
+	SubsDelay delete(Integer subsdelayId);
 
     /**
 	 * Deletes an existing SubsDelay with the given object.

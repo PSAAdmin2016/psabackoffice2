@@ -43,7 +43,7 @@ public interface SteelTrackerClassicService {
 	 * @return SteelTrackerClassic associated with the given steeltrackerclassicId.
      * @throws EntityNotFoundException If no SteelTrackerClassic is found.
 	 */
-	SteelTrackerClassic getById(Integer steeltrackerclassicId) throws EntityNotFoundException;
+	SteelTrackerClassic getById(Integer steeltrackerclassicId);
 
     /**
 	 * Find and return the SteelTrackerClassic by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface SteelTrackerClassicService {
 	 * @return The updated SteelTrackerClassic.
 	 * @throws EntityNotFoundException if no SteelTrackerClassic is found with given input.
 	 */
-	SteelTrackerClassic update(@Valid SteelTrackerClassic steelTrackerClassic) throws EntityNotFoundException;
+	SteelTrackerClassic update(@Valid SteelTrackerClassic steelTrackerClassic);
 
     /**
 	 * Deletes an existing SteelTrackerClassic with the given id.
@@ -72,7 +72,7 @@ public interface SteelTrackerClassicService {
 	 * @return The deleted SteelTrackerClassic.
 	 * @throws EntityNotFoundException if no SteelTrackerClassic found with the given id.
 	 */
-	SteelTrackerClassic delete(Integer steeltrackerclassicId) throws EntityNotFoundException;
+	SteelTrackerClassic delete(Integer steeltrackerclassicId);
 
     /**
 	 * Deletes an existing SteelTrackerClassic with the given object.

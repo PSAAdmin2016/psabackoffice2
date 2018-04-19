@@ -59,7 +59,7 @@ public class WeatherHistoryServiceImpl implements WeatherHistoryService {
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public WeatherHistory getById(Integer weatherhistoryId) throws EntityNotFoundException {
+	public WeatherHistory getById(Integer weatherhistoryId) {
         LOGGER.debug("Finding WeatherHistory by id: {}", weatherhistoryId);
         return this.wmGenericDao.findById(weatherhistoryId);
     }
@@ -79,7 +79,7 @@ public class WeatherHistoryServiceImpl implements WeatherHistoryService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public WeatherHistory update(WeatherHistory weatherHistory) throws EntityNotFoundException {
+	public WeatherHistory update(WeatherHistory weatherHistory) {
         LOGGER.debug("Updating WeatherHistory with information: {}", weatherHistory);
 
         this.wmGenericDao.update(weatherHistory);
@@ -90,7 +90,7 @@ public class WeatherHistoryServiceImpl implements WeatherHistoryService {
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public WeatherHistory delete(Integer weatherhistoryId) throws EntityNotFoundException {
+	public WeatherHistory delete(Integer weatherhistoryId) {
         LOGGER.debug("Deleting WeatherHistory with id: {}", weatherhistoryId);
         WeatherHistory deleted = this.wmGenericDao.findById(weatherhistoryId);
         if (deleted == null) {

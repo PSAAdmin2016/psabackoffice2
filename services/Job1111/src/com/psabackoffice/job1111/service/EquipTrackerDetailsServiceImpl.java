@@ -68,7 +68,7 @@ public class EquipTrackerDetailsServiceImpl implements EquipTrackerDetailsServic
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public EquipTrackerDetails getById(Integer equiptrackerdetailsId) throws EntityNotFoundException {
+	public EquipTrackerDetails getById(Integer equiptrackerdetailsId) {
         LOGGER.debug("Finding EquipTrackerDetails by id: {}", equiptrackerdetailsId);
         return this.wmGenericDao.findById(equiptrackerdetailsId);
     }
@@ -88,17 +88,12 @@ public class EquipTrackerDetailsServiceImpl implements EquipTrackerDetailsServic
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public EquipTrackerDetails update(EquipTrackerDetails equipTrackerDetails) throws EntityNotFoundException {
+	public EquipTrackerDetails update(EquipTrackerDetails equipTrackerDetails) {
         LOGGER.debug("Updating EquipTrackerDetails with information: {}", equipTrackerDetails);
 
         List<EquipFa> equipFas = equipTrackerDetails.getEquipFas();
-
         if(equipFas != null && Hibernate.isInitialized(equipFas)) {
-            if(!equipFas.isEmpty()) {
-                for(EquipFa _equipFa : equipFas) {
-                    _equipFa.setEquipTrackerDetails(equipTrackerDetails);
-                }
-            }
+            equipFas.forEach(_equipFa -> _equipFa.setEquipTrackerDetails(equipTrackerDetails));
         }
 
         this.wmGenericDao.update(equipTrackerDetails);
@@ -108,11 +103,9 @@ public class EquipTrackerDetailsServiceImpl implements EquipTrackerDetailsServic
         if(equipFas != null && Hibernate.isInitialized(equipFas) && !equipFas.isEmpty()) {
             List<EquipFa> _remainingChildren = wmGenericDao.execute(
                 session -> DaoUtils.findAllRemainingChildren(session, EquipFa.class,
-                        new DaoUtils.ChildrenFilter("equipTrackerDetails", equipTrackerDetails, equipFas)));
+                        new DaoUtils.ChildrenFilter<>("equipTrackerDetails", equipTrackerDetails, equipFas)));
             LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
-            for(EquipFa _equipFa : _remainingChildren) {
-                equipFaService.delete(_equipFa);
-            }
+            _remainingChildren.forEach(_equipFa -> equipFaService.delete(_equipFa));
             equipTrackerDetails.setEquipFas(equipFas);
         }
 
@@ -121,7 +114,7 @@ public class EquipTrackerDetailsServiceImpl implements EquipTrackerDetailsServic
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public EquipTrackerDetails delete(Integer equiptrackerdetailsId) throws EntityNotFoundException {
+	public EquipTrackerDetails delete(Integer equiptrackerdetailsId) {
         LOGGER.debug("Deleting EquipTrackerDetails with id: {}", equiptrackerdetailsId);
         EquipTrackerDetails deleted = this.wmGenericDao.findById(equiptrackerdetailsId);
         if (deleted == null) {

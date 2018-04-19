@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class SteelSellPackageController {
     @ApiOperation(value = "Returns the SteelSellPackage instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SteelSellPackage getSteelSellPackage(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public SteelSellPackage getSteelSellPackage(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting SteelSellPackage with id: {}" , id);
 
         SteelSellPackage foundSteelSellPackage = steelSellPackageService.getById(id);
@@ -78,7 +77,7 @@ public class SteelSellPackageController {
     @ApiOperation(value = "Updates the SteelSellPackage instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SteelSellPackage editSteelSellPackage(@PathVariable("id") Integer id, @RequestBody SteelSellPackage steelSellPackage) throws EntityNotFoundException {
+    public SteelSellPackage editSteelSellPackage(@PathVariable("id") Integer id, @RequestBody SteelSellPackage steelSellPackage) {
         LOGGER.debug("Editing SteelSellPackage with id: {}" , steelSellPackage.getActivityId());
 
         steelSellPackage.setActivityId(id);
@@ -91,7 +90,7 @@ public class SteelSellPackageController {
     @ApiOperation(value = "Deletes the SteelSellPackage instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteSteelSellPackage(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteSteelSellPackage(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting SteelSellPackage with id: {}" , id);
 
         SteelSellPackage deletedSteelSellPackage = steelSellPackageService.delete(id);
@@ -107,7 +106,7 @@ public class SteelSellPackageController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SteelSellPackage> searchSteelSellPackagesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering SteelSellPackages list");
+        LOGGER.debug("Rendering SteelSellPackages list by query filter:{}", (Object) queryFilters);
         return steelSellPackageService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class SteelSellPackageController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SteelSellPackage> findSteelSellPackages(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SteelSellPackages list");
+        LOGGER.debug("Rendering SteelSellPackages list by filter:", query);
         return steelSellPackageService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class SteelSellPackageController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SteelSellPackage> filterSteelSellPackages(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SteelSellPackages list");
+        LOGGER.debug("Rendering SteelSellPackages list by filter", query);
         return steelSellPackageService.findAll(query, pageable);
     }
 

@@ -43,7 +43,7 @@ public interface PipeFaService {
 	 * @return PipeFa associated with the given pipefaId.
      * @throws EntityNotFoundException If no PipeFa is found.
 	 */
-	PipeFa getById(Integer pipefaId) throws EntityNotFoundException;
+	PipeFa getById(Integer pipefaId);
 
     /**
 	 * Find and return the PipeFa by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface PipeFaService {
 	 * @return The updated PipeFa.
 	 * @throws EntityNotFoundException if no PipeFa is found with given input.
 	 */
-	PipeFa update(@Valid PipeFa pipeFa) throws EntityNotFoundException;
+	PipeFa update(@Valid PipeFa pipeFa);
 
     /**
 	 * Deletes an existing PipeFa with the given id.
@@ -72,7 +72,7 @@ public interface PipeFaService {
 	 * @return The deleted PipeFa.
 	 * @throws EntityNotFoundException if no PipeFa found with the given id.
 	 */
-	PipeFa delete(Integer pipefaId) throws EntityNotFoundException;
+	PipeFa delete(Integer pipefaId);
 
     /**
 	 * Deletes an existing PipeFa with the given object.

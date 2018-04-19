@@ -59,7 +59,7 @@ public class EquipFaServiceImpl implements EquipFaService {
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public EquipFa getById(Integer equipfaId) throws EntityNotFoundException {
+	public EquipFa getById(Integer equipfaId) {
         LOGGER.debug("Finding EquipFa by id: {}", equipfaId);
         return this.wmGenericDao.findById(equipfaId);
     }
@@ -79,7 +79,7 @@ public class EquipFaServiceImpl implements EquipFaService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public EquipFa update(EquipFa equipFa) throws EntityNotFoundException {
+	public EquipFa update(EquipFa equipFa) {
         LOGGER.debug("Updating EquipFa with information: {}", equipFa);
 
         this.wmGenericDao.update(equipFa);
@@ -90,7 +90,7 @@ public class EquipFaServiceImpl implements EquipFaService {
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public EquipFa delete(Integer equipfaId) throws EntityNotFoundException {
+	public EquipFa delete(Integer equipfaId) {
         LOGGER.debug("Deleting EquipFa with id: {}", equipfaId);
         EquipFa deleted = this.wmGenericDao.findById(equipfaId);
         if (deleted == null) {

@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class EquipFaController {
     @ApiOperation(value = "Returns the EquipFa instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public EquipFa getEquipFa(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public EquipFa getEquipFa(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting EquipFa with id: {}" , id);
 
         EquipFa foundEquipFa = equipFaService.getById(id);
@@ -78,7 +77,7 @@ public class EquipFaController {
     @ApiOperation(value = "Updates the EquipFa instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public EquipFa editEquipFa(@PathVariable("id") Integer id, @RequestBody EquipFa equipFa) throws EntityNotFoundException {
+    public EquipFa editEquipFa(@PathVariable("id") Integer id, @RequestBody EquipFa equipFa) {
         LOGGER.debug("Editing EquipFa with id: {}" , equipFa.getActivityId());
 
         equipFa.setActivityId(id);
@@ -91,7 +90,7 @@ public class EquipFaController {
     @ApiOperation(value = "Deletes the EquipFa instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteEquipFa(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteEquipFa(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting EquipFa with id: {}" , id);
 
         EquipFa deletedEquipFa = equipFaService.delete(id);
@@ -107,7 +106,7 @@ public class EquipFaController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<EquipFa> searchEquipFasByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering EquipFas list");
+        LOGGER.debug("Rendering EquipFas list by query filter:{}", (Object) queryFilters);
         return equipFaService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class EquipFaController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<EquipFa> findEquipFas(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering EquipFas list");
+        LOGGER.debug("Rendering EquipFas list by filter:", query);
         return equipFaService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class EquipFaController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<EquipFa> filterEquipFas(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering EquipFas list");
+        LOGGER.debug("Rendering EquipFas list by filter", query);
         return equipFaService.findAll(query, pageable);
     }
 

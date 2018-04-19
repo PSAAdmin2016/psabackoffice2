@@ -35,7 +35,7 @@ public class SubsDelay implements Serializable {
     private Short delayTimeInForm;
     private String delayNotes;
     private Short activityType;
-    private short rev;
+    private short rev = 0;
     private Timestamp timeStamp;
     private SubmissionActivityStatus submissionActivityStatus;
 

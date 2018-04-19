@@ -43,7 +43,7 @@ public interface PipeTrackerClassicService {
 	 * @return PipeTrackerClassic associated with the given pipetrackerclassicId.
      * @throws EntityNotFoundException If no PipeTrackerClassic is found.
 	 */
-	PipeTrackerClassic getById(Integer pipetrackerclassicId) throws EntityNotFoundException;
+	PipeTrackerClassic getById(Integer pipetrackerclassicId);
 
     /**
 	 * Find and return the PipeTrackerClassic by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface PipeTrackerClassicService {
 	 * @return The updated PipeTrackerClassic.
 	 * @throws EntityNotFoundException if no PipeTrackerClassic is found with given input.
 	 */
-	PipeTrackerClassic update(@Valid PipeTrackerClassic pipeTrackerClassic) throws EntityNotFoundException;
+	PipeTrackerClassic update(@Valid PipeTrackerClassic pipeTrackerClassic);
 
     /**
 	 * Deletes an existing PipeTrackerClassic with the given id.
@@ -72,7 +72,7 @@ public interface PipeTrackerClassicService {
 	 * @return The deleted PipeTrackerClassic.
 	 * @throws EntityNotFoundException if no PipeTrackerClassic found with the given id.
 	 */
-	PipeTrackerClassic delete(Integer pipetrackerclassicId) throws EntityNotFoundException;
+	PipeTrackerClassic delete(Integer pipetrackerclassicId);
 
     /**
 	 * Deletes an existing PipeTrackerClassic with the given object.

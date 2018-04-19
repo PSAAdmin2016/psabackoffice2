@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class SubsDelayController {
     @ApiOperation(value = "Returns the SubsDelay instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SubsDelay getSubsDelay(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public SubsDelay getSubsDelay(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting SubsDelay with id: {}" , id);
 
         SubsDelay foundSubsDelay = subsDelayService.getById(id);
@@ -78,7 +77,7 @@ public class SubsDelayController {
     @ApiOperation(value = "Updates the SubsDelay instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SubsDelay editSubsDelay(@PathVariable("id") Integer id, @RequestBody SubsDelay subsDelay) throws EntityNotFoundException {
+    public SubsDelay editSubsDelay(@PathVariable("id") Integer id, @RequestBody SubsDelay subsDelay) {
         LOGGER.debug("Editing SubsDelay with id: {}" , subsDelay.getActivityId());
 
         subsDelay.setActivityId(id);
@@ -91,7 +90,7 @@ public class SubsDelayController {
     @ApiOperation(value = "Deletes the SubsDelay instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteSubsDelay(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteSubsDelay(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting SubsDelay with id: {}" , id);
 
         SubsDelay deletedSubsDelay = subsDelayService.delete(id);
@@ -107,7 +106,7 @@ public class SubsDelayController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SubsDelay> searchSubsDelaysByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering SubsDelays list");
+        LOGGER.debug("Rendering SubsDelays list by query filter:{}", (Object) queryFilters);
         return subsDelayService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class SubsDelayController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SubsDelay> findSubsDelays(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SubsDelays list");
+        LOGGER.debug("Rendering SubsDelays list by filter:", query);
         return subsDelayService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class SubsDelayController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SubsDelay> filterSubsDelays(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SubsDelays list");
+        LOGGER.debug("Rendering SubsDelays list by filter", query);
         return subsDelayService.findAll(query, pageable);
     }
 

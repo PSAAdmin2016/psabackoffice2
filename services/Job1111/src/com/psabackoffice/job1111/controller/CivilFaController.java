@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class CivilFaController {
     @ApiOperation(value = "Returns the CivilFa instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public CivilFa getCivilFa(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public CivilFa getCivilFa(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting CivilFa with id: {}" , id);
 
         CivilFa foundCivilFa = civilFaService.getById(id);
@@ -78,7 +77,7 @@ public class CivilFaController {
     @ApiOperation(value = "Updates the CivilFa instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public CivilFa editCivilFa(@PathVariable("id") Integer id, @RequestBody CivilFa civilFa) throws EntityNotFoundException {
+    public CivilFa editCivilFa(@PathVariable("id") Integer id, @RequestBody CivilFa civilFa) {
         LOGGER.debug("Editing CivilFa with id: {}" , civilFa.getActivityId());
 
         civilFa.setActivityId(id);
@@ -91,7 +90,7 @@ public class CivilFaController {
     @ApiOperation(value = "Deletes the CivilFa instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteCivilFa(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteCivilFa(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting CivilFa with id: {}" , id);
 
         CivilFa deletedCivilFa = civilFaService.delete(id);
@@ -107,7 +106,7 @@ public class CivilFaController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<CivilFa> searchCivilFasByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering CivilFas list");
+        LOGGER.debug("Rendering CivilFas list by query filter:{}", (Object) queryFilters);
         return civilFaService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class CivilFaController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<CivilFa> findCivilFas(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering CivilFas list");
+        LOGGER.debug("Rendering CivilFas list by filter:", query);
         return civilFaService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class CivilFaController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<CivilFa> filterCivilFas(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering CivilFas list");
+        LOGGER.debug("Rendering CivilFas list by filter", query);
         return civilFaService.findAll(query, pageable);
     }
 

@@ -59,7 +59,7 @@ public class SubsDelayServiceImpl implements SubsDelayService {
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public SubsDelay getById(Integer subsdelayId) throws EntityNotFoundException {
+	public SubsDelay getById(Integer subsdelayId) {
         LOGGER.debug("Finding SubsDelay by id: {}", subsdelayId);
         return this.wmGenericDao.findById(subsdelayId);
     }
@@ -79,7 +79,7 @@ public class SubsDelayServiceImpl implements SubsDelayService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public SubsDelay update(SubsDelay subsDelay) throws EntityNotFoundException {
+	public SubsDelay update(SubsDelay subsDelay) {
         LOGGER.debug("Updating SubsDelay with information: {}", subsDelay);
 
         this.wmGenericDao.update(subsDelay);
@@ -90,7 +90,7 @@ public class SubsDelayServiceImpl implements SubsDelayService {
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public SubsDelay delete(Integer subsdelayId) throws EntityNotFoundException {
+	public SubsDelay delete(Integer subsdelayId) {
         LOGGER.debug("Deleting SubsDelay with id: {}", subsdelayId);
         SubsDelay deleted = this.wmGenericDao.findById(subsdelayId);
         if (deleted == null) {

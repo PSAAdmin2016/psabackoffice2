@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class PipeMiscController {
     @ApiOperation(value = "Returns the PipeMisc instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public PipeMisc getPipeMisc(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public PipeMisc getPipeMisc(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting PipeMisc with id: {}" , id);
 
         PipeMisc foundPipeMisc = pipeMiscService.getById(id);
@@ -78,7 +77,7 @@ public class PipeMiscController {
     @ApiOperation(value = "Updates the PipeMisc instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public PipeMisc editPipeMisc(@PathVariable("id") Integer id, @RequestBody PipeMisc pipeMisc) throws EntityNotFoundException {
+    public PipeMisc editPipeMisc(@PathVariable("id") Integer id, @RequestBody PipeMisc pipeMisc) {
         LOGGER.debug("Editing PipeMisc with id: {}" , pipeMisc.getActivityId());
 
         pipeMisc.setActivityId(id);
@@ -91,7 +90,7 @@ public class PipeMiscController {
     @ApiOperation(value = "Deletes the PipeMisc instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deletePipeMisc(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deletePipeMisc(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting PipeMisc with id: {}" , id);
 
         PipeMisc deletedPipeMisc = pipeMiscService.delete(id);
@@ -107,7 +106,7 @@ public class PipeMiscController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeMisc> searchPipeMiscsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering PipeMiscs list");
+        LOGGER.debug("Rendering PipeMiscs list by query filter:{}", (Object) queryFilters);
         return pipeMiscService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class PipeMiscController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeMisc> findPipeMiscs(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering PipeMiscs list");
+        LOGGER.debug("Rendering PipeMiscs list by filter:", query);
         return pipeMiscService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class PipeMiscController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeMisc> filterPipeMiscs(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering PipeMiscs list");
+        LOGGER.debug("Rendering PipeMiscs list by filter", query);
         return pipeMiscService.findAll(query, pageable);
     }
 

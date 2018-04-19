@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -67,7 +66,7 @@ public class PipeTrackerDetailsController {
     @ApiOperation(value = "Returns the PipeTrackerDetails instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public PipeTrackerDetails getPipeTrackerDetails(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public PipeTrackerDetails getPipeTrackerDetails(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting PipeTrackerDetails with id: {}" , id);
 
         PipeTrackerDetails foundPipeTrackerDetails = pipeTrackerDetailsService.getById(id);
@@ -79,7 +78,7 @@ public class PipeTrackerDetailsController {
     @ApiOperation(value = "Updates the PipeTrackerDetails instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public PipeTrackerDetails editPipeTrackerDetails(@PathVariable("id") Integer id, @RequestBody PipeTrackerDetails pipeTrackerDetails) throws EntityNotFoundException {
+    public PipeTrackerDetails editPipeTrackerDetails(@PathVariable("id") Integer id, @RequestBody PipeTrackerDetails pipeTrackerDetails) {
         LOGGER.debug("Editing PipeTrackerDetails with id: {}" , pipeTrackerDetails.getUid());
 
         pipeTrackerDetails.setUid(id);
@@ -92,7 +91,7 @@ public class PipeTrackerDetailsController {
     @ApiOperation(value = "Deletes the PipeTrackerDetails instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deletePipeTrackerDetails(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deletePipeTrackerDetails(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting PipeTrackerDetails with id: {}" , id);
 
         PipeTrackerDetails deletedPipeTrackerDetails = pipeTrackerDetailsService.delete(id);
@@ -108,7 +107,7 @@ public class PipeTrackerDetailsController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeTrackerDetails> searchPipeTrackerDetailsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering PipeTrackerDetails list");
+        LOGGER.debug("Rendering PipeTrackerDetails list by query filter:{}", (Object) queryFilters);
         return pipeTrackerDetailsService.findAll(queryFilters, pageable);
     }
 
@@ -116,7 +115,7 @@ public class PipeTrackerDetailsController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeTrackerDetails> findPipeTrackerDetails(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering PipeTrackerDetails list");
+        LOGGER.debug("Rendering PipeTrackerDetails list by filter:", query);
         return pipeTrackerDetailsService.findAll(query, pageable);
     }
 
@@ -124,7 +123,7 @@ public class PipeTrackerDetailsController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeTrackerDetails> filterPipeTrackerDetails(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering PipeTrackerDetails list");
+        LOGGER.debug("Rendering PipeTrackerDetails list by filter", query);
         return pipeTrackerDetailsService.findAll(query, pageable);
     }
 

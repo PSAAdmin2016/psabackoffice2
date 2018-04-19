@@ -59,7 +59,7 @@ public class RefWeldSpecProceduresServiceImpl implements RefWeldSpecProceduresSe
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public RefWeldSpecProcedures getById(Integer refweldspecproceduresId) throws EntityNotFoundException {
+	public RefWeldSpecProcedures getById(Integer refweldspecproceduresId) {
         LOGGER.debug("Finding RefWeldSpecProcedures by id: {}", refweldspecproceduresId);
         return this.wmGenericDao.findById(refweldspecproceduresId);
     }
@@ -79,7 +79,7 @@ public class RefWeldSpecProceduresServiceImpl implements RefWeldSpecProceduresSe
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public RefWeldSpecProcedures update(RefWeldSpecProcedures refWeldSpecProcedures) throws EntityNotFoundException {
+	public RefWeldSpecProcedures update(RefWeldSpecProcedures refWeldSpecProcedures) {
         LOGGER.debug("Updating RefWeldSpecProcedures with information: {}", refWeldSpecProcedures);
 
         this.wmGenericDao.update(refWeldSpecProcedures);
@@ -90,7 +90,7 @@ public class RefWeldSpecProceduresServiceImpl implements RefWeldSpecProceduresSe
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public RefWeldSpecProcedures delete(Integer refweldspecproceduresId) throws EntityNotFoundException {
+	public RefWeldSpecProcedures delete(Integer refweldspecproceduresId) {
         LOGGER.debug("Deleting RefWeldSpecProcedures with id: {}", refweldspecproceduresId);
         RefWeldSpecProcedures deleted = this.wmGenericDao.findById(refweldspecproceduresId);
         if (deleted == null) {

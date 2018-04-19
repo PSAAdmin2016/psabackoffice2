@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class SteelFaController {
     @ApiOperation(value = "Returns the SteelFa instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SteelFa getSteelFa(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public SteelFa getSteelFa(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting SteelFa with id: {}" , id);
 
         SteelFa foundSteelFa = steelFaService.getById(id);
@@ -78,7 +77,7 @@ public class SteelFaController {
     @ApiOperation(value = "Updates the SteelFa instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SteelFa editSteelFa(@PathVariable("id") Integer id, @RequestBody SteelFa steelFa) throws EntityNotFoundException {
+    public SteelFa editSteelFa(@PathVariable("id") Integer id, @RequestBody SteelFa steelFa) {
         LOGGER.debug("Editing SteelFa with id: {}" , steelFa.getActivityId());
 
         steelFa.setActivityId(id);
@@ -91,7 +90,7 @@ public class SteelFaController {
     @ApiOperation(value = "Deletes the SteelFa instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteSteelFa(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteSteelFa(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting SteelFa with id: {}" , id);
 
         SteelFa deletedSteelFa = steelFaService.delete(id);
@@ -107,7 +106,7 @@ public class SteelFaController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SteelFa> searchSteelFasByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering SteelFas list");
+        LOGGER.debug("Rendering SteelFas list by query filter:{}", (Object) queryFilters);
         return steelFaService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class SteelFaController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SteelFa> findSteelFas(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SteelFas list");
+        LOGGER.debug("Rendering SteelFas list by filter:", query);
         return steelFaService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class SteelFaController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SteelFa> filterSteelFas(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SteelFas list");
+        LOGGER.debug("Rendering SteelFas list by filter", query);
         return steelFaService.findAll(query, pageable);
     }
 

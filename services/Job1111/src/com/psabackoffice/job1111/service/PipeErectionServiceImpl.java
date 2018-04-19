@@ -59,7 +59,7 @@ public class PipeErectionServiceImpl implements PipeErectionService {
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public PipeErection getById(Integer pipeerectionId) throws EntityNotFoundException {
+	public PipeErection getById(Integer pipeerectionId) {
         LOGGER.debug("Finding PipeErection by id: {}", pipeerectionId);
         return this.wmGenericDao.findById(pipeerectionId);
     }
@@ -79,7 +79,7 @@ public class PipeErectionServiceImpl implements PipeErectionService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public PipeErection update(PipeErection pipeErection) throws EntityNotFoundException {
+	public PipeErection update(PipeErection pipeErection) {
         LOGGER.debug("Updating PipeErection with information: {}", pipeErection);
 
         this.wmGenericDao.update(pipeErection);
@@ -90,7 +90,7 @@ public class PipeErectionServiceImpl implements PipeErectionService {
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public PipeErection delete(Integer pipeerectionId) throws EntityNotFoundException {
+	public PipeErection delete(Integer pipeerectionId) {
         LOGGER.debug("Deleting PipeErection with id: {}", pipeerectionId);
         PipeErection deleted = this.wmGenericDao.findById(pipeerectionId);
         if (deleted == null) {

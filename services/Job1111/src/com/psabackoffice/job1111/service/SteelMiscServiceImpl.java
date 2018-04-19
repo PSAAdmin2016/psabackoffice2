@@ -59,7 +59,7 @@ public class SteelMiscServiceImpl implements SteelMiscService {
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public SteelMisc getById(Integer steelmiscId) throws EntityNotFoundException {
+	public SteelMisc getById(Integer steelmiscId) {
         LOGGER.debug("Finding SteelMisc by id: {}", steelmiscId);
         return this.wmGenericDao.findById(steelmiscId);
     }
@@ -79,7 +79,7 @@ public class SteelMiscServiceImpl implements SteelMiscService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public SteelMisc update(SteelMisc steelMisc) throws EntityNotFoundException {
+	public SteelMisc update(SteelMisc steelMisc) {
         LOGGER.debug("Updating SteelMisc with information: {}", steelMisc);
 
         this.wmGenericDao.update(steelMisc);
@@ -90,7 +90,7 @@ public class SteelMiscServiceImpl implements SteelMiscService {
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public SteelMisc delete(Integer steelmiscId) throws EntityNotFoundException {
+	public SteelMisc delete(Integer steelmiscId) {
         LOGGER.debug("Deleting SteelMisc with id: {}", steelmiscId);
         SteelMisc deleted = this.wmGenericDao.findById(steelmiscId);
         if (deleted == null) {

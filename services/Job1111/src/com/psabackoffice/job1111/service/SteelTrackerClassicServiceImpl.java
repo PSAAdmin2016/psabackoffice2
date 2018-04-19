@@ -59,7 +59,7 @@ public class SteelTrackerClassicServiceImpl implements SteelTrackerClassicServic
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public SteelTrackerClassic getById(Integer steeltrackerclassicId) throws EntityNotFoundException {
+	public SteelTrackerClassic getById(Integer steeltrackerclassicId) {
         LOGGER.debug("Finding SteelTrackerClassic by id: {}", steeltrackerclassicId);
         return this.wmGenericDao.findById(steeltrackerclassicId);
     }
@@ -79,7 +79,7 @@ public class SteelTrackerClassicServiceImpl implements SteelTrackerClassicServic
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public SteelTrackerClassic update(SteelTrackerClassic steelTrackerClassic) throws EntityNotFoundException {
+	public SteelTrackerClassic update(SteelTrackerClassic steelTrackerClassic) {
         LOGGER.debug("Updating SteelTrackerClassic with information: {}", steelTrackerClassic);
 
         this.wmGenericDao.update(steelTrackerClassic);
@@ -90,7 +90,7 @@ public class SteelTrackerClassicServiceImpl implements SteelTrackerClassicServic
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public SteelTrackerClassic delete(Integer steeltrackerclassicId) throws EntityNotFoundException {
+	public SteelTrackerClassic delete(Integer steeltrackerclassicId) {
         LOGGER.debug("Deleting SteelTrackerClassic with id: {}", steeltrackerclassicId);
         SteelTrackerClassic deleted = this.wmGenericDao.findById(steeltrackerclassicId);
         if (deleted == null) {

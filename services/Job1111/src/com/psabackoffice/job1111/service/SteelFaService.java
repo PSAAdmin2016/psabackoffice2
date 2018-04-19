@@ -43,7 +43,7 @@ public interface SteelFaService {
 	 * @return SteelFa associated with the given steelfaId.
      * @throws EntityNotFoundException If no SteelFa is found.
 	 */
-	SteelFa getById(Integer steelfaId) throws EntityNotFoundException;
+	SteelFa getById(Integer steelfaId);
 
     /**
 	 * Find and return the SteelFa by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface SteelFaService {
 	 * @return The updated SteelFa.
 	 * @throws EntityNotFoundException if no SteelFa is found with given input.
 	 */
-	SteelFa update(@Valid SteelFa steelFa) throws EntityNotFoundException;
+	SteelFa update(@Valid SteelFa steelFa);
 
     /**
 	 * Deletes an existing SteelFa with the given id.
@@ -72,7 +72,7 @@ public interface SteelFaService {
 	 * @return The deleted SteelFa.
 	 * @throws EntityNotFoundException if no SteelFa found with the given id.
 	 */
-	SteelFa delete(Integer steelfaId) throws EntityNotFoundException;
+	SteelFa delete(Integer steelfaId);
 
     /**
 	 * Deletes an existing SteelFa with the given object.

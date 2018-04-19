@@ -523,14 +523,10 @@ public class SteelTrackerDetails implements Serializable {
     @PostPersist
     public void onPostPersist() {
         if(steelDemos != null) {
-            for(SteelDemo steelDemo : steelDemos) {
-                steelDemo.setSteelTrackerDetails(this);
-            }
+            steelDemos.forEach(steelDemo -> steelDemo.setSteelTrackerDetails(this));
         }
         if(steelMiscs != null) {
-            for(SteelMisc steelMisc : steelMiscs) {
-                steelMisc.setSteelTrackerDetails(this);
-            }
+            steelMiscs.forEach(steelMisc -> steelMisc.setSteelTrackerDetails(this));
         }
     }
 

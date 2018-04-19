@@ -41,7 +41,7 @@ public class PipeConnection implements Serializable {
     private String connectionNotes;
     private Short activityType;
     private Short connectionTimeInForm;
-    private short rev;
+    private short rev = 0;
     private Timestamp timeStamp;
     private SubmissionActivityStatus submissionActivityStatus;
 

@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class PipeErectionController {
     @ApiOperation(value = "Returns the PipeErection instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public PipeErection getPipeErection(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public PipeErection getPipeErection(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting PipeErection with id: {}" , id);
 
         PipeErection foundPipeErection = pipeErectionService.getById(id);
@@ -78,7 +77,7 @@ public class PipeErectionController {
     @ApiOperation(value = "Updates the PipeErection instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public PipeErection editPipeErection(@PathVariable("id") Integer id, @RequestBody PipeErection pipeErection) throws EntityNotFoundException {
+    public PipeErection editPipeErection(@PathVariable("id") Integer id, @RequestBody PipeErection pipeErection) {
         LOGGER.debug("Editing PipeErection with id: {}" , pipeErection.getActivityId());
 
         pipeErection.setActivityId(id);
@@ -91,7 +90,7 @@ public class PipeErectionController {
     @ApiOperation(value = "Deletes the PipeErection instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deletePipeErection(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deletePipeErection(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting PipeErection with id: {}" , id);
 
         PipeErection deletedPipeErection = pipeErectionService.delete(id);
@@ -107,7 +106,7 @@ public class PipeErectionController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeErection> searchPipeErectionsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering PipeErections list");
+        LOGGER.debug("Rendering PipeErections list by query filter:{}", (Object) queryFilters);
         return pipeErectionService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class PipeErectionController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeErection> findPipeErections(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering PipeErections list");
+        LOGGER.debug("Rendering PipeErections list by filter:", query);
         return pipeErectionService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class PipeErectionController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeErection> filterPipeErections(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering PipeErections list");
+        LOGGER.debug("Rendering PipeErections list by filter", query);
         return pipeErectionService.findAll(query, pageable);
     }
 

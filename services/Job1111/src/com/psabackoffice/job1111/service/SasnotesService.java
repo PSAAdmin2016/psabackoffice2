@@ -43,7 +43,7 @@ public interface SasnotesService {
 	 * @return Sasnotes associated with the given sasnotesId.
      * @throws EntityNotFoundException If no Sasnotes is found.
 	 */
-	Sasnotes getById(Integer sasnotesId) throws EntityNotFoundException;
+	Sasnotes getById(Integer sasnotesId);
 
     /**
 	 * Find and return the Sasnotes by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface SasnotesService {
 	 * @return The updated Sasnotes.
 	 * @throws EntityNotFoundException if no Sasnotes is found with given input.
 	 */
-	Sasnotes update(@Valid Sasnotes sasnotes) throws EntityNotFoundException;
+	Sasnotes update(@Valid Sasnotes sasnotes);
 
     /**
 	 * Deletes an existing Sasnotes with the given id.
@@ -72,7 +72,7 @@ public interface SasnotesService {
 	 * @return The deleted Sasnotes.
 	 * @throws EntityNotFoundException if no Sasnotes found with the given id.
 	 */
-	Sasnotes delete(Integer sasnotesId) throws EntityNotFoundException;
+	Sasnotes delete(Integer sasnotesId);
 
     /**
 	 * Deletes an existing Sasnotes with the given object.

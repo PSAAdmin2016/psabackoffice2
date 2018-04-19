@@ -59,7 +59,7 @@ public class SubsEwoServiceImpl implements SubsEwoService {
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public SubsEwo getById(Integer subsewoId) throws EntityNotFoundException {
+	public SubsEwo getById(Integer subsewoId) {
         LOGGER.debug("Finding SubsEwo by id: {}", subsewoId);
         return this.wmGenericDao.findById(subsewoId);
     }
@@ -79,7 +79,7 @@ public class SubsEwoServiceImpl implements SubsEwoService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public SubsEwo update(SubsEwo subsEwo) throws EntityNotFoundException {
+	public SubsEwo update(SubsEwo subsEwo) {
         LOGGER.debug("Updating SubsEwo with information: {}", subsEwo);
 
         this.wmGenericDao.update(subsEwo);
@@ -90,7 +90,7 @@ public class SubsEwoServiceImpl implements SubsEwoService {
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public SubsEwo delete(Integer subsewoId) throws EntityNotFoundException {
+	public SubsEwo delete(Integer subsewoId) {
         LOGGER.debug("Deleting SubsEwo with id: {}", subsewoId);
         SubsEwo deleted = this.wmGenericDao.findById(subsewoId);
         if (deleted == null) {

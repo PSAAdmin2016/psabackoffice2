@@ -74,7 +74,7 @@ public class SteelTrackerDetailsServiceImpl implements SteelTrackerDetailsServic
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public SteelTrackerDetails getById(Integer steeltrackerdetailsId) throws EntityNotFoundException {
+	public SteelTrackerDetails getById(Integer steeltrackerdetailsId) {
         LOGGER.debug("Finding SteelTrackerDetails by id: {}", steeltrackerdetailsId);
         return this.wmGenericDao.findById(steeltrackerdetailsId);
     }
@@ -94,26 +94,16 @@ public class SteelTrackerDetailsServiceImpl implements SteelTrackerDetailsServic
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public SteelTrackerDetails update(SteelTrackerDetails steelTrackerDetails) throws EntityNotFoundException {
+	public SteelTrackerDetails update(SteelTrackerDetails steelTrackerDetails) {
         LOGGER.debug("Updating SteelTrackerDetails with information: {}", steelTrackerDetails);
 
         List<SteelDemo> steelDemos = steelTrackerDetails.getSteelDemos();
         List<SteelMisc> steelMiscs = steelTrackerDetails.getSteelMiscs();
-
         if(steelDemos != null && Hibernate.isInitialized(steelDemos)) {
-            if(!steelDemos.isEmpty()) {
-                for(SteelDemo _steelDemo : steelDemos) {
-                    _steelDemo.setSteelTrackerDetails(steelTrackerDetails);
-                }
-            }
+            steelDemos.forEach(_steelDemo -> _steelDemo.setSteelTrackerDetails(steelTrackerDetails));
         }
-
         if(steelMiscs != null && Hibernate.isInitialized(steelMiscs)) {
-            if(!steelMiscs.isEmpty()) {
-                for(SteelMisc _steelMisc : steelMiscs) {
-                    _steelMisc.setSteelTrackerDetails(steelTrackerDetails);
-                }
-            }
+            steelMiscs.forEach(_steelMisc -> _steelMisc.setSteelTrackerDetails(steelTrackerDetails));
         }
 
         this.wmGenericDao.update(steelTrackerDetails);
@@ -123,11 +113,9 @@ public class SteelTrackerDetailsServiceImpl implements SteelTrackerDetailsServic
         if(steelDemos != null && Hibernate.isInitialized(steelDemos) && !steelDemos.isEmpty()) {
             List<SteelDemo> _remainingChildren = wmGenericDao.execute(
                 session -> DaoUtils.findAllRemainingChildren(session, SteelDemo.class,
-                        new DaoUtils.ChildrenFilter("steelTrackerDetails", steelTrackerDetails, steelDemos)));
+                        new DaoUtils.ChildrenFilter<>("steelTrackerDetails", steelTrackerDetails, steelDemos)));
             LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
-            for(SteelDemo _steelDemo : _remainingChildren) {
-                steelDemoService.delete(_steelDemo);
-            }
+            _remainingChildren.forEach(_steelDemo -> steelDemoService.delete(_steelDemo));
             steelTrackerDetails.setSteelDemos(steelDemos);
         }
 
@@ -135,11 +123,9 @@ public class SteelTrackerDetailsServiceImpl implements SteelTrackerDetailsServic
         if(steelMiscs != null && Hibernate.isInitialized(steelMiscs) && !steelMiscs.isEmpty()) {
             List<SteelMisc> _remainingChildren = wmGenericDao.execute(
                 session -> DaoUtils.findAllRemainingChildren(session, SteelMisc.class,
-                        new DaoUtils.ChildrenFilter("steelTrackerDetails", steelTrackerDetails, steelMiscs)));
+                        new DaoUtils.ChildrenFilter<>("steelTrackerDetails", steelTrackerDetails, steelMiscs)));
             LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
-            for(SteelMisc _steelMisc : _remainingChildren) {
-                steelMiscService.delete(_steelMisc);
-            }
+            _remainingChildren.forEach(_steelMisc -> steelMiscService.delete(_steelMisc));
             steelTrackerDetails.setSteelMiscs(steelMiscs);
         }
 
@@ -148,7 +134,7 @@ public class SteelTrackerDetailsServiceImpl implements SteelTrackerDetailsServic
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public SteelTrackerDetails delete(Integer steeltrackerdetailsId) throws EntityNotFoundException {
+	public SteelTrackerDetails delete(Integer steeltrackerdetailsId) {
         LOGGER.debug("Deleting SteelTrackerDetails with id: {}", steeltrackerdetailsId);
         SteelTrackerDetails deleted = this.wmGenericDao.findById(steeltrackerdetailsId);
         if (deleted == null) {

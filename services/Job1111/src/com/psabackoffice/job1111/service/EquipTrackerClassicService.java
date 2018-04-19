@@ -43,7 +43,7 @@ public interface EquipTrackerClassicService {
 	 * @return EquipTrackerClassic associated with the given equiptrackerclassicId.
      * @throws EntityNotFoundException If no EquipTrackerClassic is found.
 	 */
-	EquipTrackerClassic getById(Integer equiptrackerclassicId) throws EntityNotFoundException;
+	EquipTrackerClassic getById(Integer equiptrackerclassicId);
 
     /**
 	 * Find and return the EquipTrackerClassic by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface EquipTrackerClassicService {
 	 * @return The updated EquipTrackerClassic.
 	 * @throws EntityNotFoundException if no EquipTrackerClassic is found with given input.
 	 */
-	EquipTrackerClassic update(@Valid EquipTrackerClassic equipTrackerClassic) throws EntityNotFoundException;
+	EquipTrackerClassic update(@Valid EquipTrackerClassic equipTrackerClassic);
 
     /**
 	 * Deletes an existing EquipTrackerClassic with the given id.
@@ -72,7 +72,7 @@ public interface EquipTrackerClassicService {
 	 * @return The deleted EquipTrackerClassic.
 	 * @throws EntityNotFoundException if no EquipTrackerClassic found with the given id.
 	 */
-	EquipTrackerClassic delete(Integer equiptrackerclassicId) throws EntityNotFoundException;
+	EquipTrackerClassic delete(Integer equiptrackerclassicId);
 
     /**
 	 * Deletes an existing EquipTrackerClassic with the given object.

@@ -43,10 +43,11 @@ public class SubmissionActivityStatus implements Serializable {
     private Integer submissionId;
     private Short activityType;
     private Integer fkBidIdassigned;
-    private Integer fkActivityStatus;
+    private Integer fkActivityStatus = 1;
+    private Short rejectId;
     private Integer fkLastModifiedBy;
     private Integer lockField;
-    private short rev;
+    private short rev = 0;
     private Timestamp timeStamp;
     private SubsDetails subsDetails;
     private CivilFa civilFa;
@@ -111,6 +112,15 @@ public class SubmissionActivityStatus implements Serializable {
 
     public void setFkActivityStatus(Integer fkActivityStatus) {
         this.fkActivityStatus = fkActivityStatus;
+    }
+
+    @Column(name = "`RejectID`", nullable = true, scale = 0, precision = 3)
+    public Short getRejectId() {
+        return this.rejectId;
+    }
+
+    public void setRejectId(Short rejectId) {
+        this.rejectId = rejectId;
     }
 
     @Column(name = "`fk_LastModifiedBy`", nullable = true, scale = 0, precision = 10)
@@ -370,9 +380,7 @@ public class SubmissionActivityStatus implements Serializable {
             pipeWeld.setSubmissionActivityStatus(this);
         }
         if(sasnoteses != null) {
-            for(Sasnotes sasnotes : sasnoteses) {
-                sasnotes.setSubmissionActivityStatus(this);
-            }
+            sasnoteses.forEach(sasnotes -> sasnotes.setSubmissionActivityStatus(this));
         }
         if(steelDemo != null) {
             steelDemo.setSubmissionActivityStatus(this);
@@ -390,9 +398,7 @@ public class SubmissionActivityStatus implements Serializable {
             subsDelay.setSubmissionActivityStatus(this);
         }
         if(subsEwos != null) {
-            for(SubsEwo subsEwo : subsEwos) {
-                subsEwo.setSubmissionActivityStatus(this);
-            }
+            subsEwos.forEach(subsEwo -> subsEwo.setSubmissionActivityStatus(this));
         }
     }
 

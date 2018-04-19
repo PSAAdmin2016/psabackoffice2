@@ -59,7 +59,7 @@ public class EquipTrackerClassicServiceImpl implements EquipTrackerClassicServic
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public EquipTrackerClassic getById(Integer equiptrackerclassicId) throws EntityNotFoundException {
+	public EquipTrackerClassic getById(Integer equiptrackerclassicId) {
         LOGGER.debug("Finding EquipTrackerClassic by id: {}", equiptrackerclassicId);
         return this.wmGenericDao.findById(equiptrackerclassicId);
     }
@@ -79,7 +79,7 @@ public class EquipTrackerClassicServiceImpl implements EquipTrackerClassicServic
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public EquipTrackerClassic update(EquipTrackerClassic equipTrackerClassic) throws EntityNotFoundException {
+	public EquipTrackerClassic update(EquipTrackerClassic equipTrackerClassic) {
         LOGGER.debug("Updating EquipTrackerClassic with information: {}", equipTrackerClassic);
 
         this.wmGenericDao.update(equipTrackerClassic);
@@ -90,7 +90,7 @@ public class EquipTrackerClassicServiceImpl implements EquipTrackerClassicServic
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public EquipTrackerClassic delete(Integer equiptrackerclassicId) throws EntityNotFoundException {
+	public EquipTrackerClassic delete(Integer equiptrackerclassicId) {
         LOGGER.debug("Deleting EquipTrackerClassic with id: {}", equiptrackerclassicId);
         EquipTrackerClassic deleted = this.wmGenericDao.findById(equiptrackerclassicId);
         if (deleted == null) {

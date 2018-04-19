@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -67,7 +66,7 @@ public class EquipTrackerDetailsController {
     @ApiOperation(value = "Returns the EquipTrackerDetails instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public EquipTrackerDetails getEquipTrackerDetails(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public EquipTrackerDetails getEquipTrackerDetails(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting EquipTrackerDetails with id: {}" , id);
 
         EquipTrackerDetails foundEquipTrackerDetails = equipTrackerDetailsService.getById(id);
@@ -79,7 +78,7 @@ public class EquipTrackerDetailsController {
     @ApiOperation(value = "Updates the EquipTrackerDetails instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public EquipTrackerDetails editEquipTrackerDetails(@PathVariable("id") Integer id, @RequestBody EquipTrackerDetails equipTrackerDetails) throws EntityNotFoundException {
+    public EquipTrackerDetails editEquipTrackerDetails(@PathVariable("id") Integer id, @RequestBody EquipTrackerDetails equipTrackerDetails) {
         LOGGER.debug("Editing EquipTrackerDetails with id: {}" , equipTrackerDetails.getUid());
 
         equipTrackerDetails.setUid(id);
@@ -92,7 +91,7 @@ public class EquipTrackerDetailsController {
     @ApiOperation(value = "Deletes the EquipTrackerDetails instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteEquipTrackerDetails(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteEquipTrackerDetails(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting EquipTrackerDetails with id: {}" , id);
 
         EquipTrackerDetails deletedEquipTrackerDetails = equipTrackerDetailsService.delete(id);
@@ -108,7 +107,7 @@ public class EquipTrackerDetailsController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<EquipTrackerDetails> searchEquipTrackerDetailsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering EquipTrackerDetails list");
+        LOGGER.debug("Rendering EquipTrackerDetails list by query filter:{}", (Object) queryFilters);
         return equipTrackerDetailsService.findAll(queryFilters, pageable);
     }
 
@@ -116,7 +115,7 @@ public class EquipTrackerDetailsController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<EquipTrackerDetails> findEquipTrackerDetails(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering EquipTrackerDetails list");
+        LOGGER.debug("Rendering EquipTrackerDetails list by filter:", query);
         return equipTrackerDetailsService.findAll(query, pageable);
     }
 
@@ -124,7 +123,7 @@ public class EquipTrackerDetailsController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<EquipTrackerDetails> filterEquipTrackerDetails(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering EquipTrackerDetails list");
+        LOGGER.debug("Rendering EquipTrackerDetails list by filter", query);
         return equipTrackerDetailsService.findAll(query, pageable);
     }
 

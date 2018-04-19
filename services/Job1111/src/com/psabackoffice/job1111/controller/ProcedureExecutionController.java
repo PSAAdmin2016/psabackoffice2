@@ -98,7 +98,7 @@ public class ProcedureExecutionController {
 
     @RequestMapping(value = "/procedure/execute/LockSASActivity", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Locks/Unlocks a SAS Activity for approval.  Returns True if lock/Unlock achieved, False if not.  RunMode 1 = Lock ActivityID RunMode 2 = Unlock ActivityID")
+    @ApiOperation(value = "Locks/Unlocks a SAS Activity for approval.  Returns True if lock/Unlock achieved, False if not. RunMode 1 = Lock ActivityID RunMode 2 = Unlock ActivityID")
     public List<LockSasactivityResponse> executeLockSASActivity(@RequestParam(value = "RunMode") Integer runMode, @RequestParam(value = "UserID") Integer userId, @RequestParam(value = "ActivityID") Integer activityId, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: LockSASActivity");
         LockSasactivityResponse _result = procedureService.executeLockSASActivity(runMode, userId, activityId);

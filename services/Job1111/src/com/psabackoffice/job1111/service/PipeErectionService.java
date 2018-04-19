@@ -43,7 +43,7 @@ public interface PipeErectionService {
 	 * @return PipeErection associated with the given pipeerectionId.
      * @throws EntityNotFoundException If no PipeErection is found.
 	 */
-	PipeErection getById(Integer pipeerectionId) throws EntityNotFoundException;
+	PipeErection getById(Integer pipeerectionId);
 
     /**
 	 * Find and return the PipeErection by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface PipeErectionService {
 	 * @return The updated PipeErection.
 	 * @throws EntityNotFoundException if no PipeErection is found with given input.
 	 */
-	PipeErection update(@Valid PipeErection pipeErection) throws EntityNotFoundException;
+	PipeErection update(@Valid PipeErection pipeErection);
 
     /**
 	 * Deletes an existing PipeErection with the given id.
@@ -72,7 +72,7 @@ public interface PipeErectionService {
 	 * @return The deleted PipeErection.
 	 * @throws EntityNotFoundException if no PipeErection found with the given id.
 	 */
-	PipeErection delete(Integer pipeerectionId) throws EntityNotFoundException;
+	PipeErection delete(Integer pipeerectionId);
 
     /**
 	 * Deletes an existing PipeErection with the given object.

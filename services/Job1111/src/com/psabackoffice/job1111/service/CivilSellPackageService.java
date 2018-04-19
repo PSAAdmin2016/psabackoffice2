@@ -43,7 +43,7 @@ public interface CivilSellPackageService {
 	 * @return CivilSellPackage associated with the given civilsellpackageId.
      * @throws EntityNotFoundException If no CivilSellPackage is found.
 	 */
-	CivilSellPackage getById(Integer civilsellpackageId) throws EntityNotFoundException;
+	CivilSellPackage getById(Integer civilsellpackageId);
 
     /**
 	 * Find and return the CivilSellPackage by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface CivilSellPackageService {
 	 * @return The updated CivilSellPackage.
 	 * @throws EntityNotFoundException if no CivilSellPackage is found with given input.
 	 */
-	CivilSellPackage update(@Valid CivilSellPackage civilSellPackage) throws EntityNotFoundException;
+	CivilSellPackage update(@Valid CivilSellPackage civilSellPackage);
 
     /**
 	 * Deletes an existing CivilSellPackage with the given id.
@@ -72,7 +72,7 @@ public interface CivilSellPackageService {
 	 * @return The deleted CivilSellPackage.
 	 * @throws EntityNotFoundException if no CivilSellPackage found with the given id.
 	 */
-	CivilSellPackage delete(Integer civilsellpackageId) throws EntityNotFoundException;
+	CivilSellPackage delete(Integer civilsellpackageId);
 
     /**
 	 * Deletes an existing CivilSellPackage with the given object.

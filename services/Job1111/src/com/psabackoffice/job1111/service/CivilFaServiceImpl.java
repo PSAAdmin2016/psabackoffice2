@@ -59,7 +59,7 @@ public class CivilFaServiceImpl implements CivilFaService {
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public CivilFa getById(Integer civilfaId) throws EntityNotFoundException {
+	public CivilFa getById(Integer civilfaId) {
         LOGGER.debug("Finding CivilFa by id: {}", civilfaId);
         return this.wmGenericDao.findById(civilfaId);
     }
@@ -79,7 +79,7 @@ public class CivilFaServiceImpl implements CivilFaService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public CivilFa update(CivilFa civilFa) throws EntityNotFoundException {
+	public CivilFa update(CivilFa civilFa) {
         LOGGER.debug("Updating CivilFa with information: {}", civilFa);
 
         this.wmGenericDao.update(civilFa);
@@ -90,7 +90,7 @@ public class CivilFaServiceImpl implements CivilFaService {
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public CivilFa delete(Integer civilfaId) throws EntityNotFoundException {
+	public CivilFa delete(Integer civilfaId) {
         LOGGER.debug("Deleting CivilFa with id: {}", civilfaId);
         CivilFa deleted = this.wmGenericDao.findById(civilfaId);
         if (deleted == null) {

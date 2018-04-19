@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class CivilTrackerClassicController {
     @ApiOperation(value = "Returns the CivilTrackerClassic instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public CivilTrackerClassic getCivilTrackerClassic(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public CivilTrackerClassic getCivilTrackerClassic(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting CivilTrackerClassic with id: {}" , id);
 
         CivilTrackerClassic foundCivilTrackerClassic = civilTrackerClassicService.getById(id);
@@ -78,7 +77,7 @@ public class CivilTrackerClassicController {
     @ApiOperation(value = "Updates the CivilTrackerClassic instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public CivilTrackerClassic editCivilTrackerClassic(@PathVariable("id") Integer id, @RequestBody CivilTrackerClassic civilTrackerClassic) throws EntityNotFoundException {
+    public CivilTrackerClassic editCivilTrackerClassic(@PathVariable("id") Integer id, @RequestBody CivilTrackerClassic civilTrackerClassic) {
         LOGGER.debug("Editing CivilTrackerClassic with id: {}" , civilTrackerClassic.getUid());
 
         civilTrackerClassic.setUid(id);
@@ -91,7 +90,7 @@ public class CivilTrackerClassicController {
     @ApiOperation(value = "Deletes the CivilTrackerClassic instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteCivilTrackerClassic(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteCivilTrackerClassic(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting CivilTrackerClassic with id: {}" , id);
 
         CivilTrackerClassic deletedCivilTrackerClassic = civilTrackerClassicService.delete(id);
@@ -107,7 +106,7 @@ public class CivilTrackerClassicController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<CivilTrackerClassic> searchCivilTrackerClassicsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering CivilTrackerClassics list");
+        LOGGER.debug("Rendering CivilTrackerClassics list by query filter:{}", (Object) queryFilters);
         return civilTrackerClassicService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class CivilTrackerClassicController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<CivilTrackerClassic> findCivilTrackerClassics(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering CivilTrackerClassics list");
+        LOGGER.debug("Rendering CivilTrackerClassics list by filter:", query);
         return civilTrackerClassicService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class CivilTrackerClassicController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<CivilTrackerClassic> filterCivilTrackerClassics(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering CivilTrackerClassics list");
+        LOGGER.debug("Rendering CivilTrackerClassics list by filter", query);
         return civilTrackerClassicService.findAll(query, pageable);
     }
 

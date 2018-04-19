@@ -43,7 +43,7 @@ public interface SteelMiscService {
 	 * @return SteelMisc associated with the given steelmiscId.
      * @throws EntityNotFoundException If no SteelMisc is found.
 	 */
-	SteelMisc getById(Integer steelmiscId) throws EntityNotFoundException;
+	SteelMisc getById(Integer steelmiscId);
 
     /**
 	 * Find and return the SteelMisc by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface SteelMiscService {
 	 * @return The updated SteelMisc.
 	 * @throws EntityNotFoundException if no SteelMisc is found with given input.
 	 */
-	SteelMisc update(@Valid SteelMisc steelMisc) throws EntityNotFoundException;
+	SteelMisc update(@Valid SteelMisc steelMisc);
 
     /**
 	 * Deletes an existing SteelMisc with the given id.
@@ -72,7 +72,7 @@ public interface SteelMiscService {
 	 * @return The deleted SteelMisc.
 	 * @throws EntityNotFoundException if no SteelMisc found with the given id.
 	 */
-	SteelMisc delete(Integer steelmiscId) throws EntityNotFoundException;
+	SteelMisc delete(Integer steelmiscId);
 
     /**
 	 * Deletes an existing SteelMisc with the given object.

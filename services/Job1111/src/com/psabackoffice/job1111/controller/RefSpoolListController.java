@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class RefSpoolListController {
     @ApiOperation(value = "Returns the RefSpoolList instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefSpoolList getRefSpoolList(@PathVariable("id") String id) throws EntityNotFoundException {
+public RefSpoolList getRefSpoolList(@PathVariable("id") String id) {
         LOGGER.debug("Getting RefSpoolList with id: {}" , id);
 
         RefSpoolList foundRefSpoolList = refSpoolListService.getById(id);
@@ -78,7 +77,7 @@ public class RefSpoolListController {
     @ApiOperation(value = "Updates the RefSpoolList instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefSpoolList editRefSpoolList(@PathVariable("id") String id, @RequestBody RefSpoolList refSpoolList) throws EntityNotFoundException {
+    public RefSpoolList editRefSpoolList(@PathVariable("id") String id, @RequestBody RefSpoolList refSpoolList) {
         LOGGER.debug("Editing RefSpoolList with id: {}" , refSpoolList.getSpoolNumber());
 
         refSpoolList.setSpoolNumber(id);
@@ -91,7 +90,7 @@ public class RefSpoolListController {
     @ApiOperation(value = "Deletes the RefSpoolList instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefSpoolList(@PathVariable("id") String id) throws EntityNotFoundException {
+public boolean deleteRefSpoolList(@PathVariable("id") String id) {
         LOGGER.debug("Deleting RefSpoolList with id: {}" , id);
 
         RefSpoolList deletedRefSpoolList = refSpoolListService.delete(id);
@@ -107,7 +106,7 @@ public class RefSpoolListController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefSpoolList> searchRefSpoolListsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefSpoolLists list");
+        LOGGER.debug("Rendering RefSpoolLists list by query filter:{}", (Object) queryFilters);
         return refSpoolListService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class RefSpoolListController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefSpoolList> findRefSpoolLists(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefSpoolLists list");
+        LOGGER.debug("Rendering RefSpoolLists list by filter:", query);
         return refSpoolListService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class RefSpoolListController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefSpoolList> filterRefSpoolLists(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefSpoolLists list");
+        LOGGER.debug("Rendering RefSpoolLists list by filter", query);
         return refSpoolListService.findAll(query, pageable);
     }
 

@@ -44,7 +44,7 @@ public interface EquipTrackerDetailsService {
 	 * @return EquipTrackerDetails associated with the given equiptrackerdetailsId.
      * @throws EntityNotFoundException If no EquipTrackerDetails is found.
 	 */
-	EquipTrackerDetails getById(Integer equiptrackerdetailsId) throws EntityNotFoundException;
+	EquipTrackerDetails getById(Integer equiptrackerdetailsId);
 
     /**
 	 * Find and return the EquipTrackerDetails by given id if exists, returns null otherwise.
@@ -64,7 +64,7 @@ public interface EquipTrackerDetailsService {
 	 * @return The updated EquipTrackerDetails.
 	 * @throws EntityNotFoundException if no EquipTrackerDetails is found with given input.
 	 */
-	EquipTrackerDetails update(@Valid EquipTrackerDetails equipTrackerDetails) throws EntityNotFoundException;
+	EquipTrackerDetails update(@Valid EquipTrackerDetails equipTrackerDetails);
 
     /**
 	 * Deletes an existing EquipTrackerDetails with the given id.
@@ -73,7 +73,7 @@ public interface EquipTrackerDetailsService {
 	 * @return The deleted EquipTrackerDetails.
 	 * @throws EntityNotFoundException if no EquipTrackerDetails found with the given id.
 	 */
-	EquipTrackerDetails delete(Integer equiptrackerdetailsId) throws EntityNotFoundException;
+	EquipTrackerDetails delete(Integer equiptrackerdetailsId);
 
     /**
 	 * Deletes an existing EquipTrackerDetails with the given object.

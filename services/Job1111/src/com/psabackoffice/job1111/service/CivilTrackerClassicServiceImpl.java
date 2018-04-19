@@ -59,7 +59,7 @@ public class CivilTrackerClassicServiceImpl implements CivilTrackerClassicServic
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public CivilTrackerClassic getById(Integer civiltrackerclassicId) throws EntityNotFoundException {
+	public CivilTrackerClassic getById(Integer civiltrackerclassicId) {
         LOGGER.debug("Finding CivilTrackerClassic by id: {}", civiltrackerclassicId);
         return this.wmGenericDao.findById(civiltrackerclassicId);
     }
@@ -79,7 +79,7 @@ public class CivilTrackerClassicServiceImpl implements CivilTrackerClassicServic
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public CivilTrackerClassic update(CivilTrackerClassic civilTrackerClassic) throws EntityNotFoundException {
+	public CivilTrackerClassic update(CivilTrackerClassic civilTrackerClassic) {
         LOGGER.debug("Updating CivilTrackerClassic with information: {}", civilTrackerClassic);
 
         this.wmGenericDao.update(civilTrackerClassic);
@@ -90,7 +90,7 @@ public class CivilTrackerClassicServiceImpl implements CivilTrackerClassicServic
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public CivilTrackerClassic delete(Integer civiltrackerclassicId) throws EntityNotFoundException {
+	public CivilTrackerClassic delete(Integer civiltrackerclassicId) {
         LOGGER.debug("Deleting CivilTrackerClassic with id: {}", civiltrackerclassicId);
         CivilTrackerClassic deleted = this.wmGenericDao.findById(civiltrackerclassicId);
         if (deleted == null) {

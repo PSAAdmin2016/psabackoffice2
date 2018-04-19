@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -67,7 +66,7 @@ public class CivilTrackerDetailsController {
     @ApiOperation(value = "Returns the CivilTrackerDetails instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public CivilTrackerDetails getCivilTrackerDetails(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public CivilTrackerDetails getCivilTrackerDetails(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting CivilTrackerDetails with id: {}" , id);
 
         CivilTrackerDetails foundCivilTrackerDetails = civilTrackerDetailsService.getById(id);
@@ -79,7 +78,7 @@ public class CivilTrackerDetailsController {
     @ApiOperation(value = "Updates the CivilTrackerDetails instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public CivilTrackerDetails editCivilTrackerDetails(@PathVariable("id") Integer id, @RequestBody CivilTrackerDetails civilTrackerDetails) throws EntityNotFoundException {
+    public CivilTrackerDetails editCivilTrackerDetails(@PathVariable("id") Integer id, @RequestBody CivilTrackerDetails civilTrackerDetails) {
         LOGGER.debug("Editing CivilTrackerDetails with id: {}" , civilTrackerDetails.getUid());
 
         civilTrackerDetails.setUid(id);
@@ -92,7 +91,7 @@ public class CivilTrackerDetailsController {
     @ApiOperation(value = "Deletes the CivilTrackerDetails instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteCivilTrackerDetails(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteCivilTrackerDetails(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting CivilTrackerDetails with id: {}" , id);
 
         CivilTrackerDetails deletedCivilTrackerDetails = civilTrackerDetailsService.delete(id);
@@ -108,7 +107,7 @@ public class CivilTrackerDetailsController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<CivilTrackerDetails> searchCivilTrackerDetailsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering CivilTrackerDetails list");
+        LOGGER.debug("Rendering CivilTrackerDetails list by query filter:{}", (Object) queryFilters);
         return civilTrackerDetailsService.findAll(queryFilters, pageable);
     }
 
@@ -116,7 +115,7 @@ public class CivilTrackerDetailsController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<CivilTrackerDetails> findCivilTrackerDetails(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering CivilTrackerDetails list");
+        LOGGER.debug("Rendering CivilTrackerDetails list by filter:", query);
         return civilTrackerDetailsService.findAll(query, pageable);
     }
 
@@ -124,7 +123,7 @@ public class CivilTrackerDetailsController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<CivilTrackerDetails> filterCivilTrackerDetails(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering CivilTrackerDetails list");
+        LOGGER.debug("Rendering CivilTrackerDetails list by filter", query);
         return civilTrackerDetailsService.findAll(query, pageable);
     }
 

@@ -59,7 +59,7 @@ public class PipeTrackerClassicServiceImpl implements PipeTrackerClassicService 
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public PipeTrackerClassic getById(Integer pipetrackerclassicId) throws EntityNotFoundException {
+	public PipeTrackerClassic getById(Integer pipetrackerclassicId) {
         LOGGER.debug("Finding PipeTrackerClassic by id: {}", pipetrackerclassicId);
         return this.wmGenericDao.findById(pipetrackerclassicId);
     }
@@ -79,7 +79,7 @@ public class PipeTrackerClassicServiceImpl implements PipeTrackerClassicService 
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public PipeTrackerClassic update(PipeTrackerClassic pipeTrackerClassic) throws EntityNotFoundException {
+	public PipeTrackerClassic update(PipeTrackerClassic pipeTrackerClassic) {
         LOGGER.debug("Updating PipeTrackerClassic with information: {}", pipeTrackerClassic);
 
         this.wmGenericDao.update(pipeTrackerClassic);
@@ -90,7 +90,7 @@ public class PipeTrackerClassicServiceImpl implements PipeTrackerClassicService 
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public PipeTrackerClassic delete(Integer pipetrackerclassicId) throws EntityNotFoundException {
+	public PipeTrackerClassic delete(Integer pipetrackerclassicId) {
         LOGGER.debug("Deleting PipeTrackerClassic with id: {}", pipetrackerclassicId);
         PipeTrackerClassic deleted = this.wmGenericDao.findById(pipetrackerclassicId);
         if (deleted == null) {

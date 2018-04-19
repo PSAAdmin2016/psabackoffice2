@@ -50,10 +50,10 @@ public class CivilTrackerDetails implements Serializable {
     private String location;
     private String structure;
     private String cu;
-    private String elevation;
-    private String sortGroup1;
-    private String sortGroup2;
-    private String sortGroup3;
+    private String elevation = "1";
+    private String sortGroup1 = "N/A";
+    private String sortGroup2 = "N/A";
+    private String sortGroup3 = "N/A";
     private String engDrawingNumber;
     private Short sheetNumber;
     private Short drawingRev;
@@ -521,9 +521,7 @@ public class CivilTrackerDetails implements Serializable {
     @PostPersist
     public void onPostPersist() {
         if(civilFas != null) {
-            for(CivilFa civilFa : civilFas) {
-                civilFa.setCivilTrackerDetails(this);
-            }
+            civilFas.forEach(civilFa -> civilFa.setCivilTrackerDetails(this));
         }
     }
 

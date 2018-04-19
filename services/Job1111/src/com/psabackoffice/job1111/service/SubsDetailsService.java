@@ -45,7 +45,7 @@ public interface SubsDetailsService {
 	 * @return SubsDetails associated with the given subsdetailsId.
      * @throws EntityNotFoundException If no SubsDetails is found.
 	 */
-	SubsDetails getById(Integer subsdetailsId) throws EntityNotFoundException;
+	SubsDetails getById(Integer subsdetailsId);
 
     /**
 	 * Find and return the SubsDetails by given id if exists, returns null otherwise.
@@ -65,7 +65,7 @@ public interface SubsDetailsService {
 	 * @return The updated SubsDetails.
 	 * @throws EntityNotFoundException if no SubsDetails is found with given input.
 	 */
-	SubsDetails update(@Valid SubsDetails subsDetails) throws EntityNotFoundException;
+	SubsDetails update(@Valid SubsDetails subsDetails);
 
     /**
 	 * Deletes an existing SubsDetails with the given id.
@@ -74,7 +74,7 @@ public interface SubsDetailsService {
 	 * @return The deleted SubsDetails.
 	 * @throws EntityNotFoundException if no SubsDetails found with the given id.
 	 */
-	SubsDetails delete(Integer subsdetailsId) throws EntityNotFoundException;
+	SubsDetails delete(Integer subsdetailsId);
 
     /**
 	 * Deletes an existing SubsDetails with the given object.

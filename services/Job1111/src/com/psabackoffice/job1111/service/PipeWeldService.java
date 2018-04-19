@@ -43,7 +43,7 @@ public interface PipeWeldService {
 	 * @return PipeWeld associated with the given pipeweldId.
      * @throws EntityNotFoundException If no PipeWeld is found.
 	 */
-	PipeWeld getById(Integer pipeweldId) throws EntityNotFoundException;
+	PipeWeld getById(Integer pipeweldId);
 
     /**
 	 * Find and return the PipeWeld by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface PipeWeldService {
 	 * @return The updated PipeWeld.
 	 * @throws EntityNotFoundException if no PipeWeld is found with given input.
 	 */
-	PipeWeld update(@Valid PipeWeld pipeWeld) throws EntityNotFoundException;
+	PipeWeld update(@Valid PipeWeld pipeWeld);
 
     /**
 	 * Deletes an existing PipeWeld with the given id.
@@ -72,7 +72,7 @@ public interface PipeWeldService {
 	 * @return The deleted PipeWeld.
 	 * @throws EntityNotFoundException if no PipeWeld found with the given id.
 	 */
-	PipeWeld delete(Integer pipeweldId) throws EntityNotFoundException;
+	PipeWeld delete(Integer pipeweldId);
 
     /**
 	 * Deletes an existing PipeWeld with the given object.

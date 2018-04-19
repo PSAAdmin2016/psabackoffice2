@@ -68,7 +68,7 @@ public class CivilTrackerDetailsServiceImpl implements CivilTrackerDetailsServic
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public CivilTrackerDetails getById(Integer civiltrackerdetailsId) throws EntityNotFoundException {
+	public CivilTrackerDetails getById(Integer civiltrackerdetailsId) {
         LOGGER.debug("Finding CivilTrackerDetails by id: {}", civiltrackerdetailsId);
         return this.wmGenericDao.findById(civiltrackerdetailsId);
     }
@@ -88,17 +88,12 @@ public class CivilTrackerDetailsServiceImpl implements CivilTrackerDetailsServic
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public CivilTrackerDetails update(CivilTrackerDetails civilTrackerDetails) throws EntityNotFoundException {
+	public CivilTrackerDetails update(CivilTrackerDetails civilTrackerDetails) {
         LOGGER.debug("Updating CivilTrackerDetails with information: {}", civilTrackerDetails);
 
         List<CivilFa> civilFas = civilTrackerDetails.getCivilFas();
-
         if(civilFas != null && Hibernate.isInitialized(civilFas)) {
-            if(!civilFas.isEmpty()) {
-                for(CivilFa _civilFa : civilFas) {
-                    _civilFa.setCivilTrackerDetails(civilTrackerDetails);
-                }
-            }
+            civilFas.forEach(_civilFa -> _civilFa.setCivilTrackerDetails(civilTrackerDetails));
         }
 
         this.wmGenericDao.update(civilTrackerDetails);
@@ -108,11 +103,9 @@ public class CivilTrackerDetailsServiceImpl implements CivilTrackerDetailsServic
         if(civilFas != null && Hibernate.isInitialized(civilFas) && !civilFas.isEmpty()) {
             List<CivilFa> _remainingChildren = wmGenericDao.execute(
                 session -> DaoUtils.findAllRemainingChildren(session, CivilFa.class,
-                        new DaoUtils.ChildrenFilter("civilTrackerDetails", civilTrackerDetails, civilFas)));
+                        new DaoUtils.ChildrenFilter<>("civilTrackerDetails", civilTrackerDetails, civilFas)));
             LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
-            for(CivilFa _civilFa : _remainingChildren) {
-                civilFaService.delete(_civilFa);
-            }
+            _remainingChildren.forEach(_civilFa -> civilFaService.delete(_civilFa));
             civilTrackerDetails.setCivilFas(civilFas);
         }
 
@@ -121,7 +114,7 @@ public class CivilTrackerDetailsServiceImpl implements CivilTrackerDetailsServic
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public CivilTrackerDetails delete(Integer civiltrackerdetailsId) throws EntityNotFoundException {
+	public CivilTrackerDetails delete(Integer civiltrackerdetailsId) {
         LOGGER.debug("Deleting CivilTrackerDetails with id: {}", civiltrackerdetailsId);
         CivilTrackerDetails deleted = this.wmGenericDao.findById(civiltrackerdetailsId);
         if (deleted == null) {

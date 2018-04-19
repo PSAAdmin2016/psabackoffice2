@@ -41,7 +41,7 @@ public class SubsEwo implements Serializable {
     private String ewonotes;
     private Short activityType;
     private Short ewotimeInForm;
-    private short rev;
+    private short rev = 0;
     private Timestamp timeStamp;
     private SubmissionActivityStatus submissionActivityStatus;
 

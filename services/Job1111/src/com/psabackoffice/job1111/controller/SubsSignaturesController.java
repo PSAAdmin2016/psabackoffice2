@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class SubsSignaturesController {
     @ApiOperation(value = "Returns the SubsSignatures instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SubsSignatures getSubsSignatures(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public SubsSignatures getSubsSignatures(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting SubsSignatures with id: {}" , id);
 
         SubsSignatures foundSubsSignatures = subsSignaturesService.getById(id);
@@ -78,7 +77,7 @@ public class SubsSignaturesController {
     @ApiOperation(value = "Updates the SubsSignatures instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SubsSignatures editSubsSignatures(@PathVariable("id") Integer id, @RequestBody SubsSignatures subsSignatures) throws EntityNotFoundException {
+    public SubsSignatures editSubsSignatures(@PathVariable("id") Integer id, @RequestBody SubsSignatures subsSignatures) {
         LOGGER.debug("Editing SubsSignatures with id: {}" , subsSignatures.getId());
 
         subsSignatures.setId(id);
@@ -91,7 +90,7 @@ public class SubsSignaturesController {
     @ApiOperation(value = "Deletes the SubsSignatures instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteSubsSignatures(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteSubsSignatures(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting SubsSignatures with id: {}" , id);
 
         SubsSignatures deletedSubsSignatures = subsSignaturesService.delete(id);
@@ -107,7 +106,7 @@ public class SubsSignaturesController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SubsSignatures> searchSubsSignaturesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering SubsSignatures list");
+        LOGGER.debug("Rendering SubsSignatures list by query filter:{}", (Object) queryFilters);
         return subsSignaturesService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class SubsSignaturesController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SubsSignatures> findSubsSignatures(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SubsSignatures list");
+        LOGGER.debug("Rendering SubsSignatures list by filter:", query);
         return subsSignaturesService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class SubsSignaturesController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SubsSignatures> filterSubsSignatures(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SubsSignatures list");
+        LOGGER.debug("Rendering SubsSignatures list by filter", query);
         return subsSignaturesService.findAll(query, pageable);
     }
 

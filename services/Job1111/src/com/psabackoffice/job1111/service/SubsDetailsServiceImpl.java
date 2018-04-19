@@ -74,7 +74,7 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public SubsDetails getById(Integer subsdetailsId) throws EntityNotFoundException {
+	public SubsDetails getById(Integer subsdetailsId) {
         LOGGER.debug("Finding SubsDetails by id: {}", subsdetailsId);
         return this.wmGenericDao.findById(subsdetailsId);
     }
@@ -94,26 +94,16 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public SubsDetails update(SubsDetails subsDetails) throws EntityNotFoundException {
+	public SubsDetails update(SubsDetails subsDetails) {
         LOGGER.debug("Updating SubsDetails with information: {}", subsDetails);
 
         List<SubmissionActivityStatus> submissionActivityStatuses = subsDetails.getSubmissionActivityStatuses();
         List<SubsSignatures> subsSignatureses = subsDetails.getSubsSignatureses();
-
         if(submissionActivityStatuses != null && Hibernate.isInitialized(submissionActivityStatuses)) {
-            if(!submissionActivityStatuses.isEmpty()) {
-                for(SubmissionActivityStatus _submissionActivityStatus : submissionActivityStatuses) {
-                    _submissionActivityStatus.setSubsDetails(subsDetails);
-                }
-            }
+            submissionActivityStatuses.forEach(_submissionActivityStatus -> _submissionActivityStatus.setSubsDetails(subsDetails));
         }
-
         if(subsSignatureses != null && Hibernate.isInitialized(subsSignatureses)) {
-            if(!subsSignatureses.isEmpty()) {
-                for(SubsSignatures _subsSignatures : subsSignatureses) {
-                    _subsSignatures.setSubsDetails(subsDetails);
-                }
-            }
+            subsSignatureses.forEach(_subsSignatures -> _subsSignatures.setSubsDetails(subsDetails));
         }
 
         this.wmGenericDao.update(subsDetails);
@@ -123,11 +113,9 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
         if(submissionActivityStatuses != null && Hibernate.isInitialized(submissionActivityStatuses) && !submissionActivityStatuses.isEmpty()) {
             List<SubmissionActivityStatus> _remainingChildren = wmGenericDao.execute(
                 session -> DaoUtils.findAllRemainingChildren(session, SubmissionActivityStatus.class,
-                        new DaoUtils.ChildrenFilter("subsDetails", subsDetails, submissionActivityStatuses)));
+                        new DaoUtils.ChildrenFilter<>("subsDetails", subsDetails, submissionActivityStatuses)));
             LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
-            for(SubmissionActivityStatus _submissionActivityStatus : _remainingChildren) {
-                submissionActivityStatusService.delete(_submissionActivityStatus);
-            }
+            _remainingChildren.forEach(_submissionActivityStatus -> submissionActivityStatusService.delete(_submissionActivityStatus));
             subsDetails.setSubmissionActivityStatuses(submissionActivityStatuses);
         }
 
@@ -135,11 +123,9 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
         if(subsSignatureses != null && Hibernate.isInitialized(subsSignatureses) && !subsSignatureses.isEmpty()) {
             List<SubsSignatures> _remainingChildren = wmGenericDao.execute(
                 session -> DaoUtils.findAllRemainingChildren(session, SubsSignatures.class,
-                        new DaoUtils.ChildrenFilter("subsDetails", subsDetails, subsSignatureses)));
+                        new DaoUtils.ChildrenFilter<>("subsDetails", subsDetails, subsSignatureses)));
             LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
-            for(SubsSignatures _subsSignatures : _remainingChildren) {
-                subsSignaturesService.delete(_subsSignatures);
-            }
+            _remainingChildren.forEach(_subsSignatures -> subsSignaturesService.delete(_subsSignatures));
             subsDetails.setSubsSignatureses(subsSignatureses);
         }
 
@@ -148,7 +134,7 @@ public class SubsDetailsServiceImpl implements SubsDetailsService {
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public SubsDetails delete(Integer subsdetailsId) throws EntityNotFoundException {
+	public SubsDetails delete(Integer subsdetailsId) {
         LOGGER.debug("Deleting SubsDetails with id: {}", subsdetailsId);
         SubsDetails deleted = this.wmGenericDao.findById(subsdetailsId);
         if (deleted == null) {

@@ -45,7 +45,7 @@ public interface SubmissionActivityStatusService {
 	 * @return SubmissionActivityStatus associated with the given submissionactivitystatusId.
      * @throws EntityNotFoundException If no SubmissionActivityStatus is found.
 	 */
-	SubmissionActivityStatus getById(Integer submissionactivitystatusId) throws EntityNotFoundException;
+	SubmissionActivityStatus getById(Integer submissionactivitystatusId);
 
     /**
 	 * Find and return the SubmissionActivityStatus by given id if exists, returns null otherwise.
@@ -65,7 +65,7 @@ public interface SubmissionActivityStatusService {
 	 * @return The updated SubmissionActivityStatus.
 	 * @throws EntityNotFoundException if no SubmissionActivityStatus is found with given input.
 	 */
-	SubmissionActivityStatus update(@Valid SubmissionActivityStatus submissionActivityStatus) throws EntityNotFoundException;
+	SubmissionActivityStatus update(@Valid SubmissionActivityStatus submissionActivityStatus);
 
     /**
 	 * Deletes an existing SubmissionActivityStatus with the given id.
@@ -74,7 +74,7 @@ public interface SubmissionActivityStatusService {
 	 * @return The deleted SubmissionActivityStatus.
 	 * @throws EntityNotFoundException if no SubmissionActivityStatus found with the given id.
 	 */
-	SubmissionActivityStatus delete(Integer submissionactivitystatusId) throws EntityNotFoundException;
+	SubmissionActivityStatus delete(Integer submissionactivitystatusId);
 
     /**
 	 * Deletes an existing SubmissionActivityStatus with the given object.

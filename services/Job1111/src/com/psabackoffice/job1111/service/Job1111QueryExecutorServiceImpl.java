@@ -1738,9 +1738,10 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public Integer executeUpdateSASBidID(UpdateSasbidIdRequest updateSasbidIdRequest) {
-        Map params = new HashMap(4);
+        Map params = new HashMap(5);
 
         params.put("ActivityStatusID", updateSasbidIdRequest.getActivityStatusId());
+        params.put("RejectID", updateSasbidIdRequest.getRejectId());
         params.put("UserID", updateSasbidIdRequest.getUserId());
         params.put("BidID", updateSasbidIdRequest.getBidId());
         params.put("ActivityID", updateSasbidIdRequest.getActivityId());

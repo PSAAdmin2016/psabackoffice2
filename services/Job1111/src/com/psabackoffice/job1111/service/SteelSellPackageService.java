@@ -43,7 +43,7 @@ public interface SteelSellPackageService {
 	 * @return SteelSellPackage associated with the given steelsellpackageId.
      * @throws EntityNotFoundException If no SteelSellPackage is found.
 	 */
-	SteelSellPackage getById(Integer steelsellpackageId) throws EntityNotFoundException;
+	SteelSellPackage getById(Integer steelsellpackageId);
 
     /**
 	 * Find and return the SteelSellPackage by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface SteelSellPackageService {
 	 * @return The updated SteelSellPackage.
 	 * @throws EntityNotFoundException if no SteelSellPackage is found with given input.
 	 */
-	SteelSellPackage update(@Valid SteelSellPackage steelSellPackage) throws EntityNotFoundException;
+	SteelSellPackage update(@Valid SteelSellPackage steelSellPackage);
 
     /**
 	 * Deletes an existing SteelSellPackage with the given id.
@@ -72,7 +72,7 @@ public interface SteelSellPackageService {
 	 * @return The deleted SteelSellPackage.
 	 * @throws EntityNotFoundException if no SteelSellPackage found with the given id.
 	 */
-	SteelSellPackage delete(Integer steelsellpackageId) throws EntityNotFoundException;
+	SteelSellPackage delete(Integer steelsellpackageId);
 
     /**
 	 * Deletes an existing SteelSellPackage with the given object.

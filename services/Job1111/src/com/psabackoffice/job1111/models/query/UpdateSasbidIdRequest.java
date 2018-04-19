@@ -21,6 +21,9 @@ public class UpdateSasbidIdRequest implements Serializable {
     @NotNull
     private Integer activityStatusId;
 
+    @JsonProperty("RejectID")
+    private Integer rejectId;
+
     @JsonProperty("UserID")
     @NotNull
     private Integer userId;
@@ -38,6 +41,14 @@ public class UpdateSasbidIdRequest implements Serializable {
 
     public void setActivityStatusId(Integer activityStatusId) {
         this.activityStatusId = activityStatusId;
+    }
+
+    public Integer getRejectId() {
+        return this.rejectId;
+    }
+
+    public void setRejectId(Integer rejectId) {
+        this.rejectId = rejectId;
     }
 
     public Integer getUserId() {
@@ -70,6 +81,7 @@ public class UpdateSasbidIdRequest implements Serializable {
         if (!(o instanceof UpdateSasbidIdRequest)) return false;
         final UpdateSasbidIdRequest updateSasbidIdRequest = (UpdateSasbidIdRequest) o;
         return Objects.equals(getActivityStatusId(), updateSasbidIdRequest.getActivityStatusId()) &&
+                Objects.equals(getRejectId(), updateSasbidIdRequest.getRejectId()) &&
                 Objects.equals(getUserId(), updateSasbidIdRequest.getUserId()) &&
                 Objects.equals(getBidId(), updateSasbidIdRequest.getBidId()) &&
                 Objects.equals(getActivityId(), updateSasbidIdRequest.getActivityId());
@@ -78,6 +90,7 @@ public class UpdateSasbidIdRequest implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getActivityStatusId(),
+                getRejectId(),
                 getUserId(),
                 getBidId(),
                 getActivityId());

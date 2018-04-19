@@ -37,7 +37,7 @@ public class PipeFa implements Serializable {
     private String fanotes;
     private Short activityType;
     private Short fatimeInForm;
-    private short rev;
+    private short rev = 0;
     private Timestamp timeStamp;
     private PipeTrackerDetails pipeTrackerDetails;
     private SubmissionActivityStatus submissionActivityStatus;

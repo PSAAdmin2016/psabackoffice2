@@ -43,7 +43,7 @@ public interface SubsSignaturesService {
 	 * @return SubsSignatures associated with the given subssignaturesId.
      * @throws EntityNotFoundException If no SubsSignatures is found.
 	 */
-	SubsSignatures getById(Integer subssignaturesId) throws EntityNotFoundException;
+	SubsSignatures getById(Integer subssignaturesId);
 
     /**
 	 * Find and return the SubsSignatures by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface SubsSignaturesService {
 	 * @return The updated SubsSignatures.
 	 * @throws EntityNotFoundException if no SubsSignatures is found with given input.
 	 */
-	SubsSignatures update(@Valid SubsSignatures subsSignatures) throws EntityNotFoundException;
+	SubsSignatures update(@Valid SubsSignatures subsSignatures);
 
     /**
 	 * Deletes an existing SubsSignatures with the given id.
@@ -72,7 +72,7 @@ public interface SubsSignaturesService {
 	 * @return The deleted SubsSignatures.
 	 * @throws EntityNotFoundException if no SubsSignatures found with the given id.
 	 */
-	SubsSignatures delete(Integer subssignaturesId) throws EntityNotFoundException;
+	SubsSignatures delete(Integer subssignaturesId);
 
     /**
 	 * Deletes an existing SubsSignatures with the given object.

@@ -43,7 +43,7 @@ public interface SteelDemoService {
 	 * @return SteelDemo associated with the given steeldemoId.
      * @throws EntityNotFoundException If no SteelDemo is found.
 	 */
-	SteelDemo getById(Integer steeldemoId) throws EntityNotFoundException;
+	SteelDemo getById(Integer steeldemoId);
 
     /**
 	 * Find and return the SteelDemo by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface SteelDemoService {
 	 * @return The updated SteelDemo.
 	 * @throws EntityNotFoundException if no SteelDemo is found with given input.
 	 */
-	SteelDemo update(@Valid SteelDemo steelDemo) throws EntityNotFoundException;
+	SteelDemo update(@Valid SteelDemo steelDemo);
 
     /**
 	 * Deletes an existing SteelDemo with the given id.
@@ -72,7 +72,7 @@ public interface SteelDemoService {
 	 * @return The deleted SteelDemo.
 	 * @throws EntityNotFoundException if no SteelDemo found with the given id.
 	 */
-	SteelDemo delete(Integer steeldemoId) throws EntityNotFoundException;
+	SteelDemo delete(Integer steeldemoId);
 
     /**
 	 * Deletes an existing SteelDemo with the given object.

@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class PipeFaController {
     @ApiOperation(value = "Returns the PipeFa instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public PipeFa getPipeFa(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public PipeFa getPipeFa(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting PipeFa with id: {}" , id);
 
         PipeFa foundPipeFa = pipeFaService.getById(id);
@@ -78,7 +77,7 @@ public class PipeFaController {
     @ApiOperation(value = "Updates the PipeFa instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public PipeFa editPipeFa(@PathVariable("id") Integer id, @RequestBody PipeFa pipeFa) throws EntityNotFoundException {
+    public PipeFa editPipeFa(@PathVariable("id") Integer id, @RequestBody PipeFa pipeFa) {
         LOGGER.debug("Editing PipeFa with id: {}" , pipeFa.getActivityId());
 
         pipeFa.setActivityId(id);
@@ -91,7 +90,7 @@ public class PipeFaController {
     @ApiOperation(value = "Deletes the PipeFa instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deletePipeFa(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deletePipeFa(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting PipeFa with id: {}" , id);
 
         PipeFa deletedPipeFa = pipeFaService.delete(id);
@@ -107,7 +106,7 @@ public class PipeFaController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeFa> searchPipeFasByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering PipeFas list");
+        LOGGER.debug("Rendering PipeFas list by query filter:{}", (Object) queryFilters);
         return pipeFaService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class PipeFaController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeFa> findPipeFas(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering PipeFas list");
+        LOGGER.debug("Rendering PipeFas list by filter:", query);
         return pipeFaService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class PipeFaController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeFa> filterPipeFas(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering PipeFas list");
+        LOGGER.debug("Rendering PipeFas list by filter", query);
         return pipeFaService.findAll(query, pageable);
     }
 

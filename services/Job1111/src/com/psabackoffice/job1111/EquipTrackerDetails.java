@@ -491,9 +491,7 @@ public class EquipTrackerDetails implements Serializable {
     @PostPersist
     public void onPostPersist() {
         if(equipFas != null) {
-            for(EquipFa equipFa : equipFas) {
-                equipFa.setEquipTrackerDetails(this);
-            }
+            equipFas.forEach(equipFa -> equipFa.setEquipTrackerDetails(this));
         }
     }
 

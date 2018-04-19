@@ -43,7 +43,7 @@ public interface PipeTestingService {
 	 * @return PipeTesting associated with the given pipetestingId.
      * @throws EntityNotFoundException If no PipeTesting is found.
 	 */
-	PipeTesting getById(Integer pipetestingId) throws EntityNotFoundException;
+	PipeTesting getById(Integer pipetestingId);
 
     /**
 	 * Find and return the PipeTesting by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface PipeTestingService {
 	 * @return The updated PipeTesting.
 	 * @throws EntityNotFoundException if no PipeTesting is found with given input.
 	 */
-	PipeTesting update(@Valid PipeTesting pipeTesting) throws EntityNotFoundException;
+	PipeTesting update(@Valid PipeTesting pipeTesting);
 
     /**
 	 * Deletes an existing PipeTesting with the given id.
@@ -72,7 +72,7 @@ public interface PipeTestingService {
 	 * @return The deleted PipeTesting.
 	 * @throws EntityNotFoundException if no PipeTesting found with the given id.
 	 */
-	PipeTesting delete(Integer pipetestingId) throws EntityNotFoundException;
+	PipeTesting delete(Integer pipetestingId);
 
     /**
 	 * Deletes an existing PipeTesting with the given object.

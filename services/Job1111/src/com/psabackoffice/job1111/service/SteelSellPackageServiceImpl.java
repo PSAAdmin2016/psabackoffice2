@@ -59,7 +59,7 @@ public class SteelSellPackageServiceImpl implements SteelSellPackageService {
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public SteelSellPackage getById(Integer steelsellpackageId) throws EntityNotFoundException {
+	public SteelSellPackage getById(Integer steelsellpackageId) {
         LOGGER.debug("Finding SteelSellPackage by id: {}", steelsellpackageId);
         return this.wmGenericDao.findById(steelsellpackageId);
     }
@@ -79,7 +79,7 @@ public class SteelSellPackageServiceImpl implements SteelSellPackageService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public SteelSellPackage update(SteelSellPackage steelSellPackage) throws EntityNotFoundException {
+	public SteelSellPackage update(SteelSellPackage steelSellPackage) {
         LOGGER.debug("Updating SteelSellPackage with information: {}", steelSellPackage);
 
         this.wmGenericDao.update(steelSellPackage);
@@ -90,7 +90,7 @@ public class SteelSellPackageServiceImpl implements SteelSellPackageService {
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public SteelSellPackage delete(Integer steelsellpackageId) throws EntityNotFoundException {
+	public SteelSellPackage delete(Integer steelsellpackageId) {
         LOGGER.debug("Deleting SteelSellPackage with id: {}", steelsellpackageId);
         SteelSellPackage deleted = this.wmGenericDao.findById(steelsellpackageId);
         if (deleted == null) {

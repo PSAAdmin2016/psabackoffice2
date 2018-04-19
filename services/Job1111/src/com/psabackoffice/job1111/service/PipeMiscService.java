@@ -43,7 +43,7 @@ public interface PipeMiscService {
 	 * @return PipeMisc associated with the given pipemiscId.
      * @throws EntityNotFoundException If no PipeMisc is found.
 	 */
-	PipeMisc getById(Integer pipemiscId) throws EntityNotFoundException;
+	PipeMisc getById(Integer pipemiscId);
 
     /**
 	 * Find and return the PipeMisc by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface PipeMiscService {
 	 * @return The updated PipeMisc.
 	 * @throws EntityNotFoundException if no PipeMisc is found with given input.
 	 */
-	PipeMisc update(@Valid PipeMisc pipeMisc) throws EntityNotFoundException;
+	PipeMisc update(@Valid PipeMisc pipeMisc);
 
     /**
 	 * Deletes an existing PipeMisc with the given id.
@@ -72,7 +72,7 @@ public interface PipeMiscService {
 	 * @return The deleted PipeMisc.
 	 * @throws EntityNotFoundException if no PipeMisc found with the given id.
 	 */
-	PipeMisc delete(Integer pipemiscId) throws EntityNotFoundException;
+	PipeMisc delete(Integer pipemiscId);
 
     /**
 	 * Deletes an existing PipeMisc with the given object.

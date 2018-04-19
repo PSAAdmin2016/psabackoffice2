@@ -59,7 +59,7 @@ public class CivilSellPackageServiceImpl implements CivilSellPackageService {
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public CivilSellPackage getById(Integer civilsellpackageId) throws EntityNotFoundException {
+	public CivilSellPackage getById(Integer civilsellpackageId) {
         LOGGER.debug("Finding CivilSellPackage by id: {}", civilsellpackageId);
         return this.wmGenericDao.findById(civilsellpackageId);
     }
@@ -79,7 +79,7 @@ public class CivilSellPackageServiceImpl implements CivilSellPackageService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public CivilSellPackage update(CivilSellPackage civilSellPackage) throws EntityNotFoundException {
+	public CivilSellPackage update(CivilSellPackage civilSellPackage) {
         LOGGER.debug("Updating CivilSellPackage with information: {}", civilSellPackage);
 
         this.wmGenericDao.update(civilSellPackage);
@@ -90,7 +90,7 @@ public class CivilSellPackageServiceImpl implements CivilSellPackageService {
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public CivilSellPackage delete(Integer civilsellpackageId) throws EntityNotFoundException {
+	public CivilSellPackage delete(Integer civilsellpackageId) {
         LOGGER.debug("Deleting CivilSellPackage with id: {}", civilsellpackageId);
         CivilSellPackage deleted = this.wmGenericDao.findById(civilsellpackageId);
         if (deleted == null) {

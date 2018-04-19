@@ -44,7 +44,7 @@ public interface CivilTrackerDetailsService {
 	 * @return CivilTrackerDetails associated with the given civiltrackerdetailsId.
      * @throws EntityNotFoundException If no CivilTrackerDetails is found.
 	 */
-	CivilTrackerDetails getById(Integer civiltrackerdetailsId) throws EntityNotFoundException;
+	CivilTrackerDetails getById(Integer civiltrackerdetailsId);
 
     /**
 	 * Find and return the CivilTrackerDetails by given id if exists, returns null otherwise.
@@ -64,7 +64,7 @@ public interface CivilTrackerDetailsService {
 	 * @return The updated CivilTrackerDetails.
 	 * @throws EntityNotFoundException if no CivilTrackerDetails is found with given input.
 	 */
-	CivilTrackerDetails update(@Valid CivilTrackerDetails civilTrackerDetails) throws EntityNotFoundException;
+	CivilTrackerDetails update(@Valid CivilTrackerDetails civilTrackerDetails);
 
     /**
 	 * Deletes an existing CivilTrackerDetails with the given id.
@@ -73,7 +73,7 @@ public interface CivilTrackerDetailsService {
 	 * @return The deleted CivilTrackerDetails.
 	 * @throws EntityNotFoundException if no CivilTrackerDetails found with the given id.
 	 */
-	CivilTrackerDetails delete(Integer civiltrackerdetailsId) throws EntityNotFoundException;
+	CivilTrackerDetails delete(Integer civiltrackerdetailsId);
 
     /**
 	 * Deletes an existing CivilTrackerDetails with the given object.

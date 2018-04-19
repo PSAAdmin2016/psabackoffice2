@@ -45,7 +45,7 @@ public interface SteelTrackerDetailsService {
 	 * @return SteelTrackerDetails associated with the given steeltrackerdetailsId.
      * @throws EntityNotFoundException If no SteelTrackerDetails is found.
 	 */
-	SteelTrackerDetails getById(Integer steeltrackerdetailsId) throws EntityNotFoundException;
+	SteelTrackerDetails getById(Integer steeltrackerdetailsId);
 
     /**
 	 * Find and return the SteelTrackerDetails by given id if exists, returns null otherwise.
@@ -65,7 +65,7 @@ public interface SteelTrackerDetailsService {
 	 * @return The updated SteelTrackerDetails.
 	 * @throws EntityNotFoundException if no SteelTrackerDetails is found with given input.
 	 */
-	SteelTrackerDetails update(@Valid SteelTrackerDetails steelTrackerDetails) throws EntityNotFoundException;
+	SteelTrackerDetails update(@Valid SteelTrackerDetails steelTrackerDetails);
 
     /**
 	 * Deletes an existing SteelTrackerDetails with the given id.
@@ -74,7 +74,7 @@ public interface SteelTrackerDetailsService {
 	 * @return The deleted SteelTrackerDetails.
 	 * @throws EntityNotFoundException if no SteelTrackerDetails found with the given id.
 	 */
-	SteelTrackerDetails delete(Integer steeltrackerdetailsId) throws EntityNotFoundException;
+	SteelTrackerDetails delete(Integer steeltrackerdetailsId);
 
     /**
 	 * Deletes an existing SteelTrackerDetails with the given object.

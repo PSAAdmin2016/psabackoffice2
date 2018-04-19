@@ -68,7 +68,7 @@ public class PipeTrackerDetailsServiceImpl implements PipeTrackerDetailsService 
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public PipeTrackerDetails getById(Integer pipetrackerdetailsId) throws EntityNotFoundException {
+	public PipeTrackerDetails getById(Integer pipetrackerdetailsId) {
         LOGGER.debug("Finding PipeTrackerDetails by id: {}", pipetrackerdetailsId);
         return this.wmGenericDao.findById(pipetrackerdetailsId);
     }
@@ -88,17 +88,12 @@ public class PipeTrackerDetailsServiceImpl implements PipeTrackerDetailsService 
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public PipeTrackerDetails update(PipeTrackerDetails pipeTrackerDetails) throws EntityNotFoundException {
+	public PipeTrackerDetails update(PipeTrackerDetails pipeTrackerDetails) {
         LOGGER.debug("Updating PipeTrackerDetails with information: {}", pipeTrackerDetails);
 
         List<PipeFa> pipeFas = pipeTrackerDetails.getPipeFas();
-
         if(pipeFas != null && Hibernate.isInitialized(pipeFas)) {
-            if(!pipeFas.isEmpty()) {
-                for(PipeFa _pipeFa : pipeFas) {
-                    _pipeFa.setPipeTrackerDetails(pipeTrackerDetails);
-                }
-            }
+            pipeFas.forEach(_pipeFa -> _pipeFa.setPipeTrackerDetails(pipeTrackerDetails));
         }
 
         this.wmGenericDao.update(pipeTrackerDetails);
@@ -108,11 +103,9 @@ public class PipeTrackerDetailsServiceImpl implements PipeTrackerDetailsService 
         if(pipeFas != null && Hibernate.isInitialized(pipeFas) && !pipeFas.isEmpty()) {
             List<PipeFa> _remainingChildren = wmGenericDao.execute(
                 session -> DaoUtils.findAllRemainingChildren(session, PipeFa.class,
-                        new DaoUtils.ChildrenFilter("pipeTrackerDetails", pipeTrackerDetails, pipeFas)));
+                        new DaoUtils.ChildrenFilter<>("pipeTrackerDetails", pipeTrackerDetails, pipeFas)));
             LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
-            for(PipeFa _pipeFa : _remainingChildren) {
-                pipeFaService.delete(_pipeFa);
-            }
+            _remainingChildren.forEach(_pipeFa -> pipeFaService.delete(_pipeFa));
             pipeTrackerDetails.setPipeFas(pipeFas);
         }
 
@@ -121,7 +114,7 @@ public class PipeTrackerDetailsServiceImpl implements PipeTrackerDetailsService 
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public PipeTrackerDetails delete(Integer pipetrackerdetailsId) throws EntityNotFoundException {
+	public PipeTrackerDetails delete(Integer pipetrackerdetailsId) {
         LOGGER.debug("Deleting PipeTrackerDetails with id: {}", pipetrackerdetailsId);
         PipeTrackerDetails deleted = this.wmGenericDao.findById(pipetrackerdetailsId);
         if (deleted == null) {

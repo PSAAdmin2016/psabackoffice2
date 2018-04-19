@@ -59,7 +59,7 @@ public class PipeFaServiceImpl implements PipeFaService {
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public PipeFa getById(Integer pipefaId) throws EntityNotFoundException {
+	public PipeFa getById(Integer pipefaId) {
         LOGGER.debug("Finding PipeFa by id: {}", pipefaId);
         return this.wmGenericDao.findById(pipefaId);
     }
@@ -79,7 +79,7 @@ public class PipeFaServiceImpl implements PipeFaService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public PipeFa update(PipeFa pipeFa) throws EntityNotFoundException {
+	public PipeFa update(PipeFa pipeFa) {
         LOGGER.debug("Updating PipeFa with information: {}", pipeFa);
 
         this.wmGenericDao.update(pipeFa);
@@ -90,7 +90,7 @@ public class PipeFaServiceImpl implements PipeFaService {
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public PipeFa delete(Integer pipefaId) throws EntityNotFoundException {
+	public PipeFa delete(Integer pipefaId) {
         LOGGER.debug("Deleting PipeFa with id: {}", pipefaId);
         PipeFa deleted = this.wmGenericDao.findById(pipefaId);
         if (deleted == null) {

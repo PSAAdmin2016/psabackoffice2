@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class PipeWeldController {
     @ApiOperation(value = "Returns the PipeWeld instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public PipeWeld getPipeWeld(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public PipeWeld getPipeWeld(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting PipeWeld with id: {}" , id);
 
         PipeWeld foundPipeWeld = pipeWeldService.getById(id);
@@ -78,7 +77,7 @@ public class PipeWeldController {
     @ApiOperation(value = "Updates the PipeWeld instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public PipeWeld editPipeWeld(@PathVariable("id") Integer id, @RequestBody PipeWeld pipeWeld) throws EntityNotFoundException {
+    public PipeWeld editPipeWeld(@PathVariable("id") Integer id, @RequestBody PipeWeld pipeWeld) {
         LOGGER.debug("Editing PipeWeld with id: {}" , pipeWeld.getActivityId());
 
         pipeWeld.setActivityId(id);
@@ -91,7 +90,7 @@ public class PipeWeldController {
     @ApiOperation(value = "Deletes the PipeWeld instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deletePipeWeld(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deletePipeWeld(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting PipeWeld with id: {}" , id);
 
         PipeWeld deletedPipeWeld = pipeWeldService.delete(id);
@@ -107,7 +106,7 @@ public class PipeWeldController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeWeld> searchPipeWeldsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering PipeWelds list");
+        LOGGER.debug("Rendering PipeWelds list by query filter:{}", (Object) queryFilters);
         return pipeWeldService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class PipeWeldController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeWeld> findPipeWelds(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering PipeWelds list");
+        LOGGER.debug("Rendering PipeWelds list by filter:", query);
         return pipeWeldService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class PipeWeldController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<PipeWeld> filterPipeWelds(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering PipeWelds list");
+        LOGGER.debug("Rendering PipeWelds list by filter", query);
         return pipeWeldService.findAll(query, pageable);
     }
 

@@ -43,7 +43,7 @@ public interface PipeConnectionService {
 	 * @return PipeConnection associated with the given pipeconnectionId.
      * @throws EntityNotFoundException If no PipeConnection is found.
 	 */
-	PipeConnection getById(Integer pipeconnectionId) throws EntityNotFoundException;
+	PipeConnection getById(Integer pipeconnectionId);
 
     /**
 	 * Find and return the PipeConnection by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface PipeConnectionService {
 	 * @return The updated PipeConnection.
 	 * @throws EntityNotFoundException if no PipeConnection is found with given input.
 	 */
-	PipeConnection update(@Valid PipeConnection pipeConnection) throws EntityNotFoundException;
+	PipeConnection update(@Valid PipeConnection pipeConnection);
 
     /**
 	 * Deletes an existing PipeConnection with the given id.
@@ -72,7 +72,7 @@ public interface PipeConnectionService {
 	 * @return The deleted PipeConnection.
 	 * @throws EntityNotFoundException if no PipeConnection found with the given id.
 	 */
-	PipeConnection delete(Integer pipeconnectionId) throws EntityNotFoundException;
+	PipeConnection delete(Integer pipeconnectionId);
 
     /**
 	 * Deletes an existing PipeConnection with the given object.

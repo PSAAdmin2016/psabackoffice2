@@ -43,7 +43,7 @@ public interface RefSpoolListService {
 	 * @return RefSpoolList associated with the given refspoollistId.
      * @throws EntityNotFoundException If no RefSpoolList is found.
 	 */
-	RefSpoolList getById(String refspoollistId) throws EntityNotFoundException;
+	RefSpoolList getById(String refspoollistId);
 
     /**
 	 * Find and return the RefSpoolList by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface RefSpoolListService {
 	 * @return The updated RefSpoolList.
 	 * @throws EntityNotFoundException if no RefSpoolList is found with given input.
 	 */
-	RefSpoolList update(@Valid RefSpoolList refSpoolList) throws EntityNotFoundException;
+	RefSpoolList update(@Valid RefSpoolList refSpoolList);
 
     /**
 	 * Deletes an existing RefSpoolList with the given id.
@@ -72,7 +72,7 @@ public interface RefSpoolListService {
 	 * @return The deleted RefSpoolList.
 	 * @throws EntityNotFoundException if no RefSpoolList found with the given id.
 	 */
-	RefSpoolList delete(String refspoollistId) throws EntityNotFoundException;
+	RefSpoolList delete(String refspoollistId);
 
     /**
 	 * Deletes an existing RefSpoolList with the given object.

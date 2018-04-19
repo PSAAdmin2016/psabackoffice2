@@ -158,7 +158,7 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public SubmissionActivityStatus getById(Integer submissionactivitystatusId) throws EntityNotFoundException {
+	public SubmissionActivityStatus getById(Integer submissionactivitystatusId) {
         LOGGER.debug("Finding SubmissionActivityStatus by id: {}", submissionactivitystatusId);
         return this.wmGenericDao.findById(submissionactivitystatusId);
     }
@@ -178,7 +178,7 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public SubmissionActivityStatus update(SubmissionActivityStatus submissionActivityStatus) throws EntityNotFoundException {
+	public SubmissionActivityStatus update(SubmissionActivityStatus submissionActivityStatus) {
         LOGGER.debug("Updating SubmissionActivityStatus with information: {}", submissionActivityStatus);
 
         CivilFa civilFa = submissionActivityStatus.getCivilFa();
@@ -197,77 +197,53 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
         SteelSellPackage steelSellPackage = submissionActivityStatus.getSteelSellPackage();
         SubsDelay subsDelay = submissionActivityStatus.getSubsDelay();
         List<SubsEwo> subsEwos = submissionActivityStatus.getSubsEwos();
-
         if(civilFa != null && Hibernate.isInitialized(civilFa)) {
             civilFa.setSubmissionActivityStatus(submissionActivityStatus);
         }
-
         if(civilSellPackage != null && Hibernate.isInitialized(civilSellPackage)) {
             civilSellPackage.setSubmissionActivityStatus(submissionActivityStatus);
         }
-
         if(equipFa != null && Hibernate.isInitialized(equipFa)) {
             equipFa.setSubmissionActivityStatus(submissionActivityStatus);
         }
-
         if(pipeConnection != null && Hibernate.isInitialized(pipeConnection)) {
             pipeConnection.setSubmissionActivityStatus(submissionActivityStatus);
         }
-
         if(pipeErection != null && Hibernate.isInitialized(pipeErection)) {
             pipeErection.setSubmissionActivityStatus(submissionActivityStatus);
         }
-
         if(pipeFa != null && Hibernate.isInitialized(pipeFa)) {
             pipeFa.setSubmissionActivityStatus(submissionActivityStatus);
         }
-
         if(pipeMisc != null && Hibernate.isInitialized(pipeMisc)) {
             pipeMisc.setSubmissionActivityStatus(submissionActivityStatus);
         }
-
         if(pipeTesting != null && Hibernate.isInitialized(pipeTesting)) {
             pipeTesting.setSubmissionActivityStatus(submissionActivityStatus);
         }
-
         if(pipeWeld != null && Hibernate.isInitialized(pipeWeld)) {
             pipeWeld.setSubmissionActivityStatus(submissionActivityStatus);
         }
-
         if(sasnoteses != null && Hibernate.isInitialized(sasnoteses)) {
-            if(!sasnoteses.isEmpty()) {
-                for(Sasnotes _sasnotes : sasnoteses) {
-                    _sasnotes.setSubmissionActivityStatus(submissionActivityStatus);
-                }
-            }
+            sasnoteses.forEach(_sasnotes -> _sasnotes.setSubmissionActivityStatus(submissionActivityStatus));
         }
-
         if(steelDemo != null && Hibernate.isInitialized(steelDemo)) {
             steelDemo.setSubmissionActivityStatus(submissionActivityStatus);
         }
-
         if(steelFa != null && Hibernate.isInitialized(steelFa)) {
             steelFa.setSubmissionActivityStatus(submissionActivityStatus);
         }
-
         if(steelMisc != null && Hibernate.isInitialized(steelMisc)) {
             steelMisc.setSubmissionActivityStatus(submissionActivityStatus);
         }
-
         if(steelSellPackage != null && Hibernate.isInitialized(steelSellPackage)) {
             steelSellPackage.setSubmissionActivityStatus(submissionActivityStatus);
         }
-
         if(subsDelay != null && Hibernate.isInitialized(subsDelay)) {
             subsDelay.setSubmissionActivityStatus(submissionActivityStatus);
         }
-
         if(subsEwos != null && Hibernate.isInitialized(subsEwos)) {
-            if(!subsEwos.isEmpty()) {
-                for(SubsEwo _subsEwo : subsEwos) {
-                    _subsEwo.setSubmissionActivityStatus(submissionActivityStatus);
-                }
-            }
+            subsEwos.forEach(_subsEwo -> _subsEwo.setSubmissionActivityStatus(submissionActivityStatus));
         }
 
         this.wmGenericDao.update(submissionActivityStatus);
@@ -277,11 +253,9 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
         if(sasnoteses != null && Hibernate.isInitialized(sasnoteses) && !sasnoteses.isEmpty()) {
             List<Sasnotes> _remainingChildren = wmGenericDao.execute(
                 session -> DaoUtils.findAllRemainingChildren(session, Sasnotes.class,
-                        new DaoUtils.ChildrenFilter("submissionActivityStatus", submissionActivityStatus, sasnoteses)));
+                        new DaoUtils.ChildrenFilter<>("submissionActivityStatus", submissionActivityStatus, sasnoteses)));
             LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
-            for(Sasnotes _sasnotes : _remainingChildren) {
-                sasnotesService.delete(_sasnotes);
-            }
+            _remainingChildren.forEach(_sasnotes -> sasnotesService.delete(_sasnotes));
             submissionActivityStatus.setSasnoteses(sasnoteses);
         }
 
@@ -289,11 +263,9 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
         if(subsEwos != null && Hibernate.isInitialized(subsEwos) && !subsEwos.isEmpty()) {
             List<SubsEwo> _remainingChildren = wmGenericDao.execute(
                 session -> DaoUtils.findAllRemainingChildren(session, SubsEwo.class,
-                        new DaoUtils.ChildrenFilter("submissionActivityStatus", submissionActivityStatus, subsEwos)));
+                        new DaoUtils.ChildrenFilter<>("submissionActivityStatus", submissionActivityStatus, subsEwos)));
             LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
-            for(SubsEwo _subsEwo : _remainingChildren) {
-                subsEwoService.delete(_subsEwo);
-            }
+            _remainingChildren.forEach(_subsEwo -> subsEwoService.delete(_subsEwo));
             submissionActivityStatus.setSubsEwos(subsEwos);
         }
 
@@ -302,7 +274,7 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public SubmissionActivityStatus delete(Integer submissionactivitystatusId) throws EntityNotFoundException {
+	public SubmissionActivityStatus delete(Integer submissionactivitystatusId) {
         LOGGER.debug("Deleting SubmissionActivityStatus with id: {}", submissionactivitystatusId);
         SubmissionActivityStatus deleted = this.wmGenericDao.findById(submissionactivitystatusId);
         if (deleted == null) {

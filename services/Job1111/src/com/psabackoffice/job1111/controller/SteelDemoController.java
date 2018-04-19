@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class SteelDemoController {
     @ApiOperation(value = "Returns the SteelDemo instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SteelDemo getSteelDemo(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public SteelDemo getSteelDemo(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting SteelDemo with id: {}" , id);
 
         SteelDemo foundSteelDemo = steelDemoService.getById(id);
@@ -78,7 +77,7 @@ public class SteelDemoController {
     @ApiOperation(value = "Updates the SteelDemo instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public SteelDemo editSteelDemo(@PathVariable("id") Integer id, @RequestBody SteelDemo steelDemo) throws EntityNotFoundException {
+    public SteelDemo editSteelDemo(@PathVariable("id") Integer id, @RequestBody SteelDemo steelDemo) {
         LOGGER.debug("Editing SteelDemo with id: {}" , steelDemo.getActivityId());
 
         steelDemo.setActivityId(id);
@@ -91,7 +90,7 @@ public class SteelDemoController {
     @ApiOperation(value = "Deletes the SteelDemo instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteSteelDemo(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteSteelDemo(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting SteelDemo with id: {}" , id);
 
         SteelDemo deletedSteelDemo = steelDemoService.delete(id);
@@ -107,7 +106,7 @@ public class SteelDemoController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SteelDemo> searchSteelDemosByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering SteelDemos list");
+        LOGGER.debug("Rendering SteelDemos list by query filter:{}", (Object) queryFilters);
         return steelDemoService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class SteelDemoController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SteelDemo> findSteelDemos(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SteelDemos list");
+        LOGGER.debug("Rendering SteelDemos list by filter:", query);
         return steelDemoService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class SteelDemoController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<SteelDemo> filterSteelDemos(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering SteelDemos list");
+        LOGGER.debug("Rendering SteelDemos list by filter", query);
         return steelDemoService.findAll(query, pageable);
     }
 

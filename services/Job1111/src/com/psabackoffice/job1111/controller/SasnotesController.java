@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class SasnotesController {
     @ApiOperation(value = "Returns the Sasnotes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Sasnotes getSasnotes(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public Sasnotes getSasnotes(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting Sasnotes with id: {}" , id);
 
         Sasnotes foundSasnotes = sasnotesService.getById(id);
@@ -78,7 +77,7 @@ public class SasnotesController {
     @ApiOperation(value = "Updates the Sasnotes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Sasnotes editSasnotes(@PathVariable("id") Integer id, @RequestBody Sasnotes sasnotes) throws EntityNotFoundException {
+    public Sasnotes editSasnotes(@PathVariable("id") Integer id, @RequestBody Sasnotes sasnotes) {
         LOGGER.debug("Editing Sasnotes with id: {}" , sasnotes.getId());
 
         sasnotes.setId(id);
@@ -91,7 +90,7 @@ public class SasnotesController {
     @ApiOperation(value = "Deletes the Sasnotes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteSasnotes(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteSasnotes(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting Sasnotes with id: {}" , id);
 
         Sasnotes deletedSasnotes = sasnotesService.delete(id);
@@ -107,7 +106,7 @@ public class SasnotesController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Sasnotes> searchSasnotesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering Sasnotes list");
+        LOGGER.debug("Rendering Sasnotes list by query filter:{}", (Object) queryFilters);
         return sasnotesService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class SasnotesController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Sasnotes> findSasnotes(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering Sasnotes list");
+        LOGGER.debug("Rendering Sasnotes list by filter:", query);
         return sasnotesService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class SasnotesController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Sasnotes> filterSasnotes(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering Sasnotes list");
+        LOGGER.debug("Rendering Sasnotes list by filter", query);
         return sasnotesService.findAll(query, pageable);
     }
 
