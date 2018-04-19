@@ -16,7 +16,9 @@
 	},
 	"properties": {
 		"appid": {
-			"type": "string"
+			"type": "string",
+            "displayName" : "AppId",
+			"helpText" : "This property defines the facebook app-id attribute for the prefab. The app-id that has been registered with facebook for creating facebook associated apps."
 		}
 	}
 }

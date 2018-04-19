@@ -1,96 +1,101 @@
 {
   "OAuthHandlerController_getLoginURL" : {
+    "id" : "OAuthHandlerController_getLoginURL",
+    "service" : "OAuthHandlerService",
     "controller" : "OAuthHandlerController",
+    "operationType" : "string",
+    "type" : "string",
     "wmServiceOperationInfo" : {
+      "name" : "getLoginURL",
       "methodType" : "get",
       "relativePath" : "/oAuthHandler/loginURl",
-      "name" : "getLoginURL",
-      "produces" : [ "application/json" ],
       "directPath" : "/oAuthHandler/loginURl",
-      "proxySettings" : {
-        "web" : true,
-        "mobile" : true
-      },
       "httpMethod" : "get",
       "parameters" : [ {
-        "parameterType" : "query",
         "name" : "state",
+        "parameterType" : "query",
+        "required" : false,
         "type" : "java.lang.String",
-        "contentType" : null,
-        "required" : false
+        "readOnly" : false,
+        "contentType" : null
       } ],
       "definitions" : { },
-      "consumes" : [ ]
-    },
-    "service" : "OAuthHandlerService",
-    "operationType" : "string",
-    "id" : "OAuthHandlerController_getLoginURL",
-    "type" : "string"
+      "produces" : [ "application/json" ],
+      "consumes" : null,
+      "proxySettings" : {
+        "web" : true,
+        "mobile" : true
+      },
+      "securityDefinitions" : [ ]
+    }
   },
   "OAuthHandlerController_getAccessToken" : {
+    "id" : "OAuthHandlerController_getAccessToken",
+    "service" : "OAuthHandlerService",
     "controller" : "OAuthHandlerController",
+    "operationType" : "string",
+    "type" : "string",
     "wmServiceOperationInfo" : {
+      "name" : "getAccessToken",
       "methodType" : "get",
       "relativePath" : "/oAuthHandler/accessToken",
-      "name" : "getAccessToken",
-      "produces" : [ "application/json" ],
       "directPath" : "/oAuthHandler/accessToken",
+      "httpMethod" : "get",
+      "parameters" : [ ],
+      "definitions" : { },
+      "produces" : [ "application/json" ],
+      "consumes" : null,
       "proxySettings" : {
         "web" : true,
         "mobile" : true
       },
-      "httpMethod" : "get",
-      "parameters" : [ ],
-      "definitions" : { },
-      "consumes" : [ ]
-    },
-    "service" : "OAuthHandlerService",
-    "operationType" : "string",
-    "id" : "OAuthHandlerController_getAccessToken",
-    "type" : "string"
-  },
-  "OAuthHandlerController_callback" : {
-    "controller" : "OAuthHandlerController",
-    "wmServiceOperationInfo" : {
-      "methodType" : "get",
-      "relativePath" : "/oAuthHandler/callback",
-      "name" : "callback",
-      "produces" : [ ],
-      "directPath" : "/oAuthHandler/callback",
-      "proxySettings" : {
-        "web" : true,
-        "mobile" : true
-      },
-      "httpMethod" : "get",
-      "parameters" : [ ],
-      "definitions" : { },
-      "consumes" : [ ]
-    },
-    "service" : "OAuthHandlerService",
-    "operationType" : "object",
-    "id" : "OAuthHandlerController_callback",
-    "type" : "object"
+      "securityDefinitions" : [ ]
+    }
   },
   "OAuthHandlerController_getCallbackURL" : {
+    "id" : "OAuthHandlerController_getCallbackURL",
+    "service" : "OAuthHandlerService",
     "controller" : "OAuthHandlerController",
+    "operationType" : "string",
+    "type" : "string",
     "wmServiceOperationInfo" : {
+      "name" : "getCallbackURL",
       "methodType" : "get",
       "relativePath" : "/oAuthHandler/callbackURL",
-      "name" : "getCallbackURL",
-      "produces" : [ "application/json" ],
       "directPath" : "/oAuthHandler/callbackURL",
+      "httpMethod" : "get",
+      "parameters" : [ ],
+      "definitions" : { },
+      "produces" : [ "application/json" ],
+      "consumes" : null,
       "proxySettings" : {
         "web" : true,
         "mobile" : true
       },
+      "securityDefinitions" : [ ]
+    }
+  },
+  "OAuthHandlerController_callback" : {
+    "id" : "OAuthHandlerController_callback",
+    "service" : "OAuthHandlerService",
+    "controller" : "OAuthHandlerController",
+    "operationType" : "object",
+    "type" : "object",
+    "wmServiceOperationInfo" : {
+      "name" : "callback",
+      "methodType" : "get",
+      "relativePath" : "/oAuthHandler/callback",
+      "directPath" : "/oAuthHandler/callback",
       "httpMethod" : "get",
       "parameters" : [ ],
       "definitions" : { },
-      "consumes" : [ ]
-    },
-    "service" : "OAuthHandlerService",
-    "operationType" : "string",
-    "id" : "OAuthHandlerController_getCallbackURL",
-    "type" : "string"
+      "produces" : null,
+      "consumes" : null,
+      "proxySettings" : {
+        "web" : true,
+        "mobile" : true
+      },
+      "securityDefinitions" : [ ]
+    }
   }
 }

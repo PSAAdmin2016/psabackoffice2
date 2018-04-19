@@ -126,6 +126,11 @@
             </lifecycleMappingMetadata>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>com.wavemaker.studio</groupId>
+                    <artifactId>wavemaker-workspace-sync-plugin</artifactId>
+                    <version>${wavemaker.studio.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -208,11 +213,12 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <fork>true</fork>
                     <encoding>UTF-8</encoding>
                 </configuration>
@@ -410,9 +416,9 @@
     </dependencyManagement>
     <properties>
         <profile.props.file>development.properties</profile.props.file>
-        <spring.version>4.3.9.RELEASE</spring.version>
-        <spring.security.version>4.1.2.RELEASE</spring.security.version>
-        <wavemaker.studio.version>9.2.1</wavemaker.studio.version>
+        <spring.version>4.3.14.RELEASE</spring.version>
+        <spring.security.version>4.2.4.RELEASE</spring.security.version>
+        <wavemaker.studio.version>9.3.0</wavemaker.studio.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.lib.directory>${basedir}/lib</project.lib.directory>
     </properties>

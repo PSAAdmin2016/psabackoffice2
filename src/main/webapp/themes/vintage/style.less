@@ -43,6 +43,7 @@
 
   //Tabset
   @nav-tabs-color-hover : @brand-primary;
+  @nav-tabs-bg: #EDEDED;
 
   //input group hover
   @input-group-addon-hover-bg: #e7e7e7;
@@ -54,6 +55,10 @@
   @modal-header-bg: #998F89;
   @modal-header-color: #fff;
   @modal-header-border-color: #7B706A;
+
+  //Calendar
+  @wm-calendar-header-color: #adadad;
+  @wm-calendar-text-color: #adadad;
 
   .img-rounded {
     border-radius: @thumbnail-border-radius;
@@ -67,9 +72,21 @@
     width: 100%;
   }
 
+  //stylings for tile widget
+  .app-tile {
+    &.bg-danger, &.bg-success, &.bg-info, &.bg-warning {
+      color: @panel-primary-text;
+    }
+  }
+
   /***Tabs Widget: Styling for the tabs widget comes here********/
   //Tab Content
   .tab-content {
+    Ignore: ~"a;height: -webkit-calc(100% - 28px)";
+    Ignore: ~"a;height: -moz-calc(100% - 28px)";
+    Ignore: ~"a;@height: -ms-calc(100% - 28px)";
+    Ignore: ~"a;@height: -o-calc(100% - 28px)";
+    Ignore: ~"a;@height: calc(100% - 28px)";
     .tab-body {
       border-color: @nav-tabs-border-color;
       padding: 1.333em;
@@ -77,11 +94,10 @@
   }
   //navigation
   .nav-tabs {
-    border-bottom-color: transparent;
     > li {
-      > a, .app-menu a {
+      > a {
         color: @text-color;
-        background-color: @nav-tabs-active-link-hover-bg;
+        background-color: @nav-tabs-bg;
         border-color: @nav-tabs-border-color;
         border-radius: @border-radius-base @border-radius-base 0 0;
         box-shadow: none;
@@ -90,10 +106,11 @@
         &:hover, &:focus, &:active {
           color: @nav-tabs-color-hover;
           background-color: @nav-tabs-active-link-hover-bg;
+          border-color: @nav-tabs-border-color @nav-tabs-border-color transparent @nav-tabs-border-color;
         }
       }
       &.active {
-        > a, .app-menu a {
+        > a {
           border-color: @nav-tabs-border-color @nav-tabs-border-color transparent @nav-tabs-border-color;
           color: @text-color;
           background-color: @nav-tabs-active-link-hover-bg;
@@ -103,6 +120,16 @@
             background-color: @nav-tabs-active-link-hover-bg;
           }
         }
+      }
+      //Default styles for menu in nav
+      &.app-nav-item > .dropdown > a.dropdown-toggle {
+        padding: @nav-link-padding;
+        color: @text-color;
+        background-color: @nav-tabs-bg;
+        text-transform: uppercase;
+        border-radius: @border-radius-base @border-radius-base 0 0;
+        border: 1px solid @nav-tabs-border-color;
+        line-height: 1.42857143;
       }
     }
   }
@@ -131,7 +158,7 @@
     }
   }
   .checkbox , .radio {
-      padding: @padding-base-vertical @padding-base-horizontal 0 @padding-base-horizontal;
+      padding: 0 @padding-base-horizontal;
   }
   //filter
   .app-livefilter, .app-form {
@@ -208,7 +235,8 @@
   .app-header, .app-mobile-header {
     background-color: @wm-header-bg-color;
     color: @wm-header-text-color;
-    border-bottom: 1px solid @wm-header-border-color;
+    box-shadow: 0px 1px 0px rgba(0,0,0,0.2);
+    border-color: transparent;
     height: @wm-header-height;
     a {
       color: @wm-header-text-color;
@@ -224,12 +252,7 @@
   //Top Nav Bar
   .app-navbar {
     border-radius: 0;
-    box-shadow: inset 0px 2px 0.5em 1px rgba(22, 25, 28, 0.3);
-    -webkit-box-shadow: inset 0px 2px 0.5em 1px rgba(22, 25, 28, 0.3);
-    -moz-box-shadow: inset 0px 2px 0.5em 1px rgba(22, 25, 28, 0.3);
-    -ms-box-shadow: inset 0px 2px 0.5em 1px rgba(22, 25, 28, 0.3);
-    -o-box-shadow: inset 0px 2px 0.5em 1px rgba(22, 25, 28, 0.3);
-    background-color: @navbar-default-bg;
+    border-color: transparent;
     color: @navbar-default-color;
     .navbar-nav {
       li {
@@ -240,7 +263,7 @@
           text-decoration: none;
           word-spacing: .4em;
           color: @navbar-default-link-color;
-          padding: .9em 1.2em;
+          padding: 1em 1.2em;
           &:hover, &:focus, &.active, &.app-popover-open {
             color: @navbar-default-link-hover-color;
             background-color: @navbar-default-hover-bg;
@@ -262,7 +285,7 @@
       .app-nav-item {
         > .dropdown {
           a.dropdown-toggle {
-            padding: .9em 1.2em;
+            padding: 1.125em 1.2em;
             &:hover {
               background-color: @navbar-default-hover-bg;
             }
@@ -284,10 +307,55 @@
     padding: .7em;
   }
 
+  /****nav widget****/
+  .app-nav {
+    &.nav-pills {
+      .app-nav-item {
+        .app-menu {
+          .dropdown-toggle {
+            padding: @nav-link-padding;
+            &:hover {
+              color: @link-color;
+              background-color: @nav-link-hover-bg;
+            }
+          }
+          &.open {
+            .dropdown-toggle {
+              color: @link-color;
+              background-color: @nav-pills-active-link-hover-bg;
+              &:active, &:active:hover {
+                color: @link-color;
+                background-color: @nav-pills-active-link-hover-bg;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.nav-justified {
+      .app-nav-item {
+        .app-menu {
+          text-align: center;
+        }
+      }
+    }
+  }
+
   //Left & Right Panels
   .app-left-panel, .app-right-panel {
     .nav {
       li {
+        //for overriding the pills default color
+        &.active {
+          > a {
+            color: @wm-left-panel-link-hover-text-color;
+            background-color: @wm-left-panel-link-hover-bg;
+            &:hover, &:focus {
+              color: @wm-left-panel-link-hover-text-color;
+              background-color: @wm-left-panel-link-hover-bg;
+            }
+          }
+        }
         margin-top: 0;
         border-bottom: @wm-left-panel-list-border;
 
@@ -296,7 +364,7 @@
           text-transform: uppercase;
           letter-spacing: .025em;
           font-weight: 400;
-          padding: .8em 0;
+          padding: .8em 2em .8em 0;
           position: relative;
           border-radius: 0;
           line-height: 1.7;
@@ -333,15 +401,15 @@
         > .dropdown.open {
           > .dropdown-menu {
             position: relative;
-            padding: 0.833em 0;
-            margin: 0 0 1.333em;
+            padding: 0;
+            margin: 0 0 0.688em;
             border: 0;
-            border-bottom: @wm-left-panel-list-border;
+            border-bottom: 0;
             box-shadow: none;
             background-color: @wm-left-panel-dropdown-menu-bg;
             li {
               a {
-                padding: 0.667em 1.667em;
+                padding: 0.796em 1.667em;
               }
             }
           }
@@ -354,6 +422,10 @@
           > a {
             padding: 1.333em;
           }
+        }
+        .app-nav-icon {
+          margin-left: 0.833em;
+          margin-right: 0.417em;
         }
       }
     }
@@ -477,6 +549,17 @@
         }
       }
     }
+    //When table is condensed
+    .input-group.input-group-sm {
+      .input-group-addon {
+        padding: 0 4px;
+        .btn {
+          .app-icon {
+            font-size: 11px;
+          }
+        }
+      }
+    }
   }
   //carousel styling: removing the left and right background image
   .carousel-control {
@@ -502,7 +585,10 @@
       margin-right: 0.500em;
     }
   }
-
+  /*** dropdown menu*****/
+  .dropdown-menu {
+    padding: 0;
+  }
 
   /*Date, DateTime & Dropdown widgets*/
   .app-calendar, .app-date, .app-datetime, .app-timeinput {
@@ -540,8 +626,8 @@
         box-shadow: none;
         padding: 0.66em;
         &.btn-info {
-          background-color: @btn-info-bg;
-          color: @btn-info-color;
+          background-color: lighten(@brand-primary, 30%);
+          color: @text-color;
         }
         &:hover {
           background-color: @component-active-bg;
@@ -553,6 +639,7 @@
         }
         .text-info {
           color: @brand-primary;
+          font-weight: bold;
         }
       }
     }
@@ -609,12 +696,6 @@
         }
       }
     }
-    .fc-state-highlight {
-      &.fc-today {
-        background-color: @component-active-bg;
-        color: @component-active-color;
-      }
-    }
     .fc {
       .fc-toolbar {
         h2 {
@@ -628,14 +709,14 @@
     }
     .fc-body {
       .fc-row {
-        min-height: 3em;
-        .fc-content-skeleton {
-          padding: .8em 0;
-          td {
-            text-align: center;
-          }
-        }
+        min-height: 5em;
       }
+    }
+    .fc-day-number {
+      padding: .5em .3em;
+      color: @wm-calendar-text-color;
+      font-size: 1.52em;
+      text-align: left;
     }
   }
 /*********************************************************************************************************************************************/

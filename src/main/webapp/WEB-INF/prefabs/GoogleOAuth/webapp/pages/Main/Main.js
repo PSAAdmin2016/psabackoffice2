@@ -1,4 +1,4 @@
-Application.$controller("GoogleOAuthController", ["$scope", "Utils", function ($scope, Utils) {
+Application.$controller("GoogleOAuthController", ["$scope", function($scope) {
     "use strict";
     var LOGIN_MODE = {
             'AUTOMATIC': "auto"
@@ -14,19 +14,19 @@ Application.$controller("GoogleOAuthController", ["$scope", "Utils", function ($
      */
     function propertyChangeHandler(key, newVal, oldVal) {
 
-        /*
-         switch (key) {
-         case "prop1":
-         // do something with newVal for property 'prop1'
-         break;
-         case "prop2":
-         // do something with newVal for property 'prop2'
-         break;
-         }
-         */
+            /*
+             switch (key) {
+             case "prop1":
+             // do something with newVal for property 'prop1'
+             break;
+             case "prop2":
+             // do something with newVal for property 'prop2'
+             break;
+             }
+             */
 
-    }
-    /* register the property change handler */
+        }
+        /* register the property change handler */
     $scope.propertyManager.add($scope.propertyManager.ACTIONS.CHANGE, propertyChangeHandler);
 
     function toggleSignInButton(enable) {
@@ -42,10 +42,10 @@ Application.$controller("GoogleOAuthController", ["$scope", "Utils", function ($
         if (!href) {
             return;
         }
-        window.open(href, $scope.isInsideIframe ? '_blank' : '_self', "width=600;height=700");
+        window.open(href, $scope.isInsideIframe ? '_blank' : '_self', "width=600,height=700");
     }
 
-    $scope.OAuthHandlerServiceGetLoginURLonSuccess = function (variable, data) {
+    $scope.OAuthHandlerServiceGetLoginURLonSuccess = function(variable, data) {
         $scope.loginurl = data;
         toggleSignInButton(!$scope.accesstoken);
         if (autoLogin && !$scope.accesstoken) {
@@ -61,11 +61,11 @@ Application.$controller("GoogleOAuthController", ["$scope", "Utils", function ($
         $scope.login = login;
     };
 
-    $scope.signInButtonClick = function ($event, $isolateScope) {
+    $scope.signInButtonClick = function($event, $isolateScope) {
         openWindow($scope.loginurl);
     };
 
-    $scope.OAuthHandlerServiceGetAccessTokenonSuccess = function (variable, data) {
+    $scope.OAuthHandlerServiceGetAccessTokenonSuccess = function(variable, data) {
         var callbackParams;
         if (data) {
             $scope.accesstoken = data;
@@ -74,7 +74,6 @@ Application.$controller("GoogleOAuthController", ["$scope", "Utils", function ($
             if ($scope.loginsuccessmessage) {
                 $scope.Variables.loginSuccess.invoke();
             }
-            Utils.triggerFn($scope.onLoginsuccess);
         } else {
             if ($scope.isInsideIframe) {
                 callbackParams = JSON.stringify({
