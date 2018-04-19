@@ -16,160 +16,71 @@ Application.$controller("PartPSRCivilPageController", ["$scope", "$rootScope", "
 
 
     $rootScope.gridApprovalReviewSelectCivil = function() {
-        //Set Manual Search Switch to off
-        $scope.Widgets.toggleManualSearch.datavalue = '0';
         //Get Matches
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 72) {
-            $scope.Variables.serviceGetBidActivityMatchesByTestPackage.invoke();
+            $scope.Variables.serviceGetMatchesByTestPackage.invoke({
+                "inputFields": {
+                    "TestPackage": $scope.$parent.Widgets.gridApprovalReview.selecteditem.Line1
+                }
+            });
         } else {
-            $scope.Variables.serviceGetMatches.invoke();
+            $scope.Variables.serviceGetMatches.invoke({
+                "inputFields": {
+                    "BidID": $scope.$parent.Widgets.gridApprovalReview.selecteditem.Spool1
+                }
+            });
         }
 
     };
 
 
     $rootScope.gridApprovalReviewDeselectCivil = function() {
-        $scope.Variables.serviceGetMatches.setInput('BidID', "");
-        $scope.Variables.serviceGetMatches.setInput('Foundation', "");
-        $scope.Variables.serviceGetMatches.setInput('DrawingNumber', "");
-        $scope.Variables.serviceGetMatches.setInput('DetailDrawingNumber', "");
-        $scope.Variables.serviceGetMatches.invoke();
-    };
-
-
-    $scope.toggleManualSearchChange = function($event, $isolateScope, newVal, oldVal) {
-        if (newVal === 0) {
-            $scope.Variables.serviceGetMatches.invoke();
-        }
-    };
-
-
-    $scope.serviceGetMatchesonBeforeUpdate = function(variable, data) {
-        if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 70 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 71) {
-            data.BidID = $scope.$parent.Widgets.gridApprovalReview.selecteditem.Spool2;
-            data.Foundation = "";
-            data.DrawingNumber = "";
-            data.DetailDrawingNumber = "";
-        } else if ($scope.Widgets.toggleManualSearch.datavalue == 1) {
-            if ($scope.Widgets.textFoundationSearch.datavalue) {
-                data.Foundation = "%" + $scope.Widgets.textFoundationSearch.datavalue + "%";
-            } else {
-                data.Foundation = "%";
+        $scope.Variables.serviceGetMatches.invoke({
+            "inputFields": {
+                "BidID": 0
             }
-
-            if ($scope.Widgets.textDrawingNumberSearch.datavalue) {
-                data.DrawingNumber = "%" + $scope.Widgets.textDrawingNumberSearch.datavalue + "%";
-            } else {
-                data.DrawingNumber = "%";
-            }
-
-            if ($scope.Widgets.textDetailDrawingNumberSearch.datavalue) {
-                data.DetailDrawingNumber = "%" + $scope.Widgets.textDetailDrawingNumberSearch.datavalue + "%";
-            } else {
-                data.DetailDrawingNumber = "%";
-            }
-
-            if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 77) { //Option 77 not in use yet...  12-29-16
-                data.Foundation = "%";
-                if ($scope.Widgets.textDrawingNumberSearch.datavalue) {
-                    data.DrawingNumber = "%" + $scope.Widgets.textDrawingNumberSearch.datavalue + "%";
-                } else {
-                    data.DrawingNumber = "%";
-                }
-
-                if ($scope.Widgets.textDetailDrawingNumberSearch.datavalue) {
-                    data.DetailDrawingNumber = "%" + $scope.Widgets.textDetailDrawingNumberSearch.datavalue + "%";
-                } else {
-                    data.DetailDrawingNumber = "%";
-                }
-                data.BidActivityType = "D";
-
-            }
-        } else {
-            if ($scope.Widgets.toggleFilterFoundation.datavalue == '1') {
-                data.Foundation = "%" + $scope.$parent.Widgets.gridApprovalReview.selecteditem.Spool1 + "%";
-            } else {
-                data.Foundation = "%";
-            }
-
-            if ($scope.Widgets.toggleFilterDrawingNumber.datavalue == '1') {
-                data.DrawingNumber = "%" + $scope.$parent.Widgets.gridApprovalReview.selecteditem.Line1 + "%";
-            } else {
-                data.DrawingNumber = "%";
-            }
-
-            if ($scope.Widgets.toggleFilterDrawingDetailNumber.datavalue == '1') {
-                data.DetailDrawingNumber = "%" + $scope.$parent.Widgets.gridApprovalReview.selecteditem.Drawing1 + "%";
-            } else {
-                data.DetailDrawingNumber = "%";
-            }
-        }
-    };
-
-
-    $scope.serviceLockSSActivityonBeforeUpdate = function(variable, inputData) {
-        //Invoke here because "update on change" in gui doesn't work if NEXT bid match selected is the SAME BidID as current
-        $scope.Variables.serviceGetBidActivityQuantities.invoke();
-    };
-
-
-
-    $scope.serviceLockSSActivityonResult = function(variable, data) {
-        if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 72 && data[0].ReturnStatus) {
-            DialogService.open('dialogAssignQuantities', $scope);
-        } else if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 72 && data[0].ReturnStatus) {
-            DialogService.open('dialogAssignTestingQuantities', $scope);
-        } else {
-            //console.log("Field Activity is Locked by other user.");
-            DialogService.open('alertRecordLocked', $scope.$parent);
-        }
+        });
     };
 
 
     $scope.buttonDetail1Click = function($event, $isolateScope) {
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 70 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 71) {
-            $scope.Variables.liveCivilFA.listRecords();
-        }
-    };
-
-
-    $scope.buttonResearchClick = function($event, $isolateScope) {
-        $scope.$parent.savePageSettings();
-        if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 70 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 71) {
-            $scope.$parent.Variables.navigationToClassicCivil.setData({
-                'PageLoadBidID': parseInt($scope.$parent.Widgets.gridApprovalReview.selecteditem.Spool2),
-                'PageLoadFiltered': true
+            $scope.Variables.liveCivilFA.listRecords({
+                filterFields: {
+                    "activityId": {
+                        "value": $parent.Widgets.gridApprovalReview.selecteditem.ActivityID
+                    }
+                }
             });
-            //Fire Nav Call
-            $scope.$parent.Variables.navigationToClassicCivil.invoke();
         }
-        if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 97) {
-            $scope.$parent.Variables.navigationToClassicCivil.setData({
-                'PageLoadBidID': '',
-                'PageLoadFiltered': true
+    };
+
+
+    $scope.buttonAssign1Click = function($event, $isolateScope, item, currentItemWidgets) {
+        $scope.Variables.serviceLockSASActivity.invoke(); //Calls dialog onResults
+        $scope.Variables.serviceGetQuantities.invoke(); //Get quantities query running asap..
+    };
+
+
+    $scope.buttonAssign2Click = function($event, $isolateScope) {
+        $scope.Variables.serviceLockSASActivity.invoke(); //Calls dialog onResults
+        $scope.Variables.serviceGetQuantitiesTestPackage.invoke(); //Get quantities query running asap.
+    };
+
+
+    $scope.serviceLockSASActivityonResult = function(variable, data) {
+        if (data[0].ReturnStatus) {
+            if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 72) {
+                DialogService.open('dialogAssignQuantities', $scope);
+            } else {
+                DialogService.open('dialogAssignTestingQuantities', $scope);
+            }
+        } else {
+            $scope.$parent.Variables.staticRecordLockedMessage.setData({
+                "dataValue": data[0].ErrorText
             });
-            //Fire Nav Call
-            $scope.$parent.Variables.navigationToClassicCivil.invoke();
+            DialogService.open('alertRecordLocked', $scope.$parent);
         }
-    };
-
-
-    $scope.serviceGetBidActivityMatchesByTestPackageonBeforeUpdate = function(variable, inputData) {
-        inputData.TestPackage = $scope.$parent.Widgets.gridApprovalReview.selecteditem.Line1;
-    };
-
-
-    $scope.buttonReviewNotes1Click = function($event, $isolateScope) {
-        $scope.$parent.Variables.serviceGetNotesByFieldActivityID.dataBinding.ActivityID = $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID;
-        $scope.$parent.Variables.serviceGetNotesByFieldActivityID.invoke();
-        DialogService.open('dialogNotes', $scope.$parent);
-    };
-
-
-    $scope.buttonReviewNotes2Click = function($event, $isolateScope) {
-        $scope.$parent.Variables.serviceGetNotesByFieldActivityID.dataBinding.ActivityID = $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID;
-        $scope.$parent.Variables.serviceGetNotesByFieldActivityID.invoke();
-        DialogService.open('dialogNotes', $scope.$parent);
     };
 
 
@@ -224,8 +135,6 @@ Application.$controller("PartPSRCivilPageController", ["$scope", "$rootScope", "
     };
 
 
-
-
     $scope.timerLabelFlasher2onTimerFire = function(variable, data) {
         if ($scope.Widgets.textCivilTestHrsEarned.datavalue > $scope.Widgets.labelTestPackageHoursRemaining.caption) {
             if ($scope.Variables.staticBrightLabel === false) {
@@ -250,7 +159,68 @@ Application.$controller("PartPSRCivilPageController", ["$scope", "$rootScope", "
         }
     };
 
+
+    $scope.buttonResearchClick = function($event, $isolateScope) {
+        $scope.$parent.savePageSettings();
+        if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 70 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 71) {
+            $scope.$parent.Variables.navigationToClassicCivil.setData({
+                'PageLoadBidID': parseInt($scope.$parent.Widgets.gridApprovalReview.selecteditem.Spool2),
+                'PageLoadFiltered': true
+            });
+            $scope.$parent.Variables.navigationToClassicCivil.invoke();
+        }
+
+        if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 72) {
+            $scope.$parent.Variables.navigationToClassicCivil.setData({
+                'PageLoadTestPackage': $scope.$parent.Widgets.gridApprovalReview.selecteditem.Line1,
+                'PageLoadFiltered': true
+            });
+            $scope.$parent.Variables.navigationToClassicCivil.invoke();
+        }
+    };
+
+
+    $scope.buttonReviewNotesClick = function($event, $isolateScope) { //Called by BOTH notes buttons
+        DialogService.open('dialogNotes', $scope.$parent);
+    };
+
+
+    $scope.buttonHoldClick = function($event, $isolateScope) {
+        $scope.$parent.$parent.Variables.serviceUpdateSAS.setInput("ActivityStatusID", 44);
+        $scope.$parent.$parent.Variables.serviceUpdateSAS.setInput("BidID", null);
+        $scope.$parent.$parent.Variables.serviceUpdateSAS.invoke(); //Updates GetActivitiesPendingApproval
+    };
+
 }]);
+
+
+
+
+Application.$controller("dialogRejectionController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.formRejectSubmit = function($event, $isolateScope, $formData) {
+            $scope.Variables.serviceUnLockSASActivity.invoke();
+
+            $scope.$parent.$parent.Variables.serviceUpdateSAS.setInput("ActivityStatusID", 6);
+            $scope.$parent.$parent.Variables.serviceUpdateSAS.setInput("RejectID", $scope.Widgets.formReject.formWidgets.selectRejectReason.datavalue);
+            $scope.$parent.$parent.Variables.serviceUpdateSAS.setInput("BidID", null);
+            $scope.$parent.$parent.Variables.serviceUpdateSAS.invoke(); //Updates GetActivitiesPendingApproval
+
+            $scope.$parent.$parent.Variables.serviceCreateSASNote.setInput("Note", $scope.Widgets.formReject.formWidgets.textareaSASNoteReject.datavalue);
+            $scope.$parent.$parent.Variables.serviceCreateSASNote.invoke();
+        };
+
+
+        $scope.buttonDialogRejectionSaveClick = function($event, $isolateScope) {
+            $scope.Variables.timerLabelFlasher.cancel();
+            $scope.Variables.timerLabelFlasher2.cancel();
+        };
+
+    }
+]);
 
 
 Application.$controller("dialogPSAActivityDetailsController", ["$scope",
@@ -275,13 +245,12 @@ Application.$controller("dialogAssignQuantitiesController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.buttonQuantitiesUpdateClick = function($event, $isolateScope) {
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.ActivityStatus = '5';
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.ActivityID = $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID;
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.BidID = $scope.Widgets.livelistBidActivities.selecteditem.BidID;
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.invoke();
+            $scope.$parent.$parent.Variables.serviceUpdateSAS.setInput("ActivityStatusID", 5);
+            $scope.$parent.$parent.Variables.serviceUpdateSAS.setInput("BidID", $scope.Widgets.livelistBidActivities.selecteditem.BidID);
+            $scope.$parent.$parent.Variables.serviceUpdateSAS.invoke(); //Updates GetActivitiesPendingApproval
+
             $scope.Variables.timerLabelFlasher.cancel();
         };
-
 
 
         $scope.dialogAssignQuantitiesOpened = function($event, $isolateScope) {
@@ -290,7 +259,8 @@ Application.$controller("dialogAssignQuantitiesController", ["$scope",
         };
 
 
-        $scope.buttonDialogAssignCancelClick = function($event, $isolateScope) {
+        $scope.dialogAssignQuantitiesClose = function($event, $isolateScope) {
+            $scope.Variables.serviceUnLockSASActivity.invoke();
             $scope.Variables.timerLabelFlasher.cancel();
         };
     }
@@ -303,11 +273,14 @@ Application.$controller("dialogAssignTestingQuantitiesController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.buttonQuantitiesUpdate2Click = function($event, $isolateScope) {
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.ActivityStatus = '5';
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.BidID = '';
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.invoke();
+            $scope.$parent.$parent.Variables.serviceUpdateSAS.setInput("ActivityStatusID", 5);
+            $scope.$parent.$parent.Variables.serviceUpdateSAS.setInput("BidID", '');
+            $scope.$parent.$parent.Variables.serviceUpdateSAS.invoke(); //Updates GetActivitiesPendingApproval
+
             $scope.Variables.timerLabelFlasher2.cancel();
-            $scope.Variables.serviceCreateLooseHoursActivities.invoke();
+            if ($scope.Variables.Job1111SettingsData.getData().data.find(x => x.label === 'LooseHoursRoundupCivil').value2 == 1) { //Run only if Global setting is 1
+                $scope.Variables.serviceCreateLooseHoursActivities.invoke();
+            }
         };
 
 
@@ -317,42 +290,9 @@ Application.$controller("dialogAssignTestingQuantitiesController", ["$scope",
         };
 
 
-        $scope.buttonDialogAssignTestCancelClick = function($event, $isolateScope) {
+        $scope.dialogAssignTestingQuantitiesClose = function($event, $isolateScope) {
+            $scope.Variables.serviceUnLockSASActivity.invoke();
             $scope.Variables.timerLabelFlasher2.cancel();
-        };
-
-    }
-]);
-
-
-Application.$controller("dialogRejectionController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-
-        $scope.formRejectSubmit = function($event, $isolateScope, $formData) {
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.ActivityStatus = '6';
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.ActivityID = $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID;
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.BidID = $scope.Widgets.livelistBidActivities.selecteditem.BidID;
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.invoke(); //Updates GetActivitiesPendingApproval
-
-            $scope.$parent.$parent.Variables.serviceCreateSSNote.dataBinding.ActivityID = $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID;
-            $scope.$parent.$parent.Variables.serviceCreateSSNote.dataBinding.CreatedBy = $scope.Variables.loggedInUser.dataSet.id;
-            $scope.$parent.$parent.Variables.serviceCreateSSNote.dataBinding.Note = $scope.Widgets.textareaSSNoteReject.datavalue;
-            $scope.$parent.$parent.Variables.serviceCreateSSNote.invoke(); //Updates GetNotesByFieldActivityID
-        };
-
-
-        $scope.textareaSSNoteRejectKeyup = function($event, $isolateScope) {
-            if ((Date.now() - $scope.Variables.staticVariableMachineStateTimer.dataValue) > 300) {
-                $scope.Variables.staticVariableMachineStateTimer.dataValue = Date.now();
-                $scope.Widgets.labelRejectTextCount.caption = 252 - $scope.Widgets.textareaSSNoteReject.datavalue.length;
-            }
-        };
-
-
-        $scope.buttonDialogRejectionSaveClick = function($event, $isolateScope) {
-            $scope.Variables.timerLabelFlasher.cancel();
         };
 
     }

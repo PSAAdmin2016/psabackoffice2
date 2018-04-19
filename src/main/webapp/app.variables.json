@@ -1318,6 +1318,18 @@
           "defaultValue" : "1",
           "scale" : 0
         }, {
+          "fieldName" : "rejectId",
+          "type" : "short",
+          "fullyQualifiedType" : "short",
+          "columnName" : "RejectID",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 3,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
+        }, {
           "fieldName" : "fkLastModifiedBy",
           "type" : "integer",
           "fullyQualifiedType" : "integer",

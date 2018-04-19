@@ -75,6 +75,10 @@
   "type" : "PAGE",
   "params" : [ ]
 }, {
+  "name" : "PartAssignEquip",
+  "type" : "PARTIAL",
+  "params" : [ ]
+}, {
   "name" : "PartFACivilSellPackage",
   "type" : "PARTIAL",
   "params" : [ ]

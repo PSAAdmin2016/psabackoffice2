@@ -831,33 +831,6 @@
     "filterFields" : { },
     "package" : "com.psabackoffice.job1111.EquipFa"
   },
-  "serviceGetBidActivityQuantities" : {
-    "_id" : "wm-serviceGetBidActivityQuantities-wm.ServiceVariable-1490291516912",
-    "name" : "serviceGetBidActivityQuantities",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "BidID",
-      "value" : "bind:Widgets.livelistBidActivities.selecteditem.bidId",
-      "type" : "integer"
-    } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetBidActivityQuantitesEquipResponse",
-    "service" : "Job1111",
-    "operation" : "executeGetBidActivityQuantitesEquip",
-    "operationId" : "QueryExecutionController_executeGetBidActivityQuantitesEquip",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 1,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
-  },
   "serviceGetMatches" : {
     "_id" : "wm-serviceGetMatches-wm.ServiceVariable-1490285191864",
     "name" : "serviceGetMatches",
@@ -882,6 +855,33 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "livelistBidMatches",
     "spinnerMessage" : "Retrieving Matches..."
+  },
+  "serviceGetQuantities" : {
+    "_id" : "wm-serviceGetBidActivityQuantities-wm.ServiceVariable-1490291516912",
+    "name" : "serviceGetQuantities",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "BidID",
+      "value" : "bind:Widgets.livelistBidActivities.selecteditem.bidId",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.query.GetBidActivityQuantitesEquipResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetBidActivityQuantitesEquip",
+    "operationId" : "QueryExecutionController_executeGetBidActivityQuantitesEquip",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 1,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
   },
   "serviceLockSASActivity" : {
     "_id" : "wm-serviceLockSSActivity-wm.ServiceVariable-1490290108050",
@@ -917,7 +917,9 @@
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
-    "controller" : "ProcedureExecution"
+    "controller" : "ProcedureExecution",
+    "spinnerContext" : "livelistBidActivities",
+    "spinnerMessage" : "Getting Quantities..."
   },
   "serviceUnLockSASActivity" : {
     "_id" : "wm-serviceUnLockSASActivity-wm.ServiceVariable-1524079072177",

@@ -38,7 +38,7 @@ Application.$controller("PartPSREquipPageController", ["$scope", "$rootScope", "
 
     $scope.buttonAssign1Click = function($event, $isolateScope, item, currentItemWidgets) {
         $scope.Variables.serviceLockSASActivity.invoke(); //Calls dialog onResults
-        $scope.Variables.serviceGetBidActivityQuantities.invoke(); //Get quantities query running asap..
+        $scope.Variables.serviceGetQuantities.invoke(); //Get quantities query running asap..
     };
 
 
@@ -155,6 +155,8 @@ Application.$controller("dialogAssignQuantitiesController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.buttonQuantitiesUpdateClick = function($event, $isolateScope) {
+
+            debugger;
             $scope.$parent.$parent.Variables.serviceUpdateSAS.setInput("ActivityStatusID", 5);
             $scope.$parent.$parent.Variables.serviceUpdateSAS.setInput("BidID", $scope.Widgets.livelistBidActivities.selecteditem.bidId);
             $scope.$parent.$parent.Variables.serviceUpdateSAS.invoke(); //Updates GetActivitiesPendingApproval
@@ -169,8 +171,10 @@ Application.$controller("dialogAssignQuantitiesController", ["$scope",
         };
 
 
-        $scope.buttonDialogAssignCancelClick = function($event, $isolateScope) {
+        $scope.dialogAssignQuantitiesClose = function($event, $isolateScope) {
+            $scope.Variables.serviceUnLockSASActivity.invoke();
             $scope.Variables.timerLabelFlasher.cancel();
         };
+
     }
 ]);

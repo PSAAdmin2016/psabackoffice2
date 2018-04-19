@@ -106,6 +106,18 @@
           "defaultValue" : "1",
           "scale" : 0
         }, {
+          "fieldName" : "rejectId",
+          "type" : "short",
+          "fullyQualifiedType" : "short",
+          "columnName" : "RejectID",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 3,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
+        }, {
           "fieldName" : "fkLastModifiedBy",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
@@ -904,9 +916,34 @@
     "spinnerContext" : "page",
     "spinnerMessage" : "Claiming Loose Hours..."
   },
-  "serviceGetBidActivityMatchesByTestPackage" : {
+  "serviceGetMatches" : {
+    "_id" : "wm-serviceGetMatches-wm.ServiceVariable-1482182401550",
+    "name" : "serviceGetMatches",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "type" : "com.psabackoffice.job1111.models.query.GetBidActivityMatchesCivilResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetBidActivityMatchesCivil",
+    "operationId" : "QueryExecutionController_executeGetBidActivityMatchesCivil",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 100,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "livelistBidActivities",
+    "spinnerMessage" : "Retrieving Matches..."
+  },
+  "serviceGetMatchesByTestPackage" : {
     "_id" : "wm-serviceGetBidActivityMatchesByTestPackage-wm.ServiceVariable-1484165892918",
-    "name" : "serviceGetBidActivityMatchesByTestPackage",
+    "name" : "serviceGetMatchesByTestPackage",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ ],
@@ -920,7 +957,6 @@
     "isList" : true,
     "maxResults" : 200,
     "designMaxResults" : 10,
-    "onBeforeUpdate" : "serviceGetBidActivityMatchesByTestPackageonBeforeUpdate($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -930,9 +966,9 @@
     "spinnerContext" : "livelistBidActivitiesByTest",
     "spinnerMessage" : "Retrieving Matches..."
   },
-  "serviceGetBidActivityQuantities" : {
+  "serviceGetQuantities" : {
     "_id" : "wm-serviceGetBidActivityQuantities-wm.ServiceVariable-1483642089998",
-    "name" : "serviceGetBidActivityQuantities",
+    "name" : "serviceGetQuantities",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
@@ -956,32 +992,6 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
-  },
-  "serviceGetMatches" : {
-    "_id" : "wm-serviceGetMatches-wm.ServiceVariable-1482182401550",
-    "name" : "serviceGetMatches",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ ],
-    "type" : "com.psabackoffice.job1111.models.query.GetBidActivityMatchesCivilResponse",
-    "service" : "Job1111",
-    "operation" : "executeGetBidActivityMatchesCivil",
-    "operationId" : "QueryExecutionController_executeGetBidActivityMatchesCivil",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 100,
-    "designMaxResults" : 10,
-    "onBeforeUpdate" : "serviceGetMatchesonBeforeUpdate($event, $scope)",
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "livelistBidActivities",
-    "spinnerMessage" : "Retrieving Matches..."
   },
   "serviceGetQuantitiesTestPackage" : {
     "_id" : "wm-serviceGetQuantitiesTestPackage-wm.ServiceVariable-1484174470127",
@@ -1010,9 +1020,9 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
   },
-  "serviceLockSSActivity" : {
+  "serviceLockSASActivity" : {
     "_id" : "wm-serviceLockSSActivity-wm.ServiceVariable-1477334890188",
-    "name" : "serviceLockSSActivity",
+    "name" : "serviceLockSASActivity",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
@@ -1020,7 +1030,11 @@
       "value" : "bind:Variables.loggedInUser.dataSet.id",
       "type" : "integer"
     }, {
-      "target" : "FieldActivityID",
+      "target" : "RunMode",
+      "value" : "1",
+      "type" : "integer"
+    }, {
+      "target" : "ActivityID",
       "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityID",
       "type" : "integer"
     } ],
@@ -1034,8 +1048,7 @@
     "isList" : true,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onBeforeUpdate" : "serviceLockSSActivityonBeforeUpdate($event, $scope)",
-    "onResult" : "serviceLockSSActivityonResult($event, $scope)",
+    "onResult" : "Javascript",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -1043,32 +1056,39 @@
     "saveInPhonegap" : false,
     "controller" : "ProcedureExecution"
   },
-  "serviceUnLockSSActivity" : {
-    "_id" : "wm-serviceUnLockSSActivity-wm.ServiceVariable-1477335072851",
-    "name" : "serviceUnLockSSActivity",
+  "serviceUnLockSASActivity" : {
+    "_id" : "wm-serviceUnLockSASActivity-wm.ServiceVariable-1524163171726",
+    "name" : "serviceUnLockSASActivity",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "FieldActivityID",
+      "target" : "RunMode",
+      "value" : "2",
+      "type" : "integer"
+    }, {
+      "target" : "UserID",
+      "value" : "bind:Variables.loggedInUser.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "ActivityID",
       "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityID",
       "type" : "integer"
     } ],
-    "type" : "integer",
+    "type" : "com.psabackoffice.job1111.models.procedure.LockSasactivityResponse",
     "service" : "Job1111",
-    "operation" : "executeUnLockSSActivity",
-    "operationId" : "QueryExecutionController_executeUnLockSSActivity",
-    "operationType" : "put",
+    "operation" : "executeLockSASActivity",
+    "operationId" : "ProcedureExecutionController_executeLockSASActivity",
+    "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],
-    "isList" : false,
-    "maxResults" : 3,
-    "designMaxResults" : 10,
+    "isList" : true,
+    "maxResults" : 20,
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
+    "controller" : "ProcedureExecution"
   },
   "staticBrightLabel" : {
     "_id" : "wm-staticBrightLabel-wm.Variable-1477334547677",
