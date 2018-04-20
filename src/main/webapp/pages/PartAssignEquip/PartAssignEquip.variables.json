@@ -1,1 +1,146 @@
-{ }
+{
+  "serviceGetQuantities" : {
+    "_id" : "wm-serviceGetBidActivityQuantities-wm.ServiceVariable-1490291516912",
+    "name" : "serviceGetQuantities",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "BidID",
+      "value" : "bind:pageParams.BidID",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.query.GetBidActivityQuantitesEquipResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetBidActivityQuantitesEquip",
+    "operationId" : "QueryExecutionController_executeGetBidActivityQuantitesEquip",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 1,
+    "designMaxResults" : 10,
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "serviceLockSASActivity" : {
+    "_id" : "wm-serviceLockSSActivity-wm.ServiceVariable-1490290108050",
+    "name" : "serviceLockSASActivity",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "UserID",
+      "value" : "bind:Variables.loggedInUser.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "RunMode",
+      "value" : "1",
+      "type" : "integer"
+    }, {
+      "target" : "ActivityID",
+      "value" : "bind:pageParams.ActivityID",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.procedure.LockSasactivityResponse",
+    "service" : "Job1111",
+    "operation" : "executeLockSASActivity",
+    "operationId" : "ProcedureExecutionController_executeLockSASActivity",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onResult" : "serviceLockSASActivityonResult($event, $scope)",
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "ProcedureExecution",
+    "spinnerContext" : "containerMain",
+    "spinnerMessage" : "Getting Quantities..."
+  },
+  "serviceUnLockSASActivity" : {
+    "_id" : "wm-serviceUnLockSASActivity-wm.ServiceVariable-1524248557236",
+    "name" : "serviceUnLockSASActivity",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "RunMode",
+      "value" : "2",
+      "type" : "integer"
+    }, {
+      "target" : "UserID",
+      "value" : "bind:Variables.loggedInUser.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "ActivityID",
+      "value" : "bind:pageParams.ActivityID",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.procedure.LockSasactivityResponse",
+    "service" : "Job1111",
+    "operation" : "executeLockSASActivity",
+    "operationId" : "ProcedureExecutionController_executeLockSASActivity",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "ProcedureExecution"
+  },
+  "serviceUpdateSAS" : {
+    "_id" : "wm-serviceUpdateSAS-wm.ServiceVariable-1524245642520",
+    "name" : "serviceUpdateSAS",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "UserID",
+      "value" : "bind:Variables.loggedInUser.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "BidID",
+      "value" : "bind:pageParams.BidID",
+      "type" : "integer"
+    }, {
+      "target" : "ActivityID",
+      "value" : "bind:pageParams.ActivityID",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "Job1111",
+    "operation" : "executeUpdateSASBidID",
+    "operationId" : "QueryExecutionController_executeUpdateSASBidID",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 1,
+    "onSuccess" : "serviceUpdateSASonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "timerLabelFlasher" : {
+    "_id" : "wm-timerLabelFlasher-wm.TimerVariable-1490291748688",
+    "name" : "timerLabelFlasher",
+    "owner" : "Page",
+    "category" : "wm.TimerVariable",
+    "autoStart" : true,
+    "repeating" : true,
+    "delay" : 750,
+    "onTimerFire" : "Javascript"
+  }
+}

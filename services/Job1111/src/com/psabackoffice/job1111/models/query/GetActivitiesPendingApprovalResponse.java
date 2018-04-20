@@ -7,6 +7,7 @@ package com.psabackoffice.job1111.models.query;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -38,6 +39,10 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
     @JsonProperty("Craft")
     @ColumnAlias("Craft")
     private String craft;
+
+    @JsonProperty("BidID")
+    @ColumnAlias("BidID")
+    private Integer bidId;
 
     @JsonProperty("Spool1")
     @ColumnAlias("Spool1")
@@ -81,7 +86,7 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
 
     @JsonProperty("Quantity")
     @ColumnAlias("Quantity")
-    private String quantity;
+    private BigDecimal quantity;
 
     @JsonProperty("Area")
     @ColumnAlias("Area")
@@ -89,7 +94,7 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
 
     @JsonProperty("PercentClaim")
     @ColumnAlias("PercentClaim")
-    private String percentClaim;
+    private Float percentClaim;
 
     @JsonProperty("Rework")
     @ColumnAlias("Rework")
@@ -141,6 +146,14 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
 
     public void setCraft(String craft) {
         this.craft = craft;
+    }
+
+    public Integer getBidId() {
+        return this.bidId;
+    }
+
+    public void setBidId(Integer bidId) {
+        this.bidId = bidId;
     }
 
     public String getSpool1() {
@@ -223,11 +236,11 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
         this.notes = notes;
     }
 
-    public String getQuantity() {
+    public BigDecimal getQuantity() {
         return this.quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
     }
 
@@ -239,11 +252,11 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
         this.area = area;
     }
 
-    public String getPercentClaim() {
+    public Float getPercentClaim() {
         return this.percentClaim;
     }
 
-    public void setPercentClaim(String percentClaim) {
+    public void setPercentClaim(Float percentClaim) {
         this.percentClaim = percentClaim;
     }
 
@@ -266,6 +279,7 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
                 Objects.equals(getActivityTypeName(), getActivitiesPendingApprovalResponse.getActivityTypeName()) &&
                 Objects.equals(getStatus(), getActivitiesPendingApprovalResponse.getStatus()) &&
                 Objects.equals(getCraft(), getActivitiesPendingApprovalResponse.getCraft()) &&
+                Objects.equals(getBidId(), getActivitiesPendingApprovalResponse.getBidId()) &&
                 Objects.equals(getSpool1(), getActivitiesPendingApprovalResponse.getSpool1()) &&
                 Objects.equals(getSpool2(), getActivitiesPendingApprovalResponse.getSpool2()) &&
                 Objects.equals(getLine1(), getActivitiesPendingApprovalResponse.getLine1()) &&
@@ -290,6 +304,7 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
                 getActivityTypeName(),
                 getStatus(),
                 getCraft(),
+                getBidId(),
                 getSpool1(),
                 getSpool2(),
                 getLine1(),

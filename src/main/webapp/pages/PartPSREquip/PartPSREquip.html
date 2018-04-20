@@ -46,8 +46,8 @@
                                 name="buttonResearch" iconclass="wi wi-search"></wm-button>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn27" horizontalalign="center">
-                            <wm-button class="btn-default" caption="Details" type="button" backgroundcolor="#5fb4ff" opacity="1" width="95%" iconclass="glyphicon glyphicon-asterisk" on-click="Widgets.dialogPSAActivityDetails.open();buttonDetail1Click($event, $scope)"
-                                cursor="default" margin="10% unset unset unset" hint="View details submitted by foreman for the selected activity." name="buttonDetail1"></wm-button>
+                            <wm-button class="btn-default" caption="Details" type="button" backgroundcolor="#5fb4ff" opacity="1" width="95%" iconclass="glyphicon glyphicon-asterisk" on-click="Widgets.dialogPSAActivityDetails.open();buttonDetail1Click($event, $scope)" cursor="default"
+                                margin="10% unset unset unset" hint="View details submitted by foreman for the selected activity." name="buttonDetail1"></wm-button>
                         </wm-gridcolumn>
                     </wm-gridrow>
                 </wm-layoutgrid>
@@ -79,8 +79,8 @@
         </wm-gridrow>
         <wm-gridrow name="gridrow9">
             <wm-gridcolumn columnwidth="12" name="gridcolumn36">
-                <wm-list listclass="list-group" itemclass="list-group-item" template="true" dataset="bind:Variables.serviceGetMatches.dataSet" itemsperrow="sm-1" readonlygrid="true" selectionlimit="1" selectfirstitem="true" enablereorder="true" margin="unset 0%"
-                    padding="unset 0%" show="true" name="livelistBidActivities">
+                <wm-list listclass="list-group" itemclass="list-group-item" template="true" dataset="bind:Variables.serviceGetMatches.dataSet" itemsperrow="sm-1" readonlygrid="true" selectionlimit="1" selectfirstitem="true" enablereorder="true" margin="unset 0%" padding="unset 0%"
+                    show="true" name="livelistBidActivities">
                     <wm-listtemplate layout="blank" name="listtemplate1">
                         <wm-container class="blank" data-template-ctr="true" margin="unset 0%" padding="unset 0%" name="container1">
                             <wm-layoutgrid class="gridlayout" margin="unset 0%" padding="unset 0px" name="layoutgrid4"></wm-layoutgrid>
@@ -103,17 +103,17 @@
                                 <wm-gridcolumn columnwidth="2" horizontalalign="right" padding="unset 0%" name="gridcolumn44">
                                     <wm-layoutgrid name="layoutgrid5">
                                         <wm-gridrow padding="unset 0px" name="gridrow11">
-                                            <wm-gridcolumn columnwidth="4" name="gridcolumn45">
-                                                <wm-popover popoverwidth="30%" margin="unset 0.5em" name="popover1" class="btn btn-default" caption="Assign" backgroundcolor="#0B9642" iconclass="glyphicon glyphicon-ok-sign" contentsource="partial" popoverplacement="left"
-                                                    color="#222222" content="PartAssignEquip" title="(pop over testing)"></wm-popover>
-                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="4" name="gridcolumn45"></wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn46">
-                                                <wm-button class="btn-default" caption="Assign" type="button" hint="Assign the selected activity to this line in the tracker." on-click="buttonAssign1Click($event, $scope, item, currentItemWidgets)" readonlygrid="true"
-                                                    tabindex="1" show="true" backgroundcolor="#0B9642" iconclass="glyphicon glyphicon-ok-sign" disabled="false" width="95%" padding="unset 1%" name="buttonAssign1"></wm-button>
+                                                <wm-popover popoverwidth="30%" margin="unset 0.5em" name="popoverAssign" class="btn btn-default" caption="Assign" backgroundcolor="#0B9642" iconclass="glyphicon glyphicon-ok-sign" contentsource="partial" popoverplacement="left" color="#222222" content="PartAssignEquip"
+                                                    title="Update Quantities" on-show="popoverAssignShow($event, $isolateScope, item, currentItemWidgets)" on-hide="popoverAssignHide($event, $isolateScope, item, currentItemWidgets)">
+                                                    <wm-param name="BidID" value="bind:Widgets.livelistBidActivities.selecteditem.bidId" type="integer"></wm-param>
+                                                    <wm-param name="ActivityID" value="bind:pageParams.ActivityID" type="integer"></wm-param>
+                                                </wm-popover>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn47">
-                                                <wm-button class="btn-default" caption="Details" type="button" iconclass="glyphicon glyphicon-asterisk" width="95%" backgroundcolor="#5fb4ff" borderstyle="outset" opacity="0.8" on-click="Widgets.dialogBidActivityDetails.open()"
-                                                    margin="unset 0% unset unset" padding="unset 1%" hint="View the tracker details for this line item." name="buttonDetail2"></wm-button>
+                                                <wm-button class="btn-default" caption="Details" type="button" iconclass="glyphicon glyphicon-asterisk" width="95%" backgroundcolor="#5fb4ff" borderstyle="outset" opacity="0.8" on-click="Widgets.dialogBidActivityDetails.open()" margin="unset 0% unset unset"
+                                                    padding="unset 1%" hint="View the tracker details for this line item." name="buttonDetail2"></wm-button>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
@@ -331,8 +331,8 @@
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow80_3">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn170">
-                                                <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:$parent.Variables.liveEquipFA.dataSet.data[$i].farework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)"
-                                                    padding="unset unset unset 0px" show="true" name="checkbox7"></wm-checkbox>
+                                                <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:$parent.Variables.liveEquipFA.dataSet.data[$i].farework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)" padding="unset unset unset 0px"
+                                                    show="true" name="checkbox7"></wm-checkbox>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
@@ -381,114 +381,5 @@
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
-    <wm-view class="dialog-view" name="viewAssignQuantities" show="false">
-        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogAssignQuantities" tabindex="1" closable="true" width="30%" on-close="dialogAssignQuantitiesClose($event, $scope)" title="Update Quantities" iconclass="glyphicon glyphicon-edit" on-opened="dialogAssignQuantitiesOpened($event, $scope)"
-            animation="zoomInUp">
-            <wm-form class="app-dialog-form" name="formQuantities" show="true">
-                <wm-layoutgrid name="layoutgrid34">
-                    <wm-gridrow name="gridrow67">
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn157_1">
-                            <wm-label name="label213_2" width="100%" caption="Pending Activity" fontweight="bold" fontsize="14"></wm-label>
-                        </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="8" name="gridcolumn162_1" horizontalalign="center">
-                            <wm-label caption="Current Quantity" fontweight="bold" fontsize="14" name="label214_1" hint="All Totals/Quantities, And percentages are BEFORE the pending activity is added." margin="unset unset 0px unset"></wm-label>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                    <wm-gridrow name="gridrow55">
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn123_1">
-                            <wm-container name="container30" margin="0px" borderstyle="solid" borderwidth="5px" padding="4% unset 6% 4%">
-                                <wm-layoutgrid name="layoutgrid19">
-                                    <wm-gridrow name="gridrow56_1">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn125">
-                                            <wm-composite name="composite109_1" captionposition="top" show="true" margin="0px unset">
-                                                <wm-label class="col-md-3" name="label132_1" caption="Percent Installed" hint="The amount installed by this current Activity" fontweight="bold"></wm-label>
-                                                <wm-text name="textInstalled1" hint="The amount installed by this current Activity" datavalue="bind:($parent.$parent.Widgets.gridApprovalReview.selecteditem.Quantity * 100) | suffix: '%'" type="text"
-                                                    updateon="default" backgroundcolor="#b1efe4" readonly="true" width="80%" disabled="false" placeholder="Enter Quantity" scopedatavalue="textInstalled1" margin="unset unset 0px unset" color="#000000" show="true"></wm-text>
-                                            </wm-composite>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow57">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn127">
-                                            <wm-composite name="composite183" captionposition="top" margin="unset unset 0px unset">
-                                                <wm-label class="col-md-3 control-label" name="label236_1" caption="Hour Value" fontweight="bold"></wm-label>
-                                                <wm-container class="col-md-9" name="containerErectionHrsEarned" show="true">
-                                                    <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.dataSet[$i].fahours / Variables.serviceGetQuantities.dataSet[$i].takeOffQuantity * $parent.$parent.Widgets.gridApprovalReview.selecteditem.Quantity | toNumber: '2'"
-                                                        type="number" updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" name="textHrsEarned" color="#000000" show="true"></wm-text>
-                                                </wm-container>
-                                            </wm-composite>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
-                            </wm-container>
-                        </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="8" name="gridcolumn124_1">
-                            <wm-container name="container31" bordercolor="#c1c1c1" borderwidth="5px" borderstyle="solid" margin="unset unset unset 1%" padding="2% unset unset 4%">
-                                <wm-layoutgrid name="layoutgrid20">
-                                    <wm-gridrow name="gridrow58">
-                                        <wm-gridcolumn columnwidth="6" name="gridcolumn129">
-                                            <wm-composite name="composite110" captionposition="top">
-                                                <wm-label class="col-md-3" name="label133_2" caption="Estimated Quantity" fontweight="bold"></wm-label>
-                                                <wm-container class="col-md-9" name="container105_1" show="true">
-                                                    <wm-label name="label289" caption="bind:(Variables.serviceGetQuantities.dataSet[$i].takeOffQuantity | toNumber: '2') + ' ' + Variables.serviceGetQuantities.dataSet[$i].quantityUnit"></wm-label>
-                                                </wm-container>
-                                            </wm-composite>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="6" name="gridcolumn133">
-                                            <wm-composite name="composite111" captionposition="top">
-                                                <wm-label class="col-md-3" name="label134_1" caption="Remaining Quantity" hint="Remaining quantity BEFORE current activity is added" fontweight="bold"></wm-label>
-                                                <wm-container class="col-md-9" name="container106" show="true">
-                                                    <wm-label name="labelFARemaining" caption="bind:(Variables.serviceGetQuantities.dataSet[$i].takeOffQuantity * (1 - Variables.serviceGetQuantities.dataSet[$i].installedPercent)) | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"></wm-label>
-                                                </wm-container>
-                                                <wm-container class="col-md-9" show="false" name="container178">
-                                                    <wm-text tabindex="1" readonly="true" hint="Remaining quantity BEFORE current activity is added" type="number" datavalue="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityLFInstalled.dataSet[$i].Total"
-                                                        name="text126"></wm-text>
-                                                </wm-container>
-                                            </wm-composite>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow59">
-                                        <wm-gridcolumn columnwidth="6" name="gridcolumn131">
-                                            <wm-composite name="composite182" captionposition="top">
-                                                <wm-label class="col-md-3 control-label" name="label235_2" caption="Estimated Hours" hint="Total man hours for this Bid Activity." fontweight="bold"></wm-label>
-                                                <wm-container class="col-md-9" name="container174_1" show="true">
-                                                    <wm-label caption="bind:Variables.serviceGetQuantities.dataSet[$i].fahours | toNumber: '2'" show="true" hint="Total man hours for this Bid Activity." name="labelFAHours"></wm-label>
-                                                </wm-container>
-                                            </wm-composite>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="6" name="gridcolumn134">
-                                            <wm-composite name="composite184_1" captionposition="top" show="true">
-                                                <wm-label class="col-md-3 control-label" name="label237_1" caption="Remaining Hours" hint="Remaining hours BEFORE current activity is added" fontweight="bold"></wm-label>
-                                                <wm-container class="col-md-9" name="container176_1" show="true" height="20px">
-                                                    <wm-label caption="bind:(Variables.serviceGetQuantities.dataSet[$i].fahours * (1 - Variables.serviceGetQuantities.dataSet[$i].installedPercent)) | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added"
-                                                        name="labelFAHoursRemaining"></wm-label>
-                                                </wm-container>
-                                            </wm-composite>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
-                            </wm-container>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                    <wm-gridrow name="gridrow54" horizontalalign="right">
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn129_1" horizontalalign="right"></wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn201_1"></wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn202_1">
-                            <wm-composite name="composite186_1" captionposition="top" horizontalalign="left">
-                                <wm-label class="col-md-3 control-label" caption="Percent Complete" textalign="left" hint="Percent complete BEFORE current activity is added" fontweight="bold" name="label288" color="#000000"></wm-label>
-                                <wm-container class="col-md-9" name="container178_1" horizontalalign="left" show="true">
-                                    <wm-label caption="bind:Variables.serviceGetQuantities.dataSet[$i].installedPercent * 100 | toNumber: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added" name="labelPercentComplete"></wm-label>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                </wm-layoutgrid>
-            </wm-form>
-            <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-default" caption="Return" type="button" show="true" backgroundcolor="#dc0000" iconclass="wi wi-backward" shortcutkey="r" on-click="Widgets.dialogRejection.open()" name="buttonRejectQuantity" hint="Return to Superintendent for further review."></wm-button>
-                <wm-button class="btn-secondary" caption="Cancel" on-click="Widgets.dialogAssignQuantities.close()" name="buttonDialogAssignCancel" tabindex="1"></wm-button>
-                <wm-button class="btn-primary" caption="Update" name="buttonQuantitiesUpdate" type="button" on-click="buttonQuantitiesUpdateClick($event, $scope);Widgets.dialogAssignQuantities.close();Variables.serviceUnLockSSActivity.invoke()"
-                    hint="Commit this entry to the tracker."></wm-button>
-            </wm-dialogactions>
-        </wm-dialog>
-    </wm-view>
+
 </wm-partial>

@@ -30,7 +30,7 @@ Application.run(function($rootScope, DialogService) {
     };
 
 
-    $rootScope.timerAssignDelayonTimerFire = function(variable, data) {
+    $rootScope.timerAssignDelayonTimerFire = function(variable, data) { //Seems like this can go away now...
         if ($rootScope.Widgets.gridApprovalReview.selecteditem.ActivityType == 11) {
             $rootScope.Variables.Job1111ExecuteGetQuantityLFInstalled.setInput('BidID', $rootScope.Widgets.livelistBidActivities.selecteditem.BidID);
             $rootScope.Variables.Job1111ExecuteGetQuantityLFInstalled.update();

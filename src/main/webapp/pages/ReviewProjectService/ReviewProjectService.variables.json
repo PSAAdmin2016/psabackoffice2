@@ -111,7 +111,7 @@
     },
     "isList" : true,
     "firstRow" : 0,
-    "maxResults" : 500,
+    "maxResults" : 100,
     "designMaxResults" : 10,
     "orderBy" : "Craft asc, ActivityID desc",
     "onSuccess" : "Variables.serviceGetActivitiesPendingApprovalCount.invoke()",
@@ -261,46 +261,6 @@
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
-  },
-  "serviceUpdateSSReturnToListPS" : {
-    "_id" : "wm-Job1111ExecuteUpdateSSReturnToListPS-wm.ServiceVariable-1464297686390",
-    "name" : "serviceUpdateSSReturnToListPS",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "ActivityStatus",
-      "value" : "11",
-      "type" : "integer"
-    }, {
-      "target" : "UserID",
-      "value" : "bind:Variables.loggedInUser.dataSet.id",
-      "type" : "integer"
-    }, {
-      "target" : "FieldActivityID",
-      "value" : "bind:Widgets.livelistRecentActivities.selecteditem.ActivityID",
-      "type" : "integer"
-    } ],
-    "type" : "integer",
-    "service" : "Job1111",
-    "operation" : "executeUpdateSS",
-    "operationId" : "QueryExecutionController_executeUpdateSS",
-    "operationType" : "put",
-    "serviceType" : "DataService",
-    "dataSet" : {
-      "dataValue" : ""
-    },
-    "isList" : false,
-    "firstRow" : 0,
-    "maxResults" : 3,
-    "designMaxResults" : 10,
-    "onSuccess" : "Variables.serviceGetPSRecentActivities.invoke();Variables.serviceGetActivitiesPendingApproval.invoke()",
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "isDefault" : true,
     "controller" : "QueryExecution"
   },
   "staticRecordLockedMessage" : {

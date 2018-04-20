@@ -11,29 +11,24 @@
                     <wm-gridcolumn columnwidth="2" name="gridcolumn156">
                         <wm-button class="btn-default" caption="Refresh" type="button" name="buttonRefresh" iconclass="glyphicon glyphicon-refresh" on-click="buttonRefreshClick($event, $scope)"></wm-button>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="8" name="gridcolumn161_2">
-                        <wm-container name="container4" class="input-group pull-right">
-                            <wm-container name="container6" class="buttonGroup pull-right" display="inline">
-                                <wm-button class="btn-default" caption="Recent Activities" type="button" backgroundcolor="#5fb4ff" iconclass="wi wi-history" name="buttonRecentActivities" hint="Return an activity to Project Services Review." on-click="Widgets.dialogRecentActivities.open();Variables.serviceGetPSRecentActivities.invoke()"
-                                    margin="unset unset unset 15px"></wm-button>
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn161_2">
+                        <wm-button class="btn-default" caption="Button" type="button" margin="unset 0.5em" name="button9" on-click="button9Click($event, $scope)"></wm-button>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="5" name="gridcolumn20">
+                        <wm-container name="container5" horizontalalign="right">
+                            <wm-label caption="Total Activities:" name="label237" width="50px" class="inlineDisply" margin="unset unset unset unset" color="#000000"></wm-label>
+                            <wm-container name="container177" class="badge" backgroundcolor="#c0c0c0" margin="unset unset 2% 1%" padding="1% unset unset unset">
+                                <wm-label name="label13" caption="bind:Variables.serviceGetActivitiesPendingApproval.dataSet.totalElements | numberToString" fontsize="13" color="#000000"></wm-label>
                             </wm-container>
-                            <wm-container name="container5" class="buttonGroup" display="inline" width="200px">
-                                <wm-container name="composite182_1" class="inlineDisply">
-                                    <wm-container name="container55555" display="inline" horizontalalign="right">
-                                        <wm-label caption="Total Activities:" name="label237" width="50px" class="inlineDisply" margin="unset 1px unset unset"></wm-label>
-                                        <wm-text type="number" placeholder="" readonly="true" autocomplete="false" readonlygrid="true" name="textApprovalActivityCount" datavalue="bind:Variables.serviceGetActivitiesPendingApproval.dataSet.totalElements"
-                                            class="pull-right" width="35" margin="unset unset unset 1px"></wm-text>
-                                    </wm-container>
-                                    <wm-container name="container177" width="50px" class="inlineDisply"></wm-container>
-                                </wm-container>
-                            </wm-container>
+                            <wm-button class="btn-default" caption="Recent Activities" type="button" backgroundcolor="#5fb4ff" iconclass="wi wi-history" name="buttonRecentActivities" hint="Return an activity to Project Services Review." on-click="Widgets.dialogRecentActivities.open();Variables.serviceGetPSRecentActivities.invoke()"
+                                margin="unset unset 2% 2%"></wm-button>
                         </wm-container>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn4">
                         <wm-table dataset="bind:Variables.serviceGetActivitiesPendingApproval.dataSet" name="gridApprovalReview" gridfirstrowselect="false" shownavigation="false" height="250px" on-select="gridApprovalReviewSelect($event, $data)" on-deselect="gridApprovalReviewDeselect($event, $rowData)"
-                            class="panel-default" filtermode="multicolumn" on-datarender="gridApprovalReviewDatarender($scope, $data)" spacing="condensed">
+                            class="panel-default" filtermode="multicolumn" on-datarender="gridApprovalReviewDatarender($scope, $data)" spacing="condensed" navigation="Basic">
                             <wm-table-column binding="ActivityID" caption="Field Activity ID" width="20%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="number" filterplaceholder="Search Field Activity ID..."></wm-table-column>
                             <wm-table-column binding="Craft" caption="Craft" width="20%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
                             <wm-table-column binding="ActivityTypeName" caption="Activity Type" width="20%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
@@ -121,8 +116,8 @@
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="2" name="gridcolumn171"></wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="2" name="gridcolumn172">
-                                                    <wm-button class="btn-default" caption="Return" type="button" hint="Return this activity to Superintendent Review List" height="24" name="button23" show="bind:Variables.serviceGetPSRecentActivities.dataSet.Status == 'Progress Approved' || Variables.serviceGetPSRecentActivities.dataSet.Status == 'Dismissed'"
-                                                        on-click="Variables.serviceUpdateSSReturnToListPS.invoke()"></wm-button>
+                                                    <wm-button class="btn-default" caption="Return" type="button" hint="Return this activity to Superintendent Review List" height="24" name="buttonReturnToList" show="bind:Variables.serviceGetPSRecentActivities.dataSet.Status == 'Progress Approved' || Variables.serviceGetPSRecentActivities.dataSet.Status == 'Dismissed'"
+                                                        on-click="buttonReturnToListClick($event, $scope, item, currentItemWidgets)"></wm-button>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>

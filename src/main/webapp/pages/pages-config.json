@@ -77,7 +77,13 @@
 }, {
   "name" : "PartAssignEquip",
   "type" : "PARTIAL",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "BidID",
+    "type" : "integer"
+  }, {
+    "name" : "ActivityID",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "PartFACivilSellPackage",
   "type" : "PARTIAL",
@@ -141,19 +147,43 @@
 }, {
   "name" : "PartPSRCivil",
   "type" : "PARTIAL",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "ActivityID",
+    "type" : "integer"
+  }, {
+    "name" : "BidID",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "PartPSREquip",
   "type" : "PARTIAL",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "ActivityID",
+    "type" : "integer"
+  }, {
+    "name" : "BidID",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "PartPSRPipe",
   "type" : "PARTIAL",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "ActivityID",
+    "type" : "integer"
+  }, {
+    "name" : "BidID",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "PartPSRSteel",
   "type" : "PARTIAL",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "ActivityID",
+    "type" : "integer"
+  }, {
+    "name" : "BidID",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "PartReportDPRCivil",
   "type" : "PARTIAL",
