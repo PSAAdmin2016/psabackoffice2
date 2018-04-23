@@ -123,29 +123,6 @@
     "isDefault" : true,
     "controller" : "QueryExecution"
   },
-  "serviceGetCivilWorkPercent" : {
-    "_id" : "wm-serviceGetCivilWorkPercent-wm.ServiceVariable-1483645180449",
-    "name" : "serviceGetCivilWorkPercent",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ ],
-    "type" : "Job1111GetSettingCivilWorkPercentrtnType",
-    "service" : "Job1111",
-    "operation" : "executeGetSettingCivilWorkPercent",
-    "operationId" : "QueryExecutionController_executeGetSettingCivilWorkPercent",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 1,
-    "designMaxResults" : 10,
-    "startUpdate" : true,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
-  },
   "serviceGetPSRecentActivities" : {
     "_id" : "wm-Job1111ExecuteGetPSRecentActivities-wm.ServiceVariable-1464286247551",
     "name" : "serviceGetPSRecentActivities",
@@ -209,29 +186,6 @@
     "isDefault" : true,
     "controller" : "QueryExecution"
   },
-  "serviceGetTestingPercent" : {
-    "_id" : "wm-serviceGetTestingPercent-wm.ServiceVariable-1473991044179",
-    "name" : "serviceGetTestingPercent",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ ],
-    "type" : "com.psabackoffice.job1111.models.query.GetSettingPipeTestingPercentResponse",
-    "service" : "Job1111",
-    "operation" : "executeGetSettingPipeTestingPercent",
-    "operationId" : "QueryExecutionController_executeGetSettingPipeTestingPercent",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 1,
-    "designMaxResults" : 10,
-    "startUpdate" : true,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
-  },
   "serviceUpdateSAS" : {
     "_id" : "wm-serviceUpdateSAS-wm.ServiceVariable-1524080993715",
     "name" : "serviceUpdateSAS",
@@ -262,6 +216,20 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
+  },
+  "staticLastSelectedRow" : {
+    "_id" : "wm-staticLastSelectedRow-wm.Variable-1524498753667",
+    "name" : "staticLastSelectedRow",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "lastActivityIndex" : 0,
+      "lastActivityID" : 0
+    },
+    "type" : "number",
+    "isList" : false,
+    "saveInPhonegap" : false
   },
   "staticRecordLockedMessage" : {
     "_id" : "wm-staticRecordLockedMessage-wm.Variable-1497282777613",

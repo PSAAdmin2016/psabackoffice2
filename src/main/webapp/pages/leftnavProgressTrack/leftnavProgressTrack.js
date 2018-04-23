@@ -24,7 +24,9 @@ Application.$controller("leftnavProgressTrackPageController", ["$scope", functio
 
 
     $scope.anchor2Click = function($event, $isolateScope) {
-        $scope.savePageSettings();
+        if ($scope.activePageName == 'ReviewProjectService') {
+            $scope.savePageSettings();
+        }
     };
 
 }]);

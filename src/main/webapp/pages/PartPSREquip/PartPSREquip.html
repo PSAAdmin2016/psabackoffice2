@@ -38,16 +38,16 @@
                 <wm-layoutgrid name="layoutgrid3">
                     <wm-gridrow padding="unset 0% 2% 0%" name="gridrow6">
                         <wm-gridcolumn columnwidth="4" padding="unset 0px" name="gridcolumn25" horizontalalign="center">
-                            <wm-button class="btn-default" caption="Notes" type="button" show="true" backgroundcolor="#e7dd51" marginunit="%" on-click="buttonReviewNotes1Click($event, $scope)" iconclass="glyphicon glyphicon-list-alt" hint="View / Add Notes for this Field Activity"
-                                width="95%" margin="10% unset unset unset" name="buttonReviewNotes1" badgevalue="bind:$parent.Variables.serviceGetSASNotes.dataSet.totalElements"></wm-button>
+                            <wm-button class="btn-default" caption="Notes" type="button" show="true" backgroundcolor="#e7dd51" marginunit="%" on-click="buttonReviewNotesClick($event, $scope)" iconclass="glyphicon glyphicon-list-alt" hint="View / Add Notes for this Field Activity"
+                                width="95%" margin="10% unset unset unset" name="buttonReviewNotes" badgevalue="bind:$parent.Variables.serviceGetSASNotes.dataSet.totalElements"></wm-button>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn26" horizontalalign="center">
                             <wm-button class="btn-default" caption="Research" type="button" margin="10% unset unset unset" backgroundcolor="#40E0D0" hint="Jump to Classic Tracker, Filtered to This Activities BidID" accessroles="Everyone" width="95%" on-click="buttonResearchClick($event, $scope)"
                                 name="buttonResearch" iconclass="wi wi-search"></wm-button>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn27" horizontalalign="center">
-                            <wm-button class="btn-default" caption="Details" type="button" backgroundcolor="#5fb4ff" opacity="1" width="95%" iconclass="glyphicon glyphicon-asterisk" on-click="Widgets.dialogPSAActivityDetails.open();buttonDetail1Click($event, $scope)" cursor="default"
-                                margin="10% unset unset unset" hint="View details submitted by foreman for the selected activity." name="buttonDetail1"></wm-button>
+                            <wm-button class="btn-default" caption="Details" type="button" backgroundcolor="#5fb4ff" opacity="1" width="95%" iconclass="glyphicon glyphicon-asterisk" on-click="Widgets.dialogPSAActivityDetails.open();buttonDetail1Click($event, $scope)"
+                                cursor="default" margin="10% unset unset unset" hint="View details submitted by foreman for the selected activity." name="buttonDetail1"></wm-button>
                         </wm-gridcolumn>
                     </wm-gridrow>
                 </wm-layoutgrid>
@@ -79,8 +79,8 @@
         </wm-gridrow>
         <wm-gridrow name="gridrow9">
             <wm-gridcolumn columnwidth="12" name="gridcolumn36">
-                <wm-list listclass="list-group" itemclass="list-group-item" template="true" dataset="bind:Variables.serviceGetMatches.dataSet" itemsperrow="sm-1" readonlygrid="true" selectionlimit="1" selectfirstitem="true" enablereorder="true" margin="unset 0%" padding="unset 0%"
-                    show="true" name="livelistBidActivities">
+                <wm-list listclass="list-group" itemclass="list-group-item" template="true" dataset="bind:Variables.serviceGetMatches.dataSet" itemsperrow="sm-1" readonlygrid="true" selectionlimit="1" selectfirstitem="true" enablereorder="true" margin="unset 0%"
+                    padding="unset 0%" show="true" name="livelistBidActivities">
                     <wm-listtemplate layout="blank" name="listtemplate1">
                         <wm-container class="blank" data-template-ctr="true" margin="unset 0%" padding="unset 0%" name="container1">
                             <wm-layoutgrid class="gridlayout" margin="unset 0%" padding="unset 0px" name="layoutgrid4"></wm-layoutgrid>
@@ -105,15 +105,16 @@
                                         <wm-gridrow padding="unset 0px" name="gridrow11">
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn45"></wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn46">
-                                                <wm-popover popoverwidth="30%" margin="unset 0.5em" name="popoverAssign" class="btn btn-default" caption="Assign" backgroundcolor="#0B9642" iconclass="glyphicon glyphicon-ok-sign" contentsource="partial" popoverplacement="left" color="#222222" content="PartAssignEquip"
-                                                    title="Update Quantities" on-show="popoverAssignShow($event, $isolateScope, item, currentItemWidgets)" on-hide="popoverAssignHide($event, $isolateScope, item, currentItemWidgets)">
+                                                <wm-popover popoverwidth="30%" margin="unset 0.5em" name="popoverAssign" class="btn btn-default" caption="Assign" backgroundcolor="#0B9642" iconclass="glyphicon glyphicon-ok-sign" contentsource="partial" popoverplacement="left"
+                                                    color="#222222" content="PartAssignEquip" title="Update Quantities" on-show="popoverAssignShow($event, $isolateScope, item, currentItemWidgets)" on-hide="popoverAssignHide($event, $isolateScope, item, currentItemWidgets)"
+                                                    show="true" deferload="true">
                                                     <wm-param name="BidID" value="bind:Widgets.livelistBidActivities.selecteditem.bidId" type="integer"></wm-param>
                                                     <wm-param name="ActivityID" value="bind:pageParams.ActivityID" type="integer"></wm-param>
                                                 </wm-popover>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn47">
-                                                <wm-button class="btn-default" caption="Details" type="button" iconclass="glyphicon glyphicon-asterisk" width="95%" backgroundcolor="#5fb4ff" borderstyle="outset" opacity="0.8" on-click="Widgets.dialogBidActivityDetails.open()" margin="unset 0% unset unset"
-                                                    padding="unset 1%" hint="View the tracker details for this line item." name="buttonDetail2"></wm-button>
+                                                <wm-button class="btn-default" caption="Details" type="button" iconclass="glyphicon glyphicon-asterisk" width="95%" backgroundcolor="#5fb4ff" borderstyle="outset" opacity="0.8" on-click="Widgets.dialogBidActivityDetails.open()"
+                                                    margin="unset 0% unset unset" padding="unset 1%" hint="View the tracker details for this line item." name="buttonDetail2"></wm-button>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
@@ -331,8 +332,8 @@
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow80_3">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn170">
-                                                <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:$parent.Variables.liveEquipFA.dataSet.data[$i].farework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)" padding="unset unset unset 0px"
-                                                    show="true" name="checkbox7"></wm-checkbox>
+                                                <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:$parent.Variables.liveEquipFA.dataSet.data[$i].farework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)"
+                                                    padding="unset unset unset 0px" show="true" name="checkbox7"></wm-checkbox>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
@@ -381,5 +382,4 @@
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
-
 </wm-partial>

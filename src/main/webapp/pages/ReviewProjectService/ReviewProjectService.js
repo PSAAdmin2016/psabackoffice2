@@ -62,22 +62,25 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
                     }
                 },
                 function(data) {
-                    //Oddly enought doing an updateRecord() on a live variable.. doesn't actually update the local variable too.. Even though the updateRecord() DOES in fact return the new value, a a second call is required to update the currently stored local value.  (F-ing Stupid)
+                    //Oddly enought doing an updateRecord() on a live variable.. doesn't actually update the local variable too.. Even though the updateRecord() DOES in fact return the new value, a a second call is required to update the currently stored local value. 
                     //So because of that, I need to build logic in the savePageSettings() to handle updating the local variable too. This was confirmed functionality by WaveMaker 4-2-18
+                    //In the mean time I will use the second call method until I resolve how I want to handle this.
                     $scope.Variables.SettingsPageUser.listRecords();
                 }
             );
         } else {
             $scope.Variables.SettingsPageUser.createRecord({
-                row: {
-                    "userId": $scope.Variables.loggedInUser.dataSet.id,
-                    "label": $scope.activePageName,
-                    "valueString": JSON.stringify(pageSettingsJSON)
+                    row: {
+                        "userId": $scope.Variables.loggedInUser.dataSet.id,
+                        "label": $scope.activePageName,
+                        "valueString": JSON.stringify(pageSettingsJSON)
+                    }
+                },
+                function(data) {
+                    $scope.Variables.SettingsPageUser.listRecords();
                 }
-            });
+            );
         }
-
-
     };
 
 
@@ -93,7 +96,7 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
 
     $scope.gridApprovalReviewSelect = function($event, $data) {
         //Load correct partial based on selected activity
-        switch ($scope.Widgets.gridApprovalReview.selecteditem.Craft) {
+        switch ($data.Craft) {
             case 'PIPE':
                 $scope.Widgets.containerActivityMatches.content = 'PartPSRPipe';
                 $timeout(function() {
@@ -127,13 +130,19 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
                 $scope.Widgets.containerActivityMatches.pageParams.BidID = $data.BidID;
                 break;
         }
+
+        //Save the index and activityID for calculating selected row on grid render AFTER updates/refresh, ect...
+        $scope.Variables.staticLastSelectedRow.setValue('lastActivityIndex', $scope.Widgets.gridApprovalReview.gridData.findIndex(x => x.ActivityID === $scope.Widgets.gridApprovalReview.selectedItems[0].ActivityID));
+        $scope.Variables.staticLastSelectedRow.setValue('lastActivityID', $data.ActivityID);
+
     };
 
 
     $scope.gridApprovalReviewDatarender = function($isolateScope, $data) {
-        var pageSettings = $scope.Variables.SettingsPageUser.getData().data.find(x => x.label === $scope.activePageName);
-        var pageSettingsJSON = {};
+
         if (firstLoad) {
+            var pageSettings = $scope.Variables.SettingsPageUser.getData().data.find(x => x.label === $scope.activePageName);
+            var pageSettingsJSON = {};
             firstLoad = false;
             if (pageSettings) {
                 pageSettingsJSON = JSON.parse(pageSettings.valueString);
@@ -149,7 +158,7 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
                     if (i >= 0) {
                         $isolateScope.selectItem(i);
                     } else {
-                        $isolateScope.selectItem(Math.min((pageSettingsJSON.selectedActivityIndex - 1), 0));
+                        $isolateScope.selectItem(Math.min((pageSettingsJSON.selectedActivityIndex), $isolateScope.gridData.length - 1));
                     }
                 } else {
                     $isolateScope.selectItem(0);
@@ -158,6 +167,20 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
                 $timeout(function() {
                     $('[name="gridApprovalReview"] tr.app-datagrid-row.active').focus();
                 });
+            }
+        } else {
+            var lastActivityIndex = $scope.Variables.staticLastSelectedRow.getValue('lastActivityIndex');
+            var lastActivityID = $scope.Variables.staticLastSelectedRow.getValue('lastActivityID');
+
+            if (lastActivityID > 0) {
+                var i2 = $isolateScope.gridData.findIndex(x => x.ActivityID === lastActivityID);
+                if (i2 >= 0) {
+                    $isolateScope.selectItem(i2);
+                } else {
+                    $isolateScope.selectItem(Math.min((lastActivityIndex), $isolateScope.gridData.length - 1));
+                }
+            } else {
+                $isolateScope.selectItem(0);
             }
         }
 
