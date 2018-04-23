@@ -247,9 +247,9 @@ public interface Job1111QueryExecutorService {
 
     Downloadable exportGetReportDPRSteelCondensed(ExportType exportType, String pm, String constM, String siteM, String areaM, String super_, String gf, String foreman, Date startDate, Date endDate, Pageable pageable);
 
-    Page<GetActivitiesPendingApprovalResponse> executeGetActivitiesPendingApproval(Integer userId, Pageable pageable);
+    Page<GetActivitiesPendingApprovalResponse> executeGetActivitiesPendingApproval(Integer userId, String craft, String foremanName, Pageable pageable);
 
-    Downloadable exportGetActivitiesPendingApproval(ExportType exportType, Integer userId, Pageable pageable);
+    Downloadable exportGetActivitiesPendingApproval(ExportType exportType, Integer userId, String craft, String foremanName, Pageable pageable);
 
     Page<GetSettingPipeCtopercentResponse> executeGetSettingPipeCTOPercent(Pageable pageable);
 

@@ -8,6 +8,7 @@ package com.psabackoffice.job1111.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -39,6 +40,14 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
     @JsonProperty("Craft")
     @ColumnAlias("Craft")
     private String craft;
+
+    @JsonProperty("ForemanName")
+    @ColumnAlias("ForemanName")
+    private String foremanName;
+
+    @JsonProperty("CompleteTime")
+    @ColumnAlias("CompleteTime")
+    private Timestamp completeTime;
 
     @JsonProperty("BidID")
     @ColumnAlias("BidID")
@@ -146,6 +155,22 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
 
     public void setCraft(String craft) {
         this.craft = craft;
+    }
+
+    public String getForemanName() {
+        return this.foremanName;
+    }
+
+    public void setForemanName(String foremanName) {
+        this.foremanName = foremanName;
+    }
+
+    public Timestamp getCompleteTime() {
+        return this.completeTime;
+    }
+
+    public void setCompleteTime(Timestamp completeTime) {
+        this.completeTime = completeTime;
     }
 
     public Integer getBidId() {
@@ -279,6 +304,8 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
                 Objects.equals(getActivityTypeName(), getActivitiesPendingApprovalResponse.getActivityTypeName()) &&
                 Objects.equals(getStatus(), getActivitiesPendingApprovalResponse.getStatus()) &&
                 Objects.equals(getCraft(), getActivitiesPendingApprovalResponse.getCraft()) &&
+                Objects.equals(getForemanName(), getActivitiesPendingApprovalResponse.getForemanName()) &&
+                Objects.equals(getCompleteTime(), getActivitiesPendingApprovalResponse.getCompleteTime()) &&
                 Objects.equals(getBidId(), getActivitiesPendingApprovalResponse.getBidId()) &&
                 Objects.equals(getSpool1(), getActivitiesPendingApprovalResponse.getSpool1()) &&
                 Objects.equals(getSpool2(), getActivitiesPendingApprovalResponse.getSpool2()) &&
@@ -304,6 +331,8 @@ public class GetActivitiesPendingApprovalResponse implements Serializable {
                 getActivityTypeName(),
                 getStatus(),
                 getCraft(),
+                getForemanName(),
+                getCompleteTime(),
                 getBidId(),
                 getSpool1(),
                 getSpool2(),

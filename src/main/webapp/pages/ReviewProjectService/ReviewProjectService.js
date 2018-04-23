@@ -1,28 +1,12 @@
 var firstLoad = false;
-Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootScope", "DialogService", "Utils", "$timeout", function($scope, $rootScope, DialogService, Utils, $timeout) {
+Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootScope", "Utils", "$timeout", function($scope, $rootScope, Utils, $timeout) {
     "use strict";
 
     /* perform any action with the variables inside this block(on-page-load) */
-    $scope.onPageVariablesReady = function() {
-        /*
-         * variables can be accessed through '$scope.Variables' property here
-         * e.g. $scope.Variables.staticVariable1.getData()
-         */
-        $scope.Variables.staticVariableMachineStateTimer.dataValue = Date.now();
-
-    };
+    $scope.onPageVariablesReady = function() {};
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        /*
-         * variables can be accessed through '$scope.Variables' property here
-         * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
-         * $scope.Variables.loggedInUser.getData()
-         *
-         * widgets can be accessed through '$scope.Widgets' property here
-         * e.g. to get value of text widget named 'username' use following scrip
-         * '$scope.Widgets.username.datavalue'
-         */
         firstLoad = true;
     };
 
@@ -94,6 +78,26 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
     };
 
 
+    $scope.serviceGetActivitiesPendingApprovalonBeforeUpdate = function(variable, inputData) {
+        if ($scope.Widgets.gridApprovalReview.rowFilter.Craft !== undefined && $scope.Widgets.gridApprovalReview.rowFilter.Craft.value !== undefined) {
+            inputData.Craft = $scope.Widgets.gridApprovalReview.rowFilter.Craft.value;
+            if ($scope.Widgets.gridApprovalReview.rowFilter.ActivityTypeName) {
+                $scope.Widgets.gridApprovalReview.rowFilter.ActivityTypeName.value = null;
+            }
+        } else {
+            inputData.Craft = '%';
+        }
+        if ($scope.Widgets.gridApprovalReview.rowFilter.ForemanName !== undefined && $scope.Widgets.gridApprovalReview.rowFilter.ForemanName.value !== undefined) {
+            inputData.ForemanName = $scope.Widgets.gridApprovalReview.rowFilter.ForemanName.value;
+            if ($scope.Widgets.gridApprovalReview.rowFilter.ActivityTypeName) {
+                $scope.Widgets.gridApprovalReview.rowFilter.ActivityTypeName.value = null;
+            }
+        } else {
+            inputData.ForemanName = '%';
+        }
+    };
+
+
     $scope.gridApprovalReviewSelect = function($event, $data) {
         //Load correct partial based on selected activity
         switch ($data.Craft) {
@@ -120,6 +124,7 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
                 });
                 $scope.Widgets.containerActivityMatches.pageParams.ActivityID = $data.ActivityID;
                 $scope.Widgets.containerActivityMatches.pageParams.BidID = $data.BidID;
+                $scope.Widgets.containerActivityMatches.pageParams.TestPackage = $data.Spool1;
                 break;
             case 'EQUIP':
                 $scope.Widgets.containerActivityMatches.content = 'PartPSREquip';

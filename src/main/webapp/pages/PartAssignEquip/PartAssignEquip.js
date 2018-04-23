@@ -2,15 +2,6 @@ Application.$controller("PartAssignEquipPageController", ["$scope", "DialogServi
     "use strict";
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        /*
-         * variables can be accessed through '$scope.Variables' property here
-         * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
-         * $scope.Variables.loggedInUser.getData()
-         *
-         * widgets can be accessed through '$scope.Widgets' property here
-         * e.g. to get value of text widget named 'username' use following script
-         * '$scope.Widgets.username.datavalue'
-         */
         $scope.Variables.staticBrightLabel = false; //simple page scope variable needed for Flasher.
     };
 
@@ -18,8 +9,6 @@ Application.$controller("PartAssignEquipPageController", ["$scope", "DialogServi
     $scope.buttonQuantitiesUpdateClick = function($event, $isolateScope) {
         $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", 5);
         $scope.Variables.serviceUpdateSAS.invoke(); //Updates GetActivitiesPendingApproval
-        // Nothing at this point forces a select of new row in Pending (even though it refreshes), and in turn no new match.. so no force closure of the popOver
-        // This needs to be handled 2 ways.  1 make the logic for selecting a row in Pending after update stronger.  2. Make the logic clearing of the PSRPart page container more robust
         $scope.Variables.serviceUnLockSASActivity.invoke();
     };
 

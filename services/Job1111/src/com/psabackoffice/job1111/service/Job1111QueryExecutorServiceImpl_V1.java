@@ -673,10 +673,12 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetActivitiesPendingApproval(Pageable pageable, Integer userId) {
-        Map params = new HashMap(1);
+    public Page<Object> executeGetActivitiesPendingApproval(Pageable pageable, Integer userId, String craft, String foremanName) {
+        Map params = new HashMap(3);
 
         params.put("UserID", userId);
+        params.put("Craft", craft);
+        params.put("ForemanName", foremanName);
 
         return queryExecutor.executeNamedQuery("GetActivitiesPendingApproval", params, Object.class, pageable);
     }

@@ -154,7 +154,7 @@
                 </wm-layoutgrid>
                 <wm-buttongroup horizontalalign="right" class="form-action col-md-12" name="buttongroup1">
                     <wm-button caption="Cancel" type="button" class="btn-warning" name="button24" on-click="Widgets.dialogRejection.close()"></wm-button>
-                    <wm-button caption="Save" type="submit" class="btn-primary" name="buttonDialogRejectionSave" on-click="buttonDialogRejectionSaveClick($event, $scope)"></wm-button>
+                    <wm-button caption="Save" type="submit" class="btn-primary" name="buttonDialogRejectionSave"></wm-button>
                 </wm-buttongroup>
             </wm-form>
             <wm-dialogactions name="dialogactions3" show="false">
@@ -164,120 +164,55 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewBidActivityDetails" show="false">
-        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogBidActivityDetails" width="60%" closable="false" title="Bid Activity Details" iconclass="glyphicon glyphicon-edit">
+        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogBidActivityDetails" width="85%" closable="false" title="Bid Activity Details" iconclass="glyphicon glyphicon-edit">
             <wm-layoutgrid name="layoutgrid51">
-                <wm-gridrow name="gridrow90_1" backgroundcolor="#c9cfdd">
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn229_1">
-                        <wm-label width="100%" caption="Unique Identifiers" fontweight="bold" name="label264_1" fontsize="13" margin=".5% unset unset unset"></wm-label>
+                <wm-gridrow name="gridrow28">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn76_1">
+                        <wm-table name="Table1" title="" dataset="bind:Widgets.livelistBidActivities.selecteditem" navigation="None" enablesort="false" spacing="condensed">
+                            <wm-table-column binding="uid" caption="Uid" edit-widget-type="number" type="integer" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="bidId" caption="BidID" edit-widget-type="number" type="integer" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="projectServicesRep" caption="Project Services Rep" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="ewonumber" caption="EWO Number" edit-widget-type="number" type="integer" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="scope" caption="Scope" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="phase" caption="Phase" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="stage" caption="Stage" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="testPackageNumber" caption="Test Package" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="workPackage" caption="Work Package" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="costCode" caption="Cost Code" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="p6id" caption="P6 ID" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="p6description" caption="P6 Description" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="assignedContractor" caption="Contractor" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="area" caption="Area" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="location" caption="Location" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="structure" caption="Structure" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="cu" caption="CU" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="elevation" caption="Elevation" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="engDrawingNumber" caption="Drawing Number" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="sheetNumber" caption="Sheet" edit-widget-type="number" type="integer" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="drawingRev" caption="Drawing Rev" edit-widget-type="number" type="integer" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="componentNumber" caption="Component Number" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="description" caption="Description" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="equipmentType" caption="Equipment Type" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="activityType" caption="Activity Type" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="clientMaterialSpec" caption="Client Material Spec" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="performanceMaterialSpec" caption="Performance Material Spec" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="system" caption="System" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="service" caption="Service" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="takeOffQuantity" caption="Take Off" edit-widget-type="number" type="double" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="quantityUnit" caption="Quantity Unit" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="estimatedHours" caption="Estimated Hours" edit-widget-type="number" type="double" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="wbs1" caption="Wbs1" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="wbs2" caption="Wbs2" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="wbs3" caption="Wbs3" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="wbs4" caption="Wbs4" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="wbs5" caption="Wbs5" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="wbs6" caption="Wbs6" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="wbs7" caption="Wbs7" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="wbs8" caption="Wbs8" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="wbs9" caption="Wbs9" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="wbs10" caption="Wbs10" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                        </wm-table>
                     </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow84_1">
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn201_2">
-                        <wm-label name="label239_2" width="100%" caption="Bid Activity ID" fontweight="bold" textdecoration="underline"></wm-label>
-                        <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.bidId" name="label74"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn161">
-                        <wm-label width="100%" caption="Scope" fontweight="bold" textdecoration="underline" name="label72"></wm-label>
-                        <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.scope" name="label73"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn162">
-                        <wm-label width="100%" name="label243" caption="Tag #" fontweight="bold" textdecoration="underline"></wm-label>
-                        <wm-label width="100%" name="label244" caption="bind:Widgets.livelistBidActivities.selecteditem.componentNumber"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn123">
-                        <wm-label width="100%" caption="Drawing #" fontweight="bold" textdecoration="underline" name="label152"></wm-label>
-                        <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.engDrawingNumber" name="label154_1"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn124">
-                        <wm-label width="100%" name="label245" caption="Description" fontweight="bold" textdecoration="underline"></wm-label>
-                        <wm-label width="100%" name="label246" caption="bind:Widgets.livelistBidActivities.selecteditem.description"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn202_2"></wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow91" backgroundcolor="#c9cfdd">
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn234_1">
-                        <wm-label width="100%" caption="Location Groupings" fontweight="bold" name="label265_1" fontsize="13" margin=".5% unset unset unset"></wm-label>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow85_1">
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn205_1">
-                        <wm-label width="100%" caption="Area" fontweight="bold" textdecoration="underline" name="label252"></wm-label>
-                        <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.area" name="label259_2"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn206_1">
-                        <wm-label width="100%" caption="Location" fontweight="bold" textdecoration="underline" name="label70"></wm-label>
-                        <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.location" name="label71"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn226_1">
-                        <wm-label width="100%" caption="Structure" fontweight="bold" textdecoration="underline" name="label254"></wm-label>
-                        <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.structure" name="label261_1"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn75">
-                        <wm-label width="100%" caption="CU" fontweight="bold" textdecoration="underline" name="label253"></wm-label>
-                        <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.cu" name="label260_1"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn76">
-                        <wm-label width="100%" caption="Elevation" fontweight="bold" textdecoration="underline" name="label150"></wm-label>
-                        <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.elevation" name="label151"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn122"></wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow86_1" backgroundcolor="#c9cfdd">
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn207_2">
-                        <wm-label width="100%" caption="Logical Groupings" fontweight="bold" name="label266_1" fontsize="13" margin=".5% unset unset unset"></wm-label>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow92_1">
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn240_1">
-                        <wm-label width="100%" caption="Phase" fontweight="bold" textdecoration="underline" name="label251"></wm-label>
-                        <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.phase" name="label258_2"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn241">
-                        <wm-label width="100%" caption="Stage" fontweight="bold" textdecoration="underline" name="label75"></wm-label>
-                        <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.stage" name="label76"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn242">
-                        <wm-label width="100%" caption="Test Package" fontweight="bold" textdecoration="underline" name="label255_1"></wm-label>
-                        <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.testPackageNumber" name="label262_1"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn249">
-                        <wm-label width="100%" caption="Cost Code" fontweight="bold" textdecoration="underline" name="label268_1"></wm-label>
-                        <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.costCode" name="label269_1"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn77">
-                        <wm-label width="100%" caption="P6ID" fontweight="bold" textdecoration="underline" name="label256_2"></wm-label>
-                        <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.p6id" name="label263_1"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn78">
-                        <wm-label width="100%" caption="Contractor" fontweight="bold" textdecoration="underline" name="label148"></wm-label>
-                        <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.assignedContractor" name="label149"></wm-label>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow93_1" backgroundcolor="#c9cfdd">
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn243">
-                        <wm-label width="100%" caption="Details" fontweight="bold" name="label267_1" fontsize="13" margin=".5% unset unset unset"></wm-label>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow94_1">
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn246">
-                        <wm-label width="100%" caption="Client Material Spec" fontweight="bold" textdecoration="underline" name="label91"></wm-label>
-                        <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.clientMaterialSpec" name="label93"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn247">
-                        <wm-label width="100%" caption="Perf. Material Spec" fontweight="bold" textdecoration="underline" name="label92"></wm-label>
-                        <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.performanceMaterialSpec" name="label94"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn248">
-                        <wm-label width="100%" caption="System" fontweight="bold" textdecoration="underline" name="label271"></wm-label>
-                        <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.system" name="label279"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn250">
-                        <wm-label width="100%" caption="Service" fontweight="bold" textdecoration="underline" name="label273"></wm-label>
-                        <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.selecteditem.service" name="label281"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn251_1"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn252_1"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn254"></wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions4">
@@ -286,100 +221,84 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewPSAActivityDetails" show="false">
-        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogPSAActivityDetails" closable="false" title="Civil Field Activity Details" iconclass="glyphicon glyphicon-edit">
-            <wm-layoutgrid name="layoutgrid33">
-                <wm-gridrow name="gridrow100">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn161_1">
-                        <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 80  &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID != null" name="layoutgrid37_1" margin="unset unset 1px unset">
-                            <wm-gridrow name="gridrow63_1">
-                                <wm-gridcolumn columnwidth="6" name="gridcolumn167_1">
-                                    <wm-layoutgrid name="layoutgrid30_1">
-                                        <wm-gridrow name="gridrow82">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn172">
-                                                <wm-label caption="Equipment" show="true" fontweight="bold" readonlygrid="true" fontsize="13" name="label218_1"></wm-label>
-                                                <wm-label caption="(Standard field activity)" show="true" fontweight="bold" fontsize="11" width="100%" fontstyle="italic" name="label147"></wm-label>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow77_2">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn169">
-                                                <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite115_1">
-                                                    <wm-label class="col-md-3 control-label" caption="Field Activity ID" name="label161_1"></wm-label>
-                                                    <wm-container class="col-md-9" name="container110_1" width="40%">
-                                                        <wm-text datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text75_1"></wm-text>
-                                                    </wm-container>
-                                                </wm-composite>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow79">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn173">
-                                                <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite28">
-                                                    <wm-label class="col-md-3 control-label" caption="Tag #" name="label105"></wm-label>
-                                                    <wm-container class="col-md-9" width="90%" name="container31_1">
-                                                        <wm-text datavalue="bind:$parent.Variables.liveEquipFA.dataSet.data[$i].fatagNumber" disabled="true" readonlygrid="true" name="text21"></wm-text>
-                                                    </wm-container>
-                                                </wm-composite>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow108_1">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn181_1">
-                                                <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite77_1">
-                                                    <wm-label class="col-md-3 control-label" caption="Activity/ Description" name="label153"></wm-label>
-                                                    <wm-container class="col-md-9" name="container75" width="90%">
-                                                        <wm-text datavalue="bind:$parent.Variables.liveEquipFA.dataSet.data[$i].faactivitySelect" disabled="true" readonlygrid="true" name="text61_2"></wm-text>
-                                                    </wm-container>
-                                                </wm-composite>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow80_3">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn170">
-                                                <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:$parent.Variables.liveEquipFA.dataSet.data[$i].farework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)"
-                                                    padding="unset unset unset 0px" show="true" name="checkbox7"></wm-checkbox>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                    </wm-layoutgrid>
+        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogPSAActivityDetails" closable="false" title="Equipment Field Activity Details" iconclass="glyphicon glyphicon-edit">
+            <wm-dialogactions name="dialogactions2">
+                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button12"></wm-button>
+            </wm-dialogactions>
+            <wm-layoutgrid show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 80  &amp;&amp; $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityID != null" name="layoutgrid37_1" margin="unset unset 1px unset">
+                <wm-gridrow name="gridrow63_1">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn167_1">
+                        <wm-layoutgrid name="layoutgrid30_1">
+                            <wm-gridrow name="gridrow82">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn172">
+                                    <wm-label caption="Equipment" show="true" fontweight="bold" readonlygrid="true" fontsize="13" name="label218_1"></wm-label>
+                                    <wm-label caption="(Standard field activity)" show="true" fontweight="bold" fontsize="11" width="100%" fontstyle="italic" name="label147"></wm-label>
                                 </wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="6" name="gridcolumn168_1">
-                                    <wm-layoutgrid name="layoutgrid38_1">
-                                        <wm-gridrow name="gridrow55_1">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn109">
-                                                <wm-composite captionposition="top" name="composite78_1" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 71">
-                                                    <wm-label class="col-md-3 control-label" caption="Quantity" name="label154"></wm-label>
-                                                    <wm-container class="col-md-9" width="40%" name="container76">
-                                                        <wm-text type="number" datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.Quantity" disabled="true" name="text62_2"></wm-text>
-                                                    </wm-container>
-                                                </wm-composite>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow54_1">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn108">
-                                                <wm-composite captionposition="top" name="composite66" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 70">
-                                                    <wm-label class="col-md-3 control-label" caption="ClaimPercent" name="label183"></wm-label>
-                                                    <wm-container class="col-md-9" width="40%" name="container96">
-                                                        <wm-text type="number" datavalue="bind:($parent.$parent.Widgets.gridApprovalReview.selecteditem.SteelPercentClaim * 100)" disabled="true" name="text54"></wm-text>
-                                                    </wm-container>
-                                                </wm-composite>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow56">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn139">
-                                                <wm-composite captionposition="top" name="composite121_1">
-                                                    <wm-label class="col-md-3 control-label" caption="Notes" name="label167_1"></wm-label>
-                                                    <wm-container class="col-md-9" name="container116_1" width="100%">
-                                                        <wm-textarea datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.Notes" readonlygrid="true" disabled="true" name="textarea7"></wm-textarea>
-                                                    </wm-container>
-                                                </wm-composite>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                    </wm-layoutgrid>
+                            </wm-gridrow>
+                            <wm-gridrow name="gridrow77_2">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn169">
+                                    <wm-composite captionposition="top" marginunit="px" paddingunit="%" name="composite115_1">
+                                        <wm-label class="col-md-3 control-label" caption="Field Activity ID" name="label161_1"></wm-label>
+                                        <wm-container class="col-md-9" name="container110_1" width="40%">
+                                            <wm-text datavalue="bind:Variables.liveEquipFA.firstRecord.activityId" readonly="false" readonlygrid="true" disabled="true" updatedelay="0" name="text75_1"></wm-text>
+                                        </wm-container>
+                                    </wm-composite>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                            <wm-gridrow name="gridrow79">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn173">
+                                    <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite28">
+                                        <wm-label class="col-md-3 control-label" caption="Tag #" name="label105"></wm-label>
+                                        <wm-container class="col-md-9" width="90%" name="container31_1">
+                                            <wm-text datavalue="bind:Variables.liveEquipFA.firstRecord.equipTrackerDetails.componentNumber" disabled="true" readonlygrid="true" name="text21"></wm-text>
+                                        </wm-container>
+                                    </wm-composite>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                            <wm-gridrow name="gridrow108_1">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn181_1">
+                                    <wm-composite captionposition="top" marginunit="%" paddingunit="%" name="composite77_1">
+                                        <wm-label class="col-md-3 control-label" caption="Activity/ Description" name="label153"></wm-label>
+                                        <wm-container class="col-md-9" name="container75" width="90%">
+                                            <wm-text datavalue="bind:Variables.liveEquipFA.dataSet.data[$i].equipTrackerDetails.description" disabled="true" readonlygrid="true" name="text61_2"></wm-text>
+                                        </wm-container>
+                                    </wm-composite>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                            <wm-gridrow name="gridrow80_3">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn170">
+                                    <wm-checkbox caption="Rework" class="checkbox-custom" disabled="true" datavalue="bind:Variables.liveEquipFA.dataSet.data[$i].farework" checkedvalue="1" uncheckedvalue="0" on-change="checkboxWeldCompleteChange($event, $scope)"
+                                        padding="unset unset unset 0px" show="true" name="checkbox7"></wm-checkbox>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                        </wm-layoutgrid>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn168_1">
+                        <wm-layoutgrid name="layoutgrid38_1">
+                            <wm-gridrow name="gridrow54_1">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn108">
+                                    <wm-composite captionposition="top" name="composite66" show="true">
+                                        <wm-label class="col-md-3 control-label" caption="ClaimPercent" name="label183"></wm-label>
+                                        <wm-container class="col-md-9" width="40%" name="container96">
+                                            <wm-text type="text" datavalue="bind:Variables.liveEquipFA.dataSet.data[$i].fapercentCompleted * 100 | suffix: '%'" disabled="true" name="text54"></wm-text>
+                                        </wm-container>
+                                    </wm-composite>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                            <wm-gridrow name="gridrow56">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn139">
+                                    <wm-composite captionposition="top" name="composite121_1">
+                                        <wm-label class="col-md-3 control-label" caption="Notes" name="label167_1"></wm-label>
+                                        <wm-container class="col-md-9" name="container116_1" width="100%">
+                                            <wm-textarea datavalue="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.Notes" readonlygrid="true" disabled="true" name="textarea7"></wm-textarea>
+                                        </wm-container>
+                                    </wm-composite>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                         </wm-layoutgrid>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
-            <wm-dialogactions name="dialogactions2">
-                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button12"></wm-button>
-            </wm-dialogactions>
         </wm-dialog>
     </wm-view>
 </wm-partial>

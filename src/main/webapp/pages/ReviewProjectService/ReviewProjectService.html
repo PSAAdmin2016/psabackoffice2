@@ -27,13 +27,17 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn4">
                         <wm-table dataset="bind:Variables.serviceGetActivitiesPendingApproval.dataSet" name="gridApprovalReview" gridfirstrowselect="false" shownavigation="false" height="250px" on-select="gridApprovalReviewSelect($event, $data)" on-deselect="gridApprovalReviewDeselect($event, $rowData)"
                             class="panel-default" filtermode="multicolumn" on-datarender="gridApprovalReviewDatarender($scope, $data)" spacing="condensed" navigation="Basic">
-                            <wm-table-column binding="ActivityID" caption="Field Activity ID" width="20%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="number" filterplaceholder="Search Field Activity ID..."></wm-table-column>
-                            <wm-table-column binding="Craft" caption="Craft" width="20%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
-                            <wm-table-column binding="ActivityTypeName" caption="Activity Type" width="20%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
+                            <wm-table-column binding="ActivityID" caption="Field Activity ID" width="10%" edit-widget-type="text" type="string" readonly="true" searchable="false" show="true" filterwidget="number" filterplaceholder="Search Field Activity ID..."></wm-table-column>
+                            <wm-table-column binding="Craft" caption="Craft" width="10%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select" filterdataset="bind:Variables.staticREFCraftList.dataSet"
+                                filterdatafield="value" filterdisplayfield="value"></wm-table-column>
+                            <wm-table-column binding="ForemanName" caption="Foreman" width="20%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
+                            <wm-table-column binding="ActivityTypeName" caption="Activity Type" width="10%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select"></wm-table-column>
                             <wm-table-column binding="Status" caption="Status" width="20%" col-ng-class="{'yellow':row.Status == 'Supervisor Returned', 'blue':row.Status=='Returned To List'}" edit-widget-type="text" type="string" readonly="true"
-                                show="true" filterwidget="select"></wm-table-column>
-                            <wm-table-column binding="Quantity" caption="Quantity" width="15%" edit-widget-type="text" type="string" readonly="true" formatpattern="numberToString" fractionsize="2" sortable="false" searchable="false"
-                                show="true"></wm-table-column>
+                                show="true" filterwidget="select" filterdataset="bind:Variables.liveREFStatuses.dataSet" filterdatafield="status" filterdisplayfield="status"></wm-table-column>
+                            <wm-table-column binding="CompleteTime" caption="Submit Date" width="15%" textalignment="center" edit-widget-type="timestamp" type="timestamp" readonly="true" datepattern="MM/dd/yyyy" formatpattern="toDate"
+                                searchable="false" show="true" filterwidget="text"></wm-table-column>
+                            <wm-table-column binding="Quantity" caption="Quantity" width="10%" textalignment="center" edit-widget-type="text" type="string" readonly="true" formatpattern="numberToString" fractionsize="2" sortable="false"
+                                searchable="false" show="true"></wm-table-column>
                             <wm-table-column binding="Rework" caption="Rework" widget-type="checkbox" width="5%" edit-widget-type="text" type="string" readonly="true" show="true" filterwidget="select">
                                 <wm-checkbox scopedatavalue="row['Rework']" checkedvalue="1" uncheckedvalue="0" disabled="{{true}}" class="checkbox-custom" data-ng-class=""></wm-checkbox>
                             </wm-table-column>

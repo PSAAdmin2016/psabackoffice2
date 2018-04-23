@@ -1,4 +1,66 @@
 {
+  "liveREFStatuses" : {
+    "_id" : "wm-liveREFStatuses-wm.LiveVariable-1524517352641",
+    "name" : "liveREFStatuses",
+    "owner" : "Page",
+    "category" : "wm.LiveVariable",
+    "dataBinding" : [ {
+      "target" : "id",
+      "value" : "bind:[2,7,9,11,44]",
+      "type" : "number"
+    } ],
+    "operation" : "read",
+    "dataSet" : [ ],
+    "type" : "RefActivityStatuses",
+    "isList" : false,
+    "saveInPhonegap" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "inFlightBehavior" : "executeLast",
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "transformationRequired" : false,
+    "liveSource" : "PSA",
+    "ignoreCase" : false,
+    "matchMode" : "exact",
+    "propertiesMap" : {
+      "columns" : [ {
+        "fieldName" : "id",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "ID",
+        "isPrimaryKey" : true,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 3,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
+        "fieldName" : "status",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "Status",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 45,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      } ],
+      "entityName" : "RefActivityStatuses",
+      "fullyQualifiedName" : "com.psabackoffice.psa.RefActivityStatuses",
+      "tableType" : "TABLE",
+      "primaryFields" : [ "id" ]
+    },
+    "tableName" : "REF_ActivityStatuses",
+    "tableType" : "TABLE",
+    "properties" : [ ],
+    "relatedTables" : [ ],
+    "filterFields" : { },
+    "package" : "com.psabackoffice.psa.RefActivityStatuses"
+  },
   "navigationToClassicCivil" : {
     "_id" : "wm-navigationToClassicCivil-wm.NavigationVariable-1483028170791",
     "name" : "navigationToClassicCivil",
@@ -99,6 +161,14 @@
       "target" : "UserID",
       "value" : "bind:Variables.loggedInUser.dataSet.id",
       "type" : "integer"
+    }, {
+      "target" : "Craft",
+      "value" : "bind:Widgets.gridApprovalReview.rowFilter.Craft",
+      "type" : "string"
+    }, {
+      "target" : "ForemanName",
+      "value" : "bind:Widgets.gridApprovalReview.rowFilter.ForemanName",
+      "type" : "string"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivitiesPendingApprovalResponse",
     "service" : "Job1111",
@@ -114,9 +184,9 @@
     "maxResults" : 100,
     "designMaxResults" : 10,
     "orderBy" : "Craft asc, ActivityID desc",
-    "onSuccess" : "Variables.serviceGetActivitiesPendingApprovalCount.invoke()",
-    "startUpdate" : true,
-    "autoUpdate" : false,
+    "onBeforeUpdate" : "serviceGetActivitiesPendingApprovalonBeforeUpdate($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
@@ -242,6 +312,25 @@
     },
     "type" : "string",
     "isList" : false,
+    "saveInPhonegap" : false
+  },
+  "staticREFCraftList" : {
+    "_id" : "wm-staticREFCraftList-wm.Variable-1524512962418",
+    "name" : "staticREFCraftList",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "value" : "Pipe"
+    }, {
+      "value" : "Steel"
+    }, {
+      "value" : "Civil"
+    }, {
+      "value" : "Equip"
+    } ],
+    "type" : "string",
+    "isList" : true,
     "saveInPhonegap" : false
   },
   "timerSavePageSettings" : {

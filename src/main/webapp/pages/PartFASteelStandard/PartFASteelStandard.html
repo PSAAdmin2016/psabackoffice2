@@ -1,7 +1,9 @@
 <wm-partial data-ng-controller="PartFASteelStandardPageController" name="partial1">
     <wm-layoutgrid name="layoutgrid1">
         <wm-gridrow name="gridrow4">
-            <wm-gridcolumn columnwidth="11" name="gridcolumn6_1"></wm-gridcolumn>
+            <wm-gridcolumn columnwidth="11" name="gridcolumn6_1">
+                <wm-label padding="unset 0.5em" name="label1" class="col-md-3" fontsize="17" caption="Detail View"></wm-label>
+            </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn7_1"></wm-gridcolumn>
         </wm-gridrow>
         <wm-gridrow name="gridrow2">
@@ -29,10 +31,6 @@
                         title="rowActionsCancel" action="customRow3Action($event)" disabled="false"></wm-table-row-action>
                 </wm-table>
             </wm-gridcolumn>
-        </wm-gridrow>
-        <wm-gridrow name="gridrow3">
-            <wm-gridcolumn columnwidth="6" name="gridcolumn5"></wm-gridcolumn>
-            <wm-gridcolumn columnwidth="6" name="gridcolumn6"></wm-gridcolumn>
         </wm-gridrow>
     </wm-layoutgrid>
 </wm-partial>

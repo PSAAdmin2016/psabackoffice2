@@ -75,6 +75,16 @@
   "type" : "PAGE",
   "params" : [ ]
 }, {
+  "name" : "PartAssignCivil",
+  "type" : "PARTIAL",
+  "params" : [ {
+    "name" : "BidID",
+    "type" : "integer"
+  }, {
+    "name" : "ActivityID",
+    "type" : "integer"
+  } ]
+}, {
   "name" : "PartAssignEquip",
   "type" : "PARTIAL",
   "params" : [ {
@@ -153,6 +163,9 @@
   }, {
     "name" : "BidID",
     "type" : "integer"
+  }, {
+    "name" : "TestPackage",
+    "type" : "string"
   } ]
 }, {
   "name" : "PartPSREquip",

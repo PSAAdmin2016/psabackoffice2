@@ -20,13 +20,13 @@ Application.$controller("PartPSRCivilPageController", ["$scope", "$rootScope", "
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 72) {
             $scope.Variables.serviceGetMatchesByTestPackage.invoke({
                 "inputFields": {
-                    "TestPackage": $scope.$parent.Widgets.gridApprovalReview.selecteditem.Line1
+                    "TestPackage": $scope.pageParams.TestPackage
                 }
             });
         } else {
             $scope.Variables.serviceGetMatches.invoke({
                 "inputFields": {
-                    "BidID": $scope.$parent.Widgets.gridApprovalReview.selecteditem.Spool1
+                    "BidID": $scope.pageParams.BidID
                 }
             });
         }
@@ -53,12 +53,6 @@ Application.$controller("PartPSRCivilPageController", ["$scope", "$rootScope", "
                 }
             });
         }
-    };
-
-
-    $scope.buttonAssign1Click = function($event, $isolateScope, item, currentItemWidgets) {
-        $scope.Variables.serviceLockSASActivity.invoke(); //Calls dialog onResults
-        $scope.Variables.serviceGetQuantities.invoke(); //Get quantities query running asap..
     };
 
 
@@ -235,34 +229,6 @@ Application.$controller("dialogBidActivityDetailsController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-    }
-]);
-
-
-Application.$controller("dialogAssignQuantitiesController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-
-        $scope.buttonQuantitiesUpdateClick = function($event, $isolateScope) {
-            $scope.$parent.$parent.Variables.serviceUpdateSAS.setInput("ActivityStatusID", 5);
-            $scope.$parent.$parent.Variables.serviceUpdateSAS.setInput("BidID", $scope.Widgets.livelistBidActivities.selecteditem.BidID);
-            $scope.$parent.$parent.Variables.serviceUpdateSAS.invoke(); //Updates GetActivitiesPendingApproval
-
-            $scope.Variables.timerLabelFlasher.cancel();
-        };
-
-
-        $scope.dialogAssignQuantitiesOpened = function($event, $isolateScope) {
-            $scope.Variables.staticBrightLabel = false;
-            $scope.Variables.timerLabelFlasher.invoke();
-        };
-
-
-        $scope.dialogAssignQuantitiesClose = function($event, $isolateScope) {
-            $scope.Variables.serviceUnLockSASActivity.invoke();
-            $scope.Variables.timerLabelFlasher.cancel();
-        };
     }
 ]);
 

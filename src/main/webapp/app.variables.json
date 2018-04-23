@@ -4760,19 +4760,6 @@
     "isList" : true,
     "saveInPhonegap" : false
   },
-  "staticVariableMachineStateTimer" : {
-    "_id" : "wm-staticVariableMachineStateTimer-wm.Variable-1458841700040",
-    "name" : "staticVariableMachineStateTimer",
-    "owner" : "App",
-    "category" : "wm.Variable",
-    "dataBinding" : [ ],
-    "dataSet" : {
-      "dataValue" : 1458795600000
-    },
-    "type" : "date",
-    "isList" : false,
-    "saveInPhonegap" : false
-  },
   "staticYesNo" : {
     "_id" : "wm-staticYesNo-wm.Variable-1453214414009",
     "name" : "staticYesNo",

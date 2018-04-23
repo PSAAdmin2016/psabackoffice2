@@ -966,33 +966,6 @@
     "spinnerContext" : "livelistBidActivitiesByTest",
     "spinnerMessage" : "Retrieving Matches..."
   },
-  "serviceGetQuantities" : {
-    "_id" : "wm-serviceGetBidActivityQuantities-wm.ServiceVariable-1483642089998",
-    "name" : "serviceGetQuantities",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "BidID",
-      "value" : "bind:Widgets.livelistBidActivities.selecteditem.BidID",
-      "type" : "integer"
-    } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetBidActivityQuantitiesCivilResponse",
-    "service" : "Job1111",
-    "operation" : "executeGetBidActivityQuantitiesCivil",
-    "operationId" : "QueryExecutionController_executeGetBidActivityQuantitiesCivil",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 1,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
-  },
   "serviceGetQuantitiesTestPackage" : {
     "_id" : "wm-serviceGetQuantitiesTestPackage-wm.ServiceVariable-1484174470127",
     "name" : "serviceGetQuantitiesTestPackage",

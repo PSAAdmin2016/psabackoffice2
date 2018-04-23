@@ -90,12 +90,6 @@ Application.$controller("dialogRejectionController", ["$scope",
             $scope.$parent.$parent.Variables.serviceCreateSASNote.setInput("Note", $scope.Widgets.formReject.formWidgets.textareaSASNoteReject.datavalue);
             $scope.$parent.$parent.Variables.serviceCreateSASNote.invoke();
         };
-
-
-        $scope.buttonDialogRejectionSaveClick = function($event, $isolateScope) {
-            $scope.Variables.timerLabelFlasher.cancel();
-        };
-
     }
 ]);
 
@@ -109,6 +103,13 @@ Application.$controller("dialogPSAActivityDetailsController", ["$scope",
 
 
 Application.$controller("dialogBidActivityDetailsController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("Table1Controller", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
