@@ -46,6 +46,18 @@
         "isRelated" : false,
         "scale" : 0
       }, {
+        "fieldName" : "projectServicesRep",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "ProjectServicesRep",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 45,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
         "fieldName" : "ewonumber",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
@@ -106,6 +118,18 @@
         "isRelated" : false,
         "scale" : 0
       }, {
+        "fieldName" : "workPackage",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "WorkPackage",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 45,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
         "fieldName" : "costCode",
         "type" : "string",
         "fullyQualifiedType" : "string",
@@ -125,6 +149,18 @@
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 45,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
+        "fieldName" : "p6description",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "P6Description",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -197,18 +233,6 @@
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 45,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "scale" : 0
-      }, {
-        "fieldName" : "p6description",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "P6Description",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 255,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,

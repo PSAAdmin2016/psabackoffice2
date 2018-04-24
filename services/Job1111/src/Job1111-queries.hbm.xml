@@ -1207,52 +1207,42 @@ sum(IF(ers.InstalledSellPunch = 1,
 sum(
 (COALESCE(ctd.EstimatedHours,0) * (SELECT Value1 FROM SETTINGS WHERE Label = 'CivilWorkHoursPercent') / COALESCE(ctd.TakeOffQuantity,0)) 
 *
-(COALESCE(ctd.TakeOffQuantity,0) - COALESCE(EarnedFAHours,0))
+(COALESCE(ctd.TakeOffQuantity,0) - COALESCE(InstalledFAs,0))
 ) AS LooseHours
 
 FROM CivilTrackerDetails ctd
 
-LEFT JOIN (SELECT min(ctd.UID) AS UID,
-### Hours Earned ###
-IF(sum(COALESCE(IF(sas.ActivityType IN (70,97), ((COALESCE(cfa.FAPercentComplete,0) + COALESCE(cfm.MiscPercentComplete,0)) * ctd.TakeOffQuantity), COALESCE(cfa.FAQuantity,0)),0)) /*Nested IF convertes % to Quantity*/
-	> ctd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-    /*TRUE*/ ctd.EstimatedHours*', CivilHoursPercent, ',
-    /*FALSE*/ sum(COALESCE((ctd.EstimatedHours*', CivilHoursPercent, '/ctd.TakeOffQuantity*(COALESCE(IF(sas.ActivityType IN (70,97), ((COALESCE(cfa.FAPercentComplete,0) + COALESCE(cfm.MiscPercentComplete,0)) * ctd.TakeOffQuantity), cfa.FAQuantity),0))), 0))
-    ) AS EarnedFAHours
+LEFT JOIN (SELECT ctd.BidID,
+		### Quantities Installed ###
+		SUM(IF(sas.ActivityType IN (70),
+		/* TRUE */ 
+		COALESCE(cfa.FAPercentCompleted,0)  * ctd.TakeOffQuantity, 
+		/* FALSE */
+		cfa.FAQuantity
+		)) AS InstalledFAs
 
-### SS Joins ###
-FROM SubmissionActivityStatus sas
-	JOIN PSA.REF_ActivityTypes at
-		ON at.ID = sas.ActivityType
+		### SAS Joins ###
+		FROM SubmissionActivityStatus sas
         
-	LEFT JOIN CivilFA cfa
-		ON cfa.ActivityID = sas.ActivityID AND cfa.FARework = 0
+		JOIN PSA.REF_ActivityTypes at
+			ON at.ID = sas.ActivityType
+		JOIN CivilFA cfa
+			ON cfa.ActivityID = sas.ActivityID AND cfa.FARework = 0
+		LEFT JOIN CivilTrackerDetails ctd
+			ON ctd.BidID = sas.fk_BidIDAssigned
+				
+		WHERE fk_ActivityStatus IN (5,12)
+		GROUP BY ctd.BidID) er
+	ON er.BidID = ctd.BidID
 
-	LEFT JOIN CivilMisc cfm
-		ON cfm.ActivityID = sas.ActivityID AND cfm.MiscRework = 0
+ ##### Earned Sell HOURS #####  
+ LEFT JOIN (SELECT cs.* , 1 AS InstalledSellPunch
+			FROM CivilSellPackage cs
+            JOIN SubmissionActivityStatus sas
+				ON sas.ActivityID = cs.ActivityID AND sas.fk_ActivityStatus IN (5,12)
+			GROUP BY cs.SellTestPackageNumber) ers
+	ON ers.SellTestPackageNumber = ctd.TestPackageNumber AND ctd.ActivityType != "Demo"
  
-    LEFT JOIN (SELECT min(UID) AS UID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours
-				FROM`CivilTrackerDetails`
-				GROUP BY BidID) ctd
-		ON ctd.BidID = sas.fk_BidIDAssigned
-        
-WHERE fk_ActivityStatus IN (5,12)
-AND sas.ActivityType IN (70,71,97)
-GROUP BY ctd.BidID) er
-		ON er.UID = ctd.UID
-
-
- ##### Earned Sell HOURS #####       
-LEFT JOIN (SELECT min(ctd.UID) AS UID, cs.InstalledSellPunch
-			FROM CivilTrackerDetails ctd
-			LEFT JOIN (SELECT sas.ActivityType, cs.SellTestPackageNumber, 1 AS InstalledSellPunch
-						FROM CivilSellPackage cs 
-						INNER JOIN SubmissionActivityStatus sas
-							ON sas.ActivityID = cs.ActivityID AND sas.fk_ActivityStatus IN (5,12)) cs
-	ON cs.SellTestPackageNumber = ctd.TestPackageNumber AND ctd.ActivityType != "Demo"
-GROUP BY ctd.BidID) ers
-	On ers.UID = ctd.UID
-
 WHERE ctd.TestPackageNumber = :TestPackage
         ]]>
     <query-param name="TestPackage" type="java.lang.String"/>
@@ -1283,52 +1273,42 @@ sum(IF(ers.InstalledSellPunch = 1,
 sum(
 (COALESCE(ctd.EstimatedHours,0) * (SELECT Value1 FROM SETTINGS WHERE Label = 'CivilWorkHoursPercent') / COALESCE(ctd.TakeOffQuantity,0)) 
 *
-(COALESCE(ctd.TakeOffQuantity,0) - COALESCE(EarnedFAHours,0))
+(COALESCE(ctd.TakeOffQuantity,0) - COALESCE(InstalledFAs,0))
 ) AS LooseHours
 
 FROM CivilTrackerDetails ctd
 
-LEFT JOIN (SELECT min(ctd.UID) AS UID,
-### Hours Earned ###
-IF(sum(COALESCE(IF(sas.ActivityType IN (70,97), ((COALESCE(cfa.FAPercentComplete,0) + COALESCE(cfm.MiscPercentComplete,0)) * ctd.TakeOffQuantity), COALESCE(cfa.FAQuantity,0)),0)) /*Nested IF convertes % to Quantity*/
-	> ctd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-    /*TRUE*/ ctd.EstimatedHours*', CivilHoursPercent, ',
-    /*FALSE*/ sum(COALESCE((ctd.EstimatedHours*', CivilHoursPercent, '/ctd.TakeOffQuantity*(COALESCE(IF(sas.ActivityType IN (70,97), ((COALESCE(cfa.FAPercentComplete,0) + COALESCE(cfm.MiscPercentComplete,0)) * ctd.TakeOffQuantity), cfa.FAQuantity),0))), 0))
-    ) AS EarnedFAHours
+LEFT JOIN (SELECT ctd.BidID,
+		### Quantities Installed ###
+		SUM(IF(sas.ActivityType IN (70),
+		/* TRUE */ 
+		COALESCE(cfa.FAPercentCompleted,0)  * ctd.TakeOffQuantity, 
+		/* FALSE */
+		cfa.FAQuantity
+		)) AS InstalledFAs
 
-### SS Joins ###
-FROM SubmissionActivityStatus sas
-	JOIN PSA.REF_ActivityTypes at
-		ON at.ID = sas.ActivityType
+		### SAS Joins ###
+		FROM SubmissionActivityStatus sas
         
-	LEFT JOIN CivilFA cfa
-		ON cfa.ActivityID = sas.ActivityID AND cfa.FARework = 0
+		JOIN PSA.REF_ActivityTypes at
+			ON at.ID = sas.ActivityType
+		JOIN CivilFA cfa
+			ON cfa.ActivityID = sas.ActivityID AND cfa.FARework = 0
+		LEFT JOIN CivilTrackerDetails ctd
+			ON ctd.BidID = sas.fk_BidIDAssigned
+				
+		WHERE fk_ActivityStatus IN (5,12)
+		GROUP BY ctd.BidID) er
+	ON er.BidID = ctd.BidID
 
-	LEFT JOIN CivilMisc cfm
-		ON cfm.ActivityID = sas.ActivityID AND cfm.MiscRework = 0
+ ##### Earned Sell HOURS #####  
+ LEFT JOIN (SELECT cs.* , 1 AS InstalledSellPunch
+			FROM CivilSellPackage cs
+            JOIN SubmissionActivityStatus sas
+				ON sas.ActivityID = cs.ActivityID AND sas.fk_ActivityStatus IN (5,12)
+			GROUP BY cs.SellTestPackageNumber) ers
+	ON ers.SellTestPackageNumber = ctd.TestPackageNumber AND ctd.ActivityType != "Demo"
  
-    LEFT JOIN (SELECT min(UID) AS UID, BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(EstimatedHours) AS EstimatedHours
-				FROM`CivilTrackerDetails`
-				GROUP BY BidID) ctd
-		ON ctd.BidID = sas.fk_BidIDAssigned
-        
-WHERE fk_ActivityStatus IN (5,12)
-AND sas.ActivityType IN (70,71,97)
-GROUP BY ctd.BidID) er
-		ON er.UID = ctd.UID
-
-
- ##### Earned Sell HOURS #####       
-LEFT JOIN (SELECT min(ctd.UID) AS UID, cs.InstalledSellPunch
-			FROM CivilTrackerDetails ctd
-			LEFT JOIN (SELECT sas.ActivityType, cs.SellTestPackageNumber, 1 AS InstalledSellPunch
-						FROM CivilSellPackage cs 
-						INNER JOIN SubmissionActivityStatus sas
-							ON sas.ActivityID = cs.ActivityID AND sas.fk_ActivityStatus IN (5,12)) cs
-	ON cs.SellTestPackageNumber = ctd.TestPackageNumber AND ctd.ActivityType != "Demo"
-GROUP BY ctd.BidID) ers
-	On ers.UID = ctd.UID
-
 WHERE ctd.TestPackageNumber = :TestPackage) wmTempTable
         ]]>
     <query-param name="TestPackage" type="java.lang.String"/>

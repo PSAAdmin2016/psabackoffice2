@@ -189,7 +189,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetQuantitiesTestPackageCivil", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
-    public Page<GetQuantitiesTestPackageCivilResponse> executeGetQuantitiesTestPackageCivil(@RequestParam(value = "TestPackage", required = false) String testPackage, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetQuantitiesTestPackageCivilResponse> executeGetQuantitiesTestPackageCivil(@RequestParam(value = "TestPackage") String testPackage, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetQuantitiesTestPackageCivil");
         Page<GetQuantitiesTestPackageCivilResponse> _result = queryService.executeGetQuantitiesTestPackageCivil(testPackage, pageable);
         LOGGER.debug("got the result for named query: GetQuantitiesTestPackageCivil, result:{}", _result);
@@ -199,7 +199,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetQuantitiesTestPackageCivil")
     @RequestMapping(value = "/queries/GetQuantitiesTestPackageCivil/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetQuantitiesTestPackageCivil(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "TestPackage", required = false) String testPackage, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetQuantitiesTestPackageCivil(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "TestPackage") String testPackage, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetQuantitiesTestPackageCivil");
 
         return queryService.exportGetQuantitiesTestPackageCivil(exportType, testPackage, pageable);

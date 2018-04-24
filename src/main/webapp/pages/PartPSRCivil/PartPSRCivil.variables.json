@@ -890,12 +890,8 @@
       "type" : "integer"
     }, {
       "target" : "TestPackage",
-      "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.Line1",
+      "value" : "bind:pageParams.TestPackage",
       "type" : "string"
-    }, {
-      "target" : "ActivityId",
-      "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityID",
-      "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.procedure.CreateLooseHoursActivitiesCivilResponse",
     "service" : "Job1111",
@@ -973,7 +969,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "TestPackage",
-      "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.Line1",
+      "value" : "bind:pageParams.TestPackage",
       "type" : "string"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetQuantitiesTestPackageCivilResponse",
@@ -1063,6 +1059,37 @@
     "saveInPhonegap" : false,
     "controller" : "ProcedureExecution"
   },
+  "serviceUpdateSAS" : {
+    "_id" : "wm-serviceUpdateSAS-wm.ServiceVariable-1524588243163",
+    "name" : "serviceUpdateSAS",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "UserID",
+      "value" : "bind:Variables.loggedInUser.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "ActivityID",
+      "value" : "bind:pageParams.ActivityID",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "Job1111",
+    "operation" : "executeUpdateSASBidID",
+    "operationId" : "QueryExecutionController_executeUpdateSASBidID",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 1,
+    "onSuccess" : "serviceUpdateSASonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
   "staticBrightLabel" : {
     "_id" : "wm-staticBrightLabel-wm.Variable-1477334547677",
     "name" : "staticBrightLabel",
@@ -1085,15 +1112,5 @@
     "repeating" : true,
     "delay" : 750,
     "onTimerFire" : "Javascript"
-  },
-  "timerLabelFlasher2" : {
-    "_id" : "wm-timerLabelFlasher2-wm.TimerVariable-1487624520510",
-    "name" : "timerLabelFlasher2",
-    "owner" : "Page",
-    "category" : "wm.TimerVariable",
-    "autoStart" : false,
-    "repeating" : true,
-    "delay" : 750,
-    "onTimerFire" : "timerLabelFlasher2onTimerFire($event, $scope)"
   }
 }

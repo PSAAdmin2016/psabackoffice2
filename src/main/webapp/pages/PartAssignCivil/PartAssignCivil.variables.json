@@ -6,7 +6,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "BidID",
-      "value" : "bind:Widgets.livelistBidActivities.selecteditem.BidID",
+      "value" : "bind:pageParams.BidID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetBidActivityQuantitiesCivilResponse",
@@ -19,7 +19,7 @@
     "isList" : true,
     "maxResults" : 1,
     "designMaxResults" : 10,
-    "startUpdate" : false,
+    "startUpdate" : true,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
@@ -123,6 +123,7 @@
     "dataSet" : [ ],
     "isList" : false,
     "maxResults" : 1,
+    "onSuccess" : "serviceUpdateSASonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

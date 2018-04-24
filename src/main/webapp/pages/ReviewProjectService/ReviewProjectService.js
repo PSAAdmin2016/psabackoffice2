@@ -99,6 +99,9 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
 
 
     $scope.gridApprovalReviewSelect = function($event, $data) {
+        // This needed to assure closure of Assign popover.
+        $('body').click();
+
         //Load correct partial based on selected activity
         switch ($data.Craft) {
             case 'PIPE':
@@ -235,6 +238,11 @@ Application.$controller("dialogNotesNewPSReviewController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+
+        $scope.buttonNoteSaveClick = function($event, $isolateScope) {
+            $scope.Widgets.FormCreateSASNote.submit(); //Calls CreateSASNote Then GetSASNotes onSuccess
+        };
 
     }
 ]);

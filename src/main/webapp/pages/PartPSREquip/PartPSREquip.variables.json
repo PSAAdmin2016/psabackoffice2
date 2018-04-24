@@ -913,7 +913,7 @@
     "dataSet" : [ ],
     "isList" : false,
     "maxResults" : 1,
-    "onSuccess" : "Javascript",
+    "onSuccess" : "serviceUpdateSASonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

@@ -32,8 +32,8 @@
                                     <wm-composite name="composite183" captionposition="top" margin="unset unset 0px unset">
                                         <wm-label class="col-md-3 control-label" name="label236_1" caption="Hour Value" fontweight="bold"></wm-label>
                                         <wm-container class="col-md-9" name="containerErectionHrsEarned" show="true" width="80%">
-                                            <wm-text hint="Hours earned by current Activity" datavalue="bind:(Variables.serviceGetQuantities.firstRecord.fahours * $parent.$parent.$parent.$parent.$parent.$parent.Widgets.gridApprovalReview.selecteditem.PercentClaim) | toNumber: '2'"
-                                                type="number" updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" name="textHrsEarned" color="#000000" show="true"></wm-text>
+                                            <wm-text hint="Hours earned by current Activity" datavalue="bind:$parent.$parent.$parent.$parent.$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 70 ? (Variables.serviceGetQuantities.firstRecord.FAHours * $parent.$parent.$parent.$parent.$parent.$parent.Widgets.gridApprovalReview.selecteditem.PercentClaim) : (Variables.serviceGetQuantities.firstRecord.FAHours / Variables.serviceGetQuantities.firstRecord.TakeOffQuantity) * $parent.$parent.$parent.$parent.$parent.$parent.Widgets.gridApprovalReview.selecteditem.Quantity
+ | toNumber: '2'" type="number" updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" name="textHrsEarned" color="#000000" show="true"></wm-text>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -49,7 +49,8 @@
                                     <wm-composite name="composite110" captionposition="top">
                                         <wm-label class="col-md-3" name="label133_2" caption="Estimated Quantity" fontweight="bold"></wm-label>
                                         <wm-container class="col-md-9" name="container105_1" show="true">
-                                            <wm-label name="label289" caption="bind:(Variables.serviceGetQuantities.firstRecord.takeOffQuantity | toNumber: '2') + ' ' + Variables.serviceGetQuantities.firstRecord.quantityUnit"></wm-label>
+                                            <wm-label name="label289" caption="bind:(Variables.serviceGetQuantities.firstRecord.TakeOffQuantity | toNumber: '2') + ' ' + Variables.serviceGetQuantities.firstRecord.QuantityUnit
+"></wm-label>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -57,7 +58,7 @@
                                     <wm-composite name="composite111" captionposition="top">
                                         <wm-label class="col-md-3" name="label134_1" caption="Remaining Quantity" hint="Remaining quantity BEFORE current activity is added" fontweight="bold"></wm-label>
                                         <wm-container class="col-md-9" name="container106" show="true">
-                                            <wm-label name="labelFARemaining" caption="bind:(Variables.serviceGetQuantities.firstRecord.takeOffQuantity * (1 - Variables.serviceGetQuantities.firstRecord.installedPercent)) | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"></wm-label>
+                                            <wm-label name="labelFARemaining" caption="bind:(Variables.serviceGetQuantities.firstRecord.TakeOffQuantity * (1 - Variables.serviceGetQuantities.firstRecord.InstalledPercent)) | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"></wm-label>
                                         </wm-container>
                                         <wm-container class="col-md-9" show="false" name="container178">
                                             <wm-text tabindex="1" readonly="true" hint="Remaining quantity BEFORE current activity is added" type="number" datavalue="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityLFInstalled.dataSet[$i].Total"
@@ -71,7 +72,9 @@
                                     <wm-composite name="composite182" captionposition="top">
                                         <wm-label class="col-md-3 control-label" name="label235_2" caption="Estimated Hours" hint="Total man hours for this Bid Activity." fontweight="bold"></wm-label>
                                         <wm-container class="col-md-9" name="container174_1" show="true">
-                                            <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.fahours | toNumber: '2'" show="true" hint="Total man hours for this Bid Activity." name="labelFAHours"></wm-label>
+                                            <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.FAHours | toNumber: '2'
+
+" show="true" hint="Total man hours for this Bid Activity." name="labelFAHours"></wm-label>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -79,7 +82,7 @@
                                     <wm-composite name="composite184_1" captionposition="top" show="true">
                                         <wm-label class="col-md-3 control-label" name="label237_1" caption="Remaining Hours" hint="Remaining hours BEFORE current activity is added" fontweight="bold"></wm-label>
                                         <wm-container class="col-md-9" name="container176_1" show="true" height="20px">
-                                            <wm-label caption="bind:(Variables.serviceGetQuantities.firstRecord.fahours * (1 - Variables.serviceGetQuantities.firstRecord.installedPercent)) | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added"
+                                            <wm-label caption="bind:(Variables.serviceGetQuantities.firstRecord.FAHours * (1 - Variables.serviceGetQuantities.firstRecord.InstalledPercent)) | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added"
                                                 name="labelFAHoursRemaining"></wm-label>
                                         </wm-container>
                                     </wm-composite>
@@ -95,7 +98,7 @@
                     <wm-composite name="composite186_1" captionposition="left" horizontalalign="left">
                         <wm-label class="col-md-8 control-label" caption="Percent Complete" textalign="left" hint="Percent complete BEFORE current activity is added" fontweight="bold" name="label288" color="#000000"></wm-label>
                         <wm-container class="col-md-4" name="container178_1" horizontalalign="left" show="true">
-                            <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.installedPercent * 100 | toNumber: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added" name="labelPercentComplete"></wm-label>
+                            <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.InstalledPercent * 100 | toNumber: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added" name="labelPercentComplete"></wm-label>
                         </wm-container>
                     </wm-composite>
                 </wm-gridcolumn>
