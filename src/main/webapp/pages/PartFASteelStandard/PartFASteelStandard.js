@@ -59,7 +59,7 @@ Application.$controller("PartFASteelStandardPageController", ["$scope", function
                     "activityType": $rowData.activityTypeId,
                     "fatimeInForm": $rowData.fatimeInForm,
                     "faquantity": $scope.Widgets.gridSteelFA.formfields.faquantity.getProperty('value'),
-                    "fapercentCompleted": $scope.Widgets.gridSteelFA.formfields.fapercent.getProperty('value'),
+                    "fapercentCompleted": $scope.Widgets.gridSteelFA.formfields.fapercentCompleted.getProperty('value'),
                     "farework": $scope.Widgets.gridSteelFA.formfields.farework.getProperty('value'),
                     "fanotes": $scope.Widgets.gridSteelFA.formfields.fanotes.getProperty('value')
                 }
