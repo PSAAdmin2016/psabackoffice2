@@ -148,16 +148,13 @@ public interface Job1111QueryExecutorService_V1 {
     public int executeUpdatePipeWeld(String spool1, String spool2, String drawingNumber, String lineNumber, String sheetNumber, String lineSpec, String weldNumber, String stencil, BigDecimal size, String thickness, String weldType, String weldPosition, String material, String procedure, Byte complete, Byte shared, BigDecimal percentCompleted, Byte rework, String notes, Integer fieldActivityId);
 
     @Deprecated
-    public Page<Object> executeGetBidActivityMatchesSteel(Pageable pageable, Integer bidId, String sortGroup1, String pieceMark);
+    public Page<Object> executeGetBidActivityMatchesSteel(Pageable pageable, Integer bidId);
 
     @Deprecated
     public Page<Object> executeGetQuantityLFInstalledByBidID(Pageable pageable, Integer bidId);
 
     @Deprecated
     public int executeUpdateSettingCivilWork(BigDecimal value1);
-
-    @Deprecated
-    public Page<Object> executeGetNoteCount(Pageable pageable, Integer activityId);
 
     @Deprecated
     public Page<Object> executeGetReportDWRByDate(Pageable pageable, Date beginDate, Date endDate);

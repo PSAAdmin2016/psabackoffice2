@@ -9,6 +9,7 @@ package com.psabackoffice.job1111.models.query;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,6 +17,10 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializable {
 
+
+    @JsonProperty("UID")
+    @ColumnAlias("UID")
+    private Integer uid;
 
     @JsonProperty("BidID")
     @ColumnAlias("BidID")
@@ -60,6 +65,10 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
     @JsonProperty("P6Description")
     @ColumnAlias("P6Description")
     private String p6description;
+
+    @JsonProperty("AssignedContractor")
+    @ColumnAlias("AssignedContractor")
+    private String assignedContractor;
 
     @JsonProperty("Area")
     @ColumnAlias("Area")
@@ -131,11 +140,11 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
 
     @JsonProperty("TakeOffQuantity")
     @ColumnAlias("TakeOffQuantity")
-    private BigDecimal takeOffQuantity;
+    private Double takeOffQuantity;
 
     @JsonProperty("WeldCount")
     @ColumnAlias("WeldCount")
-    private BigInteger weldCount;
+    private Short weldCount;
 
     @JsonProperty("SteelHours")
     @ColumnAlias("SteelHours")
@@ -185,6 +194,14 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
     @ColumnAlias("WBS10")
     private String wbs10;
 
+    @JsonProperty("Rev")
+    @ColumnAlias("Rev")
+    private Short rev;
+
+    @JsonProperty("TimeStamp")
+    @ColumnAlias("TimeStamp")
+    private Timestamp timeStamp;
+
     @JsonProperty("InstalledSell")
     @ColumnAlias("InstalledSell")
     private BigInteger installedSell;
@@ -192,6 +209,14 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
     @JsonProperty("RemainingSell")
     @ColumnAlias("RemainingSell")
     private BigDecimal remainingSell;
+
+    public Integer getUid() {
+        return this.uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
 
     public Integer getBidId() {
         return this.bidId;
@@ -279,6 +304,14 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
 
     public void setP6description(String p6description) {
         this.p6description = p6description;
+    }
+
+    public String getAssignedContractor() {
+        return this.assignedContractor;
+    }
+
+    public void setAssignedContractor(String assignedContractor) {
+        this.assignedContractor = assignedContractor;
     }
 
     public String getArea() {
@@ -417,19 +450,19 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
         this.service = service;
     }
 
-    public BigDecimal getTakeOffQuantity() {
+    public Double getTakeOffQuantity() {
         return this.takeOffQuantity;
     }
 
-    public void setTakeOffQuantity(BigDecimal takeOffQuantity) {
+    public void setTakeOffQuantity(Double takeOffQuantity) {
         this.takeOffQuantity = takeOffQuantity;
     }
 
-    public BigInteger getWeldCount() {
+    public Short getWeldCount() {
         return this.weldCount;
     }
 
-    public void setWeldCount(BigInteger weldCount) {
+    public void setWeldCount(Short weldCount) {
         this.weldCount = weldCount;
     }
 
@@ -529,6 +562,22 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
         this.wbs10 = wbs10;
     }
 
+    public Short getRev() {
+        return this.rev;
+    }
+
+    public void setRev(Short rev) {
+        this.rev = rev;
+    }
+
+    public Timestamp getTimeStamp() {
+        return this.timeStamp;
+    }
+
+    public void setTimeStamp(Timestamp timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
     public BigInteger getInstalledSell() {
         return this.installedSell;
     }
@@ -550,7 +599,8 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
         if (this == o) return true;
         if (!(o instanceof GetBidActivityMatchesByTestPackageSteelResponse)) return false;
         final GetBidActivityMatchesByTestPackageSteelResponse getBidActivityMatchesByTestPackageSteelResponse = (GetBidActivityMatchesByTestPackageSteelResponse) o;
-        return Objects.equals(getBidId(), getBidActivityMatchesByTestPackageSteelResponse.getBidId()) &&
+        return Objects.equals(getUid(), getBidActivityMatchesByTestPackageSteelResponse.getUid()) &&
+                Objects.equals(getBidId(), getBidActivityMatchesByTestPackageSteelResponse.getBidId()) &&
                 Objects.equals(getProjectServicesRep(), getBidActivityMatchesByTestPackageSteelResponse.getProjectServicesRep()) &&
                 Objects.equals(getEwonumber(), getBidActivityMatchesByTestPackageSteelResponse.getEwonumber()) &&
                 Objects.equals(getScope(), getBidActivityMatchesByTestPackageSteelResponse.getScope()) &&
@@ -561,6 +611,7 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
                 Objects.equals(getCostCode(), getBidActivityMatchesByTestPackageSteelResponse.getCostCode()) &&
                 Objects.equals(getP6id(), getBidActivityMatchesByTestPackageSteelResponse.getP6id()) &&
                 Objects.equals(getP6description(), getBidActivityMatchesByTestPackageSteelResponse.getP6description()) &&
+                Objects.equals(getAssignedContractor(), getBidActivityMatchesByTestPackageSteelResponse.getAssignedContractor()) &&
                 Objects.equals(getArea(), getBidActivityMatchesByTestPackageSteelResponse.getArea()) &&
                 Objects.equals(getLocation(), getBidActivityMatchesByTestPackageSteelResponse.getLocation()) &&
                 Objects.equals(getStructure(), getBidActivityMatchesByTestPackageSteelResponse.getStructure()) &&
@@ -592,13 +643,16 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
                 Objects.equals(getWbs8(), getBidActivityMatchesByTestPackageSteelResponse.getWbs8()) &&
                 Objects.equals(getWbs9(), getBidActivityMatchesByTestPackageSteelResponse.getWbs9()) &&
                 Objects.equals(getWbs10(), getBidActivityMatchesByTestPackageSteelResponse.getWbs10()) &&
+                Objects.equals(getRev(), getBidActivityMatchesByTestPackageSteelResponse.getRev()) &&
+                Objects.equals(getTimeStamp(), getBidActivityMatchesByTestPackageSteelResponse.getTimeStamp()) &&
                 Objects.equals(getInstalledSell(), getBidActivityMatchesByTestPackageSteelResponse.getInstalledSell()) &&
                 Objects.equals(getRemainingSell(), getBidActivityMatchesByTestPackageSteelResponse.getRemainingSell());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getBidId(),
+        return Objects.hash(getUid(),
+                getBidId(),
                 getProjectServicesRep(),
                 getEwonumber(),
                 getScope(),
@@ -609,6 +663,7 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
                 getCostCode(),
                 getP6id(),
                 getP6description(),
+                getAssignedContractor(),
                 getArea(),
                 getLocation(),
                 getStructure(),
@@ -640,6 +695,8 @@ public class GetBidActivityMatchesByTestPackageSteelResponse implements Serializ
                 getWbs8(),
                 getWbs9(),
                 getWbs10(),
+                getRev(),
+                getTimeStamp(),
                 getInstalledSell(),
                 getRemainingSell());
     }

@@ -148,287 +148,220 @@ GROUP BY sas.SubmissionID) wmTempTable
         <![CDATA[
         SELECT std.BidID, std.TestPackageNumber,
 
-### Count ####
-count(std.BidID) AS SellPunchCount,
+### Quantity ####
+sum(std.TakeOffQuantity) AS SellPunchCount,
 
 ### Hours ####
-CONVERT(sum(std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelSellHoursPercent')), DECIMAL(16,6)) AS SellPunchHours,
+sum(std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelSellHoursPercent')) AS SellPunchHours,
 
-### Installed Count ###
-sum(COALESCE(er.InstalledSell,0)) AS InstalledSell,
+### Installed Quantity ####
+LEAST( 
+IF(stlsell.SellTestPackageNumber IS NOT NULL,
+##TRUE##
+std.TakeOffQuantity,
+##FALSE##
+IF(stlfasell.FAQuantity IS NOT NULL, SUM(stlfasell.FAQuantity), 0)
+), std.TakeOffQuantity) AS InstalledSell,
 
 ### Earned Hours ###
-CONVERT(sum(er.EarnedSellHours), DECIMAL(16,6)) AS EarnedSellPunchHours,
+(sum(std.SteelHours) * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelSellHoursPercent') / sum(std.TakeOffQuantity) )
+*
+LEAST( 
+IF(stlsell.SellTestPackageNumber IS NOT NULL,
+##TRUE##
+std.TakeOffQuantity,
+##FALSE##
+IF(stlfasell.FAQuantity IS NOT NULL, SUM(stlfasell.FAQuantity), 0)
+), std.TakeOffQuantity) AS EarnedSellPunchHours,
 
-### Loose Hours ###
-CONVERT(sum(
-(
-IF(std.ActivityType = "E"
-,/*TRUE*/
-(std.SteelHours * (1-(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelSellHoursPercent')))
-,/*FALSE*/
-std.SteelHours)
-) 
-- COALESCE(er.EarnedFAHours,0)
-), DECIMAL(16,6)) AS LooseHours
-
-FROM (SELECT BidID, TestPackageNumber, ActivityType, 
-                                sum(WeldCount) AS WeldCount, sum(TakeOffQuantity) AS TakeOffQuantity, sum(SteelHours) AS SteelHours, sum(WeldHours) AS WeldHours,
-        WBS1, WBS2, WBS3, WBS4, WBS5, WBS6, WBS7, WBS8, WBS9, WBS10
-                                FROM SteelTrackerDetails 
-                                GROUP BY BidID) std
-        
-LEFT JOIN SubmissionActivityStatus sas
-                ON sas.fk_BidIDAssigned = std.BidID AND sas.ActivityType = 65 AND sas.fk_ActivityStatus IN (5,12)
-        
-### Earned/Installed Columns ###
-LEFT JOIN (SELECT BidID, 
-
-### Installed Quantities ###
-sum(COALESCE(stlsell.FASellQuantity,0)) AS InstalledSell,
-
-### Earned Hour Quantities ###
-sum(IF((COALESCE(stlsell.FASellQuantity,0) + 
-(SELECT COALESCE(sum(COALESCE(FASellQuantity,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelSell stlsell
-                                                ON stlsell.ActivityID = sas.ActivityID AND stlsell.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 65
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID)
-) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
-/*TRUE*/ 
-GREATEST((COALESCE(std.TakeOffQuantity,0) - 
-(SELECT COALESCE(sum(COALESCE(FASellQuantity,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelSell stlsell
-                                                ON stlsell.ActivityID = sas.ActivityID AND stlsell.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 65
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID))
-,0) * (std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelSellHoursPercent') / std.TakeOffQuantity),
-/*FALSE*/
-(COALESCE((std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelSellHoursPercent') / std.TakeOffQuantity) * stlsell.FASellQuantity,0))
-)) AS EarnedSellHours,
-
-(
-sum(IF((COALESCE(stls.FAShakeQuantity,0) + 
-(SELECT COALESCE(sum(COALESCE(FAShakeQuantity,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelShake stls
-                                                ON stls.ActivityID = sas.ActivityID AND stls.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 61
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID)
-) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
-/*TRUE*/ 
-GREATEST((COALESCE(std.TakeOffQuantity,0) - 
-((SELECT COALESCE(sum(COALESCE(FAShakeQuantity,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelShake stls
-                                                ON stls.ActivityID = sas.ActivityID AND stls.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 61
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID)))
-,0) * (std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelShakeHoursPercent') / std.TakeOffQuantity),
-/*FALSE*/
-(COALESCE((std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelShakeHoursPercent') / std.TakeOffQuantity) * stls.FAShakeQuantity,0))
-)) 
-+
-sum(IF((COALESCE(stle.FAErectQuantity,0) * COALESCE(stle.FAErectPercent,0) + 
-(SELECT COALESCE(sum(COALESCE(FAErectQuantity,0) * COALESCE(FAErectPercent,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelErect stle
-                                                ON stle.ActivityID = sas.ActivityID AND stle.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 62
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID)
-) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
-/*TRUE*/ 
-GREATEST((COALESCE(std.TakeOffQuantity,0) - 
-(SELECT COALESCE(sum(COALESCE(FAErectQuantity,0) * COALESCE(FAErectPercent,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelErect stle 
-                                                ON stle.ActivityID = sas.ActivityID AND stle.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 62
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID))
-,0) * (std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelErectHoursPercent') / std.TakeOffQuantity),
-/*FALSE*/
-(COALESCE((std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelErectHoursPercent') / std.TakeOffQuantity) * (stle.FAErectQuantity * stle.FAErectPercent),0))
-)) 
-+
-sum(IF((COALESCE(stlb.FABoltOutQuantity,0) * COALESCE(stlb.FABoltOutPercent,0) + 
-(SELECT COALESCE(sum(COALESCE(FABoltOutQuantity,0) * COALESCE(FABoltOutPercent,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelBoltOut stlb
-                                                ON stlb.ActivityID = sas.ActivityID AND stlb.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 63
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID)
-) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
-/*TRUE*/ 
-GREATEST((COALESCE(std.TakeOffQuantity,0) - 
-(SELECT COALESCE(sum(COALESCE(FABoltOutQuantity,0) * COALESCE(FABoltOutPercent,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelBoltOut stlb
-                                                ON stlb.ActivityID = sas.ActivityID AND stlb.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 63
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID))
-,0) * (std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelBoltoutHoursPercent') / std.TakeOffQuantity),
-/*FALSE*/
-(COALESCE((std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelBoltoutHoursPercent') / std.TakeOffQuantity) * (stlb.FABoltOutQuantity * stlb.FABoltOutPercent),0))
-)) 
-+
-sum(IF((COALESCE(stli.FAImpQuantity,0) * COALESCE(stli.FAImpPercent,0) + 
-(SELECT COALESCE(sum(COALESCE(FAImpQuantity,0) * COALESCE(FAImpPercent,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelImp stli
-                                                ON stli.ActivityID = sas.ActivityID AND stli.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 64
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID)
-) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
-/*TRUE*/ 
-GREATEST((COALESCE(std.TakeOffQuantity,0) - 
-(SELECT COALESCE(sum(COALESCE(FAImpQuantity,0) * COALESCE(FAImpPercent,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelImp stli
-                                                ON stli.ActivityID = sas.ActivityID AND stli.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 64
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID))
-,0) * (std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelImpHoursPercent') / std.TakeOffQuantity),
-/*FALSE*/
-(COALESCE((std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelImpHoursPercent') / std.TakeOffQuantity) * (stli.FAImpQuantity * stli.FAImpPercent),0))
-)) 
-+
-sum(IF((COALESCE(stlw.FAWeldQuantity,0) * COALESCE(stlw.FAWeldPercent,0) + 
-(SELECT COALESCE(sum(COALESCE(FAWeldQuantity,0) * COALESCE(FAWeldPercent,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelWeld stlw
-                                                ON stlw.ActivityID = sas.ActivityID AND stlw.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 68
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID)
-) > std.WeldCount,/*Is New + cumlitive quantity greater then WeldCount*/
-/*TRUE*/ 
-GREATEST((COALESCE(std.WeldCount,0) - 
-(SELECT COALESCE(sum(COALESCE(FAWeldQuantity,0) * COALESCE(FAWeldPercent,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelWeld stlw
-                                                ON stlw.ActivityID = sas.ActivityID AND stlw.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 68
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID))
-,0) * (std.WeldHours / std.WeldCount),
-/*FALSE*/
-(COALESCE((std.WeldHours / std.WeldCount) * (stlw.FAWeldQuantity * stlw.FAWeldPercent),0))
-)) 
-+
-sum(IF((COALESCE(stld.DemoQuantity,0) + 
-(SELECT COALESCE(sum(COALESCE(DemoQuantity,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelDemo stld
-                                                ON stld.ActivityID = sas.ActivityID 
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 67
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID)
-) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
-/*TRUE*/ 
-GREATEST((COALESCE(std.TakeOffQuantity,0) - 
-(SELECT COALESCE(sum(COALESCE(DemoQuantity,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelDemo stld
-                                                ON stld.ActivityID = sas.ActivityID
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 67
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID))
-,0) * (std.DemoHours / std.TakeOffQuantity),
-/*FALSE*/
-(COALESCE((std.DemoHours / std.TakeOffQuantity) * stld.DemoQuantity ,0))
-)) 
-+
-sum(IF((COALESCE(stlm.MiscQuantity,0) + 
-(SELECT COALESCE(sum(COALESCE(MiscQuantity,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelMisc stlm
-                                                ON stlm.ActivityID = sas.ActivityID AND stlm.MiscRework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 96
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID)
-) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
-/*TRUE*/ 
-GREATEST((COALESCE(std.TakeOffQuantity,0) - 
-(SELECT COALESCE(sum(COALESCE(MiscQuantity,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelMisc stlm
-                                                ON stlm.ActivityID = sas.ActivityID AND stlm.MiscRework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 96
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID))
-,0) * (std.MiscHours / std.TakeOffQuantity),
-/*FALSE*/
-(COALESCE((std.MiscHours / std.TakeOffQuantity) * stlm.MiscQuantity ,0))
-))
-) AS EarnedFAHours
+SUM(
+((std.SteelHours + std.WeldHours) * (1 - (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelSellHoursPercent'))
+) - COALESCE(er.EarnedHours,0)
+) AS LooseHours
 
 
-FROM SubmissionActivityStatus sas
-        
-JOIN (SELECT BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(SteelHours) AS SteelHours, sum(WeldHours) AS WeldHours, sum(WeldCount) AS WeldCount, 
-                                IF(ActivityType = "D", sum(SteelHours), 0) AS DemoHours,
-                                IF(ActivityType = "Misc", sum(SteelHours), 0) AS MiscHours
-                                FROM SteelTrackerDetails 
-                                GROUP BY BidID) std
-                ON std.BidID = sas.fk_BidIDAssigned
+FROM SteelTrackerDetails std
+LEFT JOIN (SELECT SUM(stlfa.FAQuantity) AS FAQuantity, sas.fk_BidIDAssigned AS BidID 
+			FROM SteelFA stlfa
+			JOIN SubmissionActivityStatus sas
+				ON sas.ActivityID = stlfa.ActivityID AND sas.fk_ActivityStatus IN (5,12)
+			WHERE stlfa.ActivityType = 65 AND stlfa.FARework = 0
+            GROUP BY sas.fk_BidIDAssigned ) stlfasell
+	ON stlfasell.BidID = std.BidID
 
-LEFT JOIN SteelShake stls
-                ON stls.ActivityID = sas.ActivityID AND stls.FARework = 0
+LEFT JOIN (SELECT DISTINCT SellTestPackageNumber
+			FROM SteelSellPackage stlsell
+            JOIN SubmissionActivityStatus sas
+				ON sas.ActivityID = stlsell.ActivityID AND sas.fk_ActivityStatus IN (5,12)) stlsell
+	ON stlsell.SellTestPackageNumber = std.TestPackageNumber
 
-LEFT JOIN SteelErect stle
-                ON stle.ActivityID = sas.ActivityID AND stle.FARework = 0
+LEFT JOIN (SELECT BidID,
+		### Earned Hour Quantities ###
+		SUM(er0.EarnedHours) AS EarnedHours
 
-LEFT JOIN SteelBoltOut stlb
-                ON stlb.ActivityID = sas.ActivityID AND stlb.FARework = 0
+		FROM(SELECT BidID, 
+			### Earned Hour Quantities ###
+			(
+			IF(COALESCE(stls.FAQuantity,0) * COALESCE(stls.FAPercentCompleted,0) + SUM(COALESCE(css.InstalledQuantity,0)
+			) > std.TakeOffQuantity,
+			/*TRUE*/ 
+			GREATEST((COALESCE(std.TakeOffQuantity,0) - SUM(COALESCE(css.InstalledQuantity,0))),0) * (std.SteelHours * ', ShakePercent,' / std.TakeOffQuantity),
+			/*FALSE*/
+			COALESCE((std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelShakeHoursPercent') / std.TakeOffQuantity) * (stls.FAQuantity * stls.FAPercentCompleted),0)
+			) 
+			+
+			IF(COALESCE(stle.FAQuantity,0) * COALESCE(stle.FAPercentCompleted,0) + SUM(COALESCE(cse.InstalledQuantity,0)
+			) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
+			/*TRUE*/ 
+			GREATEST((COALESCE(std.TakeOffQuantity,0) - SUM(COALESCE(cse.InstalledQuantity,0))),0) * (std.SteelHours * ', ErectPercent,' / std.TakeOffQuantity),
+			/*FALSE*/
+			(COALESCE((std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelErectHoursPercent') / std.TakeOffQuantity) * (stle.FAQuantity * stle.FAPercentCompleted),0))
+			) 
+			+
+			IF(COALESCE(stlb.FAQuantity,0) * COALESCE(stlb.FAPercentCompleted,0) + SUM(COALESCE(csb.InstalledQuantity,0)
+			) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
+			/*TRUE*/ 
+			GREATEST((COALESCE(std.TakeOffQuantity,0) - SUM(COALESCE(csb.InstalledQuantity,0))),0) * (std.SteelHours * ', BoltOutPercent,' / std.TakeOffQuantity),
+			/*FALSE*/
+			(COALESCE((std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelBoltoutHoursPercent') / std.TakeOffQuantity) * (stlb.FAQuantity * stlb.FAPercentCompleted),0))
+			) 
+			+
+			IF(COALESCE(stli.FAQuantity,0) * COALESCE(stli.FAPercentCompleted,0) + SUM(COALESCE(csi.InstalledQuantity,0)
+			) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
+			/*TRUE*/ 
+			GREATEST((COALESCE(std.TakeOffQuantity,0) - SUM(COALESCE(csi.InstalledQuantity,0))),0) * (std.SteelHours * ', ImpPercent,' / std.TakeOffQuantity),
+			/*FALSE*/
+			(COALESCE((std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelImpHoursPercent') / std.TakeOffQuantity) * (stli.FAQuantity * stli.FAPercentCompleted),0))
+			) 
+			+
+			IF(COALESCE(stlw.FAQuantity,0) * COALESCE(stlw.FAPercentCompleted,0) + SUM(COALESCE(csw.InstalledQuantity,0)
+			) > std.WeldCount,/*Is New + cumlitive quantity greater then WeldCount*/
+			/*TRUE*/ 
+			GREATEST((COALESCE(std.WeldCount,0) - SUM(COALESCE(csw.InstalledQuantity,0))),0) * (std.WeldHours / NULLIF(std.WeldCount,0)),
+			/*FALSE*/
+			(COALESCE((std.WeldHours / NULLIF(std.WeldCount,0)) * (stlw.FAQuantity * stlw.FAPercentCompleted),0))
+			) 
+			+
+			IF(COALESCE(stld.DemoPercentCompleted,0) * std.TakeOffQuantity + SUM(COALESCE(csd.InstalledQuantity,0)
+			) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
+			/*TRUE*/ 
+			GREATEST((COALESCE(std.TakeOffQuantity,0) - SUM(COALESCE(csd.InstalledQuantity,0))),0) * (std.SteelHours / std.TakeOffQuantity),
+			/*FALSE*/
+			(COALESCE((std.SteelHours / std.TakeOffQuantity) * (stld.DemoPercentCompleted * std.TakeOffQuantity) ,0))
+			) 
+			+
+			IF(COALESCE(stlm.MiscPercentCompleted,0) * std.TakeOffQuantity + SUM(COALESCE(csm.InstalledQuantity,0)
+			) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
+			/*TRUE*/ 
+			GREATEST((COALESCE(std.TakeOffQuantity,0) - SUM(COALESCE(csm.InstalledQuantity,0))),0) * (std.SteelHours / std.TakeOffQuantity),
+			/*FALSE*/
+			(COALESCE((std.SteelHours / std.TakeOffQuantity) * (stlm.MiscPercentCompleted * std.TakeOffQuantity) ,0))
+			) 
+			) AS EarnedHours
+			 
 
-LEFT JOIN SteelImp stli
-                ON stli.ActivityID = sas.ActivityID AND stli.FARework = 0
-    
-LEFT JOIN SteelWeld stlw
-                ON stlw.ActivityID = sas.ActivityID AND stlw.FARework = 0
+			FROM SubmissionActivityStatus sas
+					
+			JOIN SteelTrackerDetails std
+				ON std.BidID = sas.fk_BidIDAssigned
 
-LEFT JOIN SteelSell stlsell
-                ON stlsell.ActivityID = sas.ActivityID AND stlsell.FARework = 0
+			LEFT JOIN SteelFA stls
+				ON stls.ActivityID = sas.ActivityID AND sas.ActivityType = 61 AND stls.FARework = 0
 
-LEFT JOIN SteelDemo stld
-                ON stld.ActivityID = sas.ActivityID
-    
-LEFT JOIN SteelMisc stlm
-                ON stlm.ActivityID = sas.ActivityID AND stlm.MiscRework = 0
+			LEFT JOIN SteelFA stle
+				ON stle.ActivityID = sas.ActivityID AND sas.ActivityType = 62 AND stle.FARework = 0
 
-WHERE sas.fk_ActivityStatus IN (5,12)
-AND sas.ActivityType IN (60,61,62,63,64,65,66,67,68,69,96) 
-GROUP BY std.BidID
-) er
-                ON er.BidID = std.BidID
+			LEFT JOIN SteelFA stlb
+				ON stlb.ActivityID = sas.ActivityID AND sas.ActivityType = 63 AND stlb.FARework = 0
+
+			LEFT JOIN SteelFA stli
+				ON stli.ActivityID = sas.ActivityID AND sas.ActivityType = 64 AND stli.FARework = 0
+				
+			LEFT JOIN SteelFA stlw
+				ON stlw.ActivityID = sas.ActivityID AND sas.ActivityType = 68 AND stlw.FARework = 0
+
+			LEFT JOIN SteelDemo stld
+				ON stld.ActivityID = sas.ActivityID
+				
+			LEFT JOIN SteelMisc stlm
+				ON stlm.ActivityID = sas.ActivityID AND stlm.MiscRework = 0
+
+			/* #### Begining of Cumulative Past sums Calculation #### */
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(FAQuantity * FAPercentCompleted,0)) AS InstalledQuantity
+						FROM SubmissionActivityStatus sas
+						JOIN SteelFA stlfa
+							ON stlfa.ActivityID = sas.ActivityID AND sas.ActivityType = 61 AND FARework = 0
+						LEFT JOIN SteelTrackerDetails std
+							ON std.BidID = sas.fk_BidIDAssigned 
+						WHERE sas.fk_ActivityStatus IN (5,12)
+						HAVING InstalledQuantity > 0) css
+				ON sas.ActivityType = 61 AND sas.fk_BidIDAssigned = css.fk_BidIDAssigned AND css.ActivityID < sas.ActivityID
+
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(FAQuantity * FAPercentCompleted,0)) AS InstalledQuantity
+						FROM SubmissionActivityStatus sas
+						JOIN SteelFA stlfa
+							ON stlfa.ActivityID = sas.ActivityID AND sas.ActivityType = 62 AND FARework = 0
+						LEFT JOIN SteelTrackerDetails std
+							ON std.BidID = sas.fk_BidIDAssigned 
+						WHERE sas.fk_ActivityStatus IN (5,12)
+						HAVING InstalledQuantity > 0) cse
+				ON sas.ActivityType = 62 AND sas.fk_BidIDAssigned = cse.fk_BidIDAssigned AND cse.ActivityID < sas.ActivityID
+
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(FAQuantity * FAPercentCompleted,0)) AS InstalledQuantity
+						FROM SubmissionActivityStatus sas
+						JOIN SteelFA stlfa
+							ON stlfa.ActivityID = sas.ActivityID AND sas.ActivityType = 63 AND FARework = 0
+						LEFT JOIN SteelTrackerDetails std
+							ON std.BidID = sas.fk_BidIDAssigned 
+						WHERE sas.fk_ActivityStatus IN (5,12)
+						HAVING InstalledQuantity > 0) csb
+								ON sas.ActivityType = 63 AND sas.fk_BidIDAssigned = csb.fk_BidIDAssigned AND csb.ActivityID < sas.ActivityID
+
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(FAQuantity * FAPercentCompleted,0)) AS InstalledQuantity
+						FROM SubmissionActivityStatus sas
+						JOIN SteelFA stlfa
+							ON stlfa.ActivityID = sas.ActivityID AND sas.ActivityType = 64 AND FARework = 0
+						LEFT JOIN SteelTrackerDetails std
+							ON std.BidID = sas.fk_BidIDAssigned 
+						WHERE sas.fk_ActivityStatus IN (5,12)
+						HAVING InstalledQuantity > 0) csi
+				ON sas.ActivityType = 64 AND sas.fk_BidIDAssigned = csi.fk_BidIDAssigned AND csi.ActivityID < sas.ActivityID
+				
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(FAQuantity * FAPercentCompleted,0)) AS InstalledQuantity
+						FROM SubmissionActivityStatus sas
+						JOIN SteelFA stlfa
+							ON stlfa.ActivityID = sas.ActivityID AND sas.ActivityType = 68 AND FARework = 0
+						LEFT JOIN SteelTrackerDetails std
+							ON std.BidID = sas.fk_BidIDAssigned 
+						WHERE sas.fk_ActivityStatus IN (5,12)
+						HAVING InstalledQuantity > 0) csw
+				ON sas.ActivityType = 68 AND sas.fk_BidIDAssigned = csw.fk_BidIDAssigned AND csw.ActivityID < sas.ActivityID
+
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(stld.DemoPercentCompleted * std.TakeOffQuantity,0)) AS InstalledQuantity
+						FROM SubmissionActivityStatus sas
+						JOIN SteelDemo stld
+							ON stld.ActivityID = sas.ActivityID 
+						LEFT JOIN SteelTrackerDetails std
+							ON std.BidID = sas.fk_BidIDAssigned 
+						WHERE sas.fk_ActivityStatus IN (5,12)
+						HAVING InstalledQuantity > 0) csd
+				ON sas.ActivityType = 67 AND sas.fk_BidIDAssigned = csd.fk_BidIDAssigned AND csd.ActivityID < sas.ActivityID
+				
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(MiscPercentCompleted * std.TakeOffQuantity,0) ) AS InstalledQuantity
+						FROM SubmissionActivityStatus sas
+						JOIN SteelMisc stlm
+							ON stlm.ActivityID = sas.ActivityID 
+						LEFT JOIN SteelTrackerDetails std
+							ON std.BidID = sas.fk_BidIDAssigned 
+						WHERE sas.fk_ActivityStatus IN (5,12)
+						HAVING InstalledQuantity > 0) csm
+				ON sas.ActivityType = 96 AND sas.fk_BidIDAssigned = csm.fk_BidIDAssigned AND csm.ActivityID < sas.ActivityID
+
+			WHERE sas.fk_ActivityStatus IN (5,12)
+			AND sas.ActivityType IN (60,61,62,63,64,66,67,68,96) 
+			GROUP BY sas.ActivityID)er0
+		GROUP BY er0.BidID) er
+	ON er.BidID = std.BidID
   
 WHERE std.TestPackageNumber = :TestPackage
         ]]>
@@ -439,287 +372,220 @@ WHERE std.TestPackageNumber = :TestPackage
         <![CDATA[
         select count(*) from (SELECT std.BidID, std.TestPackageNumber,
 
-### Count ####
-count(std.BidID) AS SellPunchCount,
+### Quantity ####
+sum(std.TakeOffQuantity) AS SellPunchCount,
 
 ### Hours ####
-CONVERT(sum(std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelSellHoursPercent')), DECIMAL(16,6)) AS SellPunchHours,
+sum(std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelSellHoursPercent')) AS SellPunchHours,
 
-### Installed Count ###
-sum(COALESCE(er.InstalledSell,0)) AS InstalledSell,
+### Installed Quantity ####
+LEAST( 
+IF(stlsell.SellTestPackageNumber IS NOT NULL,
+##TRUE##
+std.TakeOffQuantity,
+##FALSE##
+IF(stlfasell.FAQuantity IS NOT NULL, SUM(stlfasell.FAQuantity), 0)
+), std.TakeOffQuantity) AS InstalledSell,
 
 ### Earned Hours ###
-CONVERT(sum(er.EarnedSellHours), DECIMAL(16,6)) AS EarnedSellPunchHours,
+(sum(std.SteelHours) * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelSellHoursPercent') / sum(std.TakeOffQuantity) )
+*
+LEAST( 
+IF(stlsell.SellTestPackageNumber IS NOT NULL,
+##TRUE##
+std.TakeOffQuantity,
+##FALSE##
+IF(stlfasell.FAQuantity IS NOT NULL, SUM(stlfasell.FAQuantity), 0)
+), std.TakeOffQuantity) AS EarnedSellPunchHours,
 
-### Loose Hours ###
-CONVERT(sum(
-(
-IF(std.ActivityType = "E"
-,/*TRUE*/
-(std.SteelHours * (1-(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelSellHoursPercent')))
-,/*FALSE*/
-std.SteelHours)
-) 
-- COALESCE(er.EarnedFAHours,0)
-), DECIMAL(16,6)) AS LooseHours
-
-FROM (SELECT BidID, TestPackageNumber, ActivityType, 
-                                sum(WeldCount) AS WeldCount, sum(TakeOffQuantity) AS TakeOffQuantity, sum(SteelHours) AS SteelHours, sum(WeldHours) AS WeldHours,
-        WBS1, WBS2, WBS3, WBS4, WBS5, WBS6, WBS7, WBS8, WBS9, WBS10
-                                FROM SteelTrackerDetails 
-                                GROUP BY BidID) std
-        
-LEFT JOIN SubmissionActivityStatus sas
-                ON sas.fk_BidIDAssigned = std.BidID AND sas.ActivityType = 65 AND sas.fk_ActivityStatus IN (5,12)
-        
-### Earned/Installed Columns ###
-LEFT JOIN (SELECT BidID, 
-
-### Installed Quantities ###
-sum(COALESCE(stlsell.FASellQuantity,0)) AS InstalledSell,
-
-### Earned Hour Quantities ###
-sum(IF((COALESCE(stlsell.FASellQuantity,0) + 
-(SELECT COALESCE(sum(COALESCE(FASellQuantity,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelSell stlsell
-                                                ON stlsell.ActivityID = sas.ActivityID AND stlsell.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 65
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID)
-) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
-/*TRUE*/ 
-GREATEST((COALESCE(std.TakeOffQuantity,0) - 
-(SELECT COALESCE(sum(COALESCE(FASellQuantity,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelSell stlsell
-                                                ON stlsell.ActivityID = sas.ActivityID AND stlsell.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 65
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID))
-,0) * (std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelSellHoursPercent') / std.TakeOffQuantity),
-/*FALSE*/
-(COALESCE((std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelSellHoursPercent') / std.TakeOffQuantity) * stlsell.FASellQuantity,0))
-)) AS EarnedSellHours,
-
-(
-sum(IF((COALESCE(stls.FAShakeQuantity,0) + 
-(SELECT COALESCE(sum(COALESCE(FAShakeQuantity,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelShake stls
-                                                ON stls.ActivityID = sas.ActivityID AND stls.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 61
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID)
-) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
-/*TRUE*/ 
-GREATEST((COALESCE(std.TakeOffQuantity,0) - 
-((SELECT COALESCE(sum(COALESCE(FAShakeQuantity,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelShake stls
-                                                ON stls.ActivityID = sas.ActivityID AND stls.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 61
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID)))
-,0) * (std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelShakeHoursPercent') / std.TakeOffQuantity),
-/*FALSE*/
-(COALESCE((std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelShakeHoursPercent') / std.TakeOffQuantity) * stls.FAShakeQuantity,0))
-)) 
-+
-sum(IF((COALESCE(stle.FAErectQuantity,0) * COALESCE(stle.FAErectPercent,0) + 
-(SELECT COALESCE(sum(COALESCE(FAErectQuantity,0) * COALESCE(FAErectPercent,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelErect stle
-                                                ON stle.ActivityID = sas.ActivityID AND stle.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 62
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID)
-) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
-/*TRUE*/ 
-GREATEST((COALESCE(std.TakeOffQuantity,0) - 
-(SELECT COALESCE(sum(COALESCE(FAErectQuantity,0) * COALESCE(FAErectPercent,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelErect stle 
-                                                ON stle.ActivityID = sas.ActivityID AND stle.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 62
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID))
-,0) * (std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelErectHoursPercent') / std.TakeOffQuantity),
-/*FALSE*/
-(COALESCE((std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelErectHoursPercent') / std.TakeOffQuantity) * (stle.FAErectQuantity * stle.FAErectPercent),0))
-)) 
-+
-sum(IF((COALESCE(stlb.FABoltOutQuantity,0) * COALESCE(stlb.FABoltOutPercent,0) + 
-(SELECT COALESCE(sum(COALESCE(FABoltOutQuantity,0) * COALESCE(FABoltOutPercent,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelBoltOut stlb
-                                                ON stlb.ActivityID = sas.ActivityID AND stlb.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 63
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID)
-) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
-/*TRUE*/ 
-GREATEST((COALESCE(std.TakeOffQuantity,0) - 
-(SELECT COALESCE(sum(COALESCE(FABoltOutQuantity,0) * COALESCE(FABoltOutPercent,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelBoltOut stlb
-                                                ON stlb.ActivityID = sas.ActivityID AND stlb.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 63
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID))
-,0) * (std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelBoltoutHoursPercent') / std.TakeOffQuantity),
-/*FALSE*/
-(COALESCE((std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelBoltoutHoursPercent') / std.TakeOffQuantity) * (stlb.FABoltOutQuantity * stlb.FABoltOutPercent),0))
-)) 
-+
-sum(IF((COALESCE(stli.FAImpQuantity,0) * COALESCE(stli.FAImpPercent,0) + 
-(SELECT COALESCE(sum(COALESCE(FAImpQuantity,0) * COALESCE(FAImpPercent,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelImp stli
-                                                ON stli.ActivityID = sas.ActivityID AND stli.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 64
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID)
-) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
-/*TRUE*/ 
-GREATEST((COALESCE(std.TakeOffQuantity,0) - 
-(SELECT COALESCE(sum(COALESCE(FAImpQuantity,0) * COALESCE(FAImpPercent,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelImp stli
-                                                ON stli.ActivityID = sas.ActivityID AND stli.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 64
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID))
-,0) * (std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelImpHoursPercent') / std.TakeOffQuantity),
-/*FALSE*/
-(COALESCE((std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelImpHoursPercent') / std.TakeOffQuantity) * (stli.FAImpQuantity * stli.FAImpPercent),0))
-)) 
-+
-sum(IF((COALESCE(stlw.FAWeldQuantity,0) * COALESCE(stlw.FAWeldPercent,0) + 
-(SELECT COALESCE(sum(COALESCE(FAWeldQuantity,0) * COALESCE(FAWeldPercent,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelWeld stlw
-                                                ON stlw.ActivityID = sas.ActivityID AND stlw.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 68
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID)
-) > std.WeldCount,/*Is New + cumlitive quantity greater then WeldCount*/
-/*TRUE*/ 
-GREATEST((COALESCE(std.WeldCount,0) - 
-(SELECT COALESCE(sum(COALESCE(FAWeldQuantity,0) * COALESCE(FAWeldPercent,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelWeld stlw
-                                                ON stlw.ActivityID = sas.ActivityID AND stlw.FARework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 68
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID))
-,0) * (std.WeldHours / std.WeldCount),
-/*FALSE*/
-(COALESCE((std.WeldHours / std.WeldCount) * (stlw.FAWeldQuantity * stlw.FAWeldPercent),0))
-)) 
-+
-sum(IF((COALESCE(stld.DemoQuantity,0) + 
-(SELECT COALESCE(sum(COALESCE(DemoQuantity,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelDemo stld
-                                                ON stld.ActivityID = sas.ActivityID 
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 67
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID)
-) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
-/*TRUE*/ 
-GREATEST((COALESCE(std.TakeOffQuantity,0) - 
-(SELECT COALESCE(sum(COALESCE(DemoQuantity,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelDemo stld
-                                                ON stld.ActivityID = sas.ActivityID
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 67
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID))
-,0) * (std.DemoHours / std.TakeOffQuantity),
-/*FALSE*/
-(COALESCE((std.DemoHours / std.TakeOffQuantity) * stld.DemoQuantity ,0))
-)) 
-+
-sum(IF((COALESCE(stlm.MiscQuantity,0) + 
-(SELECT COALESCE(sum(COALESCE(MiscQuantity,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelMisc stlm
-                                                ON stlm.ActivityID = sas.ActivityID AND stlm.MiscRework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 96
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID)
-) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
-/*TRUE*/ 
-GREATEST((COALESCE(std.TakeOffQuantity,0) - 
-(SELECT COALESCE(sum(COALESCE(MiscQuantity,0)),0) AS CQuantity
-                FROM SubmissionActivityStatus sas
-                                LEFT JOIN SteelMisc stlm
-                                                ON stlm.ActivityID = sas.ActivityID AND stlm.MiscRework = 0
-                WHERE sas.fk_ActivityStatus IN (5,12)
-                AND sas.ActivityType = 96
-                AND sas.ActivityID < sas.ActivityID
-                AND sas.fk_BidIDAssigned = std.BidID))
-,0) * (std.MiscHours / std.TakeOffQuantity),
-/*FALSE*/
-(COALESCE((std.MiscHours / std.TakeOffQuantity) * stlm.MiscQuantity ,0))
-))
-) AS EarnedFAHours
+SUM(
+((std.SteelHours + std.WeldHours) * (1 - (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelSellHoursPercent'))
+) - COALESCE(er.EarnedHours,0)
+) AS LooseHours
 
 
-FROM SubmissionActivityStatus sas
-        
-JOIN (SELECT BidID, sum(TakeOffQuantity) AS TakeOffQuantity, sum(SteelHours) AS SteelHours, sum(WeldHours) AS WeldHours, sum(WeldCount) AS WeldCount, 
-                                IF(ActivityType = "D", sum(SteelHours), 0) AS DemoHours,
-                                IF(ActivityType = "Misc", sum(SteelHours), 0) AS MiscHours
-                                FROM SteelTrackerDetails 
-                                GROUP BY BidID) std
-                ON std.BidID = sas.fk_BidIDAssigned
+FROM SteelTrackerDetails std
+LEFT JOIN (SELECT SUM(stlfa.FAQuantity) AS FAQuantity, sas.fk_BidIDAssigned AS BidID 
+			FROM SteelFA stlfa
+			JOIN SubmissionActivityStatus sas
+				ON sas.ActivityID = stlfa.ActivityID AND sas.fk_ActivityStatus IN (5,12)
+			WHERE stlfa.ActivityType = 65 AND stlfa.FARework = 0
+            GROUP BY sas.fk_BidIDAssigned ) stlfasell
+	ON stlfasell.BidID = std.BidID
 
-LEFT JOIN SteelShake stls
-                ON stls.ActivityID = sas.ActivityID AND stls.FARework = 0
+LEFT JOIN (SELECT DISTINCT SellTestPackageNumber
+			FROM SteelSellPackage stlsell
+            JOIN SubmissionActivityStatus sas
+				ON sas.ActivityID = stlsell.ActivityID AND sas.fk_ActivityStatus IN (5,12)) stlsell
+	ON stlsell.SellTestPackageNumber = std.TestPackageNumber
 
-LEFT JOIN SteelErect stle
-                ON stle.ActivityID = sas.ActivityID AND stle.FARework = 0
+LEFT JOIN (SELECT BidID,
+		### Earned Hour Quantities ###
+		SUM(er0.EarnedHours) AS EarnedHours
 
-LEFT JOIN SteelBoltOut stlb
-                ON stlb.ActivityID = sas.ActivityID AND stlb.FARework = 0
+		FROM(SELECT BidID, 
+			### Earned Hour Quantities ###
+			(
+			IF(COALESCE(stls.FAQuantity,0) * COALESCE(stls.FAPercentCompleted,0) + SUM(COALESCE(css.InstalledQuantity,0)
+			) > std.TakeOffQuantity,
+			/*TRUE*/ 
+			GREATEST((COALESCE(std.TakeOffQuantity,0) - SUM(COALESCE(css.InstalledQuantity,0))),0) * (std.SteelHours * ', ShakePercent,' / std.TakeOffQuantity),
+			/*FALSE*/
+			COALESCE((std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelShakeHoursPercent') / std.TakeOffQuantity) * (stls.FAQuantity * stls.FAPercentCompleted),0)
+			) 
+			+
+			IF(COALESCE(stle.FAQuantity,0) * COALESCE(stle.FAPercentCompleted,0) + SUM(COALESCE(cse.InstalledQuantity,0)
+			) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
+			/*TRUE*/ 
+			GREATEST((COALESCE(std.TakeOffQuantity,0) - SUM(COALESCE(cse.InstalledQuantity,0))),0) * (std.SteelHours * ', ErectPercent,' / std.TakeOffQuantity),
+			/*FALSE*/
+			(COALESCE((std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelErectHoursPercent') / std.TakeOffQuantity) * (stle.FAQuantity * stle.FAPercentCompleted),0))
+			) 
+			+
+			IF(COALESCE(stlb.FAQuantity,0) * COALESCE(stlb.FAPercentCompleted,0) + SUM(COALESCE(csb.InstalledQuantity,0)
+			) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
+			/*TRUE*/ 
+			GREATEST((COALESCE(std.TakeOffQuantity,0) - SUM(COALESCE(csb.InstalledQuantity,0))),0) * (std.SteelHours * ', BoltOutPercent,' / std.TakeOffQuantity),
+			/*FALSE*/
+			(COALESCE((std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelBoltoutHoursPercent') / std.TakeOffQuantity) * (stlb.FAQuantity * stlb.FAPercentCompleted),0))
+			) 
+			+
+			IF(COALESCE(stli.FAQuantity,0) * COALESCE(stli.FAPercentCompleted,0) + SUM(COALESCE(csi.InstalledQuantity,0)
+			) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
+			/*TRUE*/ 
+			GREATEST((COALESCE(std.TakeOffQuantity,0) - SUM(COALESCE(csi.InstalledQuantity,0))),0) * (std.SteelHours * ', ImpPercent,' / std.TakeOffQuantity),
+			/*FALSE*/
+			(COALESCE((std.SteelHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelImpHoursPercent') / std.TakeOffQuantity) * (stli.FAQuantity * stli.FAPercentCompleted),0))
+			) 
+			+
+			IF(COALESCE(stlw.FAQuantity,0) * COALESCE(stlw.FAPercentCompleted,0) + SUM(COALESCE(csw.InstalledQuantity,0)
+			) > std.WeldCount,/*Is New + cumlitive quantity greater then WeldCount*/
+			/*TRUE*/ 
+			GREATEST((COALESCE(std.WeldCount,0) - SUM(COALESCE(csw.InstalledQuantity,0))),0) * (std.WeldHours / NULLIF(std.WeldCount,0)),
+			/*FALSE*/
+			(COALESCE((std.WeldHours / NULLIF(std.WeldCount,0)) * (stlw.FAQuantity * stlw.FAPercentCompleted),0))
+			) 
+			+
+			IF(COALESCE(stld.DemoPercentCompleted,0) * std.TakeOffQuantity + SUM(COALESCE(csd.InstalledQuantity,0)
+			) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
+			/*TRUE*/ 
+			GREATEST((COALESCE(std.TakeOffQuantity,0) - SUM(COALESCE(csd.InstalledQuantity,0))),0) * (std.SteelHours / std.TakeOffQuantity),
+			/*FALSE*/
+			(COALESCE((std.SteelHours / std.TakeOffQuantity) * (stld.DemoPercentCompleted * std.TakeOffQuantity) ,0))
+			) 
+			+
+			IF(COALESCE(stlm.MiscPercentCompleted,0) * std.TakeOffQuantity + SUM(COALESCE(csm.InstalledQuantity,0)
+			) > std.TakeOffQuantity,/*Is New + cumlitive quantity greater then TakeOff*/
+			/*TRUE*/ 
+			GREATEST((COALESCE(std.TakeOffQuantity,0) - SUM(COALESCE(csm.InstalledQuantity,0))),0) * (std.SteelHours / std.TakeOffQuantity),
+			/*FALSE*/
+			(COALESCE((std.SteelHours / std.TakeOffQuantity) * (stlm.MiscPercentCompleted * std.TakeOffQuantity) ,0))
+			) 
+			) AS EarnedHours
+			 
 
-LEFT JOIN SteelImp stli
-                ON stli.ActivityID = sas.ActivityID AND stli.FARework = 0
-    
-LEFT JOIN SteelWeld stlw
-                ON stlw.ActivityID = sas.ActivityID AND stlw.FARework = 0
+			FROM SubmissionActivityStatus sas
+					
+			JOIN SteelTrackerDetails std
+				ON std.BidID = sas.fk_BidIDAssigned
 
-LEFT JOIN SteelSell stlsell
-                ON stlsell.ActivityID = sas.ActivityID AND stlsell.FARework = 0
+			LEFT JOIN SteelFA stls
+				ON stls.ActivityID = sas.ActivityID AND sas.ActivityType = 61 AND stls.FARework = 0
 
-LEFT JOIN SteelDemo stld
-                ON stld.ActivityID = sas.ActivityID
-    
-LEFT JOIN SteelMisc stlm
-                ON stlm.ActivityID = sas.ActivityID AND stlm.MiscRework = 0
+			LEFT JOIN SteelFA stle
+				ON stle.ActivityID = sas.ActivityID AND sas.ActivityType = 62 AND stle.FARework = 0
 
-WHERE sas.fk_ActivityStatus IN (5,12)
-AND sas.ActivityType IN (60,61,62,63,64,65,66,67,68,69,96) 
-GROUP BY std.BidID
-) er
-                ON er.BidID = std.BidID
+			LEFT JOIN SteelFA stlb
+				ON stlb.ActivityID = sas.ActivityID AND sas.ActivityType = 63 AND stlb.FARework = 0
+
+			LEFT JOIN SteelFA stli
+				ON stli.ActivityID = sas.ActivityID AND sas.ActivityType = 64 AND stli.FARework = 0
+				
+			LEFT JOIN SteelFA stlw
+				ON stlw.ActivityID = sas.ActivityID AND sas.ActivityType = 68 AND stlw.FARework = 0
+
+			LEFT JOIN SteelDemo stld
+				ON stld.ActivityID = sas.ActivityID
+				
+			LEFT JOIN SteelMisc stlm
+				ON stlm.ActivityID = sas.ActivityID AND stlm.MiscRework = 0
+
+			/* #### Begining of Cumulative Past sums Calculation #### */
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(FAQuantity * FAPercentCompleted,0)) AS InstalledQuantity
+						FROM SubmissionActivityStatus sas
+						JOIN SteelFA stlfa
+							ON stlfa.ActivityID = sas.ActivityID AND sas.ActivityType = 61 AND FARework = 0
+						LEFT JOIN SteelTrackerDetails std
+							ON std.BidID = sas.fk_BidIDAssigned 
+						WHERE sas.fk_ActivityStatus IN (5,12)
+						HAVING InstalledQuantity > 0) css
+				ON sas.ActivityType = 61 AND sas.fk_BidIDAssigned = css.fk_BidIDAssigned AND css.ActivityID < sas.ActivityID
+
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(FAQuantity * FAPercentCompleted,0)) AS InstalledQuantity
+						FROM SubmissionActivityStatus sas
+						JOIN SteelFA stlfa
+							ON stlfa.ActivityID = sas.ActivityID AND sas.ActivityType = 62 AND FARework = 0
+						LEFT JOIN SteelTrackerDetails std
+							ON std.BidID = sas.fk_BidIDAssigned 
+						WHERE sas.fk_ActivityStatus IN (5,12)
+						HAVING InstalledQuantity > 0) cse
+				ON sas.ActivityType = 62 AND sas.fk_BidIDAssigned = cse.fk_BidIDAssigned AND cse.ActivityID < sas.ActivityID
+
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(FAQuantity * FAPercentCompleted,0)) AS InstalledQuantity
+						FROM SubmissionActivityStatus sas
+						JOIN SteelFA stlfa
+							ON stlfa.ActivityID = sas.ActivityID AND sas.ActivityType = 63 AND FARework = 0
+						LEFT JOIN SteelTrackerDetails std
+							ON std.BidID = sas.fk_BidIDAssigned 
+						WHERE sas.fk_ActivityStatus IN (5,12)
+						HAVING InstalledQuantity > 0) csb
+								ON sas.ActivityType = 63 AND sas.fk_BidIDAssigned = csb.fk_BidIDAssigned AND csb.ActivityID < sas.ActivityID
+
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(FAQuantity * FAPercentCompleted,0)) AS InstalledQuantity
+						FROM SubmissionActivityStatus sas
+						JOIN SteelFA stlfa
+							ON stlfa.ActivityID = sas.ActivityID AND sas.ActivityType = 64 AND FARework = 0
+						LEFT JOIN SteelTrackerDetails std
+							ON std.BidID = sas.fk_BidIDAssigned 
+						WHERE sas.fk_ActivityStatus IN (5,12)
+						HAVING InstalledQuantity > 0) csi
+				ON sas.ActivityType = 64 AND sas.fk_BidIDAssigned = csi.fk_BidIDAssigned AND csi.ActivityID < sas.ActivityID
+				
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(FAQuantity * FAPercentCompleted,0)) AS InstalledQuantity
+						FROM SubmissionActivityStatus sas
+						JOIN SteelFA stlfa
+							ON stlfa.ActivityID = sas.ActivityID AND sas.ActivityType = 68 AND FARework = 0
+						LEFT JOIN SteelTrackerDetails std
+							ON std.BidID = sas.fk_BidIDAssigned 
+						WHERE sas.fk_ActivityStatus IN (5,12)
+						HAVING InstalledQuantity > 0) csw
+				ON sas.ActivityType = 68 AND sas.fk_BidIDAssigned = csw.fk_BidIDAssigned AND csw.ActivityID < sas.ActivityID
+
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(stld.DemoPercentCompleted * std.TakeOffQuantity,0)) AS InstalledQuantity
+						FROM SubmissionActivityStatus sas
+						JOIN SteelDemo stld
+							ON stld.ActivityID = sas.ActivityID 
+						LEFT JOIN SteelTrackerDetails std
+							ON std.BidID = sas.fk_BidIDAssigned 
+						WHERE sas.fk_ActivityStatus IN (5,12)
+						HAVING InstalledQuantity > 0) csd
+				ON sas.ActivityType = 67 AND sas.fk_BidIDAssigned = csd.fk_BidIDAssigned AND csd.ActivityID < sas.ActivityID
+				
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(MiscPercentCompleted * std.TakeOffQuantity,0) ) AS InstalledQuantity
+						FROM SubmissionActivityStatus sas
+						JOIN SteelMisc stlm
+							ON stlm.ActivityID = sas.ActivityID 
+						LEFT JOIN SteelTrackerDetails std
+							ON std.BidID = sas.fk_BidIDAssigned 
+						WHERE sas.fk_ActivityStatus IN (5,12)
+						HAVING InstalledQuantity > 0) csm
+				ON sas.ActivityType = 96 AND sas.fk_BidIDAssigned = csm.fk_BidIDAssigned AND csm.ActivityID < sas.ActivityID
+
+			WHERE sas.fk_ActivityStatus IN (5,12)
+			AND sas.ActivityType IN (60,61,62,63,64,66,67,68,96) 
+			GROUP BY sas.ActivityID)er0
+		GROUP BY er0.BidID) er
+	ON er.BidID = std.BidID
   
 WHERE std.TestPackageNumber = :TestPackage) wmTempTable
         ]]>
@@ -779,9 +645,8 @@ ORDER BY TimeStamp DESC) wmTempTable
     <sql-query name="UpdateSteelFA">
         <![CDATA[
         UPDATE `SteelFA` 
-SET 
-`FASortGroup1`= :FASortGroup1, 
-`FAPieceNumber`= :Piece, 
+SET  
+`FABidID`= :BidID,
 `FAQuantity`= :Quantity,
 `FAPercentCompleted`= :PercentCompleted,
 `FARework`= :Rework, 
@@ -789,8 +654,7 @@ SET
 `ActivityType`= :ActivityType 
 WHERE `ActivityID`= :ActivityID
         ]]>
-    <query-param name="FASortGroup1" type="java.lang.String"/>
-    <query-param name="Piece" type="java.lang.String"/>
+    <query-param name="BidID" type="java.lang.Integer"/>
     <query-param name="Quantity" type="java.lang.Integer"/>
     <query-param name="PercentCompleted" type="java.math.BigDecimal"/>
     <query-param name="Rework" type="java.lang.Short"/>
@@ -1330,15 +1194,15 @@ WHERE `ActivityID`= :ActivityID
     <sql-query name="GetActivitiesPendingReviewSteelActivities">
         <![CDATA[
         SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, at.ID AS ActivityTypeID,
-stl.ActivityID, stl.FASortGroup1, stl.FAPieceNumber, stl.FAQuantity, stl.FAPercentCompleted, stl.FARework, stl.FANotes, stl.FATimeInForm
-
-
+stl.ActivityID, std.SortGroup1, std.PieceMark, stl.FAQuantity, stl.FAPercentCompleted, stl.FARework, stl.FANotes, stl.FATimeInForm
 
 FROM SubsDetails sd
 JOIN SubmissionActivityStatus sas
 	ON sas.SubmissionID = sd.SubmissionID
 JOIN SteelFA stl
 	ON stl.ActivityID = sas.ActivityID 
+JOIN SteelTrackerDetails std
+	ON std.BidID = stl.FABidID
     
 JOIN PSA.tblUserPSA u
 	ON u.ID = sd.UserID
@@ -1353,28 +1217,28 @@ LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 
 WHERE sas.SubmissionID = :SubmissionID
-AND stl.FAPiecenumber = :PieceMark
+AND std.BidID = :BidID
 AND sas.fk_ActivityStatus = :StatusID
 
 ORDER BY sas.ActivityType
         ]]>
     <query-param name="SubmissionID" type="java.lang.Integer"/>
-    <query-param name="PieceMark" type="java.lang.String"/>
+    <query-param name="BidID" type="java.lang.Integer"/>
     <query-param name="StatusID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetActivitiesPendingReviewSteelActivities__count">
         <![CDATA[
         select count(*) from (SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, at.ID AS ActivityTypeID,
-stl.ActivityID, stl.FASortGroup1, stl.FAPieceNumber, stl.FAQuantity, stl.FAPercentCompleted, stl.FARework, stl.FANotes, stl.FATimeInForm
-
-
+stl.ActivityID, std.SortGroup1, std.PieceMark, stl.FAQuantity, stl.FAPercentCompleted, stl.FARework, stl.FANotes, stl.FATimeInForm
 
 FROM SubsDetails sd
 JOIN SubmissionActivityStatus sas
 	ON sas.SubmissionID = sd.SubmissionID
 JOIN SteelFA stl
 	ON stl.ActivityID = sas.ActivityID 
+JOIN SteelTrackerDetails std
+	ON std.BidID = stl.FABidID
     
 JOIN PSA.tblUserPSA u
 	ON u.ID = sd.UserID
@@ -1389,13 +1253,13 @@ LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 
 WHERE sas.SubmissionID = :SubmissionID
-AND stl.FAPiecenumber = :PieceMark
+AND std.BidID = :BidID
 AND sas.fk_ActivityStatus = :StatusID
 
 ORDER BY sas.ActivityType) wmTempTable
         ]]>
     <query-param name="SubmissionID" type="java.lang.Integer"/>
-    <query-param name="PieceMark" type="java.lang.String"/>
+    <query-param name="BidID" type="java.lang.Integer"/>
     <query-param name="StatusID" type="java.lang.Integer"/>
     </sql-query>
 
@@ -1637,7 +1501,7 @@ WHERE ActivityID = :ActivityID
 
 UNION
 
-SELECT efar.fk_OrgActivityID, efar.FABidID, efar.FATagNumber, efar.FAActivitySelect, efar.FAQuantity, efar.FAPercentCompleted, efar.FARework, efar.FANotes, efar.ActivityType, efar.FATimeInForm, efar.Rev, efar.TimeStamp
+SELECT efar.fk_OrgActivityID, efar.FABidID, efar.FAQuantity, efar.FAPercentCompleted, efar.FARework, efar.FANotes, efar.ActivityType, efar.FATimeInForm, efar.Rev, efar.TimeStamp
 FROM EquipFAREV efar
 WHERE efar.fk_OrgActivityID = :ActivityID
 ORDER BY TimeStamp DESC
@@ -1653,7 +1517,7 @@ WHERE ActivityID = :ActivityID
 
 UNION
 
-SELECT efar.fk_OrgActivityID, efar.FABidID, efar.FATagNumber, efar.FAActivitySelect, efar.FAQuantity, efar.FAPercentCompleted, efar.FARework, efar.FANotes, efar.ActivityType, efar.FATimeInForm, efar.Rev, efar.TimeStamp
+SELECT efar.fk_OrgActivityID, efar.FABidID, efar.FAQuantity, efar.FAPercentCompleted, efar.FARework, efar.FANotes, efar.ActivityType, efar.FATimeInForm, efar.Rev, efar.TimeStamp
 FROM EquipFAREV efar
 WHERE efar.fk_OrgActivityID = :ActivityID
 ORDER BY TimeStamp DESC) wmTempTable
@@ -1695,23 +1559,7 @@ VALUES (:ActivityID, :CreatedBy ,:Note)
     <sql-query name="GetReportDPRSteelDetailed">
         <![CDATA[
         SELECT  
-(IF(stls.FASortGroup1 IS NOT NULL, stls.FASortGroup1,
-IF(stle.FASortGroup1 IS NOT NULL, stle.FASortGroup1,
-IF(stlb.FASortGroup1 IS NOT NULL, stlb.FASortGroup1,
-IF(stli.FASortGroup1 IS NOT NULL, stli.FASortGroup1,
-IF(stlw.FASortGroup1 IS NOT NULL, stlw.FASortGroup1,
-IF(stlsell.FASortGroup1 IS NOT NULL, stlsell.FASortGroup1,
-IF(stlm.MiscSortGroup1 IS NOT NULL, stlm.MiscSortGroup1,0)
-))))))) AS SortGroup1,
-
-(IF(stls.FAPieceNumber IS NOT NULL, stls.FAPieceNumber,
-IF(stle.FAPieceNumber IS NOT NULL, stle.FAPieceNumber,
-IF(stlb.FAPieceNumber IS NOT NULL, stlb.FAPieceNumber,
-IF(stli.FAPieceNumber IS NOT NULL, stli.FAPieceNumber,
-IF(stlw.FAPieceNumber IS NOT NULL, stlw.FAPieceNumber,
-IF(stlsell.FAPieceNumber IS NOT NULL, stlsell.FAPieceNumber,
-IF(stlm.MiscPieceNumber IS NOT NULL, stlm.MiscPieceNumber,0)
-))))))) AS PieceNumber,
+std.SortGroup1, std.PieceMark,
 
 COALESCE(stls.FAQuantity,0) AS ShakeQuantity,
 COALESCE(stle.FAQuantity,0) AS ErectQuantity,
@@ -1723,8 +1571,8 @@ CONCAT(TRUNCATE(COALESCE(stli.FAPercentCompleted,0) * 100,0), '%') AS ImpPercent
 COALESCE(stlw.FAQuantity,0) AS WeldQuantity,
 CONCAT(TRUNCATE(COALESCE(stlw.FAPercentCompleted,0) * 100,0), '%') AS WeldPercent,
 COALESCE(stlsell.FAQuantity,0) AS SellQuantity,
-COALESCE(stld.DemoQuantity,0) AS DemoQuantity,
-COALESCE(stlm.MiscQuantity,0) AS MiscQuantity,
+COALESCE(stld.DemoPercentCompleted * std.TakeOffQuantity,0) AS DemoQuantity,
+COALESCE(stlm.MiscPercentCompleted * std.TakeOffQuantity,0) AS MiscQuantity,
 DATE(sd.ReceivedTime) AS ReceivedTime,
 (ats.Status) AS CurrentStatus
 
@@ -1758,6 +1606,9 @@ LEFT JOIN SteelDemo stld
 	ON stld.ActivityID = sas.ActivityID
 LEFT JOIN SteelMisc stlm
 	ON  stlm.ActivityID = sas.ActivityID
+
+LEFT JOIN SteelTrackerDetails std
+	ON std.BidID IN (stls.FABidID, stle.FABidID, stlb.FABidID, stli.FABidID, stlw.FABidID, stlsell.FABidID, stld.DemoBidID, stlm.MiscBidID)
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -1786,23 +1637,7 @@ GROUP BY sas.ActivityID, Date(sd.ReceivedTime)
     <sql-query name="GetReportDPRSteelDetailed__count">
         <![CDATA[
         select count(*) from (SELECT  
-(IF(stls.FASortGroup1 IS NOT NULL, stls.FASortGroup1,
-IF(stle.FASortGroup1 IS NOT NULL, stle.FASortGroup1,
-IF(stlb.FASortGroup1 IS NOT NULL, stlb.FASortGroup1,
-IF(stli.FASortGroup1 IS NOT NULL, stli.FASortGroup1,
-IF(stlw.FASortGroup1 IS NOT NULL, stlw.FASortGroup1,
-IF(stlsell.FASortGroup1 IS NOT NULL, stlsell.FASortGroup1,
-IF(stlm.MiscSortGroup1 IS NOT NULL, stlm.MiscSortGroup1,0)
-))))))) AS SortGroup1,
-
-(IF(stls.FAPieceNumber IS NOT NULL, stls.FAPieceNumber,
-IF(stle.FAPieceNumber IS NOT NULL, stle.FAPieceNumber,
-IF(stlb.FAPieceNumber IS NOT NULL, stlb.FAPieceNumber,
-IF(stli.FAPieceNumber IS NOT NULL, stli.FAPieceNumber,
-IF(stlw.FAPieceNumber IS NOT NULL, stlw.FAPieceNumber,
-IF(stlsell.FAPieceNumber IS NOT NULL, stlsell.FAPieceNumber,
-IF(stlm.MiscPieceNumber IS NOT NULL, stlm.MiscPieceNumber,0)
-))))))) AS PieceNumber,
+std.SortGroup1, std.PieceMark,
 
 COALESCE(stls.FAQuantity,0) AS ShakeQuantity,
 COALESCE(stle.FAQuantity,0) AS ErectQuantity,
@@ -1814,8 +1649,8 @@ CONCAT(TRUNCATE(COALESCE(stli.FAPercentCompleted,0) * 100,0), '%') AS ImpPercent
 COALESCE(stlw.FAQuantity,0) AS WeldQuantity,
 CONCAT(TRUNCATE(COALESCE(stlw.FAPercentCompleted,0) * 100,0), '%') AS WeldPercent,
 COALESCE(stlsell.FAQuantity,0) AS SellQuantity,
-COALESCE(stld.DemoQuantity,0) AS DemoQuantity,
-COALESCE(stlm.MiscQuantity,0) AS MiscQuantity,
+COALESCE(stld.DemoPercentCompleted * std.TakeOffQuantity,0) AS DemoQuantity,
+COALESCE(stlm.MiscPercentCompleted * std.TakeOffQuantity,0) AS MiscQuantity,
 DATE(sd.ReceivedTime) AS ReceivedTime,
 (ats.Status) AS CurrentStatus
 
@@ -1849,6 +1684,9 @@ LEFT JOIN SteelDemo stld
 	ON stld.ActivityID = sas.ActivityID
 LEFT JOIN SteelMisc stlm
 	ON  stlm.ActivityID = sas.ActivityID
+
+LEFT JOIN SteelTrackerDetails std
+	ON std.BidID IN (stls.FABidID, stle.FABidID, stlb.FABidID, stli.FABidID, stlw.FABidID, stlsell.FABidID, stld.DemoBidID, stlm.MiscBidID)
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -3048,32 +2886,20 @@ WHERE ActivityID = :FieldActivityID
         <![CDATA[
         SELECT std.*
 FROM SteelTrackerDetails std
-WHERE (std.BidID = :BidID AND ActivityType != 'E')
-OR 
-(std.SortGroup1 LIKE :SortGroup1
-AND std.PieceMark LIKE :PieceMark
-AND std.ActivityType = 'E')
+WHERE std.BidID = :BidID 
 ORDER BY std.SortGroup1, std.PieceMark
         ]]>
     <query-param name="BidID" type="java.lang.Integer"/>
-    <query-param name="SortGroup1" type="java.lang.String"/>
-    <query-param name="PieceMark" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="GetBidActivityMatchesSteel__count">
         <![CDATA[
         select count(*) from (SELECT std.*
 FROM SteelTrackerDetails std
-WHERE (std.BidID = :BidID AND ActivityType != 'E')
-OR 
-(std.SortGroup1 LIKE :SortGroup1
-AND std.PieceMark LIKE :PieceMark
-AND std.ActivityType = 'E')
+WHERE std.BidID = :BidID 
 ORDER BY std.SortGroup1, std.PieceMark) wmTempTable
         ]]>
     <query-param name="BidID" type="java.lang.Integer"/>
-    <query-param name="SortGroup1" type="java.lang.String"/>
-    <query-param name="PieceMark" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="GetQuantityLFInstalledByBidID">
@@ -3141,24 +2967,6 @@ SET `Value1`= :Value1
 WHERE `Label`='CivilWorkHoursPercent'
         ]]>
     <query-param name="Value1" type="java.math.BigDecimal"/>
-    </sql-query>
-
-    <sql-query name="GetNoteCount">
-        <![CDATA[
-        SELECT count(sasn.ID) AS NoteCount
-FROM SASNotes sasn
-WHERE sasn.ActivityID = :ActivityID
-        ]]>
-    <query-param name="ActivityID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetNoteCount__count">
-        <![CDATA[
-        select count(*) from (SELECT count(sasn.ID) AS NoteCount
-FROM SASNotes sasn
-WHERE sasn.ActivityID = :ActivityID) wmTempTable
-        ]]>
-    <query-param name="ActivityID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetReportDWRByDate">
@@ -3378,7 +3186,7 @@ WHERE ActivityID = :ActivityID
 
 UNION ALL
 
-SELECT stlfar.fk_OrgActivityId, stlfar.FASortGroup1, stlfar.FAPieceNumber, stlfar.FAQuantity, stlfar.FAPercentCompleted, stlfar.FARework, stlfar.FANotes, stlfar.ActivityType, stlfar.FATimeInForm, stlfar.Rev, stlfar.TimeStamp
+SELECT stlfar.fk_OrgActivityId, stlfar.FABidID, stlfar.FAQuantity, stlfar.FAPercentCompleted, stlfar.FARework, stlfar.FANotes, stlfar.ActivityType, stlfar.FATimeInForm, stlfar.Rev, stlfar.TimeStamp
 FROM SteelFAREV stlfar
 WHERE fk_OrgActivityId = :ActivityID
 ORDER BY TimeStamp DESC
@@ -3394,7 +3202,7 @@ WHERE ActivityID = :ActivityID
 
 UNION ALL
 
-SELECT stlfar.fk_OrgActivityId, stlfar.FASortGroup1, stlfar.FAPieceNumber, stlfar.FAQuantity, stlfar.FAPercentCompleted, stlfar.FARework, stlfar.FANotes, stlfar.ActivityType, stlfar.FATimeInForm, stlfar.Rev, stlfar.TimeStamp
+SELECT stlfar.fk_OrgActivityId, stlfar.FABidID, stlfar.FAQuantity, stlfar.FAPercentCompleted, stlfar.FARework, stlfar.FANotes, stlfar.ActivityType, stlfar.FATimeInForm, stlfar.Rev, stlfar.TimeStamp
 FROM SteelFAREV stlfar
 WHERE fk_OrgActivityId = :ActivityID
 ORDER BY TimeStamp DESC) wmTempTable
@@ -3850,7 +3658,7 @@ WHERE `Label`='PipeHydroHoursPercent'
 
     <sql-query name="GetReportDPRSteelCondensed">
         <![CDATA[
-        SELECT SortGroup1, PieceNumber, 
+        SELECT SortGroup1, PieceMark, 
 sum(ShakeQuantity) AS ShakeQuantity, 
 sum(ErectQuantity) AS ErectQuantity, 
 sum(BoltoutQuantity) AS BoltoutQuantity, 
@@ -3861,7 +3669,7 @@ sum(DemoQuantity) AS DemoQuantity,
 sum(MiscQuantity) AS MiscQuantity, 
 ReceivedTime 
 FROM(SELECT  
-stls.FASortGroup1 AS SortGroup1, stls.FAPieceNumber AS PieceNumber, 
+std.SortGroup1, std.PieceMark, 
 sum(COALESCE(stls.FAQuantity,0)) AS ShakeQuantity,
 0 AS ErectQuantity,
 0 AS BoltoutQuantity,
@@ -3882,6 +3690,8 @@ LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 JOIN SteelFA stls
 	ON stls.ActivityID = sas.ActivityID AND sas.ActivityID = 61
+JOIN SteelTrackerDetails std
+	ON std.BidID = stls.FABidID
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -3893,7 +3703,7 @@ WHERE ((
 	AND (tcr.GF LIKE :GF OR tcr.Foreman LIKE :Foreman)
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
-GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceMark, Date(sd.ReceivedTime)   
 
 
 
@@ -3902,7 +3712,7 @@ UNION
 
 
 SELECT  
-stle.FASortGroup1 AS SortGroup1, stle.FAPieceNumber AS PieceNumber,
+std.SortGroup1, std.PieceMark,
 0,
 TRUNCATE(sum(COALESCE(stle.FAQuantity * stle.FAPercentCompleted,0)),2),
 0,0,0,0,0,0,
@@ -3918,6 +3728,8 @@ LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 JOIN SteelFA stle
 	ON stle.ActivityID = sas.ActivityID AND sas.Activitytype = 62
+JOIN SteelTrackerDetails std
+	ON std.BidID = stle.FABidID
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -3930,7 +3742,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceMark, Date(sd.ReceivedTime)   
 
 
 
@@ -3939,7 +3751,7 @@ UNION
 
 
 SELECT  
-stlb.FASortGroup1 AS SortGroup1, stlb.FAPieceNumber AS PieceNumber,
+std.SortGroup1, std.PieceMark,
 0,0,
 TRUNCATE(sum(COALESCE(stlb.FAQuantity * stlb.FAPercentCompleted,0)),2),
 0,0,0,0,0,
@@ -3955,6 +3767,8 @@ LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 JOIN SteelFA stlb
 	ON stlb.ActivityID = sas.ActivityID AND sas.ActivityType = 63
+JOIN SteelTrackerDetails std
+	ON std.BidID = stlb.FABidID
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -3967,7 +3781,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceMark, Date(sd.ReceivedTime)   
 
 
 
@@ -3976,7 +3790,7 @@ UNION
 
 
 SELECT  
-stli.FASortGroup1 AS SortGroup1, stli.FAPieceNumber AS PieceNumber,
+std.SortGroup1, std.PieceMark,
 0,0,0,
 TRUNCATE(sum(COALESCE(stli.FAQuantity * stli.FAPercentCompleted,0)),2),
 0,0,0,0,
@@ -3992,6 +3806,8 @@ LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 JOIN SteelFA stli
 	ON stli.ActivityID = sas.ActivityID AND sas.ActivityType = 64
+JOIN SteelTrackerDetails std
+	ON std.BidID = stli.FABidID
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4004,7 +3820,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceMark, Date(sd.ReceivedTime)   
 
 
 
@@ -4013,7 +3829,7 @@ UNION
 
 
 SELECT  
-stlw.FASortGroup1 AS SortGroup1, stlw.FAPieceNumber AS PieceNumber,
+std.SortGroup1, std.PieceMark,
 0,0,0,0,
 TRUNCATE(sum(COALESCE(stlw.FAQuantity * stlw.FAPercentCompleted,0)),2),
 0,0,0,
@@ -4029,6 +3845,8 @@ LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 JOIN SteelFA stlw
 	ON stlw.ActivityID = sas.ActivityID AND sas.ActivityType = 68
+JOIN SteelTrackerDetails std
+	ON std.BidID = stlw.FABidID
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4041,7 +3859,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceMark, Date(sd.ReceivedTime)   
 
 
 
@@ -4050,7 +3868,7 @@ UNION
 
 
 SELECT  
-stlsell.FASortGroup1 AS SortGroup1, stlsell.FAPieceNumber AS PieceNumber,
+std.SortGroup1, std.PieceMark,
 0,0,0,0,0,
 TRUNCATE(sum(COALESCE(stlsell.FAQuantity,0)),2),
 0,0,
@@ -4066,6 +3884,8 @@ LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 JOIN SteelFA stlsell
 	ON stlsell.ActivityID = sas.ActivityID AND sas.ActivityType = 65
+JOIN SteelTrackerDetails std
+	ON std.BidID = stlsell.FABidID
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4078,7 +3898,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceMark, Date(sd.ReceivedTime)   
 
 
 
@@ -4087,7 +3907,7 @@ UNION
 
 
 SELECT  
-std.SortGroup1 AS SortGroup1, std.Description AS PieceNumber,
+std.SortGroup1, std.Description,
 0,0,0,0,0,0,
 TRUNCATE(sum(COALESCE(stld.DemoPercentCompleted * std.TakeOffQuantity,0)),2),
 0,
@@ -4118,7 +3938,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceMark, Date(sd.ReceivedTime)   
 
 
 
@@ -4127,7 +3947,7 @@ UNION
 
 
 SELECT  
-std.SortGroup1 AS SortGroup1, std.Description AS PieceNumber,
+std.SortGroup1, std.Description,
 0,0,0,0,0,0,0,
 TRUNCATE(sum(COALESCE(stlm.MiscPercentCompleted * std.TakeOffQuantity,0)),2),
 
@@ -4158,9 +3978,9 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)
+GROUP BY SortGroup1, PieceMark, Date(sd.ReceivedTime)
 ) t
-GROUP BY t.SortGroup1, t.PieceNumber, Date(t.ReceivedTime)
+GROUP BY t.SortGroup1, t.PieceMark, Date(t.ReceivedTime)
         ]]>
     <query-param name="PM" type="java.lang.String"/>
     <query-param name="ConstM" type="java.lang.String"/>
@@ -4175,7 +3995,7 @@ GROUP BY t.SortGroup1, t.PieceNumber, Date(t.ReceivedTime)
 
     <sql-query name="GetReportDPRSteelCondensed__count">
         <![CDATA[
-        select count(*) from (SELECT SortGroup1, PieceNumber, 
+        select count(*) from (SELECT SortGroup1, PieceMark, 
 sum(ShakeQuantity) AS ShakeQuantity, 
 sum(ErectQuantity) AS ErectQuantity, 
 sum(BoltoutQuantity) AS BoltoutQuantity, 
@@ -4186,7 +4006,7 @@ sum(DemoQuantity) AS DemoQuantity,
 sum(MiscQuantity) AS MiscQuantity, 
 ReceivedTime 
 FROM(SELECT  
-stls.FASortGroup1 AS SortGroup1, stls.FAPieceNumber AS PieceNumber, 
+std.SortGroup1, std.PieceMark, 
 sum(COALESCE(stls.FAQuantity,0)) AS ShakeQuantity,
 0 AS ErectQuantity,
 0 AS BoltoutQuantity,
@@ -4207,6 +4027,8 @@ LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 JOIN SteelFA stls
 	ON stls.ActivityID = sas.ActivityID AND sas.ActivityID = 61
+JOIN SteelTrackerDetails std
+	ON std.BidID = stls.FABidID
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4218,7 +4040,7 @@ WHERE ((
 	AND (tcr.GF LIKE :GF OR tcr.Foreman LIKE :Foreman)
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
-GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceMark, Date(sd.ReceivedTime)   
 
 
 
@@ -4227,7 +4049,7 @@ UNION
 
 
 SELECT  
-stle.FASortGroup1 AS SortGroup1, stle.FAPieceNumber AS PieceNumber,
+std.SortGroup1, std.PieceMark,
 0,
 TRUNCATE(sum(COALESCE(stle.FAQuantity * stle.FAPercentCompleted,0)),2),
 0,0,0,0,0,0,
@@ -4243,6 +4065,8 @@ LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 JOIN SteelFA stle
 	ON stle.ActivityID = sas.ActivityID AND sas.Activitytype = 62
+JOIN SteelTrackerDetails std
+	ON std.BidID = stle.FABidID
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4255,7 +4079,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceMark, Date(sd.ReceivedTime)   
 
 
 
@@ -4264,7 +4088,7 @@ UNION
 
 
 SELECT  
-stlb.FASortGroup1 AS SortGroup1, stlb.FAPieceNumber AS PieceNumber,
+std.SortGroup1, std.PieceMark,
 0,0,
 TRUNCATE(sum(COALESCE(stlb.FAQuantity * stlb.FAPercentCompleted,0)),2),
 0,0,0,0,0,
@@ -4280,6 +4104,8 @@ LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 JOIN SteelFA stlb
 	ON stlb.ActivityID = sas.ActivityID AND sas.ActivityType = 63
+JOIN SteelTrackerDetails std
+	ON std.BidID = stlb.FABidID
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4292,7 +4118,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceMark, Date(sd.ReceivedTime)   
 
 
 
@@ -4301,7 +4127,7 @@ UNION
 
 
 SELECT  
-stli.FASortGroup1 AS SortGroup1, stli.FAPieceNumber AS PieceNumber,
+std.SortGroup1, std.PieceMark,
 0,0,0,
 TRUNCATE(sum(COALESCE(stli.FAQuantity * stli.FAPercentCompleted,0)),2),
 0,0,0,0,
@@ -4317,6 +4143,8 @@ LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 JOIN SteelFA stli
 	ON stli.ActivityID = sas.ActivityID AND sas.ActivityType = 64
+JOIN SteelTrackerDetails std
+	ON std.BidID = stli.FABidID
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4329,7 +4157,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceMark, Date(sd.ReceivedTime)   
 
 
 
@@ -4338,7 +4166,7 @@ UNION
 
 
 SELECT  
-stlw.FASortGroup1 AS SortGroup1, stlw.FAPieceNumber AS PieceNumber,
+std.SortGroup1, std.PieceMark,
 0,0,0,0,
 TRUNCATE(sum(COALESCE(stlw.FAQuantity * stlw.FAPercentCompleted,0)),2),
 0,0,0,
@@ -4354,6 +4182,8 @@ LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 JOIN SteelFA stlw
 	ON stlw.ActivityID = sas.ActivityID AND sas.ActivityType = 68
+JOIN SteelTrackerDetails std
+	ON std.BidID = stlw.FABidID
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4366,7 +4196,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceMark, Date(sd.ReceivedTime)   
 
 
 
@@ -4375,7 +4205,7 @@ UNION
 
 
 SELECT  
-stlsell.FASortGroup1 AS SortGroup1, stlsell.FAPieceNumber AS PieceNumber,
+std.SortGroup1, std.PieceMark,
 0,0,0,0,0,
 TRUNCATE(sum(COALESCE(stlsell.FAQuantity,0)),2),
 0,0,
@@ -4391,6 +4221,8 @@ LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 JOIN SteelFA stlsell
 	ON stlsell.ActivityID = sas.ActivityID AND sas.ActivityType = 65
+JOIN SteelTrackerDetails std
+	ON std.BidID = stlsell.FABidID
 
 WHERE ((
 	(tc.ProjectManager LIKE :PM OR tc.ConstructionManager LIKE :ConstM OR tc.SiteManager LIKE :SiteM OR tc.AreaManager LIKE :AreaM) 
@@ -4403,7 +4235,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceMark, Date(sd.ReceivedTime)   
 
 
 
@@ -4412,7 +4244,7 @@ UNION
 
 
 SELECT  
-std.SortGroup1 AS SortGroup1, std.Description AS PieceNumber,
+std.SortGroup1, std.Description,
 0,0,0,0,0,0,
 TRUNCATE(sum(COALESCE(stld.DemoPercentCompleted * std.TakeOffQuantity,0)),2),
 0,
@@ -4443,7 +4275,7 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)   
+GROUP BY SortGroup1, PieceMark, Date(sd.ReceivedTime)   
 
 
 
@@ -4452,7 +4284,7 @@ UNION
 
 
 SELECT  
-std.SortGroup1 AS SortGroup1, std.Description AS PieceNumber,
+std.SortGroup1, std.Description,
 0,0,0,0,0,0,0,
 TRUNCATE(sum(COALESCE(stlm.MiscPercentCompleted * std.TakeOffQuantity,0)),2),
 
@@ -4483,9 +4315,9 @@ WHERE ((
     ))
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate
 
-GROUP BY SortGroup1, PieceNumber, Date(sd.ReceivedTime)
+GROUP BY SortGroup1, PieceMark, Date(sd.ReceivedTime)
 ) t
-GROUP BY t.SortGroup1, t.PieceNumber, Date(t.ReceivedTime)) wmTempTable
+GROUP BY t.SortGroup1, t.PieceMark, Date(t.ReceivedTime)) wmTempTable
         ]]>
     <query-param name="PM" type="java.lang.String"/>
     <query-param name="ConstM" type="java.lang.String"/>
@@ -4697,10 +4529,10 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, u.FullName AS ForemanName, sd.CompleteTime,
-null AS BidID, stlfa.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
+stlfa.FABidID AS BidID, std.PieceMark AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stlfa.FANotes, stlfa.FAQuantity AS Quantity, stlfa.FASortGroup1, stlfa.FAPercentCompleted AS PercentClaim, stlfa.FARework AS Rework
+stlfa.FANotes, stlfa.FAQuantity AS Quantity, std.SortGroup1, stlfa.FAPercentCompleted AS PercentClaim, stlfa.FARework AS Rework
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
 	ON at.ID =sas.ActivityType
@@ -4708,6 +4540,8 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
 JOIN SteelFA stlfa
 	ON stlfa.ActivityID = sas.ActivityID
+JOIN SteelTrackerDetails std
+	ON std.BidID = stlfa.FABidID
 JOIN SubsDetails sd
 	ON sd.SubmissionID = sas.SubmissionID
 JOIN PSA.tblUserPSA u
@@ -4755,7 +4589,7 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 null AS BidID, stlsp.SellTestPackageNumber AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stlsp.SellNotes, 1 AS Quantity, 'N/A', 1.00 AS PercentClaim, 0 AS Rework
+stlsp.SellNotes, 1 AS Quantity, 'N/A' AS Area, 1.00 AS PercentClaim, 0 AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -4782,7 +4616,7 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 stlm.MiscBidID AS BidID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stlm.MiscNotes, 1 AS Quantity, 'N/A', MiscPercentCompleted AS PercentClaim, stlm.MiscRework AS Rework
+stlm.MiscNotes, 1 AS Quantity, 'N/A' AS Area, MiscPercentCompleted AS PercentClaim, stlm.MiscRework AS Rework
  
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -5092,10 +4926,10 @@ UNION
 
 
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'STEEL' AS Craft, u.FullName AS ForemanName, sd.CompleteTime,
-null AS BidID, stlfa.FAPieceNumber AS Spool1, 'N/A' AS Spool2, 
+stlfa.FABidID AS BidID, std.PieceMark AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stlfa.FANotes, stlfa.FAQuantity AS Quantity, stlfa.FASortGroup1, stlfa.FAPercentCompleted AS PercentClaim, stlfa.FARework AS Rework
+stlfa.FANotes, stlfa.FAQuantity AS Quantity, std.SortGroup1, stlfa.FAPercentCompleted AS PercentClaim, stlfa.FARework AS Rework
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
 	ON at.ID =sas.ActivityType
@@ -5103,6 +4937,8 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
 JOIN SteelFA stlfa
 	ON stlfa.ActivityID = sas.ActivityID
+JOIN SteelTrackerDetails std
+	ON std.BidID = stlfa.FABidID
 JOIN SubsDetails sd
 	ON sd.SubmissionID = sas.SubmissionID
 JOIN PSA.tblUserPSA u
@@ -5150,7 +4986,7 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 null AS BidID, stlsp.SellTestPackageNumber AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stlsp.SellNotes, 1 AS Quantity, 'N/A', 1.00 AS PercentClaim, 0 AS Rework
+stlsp.SellNotes, 1 AS Quantity, 'N/A' AS Area, 1.00 AS PercentClaim, 0 AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -5177,7 +5013,7 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 stlm.MiscBidID AS BidID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stlm.MiscNotes, 1 AS Quantity, 'N/A', MiscPercentCompleted AS PercentClaim, stlm.MiscRework AS Rework
+stlm.MiscNotes, 1 AS Quantity, 'N/A' AS Area, MiscPercentCompleted AS PercentClaim, stlm.MiscRework AS Rework
  
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -5387,8 +5223,8 @@ ORDER BY TimeStamp DESC) wmTempTable
         SELECT 
 sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName,  
 
-efa.FATagNumber AS TagNumber, 
-efa.FAActivitySelect AS Description,
+etd.ComponentNumber AS TagNumber, 
+etd.Description,
 CONCAT(efa.FAPercentCompleted * 100,"%") AS QuantityInstalled,
 ats.Status AS CurrentStatus,
 efa.FARework AS Rework,
@@ -5411,6 +5247,8 @@ JOIN PSA.REF_ActivityStatuses ats
     
 JOIN EquipFA efa
 	ON efa.ActivityID = sas.ActivityID 
+JOIN EquipTrackerDetails etd
+    ON etd.BidID = efa.FABidID
         
 
 AND (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
@@ -5431,8 +5269,8 @@ AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate + INTERVAL 1 day
         select count(*) from (SELECT 
 sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName,  
 
-efa.FATagNumber AS TagNumber, 
-efa.FAActivitySelect AS Description,
+etd.ComponentNumber AS TagNumber, 
+etd.Description,
 CONCAT(efa.FAPercentCompleted * 100,"%") AS QuantityInstalled,
 ats.Status AS CurrentStatus,
 efa.FARework AS Rework,
@@ -5455,6 +5293,8 @@ JOIN PSA.REF_ActivityStatuses ats
     
 JOIN EquipFA efa
 	ON efa.ActivityID = sas.ActivityID 
+JOIN EquipTrackerDetails etd
+    ON etd.BidID = efa.FABidID
         
 
 AND (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
@@ -6903,7 +6743,7 @@ GROUP BY BidID) wmTempTable
 
     <sql-query name="GetActivitiesPendingReviewSteel">
         <![CDATA[
-        SELECT fas.SubmissionID, fas.fk_ActivityStatus, fas.Status, fas.ReceivedTime, fas.NameFull, fas.PieceMark, fas.SortGroup1,
+        SELECT fas.SubmissionID, fas.FABidID, fas.fk_ActivityStatus, fas.Status, fas.ReceivedTime, fas.NameFull, std.PieceMark, std.SortGroup1,
 SUM(QuantityShake) AS QuantityShake,
 SUM(QuantityErect) AS QuantityErect,
 SUM(QuantityBoltOut) AS QuantityBoltOut,
@@ -6913,9 +6753,7 @@ SUM(QuantityWeld) AS QuantityWeld
 FROM (
 SELECT sd.SubmissionID, sas.fk_ActivityStatus, ats.Status, sd.ReceivedTime, 
 CONCAT(u.FirstName, " ", u.LastName) AS NameFull, 
-(COALESCE(stls.FASortGroup1,COALESCE(stle.FASortGroup1,COALESCE(stlb.FASortGroup1, COALESCE(stli.FASortGroup1, COALESCE(stlsell.FASortGroup1, COALESCE(stlw.FASortGroup1,'N/A'))))))) AS SortGroup1,
-
-(COALESCE(stls.FAPieceNumber,COALESCE(stle.FAPieceNumber,COALESCE(stlb.FAPieceNumber, COALESCE(stli.FAPieceNumber, COALESCE(stlsell.FAPieceNumber, COALESCE(stlw.FAPieceNumber,'N/A'))))))) AS PieceMark,
+(COALESCE(stls.FABidID,COALESCE(stle.FABidID,COALESCE(stlb.FABidID, COALESCE(stli.FABidID, COALESCE(stlsell.FABidID, COALESCE(stlw.FABidID,'N/A'))))))) AS FABidID,
 
 (COALESCE(stls.FAQuantity,0) * COALESCE(stls.FAPercentCompleted,0)) AS QuantityShake,
 (COALESCE(stle.FAQuantity,0) * COALESCE(stle.FAPercentCompleted,0)) AS QuantityErect,
@@ -6956,14 +6794,16 @@ AND sas.fk_ActivityStatus in (1,4,6,8,10)
 AND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)
 
 ORDER BY sd.SubmissionID DESC ) fas
-GROUP BY fas.SubmissionID, fas.PieceMark, fas.fk_ActivityStatus
+JOIN SteelTrackerDetails std
+    ON std.BidID = fas.FABidID
+GROUP BY fas.SubmissionID, std.PieceMark, fas.fk_ActivityStatus
         ]]>
     <query-param name="SuperID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetActivitiesPendingReviewSteel__count">
         <![CDATA[
-        select count(*) from (SELECT fas.SubmissionID, fas.fk_ActivityStatus, fas.Status, fas.ReceivedTime, fas.NameFull, fas.PieceMark, fas.SortGroup1,
+        select count(*) from (SELECT fas.SubmissionID, fas.FABidID, fas.fk_ActivityStatus, fas.Status, fas.ReceivedTime, fas.NameFull, std.PieceMark, std.SortGroup1,
 SUM(QuantityShake) AS QuantityShake,
 SUM(QuantityErect) AS QuantityErect,
 SUM(QuantityBoltOut) AS QuantityBoltOut,
@@ -6973,9 +6813,7 @@ SUM(QuantityWeld) AS QuantityWeld
 FROM (
 SELECT sd.SubmissionID, sas.fk_ActivityStatus, ats.Status, sd.ReceivedTime, 
 CONCAT(u.FirstName, " ", u.LastName) AS NameFull, 
-(COALESCE(stls.FASortGroup1,COALESCE(stle.FASortGroup1,COALESCE(stlb.FASortGroup1, COALESCE(stli.FASortGroup1, COALESCE(stlsell.FASortGroup1, COALESCE(stlw.FASortGroup1,'N/A'))))))) AS SortGroup1,
-
-(COALESCE(stls.FAPieceNumber,COALESCE(stle.FAPieceNumber,COALESCE(stlb.FAPieceNumber, COALESCE(stli.FAPieceNumber, COALESCE(stlsell.FAPieceNumber, COALESCE(stlw.FAPieceNumber,'N/A'))))))) AS PieceMark,
+(COALESCE(stls.FABidID,COALESCE(stle.FABidID,COALESCE(stlb.FABidID, COALESCE(stli.FABidID, COALESCE(stlsell.FABidID, COALESCE(stlw.FABidID,'N/A'))))))) AS FABidID,
 
 (COALESCE(stls.FAQuantity,0) * COALESCE(stls.FAPercentCompleted,0)) AS QuantityShake,
 (COALESCE(stle.FAQuantity,0) * COALESCE(stle.FAPercentCompleted,0)) AS QuantityErect,
@@ -7016,7 +6854,9 @@ AND sas.fk_ActivityStatus in (1,4,6,8,10)
 AND (tc.Superintendent = :SuperID OR tcr.Superintendent = :SuperID)
 
 ORDER BY sd.SubmissionID DESC ) fas
-GROUP BY fas.SubmissionID, fas.PieceMark, fas.fk_ActivityStatus) wmTempTable
+JOIN SteelTrackerDetails std
+    ON std.BidID = fas.FABidID
+GROUP BY fas.SubmissionID, std.PieceMark, fas.fk_ActivityStatus) wmTempTable
         ]]>
     <query-param name="SuperID" type="java.lang.Integer"/>
     </sql-query>
@@ -7260,10 +7100,7 @@ WHERE Label = 'SteelShakeHoursPercent') wmTempTable
 
     <sql-query name="GetBidActivityMatchesByTestPackageSteel">
         <![CDATA[
-        SELECT std.BidID, std.ProjectServicesRep, std.EWONumber, std.Scope, std.Phase, std.Stage, std.TestPackageNumber, std.WorkPackage, std.CostCode, std.P6ID, std.P6Description, std.Area, std.Location, std.Structure, std.CU, std.Elevation,   
-std.SortGroup1, std.PieceMark, std.PieceMarkRev, std.Description, std.ActivityType, std.ClientMaterialSpec, std.PerformanceMaterialSpec, std.MaterialType, std.Length, std.Weight, std.System, std.Service,
-std.TakeOffQuantity, std.WeldCount, std.SteelHours, std.WeldHours, 
-std.WBS1, std.WBS2, std.WBS3, std.WBS4, std.WBS5, std.WBS6, std.WBS7, std.WBS8, std.WBS9, std.WBS10,
+        SELECT std.*,
 
 ### Installed Quantities ###
 sum(COALESCE(stlsell.FAQuantity,0)) AS InstalledSell,
@@ -7271,18 +7108,15 @@ sum(COALESCE(stlsell.FAQuantity,0)) AS InstalledSell,
 ### Remaining Quantities ###
 (COALESCE(std.TakeOffQuantity,0) - sum(COALESCE(stlsell.FAQuantity,0))) AS RemainingSell
 
-FROM (SELECT BidID, ProjectServicesRep, EWONumber, Scope, Phase, Stage, TestPackageNumber, WorkPackage, CostCode, P6ID, P6Description, Area, Location, Structure, CU, Elevation, SortGroup1,  PieceMark, PieceMarkRev, Description, ActivityType, ClientMaterialSpec, PerformanceMaterialSpec, MaterialType, Length, Weight, System, Service,
-		sum(TakeOffQuantity) AS TakeOffQuantity, sum(WeldCount) AS WeldCount, sum(SteelHours) AS SteelHours, sum(WeldHours) AS WeldHours,
-        WBS1, WBS2, WBS3, WBS4, WBS5, WBS6, WBS7, WBS8, WBS9, WBS10
-		FROM SteelTrackerDetails 
-        WHERE TestPackageNumber = :TestPackage
-		GROUP BY BidID) std
+FROM SteelTrackerDetails std
 
 LEFT JOIN SubmissionActivityStatus sas
 	ON sas.fk_BidIDAssigned = std.BidID AND sas.ActivityType = 65 AND sas.fk_ActivityStatus IN (5,12)
     
 LEFT JOIN SteelFA stlsell
 	ON stlsell.ActivityID = sas.ActivityID AND stlsell.FARework = 0
+
+WHERE TestPackageNumber = :TestPackage
   
 GROUP BY BidID
 ORDER BY std.SortGroup1, std.PieceMark
@@ -7292,10 +7126,7 @@ ORDER BY std.SortGroup1, std.PieceMark
 
     <sql-query name="GetBidActivityMatchesByTestPackageSteel__count">
         <![CDATA[
-        select count(*) from (SELECT std.BidID, std.ProjectServicesRep, std.EWONumber, std.Scope, std.Phase, std.Stage, std.TestPackageNumber, std.WorkPackage, std.CostCode, std.P6ID, std.P6Description, std.Area, std.Location, std.Structure, std.CU, std.Elevation,   
-std.SortGroup1, std.PieceMark, std.PieceMarkRev, std.Description, std.ActivityType, std.ClientMaterialSpec, std.PerformanceMaterialSpec, std.MaterialType, std.Length, std.Weight, std.System, std.Service,
-std.TakeOffQuantity, std.WeldCount, std.SteelHours, std.WeldHours, 
-std.WBS1, std.WBS2, std.WBS3, std.WBS4, std.WBS5, std.WBS6, std.WBS7, std.WBS8, std.WBS9, std.WBS10,
+        select count(*) from (SELECT std.*,
 
 ### Installed Quantities ###
 sum(COALESCE(stlsell.FAQuantity,0)) AS InstalledSell,
@@ -7303,18 +7134,15 @@ sum(COALESCE(stlsell.FAQuantity,0)) AS InstalledSell,
 ### Remaining Quantities ###
 (COALESCE(std.TakeOffQuantity,0) - sum(COALESCE(stlsell.FAQuantity,0))) AS RemainingSell
 
-FROM (SELECT BidID, ProjectServicesRep, EWONumber, Scope, Phase, Stage, TestPackageNumber, WorkPackage, CostCode, P6ID, P6Description, Area, Location, Structure, CU, Elevation, SortGroup1,  PieceMark, PieceMarkRev, Description, ActivityType, ClientMaterialSpec, PerformanceMaterialSpec, MaterialType, Length, Weight, System, Service,
-		sum(TakeOffQuantity) AS TakeOffQuantity, sum(WeldCount) AS WeldCount, sum(SteelHours) AS SteelHours, sum(WeldHours) AS WeldHours,
-        WBS1, WBS2, WBS3, WBS4, WBS5, WBS6, WBS7, WBS8, WBS9, WBS10
-		FROM SteelTrackerDetails 
-        WHERE TestPackageNumber = :TestPackage
-		GROUP BY BidID) std
+FROM SteelTrackerDetails std
 
 LEFT JOIN SubmissionActivityStatus sas
 	ON sas.fk_BidIDAssigned = std.BidID AND sas.ActivityType = 65 AND sas.fk_ActivityStatus IN (5,12)
     
 LEFT JOIN SteelFA stlsell
 	ON stlsell.ActivityID = sas.ActivityID AND stlsell.FARework = 0
+
+WHERE TestPackageNumber = :TestPackage
   
 GROUP BY BidID
 ORDER BY std.SortGroup1, std.PieceMark) wmTempTable

@@ -212,8 +212,8 @@ Application.$controller("dialogAssignTestingQuantitiesController", ["$scope",
 ]);
 
 Application.$controller("Table1Controller", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
 ]);

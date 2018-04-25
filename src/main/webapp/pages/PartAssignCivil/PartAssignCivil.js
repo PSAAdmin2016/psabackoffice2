@@ -4,7 +4,6 @@ Application.$controller("PartAssignCivilPageController", ["$scope", "DialogServi
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
         $scope.Variables.staticBrightLabel = false; //simple page scope variable needed for Flasher.
-
     };
 
 

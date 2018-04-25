@@ -17,13 +17,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UpdateSteelFaRequest implements Serializable {
 
 
-    @JsonProperty("FASortGroup1")
+    @JsonProperty("BidID")
     @NotNull
-    private String fasortGroup1;
-
-    @JsonProperty("Piece")
-    @NotNull
-    private String piece;
+    private Integer bidId;
 
     @JsonProperty("Quantity")
     @NotNull
@@ -49,20 +45,12 @@ public class UpdateSteelFaRequest implements Serializable {
     @NotNull
     private Integer activityId;
 
-    public String getFasortGroup1() {
-        return this.fasortGroup1;
+    public Integer getBidId() {
+        return this.bidId;
     }
 
-    public void setFasortGroup1(String fasortGroup1) {
-        this.fasortGroup1 = fasortGroup1;
-    }
-
-    public String getPiece() {
-        return this.piece;
-    }
-
-    public void setPiece(String piece) {
-        this.piece = piece;
+    public void setBidId(Integer bidId) {
+        this.bidId = bidId;
     }
 
     public Integer getQuantity() {
@@ -118,8 +106,7 @@ public class UpdateSteelFaRequest implements Serializable {
         if (this == o) return true;
         if (!(o instanceof UpdateSteelFaRequest)) return false;
         final UpdateSteelFaRequest updateSteelFaRequest = (UpdateSteelFaRequest) o;
-        return Objects.equals(getFasortGroup1(), updateSteelFaRequest.getFasortGroup1()) &&
-                Objects.equals(getPiece(), updateSteelFaRequest.getPiece()) &&
+        return Objects.equals(getBidId(), updateSteelFaRequest.getBidId()) &&
                 Objects.equals(getQuantity(), updateSteelFaRequest.getQuantity()) &&
                 Objects.equals(getPercentCompleted(), updateSteelFaRequest.getPercentCompleted()) &&
                 Objects.equals(getRework(), updateSteelFaRequest.getRework()) &&
@@ -130,8 +117,7 @@ public class UpdateSteelFaRequest implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getFasortGroup1(),
-                getPiece(),
+        return Objects.hash(getBidId(),
                 getQuantity(),
                 getPercentCompleted(),
                 getRework(),

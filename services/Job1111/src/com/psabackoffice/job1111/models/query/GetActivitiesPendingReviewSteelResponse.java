@@ -19,6 +19,9 @@ public class GetActivitiesPendingReviewSteelResponse implements Serializable {
     @ColumnAlias("SubmissionID")
     private Integer submissionId;
 
+    @ColumnAlias("FABidID")
+    private String fabidId;
+
     @ColumnAlias("fk_ActivityStatus")
     private Short fkActivityStatus;
 
@@ -61,6 +64,14 @@ public class GetActivitiesPendingReviewSteelResponse implements Serializable {
 
     public void setSubmissionId(Integer submissionId) {
         this.submissionId = submissionId;
+    }
+
+    public String getFabidId() {
+        return this.fabidId;
+    }
+
+    public void setFabidId(String fabidId) {
+        this.fabidId = fabidId;
     }
 
     public Short getFkActivityStatus() {
@@ -165,6 +176,7 @@ public class GetActivitiesPendingReviewSteelResponse implements Serializable {
         if (!(o instanceof GetActivitiesPendingReviewSteelResponse)) return false;
         final GetActivitiesPendingReviewSteelResponse getActivitiesPendingReviewSteelResponse = (GetActivitiesPendingReviewSteelResponse) o;
         return Objects.equals(getSubmissionId(), getActivitiesPendingReviewSteelResponse.getSubmissionId()) &&
+                Objects.equals(getFabidId(), getActivitiesPendingReviewSteelResponse.getFabidId()) &&
                 Objects.equals(getFkActivityStatus(), getActivitiesPendingReviewSteelResponse.getFkActivityStatus()) &&
                 Objects.equals(getStatus(), getActivitiesPendingReviewSteelResponse.getStatus()) &&
                 Objects.equals(getReceivedTime(), getActivitiesPendingReviewSteelResponse.getReceivedTime()) &&
@@ -182,6 +194,7 @@ public class GetActivitiesPendingReviewSteelResponse implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getSubmissionId(),
+                getFabidId(),
                 getFkActivityStatus(),
                 getStatus(),
                 getReceivedTime(),

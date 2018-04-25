@@ -13592,55 +13592,26 @@
         "type" : "user-defined"
       },
       "constraintList" : null,
-      "fieldName" : "fasortGroup1",
-      "foreignKey" : false,
+      "fieldName" : "fabidId",
+      "foreignKey" : true,
       "generatorType" : "assigned",
       "generatorValue" : null,
       "hidden" : false,
-      "javaType" : "string",
-      "length" : 45,
-      "name" : "FASortGroup1",
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "FABidID",
       "nullable" : true,
-      "oldName" : "FASortGroup1",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
+      "oldName" : "FABidID",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
       "partOfPrimaryKey" : false,
       "partOfUniqueKey" : false,
       "period" : false,
-      "precision" : 0,
+      "precision" : 10,
       "primaryKey" : false,
       "scale" : 0,
       "sequenceSchema" : null,
-      "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null,
-        "type" : "user-defined"
-      },
-      "constraintList" : null,
-      "fieldName" : "fapieceNumber",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "hidden" : false,
-      "javaType" : "string",
-      "length" : 45,
-      "name" : "FAPieceNumber",
-      "nullable" : true,
-      "oldName" : "FAPieceNumber",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "period" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "string",
+      "sqlType" : "number",
       "unique" : false
     }, {
       "columnValue" : {
@@ -13894,6 +13865,35 @@
       "virtual" : false
     },
     "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "steelTrackerDetails",
+      "mappings" : [ {
+        "sourceColumn" : "FABidID",
+        "targetColumn" : "BidID"
+      } ],
+      "name" : "SteelFA_BidID_to_STDBidID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "SteelFA",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SteelTrackerDetails",
+      "virtual" : false
+    }, {
       "cardinality" : "OneToOne",
       "cascadeOptions" : {
         "cascadeRemove" : "NONE",
@@ -14209,35 +14209,6 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "OneToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "NONE",
-        "cascadeReplace" : true
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "submissionActivityStatus",
-      "mappings" : [ {
-        "sourceColumn" : "ActivityID",
-        "targetColumn" : "ActivityID"
-      } ],
-      "name" : "SteelMisc_ActivityID_to_SASActivityID",
-      "parentFetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "SteelMisc",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "SubmissionActivityStatus",
-      "virtual" : false
-    }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
         "cascadeRemove" : "NONE",
@@ -14265,6 +14236,35 @@
       "sourceTable" : "SteelMisc",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "SteelTrackerDetails",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "submissionActivityStatus",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "SteelMisc_ActivityID_to_SASActivityID",
+      "parentFetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "SteelMisc",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SubmissionActivityStatus",
       "virtual" : false
     } ],
     "schema" : null,

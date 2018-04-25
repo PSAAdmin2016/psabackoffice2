@@ -29,6 +29,7 @@ import com.wavemaker.runtime.data.util.DaoUtils;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SteelDemo;
+import com.psabackoffice.job1111.SteelFa;
 import com.psabackoffice.job1111.SteelMisc;
 import com.psabackoffice.job1111.SteelTrackerDetails;
 
@@ -43,6 +44,11 @@ import com.psabackoffice.job1111.SteelTrackerDetails;
 public class SteelTrackerDetailsServiceImpl implements SteelTrackerDetailsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SteelTrackerDetailsServiceImpl.class);
+
+    @Lazy
+    @Autowired
+	@Qualifier("Job1111.SteelFaService")
+	private SteelFaService steelFaService;
 
     @Lazy
     @Autowired
@@ -98,9 +104,13 @@ public class SteelTrackerDetailsServiceImpl implements SteelTrackerDetailsServic
         LOGGER.debug("Updating SteelTrackerDetails with information: {}", steelTrackerDetails);
 
         List<SteelDemo> steelDemos = steelTrackerDetails.getSteelDemos();
+        List<SteelFa> steelFas = steelTrackerDetails.getSteelFas();
         List<SteelMisc> steelMiscs = steelTrackerDetails.getSteelMiscs();
         if(steelDemos != null && Hibernate.isInitialized(steelDemos)) {
             steelDemos.forEach(_steelDemo -> _steelDemo.setSteelTrackerDetails(steelTrackerDetails));
+        }
+        if(steelFas != null && Hibernate.isInitialized(steelFas)) {
+            steelFas.forEach(_steelFa -> _steelFa.setSteelTrackerDetails(steelTrackerDetails));
         }
         if(steelMiscs != null && Hibernate.isInitialized(steelMiscs)) {
             steelMiscs.forEach(_steelMisc -> _steelMisc.setSteelTrackerDetails(steelTrackerDetails));
@@ -117,6 +127,16 @@ public class SteelTrackerDetailsServiceImpl implements SteelTrackerDetailsServic
             LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
             _remainingChildren.forEach(_steelDemo -> steelDemoService.delete(_steelDemo));
             steelTrackerDetails.setSteelDemos(steelDemos);
+        }
+
+        // Deleting children which are not present in the list.
+        if(steelFas != null && Hibernate.isInitialized(steelFas) && !steelFas.isEmpty()) {
+            List<SteelFa> _remainingChildren = wmGenericDao.execute(
+                session -> DaoUtils.findAllRemainingChildren(session, SteelFa.class,
+                        new DaoUtils.ChildrenFilter<>("steelTrackerDetails", steelTrackerDetails, steelFas)));
+            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
+            _remainingChildren.forEach(_steelFa -> steelFaService.delete(_steelFa));
+            steelTrackerDetails.setSteelFas(steelFas);
         }
 
         // Deleting children which are not present in the list.
@@ -198,6 +218,17 @@ public class SteelTrackerDetailsServiceImpl implements SteelTrackerDetailsServic
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
+    public Page<SteelFa> findAssociatedSteelFas(Integer uid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated steelFas");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("steelTrackerDetails.uid = '" + uid + "'");
+
+        return steelFaService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "Job1111TransactionManager")
+    @Override
     public Page<SteelMisc> findAssociatedSteelMiscs(Integer uid, Pageable pageable) {
         LOGGER.debug("Fetching all associated steelMiscs");
 
@@ -205,6 +236,15 @@ public class SteelTrackerDetailsServiceImpl implements SteelTrackerDetailsServic
         queryBuilder.append("steelTrackerDetails.uid = '" + uid + "'");
 
         return steelMiscService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service SteelFaService instance
+	 */
+	protected void setSteelFaService(SteelFaService service) {
+        this.steelFaService = service;
     }
 
     /**

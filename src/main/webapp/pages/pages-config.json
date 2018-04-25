@@ -95,6 +95,19 @@
     "type" : "integer"
   } ]
 }, {
+  "name" : "PartAssignSteel",
+  "type" : "PARTIAL",
+  "params" : [ {
+    "name" : "BidID",
+    "type" : "integer"
+  }, {
+    "name" : "ActivityID",
+    "type" : "integer"
+  }, {
+    "name" : "ActivityTypeID",
+    "type" : "integer"
+  } ]
+}, {
   "name" : "PartFACivilSellPackage",
   "type" : "PARTIAL",
   "params" : [ ]
@@ -186,6 +199,9 @@
   }, {
     "name" : "BidID",
     "type" : "integer"
+  }, {
+    "name" : "TestPackage",
+    "type" : "string"
   } ]
 }, {
   "name" : "PartPSRSteel",
@@ -195,6 +211,12 @@
     "type" : "integer"
   }, {
     "name" : "BidID",
+    "type" : "integer"
+  }, {
+    "name" : "TestPackage",
+    "type" : "string"
+  }, {
+    "name" : "ActivityTypeID",
     "type" : "integer"
   } ]
 }, {
@@ -399,12 +421,6 @@
   "params" : [ {
     "name" : "PageLoadFiltered",
     "type" : "boolean"
-  }, {
-    "name" : "PageLoadArea",
-    "type" : "string"
-  }, {
-    "name" : "PageLoadPieceMark",
-    "type" : "string"
   }, {
     "name" : "PageLoadTestPackage",
     "type" : "string"

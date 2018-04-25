@@ -80,6 +80,7 @@ public class SteelTrackerDetails implements Serializable {
     private short rev;
     private Timestamp timeStamp;
     private List<SteelDemo> steelDemos;
+    private List<SteelFa> steelFas;
     private List<SteelMisc> steelMiscs;
 
     @Id
@@ -512,6 +513,17 @@ public class SteelTrackerDetails implements Serializable {
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "steelTrackerDetails")
     @Cascade({CascadeType.SAVE_UPDATE})
+    public List<SteelFa> getSteelFas() {
+        return this.steelFas;
+    }
+
+    public void setSteelFas(List<SteelFa> steelFas) {
+        this.steelFas = steelFas;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "steelTrackerDetails")
+    @Cascade({CascadeType.SAVE_UPDATE})
     public List<SteelMisc> getSteelMiscs() {
         return this.steelMiscs;
     }
@@ -524,6 +536,9 @@ public class SteelTrackerDetails implements Serializable {
     public void onPostPersist() {
         if(steelDemos != null) {
             steelDemos.forEach(steelDemo -> steelDemo.setSteelTrackerDetails(this));
+        }
+        if(steelFas != null) {
+            steelFas.forEach(steelFa -> steelFa.setSteelTrackerDetails(this));
         }
         if(steelMiscs != null) {
             steelMiscs.forEach(steelMisc -> steelMisc.setSteelTrackerDetails(this));

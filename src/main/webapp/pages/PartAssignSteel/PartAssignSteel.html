@@ -1,0 +1,262 @@
+<wm-partial data-ng-controller="PartAssignSteelPageController" name="partial1">
+    <wm-container name="containermain" padding="2%">
+        <wm-layoutgrid name="layoutgrid34">
+            <wm-gridrow name="gridrow67">
+                <wm-gridcolumn columnwidth="3" name="gridcolumn157_1">
+                    <wm-label name="label213_2" width="100%" caption="Pending Activity" fontweight="bold" fontsize="14"></wm-label>
+                </wm-gridcolumn>
+                <wm-gridcolumn columnwidth="8" name="gridcolumn162_1" horizontalalign="center">
+                    <wm-label caption="Current Quantity" fontweight="bold" fontsize="14" name="label214_1" hint="All Totals/Quantities, And percentages are BEFORE the current activity is added." margin="unset unset 0px unset"></wm-label>
+                </wm-gridcolumn>
+            </wm-gridrow>
+            <wm-gridrow name="gridrow113">
+                <wm-gridcolumn columnwidth="3" name="gridcolumn189">
+                    <wm-container name="container109_1" borderstyle="solid" borderwidth="5px" padding="4% unset 6% 4%">
+                        <wm-layoutgrid name="layoutgrid38_2">
+                            <wm-gridrow name="gridrow114">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn191_1">
+                                    <wm-composite name="composite109_1" captionposition="top" show="bind:pageParams.ActivityTypeID == 61" margin="0px unset">
+                                        <wm-label class="col-md-3" name="label132_1" caption="Shake-out" hint="The amount installed by this current Activity" fontweight="bold"></wm-label>
+                                    </wm-composite>
+                                    <wm-composite captionposition="top" name="composite114" show="bind:pageParams.ActivityTypeID == 62" margin="0px unset">
+                                        <wm-label class="col-md-3" caption="Erected" hint="The amount installed by this current Activity" name="label160" fontweight="bold"></wm-label>
+                                    </wm-composite>
+                                    <wm-composite captionposition="top" name="composite117" show="bind:pageParams.ActivityTypeID == 63" margin="0px unset">
+                                        <wm-label class="col-md-3" caption="Bolted" hint="The amount installed by this current Activity" name="label163" fontweight="bold"></wm-label>
+                                    </wm-composite>
+                                    <wm-composite captionposition="top" name="composite120" show="bind:pageParams.ActivityTypeID == 64" margin="0px unset">
+                                        <wm-label class="col-md-3" caption="Impacted" hint="The amount installed by this current Activity" name="label166" fontweight="bold"></wm-label>
+                                    </wm-composite>
+                                    <wm-composite captionposition="top" show="bind:pageParams.ActivityTypeID == 68" name="composite181" margin="0px unset">
+                                        <wm-label class="col-md-3" caption="Welded" hint="The amount installed by this current Activity" name="label285_1" fontweight="bold"></wm-label>
+                                    </wm-composite>
+                                    <wm-composite captionposition="top" show="bind:pageParams.ActivityTypeID == 65" margin="0px unset" name="composite79_1">
+                                        <wm-label class="col-md-3" caption="Sold" hint="The amount removed by this current Activity" fontweight="bold" name="label204_1"></wm-label>
+                                    </wm-composite>
+                                    <wm-composite captionposition="top" show="bind:pageParams.ActivityTypeID == 67" margin="0px unset" name="composite92_1">
+                                        <wm-label class="col-md-3" caption="Demo" hint="The amount installed by this current Activity" fontweight="bold" name="label220_3"></wm-label>
+                                    </wm-composite>
+                                    <wm-composite captionposition="top" show="bind:pageParams.ActivityTypeID == 96" margin="0px unset" name="composite71_1">
+                                        <wm-label class="col-md-3" caption="Misc" hint="The amount installed by this current Activity" fontweight="bold" name="label188"></wm-label>
+                                    </wm-composite>
+                                    <wm-text name="textInstalled" hint="The amount installed by this current Activity" datavalue="bind:($parent.$parent.$parent.$parent.$parent.$parent.Widgets.gridApprovalReview.selecteditem.Quantity * $parent.$parent.$parent.$parent.$parent.$parent.Widgets.gridApprovalReview.selecteditem.PercentClaim) | numberToString: '2'"
+                                        type="number" updateon="default" backgroundcolor="#b1efe4" readonly="true" width="80%" disabled="false" placeholder="Enter Quantity" scopedatavalue="textInstalled" margin="unset unset 0px unset" color="#000000"></wm-text>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                            <wm-gridrow name="gridrow115">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn193_1">
+                                    <wm-composite name="composite183" captionposition="top" margin="unset unset 0px unset">
+                                        <wm-label class="col-md-3 control-label" name="label236_1" caption="Hours Earned" fontweight="bold"></wm-label>
+                                    </wm-composite>
+                                    <wm-container class="col-md-9" name="containerErectionHrsEarned" show="bind:pageParams.ActivityTypeID == 61">
+                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.ShakeHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number" updateon="default" backgroundcolor="#b1efe4"
+                                            readonly="true" disabled="false" placeholder="Enter Quantity" name="textShakeHrsEarned" color="#000000"></wm-text>
+                                    </wm-container>
+                                    <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 62" name="container102_3">
+                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.ErectHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number" updateon="default" backgroundcolor="#b1efe4"
+                                            readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textErectHrsEarned"></wm-text>
+                                    </wm-container>
+                                    <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 63" name="container104_2">
+                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.BoltoutHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number" updateon="default" backgroundcolor="#b1efe4"
+                                            readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textBoltoutHrsEarned"></wm-text>
+                                    </wm-container>
+                                    <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 64" name="container105">
+                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.ImpHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number" updateon="default" backgroundcolor="#b1efe4"
+                                            readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textImpHrsEarned"></wm-text>
+                                    </wm-container>
+                                    <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 68" name="container106_2">
+                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.WeldHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number" updateon="default" backgroundcolor="#b1efe4"
+                                            readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textWeldHrsEarned"></wm-text>
+                                    </wm-container>
+                                    <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 65" name="container107">
+                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.SellHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number" updateon="default" backgroundcolor="#b1efe4"
+                                            readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textSellHrsEarned"></wm-text>
+                                    </wm-container>
+                                    <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 67" name="container108">
+                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.DemoHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity  * textInstalled " type="number" updateon="default" backgroundcolor="#b1efe4"
+                                            readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textDemoHrsEarned"></wm-text>
+                                    </wm-container>
+                                    <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 96" name="container109">
+                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.MiscHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number" updateon="default" backgroundcolor="#b1efe4"
+                                            readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textMiscHrsEarned"></wm-text>
+                                    </wm-container>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                        </wm-layoutgrid>
+                    </wm-container>
+                </wm-gridcolumn>
+                <wm-gridcolumn columnwidth="8" name="gridcolumn190_1">
+                    <wm-container name="container110">
+                        <wm-container borderstyle="solid" borderwidth="5px" name="container111" margin="unset unset unset 1%" padding="2% unset unset 4%" bordercolor="#c1c1c1">
+                            <wm-layoutgrid name="layoutgrid39_1">
+                                <wm-gridrow name="gridrow116">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn195_1">
+                                        <wm-composite name="composite110" captionposition="top">
+                                            <wm-label class="col-md-3" name="label133_2" caption="Total Quantity" fontweight="bold"></wm-label>
+                                            <wm-container class="col-md-9" name="container105_1" show="bind:pageParams.ActivityTypeID != 68">
+                                                <wm-label name="label289" caption="bind:Variables.serviceGetQuantities.firstRecord.SteelQuantity | toNumber: '2'"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" name="container94_1" show="bind:pageParams.ActivityTypeID == 68">
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.WeldQuantity | toNumber: '2'" name="label189"></wm-label>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn196">
+                                        <wm-composite name="composite111" captionposition="top">
+                                            <wm-label class="col-md-3" name="label134_1" caption="Remaining Quantity" hint="Remaining quantity BEFORE current activity is added" fontweight="bold"></wm-label>
+                                            <wm-container class="col-md-9" name="container106" show="bind:pageParams.ActivityTypeID == 61">
+                                                <wm-label name="labelShakeRemaining" caption="bind:Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledShake | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" name="container176" show="bind:pageParams.ActivityTypeID == 62">
+                                                <wm-label name="labelErectRemaining" caption="bind:Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledErect | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 63" name="container177_1">
+                                                <wm-label name="labelBoltoutRemaining" caption="bind:Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledBoltout | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" show="false" name="container178">
+                                                <wm-text tabindex="1" readonly="true" hint="Remaining quantity BEFORE current activity is added" type="number" datavalue="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityLFInstalled.dataSet[$i].Total"
+                                                    name="text126"></wm-text>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 64" name="container191">
+                                                <wm-label name="labelImpRemaining" caption="bind:Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledImp | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 68" name="container186">
+                                                <wm-label name="labelWeldRemaining" caption="bind:Variables.serviceGetQuantities.firstRecord.WeldQuantity - Variables.serviceGetQuantities.firstRecord.InstalledWeld | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 65" name="container87">
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledSell | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added" name="labelSellRemaining"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 67" name="container101_1">
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledDemo | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added" name="labelDemoRemaining"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 96" name="container104_1">
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledMisc | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added" name="labelMiscRemaining"></wm-label>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow117_1">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn197_1">
+                                        <wm-composite name="composite182" captionposition="top">
+                                            <wm-label class="col-md-3 control-label" name="label235_2" caption="Total Hours" hint="Total man hours for this Bid Activity MINUS Hydro" fontweight="bold"></wm-label>
+                                            <wm-container class="col-md-9" name="container174_1" show="bind:pageParams.ActivityTypeID == 61">
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.ShakeHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelShakelHours"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" name="container95_1" show="bind:pageParams.ActivityTypeID == 62">
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.ErectHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelErectHours"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 63" name="container99_1">
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.BoltoutHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelBoltoutHours"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 64" name="container100_1">
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.ImpHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelImpHours"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 68" name="container101_2">
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.WeldHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelWeldHours"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 65" name="container102_2">
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.SellHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelSellHours"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 67" name="container103_2">
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.DemoHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelDemoHours"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 96" name="container104">
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.MiscHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelMiscHours"></wm-label>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn198_1">
+                                        <wm-composite name="composite184_1" captionposition="top" show="true">
+                                            <wm-label class="col-md-3 control-label" name="label237_1" caption="Remaining Hours" hint="Remaining hours BEFORE current activity is added" fontweight="bold"></wm-label>
+                                            <wm-container class="col-md-9" name="container176_1" show="bind:pageParams.ActivityTypeID == 61" height="20px">
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.ShakeHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * (Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledShake) | toNumber: '2'"
+                                                    show="true" hint="Remaining hours BEFORE current activity is added" name="labelShakeHoursRemaining"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" name="container179_1" show="bind:pageParams.ActivityTypeID == 62" height="20px">
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.ErectHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * (Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledErect) | toNumber: '2'"
+                                                    show="true" hint="Remaining hours BEFORE current activity is added" name="labelErectHoursRemaining"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" name="container181_1" show="bind:pageParams.ActivityTypeID == 63" height="20px">
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.BoltoutHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * (Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledBoltout) | toNumber: '2'"
+                                                    show="true" hint="Remaining hours BEFORE current activity is added" name="labelBoltoutHoursRemaining"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" name="container182_1" show="bind:pageParams.ActivityTypeID == 64" height="20px">
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.ImpHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * (Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledImp) | toNumber: '2'"
+                                                    show="true" hint="Remaining hours BEFORE current activity is added" name="labelImpHoursRemaining"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 68" name="container188" height="20px">
+                                                <wm-label name="labelWeldHoursRemaining" caption="bind:Variables.serviceGetQuantities.firstRecord.WeldHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * (Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledWeld) | toNumber: '2'"
+                                                    show="true" hint="Remaining hours BEFORE current activity is added"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 65" name="container88" height="20px">
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.SellHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * (Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledSell) | toNumber: '2'"
+                                                    show="true" hint="Remaining hours BEFORE current activity is added" name="labelSellHoursRemaining"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 67" name="container102_1" height="20px">
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.DemoHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * (Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledDemo) | toNumber: '2'"
+                                                    show="true" hint="Remaining hours BEFORE current activity is added" name="labelDemoHoursRemaining"></wm-label>
+                                            </wm-container>
+                                            <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 96" name="container105_2" height="20px">
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.MiscHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * (Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledMisc) | toNumber: '2'"
+                                                    show="true" hint="Remaining hours BEFORE current activity is added" name="labelMiscHoursRemaining"></wm-label>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-container>
+                    </wm-container>
+                </wm-gridcolumn>
+            </wm-gridrow>
+            <wm-gridrow name="gridrow54" horizontalalign="right">
+                <wm-gridcolumn columnwidth="3" name="gridcolumn129_1" horizontalalign="right"></wm-gridcolumn>
+                <wm-gridcolumn columnwidth="4" name="gridcolumn201_1"></wm-gridcolumn>
+                <wm-gridcolumn columnwidth="4" name="gridcolumn202_1">
+                    <wm-composite name="composite186_1" captionposition="top" horizontalalign="left">
+                        <wm-label class="col-md-3 control-label" caption="Percent Complete" textalign="left" hint="Percent complete BEFORE current activity is added" fontweight="bold" name="label288" color="#000000"></wm-label>
+                        <wm-container class="col-md-9" name="container178_1" horizontalalign="left" show="bind:pageParams.ActivityTypeID == 61">
+                            <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.ShakeHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * Variables.serviceGetQuantities.firstRecord.InstalledShake / Variables.serviceGetQuantities.firstRecord.ShakeHours * 100 | toNumber: '2' | suffix: '%'"
+                                hint="Percent complete BEFORE current activity is added" name="labelShakePercentComplete"></wm-label>
+                        </wm-container>
+                        <wm-container class="col-md-9" horizontalalign="left" name="container183" show="bind:pageParams.ActivityTypeID == 62">
+                            <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.ErectHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * Variables.serviceGetQuantities.firstRecord.InstalledErect / Variables.serviceGetQuantities.firstRecord.ErectHours * 100 | toNumber: '2' | suffix: '%'"
+                                hint="Percent complete BEFORE current activity is added" name="labelErectPercentComplete"></wm-label>
+                        </wm-container>
+                        <wm-container class="col-md-9" horizontalalign="left" name="container184" show="bind:pageParams.ActivityTypeID == 63">
+                            <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.BoltoutHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * Variables.serviceGetQuantities.firstRecord.InstalledBoltout / Variables.serviceGetQuantities.firstRecord.BoltoutHours * 100 | toNumber: '2' | suffix: '%'"
+                                hint="Percent complete BEFORE current activity is added" name="labelBoltoutPercentComplete"></wm-label>
+                        </wm-container>
+                        <wm-container class="col-md-9" horizontalalign="left" name="container185" show="bind:pageParams.ActivityTypeID == 64">
+                            <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.ImpHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * Variables.serviceGetQuantities.firstRecord.InstalledImp / Variables.serviceGetQuantities.firstRecord.ImpHours * 100 | toNumber: '2' | suffix: '%'"
+                                hint="Percent complete BEFORE current activity is added" name="labelImpPercentComplete"></wm-label>
+                        </wm-container>
+                        <wm-container class="col-md-9" horizontalalign="left" show="bind:pageParams.ActivityTypeID == 68" name="container189">
+                            <wm-label name="labelWeldPercentComplete" caption="bind:Variables.serviceGetQuantities.firstRecord.WeldHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * Variables.serviceGetQuantities.firstRecord.InstalledWeld / Variables.serviceGetQuantities.firstRecord.WeldHours * 100 | toNumber: '2' | suffix: '%'"
+                                hint="Percent complete BEFORE current activity is added"></wm-label>
+                        </wm-container>
+                        <wm-container class="col-md-9" horizontalalign="left" show="bind:pageParams.ActivityTypeID == 65" name="container89">
+                            <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.SellHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * Variables.serviceGetQuantities.firstRecord.InstalledSell / Variables.serviceGetQuantities.firstRecord.SellHours * 100 | toNumber: '2' | suffix: '%'"
+                                hint="Percent complete BEFORE current activity is added" name="labelSellPercentComplete"></wm-label>
+                        </wm-container>
+                        <wm-container class="col-md-9" horizontalalign="left" show="bind:pageParams.ActivityTypeID == 67" name="container103_1">
+                            <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.DemoHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * Variables.serviceGetQuantities.firstRecord.InstalledDemo / Variables.serviceGetQuantities.firstRecord.DemoHours * 100 | toNumber: '2' | suffix: '%'"
+                                hint="Percent complete BEFORE current activity is added" name="labelDemoPercentComplete"></wm-label>
+                        </wm-container>
+                        <wm-container class="col-md-9" horizontalalign="left" show="bind:pageParams.ActivityTypeID == 96" name="container106_1">
+                            <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.MiscHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * Variables.serviceGetQuantities.firstRecord.InstalledMisc / Variables.serviceGetQuantities.firstRecord.MiscHours * 100 | toNumber: '2' | suffix: '%'"
+                                hint="Percent complete BEFORE current activity is added" name="labelMiscPercentComplete"></wm-label>
+                        </wm-container>
+                    </wm-composite>
+                </wm-gridcolumn>
+            </wm-gridrow>
+            <wm-gridrow name="gridrow8">
+                <wm-gridcolumn columnwidth="6" name="gridcolumn14"></wm-gridcolumn>
+                <wm-gridcolumn columnwidth="6" name="gridcolumn15" horizontalalign="right">
+                    <wm-button class="btn-default" caption="Return" type="button" show="true" backgroundcolor="#dc0000" iconclass="wi wi-backward" shortcutkey="r" name="buttonRejectQuantity" hint="Return to Superintendent for further review." margin="unset 1% unset unset"
+                        on-click="buttonRejectQuantityClick($event, $scope)"></wm-button>
+                    <wm-button class="btn-primary" caption="Update" name="buttonQuantitiesUpdate" type="button" on-click="buttonQuantitiesUpdateClick($event, $scope)" hint="Commit this entry to the tracker."></wm-button>
+                </wm-gridcolumn>
+            </wm-gridrow>
+        </wm-layoutgrid>
+    </wm-container>
+</wm-partial>

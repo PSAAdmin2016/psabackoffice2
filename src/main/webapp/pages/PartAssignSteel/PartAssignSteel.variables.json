@@ -1,6 +1,6 @@
 {
   "serviceGetQuantities" : {
-    "_id" : "wm-serviceGetBidActivityQuantities-wm.ServiceVariable-1483642089998",
+    "_id" : "wm-serviceGetQuantities-wm.ServiceVariable-1524682253467",
     "name" : "serviceGetQuantities",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
@@ -9,16 +9,15 @@
       "value" : "bind:pageParams.BidID",
       "type" : "integer"
     } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetBidActivityQuantitiesCivilResponse",
+    "type" : "com.psabackoffice.job1111.models.query.GetBidActivityQuantitiesSteelResponse",
     "service" : "Job1111",
-    "operation" : "executeGetBidActivityQuantitiesCivil",
-    "operationId" : "QueryExecutionController_executeGetBidActivityQuantitiesCivil",
+    "operation" : "executeGetBidActivityQuantitiesSteel",
+    "operationId" : "QueryExecutionController_executeGetBidActivityQuantitiesSteel",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],
     "isList" : true,
     "maxResults" : 1,
-    "designMaxResults" : 10,
     "startUpdate" : true,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -27,7 +26,7 @@
     "controller" : "QueryExecution"
   },
   "serviceLockSASActivity" : {
-    "_id" : "wm-serviceLockSASActivity-wm.ServiceVariable-1524521937582",
+    "_id" : "wm-serviceLockSASActivity-wm.ServiceVariable-1524682448982",
     "name" : "serviceLockSASActivity",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
@@ -53,7 +52,7 @@
     "dataSet" : [ ],
     "isList" : true,
     "maxResults" : 20,
-    "onResult" : "serviceLockSASActivityonResult($event, $scope)",
+    "onResult" : "Javascript",
     "startUpdate" : true,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -64,7 +63,7 @@
     "spinnerMessage" : "Getting Quantities"
   },
   "serviceUnLockSASActivity" : {
-    "_id" : "wm-serviceUnLockSASActivity-wm.ServiceVariable-1524522016694",
+    "_id" : "wm-serviceUnLockSASActivity-wm.ServiceVariable-1524682587651",
     "name" : "serviceUnLockSASActivity",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
@@ -98,7 +97,7 @@
     "controller" : "ProcedureExecution"
   },
   "serviceUpdateSAS" : {
-    "_id" : "wm-serviceUpdateSAS-wm.ServiceVariable-1524522089840",
+    "_id" : "wm-serviceUpdateSAS-wm.ServiceVariable-1524682641865",
     "name" : "serviceUpdateSAS",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
@@ -133,7 +132,7 @@
     "controller" : "QueryExecution"
   },
   "timerLabelFlasher" : {
-    "_id" : "wm-timerLabelFlasher-wm.TimerVariable-1524522232640",
+    "_id" : "wm-timerLabelFlasher-wm.TimerVariable-1524682816910",
     "name" : "timerLabelFlasher",
     "owner" : "Page",
     "category" : "wm.TimerVariable",

@@ -15,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -29,8 +30,7 @@ import org.hibernate.annotations.FetchMode;
 public class SteelFa implements Serializable {
 
     private Integer activityId;
-    private String fasortGroup1;
-    private String fapieceNumber;
+    private Integer fabidId;
     private short faquantity;
     private Float fapercentCompleted;
     private Short farework;
@@ -39,6 +39,7 @@ public class SteelFa implements Serializable {
     private Short fatimeInForm;
     private short rev = 0;
     private Timestamp timeStamp;
+    private SteelTrackerDetails steelTrackerDetails;
     private SubmissionActivityStatus submissionActivityStatus;
 
     @Id
@@ -51,22 +52,13 @@ public class SteelFa implements Serializable {
         this.activityId = activityId;
     }
 
-    @Column(name = "`FASortGroup1`", nullable = true, length = 45)
-    public String getFasortGroup1() {
-        return this.fasortGroup1;
+    @Column(name = "`FABidID`", nullable = true, scale = 0, precision = 10)
+    public Integer getFabidId() {
+        return this.fabidId;
     }
 
-    public void setFasortGroup1(String fasortGroup1) {
-        this.fasortGroup1 = fasortGroup1;
-    }
-
-    @Column(name = "`FAPieceNumber`", nullable = true, length = 45)
-    public String getFapieceNumber() {
-        return this.fapieceNumber;
-    }
-
-    public void setFapieceNumber(String fapieceNumber) {
-        this.fapieceNumber = fapieceNumber;
+    public void setFabidId(Integer fabidId) {
+        this.fabidId = fabidId;
     }
 
     @Column(name = "`FAQuantity`", nullable = false, scale = 0, precision = 5)
@@ -139,6 +131,21 @@ public class SteelFa implements Serializable {
 
     public void setTimeStamp(Timestamp timeStamp) {
         this.timeStamp = timeStamp;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`FABidID`", referencedColumnName = "`BidID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`SteelFA_BidID_to_STDBidID`"))
+    @Fetch(FetchMode.JOIN)
+    public SteelTrackerDetails getSteelTrackerDetails() {
+        return this.steelTrackerDetails;
+    }
+
+    public void setSteelTrackerDetails(SteelTrackerDetails steelTrackerDetails) {
+        if(steelTrackerDetails != null) {
+            this.fabidId = steelTrackerDetails.getBidId();
+        }
+
+        this.steelTrackerDetails = steelTrackerDetails;
     }
 
     @OneToOne(fetch = FetchType.EAGER)

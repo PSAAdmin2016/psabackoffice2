@@ -1,7 +1,7 @@
 <wm-partial data-ng-controller="PartPSREquipPageController" name="partial1">
     <wm-layoutgrid show="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 72" name="layoutgrid1">
-        <wm-gridrow name="gridrow1">
-            <wm-gridcolumn columnwidth="2" name="gridcolumn1" padding="unset unset 1% unset">
+        <wm-gridrow name="gridrow1" padding="unset unset .75% unset">
+            <wm-gridcolumn columnwidth="2" name="gridcolumn1">
                 <wm-button class="btn-default" caption="Return" type="button" hint="Return to Superintendent for further review." show="true" backgroundcolor="#dc0000" iconclass="wi wi-backward" on-click="Widgets.dialogRejection.open()" name="buttonReturn1"></wm-button>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="4" name="gridcolumn2"></wm-gridcolumn>
@@ -14,7 +14,7 @@
         <wm-gridrow backgroundcolor="#b1efe4" bordercolor="#a0a0a0" borderstyle="groove" borderwidth="0px 0px 8px 0px" padding="1% 1% unset 1%" name="gridrow5">
             <wm-gridcolumn columnwidth="1" name="gridcolumn17">
                 <wm-label caption="Field ActivityID" fontweight="bold" textdecoration="underline" hint="This is the selected activity." name="label3" color="#000000"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityID" hint="This is the selected activity." color="#000000" name="label4"></wm-label>
+                <wm-label width="100%" caption="bind:pageParams.ActivityID" hint="This is the selected activity." color="#000000" name="label4"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn18">
                 <wm-label caption="Tag #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label5" color="#000000"></wm-label>
@@ -142,9 +142,8 @@
                                 <wm-label class="col-md-3" name="label259" caption="Notes:"></wm-label>
                                 <wm-container class="col-md-9" name="container197" width="100%">
                                     <wm-textarea name="textareaSASNoteReject" maxchars="252" required="true" updateon="default"></wm-textarea>
-                                    <wm-gridcolumn columnwidth="3" name="gridcolumn239">
-                                        <wm-label width="70%" caption="Remaining:" fontsize="10" textalign="right" name="label282_1"></wm-label>
-                                        <wm-label width="30%" caption="bind:252 - Widgets.textareaSASNoteReject.datavalue.length" fontsize="10" name="labelRejectTextCount"></wm-label>
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn239" horizontalalign="left">
+                                        <wm-label caption="bind:'Remaining: ' + (252 - Widgets.textareaSASNoteReject.datavalue.length)" fontsize="10" textalign="left" name="label282_1"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-container>
                             </wm-composite>

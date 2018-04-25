@@ -523,12 +523,10 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<Object> executeGetBidActivityMatchesSteel(Pageable pageable, Integer bidId, String sortGroup1, String pieceMark) {
-        Map params = new HashMap(3);
+    public Page<Object> executeGetBidActivityMatchesSteel(Pageable pageable, Integer bidId) {
+        Map params = new HashMap(1);
 
         params.put("BidID", bidId);
-        params.put("SortGroup1", sortGroup1);
-        params.put("PieceMark", pieceMark);
 
         return queryExecutor.executeNamedQuery("GetBidActivityMatchesSteel", params, Object.class, pageable);
     }
@@ -551,16 +549,6 @@ public class Job1111QueryExecutorServiceImpl_V1 implements Job1111QueryExecutorS
         params.put("Value1", value1);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSettingCivilWork", params);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<Object> executeGetNoteCount(Pageable pageable, Integer activityId) {
-        Map params = new HashMap(1);
-
-        params.put("ActivityID", activityId);
-
-        return queryExecutor.executeNamedQuery("GetNoteCount", params, Object.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")

@@ -19,6 +19,7 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.job1111.SteelDemo;
+import com.psabackoffice.job1111.SteelFa;
 import com.psabackoffice.job1111.SteelMisc;
 import com.psabackoffice.job1111.SteelTrackerDetails;
 
@@ -162,6 +163,18 @@ public interface SteelTrackerDetailsService {
      * @see Page
      */
     Page<SteelDemo> findAssociatedSteelDemos(Integer uid, Pageable pageable);
+
+    /*
+     * Returns the associated steelFas for given SteelTrackerDetails id.
+     *
+     * @param uid value of uid; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated SteelFa instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<SteelFa> findAssociatedSteelFas(Integer uid, Pageable pageable);
 
     /*
      * Returns the associated steelMiscs for given SteelTrackerDetails id.

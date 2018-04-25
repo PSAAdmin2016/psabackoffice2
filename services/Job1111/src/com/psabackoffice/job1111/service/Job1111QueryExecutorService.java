@@ -53,9 +53,9 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdateEquipFAQuantity(UpdateEquipFaquantityRequest updateEquipFaquantityRequest);
 
-    Page<GetActivitiesPendingReviewSteelActivitiesResponse> executeGetActivitiesPendingReviewSteelActivities(Integer submissionId, String pieceMark, Integer statusId, Pageable pageable);
+    Page<GetActivitiesPendingReviewSteelActivitiesResponse> executeGetActivitiesPendingReviewSteelActivities(Integer submissionId, Integer bidId, Integer statusId, Pageable pageable);
 
-    Downloadable exportGetActivitiesPendingReviewSteelActivities(ExportType exportType, Integer submissionId, String pieceMark, Integer statusId, Pageable pageable);
+    Downloadable exportGetActivitiesPendingReviewSteelActivities(ExportType exportType, Integer submissionId, Integer bidId, Integer statusId, Pageable pageable);
 
     Page<GetSettingSteelImpPercentResponse> executeGetSettingSteelImpPercent(Pageable pageable);
 
@@ -191,19 +191,15 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdatePipeWeld(UpdatePipeWeldRequest updatePipeWeldRequest);
 
-    Page<GetBidActivityMatchesSteelResponse> executeGetBidActivityMatchesSteel(Integer bidId, String sortGroup1, String pieceMark, Pageable pageable);
+    Page<GetBidActivityMatchesSteelResponse> executeGetBidActivityMatchesSteel(Integer bidId, Pageable pageable);
 
-    Downloadable exportGetBidActivityMatchesSteel(ExportType exportType, Integer bidId, String sortGroup1, String pieceMark, Pageable pageable);
+    Downloadable exportGetBidActivityMatchesSteel(ExportType exportType, Integer bidId, Pageable pageable);
 
     Page<GetQuantityLfinstalledByBidIdResponse> executeGetQuantityLFInstalledByBidID(Integer bidId, Pageable pageable);
 
     Downloadable exportGetQuantityLFInstalledByBidID(ExportType exportType, Integer bidId, Pageable pageable);
 
     Integer executeUpdateSettingCivilWork(UpdateSettingCivilWorkRequest updateSettingCivilWorkRequest);
-
-    Page<GetNoteCountResponse> executeGetNoteCount(Integer activityId, Pageable pageable);
-
-    Downloadable exportGetNoteCount(ExportType exportType, Integer activityId, Pageable pageable);
 
     Page<GetReportDwrbyDateResponse> executeGetReportDWRByDate(Date beginDate, Date endDate, Pageable pageable);
 

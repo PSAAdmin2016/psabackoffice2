@@ -336,12 +336,12 @@
       "value" : "bind:$parent.Widgets.gridSuperReviewSteel.selecteditem.submissionId",
       "type" : "integer"
     }, {
-      "target" : "PieceMark",
-      "value" : "bind:$parent.Widgets.gridSuperReviewSteel.selecteditem.pieceMark",
-      "type" : "string"
-    }, {
       "target" : "StatusID",
       "value" : "bind:$parent.Widgets.gridSuperReviewSteel.selecteditem.fkActivityStatus",
+      "type" : "integer"
+    }, {
+      "target" : "BidID",
+      "value" : "bind:$parent.Widgets.gridSuperReviewSteel.selecteditem.fabidId",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.query.GetActivitiesPendingReviewSteelActivitiesResponse",

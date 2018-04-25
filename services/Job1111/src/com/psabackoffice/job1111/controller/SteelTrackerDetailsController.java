@@ -32,6 +32,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 import com.psabackoffice.job1111.SteelDemo;
+import com.psabackoffice.job1111.SteelFa;
 import com.psabackoffice.job1111.SteelMisc;
 import com.psabackoffice.job1111.SteelTrackerDetails;
 import com.psabackoffice.job1111.service.SteelTrackerDetailsService;
@@ -158,6 +159,15 @@ public boolean deleteSteelTrackerDetails(@PathVariable("id") Integer id) {
 
         LOGGER.debug("Fetching all associated steelDemos");
         return steelTrackerDetailsService.findAssociatedSteelDemos(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/steelFas", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the steelFas instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<SteelFa> findAssociatedSteelFas(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated steelFas");
+        return steelTrackerDetailsService.findAssociatedSteelFas(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/steelMiscs", method=RequestMethod.GET)

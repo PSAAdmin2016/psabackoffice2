@@ -18,11 +18,8 @@ public class GetActivityHistorySteelFaResponse implements Serializable {
     @ColumnAlias("ActivityID")
     private Integer activityId;
 
-    @ColumnAlias("FASortGroup1")
-    private String fasortGroup1;
-
-    @ColumnAlias("FAPieceNumber")
-    private String fapieceNumber;
+    @ColumnAlias("FABidID")
+    private Integer fabidId;
 
     @ColumnAlias("FAQuantity")
     private Integer faquantity;
@@ -56,20 +53,12 @@ public class GetActivityHistorySteelFaResponse implements Serializable {
         this.activityId = activityId;
     }
 
-    public String getFasortGroup1() {
-        return this.fasortGroup1;
+    public Integer getFabidId() {
+        return this.fabidId;
     }
 
-    public void setFasortGroup1(String fasortGroup1) {
-        this.fasortGroup1 = fasortGroup1;
-    }
-
-    public String getFapieceNumber() {
-        return this.fapieceNumber;
-    }
-
-    public void setFapieceNumber(String fapieceNumber) {
-        this.fapieceNumber = fapieceNumber;
+    public void setFabidId(Integer fabidId) {
+        this.fabidId = fabidId;
     }
 
     public Integer getFaquantity() {
@@ -142,8 +131,7 @@ public class GetActivityHistorySteelFaResponse implements Serializable {
         if (!(o instanceof GetActivityHistorySteelFaResponse)) return false;
         final GetActivityHistorySteelFaResponse getActivityHistorySteelFaResponse = (GetActivityHistorySteelFaResponse) o;
         return Objects.equals(getActivityId(), getActivityHistorySteelFaResponse.getActivityId()) &&
-                Objects.equals(getFasortGroup1(), getActivityHistorySteelFaResponse.getFasortGroup1()) &&
-                Objects.equals(getFapieceNumber(), getActivityHistorySteelFaResponse.getFapieceNumber()) &&
+                Objects.equals(getFabidId(), getActivityHistorySteelFaResponse.getFabidId()) &&
                 Objects.equals(getFaquantity(), getActivityHistorySteelFaResponse.getFaquantity()) &&
                 Objects.equals(getFapercentCompleted(), getActivityHistorySteelFaResponse.getFapercentCompleted()) &&
                 Objects.equals(getFarework(), getActivityHistorySteelFaResponse.getFarework()) &&
@@ -157,8 +145,7 @@ public class GetActivityHistorySteelFaResponse implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getActivityId(),
-                getFasortGroup1(),
-                getFapieceNumber(),
+                getFabidId(),
                 getFaquantity(),
                 getFapercentCompleted(),
                 getFarework(),

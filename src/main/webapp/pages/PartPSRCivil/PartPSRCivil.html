@@ -1,11 +1,11 @@
 <wm-partial data-ng-controller="PartPSRCivilPageController" name="partial1">
     <wm-layoutgrid show="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 72" name="layoutgrid1">
-        <wm-gridrow name="gridrow1">
+        <wm-gridrow name="gridrow1" padding="unset unset .75% unset">
             <wm-gridcolumn columnwidth="2" name="gridcolumn1">
                 <wm-button class="btn-default" caption="Return" type="button" hint="Return to Superintendent for further review." show="true" backgroundcolor="#dc0000" iconclass="wi wi-backward" on-click="Widgets.dialogRejection.open()" name="buttonReturn1"></wm-button>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="4" name="gridcolumn2"></wm-gridcolumn>
-            <wm-gridcolumn columnwidth="1" horizontalalign="center" name="gridcolumn3">
+            <wm-gridcolumn columnwidth="1" horizontalalign="left" name="gridcolumn3">
                 <wm-button class="btn-default" caption="Hold" type="button" hint="Change activity Status to Hold...  To filter out of list for future review." show="true" backgroundcolor="#30afc2" iconclass="fa fa-hand-stop-o" on-click="buttonHoldClick($event, $scope)"
                     bordercolor="#ffa800" borderstyle="groove" borderwidth="5px" name="buttonHold"></wm-button>
             </wm-gridcolumn>
@@ -139,9 +139,8 @@
                                 <wm-label class="col-md-3" name="label259" caption="Notes:"></wm-label>
                                 <wm-container class="col-md-9" name="container197" width="100%">
                                     <wm-textarea name="textareaSASNoteReject" maxchars="252" required="true" updateon="default" on-keyup="textareaSSNoteRejectKeyup($event, $scope)"></wm-textarea>
-                                    <wm-gridcolumn columnwidth="3" name="gridcolumn239">
-                                        <wm-label width="70%" caption="Remaining:" fontsize="10" textalign="right" name="label282_1"></wm-label>
-                                        <wm-label width="30%" caption="bind:252 - Widgets.formReject.formWidgets.textareaSASNoteReject.datavalue.length" fontsize="10" name="labelRejectTextCount"></wm-label>
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn239">
+                                        <wm-label caption="bind:'Remaining: ' + (252 - Widgets.textareaSASNoteReject.datavalue.length)" fontsize="10" textalign="left" name="label282_1"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-container>
                             </wm-composite>
@@ -430,7 +429,7 @@
         </wm-dialog>
     </wm-view>
     <wm-layoutgrid show="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 72" name="layoutgrid21">
-        <wm-gridrow name="gridrow57_1" padding="unset unset 1% unset">
+        <wm-gridrow name="gridrow57_1" padding="unset unset .75% unset">
             <wm-gridcolumn columnwidth="1" name="gridcolumn124_2">
                 <wm-button class="btn-default" caption="Return" type="button" hint="Return to Superintendent for further review." show="true" backgroundcolor="#dc0000" iconclass="wi wi-backward" shortcutkey="r" on-click="Widgets.dialogRejection.open()" name="buttonReturn2"></wm-button>
             </wm-gridcolumn>

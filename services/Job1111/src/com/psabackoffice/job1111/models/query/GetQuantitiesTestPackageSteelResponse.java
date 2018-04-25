@@ -7,7 +7,7 @@ package com.psabackoffice.job1111.models.query;
 
 
 import java.io.Serializable;
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -26,23 +26,23 @@ public class GetQuantitiesTestPackageSteelResponse implements Serializable {
 
     @JsonProperty("SellPunchCount")
     @ColumnAlias("SellPunchCount")
-    private Long sellPunchCount;
+    private BigDecimal sellPunchCount;
 
     @JsonProperty("SellPunchHours")
     @ColumnAlias("SellPunchHours")
-    private Double sellPunchHours;
+    private BigDecimal sellPunchHours;
 
     @JsonProperty("InstalledSell")
     @ColumnAlias("InstalledSell")
-    private BigInteger installedSell;
+    private BigDecimal installedSell;
 
     @JsonProperty("EarnedSellPunchHours")
     @ColumnAlias("EarnedSellPunchHours")
-    private Double earnedSellPunchHours;
+    private BigDecimal earnedSellPunchHours;
 
     @JsonProperty("LooseHours")
     @ColumnAlias("LooseHours")
-    private Double looseHours;
+    private BigDecimal looseHours;
 
     public Integer getBidId() {
         return this.bidId;
@@ -60,43 +60,43 @@ public class GetQuantitiesTestPackageSteelResponse implements Serializable {
         this.testPackageNumber = testPackageNumber;
     }
 
-    public Long getSellPunchCount() {
+    public BigDecimal getSellPunchCount() {
         return this.sellPunchCount;
     }
 
-    public void setSellPunchCount(Long sellPunchCount) {
+    public void setSellPunchCount(BigDecimal sellPunchCount) {
         this.sellPunchCount = sellPunchCount;
     }
 
-    public Double getSellPunchHours() {
+    public BigDecimal getSellPunchHours() {
         return this.sellPunchHours;
     }
 
-    public void setSellPunchHours(Double sellPunchHours) {
+    public void setSellPunchHours(BigDecimal sellPunchHours) {
         this.sellPunchHours = sellPunchHours;
     }
 
-    public BigInteger getInstalledSell() {
+    public BigDecimal getInstalledSell() {
         return this.installedSell;
     }
 
-    public void setInstalledSell(BigInteger installedSell) {
+    public void setInstalledSell(BigDecimal installedSell) {
         this.installedSell = installedSell;
     }
 
-    public Double getEarnedSellPunchHours() {
+    public BigDecimal getEarnedSellPunchHours() {
         return this.earnedSellPunchHours;
     }
 
-    public void setEarnedSellPunchHours(Double earnedSellPunchHours) {
+    public void setEarnedSellPunchHours(BigDecimal earnedSellPunchHours) {
         this.earnedSellPunchHours = earnedSellPunchHours;
     }
 
-    public Double getLooseHours() {
+    public BigDecimal getLooseHours() {
         return this.looseHours;
     }
 
-    public void setLooseHours(Double looseHours) {
+    public void setLooseHours(BigDecimal looseHours) {
         this.looseHours = looseHours;
     }
 

@@ -111,6 +111,7 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
                 });
                 $scope.Widgets.containerActivityMatches.pageParams.ActivityID = $data.ActivityID;
                 $scope.Widgets.containerActivityMatches.pageParams.BidID = $data.BidID;
+                $scope.Widgets.containerActivityMatches.pageParams.TestPackage = $data.Spool1;
                 break;
             case 'STEEL':
                 $scope.Widgets.containerActivityMatches.content = 'PartPSRSteel';
@@ -118,7 +119,9 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
                     invokePartialFn('gridApprovalReviewSelectSteel');
                 });
                 $scope.Widgets.containerActivityMatches.pageParams.ActivityID = $data.ActivityID;
+                $scope.Widgets.containerActivityMatches.pageParams.ActivityTypeID = $data.ActivityType;
                 $scope.Widgets.containerActivityMatches.pageParams.BidID = $data.BidID;
+                $scope.Widgets.containerActivityMatches.pageParams.TestPackage = $data.Spool1;
                 break;
             case 'CIVIL':
                 $scope.Widgets.containerActivityMatches.content = 'PartPSRCivil';

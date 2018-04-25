@@ -1004,7 +1004,7 @@
       "type" : "integer"
     }, {
       "target" : "ActivityID",
-      "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityID",
+      "value" : "bind:pageParams.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.procedure.LockSasactivityResponse",
@@ -1040,7 +1040,7 @@
       "type" : "integer"
     }, {
       "target" : "ActivityID",
-      "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityID",
+      "value" : "bind:pageParams.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.procedure.LockSasactivityResponse",

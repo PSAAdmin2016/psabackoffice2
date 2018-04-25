@@ -20,9 +20,9 @@ public class GetReportDprsteelDetailedResponse implements Serializable {
     @ColumnAlias("SortGroup1")
     private String sortGroup1;
 
-    @JsonProperty("PieceNumber")
-    @ColumnAlias("PieceNumber")
-    private String pieceNumber;
+    @JsonProperty("PieceMark")
+    @ColumnAlias("PieceMark")
+    private String pieceMark;
 
     @JsonProperty("ShakeQuantity")
     @ColumnAlias("ShakeQuantity")
@@ -66,11 +66,11 @@ public class GetReportDprsteelDetailedResponse implements Serializable {
 
     @JsonProperty("DemoQuantity")
     @ColumnAlias("DemoQuantity")
-    private Integer demoQuantity;
+    private Double demoQuantity;
 
     @JsonProperty("MiscQuantity")
     @ColumnAlias("MiscQuantity")
-    private Short miscQuantity;
+    private Double miscQuantity;
 
     @JsonProperty("ReceivedTime")
     @ColumnAlias("ReceivedTime")
@@ -88,12 +88,12 @@ public class GetReportDprsteelDetailedResponse implements Serializable {
         this.sortGroup1 = sortGroup1;
     }
 
-    public String getPieceNumber() {
-        return this.pieceNumber;
+    public String getPieceMark() {
+        return this.pieceMark;
     }
 
-    public void setPieceNumber(String pieceNumber) {
-        this.pieceNumber = pieceNumber;
+    public void setPieceMark(String pieceMark) {
+        this.pieceMark = pieceMark;
     }
 
     public Short getShakeQuantity() {
@@ -176,19 +176,19 @@ public class GetReportDprsteelDetailedResponse implements Serializable {
         this.sellQuantity = sellQuantity;
     }
 
-    public Integer getDemoQuantity() {
+    public Double getDemoQuantity() {
         return this.demoQuantity;
     }
 
-    public void setDemoQuantity(Integer demoQuantity) {
+    public void setDemoQuantity(Double demoQuantity) {
         this.demoQuantity = demoQuantity;
     }
 
-    public Short getMiscQuantity() {
+    public Double getMiscQuantity() {
         return this.miscQuantity;
     }
 
-    public void setMiscQuantity(Short miscQuantity) {
+    public void setMiscQuantity(Double miscQuantity) {
         this.miscQuantity = miscQuantity;
     }
 
@@ -214,7 +214,7 @@ public class GetReportDprsteelDetailedResponse implements Serializable {
         if (!(o instanceof GetReportDprsteelDetailedResponse)) return false;
         final GetReportDprsteelDetailedResponse getReportDprsteelDetailedResponse = (GetReportDprsteelDetailedResponse) o;
         return Objects.equals(getSortGroup1(), getReportDprsteelDetailedResponse.getSortGroup1()) &&
-                Objects.equals(getPieceNumber(), getReportDprsteelDetailedResponse.getPieceNumber()) &&
+                Objects.equals(getPieceMark(), getReportDprsteelDetailedResponse.getPieceMark()) &&
                 Objects.equals(getShakeQuantity(), getReportDprsteelDetailedResponse.getShakeQuantity()) &&
                 Objects.equals(getErectQuantity(), getReportDprsteelDetailedResponse.getErectQuantity()) &&
                 Objects.equals(getErectPercent(), getReportDprsteelDetailedResponse.getErectPercent()) &&
@@ -234,7 +234,7 @@ public class GetReportDprsteelDetailedResponse implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getSortGroup1(),
-                getPieceNumber(),
+                getPieceMark(),
                 getShakeQuantity(),
                 getErectQuantity(),
                 getErectPercent(),

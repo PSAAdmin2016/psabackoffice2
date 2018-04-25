@@ -22,9 +22,9 @@ public class GetReportDprsteelCondensedResponse implements Serializable {
     @ColumnAlias("SortGroup1")
     private String sortGroup1;
 
-    @JsonProperty("PieceNumber")
-    @ColumnAlias("PieceNumber")
-    private String pieceNumber;
+    @JsonProperty("PieceMark")
+    @ColumnAlias("PieceMark")
+    private String pieceMark;
 
     @JsonProperty("ShakeQuantity")
     @ColumnAlias("ShakeQuantity")
@@ -70,12 +70,12 @@ public class GetReportDprsteelCondensedResponse implements Serializable {
         this.sortGroup1 = sortGroup1;
     }
 
-    public String getPieceNumber() {
-        return this.pieceNumber;
+    public String getPieceMark() {
+        return this.pieceMark;
     }
 
-    public void setPieceNumber(String pieceNumber) {
-        this.pieceNumber = pieceNumber;
+    public void setPieceMark(String pieceMark) {
+        this.pieceMark = pieceMark;
     }
 
     public BigInteger getShakeQuantity() {
@@ -156,7 +156,7 @@ public class GetReportDprsteelCondensedResponse implements Serializable {
         if (!(o instanceof GetReportDprsteelCondensedResponse)) return false;
         final GetReportDprsteelCondensedResponse getReportDprsteelCondensedResponse = (GetReportDprsteelCondensedResponse) o;
         return Objects.equals(getSortGroup1(), getReportDprsteelCondensedResponse.getSortGroup1()) &&
-                Objects.equals(getPieceNumber(), getReportDprsteelCondensedResponse.getPieceNumber()) &&
+                Objects.equals(getPieceMark(), getReportDprsteelCondensedResponse.getPieceMark()) &&
                 Objects.equals(getShakeQuantity(), getReportDprsteelCondensedResponse.getShakeQuantity()) &&
                 Objects.equals(getErectQuantity(), getReportDprsteelCondensedResponse.getErectQuantity()) &&
                 Objects.equals(getBoltoutQuantity(), getReportDprsteelCondensedResponse.getBoltoutQuantity()) &&
@@ -171,7 +171,7 @@ public class GetReportDprsteelCondensedResponse implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getSortGroup1(),
-                getPieceNumber(),
+                getPieceMark(),
                 getShakeQuantity(),
                 getErectQuantity(),
                 getBoltoutQuantity(),

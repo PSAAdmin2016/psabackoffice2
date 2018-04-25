@@ -21,12 +21,6 @@ public class GetActivityHistoryEquipFaResponse implements Serializable {
     @ColumnAlias("FABidID")
     private Integer fabidId;
 
-    @ColumnAlias("FATagNumber")
-    private String fatagNumber;
-
-    @ColumnAlias("FAActivitySelect")
-    private String faactivitySelect;
-
     @ColumnAlias("FAQuantity")
     private Integer faquantity;
 
@@ -65,22 +59,6 @@ public class GetActivityHistoryEquipFaResponse implements Serializable {
 
     public void setFabidId(Integer fabidId) {
         this.fabidId = fabidId;
-    }
-
-    public String getFatagNumber() {
-        return this.fatagNumber;
-    }
-
-    public void setFatagNumber(String fatagNumber) {
-        this.fatagNumber = fatagNumber;
-    }
-
-    public String getFaactivitySelect() {
-        return this.faactivitySelect;
-    }
-
-    public void setFaactivitySelect(String faactivitySelect) {
-        this.faactivitySelect = faactivitySelect;
     }
 
     public Integer getFaquantity() {
@@ -154,8 +132,6 @@ public class GetActivityHistoryEquipFaResponse implements Serializable {
         final GetActivityHistoryEquipFaResponse getActivityHistoryEquipFaResponse = (GetActivityHistoryEquipFaResponse) o;
         return Objects.equals(getActivityId(), getActivityHistoryEquipFaResponse.getActivityId()) &&
                 Objects.equals(getFabidId(), getActivityHistoryEquipFaResponse.getFabidId()) &&
-                Objects.equals(getFatagNumber(), getActivityHistoryEquipFaResponse.getFatagNumber()) &&
-                Objects.equals(getFaactivitySelect(), getActivityHistoryEquipFaResponse.getFaactivitySelect()) &&
                 Objects.equals(getFaquantity(), getActivityHistoryEquipFaResponse.getFaquantity()) &&
                 Objects.equals(getFapercentCompleted(), getActivityHistoryEquipFaResponse.getFapercentCompleted()) &&
                 Objects.equals(getFarework(), getActivityHistoryEquipFaResponse.getFarework()) &&
@@ -170,8 +146,6 @@ public class GetActivityHistoryEquipFaResponse implements Serializable {
     public int hashCode() {
         return Objects.hash(getActivityId(),
                 getFabidId(),
-                getFatagNumber(),
-                getFaactivitySelect(),
                 getFaquantity(),
                 getFapercentCompleted(),
                 getFarework(),
