@@ -95,6 +95,19 @@
     "type" : "integer"
   } ]
 }, {
+  "name" : "PartAssignPipe",
+  "type" : "PARTIAL",
+  "params" : [ {
+    "name" : "BidID",
+    "type" : "integer"
+  }, {
+    "name" : "ActivityID",
+    "type" : "integer"
+  }, {
+    "name" : "ActivityTypeID",
+    "type" : "integer"
+  } ]
+}, {
   "name" : "PartAssignSteel",
   "type" : "PARTIAL",
   "params" : [ {
@@ -202,6 +215,9 @@
   }, {
     "name" : "TestPackage",
     "type" : "string"
+  }, {
+    "name" : "ActivityTypeID",
+    "type" : "integer"
   } ]
 }, {
   "name" : "PartPSRSteel",
@@ -402,12 +418,6 @@
   }, {
     "name" : "PageLoadFiltered",
     "type" : "boolean"
-  }, {
-    "name" : "PageLoadActivityType",
-    "type" : "string"
-  }, {
-    "name" : "PageLoadActivitySubType",
-    "type" : "string"
   }, {
     "name" : "PageLoadTestPackage",
     "type" : "string"

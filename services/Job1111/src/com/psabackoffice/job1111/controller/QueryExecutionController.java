@@ -659,7 +659,7 @@ public class QueryExecutionController {
 
     @RequestMapping(value = "/queries/GetBidActivityQuantitiesPipe", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Gets the Bid estimate Quantity of a specified BidID")
+    @ApiOperation(value = "Gets the Bid estimate Quantity of a specified BidID for us in PartAssignPipe")
     public Page<GetBidActivityQuantitiesPipeResponse> executeGetBidActivityQuantitiesPipe(@RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetBidActivityQuantitiesPipe");
         Page<GetBidActivityQuantitiesPipeResponse> _result = queryService.executeGetBidActivityQuantitiesPipe(bidId, pageable);

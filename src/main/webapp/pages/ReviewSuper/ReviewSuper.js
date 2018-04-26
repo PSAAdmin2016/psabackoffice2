@@ -413,6 +413,15 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
         }
     };
 
+
+    $scope.serviceCreateSASNoteonSuccess = function(variable, data) {
+        $scope.Variables.serviceGetSASNotes.invoke({
+            "inputFields": {
+                "ActivityID": $scope.Widgets.gridSuperReviewActivities.selecteditem.activityId
+            }
+        });
+    };
+
 }]);
 
 
@@ -456,14 +465,6 @@ Application.$controller("dialogNotesNewController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-
-
-        $scope.textareaSSNoteNewKeyup = function($event, $isolateScope) {
-            if ((Date.now() - $scope.Variables.staticVariableMachineStateTimer.dataValue) > 300) {
-                $scope.Variables.staticVariableMachineStateTimer.dataValue = Date.now();
-                $scope.Widgets.labelTextCountNewNote.caption = 252 - $scope.Widgets.textareaSSNoteNew.datavalue.length;
-            }
-        };
 
 
         $scope.buttonNoteSaveClick = function($event, $isolateScope) {

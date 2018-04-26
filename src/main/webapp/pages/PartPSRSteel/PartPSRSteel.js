@@ -31,6 +31,11 @@ Application.$controller("PartPSRSteelPageController", ["$scope", "$rootScope", "
                 "BidID": 0
             }
         });
+        $scope.Variables.serviceGetMatchesByTestPackage.invoke({
+            "inputFields": {
+                "TestPackage": 'XNAX'
+            }
+        });
     };
 
 
@@ -48,7 +53,7 @@ Application.$controller("PartPSRSteelPageController", ["$scope", "$rootScope", "
     };
 
 
-    $scope.ResearchClick = function($event, $isolateScope) {
+    $scope.buttonResearchClick = function($event, $isolateScope) {
         $scope.$parent.savePageSettings();
         if ($scope.pageParams.ActivityTypeID == 66) {
             $scope.$parent.Variables.navigationToClassicSteel.setData({
@@ -80,7 +85,7 @@ Application.$controller("PartPSRSteelPageController", ["$scope", "$rootScope", "
     $scope.buttonDissmissClick = function($event, $isolateScope) {
         $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", 13);
         $scope.Variables.serviceUpdateSAS.setInput("BidID", null);
-        $scope.$parent.$parent.Variables.serviceUpdateSSApproval.invoke(); //Updates GetActivitiesPendingApproval
+        $scope.Variables.serviceUpdateSAS.invoke(); //Updates GetActivitiesPendingApproval
     };
 
 
@@ -97,6 +102,14 @@ Application.$controller("PartPSRSteelPageController", ["$scope", "$rootScope", "
                 "dataValue": data[0].ErrorText
             });
             DialogService.open('alertRecordLocked', $scope.$parent);
+        }
+    };
+
+
+    $scope.serviceCreateLooseHoursActivitiesonResult = function(variable, data) {
+        if (!data[0].ReturnStatus) {
+            $scope.$parent.Variables.notificationUpdateError.setMessage(data[0].ErrorText);
+            $scope.$parent.Variables.notificationUpdateError.invoke();
         }
     };
 
@@ -126,6 +139,8 @@ Application.$controller("PartPSRSteelPageController", ["$scope", "$rootScope", "
             }
         }
     };
+
+
 }]);
 
 
@@ -137,6 +152,7 @@ Application.$controller("dialogRejectionController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.formRejectSubmit = function($event, $isolateScope, $formData) {
+            $scope.Variables.timerLabelFlasher.cancel();
             $scope.Variables.serviceUnLockSASActivity.invoke();
             $scope.$parent.$parent.savePageSettings();
 
@@ -147,11 +163,6 @@ Application.$controller("dialogRejectionController", ["$scope",
 
             $scope.$parent.$parent.Variables.serviceCreateSASNote.setInput("Note", $scope.Widgets.formReject.formWidgets.textareaSASNoteReject.datavalue);
             $scope.$parent.$parent.Variables.serviceCreateSASNote.invoke();
-        };
-
-
-        $scope.buttonDialogRejectionSaveClick = function($event, $isolateScope) {
-            $scope.Variables.timerLabelFlasher.cancel();
         };
 
     }
@@ -185,9 +196,7 @@ Application.$controller("dialogAssignTestingQuantitiesController", ["$scope",
             $scope.Variables.serviceUpdateSAS.invoke(); //Updates GetActivitiesPendingApproval
 
             $scope.Variables.timerLabelFlasher.cancel();
-            if ($scope.Variables.Job1111SettingsData.getData().data.find(x => x.label === 'LooseHoursRoundupSteel').value2 == 1) { //Run only if Global setting is 1
-                $scope.Variables.serviceCreateLooseHoursActivities.invoke();
-            }
+            $scope.Variables.serviceCreateLooseHoursActivities.invoke(); //Stored Procedure only runs if Global setting is 1
         };
 
 

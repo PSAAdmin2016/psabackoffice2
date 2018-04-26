@@ -13,12 +13,8 @@
       "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.SubmissionID",
       "type" : "integer"
     }, {
-      "target" : "ActivityId",
-      "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityID",
-      "type" : "integer"
-    }, {
       "target" : "TestPackage",
-      "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.Line1",
+      "value" : "bind:pageParams.TestPackage",
       "type" : "string"
     } ],
     "type" : "com.psabackoffice.job1111.models.procedure.CreateLooseHoursActivitiesSteelResponse",
@@ -31,6 +27,7 @@
     "isList" : true,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onResult" : "serviceCreateLooseHoursActivitiesonResult($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

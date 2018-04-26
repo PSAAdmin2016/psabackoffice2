@@ -530,7 +530,7 @@
       "value" : "bind:Widgets.textareaSASNoteNew.datavalue",
       "type" : "string"
     } ],
-    "type" : "java.lang.Integer",
+    "type" : "integer",
     "service" : "Job1111",
     "operation" : "executeCreateSASNote",
     "operationId" : "QueryExecutionController_executeCreateSASNote",
@@ -540,7 +540,7 @@
     "isList" : false,
     "maxResults" : 1,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.serviceGetSASNotes.invoke()",
+    "onSuccess" : "serviceCreateSASNoteonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

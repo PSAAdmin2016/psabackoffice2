@@ -24,9 +24,21 @@ public class GetBidActivityQuantitiesPipeResponse implements Serializable {
     @ColumnAlias("QuantityUnit")
     private String quantityUnit;
 
-    @JsonProperty("EstimatedHours")
-    @ColumnAlias("EstimatedHours")
-    private BigDecimal estimatedHours;
+    @JsonProperty("EstimatedMechHours")
+    @ColumnAlias("EstimatedMechHours")
+    private BigDecimal estimatedMechHours;
+
+    @JsonProperty("RemainingQuantity")
+    @ColumnAlias("RemainingQuantity")
+    private BigDecimal remainingQuantity;
+
+    @JsonProperty("RemainingHours")
+    @ColumnAlias("RemainingHours")
+    private BigDecimal remainingHours;
+
+    @JsonProperty("PercentComplete")
+    @ColumnAlias("PercentComplete")
+    private BigDecimal percentComplete;
 
     public Double getTakeOffQuantity() {
         return this.takeOffQuantity;
@@ -44,12 +56,36 @@ public class GetBidActivityQuantitiesPipeResponse implements Serializable {
         this.quantityUnit = quantityUnit;
     }
 
-    public BigDecimal getEstimatedHours() {
-        return this.estimatedHours;
+    public BigDecimal getEstimatedMechHours() {
+        return this.estimatedMechHours;
     }
 
-    public void setEstimatedHours(BigDecimal estimatedHours) {
-        this.estimatedHours = estimatedHours;
+    public void setEstimatedMechHours(BigDecimal estimatedMechHours) {
+        this.estimatedMechHours = estimatedMechHours;
+    }
+
+    public BigDecimal getRemainingQuantity() {
+        return this.remainingQuantity;
+    }
+
+    public void setRemainingQuantity(BigDecimal remainingQuantity) {
+        this.remainingQuantity = remainingQuantity;
+    }
+
+    public BigDecimal getRemainingHours() {
+        return this.remainingHours;
+    }
+
+    public void setRemainingHours(BigDecimal remainingHours) {
+        this.remainingHours = remainingHours;
+    }
+
+    public BigDecimal getPercentComplete() {
+        return this.percentComplete;
+    }
+
+    public void setPercentComplete(BigDecimal percentComplete) {
+        this.percentComplete = percentComplete;
     }
 
     @Override
@@ -59,13 +95,19 @@ public class GetBidActivityQuantitiesPipeResponse implements Serializable {
         final GetBidActivityQuantitiesPipeResponse getBidActivityQuantitiesPipeResponse = (GetBidActivityQuantitiesPipeResponse) o;
         return Objects.equals(getTakeOffQuantity(), getBidActivityQuantitiesPipeResponse.getTakeOffQuantity()) &&
                 Objects.equals(getQuantityUnit(), getBidActivityQuantitiesPipeResponse.getQuantityUnit()) &&
-                Objects.equals(getEstimatedHours(), getBidActivityQuantitiesPipeResponse.getEstimatedHours());
+                Objects.equals(getEstimatedMechHours(), getBidActivityQuantitiesPipeResponse.getEstimatedMechHours()) &&
+                Objects.equals(getRemainingQuantity(), getBidActivityQuantitiesPipeResponse.getRemainingQuantity()) &&
+                Objects.equals(getRemainingHours(), getBidActivityQuantitiesPipeResponse.getRemainingHours()) &&
+                Objects.equals(getPercentComplete(), getBidActivityQuantitiesPipeResponse.getPercentComplete());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getTakeOffQuantity(),
                 getQuantityUnit(),
-                getEstimatedHours());
+                getEstimatedMechHours(),
+                getRemainingQuantity(),
+                getRemainingHours(),
+                getPercentComplete());
     }
 }

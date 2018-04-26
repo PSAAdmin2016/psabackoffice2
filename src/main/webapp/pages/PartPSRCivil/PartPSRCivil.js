@@ -31,19 +31,22 @@ Application.$controller("PartPSRCivilPageController", ["$scope", "$rootScope", "
                 "BidID": 0
             }
         });
+        $scope.Variables.serviceGetMatchesByTestPackage.invoke({
+            "inputFields": {
+                "TestPackage": 'XNAX'
+            }
+        });
     };
 
 
     $scope.buttonDetail1Click = function($event, $isolateScope) {
-        if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 70 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 71) {
-            $scope.Variables.liveCivilFA.listRecords({
-                filterFields: {
-                    "activityId": {
-                        "value": $scope.pageParams.ActivityID
-                    }
+        $scope.Variables.liveCivilFA.listRecords({
+            filterFields: {
+                "activityId": {
+                    "value": $scope.pageParams.ActivityID
                 }
-            });
-        }
+            }
+        });
     };
 
 
@@ -107,6 +110,14 @@ Application.$controller("PartPSRCivilPageController", ["$scope", "$rootScope", "
     };
 
 
+    $scope.serviceCreateLooseHoursActivitiesonResult = function(variable, data) {
+        if (!data[0].ReturnStatus) {
+            $scope.$parent.Variables.notificationUpdateError.setMessage(data[0].ErrorText);
+            $scope.$parent.Variables.notificationUpdateError.invoke();
+        }
+    };
+
+
     $scope.timerLabelFlasheronTimerFire = function(variable, data) {
         if ($scope.Widgets.textCivilTestHrsEarned.datavalue > $scope.Widgets.labelTestPackageHoursRemaining.caption) {
             if ($scope.Variables.staticBrightLabel === false) {
@@ -143,6 +154,7 @@ Application.$controller("dialogRejectionController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.formRejectSubmit = function($event, $isolateScope, $formData) {
+            $scope.Variables.timerLabelFlasher.cancel();
             $scope.Variables.serviceUnLockSASActivity.invoke();
             $scope.$parent.$parent.savePageSettings();
 
@@ -153,11 +165,6 @@ Application.$controller("dialogRejectionController", ["$scope",
 
             $scope.$parent.$parent.Variables.serviceCreateSASNote.setInput("Note", $scope.Widgets.formReject.formWidgets.textareaSASNoteReject.datavalue);
             $scope.$parent.$parent.Variables.serviceCreateSASNote.invoke();
-        };
-
-
-        $scope.buttonDialogRejectionSaveClick = function($event, $isolateScope) {
-            $scope.Variables.timerLabelFlasher.cancel();
         };
 
     }
@@ -191,9 +198,7 @@ Application.$controller("dialogAssignTestingQuantitiesController", ["$scope",
             $scope.Variables.serviceUpdateSAS.invoke(); //Updates GetActivitiesPendingApproval
 
             $scope.Variables.timerLabelFlasher.cancel();
-            if ($scope.Variables.Job1111SettingsData.getData().data.find(x => x.label === 'LooseHoursRoundupCivil').value2 == 1) { //Run only if Global setting is 1
-                $scope.Variables.serviceCreateLooseHoursActivities.invoke();
-            }
+            $scope.Variables.serviceCreateLooseHoursActivities.invoke(); //Stored Procedure only runs if Global setting is 1
         };
 
 
@@ -212,8 +217,8 @@ Application.$controller("dialogAssignTestingQuantitiesController", ["$scope",
 ]);
 
 Application.$controller("Table1Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

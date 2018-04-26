@@ -117,6 +117,30 @@
     "dataSet" : [ ],
     "pageTransitions" : "none"
   },
+  "notificationUpdateError" : {
+    "_id" : "wm-notificationUpdateError-wm.NotificationVariable-1524757772718",
+    "name" : "notificationUpdateError",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "0",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Error",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "serviceCreateSASNote" : {
     "_id" : "wm-Job1111ExecuteCreateSSNote-wm.ServiceVariable-1457040761432",
     "name" : "serviceCreateSASNote",

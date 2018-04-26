@@ -110,6 +110,7 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
                     invokePartialFn('gridApprovalReviewSelectPipe');
                 });
                 $scope.Widgets.containerActivityMatches.pageParams.ActivityID = $data.ActivityID;
+                $scope.Widgets.containerActivityMatches.pageParams.ActivityTypeID = $data.ActivityType;
                 $scope.Widgets.containerActivityMatches.pageParams.BidID = $data.BidID;
                 $scope.Widgets.containerActivityMatches.pageParams.TestPackage = $data.Spool1;
                 break;

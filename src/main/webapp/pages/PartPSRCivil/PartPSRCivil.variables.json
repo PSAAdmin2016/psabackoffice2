@@ -4,11 +4,7 @@
     "name" : "liveCivilFA",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ {
-      "target" : "id",
-      "value" : "bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityRowId",
-      "type" : "number"
-    } ],
+    "dataBinding" : [ ],
     "operation" : "read",
     "dataSet" : [ ],
     "type" : "CivilFa",
@@ -21,8 +17,8 @@
     "autoUpdate" : false,
     "transformationRequired" : false,
     "liveSource" : "Job1111",
-    "ignoreCase" : true,
-    "matchMode" : "start",
+    "ignoreCase" : false,
+    "matchMode" : "exact",
     "propertiesMap" : {
       "columns" : [ {
         "fieldName" : "submissionActivityStatus",
@@ -903,6 +899,7 @@
     "isList" : true,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onResult" : "serviceCreateLooseHoursActivitiesonResult($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

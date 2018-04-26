@@ -45,7 +45,7 @@
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn26" horizontalalign="center">
                             <wm-button class="btn-default" caption="Research" type="button" margin="10% unset unset unset" backgroundcolor="#40E0D0" hint="Jump to Classic Tracker, Filtered to This Activities BidID" accessroles="Everyone" width="95%" on-click="buttonResearchClick($event, $scope)"
-                                name="buttonResearch" iconclass="wi wi-search"></wm-button>
+                                name="buttonResearch1" iconclass="wi wi-search"></wm-button>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn27" horizontalalign="center">
                             <wm-button class="btn-default" caption="Details" type="button" backgroundcolor="#5fb4ff" opacity="1" width="95%" iconclass="glyphicon glyphicon-asterisk" on-click="Widgets.dialogPSAActivityDetails.open();buttonDetail1Click($event, $scope)"
@@ -134,7 +134,7 @@
     </wm-layoutgrid>
     <wm-view class="dialog-view" name="viewRejection" show="false">
         <wm-dialog dialogtype="design-dialog" modal="true" name="dialogRejection" width="30%" closable="false" title="Reject Field Activity" iconclass="glyphicon glyphicon-edit">
-            <wm-form class="panel-primary" enctype="application/x-www-form-urlencoded" method="post" name="formReject" width="100%" height="100%" on-submit="formRejectSubmit($event, $scope, $formData);Widgets.dialogRejection.close();Widgets.dialogAssignQuantities.close();Variables.Job1111ExecuteUnLockSSActivity.invoke()"
+            <wm-form class="panel-primary" enctype="application/x-www-form-urlencoded" method="post" name="formReject" width="100%" height="100%" on-submit="formRejectSubmit($event, $scope, $formData);Widgets.dialogRejection.close();Widgets.dialogAssignTestingQuantities.close()"
                 margin="0%">
                 <wm-layoutgrid name="layoutgrid54_1" margin="unset 0px" padding="unset 0px">
                     <wm-gridrow name="gridrow95_1" padding="unset 0%">
@@ -159,7 +159,7 @@
                 </wm-layoutgrid>
                 <wm-buttongroup horizontalalign="right" class="form-action col-md-12" name="buttongroup1">
                     <wm-button caption="Cancel" type="button" class="btn-warning" name="button24" on-click="Widgets.dialogRejection.close()"></wm-button>
-                    <wm-button caption="Save" type="submit" class="btn-primary" name="buttonDialogRejectionSave" on-click="buttonDialogRejectionSaveClick($event, $scope);Widgets.dialogAssignQuantities.close();Widgets.dialogAssignTestingQuantities.close()"></wm-button>
+                    <wm-button caption="Save" type="submit" class="btn-primary" name="buttonDialogRejectionSave"></wm-button>
                 </wm-buttongroup>
             </wm-form>
             <wm-dialogactions name="dialogactions3" show="false">
@@ -1054,8 +1054,7 @@
             <wm-dialogactions name="dialogactions1">
                 <wm-button class="btn-default" caption="Return" type="button" show="true" backgroundcolor="#dc0000" iconclass="wi wi-backward" shortcutkey="r" on-click="Widgets.dialogRejection.open()" name="buttonRejectQuantity" hint="Return to Superintendent for further review."></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog();Variables.serviceUnLockSSActivity.invoke();buttonDialogAssignTestCancelClick($event, $scope)" name="buttonDialogAssignTestCancel" tabindex="1"></wm-button>
-                <wm-button class="btn-primary" caption="Update" name="buttonQuantitiesUpdate2" type="button" on-click="buttonQuantitiesUpdate2Click($event, $scope);Widgets.dialogAssignTestingQuantities.close();Variables.serviceUnLockSSActivity.invoke()"
-                    hint="Commit this entry to the tracker."></wm-button>
+                <wm-button class="btn-primary" caption="Update" name="buttonQuantitiesUpdate2" type="button" on-click="buttonQuantitiesUpdate2Click($event, $scope);Widgets.dialogAssignTestingQuantities.close()" hint="Commit this entry to the tracker."></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>

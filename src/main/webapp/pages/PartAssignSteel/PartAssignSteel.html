@@ -5,7 +5,7 @@
                 <wm-gridcolumn columnwidth="3" name="gridcolumn157_1">
                     <wm-label name="label213_2" width="100%" caption="Pending Activity" fontweight="bold" fontsize="14"></wm-label>
                 </wm-gridcolumn>
-                <wm-gridcolumn columnwidth="8" name="gridcolumn162_1" horizontalalign="center">
+                <wm-gridcolumn columnwidth="9" name="gridcolumn162_1" horizontalalign="center">
                     <wm-label caption="Current Quantity" fontweight="bold" fontsize="14" name="label214_1" hint="All Totals/Quantities, And percentages are BEFORE the current activity is added." margin="unset unset 0px unset"></wm-label>
                 </wm-gridcolumn>
             </wm-gridrow>
@@ -49,50 +49,50 @@
                                         <wm-label class="col-md-3 control-label" name="label236_1" caption="Hours Earned" fontweight="bold"></wm-label>
                                     </wm-composite>
                                     <wm-container class="col-md-9" name="containerErectionHrsEarned" show="bind:pageParams.ActivityTypeID == 61">
-                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.ShakeHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number" updateon="default" backgroundcolor="#b1efe4"
-                                            readonly="true" disabled="false" placeholder="Enter Quantity" name="textShakeHrsEarned" color="#000000"></wm-text>
+                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.ShakeHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number"
+                                            updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" name="textShakeHrsEarned" color="#000000"></wm-text>
                                     </wm-container>
                                     <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 62" name="container102_3">
-                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.ErectHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number" updateon="default" backgroundcolor="#b1efe4"
-                                            readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textErectHrsEarned"></wm-text>
+                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.ErectHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number"
+                                            updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textErectHrsEarned"></wm-text>
                                     </wm-container>
                                     <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 63" name="container104_2">
-                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.BoltoutHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number" updateon="default" backgroundcolor="#b1efe4"
-                                            readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textBoltoutHrsEarned"></wm-text>
+                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.BoltoutHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number"
+                                            updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textBoltoutHrsEarned"></wm-text>
                                     </wm-container>
                                     <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 64" name="container105">
-                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.ImpHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number" updateon="default" backgroundcolor="#b1efe4"
-                                            readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textImpHrsEarned"></wm-text>
+                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.ImpHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number"
+                                            updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textImpHrsEarned"></wm-text>
                                     </wm-container>
                                     <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 68" name="container106_2">
-                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.WeldHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number" updateon="default" backgroundcolor="#b1efe4"
-                                            readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textWeldHrsEarned"></wm-text>
+                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.WeldHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number"
+                                            updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textWeldHrsEarned"></wm-text>
                                     </wm-container>
                                     <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 65" name="container107">
-                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.SellHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number" updateon="default" backgroundcolor="#b1efe4"
-                                            readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textSellHrsEarned"></wm-text>
+                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.SellHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number"
+                                            updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textSellHrsEarned"></wm-text>
                                     </wm-container>
                                     <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 67" name="container108">
-                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.DemoHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity  * textInstalled " type="number" updateon="default" backgroundcolor="#b1efe4"
-                                            readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textDemoHrsEarned"></wm-text>
+                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.DemoHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity  * textInstalled " type="number" updateon="default"
+                                            backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textDemoHrsEarned"></wm-text>
                                     </wm-container>
                                     <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 96" name="container109">
-                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.MiscHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number" updateon="default" backgroundcolor="#b1efe4"
-                                            readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textMiscHrsEarned"></wm-text>
+                                        <wm-text hint="Hours earned by current Activity" datavalue="bind:Variables.serviceGetQuantities.firstRecord.MiscHours / Variables.serviceGetQuantities.firstRecord.SteelQuantity * textInstalled | toNumber: '2'" type="number"
+                                            updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textMiscHrsEarned"></wm-text>
                                     </wm-container>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                         </wm-layoutgrid>
                     </wm-container>
                 </wm-gridcolumn>
-                <wm-gridcolumn columnwidth="8" name="gridcolumn190_1">
+                <wm-gridcolumn columnwidth="9" name="gridcolumn190_1">
                     <wm-container name="container110">
                         <wm-container borderstyle="solid" borderwidth="5px" name="container111" margin="unset unset unset 1%" padding="2% unset unset 4%" bordercolor="#c1c1c1">
                             <wm-layoutgrid name="layoutgrid39_1">
                                 <wm-gridrow name="gridrow116">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn195_1">
                                         <wm-composite name="composite110" captionposition="top">
-                                            <wm-label class="col-md-3" name="label133_2" caption="Total Quantity" fontweight="bold"></wm-label>
+                                            <wm-label class="col-md-3" name="label133_2" caption="Estimated Quantity" fontweight="bold"></wm-label>
                                             <wm-container class="col-md-9" name="container105_1" show="bind:pageParams.ActivityTypeID != 68">
                                                 <wm-label name="label289" caption="bind:Variables.serviceGetQuantities.firstRecord.SteelQuantity | toNumber: '2'"></wm-label>
                                             </wm-container>
@@ -124,13 +124,16 @@
                                                 <wm-label name="labelWeldRemaining" caption="bind:Variables.serviceGetQuantities.firstRecord.WeldQuantity - Variables.serviceGetQuantities.firstRecord.InstalledWeld | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"></wm-label>
                                             </wm-container>
                                             <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 65" name="container87">
-                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledSell | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added" name="labelSellRemaining"></wm-label>
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledSell | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"
+                                                    name="labelSellRemaining"></wm-label>
                                             </wm-container>
                                             <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 67" name="container101_1">
-                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledDemo | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added" name="labelDemoRemaining"></wm-label>
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledDemo | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"
+                                                    name="labelDemoRemaining"></wm-label>
                                             </wm-container>
                                             <wm-container class="col-md-9" show="bind:pageParams.ActivityTypeID == 96" name="container104_1">
-                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledMisc | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added" name="labelMiscRemaining"></wm-label>
+                                                <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.SteelQuantity - Variables.serviceGetQuantities.firstRecord.InstalledMisc | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"
+                                                    name="labelMiscRemaining"></wm-label>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
@@ -138,7 +141,7 @@
                                 <wm-gridrow name="gridrow117_1">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn197_1">
                                         <wm-composite name="composite182" captionposition="top">
-                                            <wm-label class="col-md-3 control-label" name="label235_2" caption="Total Hours" hint="Total man hours for this Bid Activity MINUS Hydro" fontweight="bold"></wm-label>
+                                            <wm-label class="col-md-3 control-label" name="label235_2" caption="Estimated Hours" hint="Total man hours for this Bid Activity MINUS Hydro" fontweight="bold"></wm-label>
                                             <wm-container class="col-md-9" name="container174_1" show="bind:pageParams.ActivityTypeID == 61">
                                                 <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.ShakeHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelShakelHours"></wm-label>
                                             </wm-container>
@@ -210,7 +213,7 @@
             </wm-gridrow>
             <wm-gridrow name="gridrow54" horizontalalign="right">
                 <wm-gridcolumn columnwidth="3" name="gridcolumn129_1" horizontalalign="right"></wm-gridcolumn>
-                <wm-gridcolumn columnwidth="4" name="gridcolumn201_1"></wm-gridcolumn>
+                <wm-gridcolumn columnwidth="5" name="gridcolumn201_1"></wm-gridcolumn>
                 <wm-gridcolumn columnwidth="4" name="gridcolumn202_1">
                     <wm-composite name="composite186_1" captionposition="top" horizontalalign="left">
                         <wm-label class="col-md-3 control-label" caption="Percent Complete" textalign="left" hint="Percent complete BEFORE current activity is added" fontweight="bold" name="label288" color="#000000"></wm-label>

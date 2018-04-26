@@ -2,18 +2,17 @@
     <wm-layoutgrid name="layoutgrid2" show="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 40 &amp;&amp; $parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 41 &amp;&amp; $parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 42 &amp;&amp; $parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 43">
         <wm-gridrow name="gridrow3">
             <wm-gridcolumn columnwidth="1" name="gridcolumn7">
-                <wm-button class="btn-default" caption="Return" type="button" hint="Return to Superintendent for further review." show="true" backgroundcolor="#dc0000" iconclass="wi wi-backward" shortcutkey="r" on-click="Widgets.dialogRejection.open()" name="button2"></wm-button>
+                <wm-button class="btn-default" caption="Return" type="button" hint="Return to Superintendent for further review." show="true" backgroundcolor="#dc0000" iconclass="wi wi-backward" shortcutkey="r" on-click="Widgets.dialogRejection.open()" name="buttonReturn1"></wm-button>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn13">
-                <wm-composite name="composite78_1">
+                <wm-composite name="composite78_1" show="bind:!Variables.staticBidSelectItem.dataSet.dataValue &amp;&amp; ((Widgets.gridApprovalReview.selecteditem.Sheet1 != Widgets.gridApprovalReview.selecteditem.Sheet2) || (Widgets.gridApprovalReview.selecteditem.Drawing1 != Widgets.gridApprovalReview.selecteditem.Drawing2) || (Widgets.gridApprovalReview.selecteditem.Line1 != Widgets.gridApprovalReview.selecteditem.Line2))">
                     <wm-container class="col-md-9" name="container94_1" width="80%">
-                        <wm-switch datavalue="Spool1" name="switchSpool1Spool2" dataset="Spool1,Spool2" show="bind:(Widgets.gridApprovalReview.selecteditem.Sheet1 != Widgets.gridApprovalReview.selecteditem.Sheet2) || (Widgets.gridApprovalReview.selecteditem.Drawing1 != Widgets.gridApprovalReview.selecteditem.Drawing2) || (Widgets.gridApprovalReview.selecteditem.Line1 != Widgets.gridApprovalReview.selecteditem.Line2)"
-                            on-change="Variables.serviceGetBidActivityMatches.invoke()" hint="Toggle between sheets if the connection spans 2 Iso's."></wm-switch>
+                        <wm-switch datavalue="Spool1" name="switchSpool1Spool2" dataset="Spool1,Spool2" show="true" on-change="Variables.serviceGetMatches.invoke()" hint="Toggle between sheets if the connection spans 2 Iso's."></wm-switch>
                     </wm-container>
                 </wm-composite>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="2" name="gridcolumn198_1" horizontalalign="center">
-                <wm-layoutgrid name="layoutgrid32_1">
+                <wm-layoutgrid name="layoutgrid32_1" show="bind:!Variables.staticBidSelectItem.dataSet.dataValue">
                     <wm-gridrow name="gridrow86_3">
                         <wm-gridcolumn columnwidth="6" name="gridcolumn199_1">
                             <wm-label caption="Manual Search" fontweight="bold" textdecoration="underline" borderstyle="none" hint="This is the selected activity." name="label227_2" horizontalalign="center"></wm-label>
@@ -24,36 +23,40 @@
                             <wm-checkbox caption="Toggle" type="toggle" height="10" width="45" datavalue="0" checkedvalue="1" uncheckedvalue="0" name="toggleManualSearch" on-change="toggleManualSearchChange($event, $scope, newVal, oldVal)" hint="Toggle Manual Search On/Off"></wm-checkbox>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn208_1" horizontalalign="left">
-                            <wm-button class="btn-default" caption="Search" type="button" name="buttonManualSearch" on-click="Variables.serviceGetBidActivityMatches.invoke()" show="bind:Widgets.toggleManualSearch.datavalue == 1"></wm-button>
+                            <wm-button class="btn-default" caption="Search" type="button" name="buttonManualSearch" on-click="Variables.serviceGetMatches.invoke()" show="bind:Widgets.toggleManualSearch.datavalue == 1"></wm-button>
                         </wm-gridcolumn>
                     </wm-gridrow>
                 </wm-layoutgrid>
             </wm-gridcolumn>
+            <wm-gridcolumn columnwidth="2" name="gridcolumn238_2"></wm-gridcolumn>
+            <wm-gridcolumn columnwidth="1" name="gridcolumn239_2">
+                <wm-button class="btn-default" caption="Hold" type="button" hint="Change activity Status to Hold...  To filter out of list for future review." show="true" backgroundcolor="#30afc2" iconclass="fa fa-hand-stop-o" on-click="buttonHoldClick($event, $scope)"
+                    bordercolor="#ffa800" borderstyle="groove" borderwidth="5px" name="buttonHold"></wm-button>
+            </wm-gridcolumn>
+            <wm-gridcolumn columnwidth="5" name="gridcolumn240_3"></wm-gridcolumn>
         </wm-gridrow>
-        <wm-gridrow name="gridrow4" padding=".5% unset unset unset">
+        <wm-gridrow name="gridrow4" padding=".5% 1% unset 1%">
             <wm-gridcolumn columnwidth="1" name="gridcolumn8_1" horizontalalign="right">
-                <wm-label name="label233_1" caption="Filters:" textalign="left" hint="Turn all filters OFF  to see the entire tracker." borderstyle="none" fontsize="18" margin="unset 5% unset unset" padding="1%"></wm-label>
+                <wm-label name="label233_1" caption="Filters:" textalign="left" hint="Turn all filters OFF  to see the entire tracker." borderstyle="none" fontsize="18" margin="unset 5% unset unset" padding="1%" show="bind:!Variables.staticBidSelectItem.dataSet.dataValue"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn9_1">
-                <wm-checkbox caption="Toggle" type="toggle" height="20" width="45" datavalue="1" checkedvalue="1" uncheckedvalue="0" on-change="Variables.serviceGetBidActivityMatches.invoke()" name="toggleFilterLineNumber" hint="Filter the tracker by the LINE associated with the selected activity."
-                    show="bind:Widgets.toggleManualSearch.datavalue == '0'"></wm-checkbox>
+                <wm-checkbox caption="Toggle" type="toggle" height="20" width="45" datavalue="1" checkedvalue="1" uncheckedvalue="0" on-change="Variables.serviceGetMatches.invoke()" name="toggleFilterLine" hint="Filter the tracker by the LINE." show="bind:Widgets.toggleManualSearch.datavalue == '0' &amp;&amp; !Variables.staticBidSelectItem.dataSet.dataValue"></wm-checkbox>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="2" name="gridcolumn10">
-                <wm-checkbox caption="Toggle" type="toggle" height="20" width="45" datavalue="1" checkedvalue="1" uncheckedvalue="0" name="toggleFilterDrawingNumber" on-change="Variables.serviceGetBidActivityMatches.invoke()" hint="Filter the tracker by the DWG associated with the selected activity."
-                    show="bind:Widgets.toggleManualSearch.datavalue == '0'"></wm-checkbox>
+                <wm-checkbox caption="Toggle" type="toggle" height="20" width="45" datavalue="1" checkedvalue="1" uncheckedvalue="0" name="toggleFilterDrawing" on-change="Variables.serviceGetMatches.invoke()" hint="Filter the tracker by the Drawing." show="bind:Widgets.toggleManualSearch.datavalue == '0' &amp;&amp; !Variables.staticBidSelectItem.dataSet.dataValue"></wm-checkbox>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn13_1">
-                <wm-checkbox caption="Toggle" type="toggle" height="20" width="45" datavalue="1" checkedvalue="1" uncheckedvalue="0" name="toggleFilterSheetNumber" on-change="Variables.serviceGetBidActivityMatches.invoke()" hint="Filter the tracker by the SHEET associated with the selected activity."
-                    show="bind:Widgets.toggleManualSearch.datavalue == '0'"></wm-checkbox>
+                <wm-checkbox caption="Toggle" type="toggle" height="20" width="45" datavalue="1" checkedvalue="1" uncheckedvalue="0" name="toggleFilterSheet" on-change="Variables.serviceGetMatches.invoke()" hint="Filter the tracker by the SHEET." show="bind:Widgets.toggleManualSearch.datavalue == '0' &amp;&amp; !Variables.staticBidSelectItem.dataSet.dataValue"></wm-checkbox>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn14_1">
-                <wm-checkbox caption="Toggle" type="toggle" height="20" width="45" datavalue="1" checkedvalue="1" uncheckedvalue="0" name="toggleFilterECT" on-change="Variables.serviceGetBidActivityMatches.invoke()" hint="Filter the tracker by E,C,T."></wm-checkbox>
+                <wm-checkbox caption="Toggle" type="toggle" height="20" width="45" datavalue="1" checkedvalue="1" uncheckedvalue="0" name="toggleFilterActivityType" on-change="Variables.serviceGetMatches.invoke()" hint="Filter the tracker by Activity Type"
+                    show="bind:!Variables.staticBidSelectItem.dataSet.dataValue"></wm-checkbox>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn15">
-                <wm-checkbox caption="Toggle" type="toggle" height="20" width="45" datavalue="1" checkedvalue="1" uncheckedvalue="0" name="toggleFilterECTType" on-change="Variables.serviceGetBidActivityMatches.invoke()" hint="Filter the tracker by the TYPE associated with the selected activity."></wm-checkbox>
+                <wm-checkbox caption="Toggle" type="toggle" height="20" width="45" datavalue="1" checkedvalue="1" uncheckedvalue="0" name="toggleFilterActivitySubType" on-change="Variables.serviceGetMatches.invoke()" hint="Filter the tracker by Activity Sub Type"
+                    show="bind:!Variables.staticBidSelectItem.dataSet.dataValue"></wm-checkbox>
             </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="1" name="gridcolumn196_1"></wm-gridcolumn>
-            <wm-gridcolumn columnwidth="1" name="gridcolumn197_2"></wm-gridcolumn>
+            <wm-gridcolumn columnwidth="7" name="gridcolumn196_1"></wm-gridcolumn>
         </wm-gridrow>
         <wm-gridrow name="gridrow68" backgroundcolor="#b1efe4" bordercolor="#a0a0a0" borderstyle="groove" borderwidth="0px 0px 8px 0px" padding="1% 1% unset 1%">
             <wm-gridcolumn columnwidth="1" name="gridcolumn161_1">
@@ -88,11 +91,11 @@
                     margin="unset unset unset 0px" textalign="left" name="textSheetNumberSearch"></wm-text>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn165">
-                <wm-label caption="ECT" fontweight="bold" textdecoration="underline" borderstyle="none" name="label225_1" hint="This is the selected activity."></wm-label>
+                <wm-label caption="Activity Type" fontweight="bold" textdecoration="underline" borderstyle="none" name="label225_1" hint="This is the selected activity."></wm-label>
                 <wm-label width="100%" caption="bind:Variables.staticECT.dataSet.dataValue" name="label233_2" hint="This is the selected activity." color="#000000"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn166">
-                <wm-label caption="ECT SubType" fontweight="bold" textdecoration="underline" borderstyle="none" name="label226_1" hint="This is the selected activity."></wm-label>
+                <wm-label caption="Activity SubType" fontweight="bold" textdecoration="underline" borderstyle="none" name="label226_1" hint="This is the selected activity."></wm-label>
                 <wm-label width="100%" caption="bind:Variables.staticECTType.dataSet.dataValue" name="label234" hint="This is the selected activity." color="#000000"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn167">
@@ -104,21 +107,19 @@
                 <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Notes" readonlygrid="true" show="true" name="label240_2" hint="This is the selected activity." color="#000000"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="2" name="gridcolumn169" padding="unset 0px">
-                <wm-layoutgrid name="layoutgrid37">
-                    <wm-gridrow name="gridrow98" padding="unset 0px">
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn243_1" padding="unset 0px">
-                            <wm-label width="100%" caption="Notes" show="bind:$parent.Variables.serviceGetNotesByFieldActivityID.dataSet.totalElements > 0" name="label237_2" fontweight="bold" textdecoration="underline" padding="unset 0px" margin="unset 0px"
-                                hint="Notes added during the Supervisor &amp; Project Services Review Process"></wm-label>
-                            <wm-button class="btn-default" caption="View" type="button" show="true" backgroundcolor="#e7dd51" marginunit="%" on-click="buttonReviewNotesClick($event, $scope)" name="buttonReviewNotes" iconclass="glyphicon glyphicon-list-alt"
-                                hint="Review notes from the Superintendent." width="95%" margin="unset unset 2% unset" animation="slideInRight"></wm-button>
+                <wm-layoutgrid name="layoutgrid3">
+                    <wm-gridrow padding="unset 0% 2% 0%" name="gridrow6">
+                        <wm-gridcolumn columnwidth="4" padding="unset 0px" name="gridcolumn24" horizontalalign="center">
+                            <wm-button class="btn-default" caption="Notes" type="button" show="true" backgroundcolor="#e7dd51" marginunit="%" on-click="buttonReviewNotesClick($event, $scope)" iconclass="glyphicon glyphicon-list-alt" hint="View / Add Notes for this Field Activity"
+                                width="95%" margin="10% unset 2% unset" name="buttonReviewNotes1" badgevalue="bind:$parent.Variables.serviceGetSASNotes.dataSet.totalElements"></wm-button>
                         </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn244">
-                            <wm-button class="btn-raised" caption="Research" type="button" margin="22% unset unset unset" backgroundcolor="#40E0D0" hint="Jump to Classic Tracker, Filtered to This Dwg, Sheet, ECT, &amp; ECT SubType" accessroles="Everyone"
-                                name="Research" width="95%" on-click="ResearchClick($event, $scope)"></wm-button>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn25" horizontalalign="center">
+                            <wm-button class="btn-raised" caption="Research" type="button" margin="10% unset unset unset" backgroundcolor="#40E0D0" hint="Jump to Classic Tracker, Filtered to This Activities BidID" accessroles="Everyone" width="98%" on-click="buttonResearchClick($event, $scope)"
+                                name="buttonResearch1" iconclass="wi wi-search"></wm-button>
                         </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn247_1">
-                            <wm-button class="btn-default" caption="Details" type="button" name="buttonDetail1" backgroundcolor="#5fb4ff" opacity="1" width="95%" iconclass="glyphicon glyphicon-asterisk" on-click="buttonDetail1Click($event, $scope);Widgets.dialogFielActivityDetails.open()"
-                                cursor="default" margin="22% unset unset unset" hint="View details submitted by foreman for the selected activity."></wm-button>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn26">
+                            <wm-button class="btn-default" caption="Details" type="button" backgroundcolor="#5fb4ff" opacity="1" width="95%" iconclass="glyphicon glyphicon-asterisk" on-click="Widgets.dialogFielActivityDetails.open();buttonDetail1Click($event, $scope)"
+                                cursor="default" margin="10% unset unset unset" hint="View details submitted by foreman for the selected activity." name="buttonDetail1"></wm-button>
                         </wm-gridcolumn>
                     </wm-gridrow>
                 </wm-layoutgrid>
@@ -143,10 +144,10 @@
                 <wm-label caption="Sheet #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label148"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn129_2">
-                <wm-label caption="ECT" fontweight="bold" textdecoration="underline" borderstyle="none" name="label149"></wm-label>
+                <wm-label caption="Activity Type" fontweight="bold" textdecoration="underline" borderstyle="none" name="label149"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn130">
-                <wm-label caption="ECT SubType" fontweight="bold" textdecoration="underline" borderstyle="none" name="label150"></wm-label>
+                <wm-label caption="Activity SubType" fontweight="bold" textdecoration="underline" borderstyle="none" name="label150"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="3" name="gridcolumn131_1">
                 <wm-label caption="Description" fontweight="bold" textdecoration="underline" borderstyle="none" name="label151"></wm-label>
@@ -158,57 +159,55 @@
         </wm-gridrow>
         <wm-gridrow name="gridrow11">
             <wm-gridcolumn columnwidth="12" name="gridcolumn42">
-                <wm-list listclass="list-group" itemclass="list-group-item" template="true" dataset="bind:Variables.serviceGetBidActivityMatches.dataSet" name="livelistBidActivities" itemsperrow="1" readonlygrid="true" selectionlimit="1" selectfirstitem="true"
-                    enablereorder="true" margin="unset 0%" padding="unset 0%">
+                <wm-list listclass="list-group" itemclass="list-group-item" template="true" dataset="bind:Variables.serviceGetMatches.dataSet" name="livelistBidActivities" itemsperrow="1" readonlygrid="true" selectionlimit="1" selectfirstitem="true" enablereorder="true"
+                    margin="unset 0%" padding="unset 0%">
                     <wm-listtemplate layout="blank" name="listtemplate2">
                         <wm-container class="blank" data-template-ctr="true" name="container98_1" margin="unset 0%" padding="unset 0%">
                             <wm-layoutgrid class="gridlayout" name="layoutgrid33" margin="unset 0%" padding="unset 0px"></wm-layoutgrid>
                             <wm-gridrow name="gridrow8" padding="unset 0%">
                                 <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn118" padding="unset unset unset 0%">
-                                    <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatches.dataSet[$i].BidID" name="labelBidActivityId" readonlygrid="true" margin="unset unset unset 0%" padding="unset unset unset 0%"></wm-label>
+                                    <wm-label width="100%" caption="bind:Variables.serviceGetMatches.dataSet[$i].BidID" name="labelBidActivityId" readonlygrid="true" margin="unset unset unset 0%" padding="unset unset unset 0%"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn119">
-                                    <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatches.dataSet[$i].LineNumber" name="labelBidCU" readonlygrid="true"></wm-label>
+                                    <wm-label width="100%" caption="bind:Variables.serviceGetMatches.dataSet[$i].LineNumber" name="labelBidCU" readonlygrid="true"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn class="col-xs-6" columnwidth="2" name="gridcolumn120">
-                                    <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatches.dataSet[$i].EngDrawingNumber" name="labelBidLineNumber" readonlygrid="true"></wm-label>
+                                    <wm-label width="100%" caption="bind:Variables.serviceGetMatches.dataSet[$i].EngDrawingNumber" name="labelBidLineNumber" readonlygrid="true"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn121">
-                                    <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatches.dataSet[$i].SheetNumber" name="labelBidSheetNumber"></wm-label>
+                                    <wm-label width="100%" caption="bind:Variables.serviceGetMatches.dataSet[$i].SheetNumber" name="labelBidSheetNumber"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn122">
-                                    <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatches.dataSet[$i].ECT" name="labelBidECT" readonlygrid="true"></wm-label>
+                                    <wm-label width="100%" caption="bind:Variables.serviceGetMatches.dataSet[$i].ECT" name="labelBidECT" readonlygrid="true"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn123_1">
-                                    <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatches.dataSet[$i].PipingActivityType" name="labelBidECTType"></wm-label>
+                                    <wm-label width="100%" caption="bind:Variables.serviceGetMatches.dataSet[$i].PipingActivityType" name="labelBidECTType"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn class="col-xs-6" columnwidth="3" name="gridcolumn124_1">
-                                    <wm-label width="100%" caption="bind:(Variables.serviceGetBidActivityMatches.dataSet[$i].ComponentNumber != '0') ? Variables.serviceGetBidActivityMatches.dataSet[$i].Description + ' - ' + Variables.serviceGetBidActivityMatches.dataSet[$i].ComponentNumber : Variables.serviceGetBidActivityMatches.dataSet[$i].Description"
+                                    <wm-label width="100%" caption="bind:(Variables.serviceGetMatches.dataSet[$i].ComponentNumber != '0') ? Variables.serviceGetMatches.dataSet[$i].Description + ' - ' + Variables.serviceGetMatches.dataSet[$i].ComponentNumber : Variables.serviceGetMatches.dataSet[$i].Description"
                                         name="labelBidDescription"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="1" name="gridcolumn159_1">
-                                    <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatches.dataSet[$i].RemainingQuant" name="labelQuantRemaining"></wm-label>
+                                    <wm-label width="100%" caption="bind:Variables.serviceGetMatches.dataSet[$i].RemainingQuant" name="labelQuantRemaining"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="1" name="gridcolumn122_1" horizontalalign="right" padding="unset 0%">
-                                    <wm-button class="btn-default" caption="Assign" type="button" hint="Assign the selected activity to this line in the tracker." on-click="Variables.serviceLockSSActivity.invoke()" readonlygrid="true" tabindex="1" show="bind:Variables.serviceGetBidActivityMatches.dataSet[$i].ECT == Variables.staticECT.dataSet.dataValue 
-
-
-
-&amp;&amp; 
-
-
-
-Variables.serviceGetBidActivityMatches.dataSet[$i].PipingActivityType == Variables.staticECTType.dataSet.dataValue 
-
-
-
-|| 
-
-
-
-Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" iconclass="glyphicon glyphicon-ok-sign" disabled="false" name="buttonAssign" width="50%" padding="unset 1%"></wm-button>
-                                    <wm-button class="btn-default" caption="Details" type="button" name="buttonDetail2" iconclass="glyphicon glyphicon-asterisk" width="50%" backgroundcolor="#5fb4ff" borderstyle="outset" opacity="0.8" on-click="Widgets.dialogBidActivityDetails.open()"
-                                        margin="unset 0% unset unset" padding="unset 1%" hint="View the tracker details for this line item."></wm-button>
+                                    <wm-layoutgrid name="layoutgrid5">
+                                        <wm-gridrow padding="unset 0px" name="gridrow11">
+                                            <wm-gridcolumn columnwidth="6" name="gridcolumn43">
+                                                <wm-popover popoverwidth="30%" margin="unset 0.5em unset unset" name="popoverAssign" class="btn btn-default" caption="Assign" backgroundcolor="#0B9642" iconclass="glyphicon glyphicon-ok-sign" contentsource="partial"
+                                                    popoverplacement="left" color="#222222" content="PartAssignPipe" title="Update Quantities" on-show="popoverAssignShow($event, $isolateScope, item, currentItemWidgets)" on-hide="popoverAssignHide($event, $isolateScope, item, currentItemWidgets)"
+                                                    show="true" deferload="true">
+                                                    <wm-param name="BidID" value="bind:Widgets.livelistBidActivities.selecteditem.BidID" type="integer"></wm-param>
+                                                    <wm-param name="ActivityID" value="bind:pageParams.ActivityID" type="integer"></wm-param>
+                                                    <wm-param name="ActivityTypeID" value="bind:pageParams.ActivityTypeID" type="integer"></wm-param>
+                                                </wm-popover>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="6" name="gridcolumn44">
+                                                <wm-button class="btn-default" caption="Details" type="button" iconclass="glyphicon glyphicon-asterisk" width="95%" backgroundcolor="#5fb4ff" borderstyle="outset" opacity="0.8" on-click="Widgets.dialogBidActivityDetails.open()"
+                                                    margin="unset 0% unset unset" padding="unset 1%" hint="View the tracker details for this line item." name="button8"></wm-button>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                         </wm-container>
@@ -220,7 +219,7 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
     <wm-layoutgrid name="layoutgrid3" show="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 40 || $parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41 || $parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42 || $parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43">
         <wm-gridrow name="gridrow87_2">
             <wm-gridcolumn columnwidth="1" name="gridcolumn201_3">
-                <wm-button class="btn-default" caption="Return" type="button" hint="Return to Superintendent for further review." show="true" backgroundcolor="#dc0000" iconclass="wi wi-backward" shortcutkey="r" on-click="Widgets.dialogRejection.open()" name="button24_1"
+                <wm-button class="btn-default" caption="Return" type="button" hint="Return to Superintendent for further review." show="true" backgroundcolor="#dc0000" iconclass="wi wi-backward" shortcutkey="r" on-click="Widgets.dialogRejection.open()" name="buttonReturn2"
                     margin="unset unset 20% unset"></wm-button>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn232">
@@ -252,13 +251,23 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
                 <wm-label caption="Notes" fontweight="bold" textdecoration="underline" borderstyle="none" name="label237_3"></wm-label>
                 <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Notes" readonlygrid="true" show="true" hint="This is the selected activity." color="#000000" name="label258_4"></wm-label>
             </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="6" name="gridcolumn212">
-                <wm-label name="labelMatchCount" caption="bind:Variables.serviceGetBidActivityMatchesByTestPackage.count()"></wm-label>
+            <wm-gridcolumn columnwidth="5" name="gridcolumn212">
+                <wm-label name="labelMatchCount" caption="bind:Variables.serviceGetMatchesByTestPackage.count()"></wm-label>
             </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="1" name="gridcolumn213">
-                <wm-label width="100%" caption="Review Notes" show="bind:$parent.Variables.serviceGetNotesByFieldActivityID.dataSet.totalElements > 0" fontweight="bold" textdecoration="underline" name="label236"></wm-label>
-                <wm-button class="btn-default" caption="View" type="button" show="true" backgroundcolor="#e7dd51" marginunit="%" on-click="buttonReviewNotesClick($event, $scope);Widgets.dialogNotes.open()" iconclass="glyphicon glyphicon-list-alt"
-                    hint="Review notes from the Superintendent." name="button25_1" animation="slideInRight"></wm-button>
+            <wm-gridcolumn columnwidth="2" name="gridcolumn213">
+                <wm-layoutgrid name="layoutgrid16_1">
+                    <wm-gridrow padding="unset 0% 2% 0%" name="gridrow32">
+                        <wm-gridcolumn columnwidth="4" padding="unset 0px" horizontalalign="center" name="gridcolumn78">
+                            <wm-button class="btn-default" caption="Notes" type="button" show="true" backgroundcolor="#e7dd51" marginunit="%" on-click="buttonReviewNotesClick($event, $scope)" iconclass="glyphicon glyphicon-list-alt" hint="Review notes from the Superintendent."
+                                name="buttonReviewNotes2" margin="10% unset 2% unset" badgevalue="bind:$parent.Variables.serviceGetSASNotes.dataSet.totalElements"></wm-button>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" horizontalalign="center" name="gridcolumn79">
+                            <wm-button class="btn-raised" caption="Research" type="button" margin="10% unset unset unset" backgroundcolor="#40E0D0" hint="Jump to Classic Tracker, Filtered to This Activities BidID" accessroles="Everyone" width="98%" iconclass="wi wi-search"
+                                name="buttonResearch2" on-click="buttonResearchClick($event, $scope)"></wm-button>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn80"></wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
             </wm-gridcolumn>
         </wm-gridrow>
         <wm-gridrow name="gridrow89_1">
@@ -300,41 +309,41 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
         </wm-gridrow>
         <wm-gridrow name="gridrow92_2">
             <wm-gridcolumn columnwidth="12" name="gridcolumn211">
-                <wm-list listclass="list-group" itemclass="list-group-item" template="true" dataset="bind:Variables.serviceGetBidActivityMatchesByTestPackage.dataSet" itemsperrow="1" readonlygrid="true" selectionlimit="1" selectfirstitem="true" enablereorder="true"
+                <wm-list listclass="list-group" itemclass="list-group-item" template="true" dataset="bind:Variables.serviceGetMatchesByTestPackage.dataSet" itemsperrow="1" readonlygrid="true" selectionlimit="1" selectfirstitem="true" enablereorder="true"
                     margin="unset 0%" padding="unset 0%" name="livelist3" datafield="All Fields">
                     <wm-listtemplate layout="blank" name="listtemplate3">
                         <wm-container class="blank" data-template-ctr="true" margin="unset 0%" padding="unset 0%" name="container108">
                             <wm-layoutgrid class="gridlayout" margin="unset 0%" padding="unset 0px" name="layoutgrid35"></wm-layoutgrid>
                             <wm-gridrow padding="unset 0%" name="gridrow93_2">
                                 <wm-gridcolumn class="col-xs-6" columnwidth="1" padding="unset unset unset 0%" name="gridcolumn221">
-                                    <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatchesByTestPackage.dataSet[$i].BidID" readonlygrid="true" margin="unset unset unset 0%" padding="unset unset unset 0%" name="label249_1"></wm-label>
+                                    <wm-label width="100%" caption="bind:Variables.serviceGetMatchesByTestPackage.dataSet[$i].BidID" readonlygrid="true" margin="unset unset unset 0%" padding="unset unset unset 0%" name="label249_1"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn222">
-                                    <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatchesByTestPackage.dataSet[$i].LineNumber" readonlygrid="true" name="label250"></wm-label>
+                                    <wm-label width="100%" caption="bind:Variables.serviceGetMatchesByTestPackage.dataSet[$i].LineNumber" readonlygrid="true" name="label250"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn223">
-                                    <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatchesByTestPackage.dataSet[$i].EngDrawingNumber" readonlygrid="true" name="label251_1"></wm-label>
+                                    <wm-label width="100%" caption="bind:Variables.serviceGetMatchesByTestPackage.dataSet[$i].EngDrawingNumber" readonlygrid="true" name="label251_1"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn224">
-                                    <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatchesByTestPackage.dataSet[$i].SheetNumber" name="label252_1"></wm-label>
+                                    <wm-label width="100%" caption="bind:Variables.serviceGetMatchesByTestPackage.dataSet[$i].SheetNumber" name="label252_1"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn225_1">
-                                    <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatchesByTestPackage.dataSet[$i].ECT" readonlygrid="true" name="label253_1"></wm-label>
+                                    <wm-label width="100%" caption="bind:Variables.serviceGetMatchesByTestPackage.dataSet[$i].ECT" readonlygrid="true" name="label253_1"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn226_2">
-                                    <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatchesByTestPackage.dataSet[$i].PipingActivityType" name="label254_1"></wm-label>
+                                    <wm-label width="100%" caption="bind:Variables.serviceGetMatchesByTestPackage.dataSet[$i].PipingActivityType" name="label254_1"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn class="col-xs-6" columnwidth="3" name="gridcolumn227_1">
-                                    <wm-label width="100%" caption="bind:Variables.serviceGetBidActivityMatchesByTestPackage.dataSet[$i].Description" name="label255_2"></wm-label>
+                                    <wm-label width="100%" caption="bind:Variables.serviceGetMatchesByTestPackage.dataSet[$i].Description" name="label255_2"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="1" name="gridcolumn228_1">
-                                    <wm-label width="100%" caption="bind:1 - Variables.serviceGetBidActivityMatchesByTestPackage.dataSet[$i].ReadyForTestingInstalled | toNumber: '2'" name="label256_3"></wm-label>
+                                    <wm-label width="100%" caption="bind:1 - Variables.serviceGetMatchesByTestPackage.dataSet[$i].ReadyForTestingInstalled | toNumber: '2'" name="label256_3"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="1" name="gridcolumn230_1">
-                                    <wm-label width="100%" caption="bind:1 - Variables.serviceGetBidActivityMatchesByTestPackage.dataSet[$i].HydroInstalled | toNumber: '2'" name="label257_1"></wm-label>
+                                    <wm-label width="100%" caption="bind:1 - Variables.serviceGetMatchesByTestPackage.dataSet[$i].HydroInstalled | toNumber: '2'" name="label257_1"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="1" name="gridcolumn231_1">
-                                    <wm-label width="100%" caption="bind:1 - Variables.serviceGetBidActivityMatchesByTestPackage.dataSet[$i].ClientTurnoverInstalled | toNumber: '2'" name="label258_3"></wm-label>
+                                    <wm-label width="100%" caption="bind:1 - Variables.serviceGetMatchesByTestPackage.dataSet[$i].ClientTurnoverInstalled | toNumber: '2'" name="label258_3"></wm-label>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                         </wm-container>
@@ -343,6 +352,43 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
             </wm-gridcolumn>
         </wm-gridrow>
     </wm-layoutgrid>
+    <wm-view class="dialog-view" name="viewRejection" show="false">
+        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogRejection" width="30%" closable="false" title="Reject Field Activity" iconclass="glyphicon glyphicon-edit">
+            <wm-form class="panel-primary" enctype="application/x-www-form-urlencoded" method="post" name="formReject" width="100%" height="100%" on-submit="formRejectSubmit($event, $scope, $formData);Widgets.dialogRejection.close();Widgets.dialogAssignQuantities.close();Variables.Job1111ExecuteUnLockSSActivity.invoke()"
+                margin="0%">
+                <wm-layoutgrid name="layoutgrid54_1" margin="unset 0px" padding="unset 0px">
+                    <wm-gridrow name="gridrow95_1" padding="unset 0%">
+                        <wm-gridcolumn name="gridcolumn240_2">
+                            <wm-composite name="composite207" captionposition="top">
+                                <wm-label class="col-md-3" name="label258" caption="Reason For Rejecting"></wm-label>
+                                <wm-container class="col-md-9" name="container196" width="80%">
+                                    <wm-select name="selectRejectReason" readonlygrid="true" dataset="bind:Variables.PSARefActivityRejectionsData.dataSet" datafield="id" displayfield="label" required="true"></wm-select>
+                                </wm-container>
+                            </wm-composite>
+                            <wm-composite name="composite208" captionposition="top">
+                                <wm-label class="col-md-3" name="label259" caption="Notes:"></wm-label>
+                                <wm-container class="col-md-9" name="container197" width="100%">
+                                    <wm-textarea name="textareaSSNoteReject" maxchars="252" required="true" updateon="default" on-keyup="textareaSSNoteRejectKeyup($event, $scope)"></wm-textarea>
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn239">
+                                        <wm-label width="70%" caption="Remaining:" fontsize="10" textalign="right" name="label282_1"></wm-label>
+                                        <wm-label width="30%" caption="252" fontsize="10" name="labelRejectTextCount"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-container>
+                            </wm-composite>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
+                <wm-buttongroup horizontalalign="right" class="form-action col-md-12" name="buttongroup1">
+                    <wm-button caption="Cancel" type="button" class="btn-warning" name="button24" on-click="Widgets.dialogRejection.close()"></wm-button>
+                    <wm-button caption="Save" type="submit" class="btn-primary" name="buttonDialogRejectionSave" on-click="buttonDialogRejectionSaveClick($event, $scope)"></wm-button>
+                </wm-buttongroup>
+            </wm-form>
+            <wm-dialogactions name="dialogactions3" show="false">
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button14"></wm-button>
+                <wm-button class="btn-primary" caption="Save" name="buttonRejectSave" type="submit"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
     <wm-view class="dialog-view" name="viewAssignQuantities" show="false">
         <wm-dialog dialogtype="design-dialog" modal="true" name="dialogAssignQuantities" tabindex="1" closable="true" animation="zoomInUp" width="30%" on-close="Variables.serviceUnLockSSActivity.invoke();dialogAssignQuantitiesClose($event, $scope)" title="Update Quantities"
             iconclass="glyphicon glyphicon-edit" on-opened="dialogAssignQuantitiesOpened($event, $scope)">
@@ -1680,43 +1726,6 @@ Variables.staticECTType.dataSet.dataValue == 'MISC'" backgroundcolor="#0B9642" i
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions4">
                 <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button15_1"></wm-button>
-            </wm-dialogactions>
-        </wm-dialog>
-    </wm-view>
-    <wm-view class="dialog-view" name="viewRejection" show="false">
-        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogRejection" width="30%" closable="false" title="Reject Field Activity" iconclass="glyphicon glyphicon-edit">
-            <wm-form class="panel-primary" enctype="application/x-www-form-urlencoded" method="post" name="formReject" width="100%" height="100%" on-submit="formRejectSubmit($event, $scope, $formData);Widgets.dialogRejection.close();Widgets.dialogAssignQuantities.close();Variables.Job1111ExecuteUnLockSSActivity.invoke()"
-                margin="0%">
-                <wm-layoutgrid name="layoutgrid54_1" margin="unset 0px" padding="unset 0px">
-                    <wm-gridrow name="gridrow95_1" padding="unset 0%">
-                        <wm-gridcolumn name="gridcolumn240_2">
-                            <wm-composite name="composite207" captionposition="top">
-                                <wm-label class="col-md-3" name="label258" caption="Reason For Rejecting"></wm-label>
-                                <wm-container class="col-md-9" name="container196" width="80%">
-                                    <wm-select name="selectRejectReason" readonlygrid="true" dataset="bind:Variables.PSARefActivityRejectionsData.dataSet" datafield="id" displayfield="label" required="true"></wm-select>
-                                </wm-container>
-                            </wm-composite>
-                            <wm-composite name="composite208" captionposition="top">
-                                <wm-label class="col-md-3" name="label259" caption="Notes:"></wm-label>
-                                <wm-container class="col-md-9" name="container197" width="100%">
-                                    <wm-textarea name="textareaSSNoteReject" maxchars="252" required="true" updateon="default" on-keyup="textareaSSNoteRejectKeyup($event, $scope)"></wm-textarea>
-                                    <wm-gridcolumn columnwidth="3" name="gridcolumn239">
-                                        <wm-label width="70%" caption="Remaining:" fontsize="10" textalign="right" name="label282_1"></wm-label>
-                                        <wm-label width="30%" caption="252" fontsize="10" name="labelRejectTextCount"></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                </wm-layoutgrid>
-                <wm-buttongroup horizontalalign="right" class="form-action col-md-12" name="buttongroup1">
-                    <wm-button caption="Cancel" type="button" class="btn-warning" name="button24" on-click="Widgets.dialogRejection.close()"></wm-button>
-                    <wm-button caption="Save" type="submit" class="btn-primary" name="buttonDialogRejectionSave" on-click="buttonDialogRejectionSaveClick($event, $scope)"></wm-button>
-                </wm-buttongroup>
-            </wm-form>
-            <wm-dialogactions name="dialogactions3" show="false">
-                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button14"></wm-button>
-                <wm-button class="btn-primary" caption="Save" name="buttonRejectSave" type="submit"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
