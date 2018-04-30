@@ -57,6 +57,15 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
             //OR pass a List to the querry if that works right.
             //OR Build an array of objects to pass to an UpdateSS LiveVariable -> setInput() -> invoke()
             //$scope.Variables.serviceUpdateSS.invoke();
+            $scope.Widgets.gridSuperReviewSteel.datagridElement.find('td .app-checkbox[name="SelectCheckbox"]').each(function(index) {
+                if ($(this).isolateScope().datavalue === true) {
+                    console.log($scope.Widgets.gridSuperReviewSteel.gridData[index]);
+                }
+            });
+
+
+
+
         }
 
     };
