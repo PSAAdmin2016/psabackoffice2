@@ -180,6 +180,7 @@ SUM(
 ) AS LooseHours
 
 
+
 FROM SteelTrackerDetails std
 LEFT JOIN (SELECT SUM(stlfa.FAQuantity) AS FAQuantity, sas.fk_BidIDAssigned AS BidID 
 			FROM SteelFA stlfa
@@ -402,6 +403,7 @@ SUM(
 ((std.SteelHours + std.WeldHours) * (1 - (SELECT Value1 FROM SETTINGS WHERE Label = 'SteelSellHoursPercent'))
 ) - COALESCE(er.EarnedHours,0)
 ) AS LooseHours
+
 
 
 FROM SteelTrackerDetails std
@@ -4666,6 +4668,7 @@ pe.ErectionPipeSize AS Size, pe.ErectionNotes AS Notes,
 FROM SubmissionActivityStatus sas
 
 
+
 LEFT JOIN PSA.REF_ActivityTypes at
 	ON at.ID =sas.ActivityType
 LEFT JOIN PSA.REF_ActivityStatuses ats
@@ -5061,6 +5064,7 @@ pe.ErectionPipeSize AS Size, pe.ErectionNotes AS Notes,
 (COALESCE(pe.ErectionLengthSpool1,0) + COALESCE(pe.ErectionLengthSpool2,0) + COALESCE(pe.ErectionLengthSpool3,0) + COALESCE(pe.ErectionLengthSpool4,0) + COALESCE(pe.ErectionLengthSpool5,0) + COALESCE(pe.ErectionLengthSpool6,0)) AS Quantity, 
 'N/A' AS Area, 1.00 AS PercentClaim, pe.ErectionRework AS Rework
 FROM SubmissionActivityStatus sas
+
 
 
 LEFT JOIN PSA.REF_ActivityTypes at
