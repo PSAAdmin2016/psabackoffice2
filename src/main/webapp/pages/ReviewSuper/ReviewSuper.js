@@ -3,12 +3,6 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        //Invoke all REF Variables, needed for all PartialPage Select and Search boxes  
-        //Currently done on ReviewLanding page
-        //$scope.Variables..listRecords();
-        //$scope.Variables..listRecords();
-        //$scope.Variables..listRecords();
-
         //Initialize Signiture pad canvas
         var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
             backgroundColor: 'rgb(255, 255, 255)',
@@ -52,12 +46,15 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
         if ($scope.Variables.staticTabSelect.dataSet.dataValue == '2') {
             console.log("Logic for Accept Steel Piece Work not built yet.");
             $scope.Widgets.gridSuperReviewSteel
-            debugger;
             //Need logic for looping through all FA's that make up the one row selected in the gridSuperReviewSteel.  
             //OR pass a List to the querry if that works right.
             //OR Build an array of objects to pass to an UpdateSS LiveVariable -> setInput() -> invoke()
             //$scope.Variables.serviceUpdateSS.invoke();
+            $scope.Widgets.gridSuperReviewSteel.datagridElement
+            var bob = $scope.Widgets.gridSuperReviewSteel.datagridElement.find('td .app-checkbox[name="SelectCheckbox"]')
+            debugger;
             $scope.Widgets.gridSuperReviewSteel.datagridElement.find('td .app-checkbox[name="SelectCheckbox"]').each(function(index) {
+                debugger;
                 if ($(this).isolateScope().datavalue === true) {
                     console.log($scope.Widgets.gridSuperReviewSteel.gridData[index]);
                 }
