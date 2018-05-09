@@ -593,7 +593,6 @@
     "dataSet" : [ ],
     "isList" : true,
     "maxResults" : 100,
-    "onSuccess" : "Javascript",
     "startUpdate" : false,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",

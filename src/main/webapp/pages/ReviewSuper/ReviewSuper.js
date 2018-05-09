@@ -406,13 +406,6 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
     };
 
 
-    $scope.serviceGetFAsSteelonSuccess = function(variable, data) {
-        if ($scope.Widgets.tabs1.activeTab.name == "tabSteel") {
-            $scope.Widgets.containerFADetails.Variables.serviceGetSteelFAData.invoke();
-        }
-    };
-
-
     $scope.serviceGetSubsDetailsonSuccess = function(variable, data) {
         if (data.numberOfElements > 0 && data.content[0].signatureData) { //If there is signature data Set the signature container
             $scope.signaturePad.fromDataURL(data.content[0].signatureData);
