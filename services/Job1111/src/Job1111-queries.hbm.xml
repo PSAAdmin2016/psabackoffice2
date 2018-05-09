@@ -1431,54 +1431,6 @@ ORDER BY std.Area, std.PieceMark) wmTempTable
     <query-param name="TestPackage" type="java.lang.String"/>
     </sql-query>
 
-    <sql-query name="GetQuantityBoltUpInstalled">
-        <![CDATA[
-        SELECT SUM(COALESCE(pcb.ConnectionQuantity,0) + COALESCE(pmb.MiscQuantity,0)) AS Total
-
-FROM SubmissionActivityStatus sas
-
-LEFT JOIN PipeConnection pcb
-	ON pcb.ActivityID = sas.ActivityID AND pcb.ConnectionRework = 0
-LEFT JOIN PipeMisc pm
-	ON pm.ActivityID = sas.ActivityID AND pm.MiscRework = 0
-
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = sas.fk_BidIDAssigned
-    
-LEFT JOIN PipeMisc pmb
-	ON pmb.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "BU" AND pmb.MiscRework = 0
-
-WHERE sas.ActivityType IN (21, 91)
-AND sas.fk_ActivityStatus IN (5,12) 
-AND fk_BidIDAssigned = :BidID
-        ]]>
-    <query-param name="BidID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetQuantityBoltUpInstalled__count">
-        <![CDATA[
-        select count(*) from (SELECT SUM(COALESCE(pcb.ConnectionQuantity,0) + COALESCE(pmb.MiscQuantity,0)) AS Total
-
-FROM SubmissionActivityStatus sas
-
-LEFT JOIN PipeConnection pcb
-	ON pcb.ActivityID = sas.ActivityID AND pcb.ConnectionRework = 0
-LEFT JOIN PipeMisc pm
-	ON pm.ActivityID = sas.ActivityID AND pm.MiscRework = 0
-
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = sas.fk_BidIDAssigned
-    
-LEFT JOIN PipeMisc pmb
-	ON pmb.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "BU" AND pmb.MiscRework = 0
-
-WHERE sas.ActivityType IN (21, 91)
-AND sas.fk_ActivityStatus IN (5,12) 
-AND fk_BidIDAssigned = :BidID) wmTempTable
-        ]]>
-    <query-param name="BidID" type="java.lang.Integer"/>
-    </sql-query>
-
     <sql-query name="GetSettingSteelSellPercent">
         <![CDATA[
         SELECT * 
@@ -2659,48 +2611,6 @@ WHERE ptd.BidID = :BidID) wmTempTable
     <query-param name="BidID" type="java.lang.Integer"/>
     </sql-query>
 
-    <sql-query name="GetQuantityMiscInstalled">
-        <![CDATA[
-        SELECT SUM(COALESCE(pfa.FAQuantity + pfa.FAPercentCompleted) + COALESCE(pm.MiscQuantity,0)) AS Total
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PipeFA pfa
-    ON pfa.ActivityID = sas.ActivityID AND pfa.FARework = 0
-
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = sas.fk_BidIDAssigned
-
-LEFT JOIN PipeMisc pm
-	ON pm.ActivityID = sas.ActivityID AND ptd.ActivityType = "MISC" AND pm.MiscRework = 0
-
-WHERE sas.ActivityType IN (90,91) 
-AND sas.fk_ActivityStatus IN (5,12) 
-AND fk_BidIDAssigned = :BidID
-        ]]>
-    <query-param name="BidID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetQuantityMiscInstalled__count">
-        <![CDATA[
-        select count(*) from (SELECT SUM(COALESCE(pfa.FAQuantity + pfa.FAPercentCompleted) + COALESCE(pm.MiscQuantity,0)) AS Total
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PipeFA pfa
-    ON pfa.ActivityID = sas.ActivityID AND pfa.FARework = 0
-
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = sas.fk_BidIDAssigned
-
-LEFT JOIN PipeMisc pm
-	ON pm.ActivityID = sas.ActivityID AND ptd.ActivityType = "MISC" AND pm.MiscRework = 0
-
-WHERE sas.ActivityType IN (90,91) 
-AND sas.fk_ActivityStatus IN (5,12) 
-AND fk_BidIDAssigned = :BidID) wmTempTable
-        ]]>
-    <query-param name="BidID" type="java.lang.Integer"/>
-    </sql-query>
-
     <sql-query name="GetSettingSteelErectPercent">
         <![CDATA[
         SELECT * 
@@ -2735,26 +2645,6 @@ SET `Value1`= :Value1
 WHERE `Label`='CivilSellPunchHoursPercent'
         ]]>
     <query-param name="Value1" type="java.math.BigDecimal"/>
-    </sql-query>
-
-    <sql-query name="GetQuantityLFInstalledByActivityID">
-        <![CDATA[
-        SELECT COALESCE(e.ErectionLengthSpool1,0) + COALESCE(e.ErectionLengthSpool2,0) + COALESCE(e.ErectionLengthSpool3,0) + COALESCE(e.ErectionLengthSpool4,0) + COALESCE(e.ErectionLengthSpool5,0) + COALESCE(e.ErectionLengthSpool6,0) AS Total
-
-FROM PipeErection e
-WHERE ActivityID = :ActivityId
-        ]]>
-    <query-param name="ActivityId" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetQuantityLFInstalledByActivityID__count">
-        <![CDATA[
-        select count(*) from (SELECT COALESCE(e.ErectionLengthSpool1,0) + COALESCE(e.ErectionLengthSpool2,0) + COALESCE(e.ErectionLengthSpool3,0) + COALESCE(e.ErectionLengthSpool4,0) + COALESCE(e.ErectionLengthSpool5,0) + COALESCE(e.ErectionLengthSpool6,0) AS Total
-
-FROM PipeErection e
-WHERE ActivityID = :ActivityId) wmTempTable
-        ]]>
-    <query-param name="ActivityId" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetActivityHistoryStatus">
@@ -3226,64 +3116,6 @@ ORDER BY std.SortGroup1, std.PieceMark) wmTempTable
     <query-param name="BidID" type="java.lang.Integer"/>
     </sql-query>
 
-    <sql-query name="GetQuantityLFInstalledByBidID">
-        <![CDATA[
-        SELECT SUM(
-COALESCE(pe.ErectionLengthSpool1,0) + 
-COALESCE(pe.ErectionLengthSpool2,0) + 
-COALESCE(pe.ErectionLengthSpool3,0) + 
-COALESCE(pe.ErectionLengthSpool4,0) + 
-COALESCE(pe.ErectionLengthSpool5,0) + 
-COALESCE(pe.ErectionLengthSpool6,0) +
-COALESCE(pme.MiscQuantity,0)
-) AS Total 
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PipeErection pe
-	ON pe.ActivityID = sas.ActivityID AND pe.ErectionRework = 0
-	
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = sas.fk_BidIDAssigned
-	
-LEFT JOIN PipeMisc pme
-	ON pme.ActivityID = sas.ActivityID AND ptd.ActivityType = "PE" AND pme.MiscRework = 0
-
-WHERE sas.ActivityType IN (11, 91)
-AND sas.fk_ActivityStatus IN (5,12)
-AND fk_BidIDAssigned = :BidID
-        ]]>
-    <query-param name="BidID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetQuantityLFInstalledByBidID__count">
-        <![CDATA[
-        select count(*) from (SELECT SUM(
-COALESCE(pe.ErectionLengthSpool1,0) + 
-COALESCE(pe.ErectionLengthSpool2,0) + 
-COALESCE(pe.ErectionLengthSpool3,0) + 
-COALESCE(pe.ErectionLengthSpool4,0) + 
-COALESCE(pe.ErectionLengthSpool5,0) + 
-COALESCE(pe.ErectionLengthSpool6,0) +
-COALESCE(pme.MiscQuantity,0)
-) AS Total 
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PipeErection pe
-	ON pe.ActivityID = sas.ActivityID AND pe.ErectionRework = 0
-	
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = sas.fk_BidIDAssigned
-	
-LEFT JOIN PipeMisc pme
-	ON pme.ActivityID = sas.ActivityID AND ptd.ActivityType = "PE" AND pme.MiscRework = 0
-
-WHERE sas.ActivityType IN (11, 91)
-AND sas.fk_ActivityStatus IN (5,12)
-AND fk_BidIDAssigned = :BidID) wmTempTable
-        ]]>
-    <query-param name="BidID" type="java.lang.Integer"/>
-    </sql-query>
-
     <sql-query name="UpdateSettingCivilWork">
         <![CDATA[
         UPDATE SETTINGS
@@ -3388,48 +3220,6 @@ WHERE `Label`='SteelSellHoursPercent'
     <query-param name="Value1" type="java.math.BigDecimal"/>
     </sql-query>
 
-    <sql-query name="GetQuantitySupportsInstalled">
-        <![CDATA[
-        SELECT sum(COALESCE(fa.FAQuantity * fa.FAPercentCompleted,0) + COALESCE(pmpsu.MiscQuantity,0)) AS Total
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PipeFA fa
-	ON fa.ActivityID = sas.ActivityID AND fa.FARework = 0
-	
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = sas.fk_BidIDAssigned
-	
-LEFT JOIN PipeMisc pmpsu
-	ON pmpsu.ActivityID = sas.ActivityID AND ptd.ActivityType = "S" AND pmpsu.MiscRework = 0
-
-WHERE sas.ActivityType IN (38, 91)
-AND sas.fk_ActivityStatus IN (5,12)
-AND fk_BidIDAssigned = :BidID
-        ]]>
-    <query-param name="BidID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetQuantitySupportsInstalled__count">
-        <![CDATA[
-        select count(*) from (SELECT sum(COALESCE(fa.FAQuantity * fa.FAPercentCompleted,0) + COALESCE(pmpsu.MiscQuantity,0)) AS Total
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PipeFA fa
-	ON fa.ActivityID = sas.ActivityID AND fa.FARework = 0
-	
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = sas.fk_BidIDAssigned
-	
-LEFT JOIN PipeMisc pmpsu
-	ON pmpsu.ActivityID = sas.ActivityID AND ptd.ActivityType = "S" AND pmpsu.MiscRework = 0
-
-WHERE sas.ActivityType IN (38, 91)
-AND sas.fk_ActivityStatus IN (5,12)
-AND fk_BidIDAssigned = :BidID) wmTempTable
-        ]]>
-    <query-param name="BidID" type="java.lang.Integer"/>
-    </sql-query>
-
     <sql-query name="UpdateSettingSteelShake">
         <![CDATA[
         UPDATE SETTINGS
@@ -3437,50 +3227,6 @@ SET `Value1`= :Value1
 WHERE `Label`='SteelShakeHoursPercent'
         ]]>
     <query-param name="Value1" type="java.math.BigDecimal"/>
-    </sql-query>
-
-    <sql-query name="GetQuantityCutPrepInstalled">
-        <![CDATA[
-        SELECT SUM(COALESCE(pcut.FAQuantity * pcut.FAPercentCompleted,0) + COALESCE(pmc.MiscQuantity,0)) AS Total
-
-FROM SubmissionActivityStatus sas
-
-LEFT JOIN PipeFA pcut
-	ON pcut.ActivityID = sas.ActivityID AND pcut.FARework = 0
-    
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = sas.fk_BidIDAssigned
-        
-LEFT JOIN PipeMisc pmc
-	ON pmc.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "CUT" AND pmc.MiscRework = 0
-
-WHERE sas.ActivityType IN (23, 91)
-AND sas.fk_ActivityStatus IN (5,12)
-AND fk_BidIDAssigned = :BidID
-        ]]>
-    <query-param name="BidID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetQuantityCutPrepInstalled__count">
-        <![CDATA[
-        select count(*) from (SELECT SUM(COALESCE(pcut.FAQuantity * pcut.FAPercentCompleted,0) + COALESCE(pmc.MiscQuantity,0)) AS Total
-
-FROM SubmissionActivityStatus sas
-
-LEFT JOIN PipeFA pcut
-	ON pcut.ActivityID = sas.ActivityID AND pcut.FARework = 0
-    
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = sas.fk_BidIDAssigned
-        
-LEFT JOIN PipeMisc pmc
-	ON pmc.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "CUT" AND pmc.MiscRework = 0
-
-WHERE sas.ActivityType IN (23, 91)
-AND sas.fk_ActivityStatus IN (5,12)
-AND fk_BidIDAssigned = :BidID) wmTempTable
-        ]]>
-    <query-param name="BidID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="UpdateEquipFA">
@@ -5466,52 +5212,6 @@ WHERE Label = 'PipeCTOHoursPercent') wmTempTable
         ]]>
     </sql-query>
 
-    <sql-query name="GetQuantityTrimInstalled">
-        <![CDATA[
-        SELECT SUM(COALESCE(fa.FAQuantity * fa.FAPercentCompleted,0) + COALESCE(pmt.MiscQuantity,0)) AS Total
-
-FROM SubmissionActivityStatus sas
-
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = sas.fk_BidIDAssigned
-
-LEFT JOIN PipeFA fa
-	ON fa.ActivityID = sas.ActivityID AND fa.FARework = 0
-	
-LEFT JOIN PipeMisc pmt
-	ON pmt.ActivityID = sas.ActivityID AND ptd.ActivityType = "T" AND pmt.MiscRework = 0
-
-
-WHERE sas.ActivityType IN (31,32,33,39,91)
-AND sas.fk_ActivityStatus IN (5,12)
-AND fk_BidIDAssigned = :BidID
-        ]]>
-    <query-param name="BidID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetQuantityTrimInstalled__count">
-        <![CDATA[
-        select count(*) from (SELECT SUM(COALESCE(fa.FAQuantity * fa.FAPercentCompleted,0) + COALESCE(pmt.MiscQuantity,0)) AS Total
-
-FROM SubmissionActivityStatus sas
-
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = sas.fk_BidIDAssigned
-
-LEFT JOIN PipeFA fa
-	ON fa.ActivityID = sas.ActivityID AND fa.FARework = 0
-	
-LEFT JOIN PipeMisc pmt
-	ON pmt.ActivityID = sas.ActivityID AND ptd.ActivityType = "T" AND pmt.MiscRework = 0
-
-
-WHERE sas.ActivityType IN (31,32,33,39,91)
-AND sas.fk_ActivityStatus IN (5,12)
-AND fk_BidIDAssigned = :BidID) wmTempTable
-        ]]>
-    <query-param name="BidID" type="java.lang.Integer"/>
-    </sql-query>
-
     <sql-query name="GetActivityHistoryCivilFA">
         <![CDATA[
         SELECT cfa.* 
@@ -7187,48 +6887,6 @@ GROUP BY fas.SubmissionID, std.PieceMark, fas.fk_ActivityStatus) wmTempTable
     <query-param name="SuperID" type="java.lang.Integer"/>
     </sql-query>
 
-    <sql-query name="GetQuantityDemoRemoved">
-        <![CDATA[
-        SELECT SUM(COALESCE(pd.FAQuantity * pd.FAPercentCompleted, 0) + COALESCE(pmd.MiscQuantity,0)) AS Total
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PipeFA pd
-	ON pd.ActivityID = sas.ActivityID
-
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = sas.fk_BidIDAssigned	
-	
-LEFT JOIN PipeMisc pmd
-		ON pmd.ActivityID = sas.ActivityID AND ptd.ActivityType = "D" AND pmd.MiscRework = 0
-
-WHERE sas.ActivityType IN (51,52,53,59,91)
-AND sas.fk_ActivityStatus IN (5,12)
-AND fk_BidIDAssigned = :BidID
-        ]]>
-    <query-param name="BidID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetQuantityDemoRemoved__count">
-        <![CDATA[
-        select count(*) from (SELECT SUM(COALESCE(pd.FAQuantity * pd.FAPercentCompleted, 0) + COALESCE(pmd.MiscQuantity,0)) AS Total
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PipeFA pd
-	ON pd.ActivityID = sas.ActivityID
-
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = sas.fk_BidIDAssigned	
-	
-LEFT JOIN PipeMisc pmd
-		ON pmd.ActivityID = sas.ActivityID AND ptd.ActivityType = "D" AND pmd.MiscRework = 0
-
-WHERE sas.ActivityType IN (51,52,53,59,91)
-AND sas.fk_ActivityStatus IN (5,12)
-AND fk_BidIDAssigned = :BidID) wmTempTable
-        ]]>
-    <query-param name="BidID" type="java.lang.Integer"/>
-    </sql-query>
-
     <sql-query name="UpdateCivilFAQuantity">
         <![CDATA[
         UPDATE `CivilFA` 
@@ -7278,50 +6936,6 @@ WHERE Label = 'PipeMechHoursPercent'
 FROM SETTINGS
 WHERE Label = 'PipeMechHoursPercent') wmTempTable
         ]]>
-    </sql-query>
-
-    <sql-query name="GetQuantityWeldInstalled">
-        <![CDATA[
-        SELECT SUM(COALESCE(pw.WeldPercentCompleted,0) + COALESCE(pmw.MiscQuantity,0)) AS Total
-
-FROM SubmissionActivityStatus sas
-
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = sas.fk_BidIDAssigned
-	
-LEFT JOIN PipeWeld pw
-	ON pw.ActivityID = sas.ActivityID AND  pw.WeldRework = 0
-
-LEFT JOIN PipeMisc pmw
-	ON pmw.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "W" AND pmw.MiscRework = 0
-
-WHERE sas.ActivityType IN (22, 91) 
-AND sas.fk_ActivityStatus IN (5,12)
-AND fk_BidIDAssigned = :BidID
-        ]]>
-    <query-param name="BidID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetQuantityWeldInstalled__count">
-        <![CDATA[
-        select count(*) from (SELECT SUM(COALESCE(pw.WeldPercentCompleted,0) + COALESCE(pmw.MiscQuantity,0)) AS Total
-
-FROM SubmissionActivityStatus sas
-
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = sas.fk_BidIDAssigned
-	
-LEFT JOIN PipeWeld pw
-	ON pw.ActivityID = sas.ActivityID AND  pw.WeldRework = 0
-
-LEFT JOIN PipeMisc pmw
-	ON pmw.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "W" AND pmw.MiscRework = 0
-
-WHERE sas.ActivityType IN (22, 91) 
-AND sas.fk_ActivityStatus IN (5,12)
-AND fk_BidIDAssigned = :BidID) wmTempTable
-        ]]>
-    <query-param name="BidID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="UpdateSteelFAQuantity">

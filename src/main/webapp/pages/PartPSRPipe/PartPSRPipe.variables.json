@@ -366,37 +366,6 @@
     "spinnerContext" : "page",
     "spinnerMessage" : "Claiming Loose Hours..."
   },
-  "serviceGetBidActivityQuantity" : {
-    "_id" : "wm-Job1111ExecuteGetBidActivityQuantity-wm.ServiceVariable-1456849252073",
-    "name" : "serviceGetBidActivityQuantity",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "BidID",
-      "value" : "bind:Widgets.livelistBidActivities.selecteditem.BidID",
-      "type" : "integer"
-    } ],
-    "type" : "com.psabackoffice.job1111.models.query.GetBidActivityQuantitiesPipeResponse",
-    "service" : "Job1111",
-    "operation" : "executeGetBidActivityQuantitiesPipe",
-    "operationId" : "QueryExecutionController_executeGetBidActivityQuantitiesPipe",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : {
-      "dataValue" : ""
-    },
-    "isList" : true,
-    "firstRow" : 0,
-    "maxResults" : 1,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "isDefault" : true,
-    "controller" : "QueryExecution"
-  },
   "serviceGetMatches" : {
     "_id" : "wm-serviceGetBidActivityMatches-wm.ServiceVariable-1476981577600",
     "name" : "serviceGetMatches",
@@ -612,26 +581,6 @@
     "type" : "boolean",
     "isList" : false,
     "saveInPhonegap" : false
-  },
-  "timerAssignDelay" : {
-    "_id" : "wm-timerAssignDelay-wm.TimerVariable-1463424151511",
-    "name" : "timerAssignDelay",
-    "owner" : "Page",
-    "category" : "wm.TimerVariable",
-    "autoStart" : false,
-    "repeating" : false,
-    "delay" : 5,
-    "onTimerFire" : "timerAssignDelayonTimerFire($event, $scope)"
-  },
-  "timerLabelFlasher" : {
-    "_id" : "wm-timerLabelFlasher-wm.TimerVariable-1473893126882",
-    "name" : "timerLabelFlasher",
-    "owner" : "Page",
-    "category" : "wm.TimerVariable",
-    "autoStart" : false,
-    "repeating" : true,
-    "delay" : 750,
-    "onTimerFire" : "Javascript"
   },
   "timerLabelFlasher2" : {
     "_id" : "wm-timerLabelFlasher2-wm.TimerVariable-1474397079650",

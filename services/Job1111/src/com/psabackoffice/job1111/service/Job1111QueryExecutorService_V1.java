@@ -58,9 +58,6 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetDrawingByTestPackageSteel(Pageable pageable, String testPackage);
 
     @Deprecated
-    public Page<Object> executeGetQuantityBoltUpInstalled(Pageable pageable, Integer bidId);
-
-    @Deprecated
     public Page<Object> executeGetSettingSteelSellPercent(Pageable pageable);
 
     @Deprecated
@@ -115,9 +112,6 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetBidActivityQuantitiesPipe(Pageable pageable, Integer bidId);
 
     @Deprecated
-    public Page<Object> executeGetQuantityMiscInstalled(Pageable pageable, Integer bidId);
-
-    @Deprecated
     public Page<Object> executeGetSettingSteelErectPercent(Pageable pageable);
 
     @Deprecated
@@ -125,9 +119,6 @@ public interface Job1111QueryExecutorService_V1 {
 
     @Deprecated
     public int executeUpdateSettingCivilPunch(BigDecimal value1);
-
-    @Deprecated
-    public Page<Object> executeGetQuantityLFInstalledByActivityID(Pageable pageable, Integer activityId);
 
     @Deprecated
     public Page<Object> executeGetActivityHistoryStatus(Pageable pageable, Integer activityId);
@@ -151,9 +142,6 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetBidActivityMatchesSteel(Pageable pageable, Integer bidId);
 
     @Deprecated
-    public Page<Object> executeGetQuantityLFInstalledByBidID(Pageable pageable, Integer bidId);
-
-    @Deprecated
     public int executeUpdateSettingCivilWork(BigDecimal value1);
 
     @Deprecated
@@ -166,13 +154,7 @@ public interface Job1111QueryExecutorService_V1 {
     public int executeUpdateSettingSteelSell(BigDecimal value1);
 
     @Deprecated
-    public Page<Object> executeGetQuantitySupportsInstalled(Pageable pageable, Integer bidId);
-
-    @Deprecated
     public int executeUpdateSettingSteelShake(BigDecimal value1);
-
-    @Deprecated
-    public Page<Object> executeGetQuantityCutPrepInstalled(Pageable pageable, Integer bidId);
 
     @Deprecated
     public int executeUpdateSettingSteelErect(BigDecimal value1);
@@ -191,9 +173,6 @@ public interface Job1111QueryExecutorService_V1 {
 
     @Deprecated
     public Page<Object> executeGetSettingPipeCTOPercent(Pageable pageable);
-
-    @Deprecated
-    public Page<Object> executeGetQuantityTrimInstalled(Pageable pageable, Integer bidId);
 
     @Deprecated
     public Page<Object> executeGetActivityHistoryCivilFA(Pageable pageable, Integer activityId);
@@ -226,9 +205,6 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetBidActivityMatchesCivil(Pageable pageable, Integer bidId);
 
     @Deprecated
-    public Page<Object> executeGetQuantityDemoRemoved(Pageable pageable, Integer bidId);
-
-    @Deprecated
     public int executeUpdateCivilFAQuantity(Integer quantity, BigDecimal percent, Integer activityId);
 
     @Deprecated
@@ -239,9 +215,6 @@ public interface Job1111QueryExecutorService_V1 {
 
     @Deprecated
     public Page<Object> executeGetSettingPipeMechPercent(Pageable pageable);
-
-    @Deprecated
-    public Page<Object> executeGetQuantityWeldInstalled(Pageable pageable, Integer bidId);
 
     @Deprecated
     public Page<Object> executeGetSettingSteelBoltoutPercent(Pageable pageable);

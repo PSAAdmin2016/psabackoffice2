@@ -311,25 +311,6 @@ public class QueryExecutionController {
         return queryService.exportGetDrawingByTestPackageSteel(exportType, testPackage, pageable);
     }
 
-    @RequestMapping(value = "/queries/GetQuantityBoltUpInstalled", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Gets the Quantity of units installed BY BidID")
-    public Page<GetQuantityBoltUpInstalledResponse> executeGetQuantityBoltUpInstalled(@RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetQuantityBoltUpInstalled");
-        Page<GetQuantityBoltUpInstalledResponse> _result = queryService.executeGetQuantityBoltUpInstalled(bidId, pageable);
-        LOGGER.debug("got the result for named query: GetQuantityBoltUpInstalled, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetQuantityBoltUpInstalled")
-    @RequestMapping(value = "/queries/GetQuantityBoltUpInstalled/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetQuantityBoltUpInstalled(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetQuantityBoltUpInstalled");
-
-        return queryService.exportGetQuantityBoltUpInstalled(exportType, bidId, pageable);
-    }
-
     @RequestMapping(value = "/queries/GetSettingSteelSellPercent", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "GetSettingSteelSellPercent")
@@ -676,25 +657,6 @@ public class QueryExecutionController {
         return queryService.exportGetBidActivityQuantitiesPipe(exportType, bidId, pageable);
     }
 
-    @RequestMapping(value = "/queries/GetQuantityMiscInstalled", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "No description is provided")
-    public Page<GetQuantityMiscInstalledResponse> executeGetQuantityMiscInstalled(@RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetQuantityMiscInstalled");
-        Page<GetQuantityMiscInstalledResponse> _result = queryService.executeGetQuantityMiscInstalled(bidId, pageable);
-        LOGGER.debug("got the result for named query: GetQuantityMiscInstalled, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetQuantityMiscInstalled")
-    @RequestMapping(value = "/queries/GetQuantityMiscInstalled/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetQuantityMiscInstalled(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetQuantityMiscInstalled");
-
-        return queryService.exportGetQuantityMiscInstalled(exportType, bidId, pageable);
-    }
-
     @RequestMapping(value = "/queries/GetSettingSteelErectPercent", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "SteelErectHoursPercent")
@@ -732,25 +694,6 @@ public class QueryExecutionController {
         Integer _result = queryService.executeUpdateSettingCivilPunch(updateSettingCivilPunchRequest);
         LOGGER.debug("got the result for named query: UpdateSettingCivilPunch, result:{}", _result);
         return _result;
-    }
-
-    @RequestMapping(value = "/queries/GetQuantityLFInstalledByActivityID", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Gets the Total footage of a given Erection Activity")
-    public Page<GetQuantityLfinstalledByActivityIdResponse> executeGetQuantityLFInstalledByActivityID(@RequestParam(value = "ActivityId") Integer activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetQuantityLFInstalledByActivityID");
-        Page<GetQuantityLfinstalledByActivityIdResponse> _result = queryService.executeGetQuantityLFInstalledByActivityID(activityId, pageable);
-        LOGGER.debug("got the result for named query: GetQuantityLFInstalledByActivityID, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetQuantityLFInstalledByActivityID")
-    @RequestMapping(value = "/queries/GetQuantityLFInstalledByActivityID/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetQuantityLFInstalledByActivityID(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "ActivityId") Integer activityId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetQuantityLFInstalledByActivityID");
-
-        return queryService.exportGetQuantityLFInstalledByActivityID(exportType, activityId, pageable);
     }
 
     @RequestMapping(value = "/queries/GetActivityHistoryStatus", method = RequestMethod.GET)
@@ -897,25 +840,6 @@ public class QueryExecutionController {
         return queryService.exportGetBidActivityMatchesSteel(exportType, bidId, pageable);
     }
 
-    @RequestMapping(value = "/queries/GetQuantityLFInstalledByBidID", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Gets the Total footage installed by all PSA activities assigned to a BidID BY BidID")
-    public Page<GetQuantityLfinstalledByBidIdResponse> executeGetQuantityLFInstalledByBidID(@RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetQuantityLFInstalledByBidID");
-        Page<GetQuantityLfinstalledByBidIdResponse> _result = queryService.executeGetQuantityLFInstalledByBidID(bidId, pageable);
-        LOGGER.debug("got the result for named query: GetQuantityLFInstalledByBidID, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetQuantityLFInstalledByBidID")
-    @RequestMapping(value = "/queries/GetQuantityLFInstalledByBidID/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetQuantityLFInstalledByBidID(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetQuantityLFInstalledByBidID");
-
-        return queryService.exportGetQuantityLFInstalledByBidID(exportType, bidId, pageable);
-    }
-
     @RequestMapping(value = "/queries/UpdateSettingCivilWork", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
@@ -974,25 +898,6 @@ public class QueryExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/queries/GetQuantitySupportsInstalled", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Get the number of Supports installed BY BidID")
-    public Page<GetQuantitySupportsInstalledResponse> executeGetQuantitySupportsInstalled(@RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetQuantitySupportsInstalled");
-        Page<GetQuantitySupportsInstalledResponse> _result = queryService.executeGetQuantitySupportsInstalled(bidId, pageable);
-        LOGGER.debug("got the result for named query: GetQuantitySupportsInstalled, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetQuantitySupportsInstalled")
-    @RequestMapping(value = "/queries/GetQuantitySupportsInstalled/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetQuantitySupportsInstalled(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetQuantitySupportsInstalled");
-
-        return queryService.exportGetQuantitySupportsInstalled(exportType, bidId, pageable);
-    }
-
     @RequestMapping(value = "/queries/UpdateSettingSteelShake", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
@@ -1001,25 +906,6 @@ public class QueryExecutionController {
         Integer _result = queryService.executeUpdateSettingSteelShake(updateSettingSteelShakeRequest);
         LOGGER.debug("got the result for named query: UpdateSettingSteelShake, result:{}", _result);
         return _result;
-    }
-
-    @RequestMapping(value = "/queries/GetQuantityCutPrepInstalled", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Get Cut/Prep installed Quantity BY BidId")
-    public Page<GetQuantityCutPrepInstalledResponse> executeGetQuantityCutPrepInstalled(@RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetQuantityCutPrepInstalled");
-        Page<GetQuantityCutPrepInstalledResponse> _result = queryService.executeGetQuantityCutPrepInstalled(bidId, pageable);
-        LOGGER.debug("got the result for named query: GetQuantityCutPrepInstalled, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetQuantityCutPrepInstalled")
-    @RequestMapping(value = "/queries/GetQuantityCutPrepInstalled/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetQuantityCutPrepInstalled(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetQuantityCutPrepInstalled");
-
-        return queryService.exportGetQuantityCutPrepInstalled(exportType, bidId, pageable);
     }
 
     @RequestMapping(value = "/queries/UpdateEquipFA", method = RequestMethod.PUT)
@@ -1164,25 +1050,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetSettingPipeCTOPercent");
 
         return queryService.exportGetSettingPipeCTOPercent(exportType, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetQuantityTrimInstalled", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Get the sum of all Trim activities installed BY Bid ID")
-    public Page<GetQuantityTrimInstalledResponse> executeGetQuantityTrimInstalled(@RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetQuantityTrimInstalled");
-        Page<GetQuantityTrimInstalledResponse> _result = queryService.executeGetQuantityTrimInstalled(bidId, pageable);
-        LOGGER.debug("got the result for named query: GetQuantityTrimInstalled, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetQuantityTrimInstalled")
-    @RequestMapping(value = "/queries/GetQuantityTrimInstalled/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetQuantityTrimInstalled(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetQuantityTrimInstalled");
-
-        return queryService.exportGetQuantityTrimInstalled(exportType, bidId, pageable);
     }
 
     @RequestMapping(value = "/queries/GetActivityHistoryCivilFA", method = RequestMethod.GET)
@@ -1396,25 +1263,6 @@ public class QueryExecutionController {
         return queryService.exportGetActivitiesPendingReviewSteel(exportType, superId, pageable);
     }
 
-    @RequestMapping(value = "/queries/GetQuantityDemoRemoved", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "name")
-    public Page<GetQuantityDemoRemovedResponse> executeGetQuantityDemoRemoved(@RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetQuantityDemoRemoved");
-        Page<GetQuantityDemoRemovedResponse> _result = queryService.executeGetQuantityDemoRemoved(bidId, pageable);
-        LOGGER.debug("got the result for named query: GetQuantityDemoRemoved, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetQuantityDemoRemoved")
-    @RequestMapping(value = "/queries/GetQuantityDemoRemoved/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetQuantityDemoRemoved(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetQuantityDemoRemoved");
-
-        return queryService.exportGetQuantityDemoRemoved(exportType, bidId, pageable);
-    }
-
     @RequestMapping(value = "/queries/UpdateCivilFAQuantity", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")
@@ -1462,25 +1310,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetSettingPipeMechPercent");
 
         return queryService.exportGetSettingPipeMechPercent(exportType, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetQuantityWeldInstalled", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Get the number of Welds installed BY BidID")
-    public Page<GetQuantityWeldInstalledResponse> executeGetQuantityWeldInstalled(@RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetQuantityWeldInstalled");
-        Page<GetQuantityWeldInstalledResponse> _result = queryService.executeGetQuantityWeldInstalled(bidId, pageable);
-        LOGGER.debug("got the result for named query: GetQuantityWeldInstalled, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetQuantityWeldInstalled")
-    @RequestMapping(value = "/queries/GetQuantityWeldInstalled/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetQuantityWeldInstalled(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID") Integer bidId, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetQuantityWeldInstalled");
-
-        return queryService.exportGetQuantityWeldInstalled(exportType, bidId, pageable);
     }
 
     @RequestMapping(value = "/queries/UpdateSteelFAQuantity", method = RequestMethod.PUT)

@@ -324,26 +324,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<GetQuantityBoltUpInstalledResponse> executeGetQuantityBoltUpInstalled(Integer bidId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("BidID", bidId);
-
-        return queryExecutor.executeNamedQuery("GetQuantityBoltUpInstalled", params, GetQuantityBoltUpInstalledResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Downloadable exportGetQuantityBoltUpInstalled(ExportType exportType, Integer bidId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("BidID", bidId);
-
-        return queryExecutor.exportNamedQueryData("GetQuantityBoltUpInstalled", params, exportType, GetQuantityBoltUpInstalledResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
     public Page<GetSettingSteelSellPercentResponse> executeGetSettingSteelSellPercent(Pageable pageable) {
         Map params = new HashMap(0);
 
@@ -748,26 +728,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<GetQuantityMiscInstalledResponse> executeGetQuantityMiscInstalled(Integer bidId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("BidID", bidId);
-
-        return queryExecutor.executeNamedQuery("GetQuantityMiscInstalled", params, GetQuantityMiscInstalledResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Downloadable exportGetQuantityMiscInstalled(ExportType exportType, Integer bidId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("BidID", bidId);
-
-        return queryExecutor.exportNamedQueryData("GetQuantityMiscInstalled", params, exportType, GetQuantityMiscInstalledResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
     public Page<GetSettingSteelErectPercentResponse> executeGetSettingSteelErectPercent(Pageable pageable) {
         Map params = new HashMap(0);
 
@@ -803,26 +763,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         params.put("Value1", updateSettingCivilPunchRequest.getValue1());
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSettingCivilPunch", params);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<GetQuantityLfinstalledByActivityIdResponse> executeGetQuantityLFInstalledByActivityID(Integer activityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("ActivityId", activityId);
-
-        return queryExecutor.executeNamedQuery("GetQuantityLFInstalledByActivityID", params, GetQuantityLfinstalledByActivityIdResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Downloadable exportGetQuantityLFInstalledByActivityID(ExportType exportType, Integer activityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("ActivityId", activityId);
-
-        return queryExecutor.exportNamedQueryData("GetQuantityLFInstalledByActivityID", params, exportType, GetQuantityLfinstalledByActivityIdResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -1006,26 +946,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         return queryExecutor.exportNamedQueryData("GetBidActivityMatchesSteel", params, exportType, GetBidActivityMatchesSteelResponse.class, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<GetQuantityLfinstalledByBidIdResponse> executeGetQuantityLFInstalledByBidID(Integer bidId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("BidID", bidId);
-
-        return queryExecutor.executeNamedQuery("GetQuantityLFInstalledByBidID", params, GetQuantityLfinstalledByBidIdResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Downloadable exportGetQuantityLFInstalledByBidID(ExportType exportType, Integer bidId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("BidID", bidId);
-
-        return queryExecutor.exportNamedQueryData("GetQuantityLFInstalledByBidID", params, exportType, GetQuantityLfinstalledByBidIdResponse.class, pageable);
-    }
-
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public Integer executeUpdateSettingCivilWork(UpdateSettingCivilWorkRequest updateSettingCivilWorkRequest) {
@@ -1086,26 +1006,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         return queryExecutor.executeNamedQueryForUpdate("UpdateSettingSteelSell", params);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<GetQuantitySupportsInstalledResponse> executeGetQuantitySupportsInstalled(Integer bidId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("BidID", bidId);
-
-        return queryExecutor.executeNamedQuery("GetQuantitySupportsInstalled", params, GetQuantitySupportsInstalledResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Downloadable exportGetQuantitySupportsInstalled(ExportType exportType, Integer bidId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("BidID", bidId);
-
-        return queryExecutor.exportNamedQueryData("GetQuantitySupportsInstalled", params, exportType, GetQuantitySupportsInstalledResponse.class, pageable);
-    }
-
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public Integer executeUpdateSettingSteelShake(UpdateSettingSteelShakeRequest updateSettingSteelShakeRequest) {
@@ -1114,26 +1014,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         params.put("Value1", updateSettingSteelShakeRequest.getValue1());
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateSettingSteelShake", params);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<GetQuantityCutPrepInstalledResponse> executeGetQuantityCutPrepInstalled(Integer bidId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("BidID", bidId);
-
-        return queryExecutor.executeNamedQuery("GetQuantityCutPrepInstalled", params, GetQuantityCutPrepInstalledResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Downloadable exportGetQuantityCutPrepInstalled(ExportType exportType, Integer bidId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("BidID", bidId);
-
-        return queryExecutor.exportNamedQueryData("GetQuantityCutPrepInstalled", params, exportType, GetQuantityCutPrepInstalledResponse.class, pageable);
     }
 
     @Transactional(value = "Job1111TransactionManager")
@@ -1307,26 +1187,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
 
         return queryExecutor.exportNamedQueryData("GetSettingPipeCTOPercent", params, exportType, GetSettingPipeCtopercentResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<GetQuantityTrimInstalledResponse> executeGetQuantityTrimInstalled(Integer bidId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("BidID", bidId);
-
-        return queryExecutor.executeNamedQuery("GetQuantityTrimInstalled", params, GetQuantityTrimInstalledResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Downloadable exportGetQuantityTrimInstalled(ExportType exportType, Integer bidId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("BidID", bidId);
-
-        return queryExecutor.exportNamedQueryData("GetQuantityTrimInstalled", params, exportType, GetQuantityTrimInstalledResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
@@ -1590,26 +1450,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         return queryExecutor.exportNamedQueryData("GetActivitiesPendingReviewSteel", params, exportType, GetActivitiesPendingReviewSteelResponse.class, pageable);
     }
 
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<GetQuantityDemoRemovedResponse> executeGetQuantityDemoRemoved(Integer bidId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("BidID", bidId);
-
-        return queryExecutor.executeNamedQuery("GetQuantityDemoRemoved", params, GetQuantityDemoRemovedResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Downloadable exportGetQuantityDemoRemoved(ExportType exportType, Integer bidId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("BidID", bidId);
-
-        return queryExecutor.exportNamedQueryData("GetQuantityDemoRemoved", params, exportType, GetQuantityDemoRemovedResponse.class, pageable);
-    }
-
     @Transactional(value = "Job1111TransactionManager")
     @Override
     public Integer executeUpdateCivilFAQuantity(UpdateCivilFaquantityRequest updateCivilFaquantityRequest) {
@@ -1660,26 +1500,6 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
 
         return queryExecutor.exportNamedQueryData("GetSettingPipeMechPercent", params, exportType, GetSettingPipeMechPercentResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<GetQuantityWeldInstalledResponse> executeGetQuantityWeldInstalled(Integer bidId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("BidID", bidId);
-
-        return queryExecutor.executeNamedQuery("GetQuantityWeldInstalled", params, GetQuantityWeldInstalledResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Downloadable exportGetQuantityWeldInstalled(ExportType exportType, Integer bidId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("BidID", bidId);
-
-        return queryExecutor.exportNamedQueryData("GetQuantityWeldInstalled", params, exportType, GetQuantityWeldInstalledResponse.class, pageable);
     }
 
     @Transactional(value = "Job1111TransactionManager")
