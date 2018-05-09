@@ -51,7 +51,7 @@ public interface TblUserPsaService {
 	 * @return TblUserPsa associated with the given tbluserpsaId.
      * @throws EntityNotFoundException If no TblUserPsa is found.
 	 */
-	TblUserPsa getById(Integer tbluserpsaId) throws EntityNotFoundException;
+	TblUserPsa getById(Integer tbluserpsaId);
 
     /**
 	 * Find and return the TblUserPsa by given id if exists, returns null otherwise.
@@ -68,7 +68,7 @@ public interface TblUserPsaService {
 	 * @return TblUserPsa associated with the given inputs.
      * @throws EntityNotFoundException if no matching TblUserPsa found.
 	 */
-    TblUserPsa getByEmail(String email)throws EntityNotFoundException;
+    TblUserPsa getByEmail(String email);
 
     /**
 	 * Find and return the TblUserPsa for given pciEmployeeId  if exists.
@@ -77,7 +77,7 @@ public interface TblUserPsaService {
 	 * @return TblUserPsa associated with the given inputs.
      * @throws EntityNotFoundException if no matching TblUserPsa found.
 	 */
-    TblUserPsa getByPciEmployeeId(String pciEmployeeId)throws EntityNotFoundException;
+    TblUserPsa getByPciEmployeeId(String pciEmployeeId);
 
 	/**
 	 * Updates the details of an existing TblUserPsa. It replaces all fields of the existing TblUserPsa with the given tblUserPsa.
@@ -88,7 +88,7 @@ public interface TblUserPsaService {
 	 * @return The updated TblUserPsa.
 	 * @throws EntityNotFoundException if no TblUserPsa is found with given input.
 	 */
-	TblUserPsa update(@Valid TblUserPsa tblUserPsa) throws EntityNotFoundException;
+	TblUserPsa update(@Valid TblUserPsa tblUserPsa);
 
     /**
 	 * Deletes an existing TblUserPsa with the given id.
@@ -97,7 +97,7 @@ public interface TblUserPsaService {
 	 * @return The deleted TblUserPsa.
 	 * @throws EntityNotFoundException if no TblUserPsa found with the given id.
 	 */
-	TblUserPsa delete(Integer tbluserpsaId) throws EntityNotFoundException;
+	TblUserPsa delete(Integer tbluserpsaId);
 
     /**
 	 * Deletes an existing TblUserPsa with the given object.
@@ -235,6 +235,30 @@ public interface TblUserPsaService {
     Page<Settingsuser> findAssociatedSettingsusers(Integer id, Pageable pageable);
 
     /*
+     * Returns the associated tblCrewsesForProjectManager for given TblUserPsa id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated TblCrews instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<TblCrews> findAssociatedTblCrewsesForProjectManager(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated tblCrewsesForAreaManager for given TblUserPsa id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated TblCrews instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<TblCrews> findAssociatedTblCrewsesForAreaManager(Integer id, Pageable pageable);
+
+    /*
      * Returns the associated tblCrewsesForSiteManager for given TblUserPsa id.
      *
      * @param id value of id; value cannot be null
@@ -293,30 +317,6 @@ public interface TblUserPsaService {
      * @see Page
      */
     Page<TblCrews> findAssociatedTblCrewsesForSuperintendent(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated tblCrewsesForProjectManager for given TblUserPsa id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated TblCrews instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<TblCrews> findAssociatedTblCrewsesForProjectManager(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated tblCrewsesForAreaManager for given TblUserPsa id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated TblCrews instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<TblCrews> findAssociatedTblCrewsesForAreaManager(Integer id, Pageable pageable);
 
     /*
      * Returns the associated tblUserJobNumberses for given TblUserPsa id.

@@ -43,7 +43,7 @@ public class FeedBack implements Serializable {
     private Integer feedBackType;
     private Integer feedBackSubType;
     private Integer severity;
-    private Integer status;
+    private Integer status = 1;
     private Timestamp timeStamp;
     private RefFbTypes refFbTypes;
     private RefFbStatuses refFbStatuses;
@@ -206,9 +206,7 @@ public class FeedBack implements Serializable {
     @PostPersist
     public void onPostPersist() {
         if(feedBackNoteses != null) {
-            for(FeedBackNotes feedBackNotes : feedBackNoteses) {
-                feedBackNotes.setFeedBack(this);
-            }
+            feedBackNoteses.forEach(feedBackNotes -> feedBackNotes.setFeedBack(this));
         }
     }
 

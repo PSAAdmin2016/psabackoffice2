@@ -82,14 +82,10 @@ public class RefDisciplines implements Serializable {
     @PostPersist
     public void onPostPersist() {
         if(tblCrewses != null) {
-            for(TblCrews tblCrews : tblCrewses) {
-                tblCrews.setRefDisciplines(this);
-            }
+            tblCrewses.forEach(tblCrews -> tblCrews.setRefDisciplines(this));
         }
         if(tblUserPsas != null) {
-            for(TblUserPsa tblUserPsa : tblUserPsas) {
-                tblUserPsa.setRefDisciplines(this);
-            }
+            tblUserPsas.forEach(tblUserPsa -> tblUserPsa.setRefDisciplines(this));
         }
     }
 

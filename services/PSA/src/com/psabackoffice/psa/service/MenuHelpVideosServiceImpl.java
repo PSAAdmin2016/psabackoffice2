@@ -67,7 +67,7 @@ public class MenuHelpVideosServiceImpl implements MenuHelpVideosService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public MenuHelpVideos getById(Integer menuhelpvideosId) throws EntityNotFoundException {
+	public MenuHelpVideos getById(Integer menuhelpvideosId) {
         LOGGER.debug("Finding MenuHelpVideos by id: {}", menuhelpvideosId);
         return this.wmGenericDao.findById(menuhelpvideosId);
     }
@@ -87,17 +87,12 @@ public class MenuHelpVideosServiceImpl implements MenuHelpVideosService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public MenuHelpVideos update(MenuHelpVideos menuHelpVideos) throws EntityNotFoundException {
+	public MenuHelpVideos update(MenuHelpVideos menuHelpVideos) {
         LOGGER.debug("Updating MenuHelpVideos with information: {}", menuHelpVideos);
 
         List<MenuSubHelpVideos> menuSubHelpVideoses = menuHelpVideos.getMenuSubHelpVideoses();
-
         if(menuSubHelpVideoses != null && Hibernate.isInitialized(menuSubHelpVideoses)) {
-            if(!menuSubHelpVideoses.isEmpty()) {
-                for(MenuSubHelpVideos _menuSubHelpVideos : menuSubHelpVideoses) {
-                    _menuSubHelpVideos.setMenuHelpVideos(menuHelpVideos);
-                }
-            }
+            menuSubHelpVideoses.forEach(_menuSubHelpVideos -> _menuSubHelpVideos.setMenuHelpVideos(menuHelpVideos));
         }
 
         this.wmGenericDao.update(menuHelpVideos);
@@ -108,7 +103,7 @@ public class MenuHelpVideosServiceImpl implements MenuHelpVideosService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public MenuHelpVideos delete(Integer menuhelpvideosId) throws EntityNotFoundException {
+	public MenuHelpVideos delete(Integer menuhelpvideosId) {
         LOGGER.debug("Deleting MenuHelpVideos with id: {}", menuhelpvideosId);
         MenuHelpVideos deleted = this.wmGenericDao.findById(menuhelpvideosId);
         if (deleted == null) {

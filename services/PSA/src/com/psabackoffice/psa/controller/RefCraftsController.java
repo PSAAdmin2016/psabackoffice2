@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -67,7 +66,7 @@ public class RefCraftsController {
     @ApiOperation(value = "Returns the RefCrafts instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefCrafts getRefCrafts(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefCrafts getRefCrafts(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefCrafts with id: {}" , id);
 
         RefCrafts foundRefCrafts = refCraftsService.getById(id);
@@ -79,7 +78,7 @@ public class RefCraftsController {
     @ApiOperation(value = "Updates the RefCrafts instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefCrafts editRefCrafts(@PathVariable("id") Integer id, @RequestBody RefCrafts refCrafts) throws EntityNotFoundException {
+    public RefCrafts editRefCrafts(@PathVariable("id") Integer id, @RequestBody RefCrafts refCrafts) {
         LOGGER.debug("Editing RefCrafts with id: {}" , refCrafts.getId());
 
         refCrafts.setId(id);
@@ -92,7 +91,7 @@ public class RefCraftsController {
     @ApiOperation(value = "Deletes the RefCrafts instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefCrafts(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefCrafts(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefCrafts with id: {}" , id);
 
         RefCrafts deletedRefCrafts = refCraftsService.delete(id);
@@ -108,7 +107,7 @@ public class RefCraftsController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefCrafts> searchRefCraftsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefCrafts list");
+        LOGGER.debug("Rendering RefCrafts list by query filter:{}", (Object) queryFilters);
         return refCraftsService.findAll(queryFilters, pageable);
     }
 
@@ -116,7 +115,7 @@ public class RefCraftsController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefCrafts> findRefCrafts(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefCrafts list");
+        LOGGER.debug("Rendering RefCrafts list by filter:", query);
         return refCraftsService.findAll(query, pageable);
     }
 
@@ -124,7 +123,7 @@ public class RefCraftsController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefCrafts> filterRefCrafts(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefCrafts list");
+        LOGGER.debug("Rendering RefCrafts list by filter", query);
         return refCraftsService.findAll(query, pageable);
     }
 

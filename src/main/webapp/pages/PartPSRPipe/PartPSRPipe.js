@@ -14,6 +14,7 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
         //Set Manual Search Switch to off
         $scope.Widgets.toggleManualSearch.datavalue = '0';
 
+        //Run serviceGetMatches as needed per ActivityType
         switch ($scope.pageParams.ActivityTypeID) {
             case 11:
                 if ($scope.pageParams.BidID) {
@@ -27,6 +28,8 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
                     $scope.Variables.staticBidSelectItem.setValue('dataValue', false);
                     $scope.Variables.serviceGetMatches.invoke();
                 }
+                $scope.Variables.staticATST.setValue('activityType', 'E');
+                $scope.Variables.staticATST.setValue('activitySubType', 'PE');
                 break;
 
             case 21:
@@ -41,12 +44,21 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
                     $scope.Variables.staticBidSelectItem.setValue('dataValue', false);
                     $scope.Variables.serviceGetMatches.invoke();
                 }
+                $scope.Variables.staticATST.setValue('activityType', 'C');
+                $scope.Variables.staticATST.setValue('activitySubType', 'BU');
                 break;
 
             case 22:
+                $scope.Variables.staticBidSelectItem.setValue('dataValue', false);
+                $scope.Variables.serviceGetMatches.invoke();
+                $scope.Variables.staticATST.setValue('activityType', 'C');
+                $scope.Variables.staticATST.setValue('activitySubType', 'W');
+                break;
             case 91:
                 $scope.Variables.staticBidSelectItem.setValue('dataValue', false);
                 $scope.Variables.serviceGetMatches.invoke();
+                $scope.Variables.staticATST.setValue('activityType', 'MISC');
+                $scope.Variables.staticATST.setValue('activitySubType', '0');
                 break;
 
             case 41:
@@ -221,8 +233,17 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
                         }
                         break;
                     case 91:
-                        inputData.ActivityType = '%';
-                        inputData.ActivitySubType = '%';
+                        if ($scope.Widgets.toggleFilterActivityType.datavalue == '1') {
+                            inputData.ActivityType = 'MISC';
+                        } else {
+                            inputData.ActivityType = '%';
+                        }
+
+                        if ($scope.Widgets.toggleFilterActivitySubType.datavalue == '1') {
+                            inputData.ActivitySubType = '0';
+                        } else {
+                            inputData.ActivitySubType = '%';
+                        }
                         break;
                 }
             }
@@ -336,72 +357,6 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
     };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    $scope.timerAssignDelayonTimerFire = function(variable, data) {
-        if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 11) {
-            $scope.Variables.serviceGetQuantityLFInstalled.setInput('BidID', $scope.Widgets.livelistBidActivities.selecteditem.BidID);
-            $scope.Variables.serviceGetQuantityLFInstalled.invoke();
-        }
-        if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 21) {
-            $scope.Variables.serviceGetQuantityBoltUpInstalled.setInput('BidID', $scope.Widgets.livelistBidActivities.selecteditem.BidID);
-            $scope.Variables.serviceGetQuantityBoltUpInstalled.invoke();
-        }
-        if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22) {
-            $scope.Variables.serviceGetQuantityWeldInstalled.setInput('BidID', $scope.Widgets.livelistBidActivities.selecteditem.BidID);
-            $scope.Variables.serviceGetQuantityWeldInstalled.invoke();
-        }
-        if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 23) {
-            $scope.Variables.serviceGetQuantityCutPrepInstalled.setInput('BidID', $scope.Widgets.livelistBidActivities.selecteditem.BidID);
-            $scope.Variables.serviceGetQuantityCutPrepInstalled.invoke();
-        }
-        if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 31 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 33 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 34 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 35 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 39) {
-            $scope.Variables.serviceGetQuantityTrimInstalled.setInput('BidID', $scope.Widgets.livelistBidActivities.selecteditem.BidID);
-            $scope.Variables.serviceGetQuantityTrimInstalled.invoke();
-        }
-        if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 32) {
-            $scope.Variables.serviceGetQuantitySupportsInstalled.setInput('BidID', $scope.Widgets.livelistBidActivities.selecteditem.BidID);
-            $scope.Variables.serviceGetQuantitySupportsInstalled.invoke();
-        }
-        if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 40 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43) {
-            $scope.Variables.serviceGetQuantitiesTestPackage.setInput('TestPackage', $scope.$parent.Widgets.gridApprovalReview.selecteditem.Line1);
-            $scope.Variables.serviceGetQuantitiesTestPackage.invoke();
-        }
-        if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 51 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 52 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 53 || $scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 59) {
-            $scope.Variables.serviceGetQuantityDemoRem.setInput('BidID', $scope.Widgets.livelistBidActivities.selecteditem.BidID);
-            $scope.Variables.serviceGetQuantityDemoRem.invoke();
-        }
-        if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 91) {
-            $scope.Variables.serviceGetQuantityMiscInstalled.setInput('BidID', $scope.Widgets.livelistBidActivities.selecteditem.BidID);
-            $scope.Variables.serviceGetQuantityMiscInstalled.invoke();
-        }
-    };
-
-
-
-
     $scope.timerLabelFlasher2onTimerFire = function(variable, data) { //Fired from Assign Testing Dialog On Open
         if ($scope.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41) {
             if ($scope.Widgets.textReadyForTestHrsEarned.datavalue > $scope.Widgets.labelRFTHoursRemaining.caption) {
@@ -473,14 +428,9 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
             }
         }
     };
-
-
-
-
-
-
-
 }]);
+
+
 
 
 Application.$controller("dialogRejectionController", ["$scope",
@@ -489,26 +439,20 @@ Application.$controller("dialogRejectionController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.formRejectSubmit = function($event, $isolateScope, $formData) {
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.ActivityStatus = '6';
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.BidID = '';
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.invoke(); //Updates GetActivitiesPendingApproval
+            $scope.Variables.serviceUnLockSASActivity.invoke();
+            $scope.$parent.$parent.savePageSettings();
 
-            $scope.$parent.$parent.Variables.serviceCreateSSNote.dataBinding.CreatedBy = $scope.Variables.loggedInUser.dataSet.id;
-            $scope.$parent.$parent.Variables.serviceCreateSSNote.dataBinding.Note = $scope.Widgets.textareaSSNoteReject.datavalue;
-            $scope.$parent.$parent.Variables.serviceCreateSSNote.invoke(); //Updates serviceGetNotesByFieldActivityID
-        };
+            $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", 6);
+            $scope.Variables.serviceUpdateSAS.setInput("RejectID", $scope.Widgets.formReject.formWidgets.selectRejectReason.datavalue);
+            $scope.Variables.serviceUpdateSAS.setInput("BidID", null);
+            $scope.Variables.serviceUpdateSAS.invoke(); //Updates GetActivitiesPendingApproval
 
-
-        $scope.textareaSSNoteRejectKeyup = function($event, $isolateScope) {
-            if ((Date.now() - $scope.Variables.staticVariableMachineStateTimer.dataValue) > 300 && $scope.Widgets.textareaSSNoteReject.datavalue) {
-                $scope.Variables.staticVariableMachineStateTimer.dataValue = Date.now();
-                $scope.Widgets.labelRejectTextCount.caption = 252 - $scope.Widgets.textareaSSNoteReject.datavalue.length;
-            }
+            $scope.$parent.$parent.Variables.serviceCreateSASNote.setInput("Note", $scope.Widgets.formReject.formWidgets.textareaSASNoteReject.datavalue);
+            $scope.$parent.$parent.Variables.serviceCreateSASNote.invoke();
         };
 
 
         $scope.buttonDialogRejectionSaveClick = function($event, $isolateScope) {
-            $scope.Variables.timerLabelFlasher.cancel();
             $scope.Variables.timerLabelFlasher2.cancel();
         };
 
@@ -516,7 +460,7 @@ Application.$controller("dialogRejectionController", ["$scope",
 ]);
 
 
-Application.$controller("dialogFielActivityDetailsController", ["$scope",
+Application.$controller("dialogFieldActivityDetailsController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
@@ -528,39 +472,6 @@ Application.$controller("dialogBidActivityDetailsController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-    }
-]);
-
-
-Application.$controller("dialogAssignQuantitiesController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-
-        $scope.buttonQuantitiesUpdateClick = function($event, $isolateScope) {
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.ActivityStatus = '5';
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.BidID = $scope.Widgets.livelistBidActivities.selecteditem.BidID;
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.invoke();
-            $scope.Variables.timerLabelFlasher.cancel();
-        };
-
-
-        $scope.dialogAssignQuantitiesOpened = function($event, $isolateScope) {
-            $scope.Variables.staticBrightLabel = false;
-            $scope.Variables.timerLabelFlasher.invoke();
-        };
-
-
-        $scope.dialogAssignQuantitiesClose = function($event, $isolateScope) {
-            console.log("PSReview: dialogAssign: closed");
-            //$scope.Variables.timerLabelFlasher.cancel();
-        };
-
-
-        $scope.buttonDialogAssignCancelClick = function($event, $isolateScope) {
-            $scope.Variables.timerLabelFlasher.cancel();
-        };
-
     }
 ]);
 
@@ -592,5 +503,12 @@ Application.$controller("dialogAssignTestingQuantitiesController", ["$scope",
             $scope.Variables.timerLabelFlasher2.cancel();
         };
 
+    }
+]);
+
+Application.$controller("Table1Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);

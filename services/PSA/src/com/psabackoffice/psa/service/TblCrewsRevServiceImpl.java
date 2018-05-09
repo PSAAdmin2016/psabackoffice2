@@ -59,7 +59,7 @@ public class TblCrewsRevServiceImpl implements TblCrewsRevService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public TblCrewsRev getById(Integer tblcrewsrevId) throws EntityNotFoundException {
+	public TblCrewsRev getById(Integer tblcrewsrevId) {
         LOGGER.debug("Finding TblCrewsRev by id: {}", tblcrewsrevId);
         return this.wmGenericDao.findById(tblcrewsrevId);
     }
@@ -79,7 +79,7 @@ public class TblCrewsRevServiceImpl implements TblCrewsRevService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public TblCrewsRev update(TblCrewsRev tblCrewsRev) throws EntityNotFoundException {
+	public TblCrewsRev update(TblCrewsRev tblCrewsRev) {
         LOGGER.debug("Updating TblCrewsRev with information: {}", tblCrewsRev);
 
         this.wmGenericDao.update(tblCrewsRev);
@@ -90,7 +90,7 @@ public class TblCrewsRevServiceImpl implements TblCrewsRevService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public TblCrewsRev delete(Integer tblcrewsrevId) throws EntityNotFoundException {
+	public TblCrewsRev delete(Integer tblcrewsrevId) {
         LOGGER.debug("Deleting TblCrewsRev with id: {}", tblcrewsrevId);
         TblCrewsRev deleted = this.wmGenericDao.findById(tblcrewsrevId);
         if (deleted == null) {

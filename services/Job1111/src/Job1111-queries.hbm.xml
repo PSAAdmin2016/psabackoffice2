@@ -2314,7 +2314,7 @@ GREATEST((ptd.TakeOffQuantity - COALESCE(er.InstalledQuantity,0)),0),
 (ptd.TakeOffQuantity - COALESCE(er.InstalledQuantity,0))
 ) AS RemainingQuantity,
 
-GREATEST((SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') - sum(COALESCE(er.EarnedHours,0)),0) AS RemainingHours,
+GREATEST((ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')) - sum(COALESCE(er.EarnedHours,0)),0) AS RemainingHours,
 
 LEAST((COALESCE(er.InstalledQuantity,0) / ptd.TakeOffQuantity) ,1.00) AS PercentComplete 
 
@@ -2493,7 +2493,7 @@ GREATEST((ptd.TakeOffQuantity - COALESCE(er.InstalledQuantity,0)),0),
 (ptd.TakeOffQuantity - COALESCE(er.InstalledQuantity,0))
 ) AS RemainingQuantity,
 
-GREATEST((SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') - sum(COALESCE(er.EarnedHours,0)),0) AS RemainingHours,
+GREATEST((ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')) - sum(COALESCE(er.EarnedHours,0)),0) AS RemainingHours,
 
 LEAST((COALESCE(er.InstalledQuantity,0) / ptd.TakeOffQuantity) ,1.00) AS PercentComplete 
 

@@ -59,7 +59,7 @@ public class RefPercentListServiceImpl implements RefPercentListService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefPercentList getById(Integer refpercentlistId) throws EntityNotFoundException {
+	public RefPercentList getById(Integer refpercentlistId) {
         LOGGER.debug("Finding RefPercentList by id: {}", refpercentlistId);
         return this.wmGenericDao.findById(refpercentlistId);
     }
@@ -79,7 +79,7 @@ public class RefPercentListServiceImpl implements RefPercentListService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefPercentList update(RefPercentList refPercentList) throws EntityNotFoundException {
+	public RefPercentList update(RefPercentList refPercentList) {
         LOGGER.debug("Updating RefPercentList with information: {}", refPercentList);
 
         this.wmGenericDao.update(refPercentList);
@@ -90,7 +90,7 @@ public class RefPercentListServiceImpl implements RefPercentListService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefPercentList delete(Integer refpercentlistId) throws EntityNotFoundException {
+	public RefPercentList delete(Integer refpercentlistId) {
         LOGGER.debug("Deleting RefPercentList with id: {}", refpercentlistId);
         RefPercentList deleted = this.wmGenericDao.findById(refpercentlistId);
         if (deleted == null) {

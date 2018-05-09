@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class FeedBackNotesController {
     @ApiOperation(value = "Returns the FeedBackNotes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public FeedBackNotes getFeedBackNotes(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public FeedBackNotes getFeedBackNotes(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting FeedBackNotes with id: {}" , id);
 
         FeedBackNotes foundFeedBackNotes = feedBackNotesService.getById(id);
@@ -78,7 +77,7 @@ public class FeedBackNotesController {
     @ApiOperation(value = "Updates the FeedBackNotes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public FeedBackNotes editFeedBackNotes(@PathVariable("id") Integer id, @RequestBody FeedBackNotes feedBackNotes) throws EntityNotFoundException {
+    public FeedBackNotes editFeedBackNotes(@PathVariable("id") Integer id, @RequestBody FeedBackNotes feedBackNotes) {
         LOGGER.debug("Editing FeedBackNotes with id: {}" , feedBackNotes.getId());
 
         feedBackNotes.setId(id);
@@ -91,7 +90,7 @@ public class FeedBackNotesController {
     @ApiOperation(value = "Deletes the FeedBackNotes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteFeedBackNotes(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteFeedBackNotes(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting FeedBackNotes with id: {}" , id);
 
         FeedBackNotes deletedFeedBackNotes = feedBackNotesService.delete(id);
@@ -107,7 +106,7 @@ public class FeedBackNotesController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FeedBackNotes> searchFeedBackNotesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering FeedBackNotes list");
+        LOGGER.debug("Rendering FeedBackNotes list by query filter:{}", (Object) queryFilters);
         return feedBackNotesService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class FeedBackNotesController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FeedBackNotes> findFeedBackNotes(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering FeedBackNotes list");
+        LOGGER.debug("Rendering FeedBackNotes list by filter:", query);
         return feedBackNotesService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class FeedBackNotesController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FeedBackNotes> filterFeedBackNotes(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering FeedBackNotes list");
+        LOGGER.debug("Rendering FeedBackNotes list by filter", query);
         return feedBackNotesService.findAll(query, pageable);
     }
 

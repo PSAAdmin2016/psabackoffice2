@@ -43,7 +43,7 @@ public interface RefZipcodesService {
 	 * @return RefZipcodes associated with the given refzipcodesId.
      * @throws EntityNotFoundException If no RefZipcodes is found.
 	 */
-	RefZipcodes getById(Integer refzipcodesId) throws EntityNotFoundException;
+	RefZipcodes getById(Integer refzipcodesId);
 
     /**
 	 * Find and return the RefZipcodes by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface RefZipcodesService {
 	 * @return The updated RefZipcodes.
 	 * @throws EntityNotFoundException if no RefZipcodes is found with given input.
 	 */
-	RefZipcodes update(@Valid RefZipcodes refZipcodes) throws EntityNotFoundException;
+	RefZipcodes update(@Valid RefZipcodes refZipcodes);
 
     /**
 	 * Deletes an existing RefZipcodes with the given id.
@@ -72,7 +72,7 @@ public interface RefZipcodesService {
 	 * @return The deleted RefZipcodes.
 	 * @throws EntityNotFoundException if no RefZipcodes found with the given id.
 	 */
-	RefZipcodes delete(Integer refzipcodesId) throws EntityNotFoundException;
+	RefZipcodes delete(Integer refzipcodesId);
 
     /**
 	 * Deletes an existing RefZipcodes with the given object.

@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class EmailTemplatesController {
     @ApiOperation(value = "Returns the EmailTemplates instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public EmailTemplates getEmailTemplates(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public EmailTemplates getEmailTemplates(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting EmailTemplates with id: {}" , id);
 
         EmailTemplates foundEmailTemplates = emailTemplatesService.getById(id);
@@ -78,7 +77,7 @@ public class EmailTemplatesController {
     @ApiOperation(value = "Updates the EmailTemplates instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public EmailTemplates editEmailTemplates(@PathVariable("id") Integer id, @RequestBody EmailTemplates emailTemplates) throws EntityNotFoundException {
+    public EmailTemplates editEmailTemplates(@PathVariable("id") Integer id, @RequestBody EmailTemplates emailTemplates) {
         LOGGER.debug("Editing EmailTemplates with id: {}" , emailTemplates.getId());
 
         emailTemplates.setId(id);
@@ -91,7 +90,7 @@ public class EmailTemplatesController {
     @ApiOperation(value = "Deletes the EmailTemplates instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteEmailTemplates(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteEmailTemplates(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting EmailTemplates with id: {}" , id);
 
         EmailTemplates deletedEmailTemplates = emailTemplatesService.delete(id);
@@ -107,7 +106,7 @@ public class EmailTemplatesController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<EmailTemplates> searchEmailTemplatesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering EmailTemplates list");
+        LOGGER.debug("Rendering EmailTemplates list by query filter:{}", (Object) queryFilters);
         return emailTemplatesService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class EmailTemplatesController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<EmailTemplates> findEmailTemplates(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering EmailTemplates list");
+        LOGGER.debug("Rendering EmailTemplates list by filter:", query);
         return emailTemplatesService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class EmailTemplatesController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<EmailTemplates> filterEmailTemplates(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering EmailTemplates list");
+        LOGGER.debug("Rendering EmailTemplates list by filter", query);
         return emailTemplatesService.findAll(query, pageable);
     }
 

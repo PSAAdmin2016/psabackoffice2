@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -67,7 +66,7 @@ public class RefFbSubTypesController {
     @ApiOperation(value = "Returns the RefFbSubTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefFbSubTypes getRefFbSubTypes(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefFbSubTypes getRefFbSubTypes(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefFbSubTypes with id: {}" , id);
 
         RefFbSubTypes foundRefFbSubTypes = refFbSubTypesService.getById(id);
@@ -79,7 +78,7 @@ public class RefFbSubTypesController {
     @ApiOperation(value = "Updates the RefFbSubTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefFbSubTypes editRefFbSubTypes(@PathVariable("id") Integer id, @RequestBody RefFbSubTypes refFbSubTypes) throws EntityNotFoundException {
+    public RefFbSubTypes editRefFbSubTypes(@PathVariable("id") Integer id, @RequestBody RefFbSubTypes refFbSubTypes) {
         LOGGER.debug("Editing RefFbSubTypes with id: {}" , refFbSubTypes.getId());
 
         refFbSubTypes.setId(id);
@@ -92,7 +91,7 @@ public class RefFbSubTypesController {
     @ApiOperation(value = "Deletes the RefFbSubTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefFbSubTypes(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefFbSubTypes(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefFbSubTypes with id: {}" , id);
 
         RefFbSubTypes deletedRefFbSubTypes = refFbSubTypesService.delete(id);
@@ -108,7 +107,7 @@ public class RefFbSubTypesController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefFbSubTypes> searchRefFbSubTypesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefFbSubTypes list");
+        LOGGER.debug("Rendering RefFbSubTypes list by query filter:{}", (Object) queryFilters);
         return refFbSubTypesService.findAll(queryFilters, pageable);
     }
 
@@ -116,7 +115,7 @@ public class RefFbSubTypesController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefFbSubTypes> findRefFbSubTypes(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefFbSubTypes list");
+        LOGGER.debug("Rendering RefFbSubTypes list by filter:", query);
         return refFbSubTypesService.findAll(query, pageable);
     }
 
@@ -124,7 +123,7 @@ public class RefFbSubTypesController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefFbSubTypes> filterRefFbSubTypes(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefFbSubTypes list");
+        LOGGER.debug("Rendering RefFbSubTypes list by filter", query);
         return refFbSubTypesService.findAll(query, pageable);
     }
 

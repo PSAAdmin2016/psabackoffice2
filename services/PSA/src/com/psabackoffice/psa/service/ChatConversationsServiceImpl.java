@@ -73,7 +73,7 @@ public class ChatConversationsServiceImpl implements ChatConversationsService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public ChatConversations getById(Integer chatconversationsId) throws EntityNotFoundException {
+	public ChatConversations getById(Integer chatconversationsId) {
         LOGGER.debug("Finding ChatConversations by id: {}", chatconversationsId);
         return this.wmGenericDao.findById(chatconversationsId);
     }
@@ -93,26 +93,16 @@ public class ChatConversationsServiceImpl implements ChatConversationsService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public ChatConversations update(ChatConversations chatConversations) throws EntityNotFoundException {
+	public ChatConversations update(ChatConversations chatConversations) {
         LOGGER.debug("Updating ChatConversations with information: {}", chatConversations);
 
         List<ChatConversationMembers> chatConversationMemberses = chatConversations.getChatConversationMemberses();
         List<ChatMessages> chatMessageses = chatConversations.getChatMessageses();
-
         if(chatConversationMemberses != null && Hibernate.isInitialized(chatConversationMemberses)) {
-            if(!chatConversationMemberses.isEmpty()) {
-                for(ChatConversationMembers _chatConversationMembers : chatConversationMemberses) {
-                    _chatConversationMembers.setChatConversations(chatConversations);
-                }
-            }
+            chatConversationMemberses.forEach(_chatConversationMembers -> _chatConversationMembers.setChatConversations(chatConversations));
         }
-
         if(chatMessageses != null && Hibernate.isInitialized(chatMessageses)) {
-            if(!chatMessageses.isEmpty()) {
-                for(ChatMessages _chatMessages : chatMessageses) {
-                    _chatMessages.setChatConversations(chatConversations);
-                }
-            }
+            chatMessageses.forEach(_chatMessages -> _chatMessages.setChatConversations(chatConversations));
         }
 
         this.wmGenericDao.update(chatConversations);
@@ -123,7 +113,7 @@ public class ChatConversationsServiceImpl implements ChatConversationsService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public ChatConversations delete(Integer chatconversationsId) throws EntityNotFoundException {
+	public ChatConversations delete(Integer chatconversationsId) {
         LOGGER.debug("Deleting ChatConversations with id: {}", chatconversationsId);
         ChatConversations deleted = this.wmGenericDao.findById(chatconversationsId);
         if (deleted == null) {

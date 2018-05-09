@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class RefActivityTypesController {
     @ApiOperation(value = "Returns the RefActivityTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefActivityTypes getRefActivityTypes(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefActivityTypes getRefActivityTypes(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefActivityTypes with id: {}" , id);
 
         RefActivityTypes foundRefActivityTypes = refActivityTypesService.getById(id);
@@ -78,7 +77,7 @@ public class RefActivityTypesController {
     @ApiOperation(value = "Updates the RefActivityTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefActivityTypes editRefActivityTypes(@PathVariable("id") Integer id, @RequestBody RefActivityTypes refActivityTypes) throws EntityNotFoundException {
+    public RefActivityTypes editRefActivityTypes(@PathVariable("id") Integer id, @RequestBody RefActivityTypes refActivityTypes) {
         LOGGER.debug("Editing RefActivityTypes with id: {}" , refActivityTypes.getId());
 
         refActivityTypes.setId(id);
@@ -91,7 +90,7 @@ public class RefActivityTypesController {
     @ApiOperation(value = "Deletes the RefActivityTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefActivityTypes(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefActivityTypes(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefActivityTypes with id: {}" , id);
 
         RefActivityTypes deletedRefActivityTypes = refActivityTypesService.delete(id);
@@ -107,7 +106,7 @@ public class RefActivityTypesController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefActivityTypes> searchRefActivityTypesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefActivityTypes list");
+        LOGGER.debug("Rendering RefActivityTypes list by query filter:{}", (Object) queryFilters);
         return refActivityTypesService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class RefActivityTypesController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefActivityTypes> findRefActivityTypes(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefActivityTypes list");
+        LOGGER.debug("Rendering RefActivityTypes list by filter:", query);
         return refActivityTypesService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class RefActivityTypesController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefActivityTypes> filterRefActivityTypes(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefActivityTypes list");
+        LOGGER.debug("Rendering RefActivityTypes list by filter", query);
         return refActivityTypesService.findAll(query, pageable);
     }
 

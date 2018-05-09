@@ -59,7 +59,7 @@ public class TblUserRolesServiceImpl implements TblUserRolesService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public TblUserRoles getById(Integer tbluserrolesId) throws EntityNotFoundException {
+	public TblUserRoles getById(Integer tbluserrolesId) {
         LOGGER.debug("Finding TblUserRoles by id: {}", tbluserrolesId);
         return this.wmGenericDao.findById(tbluserrolesId);
     }
@@ -79,7 +79,7 @@ public class TblUserRolesServiceImpl implements TblUserRolesService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public TblUserRoles update(TblUserRoles tblUserRoles) throws EntityNotFoundException {
+	public TblUserRoles update(TblUserRoles tblUserRoles) {
         LOGGER.debug("Updating TblUserRoles with information: {}", tblUserRoles);
 
         this.wmGenericDao.update(tblUserRoles);
@@ -90,7 +90,7 @@ public class TblUserRolesServiceImpl implements TblUserRolesService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public TblUserRoles delete(Integer tbluserrolesId) throws EntityNotFoundException {
+	public TblUserRoles delete(Integer tbluserrolesId) {
         LOGGER.debug("Deleting TblUserRoles with id: {}", tbluserrolesId);
         TblUserRoles deleted = this.wmGenericDao.findById(tbluserrolesId);
         if (deleted == null) {

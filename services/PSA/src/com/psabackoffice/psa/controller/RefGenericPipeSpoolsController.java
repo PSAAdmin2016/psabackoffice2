@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class RefGenericPipeSpoolsController {
     @ApiOperation(value = "Returns the RefGenericPipeSpools instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefGenericPipeSpools getRefGenericPipeSpools(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefGenericPipeSpools getRefGenericPipeSpools(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefGenericPipeSpools with id: {}" , id);
 
         RefGenericPipeSpools foundRefGenericPipeSpools = refGenericPipeSpoolsService.getById(id);
@@ -78,7 +77,7 @@ public class RefGenericPipeSpoolsController {
     @ApiOperation(value = "Updates the RefGenericPipeSpools instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefGenericPipeSpools editRefGenericPipeSpools(@PathVariable("id") Integer id, @RequestBody RefGenericPipeSpools refGenericPipeSpools) throws EntityNotFoundException {
+    public RefGenericPipeSpools editRefGenericPipeSpools(@PathVariable("id") Integer id, @RequestBody RefGenericPipeSpools refGenericPipeSpools) {
         LOGGER.debug("Editing RefGenericPipeSpools with id: {}" , refGenericPipeSpools.getId());
 
         refGenericPipeSpools.setId(id);
@@ -91,7 +90,7 @@ public class RefGenericPipeSpoolsController {
     @ApiOperation(value = "Deletes the RefGenericPipeSpools instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefGenericPipeSpools(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefGenericPipeSpools(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefGenericPipeSpools with id: {}" , id);
 
         RefGenericPipeSpools deletedRefGenericPipeSpools = refGenericPipeSpoolsService.delete(id);
@@ -107,7 +106,7 @@ public class RefGenericPipeSpoolsController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefGenericPipeSpools> searchRefGenericPipeSpoolsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefGenericPipeSpools list");
+        LOGGER.debug("Rendering RefGenericPipeSpools list by query filter:{}", (Object) queryFilters);
         return refGenericPipeSpoolsService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class RefGenericPipeSpoolsController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefGenericPipeSpools> findRefGenericPipeSpools(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefGenericPipeSpools list");
+        LOGGER.debug("Rendering RefGenericPipeSpools list by filter:", query);
         return refGenericPipeSpoolsService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class RefGenericPipeSpoolsController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefGenericPipeSpools> filterRefGenericPipeSpools(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefGenericPipeSpools list");
+        LOGGER.debug("Rendering RefGenericPipeSpools list by filter", query);
         return refGenericPipeSpoolsService.findAll(query, pageable);
     }
 

@@ -59,7 +59,7 @@ public class SettingsServiceImpl implements SettingsService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public Settings getById(String settingsId) throws EntityNotFoundException {
+	public Settings getById(String settingsId) {
         LOGGER.debug("Finding Settings by id: {}", settingsId);
         return this.wmGenericDao.findById(settingsId);
     }
@@ -79,7 +79,7 @@ public class SettingsServiceImpl implements SettingsService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public Settings update(Settings settings) throws EntityNotFoundException {
+	public Settings update(Settings settings) {
         LOGGER.debug("Updating Settings with information: {}", settings);
 
         this.wmGenericDao.update(settings);
@@ -90,7 +90,7 @@ public class SettingsServiceImpl implements SettingsService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public Settings delete(String settingsId) throws EntityNotFoundException {
+	public Settings delete(String settingsId) {
         LOGGER.debug("Deleting Settings with id: {}", settingsId);
         Settings deleted = this.wmGenericDao.findById(settingsId);
         if (deleted == null) {

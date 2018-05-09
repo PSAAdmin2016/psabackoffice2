@@ -43,7 +43,7 @@ public interface RefActivityStatusesService {
 	 * @return RefActivityStatuses associated with the given refactivitystatusesId.
      * @throws EntityNotFoundException If no RefActivityStatuses is found.
 	 */
-	RefActivityStatuses getById(Integer refactivitystatusesId) throws EntityNotFoundException;
+	RefActivityStatuses getById(Integer refactivitystatusesId);
 
     /**
 	 * Find and return the RefActivityStatuses by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface RefActivityStatusesService {
 	 * @return The updated RefActivityStatuses.
 	 * @throws EntityNotFoundException if no RefActivityStatuses is found with given input.
 	 */
-	RefActivityStatuses update(@Valid RefActivityStatuses refActivityStatuses) throws EntityNotFoundException;
+	RefActivityStatuses update(@Valid RefActivityStatuses refActivityStatuses);
 
     /**
 	 * Deletes an existing RefActivityStatuses with the given id.
@@ -72,7 +72,7 @@ public interface RefActivityStatusesService {
 	 * @return The deleted RefActivityStatuses.
 	 * @throws EntityNotFoundException if no RefActivityStatuses found with the given id.
 	 */
-	RefActivityStatuses delete(Integer refactivitystatusesId) throws EntityNotFoundException;
+	RefActivityStatuses delete(Integer refactivitystatusesId);
 
     /**
 	 * Deletes an existing RefActivityStatuses with the given object.

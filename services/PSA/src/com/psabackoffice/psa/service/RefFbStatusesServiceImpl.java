@@ -67,7 +67,7 @@ public class RefFbStatusesServiceImpl implements RefFbStatusesService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefFbStatuses getById(Integer reffbstatusesId) throws EntityNotFoundException {
+	public RefFbStatuses getById(Integer reffbstatusesId) {
         LOGGER.debug("Finding RefFbStatuses by id: {}", reffbstatusesId);
         return this.wmGenericDao.findById(reffbstatusesId);
     }
@@ -87,17 +87,12 @@ public class RefFbStatusesServiceImpl implements RefFbStatusesService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefFbStatuses update(RefFbStatuses refFbStatuses) throws EntityNotFoundException {
+	public RefFbStatuses update(RefFbStatuses refFbStatuses) {
         LOGGER.debug("Updating RefFbStatuses with information: {}", refFbStatuses);
 
         List<FeedBack> feedBacks = refFbStatuses.getFeedBacks();
-
         if(feedBacks != null && Hibernate.isInitialized(feedBacks)) {
-            if(!feedBacks.isEmpty()) {
-                for(FeedBack _feedBack : feedBacks) {
-                    _feedBack.setRefFbStatuses(refFbStatuses);
-                }
-            }
+            feedBacks.forEach(_feedBack -> _feedBack.setRefFbStatuses(refFbStatuses));
         }
 
         this.wmGenericDao.update(refFbStatuses);
@@ -108,7 +103,7 @@ public class RefFbStatusesServiceImpl implements RefFbStatusesService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefFbStatuses delete(Integer reffbstatusesId) throws EntityNotFoundException {
+	public RefFbStatuses delete(Integer reffbstatusesId) {
         LOGGER.debug("Deleting RefFbStatuses with id: {}", reffbstatusesId);
         RefFbStatuses deleted = this.wmGenericDao.findById(reffbstatusesId);
         if (deleted == null) {

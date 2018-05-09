@@ -43,7 +43,7 @@ public interface RefDelayTypesService {
 	 * @return RefDelayTypes associated with the given refdelaytypesId.
      * @throws EntityNotFoundException If no RefDelayTypes is found.
 	 */
-	RefDelayTypes getById(Integer refdelaytypesId) throws EntityNotFoundException;
+	RefDelayTypes getById(Integer refdelaytypesId);
 
     /**
 	 * Find and return the RefDelayTypes by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface RefDelayTypesService {
 	 * @return The updated RefDelayTypes.
 	 * @throws EntityNotFoundException if no RefDelayTypes is found with given input.
 	 */
-	RefDelayTypes update(@Valid RefDelayTypes refDelayTypes) throws EntityNotFoundException;
+	RefDelayTypes update(@Valid RefDelayTypes refDelayTypes);
 
     /**
 	 * Deletes an existing RefDelayTypes with the given id.
@@ -72,7 +72,7 @@ public interface RefDelayTypesService {
 	 * @return The deleted RefDelayTypes.
 	 * @throws EntityNotFoundException if no RefDelayTypes found with the given id.
 	 */
-	RefDelayTypes delete(Integer refdelaytypesId) throws EntityNotFoundException;
+	RefDelayTypes delete(Integer refdelaytypesId);
 
     /**
 	 * Deletes an existing RefDelayTypes with the given object.

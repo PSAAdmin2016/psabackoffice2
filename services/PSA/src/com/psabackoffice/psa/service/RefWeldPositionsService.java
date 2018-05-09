@@ -43,7 +43,7 @@ public interface RefWeldPositionsService {
 	 * @return RefWeldPositions associated with the given refweldpositionsId.
      * @throws EntityNotFoundException If no RefWeldPositions is found.
 	 */
-	RefWeldPositions getById(Integer refweldpositionsId) throws EntityNotFoundException;
+	RefWeldPositions getById(Integer refweldpositionsId);
 
     /**
 	 * Find and return the RefWeldPositions by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface RefWeldPositionsService {
 	 * @return The updated RefWeldPositions.
 	 * @throws EntityNotFoundException if no RefWeldPositions is found with given input.
 	 */
-	RefWeldPositions update(@Valid RefWeldPositions refWeldPositions) throws EntityNotFoundException;
+	RefWeldPositions update(@Valid RefWeldPositions refWeldPositions);
 
     /**
 	 * Deletes an existing RefWeldPositions with the given id.
@@ -72,7 +72,7 @@ public interface RefWeldPositionsService {
 	 * @return The deleted RefWeldPositions.
 	 * @throws EntityNotFoundException if no RefWeldPositions found with the given id.
 	 */
-	RefWeldPositions delete(Integer refweldpositionsId) throws EntityNotFoundException;
+	RefWeldPositions delete(Integer refweldpositionsId);
 
     /**
 	 * Deletes an existing RefWeldPositions with the given object.

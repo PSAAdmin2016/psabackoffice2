@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -67,7 +66,7 @@ public class RefFbStatusesController {
     @ApiOperation(value = "Returns the RefFbStatuses instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefFbStatuses getRefFbStatuses(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefFbStatuses getRefFbStatuses(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefFbStatuses with id: {}" , id);
 
         RefFbStatuses foundRefFbStatuses = refFbStatusesService.getById(id);
@@ -79,7 +78,7 @@ public class RefFbStatusesController {
     @ApiOperation(value = "Updates the RefFbStatuses instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefFbStatuses editRefFbStatuses(@PathVariable("id") Integer id, @RequestBody RefFbStatuses refFbStatuses) throws EntityNotFoundException {
+    public RefFbStatuses editRefFbStatuses(@PathVariable("id") Integer id, @RequestBody RefFbStatuses refFbStatuses) {
         LOGGER.debug("Editing RefFbStatuses with id: {}" , refFbStatuses.getId());
 
         refFbStatuses.setId(id);
@@ -92,7 +91,7 @@ public class RefFbStatusesController {
     @ApiOperation(value = "Deletes the RefFbStatuses instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefFbStatuses(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefFbStatuses(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefFbStatuses with id: {}" , id);
 
         RefFbStatuses deletedRefFbStatuses = refFbStatusesService.delete(id);
@@ -108,7 +107,7 @@ public class RefFbStatusesController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefFbStatuses> searchRefFbStatusesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefFbStatuses list");
+        LOGGER.debug("Rendering RefFbStatuses list by query filter:{}", (Object) queryFilters);
         return refFbStatusesService.findAll(queryFilters, pageable);
     }
 
@@ -116,7 +115,7 @@ public class RefFbStatusesController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefFbStatuses> findRefFbStatuses(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefFbStatuses list");
+        LOGGER.debug("Rendering RefFbStatuses list by filter:", query);
         return refFbStatusesService.findAll(query, pageable);
     }
 
@@ -124,7 +123,7 @@ public class RefFbStatusesController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefFbStatuses> filterRefFbStatuses(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefFbStatuses list");
+        LOGGER.debug("Rendering RefFbStatuses list by filter", query);
         return refFbStatusesService.findAll(query, pageable);
     }
 

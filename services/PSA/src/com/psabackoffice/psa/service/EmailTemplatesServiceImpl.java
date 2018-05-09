@@ -59,7 +59,7 @@ public class EmailTemplatesServiceImpl implements EmailTemplatesService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public EmailTemplates getById(Integer emailtemplatesId) throws EntityNotFoundException {
+	public EmailTemplates getById(Integer emailtemplatesId) {
         LOGGER.debug("Finding EmailTemplates by id: {}", emailtemplatesId);
         return this.wmGenericDao.findById(emailtemplatesId);
     }
@@ -79,7 +79,7 @@ public class EmailTemplatesServiceImpl implements EmailTemplatesService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public EmailTemplates update(EmailTemplates emailTemplates) throws EntityNotFoundException {
+	public EmailTemplates update(EmailTemplates emailTemplates) {
         LOGGER.debug("Updating EmailTemplates with information: {}", emailTemplates);
 
         this.wmGenericDao.update(emailTemplates);
@@ -90,7 +90,7 @@ public class EmailTemplatesServiceImpl implements EmailTemplatesService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public EmailTemplates delete(Integer emailtemplatesId) throws EntityNotFoundException {
+	public EmailTemplates delete(Integer emailtemplatesId) {
         LOGGER.debug("Deleting EmailTemplates with id: {}", emailtemplatesId);
         EmailTemplates deleted = this.wmGenericDao.findById(emailtemplatesId);
         if (deleted == null) {

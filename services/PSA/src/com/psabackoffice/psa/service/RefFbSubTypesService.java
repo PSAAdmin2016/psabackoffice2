@@ -44,7 +44,7 @@ public interface RefFbSubTypesService {
 	 * @return RefFbSubTypes associated with the given reffbsubtypesId.
      * @throws EntityNotFoundException If no RefFbSubTypes is found.
 	 */
-	RefFbSubTypes getById(Integer reffbsubtypesId) throws EntityNotFoundException;
+	RefFbSubTypes getById(Integer reffbsubtypesId);
 
     /**
 	 * Find and return the RefFbSubTypes by given id if exists, returns null otherwise.
@@ -64,7 +64,7 @@ public interface RefFbSubTypesService {
 	 * @return The updated RefFbSubTypes.
 	 * @throws EntityNotFoundException if no RefFbSubTypes is found with given input.
 	 */
-	RefFbSubTypes update(@Valid RefFbSubTypes refFbSubTypes) throws EntityNotFoundException;
+	RefFbSubTypes update(@Valid RefFbSubTypes refFbSubTypes);
 
     /**
 	 * Deletes an existing RefFbSubTypes with the given id.
@@ -73,7 +73,7 @@ public interface RefFbSubTypesService {
 	 * @return The deleted RefFbSubTypes.
 	 * @throws EntityNotFoundException if no RefFbSubTypes found with the given id.
 	 */
-	RefFbSubTypes delete(Integer reffbsubtypesId) throws EntityNotFoundException;
+	RefFbSubTypes delete(Integer reffbsubtypesId);
 
     /**
 	 * Deletes an existing RefFbSubTypes with the given object.

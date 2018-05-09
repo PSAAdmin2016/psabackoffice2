@@ -70,9 +70,7 @@ public class RefFbSeverity implements Serializable {
     @PostPersist
     public void onPostPersist() {
         if(feedBacks != null) {
-            for(FeedBack feedBack : feedBacks) {
-                feedBack.setRefFbSeverity(this);
-            }
+            feedBacks.forEach(feedBack -> feedBack.setRefFbSeverity(this));
         }
     }
 

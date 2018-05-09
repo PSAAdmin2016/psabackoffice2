@@ -43,7 +43,7 @@ public interface RefPercentListService {
 	 * @return RefPercentList associated with the given refpercentlistId.
      * @throws EntityNotFoundException If no RefPercentList is found.
 	 */
-	RefPercentList getById(Integer refpercentlistId) throws EntityNotFoundException;
+	RefPercentList getById(Integer refpercentlistId);
 
     /**
 	 * Find and return the RefPercentList by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface RefPercentListService {
 	 * @return The updated RefPercentList.
 	 * @throws EntityNotFoundException if no RefPercentList is found with given input.
 	 */
-	RefPercentList update(@Valid RefPercentList refPercentList) throws EntityNotFoundException;
+	RefPercentList update(@Valid RefPercentList refPercentList);
 
     /**
 	 * Deletes an existing RefPercentList with the given id.
@@ -72,7 +72,7 @@ public interface RefPercentListService {
 	 * @return The deleted RefPercentList.
 	 * @throws EntityNotFoundException if no RefPercentList found with the given id.
 	 */
-	RefPercentList delete(Integer refpercentlistId) throws EntityNotFoundException;
+	RefPercentList delete(Integer refpercentlistId);
 
     /**
 	 * Deletes an existing RefPercentList with the given object.

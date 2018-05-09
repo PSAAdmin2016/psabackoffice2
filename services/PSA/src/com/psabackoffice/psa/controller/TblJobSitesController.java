@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -67,7 +66,7 @@ public class TblJobSitesController {
     @ApiOperation(value = "Returns the TblJobSites instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public TblJobSites getTblJobSites(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public TblJobSites getTblJobSites(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting TblJobSites with id: {}" , id);
 
         TblJobSites foundTblJobSites = tblJobSitesService.getById(id);
@@ -79,7 +78,7 @@ public class TblJobSitesController {
     @ApiOperation(value = "Updates the TblJobSites instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public TblJobSites editTblJobSites(@PathVariable("id") Integer id, @RequestBody TblJobSites tblJobSites) throws EntityNotFoundException {
+    public TblJobSites editTblJobSites(@PathVariable("id") Integer id, @RequestBody TblJobSites tblJobSites) {
         LOGGER.debug("Editing TblJobSites with id: {}" , tblJobSites.getId());
 
         tblJobSites.setId(id);
@@ -92,7 +91,7 @@ public class TblJobSitesController {
     @ApiOperation(value = "Deletes the TblJobSites instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteTblJobSites(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteTblJobSites(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting TblJobSites with id: {}" , id);
 
         TblJobSites deletedTblJobSites = tblJobSitesService.delete(id);
@@ -108,7 +107,7 @@ public class TblJobSitesController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblJobSites> searchTblJobSitesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering TblJobSites list");
+        LOGGER.debug("Rendering TblJobSites list by query filter:{}", (Object) queryFilters);
         return tblJobSitesService.findAll(queryFilters, pageable);
     }
 
@@ -116,7 +115,7 @@ public class TblJobSitesController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblJobSites> findTblJobSites(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering TblJobSites list");
+        LOGGER.debug("Rendering TblJobSites list by filter:", query);
         return tblJobSitesService.findAll(query, pageable);
     }
 
@@ -124,7 +123,7 @@ public class TblJobSitesController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblJobSites> filterTblJobSites(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering TblJobSites list");
+        LOGGER.debug("Rendering TblJobSites list by filter", query);
         return tblJobSitesService.findAll(query, pageable);
     }
 

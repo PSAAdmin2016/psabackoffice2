@@ -68,7 +68,7 @@ public class RefRolesServiceImpl implements RefRolesService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefRoles getById(Integer refrolesId) throws EntityNotFoundException {
+	public RefRoles getById(Integer refrolesId) {
         LOGGER.debug("Finding RefRoles by id: {}", refrolesId);
         return this.wmGenericDao.findById(refrolesId);
     }
@@ -88,17 +88,12 @@ public class RefRolesServiceImpl implements RefRolesService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefRoles update(RefRoles refRoles) throws EntityNotFoundException {
+	public RefRoles update(RefRoles refRoles) {
         LOGGER.debug("Updating RefRoles with information: {}", refRoles);
 
         List<TblUserRoles> tblUserRoleses = refRoles.getTblUserRoleses();
-
         if(tblUserRoleses != null && Hibernate.isInitialized(tblUserRoleses)) {
-            if(!tblUserRoleses.isEmpty()) {
-                for(TblUserRoles _tblUserRoles : tblUserRoleses) {
-                    _tblUserRoles.setRefRoles(refRoles);
-                }
-            }
+            tblUserRoleses.forEach(_tblUserRoles -> _tblUserRoles.setRefRoles(refRoles));
         }
 
         this.wmGenericDao.update(refRoles);
@@ -108,11 +103,9 @@ public class RefRolesServiceImpl implements RefRolesService {
         if(tblUserRoleses != null && Hibernate.isInitialized(tblUserRoleses) && !tblUserRoleses.isEmpty()) {
             List<TblUserRoles> _remainingChildren = wmGenericDao.execute(
                 session -> DaoUtils.findAllRemainingChildren(session, TblUserRoles.class,
-                        new DaoUtils.ChildrenFilter("refRoles", refRoles, tblUserRoleses)));
+                        new DaoUtils.ChildrenFilter<>("refRoles", refRoles, tblUserRoleses)));
             LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
-            for(TblUserRoles _tblUserRoles : _remainingChildren) {
-                tblUserRolesService.delete(_tblUserRoles);
-            }
+            _remainingChildren.forEach(_tblUserRoles -> tblUserRolesService.delete(_tblUserRoles));
             refRoles.setTblUserRoleses(tblUserRoleses);
         }
 
@@ -121,7 +114,7 @@ public class RefRolesServiceImpl implements RefRolesService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefRoles delete(Integer refrolesId) throws EntityNotFoundException {
+	public RefRoles delete(Integer refrolesId) {
         LOGGER.debug("Deleting RefRoles with id: {}", refrolesId);
         RefRoles deleted = this.wmGenericDao.findById(refrolesId);
         if (deleted == null) {

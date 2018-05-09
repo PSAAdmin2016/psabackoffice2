@@ -84,9 +84,6 @@
     "table" : "REF_PercentList",
     "schema" : null
   }, {
-    "table" : "REF_PipeDemoTypes",
-    "schema" : null
-  }, {
     "table" : "REF_PipeSchedules",
     "schema" : null
   }, {

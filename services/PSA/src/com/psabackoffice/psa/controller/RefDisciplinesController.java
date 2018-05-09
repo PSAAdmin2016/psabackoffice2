@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -68,7 +67,7 @@ public class RefDisciplinesController {
     @ApiOperation(value = "Returns the RefDisciplines instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefDisciplines getRefDisciplines(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefDisciplines getRefDisciplines(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefDisciplines with id: {}" , id);
 
         RefDisciplines foundRefDisciplines = refDisciplinesService.getById(id);
@@ -80,7 +79,7 @@ public class RefDisciplinesController {
     @ApiOperation(value = "Updates the RefDisciplines instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefDisciplines editRefDisciplines(@PathVariable("id") Integer id, @RequestBody RefDisciplines refDisciplines) throws EntityNotFoundException {
+    public RefDisciplines editRefDisciplines(@PathVariable("id") Integer id, @RequestBody RefDisciplines refDisciplines) {
         LOGGER.debug("Editing RefDisciplines with id: {}" , refDisciplines.getId());
 
         refDisciplines.setId(id);
@@ -93,7 +92,7 @@ public class RefDisciplinesController {
     @ApiOperation(value = "Deletes the RefDisciplines instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefDisciplines(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefDisciplines(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefDisciplines with id: {}" , id);
 
         RefDisciplines deletedRefDisciplines = refDisciplinesService.delete(id);
@@ -109,7 +108,7 @@ public class RefDisciplinesController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefDisciplines> searchRefDisciplinesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefDisciplines list");
+        LOGGER.debug("Rendering RefDisciplines list by query filter:{}", (Object) queryFilters);
         return refDisciplinesService.findAll(queryFilters, pageable);
     }
 
@@ -117,7 +116,7 @@ public class RefDisciplinesController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefDisciplines> findRefDisciplines(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefDisciplines list");
+        LOGGER.debug("Rendering RefDisciplines list by filter:", query);
         return refDisciplinesService.findAll(query, pageable);
     }
 
@@ -125,7 +124,7 @@ public class RefDisciplinesController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefDisciplines> filterRefDisciplines(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefDisciplines list");
+        LOGGER.debug("Rendering RefDisciplines list by filter", query);
         return refDisciplinesService.findAll(query, pageable);
     }
 

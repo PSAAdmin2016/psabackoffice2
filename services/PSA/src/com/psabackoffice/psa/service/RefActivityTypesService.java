@@ -43,7 +43,7 @@ public interface RefActivityTypesService {
 	 * @return RefActivityTypes associated with the given refactivitytypesId.
      * @throws EntityNotFoundException If no RefActivityTypes is found.
 	 */
-	RefActivityTypes getById(Integer refactivitytypesId) throws EntityNotFoundException;
+	RefActivityTypes getById(Integer refactivitytypesId);
 
     /**
 	 * Find and return the RefActivityTypes by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface RefActivityTypesService {
 	 * @return The updated RefActivityTypes.
 	 * @throws EntityNotFoundException if no RefActivityTypes is found with given input.
 	 */
-	RefActivityTypes update(@Valid RefActivityTypes refActivityTypes) throws EntityNotFoundException;
+	RefActivityTypes update(@Valid RefActivityTypes refActivityTypes);
 
     /**
 	 * Deletes an existing RefActivityTypes with the given id.
@@ -72,7 +72,7 @@ public interface RefActivityTypesService {
 	 * @return The deleted RefActivityTypes.
 	 * @throws EntityNotFoundException if no RefActivityTypes found with the given id.
 	 */
-	RefActivityTypes delete(Integer refactivitytypesId) throws EntityNotFoundException;
+	RefActivityTypes delete(Integer refactivitytypesId);
 
     /**
 	 * Deletes an existing RefActivityTypes with the given object.

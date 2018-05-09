@@ -7,6 +7,9 @@
                 </wm-gridcolumn>
                 <wm-gridcolumn columnwidth="9" name="gridcolumn162_1" horizontalalign="center">
                     <wm-label caption="Current Quantity" fontweight="bold" fontsize="14" name="label214_1" hint="All Quantities, and percentages are BEFORE this pending activity is added." margin="unset unset 0px unset"></wm-label>
+                    <wm-popover popoverwidth="10%" popoverheight="3%" iconclass="wi wi-help-outline fa-lg" caption="" contentsource="inline" popoverplacement="bottom" color="#0069ff" name="popover2" interaction="default">
+                        <wm-label padding="unset 0.5em" caption="Quantities below do NOT include Testing Hours" color="#000000" fontweight="bold" fontstyle="italic" name="label21"></wm-label>
+                    </wm-popover>
                 </wm-gridcolumn>
             </wm-gridrow>
             <wm-gridrow name="gridrow8_1">
@@ -37,7 +40,7 @@
                                     <wm-composite name="composite183" captionposition="top" margin="unset unset 0px unset">
                                         <wm-label class="col-md-3 control-label" name="label236_1" caption="Hour Value" fontweight="bold"></wm-label>
                                     </wm-composite>
-                                    <wm-text hint="The hours to be earned by this activity" datavalue="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity * textInstalled | toNumber: '2'"
+                                    <wm-text hint="The hours to be earned by this activity" datavalue="bind:((Variables.serviceGetQuantities.firstRecord.EstimatedMechHours / Variables.serviceGetQuantities.firstRecord.TakeOffQuantity) * $parent.$parent.$parent.$parent.$parent.$parent.Widgets.gridApprovalReview.selecteditem.Quantity) | numberToString: '2'"
                                         type="number" updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" name="textHrsEarned" color="#000000" width="80%"></wm-text>
                                 </wm-gridcolumn>
                             </wm-gridrow>
@@ -45,7 +48,7 @@
                     </wm-container>
                 </wm-gridcolumn>
                 <wm-gridcolumn columnwidth="9" name="gridcolumn17">
-                    <wm-container name="containerCurrent" bordercolor="#c1c1c1" borderstyle="solid" borderwidth="5px" padding="6px" margin="unset unset unset 1%">
+                    <wm-container name="containerCurrent" bordercolor="#c1c1c1" borderstyle="solid" borderwidth="5px" padding="6px 6px unset 6px" margin="unset unset unset 1%">
                         <wm-layoutgrid name="layoutgrid5">
                             <wm-gridrow name="gridrow11">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn22">
@@ -59,39 +62,12 @@
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn23">
                                     <wm-composite name="composite111" captionposition="top">
                                         <wm-label class="col-md-3" name="label134_1" caption="Remaining Quantity" hint="Remaining quantity BEFORE pending activity is added" fontweight="bold"></wm-label>
-                                        <wm-container class="col-md-9" name="container106" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 10 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 11">
-                                            <wm-label name="labelErectionRemaining" caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityLFInstalled.dataSet[$i].Total | toNumber: '2'
-" hint="Remaining quantity BEFORE pending activity is added"></wm-label>
-                                        </wm-container>
-                                        <wm-container class="col-md-9" name="container176" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 21">
-                                            <wm-label name="labelBoltUpsRemaining" caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityBoltUpInstalled.dataSet[$i].Total | toNumber" hint="Remaining quantity BEFORE pending activity is added"></wm-label>
-                                        </wm-container>
-                                        <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22" name="container177_1">
-                                            <wm-label name="labelWeldsRemaining" caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityWeldInstalled.dataSet[$i].Total | toNumber: '2'" hint="Remaining quantity BEFORE pending activity is added"></wm-label>
-                                        </wm-container>
                                         <wm-container class="col-md-9" show="false" name="container178">
                                             <wm-text tabindex="1" readonly="true" hint="Remaining quantity BEFORE pending activity is added" type="number" datavalue="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityLFInstalled.dataSet[$i].Total"
                                                 name="text126"></wm-text>
                                         </wm-container>
-                                        <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 30 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 31 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 33 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 34 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 35 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 39"
-                                            name="container191">
-                                            <wm-label name="labelTrimRemaining" caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityTrimInstalled.dataSet[$i].Total | toNumber" hint="Remaining quantity BEFORE pending activity is added"></wm-label>
-                                        </wm-container>
-                                        <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 32" name="container186">
-                                            <wm-label name="labelSupportsRemaining" caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantitySupportsInstalled.dataSet[$i].Total | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"></wm-label>
-                                        </wm-container>
-                                        <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 51 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 52 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 53 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 59"
-                                            name="container87">
-                                            <wm-label caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityDemoRem.dataSet[$i].Total | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"
-                                                name="labelDemoRemaining"></wm-label>
-                                        </wm-container>
-                                        <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 23" name="container101_1">
-                                            <wm-label caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityCutPrepInstalled.dataSet[$i].Total | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"
-                                                name="labelCutPrepRemaining"></wm-label>
-                                        </wm-container>
-                                        <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 91" name="container104_1">
-                                            <wm-label caption="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityMiscInstalled.dataSet[$i].Total | toNumber: '2'" hint="Remaining quantity BEFORE current activity is added"
-                                                name="labelMiscRemaining"></wm-label>
+                                        <wm-container class="col-md-9" show="true" name="container31">
+                                            <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.RemainingQuantity | numberToString: '2'" hint="Remaining quantity BEFORE current activity is added" name="labelQuantRemaining"></wm-label>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -108,40 +84,8 @@
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn25">
                                     <wm-composite name="composite184_1" captionposition="top">
                                         <wm-label class="col-md-3 control-label" name="label237_1" caption="Remaining Hours" hint="Remaining hours BEFORE current activity is added" fontweight="bold"></wm-label>
-                                        <wm-container class="col-md-9" name="container176_1" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 10 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 11"
-                                            height="20px">
-                                            <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity) * (Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityLFInstalled.dataSet[$i].Total) | toNumber: '2'"
-                                                show="true" hint="Remaining hours BEFORE current activity is added" name="labelErectionHoursRemaining"></wm-label>
-                                        </wm-container>
-                                        <wm-container class="col-md-9" name="container179_1" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 21" height="20px">
-                                            <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours  / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity) * (Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityBoltUpInstalled.dataSet[$i].Total) | toNumber: '2'"
-                                                show="true" hint="Remaining hours BEFORE current activity is added" name="labelBoltUpHoursRemaining"></wm-label>
-                                        </wm-container>
-                                        <wm-container class="col-md-9" name="container181_1" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22" height="20px">
-                                            <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity) * (Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityWeldInstalled.dataSet[$i].Total) | toNumber: '2'"
-                                                show="true" hint="Remaining hours BEFORE current activity is added" name="labelWeldHoursRemaining"></wm-label>
-                                        </wm-container>
-                                        <wm-container class="col-md-9" name="container182_1" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 30 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 31 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 33 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 34 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 35 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 39"
-                                            height="20px">
-                                            <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity) * (Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityTrimInstalled.dataSet[$i].Total) | toNumber: '2'"
-                                                show="true" hint="Remaining hours BEFORE current activity is added" name="labelTrimHoursRemaining"></wm-label>
-                                        </wm-container>
-                                        <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 32" name="container188" height="20px">
-                                            <wm-label name="labelSupportHoursRemaining" caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity) * (Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantitySupportsInstalled.dataSet[$i].Total) | toNumber: '2'"
-                                                show="true" hint="Remaining hours BEFORE current activity is added"></wm-label>
-                                        </wm-container>
-                                        <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 51 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 52 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 53 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 59"
-                                            name="container88" height="20px">
-                                            <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity) * (Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityDemoRem.dataSet[$i].Total) | toNumber: '2'"
-                                                show="true" hint="Remaining hours BEFORE current activity is added" name="labelDemoHoursRemaining"></wm-label>
-                                        </wm-container>
-                                        <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 23" name="container102_1" height="20px">
-                                            <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity) * (Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityCutPrepInstalled.dataSet[$i].Total) | toNumber: '2'"
-                                                show="true" hint="Remaining hours BEFORE current activity is added" name="labelCutHoursRemaining"></wm-label>
-                                        </wm-container>
-                                        <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 91" name="container105_2" height="20px">
-                                            <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity) * (Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityMiscInstalled.dataSet[$i].Total) | toNumber: '2'"
-                                                show="true" hint="Remaining hours BEFORE current activity is added" name="labelMiscHoursRemaining"></wm-label>
+                                        <wm-container class="col-md-9" show="true" height="20px" name="container32">
+                                            <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.RemainingHours | numberToString: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelHoursRemaining"></wm-label>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -156,38 +100,8 @@
                 <wm-gridcolumn columnwidth="4" name="gridcolumn202_1">
                     <wm-composite name="composite186_1" captionposition="top" horizontalalign="left">
                         <wm-label class="col-md-3 control-label" caption="Percent Complete" textalign="left" hint="Percent complete BEFORE current activity is added" fontweight="bold" name="label288" color="#000000"></wm-label>
-                        <wm-container class="col-md-9" name="container178_1" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 10 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 11">
-                            <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity * Variables.serviceGetQuantityLFInstalled.dataSet[$i].Total) / (Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours) * 100 | toNumber: '2' | suffix: '%'"
-                                hint="Percent complete BEFORE current activity is added" name="labelErectionPercentComplete"></wm-label>
-                        </wm-container>
-                        <wm-container class="col-md-9" horizontalalign="left" name="container183" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 21">
-                            <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity * Variables.serviceGetQuantityBoltUpInstalled.dataSet[$i].Total) / (Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours) * 100 | toNumber: '2' | suffix: '%'"
-                                hint="Percent complete BEFORE current activity is added" name="labelBoltUpPercentComplete"></wm-label>
-                        </wm-container>
-                        <wm-container class="col-md-9" horizontalalign="left" name="container184" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 22">
-                            <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity * Variables.serviceGetQuantityWeldInstalled.dataSet[$i].Total) / (Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours) * 100 | toNumber: '2' | suffix: '%'"
-                                hint="Percent complete BEFORE current activity is added" name="labelWeldPercentComplete"></wm-label>
-                        </wm-container>
-                        <wm-container class="col-md-9" horizontalalign="left" name="container185" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 30 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 31 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 33 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 34 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 35 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 39">
-                            <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity * Variables.serviceGetQuantityTrimInstalled.dataSet[$i].Total) / (Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours) * 100 | toNumber: '2' | suffix: '%'"
-                                hint="Percent complete BEFORE current activity is added" name="labelTrimPercentComplete"></wm-label>
-                        </wm-container>
-                        <wm-container class="col-md-9" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 32" name="container189">
-                            <wm-label name="labelSupportsPercentComplete" caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours  / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity * Variables.serviceGetQuantitySupportsInstalled.dataSet[$i].Total) / (Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours ) * 100 | toNumber: '2' | suffix: '%'"
-                                hint="Percent complete BEFORE current activity is added"></wm-label>
-                        </wm-container>
-                        <wm-container class="col-md-9" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 51 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 52 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 53 || $parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 59"
-                            name="container89">
-                            <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours  / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity * Variables.serviceGetQuantityDemoRem.dataSet[$i].Total) / (Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours) * 100 | toNumber: '2' | suffix: '%'"
-                                hint="Percent complete BEFORE current activity is added" name="labelDemoPercentComplete"></wm-label>
-                        </wm-container>
-                        <wm-container class="col-md-9" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 23" name="container103_1">
-                            <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity * Variables.serviceGetQuantityCutPrepInstalled.dataSet[$i].Total) / (Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours ) * 100 | toNumber: '2' | suffix: '%'"
-                                hint="Percent complete BEFORE current activity is added" name="labelCutPercentComplete"></wm-label>
-                        </wm-container>
-                        <wm-container class="col-md-9" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 91" name="container106_1">
-                            <wm-label caption="bind:(Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours / Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity * Variables.serviceGetQuantityMiscInstalled.dataSet[$i].Total) / (Variables.serviceGetBidActivityQuantity.dataSet[$i].EstimatedHours) * 100 | toNumber: '2' | suffix: '%'"
-                                hint="Percent complete BEFORE current activity is added" name="labelMiscPercentComplete"></wm-label>
+                        <wm-container class="col-md-9" horizontalalign="left" show="true" name="container33">
+                            <wm-label caption="bind:Variables.serviceGetQuantities.firstRecord.PercentComplete | numberToString: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added" name="labelPercentComplete"></wm-label>
                         </wm-container>
                     </wm-composite>
                 </wm-gridcolumn>

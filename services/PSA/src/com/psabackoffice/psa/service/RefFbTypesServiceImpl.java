@@ -74,7 +74,7 @@ public class RefFbTypesServiceImpl implements RefFbTypesService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefFbTypes getById(Integer reffbtypesId) throws EntityNotFoundException {
+	public RefFbTypes getById(Integer reffbtypesId) {
         LOGGER.debug("Finding RefFbTypes by id: {}", reffbtypesId);
         return this.wmGenericDao.findById(reffbtypesId);
     }
@@ -94,26 +94,16 @@ public class RefFbTypesServiceImpl implements RefFbTypesService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefFbTypes update(RefFbTypes refFbTypes) throws EntityNotFoundException {
+	public RefFbTypes update(RefFbTypes refFbTypes) {
         LOGGER.debug("Updating RefFbTypes with information: {}", refFbTypes);
 
         List<FeedBack> feedBacks = refFbTypes.getFeedBacks();
         List<RefFbSubTypes> refFbSubTypeses = refFbTypes.getRefFbSubTypeses();
-
         if(feedBacks != null && Hibernate.isInitialized(feedBacks)) {
-            if(!feedBacks.isEmpty()) {
-                for(FeedBack _feedBack : feedBacks) {
-                    _feedBack.setRefFbTypes(refFbTypes);
-                }
-            }
+            feedBacks.forEach(_feedBack -> _feedBack.setRefFbTypes(refFbTypes));
         }
-
         if(refFbSubTypeses != null && Hibernate.isInitialized(refFbSubTypeses)) {
-            if(!refFbSubTypeses.isEmpty()) {
-                for(RefFbSubTypes _refFbSubTypes : refFbSubTypeses) {
-                    _refFbSubTypes.setRefFbTypes(refFbTypes);
-                }
-            }
+            refFbSubTypeses.forEach(_refFbSubTypes -> _refFbSubTypes.setRefFbTypes(refFbTypes));
         }
 
         this.wmGenericDao.update(refFbTypes);
@@ -123,11 +113,9 @@ public class RefFbTypesServiceImpl implements RefFbTypesService {
         if(refFbSubTypeses != null && Hibernate.isInitialized(refFbSubTypeses) && !refFbSubTypeses.isEmpty()) {
             List<RefFbSubTypes> _remainingChildren = wmGenericDao.execute(
                 session -> DaoUtils.findAllRemainingChildren(session, RefFbSubTypes.class,
-                        new DaoUtils.ChildrenFilter("refFbTypes", refFbTypes, refFbSubTypeses)));
+                        new DaoUtils.ChildrenFilter<>("refFbTypes", refFbTypes, refFbSubTypeses)));
             LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
-            for(RefFbSubTypes _refFbSubTypes : _remainingChildren) {
-                refFbSubTypesService.delete(_refFbSubTypes);
-            }
+            _remainingChildren.forEach(_refFbSubTypes -> refFbSubTypesService.delete(_refFbSubTypes));
             refFbTypes.setRefFbSubTypeses(refFbSubTypeses);
         }
 
@@ -136,7 +124,7 @@ public class RefFbTypesServiceImpl implements RefFbTypesService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefFbTypes delete(Integer reffbtypesId) throws EntityNotFoundException {
+	public RefFbTypes delete(Integer reffbtypesId) {
         LOGGER.debug("Deleting RefFbTypes with id: {}", reffbtypesId);
         RefFbTypes deleted = this.wmGenericDao.findById(reffbtypesId);
         if (deleted == null) {

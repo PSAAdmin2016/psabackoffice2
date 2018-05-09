@@ -59,7 +59,7 @@ public class RefZipcodesServiceImpl implements RefZipcodesService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefZipcodes getById(Integer refzipcodesId) throws EntityNotFoundException {
+	public RefZipcodes getById(Integer refzipcodesId) {
         LOGGER.debug("Finding RefZipcodes by id: {}", refzipcodesId);
         return this.wmGenericDao.findById(refzipcodesId);
     }
@@ -79,7 +79,7 @@ public class RefZipcodesServiceImpl implements RefZipcodesService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefZipcodes update(RefZipcodes refZipcodes) throws EntityNotFoundException {
+	public RefZipcodes update(RefZipcodes refZipcodes) {
         LOGGER.debug("Updating RefZipcodes with information: {}", refZipcodes);
 
         this.wmGenericDao.update(refZipcodes);
@@ -90,7 +90,7 @@ public class RefZipcodesServiceImpl implements RefZipcodesService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefZipcodes delete(Integer refzipcodesId) throws EntityNotFoundException {
+	public RefZipcodes delete(Integer refzipcodesId) {
         LOGGER.debug("Deleting RefZipcodes with id: {}", refzipcodesId);
         RefZipcodes deleted = this.wmGenericDao.findById(refzipcodesId);
         if (deleted == null) {

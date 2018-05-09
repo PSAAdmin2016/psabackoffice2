@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class RefWeldPositionsController {
     @ApiOperation(value = "Returns the RefWeldPositions instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefWeldPositions getRefWeldPositions(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefWeldPositions getRefWeldPositions(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefWeldPositions with id: {}" , id);
 
         RefWeldPositions foundRefWeldPositions = refWeldPositionsService.getById(id);
@@ -78,7 +77,7 @@ public class RefWeldPositionsController {
     @ApiOperation(value = "Updates the RefWeldPositions instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefWeldPositions editRefWeldPositions(@PathVariable("id") Integer id, @RequestBody RefWeldPositions refWeldPositions) throws EntityNotFoundException {
+    public RefWeldPositions editRefWeldPositions(@PathVariable("id") Integer id, @RequestBody RefWeldPositions refWeldPositions) {
         LOGGER.debug("Editing RefWeldPositions with id: {}" , refWeldPositions.getId());
 
         refWeldPositions.setId(id);
@@ -91,7 +90,7 @@ public class RefWeldPositionsController {
     @ApiOperation(value = "Deletes the RefWeldPositions instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefWeldPositions(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefWeldPositions(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefWeldPositions with id: {}" , id);
 
         RefWeldPositions deletedRefWeldPositions = refWeldPositionsService.delete(id);
@@ -107,7 +106,7 @@ public class RefWeldPositionsController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefWeldPositions> searchRefWeldPositionsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefWeldPositions list");
+        LOGGER.debug("Rendering RefWeldPositions list by query filter:{}", (Object) queryFilters);
         return refWeldPositionsService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class RefWeldPositionsController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefWeldPositions> findRefWeldPositions(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefWeldPositions list");
+        LOGGER.debug("Rendering RefWeldPositions list by filter:", query);
         return refWeldPositionsService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class RefWeldPositionsController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefWeldPositions> filterRefWeldPositions(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefWeldPositions list");
+        LOGGER.debug("Rendering RefWeldPositions list by filter", query);
         return refWeldPositionsService.findAll(query, pageable);
     }
 

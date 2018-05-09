@@ -43,7 +43,7 @@ public interface TblUserLoginTrackerService {
 	 * @return TblUserLoginTracker associated with the given tbluserlogintrackerId.
      * @throws EntityNotFoundException If no TblUserLoginTracker is found.
 	 */
-	TblUserLoginTracker getById(Integer tbluserlogintrackerId) throws EntityNotFoundException;
+	TblUserLoginTracker getById(Integer tbluserlogintrackerId);
 
     /**
 	 * Find and return the TblUserLoginTracker by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface TblUserLoginTrackerService {
 	 * @return The updated TblUserLoginTracker.
 	 * @throws EntityNotFoundException if no TblUserLoginTracker is found with given input.
 	 */
-	TblUserLoginTracker update(@Valid TblUserLoginTracker tblUserLoginTracker) throws EntityNotFoundException;
+	TblUserLoginTracker update(@Valid TblUserLoginTracker tblUserLoginTracker);
 
     /**
 	 * Deletes an existing TblUserLoginTracker with the given id.
@@ -72,7 +72,7 @@ public interface TblUserLoginTrackerService {
 	 * @return The deleted TblUserLoginTracker.
 	 * @throws EntityNotFoundException if no TblUserLoginTracker found with the given id.
 	 */
-	TblUserLoginTracker delete(Integer tbluserlogintrackerId) throws EntityNotFoundException;
+	TblUserLoginTracker delete(Integer tbluserlogintrackerId);
 
     /**
 	 * Deletes an existing TblUserLoginTracker with the given object.

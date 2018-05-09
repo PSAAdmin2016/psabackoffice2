@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class RefPipeSchedulesController {
     @ApiOperation(value = "Returns the RefPipeSchedules instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefPipeSchedules getRefPipeSchedules(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefPipeSchedules getRefPipeSchedules(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefPipeSchedules with id: {}" , id);
 
         RefPipeSchedules foundRefPipeSchedules = refPipeSchedulesService.getById(id);
@@ -78,7 +77,7 @@ public class RefPipeSchedulesController {
     @ApiOperation(value = "Updates the RefPipeSchedules instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefPipeSchedules editRefPipeSchedules(@PathVariable("id") Integer id, @RequestBody RefPipeSchedules refPipeSchedules) throws EntityNotFoundException {
+    public RefPipeSchedules editRefPipeSchedules(@PathVariable("id") Integer id, @RequestBody RefPipeSchedules refPipeSchedules) {
         LOGGER.debug("Editing RefPipeSchedules with id: {}" , refPipeSchedules.getId());
 
         refPipeSchedules.setId(id);
@@ -91,7 +90,7 @@ public class RefPipeSchedulesController {
     @ApiOperation(value = "Deletes the RefPipeSchedules instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefPipeSchedules(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefPipeSchedules(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefPipeSchedules with id: {}" , id);
 
         RefPipeSchedules deletedRefPipeSchedules = refPipeSchedulesService.delete(id);
@@ -107,7 +106,7 @@ public class RefPipeSchedulesController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefPipeSchedules> searchRefPipeSchedulesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefPipeSchedules list");
+        LOGGER.debug("Rendering RefPipeSchedules list by query filter:{}", (Object) queryFilters);
         return refPipeSchedulesService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class RefPipeSchedulesController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefPipeSchedules> findRefPipeSchedules(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefPipeSchedules list");
+        LOGGER.debug("Rendering RefPipeSchedules list by filter:", query);
         return refPipeSchedulesService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class RefPipeSchedulesController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefPipeSchedules> filterRefPipeSchedules(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefPipeSchedules list");
+        LOGGER.debug("Rendering RefPipeSchedules list by filter", query);
         return refPipeSchedulesService.findAll(query, pageable);
     }
 

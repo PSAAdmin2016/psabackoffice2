@@ -59,7 +59,7 @@ public class TblUserLoginTrackerServiceImpl implements TblUserLoginTrackerServic
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public TblUserLoginTracker getById(Integer tbluserlogintrackerId) throws EntityNotFoundException {
+	public TblUserLoginTracker getById(Integer tbluserlogintrackerId) {
         LOGGER.debug("Finding TblUserLoginTracker by id: {}", tbluserlogintrackerId);
         return this.wmGenericDao.findById(tbluserlogintrackerId);
     }
@@ -79,7 +79,7 @@ public class TblUserLoginTrackerServiceImpl implements TblUserLoginTrackerServic
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public TblUserLoginTracker update(TblUserLoginTracker tblUserLoginTracker) throws EntityNotFoundException {
+	public TblUserLoginTracker update(TblUserLoginTracker tblUserLoginTracker) {
         LOGGER.debug("Updating TblUserLoginTracker with information: {}", tblUserLoginTracker);
 
         this.wmGenericDao.update(tblUserLoginTracker);
@@ -90,7 +90,7 @@ public class TblUserLoginTrackerServiceImpl implements TblUserLoginTrackerServic
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public TblUserLoginTracker delete(Integer tbluserlogintrackerId) throws EntityNotFoundException {
+	public TblUserLoginTracker delete(Integer tbluserlogintrackerId) {
         LOGGER.debug("Deleting TblUserLoginTracker with id: {}", tbluserlogintrackerId);
         TblUserLoginTracker deleted = this.wmGenericDao.findById(tbluserlogintrackerId);
         if (deleted == null) {

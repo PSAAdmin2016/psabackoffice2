@@ -59,23 +59,23 @@ public class TblUserPsa implements Serializable {
     private Integer fkDefaultJobNumberId;
     private short rev;
     private Timestamp timeStamp;
+    private RefCrafts refCrafts;
     private RefDisciplines refDisciplines;
     private TblJobNumbers tblJobNumbers;
     private RefCraftClasses refCraftClasses;
-    private RefCrafts refCrafts;
     private List<ChatConversationMembers> chatConversationMemberses;
     private List<ChatMessages> chatMessageses;
     private List<FeedBack> feedBacks;
     private List<FeedBackNotes> feedBackNoteses;
     private List<Settingsuser> settingsusers;
+    private TblCrews tblCrewsForForeman;
+    private List<TblCrews> tblCrewsesForProjectManager;
+    private List<TblCrews> tblCrewsesForAreaManager;
     private List<TblCrews> tblCrewsesForSiteManager;
     private List<TblCrews> tblCrewsesForGf;
     private List<TblCrews> tblCrewsesForLeadman;
     private List<TblCrews> tblCrewsesForConstructionManager;
     private List<TblCrews> tblCrewsesForSuperintendent;
-    private TblCrews tblCrewsForForeman;
-    private List<TblCrews> tblCrewsesForProjectManager;
-    private List<TblCrews> tblCrewsesForAreaManager;
     private TblUserCreds tblUserCreds;
     private List<TblUserJobNumbers> tblUserJobNumberses;
     private List<TblUserRoles> tblUserRoleses;
@@ -227,6 +227,21 @@ public class TblUserPsa implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`fk_CraftId`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_CraftsTO_REFCrafts`"))
+    @Fetch(FetchMode.JOIN)
+    public RefCrafts getRefCrafts() {
+        return this.refCrafts;
+    }
+
+    public void setRefCrafts(RefCrafts refCrafts) {
+        if(refCrafts != null) {
+            this.fkCraftId = refCrafts.getId();
+        }
+
+        this.refCrafts = refCrafts;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`fk_DisciplineId`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_DisciplineTO_REFDiscipline`"))
     @Fetch(FetchMode.JOIN)
     public RefDisciplines getRefDisciplines() {
@@ -269,21 +284,6 @@ public class TblUserPsa implements Serializable {
         }
 
         this.refCraftClasses = refCraftClasses;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_CraftId`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_CraftsTO_REFCrafts`"))
-    @Fetch(FetchMode.JOIN)
-    public RefCrafts getRefCrafts() {
-        return this.refCrafts;
-    }
-
-    public void setRefCrafts(RefCrafts refCrafts) {
-        if(refCrafts != null) {
-            this.fkCraftId = refCrafts.getId();
-        }
-
-        this.refCrafts = refCrafts;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -341,6 +341,38 @@ public class TblUserPsa implements Serializable {
         this.settingsusers = settingsusers;
     }
 
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "tblUserPsaByForeman")
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+    public TblCrews getTblCrewsForForeman() {
+        return this.tblCrewsForForeman;
+    }
+
+    public void setTblCrewsForForeman(TblCrews tblCrewsForForeman) {
+        this.tblCrewsForForeman = tblCrewsForForeman;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsaByProjectManager")
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+    public List<TblCrews> getTblCrewsesForProjectManager() {
+        return this.tblCrewsesForProjectManager;
+    }
+
+    public void setTblCrewsesForProjectManager(List<TblCrews> tblCrewsesForProjectManager) {
+        this.tblCrewsesForProjectManager = tblCrewsesForProjectManager;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsaByAreaManager")
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+    public List<TblCrews> getTblCrewsesForAreaManager() {
+        return this.tblCrewsesForAreaManager;
+    }
+
+    public void setTblCrewsesForAreaManager(List<TblCrews> tblCrewsesForAreaManager) {
+        this.tblCrewsesForAreaManager = tblCrewsesForAreaManager;
+    }
+
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsaBySiteManager")
     @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
@@ -396,38 +428,6 @@ public class TblUserPsa implements Serializable {
         this.tblCrewsesForSuperintendent = tblCrewsesForSuperintendent;
     }
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "tblUserPsaByForeman")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
-    public TblCrews getTblCrewsForForeman() {
-        return this.tblCrewsForForeman;
-    }
-
-    public void setTblCrewsForForeman(TblCrews tblCrewsForForeman) {
-        this.tblCrewsForForeman = tblCrewsForForeman;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsaByProjectManager")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
-    public List<TblCrews> getTblCrewsesForProjectManager() {
-        return this.tblCrewsesForProjectManager;
-    }
-
-    public void setTblCrewsesForProjectManager(List<TblCrews> tblCrewsesForProjectManager) {
-        this.tblCrewsesForProjectManager = tblCrewsesForProjectManager;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsaByAreaManager")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
-    public List<TblCrews> getTblCrewsesForAreaManager() {
-        return this.tblCrewsesForAreaManager;
-    }
-
-    public void setTblCrewsesForAreaManager(List<TblCrews> tblCrewsesForAreaManager) {
-        this.tblCrewsesForAreaManager = tblCrewsesForAreaManager;
-    }
-
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "tblUserPsa")
     @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
     public TblUserCreds getTblUserCreds() {
@@ -463,80 +463,52 @@ public class TblUserPsa implements Serializable {
     @PostPersist
     public void onPostPersist() {
         if(chatConversationMemberses != null) {
-            for(ChatConversationMembers chatConversationMembers : chatConversationMemberses) {
-                chatConversationMembers.setTblUserPsa(this);
-            }
+            chatConversationMemberses.forEach(chatConversationMembers -> chatConversationMembers.setTblUserPsa(this));
         }
         if(chatMessageses != null) {
-            for(ChatMessages chatMessages : chatMessageses) {
-                chatMessages.setTblUserPsa(this);
-            }
+            chatMessageses.forEach(chatMessages -> chatMessages.setTblUserPsa(this));
         }
         if(feedBacks != null) {
-            for(FeedBack feedBack : feedBacks) {
-                feedBack.setTblUserPsa(this);
-            }
+            feedBacks.forEach(feedBack -> feedBack.setTblUserPsa(this));
         }
         if(feedBackNoteses != null) {
-            for(FeedBackNotes feedBackNotes : feedBackNoteses) {
-                feedBackNotes.setTblUserPsa(this);
-            }
+            feedBackNoteses.forEach(feedBackNotes -> feedBackNotes.setTblUserPsa(this));
         }
         if(settingsusers != null) {
-            for(Settingsuser settingsuser : settingsusers) {
-                settingsuser.setTblUserPsa(this);
-            }
-        }
-        if(tblCrewsesForSiteManager != null) {
-            for(TblCrews tblCrews : tblCrewsesForSiteManager) {
-                tblCrews.setTblUserPsaBySiteManager(this);
-            }
-        }
-        if(tblCrewsesForGf != null) {
-            for(TblCrews tblCrews : tblCrewsesForGf) {
-                tblCrews.setTblUserPsaByGf(this);
-            }
-        }
-        if(tblCrewsesForLeadman != null) {
-            for(TblCrews tblCrews : tblCrewsesForLeadman) {
-                tblCrews.setTblUserPsaByLeadman(this);
-            }
-        }
-        if(tblCrewsesForConstructionManager != null) {
-            for(TblCrews tblCrews : tblCrewsesForConstructionManager) {
-                tblCrews.setTblUserPsaByConstructionManager(this);
-            }
-        }
-        if(tblCrewsesForSuperintendent != null) {
-            for(TblCrews tblCrews : tblCrewsesForSuperintendent) {
-                tblCrews.setTblUserPsaBySuperintendent(this);
-            }
+            settingsusers.forEach(settingsuser -> settingsuser.setTblUserPsa(this));
         }
         if(tblCrewsForForeman != null) {
             tblCrewsForForeman.setTblUserPsaByForeman(this);
         }
         if(tblCrewsesForProjectManager != null) {
-            for(TblCrews tblCrews : tblCrewsesForProjectManager) {
-                tblCrews.setTblUserPsaByProjectManager(this);
-            }
+            tblCrewsesForProjectManager.forEach(tblCrews -> tblCrews.setTblUserPsaByProjectManager(this));
         }
         if(tblCrewsesForAreaManager != null) {
-            for(TblCrews tblCrews : tblCrewsesForAreaManager) {
-                tblCrews.setTblUserPsaByAreaManager(this);
-            }
+            tblCrewsesForAreaManager.forEach(tblCrews -> tblCrews.setTblUserPsaByAreaManager(this));
+        }
+        if(tblCrewsesForSiteManager != null) {
+            tblCrewsesForSiteManager.forEach(tblCrews -> tblCrews.setTblUserPsaBySiteManager(this));
+        }
+        if(tblCrewsesForGf != null) {
+            tblCrewsesForGf.forEach(tblCrews -> tblCrews.setTblUserPsaByGf(this));
+        }
+        if(tblCrewsesForLeadman != null) {
+            tblCrewsesForLeadman.forEach(tblCrews -> tblCrews.setTblUserPsaByLeadman(this));
+        }
+        if(tblCrewsesForConstructionManager != null) {
+            tblCrewsesForConstructionManager.forEach(tblCrews -> tblCrews.setTblUserPsaByConstructionManager(this));
+        }
+        if(tblCrewsesForSuperintendent != null) {
+            tblCrewsesForSuperintendent.forEach(tblCrews -> tblCrews.setTblUserPsaBySuperintendent(this));
         }
         if(tblUserCreds != null) {
             tblUserCreds.setTblUserPsa(this);
         }
         if(tblUserJobNumberses != null) {
-            for(TblUserJobNumbers tblUserJobNumbers : tblUserJobNumberses) {
-                tblUserJobNumbers.setTblUserPsa(this);
-            }
+            tblUserJobNumberses.forEach(tblUserJobNumbers -> tblUserJobNumbers.setTblUserPsa(this));
         }
         if(tblUserRoleses != null) {
-            for(TblUserRoles tblUserRoles : tblUserRoleses) {
-                tblUserRoles.setTblUserPsa(this);
-            }
+            tblUserRoleses.forEach(tblUserRoles -> tblUserRoles.setTblUserPsa(this));
         }
     }
 

@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -67,7 +66,7 @@ public class RefCraftClassesController {
     @ApiOperation(value = "Returns the RefCraftClasses instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefCraftClasses getRefCraftClasses(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefCraftClasses getRefCraftClasses(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefCraftClasses with id: {}" , id);
 
         RefCraftClasses foundRefCraftClasses = refCraftClassesService.getById(id);
@@ -79,7 +78,7 @@ public class RefCraftClassesController {
     @ApiOperation(value = "Updates the RefCraftClasses instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefCraftClasses editRefCraftClasses(@PathVariable("id") Integer id, @RequestBody RefCraftClasses refCraftClasses) throws EntityNotFoundException {
+    public RefCraftClasses editRefCraftClasses(@PathVariable("id") Integer id, @RequestBody RefCraftClasses refCraftClasses) {
         LOGGER.debug("Editing RefCraftClasses with id: {}" , refCraftClasses.getId());
 
         refCraftClasses.setId(id);
@@ -92,7 +91,7 @@ public class RefCraftClassesController {
     @ApiOperation(value = "Deletes the RefCraftClasses instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefCraftClasses(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefCraftClasses(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefCraftClasses with id: {}" , id);
 
         RefCraftClasses deletedRefCraftClasses = refCraftClassesService.delete(id);
@@ -108,7 +107,7 @@ public class RefCraftClassesController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefCraftClasses> searchRefCraftClassesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefCraftClasses list");
+        LOGGER.debug("Rendering RefCraftClasses list by query filter:{}", (Object) queryFilters);
         return refCraftClassesService.findAll(queryFilters, pageable);
     }
 
@@ -116,7 +115,7 @@ public class RefCraftClassesController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefCraftClasses> findRefCraftClasses(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefCraftClasses list");
+        LOGGER.debug("Rendering RefCraftClasses list by filter:", query);
         return refCraftClassesService.findAll(query, pageable);
     }
 
@@ -124,7 +123,7 @@ public class RefCraftClassesController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefCraftClasses> filterRefCraftClasses(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefCraftClasses list");
+        LOGGER.debug("Rendering RefCraftClasses list by filter", query);
         return refCraftClassesService.findAll(query, pageable);
     }
 

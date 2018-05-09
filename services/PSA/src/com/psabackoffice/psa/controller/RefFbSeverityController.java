@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -67,7 +66,7 @@ public class RefFbSeverityController {
     @ApiOperation(value = "Returns the RefFbSeverity instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefFbSeverity getRefFbSeverity(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefFbSeverity getRefFbSeverity(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefFbSeverity with id: {}" , id);
 
         RefFbSeverity foundRefFbSeverity = refFbSeverityService.getById(id);
@@ -79,7 +78,7 @@ public class RefFbSeverityController {
     @ApiOperation(value = "Updates the RefFbSeverity instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefFbSeverity editRefFbSeverity(@PathVariable("id") Integer id, @RequestBody RefFbSeverity refFbSeverity) throws EntityNotFoundException {
+    public RefFbSeverity editRefFbSeverity(@PathVariable("id") Integer id, @RequestBody RefFbSeverity refFbSeverity) {
         LOGGER.debug("Editing RefFbSeverity with id: {}" , refFbSeverity.getId());
 
         refFbSeverity.setId(id);
@@ -92,7 +91,7 @@ public class RefFbSeverityController {
     @ApiOperation(value = "Deletes the RefFbSeverity instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefFbSeverity(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefFbSeverity(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefFbSeverity with id: {}" , id);
 
         RefFbSeverity deletedRefFbSeverity = refFbSeverityService.delete(id);
@@ -108,7 +107,7 @@ public class RefFbSeverityController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefFbSeverity> searchRefFbSeveritiesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefFbSeverities list");
+        LOGGER.debug("Rendering RefFbSeverities list by query filter:{}", (Object) queryFilters);
         return refFbSeverityService.findAll(queryFilters, pageable);
     }
 
@@ -116,7 +115,7 @@ public class RefFbSeverityController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefFbSeverity> findRefFbSeverities(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefFbSeverities list");
+        LOGGER.debug("Rendering RefFbSeverities list by filter:", query);
         return refFbSeverityService.findAll(query, pageable);
     }
 
@@ -124,7 +123,7 @@ public class RefFbSeverityController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefFbSeverity> filterRefFbSeverities(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefFbSeverities list");
+        LOGGER.debug("Rendering RefFbSeverities list by filter", query);
         return refFbSeverityService.findAll(query, pageable);
     }
 

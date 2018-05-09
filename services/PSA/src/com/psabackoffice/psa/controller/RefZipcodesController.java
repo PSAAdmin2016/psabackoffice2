@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class RefZipcodesController {
     @ApiOperation(value = "Returns the RefZipcodes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefZipcodes getRefZipcodes(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefZipcodes getRefZipcodes(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefZipcodes with id: {}" , id);
 
         RefZipcodes foundRefZipcodes = refZipcodesService.getById(id);
@@ -78,7 +77,7 @@ public class RefZipcodesController {
     @ApiOperation(value = "Updates the RefZipcodes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefZipcodes editRefZipcodes(@PathVariable("id") Integer id, @RequestBody RefZipcodes refZipcodes) throws EntityNotFoundException {
+    public RefZipcodes editRefZipcodes(@PathVariable("id") Integer id, @RequestBody RefZipcodes refZipcodes) {
         LOGGER.debug("Editing RefZipcodes with id: {}" , refZipcodes.getZipcode());
 
         refZipcodes.setZipcode(id);
@@ -91,7 +90,7 @@ public class RefZipcodesController {
     @ApiOperation(value = "Deletes the RefZipcodes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefZipcodes(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefZipcodes(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefZipcodes with id: {}" , id);
 
         RefZipcodes deletedRefZipcodes = refZipcodesService.delete(id);
@@ -107,7 +106,7 @@ public class RefZipcodesController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefZipcodes> searchRefZipcodesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefZipcodes list");
+        LOGGER.debug("Rendering RefZipcodes list by query filter:{}", (Object) queryFilters);
         return refZipcodesService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class RefZipcodesController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefZipcodes> findRefZipcodes(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefZipcodes list");
+        LOGGER.debug("Rendering RefZipcodes list by filter:", query);
         return refZipcodesService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class RefZipcodesController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefZipcodes> filterRefZipcodes(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefZipcodes list");
+        LOGGER.debug("Rendering RefZipcodes list by filter", query);
         return refZipcodesService.findAll(query, pageable);
     }
 

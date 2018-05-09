@@ -44,7 +44,7 @@ public interface RefRolesService {
 	 * @return RefRoles associated with the given refrolesId.
      * @throws EntityNotFoundException If no RefRoles is found.
 	 */
-	RefRoles getById(Integer refrolesId) throws EntityNotFoundException;
+	RefRoles getById(Integer refrolesId);
 
     /**
 	 * Find and return the RefRoles by given id if exists, returns null otherwise.
@@ -64,7 +64,7 @@ public interface RefRolesService {
 	 * @return The updated RefRoles.
 	 * @throws EntityNotFoundException if no RefRoles is found with given input.
 	 */
-	RefRoles update(@Valid RefRoles refRoles) throws EntityNotFoundException;
+	RefRoles update(@Valid RefRoles refRoles);
 
     /**
 	 * Deletes an existing RefRoles with the given id.
@@ -73,7 +73,7 @@ public interface RefRolesService {
 	 * @return The deleted RefRoles.
 	 * @throws EntityNotFoundException if no RefRoles found with the given id.
 	 */
-	RefRoles delete(Integer refrolesId) throws EntityNotFoundException;
+	RefRoles delete(Integer refrolesId);
 
     /**
 	 * Deletes an existing RefRoles with the given object.

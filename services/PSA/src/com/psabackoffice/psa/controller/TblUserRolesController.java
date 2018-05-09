@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class TblUserRolesController {
     @ApiOperation(value = "Returns the TblUserRoles instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public TblUserRoles getTblUserRoles(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public TblUserRoles getTblUserRoles(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting TblUserRoles with id: {}" , id);
 
         TblUserRoles foundTblUserRoles = tblUserRolesService.getById(id);
@@ -78,7 +77,7 @@ public class TblUserRolesController {
     @ApiOperation(value = "Updates the TblUserRoles instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public TblUserRoles editTblUserRoles(@PathVariable("id") Integer id, @RequestBody TblUserRoles tblUserRoles) throws EntityNotFoundException {
+    public TblUserRoles editTblUserRoles(@PathVariable("id") Integer id, @RequestBody TblUserRoles tblUserRoles) {
         LOGGER.debug("Editing TblUserRoles with id: {}" , tblUserRoles.getId());
 
         tblUserRoles.setId(id);
@@ -91,7 +90,7 @@ public class TblUserRolesController {
     @ApiOperation(value = "Deletes the TblUserRoles instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteTblUserRoles(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteTblUserRoles(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting TblUserRoles with id: {}" , id);
 
         TblUserRoles deletedTblUserRoles = tblUserRolesService.delete(id);
@@ -107,7 +106,7 @@ public class TblUserRolesController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblUserRoles> searchTblUserRolesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering TblUserRoles list");
+        LOGGER.debug("Rendering TblUserRoles list by query filter:{}", (Object) queryFilters);
         return tblUserRolesService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class TblUserRolesController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblUserRoles> findTblUserRoles(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering TblUserRoles list");
+        LOGGER.debug("Rendering TblUserRoles list by filter:", query);
         return tblUserRolesService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class TblUserRolesController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblUserRoles> filterTblUserRoles(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering TblUserRoles list");
+        LOGGER.debug("Rendering TblUserRoles list by filter", query);
         return tblUserRolesService.findAll(query, pageable);
     }
 

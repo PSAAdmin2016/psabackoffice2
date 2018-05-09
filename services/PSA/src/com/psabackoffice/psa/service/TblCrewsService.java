@@ -44,7 +44,7 @@ public interface TblCrewsService {
 	 * @return TblCrews associated with the given tblcrewsId.
      * @throws EntityNotFoundException If no TblCrews is found.
 	 */
-	TblCrews getById(Integer tblcrewsId) throws EntityNotFoundException;
+	TblCrews getById(Integer tblcrewsId);
 
     /**
 	 * Find and return the TblCrews by given id if exists, returns null otherwise.
@@ -61,7 +61,7 @@ public interface TblCrewsService {
 	 * @return TblCrews associated with the given inputs.
      * @throws EntityNotFoundException if no matching TblCrews found.
 	 */
-    TblCrews getByForeman(Integer foreman)throws EntityNotFoundException;
+    TblCrews getByForeman(Integer foreman);
 
 	/**
 	 * Updates the details of an existing TblCrews. It replaces all fields of the existing TblCrews with the given tblCrews.
@@ -72,7 +72,7 @@ public interface TblCrewsService {
 	 * @return The updated TblCrews.
 	 * @throws EntityNotFoundException if no TblCrews is found with given input.
 	 */
-	TblCrews update(@Valid TblCrews tblCrews) throws EntityNotFoundException;
+	TblCrews update(@Valid TblCrews tblCrews);
 
     /**
 	 * Deletes an existing TblCrews with the given id.
@@ -81,7 +81,7 @@ public interface TblCrewsService {
 	 * @return The deleted TblCrews.
 	 * @throws EntityNotFoundException if no TblCrews found with the given id.
 	 */
-	TblCrews delete(Integer tblcrewsId) throws EntityNotFoundException;
+	TblCrews delete(Integer tblcrewsId);
 
     /**
 	 * Deletes an existing TblCrews with the given object.

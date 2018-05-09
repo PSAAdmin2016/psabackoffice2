@@ -45,7 +45,7 @@ public interface RefFbTypesService {
 	 * @return RefFbTypes associated with the given reffbtypesId.
      * @throws EntityNotFoundException If no RefFbTypes is found.
 	 */
-	RefFbTypes getById(Integer reffbtypesId) throws EntityNotFoundException;
+	RefFbTypes getById(Integer reffbtypesId);
 
     /**
 	 * Find and return the RefFbTypes by given id if exists, returns null otherwise.
@@ -65,7 +65,7 @@ public interface RefFbTypesService {
 	 * @return The updated RefFbTypes.
 	 * @throws EntityNotFoundException if no RefFbTypes is found with given input.
 	 */
-	RefFbTypes update(@Valid RefFbTypes refFbTypes) throws EntityNotFoundException;
+	RefFbTypes update(@Valid RefFbTypes refFbTypes);
 
     /**
 	 * Deletes an existing RefFbTypes with the given id.
@@ -74,7 +74,7 @@ public interface RefFbTypesService {
 	 * @return The deleted RefFbTypes.
 	 * @throws EntityNotFoundException if no RefFbTypes found with the given id.
 	 */
-	RefFbTypes delete(Integer reffbtypesId) throws EntityNotFoundException;
+	RefFbTypes delete(Integer reffbtypesId);
 
     /**
 	 * Deletes an existing RefFbTypes with the given object.

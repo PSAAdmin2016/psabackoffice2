@@ -1,4 +1,4 @@
-Application.$controller("PartAssignPipePageController", ["$scope", function($scope) {
+Application.$controller("PartAssignPipePageController", ["$scope", "DialogService", function($scope, DialogService) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */

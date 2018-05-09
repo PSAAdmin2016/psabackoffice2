@@ -44,7 +44,7 @@ public interface MenuHelpVideosService {
 	 * @return MenuHelpVideos associated with the given menuhelpvideosId.
      * @throws EntityNotFoundException If no MenuHelpVideos is found.
 	 */
-	MenuHelpVideos getById(Integer menuhelpvideosId) throws EntityNotFoundException;
+	MenuHelpVideos getById(Integer menuhelpvideosId);
 
     /**
 	 * Find and return the MenuHelpVideos by given id if exists, returns null otherwise.
@@ -64,7 +64,7 @@ public interface MenuHelpVideosService {
 	 * @return The updated MenuHelpVideos.
 	 * @throws EntityNotFoundException if no MenuHelpVideos is found with given input.
 	 */
-	MenuHelpVideos update(@Valid MenuHelpVideos menuHelpVideos) throws EntityNotFoundException;
+	MenuHelpVideos update(@Valid MenuHelpVideos menuHelpVideos);
 
     /**
 	 * Deletes an existing MenuHelpVideos with the given id.
@@ -73,7 +73,7 @@ public interface MenuHelpVideosService {
 	 * @return The deleted MenuHelpVideos.
 	 * @throws EntityNotFoundException if no MenuHelpVideos found with the given id.
 	 */
-	MenuHelpVideos delete(Integer menuhelpvideosId) throws EntityNotFoundException;
+	MenuHelpVideos delete(Integer menuhelpvideosId);
 
     /**
 	 * Deletes an existing MenuHelpVideos with the given object.

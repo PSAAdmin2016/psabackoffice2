@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class RefWeldMaterialsController {
     @ApiOperation(value = "Returns the RefWeldMaterials instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefWeldMaterials getRefWeldMaterials(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefWeldMaterials getRefWeldMaterials(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefWeldMaterials with id: {}" , id);
 
         RefWeldMaterials foundRefWeldMaterials = refWeldMaterialsService.getById(id);
@@ -78,7 +77,7 @@ public class RefWeldMaterialsController {
     @ApiOperation(value = "Updates the RefWeldMaterials instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefWeldMaterials editRefWeldMaterials(@PathVariable("id") Integer id, @RequestBody RefWeldMaterials refWeldMaterials) throws EntityNotFoundException {
+    public RefWeldMaterials editRefWeldMaterials(@PathVariable("id") Integer id, @RequestBody RefWeldMaterials refWeldMaterials) {
         LOGGER.debug("Editing RefWeldMaterials with id: {}" , refWeldMaterials.getId());
 
         refWeldMaterials.setId(id);
@@ -91,7 +90,7 @@ public class RefWeldMaterialsController {
     @ApiOperation(value = "Deletes the RefWeldMaterials instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefWeldMaterials(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefWeldMaterials(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefWeldMaterials with id: {}" , id);
 
         RefWeldMaterials deletedRefWeldMaterials = refWeldMaterialsService.delete(id);
@@ -107,7 +106,7 @@ public class RefWeldMaterialsController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefWeldMaterials> searchRefWeldMaterialsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefWeldMaterials list");
+        LOGGER.debug("Rendering RefWeldMaterials list by query filter:{}", (Object) queryFilters);
         return refWeldMaterialsService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class RefWeldMaterialsController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefWeldMaterials> findRefWeldMaterials(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefWeldMaterials list");
+        LOGGER.debug("Rendering RefWeldMaterials list by filter:", query);
         return refWeldMaterialsService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class RefWeldMaterialsController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefWeldMaterials> filterRefWeldMaterials(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefWeldMaterials list");
+        LOGGER.debug("Rendering RefWeldMaterials list by filter", query);
         return refWeldMaterialsService.findAll(query, pageable);
     }
 

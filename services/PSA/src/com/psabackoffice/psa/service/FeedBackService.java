@@ -44,7 +44,7 @@ public interface FeedBackService {
 	 * @return FeedBack associated with the given feedbackId.
      * @throws EntityNotFoundException If no FeedBack is found.
 	 */
-	FeedBack getById(Integer feedbackId) throws EntityNotFoundException;
+	FeedBack getById(Integer feedbackId);
 
     /**
 	 * Find and return the FeedBack by given id if exists, returns null otherwise.
@@ -64,7 +64,7 @@ public interface FeedBackService {
 	 * @return The updated FeedBack.
 	 * @throws EntityNotFoundException if no FeedBack is found with given input.
 	 */
-	FeedBack update(@Valid FeedBack feedBack) throws EntityNotFoundException;
+	FeedBack update(@Valid FeedBack feedBack);
 
     /**
 	 * Deletes an existing FeedBack with the given id.
@@ -73,7 +73,7 @@ public interface FeedBackService {
 	 * @return The deleted FeedBack.
 	 * @throws EntityNotFoundException if no FeedBack found with the given id.
 	 */
-	FeedBack delete(Integer feedbackId) throws EntityNotFoundException;
+	FeedBack delete(Integer feedbackId);
 
     /**
 	 * Deletes an existing FeedBack with the given object.

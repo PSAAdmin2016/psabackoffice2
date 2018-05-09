@@ -44,7 +44,7 @@ public interface RefFbSeverityService {
 	 * @return RefFbSeverity associated with the given reffbseverityId.
      * @throws EntityNotFoundException If no RefFbSeverity is found.
 	 */
-	RefFbSeverity getById(Integer reffbseverityId) throws EntityNotFoundException;
+	RefFbSeverity getById(Integer reffbseverityId);
 
     /**
 	 * Find and return the RefFbSeverity by given id if exists, returns null otherwise.
@@ -64,7 +64,7 @@ public interface RefFbSeverityService {
 	 * @return The updated RefFbSeverity.
 	 * @throws EntityNotFoundException if no RefFbSeverity is found with given input.
 	 */
-	RefFbSeverity update(@Valid RefFbSeverity refFbSeverity) throws EntityNotFoundException;
+	RefFbSeverity update(@Valid RefFbSeverity refFbSeverity);
 
     /**
 	 * Deletes an existing RefFbSeverity with the given id.
@@ -73,7 +73,7 @@ public interface RefFbSeverityService {
 	 * @return The deleted RefFbSeverity.
 	 * @throws EntityNotFoundException if no RefFbSeverity found with the given id.
 	 */
-	RefFbSeverity delete(Integer reffbseverityId) throws EntityNotFoundException;
+	RefFbSeverity delete(Integer reffbseverityId);
 
     /**
 	 * Deletes an existing RefFbSeverity with the given object.

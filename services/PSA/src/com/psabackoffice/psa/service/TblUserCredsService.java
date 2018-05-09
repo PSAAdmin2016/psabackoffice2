@@ -43,7 +43,7 @@ public interface TblUserCredsService {
 	 * @return TblUserCreds associated with the given tblusercredsId.
      * @throws EntityNotFoundException If no TblUserCreds is found.
 	 */
-	TblUserCreds getById(Integer tblusercredsId) throws EntityNotFoundException;
+	TblUserCreds getById(Integer tblusercredsId);
 
     /**
 	 * Find and return the TblUserCreds by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface TblUserCredsService {
 	 * @return The updated TblUserCreds.
 	 * @throws EntityNotFoundException if no TblUserCreds is found with given input.
 	 */
-	TblUserCreds update(@Valid TblUserCreds tblUserCreds) throws EntityNotFoundException;
+	TblUserCreds update(@Valid TblUserCreds tblUserCreds);
 
     /**
 	 * Deletes an existing TblUserCreds with the given id.
@@ -72,7 +72,7 @@ public interface TblUserCredsService {
 	 * @return The deleted TblUserCreds.
 	 * @throws EntityNotFoundException if no TblUserCreds found with the given id.
 	 */
-	TblUserCreds delete(Integer tblusercredsId) throws EntityNotFoundException;
+	TblUserCreds delete(Integer tblusercredsId);
 
     /**
 	 * Deletes an existing TblUserCreds with the given object.

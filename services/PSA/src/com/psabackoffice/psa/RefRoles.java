@@ -70,9 +70,7 @@ public class RefRoles implements Serializable {
     @PostPersist
     public void onPostPersist() {
         if(tblUserRoleses != null) {
-            for(TblUserRoles tblUserRoles : tblUserRoleses) {
-                tblUserRoles.setRefRoles(this);
-            }
+            tblUserRoleses.forEach(tblUserRoles -> tblUserRoles.setRefRoles(this));
         }
     }
 

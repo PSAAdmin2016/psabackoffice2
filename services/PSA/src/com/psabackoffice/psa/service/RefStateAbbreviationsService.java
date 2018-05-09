@@ -44,7 +44,7 @@ public interface RefStateAbbreviationsService {
 	 * @return RefStateAbbreviations associated with the given refstateabbreviationsId.
      * @throws EntityNotFoundException If no RefStateAbbreviations is found.
 	 */
-	RefStateAbbreviations getById(String refstateabbreviationsId) throws EntityNotFoundException;
+	RefStateAbbreviations getById(String refstateabbreviationsId);
 
     /**
 	 * Find and return the RefStateAbbreviations by given id if exists, returns null otherwise.
@@ -64,7 +64,7 @@ public interface RefStateAbbreviationsService {
 	 * @return The updated RefStateAbbreviations.
 	 * @throws EntityNotFoundException if no RefStateAbbreviations is found with given input.
 	 */
-	RefStateAbbreviations update(@Valid RefStateAbbreviations refStateAbbreviations) throws EntityNotFoundException;
+	RefStateAbbreviations update(@Valid RefStateAbbreviations refStateAbbreviations);
 
     /**
 	 * Deletes an existing RefStateAbbreviations with the given id.
@@ -73,7 +73,7 @@ public interface RefStateAbbreviationsService {
 	 * @return The deleted RefStateAbbreviations.
 	 * @throws EntityNotFoundException if no RefStateAbbreviations found with the given id.
 	 */
-	RefStateAbbreviations delete(String refstateabbreviationsId) throws EntityNotFoundException;
+	RefStateAbbreviations delete(String refstateabbreviationsId);
 
     /**
 	 * Deletes an existing RefStateAbbreviations with the given object.

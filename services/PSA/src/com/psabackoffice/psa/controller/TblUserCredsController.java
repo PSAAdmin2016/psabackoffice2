@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class TblUserCredsController {
     @ApiOperation(value = "Returns the TblUserCreds instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public TblUserCreds getTblUserCreds(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public TblUserCreds getTblUserCreds(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting TblUserCreds with id: {}" , id);
 
         TblUserCreds foundTblUserCreds = tblUserCredsService.getById(id);
@@ -78,7 +77,7 @@ public class TblUserCredsController {
     @ApiOperation(value = "Updates the TblUserCreds instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public TblUserCreds editTblUserCreds(@PathVariable("id") Integer id, @RequestBody TblUserCreds tblUserCreds) throws EntityNotFoundException {
+    public TblUserCreds editTblUserCreds(@PathVariable("id") Integer id, @RequestBody TblUserCreds tblUserCreds) {
         LOGGER.debug("Editing TblUserCreds with id: {}" , tblUserCreds.getUserId());
 
         tblUserCreds.setUserId(id);
@@ -91,7 +90,7 @@ public class TblUserCredsController {
     @ApiOperation(value = "Deletes the TblUserCreds instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteTblUserCreds(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteTblUserCreds(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting TblUserCreds with id: {}" , id);
 
         TblUserCreds deletedTblUserCreds = tblUserCredsService.delete(id);
@@ -107,7 +106,7 @@ public class TblUserCredsController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblUserCreds> searchTblUserCredsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering TblUserCreds list");
+        LOGGER.debug("Rendering TblUserCreds list by query filter:{}", (Object) queryFilters);
         return tblUserCredsService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class TblUserCredsController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblUserCreds> findTblUserCreds(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering TblUserCreds list");
+        LOGGER.debug("Rendering TblUserCreds list by filter:", query);
         return tblUserCredsService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class TblUserCredsController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblUserCreds> filterTblUserCreds(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering TblUserCreds list");
+        LOGGER.debug("Rendering TblUserCreds list by filter", query);
         return tblUserCredsService.findAll(query, pageable);
     }
 

@@ -43,7 +43,7 @@ public interface RefChatStatusService {
 	 * @return RefChatStatus associated with the given refchatstatusId.
      * @throws EntityNotFoundException If no RefChatStatus is found.
 	 */
-	RefChatStatus getById(Integer refchatstatusId) throws EntityNotFoundException;
+	RefChatStatus getById(Integer refchatstatusId);
 
     /**
 	 * Find and return the RefChatStatus by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface RefChatStatusService {
 	 * @return The updated RefChatStatus.
 	 * @throws EntityNotFoundException if no RefChatStatus is found with given input.
 	 */
-	RefChatStatus update(@Valid RefChatStatus refChatStatus) throws EntityNotFoundException;
+	RefChatStatus update(@Valid RefChatStatus refChatStatus);
 
     /**
 	 * Deletes an existing RefChatStatus with the given id.
@@ -72,7 +72,7 @@ public interface RefChatStatusService {
 	 * @return The deleted RefChatStatus.
 	 * @throws EntityNotFoundException if no RefChatStatus found with the given id.
 	 */
-	RefChatStatus delete(Integer refchatstatusId) throws EntityNotFoundException;
+	RefChatStatus delete(Integer refchatstatusId);
 
     /**
 	 * Deletes an existing RefChatStatus with the given object.

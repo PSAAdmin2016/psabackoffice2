@@ -43,7 +43,7 @@ public interface ChatMessagesService {
 	 * @return ChatMessages associated with the given chatmessagesId.
      * @throws EntityNotFoundException If no ChatMessages is found.
 	 */
-	ChatMessages getById(Integer chatmessagesId) throws EntityNotFoundException;
+	ChatMessages getById(Integer chatmessagesId);
 
     /**
 	 * Find and return the ChatMessages by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface ChatMessagesService {
 	 * @return The updated ChatMessages.
 	 * @throws EntityNotFoundException if no ChatMessages is found with given input.
 	 */
-	ChatMessages update(@Valid ChatMessages chatMessages) throws EntityNotFoundException;
+	ChatMessages update(@Valid ChatMessages chatMessages);
 
     /**
 	 * Deletes an existing ChatMessages with the given id.
@@ -72,7 +72,7 @@ public interface ChatMessagesService {
 	 * @return The deleted ChatMessages.
 	 * @throws EntityNotFoundException if no ChatMessages found with the given id.
 	 */
-	ChatMessages delete(Integer chatmessagesId) throws EntityNotFoundException;
+	ChatMessages delete(Integer chatmessagesId);
 
     /**
 	 * Deletes an existing ChatMessages with the given object.

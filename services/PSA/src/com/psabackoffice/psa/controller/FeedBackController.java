@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -67,7 +66,7 @@ public class FeedBackController {
     @ApiOperation(value = "Returns the FeedBack instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public FeedBack getFeedBack(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public FeedBack getFeedBack(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting FeedBack with id: {}" , id);
 
         FeedBack foundFeedBack = feedBackService.getById(id);
@@ -79,7 +78,7 @@ public class FeedBackController {
     @ApiOperation(value = "Updates the FeedBack instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public FeedBack editFeedBack(@PathVariable("id") Integer id, @RequestBody FeedBack feedBack) throws EntityNotFoundException {
+    public FeedBack editFeedBack(@PathVariable("id") Integer id, @RequestBody FeedBack feedBack) {
         LOGGER.debug("Editing FeedBack with id: {}" , feedBack.getId());
 
         feedBack.setId(id);
@@ -92,7 +91,7 @@ public class FeedBackController {
     @ApiOperation(value = "Deletes the FeedBack instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteFeedBack(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteFeedBack(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting FeedBack with id: {}" , id);
 
         FeedBack deletedFeedBack = feedBackService.delete(id);
@@ -108,7 +107,7 @@ public class FeedBackController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FeedBack> searchFeedBacksByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering FeedBacks list");
+        LOGGER.debug("Rendering FeedBacks list by query filter:{}", (Object) queryFilters);
         return feedBackService.findAll(queryFilters, pageable);
     }
 
@@ -116,7 +115,7 @@ public class FeedBackController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FeedBack> findFeedBacks(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering FeedBacks list");
+        LOGGER.debug("Rendering FeedBacks list by filter:", query);
         return feedBackService.findAll(query, pageable);
     }
 
@@ -124,7 +123,7 @@ public class FeedBackController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<FeedBack> filterFeedBacks(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering FeedBacks list");
+        LOGGER.debug("Rendering FeedBacks list by filter", query);
         return feedBackService.findAll(query, pageable);
     }
 

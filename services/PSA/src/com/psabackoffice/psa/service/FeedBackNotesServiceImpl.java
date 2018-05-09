@@ -59,7 +59,7 @@ public class FeedBackNotesServiceImpl implements FeedBackNotesService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public FeedBackNotes getById(Integer feedbacknotesId) throws EntityNotFoundException {
+	public FeedBackNotes getById(Integer feedbacknotesId) {
         LOGGER.debug("Finding FeedBackNotes by id: {}", feedbacknotesId);
         return this.wmGenericDao.findById(feedbacknotesId);
     }
@@ -79,7 +79,7 @@ public class FeedBackNotesServiceImpl implements FeedBackNotesService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public FeedBackNotes update(FeedBackNotes feedBackNotes) throws EntityNotFoundException {
+	public FeedBackNotes update(FeedBackNotes feedBackNotes) {
         LOGGER.debug("Updating FeedBackNotes with information: {}", feedBackNotes);
 
         this.wmGenericDao.update(feedBackNotes);
@@ -90,7 +90,7 @@ public class FeedBackNotesServiceImpl implements FeedBackNotesService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public FeedBackNotes delete(Integer feedbacknotesId) throws EntityNotFoundException {
+	public FeedBackNotes delete(Integer feedbacknotesId) {
         LOGGER.debug("Deleting FeedBackNotes with id: {}", feedbacknotesId);
         FeedBackNotes deleted = this.wmGenericDao.findById(feedbacknotesId);
         if (deleted == null) {

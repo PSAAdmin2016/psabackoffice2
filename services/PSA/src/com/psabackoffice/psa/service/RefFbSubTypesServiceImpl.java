@@ -68,7 +68,7 @@ public class RefFbSubTypesServiceImpl implements RefFbSubTypesService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefFbSubTypes getById(Integer reffbsubtypesId) throws EntityNotFoundException {
+	public RefFbSubTypes getById(Integer reffbsubtypesId) {
         LOGGER.debug("Finding RefFbSubTypes by id: {}", reffbsubtypesId);
         return this.wmGenericDao.findById(reffbsubtypesId);
     }
@@ -88,17 +88,12 @@ public class RefFbSubTypesServiceImpl implements RefFbSubTypesService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefFbSubTypes update(RefFbSubTypes refFbSubTypes) throws EntityNotFoundException {
+	public RefFbSubTypes update(RefFbSubTypes refFbSubTypes) {
         LOGGER.debug("Updating RefFbSubTypes with information: {}", refFbSubTypes);
 
         List<FeedBack> feedBacks = refFbSubTypes.getFeedBacks();
-
         if(feedBacks != null && Hibernate.isInitialized(feedBacks)) {
-            if(!feedBacks.isEmpty()) {
-                for(FeedBack _feedBack : feedBacks) {
-                    _feedBack.setRefFbSubTypes(refFbSubTypes);
-                }
-            }
+            feedBacks.forEach(_feedBack -> _feedBack.setRefFbSubTypes(refFbSubTypes));
         }
 
         this.wmGenericDao.update(refFbSubTypes);
@@ -108,11 +103,9 @@ public class RefFbSubTypesServiceImpl implements RefFbSubTypesService {
         if(feedBacks != null && Hibernate.isInitialized(feedBacks) && !feedBacks.isEmpty()) {
             List<FeedBack> _remainingChildren = wmGenericDao.execute(
                 session -> DaoUtils.findAllRemainingChildren(session, FeedBack.class,
-                        new DaoUtils.ChildrenFilter("refFbSubTypes", refFbSubTypes, feedBacks)));
+                        new DaoUtils.ChildrenFilter<>("refFbSubTypes", refFbSubTypes, feedBacks)));
             LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
-            for(FeedBack _feedBack : _remainingChildren) {
-                feedBackService.delete(_feedBack);
-            }
+            _remainingChildren.forEach(_feedBack -> feedBackService.delete(_feedBack));
             refFbSubTypes.setFeedBacks(feedBacks);
         }
 
@@ -121,7 +114,7 @@ public class RefFbSubTypesServiceImpl implements RefFbSubTypesService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefFbSubTypes delete(Integer reffbsubtypesId) throws EntityNotFoundException {
+	public RefFbSubTypes delete(Integer reffbsubtypesId) {
         LOGGER.debug("Deleting RefFbSubTypes with id: {}", reffbsubtypesId);
         RefFbSubTypes deleted = this.wmGenericDao.findById(reffbsubtypesId);
         if (deleted == null) {

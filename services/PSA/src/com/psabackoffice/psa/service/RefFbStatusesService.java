@@ -44,7 +44,7 @@ public interface RefFbStatusesService {
 	 * @return RefFbStatuses associated with the given reffbstatusesId.
      * @throws EntityNotFoundException If no RefFbStatuses is found.
 	 */
-	RefFbStatuses getById(Integer reffbstatusesId) throws EntityNotFoundException;
+	RefFbStatuses getById(Integer reffbstatusesId);
 
     /**
 	 * Find and return the RefFbStatuses by given id if exists, returns null otherwise.
@@ -64,7 +64,7 @@ public interface RefFbStatusesService {
 	 * @return The updated RefFbStatuses.
 	 * @throws EntityNotFoundException if no RefFbStatuses is found with given input.
 	 */
-	RefFbStatuses update(@Valid RefFbStatuses refFbStatuses) throws EntityNotFoundException;
+	RefFbStatuses update(@Valid RefFbStatuses refFbStatuses);
 
     /**
 	 * Deletes an existing RefFbStatuses with the given id.
@@ -73,7 +73,7 @@ public interface RefFbStatusesService {
 	 * @return The deleted RefFbStatuses.
 	 * @throws EntityNotFoundException if no RefFbStatuses found with the given id.
 	 */
-	RefFbStatuses delete(Integer reffbstatusesId) throws EntityNotFoundException;
+	RefFbStatuses delete(Integer reffbstatusesId);
 
     /**
 	 * Deletes an existing RefFbStatuses with the given object.

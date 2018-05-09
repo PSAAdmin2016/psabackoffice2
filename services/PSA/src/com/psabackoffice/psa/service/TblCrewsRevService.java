@@ -43,7 +43,7 @@ public interface TblCrewsRevService {
 	 * @return TblCrewsRev associated with the given tblcrewsrevId.
      * @throws EntityNotFoundException If no TblCrewsRev is found.
 	 */
-	TblCrewsRev getById(Integer tblcrewsrevId) throws EntityNotFoundException;
+	TblCrewsRev getById(Integer tblcrewsrevId);
 
     /**
 	 * Find and return the TblCrewsRev by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface TblCrewsRevService {
 	 * @return The updated TblCrewsRev.
 	 * @throws EntityNotFoundException if no TblCrewsRev is found with given input.
 	 */
-	TblCrewsRev update(@Valid TblCrewsRev tblCrewsRev) throws EntityNotFoundException;
+	TblCrewsRev update(@Valid TblCrewsRev tblCrewsRev);
 
     /**
 	 * Deletes an existing TblCrewsRev with the given id.
@@ -72,7 +72,7 @@ public interface TblCrewsRevService {
 	 * @return The deleted TblCrewsRev.
 	 * @throws EntityNotFoundException if no TblCrewsRev found with the given id.
 	 */
-	TblCrewsRev delete(Integer tblcrewsrevId) throws EntityNotFoundException;
+	TblCrewsRev delete(Integer tblcrewsrevId);
 
     /**
 	 * Deletes an existing TblCrewsRev with the given object.

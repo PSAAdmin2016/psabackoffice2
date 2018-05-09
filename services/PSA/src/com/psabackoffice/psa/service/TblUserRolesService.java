@@ -43,7 +43,7 @@ public interface TblUserRolesService {
 	 * @return TblUserRoles associated with the given tbluserrolesId.
      * @throws EntityNotFoundException If no TblUserRoles is found.
 	 */
-	TblUserRoles getById(Integer tbluserrolesId) throws EntityNotFoundException;
+	TblUserRoles getById(Integer tbluserrolesId);
 
     /**
 	 * Find and return the TblUserRoles by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface TblUserRolesService {
 	 * @return The updated TblUserRoles.
 	 * @throws EntityNotFoundException if no TblUserRoles is found with given input.
 	 */
-	TblUserRoles update(@Valid TblUserRoles tblUserRoles) throws EntityNotFoundException;
+	TblUserRoles update(@Valid TblUserRoles tblUserRoles);
 
     /**
 	 * Deletes an existing TblUserRoles with the given id.
@@ -72,7 +72,7 @@ public interface TblUserRolesService {
 	 * @return The deleted TblUserRoles.
 	 * @throws EntityNotFoundException if no TblUserRoles found with the given id.
 	 */
-	TblUserRoles delete(Integer tbluserrolesId) throws EntityNotFoundException;
+	TblUserRoles delete(Integer tbluserrolesId);
 
     /**
 	 * Deletes an existing TblUserRoles with the given object.

@@ -59,7 +59,7 @@ public class RefDelayTypesServiceImpl implements RefDelayTypesService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefDelayTypes getById(Integer refdelaytypesId) throws EntityNotFoundException {
+	public RefDelayTypes getById(Integer refdelaytypesId) {
         LOGGER.debug("Finding RefDelayTypes by id: {}", refdelaytypesId);
         return this.wmGenericDao.findById(refdelaytypesId);
     }
@@ -79,7 +79,7 @@ public class RefDelayTypesServiceImpl implements RefDelayTypesService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefDelayTypes update(RefDelayTypes refDelayTypes) throws EntityNotFoundException {
+	public RefDelayTypes update(RefDelayTypes refDelayTypes) {
         LOGGER.debug("Updating RefDelayTypes with information: {}", refDelayTypes);
 
         this.wmGenericDao.update(refDelayTypes);
@@ -90,7 +90,7 @@ public class RefDelayTypesServiceImpl implements RefDelayTypesService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefDelayTypes delete(Integer refdelaytypesId) throws EntityNotFoundException {
+	public RefDelayTypes delete(Integer refdelaytypesId) {
         LOGGER.debug("Deleting RefDelayTypes with id: {}", refdelaytypesId);
         RefDelayTypes deleted = this.wmGenericDao.findById(refdelaytypesId);
         if (deleted == null) {

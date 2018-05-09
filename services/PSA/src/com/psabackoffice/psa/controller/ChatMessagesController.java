@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class ChatMessagesController {
     @ApiOperation(value = "Returns the ChatMessages instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public ChatMessages getChatMessages(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public ChatMessages getChatMessages(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting ChatMessages with id: {}" , id);
 
         ChatMessages foundChatMessages = chatMessagesService.getById(id);
@@ -78,7 +77,7 @@ public class ChatMessagesController {
     @ApiOperation(value = "Updates the ChatMessages instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public ChatMessages editChatMessages(@PathVariable("id") Integer id, @RequestBody ChatMessages chatMessages) throws EntityNotFoundException {
+    public ChatMessages editChatMessages(@PathVariable("id") Integer id, @RequestBody ChatMessages chatMessages) {
         LOGGER.debug("Editing ChatMessages with id: {}" , chatMessages.getUid());
 
         chatMessages.setUid(id);
@@ -91,7 +90,7 @@ public class ChatMessagesController {
     @ApiOperation(value = "Deletes the ChatMessages instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteChatMessages(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteChatMessages(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting ChatMessages with id: {}" , id);
 
         ChatMessages deletedChatMessages = chatMessagesService.delete(id);
@@ -107,7 +106,7 @@ public class ChatMessagesController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<ChatMessages> searchChatMessagesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering ChatMessages list");
+        LOGGER.debug("Rendering ChatMessages list by query filter:{}", (Object) queryFilters);
         return chatMessagesService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class ChatMessagesController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<ChatMessages> findChatMessages(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering ChatMessages list");
+        LOGGER.debug("Rendering ChatMessages list by filter:", query);
         return chatMessagesService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class ChatMessagesController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<ChatMessages> filterChatMessages(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering ChatMessages list");
+        LOGGER.debug("Rendering ChatMessages list by filter", query);
         return chatMessagesService.findAll(query, pageable);
     }
 

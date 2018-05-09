@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class SettingsController {
     @ApiOperation(value = "Returns the Settings instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Settings getSettings(@PathVariable("id") String id) throws EntityNotFoundException {
+public Settings getSettings(@PathVariable("id") String id) {
         LOGGER.debug("Getting Settings with id: {}" , id);
 
         Settings foundSettings = settingsService.getById(id);
@@ -78,7 +77,7 @@ public class SettingsController {
     @ApiOperation(value = "Updates the Settings instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Settings editSettings(@PathVariable("id") String id, @RequestBody Settings settings) throws EntityNotFoundException {
+    public Settings editSettings(@PathVariable("id") String id, @RequestBody Settings settings) {
         LOGGER.debug("Editing Settings with id: {}" , settings.getLabel());
 
         settings.setLabel(id);
@@ -91,7 +90,7 @@ public class SettingsController {
     @ApiOperation(value = "Deletes the Settings instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteSettings(@PathVariable("id") String id) throws EntityNotFoundException {
+public boolean deleteSettings(@PathVariable("id") String id) {
         LOGGER.debug("Deleting Settings with id: {}" , id);
 
         Settings deletedSettings = settingsService.delete(id);
@@ -107,7 +106,7 @@ public class SettingsController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Settings> searchSettingsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering Settings list");
+        LOGGER.debug("Rendering Settings list by query filter:{}", (Object) queryFilters);
         return settingsService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class SettingsController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Settings> findSettings(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering Settings list");
+        LOGGER.debug("Rendering Settings list by filter:", query);
         return settingsService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class SettingsController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Settings> filterSettings(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering Settings list");
+        LOGGER.debug("Rendering Settings list by filter", query);
         return settingsService.findAll(query, pageable);
     }
 

@@ -67,7 +67,7 @@ public class RefCraftsServiceImpl implements RefCraftsService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefCrafts getById(Integer refcraftsId) throws EntityNotFoundException {
+	public RefCrafts getById(Integer refcraftsId) {
         LOGGER.debug("Finding RefCrafts by id: {}", refcraftsId);
         return this.wmGenericDao.findById(refcraftsId);
     }
@@ -87,17 +87,12 @@ public class RefCraftsServiceImpl implements RefCraftsService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefCrafts update(RefCrafts refCrafts) throws EntityNotFoundException {
+	public RefCrafts update(RefCrafts refCrafts) {
         LOGGER.debug("Updating RefCrafts with information: {}", refCrafts);
 
         List<TblUserPsa> tblUserPsas = refCrafts.getTblUserPsas();
-
         if(tblUserPsas != null && Hibernate.isInitialized(tblUserPsas)) {
-            if(!tblUserPsas.isEmpty()) {
-                for(TblUserPsa _tblUserPsa : tblUserPsas) {
-                    _tblUserPsa.setRefCrafts(refCrafts);
-                }
-            }
+            tblUserPsas.forEach(_tblUserPsa -> _tblUserPsa.setRefCrafts(refCrafts));
         }
 
         this.wmGenericDao.update(refCrafts);
@@ -108,7 +103,7 @@ public class RefCraftsServiceImpl implements RefCraftsService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefCrafts delete(Integer refcraftsId) throws EntityNotFoundException {
+	public RefCrafts delete(Integer refcraftsId) {
         LOGGER.debug("Deleting RefCrafts with id: {}", refcraftsId);
         RefCrafts deleted = this.wmGenericDao.findById(refcraftsId);
         if (deleted == null) {

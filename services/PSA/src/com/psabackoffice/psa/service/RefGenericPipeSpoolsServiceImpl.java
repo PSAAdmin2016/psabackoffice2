@@ -59,7 +59,7 @@ public class RefGenericPipeSpoolsServiceImpl implements RefGenericPipeSpoolsServ
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefGenericPipeSpools getById(Integer refgenericpipespoolsId) throws EntityNotFoundException {
+	public RefGenericPipeSpools getById(Integer refgenericpipespoolsId) {
         LOGGER.debug("Finding RefGenericPipeSpools by id: {}", refgenericpipespoolsId);
         return this.wmGenericDao.findById(refgenericpipespoolsId);
     }
@@ -79,7 +79,7 @@ public class RefGenericPipeSpoolsServiceImpl implements RefGenericPipeSpoolsServ
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefGenericPipeSpools update(RefGenericPipeSpools refGenericPipeSpools) throws EntityNotFoundException {
+	public RefGenericPipeSpools update(RefGenericPipeSpools refGenericPipeSpools) {
         LOGGER.debug("Updating RefGenericPipeSpools with information: {}", refGenericPipeSpools);
 
         this.wmGenericDao.update(refGenericPipeSpools);
@@ -90,7 +90,7 @@ public class RefGenericPipeSpoolsServiceImpl implements RefGenericPipeSpoolsServ
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefGenericPipeSpools delete(Integer refgenericpipespoolsId) throws EntityNotFoundException {
+	public RefGenericPipeSpools delete(Integer refgenericpipespoolsId) {
         LOGGER.debug("Deleting RefGenericPipeSpools with id: {}", refgenericpipespoolsId);
         RefGenericPipeSpools deleted = this.wmGenericDao.findById(refgenericpipespoolsId);
         if (deleted == null) {

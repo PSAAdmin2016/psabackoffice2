@@ -43,7 +43,7 @@ public interface SettingsuserService {
 	 * @return Settingsuser associated with the given settingsuserId.
      * @throws EntityNotFoundException If no Settingsuser is found.
 	 */
-	Settingsuser getById(Integer settingsuserId) throws EntityNotFoundException;
+	Settingsuser getById(Integer settingsuserId);
 
     /**
 	 * Find and return the Settingsuser by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface SettingsuserService {
 	 * @return The updated Settingsuser.
 	 * @throws EntityNotFoundException if no Settingsuser is found with given input.
 	 */
-	Settingsuser update(@Valid Settingsuser settingsuser) throws EntityNotFoundException;
+	Settingsuser update(@Valid Settingsuser settingsuser);
 
     /**
 	 * Deletes an existing Settingsuser with the given id.
@@ -72,7 +72,7 @@ public interface SettingsuserService {
 	 * @return The deleted Settingsuser.
 	 * @throws EntityNotFoundException if no Settingsuser found with the given id.
 	 */
-	Settingsuser delete(Integer settingsuserId) throws EntityNotFoundException;
+	Settingsuser delete(Integer settingsuserId);
 
     /**
 	 * Deletes an existing Settingsuser with the given object.

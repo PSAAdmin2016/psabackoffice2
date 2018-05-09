@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -67,7 +66,7 @@ public class TblCrewsController {
     @ApiOperation(value = "Returns the TblCrews instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public TblCrews getTblCrews(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public TblCrews getTblCrews(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting TblCrews with id: {}" , id);
 
         TblCrews foundTblCrews = tblCrewsService.getById(id);
@@ -79,7 +78,7 @@ public class TblCrewsController {
     @ApiOperation(value = "Updates the TblCrews instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public TblCrews editTblCrews(@PathVariable("id") Integer id, @RequestBody TblCrews tblCrews) throws EntityNotFoundException {
+    public TblCrews editTblCrews(@PathVariable("id") Integer id, @RequestBody TblCrews tblCrews) {
         LOGGER.debug("Editing TblCrews with id: {}" , tblCrews.getId());
 
         tblCrews.setId(id);
@@ -92,7 +91,7 @@ public class TblCrewsController {
     @ApiOperation(value = "Deletes the TblCrews instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteTblCrews(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteTblCrews(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting TblCrews with id: {}" , id);
 
         TblCrews deletedTblCrews = tblCrewsService.delete(id);
@@ -116,7 +115,7 @@ public class TblCrewsController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblCrews> searchTblCrewsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering TblCrews list");
+        LOGGER.debug("Rendering TblCrews list by query filter:{}", (Object) queryFilters);
         return tblCrewsService.findAll(queryFilters, pageable);
     }
 
@@ -124,7 +123,7 @@ public class TblCrewsController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblCrews> findTblCrews(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering TblCrews list");
+        LOGGER.debug("Rendering TblCrews list by filter:", query);
         return tblCrewsService.findAll(query, pageable);
     }
 
@@ -132,7 +131,7 @@ public class TblCrewsController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblCrews> filterTblCrews(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering TblCrews list");
+        LOGGER.debug("Rendering TblCrews list by filter", query);
         return tblCrewsService.findAll(query, pageable);
     }
 

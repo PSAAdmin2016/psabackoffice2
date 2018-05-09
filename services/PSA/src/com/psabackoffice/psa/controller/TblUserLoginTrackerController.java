@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class TblUserLoginTrackerController {
     @ApiOperation(value = "Returns the TblUserLoginTracker instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public TblUserLoginTracker getTblUserLoginTracker(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public TblUserLoginTracker getTblUserLoginTracker(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting TblUserLoginTracker with id: {}" , id);
 
         TblUserLoginTracker foundTblUserLoginTracker = tblUserLoginTrackerService.getById(id);
@@ -78,7 +77,7 @@ public class TblUserLoginTrackerController {
     @ApiOperation(value = "Updates the TblUserLoginTracker instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public TblUserLoginTracker editTblUserLoginTracker(@PathVariable("id") Integer id, @RequestBody TblUserLoginTracker tblUserLoginTracker) throws EntityNotFoundException {
+    public TblUserLoginTracker editTblUserLoginTracker(@PathVariable("id") Integer id, @RequestBody TblUserLoginTracker tblUserLoginTracker) {
         LOGGER.debug("Editing TblUserLoginTracker with id: {}" , tblUserLoginTracker.getUid());
 
         tblUserLoginTracker.setUid(id);
@@ -91,7 +90,7 @@ public class TblUserLoginTrackerController {
     @ApiOperation(value = "Deletes the TblUserLoginTracker instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteTblUserLoginTracker(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteTblUserLoginTracker(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting TblUserLoginTracker with id: {}" , id);
 
         TblUserLoginTracker deletedTblUserLoginTracker = tblUserLoginTrackerService.delete(id);
@@ -107,7 +106,7 @@ public class TblUserLoginTrackerController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblUserLoginTracker> searchTblUserLoginTrackersByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering TblUserLoginTrackers list");
+        LOGGER.debug("Rendering TblUserLoginTrackers list by query filter:{}", (Object) queryFilters);
         return tblUserLoginTrackerService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class TblUserLoginTrackerController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblUserLoginTracker> findTblUserLoginTrackers(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering TblUserLoginTrackers list");
+        LOGGER.debug("Rendering TblUserLoginTrackers list by filter:", query);
         return tblUserLoginTrackerService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class TblUserLoginTrackerController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblUserLoginTracker> filterTblUserLoginTrackers(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering TblUserLoginTrackers list");
+        LOGGER.debug("Rendering TblUserLoginTrackers list by filter", query);
         return tblUserLoginTrackerService.findAll(query, pageable);
     }
 

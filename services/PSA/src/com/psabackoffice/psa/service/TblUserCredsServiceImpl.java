@@ -59,7 +59,7 @@ public class TblUserCredsServiceImpl implements TblUserCredsService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public TblUserCreds getById(Integer tblusercredsId) throws EntityNotFoundException {
+	public TblUserCreds getById(Integer tblusercredsId) {
         LOGGER.debug("Finding TblUserCreds by id: {}", tblusercredsId);
         return this.wmGenericDao.findById(tblusercredsId);
     }
@@ -79,7 +79,7 @@ public class TblUserCredsServiceImpl implements TblUserCredsService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public TblUserCreds update(TblUserCreds tblUserCreds) throws EntityNotFoundException {
+	public TblUserCreds update(TblUserCreds tblUserCreds) {
         LOGGER.debug("Updating TblUserCreds with information: {}", tblUserCreds);
 
         this.wmGenericDao.update(tblUserCreds);
@@ -90,7 +90,7 @@ public class TblUserCredsServiceImpl implements TblUserCredsService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public TblUserCreds delete(Integer tblusercredsId) throws EntityNotFoundException {
+	public TblUserCreds delete(Integer tblusercredsId) {
         LOGGER.debug("Deleting TblUserCreds with id: {}", tblusercredsId);
         TblUserCreds deleted = this.wmGenericDao.findById(tblusercredsId);
         if (deleted == null) {

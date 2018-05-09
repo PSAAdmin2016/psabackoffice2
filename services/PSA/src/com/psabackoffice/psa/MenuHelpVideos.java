@@ -80,9 +80,7 @@ public class MenuHelpVideos implements Serializable {
     @PostPersist
     public void onPostPersist() {
         if(menuSubHelpVideoses != null) {
-            for(MenuSubHelpVideos menuSubHelpVideos : menuSubHelpVideoses) {
-                menuSubHelpVideos.setMenuHelpVideos(this);
-            }
+            menuSubHelpVideoses.forEach(menuSubHelpVideos -> menuSubHelpVideos.setMenuHelpVideos(this));
         }
     }
 

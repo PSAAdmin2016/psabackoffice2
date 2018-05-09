@@ -59,7 +59,7 @@ public class RefPipeSchedulesServiceImpl implements RefPipeSchedulesService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefPipeSchedules getById(Integer refpipeschedulesId) throws EntityNotFoundException {
+	public RefPipeSchedules getById(Integer refpipeschedulesId) {
         LOGGER.debug("Finding RefPipeSchedules by id: {}", refpipeschedulesId);
         return this.wmGenericDao.findById(refpipeschedulesId);
     }
@@ -79,7 +79,7 @@ public class RefPipeSchedulesServiceImpl implements RefPipeSchedulesService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefPipeSchedules update(RefPipeSchedules refPipeSchedules) throws EntityNotFoundException {
+	public RefPipeSchedules update(RefPipeSchedules refPipeSchedules) {
         LOGGER.debug("Updating RefPipeSchedules with information: {}", refPipeSchedules);
 
         this.wmGenericDao.update(refPipeSchedules);
@@ -90,7 +90,7 @@ public class RefPipeSchedulesServiceImpl implements RefPipeSchedulesService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefPipeSchedules delete(Integer refpipeschedulesId) throws EntityNotFoundException {
+	public RefPipeSchedules delete(Integer refpipeschedulesId) {
         LOGGER.debug("Deleting RefPipeSchedules with id: {}", refpipeschedulesId);
         RefPipeSchedules deleted = this.wmGenericDao.findById(refpipeschedulesId);
         if (deleted == null) {

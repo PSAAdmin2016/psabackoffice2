@@ -82,14 +82,10 @@ public class RefFbTypes implements Serializable {
     @PostPersist
     public void onPostPersist() {
         if(feedBacks != null) {
-            for(FeedBack feedBack : feedBacks) {
-                feedBack.setRefFbTypes(this);
-            }
+            feedBacks.forEach(feedBack -> feedBack.setRefFbTypes(this));
         }
         if(refFbSubTypeses != null) {
-            for(RefFbSubTypes refFbSubTypes : refFbSubTypeses) {
-                refFbSubTypes.setRefFbTypes(this);
-            }
+            refFbSubTypeses.forEach(refFbSubTypes -> refFbSubTypes.setRefFbTypes(this));
         }
     }
 

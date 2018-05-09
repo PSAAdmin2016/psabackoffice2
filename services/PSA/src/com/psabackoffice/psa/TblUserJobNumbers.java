@@ -32,8 +32,8 @@ public class TblUserJobNumbers implements Serializable {
     private Integer id;
     private Integer fkUserId;
     private Integer fkJobNumber;
-    private TblJobNumbers tblJobNumbers;
     private TblUserPsa tblUserPsa;
+    private TblJobNumbers tblJobNumbers;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,21 +65,6 @@ public class TblUserJobNumbers implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`fk_JobNumber`", referencedColumnName = "`JobNumber`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_JobNumbers_tblJobNumbers`"))
-    @Fetch(FetchMode.JOIN)
-    public TblJobNumbers getTblJobNumbers() {
-        return this.tblJobNumbers;
-    }
-
-    public void setTblJobNumbers(TblJobNumbers tblJobNumbers) {
-        if(tblJobNumbers != null) {
-            this.fkJobNumber = tblJobNumbers.getJobNumber();
-        }
-
-        this.tblJobNumbers = tblJobNumbers;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`fk_UserId`", referencedColumnName = "`ID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_UserId_tblUserPSA`"))
     @Fetch(FetchMode.JOIN)
     public TblUserPsa getTblUserPsa() {
@@ -92,6 +77,21 @@ public class TblUserJobNumbers implements Serializable {
         }
 
         this.tblUserPsa = tblUserPsa;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`fk_JobNumber`", referencedColumnName = "`JobNumber`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`fk_JobNumbers_tblJobNumbers`"))
+    @Fetch(FetchMode.JOIN)
+    public TblJobNumbers getTblJobNumbers() {
+        return this.tblJobNumbers;
+    }
+
+    public void setTblJobNumbers(TblJobNumbers tblJobNumbers) {
+        if(tblJobNumbers != null) {
+            this.fkJobNumber = tblJobNumbers.getJobNumber();
+        }
+
+        this.tblJobNumbers = tblJobNumbers;
     }
 
     @Override

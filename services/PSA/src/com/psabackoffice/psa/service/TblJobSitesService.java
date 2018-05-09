@@ -44,7 +44,7 @@ public interface TblJobSitesService {
 	 * @return TblJobSites associated with the given tbljobsitesId.
      * @throws EntityNotFoundException If no TblJobSites is found.
 	 */
-	TblJobSites getById(Integer tbljobsitesId) throws EntityNotFoundException;
+	TblJobSites getById(Integer tbljobsitesId);
 
     /**
 	 * Find and return the TblJobSites by given id if exists, returns null otherwise.
@@ -64,7 +64,7 @@ public interface TblJobSitesService {
 	 * @return The updated TblJobSites.
 	 * @throws EntityNotFoundException if no TblJobSites is found with given input.
 	 */
-	TblJobSites update(@Valid TblJobSites tblJobSites) throws EntityNotFoundException;
+	TblJobSites update(@Valid TblJobSites tblJobSites);
 
     /**
 	 * Deletes an existing TblJobSites with the given id.
@@ -73,7 +73,7 @@ public interface TblJobSitesService {
 	 * @return The deleted TblJobSites.
 	 * @throws EntityNotFoundException if no TblJobSites found with the given id.
 	 */
-	TblJobSites delete(Integer tbljobsitesId) throws EntityNotFoundException;
+	TblJobSites delete(Integer tbljobsitesId);
 
     /**
 	 * Deletes an existing TblJobSites with the given object.

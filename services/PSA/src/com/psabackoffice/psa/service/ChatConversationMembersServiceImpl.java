@@ -59,7 +59,7 @@ public class ChatConversationMembersServiceImpl implements ChatConversationMembe
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public ChatConversationMembers getById(Integer chatconversationmembersId) throws EntityNotFoundException {
+	public ChatConversationMembers getById(Integer chatconversationmembersId) {
         LOGGER.debug("Finding ChatConversationMembers by id: {}", chatconversationmembersId);
         return this.wmGenericDao.findById(chatconversationmembersId);
     }
@@ -79,7 +79,7 @@ public class ChatConversationMembersServiceImpl implements ChatConversationMembe
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public ChatConversationMembers update(ChatConversationMembers chatConversationMembers) throws EntityNotFoundException {
+	public ChatConversationMembers update(ChatConversationMembers chatConversationMembers) {
         LOGGER.debug("Updating ChatConversationMembers with information: {}", chatConversationMembers);
 
         this.wmGenericDao.update(chatConversationMembers);
@@ -90,7 +90,7 @@ public class ChatConversationMembersServiceImpl implements ChatConversationMembe
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public ChatConversationMembers delete(Integer chatconversationmembersId) throws EntityNotFoundException {
+	public ChatConversationMembers delete(Integer chatconversationmembersId) {
         LOGGER.debug("Deleting ChatConversationMembers with id: {}", chatconversationmembersId);
         ChatConversationMembers deleted = this.wmGenericDao.findById(chatconversationmembersId);
         if (deleted == null) {

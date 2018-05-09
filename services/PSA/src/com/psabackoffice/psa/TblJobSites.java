@@ -121,9 +121,7 @@ public class TblJobSites implements Serializable {
     @PostPersist
     public void onPostPersist() {
         if(tblJobNumberses != null) {
-            for(TblJobNumbers tblJobNumbers : tblJobNumberses) {
-                tblJobNumbers.setTblJobSites(this);
-            }
+            tblJobNumberses.forEach(tblJobNumbers -> tblJobNumbers.setTblJobSites(this));
         }
     }
 

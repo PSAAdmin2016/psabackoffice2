@@ -13,27 +13,27 @@
         </wm-gridrow>
         <wm-gridrow backgroundcolor="#b1efe4" bordercolor="#a0a0a0" borderstyle="groove" borderwidth="0px 0px 8px 0px" padding="1% 1% unset 1%" name="gridrow5">
             <wm-gridcolumn columnwidth="1" name="gridcolumn15">
-                <wm-label caption="Field ActivityID" fontweight="bold" textdecoration="underline" hint="This is the selected activity." name="label3"></wm-label>
+                <wm-label caption="Field ActivityID" fontweight="bold" textdecoration="underline" hint="This is the selected activity." name="label3" color="#000000"></wm-label>
                 <wm-label width="100%" caption="bind:pageParams.ActivityID" hint="This is the selected activity." color="#000000" name="label4"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn16">
-                <wm-label caption="Area" fontweight="bold" textdecoration="underline" borderstyle="none" name="label5"></wm-label>
+                <wm-label caption="Area" fontweight="bold" textdecoration="underline" borderstyle="none" name="label5" color="#000000"></wm-label>
                 <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Area" readonlygrid="true" show="true" hint="This is the selected activity." color="#000000" name="label6"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="2" name="gridcolumn17">
-                <wm-label caption="Piece Mark#" fontweight="bold" textdecoration="underline" borderstyle="none" hint="This is the selected activity." name="label8" width="100%" show="true"></wm-label>
+                <wm-label caption="Piece Mark#" fontweight="bold" textdecoration="underline" borderstyle="none" hint="This is the selected activity." name="label8" width="100%" show="true" color="#000000"></wm-label>
                 <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Spool1" show="true" hint="This is the selected activity." color="#000000" name="label9"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="4" name="gridcolumn18">
-                <wm-label caption="Submitted Notes" fontweight="bold" textdecoration="underline" borderstyle="none" name="label210"></wm-label>
+                <wm-label caption="Submitted Notes" fontweight="bold" textdecoration="underline" borderstyle="none" name="label210" color="#000000"></wm-label>
                 <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Notes" show="true" hint="This is the selected activity." color="#000000" name="label211_1"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn21">
-                <wm-label caption="Percent Claimed" fontweight="bold" textdecoration="underline" borderstyle="none" hint="This is the selected activity." name="label14" show="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 67"></wm-label>
+                <wm-label caption="Percent Claimed" fontweight="bold" textdecoration="underline" borderstyle="none" hint="This is the selected activity." name="label14" show="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 67" color="#000000"></wm-label>
                 <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.PercentClaim * 100 | suffix: '%'" hint="This is the selected activity." color="#000000" name="label15" show="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 67"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn22">
-                <wm-label caption="Quantity" fontweight="bold" textdecoration="underline" borderstyle="none" hint="This is the selected activity." name="label11" width="100%" show="true"></wm-label>
+                <wm-label caption="Quantity" fontweight="bold" textdecoration="underline" borderstyle="none" hint="This is the selected activity." name="label11" width="100%" show="true" color="#000000"></wm-label>
                 <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Quantity" readonlygrid="true" show="true" hint="This is the selected activity." color="#000000" name="label12"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="2" padding="unset 0px" name="gridcolumn23">
@@ -62,21 +62,21 @@
         </wm-gridrow>
         <wm-gridrow padding=".5% 1% unset 1%" name="gridrow8">
             <wm-gridcolumn columnwidth="1" name="gridcolumn28">
-                <wm-label caption="Bid ActivityID" fontweight="bold" textdecoration="underline" borderstyle="none" name="label25"></wm-label>
+                <wm-label caption="Bid ActivityID" fontweight="bold" textdecoration="underline" borderstyle="none" name="label25" color="#000000"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn29">
-                <wm-label caption="Area" fontweight="bold" textdecoration="underline" borderstyle="none" name="label26"></wm-label>
+                <wm-label caption="Area" fontweight="bold" textdecoration="underline" borderstyle="none" name="label26" color="#000000"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn30">
-                <wm-label caption="Piece Mark#" fontweight="bold" textdecoration="underline" borderstyle="none" name="label27" show="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 67"></wm-label>
-                <wm-label caption="Steel Type" fontweight="bold" textdecoration="underline" borderstyle="none" name="label196" show="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 67"></wm-label>
+                <wm-label caption="Piece Mark#" fontweight="bold" textdecoration="underline" borderstyle="none" name="label27" show="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 67" color="#000000"></wm-label>
+                <wm-label caption="Steel Type" fontweight="bold" textdecoration="underline" borderstyle="none" name="label196" show="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 67" color="#000000"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="3" name="gridcolumn31">
-                <wm-label caption="Description" fontweight="bold" textdecoration="underline" borderstyle="none" name="label67"></wm-label>
+                <wm-label caption="Description" fontweight="bold" textdecoration="underline" borderstyle="none" name="label67" color="#000000"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="3" name="gridcolumn34"></wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn35">
-                <wm-label caption="Remaining Quantity" fontweight="bold" textdecoration="underline" borderstyle="none" name="label32"></wm-label>
+                <wm-label caption="Remaining Quantity" fontweight="bold" textdecoration="underline" borderstyle="none" name="label32" color="#000000"></wm-label>
             </wm-gridcolumn>
         </wm-gridrow>
         <wm-gridrow name="gridrow9">
@@ -95,7 +95,7 @@
                                 </wm-gridcolumn>
                                 <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn40">
                                     <wm-label width="100%" caption="bind:Variables.serviceGetMatches.dataSet[$i].PieceMark" readonlygrid="true" name="label35" show="bind:Widgets.livelistBidActivities.currentItem.ActivityType != 'D'"></wm-label>
-                                    <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.currentItem.SteelType" readonlygrid="true" show="bind:Widgets.livelistBidActivities.currentItem.ActivityType == 'D'" name="label203"></wm-label>
+                                    <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.currentItem.MaterialType" readonlygrid="true" show="bind:Widgets.livelistBidActivities.currentItem.ActivityType == 'D'" name="label203"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn class="col-xs-6" columnwidth="3" name="gridcolumn41">
                                     <wm-label width="100%" caption="bind:Variables.serviceGetMatches.dataSet[$i].Description" readonlygrid="true" name="label69"></wm-label>
@@ -1071,16 +1071,16 @@
         </wm-gridrow>
         <wm-gridrow backgroundcolor="#b1efe4" padding="1% 1% unset 1%" name="gridrow118_1">
             <wm-gridcolumn columnwidth="1" name="gridcolumn194_1">
-                <wm-label caption="Field ActivityID" fontweight="bold" textdecoration="underline" hint="This is the selected activity." name="label193"></wm-label>
+                <wm-label caption="Field ActivityID" fontweight="bold" textdecoration="underline" hint="This is the selected activity." name="label193" color="#000000"></wm-label>
                 <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityID" hint="This is the selected activity." color="#000000" name="label194"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn195_2">
-                <wm-label caption="Test Package" fontweight="bold" textdecoration="underline" borderstyle="none" name="label195"></wm-label>
+                <wm-label caption="Test Package" fontweight="bold" textdecoration="underline" borderstyle="none" name="label195" color="#000000"></wm-label>
                 <wm-label width="100%" caption="bind:pageParams.TestPackage" readonlygrid="true" show="true" hint="This is the selected activity." color="#000000" name="label196_1"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn196_1"></wm-gridcolumn>
             <wm-gridcolumn columnwidth="4" padding="unset unset unset 0px" name="gridcolumn197_2">
-                <wm-label caption="Notes" fontweight="bold" textdecoration="underline" borderstyle="none" name="label197_1"></wm-label>
+                <wm-label caption="Notes" fontweight="bold" textdecoration="underline" borderstyle="none" name="label197_1" color="#000000"></wm-label>
                 <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Notes" readonlygrid="true" show="true" hint="This is the selected activity." color="#000000" name="label198_1"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="3" name="gridcolumn198_2"></wm-gridcolumn>

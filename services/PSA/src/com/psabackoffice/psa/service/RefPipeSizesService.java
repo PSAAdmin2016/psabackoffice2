@@ -43,7 +43,7 @@ public interface RefPipeSizesService {
 	 * @return RefPipeSizes associated with the given refpipesizesId.
      * @throws EntityNotFoundException If no RefPipeSizes is found.
 	 */
-	RefPipeSizes getById(Integer refpipesizesId) throws EntityNotFoundException;
+	RefPipeSizes getById(Integer refpipesizesId);
 
     /**
 	 * Find and return the RefPipeSizes by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface RefPipeSizesService {
 	 * @return The updated RefPipeSizes.
 	 * @throws EntityNotFoundException if no RefPipeSizes is found with given input.
 	 */
-	RefPipeSizes update(@Valid RefPipeSizes refPipeSizes) throws EntityNotFoundException;
+	RefPipeSizes update(@Valid RefPipeSizes refPipeSizes);
 
     /**
 	 * Deletes an existing RefPipeSizes with the given id.
@@ -72,7 +72,7 @@ public interface RefPipeSizesService {
 	 * @return The deleted RefPipeSizes.
 	 * @throws EntityNotFoundException if no RefPipeSizes found with the given id.
 	 */
-	RefPipeSizes delete(Integer refpipesizesId) throws EntityNotFoundException;
+	RefPipeSizes delete(Integer refpipesizesId);
 
     /**
 	 * Deletes an existing RefPipeSizes with the given object.

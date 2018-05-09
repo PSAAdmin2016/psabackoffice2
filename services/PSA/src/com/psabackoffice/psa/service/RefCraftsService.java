@@ -44,7 +44,7 @@ public interface RefCraftsService {
 	 * @return RefCrafts associated with the given refcraftsId.
      * @throws EntityNotFoundException If no RefCrafts is found.
 	 */
-	RefCrafts getById(Integer refcraftsId) throws EntityNotFoundException;
+	RefCrafts getById(Integer refcraftsId);
 
     /**
 	 * Find and return the RefCrafts by given id if exists, returns null otherwise.
@@ -64,7 +64,7 @@ public interface RefCraftsService {
 	 * @return The updated RefCrafts.
 	 * @throws EntityNotFoundException if no RefCrafts is found with given input.
 	 */
-	RefCrafts update(@Valid RefCrafts refCrafts) throws EntityNotFoundException;
+	RefCrafts update(@Valid RefCrafts refCrafts);
 
     /**
 	 * Deletes an existing RefCrafts with the given id.
@@ -73,7 +73,7 @@ public interface RefCraftsService {
 	 * @return The deleted RefCrafts.
 	 * @throws EntityNotFoundException if no RefCrafts found with the given id.
 	 */
-	RefCrafts delete(Integer refcraftsId) throws EntityNotFoundException;
+	RefCrafts delete(Integer refcraftsId);
 
     /**
 	 * Deletes an existing RefCrafts with the given object.

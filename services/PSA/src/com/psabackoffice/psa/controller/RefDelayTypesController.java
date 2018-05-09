@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class RefDelayTypesController {
     @ApiOperation(value = "Returns the RefDelayTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefDelayTypes getRefDelayTypes(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefDelayTypes getRefDelayTypes(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefDelayTypes with id: {}" , id);
 
         RefDelayTypes foundRefDelayTypes = refDelayTypesService.getById(id);
@@ -78,7 +77,7 @@ public class RefDelayTypesController {
     @ApiOperation(value = "Updates the RefDelayTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefDelayTypes editRefDelayTypes(@PathVariable("id") Integer id, @RequestBody RefDelayTypes refDelayTypes) throws EntityNotFoundException {
+    public RefDelayTypes editRefDelayTypes(@PathVariable("id") Integer id, @RequestBody RefDelayTypes refDelayTypes) {
         LOGGER.debug("Editing RefDelayTypes with id: {}" , refDelayTypes.getId());
 
         refDelayTypes.setId(id);
@@ -91,7 +90,7 @@ public class RefDelayTypesController {
     @ApiOperation(value = "Deletes the RefDelayTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefDelayTypes(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefDelayTypes(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefDelayTypes with id: {}" , id);
 
         RefDelayTypes deletedRefDelayTypes = refDelayTypesService.delete(id);
@@ -107,7 +106,7 @@ public class RefDelayTypesController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefDelayTypes> searchRefDelayTypesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefDelayTypes list");
+        LOGGER.debug("Rendering RefDelayTypes list by query filter:{}", (Object) queryFilters);
         return refDelayTypesService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class RefDelayTypesController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefDelayTypes> findRefDelayTypes(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefDelayTypes list");
+        LOGGER.debug("Rendering RefDelayTypes list by filter:", query);
         return refDelayTypesService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class RefDelayTypesController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefDelayTypes> filterRefDelayTypes(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefDelayTypes list");
+        LOGGER.debug("Rendering RefDelayTypes list by filter", query);
         return refDelayTypesService.findAll(query, pageable);
     }
 

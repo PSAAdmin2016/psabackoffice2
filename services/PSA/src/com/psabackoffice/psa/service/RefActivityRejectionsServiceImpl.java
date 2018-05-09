@@ -59,7 +59,7 @@ public class RefActivityRejectionsServiceImpl implements RefActivityRejectionsSe
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefActivityRejections getById(Integer refactivityrejectionsId) throws EntityNotFoundException {
+	public RefActivityRejections getById(Integer refactivityrejectionsId) {
         LOGGER.debug("Finding RefActivityRejections by id: {}", refactivityrejectionsId);
         return this.wmGenericDao.findById(refactivityrejectionsId);
     }
@@ -79,7 +79,7 @@ public class RefActivityRejectionsServiceImpl implements RefActivityRejectionsSe
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefActivityRejections update(RefActivityRejections refActivityRejections) throws EntityNotFoundException {
+	public RefActivityRejections update(RefActivityRejections refActivityRejections) {
         LOGGER.debug("Updating RefActivityRejections with information: {}", refActivityRejections);
 
         this.wmGenericDao.update(refActivityRejections);
@@ -90,7 +90,7 @@ public class RefActivityRejectionsServiceImpl implements RefActivityRejectionsSe
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefActivityRejections delete(Integer refactivityrejectionsId) throws EntityNotFoundException {
+	public RefActivityRejections delete(Integer refactivityrejectionsId) {
         LOGGER.debug("Deleting RefActivityRejections with id: {}", refactivityrejectionsId);
         RefActivityRejections deleted = this.wmGenericDao.findById(refactivityrejectionsId);
         if (deleted == null) {

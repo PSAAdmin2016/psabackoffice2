@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class TblUserJobNumbersController {
     @ApiOperation(value = "Returns the TblUserJobNumbers instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public TblUserJobNumbers getTblUserJobNumbers(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public TblUserJobNumbers getTblUserJobNumbers(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting TblUserJobNumbers with id: {}" , id);
 
         TblUserJobNumbers foundTblUserJobNumbers = tblUserJobNumbersService.getById(id);
@@ -78,7 +77,7 @@ public class TblUserJobNumbersController {
     @ApiOperation(value = "Updates the TblUserJobNumbers instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public TblUserJobNumbers editTblUserJobNumbers(@PathVariable("id") Integer id, @RequestBody TblUserJobNumbers tblUserJobNumbers) throws EntityNotFoundException {
+    public TblUserJobNumbers editTblUserJobNumbers(@PathVariable("id") Integer id, @RequestBody TblUserJobNumbers tblUserJobNumbers) {
         LOGGER.debug("Editing TblUserJobNumbers with id: {}" , tblUserJobNumbers.getId());
 
         tblUserJobNumbers.setId(id);
@@ -91,7 +90,7 @@ public class TblUserJobNumbersController {
     @ApiOperation(value = "Deletes the TblUserJobNumbers instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteTblUserJobNumbers(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteTblUserJobNumbers(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting TblUserJobNumbers with id: {}" , id);
 
         TblUserJobNumbers deletedTblUserJobNumbers = tblUserJobNumbersService.delete(id);
@@ -107,7 +106,7 @@ public class TblUserJobNumbersController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblUserJobNumbers> searchTblUserJobNumbersByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering TblUserJobNumbers list");
+        LOGGER.debug("Rendering TblUserJobNumbers list by query filter:{}", (Object) queryFilters);
         return tblUserJobNumbersService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class TblUserJobNumbersController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblUserJobNumbers> findTblUserJobNumbers(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering TblUserJobNumbers list");
+        LOGGER.debug("Rendering TblUserJobNumbers list by filter:", query);
         return tblUserJobNumbersService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class TblUserJobNumbersController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblUserJobNumbers> filterTblUserJobNumbers(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering TblUserJobNumbers list");
+        LOGGER.debug("Rendering TblUserJobNumbers list by filter", query);
         return tblUserJobNumbersService.findAll(query, pageable);
     }
 

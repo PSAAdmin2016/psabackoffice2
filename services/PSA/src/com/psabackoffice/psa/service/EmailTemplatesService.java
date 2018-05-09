@@ -43,7 +43,7 @@ public interface EmailTemplatesService {
 	 * @return EmailTemplates associated with the given emailtemplatesId.
      * @throws EntityNotFoundException If no EmailTemplates is found.
 	 */
-	EmailTemplates getById(Integer emailtemplatesId) throws EntityNotFoundException;
+	EmailTemplates getById(Integer emailtemplatesId);
 
     /**
 	 * Find and return the EmailTemplates by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface EmailTemplatesService {
 	 * @return The updated EmailTemplates.
 	 * @throws EntityNotFoundException if no EmailTemplates is found with given input.
 	 */
-	EmailTemplates update(@Valid EmailTemplates emailTemplates) throws EntityNotFoundException;
+	EmailTemplates update(@Valid EmailTemplates emailTemplates);
 
     /**
 	 * Deletes an existing EmailTemplates with the given id.
@@ -72,7 +72,7 @@ public interface EmailTemplatesService {
 	 * @return The deleted EmailTemplates.
 	 * @throws EntityNotFoundException if no EmailTemplates found with the given id.
 	 */
-	EmailTemplates delete(Integer emailtemplatesId) throws EntityNotFoundException;
+	EmailTemplates delete(Integer emailtemplatesId);
 
     /**
 	 * Deletes an existing EmailTemplates with the given object.

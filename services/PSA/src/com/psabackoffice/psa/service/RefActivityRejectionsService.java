@@ -43,7 +43,7 @@ public interface RefActivityRejectionsService {
 	 * @return RefActivityRejections associated with the given refactivityrejectionsId.
      * @throws EntityNotFoundException If no RefActivityRejections is found.
 	 */
-	RefActivityRejections getById(Integer refactivityrejectionsId) throws EntityNotFoundException;
+	RefActivityRejections getById(Integer refactivityrejectionsId);
 
     /**
 	 * Find and return the RefActivityRejections by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface RefActivityRejectionsService {
 	 * @return The updated RefActivityRejections.
 	 * @throws EntityNotFoundException if no RefActivityRejections is found with given input.
 	 */
-	RefActivityRejections update(@Valid RefActivityRejections refActivityRejections) throws EntityNotFoundException;
+	RefActivityRejections update(@Valid RefActivityRejections refActivityRejections);
 
     /**
 	 * Deletes an existing RefActivityRejections with the given id.
@@ -72,7 +72,7 @@ public interface RefActivityRejectionsService {
 	 * @return The deleted RefActivityRejections.
 	 * @throws EntityNotFoundException if no RefActivityRejections found with the given id.
 	 */
-	RefActivityRejections delete(Integer refactivityrejectionsId) throws EntityNotFoundException;
+	RefActivityRejections delete(Integer refactivityrejectionsId);
 
     /**
 	 * Deletes an existing RefActivityRejections with the given object.

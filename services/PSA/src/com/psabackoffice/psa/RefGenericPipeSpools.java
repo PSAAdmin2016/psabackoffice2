@@ -23,7 +23,6 @@ import javax.persistence.Table;
 public class RefGenericPipeSpools implements Serializable {
 
     private Integer id;
-    private String value;
     private String label;
 
     @Id
@@ -35,15 +34,6 @@ public class RefGenericPipeSpools implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    @Column(name = "`Value`", nullable = true, length = 45)
-    public String getValue() {
-        return this.value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
     }
 
     @Column(name = "`Label`", nullable = true, length = 45)

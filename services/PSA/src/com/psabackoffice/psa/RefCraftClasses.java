@@ -70,9 +70,7 @@ public class RefCraftClasses implements Serializable {
     @PostPersist
     public void onPostPersist() {
         if(tblUserPsas != null) {
-            for(TblUserPsa tblUserPsa : tblUserPsas) {
-                tblUserPsa.setRefCraftClasses(this);
-            }
+            tblUserPsas.forEach(tblUserPsa -> tblUserPsa.setRefCraftClasses(this));
         }
     }
 

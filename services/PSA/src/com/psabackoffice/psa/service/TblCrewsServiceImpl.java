@@ -68,7 +68,7 @@ public class TblCrewsServiceImpl implements TblCrewsService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public TblCrews getById(Integer tblcrewsId) throws EntityNotFoundException {
+	public TblCrews getById(Integer tblcrewsId) {
         LOGGER.debug("Finding TblCrews by id: {}", tblcrewsId);
         return this.wmGenericDao.findById(tblcrewsId);
     }
@@ -92,29 +92,17 @@ public class TblCrewsServiceImpl implements TblCrewsService {
         foremanMap.put("foreman", foreman);
 
         LOGGER.debug("Finding TblCrews by unique keys: {}", foremanMap);
-        TblCrews tblCrews = this.wmGenericDao.findByUniqueKey(foremanMap);
-
-        if (tblCrews == null){
-            LOGGER.debug("No TblCrews found with given unique key values: {}", foremanMap);
-            throw new EntityNotFoundException(String.valueOf(foremanMap));
-        }
-
-        return tblCrews;
+        return this.wmGenericDao.findByUniqueKey(foremanMap);
     }
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public TblCrews update(TblCrews tblCrews) throws EntityNotFoundException {
+	public TblCrews update(TblCrews tblCrews) {
         LOGGER.debug("Updating TblCrews with information: {}", tblCrews);
 
         List<TblCrewsRev> tblCrewsRevs = tblCrews.getTblCrewsRevs();
-
         if(tblCrewsRevs != null && Hibernate.isInitialized(tblCrewsRevs)) {
-            if(!tblCrewsRevs.isEmpty()) {
-                for(TblCrewsRev _tblCrewsRev : tblCrewsRevs) {
-                    _tblCrewsRev.setTblCrews(tblCrews);
-                }
-            }
+            tblCrewsRevs.forEach(_tblCrewsRev -> _tblCrewsRev.setTblCrews(tblCrews));
         }
 
         this.wmGenericDao.update(tblCrews);
@@ -125,7 +113,7 @@ public class TblCrewsServiceImpl implements TblCrewsService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public TblCrews delete(Integer tblcrewsId) throws EntityNotFoundException {
+	public TblCrews delete(Integer tblcrewsId) {
         LOGGER.debug("Deleting TblCrews with id: {}", tblcrewsId);
         TblCrews deleted = this.wmGenericDao.findById(tblcrewsId);
         if (deleted == null) {

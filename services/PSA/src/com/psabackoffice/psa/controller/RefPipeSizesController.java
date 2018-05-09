@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class RefPipeSizesController {
     @ApiOperation(value = "Returns the RefPipeSizes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefPipeSizes getRefPipeSizes(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefPipeSizes getRefPipeSizes(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefPipeSizes with id: {}" , id);
 
         RefPipeSizes foundRefPipeSizes = refPipeSizesService.getById(id);
@@ -78,7 +77,7 @@ public class RefPipeSizesController {
     @ApiOperation(value = "Updates the RefPipeSizes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefPipeSizes editRefPipeSizes(@PathVariable("id") Integer id, @RequestBody RefPipeSizes refPipeSizes) throws EntityNotFoundException {
+    public RefPipeSizes editRefPipeSizes(@PathVariable("id") Integer id, @RequestBody RefPipeSizes refPipeSizes) {
         LOGGER.debug("Editing RefPipeSizes with id: {}" , refPipeSizes.getId());
 
         refPipeSizes.setId(id);
@@ -91,7 +90,7 @@ public class RefPipeSizesController {
     @ApiOperation(value = "Deletes the RefPipeSizes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefPipeSizes(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefPipeSizes(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefPipeSizes with id: {}" , id);
 
         RefPipeSizes deletedRefPipeSizes = refPipeSizesService.delete(id);
@@ -107,7 +106,7 @@ public class RefPipeSizesController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefPipeSizes> searchRefPipeSizesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefPipeSizes list");
+        LOGGER.debug("Rendering RefPipeSizes list by query filter:{}", (Object) queryFilters);
         return refPipeSizesService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class RefPipeSizesController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefPipeSizes> findRefPipeSizes(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefPipeSizes list");
+        LOGGER.debug("Rendering RefPipeSizes list by filter:", query);
         return refPipeSizesService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class RefPipeSizesController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefPipeSizes> filterRefPipeSizes(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefPipeSizes list");
+        LOGGER.debug("Rendering RefPipeSizes list by filter", query);
         return refPipeSizesService.findAll(query, pageable);
     }
 

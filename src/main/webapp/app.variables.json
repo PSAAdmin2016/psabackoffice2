@@ -1693,8 +1693,8 @@
         "isPrimaryKey" : true,
         "notNull" : true,
         "length" : 0,
-        "precision" : 10,
-        "generator" : "identity",
+        "precision" : 3,
+        "generator" : "assigned",
         "isRelated" : false,
         "scale" : 0
       }, {
@@ -1818,7 +1818,7 @@
         "isPrimaryKey" : true,
         "notNull" : true,
         "length" : 0,
-        "precision" : 10,
+        "precision" : 3,
         "generator" : "assigned",
         "isRelated" : false,
         "scale" : 0
@@ -2067,18 +2067,6 @@
         "length" : 0,
         "precision" : 10,
         "generator" : "identity",
-        "isRelated" : false,
-        "scale" : 0
-      }, {
-        "fieldName" : "value",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "Value",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 45,
-        "precision" : 0,
-        "generator" : "assigned",
         "isRelated" : false,
         "scale" : 0
       }, {
@@ -3072,63 +3060,6 @@
     "matchMode" : "start",
     "propertiesMap" : {
       "columns" : [ {
-        "fieldName" : "tblJobNumbers",
-        "type" : "integer",
-        "fullyQualifiedType" : "integer",
-        "columnName" : "fk_JobNumber",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 0,
-        "precision" : 10,
-        "generator" : "assigned",
-        "isRelated" : true,
-        "relatedTableName" : "tblJobNumbers",
-        "relatedEntityName" : "TblJobNumbers",
-        "relatedColumnName" : "fkJobNumber",
-        "relatedFieldName" : "tblJobNumbers.jobNumber",
-        "isList" : false,
-        "targetTable" : "tblJobNumbers",
-        "scale" : 0,
-        "columns" : [ {
-          "fieldName" : "tblJobSites",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "fk_JobSiteId",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 10,
-          "generator" : "assigned",
-          "isRelated" : true,
-          "relatedColumnName" : "fkJobSiteId",
-          "targetTable" : "tblJobSites",
-          "scale" : 0
-        }, {
-          "fieldName" : "jobNumber",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "JobNumber",
-          "isPrimaryKey" : true,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 10,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "scale" : 0
-        }, {
-          "fieldName" : "status",
-          "type" : "short",
-          "fullyQualifiedType" : "short",
-          "columnName" : "Status",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 3,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "scale" : 0
-        } ]
-      }, {
         "fieldName" : "tblUserPsa",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
@@ -3147,6 +3078,20 @@
         "targetTable" : "tblUserPSA",
         "scale" : 0,
         "columns" : [ {
+          "fieldName" : "refCrafts",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "fk_CraftId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "relatedColumnName" : "fkCraftId",
+          "targetTable" : "REF_Crafts",
+          "scale" : 0
+        }, {
           "fieldName" : "refDisciplines",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
@@ -3187,20 +3132,6 @@
           "isRelated" : true,
           "relatedColumnName" : "fkCraftClassId",
           "targetTable" : "REF_CraftClasses",
-          "scale" : 0
-        }, {
-          "fieldName" : "refCrafts",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "fk_CraftId",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 10,
-          "generator" : "assigned",
-          "isRelated" : true,
-          "relatedColumnName" : "fkCraftId",
-          "targetTable" : "REF_Crafts",
           "scale" : 0
         }, {
           "fieldName" : "id",
@@ -3348,6 +3279,63 @@
           "scale" : 0
         } ]
       }, {
+        "fieldName" : "tblJobNumbers",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "fk_JobNumber",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : true,
+        "relatedTableName" : "tblJobNumbers",
+        "relatedEntityName" : "TblJobNumbers",
+        "relatedColumnName" : "fkJobNumber",
+        "relatedFieldName" : "tblJobNumbers.jobNumber",
+        "isList" : false,
+        "targetTable" : "tblJobNumbers",
+        "scale" : 0,
+        "columns" : [ {
+          "fieldName" : "tblJobSites",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "fk_JobSiteId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "relatedColumnName" : "fkJobSiteId",
+          "targetTable" : "tblJobSites",
+          "scale" : 0
+        }, {
+          "fieldName" : "jobNumber",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "JobNumber",
+          "isPrimaryKey" : true,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
+        }, {
+          "fieldName" : "status",
+          "type" : "short",
+          "fullyQualifiedType" : "short",
+          "columnName" : "Status",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 3,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
+        } ]
+      }, {
         "fieldName" : "id",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
@@ -3370,18 +3358,18 @@
     "tableName" : "tblUserJobNumbers",
     "tableType" : "TABLE",
     "dbSystem" : "MySQL",
-    "properties" : [ "tblJobNumbers", "tblUserPsa" ],
+    "properties" : [ "tblUserPsa", "tblJobNumbers" ],
     "relatedTables" : [ {
-      "columnName" : "tblJobNumbers",
-      "relationName" : "tblJobNumbers",
-      "type" : "TblJobNumbers",
-      "watchOn" : "PSATblJobNumbersData",
-      "package" : "com.psabackoffice.psa.TblUserJobNumbers"
-    }, {
       "columnName" : "tblUserPsa",
       "relationName" : "tblUserPsa",
       "type" : "TblUserPsa",
       "watchOn" : "PSATblUserPsaData",
+      "package" : "com.psabackoffice.psa.TblUserJobNumbers"
+    }, {
+      "columnName" : "tblJobNumbers",
+      "relationName" : "tblJobNumbers",
+      "type" : "TblJobNumbers",
+      "watchOn" : "PSATblJobNumbersData",
       "package" : "com.psabackoffice.psa.TblUserJobNumbers"
     } ],
     "filterFields" : { },
@@ -3410,6 +3398,49 @@
     "matchMode" : "start",
     "propertiesMap" : {
       "columns" : [ {
+        "fieldName" : "refCrafts",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "fk_CraftId",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : true,
+        "relatedTableName" : "REF_Crafts",
+        "relatedEntityName" : "RefCrafts",
+        "relatedColumnName" : "fkCraftId",
+        "relatedFieldName" : "refCrafts.id",
+        "isList" : false,
+        "targetTable" : "REF_Crafts",
+        "scale" : 0,
+        "columns" : [ {
+          "fieldName" : "id",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ID",
+          "isPrimaryKey" : true,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "identity",
+          "isRelated" : false,
+          "scale" : 0
+        }, {
+          "fieldName" : "craft",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "Craft",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 45,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
+        } ]
+      }, {
         "fieldName" : "refDisciplines",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
@@ -3544,49 +3575,6 @@
           "type" : "string",
           "fullyQualifiedType" : "string",
           "columnName" : "ClassName",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 45,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "scale" : 0
-        } ]
-      }, {
-        "fieldName" : "refCrafts",
-        "type" : "integer",
-        "fullyQualifiedType" : "integer",
-        "columnName" : "fk_CraftId",
-        "isPrimaryKey" : false,
-        "notNull" : false,
-        "length" : 0,
-        "precision" : 10,
-        "generator" : "assigned",
-        "isRelated" : true,
-        "relatedTableName" : "REF_Crafts",
-        "relatedEntityName" : "RefCrafts",
-        "relatedColumnName" : "fkCraftId",
-        "relatedFieldName" : "refCrafts.id",
-        "isList" : false,
-        "targetTable" : "REF_Crafts",
-        "scale" : 0,
-        "columns" : [ {
-          "fieldName" : "id",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "ID",
-          "isPrimaryKey" : true,
-          "notNull" : true,
-          "length" : 0,
-          "precision" : 10,
-          "generator" : "identity",
-          "isRelated" : false,
-          "scale" : 0
-        }, {
-          "fieldName" : "craft",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "Craft",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 45,
@@ -3750,8 +3738,14 @@
     "tableName" : "tblUserPSA",
     "tableType" : "TABLE",
     "dbSystem" : "MySQL",
-    "properties" : [ "refDisciplines", "tblJobNumbers", "refCraftClasses", "refCrafts" ],
+    "properties" : [ "refCrafts", "refDisciplines", "tblJobNumbers", "refCraftClasses" ],
     "relatedTables" : [ {
+      "columnName" : "refCrafts",
+      "relationName" : "refCrafts",
+      "type" : "RefCrafts",
+      "watchOn" : "PSARefCraftsData",
+      "package" : "com.psabackoffice.psa.TblUserPsa"
+    }, {
       "columnName" : "refDisciplines",
       "relationName" : "refDisciplines",
       "type" : "RefDisciplines",
@@ -3768,12 +3762,6 @@
       "relationName" : "refCraftClasses",
       "type" : "RefCraftClasses",
       "watchOn" : "PSARefCraftClassesData",
-      "package" : "com.psabackoffice.psa.TblUserPsa"
-    }, {
-      "columnName" : "refCrafts",
-      "relationName" : "refCrafts",
-      "type" : "RefCrafts",
-      "watchOn" : "PSARefCraftsData",
       "package" : "com.psabackoffice.psa.TblUserPsa"
     } ],
     "filterFields" : { },
@@ -4205,6 +4193,20 @@
         "targetTable" : "tblUserPSA",
         "scale" : 0,
         "columns" : [ {
+          "fieldName" : "refCrafts",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "fk_CraftId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : true,
+          "relatedColumnName" : "fkCraftId",
+          "targetTable" : "REF_Crafts",
+          "scale" : 0
+        }, {
           "fieldName" : "refDisciplines",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
@@ -4245,20 +4247,6 @@
           "isRelated" : true,
           "relatedColumnName" : "fkCraftClassId",
           "targetTable" : "REF_CraftClasses",
-          "scale" : 0
-        }, {
-          "fieldName" : "refCrafts",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
-          "columnName" : "fk_CraftId",
-          "isPrimaryKey" : false,
-          "notNull" : false,
-          "length" : 0,
-          "precision" : 10,
-          "generator" : "assigned",
-          "isRelated" : true,
-          "relatedColumnName" : "fkCraftId",
-          "targetTable" : "REF_Crafts",
           "scale" : 0
         }, {
           "fieldName" : "id",

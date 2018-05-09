@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class ChatConversationMembersController {
     @ApiOperation(value = "Returns the ChatConversationMembers instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public ChatConversationMembers getChatConversationMembers(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public ChatConversationMembers getChatConversationMembers(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting ChatConversationMembers with id: {}" , id);
 
         ChatConversationMembers foundChatConversationMembers = chatConversationMembersService.getById(id);
@@ -78,7 +77,7 @@ public class ChatConversationMembersController {
     @ApiOperation(value = "Updates the ChatConversationMembers instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public ChatConversationMembers editChatConversationMembers(@PathVariable("id") Integer id, @RequestBody ChatConversationMembers chatConversationMembers) throws EntityNotFoundException {
+    public ChatConversationMembers editChatConversationMembers(@PathVariable("id") Integer id, @RequestBody ChatConversationMembers chatConversationMembers) {
         LOGGER.debug("Editing ChatConversationMembers with id: {}" , chatConversationMembers.getUid());
 
         chatConversationMembers.setUid(id);
@@ -91,7 +90,7 @@ public class ChatConversationMembersController {
     @ApiOperation(value = "Deletes the ChatConversationMembers instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteChatConversationMembers(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteChatConversationMembers(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting ChatConversationMembers with id: {}" , id);
 
         ChatConversationMembers deletedChatConversationMembers = chatConversationMembersService.delete(id);
@@ -107,7 +106,7 @@ public class ChatConversationMembersController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<ChatConversationMembers> searchChatConversationMembersByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering ChatConversationMembers list");
+        LOGGER.debug("Rendering ChatConversationMembers list by query filter:{}", (Object) queryFilters);
         return chatConversationMembersService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class ChatConversationMembersController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<ChatConversationMembers> findChatConversationMembers(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering ChatConversationMembers list");
+        LOGGER.debug("Rendering ChatConversationMembers list by filter:", query);
         return chatConversationMembersService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class ChatConversationMembersController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<ChatConversationMembers> filterChatConversationMembers(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering ChatConversationMembers list");
+        LOGGER.debug("Rendering ChatConversationMembers list by filter", query);
         return chatConversationMembersService.findAll(query, pageable);
     }
 

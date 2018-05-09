@@ -59,7 +59,7 @@ public class RefChatStatusServiceImpl implements RefChatStatusService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefChatStatus getById(Integer refchatstatusId) throws EntityNotFoundException {
+	public RefChatStatus getById(Integer refchatstatusId) {
         LOGGER.debug("Finding RefChatStatus by id: {}", refchatstatusId);
         return this.wmGenericDao.findById(refchatstatusId);
     }
@@ -79,7 +79,7 @@ public class RefChatStatusServiceImpl implements RefChatStatusService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefChatStatus update(RefChatStatus refChatStatus) throws EntityNotFoundException {
+	public RefChatStatus update(RefChatStatus refChatStatus) {
         LOGGER.debug("Updating RefChatStatus with information: {}", refChatStatus);
 
         this.wmGenericDao.update(refChatStatus);
@@ -90,7 +90,7 @@ public class RefChatStatusServiceImpl implements RefChatStatusService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefChatStatus delete(Integer refchatstatusId) throws EntityNotFoundException {
+	public RefChatStatus delete(Integer refchatstatusId) {
         LOGGER.debug("Deleting RefChatStatus with id: {}", refchatstatusId);
         RefChatStatus deleted = this.wmGenericDao.findById(refchatstatusId);
         if (deleted == null) {

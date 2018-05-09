@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class RefJobTitlesController {
     @ApiOperation(value = "Returns the RefJobTitles instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefJobTitles getRefJobTitles(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefJobTitles getRefJobTitles(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefJobTitles with id: {}" , id);
 
         RefJobTitles foundRefJobTitles = refJobTitlesService.getById(id);
@@ -78,7 +77,7 @@ public class RefJobTitlesController {
     @ApiOperation(value = "Updates the RefJobTitles instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefJobTitles editRefJobTitles(@PathVariable("id") Integer id, @RequestBody RefJobTitles refJobTitles) throws EntityNotFoundException {
+    public RefJobTitles editRefJobTitles(@PathVariable("id") Integer id, @RequestBody RefJobTitles refJobTitles) {
         LOGGER.debug("Editing RefJobTitles with id: {}" , refJobTitles.getId());
 
         refJobTitles.setId(id);
@@ -91,7 +90,7 @@ public class RefJobTitlesController {
     @ApiOperation(value = "Deletes the RefJobTitles instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefJobTitles(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefJobTitles(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefJobTitles with id: {}" , id);
 
         RefJobTitles deletedRefJobTitles = refJobTitlesService.delete(id);
@@ -115,7 +114,7 @@ public class RefJobTitlesController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefJobTitles> searchRefJobTitlesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefJobTitles list");
+        LOGGER.debug("Rendering RefJobTitles list by query filter:{}", (Object) queryFilters);
         return refJobTitlesService.findAll(queryFilters, pageable);
     }
 
@@ -123,7 +122,7 @@ public class RefJobTitlesController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefJobTitles> findRefJobTitles(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefJobTitles list");
+        LOGGER.debug("Rendering RefJobTitles list by filter:", query);
         return refJobTitlesService.findAll(query, pageable);
     }
 
@@ -131,7 +130,7 @@ public class RefJobTitlesController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefJobTitles> filterRefJobTitles(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefJobTitles list");
+        LOGGER.debug("Rendering RefJobTitles list by filter", query);
         return refJobTitlesService.findAll(query, pageable);
     }
 

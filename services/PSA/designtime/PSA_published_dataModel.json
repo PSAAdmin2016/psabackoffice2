@@ -1607,7 +1607,7 @@
       "constraintList" : null,
       "fieldName" : "id",
       "foreignKey" : false,
-      "generatorType" : "identity",
+      "generatorType" : "assigned",
       "generatorValue" : null,
       "hidden" : false,
       "javaType" : "integer",
@@ -1620,7 +1620,7 @@
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
       "period" : false,
-      "precision" : 10,
+      "precision" : 3,
       "primaryKey" : true,
       "scale" : 0,
       "sequenceSchema" : null,
@@ -1667,7 +1667,7 @@
       "columns" : [ "ID" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "identity",
+        "generatorType" : "assigned",
         "generatorValue" : null,
         "schemaName" : null
       },
@@ -1786,7 +1786,7 @@
       "partOfPrimaryKey" : true,
       "partOfUniqueKey" : true,
       "period" : false,
-      "precision" : 10,
+      "precision" : 3,
       "primaryKey" : true,
       "scale" : 0,
       "sequenceSchema" : null,
@@ -2152,35 +2152,6 @@
       "scale" : 0,
       "sequenceSchema" : null,
       "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null,
-        "type" : "user-defined"
-      },
-      "constraintList" : null,
-      "fieldName" : "value",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "hidden" : false,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "Value",
-      "nullable" : true,
-      "oldName" : "Value",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "period" : false,
-      "precision" : 10,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
       "unique" : false
     } ],
     "constraints" : [ ],
@@ -2717,35 +2688,6 @@
         "type" : "user-defined"
       },
       "constraintList" : null,
-      "fieldName" : "value",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "hidden" : false,
-      "javaType" : "string",
-      "length" : 45,
-      "name" : "Value",
-      "nullable" : true,
-      "oldName" : "Value",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "period" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null,
-        "type" : "user-defined"
-      },
-      "constraintList" : null,
       "fieldName" : "label",
       "foreignKey" : false,
       "generatorType" : "assigned",
@@ -3147,118 +3089,6 @@
     "ignoreRefreshAfterInsert" : false,
     "name" : "REF_PercentList",
     "oldName" : "REF_PercentList",
-    "primaryKey" : {
-      "columns" : [ "ID" ],
-      "composite" : false,
-      "generator" : {
-        "generatorType" : "identity",
-        "generatorValue" : null,
-        "schemaName" : null
-      },
-      "name" : "PRIMARY",
-      "virtual" : false
-    },
-    "relations" : [ ],
-    "schema" : null,
-    "temporals" : [ ],
-    "type" : "TABLE"
-  }, {
-    "catalog" : "PSA",
-    "columns" : [ {
-      "columnValue" : {
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null,
-        "type" : "user-defined"
-      },
-      "constraintList" : null,
-      "fieldName" : "id",
-      "foreignKey" : false,
-      "generatorType" : "identity",
-      "generatorValue" : null,
-      "hidden" : false,
-      "javaType" : "integer",
-      "length" : 0,
-      "name" : "ID",
-      "nullable" : false,
-      "oldName" : "ID",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : true,
-      "partOfUniqueKey" : true,
-      "period" : false,
-      "precision" : 10,
-      "primaryKey" : true,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : true
-    }, {
-      "columnValue" : {
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null,
-        "type" : "user-defined"
-      },
-      "constraintList" : null,
-      "fieldName" : "label",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "hidden" : false,
-      "javaType" : "string",
-      "length" : 45,
-      "name" : "label",
-      "nullable" : true,
-      "oldName" : "label",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "period" : false,
-      "precision" : 0,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "string",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null,
-        "type" : "user-defined"
-      },
-      "constraintList" : null,
-      "fieldName" : "value",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "hidden" : false,
-      "javaType" : "short",
-      "length" : 0,
-      "name" : "Value",
-      "nullable" : true,
-      "oldName" : "Value",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "period" : false,
-      "precision" : 3,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : false
-    } ],
-    "constraints" : [ ],
-    "entityName" : "RefPipeDemoTypes",
-    "filter" : null,
-    "fullyQualifiedName" : "com.psabackoffice.psa.RefPipeDemoTypes",
-    "ignoreRefreshAfterInsert" : false,
-    "name" : "REF_PipeDemoTypes",
-    "oldName" : "REF_PipeDemoTypes",
     "primaryKey" : {
       "columns" : [ "ID" ],
       "composite" : false,
@@ -4858,6 +4688,93 @@
       "virtual" : false
     },
     "relations" : [ {
+      "cardinality" : "OneToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
+      "columnsUniqueKey" : true,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "tblUserPsaByForeman",
+      "mappings" : [ {
+        "sourceColumn" : "Foreman",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "ForemanToUserID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : false,
+      "sourceTable" : "tblCrews",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "tblUserPSA",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "tblUserPsaByProjectManager",
+      "mappings" : [ {
+        "sourceColumn" : "ProjectManager",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "PMtoUserID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "tblCrews",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "tblUserPSA",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "tblUserPsaByAreaManager",
+      "mappings" : [ {
+        "sourceColumn" : "AreaManager",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "AreaMtoUserID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "tblCrews",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "tblUserPSA",
+      "virtual" : false
+    }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
         "cascadeRemove" : "REMOVE",
@@ -5049,93 +4966,6 @@
         "targetColumn" : "ID"
       } ],
       "name" : "SuperToUserID",
-      "parentFetchOptions" : {
-        "fetch" : false,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblCrews",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblUserPSA",
-      "virtual" : false
-    }, {
-      "cardinality" : "OneToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
-      },
-      "columnsUniqueKey" : true,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "tblUserPsaByForeman",
-      "mappings" : [ {
-        "sourceColumn" : "Foreman",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "ForemanToUserID",
-      "parentFetchOptions" : {
-        "fetch" : false,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : false,
-      "sourceTable" : "tblCrews",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblUserPSA",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "tblUserPsaByProjectManager",
-      "mappings" : [ {
-        "sourceColumn" : "ProjectManager",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "PMtoUserID",
-      "parentFetchOptions" : {
-        "fetch" : false,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblCrews",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblUserPSA",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "tblUserPsaByAreaManager",
-      "mappings" : [ {
-        "sourceColumn" : "AreaManager",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "AreaMtoUserID",
       "parentFetchOptions" : {
         "fetch" : false,
         "columnsFilter" : [ ]
@@ -6241,35 +6071,6 @@
         "fetch" : true,
         "columnsFilter" : [ ]
       },
-      "fieldName" : "tblJobNumbers",
-      "mappings" : [ {
-        "sourceColumn" : "fk_JobNumber",
-        "targetColumn" : "JobNumber"
-      } ],
-      "name" : "fk_JobNumbers_tblJobNumbers",
-      "parentFetchOptions" : {
-        "fetch" : false,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblUserJobNumbers",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "tblJobNumbers",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
       "fieldName" : "tblUserPsa",
       "mappings" : [ {
         "sourceColumn" : "fk_UserId",
@@ -6286,6 +6087,35 @@
       "sourceTable" : "tblUserJobNumbers",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "tblUserPSA",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "tblJobNumbers",
+      "mappings" : [ {
+        "sourceColumn" : "fk_JobNumber",
+        "targetColumn" : "JobNumber"
+      } ],
+      "name" : "fk_JobNumbers_tblJobNumbers",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "tblUserJobNumbers",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "tblJobNumbers",
       "virtual" : false
     } ],
     "schema" : null,
@@ -6958,16 +6788,16 @@
       "unique" : false
     } ],
     "constraints" : [ {
-      "columns" : [ "Email" ],
+      "columns" : [ "pciEmployeeId" ],
       "composite" : false,
-      "name" : "Email_UNIQUE",
+      "name" : "pciEmployeeId_UNIQUE",
       "schemaName" : null,
       "type" : "UNIQUE",
       "virtual" : false
     }, {
-      "columns" : [ "pciEmployeeId" ],
+      "columns" : [ "Email" ],
       "composite" : false,
-      "name" : "pciEmployeeId_UNIQUE",
+      "name" : "Email_UNIQUE",
       "schemaName" : null,
       "type" : "UNIQUE",
       "virtual" : false
@@ -6990,6 +6820,35 @@
       "virtual" : false
     },
     "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "REMOVE",
+        "cascadeReplace" : false
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "refCrafts",
+      "mappings" : [ {
+        "sourceColumn" : "fk_CraftId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "fk_CraftsTO_REFCrafts",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "tblUserPSA",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "REF_Crafts",
+      "virtual" : false
+    }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
         "cascadeRemove" : "REMOVE",
@@ -7075,35 +6934,6 @@
       "sourceTable" : "tblUserPSA",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "REF_CraftClasses",
-      "virtual" : false
-    }, {
-      "cardinality" : "ManyToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "refCrafts",
-      "mappings" : [ {
-        "sourceColumn" : "fk_CraftId",
-        "targetColumn" : "ID"
-      } ],
-      "name" : "fk_CraftsTO_REFCrafts",
-      "parentFetchOptions" : {
-        "fetch" : false,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "tblUserPSA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "REF_Crafts",
       "virtual" : false
     } ],
     "schema" : null,

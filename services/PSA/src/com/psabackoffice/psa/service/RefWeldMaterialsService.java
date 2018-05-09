@@ -43,7 +43,7 @@ public interface RefWeldMaterialsService {
 	 * @return RefWeldMaterials associated with the given refweldmaterialsId.
      * @throws EntityNotFoundException If no RefWeldMaterials is found.
 	 */
-	RefWeldMaterials getById(Integer refweldmaterialsId) throws EntityNotFoundException;
+	RefWeldMaterials getById(Integer refweldmaterialsId);
 
     /**
 	 * Find and return the RefWeldMaterials by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface RefWeldMaterialsService {
 	 * @return The updated RefWeldMaterials.
 	 * @throws EntityNotFoundException if no RefWeldMaterials is found with given input.
 	 */
-	RefWeldMaterials update(@Valid RefWeldMaterials refWeldMaterials) throws EntityNotFoundException;
+	RefWeldMaterials update(@Valid RefWeldMaterials refWeldMaterials);
 
     /**
 	 * Deletes an existing RefWeldMaterials with the given id.
@@ -72,7 +72,7 @@ public interface RefWeldMaterialsService {
 	 * @return The deleted RefWeldMaterials.
 	 * @throws EntityNotFoundException if no RefWeldMaterials found with the given id.
 	 */
-	RefWeldMaterials delete(Integer refweldmaterialsId) throws EntityNotFoundException;
+	RefWeldMaterials delete(Integer refweldmaterialsId);
 
     /**
 	 * Deletes an existing RefWeldMaterials with the given object.

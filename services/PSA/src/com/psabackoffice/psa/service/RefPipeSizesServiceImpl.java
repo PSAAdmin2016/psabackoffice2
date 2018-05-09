@@ -59,7 +59,7 @@ public class RefPipeSizesServiceImpl implements RefPipeSizesService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefPipeSizes getById(Integer refpipesizesId) throws EntityNotFoundException {
+	public RefPipeSizes getById(Integer refpipesizesId) {
         LOGGER.debug("Finding RefPipeSizes by id: {}", refpipesizesId);
         return this.wmGenericDao.findById(refpipesizesId);
     }
@@ -79,7 +79,7 @@ public class RefPipeSizesServiceImpl implements RefPipeSizesService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefPipeSizes update(RefPipeSizes refPipeSizes) throws EntityNotFoundException {
+	public RefPipeSizes update(RefPipeSizes refPipeSizes) {
         LOGGER.debug("Updating RefPipeSizes with information: {}", refPipeSizes);
 
         this.wmGenericDao.update(refPipeSizes);
@@ -90,7 +90,7 @@ public class RefPipeSizesServiceImpl implements RefPipeSizesService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefPipeSizes delete(Integer refpipesizesId) throws EntityNotFoundException {
+	public RefPipeSizes delete(Integer refpipesizesId) {
         LOGGER.debug("Deleting RefPipeSizes with id: {}", refpipesizesId);
         RefPipeSizes deleted = this.wmGenericDao.findById(refpipesizesId);
         if (deleted == null) {

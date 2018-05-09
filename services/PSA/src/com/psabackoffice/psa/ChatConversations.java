@@ -83,14 +83,10 @@ public class ChatConversations implements Serializable {
     @PostPersist
     public void onPostPersist() {
         if(chatConversationMemberses != null) {
-            for(ChatConversationMembers chatConversationMembers : chatConversationMemberses) {
-                chatConversationMembers.setChatConversations(this);
-            }
+            chatConversationMemberses.forEach(chatConversationMembers -> chatConversationMembers.setChatConversations(this));
         }
         if(chatMessageses != null) {
-            for(ChatMessages chatMessages : chatMessageses) {
-                chatMessages.setChatConversations(this);
-            }
+            chatMessageses.forEach(chatMessages -> chatMessages.setChatConversations(this));
         }
     }
 

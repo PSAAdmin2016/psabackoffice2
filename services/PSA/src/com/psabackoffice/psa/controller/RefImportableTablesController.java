@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class RefImportableTablesController {
     @ApiOperation(value = "Returns the RefImportableTables instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefImportableTables getRefImportableTables(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefImportableTables getRefImportableTables(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefImportableTables with id: {}" , id);
 
         RefImportableTables foundRefImportableTables = refImportableTablesService.getById(id);
@@ -78,7 +77,7 @@ public class RefImportableTablesController {
     @ApiOperation(value = "Updates the RefImportableTables instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefImportableTables editRefImportableTables(@PathVariable("id") Integer id, @RequestBody RefImportableTables refImportableTables) throws EntityNotFoundException {
+    public RefImportableTables editRefImportableTables(@PathVariable("id") Integer id, @RequestBody RefImportableTables refImportableTables) {
         LOGGER.debug("Editing RefImportableTables with id: {}" , refImportableTables.getId());
 
         refImportableTables.setId(id);
@@ -91,7 +90,7 @@ public class RefImportableTablesController {
     @ApiOperation(value = "Deletes the RefImportableTables instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefImportableTables(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefImportableTables(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefImportableTables with id: {}" , id);
 
         RefImportableTables deletedRefImportableTables = refImportableTablesService.delete(id);
@@ -107,7 +106,7 @@ public class RefImportableTablesController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefImportableTables> searchRefImportableTablesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefImportableTables list");
+        LOGGER.debug("Rendering RefImportableTables list by query filter:{}", (Object) queryFilters);
         return refImportableTablesService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class RefImportableTablesController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefImportableTables> findRefImportableTables(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefImportableTables list");
+        LOGGER.debug("Rendering RefImportableTables list by filter:", query);
         return refImportableTablesService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class RefImportableTablesController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefImportableTables> filterRefImportableTables(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefImportableTables list");
+        LOGGER.debug("Rendering RefImportableTables list by filter", query);
         return refImportableTablesService.findAll(query, pageable);
     }
 

@@ -43,7 +43,7 @@ public interface RefJobTitlesService {
 	 * @return RefJobTitles associated with the given refjobtitlesId.
      * @throws EntityNotFoundException If no RefJobTitles is found.
 	 */
-	RefJobTitles getById(Integer refjobtitlesId) throws EntityNotFoundException;
+	RefJobTitles getById(Integer refjobtitlesId);
 
     /**
 	 * Find and return the RefJobTitles by given id if exists, returns null otherwise.
@@ -60,7 +60,7 @@ public interface RefJobTitlesService {
 	 * @return RefJobTitles associated with the given inputs.
      * @throws EntityNotFoundException if no matching RefJobTitles found.
 	 */
-    RefJobTitles getByUniqueKeyId(int id)throws EntityNotFoundException;
+    RefJobTitles getByUniqueKeyId(int id);
 
 	/**
 	 * Updates the details of an existing RefJobTitles. It replaces all fields of the existing RefJobTitles with the given refJobTitles.
@@ -71,7 +71,7 @@ public interface RefJobTitlesService {
 	 * @return The updated RefJobTitles.
 	 * @throws EntityNotFoundException if no RefJobTitles is found with given input.
 	 */
-	RefJobTitles update(@Valid RefJobTitles refJobTitles) throws EntityNotFoundException;
+	RefJobTitles update(@Valid RefJobTitles refJobTitles);
 
     /**
 	 * Deletes an existing RefJobTitles with the given id.
@@ -80,7 +80,7 @@ public interface RefJobTitlesService {
 	 * @return The deleted RefJobTitles.
 	 * @throws EntityNotFoundException if no RefJobTitles found with the given id.
 	 */
-	RefJobTitles delete(Integer refjobtitlesId) throws EntityNotFoundException;
+	RefJobTitles delete(Integer refjobtitlesId);
 
     /**
 	 * Deletes an existing RefJobTitles with the given object.

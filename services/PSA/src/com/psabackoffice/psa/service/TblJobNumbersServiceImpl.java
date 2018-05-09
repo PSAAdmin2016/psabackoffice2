@@ -75,29 +75,14 @@ public class TblJobNumbersServiceImpl implements TblJobNumbersService {
         List<TblCrews> tblCrewses = tblJobNumbers.getTblCrewses();
         List<TblUserJobNumbers> tblUserJobNumberses = tblJobNumbers.getTblUserJobNumberses();
         List<TblUserPsa> tblUserPsas = tblJobNumbers.getTblUserPsas();
-
         if(tblCrewses != null && Hibernate.isInitialized(tblCrewses)) {
-            if(!tblCrewses.isEmpty()) {
-                for(TblCrews _tblCrews : tblCrewses) {
-                    _tblCrews.setTblJobNumbers(tblJobNumbers);
-                }
-            }
+            tblCrewses.forEach(_tblCrews -> _tblCrews.setTblJobNumbers(tblJobNumbers));
         }
-
         if(tblUserJobNumberses != null && Hibernate.isInitialized(tblUserJobNumberses)) {
-            if(!tblUserJobNumberses.isEmpty()) {
-                for(TblUserJobNumbers _tblUserJobNumbers : tblUserJobNumberses) {
-                    _tblUserJobNumbers.setTblJobNumbers(tblJobNumbers);
-                }
-            }
+            tblUserJobNumberses.forEach(_tblUserJobNumbers -> _tblUserJobNumbers.setTblJobNumbers(tblJobNumbers));
         }
-
         if(tblUserPsas != null && Hibernate.isInitialized(tblUserPsas)) {
-            if(!tblUserPsas.isEmpty()) {
-                for(TblUserPsa _tblUserPsa : tblUserPsas) {
-                    _tblUserPsa.setTblJobNumbers(tblJobNumbers);
-                }
-            }
+            tblUserPsas.forEach(_tblUserPsa -> _tblUserPsa.setTblJobNumbers(tblJobNumbers));
         }
 
         TblJobNumbers tblJobNumbersCreated = this.wmGenericDao.create(tblJobNumbers);
@@ -107,7 +92,7 @@ public class TblJobNumbersServiceImpl implements TblJobNumbersService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public TblJobNumbers getById(Integer tbljobnumbersId) throws EntityNotFoundException {
+	public TblJobNumbers getById(Integer tbljobnumbersId) {
         LOGGER.debug("Finding TblJobNumbers by id: {}", tbljobnumbersId);
         return this.wmGenericDao.findById(tbljobnumbersId);
     }
@@ -127,35 +112,20 @@ public class TblJobNumbersServiceImpl implements TblJobNumbersService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public TblJobNumbers update(TblJobNumbers tblJobNumbers) throws EntityNotFoundException {
+	public TblJobNumbers update(TblJobNumbers tblJobNumbers) {
         LOGGER.debug("Updating TblJobNumbers with information: {}", tblJobNumbers);
 
         List<TblCrews> tblCrewses = tblJobNumbers.getTblCrewses();
         List<TblUserJobNumbers> tblUserJobNumberses = tblJobNumbers.getTblUserJobNumberses();
         List<TblUserPsa> tblUserPsas = tblJobNumbers.getTblUserPsas();
-
         if(tblCrewses != null && Hibernate.isInitialized(tblCrewses)) {
-            if(!tblCrewses.isEmpty()) {
-                for(TblCrews _tblCrews : tblCrewses) {
-                    _tblCrews.setTblJobNumbers(tblJobNumbers);
-                }
-            }
+            tblCrewses.forEach(_tblCrews -> _tblCrews.setTblJobNumbers(tblJobNumbers));
         }
-
         if(tblUserJobNumberses != null && Hibernate.isInitialized(tblUserJobNumberses)) {
-            if(!tblUserJobNumberses.isEmpty()) {
-                for(TblUserJobNumbers _tblUserJobNumbers : tblUserJobNumberses) {
-                    _tblUserJobNumbers.setTblJobNumbers(tblJobNumbers);
-                }
-            }
+            tblUserJobNumberses.forEach(_tblUserJobNumbers -> _tblUserJobNumbers.setTblJobNumbers(tblJobNumbers));
         }
-
         if(tblUserPsas != null && Hibernate.isInitialized(tblUserPsas)) {
-            if(!tblUserPsas.isEmpty()) {
-                for(TblUserPsa _tblUserPsa : tblUserPsas) {
-                    _tblUserPsa.setTblJobNumbers(tblJobNumbers);
-                }
-            }
+            tblUserPsas.forEach(_tblUserPsa -> _tblUserPsa.setTblJobNumbers(tblJobNumbers));
         }
 
         this.wmGenericDao.update(tblJobNumbers);
@@ -166,7 +136,7 @@ public class TblJobNumbersServiceImpl implements TblJobNumbersService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public TblJobNumbers delete(Integer tbljobnumbersId) throws EntityNotFoundException {
+	public TblJobNumbers delete(Integer tbljobnumbersId) {
         LOGGER.debug("Deleting TblJobNumbers with id: {}", tbljobnumbersId);
         TblJobNumbers deleted = this.wmGenericDao.findById(tbljobnumbersId);
         if (deleted == null) {

@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class RefActivityStatusesController {
     @ApiOperation(value = "Returns the RefActivityStatuses instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefActivityStatuses getRefActivityStatuses(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefActivityStatuses getRefActivityStatuses(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefActivityStatuses with id: {}" , id);
 
         RefActivityStatuses foundRefActivityStatuses = refActivityStatusesService.getById(id);
@@ -78,7 +77,7 @@ public class RefActivityStatusesController {
     @ApiOperation(value = "Updates the RefActivityStatuses instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefActivityStatuses editRefActivityStatuses(@PathVariable("id") Integer id, @RequestBody RefActivityStatuses refActivityStatuses) throws EntityNotFoundException {
+    public RefActivityStatuses editRefActivityStatuses(@PathVariable("id") Integer id, @RequestBody RefActivityStatuses refActivityStatuses) {
         LOGGER.debug("Editing RefActivityStatuses with id: {}" , refActivityStatuses.getId());
 
         refActivityStatuses.setId(id);
@@ -91,7 +90,7 @@ public class RefActivityStatusesController {
     @ApiOperation(value = "Deletes the RefActivityStatuses instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefActivityStatuses(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefActivityStatuses(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefActivityStatuses with id: {}" , id);
 
         RefActivityStatuses deletedRefActivityStatuses = refActivityStatusesService.delete(id);
@@ -107,7 +106,7 @@ public class RefActivityStatusesController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefActivityStatuses> searchRefActivityStatusesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefActivityStatuses list");
+        LOGGER.debug("Rendering RefActivityStatuses list by query filter:{}", (Object) queryFilters);
         return refActivityStatusesService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class RefActivityStatusesController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefActivityStatuses> findRefActivityStatuses(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefActivityStatuses list");
+        LOGGER.debug("Rendering RefActivityStatuses list by filter:", query);
         return refActivityStatusesService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class RefActivityStatusesController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefActivityStatuses> filterRefActivityStatuses(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefActivityStatuses list");
+        LOGGER.debug("Rendering RefActivityStatuses list by filter", query);
         return refActivityStatusesService.findAll(query, pageable);
     }
 

@@ -43,7 +43,7 @@ public interface RefGenericPipeSpoolsService {
 	 * @return RefGenericPipeSpools associated with the given refgenericpipespoolsId.
      * @throws EntityNotFoundException If no RefGenericPipeSpools is found.
 	 */
-	RefGenericPipeSpools getById(Integer refgenericpipespoolsId) throws EntityNotFoundException;
+	RefGenericPipeSpools getById(Integer refgenericpipespoolsId);
 
     /**
 	 * Find and return the RefGenericPipeSpools by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface RefGenericPipeSpoolsService {
 	 * @return The updated RefGenericPipeSpools.
 	 * @throws EntityNotFoundException if no RefGenericPipeSpools is found with given input.
 	 */
-	RefGenericPipeSpools update(@Valid RefGenericPipeSpools refGenericPipeSpools) throws EntityNotFoundException;
+	RefGenericPipeSpools update(@Valid RefGenericPipeSpools refGenericPipeSpools);
 
     /**
 	 * Deletes an existing RefGenericPipeSpools with the given id.
@@ -72,7 +72,7 @@ public interface RefGenericPipeSpoolsService {
 	 * @return The deleted RefGenericPipeSpools.
 	 * @throws EntityNotFoundException if no RefGenericPipeSpools found with the given id.
 	 */
-	RefGenericPipeSpools delete(Integer refgenericpipespoolsId) throws EntityNotFoundException;
+	RefGenericPipeSpools delete(Integer refgenericpipespoolsId);
 
     /**
 	 * Deletes an existing RefGenericPipeSpools with the given object.

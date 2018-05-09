@@ -59,12 +59,7 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
                     console.log($scope.Widgets.gridSuperReviewSteel.gridData[index]);
                 }
             });
-
-
-
-
         }
-
     };
 
 

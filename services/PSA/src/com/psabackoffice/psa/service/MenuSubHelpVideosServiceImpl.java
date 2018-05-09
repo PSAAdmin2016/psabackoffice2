@@ -59,7 +59,7 @@ public class MenuSubHelpVideosServiceImpl implements MenuSubHelpVideosService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public MenuSubHelpVideos getById(Integer menusubhelpvideosId) throws EntityNotFoundException {
+	public MenuSubHelpVideos getById(Integer menusubhelpvideosId) {
         LOGGER.debug("Finding MenuSubHelpVideos by id: {}", menusubhelpvideosId);
         return this.wmGenericDao.findById(menusubhelpvideosId);
     }
@@ -79,7 +79,7 @@ public class MenuSubHelpVideosServiceImpl implements MenuSubHelpVideosService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public MenuSubHelpVideos update(MenuSubHelpVideos menuSubHelpVideos) throws EntityNotFoundException {
+	public MenuSubHelpVideos update(MenuSubHelpVideos menuSubHelpVideos) {
         LOGGER.debug("Updating MenuSubHelpVideos with information: {}", menuSubHelpVideos);
 
         this.wmGenericDao.update(menuSubHelpVideos);
@@ -90,7 +90,7 @@ public class MenuSubHelpVideosServiceImpl implements MenuSubHelpVideosService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public MenuSubHelpVideos delete(Integer menusubhelpvideosId) throws EntityNotFoundException {
+	public MenuSubHelpVideos delete(Integer menusubhelpvideosId) {
         LOGGER.debug("Deleting MenuSubHelpVideos with id: {}", menusubhelpvideosId);
         MenuSubHelpVideos deleted = this.wmGenericDao.findById(menusubhelpvideosId);
         if (deleted == null) {

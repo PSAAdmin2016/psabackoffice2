@@ -60,7 +60,7 @@ public class RefJobTitlesServiceImpl implements RefJobTitlesService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefJobTitles getById(Integer refjobtitlesId) throws EntityNotFoundException {
+	public RefJobTitles getById(Integer refjobtitlesId) {
         LOGGER.debug("Finding RefJobTitles by id: {}", refjobtitlesId);
         return this.wmGenericDao.findById(refjobtitlesId);
     }
@@ -84,19 +84,12 @@ public class RefJobTitlesServiceImpl implements RefJobTitlesService {
         uniqueKeyIdMap.put("id", id);
 
         LOGGER.debug("Finding RefJobTitles by unique keys: {}", uniqueKeyIdMap);
-        RefJobTitles refJobTitles = this.wmGenericDao.findByUniqueKey(uniqueKeyIdMap);
-
-        if (refJobTitles == null){
-            LOGGER.debug("No RefJobTitles found with given unique key values: {}", uniqueKeyIdMap);
-            throw new EntityNotFoundException(String.valueOf(uniqueKeyIdMap));
-        }
-
-        return refJobTitles;
+        return this.wmGenericDao.findByUniqueKey(uniqueKeyIdMap);
     }
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefJobTitles update(RefJobTitles refJobTitles) throws EntityNotFoundException {
+	public RefJobTitles update(RefJobTitles refJobTitles) {
         LOGGER.debug("Updating RefJobTitles with information: {}", refJobTitles);
 
         this.wmGenericDao.update(refJobTitles);
@@ -107,7 +100,7 @@ public class RefJobTitlesServiceImpl implements RefJobTitlesService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefJobTitles delete(Integer refjobtitlesId) throws EntityNotFoundException {
+	public RefJobTitles delete(Integer refjobtitlesId) {
         LOGGER.debug("Deleting RefJobTitles with id: {}", refjobtitlesId);
         RefJobTitles deleted = this.wmGenericDao.findById(refjobtitlesId);
         if (deleted == null) {

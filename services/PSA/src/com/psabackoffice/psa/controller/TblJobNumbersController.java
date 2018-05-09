@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -69,7 +68,7 @@ public class TblJobNumbersController {
     @ApiOperation(value = "Returns the TblJobNumbers instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public TblJobNumbers getTblJobNumbers(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public TblJobNumbers getTblJobNumbers(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting TblJobNumbers with id: {}" , id);
 
         TblJobNumbers foundTblJobNumbers = tblJobNumbersService.getById(id);
@@ -81,7 +80,7 @@ public class TblJobNumbersController {
     @ApiOperation(value = "Updates the TblJobNumbers instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public TblJobNumbers editTblJobNumbers(@PathVariable("id") Integer id, @RequestBody TblJobNumbers tblJobNumbers) throws EntityNotFoundException {
+    public TblJobNumbers editTblJobNumbers(@PathVariable("id") Integer id, @RequestBody TblJobNumbers tblJobNumbers) {
         LOGGER.debug("Editing TblJobNumbers with id: {}" , tblJobNumbers.getJobNumber());
 
         tblJobNumbers.setJobNumber(id);
@@ -94,7 +93,7 @@ public class TblJobNumbersController {
     @ApiOperation(value = "Deletes the TblJobNumbers instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteTblJobNumbers(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteTblJobNumbers(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting TblJobNumbers with id: {}" , id);
 
         TblJobNumbers deletedTblJobNumbers = tblJobNumbersService.delete(id);
@@ -110,7 +109,7 @@ public class TblJobNumbersController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblJobNumbers> searchTblJobNumbersByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering TblJobNumbers list");
+        LOGGER.debug("Rendering TblJobNumbers list by query filter:{}", (Object) queryFilters);
         return tblJobNumbersService.findAll(queryFilters, pageable);
     }
 
@@ -118,7 +117,7 @@ public class TblJobNumbersController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblJobNumbers> findTblJobNumbers(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering TblJobNumbers list");
+        LOGGER.debug("Rendering TblJobNumbers list by filter:", query);
         return tblJobNumbersService.findAll(query, pageable);
     }
 
@@ -126,7 +125,7 @@ public class TblJobNumbersController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<TblJobNumbers> filterTblJobNumbers(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering TblJobNumbers list");
+        LOGGER.debug("Rendering TblJobNumbers list by filter", query);
         return tblJobNumbersService.findAll(query, pageable);
     }
 

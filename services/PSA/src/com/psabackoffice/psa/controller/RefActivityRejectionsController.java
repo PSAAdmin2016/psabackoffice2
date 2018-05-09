@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class RefActivityRejectionsController {
     @ApiOperation(value = "Returns the RefActivityRejections instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefActivityRejections getRefActivityRejections(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefActivityRejections getRefActivityRejections(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefActivityRejections with id: {}" , id);
 
         RefActivityRejections foundRefActivityRejections = refActivityRejectionsService.getById(id);
@@ -78,7 +77,7 @@ public class RefActivityRejectionsController {
     @ApiOperation(value = "Updates the RefActivityRejections instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefActivityRejections editRefActivityRejections(@PathVariable("id") Integer id, @RequestBody RefActivityRejections refActivityRejections) throws EntityNotFoundException {
+    public RefActivityRejections editRefActivityRejections(@PathVariable("id") Integer id, @RequestBody RefActivityRejections refActivityRejections) {
         LOGGER.debug("Editing RefActivityRejections with id: {}" , refActivityRejections.getId());
 
         refActivityRejections.setId(id);
@@ -91,7 +90,7 @@ public class RefActivityRejectionsController {
     @ApiOperation(value = "Deletes the RefActivityRejections instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefActivityRejections(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefActivityRejections(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefActivityRejections with id: {}" , id);
 
         RefActivityRejections deletedRefActivityRejections = refActivityRejectionsService.delete(id);
@@ -107,7 +106,7 @@ public class RefActivityRejectionsController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefActivityRejections> searchRefActivityRejectionsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefActivityRejections list");
+        LOGGER.debug("Rendering RefActivityRejections list by query filter:{}", (Object) queryFilters);
         return refActivityRejectionsService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class RefActivityRejectionsController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefActivityRejections> findRefActivityRejections(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefActivityRejections list");
+        LOGGER.debug("Rendering RefActivityRejections list by filter:", query);
         return refActivityRejectionsService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class RefActivityRejectionsController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefActivityRejections> filterRefActivityRejections(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefActivityRejections list");
+        LOGGER.debug("Rendering RefActivityRejections list by filter", query);
         return refActivityRejectionsService.findAll(query, pageable);
     }
 

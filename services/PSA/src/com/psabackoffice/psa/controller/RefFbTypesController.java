@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -68,7 +67,7 @@ public class RefFbTypesController {
     @ApiOperation(value = "Returns the RefFbTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefFbTypes getRefFbTypes(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefFbTypes getRefFbTypes(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefFbTypes with id: {}" , id);
 
         RefFbTypes foundRefFbTypes = refFbTypesService.getById(id);
@@ -80,7 +79,7 @@ public class RefFbTypesController {
     @ApiOperation(value = "Updates the RefFbTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefFbTypes editRefFbTypes(@PathVariable("id") Integer id, @RequestBody RefFbTypes refFbTypes) throws EntityNotFoundException {
+    public RefFbTypes editRefFbTypes(@PathVariable("id") Integer id, @RequestBody RefFbTypes refFbTypes) {
         LOGGER.debug("Editing RefFbTypes with id: {}" , refFbTypes.getId());
 
         refFbTypes.setId(id);
@@ -93,7 +92,7 @@ public class RefFbTypesController {
     @ApiOperation(value = "Deletes the RefFbTypes instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefFbTypes(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefFbTypes(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefFbTypes with id: {}" , id);
 
         RefFbTypes deletedRefFbTypes = refFbTypesService.delete(id);
@@ -109,7 +108,7 @@ public class RefFbTypesController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefFbTypes> searchRefFbTypesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefFbTypes list");
+        LOGGER.debug("Rendering RefFbTypes list by query filter:{}", (Object) queryFilters);
         return refFbTypesService.findAll(queryFilters, pageable);
     }
 
@@ -117,7 +116,7 @@ public class RefFbTypesController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefFbTypes> findRefFbTypes(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefFbTypes list");
+        LOGGER.debug("Rendering RefFbTypes list by filter:", query);
         return refFbTypesService.findAll(query, pageable);
     }
 
@@ -125,7 +124,7 @@ public class RefFbTypesController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefFbTypes> filterRefFbTypes(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefFbTypes list");
+        LOGGER.debug("Rendering RefFbTypes list by filter", query);
         return refFbTypesService.findAll(query, pageable);
     }
 

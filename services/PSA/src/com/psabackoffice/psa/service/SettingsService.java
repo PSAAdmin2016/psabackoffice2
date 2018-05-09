@@ -43,7 +43,7 @@ public interface SettingsService {
 	 * @return Settings associated with the given settingsId.
      * @throws EntityNotFoundException If no Settings is found.
 	 */
-	Settings getById(String settingsId) throws EntityNotFoundException;
+	Settings getById(String settingsId);
 
     /**
 	 * Find and return the Settings by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface SettingsService {
 	 * @return The updated Settings.
 	 * @throws EntityNotFoundException if no Settings is found with given input.
 	 */
-	Settings update(@Valid Settings settings) throws EntityNotFoundException;
+	Settings update(@Valid Settings settings);
 
     /**
 	 * Deletes an existing Settings with the given id.
@@ -72,7 +72,7 @@ public interface SettingsService {
 	 * @return The deleted Settings.
 	 * @throws EntityNotFoundException if no Settings found with the given id.
 	 */
-	Settings delete(String settingsId) throws EntityNotFoundException;
+	Settings delete(String settingsId);
 
     /**
 	 * Deletes an existing Settings with the given object.

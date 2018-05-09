@@ -70,9 +70,7 @@ public class RefFbStatuses implements Serializable {
     @PostPersist
     public void onPostPersist() {
         if(feedBacks != null) {
-            for(FeedBack feedBack : feedBacks) {
-                feedBack.setRefFbStatuses(this);
-            }
+            feedBacks.forEach(feedBack -> feedBack.setRefFbStatuses(this));
         }
     }
 

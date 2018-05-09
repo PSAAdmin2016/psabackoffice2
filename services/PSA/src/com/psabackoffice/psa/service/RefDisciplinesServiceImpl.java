@@ -73,7 +73,7 @@ public class RefDisciplinesServiceImpl implements RefDisciplinesService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefDisciplines getById(Integer refdisciplinesId) throws EntityNotFoundException {
+	public RefDisciplines getById(Integer refdisciplinesId) {
         LOGGER.debug("Finding RefDisciplines by id: {}", refdisciplinesId);
         return this.wmGenericDao.findById(refdisciplinesId);
     }
@@ -93,26 +93,16 @@ public class RefDisciplinesServiceImpl implements RefDisciplinesService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefDisciplines update(RefDisciplines refDisciplines) throws EntityNotFoundException {
+	public RefDisciplines update(RefDisciplines refDisciplines) {
         LOGGER.debug("Updating RefDisciplines with information: {}", refDisciplines);
 
         List<TblCrews> tblCrewses = refDisciplines.getTblCrewses();
         List<TblUserPsa> tblUserPsas = refDisciplines.getTblUserPsas();
-
         if(tblCrewses != null && Hibernate.isInitialized(tblCrewses)) {
-            if(!tblCrewses.isEmpty()) {
-                for(TblCrews _tblCrews : tblCrewses) {
-                    _tblCrews.setRefDisciplines(refDisciplines);
-                }
-            }
+            tblCrewses.forEach(_tblCrews -> _tblCrews.setRefDisciplines(refDisciplines));
         }
-
         if(tblUserPsas != null && Hibernate.isInitialized(tblUserPsas)) {
-            if(!tblUserPsas.isEmpty()) {
-                for(TblUserPsa _tblUserPsa : tblUserPsas) {
-                    _tblUserPsa.setRefDisciplines(refDisciplines);
-                }
-            }
+            tblUserPsas.forEach(_tblUserPsa -> _tblUserPsa.setRefDisciplines(refDisciplines));
         }
 
         this.wmGenericDao.update(refDisciplines);
@@ -123,7 +113,7 @@ public class RefDisciplinesServiceImpl implements RefDisciplinesService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefDisciplines delete(Integer refdisciplinesId) throws EntityNotFoundException {
+	public RefDisciplines delete(Integer refdisciplinesId) {
         LOGGER.debug("Deleting RefDisciplines with id: {}", refdisciplinesId);
         RefDisciplines deleted = this.wmGenericDao.findById(refdisciplinesId);
         if (deleted == null) {

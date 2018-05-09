@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class SettingsuserController {
     @ApiOperation(value = "Returns the Settingsuser instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Settingsuser getSettingsuser(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public Settingsuser getSettingsuser(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting Settingsuser with id: {}" , id);
 
         Settingsuser foundSettingsuser = settingsuserService.getById(id);
@@ -78,7 +77,7 @@ public class SettingsuserController {
     @ApiOperation(value = "Updates the Settingsuser instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Settingsuser editSettingsuser(@PathVariable("id") Integer id, @RequestBody Settingsuser settingsuser) throws EntityNotFoundException {
+    public Settingsuser editSettingsuser(@PathVariable("id") Integer id, @RequestBody Settingsuser settingsuser) {
         LOGGER.debug("Editing Settingsuser with id: {}" , settingsuser.getId());
 
         settingsuser.setId(id);
@@ -91,7 +90,7 @@ public class SettingsuserController {
     @ApiOperation(value = "Deletes the Settingsuser instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteSettingsuser(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteSettingsuser(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting Settingsuser with id: {}" , id);
 
         Settingsuser deletedSettingsuser = settingsuserService.delete(id);
@@ -107,7 +106,7 @@ public class SettingsuserController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Settingsuser> searchSettingsusersByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering Settingsusers list");
+        LOGGER.debug("Rendering Settingsusers list by query filter:{}", (Object) queryFilters);
         return settingsuserService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class SettingsuserController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Settingsuser> findSettingsusers(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering Settingsusers list");
+        LOGGER.debug("Rendering Settingsusers list by filter:", query);
         return settingsuserService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class SettingsuserController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<Settingsuser> filterSettingsusers(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering Settingsusers list");
+        LOGGER.debug("Rendering Settingsusers list by filter", query);
         return settingsuserService.findAll(query, pageable);
     }
 

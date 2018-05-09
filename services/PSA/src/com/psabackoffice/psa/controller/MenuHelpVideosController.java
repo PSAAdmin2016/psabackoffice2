@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -67,7 +66,7 @@ public class MenuHelpVideosController {
     @ApiOperation(value = "Returns the MenuHelpVideos instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public MenuHelpVideos getMenuHelpVideos(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public MenuHelpVideos getMenuHelpVideos(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting MenuHelpVideos with id: {}" , id);
 
         MenuHelpVideos foundMenuHelpVideos = menuHelpVideosService.getById(id);
@@ -79,7 +78,7 @@ public class MenuHelpVideosController {
     @ApiOperation(value = "Updates the MenuHelpVideos instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public MenuHelpVideos editMenuHelpVideos(@PathVariable("id") Integer id, @RequestBody MenuHelpVideos menuHelpVideos) throws EntityNotFoundException {
+    public MenuHelpVideos editMenuHelpVideos(@PathVariable("id") Integer id, @RequestBody MenuHelpVideos menuHelpVideos) {
         LOGGER.debug("Editing MenuHelpVideos with id: {}" , menuHelpVideos.getId());
 
         menuHelpVideos.setId(id);
@@ -92,7 +91,7 @@ public class MenuHelpVideosController {
     @ApiOperation(value = "Deletes the MenuHelpVideos instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteMenuHelpVideos(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteMenuHelpVideos(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting MenuHelpVideos with id: {}" , id);
 
         MenuHelpVideos deletedMenuHelpVideos = menuHelpVideosService.delete(id);
@@ -108,7 +107,7 @@ public class MenuHelpVideosController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<MenuHelpVideos> searchMenuHelpVideosByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering MenuHelpVideos list");
+        LOGGER.debug("Rendering MenuHelpVideos list by query filter:{}", (Object) queryFilters);
         return menuHelpVideosService.findAll(queryFilters, pageable);
     }
 
@@ -116,7 +115,7 @@ public class MenuHelpVideosController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<MenuHelpVideos> findMenuHelpVideos(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering MenuHelpVideos list");
+        LOGGER.debug("Rendering MenuHelpVideos list by filter:", query);
         return menuHelpVideosService.findAll(query, pageable);
     }
 
@@ -124,7 +123,7 @@ public class MenuHelpVideosController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<MenuHelpVideos> filterMenuHelpVideos(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering MenuHelpVideos list");
+        LOGGER.debug("Rendering MenuHelpVideos list by filter", query);
         return menuHelpVideosService.findAll(query, pageable);
     }
 

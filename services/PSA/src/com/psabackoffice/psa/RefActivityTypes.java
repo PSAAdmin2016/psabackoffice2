@@ -24,7 +24,7 @@ public class RefActivityTypes implements Serializable {
     private String activityType;
 
     @Id
-    @Column(name = "`ID`", nullable = false, scale = 0, precision = 10)
+    @Column(name = "`ID`", nullable = false, scale = 0, precision = 3)
     public Integer getId() {
         return this.id;
     }

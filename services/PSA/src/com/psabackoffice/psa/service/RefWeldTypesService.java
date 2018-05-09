@@ -43,7 +43,7 @@ public interface RefWeldTypesService {
 	 * @return RefWeldTypes associated with the given refweldtypesId.
      * @throws EntityNotFoundException If no RefWeldTypes is found.
 	 */
-	RefWeldTypes getById(Integer refweldtypesId) throws EntityNotFoundException;
+	RefWeldTypes getById(Integer refweldtypesId);
 
     /**
 	 * Find and return the RefWeldTypes by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface RefWeldTypesService {
 	 * @return The updated RefWeldTypes.
 	 * @throws EntityNotFoundException if no RefWeldTypes is found with given input.
 	 */
-	RefWeldTypes update(@Valid RefWeldTypes refWeldTypes) throws EntityNotFoundException;
+	RefWeldTypes update(@Valid RefWeldTypes refWeldTypes);
 
     /**
 	 * Deletes an existing RefWeldTypes with the given id.
@@ -72,7 +72,7 @@ public interface RefWeldTypesService {
 	 * @return The deleted RefWeldTypes.
 	 * @throws EntityNotFoundException if no RefWeldTypes found with the given id.
 	 */
-	RefWeldTypes delete(Integer refweldtypesId) throws EntityNotFoundException;
+	RefWeldTypes delete(Integer refweldtypesId);
 
     /**
 	 * Deletes an existing RefWeldTypes with the given object.

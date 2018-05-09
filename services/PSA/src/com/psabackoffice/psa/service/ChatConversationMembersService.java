@@ -43,7 +43,7 @@ public interface ChatConversationMembersService {
 	 * @return ChatConversationMembers associated with the given chatconversationmembersId.
      * @throws EntityNotFoundException If no ChatConversationMembers is found.
 	 */
-	ChatConversationMembers getById(Integer chatconversationmembersId) throws EntityNotFoundException;
+	ChatConversationMembers getById(Integer chatconversationmembersId);
 
     /**
 	 * Find and return the ChatConversationMembers by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface ChatConversationMembersService {
 	 * @return The updated ChatConversationMembers.
 	 * @throws EntityNotFoundException if no ChatConversationMembers is found with given input.
 	 */
-	ChatConversationMembers update(@Valid ChatConversationMembers chatConversationMembers) throws EntityNotFoundException;
+	ChatConversationMembers update(@Valid ChatConversationMembers chatConversationMembers);
 
     /**
 	 * Deletes an existing ChatConversationMembers with the given id.
@@ -72,7 +72,7 @@ public interface ChatConversationMembersService {
 	 * @return The deleted ChatConversationMembers.
 	 * @throws EntityNotFoundException if no ChatConversationMembers found with the given id.
 	 */
-	ChatConversationMembers delete(Integer chatconversationmembersId) throws EntityNotFoundException;
+	ChatConversationMembers delete(Integer chatconversationmembersId);
 
     /**
 	 * Deletes an existing ChatConversationMembers with the given object.

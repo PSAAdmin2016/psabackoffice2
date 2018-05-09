@@ -59,7 +59,7 @@ public class ChatMessagesServiceImpl implements ChatMessagesService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public ChatMessages getById(Integer chatmessagesId) throws EntityNotFoundException {
+	public ChatMessages getById(Integer chatmessagesId) {
         LOGGER.debug("Finding ChatMessages by id: {}", chatmessagesId);
         return this.wmGenericDao.findById(chatmessagesId);
     }
@@ -79,7 +79,7 @@ public class ChatMessagesServiceImpl implements ChatMessagesService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public ChatMessages update(ChatMessages chatMessages) throws EntityNotFoundException {
+	public ChatMessages update(ChatMessages chatMessages) {
         LOGGER.debug("Updating ChatMessages with information: {}", chatMessages);
 
         this.wmGenericDao.update(chatMessages);
@@ -90,7 +90,7 @@ public class ChatMessagesServiceImpl implements ChatMessagesService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public ChatMessages delete(Integer chatmessagesId) throws EntityNotFoundException {
+	public ChatMessages delete(Integer chatmessagesId) {
         LOGGER.debug("Deleting ChatMessages with id: {}", chatmessagesId);
         ChatMessages deleted = this.wmGenericDao.findById(chatmessagesId);
         if (deleted == null) {

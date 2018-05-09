@@ -67,7 +67,7 @@ public class TblJobSitesServiceImpl implements TblJobSitesService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public TblJobSites getById(Integer tbljobsitesId) throws EntityNotFoundException {
+	public TblJobSites getById(Integer tbljobsitesId) {
         LOGGER.debug("Finding TblJobSites by id: {}", tbljobsitesId);
         return this.wmGenericDao.findById(tbljobsitesId);
     }
@@ -87,17 +87,12 @@ public class TblJobSitesServiceImpl implements TblJobSitesService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public TblJobSites update(TblJobSites tblJobSites) throws EntityNotFoundException {
+	public TblJobSites update(TblJobSites tblJobSites) {
         LOGGER.debug("Updating TblJobSites with information: {}", tblJobSites);
 
         List<TblJobNumbers> tblJobNumberses = tblJobSites.getTblJobNumberses();
-
         if(tblJobNumberses != null && Hibernate.isInitialized(tblJobNumberses)) {
-            if(!tblJobNumberses.isEmpty()) {
-                for(TblJobNumbers _tblJobNumbers : tblJobNumberses) {
-                    _tblJobNumbers.setTblJobSites(tblJobSites);
-                }
-            }
+            tblJobNumberses.forEach(_tblJobNumbers -> _tblJobNumbers.setTblJobSites(tblJobSites));
         }
 
         this.wmGenericDao.update(tblJobSites);
@@ -108,7 +103,7 @@ public class TblJobSitesServiceImpl implements TblJobSitesService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public TblJobSites delete(Integer tbljobsitesId) throws EntityNotFoundException {
+	public TblJobSites delete(Integer tbljobsitesId) {
         LOGGER.debug("Deleting TblJobSites with id: {}", tbljobsitesId);
         TblJobSites deleted = this.wmGenericDao.findById(tbljobsitesId);
         if (deleted == null) {

@@ -43,7 +43,7 @@ public interface RefImportableTablesService {
 	 * @return RefImportableTables associated with the given refimportabletablesId.
      * @throws EntityNotFoundException If no RefImportableTables is found.
 	 */
-	RefImportableTables getById(Integer refimportabletablesId) throws EntityNotFoundException;
+	RefImportableTables getById(Integer refimportabletablesId);
 
     /**
 	 * Find and return the RefImportableTables by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface RefImportableTablesService {
 	 * @return The updated RefImportableTables.
 	 * @throws EntityNotFoundException if no RefImportableTables is found with given input.
 	 */
-	RefImportableTables update(@Valid RefImportableTables refImportableTables) throws EntityNotFoundException;
+	RefImportableTables update(@Valid RefImportableTables refImportableTables);
 
     /**
 	 * Deletes an existing RefImportableTables with the given id.
@@ -72,7 +72,7 @@ public interface RefImportableTablesService {
 	 * @return The deleted RefImportableTables.
 	 * @throws EntityNotFoundException if no RefImportableTables found with the given id.
 	 */
-	RefImportableTables delete(Integer refimportabletablesId) throws EntityNotFoundException;
+	RefImportableTables delete(Integer refimportabletablesId);
 
     /**
 	 * Deletes an existing RefImportableTables with the given object.

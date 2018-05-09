@@ -59,7 +59,7 @@ public class TblUserJobNumbersServiceImpl implements TblUserJobNumbersService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public TblUserJobNumbers getById(Integer tbluserjobnumbersId) throws EntityNotFoundException {
+	public TblUserJobNumbers getById(Integer tbluserjobnumbersId) {
         LOGGER.debug("Finding TblUserJobNumbers by id: {}", tbluserjobnumbersId);
         return this.wmGenericDao.findById(tbluserjobnumbersId);
     }
@@ -79,7 +79,7 @@ public class TblUserJobNumbersServiceImpl implements TblUserJobNumbersService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public TblUserJobNumbers update(TblUserJobNumbers tblUserJobNumbers) throws EntityNotFoundException {
+	public TblUserJobNumbers update(TblUserJobNumbers tblUserJobNumbers) {
         LOGGER.debug("Updating TblUserJobNumbers with information: {}", tblUserJobNumbers);
 
         this.wmGenericDao.update(tblUserJobNumbers);
@@ -90,7 +90,7 @@ public class TblUserJobNumbersServiceImpl implements TblUserJobNumbersService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public TblUserJobNumbers delete(Integer tbluserjobnumbersId) throws EntityNotFoundException {
+	public TblUserJobNumbers delete(Integer tbluserjobnumbersId) {
         LOGGER.debug("Deleting TblUserJobNumbers with id: {}", tbluserjobnumbersId);
         TblUserJobNumbers deleted = this.wmGenericDao.findById(tbluserjobnumbersId);
         if (deleted == null) {

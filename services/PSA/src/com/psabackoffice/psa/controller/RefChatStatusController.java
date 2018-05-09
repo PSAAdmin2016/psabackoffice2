@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -66,7 +65,7 @@ public class RefChatStatusController {
     @ApiOperation(value = "Returns the RefChatStatus instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefChatStatus getRefChatStatus(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public RefChatStatus getRefChatStatus(@PathVariable("id") Integer id) {
         LOGGER.debug("Getting RefChatStatus with id: {}" , id);
 
         RefChatStatus foundRefChatStatus = refChatStatusService.getById(id);
@@ -78,7 +77,7 @@ public class RefChatStatusController {
     @ApiOperation(value = "Updates the RefChatStatus instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefChatStatus editRefChatStatus(@PathVariable("id") Integer id, @RequestBody RefChatStatus refChatStatus) throws EntityNotFoundException {
+    public RefChatStatus editRefChatStatus(@PathVariable("id") Integer id, @RequestBody RefChatStatus refChatStatus) {
         LOGGER.debug("Editing RefChatStatus with id: {}" , refChatStatus.getId());
 
         refChatStatus.setId(id);
@@ -91,7 +90,7 @@ public class RefChatStatusController {
     @ApiOperation(value = "Deletes the RefChatStatus instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefChatStatus(@PathVariable("id") Integer id) throws EntityNotFoundException {
+public boolean deleteRefChatStatus(@PathVariable("id") Integer id) {
         LOGGER.debug("Deleting RefChatStatus with id: {}" , id);
 
         RefChatStatus deletedRefChatStatus = refChatStatusService.delete(id);
@@ -107,7 +106,7 @@ public class RefChatStatusController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefChatStatus> searchRefChatStatusesByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefChatStatuses list");
+        LOGGER.debug("Rendering RefChatStatuses list by query filter:{}", (Object) queryFilters);
         return refChatStatusService.findAll(queryFilters, pageable);
     }
 
@@ -115,7 +114,7 @@ public class RefChatStatusController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefChatStatus> findRefChatStatuses(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefChatStatuses list");
+        LOGGER.debug("Rendering RefChatStatuses list by filter:", query);
         return refChatStatusService.findAll(query, pageable);
     }
 
@@ -123,7 +122,7 @@ public class RefChatStatusController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefChatStatus> filterRefChatStatuses(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefChatStatuses list");
+        LOGGER.debug("Rendering RefChatStatuses list by filter", query);
         return refChatStatusService.findAll(query, pageable);
     }
 

@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
@@ -67,7 +66,7 @@ public class RefStateAbbreviationsController {
     @ApiOperation(value = "Returns the RefStateAbbreviations instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefStateAbbreviations getRefStateAbbreviations(@PathVariable("id") String id) throws EntityNotFoundException {
+public RefStateAbbreviations getRefStateAbbreviations(@PathVariable("id") String id) {
         LOGGER.debug("Getting RefStateAbbreviations with id: {}" , id);
 
         RefStateAbbreviations foundRefStateAbbreviations = refStateAbbreviationsService.getById(id);
@@ -79,7 +78,7 @@ public class RefStateAbbreviationsController {
     @ApiOperation(value = "Updates the RefStateAbbreviations instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public RefStateAbbreviations editRefStateAbbreviations(@PathVariable("id") String id, @RequestBody RefStateAbbreviations refStateAbbreviations) throws EntityNotFoundException {
+    public RefStateAbbreviations editRefStateAbbreviations(@PathVariable("id") String id, @RequestBody RefStateAbbreviations refStateAbbreviations) {
         LOGGER.debug("Editing RefStateAbbreviations with id: {}" , refStateAbbreviations.getAbbreviation());
 
         refStateAbbreviations.setAbbreviation(id);
@@ -92,7 +91,7 @@ public class RefStateAbbreviationsController {
     @ApiOperation(value = "Deletes the RefStateAbbreviations instance associated with the given id.")
     @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteRefStateAbbreviations(@PathVariable("id") String id) throws EntityNotFoundException {
+public boolean deleteRefStateAbbreviations(@PathVariable("id") String id) {
         LOGGER.debug("Deleting RefStateAbbreviations with id: {}" , id);
 
         RefStateAbbreviations deletedRefStateAbbreviations = refStateAbbreviationsService.delete(id);
@@ -108,7 +107,7 @@ public class RefStateAbbreviationsController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefStateAbbreviations> searchRefStateAbbreviationsByQueryFilters( Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering RefStateAbbreviations list");
+        LOGGER.debug("Rendering RefStateAbbreviations list by query filter:{}", (Object) queryFilters);
         return refStateAbbreviationsService.findAll(queryFilters, pageable);
     }
 
@@ -116,7 +115,7 @@ public class RefStateAbbreviationsController {
     @RequestMapping(method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefStateAbbreviations> findRefStateAbbreviations(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefStateAbbreviations list");
+        LOGGER.debug("Rendering RefStateAbbreviations list by filter:", query);
         return refStateAbbreviationsService.findAll(query, pageable);
     }
 
@@ -124,7 +123,7 @@ public class RefStateAbbreviationsController {
     @RequestMapping(value="/filter", method = RequestMethod.POST, consumes= "application/x-www-form-urlencoded")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Page<RefStateAbbreviations> filterRefStateAbbreviations(@ApiParam("conditions to filter the results") @RequestParam(value = "q", required = false) String query, Pageable pageable) {
-        LOGGER.debug("Rendering RefStateAbbreviations list");
+        LOGGER.debug("Rendering RefStateAbbreviations list by filter", query);
         return refStateAbbreviationsService.findAll(query, pageable);
     }
 

@@ -43,7 +43,7 @@ public interface RefPipeSchedulesService {
 	 * @return RefPipeSchedules associated with the given refpipeschedulesId.
      * @throws EntityNotFoundException If no RefPipeSchedules is found.
 	 */
-	RefPipeSchedules getById(Integer refpipeschedulesId) throws EntityNotFoundException;
+	RefPipeSchedules getById(Integer refpipeschedulesId);
 
     /**
 	 * Find and return the RefPipeSchedules by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface RefPipeSchedulesService {
 	 * @return The updated RefPipeSchedules.
 	 * @throws EntityNotFoundException if no RefPipeSchedules is found with given input.
 	 */
-	RefPipeSchedules update(@Valid RefPipeSchedules refPipeSchedules) throws EntityNotFoundException;
+	RefPipeSchedules update(@Valid RefPipeSchedules refPipeSchedules);
 
     /**
 	 * Deletes an existing RefPipeSchedules with the given id.
@@ -72,7 +72,7 @@ public interface RefPipeSchedulesService {
 	 * @return The deleted RefPipeSchedules.
 	 * @throws EntityNotFoundException if no RefPipeSchedules found with the given id.
 	 */
-	RefPipeSchedules delete(Integer refpipeschedulesId) throws EntityNotFoundException;
+	RefPipeSchedules delete(Integer refpipeschedulesId);
 
     /**
 	 * Deletes an existing RefPipeSchedules with the given object.

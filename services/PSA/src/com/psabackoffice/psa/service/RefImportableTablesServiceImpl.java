@@ -59,7 +59,7 @@ public class RefImportableTablesServiceImpl implements RefImportableTablesServic
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefImportableTables getById(Integer refimportabletablesId) throws EntityNotFoundException {
+	public RefImportableTables getById(Integer refimportabletablesId) {
         LOGGER.debug("Finding RefImportableTables by id: {}", refimportabletablesId);
         return this.wmGenericDao.findById(refimportabletablesId);
     }
@@ -79,7 +79,7 @@ public class RefImportableTablesServiceImpl implements RefImportableTablesServic
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefImportableTables update(RefImportableTables refImportableTables) throws EntityNotFoundException {
+	public RefImportableTables update(RefImportableTables refImportableTables) {
         LOGGER.debug("Updating RefImportableTables with information: {}", refImportableTables);
 
         this.wmGenericDao.update(refImportableTables);
@@ -90,7 +90,7 @@ public class RefImportableTablesServiceImpl implements RefImportableTablesServic
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefImportableTables delete(Integer refimportabletablesId) throws EntityNotFoundException {
+	public RefImportableTables delete(Integer refimportabletablesId) {
         LOGGER.debug("Deleting RefImportableTables with id: {}", refimportabletablesId);
         RefImportableTables deleted = this.wmGenericDao.findById(refimportabletablesId);
         if (deleted == null) {

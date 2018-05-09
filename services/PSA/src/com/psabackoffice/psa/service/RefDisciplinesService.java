@@ -45,7 +45,7 @@ public interface RefDisciplinesService {
 	 * @return RefDisciplines associated with the given refdisciplinesId.
      * @throws EntityNotFoundException If no RefDisciplines is found.
 	 */
-	RefDisciplines getById(Integer refdisciplinesId) throws EntityNotFoundException;
+	RefDisciplines getById(Integer refdisciplinesId);
 
     /**
 	 * Find and return the RefDisciplines by given id if exists, returns null otherwise.
@@ -65,7 +65,7 @@ public interface RefDisciplinesService {
 	 * @return The updated RefDisciplines.
 	 * @throws EntityNotFoundException if no RefDisciplines is found with given input.
 	 */
-	RefDisciplines update(@Valid RefDisciplines refDisciplines) throws EntityNotFoundException;
+	RefDisciplines update(@Valid RefDisciplines refDisciplines);
 
     /**
 	 * Deletes an existing RefDisciplines with the given id.
@@ -74,7 +74,7 @@ public interface RefDisciplinesService {
 	 * @return The deleted RefDisciplines.
 	 * @throws EntityNotFoundException if no RefDisciplines found with the given id.
 	 */
-	RefDisciplines delete(Integer refdisciplinesId) throws EntityNotFoundException;
+	RefDisciplines delete(Integer refdisciplinesId);
 
     /**
 	 * Deletes an existing RefDisciplines with the given object.

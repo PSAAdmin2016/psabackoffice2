@@ -67,7 +67,7 @@ public class RefFbSeverityServiceImpl implements RefFbSeverityService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefFbSeverity getById(Integer reffbseverityId) throws EntityNotFoundException {
+	public RefFbSeverity getById(Integer reffbseverityId) {
         LOGGER.debug("Finding RefFbSeverity by id: {}", reffbseverityId);
         return this.wmGenericDao.findById(reffbseverityId);
     }
@@ -87,17 +87,12 @@ public class RefFbSeverityServiceImpl implements RefFbSeverityService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefFbSeverity update(RefFbSeverity refFbSeverity) throws EntityNotFoundException {
+	public RefFbSeverity update(RefFbSeverity refFbSeverity) {
         LOGGER.debug("Updating RefFbSeverity with information: {}", refFbSeverity);
 
         List<FeedBack> feedBacks = refFbSeverity.getFeedBacks();
-
         if(feedBacks != null && Hibernate.isInitialized(feedBacks)) {
-            if(!feedBacks.isEmpty()) {
-                for(FeedBack _feedBack : feedBacks) {
-                    _feedBack.setRefFbSeverity(refFbSeverity);
-                }
-            }
+            feedBacks.forEach(_feedBack -> _feedBack.setRefFbSeverity(refFbSeverity));
         }
 
         this.wmGenericDao.update(refFbSeverity);
@@ -108,7 +103,7 @@ public class RefFbSeverityServiceImpl implements RefFbSeverityService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefFbSeverity delete(Integer reffbseverityId) throws EntityNotFoundException {
+	public RefFbSeverity delete(Integer reffbseverityId) {
         LOGGER.debug("Deleting RefFbSeverity with id: {}", reffbseverityId);
         RefFbSeverity deleted = this.wmGenericDao.findById(reffbseverityId);
         if (deleted == null) {

@@ -24,7 +24,6 @@ public class RefDelayTypes implements Serializable {
 
     private Integer id;
     private String label;
-    private Integer value;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,15 +43,6 @@ public class RefDelayTypes implements Serializable {
 
     public void setLabel(String label) {
         this.label = label;
-    }
-
-    @Column(name = "`Value`", nullable = true, scale = 0, precision = 10)
-    public Integer getValue() {
-        return this.value;
-    }
-
-    public void setValue(Integer value) {
-        this.value = value;
     }
 
 

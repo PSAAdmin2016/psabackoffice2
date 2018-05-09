@@ -59,7 +59,7 @@ public class RefActivityTypesServiceImpl implements RefActivityTypesService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefActivityTypes getById(Integer refactivitytypesId) throws EntityNotFoundException {
+	public RefActivityTypes getById(Integer refactivitytypesId) {
         LOGGER.debug("Finding RefActivityTypes by id: {}", refactivitytypesId);
         return this.wmGenericDao.findById(refactivitytypesId);
     }
@@ -79,7 +79,7 @@ public class RefActivityTypesServiceImpl implements RefActivityTypesService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefActivityTypes update(RefActivityTypes refActivityTypes) throws EntityNotFoundException {
+	public RefActivityTypes update(RefActivityTypes refActivityTypes) {
         LOGGER.debug("Updating RefActivityTypes with information: {}", refActivityTypes);
 
         this.wmGenericDao.update(refActivityTypes);
@@ -90,7 +90,7 @@ public class RefActivityTypesServiceImpl implements RefActivityTypesService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefActivityTypes delete(Integer refactivitytypesId) throws EntityNotFoundException {
+	public RefActivityTypes delete(Integer refactivitytypesId) {
         LOGGER.debug("Deleting RefActivityTypes with id: {}", refactivitytypesId);
         RefActivityTypes deleted = this.wmGenericDao.findById(refactivitytypesId);
         if (deleted == null) {

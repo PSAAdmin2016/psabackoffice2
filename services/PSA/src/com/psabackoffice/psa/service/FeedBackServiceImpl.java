@@ -67,7 +67,7 @@ public class FeedBackServiceImpl implements FeedBackService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public FeedBack getById(Integer feedbackId) throws EntityNotFoundException {
+	public FeedBack getById(Integer feedbackId) {
         LOGGER.debug("Finding FeedBack by id: {}", feedbackId);
         return this.wmGenericDao.findById(feedbackId);
     }
@@ -87,17 +87,12 @@ public class FeedBackServiceImpl implements FeedBackService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public FeedBack update(FeedBack feedBack) throws EntityNotFoundException {
+	public FeedBack update(FeedBack feedBack) {
         LOGGER.debug("Updating FeedBack with information: {}", feedBack);
 
         List<FeedBackNotes> feedBackNoteses = feedBack.getFeedBackNoteses();
-
         if(feedBackNoteses != null && Hibernate.isInitialized(feedBackNoteses)) {
-            if(!feedBackNoteses.isEmpty()) {
-                for(FeedBackNotes _feedBackNotes : feedBackNoteses) {
-                    _feedBackNotes.setFeedBack(feedBack);
-                }
-            }
+            feedBackNoteses.forEach(_feedBackNotes -> _feedBackNotes.setFeedBack(feedBack));
         }
 
         this.wmGenericDao.update(feedBack);
@@ -108,7 +103,7 @@ public class FeedBackServiceImpl implements FeedBackService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public FeedBack delete(Integer feedbackId) throws EntityNotFoundException {
+	public FeedBack delete(Integer feedbackId) {
         LOGGER.debug("Deleting FeedBack with id: {}", feedbackId);
         FeedBack deleted = this.wmGenericDao.findById(feedbackId);
         if (deleted == null) {

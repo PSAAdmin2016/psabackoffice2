@@ -43,7 +43,7 @@ public interface FeedBackNotesService {
 	 * @return FeedBackNotes associated with the given feedbacknotesId.
      * @throws EntityNotFoundException If no FeedBackNotes is found.
 	 */
-	FeedBackNotes getById(Integer feedbacknotesId) throws EntityNotFoundException;
+	FeedBackNotes getById(Integer feedbacknotesId);
 
     /**
 	 * Find and return the FeedBackNotes by given id if exists, returns null otherwise.
@@ -63,7 +63,7 @@ public interface FeedBackNotesService {
 	 * @return The updated FeedBackNotes.
 	 * @throws EntityNotFoundException if no FeedBackNotes is found with given input.
 	 */
-	FeedBackNotes update(@Valid FeedBackNotes feedBackNotes) throws EntityNotFoundException;
+	FeedBackNotes update(@Valid FeedBackNotes feedBackNotes);
 
     /**
 	 * Deletes an existing FeedBackNotes with the given id.
@@ -72,7 +72,7 @@ public interface FeedBackNotesService {
 	 * @return The deleted FeedBackNotes.
 	 * @throws EntityNotFoundException if no FeedBackNotes found with the given id.
 	 */
-	FeedBackNotes delete(Integer feedbacknotesId) throws EntityNotFoundException;
+	FeedBackNotes delete(Integer feedbacknotesId);
 
     /**
 	 * Deletes an existing FeedBackNotes with the given object.

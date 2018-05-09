@@ -59,7 +59,7 @@ public class RefWeldMaterialsServiceImpl implements RefWeldMaterialsService {
 
 	@Transactional(readOnly = true, value = "PSATransactionManager")
 	@Override
-	public RefWeldMaterials getById(Integer refweldmaterialsId) throws EntityNotFoundException {
+	public RefWeldMaterials getById(Integer refweldmaterialsId) {
         LOGGER.debug("Finding RefWeldMaterials by id: {}", refweldmaterialsId);
         return this.wmGenericDao.findById(refweldmaterialsId);
     }
@@ -79,7 +79,7 @@ public class RefWeldMaterialsServiceImpl implements RefWeldMaterialsService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "PSATransactionManager")
 	@Override
-	public RefWeldMaterials update(RefWeldMaterials refWeldMaterials) throws EntityNotFoundException {
+	public RefWeldMaterials update(RefWeldMaterials refWeldMaterials) {
         LOGGER.debug("Updating RefWeldMaterials with information: {}", refWeldMaterials);
 
         this.wmGenericDao.update(refWeldMaterials);
@@ -90,7 +90,7 @@ public class RefWeldMaterialsServiceImpl implements RefWeldMaterialsService {
 
     @Transactional(value = "PSATransactionManager")
 	@Override
-	public RefWeldMaterials delete(Integer refweldmaterialsId) throws EntityNotFoundException {
+	public RefWeldMaterials delete(Integer refweldmaterialsId) {
         LOGGER.debug("Deleting RefWeldMaterials with id: {}", refweldmaterialsId);
         RefWeldMaterials deleted = this.wmGenericDao.findById(refweldmaterialsId);
         if (deleted == null) {
