@@ -21,7 +21,7 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
     $scope.btnAcceptClick = function($event, $isolateScope) {
         //### Pipe FAs ###
-        if ($scope.Variables.staticTabSelect.dataSet.dataValue == '1') {
+        if ($scope.Widgets.tabs1.activeTab.name == "tabFAs") {
             switch ($scope.Widgets.gridSuperReviewActivities.selecteditem.fkActivityStatus) {
                 case 1:
                 case 10:
@@ -43,7 +43,7 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
         }
 
         //### Steel FAs ###
-        if ($scope.Variables.staticTabSelect.dataSet.dataValue == '2') {
+        if ($scope.Widgets.tabs1.activeTab.name == "tabSteel") {
             console.log("Logic for Accept Steel Piece Work not built yet.");
             $scope.Widgets.gridSuperReviewSteel
             //Need logic for looping through all FA's that make up the one row selected in the gridSuperReviewSteel.  
@@ -109,7 +109,7 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
 
     $scope.buttonResearchClick = function($event, $isolateScope) {
-        if ($scope.Variables.staticTabSelect.dataSet.dataValue == '1') {
+        if ($scope.Widgets.tabs1.activeTab.name == "tabFAs") {
             switch ($scope.Widgets.gridSuperReviewActivities.selecteditem.activityType) {
                 // Pipe Activities
                 case 11:
@@ -257,7 +257,7 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
             }
         }
 
-        if ($scope.Variables.staticTabSelect.dataSet.dataValue == '2') {
+        if ($scope.Widgets.tabs1.activeTab.name == "tabSteel") {
             $scope.Variables.navigationToClassicPipe.setData({
                 'PageLoadBidID': '',
                 'PageLoadArea': $scope.Widgets.gridSuperReviewSteel.selecteditem.sortGroup1,
@@ -274,7 +274,7 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
         if ($rowData.activityId === undefined) { //Skip logic if Nothing selected.
             return;
         }
-        if ($scope.Variables.staticTabSelect.dataSet.dataValue != '1') { //Skip logic if Tab Not selected.
+        if ($scope.Widgets.tabs1.activeTab.name != "tabFAs") { //Skip logic if Tab Not selected.
             return;
         }
 
@@ -302,61 +302,63 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
 
     $scope.liveGetActivityDetailsonSuccess = function(variable, data) { //Load the correct Partial page into container based on type of item selected from Grid.
-        switch (data[0].activityType) {
-            // Pipe Activities
-            case 11:
-                $scope.Widgets.containerFADetails.content = 'PartFAPipeErection';
-                break;
-            case 22:
-                $scope.Widgets.containerFADetails.content = 'PartFAPipeWeld';
-                break;
-            case 21:
-            case 24:
-            case 25:
-                $scope.Widgets.containerFADetails.content = 'PartFAPipeConnection';
-                break;
-            case 41:
-            case 42:
-            case 43:
-                $scope.Widgets.containerFADetails.content = 'PartFAPipeTesting';
-                break;
-            case 23:
-            case 31:
-            case 32:
-            case 33:
-            case 38:
-            case 39:
-            case 51:
-            case 52:
-            case 53:
-            case 90:
-                $scope.Widgets.containerFADetails.content = 'PartFAPipeStandard';
-                break;
-            case 91:
-                $scope.Widgets.containerFADetails.content = 'PartFAPipeMisc';
-                break;
-                // Steel Activities (Non Piece work)
-            case 66:
-                $scope.Widgets.containerFADetails.content = 'PartFASteelSellPackage';
-                break;
-            case 67:
-                $scope.Widgets.containerFADetails.content = 'PartFASteelDemo';
-                break;
-            case 96:
-                $scope.Widgets.containerFADetails.content = 'PartFASteelMisc';
-                break;
-                // Civil Activities
-            case 70:
-            case 71:
-                $scope.Widgets.containerFADetails.content = 'PartFACivilStandard';
-                break;
-            case 72:
-                $scope.Widgets.containerFADetails.content = 'PartFACivilSellPackage';
-                break;
-                // Equip Activities
-            case 80:
-                $scope.Widgets.containerFADetails.content = 'PartFAEquipStandard';
-                break;
+        if ($scope.Widgets.tabs1.activeTab.name == "tabFAs") {
+            switch (data[0].activityType) {
+                // Pipe Activities
+                case 11:
+                    $scope.Widgets.containerFADetails.content = 'PartFAPipeErection';
+                    break;
+                case 22:
+                    $scope.Widgets.containerFADetails.content = 'PartFAPipeWeld';
+                    break;
+                case 21:
+                case 24:
+                case 25:
+                    $scope.Widgets.containerFADetails.content = 'PartFAPipeConnection';
+                    break;
+                case 41:
+                case 42:
+                case 43:
+                    $scope.Widgets.containerFADetails.content = 'PartFAPipeTesting';
+                    break;
+                case 23:
+                case 31:
+                case 32:
+                case 33:
+                case 38:
+                case 39:
+                case 51:
+                case 52:
+                case 53:
+                case 90:
+                    $scope.Widgets.containerFADetails.content = 'PartFAPipeStandard';
+                    break;
+                case 91:
+                    $scope.Widgets.containerFADetails.content = 'PartFAPipeMisc';
+                    break;
+                    // Steel Activities (Non Piece work)
+                case 66:
+                    $scope.Widgets.containerFADetails.content = 'PartFASteelSellPackage';
+                    break;
+                case 67:
+                    $scope.Widgets.containerFADetails.content = 'PartFASteelDemo';
+                    break;
+                case 96:
+                    $scope.Widgets.containerFADetails.content = 'PartFASteelMisc';
+                    break;
+                    // Civil Activities
+                case 70:
+                case 71:
+                    $scope.Widgets.containerFADetails.content = 'PartFACivilStandard';
+                    break;
+                case 72:
+                    $scope.Widgets.containerFADetails.content = 'PartFACivilSellPackage';
+                    break;
+                    // Equip Activities
+                case 80:
+                    $scope.Widgets.containerFADetails.content = 'PartFAEquipStandard';
+                    break;
+            }
         }
     };
 
@@ -366,7 +368,7 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
         if ($rowData.submissionId === undefined) { //Skip logic if Nothing selected.
             return;
         }
-        if ($scope.Variables.staticTabSelect.dataSet.dataValue != '2') { //Skip logic if Tab Not selected.
+        if ($scope.Widgets.tabs1.activeTab.name != "tabSteel") { //Skip logic if Tab Not selected.
             return;
         }
 
@@ -394,20 +396,18 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
 
     $scope.tabFAsSelect = function($event, $isolateScope) {
-        $scope.Variables.staticTabSelect.setValue('dataValue', '1');
         $scope.gridSuperReviewActivitiesSelect(null, null, $scope.Widgets.gridSuperReviewActivities.selecteditem);
     };
 
 
     $scope.tabSteelSelect = function($event, $isolateScope) {
-        $scope.Variables.staticTabSelect.setValue('dataValue', '2');
         $scope.Widgets.containerFADetails.content = 'PartFASteelStandard';
         $scope.gridSuperReviewSteelSelect(null, null, $scope.Widgets.gridSuperReviewSteel.selecteditem);
     };
 
 
     $scope.serviceGetFAsSteelonSuccess = function(variable, data) {
-        if ($scope.Variables.staticTabSelect.dataSet.dataValue == '2') {
+        if ($scope.Widgets.tabs1.activeTab.name == "tabSteel") {
             $scope.Widgets.containerFADetails.Variables.serviceGetSteelFAData.invoke();
         }
     };
@@ -479,9 +479,9 @@ Application.$controller("dialogNotesNewController", ["$scope",
 
 
         $scope.FormCreateSASNoteBeforesubmit = function($event, $isolateScope, $data) {
-            if ($scope.Variables.staticTabSelect.dataSet.dataValue == '1') {
+            if ($scope.Widgets.tabs1.activeTab.name == "tabFAs") {
                 $data.ActivityID = $scope.Widgets.gridSuperReviewActivities.selecteditem.activityId;
-            } else if ($scope.Variables.staticTabSelect.dataSet.dataValue == '2') {
+            } else if ($scope.Widgets.tabs1.activeTab.name == "tabSteel") {
                 // Need to figure out the logic for what "activityID" to assign the notes too in this case...
                 $data.ActivityID = null;
             }
