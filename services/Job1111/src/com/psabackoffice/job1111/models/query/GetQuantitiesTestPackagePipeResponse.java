@@ -25,41 +25,41 @@ public class GetQuantitiesTestPackagePipeResponse implements Serializable {
     @ColumnAlias("ItemsTotal")
     private Long itemsTotal;
 
-    @JsonProperty("ReadyForTestingHours")
-    @ColumnAlias("ReadyForTestingHours")
-    private BigDecimal readyForTestingHours;
+    @JsonProperty("RFTHours")
+    @ColumnAlias("RFTHours")
+    private BigDecimal rfthours;
 
     @JsonProperty("HydroHours")
     @ColumnAlias("HydroHours")
     private BigDecimal hydroHours;
 
-    @JsonProperty("ClientTurnoverHours")
-    @ColumnAlias("ClientTurnoverHours")
-    private BigDecimal clientTurnoverHours;
+    @JsonProperty("CTOHours")
+    @ColumnAlias("CTOHours")
+    private BigDecimal ctohours;
 
-    @JsonProperty("ReadyForTestingInstalled")
-    @ColumnAlias("ReadyForTestingInstalled")
-    private BigInteger readyForTestingInstalled;
+    @JsonProperty("RFTInstalled")
+    @ColumnAlias("RFTInstalled")
+    private BigInteger rftinstalled;
 
     @JsonProperty("HydroInstalled")
     @ColumnAlias("HydroInstalled")
     private BigInteger hydroInstalled;
 
-    @JsonProperty("ClientTurnoverInstalled")
-    @ColumnAlias("ClientTurnoverInstalled")
-    private BigInteger clientTurnoverInstalled;
+    @JsonProperty("CTOInstalled")
+    @ColumnAlias("CTOInstalled")
+    private BigInteger ctoinstalled;
 
-    @JsonProperty("EarnedReadyForTestingHours")
-    @ColumnAlias("EarnedReadyForTestingHours")
-    private BigDecimal earnedReadyForTestingHours;
+    @JsonProperty("EarnedRFTHours")
+    @ColumnAlias("EarnedRFTHours")
+    private BigDecimal earnedRfthours;
 
     @JsonProperty("EarnedHydroHours")
     @ColumnAlias("EarnedHydroHours")
     private BigDecimal earnedHydroHours;
 
-    @JsonProperty("EarnedClientTurnoverHours")
-    @ColumnAlias("EarnedClientTurnoverHours")
-    private BigDecimal earnedClientTurnoverHours;
+    @JsonProperty("EarnedCTOHours")
+    @ColumnAlias("EarnedCTOHours")
+    private BigDecimal earnedCtohours;
 
     @JsonProperty("LooseHours")
     @ColumnAlias("LooseHours")
@@ -81,12 +81,12 @@ public class GetQuantitiesTestPackagePipeResponse implements Serializable {
         this.itemsTotal = itemsTotal;
     }
 
-    public BigDecimal getReadyForTestingHours() {
-        return this.readyForTestingHours;
+    public BigDecimal getRfthours() {
+        return this.rfthours;
     }
 
-    public void setReadyForTestingHours(BigDecimal readyForTestingHours) {
-        this.readyForTestingHours = readyForTestingHours;
+    public void setRfthours(BigDecimal rfthours) {
+        this.rfthours = rfthours;
     }
 
     public BigDecimal getHydroHours() {
@@ -97,20 +97,20 @@ public class GetQuantitiesTestPackagePipeResponse implements Serializable {
         this.hydroHours = hydroHours;
     }
 
-    public BigDecimal getClientTurnoverHours() {
-        return this.clientTurnoverHours;
+    public BigDecimal getCtohours() {
+        return this.ctohours;
     }
 
-    public void setClientTurnoverHours(BigDecimal clientTurnoverHours) {
-        this.clientTurnoverHours = clientTurnoverHours;
+    public void setCtohours(BigDecimal ctohours) {
+        this.ctohours = ctohours;
     }
 
-    public BigInteger getReadyForTestingInstalled() {
-        return this.readyForTestingInstalled;
+    public BigInteger getRftinstalled() {
+        return this.rftinstalled;
     }
 
-    public void setReadyForTestingInstalled(BigInteger readyForTestingInstalled) {
-        this.readyForTestingInstalled = readyForTestingInstalled;
+    public void setRftinstalled(BigInteger rftinstalled) {
+        this.rftinstalled = rftinstalled;
     }
 
     public BigInteger getHydroInstalled() {
@@ -121,20 +121,20 @@ public class GetQuantitiesTestPackagePipeResponse implements Serializable {
         this.hydroInstalled = hydroInstalled;
     }
 
-    public BigInteger getClientTurnoverInstalled() {
-        return this.clientTurnoverInstalled;
+    public BigInteger getCtoinstalled() {
+        return this.ctoinstalled;
     }
 
-    public void setClientTurnoverInstalled(BigInteger clientTurnoverInstalled) {
-        this.clientTurnoverInstalled = clientTurnoverInstalled;
+    public void setCtoinstalled(BigInteger ctoinstalled) {
+        this.ctoinstalled = ctoinstalled;
     }
 
-    public BigDecimal getEarnedReadyForTestingHours() {
-        return this.earnedReadyForTestingHours;
+    public BigDecimal getEarnedRfthours() {
+        return this.earnedRfthours;
     }
 
-    public void setEarnedReadyForTestingHours(BigDecimal earnedReadyForTestingHours) {
-        this.earnedReadyForTestingHours = earnedReadyForTestingHours;
+    public void setEarnedRfthours(BigDecimal earnedRfthours) {
+        this.earnedRfthours = earnedRfthours;
     }
 
     public BigDecimal getEarnedHydroHours() {
@@ -145,12 +145,12 @@ public class GetQuantitiesTestPackagePipeResponse implements Serializable {
         this.earnedHydroHours = earnedHydroHours;
     }
 
-    public BigDecimal getEarnedClientTurnoverHours() {
-        return this.earnedClientTurnoverHours;
+    public BigDecimal getEarnedCtohours() {
+        return this.earnedCtohours;
     }
 
-    public void setEarnedClientTurnoverHours(BigDecimal earnedClientTurnoverHours) {
-        this.earnedClientTurnoverHours = earnedClientTurnoverHours;
+    public void setEarnedCtohours(BigDecimal earnedCtohours) {
+        this.earnedCtohours = earnedCtohours;
     }
 
     public BigDecimal getLooseHours() {
@@ -168,15 +168,15 @@ public class GetQuantitiesTestPackagePipeResponse implements Serializable {
         final GetQuantitiesTestPackagePipeResponse getQuantitiesTestPackagePipeResponse = (GetQuantitiesTestPackagePipeResponse) o;
         return Objects.equals(getTestPackageNumber(), getQuantitiesTestPackagePipeResponse.getTestPackageNumber()) &&
                 Objects.equals(getItemsTotal(), getQuantitiesTestPackagePipeResponse.getItemsTotal()) &&
-                Objects.equals(getReadyForTestingHours(), getQuantitiesTestPackagePipeResponse.getReadyForTestingHours()) &&
+                Objects.equals(getRfthours(), getQuantitiesTestPackagePipeResponse.getRfthours()) &&
                 Objects.equals(getHydroHours(), getQuantitiesTestPackagePipeResponse.getHydroHours()) &&
-                Objects.equals(getClientTurnoverHours(), getQuantitiesTestPackagePipeResponse.getClientTurnoverHours()) &&
-                Objects.equals(getReadyForTestingInstalled(), getQuantitiesTestPackagePipeResponse.getReadyForTestingInstalled()) &&
+                Objects.equals(getCtohours(), getQuantitiesTestPackagePipeResponse.getCtohours()) &&
+                Objects.equals(getRftinstalled(), getQuantitiesTestPackagePipeResponse.getRftinstalled()) &&
                 Objects.equals(getHydroInstalled(), getQuantitiesTestPackagePipeResponse.getHydroInstalled()) &&
-                Objects.equals(getClientTurnoverInstalled(), getQuantitiesTestPackagePipeResponse.getClientTurnoverInstalled()) &&
-                Objects.equals(getEarnedReadyForTestingHours(), getQuantitiesTestPackagePipeResponse.getEarnedReadyForTestingHours()) &&
+                Objects.equals(getCtoinstalled(), getQuantitiesTestPackagePipeResponse.getCtoinstalled()) &&
+                Objects.equals(getEarnedRfthours(), getQuantitiesTestPackagePipeResponse.getEarnedRfthours()) &&
                 Objects.equals(getEarnedHydroHours(), getQuantitiesTestPackagePipeResponse.getEarnedHydroHours()) &&
-                Objects.equals(getEarnedClientTurnoverHours(), getQuantitiesTestPackagePipeResponse.getEarnedClientTurnoverHours()) &&
+                Objects.equals(getEarnedCtohours(), getQuantitiesTestPackagePipeResponse.getEarnedCtohours()) &&
                 Objects.equals(getLooseHours(), getQuantitiesTestPackagePipeResponse.getLooseHours());
     }
 
@@ -184,15 +184,15 @@ public class GetQuantitiesTestPackagePipeResponse implements Serializable {
     public int hashCode() {
         return Objects.hash(getTestPackageNumber(),
                 getItemsTotal(),
-                getReadyForTestingHours(),
+                getRfthours(),
                 getHydroHours(),
-                getClientTurnoverHours(),
-                getReadyForTestingInstalled(),
+                getCtohours(),
+                getRftinstalled(),
                 getHydroInstalled(),
-                getClientTurnoverInstalled(),
-                getEarnedReadyForTestingHours(),
+                getCtoinstalled(),
+                getEarnedRfthours(),
                 getEarnedHydroHours(),
-                getEarnedClientTurnoverHours(),
+                getEarnedCtohours(),
                 getLooseHours());
     }
 }

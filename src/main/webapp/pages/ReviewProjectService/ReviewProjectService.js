@@ -274,13 +274,29 @@ Application.$controller("dialogRecentActivitiesController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.buttonReturnToListClick = function($event, $isolateScope, item, currentItemWidgets) {
-            $scope.Variables.serviceUpdateSAS.setInput("ActivityID", item.ActivityID);
-            $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", 11);
-            $scope.Variables.serviceUpdateSAS.invoke({},
-                function(data) {
-                    $scope.Variables.serviceGetPSRecentActivities.invoke();
-                }
-            ); //Updates GetActivitiesPendingApproval
+            switch (item.ActivityTypeID) {
+                case 41:
+                case 66:
+                case 72:
+                    //I'm thinking a stored procedure that I pass in the ActivityID of the RFTActivity
+                    $scope.Variables.serviceRollBackLooseHoursActivity.setInput("ActivityID", item.ActivityID);
+                    $scope.Variables.serviceRollBackLooseHoursActivity.invoke({},
+                        function(data) {
+                            $scope.Variables.serviceGetPSRecentActivities.invoke();
+                        }
+                    ); //Updates GetActivitiesPendingApproval
+                    break;
+                default:
+                    $scope.Variables.serviceUpdateSAS.setInput("ActivityID", item.ActivityID);
+                    $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", 11);
+                    $scope.Variables.serviceUpdateSAS.invoke({},
+                        function(data) {
+                            $scope.Variables.serviceGetPSRecentActivities.invoke();
+                        }
+                    ); //Updates GetActivitiesPendingApproval
+                    break;
+            }
+
         };
 
     }

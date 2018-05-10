@@ -67,22 +67,22 @@
         </wm-gridrow>
         <wm-gridrow name="gridrow68" backgroundcolor="#b1efe4" bordercolor="#a0a0a0" borderstyle="groove" borderwidth="0px 0px 8px 0px" padding="1% 1% unset 1%">
             <wm-gridcolumn columnwidth="1" name="gridcolumn161_1">
-                <wm-label caption="Field ActivityID" fontweight="bold" textdecoration="underline" name="label221_2" hint="This is the selected activity." bordercolor="#000000" color="#000000"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityID" name="label229_1" hint="This is the selected activity." color="#000000" bordercolor="#000000"></wm-label>
+                <wm-label caption="Field ActivityID" fontweight="bold" textdecoration="underline" name="label221_2" hint="Selected Activity ID." bordercolor="#000000" color="#000000"></wm-label>
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityID" name="label229_1" hint="Selected Activity ID." color="#000000" bordercolor="#000000"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn162_2">
                 <wm-label caption="Line #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label222_2" bordercolor="#000000" color="#000000"></wm-label>
                 <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Line1" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool1' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0"
-                    name="labelLineNumberSpool1" hint="This is the selected activity." color="#000000"></wm-label>
+                    name="labelLineNumberSpool1" color="#000000"></wm-label>
                 <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Line2" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool2' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0"
                     name="labelLineNumberSpool2" color="#000000"></wm-label>
                 <wm-text name="textLineNumberSearch" width="95%" datavalue="bind:$parent.Widgets.gridApprovalReview.selecteditem.Line1" placeholder="Enter Line Number" backgroundcolor="#96c6bd" color="#000000" type="text" updateon="default"
                     show="bind:Widgets.toggleManualSearch.datavalue == 1" margin="unset unset unset 0px" textalign="left"></wm-text>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="2" name="gridcolumn163">
-                <wm-label caption="Drawing #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label223_2" hint="This is the selected activity." bordercolor="#000000" color="#000000"></wm-label>
+                <wm-label caption="Drawing #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label223_2" bordercolor="#000000" color="#000000"></wm-label>
                 <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Drawing1" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool1' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0" name="labelDrawingSpool1"
-                    hint="This is the selected activity." color="#000000"></wm-label>
+                    color="#000000"></wm-label>
                 <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Drawing2" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool2' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0" name="labelDrawingSpool2"
                     color="#000000"></wm-label>
                 <wm-text width="95%" datavalue="bind:$parent.Widgets.gridApprovalReview.selecteditem.Drawing1" placeholder="Enter Drawing Number" backgroundcolor="#96c6bd" color="#000000" type="text" updateon="default" show="bind:Widgets.toggleManualSearch.datavalue == 1"
@@ -92,32 +92,32 @@
                 <wm-layoutgrid name="layoutgrid39">
                     <wm-gridrow name="gridrow101">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn241_1">
-                            <wm-label caption="Sheet #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label224_1" hint="This is the selected activity." margin="unset 3% unset unset" bordercolor="#000000" color="#000000"></wm-label>
+                            <wm-label caption="Sheet #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label224_1" margin="unset 3% unset unset" bordercolor="#000000" color="#000000"></wm-label>
                             <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Sheet1" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool1' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0"
-                                name="labelSheet1" hint="This is the selected activity." color="#000000" margin="unset 3% unset unset"></wm-label>
+                                name="labelSheet1" color="#000000" margin="unset 3% unset unset"></wm-label>
                             <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Sheet2" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool2' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0"
                                 name="labelSheet2" color="#000000" margin="unset 3% unset unset"></wm-label>
                             <wm-text width="100%" datavalue="bind:$parent.Widgets.gridApprovalReview.selecteditem.Sheet1" placeholder="Enter Sheet Number" backgroundcolor="#96c6bd" color="#000000" type="text" updateon="default" show="bind:Widgets.toggleManualSearch.datavalue == 1"
                                 textalign="left" name="textSheetNumberSearch"></wm-text>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn242_2">
-                            <wm-label caption="Activity Type" fontweight="bold" textdecoration="underline" borderstyle="none" name="label225_1" hint="This is the selected activity." margin="unset 3% unset unset" bordercolor="#000000" color="#000000" show="bind:!Variables.staticBidSelectItem.dataSet.dataValue"></wm-label>
-                            <wm-label width="100%" caption="bind:Variables.staticATST.dataSet.activityType" name="labelActivityType" hint="This is the selected activity." color="#000000" margin="unset 3% unset unset" show="bind:!Variables.staticBidSelectItem.dataSet.dataValue"></wm-label>
+                            <wm-label caption="Activity Type" fontweight="bold" textdecoration="underline" borderstyle="none" name="label225_1" margin="unset 3% unset unset" bordercolor="#000000" color="#000000" show="bind:!Variables.staticBidSelectItem.dataSet.dataValue"></wm-label>
+                            <wm-label width="100%" caption="bind:Variables.staticATST.dataSet.activityType" name="labelActivityType" color="#000000" margin="unset 3% unset unset" show="bind:!Variables.staticBidSelectItem.dataSet.dataValue"></wm-label>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn245">
-                            <wm-label caption="SubType" fontweight="bold" textdecoration="underline" borderstyle="none" name="label226_1" hint="This is the selected activity." bordercolor="#000000" color="#000000" show="bind:!Variables.staticBidSelectItem.dataSet.dataValue"></wm-label>
-                            <wm-label width="100%" caption="bind:Variables.staticATST.dataSet.activitySubType" name="labelActivitySubType" hint="This is the selected activity." color="#000000" show="bind:!Variables.staticBidSelectItem.dataSet.dataValue"></wm-label>
+                            <wm-label caption="SubType" fontweight="bold" textdecoration="underline" borderstyle="none" name="label226_1" bordercolor="#000000" color="#000000" show="bind:!Variables.staticBidSelectItem.dataSet.dataValue"></wm-label>
+                            <wm-label width="100%" caption="bind:Variables.staticATST.dataSet.activitySubType" name="labelActivitySubType" color="#000000" show="bind:!Variables.staticBidSelectItem.dataSet.dataValue"></wm-label>
                         </wm-gridcolumn>
                     </wm-gridrow>
                 </wm-layoutgrid>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn167">
-                <wm-label caption="Size" fontweight="bold" textdecoration="underline" borderstyle="none" name="label227_1" hint="This is the selected activity." bordercolor="#000000" color="#000000"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Size" show="true" name="label235" hint="This is the selected activity." color="#000000"></wm-label>
+                <wm-label caption="Size" fontweight="bold" textdecoration="underline" borderstyle="none" name="label227_1" bordercolor="#000000" color="#000000"></wm-label>
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Size" show="true" name="label235" color="#000000"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="3" name="gridcolumn168" horizontalalign="center">
-                <wm-label caption="Submitted Notes" fontweight="bold" textdecoration="underline" borderstyle="none" name="label238_2" hint="Notes entered by the Foreman during field activity input." bordercolor="#000000" color="#000000"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Notes" readonlygrid="true" show="true" name="label240_2" hint="This is the selected activity." color="#000000"></wm-label>
+                <wm-label caption="Submitted Notes" fontweight="bold" textdecoration="underline" borderstyle="none" name="label238_2" hint="Foreman entered notes for this activity" bordercolor="#000000" color="#000000"></wm-label>
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Notes" readonlygrid="true" show="true" name="label240_2" hint="Foreman entered notes for this activity" color="#000000"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="2" name="gridcolumn169" padding="unset 0px">
                 <wm-layoutgrid name="layoutgrid3">
@@ -127,8 +127,8 @@
                                 width="95%" margin="10% unset 2% unset" name="buttonReviewNotes1" badgevalue="bind:$parent.Variables.serviceGetSASNotes.dataSet.totalElements"></wm-button>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn25" horizontalalign="center">
-                            <wm-button class="btn-raised" caption="Research" type="button" margin="10% unset unset unset" backgroundcolor="#40E0D0" hint="Jump to Classic Tracker, Filtered to This Activities BidID" accessroles="Everyone" width="98%" on-click="buttonResearchClick($event, $scope)"
-                                name="buttonResearch1" iconclass="wi wi-search"></wm-button>
+                            <wm-button class="btn-raised" caption="Research" type="button" margin="10% unset unset unset" backgroundcolor="#40E0D0" hint="Jump to Classic Tracker, Filtered to this drawing or area of tracker." accessroles="Everyone" width="98%"
+                                on-click="buttonResearchClick($event, $scope)" name="buttonResearch1" iconclass="wi wi-search"></wm-button>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn26">
                             <wm-button class="btn-default" caption="Details" type="button" backgroundcolor="#5fb4ff" opacity="1" width="95%" iconclass="glyphicon glyphicon-asterisk" on-click="Widgets.dialogFieldActivityDetails.open();buttonDetail1Click($event, $scope)"
@@ -229,8 +229,11 @@
                     margin="unset unset 20% unset"></wm-button>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn232">
-                <wm-button class="btn-default" caption="Assign" type="button" hint="Assign the selected activity to all items that are part of this Test Package" on-click="buttonAssign2Click($event, $scope)" readonlygrid="true" tabindex="1" show="true" backgroundcolor="#0B9642"
-                    iconclass="glyphicon glyphicon-ok-sign" disabled="false" width="50%" padding="unset 1%" name="buttonAssign2"></wm-button>
+                <wm-container name="containerSpinnerCage" width="50%">
+                    <wm-button class="btn-default" caption="Assign" type="button" hint="Assign the selected activity to all items that are part of this Test Package" on-click="buttonAssign2Click($event, $scope)" readonlygrid="true" tabindex="1" show="true"
+                        backgroundcolor="#0B9642" iconclass="glyphicon glyphicon-ok-sign" disabled="false" padding="unset 1%" name="buttonAssign2"></wm-button>
+                    <wm-spinner show="true" name="spinner1" servicevariabletotrack="serviceGetQuantitiesTestPackage" iconclass="fa fa-gear fa-spin" caption=""></wm-spinner>
+                </wm-container>
             </wm-gridcolumn>
         </wm-gridrow>
         <wm-gridrow name="gridrow90_2">
@@ -240,25 +243,29 @@
         </wm-gridrow>
         <wm-gridrow name="gridrow88_2" backgroundcolor="#b1efe4" padding="1% 1% unset 1%">
             <wm-gridcolumn columnwidth="1" name="gridcolumn204_1">
-                <wm-label caption="Field ActivityID" fontweight="bold" textdecoration="underline" hint="This is the selected activity." name="label230_1" color="#000000"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityID" hint="This is the selected activity." color="#000000" name="label231_1"></wm-label>
+                <wm-label caption="Field ActivityID" fontweight="bold" textdecoration="underline" hint="Selected Activity ID." name="label230_1" color="#000000"></wm-label>
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityID" hint="Selected Activity ID." color="#000000" name="label231_1"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn205_2">
                 <wm-label caption="Test Package" fontweight="bold" textdecoration="underline" borderstyle="none" name="label232_1" color="#000000"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Line1" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool1' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0"
-                    hint="This is the selected activity." color="#000000" name="label233_3"></wm-label>
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Spool1" readonlygrid="true" show="true" color="#000000" name="label233_3"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn232_1">
                 <wm-label caption="Testing Activity" fontweight="bold" textdecoration="underline" borderstyle="none" name="label259_3" color="#000000"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityTypeName" readonlygrid="true" show="bind:Widgets.switchSpool1Spool2.datavalue === 'Spool1' &amp;&amp; Widgets.toggleManualSearch.datavalue == 0"
-                    hint="This is the selected activity." color="#000000" name="label260_2"></wm-label>
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityTypeName" readonlygrid="true" show="true" color="#000000" name="label260_2"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="2" name="gridcolumn215_1" padding="unset unset unset 0px">
-                <wm-label caption="Notes" fontweight="bold" textdecoration="underline" borderstyle="none" name="label237_3" color="#000000"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Notes" readonlygrid="true" show="true" hint="This is the selected activity." color="#000000" name="label258_4"></wm-label>
+                <wm-label caption="Notes" fontweight="bold" textdecoration="underline" borderstyle="none" name="label237_3" color="#000000" hint="Foreman entered notes for this activity"></wm-label>
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Notes" readonlygrid="true" show="true" hint="Foreman entered notes for this activity" color="#000000" name="label258_4"></wm-label>
             </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="5" name="gridcolumn212">
-                <wm-label name="labelMatchCount" caption="bind:Variables.serviceGetMatchesByTestPackage.count()" color="#000000"></wm-label>
+            <wm-gridcolumn columnwidth="3" name="gridcolumn212" horizontalalign="center"></wm-gridcolumn>
+            <wm-gridcolumn columnwidth="2" name="gridcolumn167_2">
+                <wm-container name="container5" horizontalalign="right">
+                    <wm-label caption="Line Items:" name="label237" width="50px" class="inlineDisply" margin="unset unset unset unset" color="#000000" fontweight="bold" hint="Number of line items contained in this test package"></wm-label>
+                    <wm-container name="container177" class="badge" backgroundcolor="#c0c0c0" margin="unset unset 2% 1%" padding="1% unset unset unset">
+                        <wm-label name="label13" caption="bind:Variables.serviceGetMatchesByTestPackage.dataSet.totalElements | numberToString" fontsize="13" color="#000000" hint="Number of line items contained in this test package"></wm-label>
+                    </wm-container>
+                </wm-container>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="2" name="gridcolumn213">
                 <wm-layoutgrid name="layoutgrid16_1">
@@ -294,13 +301,7 @@
             <wm-gridcolumn columnwidth="1" name="gridcolumn214_2">
                 <wm-label caption="Sheet #" fontweight="bold" textdecoration="underline" borderstyle="none" name="label242_2" color="#000000"></wm-label>
             </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="1" name="gridcolumn215_2">
-                <wm-label caption="ECT" fontweight="bold" textdecoration="underline" borderstyle="none" name="label243_1" color="#000000"></wm-label>
-            </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="1" name="gridcolumn216_1">
-                <wm-label caption="ECT Type" fontweight="bold" textdecoration="underline" borderstyle="none" name="label244_1" color="#000000"></wm-label>
-            </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="3" name="gridcolumn217_1">
+            <wm-gridcolumn columnwidth="5" name="gridcolumn217_1">
                 <wm-label caption="Description" fontweight="bold" textdecoration="underline" borderstyle="none" name="label245_1" color="#000000"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn218">
@@ -333,23 +334,18 @@
                                 <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn224">
                                     <wm-label width="100%" caption="bind:Widgets.livelistBidActivitiesByTest.currentItem.SheetNumber" name="label252_1"></wm-label>
                                 </wm-gridcolumn>
-                                <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn225_1">
-                                    <wm-label width="100%" caption="bind:Widgets.livelistBidActivitiesByTest.currentItem.ActivityType" readonlygrid="true" name="label253_1"></wm-label>
-                                </wm-gridcolumn>
-                                <wm-gridcolumn class="col-xs-6" columnwidth="1" name="gridcolumn226_2">
-                                    <wm-label width="100%" caption="bind:Widgets.livelistBidActivitiesByTest.currentItem.ActivitySubType" name="label254_1"></wm-label>
-                                </wm-gridcolumn>
-                                <wm-gridcolumn class="col-xs-6" columnwidth="3" name="gridcolumn227_1">
+                                <wm-gridcolumn class="col-xs-6" columnwidth="5" name="gridcolumn227_1">
                                     <wm-label width="100%" caption="bind:Widgets.livelistBidActivitiesByTest.currentItem.Description" name="label255_2"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="1" name="gridcolumn228_1">
-                                    <wm-label width="100%" caption="bind:1 - Widgets.livelistBidActivitiesByTest.currentItem.ReadyForTestingInstalled | toNumber: '2'" name="label256_3"></wm-label>
+                                    <wm-label width="100%" caption="bind:1 - Widgets.livelistBidActivitiesByTest.currentItem.RFTInstalled | toNumber: '2'
+" name="label256_3"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="1" name="gridcolumn230_1">
                                     <wm-label width="100%" caption="bind:1 - Widgets.livelistBidActivitiesByTest.currentItem.HydroInstalled | toNumber: '2'" name="label257_1"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="1" name="gridcolumn231_1">
-                                    <wm-label width="100%" caption="bind:1 - Widgets.livelistBidActivitiesByTest.currentItem.ClientTurnoverInstalled | toNumber: '2'" name="label258_3"></wm-label>
+                                    <wm-label width="100%" caption="bind:1 - Widgets.livelistBidActivitiesByTest.currentItem.CTOInstalled | toNumber: '2'" name="label258_3"></wm-label>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                         </wm-container>
@@ -360,7 +356,8 @@
     </wm-layoutgrid>
     <wm-view class="dialog-view" name="viewRejection" show="false">
         <wm-dialog dialogtype="design-dialog" modal="true" name="dialogRejection" width="30%" closable="false" title="Reject Field Activity" iconclass="glyphicon glyphicon-edit">
-            <wm-form class="panel-primary" enctype="application/x-www-form-urlencoded" method="post" name="formReject" width="100%" height="100%" on-submit="formRejectSubmit($event, $scope, $formData);Widgets.dialogRejection.close()" margin="0%">
+            <wm-form class="panel-primary" enctype="application/x-www-form-urlencoded" method="post" name="formReject" width="100%" height="100%" on-submit="formRejectSubmit($event, $scope, $formData);Widgets.dialogRejection.close();Widgets.dialogAssignTestingQuantities.close()"
+                margin="0%">
                 <wm-layoutgrid name="layoutgrid54_1" margin="unset 0px" padding="unset 0px">
                     <wm-gridrow name="gridrow95_1" padding="unset 0%">
                         <wm-gridcolumn name="gridcolumn240_2">
@@ -390,126 +387,6 @@
             <wm-dialogactions name="dialogactions3" show="false">
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button14"></wm-button>
                 <wm-button class="btn-primary" caption="Save" name="buttonRejectSave" type="submit"></wm-button>
-            </wm-dialogactions>
-        </wm-dialog>
-    </wm-view>
-    <wm-view class="dialog-view" name="viewAssignTestingQuantities" show="false">
-        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogAssignTestingQuantities" tabindex="1" closable="true" animation="zoomInUp" width="30%" on-close="Variables.serviceUnLockSSActivity.invoke()" title="bind:'Update Quantities, Test Package'"
-            iconclass="glyphicon glyphicon-edit" on-opened="dialogAssignTestingQuantitiesOpened($event, $scope)">
-            <wm-form class="app-dialog-form" name="formQuantities" show="true">
-                <wm-layoutgrid name="layoutgrid34">
-                    <wm-gridrow name="gridrow67">
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn157_1">
-                            <wm-label name="label213_2" width="100%" caption="Ready for Testing Activity" fontweight="bold" fontsize="14" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41"></wm-label>
-                            <wm-label width="100%" caption="Hydro Activity" fontweight="bold" fontsize="14" name="label324" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42"></wm-label>
-                            <wm-label width="100%" caption="Client Turnover Activity" fontweight="bold" fontsize="14" name="label325" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43"></wm-label>
-                        </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="8" name="gridcolumn162_1" horizontalalign="center">
-                            <wm-label caption="Current Quantity" fontweight="bold" fontsize="14" name="label214_1" hint="All Totals/Quantities, And percentages are BEFORE the current activity is added." margin="unset unset 0px unset"></wm-label>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                    <wm-gridrow name="gridrow52_1" paddingunit="%">
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn121_2" borderstyle="solid" borderwidth="5px 5px unset 5px" padding="2% unset 1% 1%">
-                            <wm-composite name="composite109_1" captionposition="top" show="true" margin="0px unset">
-                                <wm-label class="col-md-3" caption="Bid Items claimed" hint="The amount installed by this current Activity" fontweight="bold" name="label311"></wm-label>
-                            </wm-composite>
-                            <wm-text name="textInstalled" hint="The amount installed by this current Activity" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ItemsTotal" type="number" updateon="default" backgroundcolor="#b1efe4"
-                                readonly="bind:Widgets.gridApprovalReview.selecteditem.ActivityType != 22 || Widgets.gridApprovalReview.selecteditem.ActivityType == 32" width="80%" disabled="false" placeholder="Enter Quantity" scopedatavalue="textInstalled"
-                                margin="unset unset 0px unset" color="#000000"></wm-text>
-                        </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn122_2" padding="2% unset 1% 5%"></wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn123_2" padding="2% unset 1% unset">
-                            <wm-composite name="composite111" captionposition="top">
-                                <wm-label class="col-md-3" name="label134_1" caption="Bid Items Remaining" hint="Remaining quantity BEFORE current activity is added" fontweight="bold"></wm-label>
-                                <wm-container class="col-md-9" name="container106" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41">
-                                    <wm-label name="labelRfTRemaining" caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ItemsTotal - Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ReadyForTestingInstalled" hint="Remaining quantity BEFORE current activity is added"></wm-label>
-                                </wm-container>
-                                <wm-container class="col-md-9" show="false" name="container178">
-                                    <wm-text tabindex="1" readonly="true" hint="Remaining quantity BEFORE current activity is added" type="number" datavalue="bind:Variables.serviceGetBidActivityQuantity.dataSet[$i].TakeOffQuantity - Variables.serviceGetQuantityLFInstalled.dataSet[$i].Total"
-                                        name="text126"></wm-text>
-                                </wm-container>
-                                <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42" name="container141">
-                                    <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ItemsTotal - Variables.serviceGetQuantitiesTestPackage.dataSet[$i].HydroInstalled" hint="Remaining quantity BEFORE current activity is added"
-                                        name="label318"></wm-label>
-                                </wm-container>
-                                <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43" name="container142">
-                                    <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ItemsTotal - Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ClientTurnoverInstalled" hint="Remaining quantity BEFORE current activity is added"
-                                        name="label319"></wm-label>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                    <wm-gridrow name="gridrow53">
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn124_2" borderstyle="solid" borderwidth="unset 5px 5px 5px" padding="unset unset 1% 1%">
-                            <wm-composite name="composite183" captionposition="top" margin="unset unset 0px unset" show="true">
-                                <wm-label class="col-md-3 control-label" caption="Hours Earned" fontweight="bold" name="label308" hint="The amount installed by this current Activity"></wm-label>
-                            </wm-composite>
-                            <wm-container class="col-md-9" name="containerErectionHrsEarned" show="true">
-                                <wm-text hint="The amount installed by this current Activity" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ReadyForTestingHours.toFixed(2)" type="number" updateon="default" backgroundcolor="#b1efe4"
-                                    readonly="true" disabled="false" placeholder="Enter Quantity" name="textReadyForTestHrsEarned" color="#000000" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41"></wm-text>
-                                <wm-text hint="The amount installed by this current Activity" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].HydroHours.toFixed(2)" type="number" updateon="default" backgroundcolor="#b1efe4"
-                                    readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textHydroHrsEarned" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42"></wm-text>
-                                <wm-text hint="The amount installed by this current Activity" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ClientTurnoverHours.toFixed(2)" type="number" updateon="default" backgroundcolor="#b1efe4"
-                                    readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textClientTurnoverHrsEarned" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43"></wm-text>
-                            </wm-container>
-                            <wm-composite captionposition="top" margin="unset unset 0px unset" show="true" name="composite113">
-                                <wm-label class="col-md-3 control-label" caption="Loose Hours Earned" fontweight="bold" name="label326" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41"></wm-label>
-                                <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41" name="container147">
-                                    <wm-text hint="Number of hours that will be earned by taking all items in this test package to 100%" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].LooseHours.toFixed(2)" type="number" updateon="default"
-                                        backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="text69"></wm-text>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn125_1" padding="unset unset 1% 5%"></wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn126" padding="unset unset 1% unset">
-                            <wm-composite name="composite184_1" captionposition="top">
-                                <wm-label class="col-md-3 control-label" name="label237_1" caption="Remaining Hours" hint="Remaining hours BEFORE current activity is added" fontweight="bold"></wm-label>
-                                <wm-container class="col-md-9" name="container176_1" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41" height="20px">
-                                    <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ReadyForTestingHours - Variables.serviceGetQuantitiesTestPackage.dataSet[$i].EarnedReadyForTestingHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added"
-                                        name="labelRFTHoursRemaining"></wm-label>
-                                </wm-container>
-                                <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42" name="container143" height="20px">
-                                    <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].HydroHours - Variables.serviceGetQuantitiesTestPackage.dataSet[$i].EarnedHydroHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added"
-                                        name="labelHydroHoursRemaining"></wm-label>
-                                </wm-container>
-                                <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43" name="container144" height="20px">
-                                    <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ClientTurnoverHours - Variables.serviceGetQuantitiesTestPackage.dataSet[$i].EarnedClientTurnoverHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added"
-                                        name="labelClientTurnoverHoursRemainin"></wm-label>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                    <wm-gridrow name="gridrow54" horizontalalign="right">
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn129_1" horizontalalign="right"></wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn201_1"></wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn202_1">
-                            <wm-composite name="composite186_1" captionposition="top" horizontalalign="left">
-                                <wm-container class="col-md-9" show="true" name="container121_1">
-                                    <wm-label class="col-md-3 control-label" caption="Percent Complete" textalign="left" hint="Percent of test package complete BEFORE current activity is added" fontweight="bold" width="100%" margin="unset unset 0px unset"
-                                        name="label284_1"></wm-label>
-                                </wm-container>
-                                <wm-container class="col-md-9" name="container178_1" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41">
-                                    <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].EarnedReadyForTestingHours / Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ReadyForTestingHours * 100 | toNumber: '2' | suffix: '%'"
-                                        hint="Percent complete BEFORE current activity is added" name="labelRFTPercentComplete"></wm-label>
-                                </wm-container>
-                                <wm-container class="col-md-9" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42" name="container145">
-                                    <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].EarnedHydroHours / Variables.serviceGetQuantitiesTestPackage.dataSet[$i].HydroHours * 100 | toNumber: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added"
-                                        name="label322"></wm-label>
-                                </wm-container>
-                                <wm-container class="col-md-9" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43" name="container146">
-                                    <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.dataSet[$i].EarnedClientTurnoverHours / Variables.serviceGetQuantitiesTestPackage.dataSet[$i].ClientTurnoverHours * 100 | toNumber: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added"
-                                        name="label323"></wm-label>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                </wm-layoutgrid>
-            </wm-form>
-            <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-default" caption="Reject" type="button" show="true" backgroundcolor="#dc0000" iconclass="glyphicon glyphicon-thumbs-down" shortcutkey="r" on-click="Widgets.dialogRejection.open()" name="buttonRejectQuantity" hint="Return to Superintendent for further review."></wm-button>
-                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog();Variables.serviceUnLockSSActivity.invoke();buttonDialogAssignTestCancelClick($event, $scope)" name="buttonDialogAssignTestCancel" tabindex="1"></wm-button>
-                <wm-button class="btn-primary" caption="Update" name="buttonQuantitiesUpdate2" type="button" on-click="buttonQuantitiesUpdate2Click($event, $scope);Widgets.dialogAssignTestingQuantities.close();Variables.serviceUnLockSSActivity.invoke()"
-                    hint="Commit this entry to the tracker."></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
@@ -1185,6 +1062,117 @@ Variables.liveGetActivityDetails.firstRecord.activityId != null" name="layoutgri
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions4">
                 <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button15_1"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewAssignTestingQuantities" show="false">
+        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogAssignTestingQuantities" tabindex="1" closable="true" animation="zoomInUp" width="30%" on-close="dialogAssignTestingQuantitiesClose($event, $scope)" title="bind:'Update Quantities, Test Package'"
+            iconclass="glyphicon glyphicon-edit" on-opened="dialogAssignTestingQuantitiesOpened($event, $scope)">
+            <wm-form class="app-dialog-form" name="formQuantities" show="true">
+                <wm-layoutgrid name="layoutgrid34">
+                    <wm-gridrow name="gridrow67">
+                        <wm-gridcolumn columnwidth="3" name="gridcolumn157_1">
+                            <wm-label name="label213_2" width="100%" caption="Ready for Testing Activity" fontweight="bold" fontsize="14" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41" deferload="true"></wm-label>
+                            <wm-label width="100%" caption="Hydro Activity" fontweight="bold" fontsize="14" name="label324" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42" deferload="true"></wm-label>
+                            <wm-label width="100%" caption="Client Turnover Activity" fontweight="bold" fontsize="14" name="label325" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43" deferload="true"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="9" name="gridcolumn162_1" horizontalalign="center">
+                            <wm-label caption="Current Quantity" fontweight="bold" fontsize="14" name="label214_1" hint="All Totals/Quantities, And percentages are BEFORE the current activity is added." margin="unset unset 0px unset"></wm-label>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow52_1" paddingunit="%">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn121_2" borderstyle="solid" borderwidth="5px 5px unset 5px" padding="2% unset 1% 1%">
+                            <wm-composite name="composite109_1" captionposition="top" show="true" margin="0px unset">
+                                <wm-label class="col-md-3" caption="Line Items claimed" hint="The amount installed by this current Activity" fontweight="bold" name="label311"></wm-label>
+                                <wm-text name="textInstalled" hint="The amount installed by this current Activity" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.firstRecord.ItemsTotal" type="number" updateon="default" backgroundcolor="#b1efe4"
+                                    readonly="true" width="80%" disabled="false" placeholder="Enter Quantity" scopedatavalue="textInstalled" margin="unset unset 0px unset" color="#000000"></wm-text>
+                            </wm-composite>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn122_2" padding="2% unset 1% 5%"></wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn123_2" padding="2% unset 1% unset">
+                            <wm-label class="col-md-3" name="label134_1" caption="Line Items Remaining" hint="Remaining quantity BEFORE current activity is added" fontweight="bold" width="100%"></wm-label>
+                            <wm-container class="col-md-9" name="container106" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41" deferload="true">
+                                <wm-label name="labelRfTRemaining" caption="bind:Variables.serviceGetQuantitiesTestPackage.firstRecord.ItemsTotal - Variables.serviceGetQuantitiesTestPackage.firstRecord.RFTInstalled" hint="Remaining quantity BEFORE current activity is added"></wm-label>
+                            </wm-container>
+                            <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42" name="container141" deferload="true">
+                                <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.firstRecord.ItemsTotal - Variables.serviceGetQuantitiesTestPackage.firstRecord.HydroInstalled" hint="Remaining quantity BEFORE current activity is added" name="label318"></wm-label>
+                            </wm-container>
+                            <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43" name="container142" deferload="true">
+                                <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.firstRecord.ItemsTotal - Variables.serviceGetQuantitiesTestPackage.firstRecord.CTOInstalled
+" hint="Remaining quantity BEFORE current activity is added" name="label319"></wm-label>
+                            </wm-container>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow53">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn124_2" borderstyle="solid" borderwidth="unset 5px 5px 5px" padding="unset unset 1% 1%">
+                            <wm-composite captionposition="top" margin="unset unset 0px unset" show="true" name="composite113">
+                                <wm-label class="col-md-3 control-label" caption="Hours Earned" fontweight="bold" name="label308" hint="The amount installed by this current Activity" width="100%"></wm-label>
+                                <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41" name="container71" width="80%">
+                                    <wm-text hint="The amount installed by this current Activity" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.firstRecord.RFTHours | numberToString: '2'" type="number" updateon="default" backgroundcolor="#b1efe4"
+                                        readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textReadyForTestHrsEarned"></wm-text>
+                                </wm-container>
+                                <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42" name="container73" width="80%">
+                                    <wm-text hint="The amount installed by this current Activity" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.firstRecord.HydroHours | numberToString: '2'" type="number" updateon="default" backgroundcolor="#b1efe4"
+                                        readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textHydroHrsEarned"></wm-text>
+                                </wm-container>
+                                <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43" name="container74" width="80%">
+                                    <wm-text hint="The amount installed by this current Activity" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.firstRecord.CTOHours | numberToString: '2'" type="number" updateon="default" backgroundcolor="#b1efe4"
+                                        readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="textClientTurnoverHrsEarned"></wm-text>
+                                </wm-container>
+                                <wm-label class="col-md-3 control-label" caption="Loose Hours Earned" fontweight="bold" name="label326" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41" width="100%"></wm-label>
+                                <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41" name="container147" width="80%">
+                                    <wm-text hint="Number of hours that will be earned by taking all items in this test package to 100%" datavalue="bind:Variables.serviceGetQuantitiesTestPackage.firstRecord.LooseHours" type="number" updateon="default" backgroundcolor="#b1efe4"
+                                        readonly="true" disabled="false" placeholder="Enter Quantity" color="#000000" name="text69"></wm-text>
+                                </wm-container>
+                            </wm-composite>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn125_1" padding="unset unset 1% 5%"></wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn126">
+                            <wm-label class="col-md-3 control-label" name="label237_1" caption="R.F.T Hours Remaining" hint="Remaining hours BEFORE current activity is added" fontweight="bold" width="100%" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41"
+                                deferload="true"></wm-label>
+                            <wm-label class="col-md-3 control-label" caption="Hydro Hours Remainig" hint="Remaining hours BEFORE current activity is added" fontweight="bold" width="100%" name="label146_2" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42"
+                                deferload="true"></wm-label>
+                            <wm-label class="col-md-3 control-label" caption="C.T.O Hours Remaining" hint="Remaining hours BEFORE current activity is added" fontweight="bold" width="100%" name="label145_1" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43"
+                                deferload="true"></wm-label>
+                            <wm-container class="col-md-9" name="container176_1" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41" height="20px">
+                                <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.firstRecord.RFTHours - Variables.serviceGetQuantitiesTestPackage.firstRecord.EarnedRFTHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added"
+                                    name="labelRFTHoursRemaining"></wm-label>
+                            </wm-container>
+                            <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42" name="container143" height="20px">
+                                <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.firstRecord.HydroHours - Variables.serviceGetQuantitiesTestPackage.firstRecord.EarnedHydroHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added"
+                                    name="labelHydroHoursRemaining"></wm-label>
+                            </wm-container>
+                            <wm-container class="col-md-9" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43" name="container144" height="20px">
+                                <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.firstRecord.CTOHours - Variables.serviceGetQuantitiesTestPackage.firstRecord.EarnedCTOHours | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added"
+                                    name="labelClientTurnoverHoursRemainin"></wm-label>
+                            </wm-container>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow54" horizontalalign="right">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn129_1" horizontalalign="right"></wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn201_1"></wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn202_1">
+                            <wm-label class="col-md-3 control-label" caption="Percent Complete" textalign="left" hint="Percent of test package complete BEFORE current activity is added" fontweight="bold" width="100%" margin="unset unset 0px unset" name="label284_1"></wm-label>
+                            <wm-container class="col-md-9" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 42" name="container145" deferload="true">
+                                <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.firstRecord.EarnedHydroHours / Variables.serviceGetQuantitiesTestPackage.firstRecord.HydroHours * 100  | numberToString: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added"
+                                    name="label322"></wm-label>
+                            </wm-container>
+                            <wm-container class="col-md-9" name="container178_1" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41" deferload="true">
+                                <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.firstRecord.EarnedRFTHours / Variables.serviceGetQuantitiesTestPackage.firstRecord.RFTHours * 100 | numberToString: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added"
+                                    name="labelRFTPercentComplete"></wm-label>
+                            </wm-container>
+                            <wm-container class="col-md-9" horizontalalign="left" show="bind:$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 43" name="container146" deferload="true">
+                                <wm-label caption="bind:Variables.serviceGetQuantitiesTestPackage.firstRecord.EarnedCTOHours / VVariables.serviceGetQuantitiesTestPackage.firstRecord.CTOHours * 100 | numberToString: '2' | suffix: '%'" hint="Percent complete BEFORE current activity is added"
+                                    name="label323"></wm-label>
+                            </wm-container>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
+            </wm-form>
+            <wm-dialogactions name="dialogactions1">
+                <wm-button class="btn-default" caption="Reject" type="button" show="true" backgroundcolor="#dc0000" iconclass="glyphicon glyphicon-thumbs-down" shortcutkey="r" on-click="Widgets.dialogRejection.open()" name="buttonRejectQuantity" hint="Return to Superintendent for further review."></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="buttonDialogAssignTestCancel" tabindex="1"></wm-button>
+                <wm-button class="btn-primary" caption="Update" name="buttonQuantitiesUpdate2" type="button" on-click="buttonQuantitiesUpdate2Click($event, $scope);Widgets.dialogAssignTestingQuantities.close()" hint="Commit this entry to the tracker."></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>

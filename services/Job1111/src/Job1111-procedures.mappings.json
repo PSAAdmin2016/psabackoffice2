@@ -1088,6 +1088,37 @@
       "parameterType" : "OUT"
     } ]
   },
+  "RollBackLooseHours" : {
+    "procedureString" : "CALL RollBackLooseHours(?, ?, ?)",
+    "parameters" : [ {
+      "name" : "ActivityID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "17",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
   "CreateManualActivityEquip" : {
     "procedureString" : "call CreateManualActivityEquip(?, ?, ?, ?, ?, ?, ?)",
     "parameters" : [ {

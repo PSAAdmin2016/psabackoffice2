@@ -48,6 +48,8 @@ public interface Job1111ProcedureExecutorService {
 
     GetEquipStatsResponse executeGetEquipStats(String groupedBy, Integer runMode);
 
+    RollBackLooseHoursResponse executeRollBackLooseHours(Integer activityId);
+
     CreateManualActivityEquipResponse executeCreateManualActivityEquip(CreateManualActivityEquipRequest createManualActivityEquipRequest);
 
     GetSteelStatsResponse executeGetSteelStats(String groupedBy, Integer runMode);

@@ -20,6 +20,10 @@ public class GetPsrecentActivitiesResponse implements Serializable {
     @ColumnAlias("ActivityID")
     private Integer activityId;
 
+    @JsonProperty("ActivityTypeID")
+    @ColumnAlias("ActivityTypeID")
+    private Short activityTypeId;
+
     @JsonProperty("ActivityType")
     @ColumnAlias("ActivityType")
     private String activityType;
@@ -38,6 +42,14 @@ public class GetPsrecentActivitiesResponse implements Serializable {
 
     public void setActivityId(Integer activityId) {
         this.activityId = activityId;
+    }
+
+    public Short getActivityTypeId() {
+        return this.activityTypeId;
+    }
+
+    public void setActivityTypeId(Short activityTypeId) {
+        this.activityTypeId = activityTypeId;
     }
 
     public String getActivityType() {
@@ -70,6 +82,7 @@ public class GetPsrecentActivitiesResponse implements Serializable {
         if (!(o instanceof GetPsrecentActivitiesResponse)) return false;
         final GetPsrecentActivitiesResponse getPsrecentActivitiesResponse = (GetPsrecentActivitiesResponse) o;
         return Objects.equals(getActivityId(), getPsrecentActivitiesResponse.getActivityId()) &&
+                Objects.equals(getActivityTypeId(), getPsrecentActivitiesResponse.getActivityTypeId()) &&
                 Objects.equals(getActivityType(), getPsrecentActivitiesResponse.getActivityType()) &&
                 Objects.equals(getStatus(), getPsrecentActivitiesResponse.getStatus()) &&
                 Objects.equals(getTimeStamp(), getPsrecentActivitiesResponse.getTimeStamp());
@@ -78,6 +91,7 @@ public class GetPsrecentActivitiesResponse implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getActivityId(),
+                getActivityTypeId(),
                 getActivityType(),
                 getStatus(),
                 getTimeStamp());

@@ -336,15 +336,11 @@
       "type" : "integer"
     }, {
       "target" : "TestPackage",
-      "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.Line1",
+      "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.Spool1",
       "type" : "string"
     }, {
       "target" : "SubmissionId",
       "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.SubmissionID",
-      "type" : "integer"
-    }, {
-      "target" : "ActivityId",
-      "value" : "bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.psabackoffice.job1111.models.procedure.CreateLooseHoursActivitiesPipeResponse",
@@ -415,7 +411,7 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
-    "spinnerContext" : "livelist3",
+    "spinnerContext" : "livelistBidActivitiesByTest",
     "spinnerMessage" : "Retrieving Matches..."
   },
   "serviceGetQuantitiesTestPackage" : {
@@ -423,7 +419,11 @@
     "name" : "serviceGetQuantitiesTestPackage",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "TestPackage",
+      "value" : "bind:pageParams.TestPackage",
+      "type" : "string"
+    } ],
     "type" : "com.psabackoffice.job1111.models.query.GetQuantitiesTestPackagePipeResponse",
     "service" : "Job1111",
     "operation" : "executeGetQuantitiesTestPackagePipe",
@@ -432,7 +432,7 @@
     "serviceType" : "DataService",
     "dataSet" : [ ],
     "isList" : true,
-    "maxResults" : 200,
+    "maxResults" : 1,
     "designMaxResults" : 10,
     "startUpdate" : false,
     "autoUpdate" : false,

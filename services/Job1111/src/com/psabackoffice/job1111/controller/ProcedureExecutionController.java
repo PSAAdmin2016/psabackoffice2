@@ -226,6 +226,16 @@ public class ProcedureExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/procedure/execute/RollBackLooseHours", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Sets the status of all the LooseHours activities created during a CreateLooseHours call for a specific ActivityID to 13.  Effectively rolling them back.")
+    public RollBackLooseHoursResponse executeRollBackLooseHours(@RequestParam(value = "ActivityID") Integer activityId, HttpServletRequest _request) {
+        LOGGER.debug("Executing named procedure: RollBackLooseHours");
+        RollBackLooseHoursResponse _result = procedureService.executeRollBackLooseHours(activityId);
+        LOGGER.debug("got the result for named procedure: RollBackLooseHours, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/procedure/execute/CreateManualActivityEquip", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "name")

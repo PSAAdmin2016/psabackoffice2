@@ -98,8 +98,11 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                         <wm-layoutgrid name="layoutgrid2">
                             <wm-gridrow name="gridrow6">
                                 <wm-gridcolumn columnwidth="4" name="gridcolumn14_1">
-                                    <wm-button class="btn-default" caption="Accept" type="button" hint="Accept the activity and submit to project services review." on-click="btnAcceptClick($event, $scope)" readonlygrid="true" tabindex="1" show="bind:Variables.staticEditMode.dataSet.dataValue == false &amp;&amp; (Widgets.containerFADetails.Variables.staticEditMode.dataSet.dataValue == false || Widgets.containerFADetails.Variables.staticEditMode.dataSet.dataValue == undefined)"
-                                        backgroundcolor="#0B9642" iconclass="glyphicon glyphicon-thumbs-up" shortcutkey="a" name="btnAccept"></wm-button>
+                                    <wm-container name="containerSpinnerCage" width="50%" horizontalalign="left">
+                                        <wm-button class="btn-default" caption="Accept" type="button" hint="Accept the activity and submit to project services review." on-click="btnAcceptClick($event, $scope)" readonlygrid="true" tabindex="1" show="bind:Variables.staticEditMode.dataSet.dataValue == false &amp;&amp; (Widgets.containerFADetails.Variables.staticEditMode.dataSet.dataValue == false || Widgets.containerFADetails.Variables.staticEditMode.dataSet.dataValue == undefined)"
+                                            backgroundcolor="#0B9642" iconclass="glyphicon glyphicon-thumbs-up" shortcutkey="a" name="btnAccept"></wm-button>
+                                        <wm-spinner show="true" name="spinner1" servicevariabletotrack="liveGetActivityDetails" iconclass="fa fa-gear fa-spin" caption=""></wm-spinner>
+                                    </wm-container>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="4" name="gridcolumn15">
                                     <wm-button class="btn-default" caption="Modify" type="button" hint="Modify this activity." readonlygrid="true" on-click="btnModifyClick($event, $scope)" show="bind:Variables.staticEditMode.dataSet.dataValue == false &amp;&amp; Widgets.tabs1.activeTab.name == 'tabFAs'"
@@ -115,9 +118,6 @@ Variables.loggedInUser.dataSet.roles == 'Millwright-GF'" dataset="bind:Variables
                                 </wm-gridcolumn>
                             </wm-gridrow>
                         </wm-layoutgrid>
-                        <wm-container name="containerSpinnerCage" width="10%" horizontalalign="left">
-                            <wm-spinner show="true" name="spinner1" servicevariabletotrack="liveGetActivityDetails" iconclass="fa fa-gear fa-spin" caption=""></wm-spinner>
-                        </wm-container>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn6"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn7">

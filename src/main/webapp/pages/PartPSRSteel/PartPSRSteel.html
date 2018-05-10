@@ -952,7 +952,7 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewAssignTestingQuantities" show="false">
-        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogAssignTestingQuantities" tabindex="1" closable="true" animation="zoomInUp" width="30%" on-close="Variables.serviceUnLockSSActivity.invoke()" title="bind:'Update Quantities, Test Package: ' + $parent.Widgets.gridApprovalReview.selecteditem.Line1"
+        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogAssignTestingQuantities" tabindex="1" closable="true" animation="zoomInUp" width="30%" on-close="dialogAssignTestingQuantitiesClose($event, $scope)" title="bind:'Update Quantities, Test Package: ' + $parent.Widgets.gridApprovalReview.selecteditem.Line1"
             iconclass="glyphicon glyphicon-edit" on-opened="dialogAssignTestingQuantitiesOpened($event, $scope)">
             <wm-form class="app-dialog-form" name="formQuantities" show="true">
                 <wm-layoutgrid name="layoutgrid34">
@@ -1053,7 +1053,7 @@
             </wm-form>
             <wm-dialogactions name="dialogactions1">
                 <wm-button class="btn-default" caption="Return" type="button" show="true" backgroundcolor="#dc0000" iconclass="wi wi-backward" shortcutkey="r" on-click="Widgets.dialogRejection.open()" name="buttonRejectQuantity" hint="Return to Superintendent for further review."></wm-button>
-                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog();Variables.serviceUnLockSSActivity.invoke();buttonDialogAssignTestCancelClick($event, $scope)" name="buttonDialogAssignTestCancel" tabindex="1"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="buttonDialogAssignTestCancel" tabindex="1"></wm-button>
                 <wm-button class="btn-primary" caption="Update" name="buttonQuantitiesUpdate2" type="button" on-click="buttonQuantitiesUpdate2Click($event, $scope);Widgets.dialogAssignTestingQuantities.close()" hint="Commit this entry to the tracker."></wm-button>
             </wm-dialogactions>
         </wm-dialog>

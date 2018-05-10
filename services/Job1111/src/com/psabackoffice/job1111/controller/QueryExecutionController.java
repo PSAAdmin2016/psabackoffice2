@@ -969,7 +969,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetQuantitiesTestPackagePipe", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get testing quantities")
-    public Page<GetQuantitiesTestPackagePipeResponse> executeGetQuantitiesTestPackagePipe(@RequestParam(value = "TestPackage", required = false) String testPackage, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetQuantitiesTestPackagePipeResponse> executeGetQuantitiesTestPackagePipe(@RequestParam(value = "TestPackage") String testPackage, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetQuantitiesTestPackagePipe");
         Page<GetQuantitiesTestPackagePipeResponse> _result = queryService.executeGetQuantitiesTestPackagePipe(testPackage, pageable);
         LOGGER.debug("got the result for named query: GetQuantitiesTestPackagePipe, result:{}", _result);
@@ -979,7 +979,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetQuantitiesTestPackagePipe")
     @RequestMapping(value = "/queries/GetQuantitiesTestPackagePipe/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetQuantitiesTestPackagePipe(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "TestPackage", required = false) String testPackage, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetQuantitiesTestPackagePipe(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "TestPackage") String testPackage, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetQuantitiesTestPackagePipe");
 
         return queryService.exportGetQuantitiesTestPackagePipe(exportType, testPackage, pageable);

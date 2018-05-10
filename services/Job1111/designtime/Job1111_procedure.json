@@ -8502,5 +8502,68 @@
         }
       } ]
     }
+  },
+  "RollBackLooseHours" : {
+    "name" : "RollBackLooseHours",
+    "description" : "Sets the status of all the LooseHours activities created during a CreateLooseHours call for a specific ActivityID to 13.  Effectively rolling them back.",
+    "version" : "V2",
+    "procedureString" : "CALL RollBackLooseHours(:ActivityID, :ReturnStatus, :ErrorText)",
+    "parameters" : [ {
+      "name" : "ActivityID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "17",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.job1111.models.procedure.RollBackLooseHoursResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "ReturnStatus",
+        "fieldName" : "returnStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "ErrorText",
+        "fieldName" : "errorText",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
   }
 }

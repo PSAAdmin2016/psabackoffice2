@@ -273,6 +273,16 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
+    public RollBackLooseHoursResponse executeRollBackLooseHours(Integer activityId) {
+        Map params = new HashMap(3);
+
+        params.put("ActivityID", activityId);
+
+        return procedureExecutor.executeNamedProcedure("RollBackLooseHours", params, RollBackLooseHoursResponse.class);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
     public CreateManualActivityEquipResponse executeCreateManualActivityEquip(CreateManualActivityEquipRequest createManualActivityEquipRequest) {
         Map params = new HashMap(7);
 

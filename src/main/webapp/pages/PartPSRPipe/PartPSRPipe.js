@@ -482,13 +482,14 @@ Application.$controller("dialogAssignTestingQuantitiesController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.buttonQuantitiesUpdate2Click = function($event, $isolateScope) {
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.ActivityStatus = '5';
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.dataBinding.BidID = '';
-            $scope.$parent.$parent.Variables.serviceUpdateSSApproval.invoke();
+            $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", 5);
+            $scope.Variables.serviceUpdateSAS.setInput("BidID", '');
+            $scope.Variables.serviceUpdateSAS.invoke(); //Updates GetActivitiesPendingApproval
+
             $scope.Variables.timerLabelFlasher2.cancel();
             if ($scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 41 && $scope.$parent.$parent.Widgets.gridApprovalReview.selecteditem.Sheet1 != '1') {
                 //NOTE: I'm using Sheet1 variable to pass in TestingRework Value of 0 or 1  this is handled within the Job1111.GetActivitiesPendingApproval query
-                $scope.Variables.serviceCreateLooseHoursActivities.invoke();
+                $scope.Variables.serviceCreateLooseHoursActivities.invoke(); //Stored Procedure only runs if Global setting is 1
             }
         };
 
@@ -499,8 +500,10 @@ Application.$controller("dialogAssignTestingQuantitiesController", ["$scope",
         };
 
 
-        $scope.buttonDialogAssignTestCancelClick = function($event, $isolateScope) {
+        $scope.dialogAssignTestingQuantitiesClose = function($event, $isolateScope) {
+            $scope.Variables.serviceUnLockSASActivity.invoke();
             $scope.Variables.timerLabelFlasher2.cancel();
+
         };
 
     }
