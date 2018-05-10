@@ -1,253 +1,312 @@
-<wm-page data-ng-controller="TrackerProgressPageController" pagetitle="Tracker Progress" name="page1"> 
-    <wm-header content="header" name="header1"></wm-header> 
-    <wm-content name="content1"> 
-        <wm-left-panel columnwidth="1" content="leftnavTrackers" name="left_panel1"></wm-left-panel> 
-        <wm-page-content columnwidth="11" name="page_content1"> 
-            <wm-tabs name="tabs1"> 
-                <wm-tabpane name="tabpane1" heading="Mechanical" title="Pipe"> 
-                    <wm-layoutgrid name="layoutgrid39_1"> 
-                        <wm-gridrow name="gridrow59_1"> 
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn184"> 
-                                <wm-composite captionposition="top" name="composite3"> 
-                                    <wm-label class="col-md-3 control-label" caption="Group By" show="true" fontweight="bold" name="label137_1"></wm-label> 
-                                    <wm-container class="col-md-9" width="100%" name="container9"> 
-                                        <wm-select dataset="bind:Variables.staticReportGrouping.dataSet" datafield="dataValue" displayfield="Label" datavalue="Area" show="true" on-change="Variables.serviceGetPipeStatsGrouped.invoke()" name="selectPipeGroupBy"></wm-select> 
-                                    </wm-container> 
-                                </wm-composite> 
-                            </wm-gridcolumn> 
-                            <wm-gridcolumn columnwidth="10" name="gridcolumn185_1" horizontalalign="center" padding="2% unset unset unset"> 
-                                <wm-label caption="Totals" fontweight="bold" fontsize="16" name="label20"></wm-label> 
-                            </wm-gridcolumn> 
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn189"></wm-gridcolumn> 
-                        </wm-gridrow> 
-                        <wm-gridrow name="gridrow60_1"> 
-                            <wm-gridcolumn columnwidth="12" name="gridcolumn186_1"> 
-                                <wm-table title="" dataset="bind:Variables.serviceGetPipeStatsGrouped.dataSet[$i].content" navigation="Classic" showrecordcount="true" searchlabel="Search..." spacing="condensed" pagesize="100" height="640px" show="true" name="gridPipe" class="wrapheader"> 
-                                    <wm-table-column binding="Scope" caption="Scope" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Scope&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Phase" caption="Phase" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Phase&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Stage" caption="Stage" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Stage&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="TestPackageNumber" caption="Test Package" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;TestPackageNumber&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="CostCode" caption="Cost Code" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;CostCode&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="P6ID" caption="P6 ID" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;P6ID&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="P6Description" caption="P6 Description" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;P6ID&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="AssignedContractor" caption="Assigned Contractor" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;AssignedContractor&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Area" caption="Area" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Area&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Location" caption="Location" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Location&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Structure" caption="Structure" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Structure&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="CU" caption="CU" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;CU&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Elevation" caption="Elevation" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Elevation&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="System" caption="System" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;System&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Service" caption="Service" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Service&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="HoursALLMech" caption="bind:&quot;Mech. Hours: \n&quot; + (Variables.serviceGetPipeStatsJob.firstRecord.content[$i].HoursALLMech | toNumber: '2')" type="string" readonly="true" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" searchable="false" show="true"></wm-table-column> 
-                                    <wm-table-column binding="EarnedALLMech" caption="bind:&quot;Earned Mech. Hours: \n&quot; + (Variables.serviceGetPipeStatsJob.firstRecord.content[$i].EarnedALLMech | toNumber: '2')" type="string" readonly="true" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" searchable="false" show="true"></wm-table-column> 
-                                    <wm-table-column binding="MechPercentComplete" caption="bind:&quot;Mech. Percent Complete: \n&quot; + (Variables.serviceGetPipeStatsJob.firstRecord.content[$i].MechPercentComplete | toNumber: '3' | suffix: '%')" type="string" readonly="true" formatpattern="suffix" suffix="%" edit-widget-type="text" searchable="false" show="true"></wm-table-column> 
-                                    <wm-table-column binding="HoursTesting" caption="bind:&quot;Testing Hours: \n&quot; + (Variables.serviceGetPipeStatsJob.firstRecord.content[$i].HoursTesting | toNumber: '2')" type="string" readonly="true" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" searchable="false" show="true"></wm-table-column> 
-                                    <wm-table-column binding="EarnedTestingHours" caption="bind:&quot;Earned Testing Hours: \n&quot; + (Variables.serviceGetPipeStatsJob.firstRecord.content[$i].EarnedTestingHours | toNumber: '2')" type="string" readonly="true" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" searchable="false" show="true"></wm-table-column> 
-                                    <wm-table-column binding="customField" caption="bind:&quot;Testing Percent Complete: \n&quot; + (Variables.serviceGetPipeStatsJob.firstRecord.content[$i].EarnedTestingHours/Variables.serviceGetPipeStatsJob.firstRecord.content[$i].HoursTesting * 100 | toNumber: '3') | suffix: '%'" type="big_decimal" readonly="true" edit-widget-type="number" searchable="false" show="true">
-                                         {{GetPercent(row.EarnedTestingHours, row.HoursTesting)}} 
-                                    </wm-table-column> 
-                                    <wm-table-column binding="customField1" caption="bind:&quot;Total Hours: \n&quot; + (Variables.serviceGetPipeStatsJob.firstRecord.content[$i].HoursALLMech + Variables.serviceGetPipeStatsJob.firstRecord.content[$i].HoursTesting | toNumber: '2')" type="big_decimal" readonly="true" col-class="yellowBrown" edit-widget-type="number" searchable="false" show="true">
-                                         {{(row.HoursALLMech + row.HoursTesting)| toNumber:'2'}} 
-                                    </wm-table-column> 
-                                    <wm-table-column binding="customField2" caption="bind:&quot;Total Hours Earned: \n&quot; + (Variables.serviceGetPipeStatsJob.firstRecord.content[$i].EarnedALLMech + Variables.serviceGetPipeStatsJob.firstRecord.content[$i].EarnedTesting | toNumber: '2')" type="string" readonly="true" col-class="yellowBrown" edit-widget-type="text" searchable="false" show="true">
-                                         {{(row.EarnedALLMech + row.EarnedTestingHours)| toNumber:'2'}} 
-                                    </wm-table-column> 
-                                    <wm-table-column binding="PercentComplete" caption="bind:&quot;Total Percent Complete: \n&quot; + (Variables.serviceGetPipeStatsJob.firstRecord.content[$i].PercentComplete | suffix: '%')" type="string" readonly="true" col-class="yellowBrown" formatpattern="suffix" suffix="%" edit-widget-type="text" searchable="false" show="true"></wm-table-column> 
-                                </wm-table> 
-                            </wm-gridcolumn> 
-                        </wm-gridrow> 
-                        <wm-gridrow name="gridrow61"> 
-                            <wm-gridcolumn columnwidth="6" name="gridcolumn187_1"></wm-gridcolumn> 
-                            <wm-gridcolumn columnwidth="6" name="gridcolumn188_1"></wm-gridcolumn> 
-                        </wm-gridrow> 
-                    </wm-layoutgrid> 
-                </wm-tabpane> 
-                <wm-tabpane name="tabpane2" heading="Steel"> 
-                    <wm-layoutgrid name="layoutgrid38_1"> 
-                        <wm-gridrow name="gridrow56_1"> 
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn179_3"> 
-                                <wm-composite captionposition="top" name="composite2_1"> 
-                                    <wm-label class="col-md-3 control-label" caption="Group By" show="true" fontweight="bold" name="label137"></wm-label> 
-                                    <wm-container class="col-md-9" name="container8" width="100%"> 
-                                        <wm-select dataset="bind:Variables.staticReportGrouping.dataSet" datafield="dataValue" displayfield="Label" datavalue="WBS10" show="true" name="selectSteelGroupBy" on-change="Variables.serviceGetSteelStatsGrouped.invoke()"></wm-select> 
-                                    </wm-container> 
-                                </wm-composite> 
-                            </wm-gridcolumn> 
-                            <wm-gridcolumn columnwidth="10" name="gridcolumn180_2" horizontalalign="center" padding="2% unset unset unset"> 
-                                <wm-label caption="Totals" fontweight="bold" fontsize="16" name="label138"></wm-label> 
-                            </wm-gridcolumn> 
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn190"></wm-gridcolumn> 
-                        </wm-gridrow> 
-                        <wm-gridrow name="gridrow58_1"> 
-                            <wm-gridcolumn columnwidth="12" name="gridcolumn183"> 
-                                <wm-table title="" dataset="bind:Variables.serviceGetSteelStatsGrouped.dataSet[$i].content" navigation="Classic" showrecordcount="true" searchlabel="Search..." spacing="condensed" pagesize="100" height="640px" show="true" name="gridSteel" class="wrapheader"> 
-                                    <wm-table-column binding="Scope" caption="Scope" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectSteelGroupBy.datavalue == &quot;Scope&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Phase" caption="Phase" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectSteelGroupBy.datavalue == &quot;Phase&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Stage" caption="Stage" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectSteelGroupBy.datavalue == &quot;Stage&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="TestPackageNumber" caption="Test Package" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectSteelGroupBy.datavalue == &quot;TestPackageNumber&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="CostCode" caption="Cost Code" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectSteelGroupBy.datavalue == &quot;CostCode&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="P6ID" caption="P6 ID" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectSteelGroupBy.datavalue == &quot;P6ID&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="P6Description" caption="P6 Description" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectSteelGroupBy.datavalue == &quot;P6ID&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="AssignedContractor" caption="Assigned Contractor" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectSteelGroupBy.datavalue == &quot;AssignedContractor&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Area" caption="Area" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectSteelGroupBy.datavalue == &quot;Area&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Location" caption="Location" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectSteelGroupBy.datavalue == &quot;Location&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Structure" caption="Structure" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectSteelGroupBy.datavalue == &quot;Structure&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="CU" caption="CU" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectSteelGroupBy.datavalue == &quot;CU&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Elevation" caption="Elevation" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectSteelGroupBy.datavalue == &quot;Elevation&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="System" caption="System" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectSteelGroupBy.datavalue == &quot;System&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Service" caption="Service" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectSteelGroupBy.datavalue == &quot;Service&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="EarnedShakeHours" caption="bind:&quot;Earned \nShake-out Hours: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedShakeHours | toNumber)" type="string" readonly="true" formatpattern="numberToString" fractionsize="2" sortable="false" show="true"></wm-table-column> 
-                                    <wm-table-column binding="PercentCompleteShake" caption="bind:&quot;Percent Compete \nShake-out: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedShakeHours / Variables.serviceGetSteelStatsJob.firstRecord.content[$i].HoursShake | toNumber: '3') * 100 | suffix: '%'" type="big_decimal" readonly="true" formatpattern="None" suffix="%" sortable="false" searchable="false" show="true">
-                                         {{GetPercent(row.EarnedShakeHours, row.HoursShake)}} 
-                                    </wm-table-column> 
-                                    <wm-table-column binding="EarnedErectHours" caption="bind:&quot;Earned \nErect. Hours: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedErectHours | toNumber)" type="string" readonly="true" formatpattern="numberToString" fractionsize="2" sortable="false" show="true"></wm-table-column> 
-                                    <wm-table-column binding="PercentCompleteErect" caption="bind:&quot;Percent Compete \nErect: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedErectHours / Variables.serviceGetSteelStatsJob.firstRecord.content[$i].HoursErect | toNumber: '3') * 100 | suffix: '%'" type="big_decimal" readonly="true" formatpattern="None" suffix="%" sortable="false" searchable="false" show="true">
-                                         {{GetPercent(row.EarnedErectHours, row.HoursErect)}} 
-                                    </wm-table-column> 
-                                    <wm-table-column binding="EarnedBoltoutHours" caption="bind:&quot;Earned \nBolt-out Hours: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedBoltoutHours | toNumber)" type="string" readonly="true" formatpattern="numberToString" fractionsize="2" sortable="false" show="true"></wm-table-column> 
-                                    <wm-table-column binding="PercentCompleteBoltout" caption="bind:&quot;Percent Compete \nBolt-out: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedBoltoutHours / Variables.serviceGetSteelStatsJob.firstRecord.content[$i].HoursBoltout | toNumber: '3') * 100 | suffix: '%'" type="big_decimal" readonly="true" formatpattern="None" suffix="%" sortable="false" searchable="false" show="true">
-                                         {{GetPercent(row.EarnedBoltoutHours, row.HoursBoltout)}} 
-                                    </wm-table-column> 
-                                    <wm-table-column binding="EarnedImpHours" caption="bind:&quot;Earned \nImpact Hours: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedImpHours | toNumber)" type="string" readonly="true" formatpattern="numberToString" fractionsize="2" sortable="false" show="true"></wm-table-column> 
-                                    <wm-table-column binding="PercentCompleteImp" caption="bind:&quot;Percent Compete \nImpact: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedImpHours / Variables.serviceGetSteelStatsJob.firstRecord.content[$i].HoursImp | toNumber: '3') * 100 | suffix: '%'" type="big_decimal" readonly="true" formatpattern="None" suffix="%" sortable="false" searchable="false" show="true">
-                                         {{GetPercent(row.EarnedImpHours, row.HoursImp)}} 
-                                    </wm-table-column> 
-                                    <wm-table-column binding="EarnedWeldHours" caption="bind:&quot;Earned \nWeld Hours: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedWeldHours | toNumber)" type="string" readonly="true" formatpattern="numberToString" fractionsize="2" sortable="false" show="true"></wm-table-column> 
-                                    <wm-table-column binding="PercentCompleteWeld" caption="bind:&quot;Percent Compete \nWeld: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedWeldHours / Variables.serviceGetSteelStatsJob.firstRecord.content[$i].HoursWeld | toNumber: '3') * 100 | suffix: '%'" type="big_decimal" readonly="true" formatpattern="None" suffix="%" sortable="false" searchable="false" show="true">
-                                         {{GetPercent(row.EarnedWeldHours, row.HoursWeld)}} 
-                                    </wm-table-column> 
-                                    <wm-table-column binding="EarnedSellHours" caption="bind:&quot;Earned \nSell/Punch Hours: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedSellHours | toNumber)" type="string" readonly="true" formatpattern="numberToString" fractionsize="2" sortable="false" show="true"></wm-table-column> 
-                                    <wm-table-column binding="PercentCompleteSell" caption="bind:&quot;Percent Compete \nSell/Punch: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedSellHours / Variables.serviceGetSteelStatsJob.firstRecord.content[$i].HoursSell | toNumber: '3') * 100 | suffix: '%'" type="big_decimal" readonly="true" formatpattern="None" suffix="%" sortable="false" searchable="false" show="true">
-                                         {{GetPercent(row.EarnedSellHours, row.HoursSell)}} 
-                                    </wm-table-column> 
-                                    <wm-table-column binding="EarnedDemoHours" caption="bind:&quot;Earned \nDemo Hours: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedDemoHours | toNumber)" type="string" readonly="true" formatpattern="numberToString" fractionsize="2" sortable="false" show="true"></wm-table-column> 
-                                    <wm-table-column binding="PercentCompleteDemo" caption="bind:&quot;Percent Compete \nDemo: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedDemoHours / Variables.serviceGetSteelStatsJob.firstRecord.content[$i].HoursDemo | toNumber: '3') * 100 | suffix: '%'" type="big_decimal" readonly="true" formatpattern="None" prefix="%" sortable="false" searchable="false" show="true">
-                                         {{GetPercent(row.EarnedDemoHours, row.HoursDemo)}} 
-                                    </wm-table-column> 
-                                    <wm-table-column binding="EarnedMiscHours" caption="bind:&quot;Earned \nMisc Hours: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedMiscHours | toNumber)" type="string" readonly="true" formatpattern="numberToString" fractionsize="2" sortable="false" show="true"></wm-table-column> 
-                                    <wm-table-column binding="PercentCompleteMisc" caption="bind:&quot;Percent Compete \nMisc: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedMiscHours / Variables.serviceGetSteelStatsJob.firstRecord.content[$i].HoursMisc | toNumber: '3') * 100 | suffix: '%'" type="big_decimal" readonly="true" formatpattern="None" suffix="%" sortable="false" searchable="false" show="true">
-                                         {{GetPercent(row.EarnedMiscHours, row.HoursMisc)}} 
-                                    </wm-table-column> 
-                                    <wm-table-column binding="HoursAll" caption="bind:&quot;Total \nHours: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].HoursAll | toNumber)" type="string" readonly="true" col-class="yellowBrown" formatpattern="numberToString" fractionsize="2" sortable="false" show="true"></wm-table-column> 
-                                    <wm-table-column binding="EarnedALLHours" caption="bind:&quot;Total \nEarned Hours: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedALLHours | toNumber)" type="string" readonly="true" col-class="yellowBrown" formatpattern="numberToString" fractionsize="2" sortable="false" show="true"></wm-table-column> 
-                                    <wm-table-column binding="PercentComplete" caption="bind:&quot;Total \nPercent Complete: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].PercentComplete | toNumber | suffix: '%')" type="string" readonly="true" col-class="yellowBrown" formatpattern="suffix" suffix="%" sortable="false" show="true"></wm-table-column> 
-                                </wm-table> 
-                            </wm-gridcolumn> 
-                        </wm-gridrow> 
-                        <wm-gridrow name="gridrow57_1"> 
-                            <wm-gridcolumn columnwidth="6" name="gridcolumn181_2"></wm-gridcolumn> 
-                            <wm-gridcolumn columnwidth="6" name="gridcolumn182_2"></wm-gridcolumn> 
-                        </wm-gridrow> 
-                    </wm-layoutgrid> 
-                </wm-tabpane> 
-                <wm-tabpane name="tabpane3" heading="Civil"> 
-                    <wm-layoutgrid name="layoutgrid3"> 
-                        <wm-gridrow name="gridrow7"> 
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn13"> 
-                                <wm-composite captionposition="top" name="composite3_1"> 
-                                    <wm-label class="col-md-3 control-label" caption="Group By" show="true" fontweight="bold" name="label7"></wm-label> 
-                                    <wm-container class="col-md-9" width="100%" name="container3"> 
-                                        <wm-select dataset="bind:Variables.staticReportGrouping.dataSet" datafield="dataValue" displayfield="Label" datavalue="WBS10" show="true" on-change="Variables.serviceGetCivilStatsGrouped.invoke()" name="selectCivilGroupBy"></wm-select> 
-                                    </wm-container> 
-                                </wm-composite> 
-                            </wm-gridcolumn> 
-                            <wm-gridcolumn columnwidth="10" horizontalalign="center" padding="2% unset unset unset" name="gridcolumn14"> 
-                                <wm-label caption="Totals" fontweight="bold" fontsize="16" name="label8"></wm-label> 
-                            </wm-gridcolumn> 
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn15"></wm-gridcolumn> 
-                        </wm-gridrow> 
-                        <wm-gridrow name="gridrow8"> 
-                            <wm-gridcolumn columnwidth="12" name="gridcolumn16"> 
-                                <wm-table title="" dataset="bind:Variables.serviceGetCivilStatsGrouped.dataSet[$i].content" navigation="Classic" showrecordcount="true" searchlabel="Search..." spacing="condensed" pagesize="100" height="640px" show="true" class="wrapheader" name="gridCivil"> 
-                                    <wm-table-column binding="Scope" caption="Scope" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Scope&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Phase" caption="Phase" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Phase&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Stage" caption="Stage" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Stage&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="TestPackageNumber" caption="Test Package" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;TestPackageNumber&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="CostCode" caption="Cost Code" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;CostCode&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="P6ID" caption="P6 ID" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;P6ID&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="P6Description" caption="P6 Description" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;P6ID&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="AssignedContractor" caption="Assigned Contractor" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;AssignedContractor&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Area" caption="Area" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Area&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Location" caption="Location" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Location&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Structure" caption="Structure" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Structure&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="CU" caption="CU" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;CU&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Elevation" caption="Elevation" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Elevation&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="System" caption="System" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;System&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Service" caption="Service" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Service&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="Grouping" caption="Grouping" type="string" width="140px" readonly="true" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Grouping&quot;"></wm-table-column> 
-                                    <wm-table-column binding="FoundationDescription" caption="Foundation Description" type="string" width="140px" readonly="true" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;FoundationDescription&quot;"></wm-table-column> 
-                                    <wm-table-column binding="HoursAllCivil" caption="bind:&quot;Civil Work \nHours: \n&quot; +  (Variables.serviceGetCivilStatsJob.firstRecord.content[$i].HoursAllCivil | toNumber: '2')" type="string" readonly="true" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true"></wm-table-column> 
-                                    <wm-table-column binding="EarnedAllCivilHours" caption="bind:&quot;Civil Work \nEarned Hours: \n&quot; + (Variables.serviceGetCivilStatsJob.firstRecord.content[$i].EarnedAllCivilHours | toNumber: '2')" type="string" readonly="true" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true"></wm-table-column> 
-                                    <wm-table-column binding="CivilPercentComplete" caption="bind:&quot;Civil Work \nPercent Complete: \n&quot; + (Variables.serviceGetCivilStatsJob.firstRecord.content[$i].CivilPercentComplete | toNumber) | suffix: '%'" type="string" readonly="true" formatpattern="suffix" suffix="%" edit-widget-type="text" show="true"></wm-table-column> 
-                                    <wm-table-column binding="HoursSellPunch" caption="bind:&quot;SellPunch \nHours: \n&quot; + (Variables.serviceGetCivilStatsJob.firstRecord.content[$i].HoursSellPunch | toNumber)" type="string" readonly="true" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true"></wm-table-column> 
-                                    <wm-table-column binding="EarnedSellPunchHours" caption="bind:&quot;SellPunch \nEarned Hours: \n&quot; + (Variables.serviceGetCivilStatsJob.firstRecord.content[$i].EarnedSellPunchHours | toNumber: '2')" type="string" readonly="true" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true"></wm-table-column> 
-                                    <wm-table-column binding="customField1" caption="bind:&quot;SellPunch \nPercent Complete: \n&quot; + (Variables.serviceGetCivilStatsJob.firstRecord.content[$i].EarnedSellPunchHours / Variables.serviceGetCivilStatsJob.firstRecord.content[$i].HoursSellPunch | toNumber) * 100 | suffix: '%'" type="string" readonly="true" edit-widget-type="text" searchable="false" show="true">
-                                         {{GetPercent(row.EarnedSellPunchHours, row.HoursSellPunch) }} 
-                                    </wm-table-column> 
-                                    <wm-table-column binding="customField2" caption="bind:&quot;Total \nHours: \n&quot; + (Variables.serviceGetCivilStatsJob.firstRecord.content[$i].HoursAllCivil + Variables.serviceGetCivilStatsJob.firstRecord.content[$i].HoursTestingCivil | toNumber: '2')" type="string" readonly="true" col-class="yellowBrown" edit-widget-type="text" searchable="false" show="true">
-                                         {{row.HoursAllCivil + row.HoursTestingCivil | toNumber: '2'}} 
-                                    </wm-table-column> 
-                                    <wm-table-column binding="customField3" caption="bind:&quot;Total \nEarned Hours: \n&quot; + (Variables.serviceGetCivilStatsJob.firstRecord.content[$i].EarnedAllCivilHours + Variables.serviceGetCivilStatsJob.firstRecord.content[$i].EarnedTestingHours | toNumber)" type="string" readonly="true" col-class="yellowBrown" edit-widget-type="text" searchable="false" show="true">
-                                         {{row.EarnedAllCivilHours + row.EarnedTestingHours | toNumber: '2'}} 
-                                    </wm-table-column> 
-                                    <wm-table-column binding="PercentComplete" caption="bind:&quot;Total \nPercent Complete: \n&quot; + (Variables.serviceGetCivilStatsJob.firstRecord.content[$i].PercentComplete| toNumber: '3') | suffix: '%'" type="string" readonly="true" col-class="yellowBrown" formatpattern="suffix" suffix="%" edit-widget-type="text" show="true"></wm-table-column> 
-                                </wm-table> 
-                            </wm-gridcolumn> 
-                        </wm-gridrow> 
-                        <wm-gridrow name="gridrow9"> 
-                            <wm-gridcolumn columnwidth="6" name="gridcolumn17"></wm-gridcolumn> 
-                            <wm-gridcolumn columnwidth="6" name="gridcolumn18"></wm-gridcolumn> 
-                        </wm-gridrow> 
-                    </wm-layoutgrid> 
-                </wm-tabpane> 
-                <wm-tabpane name="tabpane4" title="Equip."> 
-                    <wm-layoutgrid name="layoutgrid4"> 
-                        <wm-gridrow name="gridrow10"> 
-                            <wm-gridcolumn columnwidth="1" name="gridcolumn19"> 
-                                <wm-composite captionposition="top" name="composite4"> 
-                                    <wm-label class="col-md-3 control-label" caption="Group By" show="true" fontweight="bold" name="label8_1"></wm-label> 
-                                    <wm-container class="col-md-9" width="100%" name="container4"> 
-                                        <wm-select dataset="bind:Variables.staticReportGrouping.dataSet" datafield="dataValue" displayfield="Label" datavalue="WBS10" show="true" on-change="Variables.serviceGetEquipStatsGrouped.invoke()" name="selectEquipGroupBy"></wm-select> 
-                                    </wm-container> 
-                                </wm-composite> 
-                            </wm-gridcolumn> 
-                            <wm-gridcolumn columnwidth="6" horizontalalign="center" padding="2% unset unset unset" name="gridcolumn20"> 
-                                <wm-label caption="Totals" fontweight="bold" fontsize="16" name="label9"></wm-label> 
-                            </wm-gridcolumn> 
-                            <wm-gridcolumn columnwidth="5" name="gridcolumn21"></wm-gridcolumn> 
-                        </wm-gridrow> 
-                        <wm-gridrow name="gridrow11"> 
-                            <wm-gridcolumn columnwidth="12" name="gridcolumn22"> 
-                                <wm-table title="" dataset="bind:Variables.serviceGetEquipStatsGrouped.dataSet.content" navigation="Classic" showrecordcount="true" searchlabel="Search..." spacing="condensed" pagesize="100" height="640px" show="true" class="wrapheader" name="gridEquip" width="50%" radioselect="false" multiselect="false"> 
-                                    <wm-table-column binding="scope" caption="Scope" type="string" edit-widget-type="text" searchable="false" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;Scope&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="phase" caption="Phase" type="string" edit-widget-type="text" searchable="false" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;Phase&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="stage" caption="Stage" type="string" edit-widget-type="text" searchable="false" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;Stage&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="testPackageNumber" caption="Test Package Number" type="string" edit-widget-type="text" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;TestPackageNumber&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="costCode" caption="Cost Code" type="string" edit-widget-type="text" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;CostCode&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="p6id" caption="P6 ID" type="string" edit-widget-type="text" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;P6ID&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="p6description" caption="P6 Description" type="string" edit-widget-type="text" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;P6ID&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="assignedContractor" caption="Assigned Contractor" type="string" edit-widget-type="text" searchable="false" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;AssignedContractor&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="area" caption="Area" type="string" edit-widget-type="text" searchable="false" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;Area&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="location" caption="Location" type="string" edit-widget-type="text" searchable="false" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;Location&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="structure" caption="Structure" type="string" edit-widget-type="text" searchable="false" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;Structure&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="cu" caption="CU" type="string" edit-widget-type="text" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;CU&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="elevation" caption="Elevation" type="string" edit-widget-type="text" searchable="false" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;Elevation&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="system" caption="System" type="string" edit-widget-type="text" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;System&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="service" caption="Service" type="string" edit-widget-type="text" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;Service&quot;" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="hoursAll" caption="bind:&quot;Total \nHours: \n&quot; + (Variables.serviceGetEquipStatsJob.dataSet.content[0].hoursAll | toNumber: '2')" type="string" col-class="yellowBrown" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="earnedAllEquipHours" caption="bind:&quot;Total \nEarned Hours: \n&quot; + (Variables.serviceGetEquipStatsJob.dataSet.content[0].earnedAllEquipHours | toNumber: '2')" type="string" col-class="yellowBrown" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                                    <wm-table-column binding="percentComplete" caption="bind:&quot;Total \nPercent Complete: \n&quot; + (Variables.serviceGetEquipStatsJob.dataSet.content[0].percentComplete| toNumber: '3') | suffix: '%'" type="string" col-class="yellowBrown" formatpattern="numberToString" fractionsize="3" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                                </wm-table> 
-                            </wm-gridcolumn> 
-                        </wm-gridrow> 
-                        <wm-gridrow name="gridrow12"> 
-                            <wm-gridcolumn columnwidth="6" name="gridcolumn23"></wm-gridcolumn> 
-                            <wm-gridcolumn columnwidth="6" name="gridcolumn24"></wm-gridcolumn> 
-                        </wm-gridrow> 
-                    </wm-layoutgrid> 
-                </wm-tabpane> 
-            </wm-tabs> 
-        </wm-page-content> 
-    </wm-content> 
-    <wm-footer content="footer" name="footer1" height="33"></wm-footer> 
+<wm-page data-ng-controller="TrackerProgressPageController" pagetitle="Tracker Progress" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="1" content="leftnavTrackers" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="11" name="page_content1">
+            <wm-tabs name="tabs1">
+                <wm-tabpane name="tabpane1" heading="Mechanical" title="Pipe">
+                    <wm-layoutgrid name="layoutgrid39_1">
+                        <wm-gridrow name="gridrow59_1">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn184">
+                                <wm-composite captionposition="top" name="composite3">
+                                    <wm-label class="col-md-3 control-label" caption="Group By" show="true" fontweight="bold" name="label137_1"></wm-label>
+                                    <wm-container class="col-md-9" width="100%" name="container9">
+                                        <wm-select dataset="bind:Variables.staticReportGroupingPipe.dataSet" datafield="dataValue" displayfield="Label" datavalue="Area" show="true" on-change="Variables.serviceGetPipeStatsGrouped.invoke()" name="selectPipeGroupBy"
+                                            orderby="Label:asc"></wm-select>
+                                    </wm-container>
+                                </wm-composite>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn185_1" horizontalalign="center" padding="2% unset unset unset">
+                                <wm-label caption="Totals" fontweight="bold" fontsize="16" name="label20"></wm-label>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn189"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow60_1">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn186_1">
+                                <wm-table title="" dataset="bind:Variables.serviceGetPipeStatsGrouped.dataSet[$i].content" navigation="Classic" showrecordcount="true" searchlabel="Search..." spacing="condensed" pagesize="100" height="640px" show="true" name="gridPipe"
+                                    class="wrapheader">
+                                    <wm-table-column binding="ProjectServicesRep" caption="ProjectServicesRep" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;ProjectServicesRep&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Scope" caption="Scope" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Scope&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Phase" caption="Phase" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Phase&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Stage" caption="Stage" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Stage&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="TestPackageNumber" caption="Test Package" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;TestPackageNumber&quot;"
+                                        readonly="false"></wm-table-column>
+                                    <wm-table-column binding="WorkPackage" caption="WorkPackage" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;WorkPackage&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="CostCode" caption="Cost Code" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;CostCode&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="P6ID" caption="P6 ID" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;P6ID&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="P6Description" caption="P6 Description" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;P6ID&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="AssignedContractor" caption="Assigned Contractor" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;AssignedContractor&quot;"
+                                        readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Area" caption="Area" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Area&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Location" caption="Location" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Location&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Structure" caption="Structure" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Structure&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="CU" caption="CU" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;CU&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Elevation" caption="Elevation" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Elevation&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Size" caption="Size" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Size&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="System" caption="System" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;System&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Service" caption="Service" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Service&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="HoursMech" caption="bind:&quot;Mech. Hours: \n&quot; + (Variables.serviceGetPipeStatsJob.firstRecord.content[$i].HoursMech | toNumber: '2')" edit-widget-type="number" type="double"
+                                        readonly="true" show="true"></wm-table-column>
+                                    <wm-table-column binding="EarnedMechHours" caption="bind:&quot;Earned Mech. Hours: \n&quot; + (Variables.serviceGetPipeStatsJob.firstRecord.content[$i].EarnedMechHours | toNumber: '2')" edit-widget-type="number"
+                                        type="double" formatpattern="numberToString" fractionsize="2" show="true" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="MechPercentComplete" caption="bind:&quot;Mech. Percent Complete: \n&quot; + (Variables.serviceGetPipeStatsJob.firstRecord.content[$i].MechPercentComplete | toNumber: '3' | suffix: '%')"
+                                        edit-widget-type="text" type="string" readonly="true" formatpattern="suffix" suffix="%" searchable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="HoursTesting" caption="bind:&quot;Testing Hours: \n&quot; + (Variables.serviceGetPipeStatsJob.firstRecord.content[$i].HoursTesting | toNumber: '2')" edit-widget-type="text"
+                                        type="string" readonly="true" formatpattern="numberToString" fractionsize="2" searchable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="EarnedTestingHours" caption="bind:&quot;Earned Testing Hours: \n&quot; + (Variables.serviceGetPipeStatsJob.firstRecord.content[$i].EarnedTestingHours | toNumber: '2')" edit-widget-type="text"
+                                        type="string" readonly="true" formatpattern="numberToString" fractionsize="2" searchable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="customField" caption="bind:&quot;Testing Percent Complete: \n&quot; + (Variables.serviceGetPipeStatsJob.firstRecord.content[$i].EarnedTestingHours/Variables.serviceGetPipeStatsJob.firstRecord.content[$i].HoursTesting * 100 | toNumber: '3') | suffix: '%'"
+                                        edit-widget-type="number" type="big_decimal" readonly="true" searchable="false" show="true">{{GetPercent(row.EarnedTestingHours, row.HoursTesting)}}</wm-table-column>
+                                    <wm-table-column binding="HoursAll" caption="bind:&quot;Total Hours: \n&quot; + (Variables.serviceGetPipeStatsJob.firstRecord.content[$i].HoursAll | toNumber: '2')"
+                                        edit-widget-type="number" type="double" readonly="true" formatpattern="numberToString" fractionsize="2" show="true"></wm-table-column>
+                                    <wm-table-column binding="EarnedAllHours" caption="bind:&quot;Total Hours Earned: \n&quot; + (Variables.serviceGetPipeStatsJob.firstRecord.content[$i].EarnedAllHours | toNumber: '2')" type="double"
+                                        readonly="true" formatpattern="numberToString" fractionsize="2" show="true"></wm-table-column>
+                                    <wm-table-column binding="PercentComplete" caption="bind:&quot;Total Percent Complete: \n&quot; + (Variables.serviceGetPipeStatsJob.firstRecord.content[$i].PercentComplete | suffix: '%')" col-class="yellowBrown"
+                                        edit-widget-type="text" type="string" readonly="true" formatpattern="suffix" suffix="%" searchable="false" show="true"></wm-table-column>
+                                </wm-table>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow61">
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn187_1"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn188_1"></wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
+                </wm-tabpane>
+                <wm-tabpane name="tabpane2" heading="Steel">
+                    <wm-layoutgrid name="layoutgrid38_1">
+                        <wm-gridrow name="gridrow56_1">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn179_3">
+                                <wm-composite captionposition="top" name="composite2_1">
+                                    <wm-label class="col-md-3 control-label" caption="Group By" show="true" fontweight="bold" name="label137"></wm-label>
+                                    <wm-container class="col-md-9" name="container8" width="100%">
+                                        <wm-select dataset="bind:Variables.staticReportGroupingSteel.dataSet" datafield="dataValue" displayfield="Label" datavalue="Area" show="true" name="selectSteelGroupBy" on-change="Variables.serviceGetSteelStatsGrouped.invoke()"
+                                            orderby="Label:asc"></wm-select>
+                                    </wm-container>
+                                </wm-composite>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" name="gridcolumn180_2" horizontalalign="center" padding="2% unset unset unset">
+                                <wm-label caption="Totals" fontweight="bold" fontsize="16" name="label138"></wm-label>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn190"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow58_1">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn183">
+                                <wm-table title="" dataset="bind:Variables.serviceGetSteelStatsGrouped.dataSet[$i].content" navigation="Classic" showrecordcount="true" searchlabel="Search..." spacing="condensed" pagesize="100" height="640px" show="true" name="gridSteel"
+                                    class="wrapheader">
+                                    <wm-table-column binding="ProjectServicesRep" caption="ProjectServicesRep" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;ProjectServicesRep&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Scope" caption="Scope" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Scope&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Phase" caption="Phase" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Phase&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Stage" caption="Stage" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Stage&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="TestPackageNumber" caption="Test Package" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;TestPackageNumber&quot;"
+                                        readonly="false"></wm-table-column>
+                                    <wm-table-column binding="WorkPackage" caption="WorkPackage" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;WorkPackage&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="CostCode" caption="Cost Code" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;CostCode&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="P6ID" caption="P6 ID" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;P6ID&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="P6Description" caption="P6 Description" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;P6ID&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="AssignedContractor" caption="Assigned Contractor" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;AssignedContractor&quot;"
+                                        readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Area" caption="Area" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Area&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Location" caption="Location" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Location&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Structure" caption="Structure" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Structure&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="CU" caption="CU" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;CU&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Elevation" caption="Elevation" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Elevation&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Size" caption="Size" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Size&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="System" caption="System" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;System&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Service" caption="Service" width="140px" edit-widget-type="text" type="string" show="bind:Widgets.selectPipeGroupBy.datavalue == &quot;Service&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="EarnedShakeHours" caption="bind:&quot;Earned \nShake-out Hours: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedShakeHours | toNumber)" type="string"
+                                        readonly="true" formatpattern="numberToString" fractionsize="2" sortable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="PercentCompleteShake" caption="bind:&quot;Percent Compete \nShake-out: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedShakeHours / Variables.serviceGetSteelStatsJob.firstRecord.content[$i].HoursShake | toNumber: '3') * 100 | suffix: '%'"
+                                        type="big_decimal" readonly="true" formatpattern="None" suffix="%" sortable="false" searchable="false" show="true">
+                                        {{GetPercent(row.EarnedShakeHours, row.HoursShake)}}
+                                    </wm-table-column>
+                                    <wm-table-column binding="EarnedErectHours" caption="bind:&quot;Earned \nErect. Hours: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedErectHours | toNumber)" type="string"
+                                        readonly="true" formatpattern="numberToString" fractionsize="2" sortable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="PercentCompleteErect" caption="bind:&quot;Percent Compete \nErect: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedErectHours / Variables.serviceGetSteelStatsJob.firstRecord.content[$i].HoursErect | toNumber: '3') * 100 | suffix: '%'"
+                                        type="big_decimal" readonly="true" formatpattern="None" suffix="%" sortable="false" searchable="false" show="true">
+                                        {{GetPercent(row.EarnedErectHours, row.HoursErect)}}
+                                    </wm-table-column>
+                                    <wm-table-column binding="EarnedBoltoutHours" caption="bind:&quot;Earned \nBolt-out Hours: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedBoltoutHours | toNumber)" type="string"
+                                        readonly="true" formatpattern="numberToString" fractionsize="2" sortable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="PercentCompleteBoltout" caption="bind:&quot;Percent Compete \nBolt-out: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedBoltoutHours / Variables.serviceGetSteelStatsJob.firstRecord.content[$i].HoursBoltout | toNumber: '3') * 100 | suffix: '%'"
+                                        type="big_decimal" readonly="true" formatpattern="None" suffix="%" sortable="false" searchable="false" show="true">
+                                        {{GetPercent(row.EarnedBoltoutHours, row.HoursBoltout)}}
+                                    </wm-table-column>
+                                    <wm-table-column binding="EarnedImpHours" caption="bind:&quot;Earned \nImpact Hours: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedImpHours | toNumber)" type="string"
+                                        readonly="true" formatpattern="numberToString" fractionsize="2" sortable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="PercentCompleteImp" caption="bind:&quot;Percent Compete \nImpact: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedImpHours / Variables.serviceGetSteelStatsJob.firstRecord.content[$i].HoursImp | toNumber: '3') * 100 | suffix: '%'"
+                                        type="big_decimal" readonly="true" formatpattern="None" suffix="%" sortable="false" searchable="false" show="true">
+                                        {{GetPercent(row.EarnedImpHours, row.HoursImp)}}
+                                    </wm-table-column>
+                                    <wm-table-column binding="EarnedWeldHours" caption="bind:&quot;Earned \nWeld Hours: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedWeldHours | toNumber)" type="string"
+                                        readonly="true" formatpattern="numberToString" fractionsize="2" sortable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="PercentCompleteWeld" caption="bind:&quot;Percent Compete \nWeld: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedWeldHours / Variables.serviceGetSteelStatsJob.firstRecord.content[$i].HoursWeld | toNumber: '3') * 100 | suffix: '%'"
+                                        type="big_decimal" readonly="true" formatpattern="None" suffix="%" sortable="false" searchable="false" show="true">
+                                        {{GetPercent(row.EarnedWeldHours, row.HoursWeld)}}
+                                    </wm-table-column>
+                                    <wm-table-column binding="EarnedSellHours" caption="bind:&quot;Earned \nSell/Punch Hours: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedSellHours | toNumber)" type="string"
+                                        readonly="true" formatpattern="numberToString" fractionsize="2" sortable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="PercentCompleteSell" caption="bind:&quot;Percent Compete \nSell/Punch: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedSellHours / Variables.serviceGetSteelStatsJob.firstRecord.content[$i].HoursSell | toNumber: '3') * 100 | suffix: '%'"
+                                        type="big_decimal" readonly="true" formatpattern="None" suffix="%" sortable="false" searchable="false" show="true">
+                                        {{GetPercent(row.EarnedSellHours, row.HoursSell)}}
+                                    </wm-table-column>
+                                    <wm-table-column binding="EarnedDemoHours" caption="bind:&quot;Earned \nDemo Hours: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedDemoHours | toNumber)" type="string"
+                                        readonly="true" formatpattern="numberToString" fractionsize="2" sortable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="PercentCompleteDemo" caption="bind:&quot;Percent Compete \nDemo: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedDemoHours / Variables.serviceGetSteelStatsJob.firstRecord.content[$i].HoursDemo | toNumber: '3') * 100 | suffix: '%'"
+                                        type="big_decimal" readonly="true" formatpattern="None" prefix="%" sortable="false" searchable="false" show="true">
+                                        {{GetPercent(row.EarnedDemoHours, row.HoursDemo)}}
+                                    </wm-table-column>
+                                    <wm-table-column binding="EarnedMiscHours" caption="bind:&quot;Earned \nMisc Hours: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedMiscHours | toNumber)" type="string"
+                                        readonly="true" formatpattern="numberToString" fractionsize="2" sortable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="PercentCompleteMisc" caption="bind:&quot;Percent Compete \nMisc: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedMiscHours / Variables.serviceGetSteelStatsJob.firstRecord.content[$i].HoursMisc | toNumber: '3') * 100 | suffix: '%'"
+                                        type="big_decimal" readonly="true" formatpattern="None" suffix="%" sortable="false" searchable="false" show="true">
+                                        {{GetPercent(row.EarnedMiscHours, row.HoursMisc)}}
+                                    </wm-table-column>
+                                    <wm-table-column binding="HoursAll" caption="bind:&quot;Total \nHours: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].HoursAll | toNumber)" type="string" readonly="true" col-class="yellowBrown"
+                                        formatpattern="numberToString" fractionsize="2" sortable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="EarnedALLHours" caption="bind:&quot;Total \nEarned Hours: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].EarnedALLHours | toNumber)" type="string" readonly="true"
+                                        col-class="yellowBrown" formatpattern="numberToString" fractionsize="2" sortable="false" show="true"></wm-table-column>
+                                    <wm-table-column binding="PercentComplete" caption="bind:&quot;Total \nPercent Complete: \n&quot; + (Variables.serviceGetSteelStatsJob.firstRecord.content[$i].PercentComplete | toNumber | suffix: '%')"
+                                        type="string" readonly="true" col-class="yellowBrown" formatpattern="suffix" suffix="%" sortable="false" show="true"></wm-table-column>
+                                </wm-table>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow57_1">
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn181_2"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn182_2"></wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
+                </wm-tabpane>
+                <wm-tabpane name="tabpane3" heading="Civil">
+                    <wm-layoutgrid name="layoutgrid3">
+                        <wm-gridrow name="gridrow7">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn13">
+                                <wm-composite captionposition="top" name="composite3_1">
+                                    <wm-label class="col-md-3 control-label" caption="Group By" show="true" fontweight="bold" name="label7"></wm-label>
+                                    <wm-container class="col-md-9" width="100%" name="container3">
+                                        <wm-select dataset="bind:Variables.staticReportGroupingCivil.dataSet" datafield="dataValue" displayfield="Label" datavalue="Area" show="true" on-change="Variables.serviceGetCivilStatsGrouped.invoke()" name="selectCivilGroupBy"
+                                            orderby="Label:asc"></wm-select>
+                                    </wm-container>
+                                </wm-composite>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="10" horizontalalign="center" padding="2% unset unset unset" name="gridcolumn14">
+                                <wm-label caption="Totals" fontweight="bold" fontsize="16" name="label8"></wm-label>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn15"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow8">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn16">
+                                <wm-table title="" dataset="bind:Variables.serviceGetCivilStatsGrouped.dataSet[$i].content" navigation="Classic" showrecordcount="true" searchlabel="Search..." spacing="condensed" pagesize="100" height="640px" show="true" class="wrapheader"
+                                    name="gridCivil">
+                                    <wm-table-column binding="ProjectServicesRep" caption="ProjectServicesRep" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;ProjectServicesRep&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Scope" caption="Scope" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Scope&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Phase" caption="Phase" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Phase&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Stage" caption="Stage" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Stage&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="TestPackageNumber" caption="Test Package" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;TestPackageNumber&quot;"
+                                        readonly="false"></wm-table-column>
+                                    <wm-table-column binding="WorkPackage" caption="WorkPackage" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;WorkPackage&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="CostCode" caption="Cost Code" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;CostCode&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="P6ID" caption="P6 ID" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;P6ID&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="P6Description" caption="P6 Description" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;P6ID&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="AssignedContractor" caption="Assigned Contractor" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;AssignedContractor&quot;"
+                                        readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Area" caption="Area" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Area&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Location" caption="Location" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Location&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Structure" caption="Structure" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Structure&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="CU" caption="CU" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;CU&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Elevation" caption="Elevation" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Elevation&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="System" caption="System" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;System&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Service" caption="Service" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Service&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Grouping" caption="Grouping" type="string" width="140px" readonly="true" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Grouping&quot;"></wm-table-column>
+                                    <wm-table-column binding="FoundationDescription" caption="Foundation Description" type="string" width="140px" readonly="true" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;FoundationDescription&quot;"></wm-table-column>
+                                    <wm-table-column binding="HoursAllCivil" caption="bind:&quot;Civil Work \nHours: \n&quot; +  (Variables.serviceGetCivilStatsJob.firstRecord.content[$i].HoursAllCivil | toNumber: '2')" type="string"
+                                        readonly="true" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true"></wm-table-column>
+                                    <wm-table-column binding="EarnedAllCivilHours" caption="bind:&quot;Civil Work \nEarned Hours: \n&quot; + (Variables.serviceGetCivilStatsJob.firstRecord.content[$i].EarnedAllCivilHours | toNumber: '2')"
+                                        type="string" readonly="true" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true"></wm-table-column>
+                                    <wm-table-column binding="CivilPercentComplete" caption="bind:&quot;Civil Work \nPercent Complete: \n&quot; + (Variables.serviceGetCivilStatsJob.firstRecord.content[$i].CivilPercentComplete | toNumber) | suffix: '%'"
+                                        type="string" readonly="true" formatpattern="suffix" suffix="%" edit-widget-type="text" show="true"></wm-table-column>
+                                    <wm-table-column binding="HoursSellPunch" caption="bind:&quot;SellPunch \nHours: \n&quot; + (Variables.serviceGetCivilStatsJob.firstRecord.content[$i].HoursSellPunch | toNumber)" type="string" readonly="true"
+                                        formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true"></wm-table-column>
+                                    <wm-table-column binding="EarnedSellPunchHours" caption="bind:&quot;SellPunch \nEarned Hours: \n&quot; + (Variables.serviceGetCivilStatsJob.firstRecord.content[$i].EarnedSellPunchHours | toNumber: '2')"
+                                        type="string" readonly="true" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true"></wm-table-column>
+                                    <wm-table-column binding="customField1" caption="bind:&quot;SellPunch \nPercent Complete: \n&quot; + (Variables.serviceGetCivilStatsJob.firstRecord.content[$i].EarnedSellPunchHours / Variables.serviceGetCivilStatsJob.firstRecord.content[$i].HoursSellPunch | toNumber) * 100 | suffix: '%'"
+                                        type="string" readonly="true" edit-widget-type="text" searchable="false" show="true">
+                                        {{GetPercent(row.EarnedSellPunchHours, row.HoursSellPunch) }}
+                                    </wm-table-column>
+                                    <wm-table-column binding="customField2" caption="bind:&quot;Total \nHours: \n&quot; + (Variables.serviceGetCivilStatsJob.firstRecord.content[$i].HoursAllCivil + Variables.serviceGetCivilStatsJob.firstRecord.content[$i].HoursTestingCivil | toNumber: '2')"
+                                        type="string" readonly="true" col-class="yellowBrown" edit-widget-type="text" searchable="false" show="true">
+                                        {{row.HoursAllCivil + row.HoursTestingCivil | toNumber: '2'}}
+                                    </wm-table-column>
+                                    <wm-table-column binding="customField3" caption="bind:&quot;Total \nEarned Hours: \n&quot; + (Variables.serviceGetCivilStatsJob.firstRecord.content[$i].EarnedAllCivilHours + Variables.serviceGetCivilStatsJob.firstRecord.content[$i].EarnedTestingHours | toNumber)"
+                                        type="string" readonly="true" col-class="yellowBrown" edit-widget-type="text" searchable="false" show="true">
+                                        {{row.EarnedAllCivilHours + row.EarnedTestingHours | toNumber: '2'}}
+                                    </wm-table-column>
+                                    <wm-table-column binding="PercentComplete" caption="bind:&quot;Total \nPercent Complete: \n&quot; + (Variables.serviceGetCivilStatsJob.firstRecord.content[$i].PercentComplete| toNumber: '3') | suffix: '%'"
+                                        type="string" readonly="true" col-class="yellowBrown" formatpattern="suffix" suffix="%" edit-widget-type="text" show="true"></wm-table-column>
+                                </wm-table>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow9">
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn17"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn18"></wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
+                </wm-tabpane>
+                <wm-tabpane name="tabpane4" title="Equip.">
+                    <wm-layoutgrid name="layoutgrid4">
+                        <wm-gridrow name="gridrow10">
+                            <wm-gridcolumn columnwidth="1" name="gridcolumn19">
+                                <wm-composite captionposition="top" name="composite4">
+                                    <wm-label class="col-md-3 control-label" caption="Group By" show="true" fontweight="bold" name="label8_1"></wm-label>
+                                    <wm-container class="col-md-9" width="100%" name="container4">
+                                        <wm-select dataset="bind:Variables.staticReportGroupingEquip.dataSet" datafield="dataValue" displayfield="Label" datavalue="Area" show="true" on-change="Variables.serviceGetEquipStatsGrouped.invoke()" name="selectEquipGroupBy"
+                                            orderby="Label:asc"></wm-select>
+                                    </wm-container>
+                                </wm-composite>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="6" horizontalalign="center" padding="2% unset unset unset" name="gridcolumn20">
+                                <wm-label caption="Totals" fontweight="bold" fontsize="16" name="label9"></wm-label>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="5" name="gridcolumn21"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow11">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn22">
+                                <wm-table title="" dataset="bind:Variables.serviceGetEquipStatsGrouped.dataSet.content" navigation="Classic" showrecordcount="true" searchlabel="Search..." spacing="condensed" pagesize="100" height="640px" show="true" class="wrapheader"
+                                    name="gridEquip" width="50%" radioselect="false" multiselect="false">
+                                    <wm-table-column binding="ProjectServicesRep" caption="ProjectServicesRep" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;ProjectServicesRep&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Scope" caption="Scope" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Scope&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Phase" caption="Phase" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Phase&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="Stage" caption="Stage" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;Stage&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="TestPackageNumber" caption="Test Package" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;TestPackageNumber&quot;"
+                                        readonly="false"></wm-table-column>
+                                    <wm-table-column binding="WorkPackage" caption="WorkPackage" type="string" width="140px" edit-widget-type="text" show="bind:Widgets.selectCivilGroupBy.datavalue == &quot;WorkPackage&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="p6id" caption="P6 ID" type="string" edit-widget-type="text" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;P6ID&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="p6description" caption="P6 Description" type="string" edit-widget-type="text" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;P6ID&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="assignedContractor" caption="Assigned Contractor" type="string" edit-widget-type="text" searchable="false" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;AssignedContractor&quot;"
+                                        readonly="false"></wm-table-column>
+                                    <wm-table-column binding="area" caption="Area" type="string" edit-widget-type="text" searchable="false" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;Area&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="location" caption="Location" type="string" edit-widget-type="text" searchable="false" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;Location&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="structure" caption="Structure" type="string" edit-widget-type="text" searchable="false" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;Structure&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="cu" caption="CU" type="string" edit-widget-type="text" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;CU&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="elevation" caption="Elevation" type="string" edit-widget-type="text" searchable="false" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;Elevation&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="system" caption="System" type="string" edit-widget-type="text" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;System&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="service" caption="Service" type="string" edit-widget-type="text" show="bind:Widgets.selectEquipGroupBy.datavalue == &quot;Service&quot;" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="hoursAll" caption="bind:&quot;Total \nHours: \n&quot; + (Variables.serviceGetEquipStatsJob.dataSet.content[0].hoursAll | toNumber: '2')" type="string" col-class="yellowBrown"
+                                        formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="earnedAllEquipHours" caption="bind:&quot;Total \nEarned Hours: \n&quot; + (Variables.serviceGetEquipStatsJob.dataSet.content[0].earnedAllEquipHours | toNumber: '2')" type="string"
+                                        col-class="yellowBrown" formatpattern="numberToString" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                                    <wm-table-column binding="percentComplete" caption="bind:&quot;Total \nPercent Complete: \n&quot; + (Variables.serviceGetEquipStatsJob.dataSet.content[0].percentComplete| toNumber: '3') | suffix: '%'"
+                                        type="string" col-class="yellowBrown" formatpattern="numberToString" fractionsize="3" edit-widget-type="text" show="true" readonly="false"></wm-table-column>
+                                </wm-table>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow12">
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn23"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn24"></wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
+                </wm-tabpane>
+            </wm-tabs>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1" height="33"></wm-footer>
 </wm-page>

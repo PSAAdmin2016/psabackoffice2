@@ -81,6 +81,10 @@ public class GetPipeStatsResponseContent implements Serializable {
     @ColumnAlias("Elevation")
     private String elevation;
 
+    @JsonProperty("Size")
+    @ColumnAlias("Size")
+    private Float size;
+
     @JsonProperty("System")
     @ColumnAlias("System")
     private String system;
@@ -579,6 +583,14 @@ public class GetPipeStatsResponseContent implements Serializable {
 
     public void setElevation(String elevation) {
         this.elevation = elevation;
+    }
+
+    public Float getSize() {
+        return this.size;
+    }
+
+    public void setSize(Float size) {
+        this.size = size;
     }
 
     public String getSystem() {
@@ -1346,6 +1358,7 @@ public class GetPipeStatsResponseContent implements Serializable {
                 Objects.equals(getStructure(), getPipeStatsResponseContent.getStructure()) &&
                 Objects.equals(getCu(), getPipeStatsResponseContent.getCu()) &&
                 Objects.equals(getElevation(), getPipeStatsResponseContent.getElevation()) &&
+                Objects.equals(getSize(), getPipeStatsResponseContent.getSize()) &&
                 Objects.equals(getSystem(), getPipeStatsResponseContent.getSystem()) &&
                 Objects.equals(getService(), getPipeStatsResponseContent.getService()) &&
                 Objects.equals(getPipingActivityType(), getPipeStatsResponseContent.getPipingActivityType()) &&
@@ -1459,6 +1472,7 @@ public class GetPipeStatsResponseContent implements Serializable {
                 getStructure(),
                 getCu(),
                 getElevation(),
+                getSize(),
                 getSystem(),
                 getService(),
                 getPipingActivityType(),

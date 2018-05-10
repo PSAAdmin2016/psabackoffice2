@@ -4596,15 +4596,18 @@
     "isList" : false,
     "saveInPhonegap" : false
   },
-  "staticReportGrouping" : {
-    "_id" : "wm-staticReportGrouping-wm.Variable-1457962912386",
-    "name" : "staticReportGrouping",
+  "staticReportGroupingCivil" : {
+    "_id" : "wm-staticReportGroupingCivil-wm.Variable-1525985100316",
+    "name" : "staticReportGroupingCivil",
     "owner" : "App",
     "category" : "wm.Variable",
     "dataBinding" : [ ],
     "dataSet" : [ {
       "Label" : "Job",
       "dataValue" : "WBS10"
+    }, {
+      "Label" : "Project Services Rep",
+      "dataValue" : "ProjectServicesRep"
     }, {
       "Label" : "Scope",
       "dataValue" : "Scope"
@@ -4618,11 +4621,209 @@
       "Label" : "Test Package",
       "dataValue" : "TestPackageNumber"
     }, {
+      "Label" : "Work Package",
+      "dataValue" : "WorkPackage"
+    }, {
       "Label" : "Cost Code",
       "dataValue" : "CostCode"
     }, {
       "Label" : "P6 ID",
       "dataValue" : "P6ID"
+    }, {
+      "Label" : "Contractor",
+      "dataValue" : "AssignedContractor"
+    }, {
+      "Label" : "Area",
+      "dataValue" : "Area"
+    }, {
+      "Label" : "Location",
+      "dataValue" : "Location"
+    }, {
+      "Label" : "Structure",
+      "dataValue" : "Structure"
+    }, {
+      "Label" : "CU",
+      "dataValue" : "CU"
+    }, {
+      "Label" : "Elevation",
+      "dataValue" : "Elevation"
+    }, {
+      "Label" : "System",
+      "dataValue" : "System"
+    }, {
+      "Label" : "Service",
+      "dataValue" : "Service"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
+  "staticReportGroupingEquip" : {
+    "_id" : "wm-staticReportGroupingEquip-wm.Variable-1525985136059",
+    "name" : "staticReportGroupingEquip",
+    "owner" : "App",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "Label" : "Job",
+      "dataValue" : "WBS10"
+    }, {
+      "Label" : "Project Services Rep",
+      "dataValue" : "ProjectServicesRep"
+    }, {
+      "Label" : "Scope",
+      "dataValue" : "Scope"
+    }, {
+      "Label" : "Phase",
+      "dataValue" : "Phase"
+    }, {
+      "Label" : "Stage",
+      "dataValue" : "Stage"
+    }, {
+      "Label" : "Test Package",
+      "dataValue" : "TestPackageNumber"
+    }, {
+      "Label" : "Work Package",
+      "dataValue" : "WorkPackage"
+    }, {
+      "Label" : "Cost Code",
+      "dataValue" : "CostCode"
+    }, {
+      "Label" : "P6 ID",
+      "dataValue" : "P6ID"
+    }, {
+      "Label" : "Contractor",
+      "dataValue" : "AssignedContractor"
+    }, {
+      "Label" : "Area",
+      "dataValue" : "Area"
+    }, {
+      "Label" : "Location",
+      "dataValue" : "Location"
+    }, {
+      "Label" : "Structure",
+      "dataValue" : "Structure"
+    }, {
+      "Label" : "CU",
+      "dataValue" : "CU"
+    }, {
+      "Label" : "Elevation",
+      "dataValue" : "Elevation"
+    }, {
+      "Label" : "Tag #",
+      "dataValue" : "ComponentNumber"
+    }, {
+      "Label" : "System",
+      "dataValue" : "System"
+    }, {
+      "Label" : "Service",
+      "dataValue" : "Service"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
+  "staticReportGroupingPipe" : {
+    "_id" : "wm-staticReportGrouping-wm.Variable-1457962912386",
+    "name" : "staticReportGroupingPipe",
+    "owner" : "App",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "Label" : "Job",
+      "dataValue" : "WBS10"
+    }, {
+      "Label" : "Project Services Rep",
+      "dataValue" : "ProjectServicesRep"
+    }, {
+      "Label" : "Scope",
+      "dataValue" : "Scope"
+    }, {
+      "Label" : "Phase",
+      "dataValue" : "Phase"
+    }, {
+      "Label" : "Stage",
+      "dataValue" : "Stage"
+    }, {
+      "Label" : "Test Package",
+      "dataValue" : "TestPackageNumber"
+    }, {
+      "Label" : "Work Package",
+      "dataValue" : "WorkPackage"
+    }, {
+      "Label" : "Cost Code",
+      "dataValue" : "CostCode"
+    }, {
+      "Label" : "P6 ID",
+      "dataValue" : "P6ID"
+    }, {
+      "Label" : "Contractor",
+      "dataValue" : "AssignedContractor"
+    }, {
+      "Label" : "Area",
+      "dataValue" : "Area"
+    }, {
+      "Label" : "Location",
+      "dataValue" : "Location"
+    }, {
+      "Label" : "Structure",
+      "dataValue" : "Structure"
+    }, {
+      "Label" : "CU",
+      "dataValue" : "CU"
+    }, {
+      "Label" : "Elevation",
+      "dataValue" : "Elevation"
+    }, {
+      "Label" : "Size",
+      "dataValue" : "Size"
+    }, {
+      "Label" : "System",
+      "dataValue" : "System"
+    }, {
+      "Label" : "Service",
+      "dataValue" : "Service"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
+  "staticReportGroupingSteel" : {
+    "_id" : "wm-staticSteelReportGrouping-wm.Variable-1525985050300",
+    "name" : "staticReportGroupingSteel",
+    "owner" : "App",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "Label" : "Job",
+      "dataValue" : "WBS10"
+    }, {
+      "Label" : "Project Services Rep",
+      "dataValue" : "ProjectServicesRep"
+    }, {
+      "Label" : "Scope",
+      "dataValue" : "Scope"
+    }, {
+      "Label" : "Phase",
+      "dataValue" : "Phase"
+    }, {
+      "Label" : "Stage",
+      "dataValue" : "Stage"
+    }, {
+      "Label" : "Test Package",
+      "dataValue" : "TestPackageNumber"
+    }, {
+      "Label" : "Work Package",
+      "dataValue" : "WorkPackage"
+    }, {
+      "Label" : "Cost Code",
+      "dataValue" : "CostCode"
+    }, {
+      "Label" : "P6 ID",
+      "dataValue" : "P6ID"
+    }, {
+      "Label" : "Contractor",
+      "dataValue" : "AssignedContractor"
     }, {
       "Label" : "Area",
       "dataValue" : "Area"
