@@ -75,8 +75,8 @@ Application.$controller("gridCivilController", ["$scope",
 ]);
 
 Application.$controller("gridEquipController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
