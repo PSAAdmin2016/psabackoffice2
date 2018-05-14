@@ -590,8 +590,8 @@
     "name" : "GetActivitiesPendingReviewSteelActivities",
     "description" : "Returns individual activities for given submission/pieceMark/Status.  Populates the Super Review steel detailed list",
     "version" : "V2",
-    "queryString" : "SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, at.ID AS ActivityTypeID,\nstl.ActivityID, std.SortGroup1, std.PieceMark, stl.FAQuantity, stl.FAPercentCompleted, stl.FARework, stl.FANotes, stl.FATimeInForm\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nJOIN SteelFA stl\n\tON stl.ActivityID = sas.ActivityID \nJOIN SteelTrackerDetails std\n\tON std.BidID = stl.FABidID\n    \nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nWHERE sas.SubmissionID = :SubmissionID\nAND std.BidID = :BidID\nAND sas.fk_ActivityStatus = :StatusID\n\nORDER BY sas.ActivityType",
-    "countQueryString" : "select count(*) from (SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, at.ID AS ActivityTypeID,\nstl.ActivityID, std.SortGroup1, std.PieceMark, stl.FAQuantity, stl.FAPercentCompleted, stl.FARework, stl.FANotes, stl.FATimeInForm\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nJOIN SteelFA stl\n\tON stl.ActivityID = sas.ActivityID \nJOIN SteelTrackerDetails std\n\tON std.BidID = stl.FABidID\n    \nJOIN PSA.tblUserPSA u\n\tON u.ID = sd.UserID\nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\n\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\n\nWHERE sas.SubmissionID = :SubmissionID\nAND std.BidID = :BidID\nAND sas.fk_ActivityStatus = :StatusID\n\nORDER BY sas.ActivityType) wmTempTable",
+    "queryString" : "SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, at.ID AS ActivityTypeID,\nstl.ActivityID, std.SortGroup1, std.PieceMark, stl.FAQuantity, stl.FAPercentCompleted, stl.FARework, stl.FANotes, stl.FATimeInForm\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nJOIN SteelFA stl\n\tON stl.ActivityID = sas.ActivityID \nJOIN SteelTrackerDetails std\n\tON std.BidID = stl.FABidID\n    \nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\n\nWHERE sas.SubmissionID = :SubmissionID\nAND std.BidID = :BidID\nAND sas.fk_ActivityStatus = :StatusID\n\nORDER BY sas.ActivityType",
+    "countQueryString" : "select count(*) from (SELECT sas.fk_ActivityStatus, ats.Status, at.ActivityType, at.ID AS ActivityTypeID,\nstl.ActivityID, std.SortGroup1, std.PieceMark, stl.FAQuantity, stl.FAPercentCompleted, stl.FARework, stl.FANotes, stl.FATimeInForm\n\nFROM SubsDetails sd\nJOIN SubmissionActivityStatus sas\n\tON sas.SubmissionID = sd.SubmissionID\nJOIN SteelFA stl\n\tON stl.ActivityID = sas.ActivityID \nJOIN SteelTrackerDetails std\n\tON std.BidID = stl.FABidID\n    \nJOIN PSA.REF_ActivityTypes at\n\tON  at.ID = sas.ActivityType\nJOIN PSA.REF_ActivityStatuses ats\n\tON ats.ID = sas.fk_ActivityStatus\n\nWHERE sas.SubmissionID = :SubmissionID\nAND std.BidID = :BidID\nAND sas.fk_ActivityStatus = :StatusID\n\nORDER BY sas.ActivityType) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -10686,12 +10686,120 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "2687",
+      "testValue" : "2686",
       "required" : true
     } ],
     "request" : {
       "wrapped" : true,
       "typeRef" : "com.psabackoffice.job1111.models.query.UpdateSasstatusRequest",
+      "method" : "PUT"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
+  "UpdateSASStatusSteelList" : {
+    "name" : "UpdateSASStatusSteelList",
+    "description" : "Update a list of SAS Statuses by ActivityIDs",
+    "version" : "V2",
+    "queryString" : "UPDATE SubmissionActivityStatus sas\nSET \nsas.fk_ActivityStatus = :ActivityStatusID,\nsas.fk_LastModifiedBy = :UserID\nWHERE sas.ActivityID IN :ActivityIDs",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "ActivityStatusID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1",
+      "required" : true
+    }, {
+      "name" : "UserID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1",
+      "required" : true
+    }, {
+      "name" : "ActivityIDs",
+      "type" : "integer",
+      "list" : true,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : [ "2677", "2678", "2680" ],
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.job1111.models.query.UpdateSasstatusSteelListRequest",
+      "method" : "PUT"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
+  "UpdateSASStatusSteelSubBidID" : {
+    "name" : "UpdateSASStatusSteelSubBidID",
+    "description" : "Update the status of all steel Activities that have the same SubmissionID, BidID, and current status.   used exclusively on SuperReview Steel Accept button with multiple Selected rows.",
+    "version" : "V2",
+    "queryString" : "UPDATE SubmissionActivityStatus sas\nJOIN SteelFA stl\n\tON stl.ActivityID = sas.ActivityID\n\nSET \nfk_ActivityStatus = :NewStatusID,\nsas.fk_LastModifiedBy = :UserID\n\nWHERE sas.SubmissionID = :SubmissionID\nAND stl.FABidID = :BidID\nAND sas.fk_ActivityStatus = :CurrentStatusID",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "NewStatusID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "2",
+      "required" : true
+    }, {
+      "name" : "UserID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1",
+      "required" : true
+    }, {
+      "name" : "SubmissionID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "745",
+      "required" : true
+    }, {
+      "name" : "BidID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "10",
+      "required" : true
+    }, {
+      "name" : "CurrentStatusID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.psabackoffice.job1111.models.query.UpdateSasstatusSteelSubBidIdRequest",
       "method" : "PUT"
     },
     "identifiers" : [ ],

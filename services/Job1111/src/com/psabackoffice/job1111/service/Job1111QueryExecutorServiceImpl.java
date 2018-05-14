@@ -378,6 +378,18 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
+    public Integer executeUpdateSASStatusSteelList(UpdateSasstatusSteelListRequest updateSasstatusSteelListRequest) {
+        Map params = new HashMap(3);
+
+        params.put("ActivityStatusID", updateSasstatusSteelListRequest.getActivityStatusId());
+        params.put("UserID", updateSasstatusSteelListRequest.getUserId());
+        params.put("ActivityIDs", updateSasstatusSteelListRequest.getActivityIds());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateSASStatusSteelList", params);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
     public Integer executeCreateSASNote(CreateSasnoteRequest createSasnoteRequest) {
         Map params = new HashMap(3);
 
@@ -1448,6 +1460,20 @@ public class Job1111QueryExecutorServiceImpl implements Job1111QueryExecutorServ
         params.put("SuperID", superId);
 
         return queryExecutor.exportNamedQueryData("GetActivitiesPendingReviewSteel", params, exportType, GetActivitiesPendingReviewSteelResponse.class, pageable);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
+    public Integer executeUpdateSASStatusSteelSubBidID(UpdateSasstatusSteelSubBidIdRequest updateSasstatusSteelSubBidIdRequest) {
+        Map params = new HashMap(5);
+
+        params.put("NewStatusID", updateSasstatusSteelSubBidIdRequest.getNewStatusId());
+        params.put("UserID", updateSasstatusSteelSubBidIdRequest.getUserId());
+        params.put("SubmissionID", updateSasstatusSteelSubBidIdRequest.getSubmissionId());
+        params.put("BidID", updateSasstatusSteelSubBidIdRequest.getBidId());
+        params.put("CurrentStatusID", updateSasstatusSteelSubBidIdRequest.getCurrentStatusId());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateSASStatusSteelSubBidID", params);
     }
 
     @Transactional(value = "Job1111TransactionManager")

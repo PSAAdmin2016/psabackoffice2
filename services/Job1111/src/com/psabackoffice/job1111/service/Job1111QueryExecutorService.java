@@ -83,6 +83,8 @@ public interface Job1111QueryExecutorService {
 
     Integer executeUpdatePipeMisc(UpdatePipeMiscRequest updatePipeMiscRequest);
 
+    Integer executeUpdateSASStatusSteelList(UpdateSasstatusSteelListRequest updateSasstatusSteelListRequest);
+
     Integer executeCreateSASNote(CreateSasnoteRequest createSasnoteRequest);
 
     Page<GetReportDprsteelDetailedResponse> executeGetReportDPRSteelDetailed(String pm, String constM, String siteM, String areaM, String super_, String gf, String foreman, Date startDate, Date endDate, Pageable pageable);
@@ -270,6 +272,8 @@ public interface Job1111QueryExecutorService {
     Page<GetActivitiesPendingReviewSteelResponse> executeGetActivitiesPendingReviewSteel(Integer superId, Pageable pageable);
 
     Downloadable exportGetActivitiesPendingReviewSteel(ExportType exportType, Integer superId, Pageable pageable);
+
+    Integer executeUpdateSASStatusSteelSubBidID(UpdateSasstatusSteelSubBidIdRequest updateSasstatusSteelSubBidIdRequest);
 
     Integer executeUpdateCivilFAQuantity(UpdateCivilFaquantityRequest updateCivilFaquantityRequest);
 

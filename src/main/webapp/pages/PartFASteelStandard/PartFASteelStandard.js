@@ -110,7 +110,9 @@ Application.$controller("gridSteelFAController", ["$scope",
             $scope.Variables.serviceUpdateSAS.setInput("ActivityStatusID", 3);
             $scope.Variables.serviceUpdateSAS.invoke({},
                 function(data) {
-                    $scope.$parent.$parent.$parent.Variables.serviceGetFAsSteel.invoke(); //Updates serviceGetSteelFAData on success
+                    $scope.$parent.$parent.$parent.Variables.serviceGetFAsSteel.invoke(); //Updates serviceGetSteelFAData on success ONLY if This rejected Activity was the LAST activity in the selected piece mark
+                    $scope.Variables.serviceGetSteelFAData.invoke();
+
                 }
             );
 

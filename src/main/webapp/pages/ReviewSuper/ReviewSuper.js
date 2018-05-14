@@ -44,21 +44,75 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
         //### Steel FAs ###
         if ($scope.Widgets.tabs1.activeTab.name == "tabSteel") {
-            console.log("Logic for Accept Steel Piece Work not built yet.");
-            $scope.Widgets.gridSuperReviewSteel
-            //Need logic for looping through all FA's that make up the one row selected in the gridSuperReviewSteel.  
-            //OR pass a List to the querry if that works right.
-            //OR Build an array of objects to pass to an UpdateSS LiveVariable -> setInput() -> invoke()
-            //$scope.Variables.serviceUpdateSS.invoke();
-            $scope.Widgets.gridSuperReviewSteel.datagridElement
-            var bob = $scope.Widgets.gridSuperReviewSteel.datagridElement.find('td .app-checkbox[name="SelectCheckbox"]')
-            debugger;
+            //Build CheckedArray
+            var checkedArray = [];
             $scope.Widgets.gridSuperReviewSteel.datagridElement.find('td .app-checkbox[name="SelectCheckbox"]').each(function(index) {
-                debugger;
                 if ($(this).isolateScope().datavalue === true) {
-                    console.log($scope.Widgets.gridSuperReviewSteel.gridData[index]);
+                    checkedArray.push($scope.Widgets.gridSuperReviewSteel.gridData[index]);
                 }
             });
+
+            if (checkedArray.length > 0) {
+                // run serviceUpdateSASSteelSubBidID for every selected row and refresh GetActivitiesPendingReviewSteel 1 TIME
+                for (var i = 0; i < checkedArray.length; i++) {
+                    $scope.Variables.serviceUpdateSASSteelSubBidID.setInput("CurrentStatusID", checkedArray[i].fkActivityStatus);
+                    $scope.Variables.serviceUpdateSASSteelSubBidID.setInput("BidID", checkedArray[i].fabidId);
+                    $scope.Variables.serviceUpdateSASSteelSubBidID.setInput("SubmissionID", checkedArray[i].submissionId);
+
+                    // Conditionally set new status
+                    switch (checkedArray[i].fkActivityStatus) {
+                        case 1:
+                        case 10:
+                            $scope.Variables.serviceUpdateSASSteelSubBidID.setInput("NewStatusID", 2);
+                            break;
+                        case 6:
+                        case 8:
+                            $scope.Variables.serviceUpdateSASSteelSubBidID.setInput("NewStatusID", 7);
+                            break;
+                        case 4:
+                            $scope.Variables.serviceUpdateSASSteelSubBidID.setInput("NewStatusID", 9);
+                    }
+
+                    // Only update serviceGetFAsSteel on last update.
+                    if (i == checkedArray.length - 1) {
+                        $scope.Variables.serviceUpdateSASSteelSubBidID.invoke({},
+                            function(data) {
+                                $scope.Variables.serviceGetFAsSteel.invoke();
+                            });
+                    } else {
+                        $scope.Variables.serviceUpdateSASSteelSubBidID.invoke();
+                    }
+                }
+
+            } else {
+                // Get ActivityIDs to update
+                for (var i2 = 0; i2 < $scope.Widgets.containerFADetails.Variables.serviceGetSteelFAData.dataSet.content.length; i2++) {
+                    if (!$scope.Variables.serviceUpdateSASSteelList.dataBinding.ActivityIDs) {
+                        $scope.Variables.serviceUpdateSASSteelList.setInput("ActivityIDs", []);
+                    }
+                    $scope.Variables.serviceUpdateSASSteelList.dataBinding.ActivityIDs.push($scope.Widgets.containerFADetails.Variables.serviceGetSteelFAData.dataSet.content[i2].activityId);
+                }
+
+                // Conditionally set new status
+                switch ($scope.Widgets.containerFADetails.Variables.serviceGetSteelFAData.dataSet.content[0].fkActivityStatus) {
+                    case 1:
+                    case 10:
+                        $scope.Variables.serviceUpdateSASSteelList.setInput("ActivityStatusID", "2");
+                        break;
+                    case 6:
+                    case 8:
+                        $scope.Variables.serviceUpdateSASSteelList.setInput("ActivityStatusID", "7");
+                        break;
+                    case 4:
+                        $scope.Variables.serviceUpdateSASSteelList.setInput("ActivityStatusID", "9");
+                }
+
+                // Update statuses, and onSuccess, update serviceGetFAsSteel
+                $scope.Variables.serviceUpdateSASSteelList.invoke({},
+                    function(data) {
+                        $scope.Variables.serviceGetFAsSteel.invoke();
+                    });
+            }
         }
     };
 
@@ -373,13 +427,9 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
         //Cancel Edit mode if user selects different row
         if ($scope.Widgets.containerFADetails.Variables && $scope.Widgets.containerFADetails.Variables.staticEditMode && $scope.Widgets.containerFADetails.Variables.staticEditMode.dataSet.dataValue) {
-            $scope.Widgets.containerFADetails.Variables.staticEditMode.setValue("dataValue", false);
+            $scope.Widgets.containerFADetails.Variables.serviceGetSteelFAData.setValue("dataValue", false);
             $scope.Widgets.containerFADetails.Widgets.gridSteelFA.cancelRow();
         }
-
-        // Update serviceGetNotes with newly selected Row
-        // Since this will use the results of Widgets.containterFADetails.Variables.getSteelActivitiesData.  It needs to be run via its OnSuccess event for steel
-        //$scope.Variables.serviceGetSASNotes.invoke();
     };
 
 
@@ -392,12 +442,16 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
     $scope.tabFAsSelect = function($event, $isolateScope) {
         $scope.gridSuperReviewActivitiesSelect(null, null, $scope.Widgets.gridSuperReviewActivities.selecteditem);
+        $scope.Variables.liveGetActivityDetails.clearData();
+        $scope.signaturePad.clear();
     };
 
 
     $scope.tabSteelSelect = function($event, $isolateScope) {
         $scope.Widgets.containerFADetails.content = 'PartFASteelStandard';
         $scope.gridSuperReviewSteelSelect(null, null, $scope.Widgets.gridSuperReviewSteel.selecteditem);
+        $scope.Variables.serviceGetSubsDetails.clearData();
+        $scope.signaturePad.clear();
     };
 
 
@@ -414,6 +468,16 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
                 "ActivityID": $scope.Widgets.gridSuperReviewActivities.selecteditem.activityId
             }
         });
+    };
+
+
+    $scope.serviceGetFAsSteelonSuccess = function(variable, data) {
+        if (data.content.length < 1 && $scope.Widgets.tabs1.activeTab.name == "tabSteel") {
+            debugger;
+            $scope.Widgets.containerFADetails.Variables.serviceGetSteelFAData.clearData();
+            $scope.Variables.serviceGetSubsDetails.clearData();
+            $scope.signaturePad.clear();
+        }
     };
 
 }]);

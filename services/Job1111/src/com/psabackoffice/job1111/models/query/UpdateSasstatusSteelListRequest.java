@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateSasstatusRequest implements Serializable {
+public class UpdateSasstatusSteelListRequest implements Serializable {
 
 
     @JsonProperty("ActivityStatusID")
@@ -26,9 +26,9 @@ public class UpdateSasstatusRequest implements Serializable {
     @NotNull
     private Integer userId;
 
-    @JsonProperty("ActivityID")
+    @JsonProperty("ActivityIDs")
     @NotNull
-    private Integer activityId;
+    private List<Integer> activityIds;
 
     public Integer getActivityStatusId() {
         return this.activityStatusId;
@@ -46,28 +46,28 @@ public class UpdateSasstatusRequest implements Serializable {
         this.userId = userId;
     }
 
-    public Integer getActivityId() {
-        return this.activityId;
+    public List<Integer> getActivityIds() {
+        return this.activityIds;
     }
 
-    public void setActivityId(Integer activityId) {
-        this.activityId = activityId;
+    public void setActivityIds(List<Integer> activityIds) {
+        this.activityIds = activityIds;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UpdateSasstatusRequest)) return false;
-        final UpdateSasstatusRequest updateSasstatusRequest = (UpdateSasstatusRequest) o;
-        return Objects.equals(getActivityStatusId(), updateSasstatusRequest.getActivityStatusId()) &&
-                Objects.equals(getUserId(), updateSasstatusRequest.getUserId()) &&
-                Objects.equals(getActivityId(), updateSasstatusRequest.getActivityId());
+        if (!(o instanceof UpdateSasstatusSteelListRequest)) return false;
+        final UpdateSasstatusSteelListRequest updateSasstatusSteelListRequest = (UpdateSasstatusSteelListRequest) o;
+        return Objects.equals(getActivityStatusId(), updateSasstatusSteelListRequest.getActivityStatusId()) &&
+                Objects.equals(getUserId(), updateSasstatusSteelListRequest.getUserId()) &&
+                Objects.equals(getActivityIds(), updateSasstatusSteelListRequest.getActivityIds());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getActivityStatusId(),
                 getUserId(),
-                getActivityId());
+                getActivityIds());
     }
 }

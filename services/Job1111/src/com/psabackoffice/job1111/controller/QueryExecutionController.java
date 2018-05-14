@@ -359,6 +359,16 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/UpdateSASStatusSteelList", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Update a list of SAS Statuses by ActivityIDs")
+    public IntegerWrapper executeUpdateSASStatusSteelList(@Valid @RequestBody UpdateSasstatusSteelListRequest updateSasstatusSteelListRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: UpdateSASStatusSteelList");
+        Integer _result = queryService.executeUpdateSASStatusSteelList(updateSasstatusSteelListRequest);
+        LOGGER.debug("got the result for named query: UpdateSASStatusSteelList, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/CreateSASNote", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Creates a Submission Note")
@@ -1261,6 +1271,16 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetActivitiesPendingReviewSteel");
 
         return queryService.exportGetActivitiesPendingReviewSteel(exportType, superId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/UpdateSASStatusSteelSubBidID", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Update the status of all steel Activities that have the same SubmissionID, BidID, and current status.   used exclusively on SuperReview Steel Accept button with multiple Selected rows.")
+    public IntegerWrapper executeUpdateSASStatusSteelSubBidID(@Valid @RequestBody UpdateSasstatusSteelSubBidIdRequest updateSasstatusSteelSubBidIdRequest, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: UpdateSASStatusSteelSubBidID");
+        Integer _result = queryService.executeUpdateSASStatusSteelSubBidID(updateSasstatusSteelSubBidIdRequest);
+        LOGGER.debug("got the result for named query: UpdateSASStatusSteelSubBidID, result:{}", _result);
+        return new IntegerWrapper(_result);
     }
 
     @RequestMapping(value = "/queries/UpdateCivilFAQuantity", method = RequestMethod.PUT)

@@ -1206,17 +1206,10 @@ JOIN SteelFA stl
 JOIN SteelTrackerDetails std
 	ON std.BidID = stl.FABidID
     
-JOIN PSA.tblUserPSA u
-	ON u.ID = sd.UserID
 JOIN PSA.REF_ActivityTypes at
 	ON  at.ID = sas.ActivityType
 JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
-
-LEFT JOIN PSA.tblCrews tc
-	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-LEFT JOIN PSA.tblCrewsRev tcr
-	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 
 WHERE sas.SubmissionID = :SubmissionID
 AND std.BidID = :BidID
@@ -1242,17 +1235,10 @@ JOIN SteelFA stl
 JOIN SteelTrackerDetails std
 	ON std.BidID = stl.FABidID
     
-JOIN PSA.tblUserPSA u
-	ON u.ID = sd.UserID
 JOIN PSA.REF_ActivityTypes at
 	ON  at.ID = sas.ActivityType
 JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
-
-LEFT JOIN PSA.tblCrews tc
-	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-LEFT JOIN PSA.tblCrewsRev tcr
-	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
 
 WHERE sas.SubmissionID = :SubmissionID
 AND std.BidID = :BidID
@@ -1498,6 +1484,19 @@ WHERE ActivityID = :ActivityID
     <query-param name="Rework" type="java.lang.Integer"/>
     <query-param name="Notes" type="java.lang.String"/>
     <query-param name="ActivityID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="UpdateSASStatusSteelList">
+        <![CDATA[
+        UPDATE SubmissionActivityStatus sas
+SET 
+sas.fk_ActivityStatus = :ActivityStatusID,
+sas.fk_LastModifiedBy = :UserID
+WHERE sas.ActivityID IN :ActivityIDs
+        ]]>
+    <query-param name="ActivityStatusID" type="java.lang.Integer"/>
+    <query-param name="UserID" type="java.lang.Integer"/>
+    <query-param name="ActivityIDs" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="CreateSASNote">
@@ -7215,6 +7214,27 @@ JOIN SteelTrackerDetails std
 GROUP BY fas.SubmissionID, std.PieceMark, fas.fk_ActivityStatus) wmTempTable
         ]]>
     <query-param name="SuperID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="UpdateSASStatusSteelSubBidID">
+        <![CDATA[
+        UPDATE SubmissionActivityStatus sas
+JOIN SteelFA stl
+	ON stl.ActivityID = sas.ActivityID
+
+SET 
+fk_ActivityStatus = :NewStatusID,
+sas.fk_LastModifiedBy = :UserID
+
+WHERE sas.SubmissionID = :SubmissionID
+AND stl.FABidID = :BidID
+AND sas.fk_ActivityStatus = :CurrentStatusID
+        ]]>
+    <query-param name="NewStatusID" type="java.lang.Integer"/>
+    <query-param name="UserID" type="java.lang.Integer"/>
+    <query-param name="SubmissionID" type="java.lang.Integer"/>
+    <query-param name="BidID" type="java.lang.Integer"/>
+    <query-param name="CurrentStatusID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="UpdateCivilFAQuantity">

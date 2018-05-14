@@ -353,7 +353,7 @@
     "dataSet" : [ ],
     "isList" : true,
     "maxResults" : 50,
-    "onSuccess" : "Javascript",
+    "onSuccess" : "serviceGetSteelFADataonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",
