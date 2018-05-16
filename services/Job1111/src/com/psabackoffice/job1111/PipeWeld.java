@@ -34,7 +34,6 @@ public class PipeWeld implements Serializable {
     private String weldDrawingNumber;
     private String weldLineNumber;
     private String weldSheetNumber;
-    private Short weldTimeInForm;
     private String weldLineSpec;
     private String weldNumber;
     private String weldStencil;
@@ -50,6 +49,7 @@ public class PipeWeld implements Serializable {
     private Short weldRework;
     private String weldNotes;
     private Short activityType;
+    private Short weldTimeInForm;
     private short rev;
     private Timestamp timeStamp;
     private SubmissionActivityStatus submissionActivityStatus;
@@ -107,15 +107,6 @@ public class PipeWeld implements Serializable {
 
     public void setWeldSheetNumber(String weldSheetNumber) {
         this.weldSheetNumber = weldSheetNumber;
-    }
-
-    @Column(name = "`WeldTimeInForm`", nullable = true, scale = 0, precision = 5)
-    public Short getWeldTimeInForm() {
-        return this.weldTimeInForm;
-    }
-
-    public void setWeldTimeInForm(Short weldTimeInForm) {
-        this.weldTimeInForm = weldTimeInForm;
     }
 
     @Column(name = "`WeldLineSpec`", nullable = true, length = 32)
@@ -251,6 +242,15 @@ public class PipeWeld implements Serializable {
 
     public void setActivityType(Short activityType) {
         this.activityType = activityType;
+    }
+
+    @Column(name = "`WeldTimeInForm`", nullable = true, scale = 0, precision = 5)
+    public Short getWeldTimeInForm() {
+        return this.weldTimeInForm;
+    }
+
+    public void setWeldTimeInForm(Short weldTimeInForm) {
+        this.weldTimeInForm = weldTimeInForm;
     }
 
     @Column(name = "`Rev`", nullable = false, scale = 0, precision = 3)

@@ -69,7 +69,7 @@ public class SubsDetails implements Serializable {
         this.formName = formName;
     }
 
-    @Column(name = "`FormVersion`", nullable = true, length = 8)
+    @Column(name = "`FormVersion`", nullable = true, length = 12)
     public String getFormVersion() {
         return this.formVersion;
     }

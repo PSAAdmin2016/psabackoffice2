@@ -290,7 +290,7 @@ public class PipeTrackerDetails implements Serializable {
         this.description = description;
     }
 
-    @Column(name = "`ActivityType`", nullable = true, length = 3)
+    @Column(name = "`ActivityType`", nullable = true, length = 4)
     public String getActivityType() {
         return this.activityType;
     }

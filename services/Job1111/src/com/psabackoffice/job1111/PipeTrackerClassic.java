@@ -61,7 +61,7 @@ public class PipeTrackerClassic implements Serializable {
     private BigDecimal hoursRft;
     private Double hoursHydro;
     private BigDecimal hoursCto;
-    private Float quantityInstalled;
+    private Double installedQuantity;
     private Double hoursEarnedTotal;
     private Double hoursEarnedMech;
     private Double hoursEarnedTesting;
@@ -288,7 +288,7 @@ public class PipeTrackerClassic implements Serializable {
         this.description = description;
     }
 
-    @Column(name = "`ActivityType`", nullable = true, length = 3)
+    @Column(name = "`ActivityType`", nullable = true, length = 4)
     public String getActivityType() {
         return this.activityType;
     }
@@ -432,13 +432,13 @@ public class PipeTrackerClassic implements Serializable {
         this.hoursCto = hoursCto;
     }
 
-    @Column(name = "`QuantityInstalled`", nullable = true, scale = 2, precision = 9)
-    public Float getQuantityInstalled() {
-        return this.quantityInstalled;
+    @Column(name = "`InstalledQuantity`", nullable = true, scale = 2, precision = 9)
+    public Double getInstalledQuantity() {
+        return this.installedQuantity;
     }
 
-    public void setQuantityInstalled(Float quantityInstalled) {
-        this.quantityInstalled = quantityInstalled;
+    public void setInstalledQuantity(Double installedQuantity) {
+        this.installedQuantity = installedQuantity;
     }
 
     @Column(name = "`HoursEarnedTotal`", nullable = true, scale = 6, precision = 16)
