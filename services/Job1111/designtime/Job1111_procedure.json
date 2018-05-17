@@ -1065,7 +1065,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : null,
+      "testValue" : "false",
       "required" : true,
       "parameterType" : "OUT"
     }, {
@@ -1074,7 +1074,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : null,
+      "testValue" : "",
       "required" : true,
       "parameterType" : "OUT"
     } ],
@@ -1447,8 +1447,8 @@
               "list" : false
             }
           }, {
-            "name" : "QuantityInstalled",
-            "fieldName" : "quantityInstalled",
+            "name" : "InstalledQuantity",
+            "fieldName" : "installedQuantity",
             "optional" : false,
             "fieldType" : {
               "type" : "PRIMITIVE",
@@ -6327,8 +6327,8 @@
               "list" : false
             }
           }, {
-            "name" : "PipingActivityType",
-            "fieldName" : "pipingActivityType",
+            "name" : "ActivityType",
+            "fieldName" : "activityType",
             "optional" : false,
             "fieldType" : {
               "type" : "PRIMITIVE",

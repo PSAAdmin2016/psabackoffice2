@@ -15,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -44,6 +45,7 @@ public class PipeConnection implements Serializable {
     private short rev = 0;
     private Timestamp timeStamp;
     private SubmissionActivityStatus submissionActivityStatus;
+    private PipeTrackerDetails pipeTrackerDetails;
 
     @Id
     @Column(name = "`ActivityID`", nullable = false, scale = 0, precision = 10)
@@ -194,6 +196,21 @@ public class PipeConnection implements Serializable {
         }
 
         this.submissionActivityStatus = submissionActivityStatus;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`ConnectionBidID`", referencedColumnName = "`BidID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`PipeConnection_BidID_to_PTDBidID`"))
+    @Fetch(FetchMode.JOIN)
+    public PipeTrackerDetails getPipeTrackerDetails() {
+        return this.pipeTrackerDetails;
+    }
+
+    public void setPipeTrackerDetails(PipeTrackerDetails pipeTrackerDetails) {
+        if(pipeTrackerDetails != null) {
+            this.connectionBidId = pipeTrackerDetails.getBidId();
+        }
+
+        this.pipeTrackerDetails = pipeTrackerDetails;
     }
 
     @Override

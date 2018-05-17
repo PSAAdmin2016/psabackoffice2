@@ -93,9 +93,9 @@ public class GetPipeStatsResponseContent implements Serializable {
     @ColumnAlias("Service")
     private String service;
 
-    @JsonProperty("PipingActivityType")
-    @ColumnAlias("PipingActivityType")
-    private String pipingActivityType;
+    @JsonProperty("ActivityType")
+    @ColumnAlias("ActivityType")
+    private String activityType;
 
     @JsonProperty("WBS1")
     @ColumnAlias("WBS1")
@@ -609,12 +609,12 @@ public class GetPipeStatsResponseContent implements Serializable {
         this.service = service;
     }
 
-    public String getPipingActivityType() {
-        return this.pipingActivityType;
+    public String getActivityType() {
+        return this.activityType;
     }
 
-    public void setPipingActivityType(String pipingActivityType) {
-        this.pipingActivityType = pipingActivityType;
+    public void setActivityType(String activityType) {
+        this.activityType = activityType;
     }
 
     public String getWbs1() {
@@ -1361,7 +1361,7 @@ public class GetPipeStatsResponseContent implements Serializable {
                 Objects.equals(getSize(), getPipeStatsResponseContent.getSize()) &&
                 Objects.equals(getSystem(), getPipeStatsResponseContent.getSystem()) &&
                 Objects.equals(getService(), getPipeStatsResponseContent.getService()) &&
-                Objects.equals(getPipingActivityType(), getPipeStatsResponseContent.getPipingActivityType()) &&
+                Objects.equals(getActivityType(), getPipeStatsResponseContent.getActivityType()) &&
                 Objects.equals(getWbs1(), getPipeStatsResponseContent.getWbs1()) &&
                 Objects.equals(getWbs2(), getPipeStatsResponseContent.getWbs2()) &&
                 Objects.equals(getWbs3(), getPipeStatsResponseContent.getWbs3()) &&
@@ -1475,7 +1475,7 @@ public class GetPipeStatsResponseContent implements Serializable {
                 getSize(),
                 getSystem(),
                 getService(),
-                getPipingActivityType(),
+                getActivityType(),
                 getWbs1(),
                 getWbs2(),
                 getWbs3(),

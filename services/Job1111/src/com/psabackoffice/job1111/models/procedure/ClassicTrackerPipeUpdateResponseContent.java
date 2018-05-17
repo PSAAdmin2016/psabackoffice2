@@ -174,9 +174,9 @@ public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
     @ColumnAlias("HoursCTO")
     private BigDecimal hoursCto;
 
-    @JsonProperty("QuantityInstalled")
-    @ColumnAlias("QuantityInstalled")
-    private Double quantityInstalled;
+    @JsonProperty("InstalledQuantity")
+    @ColumnAlias("InstalledQuantity")
+    private Double installedQuantity;
 
     @JsonProperty("HoursEarnedTotal")
     @ColumnAlias("HoursEarnedTotal")
@@ -558,12 +558,12 @@ public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
         this.hoursCto = hoursCto;
     }
 
-    public Double getQuantityInstalled() {
-        return this.quantityInstalled;
+    public Double getInstalledQuantity() {
+        return this.installedQuantity;
     }
 
-    public void setQuantityInstalled(Double quantityInstalled) {
-        this.quantityInstalled = quantityInstalled;
+    public void setInstalledQuantity(Double installedQuantity) {
+        this.installedQuantity = installedQuantity;
     }
 
     public BigDecimal getHoursEarnedTotal() {
@@ -746,7 +746,7 @@ public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
                 Objects.equals(getHoursRft(), classicTrackerPipeUpdateResponseContent.getHoursRft()) &&
                 Objects.equals(getHoursHydro(), classicTrackerPipeUpdateResponseContent.getHoursHydro()) &&
                 Objects.equals(getHoursCto(), classicTrackerPipeUpdateResponseContent.getHoursCto()) &&
-                Objects.equals(getQuantityInstalled(), classicTrackerPipeUpdateResponseContent.getQuantityInstalled()) &&
+                Objects.equals(getInstalledQuantity(), classicTrackerPipeUpdateResponseContent.getInstalledQuantity()) &&
                 Objects.equals(getHoursEarnedTotal(), classicTrackerPipeUpdateResponseContent.getHoursEarnedTotal()) &&
                 Objects.equals(getHoursEarnedMech(), classicTrackerPipeUpdateResponseContent.getHoursEarnedMech()) &&
                 Objects.equals(getHoursEarnedTesting(), classicTrackerPipeUpdateResponseContent.getHoursEarnedTesting()) &&
@@ -807,7 +807,7 @@ public class ClassicTrackerPipeUpdateResponseContent implements Serializable {
                 getHoursRft(),
                 getHoursHydro(),
                 getHoursCto(),
-                getQuantityInstalled(),
+                getInstalledQuantity(),
                 getHoursEarnedTotal(),
                 getHoursEarnedMech(),
                 getHoursEarnedTesting(),

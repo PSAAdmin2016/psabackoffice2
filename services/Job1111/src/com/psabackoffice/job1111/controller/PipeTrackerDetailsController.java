@@ -31,6 +31,8 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
+import com.psabackoffice.job1111.PipeConnection;
+import com.psabackoffice.job1111.PipeErection;
 import com.psabackoffice.job1111.PipeFa;
 import com.psabackoffice.job1111.PipeTrackerDetails;
 import com.psabackoffice.job1111.service.PipeTrackerDetailsService;
@@ -148,6 +150,24 @@ public boolean deletePipeTrackerDetails(@PathVariable("id") Integer id) {
 	public Page<Map<String, Object>> getPipeTrackerDetailsAggregatedValues(@RequestBody AggregationInfo aggregationInfo, Pageable pageable) {
         LOGGER.debug("Fetching aggregated results for {}", aggregationInfo);
         return pipeTrackerDetailsService.getAggregatedValues(aggregationInfo, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/pipeConnections", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the pipeConnections instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<PipeConnection> findAssociatedPipeConnections(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated pipeConnections");
+        return pipeTrackerDetailsService.findAssociatedPipeConnections(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/pipeErections", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the pipeErections instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<PipeErection> findAssociatedPipeErections(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated pipeErections");
+        return pipeTrackerDetailsService.findAssociatedPipeErections(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/pipeFas", method=RequestMethod.GET)
