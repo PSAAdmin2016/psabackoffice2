@@ -32,30 +32,30 @@ public class PipeErection implements Serializable {
     private Integer activityId;
     private Integer erectionBidId;
     private String erectionSpool1;
-    private Short erectionLengthSpool1;
+    private short erectionLengthSpool1;
     private String erectionSpool2;
-    private Short erectionLengthSpool2;
+    private short erectionLengthSpool2;
     private String erectionSpool3;
-    private Short erectionLengthSpool3;
+    private short erectionLengthSpool3;
     private String erectionSpool4;
-    private Short erectionLengthSpool4;
+    private short erectionLengthSpool4;
     private String erectionSpool5;
-    private Short erectionLengthSpool5;
+    private short erectionLengthSpool5;
     private String erectionSpool6;
-    private Short erectionLengthSpool6;
+    private short erectionLengthSpool6;
     private Short erectionOnCords;
     private String erectionDrawingNumber;
     private String erectionLineNumber;
     private String erectionSheetNumber;
-    private Short erectionTimeInForm;
     private Float erectionPipeSize;
     private Short erectionRework;
     private String erectionNotes;
     private Short activityType;
+    private Short erectionTimeInForm;
     private short rev;
     private Timestamp timeStamp;
-    private SubmissionActivityStatus submissionActivityStatus;
     private PipeTrackerDetails pipeTrackerDetails;
+    private SubmissionActivityStatus submissionActivityStatus;
 
     @Id
     @Column(name = "`ActivityID`", nullable = false, scale = 0, precision = 10)
@@ -85,12 +85,12 @@ public class PipeErection implements Serializable {
         this.erectionSpool1 = erectionSpool1;
     }
 
-    @Column(name = "`ErectionLengthSpool1`", nullable = true, scale = 0, precision = 5)
-    public Short getErectionLengthSpool1() {
+    @Column(name = "`ErectionLengthSpool1`", nullable = false, scale = 0, precision = 5)
+    public short getErectionLengthSpool1() {
         return this.erectionLengthSpool1;
     }
 
-    public void setErectionLengthSpool1(Short erectionLengthSpool1) {
+    public void setErectionLengthSpool1(short erectionLengthSpool1) {
         this.erectionLengthSpool1 = erectionLengthSpool1;
     }
 
@@ -103,12 +103,12 @@ public class PipeErection implements Serializable {
         this.erectionSpool2 = erectionSpool2;
     }
 
-    @Column(name = "`ErectionLengthSpool2`", nullable = true, scale = 0, precision = 5)
-    public Short getErectionLengthSpool2() {
+    @Column(name = "`ErectionLengthSpool2`", nullable = false, scale = 0, precision = 5)
+    public short getErectionLengthSpool2() {
         return this.erectionLengthSpool2;
     }
 
-    public void setErectionLengthSpool2(Short erectionLengthSpool2) {
+    public void setErectionLengthSpool2(short erectionLengthSpool2) {
         this.erectionLengthSpool2 = erectionLengthSpool2;
     }
 
@@ -121,12 +121,12 @@ public class PipeErection implements Serializable {
         this.erectionSpool3 = erectionSpool3;
     }
 
-    @Column(name = "`ErectionLengthSpool3`", nullable = true, scale = 0, precision = 5)
-    public Short getErectionLengthSpool3() {
+    @Column(name = "`ErectionLengthSpool3`", nullable = false, scale = 0, precision = 5)
+    public short getErectionLengthSpool3() {
         return this.erectionLengthSpool3;
     }
 
-    public void setErectionLengthSpool3(Short erectionLengthSpool3) {
+    public void setErectionLengthSpool3(short erectionLengthSpool3) {
         this.erectionLengthSpool3 = erectionLengthSpool3;
     }
 
@@ -139,12 +139,12 @@ public class PipeErection implements Serializable {
         this.erectionSpool4 = erectionSpool4;
     }
 
-    @Column(name = "`ErectionLengthSpool4`", nullable = true, scale = 0, precision = 5)
-    public Short getErectionLengthSpool4() {
+    @Column(name = "`ErectionLengthSpool4`", nullable = false, scale = 0, precision = 5)
+    public short getErectionLengthSpool4() {
         return this.erectionLengthSpool4;
     }
 
-    public void setErectionLengthSpool4(Short erectionLengthSpool4) {
+    public void setErectionLengthSpool4(short erectionLengthSpool4) {
         this.erectionLengthSpool4 = erectionLengthSpool4;
     }
 
@@ -157,12 +157,12 @@ public class PipeErection implements Serializable {
         this.erectionSpool5 = erectionSpool5;
     }
 
-    @Column(name = "`ErectionLengthSpool5`", nullable = true, scale = 0, precision = 5)
-    public Short getErectionLengthSpool5() {
+    @Column(name = "`ErectionLengthSpool5`", nullable = false, scale = 0, precision = 5)
+    public short getErectionLengthSpool5() {
         return this.erectionLengthSpool5;
     }
 
-    public void setErectionLengthSpool5(Short erectionLengthSpool5) {
+    public void setErectionLengthSpool5(short erectionLengthSpool5) {
         this.erectionLengthSpool5 = erectionLengthSpool5;
     }
 
@@ -175,12 +175,12 @@ public class PipeErection implements Serializable {
         this.erectionSpool6 = erectionSpool6;
     }
 
-    @Column(name = "`ErectionLengthSpool6`", nullable = true, scale = 0, precision = 5)
-    public Short getErectionLengthSpool6() {
+    @Column(name = "`ErectionLengthSpool6`", nullable = false, scale = 0, precision = 5)
+    public short getErectionLengthSpool6() {
         return this.erectionLengthSpool6;
     }
 
-    public void setErectionLengthSpool6(Short erectionLengthSpool6) {
+    public void setErectionLengthSpool6(short erectionLengthSpool6) {
         this.erectionLengthSpool6 = erectionLengthSpool6;
     }
 
@@ -220,15 +220,6 @@ public class PipeErection implements Serializable {
         this.erectionSheetNumber = erectionSheetNumber;
     }
 
-    @Column(name = "`ErectionTimeInForm`", nullable = true, scale = 0, precision = 5)
-    public Short getErectionTimeInForm() {
-        return this.erectionTimeInForm;
-    }
-
-    public void setErectionTimeInForm(Short erectionTimeInForm) {
-        this.erectionTimeInForm = erectionTimeInForm;
-    }
-
     @Column(name = "`ErectionPipeSize`", nullable = true, scale = 2, precision = 5)
     public Float getErectionPipeSize() {
         return this.erectionPipeSize;
@@ -265,6 +256,15 @@ public class PipeErection implements Serializable {
         this.activityType = activityType;
     }
 
+    @Column(name = "`ErectionTimeInForm`", nullable = true, scale = 0, precision = 5)
+    public Short getErectionTimeInForm() {
+        return this.erectionTimeInForm;
+    }
+
+    public void setErectionTimeInForm(Short erectionTimeInForm) {
+        this.erectionTimeInForm = erectionTimeInForm;
+    }
+
     @Column(name = "`Rev`", nullable = false, scale = 0, precision = 3)
     public short getRev() {
         return this.rev;
@@ -283,21 +283,6 @@ public class PipeErection implements Serializable {
         this.timeStamp = timeStamp;
     }
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`ActivityID`", referencedColumnName = "`ActivityID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`PipeErection_ActivityID_to_SASActivityID`"))
-    @Fetch(FetchMode.JOIN)
-    public SubmissionActivityStatus getSubmissionActivityStatus() {
-        return this.submissionActivityStatus;
-    }
-
-    public void setSubmissionActivityStatus(SubmissionActivityStatus submissionActivityStatus) {
-        if(submissionActivityStatus != null) {
-            this.activityId = submissionActivityStatus.getActivityId();
-        }
-
-        this.submissionActivityStatus = submissionActivityStatus;
-    }
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`ErectionBidID`", referencedColumnName = "`BidID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`PipeErection_BidID_to_PTDBidID`"))
     @Fetch(FetchMode.JOIN)
@@ -311,6 +296,21 @@ public class PipeErection implements Serializable {
         }
 
         this.pipeTrackerDetails = pipeTrackerDetails;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`ActivityID`", referencedColumnName = "`ActivityID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`PipeErection_ActivityID_to_SASActivityID`"))
+    @Fetch(FetchMode.JOIN)
+    public SubmissionActivityStatus getSubmissionActivityStatus() {
+        return this.submissionActivityStatus;
+    }
+
+    public void setSubmissionActivityStatus(SubmissionActivityStatus submissionActivityStatus) {
+        if(submissionActivityStatus != null) {
+            this.activityId = submissionActivityStatus.getActivityId();
+        }
+
+        this.submissionActivityStatus = submissionActivityStatus;
     }
 
     @Override

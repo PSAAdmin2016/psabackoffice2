@@ -33,6 +33,9 @@
     "table" : "EquipTrackerDetails",
     "schema" : null
   }, {
+    "table" : "MOTD",
+    "schema" : null
+  }, {
     "table" : "PipeConnection",
     "schema" : null
   }, {
@@ -102,7 +105,10 @@
     "table" : "SubsSignatures",
     "schema" : null
   }, {
-    "table" : "WeatherHistory",
+    "table" : "WeatherForcast",
+    "schema" : null
+  }, {
+    "table" : "WeatherObserved",
     "schema" : null
   } ],
   "schemaFilter" : [ ".*" ],

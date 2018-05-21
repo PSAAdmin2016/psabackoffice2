@@ -44,8 +44,8 @@ public class PipeConnection implements Serializable {
     private Short connectionTimeInForm;
     private short rev = 0;
     private Timestamp timeStamp;
-    private SubmissionActivityStatus submissionActivityStatus;
     private PipeTrackerDetails pipeTrackerDetails;
+    private SubmissionActivityStatus submissionActivityStatus;
 
     @Id
     @Column(name = "`ActivityID`", nullable = false, scale = 0, precision = 10)
@@ -183,21 +183,6 @@ public class PipeConnection implements Serializable {
         this.timeStamp = timeStamp;
     }
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`ActivityID`", referencedColumnName = "`ActivityID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`PipeConnection_ActivityID_to_SASActivityID`"))
-    @Fetch(FetchMode.JOIN)
-    public SubmissionActivityStatus getSubmissionActivityStatus() {
-        return this.submissionActivityStatus;
-    }
-
-    public void setSubmissionActivityStatus(SubmissionActivityStatus submissionActivityStatus) {
-        if(submissionActivityStatus != null) {
-            this.activityId = submissionActivityStatus.getActivityId();
-        }
-
-        this.submissionActivityStatus = submissionActivityStatus;
-    }
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`ConnectionBidID`", referencedColumnName = "`BidID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`PipeConnection_BidID_to_PTDBidID`"))
     @Fetch(FetchMode.JOIN)
@@ -211,6 +196,21 @@ public class PipeConnection implements Serializable {
         }
 
         this.pipeTrackerDetails = pipeTrackerDetails;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`ActivityID`", referencedColumnName = "`ActivityID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`PipeConnection_ActivityID_to_SASActivityID`"))
+    @Fetch(FetchMode.JOIN)
+    public SubmissionActivityStatus getSubmissionActivityStatus() {
+        return this.submissionActivityStatus;
+    }
+
+    public void setSubmissionActivityStatus(SubmissionActivityStatus submissionActivityStatus) {
+        if(submissionActivityStatus != null) {
+            this.activityId = submissionActivityStatus.getActivityId();
+        }
+
+        this.submissionActivityStatus = submissionActivityStatus;
     }
 
     @Override

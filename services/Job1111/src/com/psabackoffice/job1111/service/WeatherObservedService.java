@@ -18,71 +18,71 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.psabackoffice.job1111.WeatherHistory;
+import com.psabackoffice.job1111.WeatherObserved;
 
 /**
- * Service object for domain model class {@link WeatherHistory}.
+ * Service object for domain model class {@link WeatherObserved}.
  */
-public interface WeatherHistoryService {
+public interface WeatherObservedService {
 
     /**
-     * Creates a new WeatherHistory. It does cascade insert for all the children in a single transaction.
+     * Creates a new WeatherObserved. It does cascade insert for all the children in a single transaction.
      *
-     * This method overrides the input field values using Server side or database managed properties defined on WeatherHistory if any.
+     * This method overrides the input field values using Server side or database managed properties defined on WeatherObserved if any.
      *
-     * @param weatherHistory Details of the WeatherHistory to be created; value cannot be null.
-     * @return The newly created WeatherHistory.
+     * @param weatherObserved Details of the WeatherObserved to be created; value cannot be null.
+     * @return The newly created WeatherObserved.
      */
-	WeatherHistory create(@Valid WeatherHistory weatherHistory);
+	WeatherObserved create(@Valid WeatherObserved weatherObserved);
 
 
 	/**
-	 * Returns WeatherHistory by given id if exists.
+	 * Returns WeatherObserved by given id if exists.
 	 *
-	 * @param weatherhistoryId The id of the WeatherHistory to get; value cannot be null.
-	 * @return WeatherHistory associated with the given weatherhistoryId.
-     * @throws EntityNotFoundException If no WeatherHistory is found.
+	 * @param weatherobservedId The id of the WeatherObserved to get; value cannot be null.
+	 * @return WeatherObserved associated with the given weatherobservedId.
+     * @throws EntityNotFoundException If no WeatherObserved is found.
 	 */
-	WeatherHistory getById(Integer weatherhistoryId);
+	WeatherObserved getById(Integer weatherobservedId);
 
     /**
-	 * Find and return the WeatherHistory by given id if exists, returns null otherwise.
+	 * Find and return the WeatherObserved by given id if exists, returns null otherwise.
 	 *
-	 * @param weatherhistoryId The id of the WeatherHistory to get; value cannot be null.
-	 * @return WeatherHistory associated with the given weatherhistoryId.
+	 * @param weatherobservedId The id of the WeatherObserved to get; value cannot be null.
+	 * @return WeatherObserved associated with the given weatherobservedId.
 	 */
-	WeatherHistory findById(Integer weatherhistoryId);
+	WeatherObserved findById(Integer weatherobservedId);
 
 
 	/**
-	 * Updates the details of an existing WeatherHistory. It replaces all fields of the existing WeatherHistory with the given weatherHistory.
+	 * Updates the details of an existing WeatherObserved. It replaces all fields of the existing WeatherObserved with the given weatherObserved.
 	 *
-     * This method overrides the input field values using Server side or database managed properties defined on WeatherHistory if any.
+     * This method overrides the input field values using Server side or database managed properties defined on WeatherObserved if any.
      *
-	 * @param weatherHistory The details of the WeatherHistory to be updated; value cannot be null.
-	 * @return The updated WeatherHistory.
-	 * @throws EntityNotFoundException if no WeatherHistory is found with given input.
+	 * @param weatherObserved The details of the WeatherObserved to be updated; value cannot be null.
+	 * @return The updated WeatherObserved.
+	 * @throws EntityNotFoundException if no WeatherObserved is found with given input.
 	 */
-	WeatherHistory update(@Valid WeatherHistory weatherHistory);
+	WeatherObserved update(@Valid WeatherObserved weatherObserved);
 
     /**
-	 * Deletes an existing WeatherHistory with the given id.
+	 * Deletes an existing WeatherObserved with the given id.
 	 *
-	 * @param weatherhistoryId The id of the WeatherHistory to be deleted; value cannot be null.
-	 * @return The deleted WeatherHistory.
-	 * @throws EntityNotFoundException if no WeatherHistory found with the given id.
+	 * @param weatherobservedId The id of the WeatherObserved to be deleted; value cannot be null.
+	 * @return The deleted WeatherObserved.
+	 * @throws EntityNotFoundException if no WeatherObserved found with the given id.
 	 */
-	WeatherHistory delete(Integer weatherhistoryId);
+	WeatherObserved delete(Integer weatherobservedId);
 
     /**
-	 * Deletes an existing WeatherHistory with the given object.
+	 * Deletes an existing WeatherObserved with the given object.
 	 *
-	 * @param weatherHistory The instance of the WeatherHistory to be deleted; value cannot be null.
+	 * @param weatherObserved The instance of the WeatherObserved to be deleted; value cannot be null.
 	 */
-	void delete(WeatherHistory weatherHistory);
+	void delete(WeatherObserved weatherObserved);
 
 	/**
-	 * Find all WeatherHistories matching the given QueryFilter(s).
+	 * Find all WeatherObserveds matching the given QueryFilter(s).
      * All the QueryFilter(s) are ANDed to filter the results.
      * This method returns Paginated results.
 	 *
@@ -90,30 +90,30 @@ public interface WeatherHistoryService {
 	 *
      * @param queryFilters Array of queryFilters to filter the results; No filters applied if the input is null/empty.
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of matching WeatherHistories.
+     * @return Paginated list of matching WeatherObserveds.
      *
      * @see QueryFilter
      * @see Pageable
      * @see Page
 	 */
     @Deprecated
-	Page<WeatherHistory> findAll(QueryFilter[] queryFilters, Pageable pageable);
+	Page<WeatherObserved> findAll(QueryFilter[] queryFilters, Pageable pageable);
 
     /**
-	 * Find all WeatherHistories matching the given input query. This method returns Paginated results.
+	 * Find all WeatherObserveds matching the given input query. This method returns Paginated results.
      * Note: Go through the documentation for <u>query</u> syntax.
 	 *
      * @param query The query to filter the results; No filters applied if the input is null/empty.
      * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of matching WeatherHistories.
+     * @return Paginated list of matching WeatherObserveds.
      *
      * @see Pageable
      * @see Page
 	 */
-    Page<WeatherHistory> findAll(String query, Pageable pageable);
+    Page<WeatherObserved> findAll(String query, Pageable pageable);
 
     /**
-	 * Exports all WeatherHistories matching the given input query to the given exportType format.
+	 * Exports all WeatherObserveds matching the given input query to the given exportType format.
      * Note: Go through the documentation for <u>query</u> syntax.
 	 *
      * @param exportType The format in which to export the data; value cannot be null.
@@ -128,11 +128,11 @@ public interface WeatherHistoryService {
     Downloadable export(ExportType exportType, String query, Pageable pageable);
 
 	/**
-	 * Retrieve the count of the WeatherHistories in the repository with matching query.
+	 * Retrieve the count of the WeatherObserveds in the repository with matching query.
      * Note: Go through the documentation for <u>query</u> syntax.
      *
      * @param query query to filter results. No filters applied if the input is null/empty.
-	 * @return The count of the WeatherHistory.
+	 * @return The count of the WeatherObserved.
 	 */
 	long count(String query);
 

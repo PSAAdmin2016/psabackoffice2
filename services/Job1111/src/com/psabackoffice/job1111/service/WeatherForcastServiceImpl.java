@@ -24,54 +24,54 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.psabackoffice.job1111.WeatherHistory;
+import com.psabackoffice.job1111.WeatherForcast;
 
 
 /**
- * ServiceImpl object for domain model class WeatherHistory.
+ * ServiceImpl object for domain model class WeatherForcast.
  *
- * @see WeatherHistory
+ * @see WeatherForcast
  */
-@Service("Job1111.WeatherHistoryService")
+@Service("Job1111.WeatherForcastService")
 @Validated
-public class WeatherHistoryServiceImpl implements WeatherHistoryService {
+public class WeatherForcastServiceImpl implements WeatherForcastService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(WeatherHistoryServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WeatherForcastServiceImpl.class);
 
 
     @Autowired
-    @Qualifier("Job1111.WeatherHistoryDao")
-    private WMGenericDao<WeatherHistory, Integer> wmGenericDao;
+    @Qualifier("Job1111.WeatherForcastDao")
+    private WMGenericDao<WeatherForcast, Integer> wmGenericDao;
 
-    public void setWMGenericDao(WMGenericDao<WeatherHistory, Integer> wmGenericDao) {
+    public void setWMGenericDao(WMGenericDao<WeatherForcast, Integer> wmGenericDao) {
         this.wmGenericDao = wmGenericDao;
     }
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
-	public WeatherHistory create(WeatherHistory weatherHistory) {
-        LOGGER.debug("Creating a new WeatherHistory with information: {}", weatherHistory);
+	public WeatherForcast create(WeatherForcast weatherForcast) {
+        LOGGER.debug("Creating a new WeatherForcast with information: {}", weatherForcast);
 
-        WeatherHistory weatherHistoryCreated = this.wmGenericDao.create(weatherHistory);
+        WeatherForcast weatherForcastCreated = this.wmGenericDao.create(weatherForcast);
         // reloading object from database to get database defined & server defined values.
-        return this.wmGenericDao.refresh(weatherHistoryCreated);
+        return this.wmGenericDao.refresh(weatherForcastCreated);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public WeatherHistory getById(Integer weatherhistoryId) {
-        LOGGER.debug("Finding WeatherHistory by id: {}", weatherhistoryId);
-        return this.wmGenericDao.findById(weatherhistoryId);
+	public WeatherForcast getById(Integer weatherforcastId) {
+        LOGGER.debug("Finding WeatherForcast by id: {}", weatherforcastId);
+        return this.wmGenericDao.findById(weatherforcastId);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public WeatherHistory findById(Integer weatherhistoryId) {
-        LOGGER.debug("Finding WeatherHistory by id: {}", weatherhistoryId);
+	public WeatherForcast findById(Integer weatherforcastId) {
+        LOGGER.debug("Finding WeatherForcast by id: {}", weatherforcastId);
         try {
-            return this.wmGenericDao.findById(weatherhistoryId);
+            return this.wmGenericDao.findById(weatherforcastId);
         } catch(EntityNotFoundException ex) {
-            LOGGER.debug("No WeatherHistory found with id: {}", weatherhistoryId, ex);
+            LOGGER.debug("No WeatherForcast found with id: {}", weatherforcastId, ex);
             return null;
         }
     }
@@ -79,23 +79,23 @@ public class WeatherHistoryServiceImpl implements WeatherHistoryService {
 
 	@Transactional(rollbackFor = EntityNotFoundException.class, value = "Job1111TransactionManager")
 	@Override
-	public WeatherHistory update(WeatherHistory weatherHistory) {
-        LOGGER.debug("Updating WeatherHistory with information: {}", weatherHistory);
+	public WeatherForcast update(WeatherForcast weatherForcast) {
+        LOGGER.debug("Updating WeatherForcast with information: {}", weatherForcast);
 
-        this.wmGenericDao.update(weatherHistory);
-        this.wmGenericDao.refresh(weatherHistory);
+        this.wmGenericDao.update(weatherForcast);
+        this.wmGenericDao.refresh(weatherForcast);
 
-        return weatherHistory;
+        return weatherForcast;
     }
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public WeatherHistory delete(Integer weatherhistoryId) {
-        LOGGER.debug("Deleting WeatherHistory with id: {}", weatherhistoryId);
-        WeatherHistory deleted = this.wmGenericDao.findById(weatherhistoryId);
+	public WeatherForcast delete(Integer weatherforcastId) {
+        LOGGER.debug("Deleting WeatherForcast with id: {}", weatherforcastId);
+        WeatherForcast deleted = this.wmGenericDao.findById(weatherforcastId);
         if (deleted == null) {
-            LOGGER.debug("No WeatherHistory found with id: {}", weatherhistoryId);
-            throw new EntityNotFoundException(String.valueOf(weatherhistoryId));
+            LOGGER.debug("No WeatherForcast found with id: {}", weatherforcastId);
+            throw new EntityNotFoundException(String.valueOf(weatherforcastId));
         }
         this.wmGenericDao.delete(deleted);
         return deleted;
@@ -103,29 +103,29 @@ public class WeatherHistoryServiceImpl implements WeatherHistoryService {
 
     @Transactional(value = "Job1111TransactionManager")
 	@Override
-	public void delete(WeatherHistory weatherHistory) {
-        LOGGER.debug("Deleting WeatherHistory with {}", weatherHistory);
-        this.wmGenericDao.delete(weatherHistory);
+	public void delete(WeatherForcast weatherForcast) {
+        LOGGER.debug("Deleting WeatherForcast with {}", weatherForcast);
+        this.wmGenericDao.delete(weatherForcast);
     }
 
 	@Transactional(readOnly = true, value = "Job1111TransactionManager")
 	@Override
-	public Page<WeatherHistory> findAll(QueryFilter[] queryFilters, Pageable pageable) {
-        LOGGER.debug("Finding all WeatherHistories");
+	public Page<WeatherForcast> findAll(QueryFilter[] queryFilters, Pageable pageable) {
+        LOGGER.debug("Finding all WeatherForcasts");
         return this.wmGenericDao.search(queryFilters, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<WeatherHistory> findAll(String query, Pageable pageable) {
-        LOGGER.debug("Finding all WeatherHistories");
+    public Page<WeatherForcast> findAll(String query, Pageable pageable) {
+        LOGGER.debug("Finding all WeatherForcasts");
         return this.wmGenericDao.searchByQuery(query, pageable);
     }
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
     public Downloadable export(ExportType exportType, String query, Pageable pageable) {
-        LOGGER.debug("exporting data in the service Job1111 for table WeatherHistory to {} format", exportType);
+        LOGGER.debug("exporting data in the service Job1111 for table WeatherForcast to {} format", exportType);
         return this.wmGenericDao.export(exportType, query, pageable);
     }
 

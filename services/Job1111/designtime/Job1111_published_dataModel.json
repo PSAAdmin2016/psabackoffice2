@@ -6568,6 +6568,147 @@
         "type" : "user-defined"
       },
       "constraintList" : null,
+      "fieldName" : "id",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "hidden" : false,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "ID",
+      "nullable" : false,
+      "oldName" : "ID",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "period" : false,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null,
+        "type" : "user-defined"
+      },
+      "constraintList" : null,
+      "fieldName" : "message",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "hidden" : false,
+      "javaType" : "string",
+      "length" : 1024,
+      "name" : "Message",
+      "nullable" : true,
+      "oldName" : "Message",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "period" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "string",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null,
+        "type" : "user-defined"
+      },
+      "constraintList" : null,
+      "fieldName" : "author",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "hidden" : false,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "Author",
+      "nullable" : true,
+      "oldName" : "Author",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "period" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null,
+        "type" : "user-defined"
+      },
+      "constraintList" : null,
+      "fieldName" : "timeStamp",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "hidden" : false,
+      "javaType" : "timestamp",
+      "length" : 0,
+      "name" : "TimeStamp",
+      "nullable" : false,
+      "oldName" : "TimeStamp",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "period" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "timestamp",
+      "unique" : false
+    } ],
+    "constraints" : [ ],
+    "entityName" : "Motd",
+    "filter" : null,
+    "fullyQualifiedName" : "com.psabackoffice.job1111.Motd",
+    "ignoreRefreshAfterInsert" : false,
+    "name" : "MOTD",
+    "oldName" : "MOTD",
+    "primaryKey" : {
+      "columns" : [ "ID" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null,
+        "schemaName" : null
+      },
+      "name" : "PRIMARY",
+      "virtual" : false
+    },
+    "relations" : [ ],
+    "schema" : null,
+    "temporals" : [ ],
+    "type" : "TABLE"
+  }, {
+    "catalog" : "Job1111",
+    "columns" : [ {
+      "columnValue" : {
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null,
+        "type" : "user-defined"
+      },
+      "constraintList" : null,
       "fieldName" : "activityId",
       "foreignKey" : true,
       "generatorType" : "assigned",
@@ -7015,35 +7156,6 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "OneToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "NONE",
-        "cascadeReplace" : true
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "submissionActivityStatus",
-      "mappings" : [ {
-        "sourceColumn" : "ActivityID",
-        "targetColumn" : "ActivityID"
-      } ],
-      "name" : "PipeConnection_ActivityID_to_SASActivityID",
-      "parentFetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "PipeConnection",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "SubmissionActivityStatus",
-      "virtual" : false
-    }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
         "cascadeRemove" : "NONE",
@@ -7071,6 +7183,35 @@
       "sourceTable" : "PipeConnection",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "PipeTrackerDetails",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "submissionActivityStatus",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "PipeConnection_ActivityID_to_SASActivityID",
+      "parentFetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "PipeConnection",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SubmissionActivityStatus",
       "virtual" : false
     } ],
     "schema" : null,
@@ -7181,7 +7322,7 @@
       "javaType" : "short",
       "length" : 0,
       "name" : "ErectionLengthSpool1",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "ErectionLengthSpool1",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
@@ -7239,7 +7380,7 @@
       "javaType" : "short",
       "length" : 0,
       "name" : "ErectionLengthSpool2",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "ErectionLengthSpool2",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
@@ -7297,7 +7438,7 @@
       "javaType" : "short",
       "length" : 0,
       "name" : "ErectionLengthSpool3",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "ErectionLengthSpool3",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
@@ -7355,7 +7496,7 @@
       "javaType" : "short",
       "length" : 0,
       "name" : "ErectionLengthSpool4",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "ErectionLengthSpool4",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
@@ -7413,7 +7554,7 @@
       "javaType" : "short",
       "length" : 0,
       "name" : "ErectionLengthSpool5",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "ErectionLengthSpool5",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
@@ -7471,7 +7612,7 @@
       "javaType" : "short",
       "length" : 0,
       "name" : "ErectionLengthSpool6",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "ErectionLengthSpool6",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
@@ -7608,35 +7749,6 @@
         "type" : "user-defined"
       },
       "constraintList" : null,
-      "fieldName" : "erectionTimeInForm",
-      "foreignKey" : false,
-      "generatorType" : "assigned",
-      "generatorValue" : null,
-      "hidden" : false,
-      "javaType" : "short",
-      "length" : 0,
-      "name" : "ErectionTimeInForm",
-      "nullable" : true,
-      "oldName" : "ErectionTimeInForm",
-      "partOfAnyRelation" : false,
-      "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
-      "period" : false,
-      "precision" : 5,
-      "primaryKey" : false,
-      "scale" : 0,
-      "sequenceSchema" : null,
-      "sqlType" : "number",
-      "unique" : false
-    }, {
-      "columnValue" : {
-        "insertable" : true,
-        "updatable" : true,
-        "defaultValue" : null,
-        "type" : "user-defined"
-      },
-      "constraintList" : null,
       "fieldName" : "erectionPipeSize",
       "foreignKey" : false,
       "generatorType" : "assigned",
@@ -7753,6 +7865,35 @@
         "type" : "user-defined"
       },
       "constraintList" : null,
+      "fieldName" : "erectionTimeInForm",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "hidden" : false,
+      "javaType" : "short",
+      "length" : 0,
+      "name" : "ErectionTimeInForm",
+      "nullable" : true,
+      "oldName" : "ErectionTimeInForm",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "period" : false,
+      "precision" : 5,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null,
+        "type" : "user-defined"
+      },
+      "constraintList" : null,
       "fieldName" : "rev",
       "foreignKey" : false,
       "generatorType" : "assigned",
@@ -7823,35 +7964,6 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "OneToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "NONE",
-        "cascadeReplace" : true
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "submissionActivityStatus",
-      "mappings" : [ {
-        "sourceColumn" : "ActivityID",
-        "targetColumn" : "ActivityID"
-      } ],
-      "name" : "PipeErection_ActivityID_to_SASActivityID",
-      "parentFetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "PipeErection",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "SubmissionActivityStatus",
-      "virtual" : false
-    }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
         "cascadeRemove" : "NONE",
@@ -7879,6 +7991,35 @@
       "sourceTable" : "PipeErection",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "PipeTrackerDetails",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "submissionActivityStatus",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "PipeErection_ActivityID_to_SASActivityID",
+      "parentFetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "PipeErection",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SubmissionActivityStatus",
       "virtual" : false
     } ],
     "schema" : null,
@@ -8196,35 +8337,6 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "OneToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "NONE",
-        "cascadeReplace" : true
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "submissionActivityStatus",
-      "mappings" : [ {
-        "sourceColumn" : "ActivityID",
-        "targetColumn" : "ActivityID"
-      } ],
-      "name" : "PipeFA_ActivityID_to_SASActivityID",
-      "parentFetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "PipeFA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "SubmissionActivityStatus",
-      "virtual" : false
-    }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
         "cascadeRemove" : "NONE",
@@ -8252,6 +8364,35 @@
       "sourceTable" : "PipeFA",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "PipeTrackerDetails",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "submissionActivityStatus",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "PipeFA_ActivityID_to_SASActivityID",
+      "parentFetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "PipeFA",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SubmissionActivityStatus",
       "virtual" : false
     } ],
     "schema" : null,
@@ -13608,35 +13749,6 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "OneToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "NONE",
-        "cascadeReplace" : true
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "submissionActivityStatus",
-      "mappings" : [ {
-        "sourceColumn" : "ActivityID",
-        "targetColumn" : "ActivityID"
-      } ],
-      "name" : "SteelDemo_ActivityID_to_SASActivityID",
-      "parentFetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "SteelDemo",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "SubmissionActivityStatus",
-      "virtual" : false
-    }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
         "cascadeRemove" : "NONE",
@@ -13664,6 +13776,35 @@
       "sourceTable" : "SteelDemo",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "SteelTrackerDetails",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "submissionActivityStatus",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "SteelDemo_ActivityID_to_SASActivityID",
+      "parentFetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "SteelDemo",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SubmissionActivityStatus",
       "virtual" : false
     } ],
     "schema" : null,
@@ -13981,35 +14122,6 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "OneToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "NONE",
-        "cascadeReplace" : true
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "submissionActivityStatus",
-      "mappings" : [ {
-        "sourceColumn" : "ActivityID",
-        "targetColumn" : "ActivityID"
-      } ],
-      "name" : "SteelFA_ActivityID_to_SAS_ActivityId",
-      "parentFetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "SteelFA",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "SubmissionActivityStatus",
-      "virtual" : false
-    }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
         "cascadeRemove" : "NONE",
@@ -14037,6 +14149,35 @@
       "sourceTable" : "SteelFA",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "SteelTrackerDetails",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "submissionActivityStatus",
+      "mappings" : [ {
+        "sourceColumn" : "ActivityID",
+        "targetColumn" : "ActivityID"
+      } ],
+      "name" : "SteelFA_ActivityID_to_SAS_ActivityId",
+      "parentFetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "SteelFA",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SubmissionActivityStatus",
       "virtual" : false
     } ],
     "schema" : null,
@@ -14325,35 +14466,6 @@
       "virtual" : false
     },
     "relations" : [ {
-      "cardinality" : "ManyToOne",
-      "cascadeOptions" : {
-        "cascadeRemove" : "NONE",
-        "cascadeReplace" : true
-      },
-      "columnsUniqueKey" : false,
-      "composite" : false,
-      "fetchOptions" : {
-        "fetch" : true,
-        "columnsFilter" : [ ]
-      },
-      "fieldName" : "steelTrackerDetails",
-      "mappings" : [ {
-        "sourceColumn" : "MiscBidID",
-        "targetColumn" : "BidID"
-      } ],
-      "name" : "SteelMisc_BidID_to_STDBidID",
-      "parentFetchOptions" : {
-        "fetch" : false,
-        "columnsFilter" : [ ]
-      },
-      "primary" : true,
-      "selfRelation" : false,
-      "sourceColumnsNotUniqueKey" : true,
-      "sourceTable" : "SteelMisc",
-      "targetColumnsUniqueKey" : false,
-      "targetTable" : "SteelTrackerDetails",
-      "virtual" : false
-    }, {
       "cardinality" : "OneToOne",
       "cascadeOptions" : {
         "cascadeRemove" : "NONE",
@@ -14381,6 +14493,35 @@
       "sourceTable" : "SteelMisc",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "SubmissionActivityStatus",
+      "virtual" : false
+    }, {
+      "cardinality" : "ManyToOne",
+      "cascadeOptions" : {
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
+      },
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fetchOptions" : {
+        "fetch" : true,
+        "columnsFilter" : [ ]
+      },
+      "fieldName" : "steelTrackerDetails",
+      "mappings" : [ {
+        "sourceColumn" : "MiscBidID",
+        "targetColumn" : "BidID"
+      } ],
+      "name" : "SteelMisc_BidID_to_STDBidID",
+      "parentFetchOptions" : {
+        "fetch" : false,
+        "columnsFilter" : [ ]
+      },
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "SteelMisc",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "SteelTrackerDetails",
       "virtual" : false
     } ],
     "schema" : null,
@@ -19895,14 +20036,329 @@
       "sequenceSchema" : null,
       "sqlType" : "number",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null,
+        "type" : "user-defined"
+      },
+      "constraintList" : null,
+      "fieldName" : "timeStamp",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "hidden" : false,
+      "javaType" : "timestamp",
+      "length" : 0,
+      "name" : "TimeStamp",
+      "nullable" : true,
+      "oldName" : "TimeStamp",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "period" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "timestamp",
+      "unique" : false
     } ],
     "constraints" : [ ],
-    "entityName" : "WeatherHistory",
+    "entityName" : "WeatherForcast",
     "filter" : null,
-    "fullyQualifiedName" : "com.psabackoffice.job1111.WeatherHistory",
+    "fullyQualifiedName" : "com.psabackoffice.job1111.WeatherForcast",
     "ignoreRefreshAfterInsert" : false,
-    "name" : "WeatherHistory",
-    "oldName" : "WeatherHistory",
+    "name" : "WeatherForcast",
+    "oldName" : "WeatherForcast",
+    "primaryKey" : {
+      "columns" : [ "ID" ],
+      "composite" : false,
+      "generator" : {
+        "generatorType" : "identity",
+        "generatorValue" : null,
+        "schemaName" : null
+      },
+      "name" : "PRIMARY",
+      "virtual" : false
+    },
+    "relations" : [ ],
+    "schema" : null,
+    "temporals" : [ ],
+    "type" : "TABLE"
+  }, {
+    "catalog" : "Job1111",
+    "columns" : [ {
+      "columnValue" : {
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null,
+        "type" : "user-defined"
+      },
+      "constraintList" : null,
+      "fieldName" : "id",
+      "foreignKey" : false,
+      "generatorType" : "identity",
+      "generatorValue" : null,
+      "hidden" : false,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "ID",
+      "nullable" : false,
+      "oldName" : "ID",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
+      "period" : false,
+      "precision" : 10,
+      "primaryKey" : true,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "number",
+      "unique" : true
+    }, {
+      "columnValue" : {
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null,
+        "type" : "user-defined"
+      },
+      "constraintList" : null,
+      "fieldName" : "weatherDate",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "hidden" : false,
+      "javaType" : "date",
+      "length" : 0,
+      "name" : "WeatherDate",
+      "nullable" : true,
+      "oldName" : "WeatherDate",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "period" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "date",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null,
+        "type" : "user-defined"
+      },
+      "constraintList" : null,
+      "fieldName" : "tempMax",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "hidden" : false,
+      "javaType" : "short",
+      "length" : 0,
+      "name" : "TempMax",
+      "nullable" : true,
+      "oldName" : "TempMax",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "period" : false,
+      "precision" : 5,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null,
+        "type" : "user-defined"
+      },
+      "constraintList" : null,
+      "fieldName" : "tempMin",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "hidden" : false,
+      "javaType" : "short",
+      "length" : 0,
+      "name" : "TempMin",
+      "nullable" : true,
+      "oldName" : "TempMin",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "period" : false,
+      "precision" : 3,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null,
+        "type" : "user-defined"
+      },
+      "constraintList" : null,
+      "fieldName" : "windSpeed",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "hidden" : false,
+      "javaType" : "short",
+      "length" : 0,
+      "name" : "WindSpeed",
+      "nullable" : true,
+      "oldName" : "WindSpeed",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "period" : false,
+      "precision" : 3,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null,
+        "type" : "user-defined"
+      },
+      "constraintList" : null,
+      "fieldName" : "windDir",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "hidden" : false,
+      "javaType" : "short",
+      "length" : 0,
+      "name" : "WindDir",
+      "nullable" : true,
+      "oldName" : "WindDir",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "period" : false,
+      "precision" : 5,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null,
+        "type" : "user-defined"
+      },
+      "constraintList" : null,
+      "fieldName" : "precip",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "hidden" : false,
+      "javaType" : "float",
+      "length" : 0,
+      "name" : "Precip",
+      "nullable" : true,
+      "oldName" : "Precip",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "period" : false,
+      "precision" : 4,
+      "primaryKey" : false,
+      "scale" : 2,
+      "sequenceSchema" : null,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null,
+        "type" : "user-defined"
+      },
+      "constraintList" : null,
+      "fieldName" : "thunderStorms",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "hidden" : false,
+      "javaType" : "short",
+      "length" : 0,
+      "name" : "ThunderStorms",
+      "nullable" : true,
+      "oldName" : "ThunderStorms",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "period" : false,
+      "precision" : 3,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "number",
+      "unique" : false
+    }, {
+      "columnValue" : {
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null,
+        "type" : "user-defined"
+      },
+      "constraintList" : null,
+      "fieldName" : "timeStamp",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "hidden" : false,
+      "javaType" : "timestamp",
+      "length" : 0,
+      "name" : "TimeStamp",
+      "nullable" : true,
+      "oldName" : "TimeStamp",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "period" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "timestamp",
+      "unique" : false
+    } ],
+    "constraints" : [ ],
+    "entityName" : "WeatherObserved",
+    "filter" : null,
+    "fullyQualifiedName" : "com.psabackoffice.job1111.WeatherObserved",
+    "ignoreRefreshAfterInsert" : false,
+    "name" : "WeatherObserved",
+    "oldName" : "WeatherObserved",
     "primaryKey" : {
       "columns" : [ "ID" ],
       "composite" : false,

@@ -556,7 +556,7 @@
         "columnName" : "ActivityType",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 3,
+        "length" : 4,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -742,10 +742,10 @@
         "isRelated" : false,
         "scale" : 6
       }, {
-        "fieldName" : "quantityInstalled",
-        "type" : "float",
-        "fullyQualifiedType" : "float",
-        "columnName" : "QuantityInstalled",
+        "fieldName" : "installedQuantity",
+        "type" : "double",
+        "fullyQualifiedType" : "double",
+        "columnName" : "InstalledQuantity",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 0,

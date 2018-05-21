@@ -39,8 +39,8 @@ public class SteelFa implements Serializable {
     private Short fatimeInForm;
     private short rev = 0;
     private Timestamp timeStamp;
-    private SubmissionActivityStatus submissionActivityStatus;
     private SteelTrackerDetails steelTrackerDetails;
+    private SubmissionActivityStatus submissionActivityStatus;
 
     @Id
     @Column(name = "`ActivityID`", nullable = false, scale = 0, precision = 10)
@@ -133,21 +133,6 @@ public class SteelFa implements Serializable {
         this.timeStamp = timeStamp;
     }
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`ActivityID`", referencedColumnName = "`ActivityID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`SteelFA_ActivityID_to_SAS_ActivityId`"))
-    @Fetch(FetchMode.JOIN)
-    public SubmissionActivityStatus getSubmissionActivityStatus() {
-        return this.submissionActivityStatus;
-    }
-
-    public void setSubmissionActivityStatus(SubmissionActivityStatus submissionActivityStatus) {
-        if(submissionActivityStatus != null) {
-            this.activityId = submissionActivityStatus.getActivityId();
-        }
-
-        this.submissionActivityStatus = submissionActivityStatus;
-    }
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`FABidID`", referencedColumnName = "`BidID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`SteelFA_BidID_to_STDBidID`"))
     @Fetch(FetchMode.JOIN)
@@ -161,6 +146,21 @@ public class SteelFa implements Serializable {
         }
 
         this.steelTrackerDetails = steelTrackerDetails;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`ActivityID`", referencedColumnName = "`ActivityID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`SteelFA_ActivityID_to_SAS_ActivityId`"))
+    @Fetch(FetchMode.JOIN)
+    public SubmissionActivityStatus getSubmissionActivityStatus() {
+        return this.submissionActivityStatus;
+    }
+
+    public void setSubmissionActivityStatus(SubmissionActivityStatus submissionActivityStatus) {
+        if(submissionActivityStatus != null) {
+            this.activityId = submissionActivityStatus.getActivityId();
+        }
+
+        this.submissionActivityStatus = submissionActivityStatus;
     }
 
     @Override
