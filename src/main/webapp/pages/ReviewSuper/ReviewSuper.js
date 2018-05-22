@@ -161,18 +161,6 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
         if ($scope.Widgets.tabs1.activeTab.name == "tabFAs") {
             switch ($scope.Widgets.gridSuperReviewActivities.selecteditem.activityType) {
                 // Pipe Activities
-                case 11:
-                    $scope.Variables.navigationToClassicPipe.setData({
-                        'PageLoadBidID': '',
-                        'PageLoadDrawing': $scope.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionDrawingNumber,
-                        'PageLoadSheet': $scope.Variables.liveGetActivityDetails.dataSet.data[0].pipeErection.erectionSheetNumber,
-                        'PageLoadActivityType': 'E',
-                        'PageLoadActivitySubType': 'PE',
-                        'PageLoadTestPackage': '',
-                        'PageLoadFiltered': true
-                    });
-                    $scope.Variables.navigationToClassicPipe.invoke();
-                    break;
                 case 22:
                     $scope.Variables.navigationToClassicPipe.setData({
                         'PageLoadBidID': '',
@@ -180,20 +168,6 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
                         'PageLoadSheet': $scope.Variables.liveGetActivityDetails.dataSet.data[0].pipeWeld.weldSheetNumber,
                         'PageLoadActivityType': 'C',
                         'PageLoadActivitySubType': 'W',
-                        'PageLoadTestPackage': '',
-                        'PageLoadFiltered': true
-                    });
-                    $scope.Variables.navigationToClassicPipe.invoke();
-                    break;
-                case 21:
-                case 24:
-                case 25:
-                    $scope.Variables.navigationToClassicPipe.setData({
-                        'PageLoadBidID': $scope.Variables.liveGetActivityDetails.dataSet.data[0].pipeConnection.connectionBidId,
-                        'PageLoadDrawing': $scope.Variables.liveGetActivityDetails.dataSet.data[0].pipeConnection.connectionDrawingNumber,
-                        'PageLoadSheet': $scope.Variables.liveGetActivityDetails.dataSet.data[0].pipeConnection.connectionSheetNumber,
-                        'PageLoadActivityType': 'C',
-                        'PageLoadActivitySubType': '',
                         'PageLoadTestPackage': '',
                         'PageLoadFiltered': true
                     });
@@ -213,7 +187,11 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
                     });
                     $scope.Variables.navigationToClassicPipe.invoke();
                     break;
+                case 11:
+                case 21:
                 case 23:
+                case 24:
+                case 25:
                 case 31:
                 case 32:
                 case 33:
@@ -354,23 +332,19 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
         if ($scope.Widgets.tabs1.activeTab.name == "tabFAs") {
             switch (data[0].activityType) {
                 // Pipe Activities
-                case 11:
-                    $scope.Widgets.containerFADetails.content = 'PartFAPipeErection';
-                    break;
                 case 22:
                     $scope.Widgets.containerFADetails.content = 'PartFAPipeWeld';
-                    break;
-                case 21:
-                case 24:
-                case 25:
-                    $scope.Widgets.containerFADetails.content = 'PartFAPipeConnection';
                     break;
                 case 41:
                 case 42:
                 case 43:
                     $scope.Widgets.containerFADetails.content = 'PartFAPipeTesting';
                     break;
+                case 11:
+                case 21:
                 case 23:
+                case 24:
+                case 25:
                 case 31:
                 case 32:
                 case 33:
@@ -473,7 +447,6 @@ Application.$controller("ReviewSuperPageController", ["$scope", "$timeout", func
 
     $scope.serviceGetFAsSteelonSuccess = function(variable, data) {
         if (data.content.length < 1 && $scope.Widgets.tabs1.activeTab.name == "tabSteel") {
-            debugger;
             $scope.Widgets.containerFADetails.Variables.serviceGetSteelFAData.clearData();
             $scope.Variables.serviceGetSubsDetails.clearData();
             $scope.signaturePad.clear();

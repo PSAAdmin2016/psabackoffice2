@@ -5,6 +5,10 @@
                 <wm-layoutgrid name="layoutgrid3">
                     <wm-gridrow name="gridrow4">
                         <wm-gridcolumn columnwidth="3" name="gridcolumn6">
+                            <wm-label caption="Pipe Erect" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 11" fontweight="bold" fontsize="13" width="100%" deferload="true" name="label22_1"></wm-label>
+                            <wm-label caption="Bolt Up" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 21" fontweight="bold" fontsize="13" width="100%" deferload="true" name="label23_2"></wm-label>
+                            <wm-label caption="Screw Joint" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 24" fontweight="bold" fontsize="13" width="100%" deferload="true" name="label24"></wm-label>
+                            <wm-label caption="Other Connection" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 25" fontweight="bold" fontsize="13" width="100%" deferload="true" name="label25"></wm-label>
                             <wm-label caption="Cut / Prep" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 23" fontweight="bold" fontsize="13" name="label1" width="100%" deferload="true"></wm-label>
                             <wm-label caption="Valve" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 31" fontweight="bold" fontsize="13" width="100%" deferload="true" name="label7"></wm-label>
                             <wm-label caption="Plug" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 32" fontweight="bold" fontsize="13" width="100%" deferload="true" name="label8_1"></wm-label>
@@ -26,7 +30,11 @@ $parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType != 53" pad
                     </wm-gridrow>
                     <wm-gridrow name="gridrow9_1">
                         <wm-gridcolumn columnwidth="9" name="gridcolumn18_1">
-                            <wm-container name="container8_1" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 23 || 
+                            <wm-container name="container8_1" show="bind:$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 11 || 
+$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 21 || 
+$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 23 || 
+$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 24 || 
+$parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 25 || 
 $parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 31 || 
 $parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 32 || 
 $parent.Variables.liveGetActivityDetails.dataSet.data[0].activityType == 33 || 
