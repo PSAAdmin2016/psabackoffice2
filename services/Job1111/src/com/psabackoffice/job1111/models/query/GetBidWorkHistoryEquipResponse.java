@@ -22,8 +22,11 @@ public class GetBidWorkHistoryEquipResponse implements Serializable {
     @ColumnAlias("ActivityID")
     private Integer activityId;
 
-    @ColumnAlias("ActivityType")
-    private String activityType;
+    @ColumnAlias("ActivityTypeName")
+    private String activityTypeName;
+
+    @ColumnAlias("ActivityTypeID")
+    private Short activityTypeId;
 
     @ColumnAlias("Foreman")
     private String foreman;
@@ -65,12 +68,20 @@ public class GetBidWorkHistoryEquipResponse implements Serializable {
         this.activityId = activityId;
     }
 
-    public String getActivityType() {
-        return this.activityType;
+    public String getActivityTypeName() {
+        return this.activityTypeName;
     }
 
-    public void setActivityType(String activityType) {
-        this.activityType = activityType;
+    public void setActivityTypeName(String activityTypeName) {
+        this.activityTypeName = activityTypeName;
+    }
+
+    public Short getActivityTypeId() {
+        return this.activityTypeId;
+    }
+
+    public void setActivityTypeId(Short activityTypeId) {
+        this.activityTypeId = activityTypeId;
     }
 
     public String getForeman() {
@@ -144,7 +155,8 @@ public class GetBidWorkHistoryEquipResponse implements Serializable {
         final GetBidWorkHistoryEquipResponse getBidWorkHistoryEquipResponse = (GetBidWorkHistoryEquipResponse) o;
         return Objects.equals(getSubmissionId(), getBidWorkHistoryEquipResponse.getSubmissionId()) &&
                 Objects.equals(getActivityId(), getBidWorkHistoryEquipResponse.getActivityId()) &&
-                Objects.equals(getActivityType(), getBidWorkHistoryEquipResponse.getActivityType()) &&
+                Objects.equals(getActivityTypeName(), getBidWorkHistoryEquipResponse.getActivityTypeName()) &&
+                Objects.equals(getActivityTypeId(), getBidWorkHistoryEquipResponse.getActivityTypeId()) &&
                 Objects.equals(getForeman(), getBidWorkHistoryEquipResponse.getForeman()) &&
                 Objects.equals(getSupervisor(), getBidWorkHistoryEquipResponse.getSupervisor()) &&
                 Objects.equals(getCompleteTime(), getBidWorkHistoryEquipResponse.getCompleteTime()) &&
@@ -159,7 +171,8 @@ public class GetBidWorkHistoryEquipResponse implements Serializable {
     public int hashCode() {
         return Objects.hash(getSubmissionId(),
                 getActivityId(),
-                getActivityType(),
+                getActivityTypeName(),
+                getActivityTypeId(),
                 getForeman(),
                 getSupervisor(),
                 getCompleteTime(),

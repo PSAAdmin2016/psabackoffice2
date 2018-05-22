@@ -17,8 +17,8 @@
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn125">
                                     <wm-composite name="composite109_1" captionposition="top" show="true" margin="0px unset">
                                         <wm-label class="col-md-3" name="label132_1" caption="Percent Installed" hint="The amount installed by this current Activity" fontweight="bold"></wm-label>
-                                        <wm-text name="textInstalled1" hint="The amount installed by this current Activity" datavalue="bind:($parent.$parent.$parent.$parent.$parent.$parent.Widgets.gridApprovalReview.selecteditem.Quantity * 100) | suffix: '%'" type="text" updateon="default"
-                                            backgroundcolor="#b1efe4" readonly="true" width="80%" disabled="false" placeholder="Enter Quantity" scopedatavalue="textInstalled1" margin="unset unset 0px unset" color="#000000" show="true"></wm-text>
+                                        <wm-text name="textInstalled1" hint="The amount installed by this current Activity" datavalue="bind:($parent.$parent.$parent.$parent.$parent.$parent.Widgets.gridApprovalReview.selecteditem.PercentClaim * 100) | suffix: '%'"
+                                            type="text" updateon="default" backgroundcolor="#b1efe4" readonly="true" width="80%" disabled="false" placeholder="Enter Quantity" scopedatavalue="textInstalled1" margin="unset unset 0px unset" color="#000000" show="true"></wm-text>
                                     </wm-composite>
                                 </wm-gridcolumn>
                             </wm-gridrow>
@@ -27,8 +27,8 @@
                                     <wm-composite name="composite183" captionposition="top" margin="unset unset 0px unset">
                                         <wm-label class="col-md-3 control-label" name="label236_1" caption="Hour Value" fontweight="bold"></wm-label>
                                         <wm-container class="col-md-9" name="containerErectionHrsEarned" show="true" width="80%">
-                                            <wm-text hint="Hours earned by current Activity" datavalue="bind:(Variables.serviceGetQuantities.firstRecord.fahours * $parent.$parent.$parent.$parent.$parent.$parent.Widgets.gridApprovalReview.selecteditem.PercentClaim) | toNumber: '2'" type="number"
-                                                updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" name="textHrsEarned" color="#000000" show="true"></wm-text>
+                                            <wm-text hint="Hours earned by current Activity" datavalue="bind:(Variables.serviceGetQuantities.firstRecord.fahours * $parent.$parent.$parent.$parent.$parent.$parent.Widgets.gridApprovalReview.selecteditem.PercentClaim) | toNumber: '2'"
+                                                type="number" updateon="default" backgroundcolor="#b1efe4" readonly="true" disabled="false" placeholder="Enter Quantity" name="textHrsEarned" color="#000000" show="true"></wm-text>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -74,7 +74,8 @@
                                     <wm-composite name="composite184_1" captionposition="top" show="true">
                                         <wm-label class="col-md-3 control-label" name="label237_1" caption="Remaining Hours" hint="Remaining hours BEFORE current activity is added" fontweight="bold"></wm-label>
                                         <wm-container class="col-md-9" name="container176_1" show="true" height="20px">
-                                            <wm-label caption="bind:(Variables.serviceGetQuantities.firstRecord.fahours * (1 - Variables.serviceGetQuantities.firstRecord.installedPercent)) | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added" name="labelFAHoursRemaining"></wm-label>
+                                            <wm-label caption="bind:(Variables.serviceGetQuantities.firstRecord.fahours * (1 - Variables.serviceGetQuantities.firstRecord.installedPercent)) | toNumber: '2'" show="true" hint="Remaining hours BEFORE current activity is added"
+                                                name="labelFAHoursRemaining"></wm-label>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -96,7 +97,7 @@
             </wm-gridrow>
             <wm-gridrow name="gridrow8">
                 <wm-gridcolumn columnwidth="1" name="gridcolumn14">
-                    <wm-spinner show="true" name="spinner1" iconclass="fa fa-gear fa-spin" caption="" servicevariabletotrack="serviceGetQuantities" iconsize="1.5em"></wm-spinner>
+                    <wm-spinner show="true" name="spinner1" iconclass="fa fa-gear fa-spin" caption="" servicevariabletotrack="serviceGetQuantities,serviceLockSASActivity" iconsize="1.5em"></wm-spinner>
                 </wm-gridcolumn>
                 <wm-gridcolumn columnwidth="11" name="gridcolumn17" horizontalalign="right">
                     <wm-button class="btn-default" caption="Return" type="button" show="true" backgroundcolor="#dc0000" iconclass="wi wi-backward" shortcutkey="r" name="buttonRejectQuantity" hint="Return to Superintendent for further review." margin="unset 1% unset unset"

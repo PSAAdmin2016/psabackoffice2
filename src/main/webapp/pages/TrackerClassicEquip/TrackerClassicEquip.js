@@ -3,22 +3,12 @@ Application.$controller("TrackerClassicEquipPageController", ["$scope", function
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        /*
-         * variables can be accessed through '$scope.Variables' property here
-         * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
-         * $scope.Variables.loggedInUser.getData()
-         *
-         * widgets can be accessed through '$scope.Widgets' property here
-         * e.g. to get value of text widget named 'username' use following script
-         * '$scope.Widgets.username.datavalue'
-         */
         if ($scope.Variables.staticClassicTrackerEquipColumnShowHideCache.dataSet.length > 0) {
             _.forEach($scope.Variables.staticClassicTrackerEquipColumnShowHideCache.dataSet, function(key) {
                 $scope.Widgets.gridClassicTrackerEquip.columns[key].show = false; //Set show false for the columns present in variable
             });
             $scope.Widgets.gridClassicTrackerEquip.redraw();
         }
-
     };
 
 
@@ -52,9 +42,9 @@ Application.$controller("TrackerClassicEquipPageController", ["$scope", function
             $scope.Widgets.livefilterClassicTrackerEquip.filter();
         }
     };
-
-
 }]);
+
+
 
 
 Application.$controller("livefilterClassicTrackerEquipController", ["$scope",
@@ -63,6 +53,7 @@ Application.$controller("livefilterClassicTrackerEquipController", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
 
 Application.$controller("gridClassicTrackerEquipController", ["$scope",
     function($scope) {
@@ -89,15 +80,11 @@ Application.$controller("gridClassicTrackerEquipController", ["$scope",
             _.forEach($scope.columns, function(value) { //Show all in data grid
                 value.show = true;
             });
-
             $scope.Variables.staticShowEquipClassicShowAllButton.dataSet.show = false;
             $scope.redraw();
         };
-
     }
 ]);
-
-
 
 
 Application.$controller("dialogBidWorkHistoryController", ["$scope",
@@ -110,9 +97,35 @@ Application.$controller("dialogBidWorkHistoryController", ["$scope",
             $scope.Variables.staticShowReturn.dataSet.dataValue = false;
         };
 
-
         $scope.popoverActivityHistoryHide = function($event, $isolateScope) {
             $scope.Variables.staticShowReturn.dataSet.dataValue = true;
+        };
+
+        $scope.buttonReturnClick = function($event, $isolateScope, item, currentItemWidgets) {
+            $scope.Variables.liveSAS.updateRecord({
+                row: {
+                    "activityId": item.activityId,
+                    "submissionId": item.submissionId,
+                    "activityType": item.activityTypeId,
+                    "fkBidIdassigned": $scope.Widgets.gridClassicTrackerEquip.selecteditem.bidId,
+                    "fkActivityStatus": 11,
+                    "fkLastModifiedBy": $scope.Variables.loggedInUser.dataSet.id
+                }
+            }, function(data) {
+                $scope.Variables.serviceGetBidWorkHistory.invoke();
+                $scope.Variables.serviceUpdateClassicTracker.invoke(); //Calls livefilterClassicTrackerEquip.filter();
+            });
+        };
+
+
+        $scope.buttonOverrideClick = function($event, $isolateScope, item, currentItemWidgets) {
+            $scope.Variables.liveSAS.listRecords({ //Called to populate form
+                filterFields: {
+                    "activityId": {
+                        "value": $scope.Widgets.livelistBidWorkHistory.selecteditem.activityId
+                    }
+                }
+            });
         };
 
     }
@@ -133,11 +146,30 @@ Application.$controller("dialogQuantityOverrideController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
-        $scope.formNewQuantitySubmit = function($event, $isolateScope, $formData) {
-            $scope.Variables.serviceUpdateSSOverride.update(); // changes status to Override Quantity
-            $scope.Variables.serviceUpdateFA.setInput('Percent', $scope.Widgets.formNewQuantity.formWidgets.selectPercentComplete.datavalue);
-            $scope.Variables.serviceUpdateFA.update(); //This will call UpdateClassic on success
-
+        $scope.liveformSASBeforeservicecall = function($event, $operation, $data) {
+            $data.fkActivityStatus = 12;
         };
+
+        $scope.liveformSASSuccess = function($event, $operation, $data) {
+            $scope.Variables.serviceGetBidWorkHistory.invoke();
+            $scope.Variables.serviceUpdateClassicTracker.invoke(); //Calls livefilterClassicTrackerEquip.filter();
+        };
+
+    }
+]);
+
+
+Application.$controller("liveformSASController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+
+Application.$controller("liveformEquipFAController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);

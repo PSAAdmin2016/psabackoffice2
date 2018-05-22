@@ -28,3 +28,9 @@ background-color: #fffe80;
 .wm-app .app-grid .app-datagrid .table-container .table tbody tr td.orange {
 background-color: #ff6500;
 }
+.app-spinner.custom-spinner .spinner-message{
+    top:0;
+    left:0;
+    height: 1.5em;
+    width: 100%;
+}

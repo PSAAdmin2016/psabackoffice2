@@ -58,9 +58,7 @@
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
-    "controller" : "ProcedureExecution",
-    "spinnerContext" : "containermain",
-    "spinnerMessage" : "Getting Quantities"
+    "controller" : "ProcedureExecution"
   },
   "serviceUnLockSASActivity" : {
     "_id" : "wm-serviceUnLockSASActivity-wm.ServiceVariable-1524682587651",

@@ -2339,7 +2339,7 @@
       "primaryFields" : [ "id" ]
     },
     "isDefault" : true,
-    "bindCount" : 4,
+    "bindCount" : 5,
     "tableName" : "REF_PercentList",
     "tableType" : "TABLE",
     "dbSystem" : "MySQL",

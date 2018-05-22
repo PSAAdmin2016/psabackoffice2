@@ -1838,7 +1838,7 @@ WHERE Label = 'PipeTestingHoursPercent') wmTempTable
 
     <sql-query name="GetBidWorkHistoryEquip">
         <![CDATA[
-        SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType, 
+        SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID, 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
 sd.CompleteTime, 
@@ -1890,7 +1890,7 @@ GROUP BY sas.ActivityID
 
     <sql-query name="GetBidWorkHistoryEquip__count">
         <![CDATA[
-        select count(*) from (SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType, 
+        select count(*) from (SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID, 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
 sd.CompleteTime, 
@@ -5028,7 +5028,7 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 efa.FABidID AS BidID, 'N/A' AS Spool1, etd.ComponentNumber AS Spool2, 
 etd.Description AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-efa.FANotes, efa.FAQuantity AS Quantity, 'N/A' AS Area, efa.FAPercentCompleted AS PercentClaim, efa.FARework AS Rework
+efa.FANotes, (etd.TakeOffQuantity * efa.FAPercentCompleted) AS Quantity, 'N/A' AS Area, efa.FAPercentCompleted AS PercentClaim, efa.FARework AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -5354,7 +5354,7 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 efa.FABidID AS BidID, 'N/A' AS Spool1, etd.ComponentNumber AS Spool2, 
 etd.Description AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-efa.FANotes, efa.FAQuantity AS Quantity, 'N/A' AS Area, efa.FAPercentCompleted AS PercentClaim, efa.FARework AS Rework
+efa.FANotes, (etd.TakeOffQuantity * efa.FAPercentCompleted) AS Quantity, 'N/A' AS Area, efa.FAPercentCompleted AS PercentClaim, efa.FARework AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at

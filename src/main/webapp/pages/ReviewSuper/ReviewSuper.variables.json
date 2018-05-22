@@ -327,18 +327,18 @@
     "package" : "com.psabackoffice.job1111.SubmissionActivityStatus"
   },
   "liveGetWeatherHistory" : {
-    "_id" : "wm-liveGetWeatherHistory-wm.LiveVariable-1524003427734",
+    "_id" : "wm-liveGetWeatherHistory-wm.LiveVariable-1527016925678",
     "name" : "liveGetWeatherHistory",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "weatherDate",
-      "value" : "bind:Widgets.gridSuperReviewActivities.selecteditem.receivedTime",
+      "value" : "bind:Variables.liveGetActivityDetails.firstRecord.subsDetails.receivedTime",
       "type" : "date"
     } ],
     "operation" : "read",
     "dataSet" : [ ],
-    "type" : "WeatherHistory",
+    "type" : "WeatherObserved",
     "isList" : false,
     "saveInPhonegap" : false,
     "maxResults" : 1,
@@ -447,18 +447,30 @@
         "generator" : "assigned",
         "isRelated" : false,
         "scale" : 0
+      }, {
+        "fieldName" : "timeStamp",
+        "type" : "timestamp",
+        "fullyQualifiedType" : "timestamp",
+        "columnName" : "TimeStamp",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
       } ],
-      "entityName" : "WeatherHistory",
-      "fullyQualifiedName" : "com.psabackoffice.job1111.WeatherHistory",
+      "entityName" : "WeatherObserved",
+      "fullyQualifiedName" : "com.psabackoffice.job1111.WeatherObserved",
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "tableName" : "WeatherHistory",
+    "tableName" : "WeatherObserved",
     "tableType" : "TABLE",
     "properties" : [ ],
     "relatedTables" : [ ],
     "filterFields" : { },
-    "package" : "com.psabackoffice.job1111.WeatherHistory"
+    "package" : "com.psabackoffice.job1111.WeatherObserved"
   },
   "navigationToClassicCivil" : {
     "_id" : "wm-navigationToClassicCivil-wm.NavigationVariable-1482959278678",
