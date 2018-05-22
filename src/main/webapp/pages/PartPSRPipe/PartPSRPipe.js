@@ -16,38 +16,6 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
 
         //Run serviceGetMatches as needed per ActivityType
         switch ($scope.pageParams.ActivityTypeID) {
-            case 11:
-                if ($scope.pageParams.BidID) {
-                    $scope.Variables.staticBidSelectItem.setValue('dataValue', true);
-                    $scope.Variables.serviceGetMatches.invoke({
-                        "inputFields": {
-                            "BidID": $scope.pageParams.BidID
-                        }
-                    });
-                } else {
-                    $scope.Variables.staticBidSelectItem.setValue('dataValue', false);
-                    $scope.Variables.serviceGetMatches.invoke();
-                }
-                $scope.Variables.staticATST.setValue('activityType', 'E');
-                $scope.Variables.staticATST.setValue('activitySubType', 'PE');
-                break;
-
-            case 21:
-                if ($scope.pageParams.BidID) {
-                    $scope.Variables.staticBidSelectItem.setValue('dataValue', true);
-                    $scope.Variables.serviceGetMatches.invoke({
-                        "inputFields": {
-                            "BidID": $scope.pageParams.BidID
-                        }
-                    });
-                } else {
-                    $scope.Variables.staticBidSelectItem.setValue('dataValue', false);
-                    $scope.Variables.serviceGetMatches.invoke();
-                }
-                $scope.Variables.staticATST.setValue('activityType', 'C');
-                $scope.Variables.staticATST.setValue('activitySubType', 'BU');
-                break;
-
             case 22:
                 $scope.Variables.staticBidSelectItem.setValue('dataValue', false);
                 $scope.Variables.serviceGetMatches.invoke();
@@ -72,6 +40,8 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
                 });
                 break;
 
+            case 11:
+            case 21:
             case 23:
             case 24:
             case 25:
@@ -193,32 +163,6 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
 
                 // Set ActivityType and ActivitySubType dependent on ActivityTypeID AND Filter Toggle position
                 switch ($scope.pageParams.ActivityTypeID) {
-                    case 11:
-                        if ($scope.Widgets.toggleFilterActivityType.datavalue == '1') {
-                            inputData.ActivityType = 'E';
-                        } else {
-                            inputData.ActivityType = '%';
-                        }
-
-                        if ($scope.Widgets.toggleFilterActivitySubType.datavalue == '1') {
-                            inputData.ActivitySubType = 'PE';
-                        } else {
-                            inputData.ActivitySubType = '%';
-                        }
-                        break;
-                    case 21:
-                        if ($scope.Widgets.toggleFilterActivityType.datavalue == '1') {
-                            inputData.ActivityType = 'C';
-                        } else {
-                            inputData.ActivityType = '%';
-                        }
-
-                        if ($scope.Widgets.toggleFilterActivitySubType.datavalue == '1') {
-                            inputData.ActivitySubType = 'BU';
-                        } else {
-                            inputData.ActivitySubType = '%';
-                        }
-                        break;
                     case 22:
                         if ($scope.Widgets.toggleFilterActivityType.datavalue == '1') {
                             inputData.ActivityType = 'C';
@@ -286,7 +230,7 @@ Application.$controller("PartPSRPipePageController", ["$scope", "$rootScope", "D
                 $scope.$parent.Variables.navigationToClassicPipe.invoke();
                 break;
             default:
-                if ($scope.Variables.staticBidSelectItem.dataValue) {
+                if ($scope.Variables.staticBidSelectItem.dataSet.dataValue) {
                     $scope.$parent.Variables.navigationToClassicPipe.setData({
                         'PageLoadBidID': $scope.pageParams.BidID,
                         'PageLoadFiltered': true

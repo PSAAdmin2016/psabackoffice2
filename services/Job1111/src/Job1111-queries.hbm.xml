@@ -4734,94 +4734,11 @@ GROUP BY t.SortGroup1, t.PieceMark, Date(t.ReceivedTime)) wmTempTable
         SELECT t.* 
 FROM (
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, u.FullName AS ForemanName, sd.CompleteTime,
-null AS BidID, pe.ErectionSpool1 AS Spool1,COALESCE(pe.ErectionSpool2, 'N/A') AS Spool2, 
-pe.ErectionLineNumber AS Line1, pe.ErectionDrawingNumber AS Drawing1, pe.ErectionSheetNumber AS Sheet1, 
-pe.ErectionLineNumber AS Line2, pe.ErectionDrawingNumber AS Drawing2, pe.ErectionSheetNumber AS Sheet2, 
-pe.ErectionPipeSize AS Size, pe.ErectionNotes AS Notes,
-(COALESCE(pe.ErectionLengthSpool1,0) + COALESCE(pe.ErectionLengthSpool2,0) + COALESCE(pe.ErectionLengthSpool3,0) + COALESCE(pe.ErectionLengthSpool4,0) + COALESCE(pe.ErectionLengthSpool5,0) + COALESCE(pe.ErectionLengthSpool6,0)) AS Quantity, 
-'N/A' AS Area, 1.00 AS PercentClaim, pe.ErectionRework AS Rework
-FROM SubmissionActivityStatus sas
-
-
-
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN PipeErection pe
-	ON pe.ActivityID = sas.ActivityID
-JOIN SubsDetails sd
-	ON sd.SubmissionID = sas.SubmissionID
-JOIN PSA.tblUserPSA u
-	ON u.ID = sd.UserID
-
-WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
- 
- 
-UNION
-
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, u.FullName AS ForemanName, sd.CompleteTime,
-pc.ConnectionBidID AS BidID, pc.ConnectionSpool1, pc.ConnectionSpool2, 
-pc.ConnectionLineNumber AS Line1, pc.ConnectionDrawingNumber AS DWG1, pc.ConnectionSheetNumber AS Sheet1,
-COALESCE(sl.LineNumber,'N/A') AS Line2, COALESCE(sl.DrawingNumber,'N/A') AS DWG2, COALESCE(sl.Sheetnumber,'N/A') AS Sheet2,
-pc.ConnectionSize , pc.ConnectionNotes, pc.ConnectionQuantity AS Quantity
-, 'N/A' AS Area, 1.00 AS PercentClaim, pc.ConnectionRework AS Rework
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN PipeConnection pc
-	ON pc.ActivityID = sas.ActivityID AND pc.ActivityType = 21
-LEFT JOIN REF_SpoolList sl
-	ON sl.SpoolNumber = pc.ConnectionSpool2
-JOIN SubsDetails sd
-	ON sd.SubmissionID = sas.SubmissionID
-JOIN PSA.tblUserPSA u
-	ON u.ID = sd.UserID
-
-WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
- 
- 
-UNION
-
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, u.FullName AS ForemanName, sd.CompleteTime,
-pc.ConnectionBidID AS BidID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
-ptd.LineNumber AS Line1, ptd.EngDrawingNumber AS DWG1, ptd.SheetNumber AS Sheet1,
-'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2,
-pc.ConnectionSize , pc.ConnectionNotes, pc.ConnectionQuantity AS Quantity, 
-'N/A' AS Area, 1.00 AS PercentClaim, pc.ConnectionRework AS Rework
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN PipeConnection pc
-	ON pc.ActivityID = sas.ActivityID AND pc.ActivityType != 21
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = pc.ConnectionBidID
-JOIN SubsDetails sd
-	ON sd.SubmissionID = sas.SubmissionID
-JOIN PSA.tblUserPSA u
-	ON u.ID = sd.UserID
-
-WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
-
-UNION
-
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, u.FullName AS ForemanName, sd.CompleteTime,
-null AS BidID, pw.WeldSpool1, pw.WeldSpool2, 
-pw.WeldLineNumber, pw.WeldDrawingNumber, pw.WeldSheetNumber, 
-COALESCE(sl.LineNumber,'N/A') AS Line2, COALESCE(sl.DrawingNumber,'N/A') AS DWG2, COALESCE(sl.Sheetnumber,'N/A') AS Sheet2,
-pw.WeldSize , pw.WeldNotes, COALESCE(pw.WeldPercentCompleted,0) AS Quantity
+null AS BidID, pw.WeldSpool1 AS Spool1, pw.WeldSpool2 AS Spool2, 
+pw.WeldLineNumber AS Line1, pw.WeldDrawingNumber AS Drawing1, pw.WeldSheetNumber AS Sheet1, 
+COALESCE(sl.LineNumber,'N/A') AS Line2, COALESCE(sl.DrawingNumber,'N/A') AS Drawing2, COALESCE(sl.Sheetnumber,'N/A') AS Sheet2,
+pw.WeldSize AS Size, pw.WeldNotes AS Notes,
+ COALESCE(pw.WeldPercentCompleted,0) AS Quantity
 , 'N/A' AS Area, 1.00 AS PercentClaim, pw.WeldRework AS Rework
 
 FROM SubmissionActivityStatus sas
@@ -4849,8 +4766,19 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 pfa.FABidID AS BidID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
 ptd.LineNumber, ptd.EngDrawingNumber, ptd.SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2,
-'N/A' , pfa.FANotes, pfa.FAQuantity AS Quantity
-, 'N/A' AS Area, FAPercentCompleted AS PercentClaim, pfa.FARework AS Rework
+ptd.Size AS Size, pfa.FANotes, 
+CASE sas.ActivityType
+
+WHEN (sas.ActivityType = 38) THEN
+	(pfa.FAQuantity * pfa.FAPercentCompleted)
+WHEN (sas.ActivityType IN (51,52,53,90)) THEN
+	(ptd.TakeOffQuantity * pfa.FAPercentCompleted)
+ELSE
+	(pfa.FAQuantity)
+END 
+AS Quantity,
+
+ 'N/A' AS Area, FAPercentCompleted AS PercentClaim, pfa.FARework AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -5132,94 +5060,11 @@ AND ForemanName LIKE :ForemanName
         select count(*) from (SELECT t.* 
 FROM (
 SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, u.FullName AS ForemanName, sd.CompleteTime,
-null AS BidID, pe.ErectionSpool1 AS Spool1,COALESCE(pe.ErectionSpool2, 'N/A') AS Spool2, 
-pe.ErectionLineNumber AS Line1, pe.ErectionDrawingNumber AS Drawing1, pe.ErectionSheetNumber AS Sheet1, 
-pe.ErectionLineNumber AS Line2, pe.ErectionDrawingNumber AS Drawing2, pe.ErectionSheetNumber AS Sheet2, 
-pe.ErectionPipeSize AS Size, pe.ErectionNotes AS Notes,
-(COALESCE(pe.ErectionLengthSpool1,0) + COALESCE(pe.ErectionLengthSpool2,0) + COALESCE(pe.ErectionLengthSpool3,0) + COALESCE(pe.ErectionLengthSpool4,0) + COALESCE(pe.ErectionLengthSpool5,0) + COALESCE(pe.ErectionLengthSpool6,0)) AS Quantity, 
-'N/A' AS Area, 1.00 AS PercentClaim, pe.ErectionRework AS Rework
-FROM SubmissionActivityStatus sas
-
-
-
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN PipeErection pe
-	ON pe.ActivityID = sas.ActivityID
-JOIN SubsDetails sd
-	ON sd.SubmissionID = sas.SubmissionID
-JOIN PSA.tblUserPSA u
-	ON u.ID = sd.UserID
-
-WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
- 
- 
-UNION
-
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, u.FullName AS ForemanName, sd.CompleteTime,
-pc.ConnectionBidID AS BidID, pc.ConnectionSpool1, pc.ConnectionSpool2, 
-pc.ConnectionLineNumber AS Line1, pc.ConnectionDrawingNumber AS DWG1, pc.ConnectionSheetNumber AS Sheet1,
-COALESCE(sl.LineNumber,'N/A') AS Line2, COALESCE(sl.DrawingNumber,'N/A') AS DWG2, COALESCE(sl.Sheetnumber,'N/A') AS Sheet2,
-pc.ConnectionSize , pc.ConnectionNotes, pc.ConnectionQuantity AS Quantity
-, 'N/A' AS Area, 1.00 AS PercentClaim, pc.ConnectionRework AS Rework
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN PipeConnection pc
-	ON pc.ActivityID = sas.ActivityID AND pc.ActivityType = 21
-LEFT JOIN REF_SpoolList sl
-	ON sl.SpoolNumber = pc.ConnectionSpool2
-JOIN SubsDetails sd
-	ON sd.SubmissionID = sas.SubmissionID
-JOIN PSA.tblUserPSA u
-	ON u.ID = sd.UserID
-
-WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
- 
- 
-UNION
-
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, u.FullName AS ForemanName, sd.CompleteTime,
-pc.ConnectionBidID AS BidID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
-ptd.LineNumber AS Line1, ptd.EngDrawingNumber AS DWG1, ptd.SheetNumber AS Sheet1,
-'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2,
-pc.ConnectionSize , pc.ConnectionNotes, pc.ConnectionQuantity AS Quantity, 
-'N/A' AS Area, 1.00 AS PercentClaim, pc.ConnectionRework AS Rework
-
-FROM SubmissionActivityStatus sas
-LEFT JOIN PSA.REF_ActivityTypes at
-	ON at.ID =sas.ActivityType
-LEFT JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-JOIN PipeConnection pc
-	ON pc.ActivityID = sas.ActivityID AND pc.ActivityType != 21
-LEFT JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = pc.ConnectionBidID
-JOIN SubsDetails sd
-	ON sd.SubmissionID = sas.SubmissionID
-JOIN PSA.tblUserPSA u
-	ON u.ID = sd.UserID
-
-WHERE sas.fk_ActivityStatus IN (2,7,9,11,44)
-AND (sas.LockField IS NULL OR sas.LockField = :UserID)
-
-UNION
-
-
-SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS ActivityTypeName, ats.Status, 'PIPE' AS Craft, u.FullName AS ForemanName, sd.CompleteTime,
-null AS BidID, pw.WeldSpool1, pw.WeldSpool2, 
-pw.WeldLineNumber, pw.WeldDrawingNumber, pw.WeldSheetNumber, 
-COALESCE(sl.LineNumber,'N/A') AS Line2, COALESCE(sl.DrawingNumber,'N/A') AS DWG2, COALESCE(sl.Sheetnumber,'N/A') AS Sheet2,
-pw.WeldSize , pw.WeldNotes, COALESCE(pw.WeldPercentCompleted,0) AS Quantity
+null AS BidID, pw.WeldSpool1 AS Spool1, pw.WeldSpool2 AS Spool2, 
+pw.WeldLineNumber AS Line1, pw.WeldDrawingNumber AS Drawing1, pw.WeldSheetNumber AS Sheet1, 
+COALESCE(sl.LineNumber,'N/A') AS Line2, COALESCE(sl.DrawingNumber,'N/A') AS Drawing2, COALESCE(sl.Sheetnumber,'N/A') AS Sheet2,
+pw.WeldSize AS Size, pw.WeldNotes AS Notes,
+ COALESCE(pw.WeldPercentCompleted,0) AS Quantity
 , 'N/A' AS Area, 1.00 AS PercentClaim, pw.WeldRework AS Rework
 
 FROM SubmissionActivityStatus sas
@@ -5247,8 +5092,19 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 pfa.FABidID AS BidID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
 ptd.LineNumber, ptd.EngDrawingNumber, ptd.SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2,
-'N/A' , pfa.FANotes, pfa.FAQuantity AS Quantity
-, 'N/A' AS Area, FAPercentCompleted AS PercentClaim, pfa.FARework AS Rework
+ptd.Size AS Size, pfa.FANotes, 
+CASE sas.ActivityType
+
+WHEN (sas.ActivityType = 38) THEN
+	(pfa.FAQuantity * pfa.FAPercentCompleted)
+WHEN (sas.ActivityType IN (51,52,53,90)) THEN
+	(ptd.TakeOffQuantity * pfa.FAPercentCompleted)
+ELSE
+	(pfa.FAQuantity)
+END 
+AS Quantity,
+
+ 'N/A' AS Area, FAPercentCompleted AS PercentClaim, pfa.FARework AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at

@@ -69,7 +69,7 @@
           "columnName" : "FormVersion",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 8,
+          "length" : 12,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
