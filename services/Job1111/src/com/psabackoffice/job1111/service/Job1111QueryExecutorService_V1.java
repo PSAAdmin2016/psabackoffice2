@@ -31,9 +31,6 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetSettingPipeHydroPercent(Pageable pageable);
 
     @Deprecated
-    public Page<Object> executeGetActivityHistoryPipeErection(Pageable pageable, Integer activityId);
-
-    @Deprecated
     public Page<Object> executeGetActivityHistoryPipeWeld(Pageable pageable, Integer activityId);
 
     @Deprecated

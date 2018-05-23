@@ -610,40 +610,6 @@ WHERE Label = 'PipeHydroHoursPercent') wmTempTable
         ]]>
     </sql-query>
 
-    <sql-query name="GetActivityHistoryPipeErection">
-        <![CDATA[
-        SELECT pe.* 
-FROM PipeErection pe
-WHERE ActivityID = :ActivityID
-
-UNION ALL
-
-SELECT per.fk_OrgActivityId, per.ErectionBidID, per.ErectionSpool1, per.ErectionLengthSpool1, per.ErectionSpool2, per.ErectionLengthSpool2, per.ErectionSpool3, per.ErectionLengthSpool3, per.ErectionSpool4, per.ErectionLengthSpool4, per.ErectionSpool5, per.ErectionLengthSpool5, per.ErectionSpool6, per.ErectionLengthSpool6,
-per.ErectionOnCords, per.ErectionDrawingNumber, per.ErectionLineNumber, per.ErectionSheetNumber, per.ErectionTimeInForm, per.ErectionPipeSize, per.ErectionRework, per.ErectionNotes, per.ActivityType, per.Rev, per.TimeStamp
-FROM PipeErectionREV per
-WHERE per.fk_OrgActivityId = :ActivityID
-ORDER BY TimeStamp DESC
-        ]]>
-    <query-param name="ActivityID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetActivityHistoryPipeErection__count">
-        <![CDATA[
-        select count(*) from (SELECT pe.* 
-FROM PipeErection pe
-WHERE ActivityID = :ActivityID
-
-UNION ALL
-
-SELECT per.fk_OrgActivityId, per.ErectionBidID, per.ErectionSpool1, per.ErectionLengthSpool1, per.ErectionSpool2, per.ErectionLengthSpool2, per.ErectionSpool3, per.ErectionLengthSpool3, per.ErectionSpool4, per.ErectionLengthSpool4, per.ErectionSpool5, per.ErectionLengthSpool5, per.ErectionSpool6, per.ErectionLengthSpool6,
-per.ErectionOnCords, per.ErectionDrawingNumber, per.ErectionLineNumber, per.ErectionSheetNumber, per.ErectionTimeInForm, per.ErectionPipeSize, per.ErectionRework, per.ErectionNotes, per.ActivityType, per.Rev, per.TimeStamp
-FROM PipeErectionREV per
-WHERE per.fk_OrgActivityId = :ActivityID
-ORDER BY TimeStamp DESC) wmTempTable
-        ]]>
-    <query-param name="ActivityID" type="java.lang.Integer"/>
-    </sql-query>
-
     <sql-query name="UpdateSteelFA">
         <![CDATA[
         UPDATE `SteelFA` 
@@ -3286,40 +3252,6 @@ SET `Value1`= :Value1
 WHERE `Label`='SteelErectHoursPercent'
         ]]>
     <query-param name="Value1" type="java.math.BigDecimal"/>
-    </sql-query>
-
-    <sql-query name="GetActivityHistoryPipeConnection">
-        <![CDATA[
-        SELECT pc.* 
-FROM PipeConnection pc
-WHERE ActivityID = :ActivityID
-
-UNION ALL
-
-SELECT pcr.fk_OrgActivityId, pcr.ConnectionBidID, pcr.ConnectionSpool1, pcr.ConnectionSpool2, pcr.ConnectionDrawingNumber, pcr.ConnectionLineNumber, pcr.ConnectionSheetNumber, pcr.ConnectionSize, 
-pcr.ConnectionQuantity, pcr.ConnectionRework, pcr.ConnectionNotes, pcr.ActivityType, pcr.ConnectionTimeInForm, pcr.Rev, pcr.TimeStamp
-FROM PipeConnectionREV pcr
-WHERE fk_OrgActivityId = :ActivityID
-ORDER BY TimeStamp DESC
-        ]]>
-    <query-param name="ActivityID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetActivityHistoryPipeConnection__count">
-        <![CDATA[
-        select count(*) from (SELECT pc.* 
-FROM PipeConnection pc
-WHERE ActivityID = :ActivityID
-
-UNION ALL
-
-SELECT pcr.fk_OrgActivityId, pcr.ConnectionBidID, pcr.ConnectionSpool1, pcr.ConnectionSpool2, pcr.ConnectionDrawingNumber, pcr.ConnectionLineNumber, pcr.ConnectionSheetNumber, pcr.ConnectionSize, 
-pcr.ConnectionQuantity, pcr.ConnectionRework, pcr.ConnectionNotes, pcr.ActivityType, pcr.ConnectionTimeInForm, pcr.Rev, pcr.TimeStamp
-FROM PipeConnectionREV pcr
-WHERE fk_OrgActivityId = :ActivityID
-ORDER BY TimeStamp DESC) wmTempTable
-        ]]>
-    <query-param name="ActivityID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetQuantitiesTestPackagePipe">
@@ -7226,6 +7158,38 @@ WHERE ptd.TestPackageNumber = :TestPackage
 ORDER BY ptd.EngDrawingNumber, ptd.SheetNumber) wmTempTable
         ]]>
     <query-param name="TestPackage" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="GetActivityHistoryCivilPunchSell">
+        <![CDATA[
+        SELECT csell.* 
+FROM CivilSellPackage csell
+WHERE ActivityID = :ActivityID
+
+UNION
+
+SELECT csellr.fk_OrgActivityId, csellr.SellTestPackageNumber, csellr.SellNotes, csellr.ActivityType,  csellr.SellTimeInForm, csellr.Rev, csellr.TimeStamp
+FROM CivilSellPackageREV csellr
+WHERE csellr.fk_OrgActivityId = :ActivityID
+ORDER BY TimeStamp DESC
+        ]]>
+    <query-param name="ActivityID" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="GetActivityHistoryCivilPunchSell__count">
+        <![CDATA[
+        select count(*) from (SELECT csell.* 
+FROM CivilSellPackage csell
+WHERE ActivityID = :ActivityID
+
+UNION
+
+SELECT csellr.fk_OrgActivityId, csellr.SellTestPackageNumber, csellr.SellNotes, csellr.ActivityType,  csellr.SellTimeInForm, csellr.Rev, csellr.TimeStamp
+FROM CivilSellPackageREV csellr
+WHERE csellr.fk_OrgActivityId = :ActivityID
+ORDER BY TimeStamp DESC) wmTempTable
+        ]]>
+    <query-param name="ActivityID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetSettingSteelShakePercent">

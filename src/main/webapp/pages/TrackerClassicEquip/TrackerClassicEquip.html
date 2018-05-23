@@ -340,7 +340,11 @@ Variables.loggedInUser.dataSet.roles != 'Millwright-Superintendent Non-Staff'" r
                                                     show="true" width="32%" disabled="bind:Variables.staticShowReturn.dataSet.dataValue === false" iconclass="wi wi-backward"></wm-button>
                                                 <wm-popover popoverwidth="65%" popoverheight="425" name="popoverActivityHistory" class="btn btn-sm" caption="Hist" iconclass="wi wi-history" backgroundcolor="#5fb4ff" color="#000000" width="28%"
                                                     height="auto" contentsource="partial" content="ActivityHistory" on-show="popoverActivityHistoryShow($event, $scope)" on-hide="popoverActivityHistoryHide($event, $scope)" borderstyle="solid" bordercolor="#bfd8ef"
-                                                    borderwidth="1px" hint="View the history of the selected item." fontsize="12" margin="unset 2%"></wm-popover>
+                                                    borderwidth="1px" hint="View the history of the selected item." fontsize="12" margin="unset 2%">
+                                                    <wm-param name="ActivityID" value="bind:Widgets.livelistBidWorkHistory.currentItem.activityId" type="integer"></wm-param>
+                                                    <wm-param name="Craft" value="Equip" type="string"></wm-param>
+                                                    <wm-param name="ActivityTypeID" value="bind:Widgets.livelistBidWorkHistory.currentItem.activityTypeId" type="integer"></wm-param>
+                                                </wm-popover>
                                                 <wm-button class="btn-sm" caption="Override" iconclass="glyphicon glyphicon-alert" backgroundcolor="#ff6500" on-click="Widgets.dialogQuantityOverride.open();buttonOverrideClick($event, $scope, item, currentItemWidgets)"
                                                     show="true" hint="Change quantity on selected item." disabled="false" name="buttonOverride" width="36%" padding="unset 0px"></wm-button>
                                             </wm-gridcolumn>

@@ -862,6 +862,100 @@
       } ]
     }
   },
+  "GetActivityHistoryCivilPunchSell" : {
+    "name" : "GetActivityHistoryCivilPunchSell",
+    "description" : "Get ACH for a civil PunchSell activity",
+    "version" : "V2",
+    "queryString" : "SELECT csell.* \nFROM CivilSellPackage csell\nWHERE ActivityID = :ActivityID\n\nUNION\n\nSELECT csellr.fk_OrgActivityId, csellr.SellTestPackageNumber, csellr.SellNotes, csellr.ActivityType,  csellr.SellTimeInForm, csellr.Rev, csellr.TimeStamp\nFROM CivilSellPackageREV csellr\nWHERE csellr.fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
+    "countQueryString" : "select count(*) from (SELECT csell.* \nFROM CivilSellPackage csell\nWHERE ActivityID = :ActivityID\n\nUNION\n\nSELECT csellr.fk_OrgActivityId, csellr.SellTestPackageNumber, csellr.SellNotes, csellr.ActivityType,  csellr.SellTimeInForm, csellr.Rev, csellr.TimeStamp\nFROM CivilSellPackageREV csellr\nWHERE csellr.fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "ActivityID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "14",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.psabackoffice.job1111.models.query.GetActivityHistoryCivilPunchSellResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "ActivityID",
+        "fieldName" : "activityId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "SellTestPackageNumber",
+        "fieldName" : "sellTestPackageNumber",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "SellNotes",
+        "fieldName" : "sellNotes",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ActivityType",
+        "fieldName" : "activityType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Short",
+          "list" : false
+        }
+      }, {
+        "name" : "SellTimeInForm",
+        "fieldName" : "sellTimeInForm",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Short",
+          "list" : false
+        }
+      }, {
+        "name" : "Rev",
+        "fieldName" : "rev",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Short",
+          "list" : false
+        }
+      }, {
+        "name" : "TimeStamp",
+        "fieldName" : "timeStamp",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Timestamp",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "GetActivityHistoryEquipFA" : {
     "name" : "GetActivityHistoryEquipFA",
     "description" : "name",
@@ -956,428 +1050,6 @@
       }, {
         "name" : "FATimeInForm",
         "fieldName" : "fatimeInForm",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "Rev",
-        "fieldName" : "rev",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "TimeStamp",
-        "fieldName" : "timeStamp",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.sql.Timestamp",
-          "list" : false
-        }
-      } ]
-    }
-  },
-  "GetActivityHistoryPipeConnection" : {
-    "name" : "GetActivityHistoryPipeConnection",
-    "description" : "Get the change history for a given Pipe Connection ActivityID",
-    "version" : "V2",
-    "queryString" : "SELECT pc.* \nFROM PipeConnection pc\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT pcr.fk_OrgActivityId, pcr.ConnectionBidID, pcr.ConnectionSpool1, pcr.ConnectionSpool2, pcr.ConnectionDrawingNumber, pcr.ConnectionLineNumber, pcr.ConnectionSheetNumber, pcr.ConnectionSize, \npcr.ConnectionQuantity, pcr.ConnectionRework, pcr.ConnectionNotes, pcr.ActivityType, pcr.ConnectionTimeInForm, pcr.Rev, pcr.TimeStamp\nFROM PipeConnectionREV pcr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT pc.* \nFROM PipeConnection pc\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT pcr.fk_OrgActivityId, pcr.ConnectionBidID, pcr.ConnectionSpool1, pcr.ConnectionSpool2, pcr.ConnectionDrawingNumber, pcr.ConnectionLineNumber, pcr.ConnectionSheetNumber, pcr.ConnectionSize, \npcr.ConnectionQuantity, pcr.ConnectionRework, pcr.ConnectionNotes, pcr.ActivityType, pcr.ConnectionTimeInForm, pcr.Rev, pcr.TimeStamp\nFROM PipeConnectionREV pcr\nWHERE fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
-    "nativeSql" : true,
-    "fetchCount" : true,
-    "type" : "SELECT",
-    "parameters" : [ {
-      "name" : "ActivityID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "2689",
-      "required" : true
-    } ],
-    "request" : {
-      "wrapped" : false,
-      "typeRef" : null,
-      "method" : "GET"
-    },
-    "identifiers" : [ ],
-    "response" : {
-      "typeRef" : "com.psabackoffice.job1111.models.query.GetActivityHistoryPipeConnectionResponse",
-      "returns" : "CUSTOM",
-      "responseType" : "PAGINATED",
-      "properties" : [ {
-        "name" : "ActivityID",
-        "fieldName" : "activityId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "ConnectionBidID",
-        "fieldName" : "connectionBidId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "ConnectionSpool1",
-        "fieldName" : "connectionSpool1",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ConnectionSpool2",
-        "fieldName" : "connectionSpool2",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ConnectionDrawingNumber",
-        "fieldName" : "connectionDrawingNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ConnectionLineNumber",
-        "fieldName" : "connectionLineNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ConnectionSheetNumber",
-        "fieldName" : "connectionSheetNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ConnectionSize",
-        "fieldName" : "connectionSize",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Float",
-          "list" : false
-        }
-      }, {
-        "name" : "ConnectionQuantity",
-        "fieldName" : "connectionQuantity",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "ConnectionRework",
-        "fieldName" : "connectionRework",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "ConnectionNotes",
-        "fieldName" : "connectionNotes",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ActivityType",
-        "fieldName" : "activityType",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "ConnectionTimeInForm",
-        "fieldName" : "connectionTimeInForm",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "Rev",
-        "fieldName" : "rev",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "TimeStamp",
-        "fieldName" : "timeStamp",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.sql.Timestamp",
-          "list" : false
-        }
-      } ]
-    }
-  },
-  "GetActivityHistoryPipeErection" : {
-    "name" : "GetActivityHistoryPipeErection",
-    "description" : "No description is provided",
-    "version" : "V1",
-    "queryString" : "SELECT pe.* \nFROM PipeErection pe\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT per.fk_OrgActivityId, per.ErectionBidID, per.ErectionSpool1, per.ErectionLengthSpool1, per.ErectionSpool2, per.ErectionLengthSpool2, per.ErectionSpool3, per.ErectionLengthSpool3, per.ErectionSpool4, per.ErectionLengthSpool4, per.ErectionSpool5, per.ErectionLengthSpool5, per.ErectionSpool6, per.ErectionLengthSpool6,\nper.ErectionOnCords, per.ErectionDrawingNumber, per.ErectionLineNumber, per.ErectionSheetNumber, per.ErectionTimeInForm, per.ErectionPipeSize, per.ErectionRework, per.ErectionNotes, per.ActivityType, per.Rev, per.TimeStamp\nFROM PipeErectionREV per\nWHERE per.fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC",
-    "countQueryString" : "select count(*) from (SELECT pe.* \nFROM PipeErection pe\nWHERE ActivityID = :ActivityID\n\nUNION ALL\n\nSELECT per.fk_OrgActivityId, per.ErectionBidID, per.ErectionSpool1, per.ErectionLengthSpool1, per.ErectionSpool2, per.ErectionLengthSpool2, per.ErectionSpool3, per.ErectionLengthSpool3, per.ErectionSpool4, per.ErectionLengthSpool4, per.ErectionSpool5, per.ErectionLengthSpool5, per.ErectionSpool6, per.ErectionLengthSpool6,\nper.ErectionOnCords, per.ErectionDrawingNumber, per.ErectionLineNumber, per.ErectionSheetNumber, per.ErectionTimeInForm, per.ErectionPipeSize, per.ErectionRework, per.ErectionNotes, per.ActivityType, per.Rev, per.TimeStamp\nFROM PipeErectionREV per\nWHERE per.fk_OrgActivityId = :ActivityID\nORDER BY TimeStamp DESC) wmTempTable",
-    "nativeSql" : true,
-    "fetchCount" : true,
-    "type" : "SELECT",
-    "parameters" : [ {
-      "name" : "ActivityID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "2698",
-      "required" : true
-    } ],
-    "request" : {
-      "wrapped" : false,
-      "typeRef" : null,
-      "method" : "GET"
-    },
-    "identifiers" : [ ],
-    "response" : {
-      "typeRef" : "com.psabackoffice.job1111.models.query.GetActivityHistoryPipeErectionResponse",
-      "returns" : "CUSTOM",
-      "responseType" : "PAGINATED",
-      "properties" : [ {
-        "name" : "ActivityID",
-        "fieldName" : "activityId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionBidID",
-        "fieldName" : "erectionBidId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionSpool1",
-        "fieldName" : "erectionSpool1",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionLengthSpool1",
-        "fieldName" : "erectionLengthSpool1",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionSpool2",
-        "fieldName" : "erectionSpool2",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionLengthSpool2",
-        "fieldName" : "erectionLengthSpool2",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionSpool3",
-        "fieldName" : "erectionSpool3",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionLengthSpool3",
-        "fieldName" : "erectionLengthSpool3",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionSpool4",
-        "fieldName" : "erectionSpool4",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionLengthSpool4",
-        "fieldName" : "erectionLengthSpool4",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionSpool5",
-        "fieldName" : "erectionSpool5",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionLengthSpool5",
-        "fieldName" : "erectionLengthSpool5",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionSpool6",
-        "fieldName" : "erectionSpool6",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionLengthSpool6",
-        "fieldName" : "erectionLengthSpool6",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionOnCords",
-        "fieldName" : "erectionOnCords",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionDrawingNumber",
-        "fieldName" : "erectionDrawingNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionLineNumber",
-        "fieldName" : "erectionLineNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionSheetNumber",
-        "fieldName" : "erectionSheetNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionTimeInForm",
-        "fieldName" : "erectionTimeInForm",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Integer",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionPipeSize",
-        "fieldName" : "erectionPipeSize",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Float",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionRework",
-        "fieldName" : "erectionRework",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Short",
-          "list" : false
-        }
-      }, {
-        "name" : "ErectionNotes",
-        "fieldName" : "erectionNotes",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "ActivityType",
-        "fieldName" : "activityType",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",

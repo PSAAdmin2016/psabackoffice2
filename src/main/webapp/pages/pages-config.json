@@ -1,7 +1,16 @@
 [ {
   "name" : "ActivityHistory",
   "type" : "POPOVER",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "ActivityID",
+    "type" : "integer"
+  }, {
+    "name" : "Craft",
+    "type" : "string"
+  }, {
+    "name" : "ActivityTypeID",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "ActivityHistorySteel",
   "type" : "PARTIAL",

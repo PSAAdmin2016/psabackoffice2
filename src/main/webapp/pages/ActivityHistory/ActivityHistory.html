@@ -1,199 +1,103 @@
-<wm-partial data-ng-controller="ActivityHistoryPageController" type="popover" name="partial1"> 
-    <wm-dialogcontent name="dialogcontent1"> 
-        <wm-container name="container1" padding="1% unset unset 1%"> 
-            <wm-tabs transition="none" name="tabs1" padding="unset 1%"> 
-                <wm-tabpane name="tabpane1" heading="Change History" isdefaulttab="true" on-select="tabheader1Select($event, $scope)" title="Field Activity Change History"> 
-                    <wm-table dataset="bind:Variables.Job1111ExecuteGetActivityHistoryErection.dataSet" navigation="None" show="true" fontsize="10" name="gridErectionChangeLog" class="panel-default" spacing="condensed"> 
-                        <wm-table-column binding="ErectionSpool1" caption="Spool1" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="ErectionLengthSpool1" caption="Length Spool1" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="ErectionSpool2" caption="Spool2" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="ErectionLengthSpool2" caption="Length Spool2" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="ErectionSpool3" caption="Spool3" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="ErectionLengthSpool3" caption="Length Spool3" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="ErectionSpool4" caption="Spool4" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="ErectionLengthSpool4" caption="Length Spool4" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="ErectionSpool5" caption="Spool5" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="ErectionLengthSpool5" caption="Length Spool5" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="ErectionSpool6" caption="Spool6" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="ErectionLengthSpool6" caption="Length Spool6" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="ErectionLineNumber" caption="Line Number" type="string" width="100px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="ErectionDrawingNumber" caption="Drawing Number" type="string" width="100px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="ErectionSheetNumber" caption="Sheet" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="ErectionPipeSize" caption="Pipe Size" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="ErectionOnCords" caption="On Cords" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="ErectionRework" caption="Rework" type="string" widget-type="checkbox" width="70px" readonly="true" sortable="false" show="true"> 
-                            <wm-checkbox scopedatavalue="row['ErectionRework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox> 
-                        </wm-table-column> 
-                        <wm-table-column binding="ErectionNotes" caption="Notes" type="string" width="150px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="Rev" caption="Rev" type="string" width="70px" readonly="true" show="true"></wm-table-column> 
-                        <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" width="150px" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column> 
-                    </wm-table> 
-                    <wm-table dataset="bind:Variables.Job1111ExecuteGetActivityHistoryBoltup.dataSet" navigation="None" show="true" fontsize="10" name="gridBoltUpChangeLog" class="panel-default" spacing="condensed"> 
-                        <wm-table-column binding="BoltUpSpool1" caption="Spool1" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="BoltUpSpool2" caption="Spool2" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="BoltUpLineNumber" caption="Line Number" type="string" width="100px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="BoltUpDrawingNumber" caption="Drawing Number" type="string" width="100px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="BoltUpSheetNumber" caption="Sheet" type="string" width="50px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="BoltUpQuantity" caption="Quantity" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="BoltUpSize" caption="Size" type="string" width="60px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="BoltUpRework" caption="Rework" type="string" widget-type="checkbox" width="50px" readonly="true" sortable="false" show="true"> 
-                            <wm-checkbox scopedatavalue="row['BoltUpRework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox> 
-                        </wm-table-column> 
-                        <wm-table-column binding="BoltUpNotes" caption="Notes" type="string" width="150px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="Rev" caption="Rev" type="string" width="50px" readonly="true" show="true"></wm-table-column> 
-                        <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" width="150px" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column> 
-                    </wm-table> 
-                    <wm-table dataset="bind:Variables.Job1111ExecuteGetActivityHistoryWeld.dataSet" navigation="None" show="true" name="gridWeldChangeLog" class="panel-default" spacing="condensed"> 
-                        <wm-table-column binding="WeldSpool1" caption="Spool1" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldSpool2" caption="Spool2" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldLineNumber" caption="Line Number" type="string" width="100px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldDrawingNumber" caption="Drawing Number" type="string" width="100px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldSheetNumber" caption="Sheet" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldLineSpec" caption="Line Spec" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldNumber" caption="Number" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldStencil" caption="Stencil" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldSize" caption="Size" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldThickness" caption="Thickness" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldType" caption="Type" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldPosition" caption="Position" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldMaterial" caption="Material" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldProcedure" caption="Procedure" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldComplete" caption="Is Complete" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldPercentCompleted" caption="Percent Completed" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldShared" caption="Shared" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldRework" caption="Rework" type="string" widget-type="checkbox" width="70px" readonly="true" sortable="false" show="true"> 
-                            <wm-checkbox scopedatavalue="row['WeldRework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox> 
-                        </wm-table-column> 
-                        <wm-table-column binding="WeldNotes" caption="Notes" type="string" width="150px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="Rev" caption="Rev" type="string" width="70px" readonly="true" show="true"></wm-table-column> 
-                        <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" width="150px" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column> 
-                    </wm-table> 
-                    <wm-table dataset="bind:Variables.Job1111ExecuteGetActivityHistoryTrim.dataSet" navigation="None" show="true" name="gridTrimChangeLog" class="panel-default" spacing="condensed"> 
-                        <wm-table-column binding="TrimActivitySelect" caption="Trim Activity" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="TrimSize" caption="Size" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="TrimQuantity" caption="Quantity" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="TrimHandleType" caption="Handle Type" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="TrimInstrumentType" caption="Instrument Type" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="TrimLineNumber" caption="Line Number" type="string" width="100px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="TrimDrawingNumber" caption="Drawing" type="string" width="100px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="TrimSheetNumber" caption="Sheet" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="TrimRework" caption="Rework" type="string" widget-type="checkbox" width="70px" readonly="true" sortable="false" show="true"> 
-                            <wm-checkbox scopedatavalue="row['TrimRework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox> 
-                        </wm-table-column> 
-                        <wm-table-column binding="TrimNotes" caption="Notes" type="string" width="150px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="Rev" caption="Rev" type="string" width="70px" readonly="true" show="true"></wm-table-column> 
-                        <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" width="150px" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column> 
-                    </wm-table> 
-                    <wm-table dataset="bind:Variables.Job1111ExecuteGetActivityHistorySupport.dataSet" navigation="None" show="true" name="gridSupportChangeLog" class="panel-default" spacing="condensed"> 
-                        <wm-table-column binding="SupportType" caption="Support Type" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="SupportQuantity" caption="Quantity" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="SupportPartNumber" caption="Part Number" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="SupportLineNumber" caption="Line Number" type="string" width="100px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="SupportDrawingNumber" caption="Drawing Number" type="string" width="100px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="SupportSheetNumber" caption="Sheet Number" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="SupportComplete" caption="Completed" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="SupportShared" caption="Shared" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="SupportRework" caption="Rework" type="string" widget-type="checkbox" width="70px" readonly="true" sortable="false" show="true"> 
-                            <wm-checkbox scopedatavalue="row['SupportRework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox> 
-                        </wm-table-column> 
-                        <wm-table-column binding="SupportNotes" caption="Notes" type="string" width="150px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="Rev" caption="Rev" type="string" width="70px" readonly="true" show="true"></wm-table-column> 
-                        <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" width="150px" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column> 
-                    </wm-table> 
-                    <wm-table readonlygrid="true" dataset="bind:Variables.Job1111ExecuteGetActivityHistoryDemo.dataSet" navigation="None" show="true" name="gridDemoChangeLog" class="panel-default" spacing="condensed"> 
-                        <wm-table-column binding="DemoSize" caption="Size" type="string" readonly="true" pcdisplay="true" mobiledisplay="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="DemoQuantity" caption="Quantity" type="string" readonly="true" pcdisplay="true" mobiledisplay="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="DemoLineNumber" caption="Line Number" type="string" readonly="true" pcdisplay="true" mobiledisplay="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="DemoDrawingNumber" caption="Drawing Number" type="string" readonly="true" pcdisplay="true" mobiledisplay="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="DemoSheetNumber" caption="Sheet Number" type="string" readonly="true" pcdisplay="true" mobiledisplay="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="DemoNotes" caption="Notes" type="string" readonly="true" pcdisplay="true" mobiledisplay="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="Rev" caption="Rev" type="string" readonly="true" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
-                        <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" pcdisplay="true" mobiledisplay="true" show="true"></wm-table-column> 
-                    </wm-table> 
-                    <wm-table dataset="bind:Variables.Job1111ExecuteGetActivityHistoryMisc.dataSet" navigation="None" show="true" name="gridMiscChangeLog" class="panel-default" spacing="condensed"> 
-                        <wm-table-column binding="MiscQuantity" caption="Quantity" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="MiscLineNumber" caption="Line Number" type="string" width="100px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="MiscDrawingNumber" caption="Drawing Number" type="string" width="100px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="MiscSheetNumber" caption="Sheet Number" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="MiscRework" caption="Rework" type="string" widget-type="checkbox" width="70px" readonly="true" sortable="false" show="true"> 
-                            <wm-checkbox scopedatavalue="row['MiscRework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox> 
-                        </wm-table-column> 
-                        <wm-table-column binding="MiscNotes" caption="Notes" type="string" width="150px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="Rev" caption="Rev" type="string" width="70px" readonly="true" show="true"></wm-table-column> 
-                        <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" width="150px" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column> 
-                    </wm-table> 
-                    <wm-table dataset="bind:Variables.Job1111ExecuteGetActivityHistoryWeld.dataSet" navigation="None" show="true" class="panel-default" name="gridCutChangeLog" spacing="condensed"> 
-                        <wm-table-column binding="WeldLineNumber" caption="Line Number" type="string" width="100px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldDrawingNumber" caption="Drawing Number" type="string" width="100px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldSheetNumber" caption="Sheet" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldSize" caption="Size" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldThickness" caption="Thickness" type="string" width="70px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="WeldRework" caption="Rework" type="string" widget-type="checkbox" width="70px" readonly="true" sortable="false" show="true"> 
-                            <wm-checkbox scopedatavalue="row['WeldRework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox> 
-                        </wm-table-column> 
-                        <wm-table-column binding="WeldNotes" caption="Notes" type="string" width="150px" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="Rev" caption="Rev" type="string" width="70px" readonly="true" show="true"></wm-table-column> 
-                        <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" width="150px" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column> 
-                    </wm-table> 
-                    <wm-table title="" dataset="bind:Variables.Job1111ExecuteGetActivityHistoryTesting.dataSet" navigation="None" name="gridTestingChangeLog" spacing="condensed"> 
-                        <wm-table-column binding="TestingTestPackageNumber" caption="Test Package Number" type="string" readonly="true" show="true"></wm-table-column> 
-                        <wm-table-column binding="TestingRework" caption="Rework" type="string" widget-type="checkbox" readonly="true" show="true"> 
-                            <wm-checkbox scopedatavalue="row['TestingRework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox> 
-                        </wm-table-column> 
-                        <wm-table-column binding="TestingNotes" caption="Notes" type="string" readonly="true" show="true"></wm-table-column> 
-                        <wm-table-column binding="Rev" caption="Rev" type="string" readonly="true" show="true"></wm-table-column> 
-                        <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column> 
-                    </wm-table> 
-                    <wm-table dataset="bind:Variables.serviceGetACHCivilFA.dataSet" navigation="None" show="true" class="panel-default" name="gridCivilFAChangeLog" spacing="condensed"> 
-                        <wm-table-column binding="FAQuantity" caption="Quantity" type="string" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="FAPercentComplete" caption="Percent Complete" type="string" readonly="true" formatpattern="None" suffix="%" sortable="false" show="true">
-                             {{row.FAPercentComplete * 100 + '%'}} 
-                        </wm-table-column> 
-                        <wm-table-column binding="FAFoundation" caption="Foundation" type="string" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="FADescription" caption="Description" type="string" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="FADrawingNumber" caption="Drawing Number" type="string" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="FADetailDrawingNumber" caption="Detail Drawing Number" type="string" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="FARework" caption="Rework" type="string" widget-type="checkbox" width="5%" readonly="true" sortable="false" show="true"> 
-                            <wm-checkbox scopedatavalue="row['FARework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox> 
-                        </wm-table-column> 
-                        <wm-table-column binding="FANotes" caption="Notes" type="string" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="Rev" caption="Rev" type="string" width="70px" readonly="true" show="true"></wm-table-column> 
-                        <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" width="150px" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column> 
-                    </wm-table> 
-                    <wm-table dataset="bind:Variables.serviceGetACHCivilMisc.dataSet" navigation="None" show="true" class="panel-default" spacing="condensed" name="gridCivilMiscChangeLog"> 
-                        <wm-table-column binding="MiscPercentComplete" caption="Percent Complete" type="string" readonly="true" sortable="false" show="true">
-                             {{row.MiscPercentComplete * 100 + '%' }} 
-                        </wm-table-column> 
-                        <wm-table-column binding="MiscFoundation" caption="Foundation" type="string" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="MiscDrawingNumber" caption="Drawing Number" type="string" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="MiscDetailDrawingNumber" caption="Detail Drawing Number" type="string" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="MiscRework" caption="Rework" type="string" widget-type="checkbox" width="5%" readonly="true" sortable="false" show="true"> 
-                            <wm-checkbox scopedatavalue="row['MiscRework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox> 
-                        </wm-table-column> 
-                        <wm-table-column binding="MiscNotes" caption="Notes" type="string" readonly="true" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="Rev" caption="Rev" type="string" width="70px" readonly="true" show="true"></wm-table-column> 
-                        <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" width="150px" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column> 
-                    </wm-table> 
-                    <wm-table dataset="bind:Variables.serviceGetACHEquipFA.dataSet" navigation="None" show="true" class="panel-default" spacing="condensed" name="gridEquipFAChangeLog"> 
-                        <wm-table-column binding="faquantity" caption="Quantity" type="string" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                        <wm-table-column binding="fapercentComplete" caption="Percent Complete" type="string" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                        <wm-table-column binding="fatagNumber" caption="Tag #" type="string" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                        <wm-table-column binding="faactivitySelect" caption="Activity" type="string" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                        <wm-table-column binding="farework" caption="Rework" type="string" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                        <wm-table-column binding="fanotes" caption="Notes" type="string" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                        <wm-table-column binding="rev" caption="Rev" type="string" width="70px" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                        <wm-table-column binding="timeStamp" caption="Time Stamp" type="string" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-table-column> 
-                    </wm-table> 
-                </wm-tabpane> 
-                <wm-tabpane name="tabpane2" heading="Status History" isdefaulttab="false" title="Field Activity Status History" on-select="tabpane2Select($event, $scope)"> 
-                    <wm-table navigation="Classic" name="gridStatusChangeLog" class="panel-default" dataset="bind:Variables.GetActivityStatusHistory.dataSet" spacing="condensed"> 
-                        <wm-table-column binding="ActivityID" caption="Field Activity ID" type="string" readonly="true" edit-widget-type="text" sortable="false" show="true"></wm-table-column> 
-                        <wm-table-column binding="Status" caption="Status" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
-                        <wm-table-column binding="LastModifiedBy" caption="Last Modified By" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
-                        <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" edit-widget-type="text" show="true"></wm-table-column> 
-                    </wm-table> 
-                </wm-tabpane> 
-            </wm-tabs> 
-        </wm-container> 
-    </wm-dialogcontent> 
+<wm-partial data-ng-controller="ActivityHistoryPageController" type="popover" name="partial1">
+    <wm-dialogcontent name="dialogcontent1">
+        <wm-container name="container1" padding="1% unset unset 1%">
+            <wm-tabs transition="none" name="tabs1" padding="unset 1%">
+                <wm-tabpane name="tabpane1" heading="Change History" isdefaulttab="true" title="Field Activity Change History">
+                    <wm-table dataset="bind:Variables.serviceGetACHPipeFA.dataSet" navigation="None" show="bind:getShow('gridPipeFAChangeLog');" fontsize="10" name="gridPipeFAChangeLog" class="panel-default" spacing="condensed" deferload="true" enablesort="false">
+                        <wm-table-column binding="faquantity" caption="Quantity" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="fapercentCompleted" caption="Percent Completed" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="fanotes" caption="Notes" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="farework" caption="Rework" widget-type="checkbox" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true">
+                            <wm-checkbox scopedatavalue="row['farework']" checkedvalue="1" uncheckedvalue="0" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                        </wm-table-column>
+                        <wm-table-column binding="rev" caption="Rev" edit-widget-type="number" type="integer" show="true" readonly="false"></wm-table-column>
+                        <wm-table-column binding="timeStamp" caption="Time Stamp" edit-widget-type="timestamp" type="timestamp" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true" readonly="false"></wm-table-column>
+                    </wm-table>
+                    <wm-table dataset="bind:Variables.serviceGetACHPipeWeld.dataSet" navigation="None" show="bind:getShow('gridPipeWeldChangeLog');" name="gridPipeWeldChangeLog" class="panel-default" spacing="condensed" deferload="true" enablesort="false">
+                        <wm-table-column binding="WeldSpool1" caption="Spool1" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="WeldSpool2" caption="Spool2" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="WeldLineNumber" caption="Line Number" width="100px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="WeldDrawingNumber" caption="Drawing Number" width="100px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="WeldSheetNumber" caption="Sheet" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="WeldLineSpec" caption="Line Spec" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="WeldNumber" caption="Number" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="WeldStencil" caption="Stencil" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="WeldSize" caption="Size" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="WeldThickness" caption="Thickness" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="WeldType" caption="Type" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="WeldPosition" caption="Position" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="WeldMaterial" caption="Material" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="WeldProcedure" caption="Procedure" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="WeldComplete" caption="Is Complete" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="WeldPercentCompleted" caption="Percent Completed" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="WeldShared" caption="Shared" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="WeldRework" caption="Rework" widget-type="checkbox" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true">
+                            <wm-checkbox scopedatavalue="row['WeldRework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox>
+                        </wm-table-column>
+                        <wm-table-column binding="WeldNotes" caption="Notes" width="150px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="Rev" caption="Rev" width="70px" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                        <wm-table-column binding="TimeStamp" caption="Time Stamp" width="150px" edit-widget-type="text" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column>
+                    </wm-table>
+                    <wm-table dataset="bind:Variables.serviceGetACHPipeMisc.dataSet" navigation="None" show="bind:getShow('gridPipeMiscChangeLog');" name="gridPipeMiscChangeLog" class="panel-default" spacing="condensed" deferload="true" enablesort="false">
+                        <wm-table-column binding="MiscQuantity" caption="Quantity" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="MiscLineNumber" caption="Line Number" width="100px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="MiscDrawingNumber" caption="Drawing Number" width="100px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="MiscSheetNumber" caption="Sheet Number" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="MiscRework" caption="Rework" widget-type="checkbox" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true">
+                            <wm-checkbox scopedatavalue="row['MiscRework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox>
+                        </wm-table-column>
+                        <wm-table-column binding="MiscNotes" caption="Notes" width="150px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="Rev" caption="Rev" width="70px" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                        <wm-table-column binding="TimeStamp" caption="Time Stamp" width="150px" edit-widget-type="text" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column>
+                    </wm-table>
+                    <wm-table title="" dataset="bind:Variables.serviceGetACHPipeTesting.dataSet" navigation="None" name="gridPipePuchSellChangeLog" spacing="condensed" show="bind:getShow('gridPuchSellChangeLog');" deferload="true" enablesort="false">
+                        <wm-table-column binding="TestingTestPackageNumber" caption="Test Package Number" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                        <wm-table-column binding="TestingRework" caption="Rework" widget-type="checkbox" edit-widget-type="text" type="string" readonly="true" show="true">
+                            <wm-checkbox scopedatavalue="row['TestingRework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox>
+                        </wm-table-column>
+                        <wm-table-column binding="TestingNotes" caption="Notes" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                        <wm-table-column binding="Rev" caption="Rev" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                        <wm-table-column binding="TimeStamp" caption="Time Stamp" edit-widget-type="text" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column>
+                    </wm-table>
+                    <wm-table dataset="bind:Variables.serviceGetACHCivilFA.dataSet" navigation="None" show="bind:getShow('gridCivilFAChangeLog');" class="panel-default" name="gridCivilFAChangeLog" spacing="condensed" deferload="true" enablesort="false">
+                        <wm-table-column binding="FAQuantity" caption="Quantity" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="FAPercentComplete" caption="Percent Complete" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true">
+                            {{row.FAPercentComplete * 100 + '%'}}
+                        </wm-table-column>
+                        <wm-table-column binding="FARework" caption="Rework" widget-type="checkbox" width="5%" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true">
+                            <wm-checkbox scopedatavalue="row['FARework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox>
+                        </wm-table-column>
+                        <wm-table-column binding="FANotes" caption="Notes" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="Rev" caption="Rev" width="70px" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                        <wm-table-column binding="TimeStamp" caption="Time Stamp" width="150px" edit-widget-type="text" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column>
+                    </wm-table>
+                    <wm-table dataset="bind:Variables.serviceGetACHCivilPunchSell.dataSet" navigation="None" show="bind:getShow('gridCivilPuchSellChangeLog');" class="panel-default" spacing="condensed" name="gridCivilPuchSellChangeLog" deferload="true"
+                        enablesort="false">
+                        <wm-table-column binding="sellTestPackageNumber" caption="Test Package Number" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                        <wm-table-column binding="sellNotes" caption="Notes" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                        <wm-table-column binding="rev" caption="Rev" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                        <wm-table-column binding="timeStamp" caption="Time Stamp" edit-widget-type="text" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column>
+                    </wm-table>
+                    <wm-table dataset="bind:Variables.serviceGetACHEquipFA.dataSet" navigation="None" show="bind:getShow('gridEquipFAChangeLog');" class="panel-default" spacing="condensed" name="gridEquipFAChangeLog" deferload="true" enablesort="false">
+                        <wm-table-column binding="faquantity" caption="Quantity" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="fapercentComplete" caption="Percent Complete" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="fatagNumber" caption="Tag #" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="faactivitySelect" caption="Activity" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="farework" caption="Rework" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="fanotes" caption="Notes" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="rev" caption="Rev" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="timeStamp" caption="Time Stamp" edit-widget-type="text" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" sortable="false" show="true"></wm-table-column>
+                    </wm-table>
+                </wm-tabpane>
+                <wm-tabpane name="tabpane2" heading="Status History" isdefaulttab="false" title="Field Activity Status History">
+                    <wm-table navigation="Classic" name="gridStatusChangeLog" class="panel-default" dataset="bind:Variables.GetActivityStatusHistory.dataSet" spacing="condensed">
+                        <wm-table-column binding="ActivityID" caption="Field Activity ID" type="string" readonly="true" edit-widget-type="text" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="Status" caption="Status" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column>
+                        <wm-table-column binding="LastModifiedBy" caption="Last Modified By" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column>
+                        <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" edit-widget-type="text" show="true"></wm-table-column>
+                    </wm-table>
+                </wm-tabpane>
+            </wm-tabs>
+        </wm-container>
+    </wm-dialogcontent>
 </wm-partial>
