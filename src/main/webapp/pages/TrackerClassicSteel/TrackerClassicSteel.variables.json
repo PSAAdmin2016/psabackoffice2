@@ -1233,7 +1233,7 @@
       "value" : "bind:Widgets.gridClassicTrackerSteel.selecteditem.bidId",
       "type" : "integer"
     }, {
-      "target" : "SubID",
+      "target" : "SubmissionID",
       "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.SubmissionID",
       "type" : "integer"
     } ],
