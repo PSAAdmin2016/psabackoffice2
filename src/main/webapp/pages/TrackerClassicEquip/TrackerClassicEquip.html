@@ -342,7 +342,6 @@ Variables.loggedInUser.dataSet.roles != 'Millwright-Superintendent Non-Staff'" r
                                                     height="auto" contentsource="partial" content="ActivityHistory" on-show="popoverActivityHistoryShow($event, $scope)" on-hide="popoverActivityHistoryHide($event, $scope)" borderstyle="solid" bordercolor="#bfd8ef"
                                                     borderwidth="1px" hint="View the history of the selected item." fontsize="12" margin="unset 2%">
                                                     <wm-param name="ActivityID" value="bind:Widgets.livelistBidWorkHistory.currentItem.activityId" type="integer"></wm-param>
-                                                    <wm-param name="Craft" value="Equip" type="string"></wm-param>
                                                     <wm-param name="ActivityTypeID" value="bind:Widgets.livelistBidWorkHistory.currentItem.activityTypeId" type="integer"></wm-param>
                                                 </wm-popover>
                                                 <wm-button class="btn-sm" caption="Override" iconclass="glyphicon glyphicon-alert" backgroundcolor="#ff6500" on-click="Widgets.dialogQuantityOverride.open();buttonOverrideClick($event, $scope, item, currentItemWidgets)"

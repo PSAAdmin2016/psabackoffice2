@@ -80,10 +80,10 @@
                     </wm-table>
                     <wm-table dataset="bind:Variables.serviceGetACHEquipFA.dataSet" navigation="None" show="bind:getShow('gridEquipFAChangeLog');" class="panel-default" spacing="condensed" name="gridEquipFAChangeLog" deferload="true" enablesort="false">
                         <wm-table-column binding="faquantity" caption="Quantity" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
-                        <wm-table-column binding="fapercentComplete" caption="Percent Complete" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
-                        <wm-table-column binding="fatagNumber" caption="Tag #" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
-                        <wm-table-column binding="faactivitySelect" caption="Activity" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
-                        <wm-table-column binding="farework" caption="Rework" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
+                        <wm-table-column binding="fapercentCompleted" caption="Percent Completed" edit-widget-type="number" type="float" readonly="true" show="true"></wm-table-column>
+                        <wm-table-column binding="farework" caption="Rework" widget-type="checkbox" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true">
+                            <wm-checkbox scopedatavalue="row['farework']" checkedvalue="1" uncheckedvalue="0" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                        </wm-table-column>
                         <wm-table-column binding="fanotes" caption="Notes" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
                         <wm-table-column binding="rev" caption="Rev" width="70px" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
                         <wm-table-column binding="timeStamp" caption="Time Stamp" edit-widget-type="text" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" sortable="false" show="true"></wm-table-column>
