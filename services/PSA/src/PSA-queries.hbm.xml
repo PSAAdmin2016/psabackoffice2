@@ -314,22 +314,6 @@ VALUES ( COALESCE((SELECT ID FROM PSA.tblUserPSA WHERE Email LIKE :EnteredUserna
     <query-param name="EnteredUsername" type="java.lang.String"/>
     </sql-query>
 
-    <sql-query name="GetRefTemperatures">
-        <![CDATA[
-        SELECT * 
-FROM PSA.REF_Weather
-WHERE Label = 'Temperature'
-        ]]>
-    </sql-query>
-
-    <sql-query name="GetRefTemperatures__count">
-        <![CDATA[
-        select count(*) from (SELECT * 
-FROM PSA.REF_Weather
-WHERE Label = 'Temperature') wmTempTable
-        ]]>
-    </sql-query>
-
     <sql-query name="GetChatAllLatestTimeStamp">
         <![CDATA[
         SELECT MAX(TimeStamp) AS LatestTimeStamp
@@ -361,22 +345,6 @@ VALUES (:UserID, :FeedbackType, :FBSubType, :ErrorSeverity)
     <query-param name="ErrorSeverity" type="java.lang.Integer"/>
     </sql-query>
 
-    <sql-query name="GetRefWind">
-        <![CDATA[
-        SELECT * 
-FROM PSA.REF_Weather
-WHERE Label = 'Wind'
-        ]]>
-    </sql-query>
-
-    <sql-query name="GetRefWind__count">
-        <![CDATA[
-        select count(*) from (SELECT * 
-FROM PSA.REF_Weather
-WHERE Label = 'Wind') wmTempTable
-        ]]>
-    </sql-query>
-
     <sql-query name="GetDefaultJobNumber">
         <![CDATA[
         SELECT u.fk_DefaultJobNumberId
@@ -393,22 +361,6 @@ FROM tblUserPSA u
 WHERE ID = :UserID) wmTempTable
         ]]>
     <query-param name="UserID" type="java.lang.Integer"/>
-    </sql-query>
-
-    <sql-query name="GetRefPrecipitation">
-        <![CDATA[
-        SELECT * 
-FROM PSA.REF_Weather
-WHERE Label = 'Precipitation'
-        ]]>
-    </sql-query>
-
-    <sql-query name="GetRefPrecipitation__count">
-        <![CDATA[
-        select count(*) from (SELECT * 
-FROM PSA.REF_Weather
-WHERE Label = 'Precipitation') wmTempTable
-        ]]>
     </sql-query>
 
     <sql-query name="UpdateUserPSA">

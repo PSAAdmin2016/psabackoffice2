@@ -24,9 +24,13 @@ public class GetBidWorkHistoryCivilResponse implements Serializable {
     @ColumnAlias("ActivityID")
     private Integer activityId;
 
-    @JsonProperty("ActivityType")
-    @ColumnAlias("ActivityType")
-    private String activityType;
+    @JsonProperty("ActivityTypeName")
+    @ColumnAlias("ActivityTypeName")
+    private String activityTypeName;
+
+    @JsonProperty("ActivityTypeID")
+    @ColumnAlias("ActivityTypeID")
+    private Short activityTypeId;
 
     @JsonProperty("Foreman")
     @ColumnAlias("Foreman")
@@ -76,12 +80,20 @@ public class GetBidWorkHistoryCivilResponse implements Serializable {
         this.activityId = activityId;
     }
 
-    public String getActivityType() {
-        return this.activityType;
+    public String getActivityTypeName() {
+        return this.activityTypeName;
     }
 
-    public void setActivityType(String activityType) {
-        this.activityType = activityType;
+    public void setActivityTypeName(String activityTypeName) {
+        this.activityTypeName = activityTypeName;
+    }
+
+    public Short getActivityTypeId() {
+        return this.activityTypeId;
+    }
+
+    public void setActivityTypeId(Short activityTypeId) {
+        this.activityTypeId = activityTypeId;
     }
 
     public String getForeman() {
@@ -155,7 +167,8 @@ public class GetBidWorkHistoryCivilResponse implements Serializable {
         final GetBidWorkHistoryCivilResponse getBidWorkHistoryCivilResponse = (GetBidWorkHistoryCivilResponse) o;
         return Objects.equals(getSubmissionId(), getBidWorkHistoryCivilResponse.getSubmissionId()) &&
                 Objects.equals(getActivityId(), getBidWorkHistoryCivilResponse.getActivityId()) &&
-                Objects.equals(getActivityType(), getBidWorkHistoryCivilResponse.getActivityType()) &&
+                Objects.equals(getActivityTypeName(), getBidWorkHistoryCivilResponse.getActivityTypeName()) &&
+                Objects.equals(getActivityTypeId(), getBidWorkHistoryCivilResponse.getActivityTypeId()) &&
                 Objects.equals(getForeman(), getBidWorkHistoryCivilResponse.getForeman()) &&
                 Objects.equals(getSupervisor(), getBidWorkHistoryCivilResponse.getSupervisor()) &&
                 Objects.equals(getCompleteTime(), getBidWorkHistoryCivilResponse.getCompleteTime()) &&
@@ -170,7 +183,8 @@ public class GetBidWorkHistoryCivilResponse implements Serializable {
     public int hashCode() {
         return Objects.hash(getSubmissionId(),
                 getActivityId(),
-                getActivityType(),
+                getActivityTypeName(),
+                getActivityTypeId(),
                 getForeman(),
                 getSupervisor(),
                 getCompleteTime(),

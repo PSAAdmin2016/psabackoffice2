@@ -1059,15 +1059,5 @@
     "type" : "boolean",
     "isList" : false,
     "saveInPhonegap" : false
-  },
-  "timerDelayGetActivityHistory" : {
-    "_id" : "wm-timerDelayGetActivityHistory-wm.TimerVariable-1490734659871",
-    "name" : "timerDelayGetActivityHistory",
-    "owner" : "Page",
-    "category" : "wm.TimerVariable",
-    "autoStart" : false,
-    "repeating" : false,
-    "delay" : 50,
-    "onTimerFire" : "Variables.serviceGetACHEquipFA.invoke()"
   }
 }

@@ -22,6 +22,9 @@ import com.psabackoffice.job1111.models.query.*;
 public interface Job1111QueryExecutorService_V1 {
 
     @Deprecated
+    public Page<Object> executeGetQuantitiesTestPackagePipe(Pageable pageable, String testPackage);
+
+    @Deprecated
     public Page<Object> executeGetBidWorkHistorySteel(Pageable pageable, Integer bidId);
 
     @Deprecated
@@ -29,6 +32,24 @@ public interface Job1111QueryExecutorService_V1 {
 
     @Deprecated
     public Page<Object> executeGetSettingPipeHydroPercent(Pageable pageable);
+
+    @Deprecated
+    public int executeUpdateSettingPipeHydroPercent(BigDecimal value1);
+
+    @Deprecated
+    public Page<Object> executeGetReportDPRSteelCondensed(Pageable pageable, String pm, String constM, String siteM, String areaM, String super_, String gf, String foreman, Date startDate, Date endDate);
+
+    @Deprecated
+    public Page<Object> executeGetActivitiesPendingApproval(Pageable pageable, Integer userId, String craft, String foremanName);
+
+    @Deprecated
+    public Page<Object> executeGetSettingPipeCTOPercent(Pageable pageable);
+
+    @Deprecated
+    public Page<Object> executeGetActivityHistoryCivilFA(Pageable pageable, Integer activityId);
+
+    @Deprecated
+    public int executeUpdateSettingSteelImp(BigDecimal value1);
 
     @Deprecated
     public Page<Object> executeGetActivityHistoryPipeWeld(Pageable pageable, Integer activityId);
@@ -40,6 +61,9 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetQuantitiesTestPackageCivil(Pageable pageable, String testPackage);
 
     @Deprecated
+    public Page<Object> executeGetSettingCivilPunch(Pageable pageable);
+
+    @Deprecated
     public Page<Object> executeGetSettingSteelImpPercent(Pageable pageable);
 
     @Deprecated
@@ -49,7 +73,13 @@ public interface Job1111QueryExecutorService_V1 {
     public int executeUpdatePipeMiscQuantity(BigDecimal quantity, Integer activityId);
 
     @Deprecated
+    public Page<Object> executeGetReportDPRPipe(Pageable pageable, String foremanId, String superId, String managerId, Date startDate, Date endDate);
+
+    @Deprecated
     public Page<Object> executeGetBidWorkHistoryCivil(Pageable pageable, Integer bidId);
+
+    @Deprecated
+    public int executeUpdateCivilFA(Integer bidId, Integer quantity, BigDecimal percent, Integer rework, String notes, Integer activityId);
 
     @Deprecated
     public Page<Object> executeGetDrawingByTestPackageSteel(Pageable pageable, String testPackage);
@@ -58,10 +88,22 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetSettingSteelSellPercent(Pageable pageable);
 
     @Deprecated
+    public Page<Object> executeGetBidWorkHistorySteelExpanded(Pageable pageable, Integer bidId, Integer submissionId);
+
+    @Deprecated
+    public Page<Object> executeGetSuperRecentActivites(Pageable pageable, Integer userId, Integer selectedSuper);
+
+    @Deprecated
     public int executeUpdatePipeMisc(String drawingNumber, String lineNumber, String sheetNumber, BigDecimal quantity, Integer rework, String notes, Integer activityId);
 
     @Deprecated
+    public int executeUpdateSettingPipeMechPercent(BigDecimal value1);
+
+    @Deprecated
     public int executeCreateSASNote(Integer activityId, Integer createdBy, String note);
+
+    @Deprecated
+    public Page<Object> executeGetBidActivityMatchesCivil(Pageable pageable, Integer bidId);
 
     @Deprecated
     public Page<Object> executeGetReportDPRSteelDetailed(Pageable pageable, String pm, String constM, String siteM, String areaM, String super_, String gf, String foreman, Date startDate, Date endDate);
@@ -70,31 +112,37 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetBidActivityQuantitiesSteel(Pageable pageable, Integer bidId);
 
     @Deprecated
+    public int executeUpdateSettingPipeTestingPercent(BigDecimal value1);
+
+    @Deprecated
     public Page<Object> executeGetSettingPipeTestingPercent(Pageable pageable);
 
     @Deprecated
     public Page<Object> executeGetNotesByActivityID(Pageable pageable, List<Integer> activityId);
 
     @Deprecated
-    public int executeUpdatePipeBoltupQuantity(Integer quantity, Integer activityId);
+    public int executeUpdateCivilSellPackage(String testPackageNumber, String notes, Integer activityId);
+
+    @Deprecated
+    public Page<Object> executeGetSettingPipeMechPercent(Pageable pageable);
 
     @Deprecated
     public Page<Object> executeGetPSRecentActivities(Pageable pageable, Integer userId);
 
     @Deprecated
-    public int executeUpdatePipeErection(Integer bidId, String spool1, Integer spool1length, String spool2, Integer spool2length, String spool3, Integer spool3length, String spool4, Integer spool4length, String spool5, Integer spool5length, String spool6, Integer spool6length, Byte onCords, String drawingNumber, String lineNumber, String sheetNumber, BigDecimal size, Integer rework, String notes, Integer activityId);
+    public int executeUpdateSettingPipeRFTPercent(BigDecimal value1);
 
     @Deprecated
-    public int executeUpdateSettingPipeRFTPercent(BigDecimal value1);
+    public Page<Object> executeGetSettingSteelBoltoutPercent(Pageable pageable);
 
     @Deprecated
     public Page<Object> executeGetSettingCivilWork(Pageable pageable);
 
     @Deprecated
-    public int executeUpdatePipeErectionQuantity(Integer spool1length, Integer activityId);
+    public int executeUpdatePipeWeldQuantity(BigDecimal percentCompleted, Integer activityId);
 
     @Deprecated
-    public int executeUpdatePipeWeldQuantity(BigDecimal percentCompleted, Integer activityId);
+    public Page<Object> executeGetDrawingsByTestPackagePipe(Pageable pageable, String testPackage);
 
     @Deprecated
     public Page<Object> executeGetActivityHistorySteelMisc(Pageable pageable, Integer activityId);
@@ -106,19 +154,40 @@ public interface Job1111QueryExecutorService_V1 {
     public Page<Object> executeGetBidActivityMatchesByTestPackageCivil(Pageable pageable, String testPackage);
 
     @Deprecated
+    public Page<Object> executeGetSettingSteelShakePercent(Pageable pageable);
+
+    @Deprecated
+    public Page<Object> executeGetBidActivityMatchesByTestPackageSteel(Pageable pageable, String testPackage);
+
+    @Deprecated
     public Page<Object> executeGetBidActivityQuantitiesPipe(Pageable pageable, Integer bidId);
 
     @Deprecated
     public Page<Object> executeGetSettingSteelErectPercent(Pageable pageable);
 
     @Deprecated
+    public Page<Object> executeGetBidActivityMatchesByTestPackagePipe(Pageable pageable, String testPackage);
+
+    @Deprecated
     public int executeUpdateSteelMiscQuantity(BigDecimal percentCompleted, Integer activityId);
+
+    @Deprecated
+    public Page<Object> executeGetBidWorkHistoryPipe(Pageable pageable, Integer bidId);
 
     @Deprecated
     public int executeUpdateSettingCivilPunch(BigDecimal value1);
 
     @Deprecated
+    public int executeUpdateSteelDemoQuantity(BigDecimal percentCompleted, Integer activityId);
+
+    @Deprecated
     public Page<Object> executeGetActivityHistoryStatus(Pageable pageable, Integer activityId);
+
+    @Deprecated
+    public Page<Object> executeGetActivityHistoryPipeTesting(Pageable pageable, Integer activityId);
+
+    @Deprecated
+    public int executeUpdatePipeTesting(String testPackageNumber, Integer rework, String notes, Integer activityId);
 
     @Deprecated
     public Page<Object> executeGetActivityHistoryPipeMisc(Pageable pageable, Integer activityId);
@@ -142,6 +211,9 @@ public interface Job1111QueryExecutorService_V1 {
     public int executeUpdateSettingCivilWork(BigDecimal value1);
 
     @Deprecated
+    public Page<Object> executeGetDrawingByTestPackageCivil(Pageable pageable, String testPackage);
+
+    @Deprecated
     public Page<Object> executeGetReportDWRByDate(Pageable pageable, Date beginDate, Date endDate);
 
     @Deprecated
@@ -151,106 +223,19 @@ public interface Job1111QueryExecutorService_V1 {
     public int executeUpdateSettingSteelSell(BigDecimal value1);
 
     @Deprecated
-    public int executeUpdateSettingSteelShake(BigDecimal value1);
-
-    @Deprecated
-    public int executeUpdateSettingSteelErect(BigDecimal value1);
-
-    @Deprecated
-    public Page<Object> executeGetQuantitiesTestPackagePipe(Pageable pageable, String testPackage);
-
-    @Deprecated
-    public int executeUpdateSettingPipeHydroPercent(BigDecimal value1);
-
-    @Deprecated
-    public Page<Object> executeGetReportDPRSteelCondensed(Pageable pageable, String pm, String constM, String siteM, String areaM, String super_, String gf, String foreman, Date startDate, Date endDate);
-
-    @Deprecated
-    public Page<Object> executeGetActivitiesPendingApproval(Pageable pageable, Integer userId, String craft, String foremanName);
-
-    @Deprecated
-    public Page<Object> executeGetSettingPipeCTOPercent(Pageable pageable);
-
-    @Deprecated
-    public Page<Object> executeGetActivityHistoryCivilFA(Pageable pageable, Integer activityId);
-
-    @Deprecated
-    public int executeUpdateSettingSteelImp(BigDecimal value1);
-
-    @Deprecated
-    public Page<Object> executeGetSettingCivilPunch(Pageable pageable);
-
-    @Deprecated
-    public Page<Object> executeGetReportDPRPipe(Pageable pageable, String foremanId, String superId, String managerId, Date startDate, Date endDate);
-
-    @Deprecated
-    public int executeUpdatePipeBoltUp(Integer bidId, String spool1, String spool2, String drawingNumber, String lineNumber, String sheetNumber, BigDecimal size, Integer quantity, Integer rework, String notes, Integer activityId);
-
-    @Deprecated
-    public int executeUpdateCivilFA(Integer bidId, Integer quantity, BigDecimal percent, Integer rework, String notes, Integer activityId);
-
-    @Deprecated
-    public Page<Object> executeGetBidWorkHistorySteelExpanded(Pageable pageable, Integer bidId, Integer submissionId);
-
-    @Deprecated
-    public Page<Object> executeGetSuperRecentActivites(Pageable pageable, Integer userId, Integer selectedSuper);
-
-    @Deprecated
-    public int executeUpdateSettingPipeMechPercent(BigDecimal value1);
-
-    @Deprecated
-    public Page<Object> executeGetBidActivityMatchesCivil(Pageable pageable, Integer bidId);
-
-    @Deprecated
-    public int executeUpdateCivilFAQuantity(Integer quantity, BigDecimal percent, Integer activityId);
-
-    @Deprecated
-    public int executeUpdateSettingPipeTestingPercent(BigDecimal value1);
-
-    @Deprecated
-    public int executeUpdateCivilSellPackage(String testPackageNumber, String notes, Integer activityId);
-
-    @Deprecated
-    public Page<Object> executeGetSettingPipeMechPercent(Pageable pageable);
-
-    @Deprecated
-    public Page<Object> executeGetSettingSteelBoltoutPercent(Pageable pageable);
-
-    @Deprecated
-    public Page<Object> executeGetDrawingsByTestPackagePipe(Pageable pageable, String testPackage);
-
-    @Deprecated
-    public Page<Object> executeGetSettingSteelShakePercent(Pageable pageable);
-
-    @Deprecated
-    public Page<Object> executeGetBidActivityMatchesByTestPackageSteel(Pageable pageable, String testPackage);
-
-    @Deprecated
-    public Page<Object> executeGetBidActivityMatchesByTestPackagePipe(Pageable pageable, String testPackage);
-
-    @Deprecated
-    public Page<Object> executeGetBidWorkHistoryPipe(Pageable pageable, Integer bidId);
-
-    @Deprecated
-    public int executeUpdateSteelDemoQuantity(BigDecimal percentCompleted, Integer activityId);
-
-    @Deprecated
-    public Page<Object> executeGetActivityHistoryPipeTesting(Pageable pageable, Integer activityId);
-
-    @Deprecated
-    public int executeUpdatePipeTesting(String testPackageNumber, Integer rework, String notes, Integer activityId);
-
-    @Deprecated
-    public Page<Object> executeGetDrawingByTestPackageCivil(Pageable pageable, String testPackage);
-
-    @Deprecated
     public Page<Object> executeGetBidActivityQuantitiesCivil(Pageable pageable, Integer bidId);
+
+    @Deprecated
+    public int executeUpdateSettingSteelShake(BigDecimal value1);
 
     @Deprecated
     public int executeUpdateSteelSellPackage(String testPackage, String notes, Integer activityId);
 
     @Deprecated
     public int executeUpdateSettingSteelBoltout(BigDecimal value1);
+
+    @Deprecated
+    public int executeUpdateSettingSteelErect(BigDecimal value1);
 
 }
 

@@ -291,25 +291,6 @@ public class QueryExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/queries/GetRefTemperatures", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "No description is provided")
-    public Page<GetRefTemperaturesResponse> executeGetRefTemperatures(Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetRefTemperatures");
-        Page<GetRefTemperaturesResponse> _result = queryService.executeGetRefTemperatures(pageable);
-        LOGGER.debug("got the result for named query: GetRefTemperatures, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetRefTemperatures")
-    @RequestMapping(value = "/queries/GetRefTemperatures/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetRefTemperatures(@PathVariable("exportType") ExportType exportType, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetRefTemperatures");
-
-        return queryService.exportGetRefTemperatures(exportType, pageable);
-    }
-
     @RequestMapping(value = "/queries/GetChatAllLatestTimeStamp", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Gets the timestamp of the newest Message in the AllChat conversation")
@@ -339,25 +320,6 @@ public class QueryExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/queries/GetRefWind", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "No description is provided")
-    public Page<GetRefWindResponse> executeGetRefWind(Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetRefWind");
-        Page<GetRefWindResponse> _result = queryService.executeGetRefWind(pageable);
-        LOGGER.debug("got the result for named query: GetRefWind, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetRefWind")
-    @RequestMapping(value = "/queries/GetRefWind/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetRefWind(@PathVariable("exportType") ExportType exportType, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetRefWind");
-
-        return queryService.exportGetRefWind(exportType, pageable);
-    }
-
     @RequestMapping(value = "/queries/GetDefaultJobNumber", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Gets the default job number assigned to the logged in user")
@@ -375,25 +337,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: GetDefaultJobNumber");
 
         return queryService.exportGetDefaultJobNumber(exportType, userId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetRefPrecipitation", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "No description is provided")
-    public Page<GetRefPrecipitationResponse> executeGetRefPrecipitation(Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: GetRefPrecipitation");
-        Page<GetRefPrecipitationResponse> _result = queryService.executeGetRefPrecipitation(pageable);
-        LOGGER.debug("got the result for named query: GetRefPrecipitation, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetRefPrecipitation")
-    @RequestMapping(value = "/queries/GetRefPrecipitation/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetRefPrecipitation(@PathVariable("exportType") ExportType exportType, Pageable pageable, HttpServletRequest _request) {
-        LOGGER.debug("Exporting named query: GetRefPrecipitation");
-
-        return queryService.exportGetRefPrecipitation(exportType, pageable);
     }
 
     @RequestMapping(value = "/queries/UpdateUserPSA", method = RequestMethod.PUT)

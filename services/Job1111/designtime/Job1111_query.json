@@ -5823,8 +5823,8 @@
     "name" : "GetBidWorkHistoryCivil",
     "description" : "name",
     "version" : "V1",
-    "queryString" : "SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType, \nCONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, \nCONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, \nsd.CompleteTime, \nmax(sasr.TimeStamp) AS ReviewedTime,\n\n### Quantities Installed ###\nCOALESCE(cfa.FAQuantity,0) AS Quantity,\n\n(COALESCE(cfa.FAPercentCompleted,0)  * 100) AS PercentClaimed,\n\nCOALESCE(cfa.FANotes, '') AS Notes,\ncfa.FARework\n\n\nFROM SubmissionActivityStatus sas\n\n####User Info Joins ####\nLEFT JOIN SubsDetails sd\n\tON sas.SubmissionID = sd.SubmissionID\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\nLEFT JOIN PSA.tblUserPSA u1\n\tON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman\nLEFT JOIN PSA.tblUserPSA u2\n\tON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent\n\nLEFT JOIN SubmissionActivityStatusREV sasr\n\tON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2\n        \n\n#### Assigned Activities Joins #####    \nJOIN PSA.REF_ActivityTypes at\n\tON at.ID = sas.ActivityType\nJOIN CivilFA cfa\n\tON cfa.ActivityID = sas.ActivityID\nJOIN CivilTrackerDetails ctd\n\tON ctd.BidID = sas.fk_BidIDAssigned\n\nWHERE sas.fk_BidIDAssigned = :BidID\nAND sas.fk_ActivityStatus IN (5,12)\n\nGROUP BY sas.ActivityID",
-    "countQueryString" : "select count(*) from (SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType, \nCONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, \nCONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, \nsd.CompleteTime, \nmax(sasr.TimeStamp) AS ReviewedTime,\n\n### Quantities Installed ###\nCOALESCE(cfa.FAQuantity,0) AS Quantity,\n\n(COALESCE(cfa.FAPercentCompleted,0)  * 100) AS PercentClaimed,\n\nCOALESCE(cfa.FANotes, '') AS Notes,\ncfa.FARework\n\n\nFROM SubmissionActivityStatus sas\n\n####User Info Joins ####\nLEFT JOIN SubsDetails sd\n\tON sas.SubmissionID = sd.SubmissionID\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\nLEFT JOIN PSA.tblUserPSA u1\n\tON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman\nLEFT JOIN PSA.tblUserPSA u2\n\tON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent\n\nLEFT JOIN SubmissionActivityStatusREV sasr\n\tON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2\n        \n\n#### Assigned Activities Joins #####    \nJOIN PSA.REF_ActivityTypes at\n\tON at.ID = sas.ActivityType\nJOIN CivilFA cfa\n\tON cfa.ActivityID = sas.ActivityID\nJOIN CivilTrackerDetails ctd\n\tON ctd.BidID = sas.fk_BidIDAssigned\n\nWHERE sas.fk_BidIDAssigned = :BidID\nAND sas.fk_ActivityStatus IN (5,12)\n\nGROUP BY sas.ActivityID) wmTempTable",
+    "queryString" : "SELECT sas.SubmissionID, sas.ActivityID , at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID, \nCONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, \nCONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, \nsd.CompleteTime, \nCOALESCE(max(sasr.TimeStamp),sd.ReceivedTime) AS ReviewedTime,\n\n### Quantities Installed ###\nCOALESCE(cfa.FAQuantity,0) AS Quantity,\n\n(COALESCE(cfa.FAPercentCompleted,0)  * 100) AS PercentClaimed,\n\nCOALESCE(cfa.FANotes, '') AS Notes,\ncfa.FARework\n\n\nFROM SubmissionActivityStatus sas\n\n####User Info Joins ####\nLEFT JOIN SubsDetails sd\n\tON sas.SubmissionID = sd.SubmissionID\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\nLEFT JOIN PSA.tblUserPSA u1\n\tON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman\nLEFT JOIN PSA.tblUserPSA u2\n\tON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent\n\nLEFT JOIN SubmissionActivityStatusREV sasr\n\tON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2\n        \n\n#### Assigned Activities Joins #####    \nJOIN PSA.REF_ActivityTypes at\n\tON at.ID = sas.ActivityType\nJOIN CivilFA cfa\n\tON cfa.ActivityID = sas.ActivityID\nJOIN CivilTrackerDetails ctd\n\tON ctd.BidID = sas.fk_BidIDAssigned\n\nWHERE sas.fk_BidIDAssigned = :BidID\nAND sas.fk_ActivityStatus IN (5,12)\n\nGROUP BY sas.ActivityID",
+    "countQueryString" : "select count(*) from (SELECT sas.SubmissionID, sas.ActivityID , at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID, \nCONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, \nCONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, \nsd.CompleteTime, \nCOALESCE(max(sasr.TimeStamp),sd.ReceivedTime) AS ReviewedTime,\n\n### Quantities Installed ###\nCOALESCE(cfa.FAQuantity,0) AS Quantity,\n\n(COALESCE(cfa.FAPercentCompleted,0)  * 100) AS PercentClaimed,\n\nCOALESCE(cfa.FANotes, '') AS Notes,\ncfa.FARework\n\n\nFROM SubmissionActivityStatus sas\n\n####User Info Joins ####\nLEFT JOIN SubsDetails sd\n\tON sas.SubmissionID = sd.SubmissionID\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\nLEFT JOIN PSA.tblUserPSA u1\n\tON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman\nLEFT JOIN PSA.tblUserPSA u2\n\tON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent\n\nLEFT JOIN SubmissionActivityStatusREV sasr\n\tON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2\n        \n\n#### Assigned Activities Joins #####    \nJOIN PSA.REF_ActivityTypes at\n\tON at.ID = sas.ActivityType\nJOIN CivilFA cfa\n\tON cfa.ActivityID = sas.ActivityID\nJOIN CivilTrackerDetails ctd\n\tON ctd.BidID = sas.fk_BidIDAssigned\n\nWHERE sas.fk_BidIDAssigned = :BidID\nAND sas.fk_ActivityStatus IN (5,12)\n\nGROUP BY sas.ActivityID) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -5834,8 +5834,8 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "1513",
-      "required" : false
+      "testValue" : "1",
+      "required" : true
     } ],
     "request" : {
       "wrapped" : false,
@@ -5866,12 +5866,21 @@
           "list" : false
         }
       }, {
-        "name" : "ActivityType",
-        "fieldName" : "activityType",
+        "name" : "ActivityTypeName",
+        "fieldName" : "activityTypeName",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ActivityTypeID",
+        "fieldName" : "activityTypeId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Short",
           "list" : false
         }
       }, {
@@ -5953,8 +5962,8 @@
     "name" : "GetBidWorkHistoryEquip",
     "description" : "name",
     "version" : "V2",
-    "queryString" : "SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID, \nCONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, \nCONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, \nsd.CompleteTime, \nmax(sasr.TimeStamp) AS ReviewedTime,\n\n### Quantities Installed ###\nsum(COALESCE(efa.FAQuantity,0)) AS Quantity,\n\n(COALESCE(efa.FAPercentCompleted,0) * 100) AS PercentClaimed,\n\nCOALESCE(efa.FANotes, '') AS Notes,\nefa.FARework AS Rework\n\n\n\nFROM SubmissionActivityStatus sas\n\n####User Info Joins ####\nLEFT JOIN SubsDetails sd\n\tON sas.SubmissionID = sd.SubmissionId\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\nLEFT JOIN PSA.tblUserPSA u1\n\t\tON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman\nLEFT JOIN PSA.tblUserPSA u2\n\t\tON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent\n        \nLEFT JOIN SubmissionActivityStatusREV sasr\n\tON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2 \n\n#### Assigned Activities Joins #####    \nJOIN PSA.REF_ActivityTypes at\n\tON at.ID = sas.ActivityType\nJOIN EquipFA efa\n\tON efa.ActivityID = sas.ActivityID\n\nLEFT JOIN EquipTrackerDetails etd\n\tON etd.BidID = sas.fk_BidIDAssigned\n\nWHERE sas.fk_BidIDAssigned = :BidID\nAND sas.fk_ActivityStatus IN (5,12)\n\nGROUP BY sas.ActivityID",
-    "countQueryString" : "select count(*) from (SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID, \nCONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, \nCONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, \nsd.CompleteTime, \nmax(sasr.TimeStamp) AS ReviewedTime,\n\n### Quantities Installed ###\nsum(COALESCE(efa.FAQuantity,0)) AS Quantity,\n\n(COALESCE(efa.FAPercentCompleted,0) * 100) AS PercentClaimed,\n\nCOALESCE(efa.FANotes, '') AS Notes,\nefa.FARework AS Rework\n\n\n\nFROM SubmissionActivityStatus sas\n\n####User Info Joins ####\nLEFT JOIN SubsDetails sd\n\tON sas.SubmissionID = sd.SubmissionId\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\nLEFT JOIN PSA.tblUserPSA u1\n\t\tON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman\nLEFT JOIN PSA.tblUserPSA u2\n\t\tON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent\n        \nLEFT JOIN SubmissionActivityStatusREV sasr\n\tON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2 \n\n#### Assigned Activities Joins #####    \nJOIN PSA.REF_ActivityTypes at\n\tON at.ID = sas.ActivityType\nJOIN EquipFA efa\n\tON efa.ActivityID = sas.ActivityID\n\nLEFT JOIN EquipTrackerDetails etd\n\tON etd.BidID = sas.fk_BidIDAssigned\n\nWHERE sas.fk_BidIDAssigned = :BidID\nAND sas.fk_ActivityStatus IN (5,12)\n\nGROUP BY sas.ActivityID) wmTempTable",
+    "queryString" : "SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID, \nCONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, \nCONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, \nsd.CompleteTime, \nCOALESCE(max(sasr.TimeStamp),sd.ReceivedTime) AS ReviewedTime,\n\n### Quantities Installed ###\nsum(COALESCE(efa.FAQuantity,0)) AS Quantity,\n\n(COALESCE(efa.FAPercentCompleted,0) * 100) AS PercentClaimed,\n\nCOALESCE(efa.FANotes, '') AS Notes,\nefa.FARework AS Rework\n\n\n\nFROM SubmissionActivityStatus sas\n\n####User Info Joins ####\nLEFT JOIN SubsDetails sd\n\tON sas.SubmissionID = sd.SubmissionId\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\nLEFT JOIN PSA.tblUserPSA u1\n\t\tON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman\nLEFT JOIN PSA.tblUserPSA u2\n\t\tON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent\n        \nLEFT JOIN SubmissionActivityStatusREV sasr\n\tON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2 \n\n#### Assigned Activities Joins #####    \nJOIN PSA.REF_ActivityTypes at\n\tON at.ID = sas.ActivityType\nJOIN EquipFA efa\n\tON efa.ActivityID = sas.ActivityID\n\nLEFT JOIN EquipTrackerDetails etd\n\tON etd.BidID = sas.fk_BidIDAssigned\n\nWHERE sas.fk_BidIDAssigned = :BidID\nAND sas.fk_ActivityStatus IN (5,12)\n\nGROUP BY sas.ActivityID",
+    "countQueryString" : "select count(*) from (SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID, \nCONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, \nCONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, \nsd.CompleteTime, \nCOALESCE(max(sasr.TimeStamp),sd.ReceivedTime) AS ReviewedTime,\n\n### Quantities Installed ###\nsum(COALESCE(efa.FAQuantity,0)) AS Quantity,\n\n(COALESCE(efa.FAPercentCompleted,0) * 100) AS PercentClaimed,\n\nCOALESCE(efa.FANotes, '') AS Notes,\nefa.FARework AS Rework\n\n\n\nFROM SubmissionActivityStatus sas\n\n####User Info Joins ####\nLEFT JOIN SubsDetails sd\n\tON sas.SubmissionID = sd.SubmissionId\nLEFT JOIN PSA.tblCrews tc\n\tON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev\nLEFT JOIN PSA.tblCrewsRev tcr\n\tON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev\nLEFT JOIN PSA.tblUserPSA u1\n\t\tON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman\nLEFT JOIN PSA.tblUserPSA u2\n\t\tON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent\n        \nLEFT JOIN SubmissionActivityStatusREV sasr\n\tON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2 \n\n#### Assigned Activities Joins #####    \nJOIN PSA.REF_ActivityTypes at\n\tON at.ID = sas.ActivityType\nJOIN EquipFA efa\n\tON efa.ActivityID = sas.ActivityID\n\nLEFT JOIN EquipTrackerDetails etd\n\tON etd.BidID = sas.fk_BidIDAssigned\n\nWHERE sas.fk_BidIDAssigned = :BidID\nAND sas.fk_ActivityStatus IN (5,12)\n\nGROUP BY sas.ActivityID) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -9184,52 +9193,6 @@
       "responseType" : "SINGLE"
     }
   },
-  "UpdateCivilFAQuantity" : {
-    "name" : "UpdateCivilFAQuantity",
-    "description" : "name",
-    "version" : "V1",
-    "queryString" : "UPDATE `CivilFA` \nSET \n`FAQuantity`= :Quantity,\n`FAPercentCompleted`= :Percent\nWHERE `ActivityID`= :ActivityID",
-    "countQueryString" : null,
-    "nativeSql" : true,
-    "fetchCount" : false,
-    "type" : "UPDATE",
-    "parameters" : [ {
-      "name" : "Quantity",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : true
-    }, {
-      "name" : "Percent",
-      "type" : "big_decimal",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : true
-    }, {
-      "name" : "ActivityID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : true
-    } ],
-    "request" : {
-      "wrapped" : true,
-      "typeRef" : "com.psabackoffice.job1111.models.query.UpdateCivilFaquantityRequest",
-      "method" : "PUT"
-    },
-    "identifiers" : [ ],
-    "response" : {
-      "typeRef" : "java.lang.Integer",
-      "returns" : "ENTITY",
-      "responseType" : "SINGLE"
-    }
-  },
   "UpdateCivilSellPackage" : {
     "name" : "UpdateCivilSellPackage",
     "description" : "name",
@@ -9337,428 +9300,6 @@
     "request" : {
       "wrapped" : true,
       "typeRef" : "com.psabackoffice.job1111.models.query.UpdateEquipFaRequest",
-      "method" : "PUT"
-    },
-    "identifiers" : [ ],
-    "response" : {
-      "typeRef" : "java.lang.Integer",
-      "returns" : "ENTITY",
-      "responseType" : "SINGLE"
-    }
-  },
-  "UpdateEquipFAQuantity" : {
-    "name" : "UpdateEquipFAQuantity",
-    "description" : "Update Quantity only for Equip FA",
-    "version" : "V2",
-    "queryString" : "UPDATE `EquipFA` \nSET \n`FAQuantity`= :Quantity,\n`FAPercentCompleted`= :Percent\nWHERE `ActivityID`= :ActivityID",
-    "countQueryString" : null,
-    "nativeSql" : true,
-    "fetchCount" : false,
-    "type" : "UPDATE",
-    "parameters" : [ {
-      "name" : "Quantity",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : true
-    }, {
-      "name" : "Percent",
-      "type" : "big_decimal",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : ".4",
-      "required" : true
-    }, {
-      "name" : "ActivityID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "2719",
-      "required" : true
-    } ],
-    "request" : {
-      "wrapped" : true,
-      "typeRef" : "com.psabackoffice.job1111.models.query.UpdateEquipFaquantityRequest",
-      "method" : "PUT"
-    },
-    "identifiers" : [ ],
-    "response" : {
-      "typeRef" : "java.lang.Integer",
-      "returns" : "ENTITY",
-      "responseType" : "SINGLE"
-    }
-  },
-  "UpdatePipeBoltUp" : {
-    "name" : "UpdatePipeBoltUp",
-    "description" : "Updates the Job####.SubsBoltUp table with data from inputs",
-    "version" : "V1",
-    "queryString" : "UPDATE PipeConnection\nSET ConnectionBidID = :BidID,\nConnectionSpool1 = :Spool1,\nConnectionSpool2 = :Spool2,\nConnectionDrawingNumber = :DrawingNumber,\nConnectionLineNumber = :LineNumber,\nConnectionSheetNumber = :SheetNumber,\nConnectionSize = :Size,\nConnectionQuantity = :Quantity,\nConnectionRework = :Rework,\nConnectionNotes = :Notes\nWHERE ActivityID= :ActivityID",
-    "countQueryString" : null,
-    "nativeSql" : true,
-    "fetchCount" : false,
-    "type" : "UPDATE",
-    "parameters" : [ {
-      "name" : "BidID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : null,
-      "required" : false
-    }, {
-      "name" : "Spool1",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1-A",
-      "required" : false
-    }, {
-      "name" : "Spool2",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1-B",
-      "required" : false
-    }, {
-      "name" : "DrawingNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "dwg1",
-      "required" : false
-    }, {
-      "name" : "LineNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "line1",
-      "required" : false
-    }, {
-      "name" : "SheetNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : false
-    }, {
-      "name" : "Size",
-      "type" : "big_decimal",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "6",
-      "required" : true
-    }, {
-      "name" : "Quantity",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : true
-    }, {
-      "name" : "Rework",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "0",
-      "required" : true
-    }, {
-      "name" : "Notes",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "Test Notes",
-      "required" : false
-    }, {
-      "name" : "ActivityID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "0",
-      "required" : true
-    } ],
-    "request" : {
-      "wrapped" : true,
-      "typeRef" : "com.psabackoffice.job1111.models.query.UpdatePipeBoltUpRequest",
-      "method" : "PUT"
-    },
-    "identifiers" : [ ],
-    "response" : {
-      "typeRef" : "java.lang.Integer",
-      "returns" : "ENTITY",
-      "responseType" : "SINGLE"
-    }
-  },
-  "UpdatePipeBoltupQuantity" : {
-    "name" : "UpdatePipeBoltupQuantity",
-    "description" : "No description is provided",
-    "version" : "V1",
-    "queryString" : "UPDATE PipeConnection\nSET ConnectionQuantity = :Quantity\nWHERE ActivityID = :ActivityID",
-    "countQueryString" : null,
-    "nativeSql" : true,
-    "fetchCount" : false,
-    "type" : "UPDATE",
-    "parameters" : [ {
-      "name" : "Quantity",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "2",
-      "required" : true
-    }, {
-      "name" : "ActivityID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "0",
-      "required" : true
-    } ],
-    "request" : {
-      "wrapped" : true,
-      "typeRef" : "com.psabackoffice.job1111.models.query.UpdatePipeBoltupQuantityRequest",
-      "method" : "PUT"
-    },
-    "identifiers" : [ ],
-    "response" : {
-      "typeRef" : "java.lang.Integer",
-      "returns" : "ENTITY",
-      "responseType" : "SINGLE"
-    }
-  },
-  "UpdatePipeErection" : {
-    "name" : "UpdatePipeErection",
-    "description" : "Updates Job####.SubsErection table with data inputs",
-    "version" : "V1",
-    "queryString" : "UPDATE PipeErection\nSET\nErectionBidID = :BidID,\nErectionSpool1 = :Spool1,\nErectionLengthSpool1 = :Spool1Length,\nErectionSpool2 = :Spool2,\nErectionLengthSpool2 = :Spool2Length,\nErectionSpool3 = :Spool3,\nErectionLengthSpool3 = :Spool3Length,\nErectionSpool4 = :Spool4,\nErectionLengthSpool4 = :Spool4Length,\nErectionSpool5 = :Spool5,\nErectionLengthSpool5 = :Spool5Length,\nErectionSpool6 = :Spool6,\nErectionLengthSpool6 = :Spool6Length,\nErectionOnCords = :OnCords,\nErectionDrawingNumber = :DrawingNumber,\nErectionLineNumber = :LineNumber,\nErectionSheetNumber = :SheetNumber,\nErectionPipeSize = :Size,\nErectionRework = :Rework,\nErectionNotes = :Notes\nWHERE ActivityID = :ActivityID",
-    "countQueryString" : null,
-    "nativeSql" : true,
-    "fetchCount" : false,
-    "type" : "UPDATE",
-    "parameters" : [ {
-      "name" : "BidID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : null,
-      "required" : false
-    }, {
-      "name" : "Spool1",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : true
-    }, {
-      "name" : "Spool1Length",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : true
-    }, {
-      "name" : "Spool2",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : false
-    }, {
-      "name" : "Spool2Length",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : false
-    }, {
-      "name" : "Spool3",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : false
-    }, {
-      "name" : "Spool3Length",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : false
-    }, {
-      "name" : "Spool4",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : false
-    }, {
-      "name" : "Spool4Length",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : false
-    }, {
-      "name" : "Spool5",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : false
-    }, {
-      "name" : "Spool5Length",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : false
-    }, {
-      "name" : "Spool6",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : false
-    }, {
-      "name" : "Spool6Length",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : false
-    }, {
-      "name" : "OnCords",
-      "type" : "byte",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : true
-    }, {
-      "name" : "DrawingNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : true
-    }, {
-      "name" : "LineNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : true
-    }, {
-      "name" : "SheetNumber",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : true
-    }, {
-      "name" : "Size",
-      "type" : "big_decimal",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "1",
-      "required" : true
-    }, {
-      "name" : "Rework",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "0",
-      "required" : true
-    }, {
-      "name" : "Notes",
-      "type" : "string",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "notes",
-      "required" : false
-    }, {
-      "name" : "ActivityID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "649",
-      "required" : true
-    } ],
-    "request" : {
-      "wrapped" : true,
-      "typeRef" : "com.psabackoffice.job1111.models.query.UpdatePipeErectionRequest",
-      "method" : "PUT"
-    },
-    "identifiers" : [ ],
-    "response" : {
-      "typeRef" : "java.lang.Integer",
-      "returns" : "ENTITY",
-      "responseType" : "SINGLE"
-    }
-  },
-  "UpdatePipeErectionQuantity" : {
-    "name" : "UpdatePipeErectionQuantity",
-    "description" : "No description is provided",
-    "version" : "V1",
-    "queryString" : "UPDATE PipeErection\nSET\nErectionLengthSpool1 = :Spool1Length\nWHERE ActivityID = :ActivityID",
-    "countQueryString" : null,
-    "nativeSql" : true,
-    "fetchCount" : false,
-    "type" : "UPDATE",
-    "parameters" : [ {
-      "name" : "Spool1Length",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "333",
-      "required" : false
-    }, {
-      "name" : "ActivityID",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "variableName" : "",
-      "testValue" : "649",
-      "required" : true
-    } ],
-    "request" : {
-      "wrapped" : true,
-      "typeRef" : "com.psabackoffice.job1111.models.query.UpdatePipeErectionQuantityRequest",
       "method" : "PUT"
     },
     "identifiers" : [ ],

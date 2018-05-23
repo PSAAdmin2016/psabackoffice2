@@ -61,9 +61,7 @@
                     </wm-table>
                     <wm-table dataset="bind:Variables.serviceGetACHCivilFA.dataSet" navigation="None" show="bind:getShow('gridCivilFAChangeLog');" class="panel-default" name="gridCivilFAChangeLog" spacing="condensed" deferload="true" enablesort="false">
                         <wm-table-column binding="FAQuantity" caption="Quantity" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
-                        <wm-table-column binding="FAPercentComplete" caption="Percent Complete" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true">
-                            {{row.FAPercentComplete * 100 + '%'}}
-                        </wm-table-column>
+                        <wm-table-column binding="FAPercentCompleted" caption="Percent Completed" edit-widget-type="number" type="float" show="true" readonly="false">{{row.FAPercentCompleted * 100 + '%'}}</wm-table-column>
                         <wm-table-column binding="FARework" caption="Rework" widget-type="checkbox" width="5%" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true">
                             <wm-checkbox scopedatavalue="row['FARework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox>
                         </wm-table-column>
@@ -80,7 +78,7 @@
                     </wm-table>
                     <wm-table dataset="bind:Variables.serviceGetACHEquipFA.dataSet" navigation="None" show="bind:getShow('gridEquipFAChangeLog');" class="panel-default" spacing="condensed" name="gridEquipFAChangeLog" deferload="true" enablesort="false">
                         <wm-table-column binding="faquantity" caption="Quantity" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true"></wm-table-column>
-                        <wm-table-column binding="fapercentCompleted" caption="Percent Completed" edit-widget-type="number" type="float" readonly="true" show="true"></wm-table-column>
+                        <wm-table-column binding="fapercentCompleted" caption="Percent Completed" edit-widget-type="number" type="float" readonly="true" show="true">{{row.fapercentCompleted * 100 + '%'}}</wm-table-column>
                         <wm-table-column binding="farework" caption="Rework" widget-type="checkbox" edit-widget-type="text" type="string" readonly="true" sortable="false" show="true">
                             <wm-checkbox scopedatavalue="row['farework']" checkedvalue="1" uncheckedvalue="0" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                         </wm-table-column>

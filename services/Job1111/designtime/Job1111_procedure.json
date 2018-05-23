@@ -2597,7 +2597,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "9",
+      "testValue" : "0",
       "required" : true,
       "parameterType" : "IN"
     }, {

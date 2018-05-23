@@ -64,19 +64,10 @@ public interface PSAQueryExecutorService_V1 {
     public int executeInsertLoginSuccess(String enteredUsername);
 
     @Deprecated
-    public Page<Object> executeGetRefTemperatures(Pageable pageable);
-
-    @Deprecated
     public int executeInsertFeedbackTicket(Integer userId, Integer feedbackType, Integer fbsubType, Integer errorSeverity);
 
     @Deprecated
-    public Page<Object> executeGetRefWind(Pageable pageable);
-
-    @Deprecated
     public Page<Object> executeGetDefaultJobNumber(Pageable pageable, Integer userId);
-
-    @Deprecated
-    public Page<Object> executeGetRefPrecipitation(Pageable pageable);
 
     @Deprecated
     public int executeUpdateUserPSA(Integer performanceEmployeeId, String firstName, String lastName, String nickname, String email, Byte activeUser, Integer modifiedBy, Integer disciplineId, Integer craftId, Integer craftClassId, Integer roleId, Integer defaultJobNumberId, Integer userId);

@@ -3,15 +3,6 @@ Application.$controller("TrackerClassicCivilPageController", ["$scope", function
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        /*
-         * variables can be accessed through '$scope.Variables' property here
-         * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
-         * $scope.Variables.loggedInUser.getData()
-         *
-         * widgets can be accessed through '$scope.Widgets' property here
-         * e.g. to get value of text widget named 'username' use following script
-         * '$scope.Widgets.username.datavalue'
-         */
         if ($scope.Variables.staticClassicTrackerCivilColumnShowHideCache.dataSet.length > 0) {
             _.forEach($scope.Variables.staticClassicTrackerCivilColumnShowHideCache.dataSet, function(key) {
                 $scope.Widgets.gridClassicTrackerCivil.columns[key].show = false; //Set show false for the columns present in variable
@@ -40,16 +31,6 @@ Application.$controller("TrackerClassicCivilPageController", ["$scope", function
     };
 
 
-    $scope.timerDelayGetActivityHistoryonTimerFire = function(variable, data) {
-        if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Civil FA' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Civil Pour') {
-            $scope.Variables.serviceGetACHCivilFA.invoke();
-        }
-        if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Civil Misc') {
-            $scope.Variables.serviceGetACHCivilMisc.invoke();
-        }
-    };
-
-
     $scope.serviceUpdateClassicTrackeronResult = function(variable, data) {
         if (data[0].ReturnStatus) {
             $scope.Widgets.livefilterClassicTrackerCivil.filter();
@@ -62,17 +43,6 @@ Application.$controller("TrackerClassicCivilPageController", ["$scope", function
             $scope.Widgets.livefilterClassicTrackerCivil.filter();
         }
     };
-
-
-    $scope.livefilterClassicTrackerCivilBeforeservicecall = function($data) {
-        console.log('data Keys: ' + _.keys($data.bidId));
-        console.log('data Values: ' + _.values($data.bidId));
-        if ($data.bidId.value === undefined) {
-            console.log('Undefined.');
-            return false;
-        }
-    };
-
 }]);
 
 
@@ -126,13 +96,42 @@ Application.$controller("dialogBidWorkHistoryController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.popoverActivityHistoryShow = function($event, $isolateScope) {
-            $scope.Variables.timerDelayGetActivityHistory.fire();
             $scope.Variables.staticShowReturn.dataSet.dataValue = false;
         };
 
 
         $scope.popoverActivityHistoryHide = function($event, $isolateScope) {
             $scope.Variables.staticShowReturn.dataSet.dataValue = true;
+        };
+
+
+        $scope.buttonReturnClick = function($event, $isolateScope, item, currentItemWidgets) {
+            $scope.Variables.liveSAS.updateRecord({
+                row: {
+                    "activityId": item.ActivityID,
+                    "submissionId": item.SubmissionID,
+                    "activityType": item.ActivityTypeID,
+                    "fkBidIdassigned": $scope.Widgets.gridClassicTrackerCivil.selecteditem.bidId,
+                    "fkActivityStatus": 11,
+                    "fkLastModifiedBy": $scope.Variables.loggedInUser.dataSet.id
+                }
+            }, function(data) {
+                $scope.Variables.serviceGetBidWorkHistory.invoke();
+                $scope.Variables.serviceUpdateClassicTracker.invoke(); //Calls livefilterClassicTrackerCivil.filter();
+            });
+
+        };
+
+
+        $scope.buttonOverrideClick = function($event, $isolateScope, item, currentItemWidgets) {
+            $scope.Variables.liveSAS.listRecords({ //Called to populate form
+                filterFields: {
+                    "activityId": {
+                        "value": $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityID
+                    }
+                }
+            });
+
         };
 
     }
@@ -153,21 +152,27 @@ Application.$controller("dialogQuantityOverrideController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
-        $scope.formNewQuantitySubmit = function($event, $isolateScope, $formData) {
-            $scope.Variables.serviceUpdateSSOverride.update(); // changes status to Override Quantity
-            if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Civil FA') {
-                $scope.Variables.serviceUpdateFA.setInput('Quantity', 0);
-                $scope.Variables.serviceUpdateFA.setInput('Percent', $scope.Widgets.formNewQuantity.formWidgets.selectPercentComplete.datavalue);
-                $scope.Variables.serviceUpdateFA.update();
-            }
-            if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Civil Pour') {
-                $scope.Variables.serviceUpdateFA.setInput('Quantity', $scope.Widgets.formNewQuantity.formWidgets.textOverrideQuantity.datavalue);
-                $scope.Variables.serviceUpdateFA.setInput('Percent', 0);
-                $scope.Variables.serviceUpdateFA.update();
-            }
-            if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Civil Misc') {
-                $scope.Variables.serviceUpdateMisc.update();
-            }
+        $scope.liveformSASBeforeservicecall = function($event, $operation, $data) {
+            $data.fkActivityStatus = 12;
         };
+
+        $scope.liveformSASSuccess = function($event, $operation, $data) {
+            $scope.Variables.serviceGetBidWorkHistory.invoke();
+            $scope.Variables.serviceUpdateClassicTracker.invoke(); //Calls livefilterClassicTrackerEquip.filter();
+        };
+    }
+]);
+
+Application.$controller("liveformSASController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("liveformCivilFAController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);

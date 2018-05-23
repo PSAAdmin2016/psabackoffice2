@@ -302,24 +302,6 @@ public class PSAQueryExecutorServiceImpl implements PSAQueryExecutorService {
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Page<GetRefTemperaturesResponse> executeGetRefTemperatures(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("GetRefTemperatures", params, GetRefTemperaturesResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Downloadable exportGetRefTemperatures(ExportType exportType, Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.exportNamedQueryData("GetRefTemperatures", params, exportType, GetRefTemperaturesResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
     public Page<GetChatAllLatestTimeStampResponse> executeGetChatAllLatestTimeStamp(String userId, Pageable pageable) {
         Map params = new HashMap(1);
 
@@ -353,24 +335,6 @@ public class PSAQueryExecutorServiceImpl implements PSAQueryExecutorService {
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Page<GetRefWindResponse> executeGetRefWind(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("GetRefWind", params, GetRefWindResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Downloadable exportGetRefWind(ExportType exportType, Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.exportNamedQueryData("GetRefWind", params, exportType, GetRefWindResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
     public Page<GetDefaultJobNumberResponse> executeGetDefaultJobNumber(Integer userId, Pageable pageable) {
         Map params = new HashMap(1);
 
@@ -387,24 +351,6 @@ public class PSAQueryExecutorServiceImpl implements PSAQueryExecutorService {
         params.put("UserID", userId);
 
         return queryExecutor.exportNamedQueryData("GetDefaultJobNumber", params, exportType, GetDefaultJobNumberResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<GetRefPrecipitationResponse> executeGetRefPrecipitation(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("GetRefPrecipitation", params, GetRefPrecipitationResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Downloadable exportGetRefPrecipitation(ExportType exportType, Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.exportNamedQueryData("GetRefPrecipitation", params, exportType, GetRefPrecipitationResponse.class, pageable);
     }
 
     @Transactional(value = "PSATransactionManager")

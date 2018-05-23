@@ -200,15 +200,6 @@ public class PSAQueryExecutorServiceImpl_V1 implements PSAQueryExecutorService_V
         return queryExecutor.executeNamedQueryForUpdate("InsertLoginSuccess", params);
     }
 
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<Object> executeGetRefTemperatures(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("GetRefTemperatures", params, Object.class, pageable);
-    }
-
     @Transactional(value = "PSATransactionManager")
     @Override
     public int executeInsertFeedbackTicket(Integer userId, Integer feedbackType, Integer fbsubType, Integer errorSeverity) {
@@ -224,30 +215,12 @@ public class PSAQueryExecutorServiceImpl_V1 implements PSAQueryExecutorService_V
 
     @Transactional(readOnly = true, value = "PSATransactionManager")
     @Override
-    public Page<Object> executeGetRefWind(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("GetRefWind", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
     public Page<Object> executeGetDefaultJobNumber(Pageable pageable, Integer userId) {
         Map params = new HashMap(1);
 
         params.put("UserID", userId);
 
         return queryExecutor.executeNamedQuery("GetDefaultJobNumber", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "PSATransactionManager")
-    @Override
-    public Page<Object> executeGetRefPrecipitation(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("GetRefPrecipitation", params, Object.class, pageable);
     }
 
     @Transactional(value = "PSATransactionManager")

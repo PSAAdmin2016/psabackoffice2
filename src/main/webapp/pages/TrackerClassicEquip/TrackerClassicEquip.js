@@ -93,7 +93,6 @@ Application.$controller("dialogBidWorkHistoryController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.popoverActivityHistoryShow = function($event, $isolateScope) {
-            $scope.Variables.timerDelayGetActivityHistory.fire();
             $scope.Variables.staticShowReturn.dataSet.dataValue = false;
         };
 

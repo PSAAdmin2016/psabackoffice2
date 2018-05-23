@@ -67,27 +67,15 @@ public interface PSAQueryExecutorService {
 
     Integer executeInsertLoginSuccess(InsertLoginSuccessRequest insertLoginSuccessRequest);
 
-    Page<GetRefTemperaturesResponse> executeGetRefTemperatures(Pageable pageable);
-
-    Downloadable exportGetRefTemperatures(ExportType exportType, Pageable pageable);
-
     Page<GetChatAllLatestTimeStampResponse> executeGetChatAllLatestTimeStamp(String userId, Pageable pageable);
 
     Downloadable exportGetChatAllLatestTimeStamp(ExportType exportType, String userId, Pageable pageable);
 
     Integer executeInsertFeedbackTicket(InsertFeedbackTicketRequest insertFeedbackTicketRequest);
 
-    Page<GetRefWindResponse> executeGetRefWind(Pageable pageable);
-
-    Downloadable exportGetRefWind(ExportType exportType, Pageable pageable);
-
     Page<GetDefaultJobNumberResponse> executeGetDefaultJobNumber(Integer userId, Pageable pageable);
 
     Downloadable exportGetDefaultJobNumber(ExportType exportType, Integer userId, Pageable pageable);
-
-    Page<GetRefPrecipitationResponse> executeGetRefPrecipitation(Pageable pageable);
-
-    Downloadable exportGetRefPrecipitation(ExportType exportType, Pageable pageable);
 
     Integer executeUpdateUserPSA(UpdateUserPsaRequest updateUserPsaRequest);
 
