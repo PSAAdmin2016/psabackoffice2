@@ -22,6 +22,10 @@ public class GetBidWorkHistorySteelResponse implements Serializable {
     @ColumnAlias("SubmissionID")
     private Integer submissionId;
 
+    @JsonProperty("BidID")
+    @ColumnAlias("BidID")
+    private Integer bidId;
+
     @JsonProperty("ShakeQuantity")
     @ColumnAlias("ShakeQuantity")
     private BigInteger shakeQuantity;
@@ -92,6 +96,14 @@ public class GetBidWorkHistorySteelResponse implements Serializable {
 
     public void setSubmissionId(Integer submissionId) {
         this.submissionId = submissionId;
+    }
+
+    public Integer getBidId() {
+        return this.bidId;
+    }
+
+    public void setBidId(Integer bidId) {
+        this.bidId = bidId;
     }
 
     public BigInteger getShakeQuantity() {
@@ -228,6 +240,7 @@ public class GetBidWorkHistorySteelResponse implements Serializable {
         if (!(o instanceof GetBidWorkHistorySteelResponse)) return false;
         final GetBidWorkHistorySteelResponse getBidWorkHistorySteelResponse = (GetBidWorkHistorySteelResponse) o;
         return Objects.equals(getSubmissionId(), getBidWorkHistorySteelResponse.getSubmissionId()) &&
+                Objects.equals(getBidId(), getBidWorkHistorySteelResponse.getBidId()) &&
                 Objects.equals(getShakeQuantity(), getBidWorkHistorySteelResponse.getShakeQuantity()) &&
                 Objects.equals(getErectQuantity(), getBidWorkHistorySteelResponse.getErectQuantity()) &&
                 Objects.equals(getErectPercent(), getBidWorkHistorySteelResponse.getErectPercent()) &&
@@ -249,6 +262,7 @@ public class GetBidWorkHistorySteelResponse implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getSubmissionId(),
+                getBidId(),
                 getShakeQuantity(),
                 getErectQuantity(),
                 getErectPercent(),

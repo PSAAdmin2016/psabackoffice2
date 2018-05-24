@@ -1,148 +1,67 @@
-<wm-partial data-ng-controller="ActivityHistorySteelPageController" name="partial1"> 
-    <wm-container name="container1" padding="1% unset unset 1%"> 
-        <wm-tabs transition="none" name="tabs1" padding="unset 1%"> 
-            <wm-tabpane name="tabpane1" heading="Change History" isdefaulttab="true" on-select="tabpane1Select($event, $scope)" title="Change History"> 
-                <wm-layoutgrid name="layoutgrid1"> 
-                    <wm-gridrow name="gridrow1"> 
-                        <wm-gridcolumn columnwidth="12" name="gridcolumn1"> 
-                            <wm-table dataset="bind:$parent.$parent.$parent.Variables.serviceGetACHShake.dataSet" navigation="None" show="bind:$parent.$parent.$parent.inItem.ActivityTypeName == 'Shake-out'" fontsize="10" name="gridShake" class="panel-default" spacing="condensed" enablesort="false"> 
-                                <wm-table-column binding="FAArea" caption="Area" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="FAPieceNumber" caption="Piece Number" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="FAShakeQuantity" caption="Quantity" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="FARework" caption="Rework" type="string" widget-type="checkbox" readonly="true" show="true"> 
-                                    <wm-checkbox scopedatavalue="row['FARework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox> 
-                                </wm-table-column> 
-                                <wm-table-column binding="FANotes" caption="Notes" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="Rev" caption="Rev" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column> 
-                            </wm-table> 
-                        </wm-gridcolumn> 
-                    </wm-gridrow> 
-                    <wm-gridrow name="gridrow3"> 
-                        <wm-gridcolumn columnwidth="12" name="gridcolumn5"> 
-                            <wm-table dataset="bind:$parent.$parent.$parent.Variables.serviceGetACHErect.dataSet" navigation="None" show="bind:$parent.$parent.$parent.inItem.ActivityTypeName == 'Erection'" fontsize="10" class="panel-default" spacing="condensed" enablesort="false" name="gridErect"> 
-                                <wm-table-column binding="FAArea" caption="Area" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="FAPieceNumber" caption="Piece Number" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="FAErectQuantity" caption="Quantity" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="FAErectPercent" caption="Percent" type="string" readonly="true" formatpattern="None" suffix="%" show="true">
-                                     {{row.FAErectPercent * 100| suffix: '%'}} 
-                                </wm-table-column> 
-                                <wm-table-column binding="FARework" caption="Rework" type="string" widget-type="checkbox" readonly="true" show="true"> 
-                                    <wm-checkbox scopedatavalue="row['FARework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox> 
-                                </wm-table-column> 
-                                <wm-table-column binding="FANotes" caption="Notes" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="Rev" caption="Rev" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column> 
-                            </wm-table> 
-                        </wm-gridcolumn> 
-                    </wm-gridrow> 
-                    <wm-gridrow name="gridrow4"> 
-                        <wm-gridcolumn columnwidth="12" name="gridcolumn6"> 
-                            <wm-table dataset="bind:$parent.$parent.$parent.Variables.serviceGetACHBoltout.dataSet" navigation="None" show="bind:$parent.$parent.$parent.inItem.ActivityTypeName == 'Bolt-out'" fontsize="10" class="panel-default" spacing="condensed" enablesort="false" name="gridBoltout"> 
-                                <wm-table-column binding="FAArea" caption="Area" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="FAPieceNumber" caption="Piece Number" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="FABoltOutQuantity" caption="Quantity" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="FABoltOutPercent" caption="Percent" type="string" readonly="true" show="true">
-                                     {{row.FABoltOutPercent * 100| suffix: '%'}} 
-                                </wm-table-column> 
-                                <wm-table-column binding="FARework" caption="Rework" type="string" widget-type="checkbox" readonly="true" show="true"> 
-                                    <wm-checkbox scopedatavalue="row['FARework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox> 
-                                </wm-table-column> 
-                                <wm-table-column binding="FANotes" caption="Notes" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="Rev" caption="Rev" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column> 
-                            </wm-table> 
-                        </wm-gridcolumn> 
-                    </wm-gridrow> 
-                    <wm-gridrow name="gridrow5"> 
-                        <wm-gridcolumn columnwidth="12" name="gridcolumn7"> 
-                            <wm-table dataset="bind:$parent.$parent.$parent.Variables.serviceGetACHImp.dataSet" navigation="None" show="bind:$parent.$parent.$parent.inItem.ActivityTypeName == 'Impact'" fontsize="10" class="panel-default" spacing="condensed" enablesort="false" name="gridImp"> 
-                                <wm-table-column binding="FAArea" caption="Area" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="FAPieceNumber" caption="Piece Number" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="FAImpQuantity" caption="Quantity" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="FAImpPercent" caption="Percent" type="string" readonly="true" show="true">
-                                     {{row.FAImpPercent * 100| suffix: '%'}} 
-                                </wm-table-column> 
-                                <wm-table-column binding="FARework" caption="Rework" type="string" widget-type="checkbox" readonly="true" show="true"> 
-                                    <wm-checkbox scopedatavalue="row['FARework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox> 
-                                </wm-table-column> 
-                                <wm-table-column binding="FANotes" caption="Notes" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="Rev" caption="Rev" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column> 
-                            </wm-table> 
-                        </wm-gridcolumn> 
-                    </wm-gridrow> 
-                    <wm-gridrow name="gridrow6"> 
-                        <wm-gridcolumn columnwidth="12" name="gridcolumn8"> 
-                            <wm-table dataset="bind:$parent.$parent.$parent.Variables.serviceGetACHWeld.dataSet" navigation="None" show="bind:$parent.$parent.$parent.inItem.ActivityTypeName == 'Weld'" fontsize="10" class="panel-default" spacing="condensed" enablesort="false" name="gridWeld"> 
-                                <wm-table-column binding="FAArea" caption="Area" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="FAPieceNumber" caption="Piece Number" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="FAWeldQuantity" caption="Quantity" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="FAWeldPercent" caption="Percent" type="string" readonly="true" show="true">
-                                     {{row.FAWeldPercent * 100| suffix: '%'}} 
-                                </wm-table-column> 
-                                <wm-table-column binding="FARework" caption="Rework" type="string" widget-type="checkbox" readonly="true" show="true"> 
-                                    <wm-checkbox scopedatavalue="row['FARework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox> 
-                                </wm-table-column> 
-                                <wm-table-column binding="FANotes" caption="Notes" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="Rev" caption="Rev" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column> 
-                            </wm-table> 
-                        </wm-gridcolumn> 
-                    </wm-gridrow> 
-                    <wm-gridrow name="gridrow9"> 
-                        <wm-gridcolumn columnwidth="12" name="gridcolumn11"> 
-                            <wm-table dataset="bind:$parent.$parent.$parent.Variables.serviceGetACHSell.dataSet" navigation="None" show="bind:$parent.$parent.$parent.inItem.ActivityTypeName == 'Sell/Punch'" fontsize="10" class="panel-default" spacing="condensed" enablesort="false" name="gridSell"> 
-                                <wm-table-column binding="FAArea" caption="Area" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="FAPieceNumber" caption="Piece Number" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="FASellQuantity" caption="Quantity" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="FARework" caption="Rework" type="string" widget-type="checkbox" readonly="true" show="true"> 
-                                    <wm-checkbox scopedatavalue="row['FARework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox> 
-                                </wm-table-column> 
-                                <wm-table-column binding="FANotes" caption="Notes" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="Rev" caption="Rev" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column> 
-                            </wm-table> 
-                        </wm-gridcolumn> 
-                    </wm-gridrow> 
-                    <wm-gridrow name="gridrow7"> 
-                        <wm-gridcolumn columnwidth="12" name="gridcolumn9"> 
-                            <wm-table dataset="bind:$parent.$parent.$parent.Variables.serviceGetACHDemo.dataSet" navigation="None" show="bind:$parent.$parent.$parent.inItem.ActivityTypeName == 'Demo'" fontsize="10" class="panel-default" spacing="condensed" enablesort="false" name="gridDemo"> 
-                                <wm-table-column binding="DemoArea" caption="Area" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="DemoSteelType" caption="Steel Type" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="DemoSize" caption="Size" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="DemoQuantity" caption="Demo Quantity" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="DemoNotes" caption="Notes" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="Rev" caption="Rev" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column> 
-                            </wm-table> 
-                        </wm-gridcolumn> 
-                    </wm-gridrow> 
-                    <wm-gridrow name="gridrow8"> 
-                        <wm-gridcolumn columnwidth="12" name="gridcolumn10"> 
-                            <wm-table dataset="bind:$parent.$parent.$parent.Variables.serviceGetACHMisc.dataSet" navigation="None" show="bind:$parent.$parent.$parent.inItem.ActivityTypeName == 'Misc'" fontsize="10" class="panel-default" spacing="condensed" enablesort="false" name="gridMisc"> 
-                                <wm-table-column binding="MiscArea" caption="Area" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="MiscPieceNumber" caption="Piece Number" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="MiscQuantity" caption="Quantity" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="MiscRework" caption="Rework" type="string" widget-type="checkbox" readonly="true" show="true"> 
-                                    <wm-checkbox scopedatavalue="row['MiscRework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox> 
-                                </wm-table-column> 
-                                <wm-table-column binding="MiscNotes" caption="Notes" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="Rev" caption="Rev" type="string" readonly="true" show="true"></wm-table-column> 
-                                <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column> 
-                            </wm-table> 
-                        </wm-gridcolumn> 
-                    </wm-gridrow> 
-                </wm-layoutgrid> 
-            </wm-tabpane> 
-            <wm-tabpane name="tabpane2" heading="Status History" isdefaulttab="false" title="Status History" on-select="tabpane2Select($event, $scope)"> 
-                <wm-table navigation="None" name="gridStatusChangeLog" class="panel-default" dataset="bind:$parent.$parent.$parent.Variables.serviceGetActivityStatusHistory.dataSet"> 
-                    <wm-table-column binding="ActivityID" caption="Field Activity ID" type="string" readonly="true" edit-widget-type="text" sortable="false" show="true"></wm-table-column> 
-                    <wm-table-column binding="Status" caption="Status" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
-                    <wm-table-column binding="LastModifiedBy" caption="Last Modified By" type="string" readonly="true" edit-widget-type="text" show="true"></wm-table-column> 
-                    <wm-table-column binding="TimeStamp" caption="Time Stamp" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" edit-widget-type="text" show="true"></wm-table-column> 
-                </wm-table> 
-            </wm-tabpane> 
-        </wm-tabs> 
-    </wm-container> 
+<wm-partial data-ng-controller="ActivityHistorySteelPageController" name="partial1">
+    <wm-container name="container1" padding="1% unset unset 1%">
+        <wm-tabs transition="none" name="tabs1" padding="unset 1%">
+            <wm-tabpane name="tabpane1" heading="Change History" isdefaulttab="true" on-select="tabpane1Select($event, $scope)" title="Change History">
+                <wm-layoutgrid name="layoutgrid1">
+                    <wm-gridrow name="gridrow1">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn1">
+                            <wm-table dataset="bind:Variables.serviceGetACHSteelFA.dataSet" navigation="None" show="bind:inItem.ActivityTypeID == 61 || 
+inItem.ActivityTypeID == 62 || 
+inItem.ActivityTypeID == 63 || 
+inItem.ActivityTypeID == 64 || 
+inItem.ActivityTypeID == 65 || 
+inItem.ActivityTypeID == 68" fontsize="10" name="gridFA" class="panel-default" spacing="condensed" enablesort="false" deferload="true">
+                                <wm-table-column binding="activityId" caption="Activity Id" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                                <wm-table-column binding="pieceMark" caption="Piece Mark" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                                <wm-table-column binding="faquantity" caption="Quantity" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                                <wm-table-column binding="fapercentCompleted" caption="Percent" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                                <wm-table-column binding="farework" caption="Rework" widget-type="checkbox" edit-widget-type="text" type="string" readonly="true" show="true">
+                                    <wm-checkbox scopedatavalue="row['farework']" checkedvalue="1" uncheckedvalue="0" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                                </wm-table-column>
+                                <wm-table-column binding="fanotes" caption="Notes" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                                <wm-table-column binding="rev" caption="Rev" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                                <wm-table-column binding="timeStamp" caption="Time Stamp" edit-widget-type="text" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column>
+                            </wm-table>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow7">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn9">
+                            <wm-table dataset="bind:Variables.serviceGetACHSteelDemo.dataSet" navigation="None" show="bind:inItem.ActivityTypeID == 67" fontsize="10" class="panel-default" spacing="condensed" enablesort="false" name="gridDemo">
+                                <wm-table-column binding="ActivityID" caption="Activity Id" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                                <wm-table-column binding="Description" caption="Description" type="string" show="true" readonly="undefined"></wm-table-column>
+                                <wm-table-column binding="DemoPercentCompleted" caption="Percent" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                                <wm-table-column binding="DemoNotes" caption="Notes" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                                <wm-table-column binding="Rev" caption="Rev" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                                <wm-table-column binding="TimeStamp" caption="Time Stamp" edit-widget-type="text" type="string" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true" readonly="false"></wm-table-column>
+                            </wm-table>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow8">
+                        <wm-gridcolumn columnwidth="12" name="gridcolumn10">
+                            <wm-table dataset="bind:Variables.serviceGetACHSteelMisc.dataSet" navigation="None" show="bind:inItem.ActivityTypeID == 96" fontsize="10" class="panel-default" spacing="condensed" enablesort="false" name="gridMisc">
+                                <wm-table-column binding="ActivityID" caption="Activity Id" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                                <wm-table-column binding="PieceMark" caption="Piece Mark" type="string" readonly="true" show="true"></wm-table-column>
+                                <wm-table-column binding="Description" caption="Description" type="string" readonly="true" show="true"></wm-table-column>
+                                <wm-table-column binding="MiscPercentCompleted" caption="Percent" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                                <wm-table-column binding="MiscRework" caption="Rework" widget-type="checkbox" edit-widget-type="text" type="string" readonly="true" show="true">
+                                    <wm-checkbox scopedatavalue="row['MiscRework']" checkedvalue="1" uncheckedvalue="0" disabled="disabled" class="checkbox-custom" data-ng-class=""></wm-checkbox>
+                                </wm-table-column>
+                                <wm-table-column binding="MiscNotes" caption="Notes" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                                <wm-table-column binding="Rev" caption="Rev" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                                <wm-table-column binding="TimeStamp" caption="Time Stamp" edit-widget-type="text" type="string" readonly="true" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true"></wm-table-column>
+                            </wm-table>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
+            </wm-tabpane>
+            <wm-tabpane name="tabpane2" heading="Status History" isdefaulttab="false" title="Status History" on-select="tabpane2Select($event, $scope)">
+                <wm-table navigation="None" name="gridStatusChangeLog" class="panel-default" dataset="bind:Variables.serviceGetActivityStatusHistory.dataSet">
+                    <wm-table-column binding="ActivityID" caption="Field Activity ID" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                    <wm-table-column binding="Status" caption="Status" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                    <wm-table-column binding="LastModifiedBy" caption="Last Modified By" edit-widget-type="text" type="string" show="true" readonly="false"></wm-table-column>
+                    <wm-table-column binding="TimeStamp" caption="Time Stamp" edit-widget-type="text" type="string" datepattern="MM-dd-yy hh:mm:ss a" formatpattern="toDate" show="true" readonly="false"></wm-table-column>
+                </wm-table>
+            </wm-tabpane>
+        </wm-tabs>
+    </wm-container>
 </wm-partial>

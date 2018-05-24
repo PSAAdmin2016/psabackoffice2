@@ -486,7 +486,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetBidWorkHistorySteelExpanded", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Gets the Bid Work History, with each Field activity having its own row.  Of the given SubID")
-    public Page<GetBidWorkHistorySteelExpandedResponse> executeGetBidWorkHistorySteelExpanded(@RequestParam(value = "BidID", required = false) Integer bidId, @RequestParam(value = "SubmissionID", required = false) Integer submissionId, Pageable pageable, HttpServletRequest _request) {
+    public Page<GetBidWorkHistorySteelExpandedResponse> executeGetBidWorkHistorySteelExpanded(@RequestParam(value = "BidID") Integer bidId, @RequestParam(value = "SubmissionID") Integer submissionId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Executing named query: GetBidWorkHistorySteelExpanded");
         Page<GetBidWorkHistorySteelExpandedResponse> _result = queryService.executeGetBidWorkHistorySteelExpanded(bidId, submissionId, pageable);
         LOGGER.debug("got the result for named query: GetBidWorkHistorySteelExpanded, result:{}", _result);
@@ -496,7 +496,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetBidWorkHistorySteelExpanded")
     @RequestMapping(value = "/queries/GetBidWorkHistorySteelExpanded/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetBidWorkHistorySteelExpanded(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID", required = false) Integer bidId, @RequestParam(value = "SubmissionID", required = false) Integer submissionId, Pageable pageable, HttpServletRequest _request) {
+    public Downloadable exportGetBidWorkHistorySteelExpanded(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "BidID") Integer bidId, @RequestParam(value = "SubmissionID") Integer submissionId, Pageable pageable, HttpServletRequest _request) {
         LOGGER.debug("Exporting named query: GetBidWorkHistorySteelExpanded");
 
         return queryService.exportGetBidWorkHistorySteelExpanded(exportType, bidId, submissionId, pageable);

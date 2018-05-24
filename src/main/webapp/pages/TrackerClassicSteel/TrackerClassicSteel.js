@@ -4,9 +4,8 @@ Application.$controller("TrackerClassicSteelPageController", ["$scope", "DialogS
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        $scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.SettingsPageUser.getData().data.find(x => x.label === $scope.activePageName));
+        //$scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.SettingsPageUser.getData().data.find(x => x.label === $scope.activePageName));
         firstLoad = true;
-
     };
 
 
@@ -29,14 +28,14 @@ Application.$controller("TrackerClassicSteelPageController", ["$scope", "DialogS
 
 
     $scope.dialogOverrideOpen = function(inItem) {
-        DialogService.open('dialogQuantityOverride', $scope);
         $scope.inItem = inItem;
+        DialogService.open('dialogQuantityOverride', $scope);
     };
 
 
     $scope.dialogActivityHistoryOpen = function(inItem) {
-        DialogService.open('dialogActivityHistory', $scope);
         $scope.inItem = inItem;
+        DialogService.open('dialogActivityHistory', $scope);
 
     };
 
@@ -128,35 +127,44 @@ Application.$controller("dialogQuantityOverrideController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
-        $scope.formNewQuantitySubmit = function($event, $isolateScope, $formData) {
+        $scope.dialogQuantityOverrideOpened = function($event, $isolateScope) {
+            //Runing here instead of override button click because Steel WorkHistoryExpand is in different scope.. this is simpler
+            $scope.Variables.liveSAS.listRecords({ //Called to populate form.  
+                filterFields: {
+                    "activityId": {
+                        "value": $scope.inItem.ActivityID
+                    }
+                }
+            });
+        };
 
-            $scope.Variables.serviceUpdateSSOverride.update(); // changes status to Override Quantity  No test for success.
-            if ($scope.inItem.ActivityTypeName == 'Shake-out') {
-                $scope.Variables.serviceUpdateShake.invoke(); //onSuccess Updates GetBidWorkHistory & closes Dialog.
-            }
-            if ($scope.inItem.ActivityTypeName == 'Erection') {
-                $scope.Variables.serviceUpdateErect.invoke(); //onSuccess Updates GetBidWorkHistory & closes Dialog.
-            }
-            if ($scope.inItem.ActivityTypeName == 'Bolt-out') {
-                $scope.Variables.serviceUpdateBoltout.invoke(); //onSuccess Updates GetBidWorkHistory & closes Dialog.
-            }
-            if ($scope.inItem.ActivityTypeName == 'Impact') {
-                $scope.Variables.serviceUpdateImp.invoke(); //onSuccess Updates GetBidWorkHistory & closes Dialog.
-            }
-            if ($scope.inItem.ActivityTypeName == 'Weld') {
-                $scope.Variables.serviceUpdateWeld.invoke(); //onSuccess Updates GetBidWorkHistory & closes Dialog.
-            }
-            if ($scope.inItem.ActivityTypeName == 'Sell/Punch') {
-                $scope.Variables.serviceUpdateSell.invoke(); //onSuccess Updates GetBidWorkHistory & closes Dialog.
-            }
-            if ($scope.inItem.ActivityTypeName == 'Demo') {
-                $scope.Variables.serviceUpdateDemo.invoke(); //onSuccess Updates GetBidWorkHistory & closes Dialog.
-            }
-            if ($scope.inItem.ActivityTypeName == 'Misc') {
-                $scope.Variables.serviceUpdateMisc.invoke(); //onSuccess Updates GetBidWorkHistory & closes Dialog.
+        $scope.liveformSASUpdateBeforeservicecall = function($event, $operation, $data) {
+            switch ($scope.inItem.ActivityTypeID) {
+                case 61:
+                case 62:
+                case 63:
+                case 64:
+                case 65:
+                case 68:
+                    $data.fkActivityStatus = 12;
+                    break;
+                case 67:
+                    $data.steelDemo.demoPercentCompleted = $data.steelFa.fapercentCompleted;
+                    $data.fkActivityStatus = 12;
+                    $data.steelFa = null;
+                    break;
+                case 96:
+                    $data.steelMisc.miscPercentCompleted = $data.steelFa.fapercentCompleted;
+                    $data.fkActivityStatus = 12;
+                    $data.steelFa = null;
+                    break;
             }
         };
 
+        $scope.liveformSASUpdateSuccess = function($event, $operation, $data) {
+            $scope.Variables.serviceGetBidWorkHistory.invoke();
+            $scope.Variables.serviceUpdateClassicTracker.invoke(); //Calls livefilterClassicTrackerSteel.filter();
+        };
 
     }
 ]);
@@ -166,7 +174,6 @@ Application.$controller("dialogManualEntryController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-
     }
 ]);
 
@@ -176,5 +183,21 @@ Application.$controller("dialogActivityHistoryController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
+    }
+]);
+
+
+
+Application.$controller("liveformSASUpdateController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("liveformSteelFAUpdateController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);

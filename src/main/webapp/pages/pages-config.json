@@ -11,7 +11,13 @@
 }, {
   "name" : "ActivityHistorySteel",
   "type" : "PARTIAL",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "ActivityID",
+    "type" : "integer"
+  }, {
+    "name" : "ActivityTypeId",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "BidEditorCivil",
   "type" : "PAGE",
@@ -280,7 +286,13 @@
 }, {
   "name" : "PopSteelFAExpanded",
   "type" : "POPOVER",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "BidID",
+    "type" : "integer"
+  }, {
+    "name" : "SubmissionID",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "ReportBrowser",
   "type" : "PAGE",

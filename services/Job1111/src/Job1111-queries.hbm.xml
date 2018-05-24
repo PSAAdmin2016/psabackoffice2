@@ -728,7 +728,7 @@ GROUP BY ptd.TestPackageNumber) wmTempTable
 
     <sql-query name="GetBidWorkHistorySteel">
         <![CDATA[
-        SELECT sas.SubmissionID, 
+        SELECT sas.SubmissionID, std.BidID,
 
 SUM(COALESCE(stls.FAQuantity,0)) AS ShakeQuantity,
 SUM(COALESCE(stle.FAQuantity,0)) AS ErectQuantity,
@@ -799,7 +799,7 @@ GROUP BY sas.SubmissionID
 
     <sql-query name="GetBidWorkHistorySteel__count">
         <![CDATA[
-        select count(*) from (SELECT sas.SubmissionID, 
+        select count(*) from (SELECT sas.SubmissionID, std.BidID,
 
 SUM(COALESCE(stls.FAQuantity,0)) AS ShakeQuantity,
 SUM(COALESCE(stle.FAQuantity,0)) AS ErectQuantity,
@@ -3981,12 +3981,16 @@ WHERE Label = 'SteelSellHoursPercent') wmTempTable
 
     <sql-query name="GetBidWorkHistorySteelExpanded">
         <![CDATA[
-        SELECT sas.SubmissionID, sas.ActivityID, 
+        SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID,
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
 sd.CompleteTime, 
-max(sasr.TimeStamp) AS ReviewedTime,
-at.ActivityType AS ActivityTypeName,
+(SELECT sasr.TimeStamp 
+FROM SubmissionActivityStatusREV sasr
+WHERE sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+ORDER BY TimeStamp DESC
+LIMIT 1) AS ReviewedTime,
+
 COALESCE(stlfa.FAQuantity,0) AS Quantity, 
 1.00 AS Percent,
 stlfa.FANotes AS Notes,
@@ -4006,9 +4010,7 @@ LEFT JOIN PSA.tblUserPSA u1
 		ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-        
-LEFT JOIN SubmissionActivityStatusREV sasr
-	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+
 
 #### Assigned Activities Joins #####  
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -4025,13 +4027,16 @@ GROUP BY sas.ActivityID
 UNION
 
 
-SELECT sas.SubmissionID, sas.ActivityID,  
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID,  
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
 sd.CompleteTime, 
-max(sasr.TimeStamp) AS ReviewedTime,
+(SELECT sasr.TimeStamp 
+FROM SubmissionActivityStatusREV sasr
+WHERE sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+ORDER BY TimeStamp DESC
+LIMIT 1) AS ReviewedTime,
 
-at.ActivityType,
 COALESCE(stlfa.FAQuantity,0) AS ErectQuantity,
 COALESCE(stlfa.FAPercentCompleted,0) AS ErectPercent,
 stlfa.FANotes,
@@ -4052,8 +4057,6 @@ LEFT JOIN PSA.tblUserPSA u1
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
 
-LEFT JOIN SubmissionActivityStatusREV sasr
-	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
 
 #### Assigned Activities Joins #####  
@@ -4074,13 +4077,16 @@ UNION
 
 
 
-SELECT sas.SubmissionID, sas.ActivityID, 
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID, 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
 sd.CompleteTime, 
-max(sasr.TimeStamp) AS ReviewedTime,
+(SELECT sasr.TimeStamp 
+FROM SubmissionActivityStatusREV sasr
+WHERE sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+ORDER BY TimeStamp DESC
+LIMIT 1) AS ReviewedTime,
 
-at.ActivityType,
 COALESCE(stlfa.FAQuantity,0) AS BoltoutQuantity,
 COALESCE(stlfa.FAPercentCompleted,0) AS BoltoutPercent, 
 stlfa.FANotes,
@@ -4101,8 +4107,6 @@ LEFT JOIN PSA.tblUserPSA u1
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
 
-LEFT JOIN SubmissionActivityStatusREV sasr
-	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
 
 #### Assigned Activities Joins #####  
@@ -4122,13 +4126,16 @@ GROUP BY sas.ActivityID
 UNION
 
 
-SELECT sas.SubmissionID, sas.ActivityID, 
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID,
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
 sd.CompleteTime, 
-max(sasr.TimeStamp) AS ReviewedTime,
+(SELECT sasr.TimeStamp 
+FROM SubmissionActivityStatusREV sasr
+WHERE sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+ORDER BY TimeStamp DESC
+LIMIT 1) AS ReviewedTime,
 
-at.ActivityType,
 COALESCE(stlfa.FAQuantity,0) AS ImpQuantity,
 COALESCE(stlfa.FAPercentCompleted,0) AS ImpPercent, 
 stlfa.FANotes,
@@ -4149,8 +4156,6 @@ LEFT JOIN PSA.tblUserPSA u1
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
 
-LEFT JOIN SubmissionActivityStatusREV sasr
-	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
 #### Assigned Activities Joins #####  
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -4169,13 +4174,16 @@ UNION
 
 
 
-SELECT sas.SubmissionID, sas.ActivityID,  
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID,  
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
 sd.CompleteTime, 
-max(sasr.TimeStamp) AS ReviewedTime,
+(SELECT sasr.TimeStamp 
+FROM SubmissionActivityStatusREV sasr
+WHERE sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+ORDER BY TimeStamp DESC
+LIMIT 1) AS ReviewedTime,
 
-at.ActivityType,
 COALESCE(stlfa.FAQuantity,0) AS WeldQuantity,
 COALESCE(stlfa.FAPercentCompleted,0) AS WeldPercent,
 stlfa.FANotes,
@@ -4196,8 +4204,6 @@ LEFT JOIN PSA.tblUserPSA u1
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
 
-LEFT JOIN SubmissionActivityStatusREV sasr
-	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
 #### Assigned Activities Joins #####  
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -4215,13 +4221,16 @@ UNION
 
 
 
-SELECT sas.SubmissionID, sas.ActivityID, 
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID,
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
 sd.CompleteTime, 
-max(sasr.TimeStamp) AS ReviewedTime,
+(SELECT sasr.TimeStamp 
+FROM SubmissionActivityStatusREV sasr
+WHERE sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+ORDER BY TimeStamp DESC
+LIMIT 1) AS ReviewedTime,
 
-at.ActivityType,
 COALESCE(stlfa.FAQuantity,0) AS SellQuantity, 
 1.00 AS Percent, 
 stlfa.FANotes,
@@ -4241,8 +4250,6 @@ LEFT JOIN PSA.tblUserPSA u1
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
 
-LEFT JOIN SubmissionActivityStatusREV sasr
-	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
  
 #### Assigned Activities Joins #####  
@@ -4263,13 +4270,16 @@ UNION
 
 
 
-SELECT sas.SubmissionID, sas.ActivityID, 
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID, 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
 sd.CompleteTime, 
-max(sasr.TimeStamp) AS ReviewedTime,
+(SELECT sasr.TimeStamp 
+FROM SubmissionActivityStatusREV sasr
+WHERE sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+ORDER BY TimeStamp DESC
+LIMIT 1) AS ReviewedTime,
 
-at.ActivityType,
 COALESCE(std.TakeOffQuantity,0) AS DemoQuantity, 
 COALESCE(stld.DemoPercentCompleted,0) AS Percent, 
 stld.DemoNotes,
@@ -4290,9 +4300,6 @@ LEFT JOIN PSA.tblUserPSA u1
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
 
-LEFT JOIN SubmissionActivityStatusREV sasr
-	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
-
 
 #### Assigned Activities Joins #####  
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -4312,13 +4319,16 @@ UNION
 
 
 
-SELECT sas.SubmissionID, sas.ActivityID,  
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID, 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
 sd.CompleteTime, 
-max(sasr.TimeStamp) AS ReviewedTime,
+(SELECT sasr.TimeStamp 
+FROM SubmissionActivityStatusREV sasr
+WHERE sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+ORDER BY TimeStamp DESC
+LIMIT 1) AS ReviewedTime,
 
-at.ActivityType,
 COALESCE(std.TakeOffQuantity,0) AS MiscQuantity, 
 COALESCE(stlm.MiscPercentCompleted,0) AS Percent,
 stlm.MiscNotes,
@@ -4338,9 +4348,6 @@ LEFT JOIN PSA.tblUserPSA u1
 		ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-
-LEFT JOIN SubmissionActivityStatusREV sasr
-	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
 #### Assigned Activities Joins #####  
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -4361,12 +4368,16 @@ GROUP BY sas.ActivityID
 
     <sql-query name="GetBidWorkHistorySteelExpanded__count">
         <![CDATA[
-        select count(*) from (SELECT sas.SubmissionID, sas.ActivityID, 
+        select count(*) from (SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID,
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
 sd.CompleteTime, 
-max(sasr.TimeStamp) AS ReviewedTime,
-at.ActivityType AS ActivityTypeName,
+(SELECT sasr.TimeStamp 
+FROM SubmissionActivityStatusREV sasr
+WHERE sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+ORDER BY TimeStamp DESC
+LIMIT 1) AS ReviewedTime,
+
 COALESCE(stlfa.FAQuantity,0) AS Quantity, 
 1.00 AS Percent,
 stlfa.FANotes AS Notes,
@@ -4386,9 +4397,7 @@ LEFT JOIN PSA.tblUserPSA u1
 		ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-        
-LEFT JOIN SubmissionActivityStatusREV sasr
-	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+
 
 #### Assigned Activities Joins #####  
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -4405,13 +4414,16 @@ GROUP BY sas.ActivityID
 UNION
 
 
-SELECT sas.SubmissionID, sas.ActivityID,  
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID,  
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
 sd.CompleteTime, 
-max(sasr.TimeStamp) AS ReviewedTime,
+(SELECT sasr.TimeStamp 
+FROM SubmissionActivityStatusREV sasr
+WHERE sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+ORDER BY TimeStamp DESC
+LIMIT 1) AS ReviewedTime,
 
-at.ActivityType,
 COALESCE(stlfa.FAQuantity,0) AS ErectQuantity,
 COALESCE(stlfa.FAPercentCompleted,0) AS ErectPercent,
 stlfa.FANotes,
@@ -4432,8 +4444,6 @@ LEFT JOIN PSA.tblUserPSA u1
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
 
-LEFT JOIN SubmissionActivityStatusREV sasr
-	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
 
 #### Assigned Activities Joins #####  
@@ -4454,13 +4464,16 @@ UNION
 
 
 
-SELECT sas.SubmissionID, sas.ActivityID, 
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID, 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
 sd.CompleteTime, 
-max(sasr.TimeStamp) AS ReviewedTime,
+(SELECT sasr.TimeStamp 
+FROM SubmissionActivityStatusREV sasr
+WHERE sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+ORDER BY TimeStamp DESC
+LIMIT 1) AS ReviewedTime,
 
-at.ActivityType,
 COALESCE(stlfa.FAQuantity,0) AS BoltoutQuantity,
 COALESCE(stlfa.FAPercentCompleted,0) AS BoltoutPercent, 
 stlfa.FANotes,
@@ -4481,8 +4494,6 @@ LEFT JOIN PSA.tblUserPSA u1
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
 
-LEFT JOIN SubmissionActivityStatusREV sasr
-	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
 
 #### Assigned Activities Joins #####  
@@ -4502,13 +4513,16 @@ GROUP BY sas.ActivityID
 UNION
 
 
-SELECT sas.SubmissionID, sas.ActivityID, 
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID,
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
 sd.CompleteTime, 
-max(sasr.TimeStamp) AS ReviewedTime,
+(SELECT sasr.TimeStamp 
+FROM SubmissionActivityStatusREV sasr
+WHERE sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+ORDER BY TimeStamp DESC
+LIMIT 1) AS ReviewedTime,
 
-at.ActivityType,
 COALESCE(stlfa.FAQuantity,0) AS ImpQuantity,
 COALESCE(stlfa.FAPercentCompleted,0) AS ImpPercent, 
 stlfa.FANotes,
@@ -4529,8 +4543,6 @@ LEFT JOIN PSA.tblUserPSA u1
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
 
-LEFT JOIN SubmissionActivityStatusREV sasr
-	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
 #### Assigned Activities Joins #####  
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -4549,13 +4561,16 @@ UNION
 
 
 
-SELECT sas.SubmissionID, sas.ActivityID,  
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID,  
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
 sd.CompleteTime, 
-max(sasr.TimeStamp) AS ReviewedTime,
+(SELECT sasr.TimeStamp 
+FROM SubmissionActivityStatusREV sasr
+WHERE sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+ORDER BY TimeStamp DESC
+LIMIT 1) AS ReviewedTime,
 
-at.ActivityType,
 COALESCE(stlfa.FAQuantity,0) AS WeldQuantity,
 COALESCE(stlfa.FAPercentCompleted,0) AS WeldPercent,
 stlfa.FANotes,
@@ -4576,8 +4591,6 @@ LEFT JOIN PSA.tblUserPSA u1
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
 
-LEFT JOIN SubmissionActivityStatusREV sasr
-	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
 #### Assigned Activities Joins #####  
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -4595,13 +4608,16 @@ UNION
 
 
 
-SELECT sas.SubmissionID, sas.ActivityID, 
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID,
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
 sd.CompleteTime, 
-max(sasr.TimeStamp) AS ReviewedTime,
+(SELECT sasr.TimeStamp 
+FROM SubmissionActivityStatusREV sasr
+WHERE sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+ORDER BY TimeStamp DESC
+LIMIT 1) AS ReviewedTime,
 
-at.ActivityType,
 COALESCE(stlfa.FAQuantity,0) AS SellQuantity, 
 1.00 AS Percent, 
 stlfa.FANotes,
@@ -4621,8 +4637,6 @@ LEFT JOIN PSA.tblUserPSA u1
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
 
-LEFT JOIN SubmissionActivityStatusREV sasr
-	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
  
 #### Assigned Activities Joins #####  
@@ -4643,13 +4657,16 @@ UNION
 
 
 
-SELECT sas.SubmissionID, sas.ActivityID, 
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID, 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
 sd.CompleteTime, 
-max(sasr.TimeStamp) AS ReviewedTime,
+(SELECT sasr.TimeStamp 
+FROM SubmissionActivityStatusREV sasr
+WHERE sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+ORDER BY TimeStamp DESC
+LIMIT 1) AS ReviewedTime,
 
-at.ActivityType,
 COALESCE(std.TakeOffQuantity,0) AS DemoQuantity, 
 COALESCE(stld.DemoPercentCompleted,0) AS Percent, 
 stld.DemoNotes,
@@ -4670,9 +4687,6 @@ LEFT JOIN PSA.tblUserPSA u1
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
 
-LEFT JOIN SubmissionActivityStatusREV sasr
-	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
-
 
 #### Assigned Activities Joins #####  
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -4692,13 +4706,16 @@ UNION
 
 
 
-SELECT sas.SubmissionID, sas.ActivityID,  
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID, 
 CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
 CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
 sd.CompleteTime, 
-max(sasr.TimeStamp) AS ReviewedTime,
+(SELECT sasr.TimeStamp 
+FROM SubmissionActivityStatusREV sasr
+WHERE sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+ORDER BY TimeStamp DESC
+LIMIT 1) AS ReviewedTime,
 
-at.ActivityType,
 COALESCE(std.TakeOffQuantity,0) AS MiscQuantity, 
 COALESCE(stlm.MiscPercentCompleted,0) AS Percent,
 stlm.MiscNotes,
@@ -4718,9 +4735,6 @@ LEFT JOIN PSA.tblUserPSA u1
 		ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
 LEFT JOIN PSA.tblUserPSA u2
 		ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
-
-LEFT JOIN SubmissionActivityStatusREV sasr
-	ON sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
 
 #### Assigned Activities Joins #####  
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -5860,14 +5874,18 @@ ORDER BY ptd.EngDrawingNumber, ptd.SheetNumber) wmTempTable
 
     <sql-query name="GetActivityHistorySteelMisc">
         <![CDATA[
-        SELECT stlm.* 
+        SELECT std.Description, std.PieceMark, stlm.* 
 FROM SteelMisc stlm
+JOIN SteelTrackerDetails std
+    ON std.BidID = stlm.MiscBidID
 WHERE ActivityID = :ActivityID
 
 UNION ALL
 
-SELECT stlmr.fk_OrgActivityId, stlmr.MiscBidID, stlmr.MiscPercentCompleted, stlmr.MiscRework, stlmr.MiscNotes, stlmr.ActivityType, stlmr.MiscTimeInForm, stlmr.Rev, stlmr.TimeStamp
+SELECT std.Description, std.PieceMark, stlmr.fk_OrgActivityId, stlmr.MiscBidID, stlmr.MiscPercentCompleted, stlmr.MiscRework, stlmr.MiscNotes, stlmr.ActivityType, stlmr.MiscTimeInForm, stlmr.Rev, stlmr.TimeStamp
 FROM SteelMiscREV stlmr
+JOIN SteelTrackerDetails std
+    ON std.BidID = stlmr.MiscBidID
 WHERE fk_OrgActivityId = :ActivityID
 ORDER BY TimeStamp DESC
         ]]>
@@ -5876,14 +5894,18 @@ ORDER BY TimeStamp DESC
 
     <sql-query name="GetActivityHistorySteelMisc__count">
         <![CDATA[
-        select count(*) from (SELECT stlm.* 
+        select count(*) from (SELECT std.Description, std.PieceMark, stlm.* 
 FROM SteelMisc stlm
+JOIN SteelTrackerDetails std
+    ON std.BidID = stlm.MiscBidID
 WHERE ActivityID = :ActivityID
 
 UNION ALL
 
-SELECT stlmr.fk_OrgActivityId, stlmr.MiscBidID, stlmr.MiscPercentCompleted, stlmr.MiscRework, stlmr.MiscNotes, stlmr.ActivityType, stlmr.MiscTimeInForm, stlmr.Rev, stlmr.TimeStamp
+SELECT std.Description, std.PieceMark, stlmr.fk_OrgActivityId, stlmr.MiscBidID, stlmr.MiscPercentCompleted, stlmr.MiscRework, stlmr.MiscNotes, stlmr.ActivityType, stlmr.MiscTimeInForm, stlmr.Rev, stlmr.TimeStamp
 FROM SteelMiscREV stlmr
+JOIN SteelTrackerDetails std
+    ON std.BidID = stlmr.MiscBidID
 WHERE fk_OrgActivityId = :ActivityID
 ORDER BY TimeStamp DESC) wmTempTable
         ]]>
@@ -7474,14 +7496,18 @@ ORDER BY TimeStamp DESC) wmTempTable
 
     <sql-query name="GetActivityHistorySteelDemo">
         <![CDATA[
-        SELECT stld.* 
+        SELECT std.Description, std.PieceMark, stld.* 
 FROM SteelDemo stld
+JOIN SteelTrackerDetails std
+    ON std.BidID = stld.DemoBidID
 WHERE ActivityID = :ActivityID
 
 UNION ALL
 
-SELECT stldr.fk_OrgActivityId, stldr.DemoBidID, stldr.DemoPercentCompleted, stldr.DemoNotes, stldr.ActivityType, stldr.DemoTimeInForm, stldr.Rev, stldr.TimeStamp
+SELECT std.Description, std.PieceMark, stldr.fk_OrgActivityId, stldr.DemoBidID, stldr.DemoPercentCompleted, stldr.DemoNotes, stldr.ActivityType, stldr.DemoTimeInForm, stldr.Rev, stldr.TimeStamp
 FROM SteelDemoREV stldr
+JOIN SteelTrackerDetails std
+    ON std.BidID = stldr.DemoBidID
 WHERE fk_OrgActivityId = :ActivityID
 ORDER BY TimeStamp DESC
         ]]>
@@ -7490,14 +7516,18 @@ ORDER BY TimeStamp DESC
 
     <sql-query name="GetActivityHistorySteelDemo__count">
         <![CDATA[
-        select count(*) from (SELECT stld.* 
+        select count(*) from (SELECT std.Description, std.PieceMark, stld.* 
 FROM SteelDemo stld
+JOIN SteelTrackerDetails std
+    ON std.BidID = stld.DemoBidID
 WHERE ActivityID = :ActivityID
 
 UNION ALL
 
-SELECT stldr.fk_OrgActivityId, stldr.DemoBidID, stldr.DemoPercentCompleted, stldr.DemoNotes, stldr.ActivityType, stldr.DemoTimeInForm, stldr.Rev, stldr.TimeStamp
+SELECT std.Description, std.PieceMark, stldr.fk_OrgActivityId, stldr.DemoBidID, stldr.DemoPercentCompleted, stldr.DemoNotes, stldr.ActivityType, stldr.DemoTimeInForm, stldr.Rev, stldr.TimeStamp
 FROM SteelDemoREV stldr
+JOIN SteelTrackerDetails std
+    ON std.BidID = stldr.DemoBidID
 WHERE fk_OrgActivityId = :ActivityID
 ORDER BY TimeStamp DESC) wmTempTable
         ]]>
@@ -8011,14 +8041,18 @@ WHERE `ActivityID`= :ActivityID
 
     <sql-query name="GetActivityHistorySteelFA">
         <![CDATA[
-        SELECT stlfa.* 
+        SELECT std.Description, std.PieceMark, stlfa.* 
 FROM SteelFA stlfa
+JOIN SteelTrackerDetails std
+    ON std.BidID = stlfa.FABidID
 WHERE ActivityID = :ActivityID
 
 UNION ALL
 
-SELECT stlfar.fk_OrgActivityId, stlfar.FABidID, stlfar.FAQuantity, stlfar.FAPercentCompleted, stlfar.FARework, stlfar.FANotes, stlfar.ActivityType, stlfar.FATimeInForm, stlfar.Rev, stlfar.TimeStamp
+SELECT std.Description, std.PieceMark, stlfar.fk_OrgActivityId, stlfar.FABidID, stlfar.FAQuantity, stlfar.FAPercentCompleted, stlfar.FARework, stlfar.FANotes, stlfar.ActivityType, stlfar.FATimeInForm, stlfar.Rev, stlfar.TimeStamp
 FROM SteelFAREV stlfar
+JOIN SteelTrackerDetails std
+    ON std.BidID = stlfar.FABidID
 WHERE fk_OrgActivityId = :ActivityID
 ORDER BY TimeStamp DESC
         ]]>
@@ -8027,14 +8061,18 @@ ORDER BY TimeStamp DESC
 
     <sql-query name="GetActivityHistorySteelFA__count">
         <![CDATA[
-        select count(*) from (SELECT stlfa.* 
+        select count(*) from (SELECT std.Description, std.PieceMark, stlfa.* 
 FROM SteelFA stlfa
+JOIN SteelTrackerDetails std
+    ON std.BidID = stlfa.FABidID
 WHERE ActivityID = :ActivityID
 
 UNION ALL
 
-SELECT stlfar.fk_OrgActivityId, stlfar.FABidID, stlfar.FAQuantity, stlfar.FAPercentCompleted, stlfar.FARework, stlfar.FANotes, stlfar.ActivityType, stlfar.FATimeInForm, stlfar.Rev, stlfar.TimeStamp
+SELECT std.Description, std.PieceMark, stlfar.fk_OrgActivityId, stlfar.FABidID, stlfar.FAQuantity, stlfar.FAPercentCompleted, stlfar.FARework, stlfar.FANotes, stlfar.ActivityType, stlfar.FATimeInForm, stlfar.Rev, stlfar.TimeStamp
 FROM SteelFAREV stlfar
+JOIN SteelTrackerDetails std
+    ON std.BidID = stlfar.FABidID
 WHERE fk_OrgActivityId = :ActivityID
 ORDER BY TimeStamp DESC) wmTempTable
         ]]>

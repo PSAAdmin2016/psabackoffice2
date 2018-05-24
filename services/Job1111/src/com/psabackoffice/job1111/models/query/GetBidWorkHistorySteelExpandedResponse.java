@@ -25,6 +25,14 @@ public class GetBidWorkHistorySteelExpandedResponse implements Serializable {
     @ColumnAlias("ActivityID")
     private Integer activityId;
 
+    @JsonProperty("ActivityTypeName")
+    @ColumnAlias("ActivityTypeName")
+    private String activityTypeName;
+
+    @JsonProperty("ActivityTypeID")
+    @ColumnAlias("ActivityTypeID")
+    private Short activityTypeId;
+
     @JsonProperty("Foreman")
     @ColumnAlias("Foreman")
     private String foreman;
@@ -40,10 +48,6 @@ public class GetBidWorkHistorySteelExpandedResponse implements Serializable {
     @JsonProperty("ReviewedTime")
     @ColumnAlias("ReviewedTime")
     private Timestamp reviewedTime;
-
-    @JsonProperty("ActivityTypeName")
-    @ColumnAlias("ActivityTypeName")
-    private String activityTypeName;
 
     @JsonProperty("Quantity")
     @ColumnAlias("Quantity")
@@ -77,6 +81,22 @@ public class GetBidWorkHistorySteelExpandedResponse implements Serializable {
         this.activityId = activityId;
     }
 
+    public String getActivityTypeName() {
+        return this.activityTypeName;
+    }
+
+    public void setActivityTypeName(String activityTypeName) {
+        this.activityTypeName = activityTypeName;
+    }
+
+    public Short getActivityTypeId() {
+        return this.activityTypeId;
+    }
+
+    public void setActivityTypeId(Short activityTypeId) {
+        this.activityTypeId = activityTypeId;
+    }
+
     public String getForeman() {
         return this.foreman;
     }
@@ -107,14 +127,6 @@ public class GetBidWorkHistorySteelExpandedResponse implements Serializable {
 
     public void setReviewedTime(Timestamp reviewedTime) {
         this.reviewedTime = reviewedTime;
-    }
-
-    public String getActivityTypeName() {
-        return this.activityTypeName;
-    }
-
-    public void setActivityTypeName(String activityTypeName) {
-        this.activityTypeName = activityTypeName;
     }
 
     public BigDecimal getQuantity() {
@@ -156,11 +168,12 @@ public class GetBidWorkHistorySteelExpandedResponse implements Serializable {
         final GetBidWorkHistorySteelExpandedResponse getBidWorkHistorySteelExpandedResponse = (GetBidWorkHistorySteelExpandedResponse) o;
         return Objects.equals(getSubmissionId(), getBidWorkHistorySteelExpandedResponse.getSubmissionId()) &&
                 Objects.equals(getActivityId(), getBidWorkHistorySteelExpandedResponse.getActivityId()) &&
+                Objects.equals(getActivityTypeName(), getBidWorkHistorySteelExpandedResponse.getActivityTypeName()) &&
+                Objects.equals(getActivityTypeId(), getBidWorkHistorySteelExpandedResponse.getActivityTypeId()) &&
                 Objects.equals(getForeman(), getBidWorkHistorySteelExpandedResponse.getForeman()) &&
                 Objects.equals(getSupervisor(), getBidWorkHistorySteelExpandedResponse.getSupervisor()) &&
                 Objects.equals(getCompleteTime(), getBidWorkHistorySteelExpandedResponse.getCompleteTime()) &&
                 Objects.equals(getReviewedTime(), getBidWorkHistorySteelExpandedResponse.getReviewedTime()) &&
-                Objects.equals(getActivityTypeName(), getBidWorkHistorySteelExpandedResponse.getActivityTypeName()) &&
                 Objects.equals(getQuantity(), getBidWorkHistorySteelExpandedResponse.getQuantity()) &&
                 Objects.equals(getPercent(), getBidWorkHistorySteelExpandedResponse.getPercent()) &&
                 Objects.equals(getNotes(), getBidWorkHistorySteelExpandedResponse.getNotes()) &&
@@ -171,11 +184,12 @@ public class GetBidWorkHistorySteelExpandedResponse implements Serializable {
     public int hashCode() {
         return Objects.hash(getSubmissionId(),
                 getActivityId(),
+                getActivityTypeName(),
+                getActivityTypeId(),
                 getForeman(),
                 getSupervisor(),
                 getCompleteTime(),
                 getReviewedTime(),
-                getActivityTypeName(),
                 getQuantity(),
                 getPercent(),
                 getNotes(),

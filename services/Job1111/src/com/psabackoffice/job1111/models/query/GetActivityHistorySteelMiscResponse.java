@@ -16,6 +16,14 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 public class GetActivityHistorySteelMiscResponse implements Serializable {
 
 
+    @JsonProperty("Description")
+    @ColumnAlias("Description")
+    private String description;
+
+    @JsonProperty("PieceMark")
+    @ColumnAlias("PieceMark")
+    private String pieceMark;
+
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
@@ -51,6 +59,22 @@ public class GetActivityHistorySteelMiscResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPieceMark() {
+        return this.pieceMark;
+    }
+
+    public void setPieceMark(String pieceMark) {
+        this.pieceMark = pieceMark;
+    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -129,7 +153,9 @@ public class GetActivityHistorySteelMiscResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistorySteelMiscResponse)) return false;
         final GetActivityHistorySteelMiscResponse getActivityHistorySteelMiscResponse = (GetActivityHistorySteelMiscResponse) o;
-        return Objects.equals(getActivityId(), getActivityHistorySteelMiscResponse.getActivityId()) &&
+        return Objects.equals(getDescription(), getActivityHistorySteelMiscResponse.getDescription()) &&
+                Objects.equals(getPieceMark(), getActivityHistorySteelMiscResponse.getPieceMark()) &&
+                Objects.equals(getActivityId(), getActivityHistorySteelMiscResponse.getActivityId()) &&
                 Objects.equals(getMiscBidId(), getActivityHistorySteelMiscResponse.getMiscBidId()) &&
                 Objects.equals(getMiscPercentCompleted(), getActivityHistorySteelMiscResponse.getMiscPercentCompleted()) &&
                 Objects.equals(getMiscRework(), getActivityHistorySteelMiscResponse.getMiscRework()) &&
@@ -142,7 +168,9 @@ public class GetActivityHistorySteelMiscResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getActivityId(),
+        return Objects.hash(getDescription(),
+                getPieceMark(),
+                getActivityId(),
                 getMiscBidId(),
                 getMiscPercentCompleted(),
                 getMiscRework(),

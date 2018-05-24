@@ -15,6 +15,12 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 public class GetActivityHistorySteelFaResponse implements Serializable {
 
 
+    @ColumnAlias("Description")
+    private String description;
+
+    @ColumnAlias("PieceMark")
+    private String pieceMark;
+
     @ColumnAlias("ActivityID")
     private Integer activityId;
 
@@ -44,6 +50,22 @@ public class GetActivityHistorySteelFaResponse implements Serializable {
 
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPieceMark() {
+        return this.pieceMark;
+    }
+
+    public void setPieceMark(String pieceMark) {
+        this.pieceMark = pieceMark;
+    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -130,7 +152,9 @@ public class GetActivityHistorySteelFaResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistorySteelFaResponse)) return false;
         final GetActivityHistorySteelFaResponse getActivityHistorySteelFaResponse = (GetActivityHistorySteelFaResponse) o;
-        return Objects.equals(getActivityId(), getActivityHistorySteelFaResponse.getActivityId()) &&
+        return Objects.equals(getDescription(), getActivityHistorySteelFaResponse.getDescription()) &&
+                Objects.equals(getPieceMark(), getActivityHistorySteelFaResponse.getPieceMark()) &&
+                Objects.equals(getActivityId(), getActivityHistorySteelFaResponse.getActivityId()) &&
                 Objects.equals(getFabidId(), getActivityHistorySteelFaResponse.getFabidId()) &&
                 Objects.equals(getFaquantity(), getActivityHistorySteelFaResponse.getFaquantity()) &&
                 Objects.equals(getFapercentCompleted(), getActivityHistorySteelFaResponse.getFapercentCompleted()) &&
@@ -144,7 +168,9 @@ public class GetActivityHistorySteelFaResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getActivityId(),
+        return Objects.hash(getDescription(),
+                getPieceMark(),
+                getActivityId(),
                 getFabidId(),
                 getFaquantity(),
                 getFapercentCompleted(),

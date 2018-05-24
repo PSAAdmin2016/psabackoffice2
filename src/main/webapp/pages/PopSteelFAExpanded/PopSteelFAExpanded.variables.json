@@ -1,33 +1,62 @@
 {
-  "serviceUpdateSSReturnToListPS" : {
-    "_id" : "wm-serviceUpdateSSReturnToListPS-wm.ServiceVariable-1478186165837",
-    "name" : "serviceUpdateSSReturnToListPS",
+  "serviceGetBidWorkHistoryExpanded" : {
+    "_id" : "wm-serviceGetBidWorkHistoryExpanded-wm.ServiceVariable-1478118950097",
+    "name" : "serviceGetBidWorkHistoryExpanded",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "ActivityStatus",
-      "value" : "11",
+      "target" : "BidID",
+      "value" : "bind:pageParams.BidID",
       "type" : "integer"
     }, {
+      "target" : "SubmissionID",
+      "value" : "bind:pageParams.SubmissionID",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.query.GetBidWorkHistorySteelExpandedResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetBidWorkHistorySteelExpanded",
+    "operationId" : "QueryExecutionController_executeGetBidWorkHistorySteelExpanded",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 500,
+    "designMaxResults" : 10,
+    "startUpdate" : true,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "serviceUpdateSASReturnToList" : {
+    "_id" : "wm-serviceUpdateSASReturnToList-wm.ServiceVariable-1527182199412",
+    "name" : "serviceUpdateSASReturnToList",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
       "target" : "UserID",
       "value" : "bind:Variables.loggedInUser.dataSet.id",
       "type" : "integer"
     }, {
-      "target" : "FieldActivityID",
-      "value" : "bind:Widgets.livelist1.selectedItemWidgets.label9.caption",
+      "target" : "ActivityStatusID",
+      "value" : "11",
+      "type" : "integer"
+    }, {
+      "target" : "ActivityID",
+      "value" : "bind:Widgets.livelistBidWorkHistoryExpanded.selecteditem.ActivityID",
       "type" : "integer"
     } ],
     "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "Job1111",
-    "operation" : "executeUpdateSS",
-    "operationId" : "QueryExecutionController_executeUpdateSS",
+    "operation" : "executeUpdateSASStatus",
+    "operationId" : "QueryExecutionController_executeUpdateSASStatus",
     "operationType" : "put",
     "serviceType" : "DataService",
     "dataSet" : [ ],
     "isList" : false,
-    "maxResults" : 3,
-    "designMaxResults" : 10,
-    "onSuccess" : "serviceUpdateSSReturnToListPSonSuccess($event, $scope)",
+    "maxResults" : 1,
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

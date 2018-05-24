@@ -16,6 +16,14 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 public class GetActivityHistorySteelDemoResponse implements Serializable {
 
 
+    @JsonProperty("Description")
+    @ColumnAlias("Description")
+    private String description;
+
+    @JsonProperty("PieceMark")
+    @ColumnAlias("PieceMark")
+    private String pieceMark;
+
     @JsonProperty("ActivityID")
     @ColumnAlias("ActivityID")
     private Integer activityId;
@@ -47,6 +55,22 @@ public class GetActivityHistorySteelDemoResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPieceMark() {
+        return this.pieceMark;
+    }
+
+    public void setPieceMark(String pieceMark) {
+        this.pieceMark = pieceMark;
+    }
 
     public Integer getActivityId() {
         return this.activityId;
@@ -117,7 +141,9 @@ public class GetActivityHistorySteelDemoResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetActivityHistorySteelDemoResponse)) return false;
         final GetActivityHistorySteelDemoResponse getActivityHistorySteelDemoResponse = (GetActivityHistorySteelDemoResponse) o;
-        return Objects.equals(getActivityId(), getActivityHistorySteelDemoResponse.getActivityId()) &&
+        return Objects.equals(getDescription(), getActivityHistorySteelDemoResponse.getDescription()) &&
+                Objects.equals(getPieceMark(), getActivityHistorySteelDemoResponse.getPieceMark()) &&
+                Objects.equals(getActivityId(), getActivityHistorySteelDemoResponse.getActivityId()) &&
                 Objects.equals(getDemoBidId(), getActivityHistorySteelDemoResponse.getDemoBidId()) &&
                 Objects.equals(getDemoPercentCompleted(), getActivityHistorySteelDemoResponse.getDemoPercentCompleted()) &&
                 Objects.equals(getDemoNotes(), getActivityHistorySteelDemoResponse.getDemoNotes()) &&
@@ -129,7 +155,9 @@ public class GetActivityHistorySteelDemoResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getActivityId(),
+        return Objects.hash(getDescription(),
+                getPieceMark(),
+                getActivityId(),
                 getDemoBidId(),
                 getDemoPercentCompleted(),
                 getDemoNotes(),
