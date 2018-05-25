@@ -183,6 +183,12 @@ Application.$controller("dialogActivityHistoryController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
+
+        $scope.dialogActivityHistoryOpened = function($event, $isolateScope) {
+            debugger;
+            $scope.Widgets.dialogActivityHistory.pageParams
+        };
+
     }
 ]);
 
