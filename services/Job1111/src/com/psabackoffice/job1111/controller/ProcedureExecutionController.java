@@ -96,6 +96,16 @@ public class ProcedureExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/procedure/execute/SafeAssignSteel", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Run SafeAssign Steel stored procedure to claim all steel activities for given foreman, that are deemed \"safe\"")
+    public SafeAssignSteelResponse executeSafeAssignSteel(@RequestParam(value = "ForemanName") String foremanName, @RequestParam(value = "RunMode") Integer runMode, HttpServletRequest _request) {
+        LOGGER.debug("Executing named procedure: SafeAssignSteel");
+        SafeAssignSteelResponse _result = procedureService.executeSafeAssignSteel(foremanName, runMode);
+        LOGGER.debug("got the result for named procedure: SafeAssignSteel, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/procedure/execute/LockSASActivity", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Locks/Unlocks a SAS Activity for approval.  Returns True if lock/Unlock achieved, False if not. RunMode 1 = Lock ActivityID RunMode 2 = Unlock ActivityID")

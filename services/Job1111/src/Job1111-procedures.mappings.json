@@ -388,6 +388,46 @@
       "parameterType" : "OUT"
     } ]
   },
+  "SafeAssignSteel" : {
+    "procedureString" : "CALL SafeAssignSteel(?, ?, ?, ?)",
+    "parameters" : [ {
+      "name" : "ForemanName",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "Joe Foreman",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "RunMode",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ]
+  },
   "LockSASActivity" : {
     "procedureString" : "call SASLock(?, ?, ?, ?, ?)",
     "parameters" : [ {

@@ -1,0 +1,427 @@
+{
+  "basePath" : "${rest.WeatherForecast.basepath}",
+  "paths" : {
+    "/a64134bb22ac4df4/forecast/q/{zipcode}.json" : {
+      "x-WM-BASE_PATH" : "/a64134bb22ac4df4/forecast/q/{zipcode}.json",
+      "x-WM-TAG" : "RestServiceVirtualController",
+      "x-WM-RELATIVE_PATH" : "",
+      "get" : {
+        "x-WM-METHOD_NAME" : "invoke",
+        "x-WM-ACCESS_SPECIFIER" : "APP_ONLY",
+        "produces" : [ "application/json" ],
+        "operationId" : "WeatherForecast_RestServiceVirtualController-invoke",
+        "responses" : {
+          "200" : {
+            "schema" : {
+              "$ref" : "#/definitions/RootResponse"
+            },
+            "description" : "Success"
+          }
+        },
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "zipcode",
+          "type" : "string",
+          "required" : true
+        } ],
+        "tags" : [ "RestServiceVirtualController" ],
+        "consumes" : [ "application/json" ]
+      },
+      "x-WM-COMPLETE_PATH" : "${rest.WeatherForecast.scheme}://${rest.WeatherForecast.host}${rest.WeatherForecast.basepath}/a64134bb22ac4df4/forecast/q/{zipcode}.json"
+    }
+  },
+  "host" : "${rest.WeatherForecast.host}",
+  "schemes" : [ "${rest.WeatherForecast.scheme}" ],
+  "definitions" : {
+    "date" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherForecast.date",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "ampm", "day", "epoch", "hour", "isdst", "min", "month", "monthname", "monthname_short", "pretty", "sec", "tz_long", "tz_short", "weekday", "weekday_short", "yday", "year" ],
+      "properties" : {
+        "tz_short" : {
+          "type" : "string"
+        },
+        "pretty" : {
+          "type" : "string"
+        },
+        "ampm" : {
+          "type" : "string"
+        },
+        "year" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "isdst" : {
+          "type" : "string"
+        },
+        "weekday" : {
+          "type" : "string"
+        },
+        "weekday_short" : {
+          "type" : "string"
+        },
+        "epoch" : {
+          "type" : "string"
+        },
+        "sec" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "min" : {
+          "type" : "string"
+        },
+        "month" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "hour" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "monthname_short" : {
+          "type" : "string"
+        },
+        "monthname" : {
+          "type" : "string"
+        },
+        "tz_long" : {
+          "type" : "string"
+        },
+        "yday" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "day" : {
+          "format" : "int32",
+          "type" : "integer"
+        }
+      }
+    },
+    "forecastdayEntryItem" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherForecast.forecastdayEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "avehumidity", "avewind", "conditions", "date", "fcttext", "fcttext_metric", "high", "icon", "icon_url", "low", "maxhumidity", "maxwind", "minhumidity", "period", "pop", "qpf_allday", "qpf_day", "qpf_night", "skyicon", "snow_allday", "snow_day", "snow_night", "title" ],
+      "properties" : {
+        "icon_url" : {
+          "type" : "string"
+        },
+        "fcttext" : {
+          "type" : "string"
+        },
+        "date" : {
+          "$ref" : "#/definitions/date"
+        },
+        "period" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "maxhumidity" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "skyicon" : {
+          "type" : "string"
+        },
+        "avewind" : {
+          "$ref" : "#/definitions/avewind"
+        },
+        "icon" : {
+          "type" : "string"
+        },
+        "avehumidity" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "snow_allday" : {
+          "$ref" : "#/definitions/snow_allday"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "qpf_day" : {
+          "$ref" : "#/definitions/qpf_day"
+        },
+        "maxwind" : {
+          "$ref" : "#/definitions/maxwind"
+        },
+        "pop" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "qpf_night" : {
+          "$ref" : "#/definitions/qpf_night"
+        },
+        "high" : {
+          "$ref" : "#/definitions/high"
+        },
+        "minhumidity" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "low" : {
+          "$ref" : "#/definitions/low"
+        },
+        "snow_night" : {
+          "$ref" : "#/definitions/snow_night"
+        },
+        "snow_day" : {
+          "$ref" : "#/definitions/snow_day"
+        },
+        "conditions" : {
+          "type" : "string"
+        },
+        "fcttext_metric" : {
+          "type" : "string"
+        },
+        "qpf_allday" : {
+          "$ref" : "#/definitions/qpf_allday"
+        }
+      }
+    },
+    "avewind" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherForecast.avewind",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "degrees", "dir", "kph", "mph" ],
+      "properties" : {
+        "kph" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "mph" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "dir" : {
+          "type" : "string"
+        },
+        "degrees" : {
+          "format" : "int32",
+          "type" : "integer"
+        }
+      }
+    },
+    "forecast" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherForecast.forecast",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "simpleforecast", "txt_forecast" ],
+      "properties" : {
+        "simpleforecast" : {
+          "$ref" : "#/definitions/simpleforecast"
+        },
+        "txt_forecast" : {
+          "$ref" : "#/definitions/txt_forecast"
+        }
+      }
+    },
+    "snow_allday" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherForecast.snow_allday",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "cm", "in" ],
+      "properties" : {
+        "in" : {
+          "type" : "string"
+        },
+        "cm" : {
+          "type" : "string"
+        }
+      }
+    },
+    "qpf_day" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherForecast.qpf_day",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "in", "mm" ],
+      "properties" : {
+        "mm" : {
+          "type" : "string"
+        },
+        "in" : {
+          "type" : "string"
+        }
+      }
+    },
+    "maxwind" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherForecast.maxwind",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "degrees", "dir", "kph", "mph" ],
+      "properties" : {
+        "kph" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "mph" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "dir" : {
+          "type" : "string"
+        },
+        "degrees" : {
+          "format" : "int32",
+          "type" : "integer"
+        }
+      }
+    },
+    "qpf_night" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherForecast.qpf_night",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "in", "mm" ],
+      "properties" : {
+        "mm" : {
+          "type" : "string"
+        },
+        "in" : {
+          "type" : "string"
+        }
+      }
+    },
+    "features" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherForecast.features",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "forecast" ],
+      "properties" : {
+        "forecast" : {
+          "format" : "int32",
+          "type" : "integer"
+        }
+      }
+    },
+    "high" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherForecast.high",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "celsius", "fahrenheit" ],
+      "properties" : {
+        "celsius" : {
+          "type" : "string"
+        },
+        "fahrenheit" : {
+          "type" : "string"
+        }
+      }
+    },
+    "simpleforecast" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherForecast.simpleforecast",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "forecastday" ],
+      "properties" : {
+        "forecastday" : {
+          "x-WM-IS_LIST" : true,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/forecastdayEntryItem"
+          }
+        }
+      }
+    },
+    "low" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherForecast.low",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "celsius", "fahrenheit" ],
+      "properties" : {
+        "celsius" : {
+          "type" : "string"
+        },
+        "fahrenheit" : {
+          "type" : "string"
+        }
+      }
+    },
+    "snow_night" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherForecast.snow_night",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "cm", "in" ],
+      "properties" : {
+        "in" : {
+          "type" : "string"
+        },
+        "cm" : {
+          "type" : "string"
+        }
+      }
+    },
+    "response" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherForecast.response",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "features", "termsofService", "version" ],
+      "properties" : {
+        "features" : {
+          "$ref" : "#/definitions/features"
+        },
+        "version" : {
+          "type" : "string"
+        },
+        "termsofService" : {
+          "type" : "string"
+        }
+      }
+    },
+    "snow_day" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherForecast.snow_day",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "cm", "in" ],
+      "properties" : {
+        "in" : {
+          "type" : "string"
+        },
+        "cm" : {
+          "type" : "string"
+        }
+      }
+    },
+    "txt_forecast" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherForecast.txt_forecast",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "date", "forecastday" ],
+      "properties" : {
+        "date" : {
+          "type" : "string"
+        },
+        "forecastday" : {
+          "x-WM-IS_LIST" : true,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/forecastdayEntryItem"
+          }
+        }
+      }
+    },
+    "qpf_allday" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherForecast.qpf_allday",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "in", "mm" ],
+      "properties" : {
+        "mm" : {
+          "type" : "string"
+        },
+        "in" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RootResponse" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherForecast.RootResponse",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "required" : [ "forecast", "response" ],
+      "properties" : {
+        "response" : {
+          "$ref" : "#/definitions/response"
+        },
+        "forecast" : {
+          "$ref" : "#/definitions/forecast"
+        }
+      }
+    }
+  },
+  "swagger" : "2.0",
+  "info" : {
+    "x-WM-USE_PROXY_FOR_WEB" : true,
+    "x-WM-USE_PROXY_FOR_MOBILE" : true,
+    "x-WM-API_ID" : "9192a1e5-5eca-4a63-a55f-428931940caa",
+    "x-WM-SERVICE_ID" : "wunderground",
+    "version" : "2.0",
+    "x-WM-SERVICE_TYPE" : "RestService"
+  },
+  "tags" : [ {
+    "name" : "RestServiceVirtualController",
+    "description" : "Rest service swagger documentation"
+  } ]
+}

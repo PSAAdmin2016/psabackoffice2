@@ -110,6 +110,17 @@ public class Job1111ProcedureExecutorServiceImpl implements Job1111ProcedureExec
 
     @Transactional(value = "Job1111TransactionManager")
     @Override
+    public SafeAssignSteelResponse executeSafeAssignSteel(String foremanName, Integer runMode) {
+        Map params = new HashMap(4);
+
+        params.put("ForemanName", foremanName);
+        params.put("RunMode", runMode);
+
+        return procedureExecutor.executeNamedProcedure("SafeAssignSteel", params, SafeAssignSteelResponse.class);
+    }
+
+    @Transactional(value = "Job1111TransactionManager")
+    @Override
     public LockSasactivityResponse executeLockSASActivity(Integer runMode, Integer userId, Integer activityId) {
         Map params = new HashMap(5);
 

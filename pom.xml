@@ -69,14 +69,14 @@
             </resource>
             <resource>
                 <filtering>true</filtering>
-                <directory>services/WeatherCurrent/src</directory>
+                <directory>services/WeatherForecast/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
                 </excludes>
             </resource>
             <resource>
                 <filtering>true</filtering>
-                <directory>services/WeatherHistory/src</directory>
+                <directory>services/WeatherObserved/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
                 </excludes>
@@ -175,8 +175,8 @@
                                 <source>services/NewJobTriggers/src</source>
                                 <source>services/PSA/src</source>
                                 <source>services/SHA256Encryption/src</source>
-                                <source>services/WeatherCurrent/src</source>
-                                <source>services/WeatherHistory/src</source>
+                                <source>services/WeatherForecast/src</source>
+                                <source>services/WeatherObserved/src</source>
                                 <source>services/schemaChangeService/src</source>
                                 <source>services/securityService/src</source>
                             </sources>

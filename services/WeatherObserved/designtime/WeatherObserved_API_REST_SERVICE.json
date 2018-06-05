@@ -4,23 +4,24 @@
     "version" : "2.0",
     "x-WM-USE_PROXY_FOR_WEB" : true,
     "x-WM-USE_PROXY_FOR_MOBILE" : true,
-    "x-WM-API_ID" : "79411a1f-dd02-45cf-994c-cb90a7a2e5bb",
+    "x-WM-API_ID" : "2c6414ed-a797-4391-9340-1faeff645301",
     "x-WM-SERVICE_ID" : "wunderground",
     "x-WM-SERVICE_TYPE" : "RestService"
   },
   "host" : "api.wunderground.com",
-  "basePath" : "/api",
+  "basePath" : "",
   "tags" : [ {
     "name" : "RestServiceVirtualController",
     "description" : "Rest service swagger documentation"
   } ],
   "schemes" : [ "http" ],
   "paths" : {
-    "/a64134bb22ac4df4/history_{yyyyMMdd}/q/{zipcode}.json" : {
+    "/WeatherObserved/invoke/a64134bb22ac4df4/history_{yyyyMMdd}/q/{zipcode}.json" : {
       "get" : {
         "tags" : [ "RestServiceVirtualController" ],
-        "operationId" : "WeatherHistory_RestServiceVirtualController-invoke",
-        "consumes" : [ "text/xml" ],
+        "operationId" : "WeatherObserved_RestServiceVirtualController-invoke",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "yyyyMMdd",
           "in" : "path",
@@ -43,10 +44,10 @@
         "x-WM-METHOD_NAME" : "invoke",
         "x-WM-ACCESS_SPECIFIER" : "APP_ONLY"
       },
-      "x-WM-BASE_PATH" : "/a64134bb22ac4df4/history_{yyyyMMdd}/q/{zipcode}.json",
+      "x-WM-BASE_PATH" : "/WeatherObserved/invoke/a64134bb22ac4df4/history_{yyyyMMdd}/q/{zipcode}.json",
       "x-WM-TAG" : "RestServiceVirtualController",
       "x-WM-RELATIVE_PATH" : "",
-      "x-WM-COMPLETE_PATH" : "${rest.WeatherHistory.scheme}://${rest.WeatherHistory.host}${rest.WeatherHistory.basepath}/a64134bb22ac4df4/history_{yyyyMMdd}/q/{zipcode}.json"
+      "x-WM-COMPLETE_PATH" : "${rest.WeatherObserved.scheme}://${rest.WeatherObserved.host}${rest.WeatherObserved.basepath}/a64134bb22ac4df4/history_{yyyyMMdd}/q/{zipcode}.json"
     }
   },
   "definitions" : {
@@ -75,7 +76,7 @@
           "type" : "string"
         }
       },
-      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.date",
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherObserved.date",
       "x-WM-TAGS" : [ "RestServiceVirtualController" ]
     },
     "dailysummaryEntryItem" : {
@@ -292,7 +293,7 @@
           "type" : "string"
         }
       },
-      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.dailysummaryEntryItem",
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherObserved.dailysummaryEntryItem",
       "x-WM-TAGS" : [ "RestServiceVirtualController" ]
     },
     "features" : {
@@ -303,7 +304,7 @@
           "format" : "int32"
         }
       },
-      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.features",
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherObserved.features",
       "x-WM-TAGS" : [ "RestServiceVirtualController" ]
     },
     "response" : {
@@ -319,7 +320,7 @@
           "type" : "string"
         }
       },
-      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.response",
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherObserved.response",
       "x-WM-TAGS" : [ "RestServiceVirtualController" ]
     },
     "history" : {
@@ -346,7 +347,7 @@
           "$ref" : "#/definitions/utcdate"
         }
       },
-      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.history",
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherObserved.history",
       "x-WM-TAGS" : [ "RestServiceVirtualController" ]
     },
     "observationsEntryItem" : {
@@ -449,7 +450,7 @@
           "type" : "string"
         }
       },
-      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.observationsEntryItem",
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherObserved.observationsEntryItem",
       "x-WM-TAGS" : [ "RestServiceVirtualController" ]
     },
     "RootResponse" : {
@@ -462,7 +463,7 @@
           "$ref" : "#/definitions/history"
         }
       },
-      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.RootResponse",
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherObserved.RootResponse",
       "x-WM-TAGS" : [ "RestServiceVirtualController" ]
     },
     "utcdate" : {
@@ -490,7 +491,7 @@
           "type" : "string"
         }
       },
-      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherHistory.utcdate",
+      "x-WM-FULLY_QUALIFIED_NAME" : "WeatherObserved.utcdate",
       "x-WM-TAGS" : [ "RestServiceVirtualController" ]
     }
   }

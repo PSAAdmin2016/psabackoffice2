@@ -8574,5 +8574,77 @@
         }
       } ]
     }
+  },
+  "SafeAssignSteel" : {
+    "name" : "SafeAssignSteel",
+    "description" : "Run SafeAssign Steel stored procedure to claim all steel activities for given foreman, that are deemed \"safe\"",
+    "version" : "V2",
+    "procedureString" : "CALL SafeAssignSteel(:ForemanName, :RunMode, :ReturnStatus, :ErrorText)",
+    "parameters" : [ {
+      "name" : "ForemanName",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "Joe Foreman",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "RunMode",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.psabackoffice.job1111.models.procedure.SafeAssignSteelResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "ReturnStatus",
+        "fieldName" : "returnStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "ErrorText",
+        "fieldName" : "errorText",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
   }
 }

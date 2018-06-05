@@ -22,6 +22,8 @@ public interface Job1111ProcedureExecutorService {
 
     GetCivilEarnedHoursResponse executeGetCivilEarnedHours(String groupedBy, String crewId, String crewRev, String foremanId, String superintendentId, String projectManagerId, String constructionManagerId, String siteManagerId, String areaManagerId, Date inputDate, Integer runMode);
 
+    SafeAssignSteelResponse executeSafeAssignSteel(String foremanName, Integer runMode);
+
     LockSasactivityResponse executeLockSASActivity(Integer runMode, Integer userId, Integer activityId);
 
     GetPipePcotResponse executeGetPipePCOT(Integer runMode);

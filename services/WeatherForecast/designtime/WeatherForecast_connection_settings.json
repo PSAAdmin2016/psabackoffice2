@@ -1,0 +1,35 @@
+{
+  "endpointAddress" : "http://api.wunderground.com/api/a64134bb22ac4df4/forecast/q/{zipcode}.json",
+  "method" : "GET",
+  "headers" : { },
+  "redirectEnabled" : true,
+  "requestBody" : "",
+  "queryParams" : { },
+  "authDetails" : null,
+  "contentType" : "application/json",
+  "multiParamInfoList" : null,
+  "sampleHttpResponseDetails" : {
+    "statusCode" : 200,
+    "headers" : {
+      "Accept-Ranges" : [ "bytes" ],
+      "Access-Control-Allow-Credentials" : [ "true" ],
+      "Access-Control-Allow-Origin" : [ "*" ],
+      "Content-Type" : [ "application/json; charset=UTF-8" ],
+      "Last-Modified" : [ "Tue, 05 Jun 2018 20:01:14 GMT" ],
+      "Server" : [ "Apache/2.2.15 (CentOS)" ],
+      "X-API-Error" : [ "true" ],
+      "X-Cacheable" : [ "NO:X-API-Error true" ],
+      "X-CreationTime" : [ "12.034" ],
+      "X-Varnish" : [ "2672229982" ],
+      "Vary" : [ "Accept-Encoding" ],
+      "Expires" : [ "Tue, 05 Jun 2018 20:01:26 GMT" ],
+      "Cache-Control" : [ "max-age=0, no-cache" ],
+      "Pragma" : [ "no-cache" ],
+      "Date" : [ "Tue, 05 Jun 2018 20:01:26 GMT" ],
+      "Connection" : [ "keep-alive" ]
+    },
+    "responseBody" : "{\"response\":{\"version\":\"0.1\",\"termsofService\":\"http://www.wunderground.com/weather/api/d/terms.html\",\"features\":{\"forecast\":1}},\"forecast\":{\"txt_forecast\":{\"date\":\"\",\"forecastday\":[{\"period\":0,\"icon\":\"clear\",\"icon_url\":\"http://icons.wxug.com/i/c/k/clear.gif\",\"title\":\"\",\"fcttext\":\"\",\"fcttext_metric\":\"\",\"pop\":\"0\"},{\"period\":1,\"icon\":\"nt_\",\"icon_url\":\"http://icons.wxug.com/i/c/k/nt_.gif\",\"title\":\"\",\"fcttext\":\"\",\"fcttext_metric\":\"\",\"pop\":\"0\"},{\"period\":2,\"icon\":\"partlycloudy\",\"icon_url\":\"http://icons.wxug.com/i/c/k/partlycloudy.gif\",\"title\":\"\",\"fcttext\":\"\",\"fcttext_metric\":\"\",\"pop\":\"1\"},{\"period\":3,\"icon\":\"nt_\",\"icon_url\":\"http://icons.wxug.com/i/c/k/nt_.gif\",\"title\":\"\",\"fcttext\":\"\",\"fcttext_metric\":\"\",\"pop\":\"0\"},{\"period\":4,\"icon\":\"partlycloudy\",\"icon_url\":\"http://icons.wxug.com/i/c/k/partlycloudy.gif\",\"title\":\"\",\"fcttext\":\"\",\"fcttext_metric\":\"\",\"pop\":\"10\"},{\"period\":5,\"icon\":\"nt_\",\"icon_url\":\"http://icons.wxug.com/i/c/k/nt_.gif\",\"title\":\"\",\"fcttext\":\"\",\"fcttext_metric\":\"\",\"pop\":\"0\"},{\"period\":6,\"icon\":\"mostlycloudy\",\"icon_url\":\"http://icons.wxug.com/i/c/k/mostlycloudy.gif\",\"title\":\"\",\"fcttext\":\"\",\"fcttext_metric\":\"\",\"pop\":\"5\"},{\"period\":7,\"icon\":\"nt_\",\"icon_url\":\"http://icons.wxug.com/i/c/k/nt_.gif\",\"title\":\"\",\"fcttext\":\"\",\"fcttext_metric\":\"\",\"pop\":\"0\"}]},\"simpleforecast\":{\"forecastday\":[{\"date\":{\"epoch\":\"1514998800\",\"pretty\":\"11:00 AM CST on January 03, 2018\",\"day\":3,\"month\":1,\"year\":2018,\"yday\":2,\"hour\":11,\"min\":\"00\",\"sec\":0,\"isdst\":\"0\",\"monthname\":\"January\",\"monthname_short\":\"Jan\",\"weekday_short\":\"Wed\",\"weekday\":\"Wednesday\",\"ampm\":\"AM\",\"tz_short\":\"CST\",\"tz_long\":\"America/Chicago\"},\"period\":1,\"high\":{\"fahrenheit\":\"44\",\"celsius\":\"7\"},\"low\":{\"fahrenheit\":\"27\",\"celsius\":\"-3\"},\"conditions\":\"Clear\",\"icon\":\"clear\",\"icon_url\":\"http://icons.wxug.com/i/c/k/clear.gif\",\"skyicon\":\"\",\"pop\":0,\"qpf_allday\":{\"in\":null,\"mm\":null},\"qpf_day\":{\"in\":null,\"mm\":null},\"qpf_night\":{\"in\":null,\"mm\":null},\"snow_allday\":{\"in\":null,\"cm\":null},\"snow_day\":{\"in\":null,\"cm\":null},\"snow_night\":{\"in\":null,\"cm\":null},\"maxwind\":{\"mph\":0,\"kph\":0,\"dir\":\"\",\"degrees\":0},\"avewind\":{\"mph\":0,\"kph\":0,\"dir\":\"\",\"degrees\":0},\"avehumidity\":0,\"maxhumidity\":0,\"minhumidity\":0},{\"date\":{\"epoch\":\"1515085200\",\"pretty\":\"11:00 AM CST on January 04, 2018\",\"day\":4,\"month\":1,\"year\":2018,\"yday\":3,\"hour\":11,\"min\":\"00\",\"sec\":0,\"isdst\":\"0\",\"monthname\":\"January\",\"monthname_short\":\"Jan\",\"weekday_short\":\"Thu\",\"weekday\":\"Thursday\",\"ampm\":\"AM\",\"tz_short\":\"CST\",\"tz_long\":\"America/Chicago\"},\"period\":2,\"high\":{\"fahrenheit\":\"49\",\"celsius\":\"9\"},\"low\":{\"fahrenheit\":\"32\",\"celsius\":\"0\"},\"conditions\":\"Partly Cloudy\",\"icon\":\"partlycloudy\",\"icon_url\":\"http://icons.wxug.com/i/c/k/partlycloudy.gif\",\"skyicon\":\"\",\"pop\":1,\"qpf_allday\":{\"in\":null,\"mm\":null},\"qpf_day\":{\"in\":null,\"mm\":null},\"qpf_night\":{\"in\":null,\"mm\":null},\"snow_allday\":{\"in\":null,\"cm\":null},\"snow_day\":{\"in\":null,\"cm\":null},\"snow_night\":{\"in\":null,\"cm\":null},\"maxwind\":{\"mph\":0,\"kph\":0,\"dir\":\"\",\"degrees\":0},\"avewind\":{\"mph\":0,\"kph\":0,\"dir\":\"\",\"degrees\":0},\"avehumidity\":0,\"maxhumidity\":0,\"minhumidity\":0},{\"date\":{\"epoch\":\"1515171600\",\"pretty\":\"11:00 AM CST on January 05, 2018\",\"day\":5,\"month\":1,\"year\":2018,\"yday\":4,\"hour\":11,\"min\":\"00\",\"sec\":0,\"isdst\":\"0\",\"monthname\":\"January\",\"monthname_short\":\"Jan\",\"weekday_short\":\"Fri\",\"weekday\":\"Friday\",\"ampm\":\"AM\",\"tz_short\":\"CST\",\"tz_long\":\"America/Chicago\"},\"period\":3,\"high\":{\"fahrenheit\":\"54\",\"celsius\":\"12\"},\"low\":{\"fahrenheit\":\"39\",\"celsius\":\"4\"},\"conditions\":\"Partly Cloudy\",\"icon\":\"partlycloudy\",\"icon_url\":\"http://icons.wxug.com/i/c/k/partlycloudy.gif\",\"skyicon\":\"\",\"pop\":10,\"qpf_allday\":{\"in\":null,\"mm\":null},\"qpf_day\":{\"in\":null,\"mm\":null},\"qpf_night\":{\"in\":null,\"mm\":null},\"snow_allday\":{\"in\":null,\"cm\":null},\"snow_day\":{\"in\":null,\"cm\":null},\"snow_night\":{\"in\":null,\"cm\":null},\"maxwind\":{\"mph\":0,\"kph\":0,\"dir\":\"\",\"degrees\":0},\"avewind\":{\"mph\":0,\"kph\":0,\"dir\":\"\",\"degrees\":0},\"avehumidity\":0,\"maxhumidity\":0,\"minhumidity\":0},{\"date\":{\"epoch\":\"1515258000\",\"pretty\":\"11:00 AM CST on January 06, 2018\",\"day\":6,\"month\":1,\"year\":2018,\"yday\":5,\"hour\":11,\"min\":\"00\",\"sec\":0,\"isdst\":\"0\",\"monthname\":\"January\",\"monthname_short\":\"Jan\",\"weekday_short\":\"Sat\",\"weekday\":\"Saturday\",\"ampm\":\"AM\",\"tz_short\":\"CST\",\"tz_long\":\"America/Chicago\"},\"period\":4,\"high\":{\"fahrenheit\":\"61\",\"celsius\":\"16\"},\"low\":{\"fahrenheit\":\"53\",\"celsius\":\"12\"},\"conditions\":\"Mostly Cloudy\",\"icon\":\"mostlycloudy\",\"icon_url\":\"http://icons.wxug.com/i/c/k/mostlycloudy.gif\",\"skyicon\":\"\",\"pop\":5,\"qpf_allday\":{\"in\":null,\"mm\":null},\"qpf_day\":{\"in\":null,\"mm\":null},\"qpf_night\":{\"in\":null,\"mm\":null},\"snow_allday\":{\"in\":null,\"cm\":null},\"snow_day\":{\"in\":null,\"cm\":null},\"snow_night\":{\"in\":null,\"cm\":null},\"maxwind\":{\"mph\":0,\"kph\":0,\"dir\":\"\",\"degrees\":0},\"avewind\":{\"mph\":0,\"kph\":0,\"dir\":\"\",\"degrees\":0},\"avehumidity\":0,\"maxhumidity\":0,\"minhumidity\":0}]}}}",
+    "convertedResponse" : null
+  },
+  "proxy" : null
+}

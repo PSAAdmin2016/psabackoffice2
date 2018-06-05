@@ -406,17 +406,6 @@
     "dataSet" : [ ],
     "pageTransitions" : "none"
   },
-  "goToPage_TestLab2" : {
-    "_id" : "wm-goToPage_TestLab2-wm.NavigationVariable-1520376212677",
-    "name" : "goToPage_TestLab2",
-    "owner" : "App",
-    "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
-    "operation" : "gotoPage",
-    "pageName" : "TestLab2",
-    "dataSet" : [ ],
-    "pageTransitions" : "none"
-  },
   "goToPage_ToolsCrewManagement" : {
     "_id" : "wm-goToPage_ToolsCrewManagement-wm.NavigationVariable-1481046778109",
     "name" : "goToPage_ToolsCrewManagement",

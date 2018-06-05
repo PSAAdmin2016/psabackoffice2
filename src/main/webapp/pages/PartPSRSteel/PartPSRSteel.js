@@ -220,3 +220,10 @@ Application.$controller("Table1Controller", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
+Application.$controller("dialogAutoAssignController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);

@@ -152,6 +152,66 @@
     "saveInPhonegap" : false,
     "controller" : "ProcedureExecution"
   },
+  "serviceSafeAssignCount" : {
+    "_id" : "wm-serviceSafeAssignCount-wm.ServiceVariable-1528231225155",
+    "name" : "serviceSafeAssignCount",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "ForemanName",
+      "value" : "bind:Widgets.selectAutoAssignForeman.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "RunMode",
+      "value" : "1",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.procedure.SafeAssignSteelResponse",
+    "service" : "Job1111",
+    "operation" : "executeSafeAssignSteel",
+    "operationId" : "ProcedureExecutionController_executeSafeAssignSteel",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "ProcedureExecution"
+  },
+  "serviceSafeAssignUpdate" : {
+    "_id" : "wm-serviceSafeAssignUpdate-wm.ServiceVariable-1528231298044",
+    "name" : "serviceSafeAssignUpdate",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "ForemanName",
+      "value" : "bind:Widgets.selectAutoAssignForeman.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "RunMode",
+      "value" : "2",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.procedure.SafeAssignSteelResponse",
+    "service" : "Job1111",
+    "operation" : "executeSafeAssignSteel",
+    "operationId" : "ProcedureExecutionController_executeSafeAssignSteel",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "ProcedureExecution"
+  },
   "serviceUnLockSASActivity" : {
     "_id" : "wm-serviceUnLockSASActivity-wm.ServiceVariable-1524679410451",
     "name" : "serviceUnLockSASActivity",
