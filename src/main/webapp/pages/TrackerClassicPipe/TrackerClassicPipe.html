@@ -12,8 +12,8 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn1">
-                        <wm-livefilter title="Filters" dataset="bind:Variables.livePipeTrackerClassic.dataSet" captionalign="left" captionposition="top" name="livefilterClassicTrackerPipe" iconclass="glyphicon glyphicon-filter" collapsible="true" expanded="true"
-                            pagesize="100" class="panel-primary">
+                        <wm-livefilter title="Filters" dataset="bind:Variables.liveGetClassicTracker.dataSet" captionalign="left" captionposition="top" name="livefilterClassicTrackerPipe" iconclass="glyphicon glyphicon-filter" collapsible="true" expanded="false"
+                            pagesize="5" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid2">
                                 <wm-gridrow name="gridrow18">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn60">
@@ -24,16 +24,24 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow4">
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn6">
-                                        <wm-filter-field name="area" field="area" displayname="Area" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="area" placeholder="Select value"
+                                        <wm-filter-field name="area" field="area" displayname="Area" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="area" placeholder="Select..."
                                             datafield="key" displayfield="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn7_1">
-                                        <wm-filter-field name="location" field="location" displayname="Location" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="location" placeholder="Select value"
+                                        <wm-filter-field name="location" field="location" displayname="Location" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="location" placeholder="Select..."
                                             datafield="key" displayfield="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn8_1">
+                                        <wm-filter-field name="structure" field="structure" related-field="Structure" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Structure"
+                                            key="structure" placeholder="Search..."></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn85">
+                                        <wm-filter-field name="cu" field="cu" displayname="CU" widget="text" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" inputtype="search" primary-key="false" key="cu" placeholder="Search..."
+                                            matchmode="start"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn88_1">
                                         <wm-filter-field name="elevation" field="elevation" displayname="Elevation" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="elevation"
-                                            placeholder="Select value" datafield="key" displayfield="value" matchmode="start"></wm-filter-field>
+                                            placeholder="Select..." datafield="key" displayfield="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow19">
@@ -45,44 +53,52 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow5">
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn9_1">
-                                        <wm-filter-field name="scope" field="scope" displayname="Scope" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="scope" placeholder="Select value"
-                                            datafield="key" displayfield="value" matchmode="start"></wm-filter-field>
+                                        <wm-filter-field name="projectServicesRep" field="projectServicesRep" related-field="Project Services Rep" widget="select" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere"
+                                            displayname="Project Services Rep" key="projectServicesRep" placeholder="Select..."></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn10">
-                                        <wm-filter-field name="phase" field="phase" displayname="Phase" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="phase" placeholder="Select value"
+                                        <wm-filter-field name="scope" field="scope" displayname="Scope" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="scope" placeholder="Select..."
                                             datafield="key" displayfield="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="1" name="gridcolumn11">
-                                        <wm-filter-field name="cu" field="cu" displayname="CU" widget="text" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" inputtype="search" primary-key="false" key="cu" placeholder="Search"
-                                            matchmode="start"></wm-filter-field>
-                                    </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn46">
-                                        <wm-filter-field name="p6id" field="p6id" displayname="P6 ID" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="p6id" placeholder="Search"
-                                            datafield="key" searchkey="value" displaylabel="value" matchmode="start"></wm-filter-field>
+                                        <wm-filter-field name="phase" field="phase" displayname="Phase" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="phase" placeholder="Select..."
+                                            datafield="key" displayfield="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn47">
-                                        <wm-filter-field name="stage" field="stage" displayname="Stage" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="stage" placeholder="Select value"
+                                        <wm-filter-field name="stage" field="stage" displayname="Stage" widget="select" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="stage" placeholder="Select..."
                                             datafield="key" displayfield="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn48">
                                         <wm-filter-field name="testPackageNumber" field="testPackageNumber" displayname="Test Package" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false"
-                                            key="testPackageNumber" placeholder="Search" datafield="key" searchkey="value" displaylabel="value" matchmode="start" defaultvalue="bind:pageParams.PageLoadTestPackage"></wm-filter-field>
+                                            key="testPackageNumber" placeholder="Search..." datafield="key" searchkey="value" displaylabel="value" matchmode="start" defaultvalue="bind:pageParams.PageLoadTestPackage"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn49">
-                                        <wm-filter-field name="costCode" field="costCode" displayname="Cost Code" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="costCode"
-                                            placeholder="Search" datafield="key" searchkey="value" displaylabel="value" matchmode="start"></wm-filter-field>
+                                        <wm-filter-field name="workPackage" field="workPackage" related-field="Work Package" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere"
+                                            displayname="Work Package" key="workPackage" placeholder="Search..."></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn50">
-                                        <wm-filter-field name="system" field="system" displayname="System" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="system" placeholder="Search"
-                                            datafield="key" searchkey="value" displaylabel="value" matchmode="start"></wm-filter-field>
+                                        <wm-filter-field name="costCode" field="costCode" displayname="Cost Code" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="costCode"
+                                            placeholder="Search..." datafield="key" searchkey="value" displaylabel="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn51">
-                                        <wm-filter-field name="service" field="service" displayname="Service" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="service" placeholder="Search"
+                                        <wm-filter-field name="p6id" field="p6id" displayname="P6 ID" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="p6id" placeholder="Search..."
                                             datafield="key" searchkey="value" displaylabel="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="3" name="gridcolumn81">
-                                        <wm-filter-field name="lastModified" field="lastModified" related-field="Last Modified" widget="datetime" is-range="true" show="true" type="datetime" is-primary-key="false" generator="assigned" matchmode="anywhere"
-                                            displayname="Last Modified" key="lastModified" placeholder="Start Date" maxplaceholder="End Date"></wm-filter-field>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn81">
+                                        <wm-filter-field name="p6description" field="p6description" related-field="P6 Description" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere"
+                                            displayname="P6 Description" key="p6description" placeholder="Search..."></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn92_1">
+                                        <wm-filter-field name="assignedContractor" field="assignedContractor" related-field="Assigned Contractor" widget="select" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere"
+                                            displayname="Assigned Contractor" key="assignedContractor" placeholder="Select..."></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn93">
+                                        <wm-filter-field name="system" field="system" displayname="System" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="system" placeholder="Search..."
+                                            datafield="key" searchkey="value" displaylabel="value" matchmode="start"></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn94">
+                                        <wm-filter-field name="service" field="service" displayname="Service" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="service" placeholder="Search..."
+                                            datafield="key" searchkey="value" displaylabel="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow21">
@@ -94,52 +110,52 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow6">
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn57_1">
-                                        <wm-filter-field name="id" display-name="Id" field="id" widget="text" is-range="false" show="true" type="integer" is-primary-key="true" generator="assigned" matchmode="start" displayname="ID" inputtype="text" primary-key="false"
-                                            key="id" placeholder="Enter value"></wm-filter-field>
+                                        <wm-filter-field name="uid" display-name="Uid" field="uid" related-field="Uid" widget="number" is-range="false" show="true" type="integer" is-primary-key="true" generator="assigned" matchmode="anywhere" displayname="UID"
+                                            placeholder="Enter value" inputtype="number" key="uid"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn12">
-                                        <wm-filter-field name="bidId" field="bidId" displayname="Bid ID" widget="text" is-range="false" type="integer" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="bidId" placeholder="Search"
-                                            datafield="key" searchkey="value" displaylabel="value" displayfield="value" inputtype="text"></wm-filter-field>
+                                        <wm-filter-field name="bidId" field="bidId" displayname="Bid ID" widget="number" is-range="false" type="integer" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="bidId" inputtype="number"
+                                            placeholder="Enter value"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn13">
                                         <wm-filter-field name="lineNumber" field="lineNumber" displayname="Line Number" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="lineNumber"
-                                            placeholder="Search" datafield="key" searchkey="value" displaylabel="value" matchmode="start"></wm-filter-field>
+                                            placeholder="Search..." datafield="key" searchkey="value" displaylabel="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn14">
                                         <wm-filter-field name="engDrawingNumber" field="engDrawingNumber" displayname="Drawing Number" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false"
-                                            key="engDrawingNumber" placeholder="Search" datafield="key" searchkey="value" displaylabel="value" matchmode="start" defaultvalue="bind:pageParams.PageLoadDrawing"></wm-filter-field>
+                                            key="engDrawingNumber" placeholder="Search..." datafield="key" searchkey="value" displaylabel="value" matchmode="start" defaultvalue="bind:pageParams.PageLoadDrawing"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn53">
-                                        <wm-filter-field name="sheetNumber" field="sheetNumber" displayname="Sheet Number" widget="autocomplete" is-range="false" type="short" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="sheetNumber"
-                                            placeholder="Select value" datafield="key" displayfield="value" defaultvalue="bind:pageParams.PageLoadSheet"></wm-filter-field>
+                                        <wm-filter-field name="sheetNumber" field="sheetNumber" displayname="Sheet Number" widget="number" is-range="false" type="short" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="sheetNumber"
+                                            defaultvalue="bind:pageParams.PageLoadSheet" placeholder="Enter value" inputtype="number"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn54">
                                         <wm-filter-field name="description" field="description" displayname="Description" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="description"
-                                            placeholder="Search" datafield="key" searchkey="value" displaylabel="value" matchmode="start"></wm-filter-field>
+                                            placeholder="Search..." datafield="key" searchkey="value" displaylabel="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn55">
                                         <wm-filter-field name="activityType" field="activityType" related-field="Activity Type" widget="select" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="start" multiple="multiple"
-                                            height="80px" hint="Ctrl+Click for Multi-select" displayname="Activity Type" key="activityType" placeholder="Select value"></wm-filter-field>
+                                            height="80px" hint="Ctrl+Click for Multi-select" displayname="Activity Type" key="activityType" placeholder="Select..."></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn56">
                                         <wm-filter-field name="activitySubType" display-name="Activity Sub Type" field="activitySubType" related-field="Activity Sub Type" widget="select" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned"
-                                            matchmode="start" multiple="multiple" height="80px" displayname="Sub Type" hint="Ctrl+Click for Multi-select" key="activitySubType" placeholder="Select value"></wm-filter-field>
+                                            matchmode="start" multiple="multiple" height="80px" displayname="Sub Type" hint="Ctrl+Click for Multi-select" key="activitySubType" placeholder="Select..."></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn57">
                                         <wm-filter-field name="size" field="size" related-field="Size" widget="select" is-range="false" show="true" type="float" is-primary-key="false" generator="assigned" matchmode="anywhere" multiple="multiple" height="80px"
-                                            hint="Ctrl+Click for Multi-select" displayname="Size" key="size" placeholder="Select value"></wm-filter-field>
+                                            hint="Ctrl+Click for Multi-select" displayname="Size" key="size" placeholder="Select..."></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn58">
                                         <wm-filter-field name="clientMaterialSpec" field="clientMaterialSpec" related-field="Client Material Spec" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned"
-                                            matchmode="start" displayname="Client Material Spec" key="clientMaterialSpec" placeholder="Select value"></wm-filter-field>
+                                            matchmode="start" displayname="Client Material Spec" key="clientMaterialSpec" placeholder="Search..."></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn59">
                                         <wm-filter-field name="performanceMaterialSpec" field="performanceMaterialSpec" related-field="Performance Material Spec" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned"
-                                            matchmode="start" displayname="Performance Material Spec" key="performanceMaterialSpec" placeholder="Select value"></wm-filter-field>
+                                            matchmode="start" displayname="Performance Material Spec" key="performanceMaterialSpec" placeholder="Search..."></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn124">
                                         <wm-filter-field name="componentNumber" field="componentNumber" displayname="Component Number" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false"
-                                            key="componentNumber" placeholder="Search" datafield="key" searchkey="value" displaylabel="value" matchmode="start"></wm-filter-field>
+                                            key="componentNumber" placeholder="Search..." datafield="key" searchkey="value" displaylabel="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow22">
@@ -151,43 +167,43 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow23">
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn113">
-                                        <wm-filter-field name="wbs1" field="wbs1" displayname="Wbs1" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="wbs1" placeholder="Select value"
+                                        <wm-filter-field name="wbs1" field="wbs1" displayname="Wbs1" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="wbs1" placeholder="Search..."
                                             datafield="key" displayfield="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn114">
-                                        <wm-filter-field name="wbs2" field="wbs2" displayname="Wbs2" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="wbs2" placeholder="Select value"
+                                        <wm-filter-field name="wbs2" field="wbs2" displayname="Wbs2" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="wbs2" placeholder="Search..."
                                             datafield="key" displayfield="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn115">
-                                        <wm-filter-field name="wbs3" field="wbs3" displayname="Wbs3" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="wbs3" placeholder="Select value"
+                                        <wm-filter-field name="wbs3" field="wbs3" displayname="Wbs3" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="wbs3" placeholder="Search..."
                                             datafield="key" displayfield="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn116">
-                                        <wm-filter-field name="wbs4" field="wbs4" displayname="Wbs4" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="wbs4" placeholder="Select value"
+                                        <wm-filter-field name="wbs4" field="wbs4" displayname="Wbs4" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="wbs4" placeholder="Search..."
                                             datafield="key" displayfield="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn117">
-                                        <wm-filter-field name="wbs5" field="wbs5" displayname="Wbs5" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="wbs5" placeholder="Select value"
+                                        <wm-filter-field name="wbs5" field="wbs5" displayname="Wbs5" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="wbs5" placeholder="Search..."
                                             datafield="key" displayfield="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn118">
-                                        <wm-filter-field name="wbs6" field="wbs6" displayname="Wbs6" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="wbs6" placeholder="Select value"
+                                        <wm-filter-field name="wbs6" field="wbs6" displayname="Wbs6" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="wbs6" placeholder="Search..."
                                             datafield="key" displayfield="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn119">
-                                        <wm-filter-field name="wbs7" field="wbs7" displayname="Wbs7" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="wbs7" placeholder="Select value"
+                                        <wm-filter-field name="wbs7" field="wbs7" displayname="Wbs7" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="wbs7" placeholder="Search..."
                                             datafield="key" displayfield="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn120">
-                                        <wm-filter-field name="wbs8" field="wbs8" displayname="Wbs8" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="wbs8" placeholder="Select value"
+                                        <wm-filter-field name="wbs8" field="wbs8" displayname="Wbs8" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="wbs8" placeholder="Search..."
                                             datafield="key" displayfield="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn121">
-                                        <wm-filter-field name="wbs9" field="wbs9" displayname="Wbs9" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="wbs9" placeholder="Select value"
+                                        <wm-filter-field name="wbs9" field="wbs9" displayname="Wbs9" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="wbs9" placeholder="Search..."
                                             datafield="key" displayfield="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn122">
-                                        <wm-filter-field name="wbs10" field="wbs10" displayname="Wbs10" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="wbs10" placeholder="Select value"
+                                        <wm-filter-field name="wbs10" field="wbs10" displayname="Wbs10" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" primary-key="false" key="wbs10" placeholder="Search..."
                                             datafield="key" displayfield="value" matchmode="start"></wm-filter-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>

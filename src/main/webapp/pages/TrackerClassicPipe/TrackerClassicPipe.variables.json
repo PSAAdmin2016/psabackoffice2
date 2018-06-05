@@ -251,9 +251,9 @@
     "isDefault" : true,
     "controller" : "QueryExecution"
   },
-  "livePipeTrackerClassic" : {
+  "liveGetClassicTracker" : {
     "_id" : "wm-Job1111TrackerPipeClassicData-wm.LiveVariable-1464188788638",
-    "name" : "livePipeTrackerClassic",
+    "name" : "liveGetClassicTracker",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
     "dataBinding" : [ ],

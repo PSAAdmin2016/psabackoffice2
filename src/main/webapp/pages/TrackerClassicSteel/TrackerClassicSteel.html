@@ -12,7 +12,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
-                        <wm-livefilter title="Filters" dataset="bind:Variables.liveGetClassicTracker.dataSet" captionalign="left" captionposition="top" iconclass="glyphicon glyphicon-filter" collapsible="true" expanded="false" pagesize="5" class="panel-primary"
+                        <wm-livefilter title="Filters" dataset="bind:Variables.liveGetClassicTracker.dataSet" captionalign="left" captionposition="top" iconclass="glyphicon glyphicon-filter" collapsible="true" expanded="false" pagesize="100" class="panel-primary"
                             name="livefilterClassicTrackerSteel">
                             <wm-layoutgrid name="layoutgrid1">
                                 <wm-gridrow name="gridrow45">
@@ -565,6 +565,9 @@ Widgets.formNewManualEntry.formWidgets.varActivityType.datavalue != 68 &amp;&amp
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewActivityHistory">
-        <wm-pagedialog name="dialogActivityHistory" content="ActivityHistorySteel" title="Field Activity History" showactions="true" oktext="CLOSE" width="65%" height="425" on-opened="dialogActivityHistoryOpened($event, $isolateScope)"></wm-pagedialog>
+        <wm-pagedialog name="dialogActivityHistory" content="ActivityHistorySteel" title="Field Activity History" showactions="true" oktext="CLOSE" width="65%" height="425" on-opened="dialogActivityHistoryOpened($event, $isolateScope)">
+            <wm-param name="ActivityID" value="77" type="integer"></wm-param>
+            <wm-param name="ActivityTypeId" value="777" type="integer"></wm-param>
+        </wm-pagedialog>
     </wm-view>
 </wm-page>
