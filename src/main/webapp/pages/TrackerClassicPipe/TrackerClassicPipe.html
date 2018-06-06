@@ -13,7 +13,7 @@
                 <wm-gridrow name="gridrow1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn1">
                         <wm-livefilter title="Filters" dataset="bind:Variables.liveGetClassicTracker.dataSet" captionalign="left" captionposition="top" name="livefilterClassicTrackerPipe" iconclass="glyphicon glyphicon-filter" collapsible="true" expanded="false"
-                            pagesize="5" class="panel-primary">
+                            pagesize="100" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid2">
                                 <wm-gridrow name="gridrow18">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn60">
@@ -218,15 +218,15 @@
                         <wm-livetable formlayout="dialog" name="livegrid1">
                             <wm-table gridfirstrowselect="false" dataset="bind:Widgets.livefilterClassicTrackerPipe.result" navigation="Classic" name="gridClassicTrackerPipe" height="610px" showrecordcount="true" fontsize="10" on-rowdblclick="Variables.serviceGetBidWorkHistory.invoke();Widgets.dialogBidWorkHistory.open()"
                                 pagesize="100" class="panel-default" on-columnselect="gridClassicTrackerPipeColumnselect($event, $data)" on-columndeselect="gridClassicTrackerPipeColumndeselect($event, $data)" editmode="dialog" spacing="condensed" on-datarender="gridClassicTrackerPipeDatarender($scope, $data)">
-                                <wm-table-column binding="uid" caption="Uid" type="integer" readonly="true" show="true"></wm-table-column>
+                                <wm-table-column binding="uid" caption="Uid" edit-widget-type="number" type="integer" readonly="true" show="true"></wm-table-column>
                                 <wm-table-column binding="bidId" caption="Bid ID" width="70px" edit-widget-type="number" type="integer" generator="assigned" readonly="true" show="true"></wm-table-column>
-                                <wm-table-column binding="projectServicesRep" caption="Project Services Rep" type="string" readonly="true" show="true"></wm-table-column>
-                                <wm-table-column binding="ewonumber" caption="EWO #" type="string" readonly="true" show="true"></wm-table-column>
+                                <wm-table-column binding="projectServicesRep" caption="Project Services Rep" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                                <wm-table-column binding="ewonumber" caption="EWO #" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
                                 <wm-table-column binding="scope" caption="Scope" width="80px" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                                 <wm-table-column binding="phase" caption="Phase" width="70px" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                                 <wm-table-column binding="stage" caption="Stage" width="70px" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                                 <wm-table-column binding="testPackageNumber" caption="Test Package" width="80px" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
-                                <wm-table-column binding="workPackage" caption="Work Package" type="string" readonly="true" show="true"></wm-table-column>
+                                <wm-table-column binding="workPackage" caption="Work Package" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
                                 <wm-table-column binding="costCode" caption="Cost Code" width="70px" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                                 <wm-table-column binding="p6id" caption="P6 ID" width="70px" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                                 <wm-table-column binding="p6description" caption="P6 Description" width="100px" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
@@ -258,11 +258,12 @@
                                     show="true"></wm-table-column>
                                 <wm-table-column binding="hoursTesting" caption="Hours Testing" width="70px" primary-key="false" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
                                     fractionsize="2" show="true"></wm-table-column>
-                                <wm-table-column binding="hoursRft" caption="Hours Ready For Testing" type="double" readonly="true" formatpattern="numberToString" fractionsize="2" show="true"></wm-table-column>
+                                <wm-table-column binding="hoursRft" caption="Hours Ready For Testing" edit-widget-type="number" type="big_decimal" readonly="true" formatpattern="numberToString" fractionsize="2" show="true"></wm-table-column>
                                 <wm-table-column binding="hoursHydro" caption="Hours Hydro" primary-key="false" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString" fractionsize="2"
                                     show="true"></wm-table-column>
-                                <wm-table-column binding="hoursCto" caption="Hours Client Turnover" type="double" readonly="true" formatpattern="numberToString" fractionsize="2" show="true"></wm-table-column>
-                                <wm-table-column binding="installedQuantity" caption="Installed Quantity" type="double" readonly="true" formatpattern="numberToString" fractionsize="2" show="true"></wm-table-column>
+                                <wm-table-column binding="hoursCto" caption="Hours Client Turnover" edit-widget-type="number" type="big_decimal" readonly="true" formatpattern="numberToString" fractionsize="2" show="true"></wm-table-column>
+                                <wm-table-column binding="installedQuantity" caption="Installed Quantity" col-class="lightgreen" edit-widget-type="number" type="double" readonly="true" formatpattern="numberToString" fractionsize="2"
+                                    show="true"></wm-table-column>
                                 <wm-table-column binding="hoursEarnedTotal" caption="Hours Earned Total" primary-key="false" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
                                     fractionsize="2" show="true"></wm-table-column>
                                 <wm-table-column binding="hoursEarnedMech" caption="Hours Earned Mech" width="80px" primary-key="false" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
@@ -376,7 +377,10 @@
                                                     show="bind:Variables.serviceGetBidWorkHistory.dataSet.ActivityType != 'Override Activity' " width="32%" disabled="bind:Variables.staticShowReturn.dataSet.dataValue === false" iconclass="wi wi-backward"></wm-button>
                                                 <wm-popover popoverwidth="65%" popoverheight="425" name="popoverActivityHistory" class="btn btn-sm" caption="Hist." iconclass="wi wi-history" backgroundcolor="#5fb4ff" color="#000000" width="28%"
                                                     height="24" textalign="center" contentsource="partial" content="ActivityHistory" on-show="popoverActivityHistoryShow($event, $scope)" on-hide="popoverActivityHistoryHide($event, $scope)" borderstyle="solid"
-                                                    bordercolor="#bfd8ef" borderwidth="1px" margin="unset 2%" hint="View the history of the selected item."></wm-popover>
+                                                    bordercolor="#bfd8ef" borderwidth="1px" margin="unset 2%" hint="View the history of the selected item.">
+                                                    <wm-param name="ActivityID" value="bind:Widgets.livelistBidWorkHistory.currentItem.ActivityID" type="integer"></wm-param>
+                                                    <wm-param name="ActivityTypeID" value="bind:Widgets.livelistBidWorkHistory.currentItem.ActivityTypeID" type="integer"></wm-param>
+                                                </wm-popover>
                                                 <wm-button class="btn-sm" caption="Override" iconclass="glyphicon glyphicon-alert" backgroundcolor="#ff6500" on-click="Widgets.dialogQuantityOverride.open();buttonOverrideClick($event, $scope, item, currentItemWidgets)"
                                                     show="bind:Variables.serviceGetBidWorkHistory.dataSet[$i].ActivityType != 'BoltUp' &amp;&amp; Variables.serviceGetBidWorkHistory.dataSet[$i].ActivityType != 'Valve' &amp;&amp; Variables.serviceGetBidWorkHistory.dataSet[$i].ActivityType != 'Drain/Vent' &amp;&amp; Variables.serviceGetBidWorkHistory.dataSet[$i].ActivityType != 'Ready for Testing' &amp;&amp; Variables.serviceGetBidWorkHistory.dataSet[$i].ActivityType != 'Hydro' &amp;&amp;  Variables.serviceGetBidWorkHistory.dataSet[$i].ActivityType != 'Client Turnover' &amp;&amp; Variables.serviceGetBidWorkHistory.dataSet[$i].ActivityType != 'Demo - UnBolt' &amp;&amp; Variables.serviceGetBidWorkHistory.dataSet[$i].ActivityType != 'Demo - Pipe Cut'"
                                                     hint="Change quantity on selected item." disabled="false" name="buttonOverride" width="36%" padding="unset 0px"></wm-button>
@@ -409,15 +413,15 @@
                     </wm-gridrow>
                     <wm-gridrow name="gridrow24">
                         <wm-gridcolumn columnwidth="6" name="gridcolumn87">
-                            <wm-composite name="composite3" captionposition="top">
+                            <wm-composite name="composite3" captionposition="top" required="true">
                                 <wm-label class="col-md-3 control-label" name="label20_1" caption="Quantity"></wm-label>
                                 <wm-container class="col-md-9" name="container2">
-                                    <wm-text name="textManualQuantity" type="number" placeholder="Enter Quantity" width="50%" required="true" minvalue="1" maxvalue="10000"></wm-text>
+                                    <wm-text name="textManualQuantity" type="number" placeholder="Enter Quantity" width="50%" required="true" minvalue=".01" maxvalue="10000"></wm-text>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="6" name="gridcolumn88">
-                            <wm-composite name="composite4" captionposition="top">
+                            <wm-composite name="composite4" captionposition="top" required="true">
                                 <wm-label class="col-md-3 control-label" name="label21_1" caption="Notes"></wm-label>
                                 <wm-container class="col-md-9" name="container3">
                                     <wm-textarea name="textareaManualNotes" placeholder="Place description here" required="true" maxchars="200"></wm-textarea>
@@ -438,7 +442,8 @@
         <wm-dialog dialogtype="design-dialog" modal="true" name="dialogQuantityOverride" width="25%" title="New Quantity" iconclass="wi wi-edit">
             <wm-dialogactions name="dialogactions3"></wm-dialogactions>
             <wm-liveform errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.liveSAS.dataSet" captionalign="left" captionposition="top" name="liveformSASFA" on-success="Widgets.dialogQuantityOverride.close();liveformSASSuccess($event, $operation, $data)"
-                on-beforeservicecall="liveformSASBeforeservicecall($event, $operation, $data)" formdata="bind:Variables.liveSAS.firstRecord">
+                on-beforeservicecall="liveformSASBeforeservicecall($event, $operation, $data)" formdata="bind:Variables.liveSAS.firstRecord" show="bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityTypeID != 22 &amp;&amp;
+Widgets.livelistBidWorkHistory.selecteditem.ActivityTypeID != 91">
                 <wm-liveform errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.liveSAS.dataSet.data[$i].pipeFa" captionalign="left" captionposition="top" name="liveformPipeFA" key="pipeFa" formdata="bind:Variables.liveSAS.firstRecord.pipeFa">
                     <wm-layoutgrid columns="3" name="layoutgrid7_2">
                         <wm-gridrow name="gridrow20">
@@ -453,7 +458,7 @@
                             <wm-gridcolumn columnwidth="4" name="gridcolumn84_2"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="4" name="gridcolumn85_2">
                                 <wm-form-field name="fapercentCompleted" displayname="New Percent Complete" required="false" show="true" generator="assigned" primary-key="false" key="fapercentCompleted" type="float" is-related="false" step="0.01" pc-display="true"
-                                    mobile-display="true" widget="select"></wm-form-field>
+                                    mobile-display="true" widget="select" dataset="bind:Variables.PSARefPercentListData.dataSet" datafield="decimalValue" displayfield="label"></wm-form-field>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="4" name="gridcolumn86_1"></wm-gridcolumn>
                         </wm-gridrow>
@@ -462,6 +467,25 @@
                 <wm-layoutgrid columns="1" name="layoutgrid7_1"></wm-layoutgrid>
                 <wm-form-field name="activityId" displayname="Activity Id" show="false" primary-key="true" generator="identity" key="activityId" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number"
                     placeholder=""></wm-form-field>
+                <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel();Widgets.dialogQuantityOverride.close()" display-name="Cancel" show="true" type="button" update-mode="true" shortcutkey=""></wm-form-action>
+                <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+            </wm-liveform>
+            <wm-liveform errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.liveSAS.dataSet" captionalign="left" captionposition="top" name="liveformSASWeld" on-success="Widgets.dialogQuantityOverride.close();liveformSASSuccess($event, $operation, $data)"
+                on-beforeservicecall="liveformSASBeforeservicecall($event, $operation, $data)" formdata="bind:Variables.liveSAS.firstRecord" show="bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityTypeID == 22">
+                <wm-liveform errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.liveSAS.dataSet.data[$i].pipeWeld" captionalign="left" captionposition="top" name="liveformPipeWeld" key="pipeWeld" formdata="bind:Variables.liveSAS.firstRecord.pipeWeld">
+                    <wm-layoutgrid columns="3" name="layoutgrid9">
+                        <wm-gridrow name="gridrow22_2">
+                            <wm-gridcolumn columnwidth="4" name="gridcolumn87_1"></wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="4" name="gridcolumn88_2">
+                                <wm-form-field name="weldPercentCompleted" displayname="New Percent Complete" required="true" show="true" generator="assigned" primary-key="false" key="weldPercentCompleted" type="integer" is-related="false" step="0.01" pc-display="true"
+                                    mobile-display="true" widget="select" dataset="bind:Variables.PSARefPercentListData.dataSet" datafield="decimalValue" displayfield="label"></wm-form-field>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="4" name="gridcolumn89"></wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
+                </wm-liveform>
+                <wm-layoutgrid columns="1" name="layoutgrid8"></wm-layoutgrid>
+                <wm-form-field name="activityId" displayname="Activity Id" show="false" primary-key="true" generator="identity" key="activityId" type="integer" readonly="true" required="true" step="0" widget="number"></wm-form-field>
                 <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel();Widgets.dialogQuantityOverride.close()" display-name="Cancel" show="true" type="button" update-mode="true" shortcutkey=""></wm-form-action>
                 <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
             </wm-liveform>

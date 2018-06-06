@@ -1033,7 +1033,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "activityId" ]
     },
-    "bindCount" : 5,
+    "bindCount" : 10,
     "tableName" : "SubmissionActivityStatus",
     "tableType" : "TABLE",
     "properties" : [ "subsDetails" ],
@@ -1063,31 +1063,19 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "MiscDrawingNumber",
-      "value" : "bind:Widgets.gridClassicTrackerPipe.selecteditem.engDrawingNumber",
-      "type" : "string"
-    }, {
-      "target" : "MiscLineNumber",
-      "value" : "bind:Widgets.gridClassicTrackerPipe.selecteditem.lineNumber",
-      "type" : "string"
-    }, {
-      "target" : "MiscSheetNumber",
-      "value" : "bind:Widgets.gridClassicTrackerPipe.selecteditem.sheetNumber",
-      "type" : "string"
-    }, {
-      "target" : "MiscQuantity",
-      "value" : "bind:Widgets.textManualQuantity.datavalue",
-      "type" : "integer"
-    }, {
-      "target" : "MiscNotes",
-      "value" : "bind:Widgets.textareaManualNotes.datavalue",
-      "type" : "string"
-    }, {
-      "target" : "UserId",
+      "target" : "varUserID",
       "value" : "bind:Variables.loggedInUser.dataSet.id",
       "type" : "integer"
     }, {
-      "target" : "BidID",
+      "target" : "varQuantity",
+      "value" : "bind:Widgets.formNewManualEntry.formWidgets.textManualQuantity.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "varNotes",
+      "value" : "bind:Widgets.formNewManualEntry.formWidgets.textareaManualNotes.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "varBidID",
       "value" : "bind:Widgets.gridClassicTrackerPipe.selecteditem.bidId",
       "type" : "integer"
     } ],
@@ -1163,7 +1151,7 @@
     "dataSet" : [ ],
     "isList" : true,
     "maxResults" : 20,
-    "onResult" : "serviceUpdatePartClassicTrackeronResult($event, $scope)",
+    "onResult" : "serviceUpdateClassicTrackeronResult($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -1196,7 +1184,7 @@
     "firstRow" : 0,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "serviceUpdateFullClassicTrackeronSuccess($event, $scope)",
+    "onSuccess" : "Javascript",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -1205,87 +1193,6 @@
     "controller" : "ProcedureExecution",
     "spinnerContext" : "gridClassicTrackerPipe",
     "spinnerMessage" : "Running full refresh..."
-  },
-  "serviceUpdateSSOverride" : {
-    "_id" : "wm-serviceUpdateSSOverride-wm.ServiceVariable-1464662566967",
-    "name" : "serviceUpdateSSOverride",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "ActivityStatus",
-      "value" : "12",
-      "type" : "integer"
-    }, {
-      "target" : "UserID",
-      "value" : "bind:Variables.loggedInUser.dataSet.id",
-      "type" : "integer"
-    }, {
-      "target" : "FieldActivityID",
-      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityID",
-      "type" : "integer"
-    }, {
-      "target" : "BidID",
-      "value" : "bind:Widgets.gridClassicTrackerPipe.selecteditem.bidId",
-      "type" : "integer"
-    } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
-    "service" : "Job1111",
-    "operation" : "executeUpdateSS",
-    "operationId" : "QueryExecutionController_executeUpdateSS",
-    "operationType" : "put",
-    "serviceType" : "DataService",
-    "dataSet" : {
-      "dataValue" : ""
-    },
-    "isList" : false,
-    "firstRow" : 0,
-    "maxResults" : 3,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
-  },
-  "serviceUpdateSSReturnToListPS" : {
-    "_id" : "wm-serviceUpdateSSReturnToListPS-wm.ServiceVariable-1464372877439",
-    "name" : "serviceUpdateSSReturnToListPS",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "ActivityStatus",
-      "value" : "11",
-      "type" : "integer"
-    }, {
-      "target" : "UserID",
-      "value" : "bind:Variables.loggedInUser.dataSet.id",
-      "type" : "integer"
-    }, {
-      "target" : "FieldActivityID",
-      "value" : "bind:Widgets.livelistBidWorkHistory.selecteditem.ActivityID",
-      "type" : "integer"
-    } ],
-    "type" : "integer",
-    "service" : "Job1111",
-    "operation" : "executeUpdateSS",
-    "operationId" : "QueryExecutionController_executeUpdateSS",
-    "operationType" : "put",
-    "serviceType" : "DataService",
-    "dataSet" : {
-      "dataValue" : ""
-    },
-    "isList" : false,
-    "firstRow" : 0,
-    "maxResults" : 3,
-    "designMaxResults" : 10,
-    "onSuccess" : "Variables.serviceGetBidWorkHistory.invoke();Variables.serviceUpdateClassicTracker.invoke()",
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
   },
   "staticShowReturn" : {
     "_id" : "wm-staticShowReturn-wm.Variable-1528303968936",
@@ -1398,15 +1305,5 @@
     "type" : "com.psabackoffice.psa.Settingsuser",
     "isList" : false,
     "saveInPhonegap" : false
-  },
-  "timerDelayGetActivityHistory" : {
-    "_id" : "wm-timerDelayGetActivityHistory-wm.TimerVariable-1464553321472",
-    "name" : "timerDelayGetActivityHistory",
-    "owner" : "Page",
-    "category" : "wm.TimerVariable",
-    "autoStart" : false,
-    "repeating" : false,
-    "delay" : 50,
-    "onTimerFire" : "timerDelayGetActivityHistoryonTimerFire($event, $scope)"
   }
 }

@@ -37,7 +37,7 @@ Application.$controller("ActivityHistoryPageController", ["$scope", function($sc
                 break;
             case 72:
                 $scope.Variables.serviceGetACHCivilPunchSell.invoke();
-                break
+                break;
             case 80:
                 $scope.Variables.serviceGetACHEquipFA.invoke();
                 break;

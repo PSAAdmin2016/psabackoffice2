@@ -2786,16 +2786,16 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "3",
+      "testValue" : "1",
       "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "varQuantity",
-      "type" : "integer",
+      "type" : "big_decimal",
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "4",
+      "testValue" : ".4",
       "required" : true,
       "parameterType" : "IN"
     }, {
@@ -2805,7 +2805,7 @@
       "variableType" : "PROMPT",
       "variableName" : "",
       "testValue" : "Procedure Call test",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "varUserID",

@@ -40,10 +40,6 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
     @ColumnAlias("WeldSheetNumber")
     private String weldSheetNumber;
 
-    @JsonProperty("WeldTimeInForm")
-    @ColumnAlias("WeldTimeInForm")
-    private Integer weldTimeInForm;
-
     @JsonProperty("WeldLineSpec")
     @ColumnAlias("WeldLineSpec")
     private String weldLineSpec;
@@ -58,7 +54,7 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
 
     @JsonProperty("WeldSize")
     @ColumnAlias("WeldSize")
-    private Float weldSize;
+    private String weldSize;
 
     @JsonProperty("WeldThickness")
     @ColumnAlias("WeldThickness")
@@ -82,7 +78,7 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
 
     @JsonProperty("WeldComplete")
     @ColumnAlias("WeldComplete")
-    private Short weldComplete;
+    private String weldComplete;
 
     @JsonProperty("WeldShared")
     @ColumnAlias("WeldShared")
@@ -94,7 +90,7 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
 
     @JsonProperty("WeldRework")
     @ColumnAlias("WeldRework")
-    private Short weldRework;
+    private Float weldRework;
 
     @JsonProperty("WeldNotes")
     @ColumnAlias("WeldNotes")
@@ -102,7 +98,11 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
 
     @JsonProperty("ActivityType")
     @ColumnAlias("ActivityType")
-    private Short activityType;
+    private String activityType;
+
+    @JsonProperty("WeldTimeInForm")
+    @ColumnAlias("WeldTimeInForm")
+    private Short weldTimeInForm;
 
     @JsonProperty("Rev")
     @ColumnAlias("Rev")
@@ -160,14 +160,6 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
         this.weldSheetNumber = weldSheetNumber;
     }
 
-    public Integer getWeldTimeInForm() {
-        return this.weldTimeInForm;
-    }
-
-    public void setWeldTimeInForm(Integer weldTimeInForm) {
-        this.weldTimeInForm = weldTimeInForm;
-    }
-
     public String getWeldLineSpec() {
         return this.weldLineSpec;
     }
@@ -192,11 +184,11 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
         this.weldStencil = weldStencil;
     }
 
-    public Float getWeldSize() {
+    public String getWeldSize() {
         return this.weldSize;
     }
 
-    public void setWeldSize(Float weldSize) {
+    public void setWeldSize(String weldSize) {
         this.weldSize = weldSize;
     }
 
@@ -240,11 +232,11 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
         this.weldProcedure = weldProcedure;
     }
 
-    public Short getWeldComplete() {
+    public String getWeldComplete() {
         return this.weldComplete;
     }
 
-    public void setWeldComplete(Short weldComplete) {
+    public void setWeldComplete(String weldComplete) {
         this.weldComplete = weldComplete;
     }
 
@@ -264,11 +256,11 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
         this.weldPercentCompleted = weldPercentCompleted;
     }
 
-    public Short getWeldRework() {
+    public Float getWeldRework() {
         return this.weldRework;
     }
 
-    public void setWeldRework(Short weldRework) {
+    public void setWeldRework(Float weldRework) {
         this.weldRework = weldRework;
     }
 
@@ -280,12 +272,20 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
         this.weldNotes = weldNotes;
     }
 
-    public Short getActivityType() {
+    public String getActivityType() {
         return this.activityType;
     }
 
-    public void setActivityType(Short activityType) {
+    public void setActivityType(String activityType) {
         this.activityType = activityType;
+    }
+
+    public Short getWeldTimeInForm() {
+        return this.weldTimeInForm;
+    }
+
+    public void setWeldTimeInForm(Short weldTimeInForm) {
+        this.weldTimeInForm = weldTimeInForm;
     }
 
     public Short getRev() {
@@ -315,7 +315,6 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
                 Objects.equals(getWeldDrawingNumber(), getActivityHistoryPipeWeldResponse.getWeldDrawingNumber()) &&
                 Objects.equals(getWeldLineNumber(), getActivityHistoryPipeWeldResponse.getWeldLineNumber()) &&
                 Objects.equals(getWeldSheetNumber(), getActivityHistoryPipeWeldResponse.getWeldSheetNumber()) &&
-                Objects.equals(getWeldTimeInForm(), getActivityHistoryPipeWeldResponse.getWeldTimeInForm()) &&
                 Objects.equals(getWeldLineSpec(), getActivityHistoryPipeWeldResponse.getWeldLineSpec()) &&
                 Objects.equals(getWeldNumber(), getActivityHistoryPipeWeldResponse.getWeldNumber()) &&
                 Objects.equals(getWeldStencil(), getActivityHistoryPipeWeldResponse.getWeldStencil()) &&
@@ -331,6 +330,7 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
                 Objects.equals(getWeldRework(), getActivityHistoryPipeWeldResponse.getWeldRework()) &&
                 Objects.equals(getWeldNotes(), getActivityHistoryPipeWeldResponse.getWeldNotes()) &&
                 Objects.equals(getActivityType(), getActivityHistoryPipeWeldResponse.getActivityType()) &&
+                Objects.equals(getWeldTimeInForm(), getActivityHistoryPipeWeldResponse.getWeldTimeInForm()) &&
                 Objects.equals(getRev(), getActivityHistoryPipeWeldResponse.getRev()) &&
                 Objects.equals(getTimeStamp(), getActivityHistoryPipeWeldResponse.getTimeStamp());
     }
@@ -343,7 +343,6 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
                 getWeldDrawingNumber(),
                 getWeldLineNumber(),
                 getWeldSheetNumber(),
-                getWeldTimeInForm(),
                 getWeldLineSpec(),
                 getWeldNumber(),
                 getWeldStencil(),
@@ -359,6 +358,7 @@ public class GetActivityHistoryPipeWeldResponse implements Serializable {
                 getWeldRework(),
                 getWeldNotes(),
                 getActivityType(),
+                getWeldTimeInForm(),
                 getRev(),
                 getTimeStamp());
     }

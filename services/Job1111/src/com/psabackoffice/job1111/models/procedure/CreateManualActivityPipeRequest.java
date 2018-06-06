@@ -23,9 +23,10 @@ public class CreateManualActivityPipeRequest implements Serializable {
 
     @JsonProperty("varQuantity")
     @NotNull
-    private Integer varQuantity;
+    private BigDecimal varQuantity;
 
     @JsonProperty("varNotes")
+    @NotNull
     private String varNotes;
 
     @JsonProperty("varUserID")
@@ -40,11 +41,11 @@ public class CreateManualActivityPipeRequest implements Serializable {
         this.varBidId = varBidId;
     }
 
-    public Integer getVarQuantity() {
+    public BigDecimal getVarQuantity() {
         return this.varQuantity;
     }
 
-    public void setVarQuantity(Integer varQuantity) {
+    public void setVarQuantity(BigDecimal varQuantity) {
         this.varQuantity = varQuantity;
     }
 

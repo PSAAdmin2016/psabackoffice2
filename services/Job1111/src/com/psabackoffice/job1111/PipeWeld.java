@@ -45,12 +45,12 @@ public class PipeWeld implements Serializable {
     private String weldProcedure;
     private Short weldComplete;
     private Short weldShared;
-    private Integer weldPercentCompleted;
+    private Float weldPercentCompleted;
     private Short weldRework;
     private String weldNotes;
     private Short activityType;
     private Short weldTimeInForm;
-    private short rev;
+    private short rev = 0;
     private Timestamp timeStamp;
     private SubmissionActivityStatus submissionActivityStatus;
 
@@ -209,11 +209,11 @@ public class PipeWeld implements Serializable {
     }
 
     @Column(name = "`WeldPercentCompleted`", nullable = true, scale = 2, precision = 3)
-    public Integer getWeldPercentCompleted() {
+    public Float getWeldPercentCompleted() {
         return this.weldPercentCompleted;
     }
 
-    public void setWeldPercentCompleted(Integer weldPercentCompleted) {
+    public void setWeldPercentCompleted(Float weldPercentCompleted) {
         this.weldPercentCompleted = weldPercentCompleted;
     }
 

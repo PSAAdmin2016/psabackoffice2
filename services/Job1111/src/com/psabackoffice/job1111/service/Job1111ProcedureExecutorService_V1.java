@@ -34,7 +34,7 @@ public interface Job1111ProcedureExecutorService_V1 {
     List<Object> executeGetJobPCOT(Integer runMode);
 
     @Deprecated
-    List<Object> executeCreateManualActivityPipe(Integer varBidId, Integer varQuantity, String varNotes, Integer varUserId);
+    List<Object> executeCreateManualActivityPipe(Integer varBidId, BigDecimal varQuantity, String varNotes, Integer varUserId);
 
     @Deprecated
     List<Object> executeGetCivilPCOT(Integer runMode);

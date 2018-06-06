@@ -32,43 +32,14 @@ Application.$controller("TrackerClassicPipePageController", ["$scope", function(
     };
 
 
-    $scope.timerDelayGetActivityHistoryonTimerFire = function(variable, data) { // This timer fired in the popoverActivityHistoryShow Event
-        if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Erection') {
-            $scope.Variables.Job1111ExecuteGetActivityHistoryErection.update();
-        }
-        if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'BoltUp') {
-            $scope.Variables.Job1111ExecuteGetActivityHistoryBoltup.update();
-        }
-        if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Weld' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Cut/Prep') {
-            $scope.Variables.Job1111ExecuteGetActivityHistoryWeld.update();
-        }
-
-        if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Trim Basic' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Valve' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Plug' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Wall Penetration' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Drain/Vent' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Other') {
-            $scope.Variables.Job1111ExecuteGetActivityHistoryTrim.update();
-        }
-        if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Supports') {
-            $scope.Variables.Job1111ExecuteGetActivityHistorySupport.update();
-        }
-        if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Demo' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Demo - Pipe Removal' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Demo - UnBolt' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Demo - Pipe Cut' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Demo - Misc') {
-            $scope.Variables.Job1111ExecuteGetActivityHistoryDemo.update();
-        }
-        if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Ready For Testing' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Hydro' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Client Turnover') {
-            $scope.Variables.Job1111ExecuteGetActivityHistoryTesting.update();
-        }
-        if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Misc Basic' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Pipe Misc') {
-            $scope.Variables.Job1111ExecuteGetActivityHistoryMisc.update();
-        }
-    };
-
-
-    $scope.serviceUpdatePartClassicTrackeronResult = function(variable, data) {
+    $scope.serviceUpdateClassicTrackeronResult = function(variable, data) {
         if (data[0].ReturnStatus) {
             $scope.Widgets.livefilterClassicTrackerPipe.filter();
         }
     };
 
 
-    $scope.serviceUpdateFullClassicTrackeronSuccess = function(variable, data) {
+    $scope.serviceUpdateClassicTrackerFullonSuccess = function(variable, data) {
         if (data[0].ReturnStatus) {
             $scope.Widgets.livefilterClassicTrackerPipe.filter();
         }
@@ -220,14 +191,6 @@ Application.$controller("dialogBidWorkHistoryController", ["$scope",
 ]);
 
 
-Application.$controller("dialogActivityHistoryController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
-
-
 Application.$controller("dialogManualEntryController", ["$scope",
     function($scope) {
         "use strict";
@@ -291,4 +254,18 @@ Application.$controller("liveformPipeFAController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
     }
+]);
+
+Application.$controller("liveformSASWeldController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveformPipeWeldController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
 ]);

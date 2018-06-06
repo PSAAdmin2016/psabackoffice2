@@ -11276,7 +11276,7 @@
       "generatorType" : "assigned",
       "generatorValue" : null,
       "hidden" : false,
-      "javaType" : "integer",
+      "javaType" : "float",
       "length" : 0,
       "name" : "WeldPercentCompleted",
       "nullable" : true,
@@ -11412,7 +11412,7 @@
       "columnValue" : {
         "insertable" : true,
         "updatable" : true,
-        "defaultValue" : null,
+        "defaultValue" : "0",
         "type" : "user-defined"
       },
       "constraintList" : null,

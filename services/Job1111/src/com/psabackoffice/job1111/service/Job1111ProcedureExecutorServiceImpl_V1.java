@@ -94,7 +94,7 @@ public class Job1111ProcedureExecutorServiceImpl_V1 implements Job1111ProcedureE
 
     }
 
-    public List<Object> executeCreateManualActivityPipe(Integer varBidId, Integer varQuantity, String varNotes, Integer varUserId) {
+    public List<Object> executeCreateManualActivityPipe(Integer varBidId, BigDecimal varQuantity, String varNotes, Integer varUserId) {
         Map params = new HashMap(6);
 
         params.put("varBidID", varBidId);

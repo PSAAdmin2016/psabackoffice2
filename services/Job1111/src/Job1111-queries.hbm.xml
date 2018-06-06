@@ -6664,6 +6664,53 @@ GROUP BY sas.ActivityID
 
 
 
+UNION
+
+
+
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID,
+CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
+CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
+sd.CompleteTime, 
+(SELECT sasr.TimeStamp 
+FROM SubmissionActivityStatusREV sasr
+WHERE sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+ORDER BY TimeStamp DESC
+LIMIT 1) AS ReviewedTime,
+
+### Quantities Installed ###
+(pm.MiscQuantity) AS Quantity,
+1 AS PercentClaimed,
+
+pm.MiscNotes AS Notes,
+pm.MiscRework AS Rework
+
+FROM SubmissionActivityStatus sas
+
+####User Info Joins ####
+LEFT JOIN SubsDetails sd
+	ON sd.SubmissionId = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+LEFT JOIN PSA.tblUserPSA u1
+	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
+LEFT JOIN PSA.tblUserPSA u2
+	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
+
+#### Assigned Activities Joins #####     
+JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN PipeMisc pm
+	ON pm.ActivityID = sas.ActivityID
+	
+WHERE sas.fk_BidIDAssigned = :BidID
+AND sas.fk_ActivityStatus IN (5,12)
+
+GROUP BY sas.ActivityID
+
+
 
 UNION 
 
@@ -6902,6 +6949,53 @@ AND sas.fk_ActivityStatus IN (5,12)
 
 GROUP BY sas.ActivityID
 
+
+
+UNION
+
+
+
+SELECT sas.SubmissionID, sas.ActivityID, at.ActivityType AS ActivityTypeName, at.ID AS ActivityTypeID,
+CONCAT(u1.FirstName, ' ', u1.LastName)AS Foreman, 
+CONCAT(u2.FirstName, ' ', u2.LastName)AS Supervisor, 
+sd.CompleteTime, 
+(SELECT sasr.TimeStamp 
+FROM SubmissionActivityStatusREV sasr
+WHERE sasr.fk_ActivityID = sas.ActivityID AND sasr.fk_ActivityStatus = 2
+ORDER BY TimeStamp DESC
+LIMIT 1) AS ReviewedTime,
+
+### Quantities Installed ###
+(pm.MiscQuantity) AS Quantity,
+1 AS PercentClaimed,
+
+pm.MiscNotes AS Notes,
+pm.MiscRework AS Rework
+
+FROM SubmissionActivityStatus sas
+
+####User Info Joins ####
+LEFT JOIN SubsDetails sd
+	ON sd.SubmissionId = sas.SubmissionID
+LEFT JOIN PSA.tblCrews tc
+	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
+LEFT JOIN PSA.tblCrewsRev tcr
+	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
+LEFT JOIN PSA.tblUserPSA u1
+	ON u1.ID = tc.Foreman OR u1.ID = tcr.Foreman
+LEFT JOIN PSA.tblUserPSA u2
+	ON u2.ID = tc.Superintendent OR u2.ID = tcr.Superintendent
+
+#### Assigned Activities Joins #####     
+JOIN PSA.REF_ActivityTypes at
+	ON at.ID = sas.ActivityType
+JOIN PipeMisc pm
+	ON pm.ActivityID = sas.ActivityID
+	
+WHERE sas.fk_BidIDAssigned = :BidID
+AND sas.fk_ActivityStatus IN (5,12)
+
+GROUP BY sas.ActivityID
 
 
 
