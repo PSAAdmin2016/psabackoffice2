@@ -10,5 +10,5 @@ var _WM_APP_PROPERTIES = {
   "supportedLanguages" : "en",
   "timeFormat" : "",
   "type" : "APPLICATION",
-  "version" : "2.0.1.227"
+  "version" : "2.0.1.229"
 };

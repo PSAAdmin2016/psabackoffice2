@@ -31,8 +31,6 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.psabackoffice.job1111.CivilFa;
 import com.psabackoffice.job1111.CivilSellPackage;
 import com.psabackoffice.job1111.EquipFa;
-import com.psabackoffice.job1111.PipeConnection;
-import com.psabackoffice.job1111.PipeErection;
 import com.psabackoffice.job1111.PipeFa;
 import com.psabackoffice.job1111.PipeMisc;
 import com.psabackoffice.job1111.PipeTesting;
@@ -57,11 +55,6 @@ import com.psabackoffice.job1111.SubsEwo;
 public class SubmissionActivityStatusServiceImpl implements SubmissionActivityStatusService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SubmissionActivityStatusServiceImpl.class);
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.PipeErectionService")
-	private PipeErectionService pipeErectionService;
 
     @Lazy
     @Autowired
@@ -130,11 +123,6 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
 
     @Lazy
     @Autowired
-	@Qualifier("Job1111.PipeConnectionService")
-	private PipeConnectionService pipeConnectionService;
-
-    @Lazy
-    @Autowired
 	@Qualifier("Job1111.SteelSellPackageService")
 	private SteelSellPackageService steelSellPackageService;
 
@@ -184,8 +172,6 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
         CivilFa civilFa = submissionActivityStatus.getCivilFa();
         CivilSellPackage civilSellPackage = submissionActivityStatus.getCivilSellPackage();
         EquipFa equipFa = submissionActivityStatus.getEquipFa();
-        PipeConnection pipeConnection = submissionActivityStatus.getPipeConnection();
-        PipeErection pipeErection = submissionActivityStatus.getPipeErection();
         PipeFa pipeFa = submissionActivityStatus.getPipeFa();
         PipeMisc pipeMisc = submissionActivityStatus.getPipeMisc();
         PipeTesting pipeTesting = submissionActivityStatus.getPipeTesting();
@@ -205,12 +191,6 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
         }
         if(equipFa != null && Hibernate.isInitialized(equipFa)) {
             equipFa.setSubmissionActivityStatus(submissionActivityStatus);
-        }
-        if(pipeConnection != null && Hibernate.isInitialized(pipeConnection)) {
-            pipeConnection.setSubmissionActivityStatus(submissionActivityStatus);
-        }
-        if(pipeErection != null && Hibernate.isInitialized(pipeErection)) {
-            pipeErection.setSubmissionActivityStatus(submissionActivityStatus);
         }
         if(pipeFa != null && Hibernate.isInitialized(pipeFa)) {
             pipeFa.setSubmissionActivityStatus(submissionActivityStatus);
@@ -350,15 +330,6 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service PipeErectionService instance
-	 */
-	protected void setPipeErectionService(PipeErectionService service) {
-        this.pipeErectionService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
 	 * @param service SasnotesService instance
 	 */
 	protected void setSasnotesService(SasnotesService service) {
@@ -471,15 +442,6 @@ public class SubmissionActivityStatusServiceImpl implements SubmissionActivitySt
 	 */
 	protected void setPipeFaService(PipeFaService service) {
         this.pipeFaService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service PipeConnectionService instance
-	 */
-	protected void setPipeConnectionService(PipeConnectionService service) {
-        this.pipeConnectionService = service;
     }
 
     /**

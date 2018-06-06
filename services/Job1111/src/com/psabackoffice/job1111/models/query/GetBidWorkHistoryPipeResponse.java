@@ -25,21 +25,13 @@ public class GetBidWorkHistoryPipeResponse implements Serializable {
     @ColumnAlias("ActivityID")
     private Integer activityId;
 
-    @JsonProperty("ActivityType")
-    @ColumnAlias("ActivityType")
-    private String activityType;
+    @JsonProperty("ActivityTypeName")
+    @ColumnAlias("ActivityTypeName")
+    private String activityTypeName;
 
-    @JsonProperty("Quantity")
-    @ColumnAlias("Quantity")
-    private BigDecimal quantity;
-
-    @JsonProperty("Notes")
-    @ColumnAlias("Notes")
-    private String notes;
-
-    @JsonProperty("Rework")
-    @ColumnAlias("Rework")
-    private Short rework;
+    @JsonProperty("ActivityTypeID")
+    @ColumnAlias("ActivityTypeID")
+    private Short activityTypeId;
 
     @JsonProperty("Foreman")
     @ColumnAlias("Foreman")
@@ -57,6 +49,22 @@ public class GetBidWorkHistoryPipeResponse implements Serializable {
     @ColumnAlias("ReviewedTime")
     private Timestamp reviewedTime;
 
+    @JsonProperty("Quantity")
+    @ColumnAlias("Quantity")
+    private BigDecimal quantity;
+
+    @JsonProperty("PercentClaimed")
+    @ColumnAlias("PercentClaimed")
+    private BigDecimal percentClaimed;
+
+    @JsonProperty("Notes")
+    @ColumnAlias("Notes")
+    private String notes;
+
+    @JsonProperty("Rework")
+    @ColumnAlias("Rework")
+    private Short rework;
+
     public Integer getSubmissionId() {
         return this.submissionId;
     }
@@ -73,36 +81,20 @@ public class GetBidWorkHistoryPipeResponse implements Serializable {
         this.activityId = activityId;
     }
 
-    public String getActivityType() {
-        return this.activityType;
+    public String getActivityTypeName() {
+        return this.activityTypeName;
     }
 
-    public void setActivityType(String activityType) {
-        this.activityType = activityType;
+    public void setActivityTypeName(String activityTypeName) {
+        this.activityTypeName = activityTypeName;
     }
 
-    public BigDecimal getQuantity() {
-        return this.quantity;
+    public Short getActivityTypeId() {
+        return this.activityTypeId;
     }
 
-    public void setQuantity(BigDecimal quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getNotes() {
-        return this.notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public Short getRework() {
-        return this.rework;
-    }
-
-    public void setRework(Short rework) {
-        this.rework = rework;
+    public void setActivityTypeId(Short activityTypeId) {
+        this.activityTypeId = activityTypeId;
     }
 
     public String getForeman() {
@@ -137,6 +129,38 @@ public class GetBidWorkHistoryPipeResponse implements Serializable {
         this.reviewedTime = reviewedTime;
     }
 
+    public BigDecimal getQuantity() {
+        return this.quantity;
+    }
+
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
+    }
+
+    public BigDecimal getPercentClaimed() {
+        return this.percentClaimed;
+    }
+
+    public void setPercentClaimed(BigDecimal percentClaimed) {
+        this.percentClaimed = percentClaimed;
+    }
+
+    public String getNotes() {
+        return this.notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public Short getRework() {
+        return this.rework;
+    }
+
+    public void setRework(Short rework) {
+        this.rework = rework;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -144,27 +168,31 @@ public class GetBidWorkHistoryPipeResponse implements Serializable {
         final GetBidWorkHistoryPipeResponse getBidWorkHistoryPipeResponse = (GetBidWorkHistoryPipeResponse) o;
         return Objects.equals(getSubmissionId(), getBidWorkHistoryPipeResponse.getSubmissionId()) &&
                 Objects.equals(getActivityId(), getBidWorkHistoryPipeResponse.getActivityId()) &&
-                Objects.equals(getActivityType(), getBidWorkHistoryPipeResponse.getActivityType()) &&
-                Objects.equals(getQuantity(), getBidWorkHistoryPipeResponse.getQuantity()) &&
-                Objects.equals(getNotes(), getBidWorkHistoryPipeResponse.getNotes()) &&
-                Objects.equals(getRework(), getBidWorkHistoryPipeResponse.getRework()) &&
+                Objects.equals(getActivityTypeName(), getBidWorkHistoryPipeResponse.getActivityTypeName()) &&
+                Objects.equals(getActivityTypeId(), getBidWorkHistoryPipeResponse.getActivityTypeId()) &&
                 Objects.equals(getForeman(), getBidWorkHistoryPipeResponse.getForeman()) &&
                 Objects.equals(getSupervisor(), getBidWorkHistoryPipeResponse.getSupervisor()) &&
                 Objects.equals(getCompleteTime(), getBidWorkHistoryPipeResponse.getCompleteTime()) &&
-                Objects.equals(getReviewedTime(), getBidWorkHistoryPipeResponse.getReviewedTime());
+                Objects.equals(getReviewedTime(), getBidWorkHistoryPipeResponse.getReviewedTime()) &&
+                Objects.equals(getQuantity(), getBidWorkHistoryPipeResponse.getQuantity()) &&
+                Objects.equals(getPercentClaimed(), getBidWorkHistoryPipeResponse.getPercentClaimed()) &&
+                Objects.equals(getNotes(), getBidWorkHistoryPipeResponse.getNotes()) &&
+                Objects.equals(getRework(), getBidWorkHistoryPipeResponse.getRework());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getSubmissionId(),
                 getActivityId(),
-                getActivityType(),
-                getQuantity(),
-                getNotes(),
-                getRework(),
+                getActivityTypeName(),
+                getActivityTypeId(),
                 getForeman(),
                 getSupervisor(),
                 getCompleteTime(),
-                getReviewedTime());
+                getReviewedTime(),
+                getQuantity(),
+                getPercentClaimed(),
+                getNotes(),
+                getRework());
     }
 }

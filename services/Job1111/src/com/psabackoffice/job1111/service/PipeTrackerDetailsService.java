@@ -18,8 +18,6 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.psabackoffice.job1111.PipeConnection;
-import com.psabackoffice.job1111.PipeErection;
 import com.psabackoffice.job1111.PipeFa;
 import com.psabackoffice.job1111.PipeTrackerDetails;
 
@@ -151,30 +149,6 @@ public interface PipeTrackerDetailsService {
      * @see Page
 	 */
 	Page<Map<String, Object>> getAggregatedValues(AggregationInfo aggregationInfo, Pageable pageable);
-
-    /*
-     * Returns the associated pipeConnections for given PipeTrackerDetails id.
-     *
-     * @param uid value of uid; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated PipeConnection instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<PipeConnection> findAssociatedPipeConnections(Integer uid, Pageable pageable);
-
-    /*
-     * Returns the associated pipeErections for given PipeTrackerDetails id.
-     *
-     * @param uid value of uid; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated PipeErection instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<PipeErection> findAssociatedPipeErections(Integer uid, Pageable pageable);
 
     /*
      * Returns the associated pipeFas for given PipeTrackerDetails id.

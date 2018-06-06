@@ -206,13 +206,13 @@
                             on-columndeselect="gridClassicTrackerEquipColumndeselect($event, $data)" on-rowdblclick="Variables.serviceGetBidWorkHistory.invoke();Widgets.dialogBidWorkHistory.open()" showrecordcount="true">
                             <wm-table-column binding="uid" caption="Uid" width="60px" primary-key="true" edit-widget-type="number" type="integer" generator="identity" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="bidId" caption="Bid Id" width="60px" edit-widget-type="number" type="integer" generator="assigned" readonly="true" show="true"></wm-table-column>
-                            <wm-table-column binding="projectServicesRep" caption="Project Services Rep" type="string" readonly="true" show="true"></wm-table-column>
-                            <wm-table-column binding="ewonumber" caption="EWO Number" width="70px" edit-widget-type="number" type="integer" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="projectServicesRep" caption="Project Services Rep" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="ewonumber" caption="EWO #" width="70px" edit-widget-type="number" type="integer" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="scope" caption="Scope" width="70px" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="phase" caption="Phase" width="60px" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="stage" caption="Stage" width="60px" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="testPackageNumber" caption="Test Package" width="70px" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
-                            <wm-table-column binding="workPackage" caption="Work Package" type="string" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="workPackage" caption="Work Package" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="costCode" caption="Cost Code" width="70px" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="p6id" caption="P6 ID" width="60px" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="assignedContractor" caption="Contractor" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>

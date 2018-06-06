@@ -36,12 +36,6 @@
     "table" : "MOTD",
     "schema" : null
   }, {
-    "table" : "PipeConnection",
-    "schema" : null
-  }, {
-    "table" : "PipeErection",
-    "schema" : null
-  }, {
     "table" : "PipeFA",
     "schema" : null
   }, {

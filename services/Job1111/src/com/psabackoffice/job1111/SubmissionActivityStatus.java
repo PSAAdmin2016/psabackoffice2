@@ -53,8 +53,6 @@ public class SubmissionActivityStatus implements Serializable {
     private CivilFa civilFa;
     private CivilSellPackage civilSellPackage;
     private EquipFa equipFa;
-    private PipeConnection pipeConnection;
-    private PipeErection pipeErection;
     private PipeFa pipeFa;
     private PipeMisc pipeMisc;
     private PipeTesting pipeTesting;
@@ -210,28 +208,6 @@ public class SubmissionActivityStatus implements Serializable {
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
     @Cascade({CascadeType.SAVE_UPDATE})
     @Fetch(FetchMode.JOIN)
-    public PipeConnection getPipeConnection() {
-        return this.pipeConnection;
-    }
-
-    public void setPipeConnection(PipeConnection pipeConnection) {
-        this.pipeConnection = pipeConnection;
-    }
-
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
-    @Cascade({CascadeType.SAVE_UPDATE})
-    @Fetch(FetchMode.JOIN)
-    public PipeErection getPipeErection() {
-        return this.pipeErection;
-    }
-
-    public void setPipeErection(PipeErection pipeErection) {
-        this.pipeErection = pipeErection;
-    }
-
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "submissionActivityStatus")
-    @Cascade({CascadeType.SAVE_UPDATE})
-    @Fetch(FetchMode.JOIN)
     public PipeFa getPipeFa() {
         return this.pipeFa;
     }
@@ -360,12 +336,6 @@ public class SubmissionActivityStatus implements Serializable {
         }
         if(equipFa != null) {
             equipFa.setSubmissionActivityStatus(this);
-        }
-        if(pipeConnection != null) {
-            pipeConnection.setSubmissionActivityStatus(this);
-        }
-        if(pipeErection != null) {
-            pipeErection.setSubmissionActivityStatus(this);
         }
         if(pipeFa != null) {
             pipeFa.setSubmissionActivityStatus(this);

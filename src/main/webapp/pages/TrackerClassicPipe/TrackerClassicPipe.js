@@ -183,13 +183,37 @@ Application.$controller("dialogBidWorkHistoryController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.popoverActivityHistoryShow = function($event, $isolateScope) {
-            $scope.Variables.timerDelayGetActivityHistory.fire();
             $scope.Variables.staticShowReturn.dataSet.dataValue = false;
         };
 
-
         $scope.popoverActivityHistoryHide = function($event, $isolateScope) {
             $scope.Variables.staticShowReturn.dataSet.dataValue = true;
+        };
+
+        $scope.buttonReturnClick = function($event, $isolateScope, item, currentItemWidgets) {
+            $scope.Variables.liveSAS.updateRecord({
+                row: {
+                    "activityId": item.ActivityID,
+                    "submissionId": item.SubmissionID,
+                    "activityType": item.ActivityTypeID,
+                    "fkBidIdassigned": $scope.Widgets.gridClassicTrackerPipe.selecteditem.bidId,
+                    "fkActivityStatus": 11,
+                    "fkLastModifiedBy": $scope.Variables.loggedInUser.dataSet.id
+                }
+            }, function(data) {
+                $scope.Variables.serviceGetBidWorkHistory.invoke();
+                $scope.Variables.serviceUpdateClassicTracker.invoke(); //Calls livefilterClassicTrackerEquip.filter();
+            });
+        };
+
+        $scope.buttonOverrideClick = function($event, $isolateScope, item, currentItemWidgets) {
+            $scope.Variables.liveSAS.listRecords({ //Called to populate form
+                filterFields: {
+                    "activityId": {
+                        "value": $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityID
+                    }
+                }
+            });
         };
 
     }
@@ -197,70 +221,6 @@ Application.$controller("dialogBidWorkHistoryController", ["$scope",
 
 
 Application.$controller("dialogActivityHistoryController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
-
-
-Application.$controller("gridStatusLogController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
-
-
-Application.$controller("gridErectionChangeLogController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
-
-
-Application.$controller("gridBoltUpChangeLogController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
-
-
-Application.$controller("gridWeldChangeLogController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
-
-
-Application.$controller("gridTrimChangeLogController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
-
-
-Application.$controller("gridSupportsChangeLogController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
-
-
-Application.$controller("gridDemoChangeLogController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
-
-
-Application.$controller("gridMiscChangeLogController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
@@ -308,35 +268,27 @@ Application.$controller("dialogQuantityOverrideController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
-        $scope.formNewQuantitySubmit = function($event, $isolateScope, $formData) {
-            $scope.Variables.serviceUpdateSSOverride.update(); // changes status to Override Quantity
-            if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Erection') {
-                $scope.Variables.Job1111ExecuteUpdateErectionQuantity.update();
-            }
-            if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'BoltUp') {
-                $scope.Variables.Job1111ExecuteUpdateBoltupQuantity.update();
-            }
-            if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Weld') {
-                $scope.Variables.Job1111ExecuteUpdateWeldQuantity.update();
-            }
-            if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Cut/Prep') {
-                $scope.Variables.Job1111ExecuteUpdateWeldQuantity.update();
-            }
-            if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Trim Basic' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Valve' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Plug' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Wall Penetration' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Drain/Vent' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Other') {
-                $scope.Variables.Job1111ExecuteUpdateTrimQuantity.update();
-            }
-            if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Supports') {
-                $scope.Variables.Job1111ExecuteUpdateSupportsQuantity.update();
-            }
-            if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Demo' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Demo - Pipe Removal' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Demo - UnBolt' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Demo - Pipe Cut' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Demo - Misc') {
-                $scope.Variables.Job1111ExecuteUpdateDemoQuantity.update();
-            }
-            if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Testing') {
-                $scope.Variables.Job1111ExecuteUpdateTestingQuantity.update();
-            }
-            if ($scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Misc Basic' || $scope.Widgets.livelistBidWorkHistory.selecteditem.ActivityType == 'Pipe Misc') {
-                $scope.Variables.Job1111ExecuteUpdateMiscQuantity.update();
-            }
+        $scope.liveformSASBeforeservicecall = function($event, $operation, $data) {
+            $data.fkActivityStatus = 12;
         };
+
+        $scope.liveformSASSuccess = function($event, $operation, $data) {
+            $scope.Variables.serviceGetBidWorkHistory.invoke();
+            $scope.Variables.serviceUpdateClassicTracker.invoke(); //Calls livefilterClassicTrackerPipe.filter();
+        };
+    }
+]);
+
+Application.$controller("liveformSASFAController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("liveformPipeFAController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);

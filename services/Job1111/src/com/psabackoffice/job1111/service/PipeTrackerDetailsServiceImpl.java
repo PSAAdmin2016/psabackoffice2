@@ -28,8 +28,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.data.util.DaoUtils;
 import com.wavemaker.runtime.file.model.Downloadable;
 
-import com.psabackoffice.job1111.PipeConnection;
-import com.psabackoffice.job1111.PipeErection;
 import com.psabackoffice.job1111.PipeFa;
 import com.psabackoffice.job1111.PipeTrackerDetails;
 
@@ -47,18 +45,8 @@ public class PipeTrackerDetailsServiceImpl implements PipeTrackerDetailsService 
 
     @Lazy
     @Autowired
-	@Qualifier("Job1111.PipeErectionService")
-	private PipeErectionService pipeErectionService;
-
-    @Lazy
-    @Autowired
 	@Qualifier("Job1111.PipeFaService")
 	private PipeFaService pipeFaService;
-
-    @Lazy
-    @Autowired
-	@Qualifier("Job1111.PipeConnectionService")
-	private PipeConnectionService pipeConnectionService;
 
     @Autowired
     @Qualifier("Job1111.PipeTrackerDetailsDao")
@@ -103,41 +91,13 @@ public class PipeTrackerDetailsServiceImpl implements PipeTrackerDetailsService 
 	public PipeTrackerDetails update(PipeTrackerDetails pipeTrackerDetails) {
         LOGGER.debug("Updating PipeTrackerDetails with information: {}", pipeTrackerDetails);
 
-        List<PipeConnection> pipeConnections = pipeTrackerDetails.getPipeConnections();
-        List<PipeErection> pipeErections = pipeTrackerDetails.getPipeErections();
         List<PipeFa> pipeFas = pipeTrackerDetails.getPipeFas();
-        if(pipeConnections != null && Hibernate.isInitialized(pipeConnections)) {
-            pipeConnections.forEach(_pipeConnection -> _pipeConnection.setPipeTrackerDetails(pipeTrackerDetails));
-        }
-        if(pipeErections != null && Hibernate.isInitialized(pipeErections)) {
-            pipeErections.forEach(_pipeErection -> _pipeErection.setPipeTrackerDetails(pipeTrackerDetails));
-        }
         if(pipeFas != null && Hibernate.isInitialized(pipeFas)) {
             pipeFas.forEach(_pipeFa -> _pipeFa.setPipeTrackerDetails(pipeTrackerDetails));
         }
 
         this.wmGenericDao.update(pipeTrackerDetails);
         this.wmGenericDao.refresh(pipeTrackerDetails);
-
-        // Deleting children which are not present in the list.
-        if(pipeConnections != null && Hibernate.isInitialized(pipeConnections) && !pipeConnections.isEmpty()) {
-            List<PipeConnection> _remainingChildren = wmGenericDao.execute(
-                session -> DaoUtils.findAllRemainingChildren(session, PipeConnection.class,
-                        new DaoUtils.ChildrenFilter<>("pipeTrackerDetails", pipeTrackerDetails, pipeConnections)));
-            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
-            _remainingChildren.forEach(_pipeConnection -> pipeConnectionService.delete(_pipeConnection));
-            pipeTrackerDetails.setPipeConnections(pipeConnections);
-        }
-
-        // Deleting children which are not present in the list.
-        if(pipeErections != null && Hibernate.isInitialized(pipeErections) && !pipeErections.isEmpty()) {
-            List<PipeErection> _remainingChildren = wmGenericDao.execute(
-                session -> DaoUtils.findAllRemainingChildren(session, PipeErection.class,
-                        new DaoUtils.ChildrenFilter<>("pipeTrackerDetails", pipeTrackerDetails, pipeErections)));
-            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
-            _remainingChildren.forEach(_pipeErection -> pipeErectionService.delete(_pipeErection));
-            pipeTrackerDetails.setPipeErections(pipeErections);
-        }
 
         // Deleting children which are not present in the list.
         if(pipeFas != null && Hibernate.isInitialized(pipeFas) && !pipeFas.isEmpty()) {
@@ -207,28 +167,6 @@ public class PipeTrackerDetailsServiceImpl implements PipeTrackerDetailsService 
 
     @Transactional(readOnly = true, value = "Job1111TransactionManager")
     @Override
-    public Page<PipeConnection> findAssociatedPipeConnections(Integer uid, Pageable pageable) {
-        LOGGER.debug("Fetching all associated pipeConnections");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("pipeTrackerDetails.uid = '" + uid + "'");
-
-        return pipeConnectionService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
-    public Page<PipeErection> findAssociatedPipeErections(Integer uid, Pageable pageable) {
-        LOGGER.debug("Fetching all associated pipeErections");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("pipeTrackerDetails.uid = '" + uid + "'");
-
-        return pipeErectionService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "Job1111TransactionManager")
-    @Override
     public Page<PipeFa> findAssociatedPipeFas(Integer uid, Pageable pageable) {
         LOGGER.debug("Fetching all associated pipeFas");
 
@@ -241,28 +179,10 @@ public class PipeTrackerDetailsServiceImpl implements PipeTrackerDetailsService 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service PipeErectionService instance
-	 */
-	protected void setPipeErectionService(PipeErectionService service) {
-        this.pipeErectionService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
 	 * @param service PipeFaService instance
 	 */
 	protected void setPipeFaService(PipeFaService service) {
         this.pipeFaService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service PipeConnectionService instance
-	 */
-	protected void setPipeConnectionService(PipeConnectionService service) {
-        this.pipeConnectionService = service;
     }
 
 }

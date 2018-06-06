@@ -79,8 +79,6 @@ public class PipeTrackerDetails implements Serializable {
     private String wbs10;
     private short rev;
     private Timestamp timeStamp;
-    private List<PipeConnection> pipeConnections;
-    private List<PipeErection> pipeErections;
     private List<PipeFa> pipeFas;
 
     @Id
@@ -502,28 +500,6 @@ public class PipeTrackerDetails implements Serializable {
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pipeTrackerDetails")
     @Cascade({CascadeType.SAVE_UPDATE})
-    public List<PipeConnection> getPipeConnections() {
-        return this.pipeConnections;
-    }
-
-    public void setPipeConnections(List<PipeConnection> pipeConnections) {
-        this.pipeConnections = pipeConnections;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pipeTrackerDetails")
-    @Cascade({CascadeType.SAVE_UPDATE})
-    public List<PipeErection> getPipeErections() {
-        return this.pipeErections;
-    }
-
-    public void setPipeErections(List<PipeErection> pipeErections) {
-        this.pipeErections = pipeErections;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pipeTrackerDetails")
-    @Cascade({CascadeType.SAVE_UPDATE})
     public List<PipeFa> getPipeFas() {
         return this.pipeFas;
     }
@@ -534,12 +510,6 @@ public class PipeTrackerDetails implements Serializable {
 
     @PostPersist
     public void onPostPersist() {
-        if(pipeConnections != null) {
-            pipeConnections.forEach(pipeConnection -> pipeConnection.setPipeTrackerDetails(this));
-        }
-        if(pipeErections != null) {
-            pipeErections.forEach(pipeErection -> pipeErection.setPipeTrackerDetails(this));
-        }
         if(pipeFas != null) {
             pipeFas.forEach(pipeFa -> pipeFa.setPipeTrackerDetails(this));
         }
