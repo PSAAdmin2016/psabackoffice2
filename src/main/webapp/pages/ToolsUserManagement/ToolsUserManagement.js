@@ -7,7 +7,6 @@ Application.$controller("ToolsUserManagementPageController", ["$scope", function
 
 
     $scope.getRoleIDArray = function(data) {
-        debugger;
         var varReturn = [];
         if (data) {
             _.forEach(data, function(value, index) {
@@ -30,13 +29,8 @@ Application.$controller("ToolsUserManagementPageController", ["$scope", function
 
         //Logic to set RoleID
 
-        //Logic to set 
+        //Logic to set Password
     };
-
-
-    $scope.gridUserSelect = function($event, $isolateScope, $rowData) {};
-
-
 }]);
 
 
