@@ -694,7 +694,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 3,
+    "bindCount" : 4,
     "tableName" : "tblUserPSA",
     "tableType" : "TABLE",
     "properties" : [ "refCrafts", "refDisciplines", "tblJobNumbers", "refCraftClasses" ],
