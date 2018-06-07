@@ -246,7 +246,7 @@ Application.$controller("dialogActivityHistoryController", ["$scope",
 
 
         $scope.dialogActivityHistoryOpened = function($event, $isolateScope) {
-            debugger;
+            //debugger;
             $scope.Widgets.dialogActivityHistory.pageParams
         };
 
