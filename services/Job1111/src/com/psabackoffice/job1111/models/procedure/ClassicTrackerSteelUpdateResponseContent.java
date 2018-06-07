@@ -138,13 +138,13 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
     @ColumnAlias("Service")
     private String service;
 
-    @JsonProperty("QuantityTakeOff")
-    @ColumnAlias("QuantityTakeOff")
-    private Float quantityTakeOff;
+    @JsonProperty("TakeOffQuantity")
+    @ColumnAlias("TakeOffQuantity")
+    private Float takeOffQuantity;
 
-    @JsonProperty("QuantityWeld")
-    @ColumnAlias("QuantityWeld")
-    private Short quantityWeld;
+    @JsonProperty("WeldCount")
+    @ColumnAlias("WeldCount")
+    private Short weldCount;
 
     @JsonProperty("HoursShake")
     @ColumnAlias("HoursShake")
@@ -534,20 +534,20 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
         this.service = service;
     }
 
-    public Float getQuantityTakeOff() {
-        return this.quantityTakeOff;
+    public Float getTakeOffQuantity() {
+        return this.takeOffQuantity;
     }
 
-    public void setQuantityTakeOff(Float quantityTakeOff) {
-        this.quantityTakeOff = quantityTakeOff;
+    public void setTakeOffQuantity(Float takeOffQuantity) {
+        this.takeOffQuantity = takeOffQuantity;
     }
 
-    public Short getQuantityWeld() {
-        return this.quantityWeld;
+    public Short getWeldCount() {
+        return this.weldCount;
     }
 
-    public void setQuantityWeld(Short quantityWeld) {
-        this.quantityWeld = quantityWeld;
+    public void setWeldCount(Short weldCount) {
+        this.weldCount = weldCount;
     }
 
     public BigDecimal getHoursShake() {
@@ -881,8 +881,8 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
                 Objects.equals(getWeight(), classicTrackerSteelUpdateResponseContent.getWeight()) &&
                 Objects.equals(getSystem(), classicTrackerSteelUpdateResponseContent.getSystem()) &&
                 Objects.equals(getService(), classicTrackerSteelUpdateResponseContent.getService()) &&
-                Objects.equals(getQuantityTakeOff(), classicTrackerSteelUpdateResponseContent.getQuantityTakeOff()) &&
-                Objects.equals(getQuantityWeld(), classicTrackerSteelUpdateResponseContent.getQuantityWeld()) &&
+                Objects.equals(getTakeOffQuantity(), classicTrackerSteelUpdateResponseContent.getTakeOffQuantity()) &&
+                Objects.equals(getWeldCount(), classicTrackerSteelUpdateResponseContent.getWeldCount()) &&
                 Objects.equals(getHoursShake(), classicTrackerSteelUpdateResponseContent.getHoursShake()) &&
                 Objects.equals(getHoursErect(), classicTrackerSteelUpdateResponseContent.getHoursErect()) &&
                 Objects.equals(getHoursBoltout(), classicTrackerSteelUpdateResponseContent.getHoursBoltout()) &&
@@ -954,8 +954,8 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
                 getWeight(),
                 getSystem(),
                 getService(),
-                getQuantityTakeOff(),
-                getQuantityWeld(),
+                getTakeOffQuantity(),
+                getWeldCount(),
                 getHoursShake(),
                 getHoursErect(),
                 getHoursBoltout(),

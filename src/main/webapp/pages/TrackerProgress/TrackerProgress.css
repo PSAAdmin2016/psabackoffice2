@@ -23,3 +23,15 @@
 .wrapheader .table thead th.app-datagrid-header-cell {
 white-space: pre;
 }
+.takeoffQuantity {
+    background-color: rgba(206,246,245,.4);
+}
+.takeoffHours {
+    background-color: rgba(95,180,255,.3);
+}
+.earnedQuantity {
+    background-color: rgba(206,246,245,1);
+}
+.earnedHours {
+    background-color: rgba(95,180,255,.8);
+}

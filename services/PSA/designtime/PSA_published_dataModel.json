@@ -4186,7 +4186,7 @@
       "generatorValue" : null,
       "hidden" : false,
       "javaType" : "string",
-      "length" : 16777215,
+      "length" : 65535,
       "name" : "ValueString",
       "nullable" : true,
       "oldName" : "ValueString",

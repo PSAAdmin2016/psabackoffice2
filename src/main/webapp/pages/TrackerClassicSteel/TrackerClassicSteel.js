@@ -1,29 +1,32 @@
-var firstLoad = false;
+var firstLoad = false; //Set globally so all functions can access it on this page.
 Application.$controller("TrackerClassicSteelPageController", ["$scope", "DialogService", function($scope, DialogService) {
     "use strict";
 
-    /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        //$scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.SettingsPageUser.getData().data.find(x => x.label === $scope.activePageName));
         firstLoad = true;
+        /*Fetch Page Settings JSON data from Application Settings Variable for easier access on this page.*/
+        $scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.SettingsUser.getData().data.find(x => x.label === $scope.activePageName));
     };
 
 
-    $scope.gridClassicTrackerSteelColumnselect = function($event, $data) {
-        _.forEach($scope.Variables.staticClassicTrackerSteelColumnShowHideCache.dataSet, function(value, index) {
-            if (value.label == $data.colDef.field) {
-                value.show = 0;
-            }
-        });
-    };
+    $scope.gridClassicTrackerSteelBeforedatarender = function($isolateScope, $data, $columns) {
+        if (firstLoad) {
+            firstLoad = false;
 
+            if ($scope.Variables.staticTrackerClassicPageSettings.dataSet.valueString) { //If page settings already exist
+                var pageSettingsJSON = JSON.parse($scope.Variables.staticTrackerClassicPageSettings.dataSet.valueString);
 
-    $scope.gridClassicTrackerSteelColumndeselect = function($event, $data) {
-        _.forEach($scope.Variables.staticClassicTrackerSteelColumnShowHideCache.dataSet, function(value, index) {
-            if (value.label == $data.colDef.field) {
-                value.show = 1;
+                _.forEach(pageSettingsJSON.hiddenColumns, function(key, value) { //iterate hidden columns array and Set Show property
+                    $isolateScope.columns[key].setProperty('show', false);
+                });
+
+                if (pageSettingsJSON.hiddenColumns.length > 0) { //Show "Show All Button" if hiddenColumns exist
+                    $scope.Variables.staticDisplayShowAllButton.setValue("dataValue", true);
+                } else {
+                    $scope.Variables.staticDisplayShowAllButton.setValue("dataValue", false);
+                }
             }
-        });
+        }
     };
 
 
@@ -52,9 +55,6 @@ Application.$controller("TrackerClassicSteelPageController", ["$scope", "DialogS
             $scope.Widgets.livefilterClassicTrackerSteel.filter();
         }
     };
-
-
-
 }]);
 
 
@@ -82,25 +82,86 @@ Application.$controller("gridClassicTrackerSteelController", ["$scope",
         };
 
         $scope.customButtonAction = function($event) { //Hide selected Columns
-            var hiddenCount = 0;
+            //Get currently JSON data from local static
+            var pageSettings = $scope.Variables.staticTrackerClassicPageSettings.dataSet;
+            var pageSettingsJSON = {};
+            if (pageSettings && pageSettings.valueString) {
+                pageSettingsJSON = JSON.parse(pageSettings.valueString);
+            }
+
+            //Update hiddenColumns array in JSON object AND hide columns
             _.forEach($scope.selectedColumns, function(value, key) {
-                value.colDef.show = false;
-                hiddenCount = 1;
-                $scope.Variables.staticClassicTrackerSteelColumnShowHideCache.addItem(key);
+                if (pageSettingsJSON.hiddenColumns && pageSettingsJSON.hiddenColumns[0]) {
+                    if (pageSettingsJSON.hiddenColumns.indexOf(key) == -1) {
+                        pageSettingsJSON.hiddenColumns.push(key);
+                        value.colDef.show = false;
+                    }
+                } else {
+                    pageSettingsJSON.hiddenColumns = [key];
+                    value.colDef.show = false;
+                }
             });
-            if (hiddenCount > 0) {
-                $scope.Variables.staticShowSteelClassicShowAllButton.dataSet.show = true;
+            if (pageSettingsJSON.hiddenColumns.length > 0) {
+                $scope.Variables.staticDisplayShowAllButton.setValue("dataValue", true);
             }
             $scope.redraw();
+
+            //Update local static Settings Variable
+            $scope.Variables.staticTrackerClassicPageSettings.setValue("userId", $scope.Variables.loggedInUser.dataSet.id);
+            $scope.Variables.staticTrackerClassicPageSettings.setValue("label", $scope.$parent.activePageName);
+            $scope.Variables.staticTrackerClassicPageSettings.setValue("valueString", JSON.stringify(pageSettingsJSON));
+
+            //Update or Create Persistent Settings Variable
+            if (pageSettings && pageSettings.id) {
+                $scope.Variables.SettingsUser.updateRecord({
+                    row: {
+                        "id": pageSettings.id,
+                        "userId": $scope.Variables.loggedInUser.dataSet.id,
+                        "label": $scope.$parent.activePageName,
+                        "valueString": JSON.stringify(pageSettingsJSON)
+                    }
+                });
+            } else {
+                $scope.Variables.SettingsUser.createRecord({
+                    row: {
+                        "userId": $scope.Variables.loggedInUser.dataSet.id,
+                        "label": $scope.$parent.activePageName,
+                        "valueString": JSON.stringify(pageSettingsJSON)
+                    }
+                }, function(data) {
+                    $scope.Variables.SettingsUser.listRecords();
+                });
+            }
         };
 
-        $scope.customButton1Action = function($event) { //Show All
-            $scope.Variables.staticClassicTrackerSteelColumnShowHideCache.dataSet = [];
+        $scope.customButton1Action = function($event) { //Show All 
+            //Get currently JSON data from local static
+            var pageSettings = $scope.Variables.staticTrackerClassicPageSettings.dataSet;
+            var pageSettingsJSON = {};
+
+            //Update hiddenColumns array AND hide columns
+            pageSettingsJSON.hiddenColumns = [];
             _.forEach($scope.columns, function(value) { //Show all in data grid
                 value.show = true;
             });
-            $scope.Variables.staticShowSteelClassicShowAllButton.dataSet.show = false;
+            $scope.Variables.staticDisplayShowAllButton.setValue("dataValue", false);
             $scope.redraw();
+
+            //Update local static Settings Variable
+            $scope.Variables.staticTrackerClassicPageSettings.setValue("valueString", JSON.stringify(pageSettingsJSON));
+
+            //Update Persistent Settings Variable
+            $scope.Variables.SettingsUser.updateRecord({
+                row: {
+                    "id": pageSettings.id,
+                    "userId": $scope.Variables.loggedInUser.dataSet.id,
+                    "label": $scope.$parent.activePageName,
+                    "valueString": JSON.stringify(pageSettingsJSON)
+                }
+            }, function(data) { //On Success
+                $scope.Variables.SettingsUser.listRecords();
+            });
+
         };
     }
 ]);

@@ -1961,8 +1961,8 @@
               "list" : false
             }
           }, {
-            "name" : "QuantityTakeOff",
-            "fieldName" : "quantityTakeOff",
+            "name" : "TakeOffQuantity",
+            "fieldName" : "takeOffQuantity",
             "optional" : false,
             "fieldType" : {
               "type" : "PRIMITIVE",
@@ -1970,8 +1970,8 @@
               "list" : false
             }
           }, {
-            "name" : "QuantityWeld",
-            "fieldName" : "quantityWeld",
+            "name" : "WeldCount",
+            "fieldName" : "weldCount",
             "optional" : false,
             "fieldType" : {
               "type" : "PRIMITIVE",

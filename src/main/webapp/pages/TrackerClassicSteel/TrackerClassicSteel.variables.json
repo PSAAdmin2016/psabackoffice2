@@ -383,28 +383,30 @@
         "isRelated" : false,
         "scale" : 0
       }, {
-        "fieldName" : "quantityTakeOff",
+        "fieldName" : "takeOffQuantity",
         "type" : "float",
         "fullyQualifiedType" : "float",
-        "columnName" : "QuantityTakeOff",
+        "columnName" : "TakeOffQuantity",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 0,
         "precision" : 7,
         "generator" : "assigned",
         "isRelated" : false,
+        "defaultValue" : "0.00",
         "scale" : 2
       }, {
-        "fieldName" : "quantityWeld",
+        "fieldName" : "weldCount",
         "type" : "short",
         "fullyQualifiedType" : "short",
-        "columnName" : "QuantityWeld",
+        "columnName" : "WeldCount",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 0,
         "precision" : 3,
         "generator" : "assigned",
         "isRelated" : false,
+        "defaultValue" : "0",
         "scale" : 0
       }, {
         "fieldName" : "hoursShake",
@@ -1346,5 +1348,112 @@
     "controller" : "ProcedureExecution",
     "spinnerContext" : "gridClassicTrackerSteel",
     "spinnerMessage" : "Running full refresh..."
+  },
+  "staticDisplayShowAllButton" : {
+    "_id" : "wm-staticDisplayShowAllButton-wm.Variable-1528390793740",
+    "name" : "staticDisplayShowAllButton",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : false
+    },
+    "type" : "boolean",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
+  "staticTrackerClassicPageSettings" : {
+    "_id" : "wm-staticTrackerClassicPageSettings-wm.Variable-1528390822092",
+    "name" : "staticTrackerClassicPageSettings",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "valueString" : "",
+      "id" : "",
+      "label" : "",
+      "userId" : "",
+      "tblUserPsa" : {
+        "lastName" : "",
+        "refCrafts" : {
+          "craft" : "",
+          "id" : ""
+        },
+        "tblUserCreds" : {
+          "password" : "",
+          "userName" : "",
+          "userId" : "",
+          "tblUserPsa" : { }
+        },
+        "nickname" : "",
+        "id" : "",
+        "tblJobNumbers" : {
+          "fkJobSiteId" : "",
+          "tblJobSites" : {
+            "zipCode" : "",
+            "siteCity" : "",
+            "siteState" : "",
+            "siteName" : "",
+            "id" : "",
+            "refStateAbbreviations" : {
+              "stateName" : "",
+              "abbreviation" : ""
+            }
+          },
+          "jobNumber" : "",
+          "status" : ""
+        },
+        "email" : "",
+        "rev" : "",
+        "refCraftClasses" : {
+          "className" : "",
+          "id" : ""
+        },
+        "fkCraftId" : "",
+        "lastModifiedBy" : "",
+        "fullName" : "",
+        "active" : "",
+        "fkCraftClassId" : "",
+        "fkDefaultJobNumberId" : "",
+        "refDisciplines" : {
+          "id" : "",
+          "discipline" : ""
+        },
+        "timeStamp" : "",
+        "firstName" : "",
+        "tblCrewsForForeman" : {
+          "projectManager" : "",
+          "constructionManager" : "",
+          "tblUserPsaBySiteManager" : { },
+          "foreman" : "",
+          "tblUserPsaBySuperintendent" : { },
+          "tblUserPsaByAreaManager" : { },
+          "areaManager" : "",
+          "siteManager" : "",
+          "id" : "",
+          "tblJobNumbers" : { },
+          "gf" : "",
+          "rev" : "",
+          "superintendent" : "",
+          "tblUserPsaByProjectManager" : { },
+          "disciplineId" : "",
+          "refDisciplines" : { },
+          "crewNumber" : "",
+          "timeStamp" : "",
+          "tblUserPsaByForeman" : { },
+          "tblUserPsaByGf" : { },
+          "tblUserPsaByConstructionManager" : { },
+          "tblUserPsaByLeadman" : { },
+          "jobNumber" : "",
+          "leadman" : ""
+        },
+        "createdDate" : "",
+        "pciEmployeeId" : "",
+        "fkDisciplineId" : ""
+      }
+    },
+    "type" : "com.psabackoffice.psa.Settingsuser",
+    "isList" : false,
+    "saveInPhonegap" : false
   }
 }

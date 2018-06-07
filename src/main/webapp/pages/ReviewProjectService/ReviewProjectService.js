@@ -27,7 +27,7 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
             return;
         }
         //Get current items.  Needed for pageSettings.id
-        var pageSettings = $scope.Variables.SettingsPageUser.getData().data.find(x => x.label === $scope.activePageName);
+        var pageSettings = $scope.Variables.SettingsUser.getData().data.find(x => x.label === $scope.activePageName);
         var pageSettingsJSON = {};
 
         //Update/Build pageSettingsJSON
@@ -37,7 +37,7 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
 
         //Submit items to DB
         if (pageSettings && pageSettings.id) {
-            $scope.Variables.SettingsPageUser.updateRecord({
+            $scope.Variables.SettingsUser.updateRecord({
                     row: {
                         "id": pageSettings.id,
                         "userId": $scope.Variables.loggedInUser.dataSet.id,
@@ -49,11 +49,11 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
                     //Oddly enought doing an updateRecord() on a live variable.. doesn't actually update the local variable too.. Even though the updateRecord() DOES in fact return the new value, a a second call is required to update the currently stored local value. 
                     //So because of that, I need to build logic in the savePageSettings() to handle updating the local variable too. This was confirmed functionality by WaveMaker 4-2-18
                     //In the mean time I will use the second call method until I resolve how I want to handle this.
-                    $scope.Variables.SettingsPageUser.listRecords();
+                    $scope.Variables.SettingsUser.listRecords();
                 }
             );
         } else {
-            $scope.Variables.SettingsPageUser.createRecord({
+            $scope.Variables.SettingsUser.createRecord({
                     row: {
                         "userId": $scope.Variables.loggedInUser.dataSet.id,
                         "label": $scope.activePageName,
@@ -61,7 +61,7 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
                     }
                 },
                 function(data) {
-                    $scope.Variables.SettingsPageUser.listRecords();
+                    $scope.Variables.SettingsUser.listRecords();
                 }
             );
         }
@@ -153,7 +153,7 @@ Application.$controller("ReviewProjectServicePageController", ["$scope", "$rootS
     $scope.gridApprovalReviewDatarender = function($isolateScope, $data) {
 
         if (firstLoad) {
-            var pageSettings = $scope.Variables.SettingsPageUser.getData().data.find(x => x.label === $scope.activePageName);
+            var pageSettings = $scope.Variables.SettingsUser.getData().data.find(x => x.label === $scope.activePageName);
             var pageSettingsJSON = {};
             firstLoad = false;
             if (pageSettings) {

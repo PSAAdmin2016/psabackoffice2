@@ -51,8 +51,8 @@ public class SteelTrackerClassic implements Serializable {
     private Float weight;
     private String system;
     private String service;
-    private Float quantityTakeOff;
-    private Short quantityWeld;
+    private Float takeOffQuantity = 0.00F;
+    private Short weldCount = 0;
     private Double hoursShake;
     private Double hoursErect;
     private Double hoursBoltout;
@@ -362,22 +362,22 @@ public class SteelTrackerClassic implements Serializable {
         this.service = service;
     }
 
-    @Column(name = "`QuantityTakeOff`", nullable = true, scale = 2, precision = 7)
-    public Float getQuantityTakeOff() {
-        return this.quantityTakeOff;
+    @Column(name = "`TakeOffQuantity`", nullable = true, scale = 2, precision = 7)
+    public Float getTakeOffQuantity() {
+        return this.takeOffQuantity;
     }
 
-    public void setQuantityTakeOff(Float quantityTakeOff) {
-        this.quantityTakeOff = quantityTakeOff;
+    public void setTakeOffQuantity(Float takeOffQuantity) {
+        this.takeOffQuantity = takeOffQuantity;
     }
 
-    @Column(name = "`QuantityWeld`", nullable = true, scale = 0, precision = 3)
-    public Short getQuantityWeld() {
-        return this.quantityWeld;
+    @Column(name = "`WeldCount`", nullable = true, scale = 0, precision = 3)
+    public Short getWeldCount() {
+        return this.weldCount;
     }
 
-    public void setQuantityWeld(Short quantityWeld) {
-        this.quantityWeld = quantityWeld;
+    public void setWeldCount(Short weldCount) {
+        this.weldCount = weldCount;
     }
 
     @Column(name = "`HoursShake`", nullable = true, scale = 6, precision = 16)

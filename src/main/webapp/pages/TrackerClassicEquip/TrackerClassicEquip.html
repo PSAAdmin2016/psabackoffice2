@@ -203,7 +203,7 @@
                 <wm-gridrow name="gridrow4">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn8_1">
                         <wm-table title="" dataset="bind:Widgets.livefilterClassicTrackerEquip.result" navigation="Classic" name="gridClassicTrackerEquip" spacing="condensed" height="640px" enablecolumnselection="true" on-columnselect="gridClassicTrackerEquipColumnselect($event, $data)"
-                            on-columndeselect="gridClassicTrackerEquipColumndeselect($event, $data)" on-rowdblclick="Variables.serviceGetBidWorkHistory.invoke();Widgets.dialogBidWorkHistory.open()" showrecordcount="true">
+                            on-columndeselect="gridClassicTrackerEquipColumndeselect($event, $data)" on-rowdblclick="Variables.serviceGetBidWorkHistory.invoke();Widgets.dialogBidWorkHistory.open()" showrecordcount="true" on-beforedatarender="gridClassicTrackerEquipBeforedatarender($scope, $data, $columns)">
                             <wm-table-column binding="uid" caption="Uid" width="60px" primary-key="true" edit-widget-type="number" type="integer" generator="identity" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="bidId" caption="Bid Id" width="60px" edit-widget-type="number" type="integer" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="projectServicesRep" caption="Project Services Rep" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
@@ -215,13 +215,13 @@
                             <wm-table-column binding="workPackage" caption="Work Package" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="costCode" caption="Cost Code" width="70px" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="p6id" caption="P6 ID" width="60px" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="p6description" caption="P6 Description" width="110px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="assignedContractor" caption="Contractor" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="area" caption="Area" width="70px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="location" caption="Location" width="70px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="structure" caption="Structure" width="70px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="cu" caption="CU" width="70px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="elevation" caption="Elevation" width="70px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
-                            <wm-table-column binding="p6description" caption="P6 Description" width="110px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="engDrawingNumber" caption="Drawing #" width="120px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="sheetNumber" caption="Sheet #" width="60px" primary-key="false" edit-widget-type="number" type="short" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="drawingRev" caption="Drawing Rev" width="60px" primary-key="false" edit-widget-type="number" type="short" generator="assigned" readonly="true" show="true"></wm-table-column>
@@ -233,16 +233,16 @@
                             <wm-table-column binding="performanceMaterialSpec" caption="Performance Material Spec" width="90px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="system" caption="System" width="80px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="service" caption="Service" width="80px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
-                            <wm-table-column binding="takeOffQuantity" caption="Take Off Quantity" width="70px" primary-key="false" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
-                                fractionsize="2" show="true"></wm-table-column>
+                            <wm-table-column binding="takeOffQuantity" caption="Take Off Quantity" width="70px" primary-key="false" col-class="takeoffQuantity" edit-widget-type="number" type="double" generator="assigned" readonly="true"
+                                formatpattern="numberToString" fractionsize="2" show="true"></wm-table-column>
                             <wm-table-column binding="quantityUnit" caption="Quantity Unit" width="70px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
-                            <wm-table-column binding="estimatedHours" caption="Estimated Hours" width="70px" primary-key="false" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
+                            <wm-table-column binding="estimatedHours" caption="Estimated Hours" width="70px" primary-key="false" col-class="takeoffHours" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
                                 fractionsize="2" show="bind:Variables.loggedInUser.dataSet.roles != 'Millwright-GF' || 
 Variables.loggedInUser.dataSet.roles != 'Millwright-Superintendent Non-Staff'"></wm-table-column>
-                            <wm-table-column binding="installedQuantity" caption="Installed Quantity" width="70px" primary-key="false" col-class="lightgreen" edit-widget-type="number" type="double" generator="assigned" readonly="true"
+                            <wm-table-column binding="installedQuantity" caption="Installed Quantity" width="70px" primary-key="false" col-class="earnedQuantity" edit-widget-type="number" type="double" generator="assigned" readonly="true"
                                 show="true"></wm-table-column>
-                            <wm-table-column binding="earnedHours" caption="Earned Hours" width="70px" primary-key="false" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString" fractionsize="2"
-                                show="bind:Variables.loggedInUser.dataSet.roles != 'Millwright-GF' || 
+                            <wm-table-column binding="earnedHours" caption="Earned Hours" width="70px" primary-key="false" col-class="earnedHours" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
+                                fractionsize="2" show="bind:Variables.loggedInUser.dataSet.roles != 'Millwright-GF' || 
 Variables.loggedInUser.dataSet.roles != 'Millwright-Superintendent Non-Staff'"></wm-table-column>
                             <wm-table-column binding="wbs1" caption="Wbs1" width="60px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="wbs2" caption="Wbs2" width="60px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
@@ -258,7 +258,7 @@ Variables.loggedInUser.dataSet.roles != 'Millwright-Superintendent Non-Staff'"><
                                 show="true"></wm-table-column>
                             <wm-table-action key="customButton" display-name="Hide Columns" show="true" class="btn-primary" iconclass="" title="Hide" action="customButtonAction($event)" shortcutkey="" disabled="false" widget-type="button"
                                 position="header"></wm-table-action>
-                            <wm-table-action key="customButton1" display-name="Show All" show="bind:Variables.staticShowEquipClassicShowAllButton.dataSet.show" class="btn-primary" iconclass="" title="ShowAll" action="customButton1Action($event)"
+                            <wm-table-action key="customButton1" display-name="Show All" show="bind:Variables.staticDisplayShowAllButton.dataSet.dataValue" class="btn-primary" iconclass="" title="ShowAll" action="customButton1Action($event)"
                                 shortcutkey="" disabled="false" widget-type="button" position="header"></wm-table-action>
                             <wm-table-action key="customButton2" display-name="Refresh" show="true" class="btn-primary" iconclass="" title="Custom button" action="Variables.serviceUpdateClassicTrackerFull.invoke()" accessroles="SuperUser"
                                 shortcutkey="" disabled="false" widget-type="button" position="header"></wm-table-action>

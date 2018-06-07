@@ -1,35 +1,34 @@
-var firstLoad = false;
+var firstLoad = false; //Set globally so all functions can access it on this page.
 Application.$controller("TrackerClassicPipePageController", ["$scope", function($scope) {
     "use strict";
 
-    /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        $scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.SettingsPageUser.getData().data.find(x => x.label === $scope.activePageName));
         firstLoad = true;
+        /*Fetch Page Settings JSON data from Application Settings Variable for easier access on this page.*/
+        $scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.SettingsUser.getData().data.find(x => x.label === $scope.activePageName));
     };
 
 
-    $scope.gridClassicTrackerPipeDatarender = function($isolateScope, $data) {
+    $scope.gridClassicTrackerPipeBeforedatarender = function($isolateScope, $data, $columns) {
         if (firstLoad) {
             firstLoad = false;
-            var pageSettings = $scope.Variables.staticTrackerClassicPageSettings.dataSet.valueString;
-            var pageSettingsJSON = {};
 
-            if (pageSettings) {
-                pageSettingsJSON = JSON.parse(pageSettings);
+            if ($scope.Variables.staticTrackerClassicPageSettings.dataSet.valueString) { //If page settings already exist
+                var pageSettingsJSON = JSON.parse($scope.Variables.staticTrackerClassicPageSettings.dataSet.valueString);
 
-                _.forEach(pageSettingsJSON.hiddenColumns, function(key, value) {
+                _.forEach(pageSettingsJSON.hiddenColumns, function(key, value) { //iterate hidden columns array and Set Show property
                     $isolateScope.columns[key].setProperty('show', false);
                 });
 
-                if (pageSettingsJSON.hiddenColumns.length > 0) {
-                    $scope.Variables.staticShowHideShowAllButton.setValue("show", 1);
+                if (pageSettingsJSON.hiddenColumns.length > 0) { //Show "Show All Button" if hiddenColumns exist
+                    $scope.Variables.staticDisplayShowAllButton.setValue("dataValue", true);
                 } else {
-                    $scope.Variables.staticShowHideShowAllButton.setValue("show", 0);
+                    $scope.Variables.staticDisplayShowAllButton.setValue("dataValue", false);
                 }
             }
         }
     };
+
 
 
     $scope.serviceUpdateClassicTrackeronResult = function(variable, data) {
@@ -63,14 +62,14 @@ Application.$controller("gridClassicTrackerPipeController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customButtonAction = function($event) { //Hide selected Columns
-            //Get currently hiddenColumns arrray from local static
-            var pageSettings = $scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.SettingsPageUser.dataSet.data.find(x => x.label === 'TrackerClassicPipe'));
+            //Get currently JSON data from local static
+            var pageSettings = $scope.Variables.staticTrackerClassicPageSettings.dataSet;
             var pageSettingsJSON = {};
             if (pageSettings && pageSettings.valueString) {
                 pageSettingsJSON = JSON.parse(pageSettings.valueString);
             }
 
-            //Update hiddenColumns array AND hide columns
+            //Update hiddenColumns array in JSON object AND hide columns
             _.forEach($scope.selectedColumns, function(value, key) {
                 if (pageSettingsJSON.hiddenColumns && pageSettingsJSON.hiddenColumns[0]) {
                     if (pageSettingsJSON.hiddenColumns.indexOf(key) == -1) {
@@ -83,41 +82,41 @@ Application.$controller("gridClassicTrackerPipeController", ["$scope",
                 }
             });
             if (pageSettingsJSON.hiddenColumns.length > 0) {
-                $scope.Variables.staticShowHideShowAllButton.setValue("show", 1);
+                $scope.Variables.staticDisplayShowAllButton.setValue("dataValue", true);
             }
             $scope.redraw();
 
             //Update local static Settings Variable
             $scope.Variables.staticTrackerClassicPageSettings.setValue("userId", $scope.Variables.loggedInUser.dataSet.id);
-            $scope.Variables.staticTrackerClassicPageSettings.setValue("label", 'TrackerClassicPipe');
+            $scope.Variables.staticTrackerClassicPageSettings.setValue("label", $scope.$parent.activePageName);
             $scope.Variables.staticTrackerClassicPageSettings.setValue("valueString", JSON.stringify(pageSettingsJSON));
 
-            //Submit new hiddenColumns for persistent storage
-
+            //Update or Create Persistent Settings Variable
             if (pageSettings && pageSettings.id) {
-                $scope.Variables.SettingsPageUser.updateRecord({
+                $scope.Variables.SettingsUser.updateRecord({
                     row: {
                         "id": pageSettings.id,
                         "userId": $scope.Variables.loggedInUser.dataSet.id,
-                        "label": 'TrackerClassicPipe',
+                        "label": $scope.$parent.activePageName,
                         "valueString": JSON.stringify(pageSettingsJSON)
                     }
                 });
             } else {
-                $scope.Variables.SettingsPageUser.createRecord({
+                $scope.Variables.SettingsUser.createRecord({
                     row: {
                         "userId": $scope.Variables.loggedInUser.dataSet.id,
-                        "label": 'TrackerClassicPipe',
+                        "label": $scope.$parent.activePageName,
                         "valueString": JSON.stringify(pageSettingsJSON)
                     }
+                }, function(data) {
+                    $scope.Variables.SettingsUser.listRecords();
                 });
             }
         };
 
-
         $scope.customButton1Action = function($event) { //Show All 
-            //Get currently hiddenColumns array from local static
-            var pageSettings = $scope.Variables.staticTrackerClassicPageSettings.setData($scope.Variables.SettingsPageUser.dataSet.data.find(x => x.label === 'TrackerClassicPipe'));
+            //Get currently JSON data from local static
+            var pageSettings = $scope.Variables.staticTrackerClassicPageSettings.dataSet;
             var pageSettingsJSON = {};
 
             //Update hiddenColumns array AND hide columns
@@ -125,22 +124,22 @@ Application.$controller("gridClassicTrackerPipeController", ["$scope",
             _.forEach($scope.columns, function(value) { //Show all in data grid
                 value.show = true;
             });
-            $scope.Variables.staticShowHideShowAllButton.setValue("show", 0);
+            $scope.Variables.staticDisplayShowAllButton.setValue("dataValue", false);
             $scope.redraw();
 
-            //Update local Settings Variable
+            //Update local static Settings Variable
             $scope.Variables.staticTrackerClassicPageSettings.setValue("valueString", JSON.stringify(pageSettingsJSON));
 
-            //Submit hiddenColumns for persistent storage
-            $scope.Variables.SettingsPageUser.updateRecord({
+            //Update Persistent Settings Variable
+            $scope.Variables.SettingsUser.updateRecord({
                 row: {
                     "id": pageSettings.id,
                     "userId": $scope.Variables.loggedInUser.dataSet.id,
-                    "label": 'TrackerClassicPipe',
+                    "label": $scope.$parent.activePageName,
                     "valueString": JSON.stringify(pageSettingsJSON)
                 }
             }, function(data) { //On Success
-                $scope.Variables.SettingsPageUser.listRecords();
+                $scope.Variables.SettingsUser.listRecords();
             });
 
         };
@@ -257,15 +256,15 @@ Application.$controller("liveformPipeFAController", ["$scope",
 ]);
 
 Application.$controller("liveformSASWeldController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveformPipeWeldController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

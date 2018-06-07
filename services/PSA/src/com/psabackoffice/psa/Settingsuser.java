@@ -64,7 +64,7 @@ public class Settingsuser implements Serializable {
         this.label = label;
     }
 
-    @Column(name = "`ValueString`", nullable = true, length = 16777215)
+    @Column(name = "`ValueString`", nullable = true, length = 65535)
     public String getValueString() {
         return this.valueString;
     }

@@ -1047,6 +1047,19 @@
     "spinnerContext" : "gridClassicTrackerEquip",
     "spinnerMessage" : "Running full refresh..."
   },
+  "staticDisplayShowAllButton" : {
+    "_id" : "wm-staticDisplayShowAllButton-wm.Variable-1528389505987",
+    "name" : "staticDisplayShowAllButton",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : false
+    },
+    "type" : "boolean",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
   "staticShowReturn" : {
     "_id" : "wm-staticShowReturn-wm.Variable-1490734608051",
     "name" : "staticShowReturn",
@@ -1057,6 +1070,100 @@
       "dataValue" : true
     },
     "type" : "boolean",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
+  "staticTrackerClassicPageSettings" : {
+    "_id" : "wm-staticClassicTrackerEquipColumnShowHideCache-wm.Variable-1490725173205",
+    "name" : "staticTrackerClassicPageSettings",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "valueString" : "",
+      "id" : "",
+      "label" : "",
+      "userId" : "",
+      "tblUserPsa" : {
+        "lastName" : "",
+        "refCrafts" : {
+          "craft" : "",
+          "id" : ""
+        },
+        "tblUserCreds" : {
+          "password" : "",
+          "userName" : "",
+          "userId" : "",
+          "tblUserPsa" : { }
+        },
+        "nickname" : "",
+        "id" : "",
+        "tblJobNumbers" : {
+          "fkJobSiteId" : "",
+          "tblJobSites" : {
+            "zipCode" : "",
+            "siteCity" : "",
+            "siteState" : "",
+            "siteName" : "",
+            "id" : "",
+            "refStateAbbreviations" : {
+              "stateName" : "",
+              "abbreviation" : ""
+            }
+          },
+          "jobNumber" : "",
+          "status" : ""
+        },
+        "email" : "",
+        "rev" : "",
+        "refCraftClasses" : {
+          "className" : "",
+          "id" : ""
+        },
+        "fkCraftId" : "",
+        "lastModifiedBy" : "",
+        "fullName" : "",
+        "active" : "",
+        "fkCraftClassId" : "",
+        "fkDefaultJobNumberId" : "",
+        "refDisciplines" : {
+          "id" : "",
+          "discipline" : ""
+        },
+        "timeStamp" : "",
+        "firstName" : "",
+        "tblCrewsForForeman" : {
+          "projectManager" : "",
+          "constructionManager" : "",
+          "tblUserPsaBySiteManager" : { },
+          "foreman" : "",
+          "tblUserPsaBySuperintendent" : { },
+          "tblUserPsaByAreaManager" : { },
+          "areaManager" : "",
+          "siteManager" : "",
+          "id" : "",
+          "tblJobNumbers" : { },
+          "gf" : "",
+          "rev" : "",
+          "superintendent" : "",
+          "tblUserPsaByProjectManager" : { },
+          "disciplineId" : "",
+          "refDisciplines" : { },
+          "crewNumber" : "",
+          "timeStamp" : "",
+          "tblUserPsaByForeman" : { },
+          "tblUserPsaByGf" : { },
+          "tblUserPsaByConstructionManager" : { },
+          "tblUserPsaByLeadman" : { },
+          "jobNumber" : "",
+          "leadman" : ""
+        },
+        "createdDate" : "",
+        "pciEmployeeId" : "",
+        "fkDisciplineId" : ""
+      }
+    },
+    "type" : "com.psabackoffice.psa.Settingsuser",
     "isList" : false,
     "saveInPhonegap" : false
   }

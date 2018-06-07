@@ -1194,6 +1194,19 @@
     "spinnerContext" : "gridClassicTrackerPipe",
     "spinnerMessage" : "Running full refresh..."
   },
+  "staticDisplayShowAllButton" : {
+    "_id" : "wm-staticShowHideShowAllButton-wm.Variable-1473444176812",
+    "name" : "staticDisplayShowAllButton",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : false
+    },
+    "type" : "boolean",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
   "staticShowReturn" : {
     "_id" : "wm-staticShowReturn-wm.Variable-1528303968936",
     "name" : "staticShowReturn",

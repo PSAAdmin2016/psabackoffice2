@@ -217,74 +217,77 @@
                 <wm-gridrow name="gridrow17">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn45">
                         <wm-table gridfirstrowselect="false" dataset="bind:Widgets.livefilterClassicTrackerCivil.result" navigation="Classic" height="640px" showrecordcount="true" fontsize="10" on-rowdblclick="Variables.serviceGetBidWorkHistory.invoke();Widgets.dialogBidWorkHistory.open()"
-                            class="panel-default" on-columnselect="gridClassicTrackerCivilColumnselect($event, $data)" on-columndeselect="gridClassicTrackerCivilColumndeselect($event, $data)" editmode="dialog" spacing="condensed" enablesort="true" exportdatasize="50000"
-                            name="gridClassicTrackerCivil">
+                            class="panel-default" editmode="dialog" spacing="condensed" enablesort="true" exportdatasize="50000" name="gridClassicTrackerCivil" on-beforedatarender="gridClassicTrackerCivilBeforedatarender($scope, $data, $columns)" enablecolumnselection="true">
                             <wm-table-column binding="uid" caption="UID" width="60px" primary-key="true" edit-widget-type="number" type="integer" generator="identity" readonly="true" show="true"></wm-table-column>
-                            <wm-table-column binding="bidId" caption="Bid ID" width="60px" primary-key="false" edit-widget-type="number" type="integer" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="projectServicesRep" caption="Project Services Rep" type="string" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="ewonumber" caption="EWO #" width="70px" primary-key="false" edit-widget-type="number" type="integer" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="scope" caption="Scope" width="70px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="phase" caption="Phase" width="70px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="stage" caption="Stage" width="70px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="testPackageNumber" caption="Test Package" width="70px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="workPackage" caption="Work Package" type="string" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="costCode" caption="Cost Code" width="80px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="p6id" caption="P6 ID" width="60px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="p6description" caption="P6 Description" width="80px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="assignedContractor" caption="Contractor" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="area" caption="Area" width="140px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="location" caption="Location" width="70px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="structure" caption="Structure" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="cu" caption="CU" width="70px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="elevation" caption="Elevation" type="string" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="sortGroup1" caption="Sort Group1" type="string" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="sortGroup2" caption="Sort Group2" type="string" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="sortGroup3" caption="Sort Group3" type="string" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="engDrawingNumber" caption="Drawing Number" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="sheetNumber" caption="Sheet #" primary-key="false" edit-widget-type="number" type="short" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="drawingRev" caption="Drawing Rev" primary-key="false" edit-widget-type="number" type="short" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="detailDrawingNumber" caption="Detail Drawing #" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="detailRev" caption="Detail Rev" primary-key="false" edit-widget-type="number" type="short" generator="assigned" show="true" readonly="true"></wm-table-column>
+                            <wm-table-column binding="bidId" caption="Bid ID" width="60px" primary-key="false" edit-widget-type="number" type="integer" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="projectServicesRep" caption="Project Services Rep" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="ewonumber" caption="EWO #" width="70px" primary-key="false" edit-widget-type="number" type="integer" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="scope" caption="Scope" width="70px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="phase" caption="Phase" width="70px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="stage" caption="Stage" width="70px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="testPackageNumber" caption="Test Package" width="70px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="workPackage" caption="Work Package" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="costCode" caption="Cost Code" width="80px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="p6id" caption="P6 ID" width="60px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="p6description" caption="P6 Description" width="80px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="assignedContractor" caption="Contractor" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="area" caption="Area" width="140px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="location" caption="Location" width="70px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="structure" caption="Structure" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="cu" caption="CU" width="70px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="elevation" caption="Elevation" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="sortGroup1" caption="Sort Group1" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="sortGroup2" caption="Sort Group2" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="sortGroup3" caption="Sort Group3" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="engDrawingNumber" caption="Drawing Number" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="sheetNumber" caption="Sheet #" primary-key="false" edit-widget-type="number" type="short" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="drawingRev" caption="Drawing Rev" primary-key="false" edit-widget-type="number" type="short" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="detailDrawingNumber" caption="Detail Drawing #" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="detailRev" caption="Detail Rev" primary-key="false" edit-widget-type="number" type="short" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="detailName" caption="Detail Name" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="false"></wm-table-column>
-                            <wm-table-column binding="description" caption="Description" width="150px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="activityType" caption="Activity Type" width="70px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="activitySubType" caption="Activity Sub Type" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="system" caption="System" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="service" caption="Service" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="takeOffQuantity" caption="Take Off Quantity" primary-key="false" edit-widget-type="number" type="double" generator="assigned" formatpattern="numberToString" fractionsize="2" show="true"
-                                readonly="true"></wm-table-column>
-                            <wm-table-column binding="quantityUnit" caption="Quantity Unit" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="civilWorkHours" caption="Civil Work Hours" primary-key="false" edit-widget-type="number" type="double" generator="assigned" formatpattern="numberToString" fractionsize="2" show="bind:Variables.loggedInUser.dataSet.roles != 'Civil-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Civil-Superintendent Non-Staff'" readonly="true"></wm-table-column>
-                            <wm-table-column binding="sellPunchHours" caption="Sell Punch Hours" primary-key="false" edit-widget-type="number" type="double" generator="assigned" formatpattern="numberToString" fractionsize="2" show="bind:Variables.loggedInUser.dataSet.roles != 'Civil-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Civil-Superintendent Non-Staff'" readonly="true"></wm-table-column>
-                            <wm-table-column binding="totalEstimatedHours" caption="Total Estimated Hours" primary-key="false" edit-widget-type="number" type="double" generator="assigned" formatpattern="numberToString" fractionsize="2"
-                                show="bind:Variables.loggedInUser.dataSet.roles != 'Civil-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Civil-Superintendent Non-Staff'" readonly="true"></wm-table-column>
-                            <wm-table-column binding="installedQuantity" caption="Installed Quantity" primary-key="false" col-class="lightgreen" edit-widget-type="number" type="double" generator="assigned" formatpattern="numberToString"
-                                fractionsize="2" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="earnedWorkHours" caption="Earned Work Hours" primary-key="false" edit-widget-type="number" type="double" generator="assigned" formatpattern="numberToString" fractionsize="2" show="bind:Variables.loggedInUser.dataSet.roles != 'Civil-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Civil-Superintendent Non-Staff'" readonly="true"></wm-table-column>
-                            <wm-table-column binding="earnedSellPunch" caption="Earned Sell Punch" primary-key="false" edit-widget-type="number" type="double" generator="assigned" formatpattern="numberToString" fractionsize="2" show="bind:Variables.loggedInUser.dataSet.roles != 'Civil-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Civil-Superintendent Non-Staff'" readonly="true"></wm-table-column>
-                            <wm-table-column binding="earnedAllHours" caption="Earned All Hours" width="70px" primary-key="false" edit-widget-type="number" type="double" generator="assigned" formatpattern="numberToString" fractionsize="2"
-                                show="bind:Variables.loggedInUser.dataSet.roles != 'Civil-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Civil-Superintendent Non-Staff'" readonly="true"></wm-table-column>
-                            <wm-table-column binding="wbs1" caption="Wbs1" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="wbs2" caption="Wbs2" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="wbs3" caption="Wbs3" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="wbs4" caption="Wbs4" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="wbs5" caption="Wbs5" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="wbs6" caption="Wbs6" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="wbs7" caption="Wbs7" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="wbs8" caption="Wbs8" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="wbs9" caption="Wbs9" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
-                            <wm-table-column binding="wbs10" caption="Wbs10" primary-key="false" edit-widget-type="text" type="string" generator="assigned" show="true" readonly="true"></wm-table-column>
+                            <wm-table-column binding="description" caption="Description" width="150px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="activityType" caption="Activity Type" width="70px" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="activitySubType" caption="Activity Sub Type" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="system" caption="System" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="service" caption="Service" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="takeOffQuantity" caption="Take Off Quantity" primary-key="false" col-class="takeoffQuantity" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
+                                fractionsize="2" show="true"></wm-table-column>
+                            <wm-table-column binding="quantityUnit" caption="Quantity Unit" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="civilWorkHours" caption="Civil Work Hours" primary-key="false" col-class="takeoffHours" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
+                                fractionsize="2" show="bind:Variables.loggedInUser.dataSet.roles != 'Civil-GF' || 
+Variables.loggedInUser.dataSet.roles != 'Civil-Superintendent Non-Staff'"></wm-table-column>
+                            <wm-table-column binding="sellPunchHours" caption="Sell Punch Hours" primary-key="false" col-class="takeoffHours" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
+                                fractionsize="2" show="bind:Variables.loggedInUser.dataSet.roles != 'Civil-GF' || 
+Variables.loggedInUser.dataSet.roles != 'Civil-Superintendent Non-Staff'"></wm-table-column>
+                            <wm-table-column binding="totalEstimatedHours" caption="Total Estimated Hours" primary-key="false" col-class="takeoffHours" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
+                                fractionsize="2" show="bind:Variables.loggedInUser.dataSet.roles != 'Civil-GF' || 
+Variables.loggedInUser.dataSet.roles != 'Civil-Superintendent Non-Staff'"></wm-table-column>
+                            <wm-table-column binding="installedQuantity" caption="Installed Quantity" primary-key="false" col-class="earnedQuantity" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
+                                fractionsize="2" show="true"></wm-table-column>
+                            <wm-table-column binding="earnedWorkHours" caption="Earned Work Hours" primary-key="false" col-class="earnedHours" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
+                                fractionsize="2" show="bind:Variables.loggedInUser.dataSet.roles != 'Civil-GF' || 
+Variables.loggedInUser.dataSet.roles != 'Civil-Superintendent Non-Staff'"></wm-table-column>
+                            <wm-table-column binding="earnedSellPunch" caption="Earned Sell Punch" primary-key="false" col-class="earnedHours" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
+                                fractionsize="2" show="bind:Variables.loggedInUser.dataSet.roles != 'Civil-GF' || 
+Variables.loggedInUser.dataSet.roles != 'Civil-Superintendent Non-Staff'"></wm-table-column>
+                            <wm-table-column binding="earnedAllHours" caption="Earned All Hours" width="70px" primary-key="false" col-class="earnedHours" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
+                                fractionsize="2" show="bind:Variables.loggedInUser.dataSet.roles != 'Civil-GF' || 
+Variables.loggedInUser.dataSet.roles != 'Civil-Superintendent Non-Staff'"></wm-table-column>
+                            <wm-table-column binding="wbs1" caption="Wbs1" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="wbs2" caption="Wbs2" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="wbs3" caption="Wbs3" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="wbs4" caption="Wbs4" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="wbs5" caption="Wbs5" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="wbs6" caption="Wbs6" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="wbs7" caption="Wbs7" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="wbs8" caption="Wbs8" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="wbs9" caption="Wbs9" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
+                            <wm-table-column binding="wbs10" caption="Wbs10" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
                             <wm-table-column binding="timeStamp" caption="Time Stamp" primary-key="false" edit-widget-type="timestamp" type="timestamp" generator="assigned" datepattern="MM/dd/yyyy" formatpattern="toDate" show="true"
                                 readonly="false"></wm-table-column>
                             <wm-table-action key="customButton" display-name="Hide Columns" show="true" class="btn-primary" iconclass="" title="Hide" action="customButtonAction($event)" shortcutkey="" disabled="false" widget-type="button"
                                 position="header"></wm-table-action>
-                            <wm-table-action key="customButton1" display-name="Show All" show="bind:Variables.staticShowCivilClassicShowAllButton.dataSet.show" class="btn-primary" iconclass="" title="ShowAll" action="customButton1Action($event)"
+                            <wm-table-action key="customButton1" display-name="Show All" show="bind:Variables.staticDisplayShowAllButton.dataSet.dataValue" class="btn-primary" iconclass="" title="ShowAll" action="customButton1Action($event)"
                                 shortcutkey="" disabled="false" widget-type="button" position="header"></wm-table-action>
                             <wm-table-action key="customButton2" display-name="Refresh" show="true" class="btn-primary" iconclass="" title="Custom button" action="Variables.serviceUpdateClassicTrackerFull.invoke()" accessroles="SuperUser"
                                 shortcutkey="" disabled="false" widget-type="button" position="header"></wm-table-action>
