@@ -3,23 +3,16 @@ Application.$controller("headerMainPageController", ["$scope", "$rootScope", "Di
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        /*
-         * variables can be accessed through '$scope.Variables' property here
-         * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
-         * $scope.Variables.loggedInUser.getData()
-         *
-         * widgets can be accessed through '$scope.Widgets' property here
-         * e.g. to get value of text widget named 'username' use following script
-         * '$scope.Widgets.username.datavalue'
-         */
+
     };
 
 
-
-    $scope.selectActiveJobNumberChange = function($event, $isolateScope) {
-        $scope.Variables.SchemaChangeServiceChangeSchema.setInput('newSchema', $scope.Widgets.selectActiveJobNumber.datavalue);
-        $scope.Variables.SchemaChangeServiceChangeSchema.update();
-
+    $scope.selectActiveJobNumberChange = function($event, $isolateScope, newVal, oldVal) {
+        $scope.Variables.SchemaChangeServiceChangeSchema.invoke({
+            "inputFields": {
+                "newSchema": newVal
+            }
+        });
     };
 
 
@@ -30,18 +23,6 @@ Application.$controller("headerMainPageController", ["$scope", "$rootScope", "Di
 
     $rootScope.showMedia = function() {
         DialogService.showDialog("pagedialogMedia");
-    };
-
-
-    $scope.SchemaChangeServiceChangeSchemaonSuccess = function(variable, data) {
-        try {
-
-            console.log("Refreshing RefWeldSpecProcedures" + " :selectActiveJobNumberChange");
-            $rootScope.Variables.Job1111RefWeldSpecProcedures.listRecords();
-
-        } catch (err) {
-            console.log("selectActiveJobNumberChange Error :Main.js: selectActiveJobNumberChange: " + err);
-        }
     };
 
 
@@ -81,9 +62,6 @@ Application.$controller("headerMainPageController", ["$scope", "$rootScope", "Di
 
         return varReturn;
     };
-
-
-
 }]);
 
 Application.$controller("iframedialogFAQController", ["$scope",

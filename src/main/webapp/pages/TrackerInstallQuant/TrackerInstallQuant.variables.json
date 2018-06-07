@@ -248,5 +248,22 @@
     "saveInPhonegap" : false,
     "isDefault" : true,
     "controller" : "ProcedureExecution"
+  },
+  "staticTotalsType" : {
+    "_id" : "wm-staticTotalsType-wm.Variable-1457733674908",
+    "name" : "staticTotalsType",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "Label" : "Installed",
+      "dataValue" : "Installed"
+    }, {
+      "Label" : "Remaining",
+      "dataValue" : "Remaining"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
   }
 }

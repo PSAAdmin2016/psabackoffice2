@@ -378,14 +378,6 @@
   "type" : "PAGE",
   "params" : [ ]
 }, {
-  "name" : "ToolsUserManagement2",
-  "type" : "PAGE",
-  "params" : [ ]
-}, {
-  "name" : "ToolsUserManagementLanding",
-  "type" : "PAGE",
-  "params" : [ ]
-}, {
   "name" : "TrackerBidQuantities",
   "type" : "PAGE",
   "params" : [ ]

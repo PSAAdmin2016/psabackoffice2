@@ -16,6 +16,7 @@ Application.$controller("ReviewLandingPageController", ["$scope", function($scop
 
         //Both Pages Variables
         $scope.Variables.PSARefWeldPositionsData.listRecords();
+        $scope.Variables.Job1111RefWeldSpecProcedures.listRecords();
 
         //No Pages Variables
         //$scope.Variables.PSARefGenericPipeSpoolsData.listRecords();

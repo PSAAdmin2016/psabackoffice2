@@ -5,12 +5,12 @@
                 <wm-picture picturesource="resources/images/imagelists/logo.png" name="AppLogo" margin="unset unset unset 5px"></wm-picture>
                 <wm-label caption="PSA Back Office" class="application-name" name="AppName" fontsize="20" color="#ffffff"></wm-label>
             </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="5" name="gridcolumn3" horizontalalign="left">
-                <wm-composite name="composite4" captionposition="top" accessroles="Authenticated" padding="2% unset unset unset">
-                    <wm-label class="col-md-3" name="label4" caption="Active Job#" color="#ffffff"></wm-label>
-                    <wm-container class="col-md-9" name="container4" width="40%">
-                        <wm-select name="selectActiveJobNumber" dataset="bind:Variables.PSAExecuteGetAssignedJobNumbers.dataSet" datafield="JobNumber" displayexpression="bind:$[JobNumber] + &quot; - &quot; + $[SiteCity] + $[SiteState]" placeholder="Choose Job Number"
-                            datavalue="bind:Variables.ActiveJobNumber.dataSet.dataValue" on-change="selectActiveJobNumberChange($event, $scope)"></wm-select>
+            <wm-gridcolumn columnwidth="5" name="gridcolumn3" horizontalalign="left" padding="1% unset unset unset">
+                <wm-composite name="composite2" captionposition="top">
+                    <wm-label class="col-md-3" name="label5" caption="Active Job#" color="#ffffff"></wm-label>
+                    <wm-container class="col-md-9" name="container6" width="40%">
+                        <wm-select name="selectActiveJobNumber" on-change="selectActiveJobNumberChange($event, $scope, newVal, oldVal)" placeholder="Choose Job Number" dataset="bind:Variables.serviceGetAssignedJobNumbers.dataSet" datafield="JobNumber" displayexpression="bind:$[JobNumber] + &quot; - &quot; + $[SiteCity] + $[SiteState]"
+                            datavalue="bind:Variables.ActiveJobNumber.dataSet.dataValue"></wm-select>
                     </wm-container>
                 </wm-composite>
             </wm-gridcolumn>

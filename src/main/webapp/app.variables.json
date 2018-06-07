@@ -484,35 +484,13 @@
     "pageTransitions" : "none"
   },
   "goToPage_ToolsUserManagement" : {
-    "_id" : "wm-goToPage_ToolsUserManagement-wm.NavigationVariable-1481046997292",
+    "_id" : "wm-goToPage_ToolsUserManagement2-wm.NavigationVariable-1499869052829",
     "name" : "goToPage_ToolsUserManagement",
     "owner" : "App",
     "category" : "wm.NavigationVariable",
     "dataBinding" : [ ],
     "operation" : "gotoPage",
     "pageName" : "ToolsUserManagement",
-    "dataSet" : [ ],
-    "pageTransitions" : "none"
-  },
-  "goToPage_ToolsUserManagement2" : {
-    "_id" : "wm-goToPage_ToolsUserManagement2-wm.NavigationVariable-1499869052829",
-    "name" : "goToPage_ToolsUserManagement2",
-    "owner" : "App",
-    "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
-    "operation" : "gotoPage",
-    "pageName" : "ToolsUserManagement2",
-    "dataSet" : [ ],
-    "pageTransitions" : "none"
-  },
-  "goToPage_ToolsUserManagementLanding" : {
-    "_id" : "wm-goToPage_ToolsUserManagementLanding-wm.NavigationVariable-1481047104762",
-    "name" : "goToPage_ToolsUserManagementLanding",
-    "owner" : "App",
-    "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
-    "operation" : "gotoPage",
-    "pageName" : "ToolsUserManagementLanding",
     "dataSet" : [ ],
     "pageTransitions" : "none"
   },
@@ -622,7 +600,7 @@
     "maxResults" : 1000,
     "designMaxResults" : 10,
     "inFlightBehavior" : "executeLast",
-    "startUpdate" : true,
+    "startUpdate" : false,
     "autoUpdate" : false,
     "transformationRequired" : false,
     "liveSource" : "Job1111",
@@ -1088,39 +1066,6 @@
     "transformationRequired" : false,
     "redirectTo" : "Login",
     "useDefaultSuccessHandler" : true
-  },
-  "PSAExecuteGetAssignedJobNumbers" : {
-    "_id" : "wm-PSAExecuteGetAssignedJobNumbers-wm.ServiceVariable-1461203927199",
-    "name" : "PSAExecuteGetAssignedJobNumbers",
-    "owner" : "App",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "UserID",
-      "value" : "bind:Variables.loggedInUser.dataSet.id",
-      "type" : "integer"
-    } ],
-    "type" : "com.psabackoffice.psa.models.query.GetAssignedJobNumbersResponse",
-    "service" : "PSA",
-    "operation" : "executeGetAssignedJobNumbers",
-    "operationId" : "QueryExecutionController_executeGetAssignedJobNumbers",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : {
-      "dataValue" : ""
-    },
-    "isList" : true,
-    "firstRow" : 0,
-    "maxResults" : 100,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "isDefault" : true,
-    "controller" : "QueryExecution",
-    "spinnerContext" : "page",
-    "spinnerMessage" : "Retrieving Data..."
   },
   "PSAExecuteGetForemenBySuper" : {
     "_id" : "wm-PSAExecuteGetForemenBySuper-wm.ServiceVariable-1460574557775",
@@ -3251,6 +3196,37 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
   },
+  "serviceGetAssignedJobNumbers" : {
+    "_id" : "wm-PSAExecuteGetAssignedJobNumbers-wm.ServiceVariable-1461203927199",
+    "name" : "serviceGetAssignedJobNumbers",
+    "owner" : "App",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "UserID",
+      "value" : "bind:Variables.loggedInUser.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.psa.models.query.GetAssignedJobNumbersResponse",
+    "service" : "PSA",
+    "operation" : "executeGetAssignedJobNumbers",
+    "operationId" : "QueryExecutionController_executeGetAssignedJobNumbers",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "isList" : true,
+    "firstRow" : 0,
+    "maxResults" : 100,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "QueryExecution"
+  },
   "serviceGetChatConversations" : {
     "_id" : "wm-serviceVariable1-wm.ServiceVariable-1484341505102",
     "name" : "serviceGetChatConversations",
@@ -3302,7 +3278,7 @@
     "firstRow" : 0,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "PSAExecuteGetDefaultJobNumberonSuccess($event, $scope)",
+    "onSuccess" : "serviceGetDefaultJobNumberonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
@@ -3580,8 +3556,8 @@
     "maxResults" : 500,
     "designMaxResults" : 10,
     "inFlightBehavior" : "executeAll",
-    "startUpdate" : true,
-    "autoUpdate" : false,
+    "startUpdate" : false,
+    "autoUpdate" : true,
     "transformationRequired" : false,
     "liveSource" : "PSA",
     "ignoreCase" : false,
@@ -3838,7 +3814,7 @@
         "columnName" : "ValueString",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 16777215,
+        "length" : 65535,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -3877,84 +3853,6 @@
       "label" : "Video Category"
     } ],
     "type" : "string",
-    "isList" : true,
-    "saveInPhonegap" : false
-  },
-  "staticPercentList" : {
-    "_id" : "wm-staticPercentList-wm.Variable-1454361997580",
-    "name" : "staticPercentList",
-    "owner" : "App",
-    "category" : "wm.Variable",
-    "dataBinding" : [ ],
-    "dataSet" : [ {
-      "name" : "0%",
-      "dataValue" : "0",
-      "DecimalValue" : 0
-    }, {
-      "name" : "10%",
-      "dataValue" : "10",
-      "DecimalValue" : 0.1
-    }, {
-      "name" : "20%",
-      "dataValue" : "20",
-      "DecimalValue" : 0.2
-    }, {
-      "name" : "30%",
-      "dataValue" : "30",
-      "DecimalValue" : 0.3
-    }, {
-      "name" : "40%",
-      "dataValue" : "40",
-      "DecimalValue" : 0.4
-    }, {
-      "name" : "50%",
-      "dataValue" : "50",
-      "DecimalValue" : 0.5
-    }, {
-      "name" : "60%",
-      "dataValue" : "60",
-      "DecimalValue" : 0.6
-    }, {
-      "name" : "70%",
-      "dataValue" : "70",
-      "DecimalValue" : 0.7
-    }, {
-      "name" : "80%",
-      "dataValue" : "80",
-      "DecimalValue" : 0.8
-    }, {
-      "name" : "90%",
-      "dataValue" : "90",
-      "DecimalValue" : 0.9
-    }, {
-      "name" : "100%",
-      "dataValue" : "100",
-      "DecimalValue" : 1
-    } ],
-    "type" : "entry",
-    "isList" : true,
-    "saveInPhonegap" : false
-  },
-  "staticPercentListQuarter" : {
-    "_id" : "wm-staticPercentListQuarter-wm.Variable-1476910813487",
-    "name" : "staticPercentListQuarter",
-    "owner" : "App",
-    "category" : "wm.Variable",
-    "dataBinding" : [ ],
-    "dataSet" : [ {
-      "dataValue" : 0.25,
-      "label" : "25%"
-    }, {
-      "dataValue" : 0.5,
-      "label" : "50%"
-    }, {
-      "dataValue" : 0.75,
-      "label" : "75%"
-    }, {
-      "dataValue" : 1,
-      "label" : "100%"
-    } ],
-    "type" : "number",
     "isList" : true,
     "saveInPhonegap" : false
   },
@@ -4253,62 +4151,6 @@
     },
     "type" : "string",
     "isList" : false,
-    "saveInPhonegap" : false
-  },
-  "staticShowCivilClassicShowAllButton" : {
-    "_id" : "wm-staticShowCivilClassicShowAllButton-wm.Variable-1482953466519",
-    "name" : "staticShowCivilClassicShowAllButton",
-    "owner" : "App",
-    "category" : "wm.Variable",
-    "dataBinding" : [ ],
-    "dataSet" : {
-      "show" : false
-    },
-    "type" : "boolean",
-    "isList" : false,
-    "saveInPhonegap" : false
-  },
-  "staticShowEquipClassicShowAllButton" : {
-    "_id" : "wm-staticShowEquipClassicShowAllButton-wm.Variable-1490725432458",
-    "name" : "staticShowEquipClassicShowAllButton",
-    "owner" : "App",
-    "category" : "wm.Variable",
-    "dataBinding" : [ ],
-    "dataSet" : {
-      "show" : false
-    },
-    "type" : "boolean",
-    "isList" : false,
-    "saveInPhonegap" : false
-  },
-  "staticShowSteelClassicShowAllButton" : {
-    "_id" : "wm-staticShowShowAllButton-wm.Variable-1478023773120",
-    "name" : "staticShowSteelClassicShowAllButton",
-    "owner" : "App",
-    "category" : "wm.Variable",
-    "dataBinding" : [ ],
-    "dataSet" : {
-      "show" : false
-    },
-    "type" : "boolean",
-    "isList" : false,
-    "saveInPhonegap" : false
-  },
-  "staticTotalsType" : {
-    "_id" : "wm-staticTotalsType-wm.Variable-1457733674908",
-    "name" : "staticTotalsType",
-    "owner" : "App",
-    "category" : "wm.Variable",
-    "dataBinding" : [ ],
-    "dataSet" : [ {
-      "Label" : "Installed",
-      "dataValue" : "Installed"
-    }, {
-      "Label" : "Remaining",
-      "dataValue" : "Remaining"
-    } ],
-    "type" : "string",
-    "isList" : true,
     "saveInPhonegap" : false
   },
   "staticYesNo" : {

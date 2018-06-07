@@ -18,7 +18,6 @@
     "firstRow" : 0,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "SchemaChangeServiceChangeSchemaonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
