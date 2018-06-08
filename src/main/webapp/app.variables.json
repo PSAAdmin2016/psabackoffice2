@@ -247,16 +247,6 @@
     "pageName" : "leftnavSettings",
     "pageTransitions" : "none"
   },
-  "goToPage_leftnavUserManagemen" : {
-    "_id" : "wm-goToPage_leftnavUserManagemen-wm.NavigationVariable-1452545955669",
-    "name" : "goToPage_leftnavUserManagemen",
-    "owner" : "App",
-    "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
-    "operation" : "gotoPage",
-    "pageName" : "leftnavUserManagemen",
-    "pageTransitions" : "none"
-  },
   "goToPage_Main" : {
     "_id" : "wm-goToPage_Main-wm.NavigationVariable1389180517517",
     "name" : "goToPage_Main",

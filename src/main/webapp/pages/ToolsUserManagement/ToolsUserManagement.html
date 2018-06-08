@@ -4,17 +4,53 @@
         <wm-left-panel columnwidth="1" content="leftnavPSATools" name="left_panel1"></wm-left-panel>
         <wm-page-content columnwidth="11" name="page_content1">
             <wm-layoutgrid name="layoutgrid1">
-                <wm-gridrow name="gridrow1">
-                    <wm-gridcolumn columnwidth="9" name="gridcolumn1">
-                        <wm-table title="" dataset="bind:Variables.liveGetUsers.dataSet" navigation="None" name="gridUser" spacing="condensed" filtermode="multicolumn" height="300px" on-select="gridUserSelect($event, $scope, $rowData)">
-                            <wm-table-column binding="firstName" caption="First Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" filterwidget="autocomplete"></wm-table-column>
-                            <wm-table-column binding="lastName" caption="Last Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" filterwidget="autocomplete"></wm-table-column>
-                            <wm-table-column binding="email" caption="Email" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" filterwidget="autocomplete"></wm-table-column>
-                            <wm-table-column binding="refDisciplines.discipline" caption="Discipline" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" filterwidget="select" related-entity-name="RefDisciplines"></wm-table-column>
-                            <wm-table-column binding="tblJobNumbers.jobNumber" caption="Job Number" type="integer" primary-key="true" generator="assigned" readonly="true" edit-widget-type="select" datafield="jobNumber" displayfield="jobNumber"
-                                show="true" filterwidget="autocomplete" related-entity-name="TblJobNumbers"></wm-table-column>
-                            <wm-table-column binding="pciEmployeeId" caption="Employee ID" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" filterwidget="autocomplete"></wm-table-column>
-                            <wm-table-column binding="active" caption="Active" type="short" widget-type="checkbox" generator="assigned" readonly="true" edit-widget-type="number" show="true" filterwidget="select">
+                <wm-gridrow name="gridrow13_2" padding="unset unset 0px unset">
+                    <wm-gridcolumn columnwidth="9" name="gridcolumn16_1" padding="0px unset">
+                        <wm-livefilter name="filterUser" title="" dataset="bind:Variables.liveGetUsers.dataSet" captionalign="left" captionposition="top" autoupdate="true" iconclass="" margin="0px">
+                            <wm-layoutgrid columns="3" name="layoutgrid6">
+                                <wm-gridrow name="gridrow14" padding="0px 0px 0px unset">
+                                    <wm-gridcolumn columnwidth="3" name="gridcolumn17_1">
+                                        <wm-filter-field name="fullName" field="fullName" displayname="Name" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" key="fullName" matchmode="anywhere" placeholder="Search..."></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn21">
+                                        <wm-filter-field name="email" field="email" displayname="Email" widget="autocomplete" is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" key="email" matchmode="anywhere" placeholder="Search..."></wm-filter-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="5" name="gridcolumn18" padding="unset 0% unset 5%">
+                                        <wm-layoutgrid name="layoutgrid7">
+                                            <wm-gridrow name="gridrow16_1" padding="unset 0px unset unset">
+                                                <wm-gridcolumn columnwidth="3" name="gridcolumn26_1">
+                                                    <wm-filter-field name="refDisciplines" field="refDisciplines" displayname="Discipline" widget="select" lookup-type="RefDisciplines" lookup-field="discipline" is-related="true" related-entity-name="RefDisciplines"
+                                                        is-range="false" type="string" is-primary-key="false" generator="assigned" show="true" key="refDisciplines" matchmode="exact" placeholder="Select..."></wm-filter-field>
+                                                </wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="3" name="gridcolumn27">
+                                                    <wm-filter-field name="tblJobNumbers" field="tblJobNumbers" displayname="Job Number" widget="autocomplete" lookup-type="TblJobNumbers" lookup-field="jobNumber" is-related="true" related-entity-name="TblJobNumbers"
+                                                        is-range="false" type="integer" is-primary-key="false" generator="assigned" show="true" key="tblJobNumbers" matchmode="anywhere" placeholder="Search..."></wm-filter-field>
+                                                </wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="3" name="gridcolumn30">
+                                                    <wm-filter-field name="pciEmployeeId" field="pciEmployeeId" related-field="Pci Employee Id" widget="autocomplete" is-range="false" show="true" type="string" is-primary-key="false" generator="assigned" matchmode="anywhere"
+                                                        displayname="Employee ID" key="pciEmployeeId" placeholder="Search..."></wm-filter-field>
+                                                </wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="3" name="gridcolumn31">
+                                                    <wm-filter-field name="active" field="active" related-field="Active" widget="select" is-range="false" show="true" type="short" is-primary-key="false" generator="assigned" matchmode="anywhere" displayname="Active"
+                                                        key="active" placeholder="Select..." dataset="bind:Variables.staticYesNo.dataSet" datafield="value" displayfield="label"></wm-filter-field>
+                                                </wm-gridcolumn>
+                                            </wm-gridrow>
+                                        </wm-layoutgrid>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-livefilter>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow1" padding="0px unset unset unset">
+                    <wm-gridcolumn columnwidth="9" name="gridcolumn1" padding="0px unset unset unset">
+                        <wm-table title="" dataset="bind:Widgets.filterUser.result" navigation="None" name="gridUser" spacing="condensed" filtermode="multicolumn" height="300px" loadingicon="fa fa-gear fa-spin" on-select="gridUserSelect($event, $scope, $rowData)">
+                            <wm-table-column binding="fullName" caption="Name" width="25%" primary-key="false" edit-widget-type="text" type="string" generator="assigned" searchable="false" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="email" caption="Email" primary-key="false" edit-widget-type="text" type="string" generator="assigned" searchable="false" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="refDisciplines.discipline" caption="Discipline" width="10%" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" searchable="false" show="true"></wm-table-column>
+                            <wm-table-column binding="fkDefaultJobNumberId" caption="Job Number" width="10%" edit-widget-type="number" type="integer" searchable="false" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="pciEmployeeId" caption="Employee ID" width="10%" primary-key="false" edit-widget-type="text" type="string" generator="assigned" searchable="false" show="true" readonly="false"></wm-table-column>
+                            <wm-table-column binding="active" caption="Active" widget-type="checkbox" width="10%" primary-key="false" edit-widget-type="number" type="short" generator="assigned" searchable="false" show="true" readonly="false">
                                 <wm-checkbox scopedatavalue="row['active']" checkedvalue="1" uncheckedvalue="0" disabled="{{true}}" class="checkbox-custom" data-ng-class=""></wm-checkbox>
                             </wm-table-column>
                         </wm-table>
@@ -22,8 +58,8 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="9" name="gridcolumn3" horizontalalign="left">
-                        <wm-liveform errormessage="" title="Details" iconclass="wi wi-edit" defaultmode="View" dataset="bind:Variables.liveGetUsers.dataSet" captionalign="left" captionposition="top" formdata="bind:Widgets.gridUser.selecteditem" name="liveformUsers"
-                            class="panel-primary" on-beforeservicecall="liveformUsersBeforeservicecall($event, $operation, $data)">
+                        <wm-liveform errormessage="" title="Details" iconclass="wi wi-edit" defaultmode="View" dataset="bind:Widgets.filterUser.result" captionalign="left" captionposition="top" formdata="bind:Widgets.gridUser.selecteditem" name="liveformUsers"
+                            class="panel-primary" on-beforeservicecall="liveformUsersBeforeservicecall($event, $operation, $data)" on-success="liveformUsersSuccess($event, $operation, $data)">
                             <wm-layoutgrid columns="3" name="layoutgrid2">
                                 <wm-gridrow name="gridrow12_1">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn15_1" padding="unset 2%">
@@ -37,13 +73,13 @@
                                             <wm-gridrow name="gridrow14_1">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn20">
                                                     <wm-form-field name="firstName" displayname="First Name" show="true" primary-key="false" generator="assigned" key="firstName" type="string" readonly="false" required="true" widget="text" maxchars="32" inputtype="text"
-                                                        placeholder="Enter first name..."></wm-form-field>
+                                                        placeholder="Enter first name..." on-keyup="firstNameKeyup($event, $scope)" updateon="default"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow19">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn27_2">
                                                     <wm-form-field name="lastName" displayname="Last Name" show="true" primary-key="false" generator="assigned" key="lastName" type="string" readonly="false" required="true" widget="text" maxchars="32" inputtype="text"
-                                                        placeholder="Enter last name..."></wm-form-field>
+                                                        placeholder="Enter last name..." on-keyup="lastNameKeyup($event, $scope)" updateon="default"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow20">
@@ -60,7 +96,7 @@
                                             </wm-gridrow>
                                         </wm-layoutgrid>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="4" name="gridcolumn16" padding="unset 2%">
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn16">
                                         <wm-layoutgrid name="layoutgrid4">
                                             <wm-gridrow name="gridrow15">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn22">
@@ -72,15 +108,17 @@
                                                         dataset="bind:Variables.staticYesNo.dataSet" datafield="value" displayfield="label" placeholder="" viewmodewidget="default"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
-                                            <wm-gridrow name="gridrow16">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn24_1">
-                                                    <wm-table editmode="inline" title="" dataset="bind:Widgets.gridUser.selecteditem.tblUserJobNumberses" navigation="Basic" name="gridAssignedJobNumbers" spacing="condensed" confirmdelete="Remove access to this Job Number?"
-                                                        deletemessage="Access removed" insertmessage="Access added" height="200px">
-                                                        <wm-table-column binding="tblJobNumbers.jobNumber" caption="Assigned Numbers" primary-key="true" edit-widget-type="autocomplete" type="integer" generator="assigned" dataset="bind:Variables.liveREFJobNumbers.dataSet"
-                                                            datafield="jobNumber" placeholder="Search..." displaylabel="jobNumber" searchkey="jobNumber" show="true" readonly="false"></wm-table-column>
+                                            <wm-gridrow name="gridrow16" padding="unset 0px">
+                                                <wm-gridcolumn columnwidth="12" name="gridcolumn24_1" padding="unset 0px">
+                                                    <wm-table editmode="inline" title="" dataset="bind:Variables.liveGetUserJobNumbers.dataSet" navigation="Basic" name="gridAssignedJobNumbers" spacing="condensed" confirmdelete="Remove access to this Job Number?"
+                                                        deletemessage="Access removed" insertmessage="Access added" height="200px" on-beforerowinsert="gridAssignedJobNumbersBeforerowinsert($event, $scope, $rowData)" deleteoktext="YES" loadingicon="wi wi-gear">
+                                                        <wm-table-column binding="tblJobNumbers.jobNumber" caption="Assigned Numbers" width="55%" primary-key="true" edit-widget-type="autocomplete" related-entity-name="TblJobNumbers" type="integer" generator="assigned"
+                                                            datafield="jobNumber" placeholder="Search..." displaylabel="jobNumber" searchkey="jobNumber" show="true" limit="20" readonly="false" required="true"></wm-table-column>
                                                         <wm-table-column binding="rowOperations" caption="Actions" width="40%" edit-widget-type="text" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-table-column>
-                                                        <wm-table-action key="addNewRow" display-name="Add" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false" widget-type="button"></wm-table-action>
-                                                        <wm-table-row-action key="deleterow" display-name="Remove" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-table-row-action>
+                                                        <wm-table-action key="addNewRow" display-name="Add" show="bind:Variables.staticEditMode.dataSet.dataValue" class="btn-primary" iconclass="wi wi-plus" title="Add" action="addNewRow()"
+                                                            shortcutkey="" disabled="false" widget-type="button"></wm-table-action>
+                                                        <wm-table-row-action key="deleterow" display-name="REMOVE" show="bind:Variables.staticEditMode.dataSet.dataValue" class="btn-transparent" iconclass="wi wi-trash" title="Delete"
+                                                            action="deleteRow()" disabled="false"></wm-table-row-action>
                                                     </wm-table>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
@@ -89,15 +127,20 @@
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn17" padding="unset 2%">
                                         <wm-layoutgrid name="layoutgrid5">
                                             <wm-gridrow name="gridrow17">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn26">
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn26">
                                                     <wm-form-field name="refDisciplines" displayname="Discipline" show="true" primary-key="false" generator="assigned" key="refDisciplines" type="list" is-related="true" readonly="false" required="true" widget="select"
                                                         placeholder="Select..." datafield="id" displayfield="discipline" displayexpression="discipline"></wm-form-field>
                                                 </wm-gridcolumn>
+                                                <wm-gridcolumn columnwidth="6" name="gridcolumn24">
+                                                    <wm-form-field name="form_fieldPassword" displayname="Password" widget="text" show="bind:Variables.staticEditMode.dataSet.dataValue" type="custom" placeholder="Enter password..." maxchars="6" autocomplete="false"
+                                                        required="bind:Variables.staticEditMode.dataSet.newUser" inputtype="text" key="form_fieldPassword" width="100%" defaultvalue="bind:Variables.staticGenPass.dataSet.dataValue"></wm-form-field>
+                                                </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow13">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn22_1">
+                                                <wm-gridcolumn columnwidth="9" name="gridcolumn22_1">
                                                     <wm-form-field name="form_fieldUserRoles" displayname="Access Roles" widget="checkboxset" show="bind:Widgets.liveformUsers.formWidgets.active.datavalue == 1" type="custom" dataset="bind:Variables.liveREFRoles.dataSet"
-                                                        datafield="id" displayfield="roleName" height="250px" layout="stacked" required="true" readonly="false" defaultvalue="bind:getRoleIDArray(Variables.liveGetUserRoles.dataSet)" disabled="bind:Variables.staticEditMode.dataSet.dataValue"></wm-form-field>
+                                                        datafield="id" displayfield="roleName" height="250px" layout="stacked" required="false" readonly="false" defaultvalue="bind:getRoleIDArray(Variables.liveGetUserRoles.dataSet)" disabled="bind:Variables.staticEditMode.dataSet.dataValue"
+                                                        key="form_fieldUserRoles" placeholder=""></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
@@ -105,10 +148,12 @@
                                 </wm-gridrow>
                             </wm-layoutgrid>
                             <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
-                            <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" shortcutkey="" disabled="false" type="button" update-mode="true"></wm-form-action>
-                            <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
-                            <wm-form-action key="edit" display-name="Edit" show="true" class="form-update btn-secondary" iconclass="wi wi-pencil" title="Edit" action="edit()" shortcutkey="" disabled="false" type="button" update-mode="false"></wm-form-action>
-                            <wm-form-action key="new" display-name="New" show="true" class="form-new btn-success" iconclass="wi wi-plus" title="New" action="new()" shortcutkey="" disabled="false" type="button" update-mode="false"></wm-form-action>
+                            <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel();cancelAction($event)" shortcutkey="" disabled="false"
+                                type="button" update-mode="true"></wm-form-action>
+                            <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" action="saveAndView()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                            <wm-form-action key="edit" display-name="Edit" show="true" class="form-update btn-secondary" iconclass="wi wi-pencil" title="Edit" action="edit();editAction($event)" shortcutkey="" disabled="false" type="button"
+                                update-mode="false"></wm-form-action>
+                            <wm-form-action key="new" display-name="New" show="true" class="form-new btn-success" iconclass="wi wi-plus" title="New" action="new();newAction($event)" shortcutkey="" disabled="false" type="button" update-mode="false"></wm-form-action>
                         </wm-liveform>
                     </wm-gridcolumn>
                 </wm-gridrow>

@@ -17,6 +17,26 @@ Application.$controller("ToolsUserManagementPageController", ["$scope", function
     };
 
 
+    $scope.GeneratePassword = function() {
+        try {
+            var varPassword = $scope.Widgets.liveformUsers.formWidgets.firstName.datavalue.replace(/\s/g, '') + $scope.Widgets.liveformUsers.formWidgets.lastName.datavalue.charAt(0) + Math.floor(1000 + Math.random() * 9000);
+            $scope.Variables.staticGenPass.setValue("dataValue", varPassword);
+        } catch (err) {
+            console.log("GenPass Info: No Last Name typed yet.");
+        }
+    };
+
+
+    $scope.gridUserSelect = function($event, $isolateScope, $rowData) {
+        if ($scope.Variables.staticEditMode.dataSet.dataValue) {
+            $scope.Variables.staticEditMode.setValue("dataValue", false);
+            //Display changes not saved
+            $scope.Variables.notificationChangesNotSaved.invoke();
+            $scope.Widgets.liveformUsers.cancel();
+        }
+    };
+
+
     $scope.liveformUsersBeforeservicecall = function($event, $operation, $data) {
         //Logic to leave UserCreds alone if password wasn't reset
         if ($scope.Variables.staticResetPassword.dataSet.dataValue) {
@@ -27,9 +47,20 @@ Application.$controller("ToolsUserManagementPageController", ["$scope", function
             $data.tblUserCreds = null;
         }
 
-        //Logic to set RoleID
-
         //Logic to set Password
+        if ($scope.Variables.staticEditMode.getValue("newUser")) {
+
+        }
+
+        //Logic to set RoleID.... This may need be on success.... MAYBE...
+
+    };
+
+
+    $scope.liveformUsersSuccess = function($event, $operation, $data) {
+        $scope.Variables.staticEditMode.setValue("dataValue", false);
+        $scope.Variables.staticEditMode.setValue("newUser", false);
+        $scope.Widgets.filterUser.filter();
     };
 }]);
 
@@ -48,11 +79,50 @@ Application.$controller("liveformUsersController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.gridAssignedJobNumbersBeforerowinsert = function($event, $isolateScope, $rowData) {
+            $rowData.fkUserId = $scope.Widgets.gridUser.selecteditem.id;
+        };
+
+        $scope.editAction = function($event) {
+            $scope.Variables.staticEditMode.setValue("dataValue", true);
+            $scope.Variables.staticGenPass.setValue("dataValue", 'encrypted...');
+        };
+
+        $scope.newAction = function($event) {
+            $scope.Variables.staticEditMode.setValue("dataValue", true);
+            $scope.Variables.staticEditMode.setValue("newUser", true);
+            $scope.Variables.staticGenPass.setValue("dataValue", null);
+        };
+
+        $scope.cancelAction = function($event) {
+            $scope.Variables.staticEditMode.setValue("dataValue", false);
+            $scope.Variables.staticEditMode.setValue("newUser", false);
+        };
+
+        $scope.firstNameKeyup = function($event, $isolateScope) {
+            if ($scope.Variables.staticEditMode.dataSet.newUser) {
+                $scope.$parent.GeneratePassword();
+            }
+        };
+
+        $scope.lastNameKeyup = function($event, $isolateScope) {
+            if ($scope.Variables.staticEditMode.dataSet.newUser) {
+                $scope.$parent.GeneratePassword();
+            }
+        };
     }
 ]);
 
 
 Application.$controller("gridAssignedJobNumbersController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("filterUserController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
