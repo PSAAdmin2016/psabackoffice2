@@ -39,12 +39,14 @@ Application.$controller("ToolsUserManagementPageController", ["$scope", function
 
     $scope.liveformUsersBeforeservicecall = function($event, $operation, $data) {
 
+        //Misc Logic
+        $data.lastModifiedBy = $scope.Variables.loggedInUser.dataSet.id;
+
         //Logic to set Password
         if ($scope.Variables.staticEditMode.getValue("newUser")) {
-            debugger;
-            //$data.tblUserCreds.userId = $data.id;
-            //$data.tblUserCreds.userName = $data.email;
-            //$data.tblUserCreds.password = $data.form_fieldPassword;
+            $data.tblUserCreds = {};
+            $data.tblUserCreds.userName = $data.email;
+            $data.tblUserCreds.password = $data.form_fieldPassword;
         } else if ($data.form_fieldPassword != 'encrypted...') {
             //$data.tblUserCreds.password = $data.form_fieldPassword;
         } else {

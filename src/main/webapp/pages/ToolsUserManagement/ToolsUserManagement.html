@@ -59,7 +59,7 @@
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="9" name="gridcolumn3" horizontalalign="left">
                         <wm-liveform errormessage="" title="Details" iconclass="wi wi-edit" defaultmode="View" dataset="bind:Variables.liveGetUsers.dataSet" captionalign="left" captionposition="top" formdata="bind:Widgets.gridUser.selecteditem" name="liveformUsers"
-                            class="panel-primary" on-beforeservicecall="liveformUsersBeforeservicecall($event, $operation, $data)" on-success="liveformUsersSuccess($event, $operation, $data)">
+                            key="tblUserPsa" class="panel-primary" on-beforeservicecall="liveformUsersBeforeservicecall($event, $operation, $data)" on-success="liveformUsersSuccess($event, $operation, $data)">
                             <wm-layoutgrid columns="3" name="layoutgrid2">
                                 <wm-gridrow name="gridrow12_1">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn15_1" padding="unset 2%">
@@ -73,25 +73,25 @@
                                             <wm-gridrow name="gridrow14_1">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn20">
                                                     <wm-form-field name="firstName" displayname="First Name" show="true" primary-key="false" generator="assigned" key="firstName" type="string" readonly="false" required="true" widget="text" maxchars="32" inputtype="text"
-                                                        placeholder="Enter first name..." on-keyup="firstNameKeyup($event, $scope)" updateon="default"></wm-form-field>
+                                                        placeholder="Enter first name..." on-keyup="firstNameKeyup($event, $scope)" updateon="default" tabindex="1" autofocus="false"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow19">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn27_2">
                                                     <wm-form-field name="lastName" displayname="Last Name" show="true" primary-key="false" generator="assigned" key="lastName" type="string" readonly="false" required="true" widget="text" maxchars="32" inputtype="text"
-                                                        placeholder="Enter last name..." on-keyup="lastNameKeyup($event, $scope)" updateon="default"></wm-form-field>
+                                                        placeholder="Enter last name..." on-keyup="lastNameKeyup($event, $scope)" updateon="default" tabindex="2"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow20">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn28_1">
                                                     <wm-form-field name="nickname" displayname="Nickname" show="true" primary-key="false" generator="assigned" key="nickname" type="string" readonly="false" required="false" widget="text" maxchars="32" inputtype="text"
-                                                        placeholder="Enter Nick Name if applicable..."></wm-form-field>
+                                                        placeholder="Enter Nick Name if applicable..." tabindex="3"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow21">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn29_1">
                                                     <wm-form-field name="email" displayname="Email" show="true" primary-key="false" generator="assigned" key="email" type="string" readonly="false" required="true" widget="text" maxchars="120" inputtype="email"
-                                                        placeholder="Enter email..."></wm-form-field>
+                                                        placeholder="Enter email..." tabindex="4"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
@@ -101,11 +101,11 @@
                                             <wm-gridrow name="gridrow15">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn22">
                                                     <wm-form-field name="tblJobNumbers" displayname="Default Job Number" show="true" primary-key="false" generator="assigned" key="tblJobNumbers" type="list" is-related="true" readonly="false" required="true"
-                                                        widget="autocomplete" displaylabel="jobNumber" searchkey="jobNumber" orderby="jobNumber:desc" placeholder="Search..."></wm-form-field>
+                                                        widget="autocomplete" displaylabel="jobNumber" searchkey="jobNumber" orderby="jobNumber:desc" placeholder="Search..." tabindex="5"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn23_1">
                                                     <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="short" readonly="false" required="true" step="0" widget="radioset" layout="inline"
-                                                        dataset="bind:Variables.staticYesNo.dataSet" datafield="value" displayfield="label" placeholder="" viewmodewidget="default"></wm-form-field>
+                                                        dataset="bind:Variables.staticYesNo.dataSet" datafield="value" displayfield="label" placeholder="" viewmodewidget="default" tabindex="6"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow16" padding="unset 0px">
@@ -129,18 +129,18 @@
                                             <wm-gridrow name="gridrow17">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn26">
                                                     <wm-form-field name="refDisciplines" displayname="Discipline" show="true" primary-key="false" generator="assigned" key="refDisciplines" type="list" is-related="true" readonly="false" required="true" widget="select"
-                                                        placeholder="Select..." datafield="id" displayfield="discipline" displayexpression="discipline"></wm-form-field>
+                                                        placeholder="Select..." datafield="id" displayfield="discipline" displayexpression="discipline" tabindex="7"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn24">
                                                     <wm-form-field name="form_fieldPassword" displayname="Password" widget="text" show="bind:Variables.staticEditMode.dataSet.dataValue" type="custom" placeholder="Enter password..." autocomplete="false" required="bind:Variables.staticEditMode.dataSet.newUser"
-                                                        inputtype="text" key="form_fieldPassword" width="100%" defaultvalue="bind:Variables.staticGenPass.dataSet.dataValue"></wm-form-field>
+                                                        inputtype="text" key="form_fieldPassword" width="100%" defaultvalue="bind:Variables.staticGenPass.dataSet.dataValue" tabindex="8"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow13">
                                                 <wm-gridcolumn columnwidth="9" name="gridcolumn22_1">
                                                     <wm-form-field name="form_fieldUserRoles" displayname="Access Roles" widget="checkboxset" show="bind:Widgets.liveformUsers.formWidgets.active.datavalue == 1" type="custom" dataset="bind:Variables.liveREFRoles.dataSet"
                                                         datafield="id" displayfield="roleName" height="250px" layout="stacked" required="false" readonly="false" defaultvalue="bind:getRoleIDArray(Variables.liveGetUserRoles.dataSet)" disabled="bind:Variables.staticEditMode.dataSet.dataValue"
-                                                        key="form_fieldUserRoles" placeholder=""></wm-form-field>
+                                                        key="form_fieldUserRoles" placeholder="" tabindex="9"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
