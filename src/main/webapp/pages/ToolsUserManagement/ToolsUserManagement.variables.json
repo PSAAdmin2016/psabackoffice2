@@ -1033,7 +1033,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 6,
+    "bindCount" : 7,
     "tableName" : "tblUserPSA",
     "tableType" : "TABLE",
     "properties" : [ "refCrafts", "refDisciplines", "tblJobNumbers", "refCraftClasses" ],

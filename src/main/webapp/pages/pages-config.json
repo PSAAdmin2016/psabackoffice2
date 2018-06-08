@@ -370,10 +370,6 @@
   "type" : "PAGE",
   "params" : [ ]
 }, {
-  "name" : "ToolsMobileUserManagement",
-  "type" : "PAGE",
-  "params" : [ ]
-}, {
   "name" : "ToolsUserManagement",
   "type" : "PAGE",
   "params" : [ ]
@@ -495,10 +491,6 @@
 }, {
   "name" : "leftnavTrackers",
   "type" : "LEFTNAV",
-  "params" : [ ]
-}, {
-  "name" : "leftnavUserManagemen",
-  "type" : "PARTIAL",
   "params" : [ ]
 }, {
   "name" : "rightnav",

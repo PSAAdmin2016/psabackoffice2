@@ -14,11 +14,6 @@
   "roles" : [ "SuperUser", "Site Office-Project Services", "Corp. Office-Site Admin", "Corp. Office-Project Services" ],
   "httpMethod" : null
 }, {
-  "urlPattern" : "/pages/ToolsMobileUserManagement/**",
-  "permission" : "Role",
-  "roles" : [ "SuperUser" ],
-  "httpMethod" : null
-}, {
   "urlPattern" : "/services/PSA/Settings/",
   "permission" : "Role",
   "roles" : [ "CorporateOffice", "SuperUser" ],
