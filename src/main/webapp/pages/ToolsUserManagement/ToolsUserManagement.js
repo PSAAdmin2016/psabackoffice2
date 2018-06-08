@@ -38,18 +38,17 @@ Application.$controller("ToolsUserManagementPageController", ["$scope", function
 
 
     $scope.liveformUsersBeforeservicecall = function($event, $operation, $data) {
-        //Logic to leave UserCreds alone if password wasn't reset
-        if ($scope.Variables.staticResetPassword.dataSet.dataValue) {
-            $data.tblUserCreds.userId = $data.id;
-            $data.tblUserCreds.userName = $data.email;
-            $data.tblUserCreds.password = '';
-        } else if (!$scope.Variables.staticResetPassword.dataSet.dataValue) {
-            $data.tblUserCreds = null;
-        }
 
         //Logic to set Password
         if ($scope.Variables.staticEditMode.getValue("newUser")) {
-
+            debugger;
+            //$data.tblUserCreds.userId = $data.id;
+            //$data.tblUserCreds.userName = $data.email;
+            //$data.tblUserCreds.password = $data.form_fieldPassword;
+        } else if ($data.form_fieldPassword != 'encrypted...') {
+            //$data.tblUserCreds.password = $data.form_fieldPassword;
+        } else {
+            $data.tblUserCreds = null;
         }
 
         //Logic to set RoleID.... This may need be on success.... MAYBE...
