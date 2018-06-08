@@ -30,7 +30,6 @@ Application.$controller("ToolsUserManagementPageController", ["$scope", function
     $scope.gridUserSelect = function($event, $isolateScope, $rowData) {
         if ($scope.Variables.staticEditMode.dataSet.dataValue) {
             $scope.Variables.staticEditMode.setValue("dataValue", false);
-            //Display changes not saved
             $scope.Variables.notificationChangesNotSaved.invoke();
             $scope.Widgets.liveformUsers.cancel();
         }
@@ -38,7 +37,6 @@ Application.$controller("ToolsUserManagementPageController", ["$scope", function
 
 
     $scope.liveformUsersBeforeservicecall = function($event, $operation, $data) {
-
         //Misc Logic
         $data.lastModifiedBy = $scope.Variables.loggedInUser.dataSet.id;
 
@@ -51,6 +49,13 @@ Application.$controller("ToolsUserManagementPageController", ["$scope", function
             //$data.tblUserCreds.password = $data.form_fieldPassword;
         } else {
             $data.tblUserCreds = null;
+        }
+
+        //Logic to handle New user Default Job number
+        if ($scope.Variables.staticEditMode.getValue("newUser")) {
+            $data.tblUserJobNumberses = [];
+            $data.tblUserJobNumberses[0] = {};
+            $data.tblUserJobNumberses[0].fkJobNumber = $data.tblJobNumbers.jobNumber;
         }
 
         //Logic to set RoleID.... This may need be on success.... MAYBE...
@@ -122,6 +127,7 @@ Application.$controller("gridAssignedJobNumbersController", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
 
 Application.$controller("filterUserController", ["$scope",
     function($scope) {

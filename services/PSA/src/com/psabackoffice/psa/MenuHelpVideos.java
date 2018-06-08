@@ -67,7 +67,7 @@ public class MenuHelpVideos implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "menuHelpVideos")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "menuHelpVideos")
     @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
     public List<MenuSubHelpVideos> getMenuSubHelpVideoses() {
         return this.menuSubHelpVideoses;
