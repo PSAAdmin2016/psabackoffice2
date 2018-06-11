@@ -655,7 +655,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 1,
+    "bindCount" : 3,
     "tableName" : "tblUserRoles",
     "tableType" : "TABLE",
     "properties" : [ "refRoles", "tblUserPsa" ],

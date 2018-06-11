@@ -6,7 +6,7 @@ Application.$controller("ToolsUserManagementPageController", ["$scope", function
     };
 
 
-    $scope.getRoleIDArray = function(data) {
+    $scope.buildRoleIDArray = function(data) {
         var varReturn = [];
         if (data) {
             _.forEach(data, function(value, index) {
@@ -46,7 +46,7 @@ Application.$controller("ToolsUserManagementPageController", ["$scope", function
             $data.tblUserCreds.userName = $data.email;
             $data.tblUserCreds.password = $data.form_fieldPassword;
         } else if ($data.form_fieldPassword != 'encrypted...') {
-            //$data.tblUserCreds.password = $data.form_fieldPassword;
+            $data.tblUserCreds.password = $data.form_fieldPassword;
         } else {
             $data.tblUserCreds = null;
         }
@@ -58,8 +58,14 @@ Application.$controller("ToolsUserManagementPageController", ["$scope", function
             $data.tblUserJobNumberses[0].fkJobNumber = $data.tblJobNumbers.jobNumber;
         }
 
-        //Logic to set RoleID.... This may need be on success.... MAYBE...
-
+        //Logic to set RoleID 
+        $data.tblUserRoleses = [];
+        _.forEach($scope.Widgets.liveformUsers.formWidgets.form_fieldUserRoles.datavalue, function(v1) {
+            $data.tblUserRoleses.push({
+                "userId": $scope.Variables.loggedInUser.dataSet.id,
+                "roleId": v1
+            });
+        });
     };
 
 
@@ -81,8 +87,8 @@ Application.$controller("gridUserController", ["$scope",
 ]);
 
 
-Application.$controller("liveformUsersController", ["$scope",
-    function($scope) {
+Application.$controller("liveformUsersController", ["$scope", "$timeout",
+    function($scope, $timeout) {
         "use strict";
         $scope.ctrlScope = $scope;
 
@@ -93,12 +99,16 @@ Application.$controller("liveformUsersController", ["$scope",
         $scope.editAction = function($event) {
             $scope.Variables.staticEditMode.setValue("dataValue", true);
             $scope.Variables.staticGenPass.setValue("dataValue", 'encrypted...');
+            $timeout(function() {
+                $scope.Widgets.liveformUsers.Widgets.form_fieldPassword.datavalue = $scope.Variables.staticGenPass.getValue("dataValue");
+            });
         };
 
         $scope.newAction = function($event) {
             $scope.Variables.staticEditMode.setValue("dataValue", true);
             $scope.Variables.staticEditMode.setValue("newUser", true);
             $scope.Variables.staticGenPass.setValue("dataValue", null);
+            $scope.Variables.liveGetUserRoles.clearData();
         };
 
         $scope.cancelAction = function($event) {
@@ -117,6 +127,7 @@ Application.$controller("liveformUsersController", ["$scope",
                 $scope.$parent.GeneratePassword();
             }
         };
+
     }
 ]);
 

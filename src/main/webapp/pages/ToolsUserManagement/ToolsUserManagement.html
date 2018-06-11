@@ -139,9 +139,9 @@
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow13">
                                                 <wm-gridcolumn columnwidth="9" name="gridcolumn22_1">
-                                                    <wm-form-field name="form_fieldUserRoles" displayname="Access Roles" widget="checkboxset" show="bind:Widgets.liveformUsers.formWidgets.active.datavalue == 1" type="custom" dataset="bind:Variables.liveREFRoles.dataSet"
-                                                        datafield="id" displayfield="roleName" height="250px" layout="stacked" required="false" readonly="false" defaultvalue="bind:getRoleIDArray(Variables.liveGetUserRoles.dataSet)" disabled="bind:Variables.staticEditMode.dataSet.dataValue"
-                                                        key="form_fieldUserRoles" placeholder="" tabindex="9"></wm-form-field>
+                                                    <wm-form-field viewmodewidget="default" name="form_fieldUserRoles" displayname="Access Roles" widget="checkboxset" show="bind:Widgets.liveformUsers.formWidgets.active.datavalue == 1" type="custom" dataset="bind:Variables.liveREFRoles.dataSet"
+                                                        datafield="id" displayfield="roleName" height="250px" layout="stacked" required="false" readonly="bind:!Variables.staticEditMode.dataSet.dataValue" defaultvalue="bind:Variables.liveGetUserRoles.dataSet.data[$i].roleId"
+                                                        disabled="false" key="form_fieldUserRoles" placeholder="" tabindex="9"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
