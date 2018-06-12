@@ -8,12 +8,12 @@
                     <wm-gridcolumn columnwidth="2" name="gridcolumn78_1">
                         <wm-label name="label39_2" caption="Percent Complete (Pipe)" fontweight="bold" fontsize="18" width="100%"></wm-label>
                         <wm-label padding="0em 0em unset 0.5em" caption="bind:&quot;Total Hours: &quot;" margin="unset 0px unset unset" fontweight="bold" name="label43"></wm-label>
-                        <wm-label padding="0em unset unset unset" caption="bind:Variables.serviceGetStatsGroupedFiltered.firstRecord.content[$i].HoursALLMech + Variables.serviceGetStatsGroupedFiltered.firstRecord.content[$i].HoursTesting | toNumber: '2'"
+                        <wm-label padding="unset unset unset 1%" caption="bind:Variables.serviceGetStatsGroupedFiltered.firstRecord.content[$i].HoursALLMech + Variables.serviceGetStatsGroupedFiltered.firstRecord.content[$i].HoursTesting | toNumber: '2'"
                             name="label44"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="10" name="gridcolumn14" padding="0% unset">
                         <wm-progress name="progressJob" maxvalue="100" pollinterval="1000" height="30px" type="success-striped" hint="Over All Job Progress (Mech. &amp; Testing)" datavalue="bind:Variables.serviceGetStatsGroupedFiltered.firstRecord.content[$i].PercentComplete "
-                            margin="0% unset" captionplacement="inside" displayformat="9.999%" class="custom-progress"></wm-progress>
+                            margin=".75% unset unset unset" captionplacement="inside" displayformat="9.999%" class="custom-progress"></wm-progress>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow46_1">
