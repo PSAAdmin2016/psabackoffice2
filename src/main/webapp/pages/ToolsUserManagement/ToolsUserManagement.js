@@ -7,6 +7,7 @@ Application.$controller("ToolsUserManagementPageController", ["$scope", function
 
 
     $scope.buildRoleIDArray = function(data) {
+        debugger
         var varReturn = [];
         if (data) {
             _.forEach(data, function(value, index) {
@@ -74,6 +75,16 @@ Application.$controller("ToolsUserManagementPageController", ["$scope", function
         $scope.Variables.staticEditMode.setValue("newUser", false);
         $scope.Widgets.filterUser.filter();
     };
+
+
+    $scope.liveGetUsersonBeforeUpdate = function(variable, inputData) {
+        inputData.id = {
+            'value': '1',
+            'filterCondition': 'NOT_EQUALS',
+            'type': 'STRING'
+        };
+    };
+
 }]);
 
 
@@ -112,6 +123,10 @@ Application.$controller("liveformUsersController", ["$scope", "$timeout",
         };
 
         $scope.cancelAction = function($event) {
+            if ($scope.Variables.staticEditMode.getValue("newUser")) {
+                $scope.Variables.liveGetUserJobNumbers.clearData();
+                $scope.Widgets.gridAssignedJobNumbers.redraw(true);
+            }
             $scope.Variables.staticEditMode.setValue("dataValue", false);
             $scope.Variables.staticEditMode.setValue("newUser", false);
         };
@@ -127,7 +142,6 @@ Application.$controller("liveformUsersController", ["$scope", "$timeout",
                 $scope.$parent.GeneratePassword();
             }
         };
-
     }
 ]);
 
@@ -136,6 +150,11 @@ Application.$controller("gridAssignedJobNumbersController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.customRowAction = function($event, $rowData) {
+            $scope.Widgets.gridAssignedJobNumbers.saveRow();
+        };
+
     }
 ]);
 

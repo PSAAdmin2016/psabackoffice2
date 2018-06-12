@@ -120,6 +120,8 @@
                                                             shortcutkey="" disabled="false" widget-type="button"></wm-table-action>
                                                         <wm-table-row-action key="deleterow" display-name="REMOVE" show="bind:Variables.staticEditMode.dataSet.dataValue" class="btn-transparent" iconclass="wi wi-trash" title="Delete"
                                                             action="deleteRow()" disabled="false"></wm-table-row-action>
+                                                        <wm-table-row-action key="customRow" display-name="Submit" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Custom rowActions" action="customRowAction($event)"
+                                                            disabled="false"></wm-table-row-action>
                                                     </wm-table>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
