@@ -64,6 +64,9 @@ public class GetEquipStatsResponseContent implements Serializable {
     @ColumnAlias("Elevation")
     private String elevation;
 
+    @ColumnAlias("ComponentNumber")
+    private String componentNumber;
+
     @ColumnAlias("System")
     private String system;
 
@@ -334,6 +337,14 @@ public class GetEquipStatsResponseContent implements Serializable {
 
     public void setElevation(String elevation) {
         this.elevation = elevation;
+    }
+
+    public String getComponentNumber() {
+        return this.componentNumber;
+    }
+
+    public void setComponentNumber(String componentNumber) {
+        this.componentNumber = componentNumber;
     }
 
     public String getSystem() {
@@ -741,6 +752,7 @@ public class GetEquipStatsResponseContent implements Serializable {
                 Objects.equals(getStructure(), getEquipStatsResponseContent.getStructure()) &&
                 Objects.equals(getCu(), getEquipStatsResponseContent.getCu()) &&
                 Objects.equals(getElevation(), getEquipStatsResponseContent.getElevation()) &&
+                Objects.equals(getComponentNumber(), getEquipStatsResponseContent.getComponentNumber()) &&
                 Objects.equals(getSystem(), getEquipStatsResponseContent.getSystem()) &&
                 Objects.equals(getService(), getEquipStatsResponseContent.getService()) &&
                 Objects.equals(getEquipmentType(), getEquipStatsResponseContent.getEquipmentType()) &&
@@ -809,6 +821,7 @@ public class GetEquipStatsResponseContent implements Serializable {
                 getStructure(),
                 getCu(),
                 getElevation(),
+                getComponentNumber(),
                 getSystem(),
                 getService(),
                 getEquipmentType(),

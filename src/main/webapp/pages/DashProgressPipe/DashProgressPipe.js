@@ -3,15 +3,8 @@ Application.$controller("DashProgressPipePageController", ["$scope", function($s
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        /*
-         * variables can be accessed through '$scope.Variables' property here
-         * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
-         * $scope.Variables.loggedInUser.getData()
-         *
-         * widgets can be accessed through '$scope.Widgets' property here
-         * e.g. to get value of text widget named 'username' use following script
-         * '$scope.Widgets.username.datavalue'
-         */
+        $scope.Variables.timerStatsRefresh.delay = $scope.Variables.SettingsApplication.getData().data.find(x => x.label === 'DashUpdateInt').value2;
+        $scope.Variables.timerStatsRefresh.fire();
     };
 
 
@@ -50,17 +43,30 @@ Application.$controller("DashProgressPipePageController", ["$scope", function($s
         $scope.Widgets.panel4.height = '95%';
     };
 
+
     $scope.panel4Exitfullscreen = function($event, $isolateScope) {
         $scope.Widgets.panel4.height = '450px';
     };
 
 
-    $scope.serviceGetUpdateDelayonSuccess = function(variable, data) {
-        $scope.Variables.timerUpdateStats.delay = data.content[0].Interval1;
-        $scope.Variables.timerUpdateStats.fire();
+    $scope.panelHourGroupedFullscreen = function($event, $isolateScope) {
+        $scope.Widgets.panelHourGrouped.height = '95%';
     };
 
+
+    $scope.panelHourGroupedExitfullscreen = function($event, $isolateScope) {
+        $scope.Widgets.panelHourGrouped.height = '350px';
+    };
+
+
+    $scope.selectGroupChange = function($event, $isolateScope, newVal, oldVal) {
+        $scope.Widgets.chartHoursGrouped.setProperty("xaxisdatakey", newVal);
+    };
 }]);
+
+
+
+
 
 Application.$controller("grid2Controller", ["$scope",
     function($scope) {

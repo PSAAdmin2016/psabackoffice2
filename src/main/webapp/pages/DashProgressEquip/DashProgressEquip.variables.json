@@ -26,14 +26,14 @@
     "saveInPhonegap" : false,
     "controller" : "ProcedureExecution"
   },
-  "serviceGetEquipStatsByArea" : {
+  "serviceGetStatsGrouped" : {
     "_id" : "wm-serviceGetEquipStatsByArea-wm.ServiceVariable-1492015216586",
-    "name" : "serviceGetEquipStatsByArea",
+    "name" : "serviceGetStatsGrouped",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "GroupedBy",
-      "value" : "Area",
+      "value" : "bind:Widgets.selectGroup.datavalue",
       "type" : "string"
     }, {
       "target" : "RunMode",
@@ -50,16 +50,16 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "startUpdate" : true,
-    "autoUpdate" : false,
+    "startUpdate" : false,
+    "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "ProcedureExecution"
   },
-  "serviceGetEquipStatsByJob" : {
+  "serviceGetStatsGroupedFiltered" : {
     "_id" : "wm-serviceGetEquipStatsByJob-wm.ServiceVariable-1490639337381",
-    "name" : "serviceGetEquipStatsByJob",
+    "name" : "serviceGetStatsGroupedFiltered",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
@@ -88,29 +88,88 @@
     "saveInPhonegap" : false,
     "controller" : "ProcedureExecution"
   },
-  "serviceGetUpdateDelay" : {
-    "_id" : "wm-serviceGetUpdateDelay-wm.ServiceVariable-1490639278969",
-    "name" : "serviceGetUpdateDelay",
+  "staticGroupings" : {
+    "_id" : "wm-staticGroupings-wm.Variable-1528830398103",
+    "name" : "staticGroupings",
     "owner" : "Page",
-    "category" : "wm.ServiceVariable",
+    "category" : "wm.Variable",
     "dataBinding" : [ ],
-    "type" : "com.psabackoffice.psa.models.query.GetSettingDashUpdateIntResponse",
-    "service" : "PSA",
-    "operation" : "executeGetSettingDashUpdateInt",
-    "operationId" : "QueryExecutionController_executeGetSettingDashUpdateInt",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
+    "dataSet" : [ {
+      "Label" : "Job",
+      "dataValue" : "WBS10",
+      "StupidWMVariableName" : "wbs10"
+    }, {
+      "Label" : "Project Services Rep",
+      "dataValue" : "ProjectServicesRep",
+      "StupidWMVariableName" : "projectServicesRep"
+    }, {
+      "Label" : "Scope",
+      "dataValue" : "Scope",
+      "StupidWMVariableName" : "scope"
+    }, {
+      "Label" : "Phase",
+      "dataValue" : "Phase",
+      "StupidWMVariableName" : "phase"
+    }, {
+      "Label" : "Stage",
+      "dataValue" : "Stage",
+      "StupidWMVariableName" : "stage"
+    }, {
+      "Label" : "Test Package",
+      "dataValue" : "TestPackageNumber",
+      "StupidWMVariableName" : "testPackageNumber"
+    }, {
+      "Label" : "Work Package",
+      "dataValue" : "WorkPackage",
+      "StupidWMVariableName" : "workPackage"
+    }, {
+      "Label" : "Cost Code",
+      "dataValue" : "CostCode",
+      "StupidWMVariableName" : "costCode"
+    }, {
+      "Label" : "P6 ID",
+      "dataValue" : "P6ID",
+      "StupidWMVariableName" : "p6id"
+    }, {
+      "Label" : "Contractor",
+      "dataValue" : "AssignedContractor",
+      "StupidWMVariableName" : "assignedContractor"
+    }, {
+      "Label" : "Area",
+      "dataValue" : "Area",
+      "StupidWMVariableName" : "area"
+    }, {
+      "Label" : "Location",
+      "dataValue" : "Location",
+      "StupidWMVariableName" : "location"
+    }, {
+      "Label" : "Structure",
+      "dataValue" : "Structure",
+      "StupidWMVariableName" : "structure"
+    }, {
+      "Label" : "CU",
+      "dataValue" : "CU",
+      "StupidWMVariableName" : "cu"
+    }, {
+      "Label" : "Elevation",
+      "dataValue" : "Elevation",
+      "StupidWMVariableName" : "elevation"
+    }, {
+      "Label" : "Tag #",
+      "dataValue" : "ComponentNumber",
+      "StupidWMVariableName" : "componentNumber"
+    }, {
+      "Label" : "System",
+      "dataValue" : "System",
+      "StupidWMVariableName" : "system"
+    }, {
+      "Label" : "Service",
+      "dataValue" : "Service",
+      "StupidWMVariableName" : "service"
+    } ],
+    "type" : "string",
     "isList" : true,
-    "maxResults" : 1,
-    "designMaxResults" : 10,
-    "onSuccess" : "serviceGetUpdateDelayonSuccess($event, $scope)",
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
+    "saveInPhonegap" : false
   },
   "timerStatsRefresh" : {
     "_id" : "wm-timerStatsRefresh-wm.TimerVariable-1490639428029",
@@ -120,6 +179,6 @@
     "autoStart" : false,
     "repeating" : true,
     "delay" : 60000,
-    "onTimerFire" : "Variables.serviceGetEquipPCOT.invoke();Variables.serviceGetEquipStatsByJob.invoke()"
+    "onTimerFire" : "Variables.serviceGetEquipPCOT.invoke();Variables.serviceGetStatsGroupedFiltered.invoke()"
   }
 }

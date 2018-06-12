@@ -4946,6 +4946,15 @@
               "list" : false
             }
           }, {
+            "name" : "ComponentNumber",
+            "fieldName" : "componentNumber",
+            "optional" : false,
+            "fieldType" : {
+              "type" : "PRIMITIVE",
+              "typeRef" : "java.lang.String",
+              "list" : false
+            }
+          }, {
             "name" : "System",
             "fieldName" : "system",
             "optional" : false,

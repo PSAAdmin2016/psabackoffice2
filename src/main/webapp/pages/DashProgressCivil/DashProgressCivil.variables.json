@@ -26,9 +26,39 @@
     "saveInPhonegap" : false,
     "controller" : "ProcedureExecution"
   },
-  "serviceGetCivilStatsByJob" : {
+  "serviceGetStatsGrouped" : {
+    "_id" : "wm-serviceGetStatsGrouped-wm.ServiceVariable-1528829426253",
+    "name" : "serviceGetStatsGrouped",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "GroupedBy",
+      "value" : "bind:Widgets.selectGroup.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "RunMode",
+      "value" : "1",
+      "type" : "integer"
+    } ],
+    "type" : "com.psabackoffice.job1111.models.procedure.GetCivilStatsResponse",
+    "service" : "Job1111",
+    "operation" : "executeGetCivilStats",
+    "operationId" : "ProcedureExecutionController_executeGetCivilStats",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "ProcedureExecution"
+  },
+  "serviceGetStatsGroupedFiltered" : {
     "_id" : "wm-serviceGetCivilStatsByJob-wm.ServiceVariable-1482431385612",
-    "name" : "serviceGetCivilStatsByJob",
+    "name" : "serviceGetStatsGroupedFiltered",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
@@ -57,29 +87,67 @@
     "saveInPhonegap" : false,
     "controller" : "ProcedureExecution"
   },
-  "serviceGetUpdateDelay" : {
-    "_id" : "wm-serviceGetUpdateDelay-wm.ServiceVariable-1483556811912",
-    "name" : "serviceGetUpdateDelay",
+  "staticGroupings" : {
+    "_id" : "wm-staticGroupings-wm.Variable-1528829534779",
+    "name" : "staticGroupings",
     "owner" : "Page",
-    "category" : "wm.ServiceVariable",
+    "category" : "wm.Variable",
     "dataBinding" : [ ],
-    "type" : "com.psabackoffice.psa.models.query.GetSettingDashUpdateIntResponse",
-    "service" : "PSA",
-    "operation" : "executeGetSettingDashUpdateInt",
-    "operationId" : "QueryExecutionController_executeGetSettingDashUpdateInt",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
+    "dataSet" : [ {
+      "Label" : "Job",
+      "dataValue" : "WBS10"
+    }, {
+      "Label" : "Project Services Rep",
+      "dataValue" : "ProjectServicesRep"
+    }, {
+      "Label" : "Scope",
+      "dataValue" : "Scope"
+    }, {
+      "Label" : "Phase",
+      "dataValue" : "Phase"
+    }, {
+      "Label" : "Stage",
+      "dataValue" : "Stage"
+    }, {
+      "Label" : "Test Package",
+      "dataValue" : "TestPackageNumber"
+    }, {
+      "Label" : "Work Package",
+      "dataValue" : "WorkPackage"
+    }, {
+      "Label" : "Cost Code",
+      "dataValue" : "CostCode"
+    }, {
+      "Label" : "P6 ID",
+      "dataValue" : "P6ID"
+    }, {
+      "Label" : "Contractor",
+      "dataValue" : "AssignedContractor"
+    }, {
+      "Label" : "Area",
+      "dataValue" : "Area"
+    }, {
+      "Label" : "Location",
+      "dataValue" : "Location"
+    }, {
+      "Label" : "Structure",
+      "dataValue" : "Structure"
+    }, {
+      "Label" : "CU",
+      "dataValue" : "CU"
+    }, {
+      "Label" : "Elevation",
+      "dataValue" : "Elevation"
+    }, {
+      "Label" : "System",
+      "dataValue" : "System"
+    }, {
+      "Label" : "Service",
+      "dataValue" : "Service"
+    } ],
+    "type" : "string",
     "isList" : true,
-    "maxResults" : 1,
-    "designMaxResults" : 10,
-    "onSuccess" : "Javascript",
-    "startUpdate" : true,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
+    "saveInPhonegap" : false
   },
   "timerStatsRefresh" : {
     "_id" : "wm-timerStatsRefresh-wm.TimerVariable-1483556835205",
@@ -89,6 +157,6 @@
     "autoStart" : false,
     "repeating" : true,
     "delay" : 60000,
-    "onTimerFire" : "Variables.serviceGetCivilPCOT.invoke();Variables.serviceGetCivilStatsByJob.invoke()"
+    "onTimerFire" : "Variables.serviceGetCivilPCOT.invoke();Variables.serviceGetStatsGroupedFiltered.invoke()"
   }
 }

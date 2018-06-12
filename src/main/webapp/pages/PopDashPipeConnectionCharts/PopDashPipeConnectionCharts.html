@@ -1,0 +1,115 @@
+<wm-partial data-ng-controller="PopDashPipeConnectionChartsPageController" type="popover" name="partial1">
+    <wm-tile name="tile1" padding="unset 0px" margin="0px" backgroundcolor="#9accd6">
+        <wm-layoutgrid name="layoutgrid4">
+            <wm-gridrow name="gridrow15">
+                <wm-gridcolumn columnwidth="12" name="gridcolumn34" horizontalalign="center">
+                    <wm-label caption="Bolt Up" class="text-uppercase h4" textdecoration="underline" name="label36" margin="unset unset 0em unset" color="#000000" fontweight="bold"></wm-label>
+                </wm-gridcolumn>
+            </wm-gridrow>
+            <wm-gridrow name="gridrow16">
+                <wm-gridcolumn columnwidth="6" name="gridcolumn35" horizontalalign="center">
+                    <wm-label width="100%" caption="Quantity" fontstyle="italic" class="h5" name="label37" margin="unset unset 0px unset"></wm-label>
+                </wm-gridcolumn>
+                <wm-gridcolumn columnwidth="6" name="gridcolumn36" horizontalalign="center">
+                    <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" name="label38" margin="unset unset 0px unset"></wm-label>
+                </wm-gridcolumn>
+            </wm-gridrow>
+            <wm-gridrow name="gridrow17">
+                <wm-gridcolumn columnwidth="6" name="gridcolumn37" horizontalalign="center" padding="0px unset unset unset">
+                    <wm-label width="100%" caption="bind:$parent.$parent.$parent.Variables.serviceGetStatsJob.firstRecord.content[$i].CountBoltUp | numberToString" class="h5" fontweight="bold" name="label39" margin="0px unset"></wm-label>
+                </wm-gridcolumn>
+                <wm-gridcolumn columnwidth="6" name="gridcolumn38" horizontalalign="center" padding="0px unset unset unset">
+                    <wm-label width="100%" caption="bind:$parent.$parent.$parent.Variables.serviceGetStatsJob.firstRecord.content[$i].HoursBoltUp | numberToString: '2'" class="h5" fontweight="bold" name="label40" margin="0px unset"></wm-label>
+                </wm-gridcolumn>
+            </wm-gridrow>
+            <wm-gridrow name="gridrow18">
+                <wm-gridcolumn columnwidth="6" paddingunit="px" name="gridcolumn39" horizontalalign="center">
+                    <wm-chart type="Pie" theme="Mellow" dataset="bind:dataTransformer([
+{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: $parent.$parent.$parent.Variables.serviceGetStatsJob.firstRecord.content[0].RemainingBoltUps  },
+{&quot;Label&quot;:&quot;Installed&quot;,&quot;Value&quot;: $parent.$parent.$parent.Variables.serviceGetStatsJob.firstRecord.content[0].InstalledBoltUps }
+]);" showlegend="false" showlabels="inside" labeltype="percent" height="120" name="chart7" xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r"></wm-chart>
+                </wm-gridcolumn>
+                <wm-gridcolumn columnwidth="6" name="gridcolumn40" horizontalalign="center">
+                    <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([
+{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: $parent.$parent.$parent.Variables.serviceGetStatsJob.firstRecord.content[0].RemainingBoltUpHours },
+{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: $parent.$parent.$parent.Variables.serviceGetStatsJob.firstRecord.content[0].EarnedBoltUpHours }
+]);" name="chart8" xaxisdatakey="Label" yaxisdatakey="Value" ynumberformat=",r"></wm-chart>
+                </wm-gridcolumn>
+            </wm-gridrow>
+        </wm-layoutgrid>
+        <wm-layoutgrid name="layoutgrid3">
+            <wm-gridrow name="gridrow8">
+                <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn11">
+                    <wm-label caption="Screw Joints" class="text-uppercase h4" textdecoration="underline" margin="unset unset 0em unset" color="#000000" fontweight="bold" name="label9"></wm-label>
+                </wm-gridcolumn>
+            </wm-gridrow>
+            <wm-gridrow name="gridrow9">
+                <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn12">
+                    <wm-label width="100%" caption="Quantity" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label10"></wm-label>
+                </wm-gridcolumn>
+                <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn13">
+                    <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label11"></wm-label>
+                </wm-gridcolumn>
+            </wm-gridrow>
+            <wm-gridrow name="gridrow10">
+                <wm-gridcolumn columnwidth="6" horizontalalign="center" padding="0px unset unset unset" name="gridcolumn14">
+                    <wm-label width="100%" caption="bind:$parent.$parent.$parent.Variables.serviceGetStatsJob.firstRecord.content[$i].CountScrewJoint  | numberToString" class="h5" fontweight="bold" margin="0px unset" name="label12"></wm-label>
+                </wm-gridcolumn>
+                <wm-gridcolumn columnwidth="6" horizontalalign="center" padding="0px unset unset unset" name="gridcolumn15">
+                    <wm-label width="100%" caption="bind:$parent.$parent.$parent.Variables.serviceGetStatsJob.firstRecord.content[$i].HoursScrewJoint | numberToString: '2'" class="h5" fontweight="bold" margin="0px unset" name="label13"></wm-label>
+                </wm-gridcolumn>
+            </wm-gridrow>
+            <wm-gridrow name="gridrow11">
+                <wm-gridcolumn columnwidth="6" paddingunit="px" horizontalalign="center" name="gridcolumn16">
+                    <wm-chart type="Pie" theme="Mellow" dataset="bind:dataTransformer([
+{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: $parent.$parent.$parent.Variables.serviceGetStatsJob.firstRecord.content[0].RemainingScrewJoints },
+{&quot;Label&quot;:&quot;Installed&quot;,&quot;Value&quot;: $parent.$parent.$parent.Variables.serviceGetStatsJob.firstRecord.content[0].InstalledScrewJoints }
+]);" showlegend="false" showlabels="inside" labeltype="percent" height="120" xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart6"></wm-chart>
+                </wm-gridcolumn>
+                <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn17">
+                    <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([
+{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: $parent.$parent.$parent.Variables.serviceGetStatsJob.firstRecord.content[0].RemainingScrewJointHours },
+{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: $parent.$parent.$parent.Variables.serviceGetStatsJob.firstRecord.content[0].EarnedScrewJointHours }
+]);" xaxisdatakey="Label" yaxisdatakey="Value" ynumberformat=",r" name="chart7_1"></wm-chart>
+                </wm-gridcolumn>
+            </wm-gridrow>
+        </wm-layoutgrid>
+        <wm-layoutgrid name="layoutgrid4_1">
+            <wm-gridrow name="gridrow12">
+                <wm-gridcolumn columnwidth="12" horizontalalign="center" name="gridcolumn18">
+                    <wm-label caption="Other Connections" class="text-uppercase h4" textdecoration="underline" margin="unset unset 0em unset" color="#000000" fontweight="bold" name="label14"></wm-label>
+                </wm-gridcolumn>
+            </wm-gridrow>
+            <wm-gridrow name="gridrow13">
+                <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn19">
+                    <wm-label width="100%" caption="Quantity" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label15"></wm-label>
+                </wm-gridcolumn>
+                <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn20">
+                    <wm-label width="100%" caption="Hours" fontstyle="italic" class="h5" margin="unset unset 0px unset" name="label16"></wm-label>
+                </wm-gridcolumn>
+            </wm-gridrow>
+            <wm-gridrow name="gridrow14">
+                <wm-gridcolumn columnwidth="6" horizontalalign="center" padding="0px unset unset unset" name="gridcolumn21">
+                    <wm-label width="100%" caption="bind:$parent.$parent.$parent.Variables.serviceGetStatsJob.firstRecord.content[$i].CountOtherConnection | numberToString" class="h5" fontweight="bold" margin="0px unset" name="label17"></wm-label>
+                </wm-gridcolumn>
+                <wm-gridcolumn columnwidth="6" horizontalalign="center" padding="0px unset unset unset" name="gridcolumn22">
+                    <wm-label width="100%" caption="bind:$parent.$parent.$parent.Variables.serviceGetStatsJob.firstRecord.content[$i].HoursOtherConnection | numberToString: '2'" class="h5" fontweight="bold" margin="0px unset" name="label18"></wm-label>
+                </wm-gridcolumn>
+            </wm-gridrow>
+            <wm-gridrow name="gridrow15_1">
+                <wm-gridcolumn columnwidth="6" paddingunit="px" horizontalalign="center" name="gridcolumn23">
+                    <wm-chart type="Pie" theme="Mellow" dataset="bind:dataTransformer([
+{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: $parent.$parent.$parent.Variables.serviceGetStatsJob.firstRecord.content[0].RemainingOtherConnections },
+{&quot;Label&quot;:&quot;Installed&quot;,&quot;Value&quot;: $parent.$parent.$parent.Variables.serviceGetStatsJob.firstRecord.content[0].InstalledOtherConnections }
+]);" showlegend="false" showlabels="inside" labeltype="percent" height="120" xaxisdatakey="Label" yaxisdatakey="Value" marginunit="%" ynumberformat=",r" name="chart8_1"></wm-chart>
+                </wm-gridcolumn>
+                <wm-gridcolumn columnwidth="6" horizontalalign="center" name="gridcolumn24">
+                    <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="inside" labeltype="percent" height="120" dataset="bind:dataTransformer([
+{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: $parent.$parent.$parent.Variables.serviceGetStatsJob.firstRecord.content[0].RemainingOtherConnectionHours },
+{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: $parent.$parent.$parent.Variables.serviceGetStatsJob.firstRecord.content[0].EarnedOtherConnectionHours }
+]);" xaxisdatakey="Label" yaxisdatakey="Value" ynumberformat=",r" name="chart9"></wm-chart>
+                </wm-gridcolumn>
+            </wm-gridrow>
+        </wm-layoutgrid>
+    </wm-tile>
+</wm-partial>

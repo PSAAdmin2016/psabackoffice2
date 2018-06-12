@@ -280,6 +280,10 @@
   "type" : "PARTIAL",
   "params" : [ ]
 }, {
+  "name" : "PopDashPipeConnectionCharts",
+  "type" : "POPOVER",
+  "params" : [ ]
+}, {
   "name" : "PopDashPipeTestingCharts",
   "type" : "POPOVER",
   "params" : [ ]
