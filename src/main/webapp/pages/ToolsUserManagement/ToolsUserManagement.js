@@ -78,11 +78,16 @@ Application.$controller("ToolsUserManagementPageController", ["$scope", function
 
 
     $scope.liveGetUsersonBeforeUpdate = function(variable, inputData) {
-        inputData.id = {
-            'value': '1',
-            'filterCondition': 'NOT_EQUALS',
-            'type': 'STRING'
-        };
+        try {
+            inputData.id = {
+                'value': 10,
+                'filterCondition': 'GREATER_THAN',
+                'type': 'INTEGER'
+            };
+        } catch (e) {
+            console.log('liveGetUsersonBeforeUpdate: ' + e);
+        }
+
     };
 
 }]);
