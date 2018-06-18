@@ -147,8 +147,7 @@
                     <wm-gridcolumn columnwidth="9" name="gridcolumn50">
                         <wm-panel iconclass="wi wi-line-chart" height="450px" collapsible="false" enablefullscreen="true" title="Percent Complete (Equip-Hours)" on-fullscreen="panel1Fullscreen($event, $isolateScope)" on-exitfullscreen="panel1Exitfullscreen($event, $isolateScope)"
                             name="panel1">
-                            <wm-chart type="Line" title="" iconclass="wi wi-line-chart" height="100%" dataset="bind:Variables.serviceGetEquipPCOT.dataSet.content" xdateformat="%x" yunits="%" ynumberformat=".2f" showlegend="hide" name="chart11" xaxisdatakey="earnedDate"
-                                yaxisdatakey="totalPercentComplete"></wm-chart>
+                            <wm-chart type="Line" title="" iconclass="wi wi-line-chart" height="100%" dataset="bind:Variables.serviceGetEquipPCOT.dataSet.content" xdateformat="%x" yunits="%" ynumberformat=".2f" showlegend="hide" name="chart11" xaxisdatakey="earnedDate" yaxisdatakey="totalPercentComplete"></wm-chart>
                         </wm-panel>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="3" name="gridcolumn51">
@@ -172,17 +171,16 @@
                             </wm-gridrow>
                             <wm-gridrow name="gridrow27">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn54">
-                                    <wm-panel class="panel-default" collapsible="false" showheader="true" title="bind:&quot;Hours Breakdown (&quot; + Widgets.selectGroup.displayValue + &quot;)&quot;" height="350px" name="panelHourGrouped" borderwidth="0em"
-                                        margin="1% 0% unset 0%" padding="1em" enablefullscreen="true" on-fullscreen="panelHourGroupedFullscreen($event, $isolateScope)" on-exitfullscreen="panelHourGroupedExitfullscreen($event, $isolateScope)">
+                                    <wm-panel class="panel-default" collapsible="false" showheader="true" title="bind:&quot;Hours Breakdown (&quot; + Widgets.selectGroup.displayValue + &quot;)&quot;" height="350px" name="panelHourGrouped" borderwidth="0em" margin="1% 0% unset 0%" padding="1em"
+                                        enablefullscreen="true" on-fullscreen="panelHourGroupedFullscreen($event, $isolateScope)" on-exitfullscreen="panelHourGroupedExitfullscreen($event, $isolateScope)">
                                         <wm-composite name="compositeGroupBy" width="60%" height="10%">
                                             <wm-label class="col-md-3 control-label" name="label39_1" caption="Group By:"></wm-label>
                                             <wm-container class="col-md-9" name="container1">
-                                                <wm-select name="selectGroup" dataset="bind:Variables.staticGroupings.dataSet" datafield="StupidWMVariableName" displayfield="Label" on-change="selectGroupChange($event, $scope, newVal, oldVal)" datavalue="area"
-                                                    orderby="Label:asc" placeholder="Select Group..."></wm-select>
+                                                <wm-select name="selectGroup" dataset="bind:Variables.staticGroupings.dataSet" datafield="StupidWMVariableName" displayfield="Label" on-change="selectGroupChange($event, $scope, newVal, oldVal)" datavalue="area" orderby="Label:asc" placeholder="Select Group..."></wm-select>
                                             </wm-container>
                                         </wm-composite>
-                                        <wm-chart type="Donut" theme="Terrestrial" xaxislabel="Bob Areas" yaxislabel="Count Bobs" ynumberformat=".1f" showlegend="true" height="85%" name="chartHoursGrouped" dataset="bind:Variables.serviceGetStatsGrouped.dataSet.content"
-                                            backgroundcolor="#fbfbfb" centerlabel="bind:Widgets.selectGroup.displayValue" xaxisdatakey="area" yaxisdatakey="hoursAll"></wm-chart>
+                                        <wm-chart type="Donut" theme="Terrestrial" xaxislabel="Areas" yaxislabel="Count" ynumberformat=".1f" showlegend="true" height="85%" name="chartHoursGrouped" dataset="bind:Variables.serviceGetStatsGrouped.dataSet.content" backgroundcolor="#fbfbfb" centerlabel="bind:Widgets.selectGroup.displayValue"
+                                            xaxisdatakey="area" yaxisdatakey="hoursAll"></wm-chart>
                                     </wm-panel>
                                 </wm-gridcolumn>
                             </wm-gridrow>

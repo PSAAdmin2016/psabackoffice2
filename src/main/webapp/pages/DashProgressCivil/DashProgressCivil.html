@@ -13,8 +13,7 @@
                     <wm-gridcolumn columnwidth="2" name="gridcolumn8">
                         <wm-label caption="Percent Complete (Civil)" fontweight="bold" fontsize="18" width="100%" name="label2"></wm-label>
                         <wm-label padding="0em 0em unset 0.5em" caption="bind:&quot;Total Hours: &quot;" margin="unset 0px unset unset" fontweight="bold" name="label3"></wm-label>
-                        <wm-label padding="0% unset unset 1%" caption="bind:Variables.serviceGetStatsGroupedFiltered.firstRecord.content[$i].HoursAllCivil + Variables.serviceGetStatsGroupedFiltered.firstRecord.content[$i].HoursSellPunch | numberToString: '2'"
-                            name="label4"></wm-label>
+                        <wm-label padding="0% unset unset 1%" caption="bind:Variables.serviceGetStatsGroupedFiltered.firstRecord.content[$i].HoursAllCivil + Variables.serviceGetStatsGroupedFiltered.firstRecord.content[$i].HoursSellPunch | numberToString: '2'" name="label4"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="10" name="gridcolumn9">
                         <wm-progress maxvalue="100" pollinterval="1000" height="30px" type="success-striped" hint="Over All Job Progress (Civil &amp; Testing)" datavalue="bind:Variables.serviceGetStatsGroupedFiltered.firstRecord.content[$i].PercentComplete | numberToString: '2'"
@@ -340,8 +339,8 @@
                     <wm-gridcolumn columnwidth="9" name="gridcolumn7">
                         <wm-panel iconclass="wi wi-line-chart" height="450px" collapsible="false" enablefullscreen="true" title="Percent Complete (Civil-Hours)" on-fullscreen="panel1Fullscreen($event, $isolateScope)" on-exitfullscreen="panel1Exitfullscreen($event, $isolateScope)"
                             name="panel1">
-                            <wm-chart type="Line" title="" iconclass="wi wi-line-chart" height="100%" dataset="bind:Variables.serviceGetCivilPCOT.dataSet[$i].content" xdateformat="%x" yunits="%" ynumberformat=".2f" showlegend="hide" name="chart17" customcolors="#000000"
-                                xaxisdatakey="EarnedDate" yaxisdatakey="TotalPercentComplete"></wm-chart>
+                            <wm-chart type="Line" title="" iconclass="wi wi-line-chart" height="100%" dataset="bind:Variables.serviceGetCivilPCOT.dataSet[$i].content" xdateformat="%x" yunits="%" ynumberformat=".2f" showlegend="hide" name="chart17" customcolors="#000000" xaxisdatakey="EarnedDate"
+                                yaxisdatakey="TotalPercentComplete"></wm-chart>
                         </wm-panel>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="3" name="gridcolumn242">
@@ -375,17 +374,16 @@
                             </wm-gridrow>
                             <wm-gridrow name="gridrow44">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn85">
-                                    <wm-panel class="panel-default" collapsible="false" showheader="true" title="bind:&quot;Hours Breakdown (&quot; + Widgets.selectGroup.displayValue + &quot;)&quot;" height="350px" name="panelHourGrouped" borderwidth="0em"
-                                        margin="1% 0% unset 0%" padding="1em" enablefullscreen="true" on-fullscreen="panelHourGroupedFullscreen($event, $isolateScope)" on-exitfullscreen="panelHourGroupedExitfullscreen($event, $isolateScope)">
+                                    <wm-panel class="panel-default" collapsible="false" showheader="true" title="bind:&quot;Hours Breakdown (&quot; + Widgets.selectGroup.displayValue + &quot;)&quot;" height="350px" name="panelHourGrouped" borderwidth="0em" margin="1% 0% unset 0%" padding="1em"
+                                        enablefullscreen="true" on-fullscreen="panelHourGroupedFullscreen($event, $isolateScope)" on-exitfullscreen="panelHourGroupedExitfullscreen($event, $isolateScope)">
                                         <wm-composite name="compositeGroupBy" width="60%" height="10%">
                                             <wm-label class="col-md-3 control-label" name="label39_1" caption="Group By:"></wm-label>
                                             <wm-container class="col-md-9" name="container1">
-                                                <wm-select name="selectGroup" dataset="bind:Variables.staticGroupings.dataSet" datafield="dataValue" on-change="selectGroupChange($event, $scope, newVal, oldVal)" datavalue="Area" placeholder="Select Group..."
-                                                    displayfield="Label" orderby="Label:asc"></wm-select>
+                                                <wm-select name="selectGroup" dataset="bind:Variables.staticGroupings.dataSet" datafield="dataValue" on-change="selectGroupChange($event, $scope, newVal, oldVal)" datavalue="Area" placeholder="Select Group..." displayfield="Label" orderby="Label:asc"></wm-select>
                                             </wm-container>
                                         </wm-composite>
-                                        <wm-chart type="Donut" theme="Terrestrial" xaxislabel="Bob Areas" yaxislabel="Count Bobs" ynumberformat=".1f" showlegend="true" height="85%" name="chartHoursGrouped" dataset="bind:Variables.serviceGetStatsGrouped.dataSet[$i].content"
-                                            backgroundcolor="#fbfbfb" centerlabel="bind:Widgets.selectGroup.displayValue" xaxisdatakey="Area" yaxisdatakey="HoursAllCivil"></wm-chart>
+                                        <wm-chart type="Donut" theme="Terrestrial" xaxislabel="Areas" yaxislabel="Count" ynumberformat=".1f" showlegend="true" height="85%" name="chartHoursGrouped" dataset="bind:Variables.serviceGetStatsGrouped.dataSet[$i].content" backgroundcolor="#fbfbfb"
+                                            centerlabel="bind:Widgets.selectGroup.displayValue" xaxisdatakey="Area" yaxisdatakey="HoursAllCivil"></wm-chart>
                                     </wm-panel>
                                 </wm-gridcolumn>
                             </wm-gridrow>
