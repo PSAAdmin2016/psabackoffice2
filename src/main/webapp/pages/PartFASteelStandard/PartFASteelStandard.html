@@ -14,7 +14,7 @@
                     <wm-table-column binding="pieceMark" caption="Piece#" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
                     <wm-table-column binding="activityType" caption="Activity Type" width="10%" edit-widget-type="text" type="string" readonly="true" show="true"></wm-table-column>
                     <wm-table-column binding="faquantity" caption="Quantity" width="7%" edit-widget-type="number" type="string" show="true" readonly="false"></wm-table-column>
-                    <wm-table-column binding="fapercentCompleted" caption="Percent" width="7%" edit-widget-type="select" type="string" dataset="bind:Variables.staticPercentListQuarter.dataSet" datafield="dataValue" displayfield="label"
+                    <wm-table-column binding="fapercentCompleted" caption="Percent" width="7%" edit-widget-type="select" type="string" dataset="bind:Variables.PSARefPercentListData.dataSet" datafield="decimalValue" displayfield="label"
                         show="true" readonly="false" required="true">{{(row.fapercentCompleted * 100) + "%"}}</wm-table-column>
                     <wm-table-column binding="farework" caption="Rework" widget-type="checkbox" width="3%" edit-widget-type="checkbox" type="string" show="true" checkedvalue="1" uncheckedvalue="0"
                         readonly="false">
