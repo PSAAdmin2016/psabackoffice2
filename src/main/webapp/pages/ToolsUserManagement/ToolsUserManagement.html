@@ -132,7 +132,7 @@
                                             <wm-gridrow name="gridrow17">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn26">
                                                     <wm-form-field name="refDisciplines" displayname="Discipline" show="true" primary-key="false" generator="assigned" key="refDisciplines" type="list" is-related="true" readonly="false" required="true" widget="select"
-                                                        placeholder="Select..." datafield="id" displayfield="discipline" displayexpression="discipline" tabindex="7"></wm-form-field>
+                                                        placeholder="Select..." datafield="id" displayfield="discipline" displayexpression="discipline" tabindex="7" on-change="refDisciplinesChange($event, $scope, newVal, oldVal)"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn24">
                                                     <wm-form-field name="form_fieldPassword" displayname="Password" widget="text" show="bind:Variables.staticEditMode.dataSet.dataValue" type="custom" placeholder="Enter password..." autocomplete="false" required="bind:Variables.staticEditMode.dataSet.newUser"
@@ -141,9 +141,10 @@
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow13">
                                                 <wm-gridcolumn columnwidth="9" name="gridcolumn22_1">
-                                                    <wm-form-field viewmodewidget="default" name="form_fieldUserRoles" displayname="Access Roles" widget="checkboxset" show="bind:Widgets.liveformUsers.formWidgets.active.datavalue == 1" type="custom" dataset="bind:Variables.liveREFRoles.dataSet"
-                                                        datafield="id" displayfield="roleName" height="250px" layout="stacked" required="false" readonly="bind:!Variables.staticEditMode.dataSet.dataValue" defaultvalue="bind:Variables.liveGetUserRoles.dataSet.data[$i].roleId"
-                                                        disabled="false" key="form_fieldUserRoles" placeholder="" tabindex="9"></wm-form-field>
+                                                    <wm-spinner show="true" name="spinnerRoles" iconclass="fa fa-gear" caption="" servicevariabletotrack="liveGetUserRoles"></wm-spinner>
+                                                    <wm-form-field viewmodewidget="default" name="form_fieldUserRoles" displayname="Access Roles" widget="checkboxset" show="bind:Widgets.liveformUsers.formWidgets.active.datavalue == 1" type="custom"
+                                                        dataset="bind:Variables.liveREFRoles.dataSet" datafield="id" displayfield="roleName" height="250px" layout="stacked" required="false" readonly="bind:!Variables.staticEditMode.dataSet.dataValue" disabled="false"
+                                                        key="form_fieldUserRoles" placeholder="" tabindex="9"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>

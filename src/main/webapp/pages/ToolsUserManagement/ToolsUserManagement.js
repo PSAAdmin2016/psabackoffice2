@@ -5,19 +5,6 @@ Application.$controller("ToolsUserManagementPageController", ["$scope", function
 
     };
 
-
-    $scope.buildRoleIDArray = function(data) {
-        debugger
-        var varReturn = [];
-        if (data) {
-            _.forEach(data, function(value, index) {
-                varReturn.push(value.roleId);
-            });
-        }
-        return varReturn;
-    };
-
-
     $scope.GeneratePassword = function() {
         try {
             var varPassword = $scope.Widgets.liveformUsers.formWidgets.firstName.datavalue.replace(/\s/g, '') + $scope.Widgets.liveformUsers.formWidgets.lastName.datavalue.charAt(0) + Math.floor(1000 + Math.random() * 9000);
@@ -90,6 +77,24 @@ Application.$controller("ToolsUserManagementPageController", ["$scope", function
 
     };
 
+
+    $scope.liveGetUserRolesonSuccess = function(variable, data) {
+        $scope.Widgets.liveformUsers.formfields.form_fieldUserRoles.value = _.map(data, 'refRoles.id');
+    };
+
+
+    $scope.liveREFRolesonBeforeUpdate = function(variable, inputData) {
+        try {
+            inputData.id = {
+                'value': 1,
+                'filterCondition': 'GREATER_THAN',
+                'type': 'INTEGER'
+            };
+        } catch (e) {
+            console.log('liveREFRolesonBeforeUpdate: ' + e);
+        }
+    };
+
 }]);
 
 
@@ -134,6 +139,7 @@ Application.$controller("liveformUsersController", ["$scope", "$timeout",
             }
             $scope.Variables.staticEditMode.setValue("dataValue", false);
             $scope.Variables.staticEditMode.setValue("newUser", false);
+            $scope.Widgets.liveformUsers.formfields.form_fieldUserRoles.value = _.map($scope.Variables.liveGetUserRoles.dataSet.data, 'refRoles.id');
         };
 
         $scope.firstNameKeyup = function($event, $isolateScope) {
@@ -147,6 +153,7 @@ Application.$controller("liveformUsersController", ["$scope", "$timeout",
                 $scope.$parent.GeneratePassword();
             }
         };
+
     }
 ]);
 
