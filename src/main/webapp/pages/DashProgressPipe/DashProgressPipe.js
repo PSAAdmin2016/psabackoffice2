@@ -50,6 +50,7 @@ Application.$controller("DashProgressPipePageController", ["$scope", function($s
 
 
     $scope.panelHourGroupedFullscreen = function($event, $isolateScope) {
+        //Currently Disable due to donut resize bug.  WM Ticket# 13331
         $scope.Widgets.panelHourGrouped.height = '95%';
     };
 

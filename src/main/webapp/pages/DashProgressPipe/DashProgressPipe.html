@@ -8,7 +8,8 @@
                     <wm-gridcolumn columnwidth="2" name="gridcolumn78_1">
                         <wm-label name="label39_2" caption="Percent Complete (Pipe)" fontweight="bold" fontsize="18" width="100%"></wm-label>
                         <wm-label padding="0em 0em unset 0.5em" caption="bind:&quot;Total Hours: &quot;" margin="unset 0px unset unset" fontweight="bold" name="label43"></wm-label>
-                        <wm-label padding="unset unset unset 1%" caption="bind:Variables.serviceGetStatsGroupedFiltered.firstRecord.content[$i].HoursALLMech + Variables.serviceGetStatsGroupedFiltered.firstRecord.content[$i].HoursTesting | toNumber: '2'" name="label44"></wm-label>
+                        <wm-label padding="unset unset unset 1%" caption="bind:Variables.serviceGetStatsGroupedFiltered.firstRecord.content[$i].HoursALLMech + Variables.serviceGetStatsGroupedFiltered.firstRecord.content[$i].HoursTesting | toNumber: '2'"
+                            name="label44"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="10" name="gridcolumn14" padding="0% unset">
                         <wm-progress name="progressJob" maxvalue="100" pollinterval="1000" height="30px" type="success-striped" hint="Over All Job Progress (Mech. &amp; Testing)" datavalue="bind:Variables.serviceGetStatsGroupedFiltered.firstRecord.content[$i].PercentComplete "
@@ -58,7 +59,8 @@
                                 <wm-gridrow name="gridrow15">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn34" horizontalalign="center">
                                         <wm-label width="90%" caption="Connections" class="text-uppercase h4" textdecoration="underline" name="label36" margin="unset unset 0em unset" color="#000000" fontweight="bold"></wm-label>
-                                        <wm-popover popoverwidth="240" caption="" iconclass="fa fa-expand" color="#000000" content="PopDashPipeConnectionCharts" horizontalalign="right" width="10%" popoverplacement="bottom" padding="0px unset" name="popover2"></wm-popover>
+                                        <wm-popover popoverwidth="240" caption="" iconclass="fa fa-expand" color="#000000" content="PopDashPipeConnectionCharts" horizontalalign="right" width="10%" popoverplacement="bottom" padding="0px unset"
+                                            name="popover2"></wm-popover>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow16">
@@ -116,8 +118,8 @@
                                         <wm-label width="100%" caption="bind:Variables.serviceGetStatsGroupedFiltered.firstRecord.content[$i].CountWeld | toNumber" class="h5" fontweight="bold" name="label34_1" margin="0px unset" hint="Welds Only"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn31" horizontalalign="center" padding="0px unset unset unset">
-                                        <wm-label width="100%" caption="bind:(Variables.serviceGetStatsGroupedFiltered.firstRecord.content[$i].HoursWeld + Variables.serviceGetStatsGroupedFiltered.firstRecord.content[$i].HoursCut) | toNumber: '2'" class="h5" fontweight="bold" name="label35_1"
-                                            margin="0px unset" hint="Weld &amp; Cut/Prep Hours"></wm-label>
+                                        <wm-label width="100%" caption="bind:(Variables.serviceGetStatsGroupedFiltered.firstRecord.content[$i].HoursWeld + Variables.serviceGetStatsGroupedFiltered.firstRecord.content[$i].HoursCut) | toNumber: '2'" class="h5"
+                                            fontweight="bold" name="label35_1" margin="0px unset" hint="Weld &amp; Cut/Prep Hours"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow14">
@@ -200,7 +202,8 @@
                                 <wm-gridrow name="gridrow44_1">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn83_2" padding="0px 0px unset 0px">
                                         <wm-label name="label40_2" caption="RFT" hint="Ready For Testing Hours" fontsize="9" padding="0px unset" margin="0px unset 0px 2px" color="#000000" width="46%"></wm-label>
-                                        <wm-popover popoverwidth="240" popoverheight="444" name="popover1" caption="" iconclass="fa fa-expand" color="#000000" content="PopDashPipeTestingCharts" horizontalalign="right" width="50%" popoverplacement="left" padding="0px unset"></wm-popover>
+                                        <wm-popover popoverwidth="240" popoverheight="444" name="popover1" caption="" iconclass="fa fa-expand" color="#000000" content="PopDashPipeTestingCharts" horizontalalign="right" width="50%" popoverplacement="left"
+                                            padding="0px unset"></wm-popover>
                                         <wm-chart type="Pie" theme="Mellow" showlegend="false" showlabels="hide" labeltype="percent" height="58" dataset="bind:dataTransformer([{&quot;Label&quot;:&quot;Remaining&quot;,&quot;Value&quot;: Variables.serviceGetStatsGroupedFiltered.dataSet[0].content[0].RemainingReadyForTestingHours },{&quot;Label&quot;:&quot;Earned&quot;,&quot;Value&quot;: Variables.serviceGetStatsGroupedFiltered.dataSet[0].content[0].EarnedReadyForTestingHours }]);"
                                             name="chart20_1" xaxisdatakey="Label" yaxisdatakey="Value" ynumberformat=",r" offsettop="5"></wm-chart>
                                     </wm-gridcolumn>
@@ -225,10 +228,10 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow8" padding="0em .5em">
                     <wm-gridcolumn columnwidth="9" name="gridcolumn13_1" horizontalalign="left" padding=".5em">
-                        <wm-panel class="panel-default" collapsible="false" showheader="true" name="panel5" title="Percent Complete (Pipe-Hours)" horizontalalign="center" height="450px" borderwidth="0em" margin="0em" padding="1em" enablefullscreen="true" on-fullscreen="panel5Fullscreen($event, $isolateScope)"
-                            on-exitfullscreen="panel5Exitfullscreen($event, $isolateScope)" expanded="true" iconclass="wi wi-line-chart">
-                            <wm-chart type="Line" name="chartCompleteOverTimeByJob" yaxislabeldistance="1" xaxislabel="Date" yaxislabel="Percent Complete" showlegend="false" xdigits="1" marginunit="em" theme="Terrestrial" ynumberformat=".2f" xdateformat="%x" height="100%" legendtype="furious"
-                                captions="true" ydigits="0" dataset="bind:Variables.serviceGetPCOT.dataSet[$i].content" backgroundcolor="#fbfbfb" customcolors="#000000" xaxisdatakey="EarnedDate" yaxisdatakey="TotalPercentComplete"></wm-chart>
+                        <wm-panel class="panel-default" collapsible="false" showheader="true" name="panel5" title="Percent Complete (Pipe-Hours)" horizontalalign="center" height="450px" borderwidth="0em" margin="0em" padding="1em" enablefullscreen="true"
+                            on-fullscreen="panel5Fullscreen($event, $isolateScope)" on-exitfullscreen="panel5Exitfullscreen($event, $isolateScope)" expanded="true" iconclass="wi wi-line-chart">
+                            <wm-chart type="Line" name="chartCompleteOverTimeByJob" yaxislabeldistance="1" xaxislabel="Date" yaxislabel="Percent Complete" showlegend="false" xdigits="1" marginunit="em" theme="Terrestrial" ynumberformat=".2f" xdateformat="%x"
+                                height="100%" legendtype="furious" captions="true" ydigits="0" dataset="bind:Variables.serviceGetPCOT.dataSet[$i].content" backgroundcolor="#fbfbfb" customcolors="#000000" xaxisdatakey="EarnedDate" yaxisdatakey="TotalPercentComplete"></wm-chart>
                         </wm-panel>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="3" name="gridcolumn10" padding=".5em">
@@ -247,16 +250,17 @@
 {&quot;Label&quot;:&quot;Testing&quot;,&quot;Value&quot;: Variables.serviceGetStatsGroupedFiltered.firstRecord.content[0].HoursTesting }
 ]);" xaxisdatakey="Label" yaxisdatakey="Value" height="100%" offsettop="25" centerlabel="Activity" customcolors="#b4e7dc,#9accd6,#9accd6,#9accd6,#2c9de4,#1290df,#df8814,#ddaa66,#ff7d7d,#e9c698,#2db457"></wm-chart>
                         </wm-panel>
-                        <wm-panel class="panel-default" collapsible="false" showheader="true" title="bind:&quot;Hours Breakdown (&quot; + Widgets.selectGroup.displayValue + &quot;)&quot;" height="350px" name="panelHourGrouped" borderwidth="0em" margin="1% 0% unset 0%" padding="1em"
-                            enablefullscreen="true" on-fullscreen="panelHourGroupedFullscreen($event, $isolateScope)" on-exitfullscreen="panelHourGroupedExitfullscreen($event, $isolateScope)">
+                        <wm-panel class="panel-default" collapsible="false" showheader="true" title="bind:&quot;Hours Breakdown (&quot; + Widgets.selectGroup.displayValue + &quot;)&quot;" height="350px" name="panelHourGrouped" borderwidth="0em" margin="1% 0% unset 0%"
+                            padding="1em" enablefullscreen="false" on-fullscreen="panelHourGroupedFullscreen($event, $isolateScope)" on-exitfullscreen="panelHourGroupedExitfullscreen($event, $isolateScope)">
                             <wm-composite name="compositeGroupBy" width="60%" height="10%">
                                 <wm-label class="col-md-3 control-label" name="label39_1" caption="Group By:"></wm-label>
                                 <wm-container class="col-md-9" name="container1">
-                                    <wm-select name="selectGroup" dataset="bind:Variables.staticGroupings.dataSet" datafield="dataValue" displayfield="Label" on-change="selectGroupChange($event, $scope, newVal, oldVal)" datavalue="Area" orderby="Label:asc" placeholder="Select Group..."></wm-select>
+                                    <wm-select name="selectGroup" dataset="bind:Variables.staticGroupings.dataSet" datafield="dataValue" displayfield="Label" on-change="selectGroupChange($event, $scope, newVal, oldVal)" datavalue="Area" orderby="Label:asc"
+                                        placeholder="Select Group..."></wm-select>
                                 </wm-container>
                             </wm-composite>
-                            <wm-chart type="Donut" theme="Terrestrial" xaxislabel="Areas" yaxislabel="Count" ynumberformat=".1f" showlegend="true" height="85%" name="chartHoursGrouped" dataset="bind:Variables.serviceGetStatsGrouped.dataSet[$i].content" backgroundcolor="#fbfbfb"
-                                centerlabel="bind:Widgets.selectGroup.displayValue" xaxisdatakey="Area" yaxisdatakey="HoursAll" show="true"></wm-chart>
+                            <wm-chart type="Donut" theme="Terrestrial" xaxislabel="Areas" yaxislabel="Count" ynumberformat=".1f" showlegend="true" height="85%" name="chartHoursGrouped" dataset="bind:Variables.serviceGetStatsGrouped.dataSet[$i].content"
+                                backgroundcolor="#fbfbfb" centerlabel="bind:Widgets.selectGroup.displayValue" xaxisdatakey="Area" yaxisdatakey="HoursAll" show="true"></wm-chart>
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
@@ -267,8 +271,8 @@
                     <wm-gridcolumn columnwidth="9" name="gridcolumn83_1">
                         <wm-panel name="panel4" title="Percent Complete (by Activity)" height="450px" collapsible="false" enablefullscreen="true" show="true" accessroles="Everyone" on-fullscreen="panel4Fullscreen($event, $isolateScope)" on-exitfullscreen="panel4Exitfullscreen($event, $isolateScope)">
                             <wm-panel-footer name="panel_footer1"></wm-panel-footer>
-                            <wm-chart type="Line" name="chart20" height="100%" yaxislabel="Percent Complete" xaxislabel="Date" ynumberformat=".2f" backgroundcolor="#fbfbfb" staggerlabels="true" dataset="bind:Variables.serviceGetPCOT.dataSet[$i].content" xdateformat="%x" customcolors="#9accd6,#1290df,#ff7d7d,#b4e7dc,#e9c698,#df8814,#2db457,#000000,#ddaa66,#2c9de4"
-                                xaxisdatakey="EarnedDate" yaxisdatakey="BoltUpPercentComplete,CutPercentComplete,DemoPercentComplete,ErectionPercentComplete,MiscPercentComplete,SupportPercentComplete,TestingPercentComplete,TotalPercentComplete,TrimPercentComplete,WeldPercentComplete"></wm-chart>
+                            <wm-chart type="Line" name="chart20" height="100%" yaxislabel="Percent Complete" xaxislabel="Date" ynumberformat=".2f" backgroundcolor="#fbfbfb" staggerlabels="true" dataset="bind:Variables.serviceGetPCOT.dataSet[$i].content"
+                                xdateformat="%x" customcolors="#9accd6,#1290df,#ff7d7d,#b4e7dc,#e9c698,#df8814,#2db457,#000000,#ddaa66,#2c9de4" xaxisdatakey="EarnedDate" yaxisdatakey="BoltUpPercentComplete,CutPercentComplete,DemoPercentComplete,ErectionPercentComplete,MiscPercentComplete,SupportPercentComplete,TestingPercentComplete,TotalPercentComplete,TrimPercentComplete,WeldPercentComplete"></wm-chart>
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
