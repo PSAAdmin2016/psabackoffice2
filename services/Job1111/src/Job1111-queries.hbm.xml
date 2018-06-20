@@ -2055,7 +2055,7 @@ pfa.FABidID AS BidID, 'N/A' AS Spool1, 'N/A' AS Spool2,
 ptd.LineNumber, ptd.EngDrawingNumber, ptd.SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2,
 ptd.Size AS Size, pfa.FANotes, 
-CASE sas.ActivityType
+CASE 
 
 WHEN (sas.ActivityType = 38) THEN
 	(pfa.FAQuantity * pfa.FAPercentCompleted)
@@ -2381,7 +2381,7 @@ pfa.FABidID AS BidID, 'N/A' AS Spool1, 'N/A' AS Spool2,
 ptd.LineNumber, ptd.EngDrawingNumber, ptd.SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2,
 ptd.Size AS Size, pfa.FANotes, 
-CASE sas.ActivityType
+CASE 
 
 WHEN (sas.ActivityType = 38) THEN
 	(pfa.FAQuantity * pfa.FAPercentCompleted)
