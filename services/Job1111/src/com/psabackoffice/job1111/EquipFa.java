@@ -124,7 +124,7 @@ public class EquipFa implements Serializable {
         this.rev = rev;
     }
 
-    @Column(name = "`TimeStamp`", nullable = false)
+    @Column(name = "`TimeStamp`", nullable = true)
     public Timestamp getTimeStamp() {
         return this.timeStamp;
     }

@@ -431,10 +431,10 @@
         "isRelated" : false,
         "scale" : 0
       }, {
-        "fieldName" : "civilWorkHours",
-        "type" : "double",
-        "fullyQualifiedType" : "double",
-        "columnName" : "CivilWorkHours",
+        "fieldName" : "estimatedHours",
+        "type" : "big_decimal",
+        "fullyQualifiedType" : "big_decimal",
+        "columnName" : "EstimatedHours",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 0,
@@ -443,10 +443,10 @@
         "isRelated" : false,
         "scale" : 6
       }, {
-        "fieldName" : "sellPunchHours",
-        "type" : "double",
-        "fullyQualifiedType" : "double",
-        "columnName" : "SellPunchHours",
+        "fieldName" : "hoursCivilWork",
+        "type" : "big_decimal",
+        "fullyQualifiedType" : "big_decimal",
+        "columnName" : "HoursCivilWork",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 0,
@@ -455,10 +455,10 @@
         "isRelated" : false,
         "scale" : 6
       }, {
-        "fieldName" : "totalEstimatedHours",
-        "type" : "double",
-        "fullyQualifiedType" : "double",
-        "columnName" : "TotalEstimatedHours",
+        "fieldName" : "hoursSellPunch",
+        "type" : "big_decimal",
+        "fullyQualifiedType" : "big_decimal",
+        "columnName" : "HoursSellPunch",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 0,
@@ -961,7 +961,7 @@
         "fullyQualifiedType" : "timestamp",
         "columnName" : "TimeStamp",
         "isPrimaryKey" : false,
-        "notNull" : true,
+        "notNull" : false,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",

@@ -154,17 +154,17 @@ public class ClassicTrackerCivilUpdateResponseContent implements Serializable {
     @ColumnAlias("QuantityUnit")
     private String quantityUnit;
 
-    @JsonProperty("CivilWorkHours")
-    @ColumnAlias("CivilWorkHours")
-    private BigDecimal civilWorkHours;
+    @JsonProperty("EstimatedHours")
+    @ColumnAlias("EstimatedHours")
+    private BigDecimal estimatedHours;
 
-    @JsonProperty("SellPunchHours")
-    @ColumnAlias("SellPunchHours")
-    private BigDecimal sellPunchHours;
+    @JsonProperty("HoursCivilWork")
+    @ColumnAlias("HoursCivilWork")
+    private BigDecimal hoursCivilWork;
 
-    @JsonProperty("TotalEstimatedHours")
-    @ColumnAlias("TotalEstimatedHours")
-    private BigDecimal totalEstimatedHours;
+    @JsonProperty("HoursSellPunch")
+    @ColumnAlias("HoursSellPunch")
+    private BigDecimal hoursSellPunch;
 
     @JsonProperty("InstalledQuantity")
     @ColumnAlias("InstalledQuantity")
@@ -498,28 +498,28 @@ public class ClassicTrackerCivilUpdateResponseContent implements Serializable {
         this.quantityUnit = quantityUnit;
     }
 
-    public BigDecimal getCivilWorkHours() {
-        return this.civilWorkHours;
+    public BigDecimal getEstimatedHours() {
+        return this.estimatedHours;
     }
 
-    public void setCivilWorkHours(BigDecimal civilWorkHours) {
-        this.civilWorkHours = civilWorkHours;
+    public void setEstimatedHours(BigDecimal estimatedHours) {
+        this.estimatedHours = estimatedHours;
     }
 
-    public BigDecimal getSellPunchHours() {
-        return this.sellPunchHours;
+    public BigDecimal getHoursCivilWork() {
+        return this.hoursCivilWork;
     }
 
-    public void setSellPunchHours(BigDecimal sellPunchHours) {
-        this.sellPunchHours = sellPunchHours;
+    public void setHoursCivilWork(BigDecimal hoursCivilWork) {
+        this.hoursCivilWork = hoursCivilWork;
     }
 
-    public BigDecimal getTotalEstimatedHours() {
-        return this.totalEstimatedHours;
+    public BigDecimal getHoursSellPunch() {
+        return this.hoursSellPunch;
     }
 
-    public void setTotalEstimatedHours(BigDecimal totalEstimatedHours) {
-        this.totalEstimatedHours = totalEstimatedHours;
+    public void setHoursSellPunch(BigDecimal hoursSellPunch) {
+        this.hoursSellPunch = hoursSellPunch;
     }
 
     public Double getInstalledQuantity() {
@@ -681,9 +681,9 @@ public class ClassicTrackerCivilUpdateResponseContent implements Serializable {
                 Objects.equals(getService(), classicTrackerCivilUpdateResponseContent.getService()) &&
                 Objects.equals(getTakeOffQuantity(), classicTrackerCivilUpdateResponseContent.getTakeOffQuantity()) &&
                 Objects.equals(getQuantityUnit(), classicTrackerCivilUpdateResponseContent.getQuantityUnit()) &&
-                Objects.equals(getCivilWorkHours(), classicTrackerCivilUpdateResponseContent.getCivilWorkHours()) &&
-                Objects.equals(getSellPunchHours(), classicTrackerCivilUpdateResponseContent.getSellPunchHours()) &&
-                Objects.equals(getTotalEstimatedHours(), classicTrackerCivilUpdateResponseContent.getTotalEstimatedHours()) &&
+                Objects.equals(getEstimatedHours(), classicTrackerCivilUpdateResponseContent.getEstimatedHours()) &&
+                Objects.equals(getHoursCivilWork(), classicTrackerCivilUpdateResponseContent.getHoursCivilWork()) &&
+                Objects.equals(getHoursSellPunch(), classicTrackerCivilUpdateResponseContent.getHoursSellPunch()) &&
                 Objects.equals(getInstalledQuantity(), classicTrackerCivilUpdateResponseContent.getInstalledQuantity()) &&
                 Objects.equals(getEarnedWorkHours(), classicTrackerCivilUpdateResponseContent.getEarnedWorkHours()) &&
                 Objects.equals(getEarnedSellPunch(), classicTrackerCivilUpdateResponseContent.getEarnedSellPunch()) &&
@@ -737,9 +737,9 @@ public class ClassicTrackerCivilUpdateResponseContent implements Serializable {
                 getService(),
                 getTakeOffQuantity(),
                 getQuantityUnit(),
-                getCivilWorkHours(),
-                getSellPunchHours(),
-                getTotalEstimatedHours(),
+                getEstimatedHours(),
+                getHoursCivilWork(),
+                getHoursSellPunch(),
                 getInstalledQuantity(),
                 getEarnedWorkHours(),
                 getEarnedSellPunch(),

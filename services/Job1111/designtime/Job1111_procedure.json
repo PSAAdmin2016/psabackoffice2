@@ -365,8 +365,8 @@
               "list" : false
             }
           }, {
-            "name" : "CivilWorkHours",
-            "fieldName" : "civilWorkHours",
+            "name" : "EstimatedHours",
+            "fieldName" : "estimatedHours",
             "optional" : false,
             "fieldType" : {
               "type" : "PRIMITIVE",
@@ -374,8 +374,8 @@
               "list" : false
             }
           }, {
-            "name" : "SellPunchHours",
-            "fieldName" : "sellPunchHours",
+            "name" : "HoursCivilWork",
+            "fieldName" : "hoursCivilWork",
             "optional" : false,
             "fieldType" : {
               "type" : "PRIMITIVE",
@@ -383,8 +383,8 @@
               "list" : false
             }
           }, {
-            "name" : "TotalEstimatedHours",
-            "fieldName" : "totalEstimatedHours",
+            "name" : "HoursSellPunch",
+            "fieldName" : "hoursSellPunch",
             "optional" : false,
             "fieldType" : {
               "type" : "PRIMITIVE",
@@ -1660,7 +1660,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : null,
+      "testValue" : "false",
       "required" : true,
       "parameterType" : "OUT"
     }, {
@@ -1669,7 +1669,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : null,
+      "testValue" : "",
       "required" : true,
       "parameterType" : "OUT"
     } ],
@@ -1979,6 +1979,24 @@
               "list" : false
             }
           }, {
+            "name" : "EstimatedHoursSteel",
+            "fieldName" : "estimatedHoursSteel",
+            "optional" : false,
+            "fieldType" : {
+              "type" : "PRIMITIVE",
+              "typeRef" : "java.math.BigDecimal",
+              "list" : false
+            }
+          }, {
+            "name" : "EstimatedHoursWeld",
+            "fieldName" : "estimatedHoursWeld",
+            "optional" : false,
+            "fieldType" : {
+              "type" : "PRIMITIVE",
+              "typeRef" : "java.math.BigDecimal",
+              "list" : false
+            }
+          }, {
             "name" : "HoursShake",
             "fieldName" : "hoursShake",
             "optional" : false,
@@ -2008,15 +2026,6 @@
           }, {
             "name" : "HoursImp",
             "fieldName" : "hoursImp",
-            "optional" : false,
-            "fieldType" : {
-              "type" : "PRIMITIVE",
-              "typeRef" : "java.math.BigDecimal",
-              "list" : false
-            }
-          }, {
-            "name" : "HoursWeld",
-            "fieldName" : "hoursWeld",
             "optional" : false,
             "fieldType" : {
               "type" : "PRIMITIVE",

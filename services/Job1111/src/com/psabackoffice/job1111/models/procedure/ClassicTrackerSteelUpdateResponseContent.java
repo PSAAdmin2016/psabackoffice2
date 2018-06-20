@@ -146,6 +146,14 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
     @ColumnAlias("WeldCount")
     private Short weldCount;
 
+    @JsonProperty("EstimatedHoursSteel")
+    @ColumnAlias("EstimatedHoursSteel")
+    private BigDecimal estimatedHoursSteel;
+
+    @JsonProperty("EstimatedHoursWeld")
+    @ColumnAlias("EstimatedHoursWeld")
+    private BigDecimal estimatedHoursWeld;
+
     @JsonProperty("HoursShake")
     @ColumnAlias("HoursShake")
     private BigDecimal hoursShake;
@@ -161,10 +169,6 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
     @JsonProperty("HoursImp")
     @ColumnAlias("HoursImp")
     private BigDecimal hoursImp;
-
-    @JsonProperty("HoursWeld")
-    @ColumnAlias("HoursWeld")
-    private BigDecimal hoursWeld;
 
     @JsonProperty("HoursSell")
     @ColumnAlias("HoursSell")
@@ -550,6 +554,22 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
         this.weldCount = weldCount;
     }
 
+    public BigDecimal getEstimatedHoursSteel() {
+        return this.estimatedHoursSteel;
+    }
+
+    public void setEstimatedHoursSteel(BigDecimal estimatedHoursSteel) {
+        this.estimatedHoursSteel = estimatedHoursSteel;
+    }
+
+    public BigDecimal getEstimatedHoursWeld() {
+        return this.estimatedHoursWeld;
+    }
+
+    public void setEstimatedHoursWeld(BigDecimal estimatedHoursWeld) {
+        this.estimatedHoursWeld = estimatedHoursWeld;
+    }
+
     public BigDecimal getHoursShake() {
         return this.hoursShake;
     }
@@ -580,14 +600,6 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
 
     public void setHoursImp(BigDecimal hoursImp) {
         this.hoursImp = hoursImp;
-    }
-
-    public BigDecimal getHoursWeld() {
-        return this.hoursWeld;
-    }
-
-    public void setHoursWeld(BigDecimal hoursWeld) {
-        this.hoursWeld = hoursWeld;
     }
 
     public BigDecimal getHoursSell() {
@@ -883,11 +895,12 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
                 Objects.equals(getService(), classicTrackerSteelUpdateResponseContent.getService()) &&
                 Objects.equals(getTakeOffQuantity(), classicTrackerSteelUpdateResponseContent.getTakeOffQuantity()) &&
                 Objects.equals(getWeldCount(), classicTrackerSteelUpdateResponseContent.getWeldCount()) &&
+                Objects.equals(getEstimatedHoursSteel(), classicTrackerSteelUpdateResponseContent.getEstimatedHoursSteel()) &&
+                Objects.equals(getEstimatedHoursWeld(), classicTrackerSteelUpdateResponseContent.getEstimatedHoursWeld()) &&
                 Objects.equals(getHoursShake(), classicTrackerSteelUpdateResponseContent.getHoursShake()) &&
                 Objects.equals(getHoursErect(), classicTrackerSteelUpdateResponseContent.getHoursErect()) &&
                 Objects.equals(getHoursBoltout(), classicTrackerSteelUpdateResponseContent.getHoursBoltout()) &&
                 Objects.equals(getHoursImp(), classicTrackerSteelUpdateResponseContent.getHoursImp()) &&
-                Objects.equals(getHoursWeld(), classicTrackerSteelUpdateResponseContent.getHoursWeld()) &&
                 Objects.equals(getHoursSell(), classicTrackerSteelUpdateResponseContent.getHoursSell()) &&
                 Objects.equals(getHoursDemo(), classicTrackerSteelUpdateResponseContent.getHoursDemo()) &&
                 Objects.equals(getHoursMisc(), classicTrackerSteelUpdateResponseContent.getHoursMisc()) &&
@@ -956,11 +969,12 @@ public class ClassicTrackerSteelUpdateResponseContent implements Serializable {
                 getService(),
                 getTakeOffQuantity(),
                 getWeldCount(),
+                getEstimatedHoursSteel(),
+                getEstimatedHoursWeld(),
                 getHoursShake(),
                 getHoursErect(),
                 getHoursBoltout(),
                 getHoursImp(),
-                getHoursWeld(),
                 getHoursSell(),
                 getHoursDemo(),
                 getHoursMisc(),

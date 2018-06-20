@@ -1479,7 +1479,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : null,
+      "testValue" : "false",
       "required" : true,
       "parameterType" : "OUT"
     }, {
@@ -1488,7 +1488,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : null,
+      "testValue" : "",
       "required" : true,
       "parameterType" : "OUT"
     } ]

@@ -253,15 +253,9 @@
                             <wm-table-column binding="takeOffQuantity" caption="Take Off Quantity" primary-key="false" col-class="takeoffQuantity" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
                                 fractionsize="2" show="true"></wm-table-column>
                             <wm-table-column binding="quantityUnit" caption="Quantity Unit" primary-key="false" edit-widget-type="text" type="string" generator="assigned" readonly="true" show="true"></wm-table-column>
-                            <wm-table-column binding="civilWorkHours" caption="Civil Work Hours" primary-key="false" col-class="takeoffHours" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
-                                fractionsize="2" show="bind:Variables.loggedInUser.dataSet.roles != 'Civil-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Civil-Superintendent Non-Staff'"></wm-table-column>
-                            <wm-table-column binding="sellPunchHours" caption="Sell Punch Hours" primary-key="false" col-class="takeoffHours" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
-                                fractionsize="2" show="bind:Variables.loggedInUser.dataSet.roles != 'Civil-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Civil-Superintendent Non-Staff'"></wm-table-column>
-                            <wm-table-column binding="totalEstimatedHours" caption="Total Estimated Hours" primary-key="false" col-class="takeoffHours" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
-                                fractionsize="2" show="bind:Variables.loggedInUser.dataSet.roles != 'Civil-GF' || 
-Variables.loggedInUser.dataSet.roles != 'Civil-Superintendent Non-Staff'"></wm-table-column>
+                            <wm-table-column binding="estimatedHours" caption="Estimated Hours" col-class="takeoffHours" edit-widget-type="number" type="big_decimal" readonly="true" formatpattern="numberToString" fractionsize="2" show="true"></wm-table-column>
+                            <wm-table-column binding="hoursCivilWork" caption="Hours Civil Work" col-class="takeoffHours" edit-widget-type="number" type="big_decimal" readonly="true" formatpattern="numberToString" fractionsize="2" show="true"></wm-table-column>
+                            <wm-table-column binding="hoursSellPunch" caption="Hours Sell Punch" col-class="takeoffHours" edit-widget-type="number" type="big_decimal" readonly="true" formatpattern="numberToString" fractionsize="2" show="true"></wm-table-column>
                             <wm-table-column binding="installedQuantity" caption="Installed Quantity" primary-key="false" col-class="earnedQuantity" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
                                 fractionsize="2" show="true"></wm-table-column>
                             <wm-table-column binding="earnedWorkHours" caption="Earned Work Hours" primary-key="false" col-class="earnedHours" edit-widget-type="number" type="double" generator="assigned" readonly="true" formatpattern="numberToString"
