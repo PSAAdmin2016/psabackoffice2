@@ -27,6 +27,7 @@ Application.$controller("ToolsUserManagementPageController", ["$scope", function
     $scope.liveformUsersBeforeservicecall = function($event, $operation, $data) {
         //Misc Logic
         $data.lastModifiedBy = $scope.Variables.loggedInUser.dataSet.id;
+        $data.tblCrewsForForeman = null; //Default to blank to prevent update, which Changes Crew Rev.
 
         //Logic to set Password
         if ($scope.Variables.staticEditMode.getValue("newUser")) {
