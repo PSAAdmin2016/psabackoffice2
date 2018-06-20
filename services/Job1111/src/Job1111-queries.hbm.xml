@@ -6631,7 +6631,17 @@ ORDER BY TimeStamp DESC
 LIMIT 1) AS ReviewedTime,
 
 ### Quantities Installed ###
-(pfa.FAQuantity) AS Quantity,
+CASE
+	WHEN sas.ActivityType IN (11,21,23,24,25,31,32,33,39)
+		THEN
+        CONCAT(pfa.FAQuantity, ptd.QuantityUnit)
+    WHEN sas.ActivityType IN (51,52,53,90)
+		THEN
+        CONCAT(TRUNCATE(pfa.FAPercentCompleted * 100,0), '%')
+	WHEN sas.ActivityType IN (38)
+		THEN
+        CONCAT((pfa.FAQuantity * pfa.FAPercentCompleted), ptd.QuantityUnit)
+END AS Quantity,
 (COALESCE(pfa.FAPercentCompleted,0)  * 100) AS PercentClaimed,
 
 pfa.FANotes AS Notes,
@@ -6656,6 +6666,8 @@ JOIN PSA.REF_ActivityTypes at
 	ON at.ID = sas.ActivityType
 JOIN PipeFA pfa
 	ON pfa.ActivityID = sas.ActivityID
+JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = pfa.FABidID
 	
 WHERE sas.fk_BidIDAssigned = :BidID
 AND sas.fk_ActivityStatus IN (5,12)
@@ -6918,7 +6930,17 @@ ORDER BY TimeStamp DESC
 LIMIT 1) AS ReviewedTime,
 
 ### Quantities Installed ###
-(pfa.FAQuantity) AS Quantity,
+CASE
+	WHEN sas.ActivityType IN (11,21,23,24,25,31,32,33,39)
+		THEN
+        CONCAT(pfa.FAQuantity, ptd.QuantityUnit)
+    WHEN sas.ActivityType IN (51,52,53,90)
+		THEN
+        CONCAT(TRUNCATE(pfa.FAPercentCompleted * 100,0), '%')
+	WHEN sas.ActivityType IN (38)
+		THEN
+        CONCAT((pfa.FAQuantity * pfa.FAPercentCompleted), ptd.QuantityUnit)
+END AS Quantity,
 (COALESCE(pfa.FAPercentCompleted,0)  * 100) AS PercentClaimed,
 
 pfa.FANotes AS Notes,
@@ -6943,6 +6965,8 @@ JOIN PSA.REF_ActivityTypes at
 	ON at.ID = sas.ActivityType
 JOIN PipeFA pfa
 	ON pfa.ActivityID = sas.ActivityID
+JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = pfa.FABidID
 	
 WHERE sas.fk_BidIDAssigned = :BidID
 AND sas.fk_ActivityStatus IN (5,12)

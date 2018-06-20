@@ -51,7 +51,7 @@ public class GetBidWorkHistoryPipeResponse implements Serializable {
 
     @JsonProperty("Quantity")
     @ColumnAlias("Quantity")
-    private BigDecimal quantity;
+    private String quantity;
 
     @JsonProperty("PercentClaimed")
     @ColumnAlias("PercentClaimed")
@@ -129,11 +129,11 @@ public class GetBidWorkHistoryPipeResponse implements Serializable {
         this.reviewedTime = reviewedTime;
     }
 
-    public BigDecimal getQuantity() {
+    public String getQuantity() {
         return this.quantity;
     }
 
-    public void setQuantity(BigDecimal quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 

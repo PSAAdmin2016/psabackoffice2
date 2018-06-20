@@ -29,8 +29,10 @@
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn28"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="8" horizontalalign="left" padding="5% unset unset unset" name="gridcolumn29">
-                                            <wm-label caption="bind:'Total: ' + (Widgets.selectPercentCompleted.datavalue * $parent.Variables.liveGetActivityDetails.dataSet.data[0].civilFa.civilTrackerDetails.takeOffQuantity) + ' ' + $parent.Variables.liveGetActivityDetails.dataSet.data[0].civilFa.civilTrackerDetails.quantityUnit"
-                                                show="true" fontsize="14" padding="unset 3% unset unset" width="90%" name="label11"></wm-label>
+                                            <wm-label caption="bind:'Total: ' 
++ ((Widgets.selectPercentCompleted.datavalue * $parent.Variables.liveGetActivityDetails.dataSet.data[0].civilFa.civilTrackerDetails.takeOffQuantity)  | numberToString: '2')
++ ' ' 
++ $parent.Variables.liveGetActivityDetails.dataSet.data[0].civilFa.civilTrackerDetails.quantityUnit" show="true" fontsize="14" padding="unset 3% unset unset" width="90%" name="label11"></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
