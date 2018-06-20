@@ -62,12 +62,12 @@ public class PipeTrackerClassic implements Serializable {
     private Double hoursHydro;
     private BigDecimal hoursCto;
     private Double installedQuantity;
-    private Double hoursEarnedTotal;
-    private Double hoursEarnedMech;
-    private Double hoursEarnedTesting;
-    private Double hoursEarnedRft;
-    private Double hoursEarnedHydro;
-    private Double hoursEarnedCto;
+    private BigDecimal earnedMechHours;
+    private BigDecimal earnedTestingHours;
+    private BigDecimal earnedRfthours;
+    private BigDecimal earnedHydroHours;
+    private BigDecimal earnedCtohours;
+    private BigDecimal earnedAllHours;
     private String wbs1;
     private String wbs2;
     private String wbs3;
@@ -441,58 +441,58 @@ public class PipeTrackerClassic implements Serializable {
         this.installedQuantity = installedQuantity;
     }
 
-    @Column(name = "`HoursEarnedTotal`", nullable = true, scale = 6, precision = 16)
-    public Double getHoursEarnedTotal() {
-        return this.hoursEarnedTotal;
+    @Column(name = "`EarnedMechHours`", nullable = true, scale = 6, precision = 16)
+    public BigDecimal getEarnedMechHours() {
+        return this.earnedMechHours;
     }
 
-    public void setHoursEarnedTotal(Double hoursEarnedTotal) {
-        this.hoursEarnedTotal = hoursEarnedTotal;
+    public void setEarnedMechHours(BigDecimal earnedMechHours) {
+        this.earnedMechHours = earnedMechHours;
     }
 
-    @Column(name = "`HoursEarnedMech`", nullable = true, scale = 6, precision = 16)
-    public Double getHoursEarnedMech() {
-        return this.hoursEarnedMech;
+    @Column(name = "`EarnedTestingHours`", nullable = true, scale = 6, precision = 16)
+    public BigDecimal getEarnedTestingHours() {
+        return this.earnedTestingHours;
     }
 
-    public void setHoursEarnedMech(Double hoursEarnedMech) {
-        this.hoursEarnedMech = hoursEarnedMech;
+    public void setEarnedTestingHours(BigDecimal earnedTestingHours) {
+        this.earnedTestingHours = earnedTestingHours;
     }
 
-    @Column(name = "`HoursEarnedTesting`", nullable = true, scale = 6, precision = 16)
-    public Double getHoursEarnedTesting() {
-        return this.hoursEarnedTesting;
+    @Column(name = "`EarnedRFTHours`", nullable = true, scale = 6, precision = 16)
+    public BigDecimal getEarnedRfthours() {
+        return this.earnedRfthours;
     }
 
-    public void setHoursEarnedTesting(Double hoursEarnedTesting) {
-        this.hoursEarnedTesting = hoursEarnedTesting;
+    public void setEarnedRfthours(BigDecimal earnedRfthours) {
+        this.earnedRfthours = earnedRfthours;
     }
 
-    @Column(name = "`HoursEarnedRFT`", nullable = true, scale = 6, precision = 16)
-    public Double getHoursEarnedRft() {
-        return this.hoursEarnedRft;
+    @Column(name = "`EarnedHydroHours`", nullable = true, scale = 6, precision = 16)
+    public BigDecimal getEarnedHydroHours() {
+        return this.earnedHydroHours;
     }
 
-    public void setHoursEarnedRft(Double hoursEarnedRft) {
-        this.hoursEarnedRft = hoursEarnedRft;
+    public void setEarnedHydroHours(BigDecimal earnedHydroHours) {
+        this.earnedHydroHours = earnedHydroHours;
     }
 
-    @Column(name = "`HoursEarnedHydro`", nullable = true, scale = 6, precision = 16)
-    public Double getHoursEarnedHydro() {
-        return this.hoursEarnedHydro;
+    @Column(name = "`EarnedCTOHours`", nullable = true, scale = 6, precision = 16)
+    public BigDecimal getEarnedCtohours() {
+        return this.earnedCtohours;
     }
 
-    public void setHoursEarnedHydro(Double hoursEarnedHydro) {
-        this.hoursEarnedHydro = hoursEarnedHydro;
+    public void setEarnedCtohours(BigDecimal earnedCtohours) {
+        this.earnedCtohours = earnedCtohours;
     }
 
-    @Column(name = "`HoursEarnedCTO`", nullable = true, scale = 6, precision = 16)
-    public Double getHoursEarnedCto() {
-        return this.hoursEarnedCto;
+    @Column(name = "`EarnedAllHours`", nullable = true, scale = 6, precision = 16)
+    public BigDecimal getEarnedAllHours() {
+        return this.earnedAllHours;
     }
 
-    public void setHoursEarnedCto(Double hoursEarnedCto) {
-        this.hoursEarnedCto = hoursEarnedCto;
+    public void setEarnedAllHours(BigDecimal earnedAllHours) {
+        this.earnedAllHours = earnedAllHours;
     }
 
     @Column(name = "`WBS1`", nullable = true, length = 45)
