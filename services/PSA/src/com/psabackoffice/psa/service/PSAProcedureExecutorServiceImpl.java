@@ -72,12 +72,13 @@ public class PSAProcedureExecutorServiceImpl implements PSAProcedureExecutorServ
 
     @Transactional(value = "PSATransactionManager")
     @Override
-    public Void executeImportInstalledQuantitiesPipe(String jobNumber) {
-        Map params = new HashMap(1);
+    public ImportInstalledQuantitiesPipeResponse executeImportInstalledQuantitiesPipe(Integer jobNumber, Integer userId) {
+        Map params = new HashMap(4);
 
-        params.put("jobNumber", jobNumber);
+        params.put("JobNumber", jobNumber);
+        params.put("UserID", userId);
 
-        return procedureExecutor.executeNamedProcedure("ImportInstalledQuantitiesPipe", params, Void.class);
+        return procedureExecutor.executeNamedProcedure("ImportInstalledQuantitiesPipe", params, ImportInstalledQuantitiesPipeResponse.class);
     }
 
     @Transactional(value = "PSATransactionManager")

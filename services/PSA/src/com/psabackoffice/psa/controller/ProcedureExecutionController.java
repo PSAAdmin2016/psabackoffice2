@@ -87,9 +87,9 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/ImportInstalledQuantitiesPipe", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "create FAs for progress claimed in the imported tracker")
-    public Void executeImportInstalledQuantitiesPipe(@RequestParam(value = "jobNumber") String jobNumber, HttpServletRequest _request) {
+    public ImportInstalledQuantitiesPipeResponse executeImportInstalledQuantitiesPipe(@RequestParam(value = "JobNumber") Integer jobNumber, @RequestParam(value = "UserID") Integer userId, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: ImportInstalledQuantitiesPipe");
-        Void _result = procedureService.executeImportInstalledQuantitiesPipe(jobNumber);
+        ImportInstalledQuantitiesPipeResponse _result = procedureService.executeImportInstalledQuantitiesPipe(jobNumber, userId);
         LOGGER.debug("got the result for named procedure: ImportInstalledQuantitiesPipe, result:{}", _result);
         return _result;
     }

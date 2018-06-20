@@ -97,16 +97,43 @@
     } ]
   },
   "ImportInstalledQuantitiesPipe" : {
-    "procedureString" : "CALL Import_InstalledQuantitiesPipe(?)",
+    "procedureString" : "CALL Import_InstalledQuantitiesPipe(?, ?, ?, ?)",
     "parameters" : [ {
-      "name" : "jobNumber",
+      "name" : "JobNumber",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1111",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "UserID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "1234",
+      "variableName" : "",
+      "testValue" : null,
       "required" : true,
-      "parameterType" : "IN"
+      "parameterType" : "OUT"
     } ]
   },
   "LandingToPipeSpools" : {

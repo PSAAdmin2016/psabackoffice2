@@ -19,7 +19,7 @@ public interface PSAProcedureExecutorService {
 
     Void executeImportInstalledQuantitiesCivil(String jobNumber);
 
-    Void executeImportInstalledQuantitiesPipe(String jobNumber);
+    ImportInstalledQuantitiesPipeResponse executeImportInstalledQuantitiesPipe(Integer jobNumber, Integer userId);
 
     LandingToPipeSpoolsResponse executeLandingToPipeSpools(String jobNumber);
 

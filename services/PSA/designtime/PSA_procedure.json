@@ -9,6 +9,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "trackerPipeLanding",
       "required" : true,
       "parameterType" : "IN"
@@ -17,6 +18,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "1111",
       "required" : true,
       "parameterType" : "IN"
@@ -25,6 +27,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -33,6 +36,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -41,6 +45,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -94,6 +99,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "1",
       "required" : false,
       "parameterType" : "IN"
@@ -102,6 +108,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "46",
       "required" : false,
       "parameterType" : "IN"
@@ -110,6 +117,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "",
       "required" : false,
       "parameterType" : "OUT"
@@ -118,6 +126,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "",
       "required" : false,
       "parameterType" : "OUT"
@@ -162,6 +171,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "1234",
       "required" : false,
       "parameterType" : "IN"
@@ -170,6 +180,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "",
       "required" : false,
       "parameterType" : "OUT"
@@ -205,6 +216,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "1234",
       "required" : false,
       "parameterType" : "IN"
@@ -213,6 +225,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "",
       "required" : false,
       "parameterType" : "OUT"
@@ -248,6 +261,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "trackerPipeLanding",
       "required" : false,
       "parameterType" : "IN"
@@ -256,6 +270,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "trackerDetails",
       "required" : false,
       "parameterType" : "IN"
@@ -264,6 +279,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "1111",
       "required" : false,
       "parameterType" : "IN"
@@ -272,6 +288,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "",
       "required" : false,
       "parameterType" : "OUT"
@@ -280,6 +297,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "",
       "required" : false,
       "parameterType" : "OUT"
@@ -288,6 +306,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "",
       "required" : false,
       "parameterType" : "OUT"
@@ -296,6 +315,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "",
       "required" : false,
       "parameterType" : "OUT"
@@ -304,6 +324,7 @@
       "type" : "big_decimal",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : false,
       "parameterType" : "OUT"
@@ -375,6 +396,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "1111",
       "required" : true,
       "parameterType" : "IN"
@@ -400,6 +422,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "1111",
       "required" : true,
       "parameterType" : "IN"
@@ -419,15 +442,43 @@
     "name" : "ImportInstalledQuantitiesPipe",
     "description" : "create FAs for progress claimed in the imported tracker",
     "version" : "V2",
-    "procedureString" : "CALL Import_InstalledQuantitiesPipe(:jobNumber)",
+    "procedureString" : "CALL Import_InstalledQuantitiesPipe(:JobNumber, :UserID, :ReturnStatus, :ErrorText)",
     "parameters" : [ {
-      "name" : "jobNumber",
+      "name" : "JobNumber",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1111",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "UserID",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : "1",
+      "required" : true,
+      "parameterType" : "IN"
+    }, {
+      "name" : "ReturnStatus",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "1234",
+      "variableName" : "",
+      "testValue" : null,
       "required" : true,
-      "parameterType" : "IN"
+      "parameterType" : "OUT"
     } ],
     "request" : {
       "wrapped" : false,
@@ -435,9 +486,28 @@
       "method" : "GET"
     },
     "response" : {
-      "typeRef" : "java.lang.Void",
-      "returns" : "PRIMITIVE",
-      "responseType" : "SINGLE"
+      "typeRef" : "com.psabackoffice.psa.models.procedure.ImportInstalledQuantitiesPipeResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "ReturnStatus",
+        "fieldName" : "returnStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "ErrorText",
+        "fieldName" : "errorText",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
     }
   },
   "ImportInstalledQuantitiesSteel" : {
@@ -450,6 +520,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "1234",
       "required" : true,
       "parameterType" : "IN"
@@ -475,6 +546,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "1111",
       "required" : true,
       "parameterType" : "IN"
@@ -483,6 +555,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -491,6 +564,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -535,6 +609,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "1234",
       "required" : true,
       "parameterType" : "IN"
@@ -543,6 +618,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -551,6 +627,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -595,6 +672,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "0",
       "required" : true,
       "parameterType" : "IN"
@@ -603,6 +681,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -611,6 +690,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -655,6 +735,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "1233",
       "required" : true,
       "parameterType" : "IN"
@@ -663,6 +744,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -671,6 +753,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -715,6 +798,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "1234",
       "required" : true,
       "parameterType" : "IN"
@@ -723,6 +807,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -731,6 +816,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -775,6 +861,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "1111",
       "required" : true,
       "parameterType" : "IN"
@@ -783,6 +870,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -791,6 +879,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : null,
       "required" : true,
       "parameterType" : "OUT"
@@ -835,6 +924,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "trackerPipeLanding",
       "required" : false,
       "parameterType" : "IN"
@@ -843,6 +933,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "1111",
       "required" : false,
       "parameterType" : "IN"
@@ -851,6 +942,7 @@
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "",
       "required" : false,
       "parameterType" : "OUT"
@@ -859,6 +951,7 @@
       "type" : "string",
       "list" : false,
       "variableType" : "PROMPT",
+      "variableName" : null,
       "testValue" : "",
       "required" : false,
       "parameterType" : "OUT"
