@@ -819,7 +819,7 @@
           "fullyQualifiedType" : "timestamp",
           "columnName" : "TimeStamp",
           "isPrimaryKey" : false,
-          "notNull" : true,
+          "notNull" : false,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
