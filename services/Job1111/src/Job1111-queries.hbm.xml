@@ -5383,14 +5383,14 @@ WHERE ActivityID= :ActivityID
 (std.WeldCount) AS WeldQuantity,  
 
 ### Hours ###
-(COALESCE(std.SteelHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelShakeHoursPercent'),0)) AS ShakeHours,
-(COALESCE(std.SteelHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelErectHoursPercent'),0)) AS ErectHours,
-(COALESCE(std.SteelHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelBoltoutHoursPercent'),0)) AS BoltoutHours,
-(COALESCE(std.SteelHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelImpHoursPercent'),0)) AS ImpHours,
-(COALESCE(std.WeldHours,0)) AS WeldHours,
-(COALESCE(std.SteelHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelSellHoursPercent'),0)) AS SellHours,
-(COALESCE(IF(std.ActivityType = 'D', std.SteelHours, 0),0)) AS DemoHours,
-(COALESCE(IF(std.ActivityType = 'MISC', std.SteelHours, 0),0)) AS MiscHours,
+(COALESCE(std.EstimatedHoursSteel*(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelShakeHoursPercent'),0)) AS ShakeHours,
+(COALESCE(std.EstimatedHoursSteel*(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelErectHoursPercent'),0)) AS ErectHours,
+(COALESCE(std.EstimatedHoursSteel*(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelBoltoutHoursPercent'),0)) AS BoltoutHours,
+(COALESCE(std.EstimatedHoursSteel*(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelImpHoursPercent'),0)) AS ImpHours,
+(COALESCE(std.EstimatedHoursWeld,0)) AS WeldHours,
+(COALESCE(std.EstimatedHoursSteel*(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelSellHoursPercent'),0)) AS SellHours,
+(COALESCE(IF(std.ActivityType = 'D', std.EstimatedHoursSteel, 0),0)) AS DemoHours,
+(COALESCE(IF(std.ActivityType = 'MISC', std.EstimatedHoursSteel, 0),0)) AS MiscHours,
 
 ### Installed Quantities ###
 sum(COALESCE(er.InstalledShake,0)) AS InstalledShake,
@@ -5451,14 +5451,14 @@ GROUP BY BidID
 (std.WeldCount) AS WeldQuantity,  
 
 ### Hours ###
-(COALESCE(std.SteelHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelShakeHoursPercent'),0)) AS ShakeHours,
-(COALESCE(std.SteelHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelErectHoursPercent'),0)) AS ErectHours,
-(COALESCE(std.SteelHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelBoltoutHoursPercent'),0)) AS BoltoutHours,
-(COALESCE(std.SteelHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelImpHoursPercent'),0)) AS ImpHours,
-(COALESCE(std.WeldHours,0)) AS WeldHours,
-(COALESCE(std.SteelHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelSellHoursPercent'),0)) AS SellHours,
-(COALESCE(IF(std.ActivityType = 'D', std.SteelHours, 0),0)) AS DemoHours,
-(COALESCE(IF(std.ActivityType = 'MISC', std.SteelHours, 0),0)) AS MiscHours,
+(COALESCE(std.EstimatedHoursSteel*(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelShakeHoursPercent'),0)) AS ShakeHours,
+(COALESCE(std.EstimatedHoursSteel*(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelErectHoursPercent'),0)) AS ErectHours,
+(COALESCE(std.EstimatedHoursSteel*(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelBoltoutHoursPercent'),0)) AS BoltoutHours,
+(COALESCE(std.EstimatedHoursSteel*(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelImpHoursPercent'),0)) AS ImpHours,
+(COALESCE(std.EstimatedHoursWeld,0)) AS WeldHours,
+(COALESCE(std.EstimatedHoursSteel*(SELECT Value1 FROM SETTINGS WHERE Label = 'SteelSellHoursPercent'),0)) AS SellHours,
+(COALESCE(IF(std.ActivityType = 'D', std.EstimatedHoursSteel, 0),0)) AS DemoHours,
+(COALESCE(IF(std.ActivityType = 'MISC', std.EstimatedHoursSteel, 0),0)) AS MiscHours,
 
 ### Installed Quantities ###
 sum(COALESCE(er.InstalledShake,0)) AS InstalledShake,
