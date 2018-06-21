@@ -62,24 +62,33 @@
     } ]
   },
   "CreateNewJobDB" : {
-    "procedureString" : "call Create_JobDB(?, ?)",
+    "procedureString" : "call Create_JobDB(?, ?, ?)",
     "parameters" : [ {
       "name" : "jobNumber",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1234",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "ReturnStatus",
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "",
-      "required" : false,
+      "variableName" : "",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : null,
+      "required" : true,
       "parameterType" : "OUT"
     } ]
   },
@@ -492,24 +501,33 @@
     } ]
   },
   "CreateNewJobSeeds" : {
-    "procedureString" : "call Create_JobSeeds(?, ?)",
+    "procedureString" : "call Create_JobSeeds(?, ?, ?)",
     "parameters" : [ {
       "name" : "jobNumber",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1234",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "ReturnStatus",
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "",
-      "required" : false,
+      "variableName" : "",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : null,
+      "required" : true,
       "parameterType" : "OUT"
     } ]
   }

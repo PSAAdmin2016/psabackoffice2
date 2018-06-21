@@ -9,6 +9,8 @@ package com.psabackoffice.psa.models.procedure;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CreateNewConversationRequest implements Serializable {

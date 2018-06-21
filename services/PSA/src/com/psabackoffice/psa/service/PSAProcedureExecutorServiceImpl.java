@@ -53,7 +53,7 @@ public class PSAProcedureExecutorServiceImpl implements PSAProcedureExecutorServ
     @Transactional(value = "PSATransactionManager")
     @Override
     public CreateNewJobDbResponse executeCreateNewJobDB(CreateNewJobDbRequest createNewJobDbRequest) {
-        Map params = new HashMap(2);
+        Map params = new HashMap(3);
 
         params.put("jobNumber", createNewJobDbRequest.getJobNumber());
 
@@ -189,7 +189,7 @@ public class PSAProcedureExecutorServiceImpl implements PSAProcedureExecutorServ
     @Transactional(value = "PSATransactionManager")
     @Override
     public CreateNewJobSeedsResponse executeCreateNewJobSeeds(CreateNewJobSeedsRequest createNewJobSeedsRequest) {
-        Map params = new HashMap(2);
+        Map params = new HashMap(3);
 
         params.put("jobNumber", createNewJobSeedsRequest.getJobNumber());
 

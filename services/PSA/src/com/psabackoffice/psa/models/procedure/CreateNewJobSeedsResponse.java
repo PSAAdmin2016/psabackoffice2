@@ -19,6 +19,10 @@ public class CreateNewJobSeedsResponse implements Serializable {
     @ColumnAlias("ReturnStatus")
     private Boolean returnStatus;
 
+    @JsonProperty("ErrorText")
+    @ColumnAlias("ErrorText")
+    private String errorText;
+
     public Boolean getReturnStatus() {
         return this.returnStatus;
     }
@@ -27,16 +31,26 @@ public class CreateNewJobSeedsResponse implements Serializable {
         this.returnStatus = returnStatus;
     }
 
+    public String getErrorText() {
+        return this.errorText;
+    }
+
+    public void setErrorText(String errorText) {
+        this.errorText = errorText;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof CreateNewJobSeedsResponse)) return false;
         final CreateNewJobSeedsResponse createNewJobSeedsResponse = (CreateNewJobSeedsResponse) o;
-        return Objects.equals(getReturnStatus(), createNewJobSeedsResponse.getReturnStatus());
+        return Objects.equals(getReturnStatus(), createNewJobSeedsResponse.getReturnStatus()) &&
+                Objects.equals(getErrorText(), createNewJobSeedsResponse.getErrorText());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getReturnStatus());
+        return Objects.hash(getReturnStatus(),
+                getErrorText());
     }
 }

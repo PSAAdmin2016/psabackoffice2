@@ -165,24 +165,33 @@
     "name" : "CreateNewJobDB",
     "description" : "Creates a new Job#### Schema, Tables, Indexes, FK Constraints.",
     "version" : "V1",
-    "procedureString" : "call Create_JobDB(:jobNumber, :ReturnStatus)",
+    "procedureString" : "call Create_JobDB(:jobNumber, :ReturnStatus, :ErrorText)",
     "parameters" : [ {
       "name" : "jobNumber",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1234",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "ReturnStatus",
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "",
-      "required" : false,
+      "variableName" : "",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : null,
+      "required" : true,
       "parameterType" : "OUT"
     } ],
     "request" : {
@@ -203,6 +212,15 @@
           "typeRef" : "java.lang.Boolean",
           "list" : false
         }
+      }, {
+        "name" : "ErrorText",
+        "fieldName" : "errorText",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
       } ]
     }
   },
@@ -210,24 +228,33 @@
     "name" : "CreateNewJobSeeds",
     "description" : "Seeds all the needed tables of a new Job DB",
     "version" : "V1",
-    "procedureString" : "call Create_JobSeeds(:jobNumber, :ReturnStatus)",
+    "procedureString" : "call Create_JobSeeds(:jobNumber, :ReturnStatus, :ErrorText)",
     "parameters" : [ {
       "name" : "jobNumber",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
+      "variableName" : "",
       "testValue" : "1234",
-      "required" : false,
+      "required" : true,
       "parameterType" : "IN"
     }, {
       "name" : "ReturnStatus",
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "variableName" : null,
-      "testValue" : "",
-      "required" : false,
+      "variableName" : "",
+      "testValue" : null,
+      "required" : true,
+      "parameterType" : "OUT"
+    }, {
+      "name" : "ErrorText",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "variableName" : "",
+      "testValue" : null,
+      "required" : true,
       "parameterType" : "OUT"
     } ],
     "request" : {
@@ -246,6 +273,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "ErrorText",
+        "fieldName" : "errorText",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
           "list" : false
         }
       } ]

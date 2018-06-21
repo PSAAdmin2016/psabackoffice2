@@ -9,12 +9,15 @@ package com.psabackoffice.psa.models.procedure;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CreateNewJobDbRequest implements Serializable {
 
 
     @JsonProperty("jobNumber")
+    @NotNull
     private Integer jobNumber;
 
     public Integer getJobNumber() {

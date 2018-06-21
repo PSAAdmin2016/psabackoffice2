@@ -2,18 +2,7 @@ Application.$controller("PartSettingsSiteNumbersPageController", ["$scope", func
     "use strict";
 
     /* perform any action on widgets/variables within this block */
-    $scope.onPageReady = function() {
-        /*
-         * variables can be accessed through '$scope.Variables' property here
-         * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
-         * $scope.Variables.loggedInUser.getData()
-         *
-         * widgets can be accessed through '$scope.Widgets' property here
-         * e.g. to get value of text widget named 'username' use following script
-         * '$scope.Widgets.username.datavalue'
-         */
-    };
-
+    $scope.onPageReady = function() {};
 
 
     $scope.serviceCheckJobNumberonBeforeUpdate = function(variable, inputData) {
@@ -29,7 +18,6 @@ Application.$controller("PartSettingsSiteNumbersPageController", ["$scope", func
             $scope.Widgets.wizardstep2.disablenext = true;
             $scope.Widgets.wizardstep3.disablenext = true;
         }
-
     };
 
 
@@ -49,12 +37,11 @@ Application.$controller("PartSettingsSiteNumbersPageController", ["$scope", func
     };
 
 
-
-
     $scope.liveCreateJobNumberonSuccess = function(variable, data) {
         $scope.Widgets.label54.show = true;
         $scope.Widgets.icon11.show = true;
         $scope.Widgets.label55.show = false;
+        $scope.Variables.liveAssignAdmin.createRecord();
     };
 
 
@@ -69,15 +56,12 @@ Application.$controller("PartSettingsSiteNumbersPageController", ["$scope", func
 
 
 
-
-
 Application.$controller("gridJobNumbersController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
     }
 ]);
-
 
 
 Application.$controller("dialogNewJobController", ["$scope",
@@ -89,18 +73,14 @@ Application.$controller("dialogNewJobController", ["$scope",
             $scope.Variables.serviceCheckJobNumber.invoke();
         };
 
-
-
         $scope.dialogNewJobOpened = function($event, $isolateScope) {
             $scope.Variables.serviceCheckJobNumber.clearData(); //This is needed to prevent the JobNumber in use error from showing if user canceled while it was visible.
         };
-
 
         $scope.wizardstep4Load = function($isolateScope, stepIndex) {
             $scope.Widgets.label54.show = false;
             $scope.Widgets.icon11.show = false;
             $scope.Widgets.label55.show = false;
         };
-
     }
 ]);

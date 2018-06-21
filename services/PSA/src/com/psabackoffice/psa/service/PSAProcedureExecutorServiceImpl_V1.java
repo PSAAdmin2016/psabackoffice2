@@ -31,7 +31,7 @@ public class PSAProcedureExecutorServiceImpl_V1 implements PSAProcedureExecutorS
     private WMProcedureExecutor procedureExecutor;
 
     public List<Object> executeCreateNewJobDB(Integer jobNumber) {
-        Map params = new HashMap(2);
+        Map params = new HashMap(3);
 
         params.put("jobNumber", jobNumber);
 
@@ -71,7 +71,7 @@ public class PSAProcedureExecutorServiceImpl_V1 implements PSAProcedureExecutorS
     }
 
     public List<Object> executeCreateNewJobSeeds(Integer jobNumber) {
-        Map params = new HashMap(2);
+        Map params = new HashMap(3);
 
         params.put("jobNumber", jobNumber);
 
