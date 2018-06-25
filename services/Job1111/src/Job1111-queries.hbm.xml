@@ -2128,7 +2128,7 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 stld.DemoBidID AS BidID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stld.DemoNotes, 1 AS Quantity, std.Area, DemoPercentCompleted AS PercentClaim, 0 AS Rework
+stld.DemoNotes, (stld.DemoPercentCompleted * std.TakeOffQuantity) AS Quantity, std.Area, DemoPercentCompleted AS PercentClaim, 0 AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -2184,7 +2184,7 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 stlm.MiscBidID AS BidID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stlm.MiscNotes, 1 AS Quantity, 'N/A' AS Area, MiscPercentCompleted AS PercentClaim, stlm.MiscRework AS Rework
+stlm.MiscNotes, (stlm.MiscPercentCompleted * std.TakeOffQuantity) AS Quantity, 'N/A' AS Area, MiscPercentCompleted AS PercentClaim, stlm.MiscRework AS Rework
  
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -2193,6 +2193,8 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
 JOIN SteelMisc stlm
 	ON stlm.ActivityID = sas.ActivityID
+JOIN SteelTrackerDetails std
+	ON std.BidID = stlm.MiscBidID
 JOIN SubsDetails sd
 	ON sd.SubmissionID = sas.SubmissionID
 JOIN PSA.tblUserPSA u
@@ -2454,7 +2456,7 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 stld.DemoBidID AS BidID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stld.DemoNotes, 1 AS Quantity, std.Area, DemoPercentCompleted AS PercentClaim, 0 AS Rework
+stld.DemoNotes, (stld.DemoPercentCompleted * std.TakeOffQuantity) AS Quantity, std.Area, DemoPercentCompleted AS PercentClaim, 0 AS Rework
 
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -2510,7 +2512,7 @@ SELECT sas.SubmissionID, sas.ActivityID, sas.ActivityType, at.ActivityType AS Ac
 stlm.MiscBidID AS BidID, 'N/A' AS Spool1, 'N/A' AS Spool2, 
 'N/A' AS LineNumber, 'N/A' AS DrawingNumber, 'N/A' AS SheetNumber, 
 'N/A' AS Line2, 'N/A' AS DWG2, 'N/A' AS Sheet2, 'N/A' AS Size , 
-stlm.MiscNotes, 1 AS Quantity, 'N/A' AS Area, MiscPercentCompleted AS PercentClaim, stlm.MiscRework AS Rework
+stlm.MiscNotes, (stlm.MiscPercentCompleted * std.TakeOffQuantity) AS Quantity, 'N/A' AS Area, MiscPercentCompleted AS PercentClaim, stlm.MiscRework AS Rework
  
 FROM SubmissionActivityStatus sas
 LEFT JOIN PSA.REF_ActivityTypes at
@@ -2519,6 +2521,8 @@ LEFT JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
 JOIN SteelMisc stlm
 	ON stlm.ActivityID = sas.ActivityID
+JOIN SteelTrackerDetails std
+	ON std.BidID = stlm.MiscBidID
 JOIN SubsDetails sd
 	ON sd.SubmissionID = sas.SubmissionID
 JOIN PSA.tblUserPSA u

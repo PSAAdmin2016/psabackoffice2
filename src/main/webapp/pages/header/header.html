@@ -3,14 +3,14 @@
         <wm-gridrow name="headerrow">
             <wm-gridcolumn name="headerleft" verticalalign="middle" columnwidth="4">
                 <wm-picture picturesource="resources/images/imagelists/logo.png" name="AppLogo" margin="unset unset unset 5px"></wm-picture>
-                <wm-label caption="PSA Back Office" class="application-name" name="AppName" fontsize="20" color="#ffffff"></wm-label>
+                <wm-label caption="TRUE Back Office" class="application-name" name="AppName" fontsize="20" color="#ffffff"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="4" name="gridcolumn3" horizontalalign="left">
                 <wm-composite name="composite4" captionposition="top" accessroles="Authenticated" padding="2% unset unset unset">
                     <wm-label class="col-md-3" name="label4" caption="Active Job#" color="#ffffff"></wm-label>
                     <wm-container class="col-md-9" name="container4" width="40%">
-                        <wm-select name="selectActiveJobNumber" dataset="bind:Variables.serviceGetAssignedJobNumbers.dataSet" datafield="JobNumber" displayexpression="bind:$[JobNumber] + &quot; - &quot; + $[SiteCity] + $[SiteState]" placeholder="Choose Job Number" datavalue="bind:Variables.ActiveJobNumber.dataSet.dataValue"
-                            disabled="true" hint="Can only be changed from the HOME page"></wm-select>
+                        <wm-select name="selectActiveJobNumber" dataset="bind:Variables.serviceGetAssignedJobNumbers.dataSet" datafield="JobNumber" displayexpression="bind:$[JobNumber] + &quot; - &quot; + $[SiteCity] + $[SiteState]" placeholder="Choose Job Number"
+                            datavalue="bind:Variables.ActiveJobNumber.dataSet.dataValue" disabled="true" hint="Can only be changed from the HOME page"></wm-select>
                     </wm-container>
                 </wm-composite>
             </wm-gridcolumn>
@@ -29,7 +29,8 @@
         " class="btn btn-default"></wm-popover>
                         </wm-container>
                         <wm-container name="container4_1" class="buttonGroup">
-                            <wm-popover popoverwidth="20" popoverheight="auto" name="popoverHelpMenu" caption="HELP" contentsource="partial" content="HelpMenu" iconclass="wi wi-help-outline" fontsize="12" color="#0069ff" borderstyle="solid" borderwidth="1px" class="btn btn-default"></wm-popover>
+                            <wm-popover popoverwidth="20" popoverheight="auto" name="popoverHelpMenu" caption="HELP" contentsource="partial" content="HelpMenu" iconclass="wi wi-help-outline" fontsize="12" color="#0069ff" borderstyle="solid" borderwidth="1px"
+                                class="btn btn-default"></wm-popover>
                         </wm-container>
                         <wm-container name="container5" class="buttonGroup">
                             <wm-button class="btn-default" caption="LogOut" type="button" name="button1" verticalalign="bottom" on-click="Actions.logoutAction.invoke()" on-tap="Actions.logoutAction.invoke()"></wm-button>
