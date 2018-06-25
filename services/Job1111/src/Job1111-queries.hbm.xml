@@ -20,7 +20,7 @@ TRUNCATE(sum(ert.EarnedRFTHours),6) AS EarnedRFTHours,
 TRUNCATE(sum(ert.EarnedHydroHours),6) AS EarnedHydroHours, 
 TRUNCATE(sum(ert.EarnedCTOHours),6) AS EarnedCTOHours,
 
-ROUND((ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')) - SUM(er.EarnedAllHours), 2) AS LooseHours
+ROUND((ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')) - SUM(COALESCE(er.EarnedAllHours,0)), 2) AS LooseHours
 
 FROM PipeTrackerDetails ptd
 
@@ -30,158 +30,134 @@ LEFT JOIN (SELECT er0.BidID,
 			
 		###Earned Hours Calculations ###
 			(
-			IF( 
-			COALESCE(pe.ErectionLengthSpool1,0) 
-			+ COALESCE(pe.ErectionLengthSpool2,0) 
-			+ COALESCE(pe.ErectionLengthSpool3,0) 
-			+ COALESCE(pe.ErectionLengthSpool4,0) 
-			+ COALESCE(pe.ErectionLengthSpool5,0) 
-			+ COALESCE(pe.ErectionLengthSpool6,0)
-			+ COALESCE(pme.MiscQuantity,0)
-			+ sum(COALESCE(cse.InstalledQuantity,0)) > ptd.TakeOffQuantity, /*Is Installed Greater then TakeOff*/
+			IF(COALESCE(pe.FAQuantity,0) + COALESCE(pme.MiscQuantity,0) + sum(COALESCE(cse.InstalledQuantity,0)) > ptd.TakeOffQuantity, /*Is Installed Greater then TakeOff*/
 			/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(cse.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
-			/*FALSE*/
-			COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity) 
-			* (COALESCE(pe.ErectionLengthSpool1,0) 
-			+ COALESCE(pe.ErectionLengthSpool2,0) 
-			+ COALESCE(pe.ErectionLengthSpool3,0) 
-			+ COALESCE(pe.ErectionLengthSpool4,0) 
-			+ COALESCE(pe.ErectionLengthSpool5,0) 
-			+ COALESCE(pe.ErectionLengthSpool6,0) 
-			+ COALESCE(pme.MiscQuantity,0)),0)
+			/*FALSE*/ COALESCE((COALESCE(pe.FAQuantity,0) + COALESCE(pme.MiscQuantity,0)) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity),0)
 			) 
-			+
-			IF(COALESCE(pcb.ConnectionQuantity,0) + COALESCE(pmcb.MiscQuantity,0) + sum(COALESCE(cscb.InstalledQuantity,0))
-				> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+            +
+			IF(COALESCE(pcb.FAQuantity,0) + COALESCE(pmcb.MiscQuantity,0) + sum(COALESCE(cscb.InstalledQuantity,0))	> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
 				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(cscb.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
-				/*FALSE*/ COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity) * (COALESCE(pcb.ConnectionQuantity,0)+COALESCE(pmcb.MiscQuantity,0)), 0)
+				/*FALSE*/ COALESCE((COALESCE(pcb.FAQuantity,0) + COALESCE(pmcb.MiscQuantity,0)) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity), 0)
 				)
 			+
-			IF(COALESCE(pw.WeldPercentCompleted,0) + COALESCE(pmw.MiscQuantity,0) + sum(COALESCE(csw.InstalledQuantity,0))
-				> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+			IF(COALESCE(pw.WeldPercentCompleted,0) + COALESCE(pmw.MiscQuantity,0) + sum(COALESCE(csw.InstalledQuantity,0)) > ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
 				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(csw.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
-				/*FALSE*/ COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity) * (COALESCE(pw.WeldPercentCompleted,0)+COALESCE(pmw.MiscQuantity,0)),0)
+				/*FALSE*/ COALESCE((COALESCE(pw.WeldPercentCompleted,0) + COALESCE(pmw.MiscQuantity,0)) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity),0)
 				)
 			+
-			IF(COALESCE(pcs.ConnectionQuantity,0) + COALESCE(pmcs.MiscQuantity,0) + sum(COALESCE(cscs.InstalledQuantity,0))
-				> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+			IF(COALESCE(pcs.FAQuantity,0) + COALESCE(pmcs.MiscQuantity,0) + sum(COALESCE(cscs.InstalledQuantity,0)) > ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
 				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(cscs.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
-				/*FALSE*/ COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity) * (COALESCE(pcs.ConnectionQuantity,0)+COALESCE(pmcs.MiscQuantity,0)), 0)
+				/*FALSE*/ COALESCE((COALESCE(pcs.FAQuantity,0) + COALESCE(pmcs.MiscQuantity,0)) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity), 0)
 				)
 			+
-			IF(COALESCE(pco.ConnectionQuantity,0) + COALESCE(pmco.MiscQuantity,0) + sum(COALESCE(csco.InstalledQuantity,0))
-				> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+			IF(COALESCE(pco.FAQuantity,0) + COALESCE(pmco.MiscQuantity,0) + sum(COALESCE(csco.InstalledQuantity,0))	> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
 				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(csco.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
-				/*FALSE*/ COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity) * (COALESCE(pco.ConnectionQuantity,0)+COALESCE(pmco.MiscQuantity,0)), 0)
-				) 
-			+
-			IF(COALESCE(pcut.FAQuantity * pcut.FAPercentCompleted,0) + COALESCE(pmcut.MiscQuantity,0) + sum(COALESCE(cscut.InstalledQuantity ,0))
-				> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(cscut.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
-				/*FALSE*/ COALESCE((ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity) * (COALESCE(pcut.FAQuantity * pcut.FAPercentCompleted,0)+COALESCE(pmcut.MiscQuantity,0)),0)
-				) 
-			+
-			IF(COALESCE(pt.FAQuantity * pt.FAPercentCompleted,0) + COALESCE(pmt.MiscQuantity,0) + sum(COALESCE(cst.InstalledQuantity,0))
-				> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(cst.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
-				/*FALSE*/ COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity) * (COALESCE(pt.FAQuantity * pt.FAPercentCompleted,0)+COALESCE(pmt.MiscQuantity,0)),0)
+				/*FALSE*/ COALESCE((COALESCE(pco.FAQuantity,0) + COALESCE(pmco.MiscQuantity,0)) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity), 0)
 				)
 			+
-			IF(COALESCE(psu.FAQuantity * psu.FAPercentCompleted,0) + COALESCE(pmsu.MiscQuantity,0) + sum(COALESCE(cssu.InstalledQuantity,0))
-				> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+			IF(COALESCE(pcut.FAQuantity,0) + COALESCE(pmcut.MiscQuantity,0) + sum(COALESCE(cscut.InstalledQuantity ,0))	> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(cscut.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
+				/*FALSE*/ COALESCE((COALESCE(pcut.FAQuantity,0) + COALESCE(pmcut.MiscQuantity,0)) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity),0)
+				)
+			+
+			IF(COALESCE(pt.FAQuantity,0) + COALESCE(pmt.MiscQuantity,0) + sum(COALESCE(cst.InstalledQuantity,0)) > ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(cst.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
+				/*FALSE*/ COALESCE((COALESCE(pt.FAQuantity,0) + COALESCE(pmt.MiscQuantity,0)) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity),0)
+				)
+			+
+			IF(COALESCE(psu.FAQuantity * psu.FAPercentCompleted,0) + COALESCE(pmsu.MiscQuantity,0) + sum(COALESCE(cssu.InstalledQuantity,0)) > ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
 				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(cssu.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
-				/*FALSE*/ COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity)*(COALESCE(psu.FAQuantity * psu.FAPercentCompleted,0)+COALESCE(pmsu.MiscQuantity,0)),0)
-				) 
+				/*FALSE*/ COALESCE((COALESCE(psu.FAQuantity * psu.FAPercentCompleted,0) + COALESCE(pmsu.MiscQuantity,0)) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity),0)
+				)
 			+
-			IF(COALESCE(pd.FAQuantity * pd.FAPercentCompleted,0) + COALESCE(pmd.MiscQuantity,0) + sum(COALESCE(csd.InstalledQuantity,0))
-				> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(csd.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
-				/*FALSE*/ COALESCE((ptd.EstimatedHours/ptd.TakeOffQuantity) * (COALESCE(pd.FAQuantity * pd.FAPercentCompleted,0)+COALESCE(pmd.MiscQuantity,0)),0)
-				) 
+			IF(COALESCE(ptd.TakeOffQuantity * pd.FAPercentCompleted,0) + COALESCE(pmd.MiscQuantity,0) + sum(COALESCE(csd.InstalledQuantity,0)) > ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(csd.InstalledQuantity,0)),0) * (ptd.EstimatedHours / ptd.TakeOffQuantity),
+				/*FALSE*/ COALESCE((COALESCE(ptd.TakeOffQuantity * pd.FAPercentCompleted,0) + COALESCE(pmd.MiscQuantity,0)) * (ptd.EstimatedHours / ptd.TakeOffQuantity),0)
+				)
 			+
-			IF(COALESCE(pm.FAQuantity * pm.FAPercentCompleted,0) + COALESCE(pmm.MiscQuantity,0) + sum(COALESCE(csm.InstalledQuantity,0))
-				> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+			IF(COALESCE(ptd.TakeOffQuantity * pm.FAPercentCompleted,0) + COALESCE(pmm.MiscQuantity,0) + sum(COALESCE(csm.InstalledQuantity,0)) > ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
 				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(csm.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
-				/*FALSE*/ COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity) * (COALESCE(pm.FAQuantity * pm.FAPercentCompleted,0)+COALESCE(pmm.MiscQuantity,0)),0)
-			) 
+				/*FALSE*/ COALESCE((COALESCE(ptd.TakeOffQuantity * pm.FAPercentCompleted,0) + COALESCE(pmm.MiscQuantity,0)) * (ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity),0)
+				) 
 			) AS EarnedAllHours
 
 			FROM SubmissionActivityStatus sas
 			JOIN PSA.REF_ActivityTypes at
 				ON at.ID = sas.ActivityType
+		
+			LEFT JOIN `Job1111`.PipeFA pe
+				ON pe.ActivityID = sas.ActivityID AND sas.ActivityType = 11 AND pe.FARework = 0
 
-			JOIN PipeTrackerDetails ptd
-				ON ptd.BidID = sas.fk_BidIDAssigned AND ptd.TestPackageNumber = :TestPackage
-				
-			LEFT JOIN PipeErection pe
-				ON pe.ActivityID = sas.ActivityID AND pe.ErectionRework = 0
+			LEFT JOIN `Job1111`.PipeFA pcb
+				ON pcb.ActivityID = sas.ActivityID AND sas.ActivityType = 21 AND pcb.FARework = 0
+		 
+			LEFT JOIN `Job1111`.PipeWeld pw
+				ON pw.ActivityID = sas.ActivityID AND pw.WeldRework = 0
 
-			LEFT JOIN PipeConnection pcb
-				ON pcb.ActivityID = sas.ActivityID AND sas.ActivityType = 21 AND pcb.ConnectionRework = 0
-
-			LEFT JOIN PipeWeld pw
-				ON pw.ActivityID = sas.ActivityID AND sas.ActivityType = 22  AND  pw.WeldRework = 0
-
-			LEFT JOIN PipeConnection pcs
-				ON pcs.ActivityID = sas.ActivityID AND sas.ActivityType = 24 AND pcs.ConnectionRework = 0
-
-			LEFT JOIN PipeConnection pco
-				ON pco.ActivityID = sas.ActivityID AND sas.ActivityType = 25 AND pco.ConnectionRework = 0
-
-			LEFT JOIN PipeFA pcut
+			LEFT JOIN `Job1111`.PipeFA pcs
+				ON pcs.ActivityID = sas.ActivityID AND sas.ActivityType = 24 AND pcs.FARework = 0
+		 
+			LEFT JOIN `Job1111`.PipeFA pco
+				ON pco.ActivityID = sas.ActivityID AND sas.ActivityType = 25 AND pco.FARework = 0
+		 
+			LEFT JOIN `Job1111`.PipeFA pcut
 				ON pcut.ActivityID = sas.ActivityID AND sas.ActivityType = 23 AND pcut.FARework = 0
 				
-			LEFT JOIN PipeFA pt
+			LEFT JOIN `Job1111`.PipeFA pt
 				ON pt.ActivityID = sas.ActivityID AND sas.ActivityType IN (31,32,33,39) AND pt.FARework = 0
 				
-			LEFT JOIN PipeFA psu
+			LEFT JOIN `Job1111`.PipeFA psu
 				ON psu.ActivityID = sas.ActivityID AND sas.ActivityType = 38 AND psu.FARework = 0
 				
-			LEFT JOIN PipeFA pd
+			LEFT JOIN `Job1111`.PipeFA pd
 				ON pd.ActivityID = sas.ActivityID AND sas.ActivityType IN (51,52,53)
-
-			LEFT JOIN PipeFA pm
+			
+			LEFT JOIN `Job1111`.PipeFA pm
 				ON pm.ActivityID = sas.ActivityID AND sas.ActivityType = 90 AND pm.FARework = 0
 
 
-			/* #### Begining of Misc activities assigned joins #### */	
-			LEFT JOIN PipeMisc pme
-				ON pme.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "PE" AND pme.MiscRework = 0
+	LEFT JOIN `Job1111`.PipeTrackerDetails ptd
+		ON ptd.BidID = sas.fk_BidIDAssigned
 
-			LEFT JOIN PipeMisc pmcb
-				ON pmcb.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "BU" AND pmcb.MiscRework = 0
 
-			LEFT JOIN PipeMisc pmw
-				ON pmw.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "W" AND pmw.MiscRework = 0
+/* #### Begining of Misc activities assigned joins #### */	
+	LEFT JOIN `Job1111`.PipeMisc pme
+		ON pme.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "PE" AND pme.MiscRework = 0
+	
+	LEFT JOIN `Job1111`.PipeMisc pmcb
+		ON pmcb.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "BU" AND pmcb.MiscRework = 0
+	
+	LEFT JOIN `Job1111`.PipeMisc pmw
+		ON pmw.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "W" AND pmw.MiscRework = 0
+	
+	LEFT JOIN `Job1111`.PipeMisc pmcs
+		ON pmcs.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "SCREW" AND pmcs.MiscRework = 0
+	
+	LEFT JOIN `Job1111`.PipeMisc pmco
+		ON pmco.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "Other" AND pmco.MiscRework = 0
+		
+	LEFT JOIN `Job1111`.PipeMisc pmcut
+		ON pmcut.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "CUT" AND pmcut.MiscRework = 0
 
-			LEFT JOIN PipeMisc pmcs
-				ON pmcs.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "SCREW" AND pmcs.MiscRework = 0
+	LEFT JOIN `Job1111`.PipeMisc pmt
+		ON pmt.ActivityID = sas.ActivityID AND ptd.ActivityType = "T" AND pmt.MiscRework = 0
+	   
+	LEFT JOIN `Job1111`.PipeMisc pmsu
+		ON pmsu.ActivityID = sas.ActivityID AND ptd.ActivityType = "S" AND pmsu.MiscRework = 0
 
-			LEFT JOIN PipeMisc pmco
-				ON pmco.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "Other" AND pmco.MiscRework = 0
-				
-			LEFT JOIN PipeMisc pmcut
-				ON pmcut.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "CUT" AND pmcut.MiscRework = 0
-
-			LEFT JOIN PipeMisc pmt
-				ON pmt.ActivityID = sas.ActivityID AND ptd.ActivityType = "T" AND pmt.MiscRework = 0
-			   
-			LEFT JOIN PipeMisc pmsu
-				ON pmsu.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "S" AND pmsu.MiscRework = 0
-
-			LEFT JOIN PipeMisc pmd
-				ON pmd.ActivityID = sas.ActivityID  AND ptd.ActivityType = "D" AND pmd.MiscRework = 0
-				
-			LEFT JOIN PipeMisc pmm
-					ON pmm.ActivityID = sas.ActivityID  AND ptd.ActivityType = "MISC" AND pmm.MiscRework = 0
+	LEFT JOIN `Job1111`.PipeMisc pmd
+		ON pmd.ActivityID = sas.ActivityID  AND ptd.ActivityType = "D" AND pmd.MiscRework = 0
+        
+	LEFT JOIN `Job1111`.PipeMisc pmm
+		ON pmm.ActivityID = sas.ActivityID  AND ptd.ActivityType = "MISC" AND pmm.MiscRework = 0
 				
 			/* #### Begining of Cumulative Past sums Calculation #### */	
-			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(pe.ErectionLengthSpool1,0) + COALESCE(pe.ErectionLengthSpool2,0) + COALESCE(pe.ErectionLengthSpool3,0) + COALESCE(pe.ErectionLengthSpool4,0) + COALESCE(pe.ErectionLengthSpool5,0) + COALESCE(pe.ErectionLengthSpool6,0) + COALESCE(pme.MiscQuantity,0)) AS InstalledQuantity
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(pfa.FAQuantity,0) + COALESCE(pme.MiscQuantity,0)) AS InstalledQuantity
 				FROM SubmissionActivityStatus sas
 				JOIN PipeTrackerDetails ptd
 					ON ptd.BidID = sas.fk_BidIDAssigned AND ptd.TestPackageNumber = :TestPackage
-				LEFT JOIN PipeErection pe
-					ON pe.ActivityID = sas.ActivityID AND ErectionRework = 0
+				LEFT JOIN PipeFA pfa
+					ON pfa.ActivityID = sas.ActivityID AND pfa.FARework = 0
 				LEFT JOIN PipeMisc pme
 					ON pme.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "PE" AND pme.MiscRework = 0
 				WHERE sas.fk_ActivityStatus IN (5,12)
@@ -189,12 +165,12 @@ LEFT JOIN (SELECT er0.BidID,
 				HAVING InstalledQuantity > 0) cse
 				ON sas.ActivityType IN (11,91) AND sas.fk_BidIDAssigned = cse.fk_BidIDAssigned AND cse.ActivityID < sas.ActivityID
 
-			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(pc.ConnectionQuantity,0) + COALESCE(pmc.MiscQuantity,0)) AS InstalledQuantity
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(pfa.FAQuantity,0) + COALESCE(pmc.MiscQuantity,0)) AS InstalledQuantity
 				FROM SubmissionActivityStatus sas
 				JOIN PipeTrackerDetails ptd
 					ON ptd.BidID = sas.fk_BidIDAssigned AND ptd.TestPackageNumber = :TestPackage
-				LEFT JOIN PipeConnection pc
-					ON pc.ActivityID = sas.ActivityID AND ConnectionRework = 0			
+				LEFT JOIN PipeFA pfa
+					ON pfa.ActivityID = sas.ActivityID AND pfa.FARework = 0		
 				LEFT JOIN PipeMisc pmc
 					ON pmc.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "BU" AND pmc.MiscRework = 0
 				WHERE sas.fk_ActivityStatus IN (5,12)
@@ -215,12 +191,12 @@ LEFT JOIN (SELECT er0.BidID,
 				HAVING InstalledQuantity > 0) csw
 				ON sas.ActivityType IN (22,91) AND sas.fk_BidIDAssigned = csw.fk_BidIDAssigned AND csw.ActivityID < sas.ActivityID
 
-			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(pc.ConnectionQuantity,0) + COALESCE(pmc.MiscQuantity,0)) AS InstalledQuantity
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(pfa.FAQuantity,0) + COALESCE(pmc.MiscQuantity,0)) AS InstalledQuantity
 				FROM SubmissionActivityStatus sas
 				JOIN PipeTrackerDetails ptd
 					ON ptd.BidID = sas.fk_BidIDAssigned AND ptd.TestPackageNumber = :TestPackage
-				LEFT JOIN PipeConnection pc
-					ON pc.ActivityID = sas.ActivityID AND ConnectionRework = 0		
+				LEFT JOIN PipeFA pfa
+					ON pfa.ActivityID = sas.ActivityID AND pfa.FARework = 0	
 				LEFT JOIN PipeMisc pmc
 					ON pmc.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "SCREW" AND pmc.MiscRework = 0
 				WHERE sas.fk_ActivityStatus IN (5,12)
@@ -228,12 +204,12 @@ LEFT JOIN (SELECT er0.BidID,
 				HAVING InstalledQuantity > 0) cscs
 				ON sas.ActivityType IN (24,91) AND sas.fk_BidIDAssigned = cscs.fk_BidIDAssigned AND cscs.ActivityID < sas.ActivityID
 
-			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(pc.ConnectionQuantity,0) + COALESCE(pmc.MiscQuantity,0)) AS InstalledQuantity
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(pfa.FAQuantity,0) + COALESCE(pmc.MiscQuantity,0)) AS InstalledQuantity
 				FROM SubmissionActivityStatus sas
 				JOIN PipeTrackerDetails ptd
 					ON ptd.BidID = sas.fk_BidIDAssigned AND ptd.TestPackageNumber = :TestPackage
-				LEFT JOIN PipeConnection pc
-					ON pc.ActivityID = sas.ActivityID AND ConnectionRework = 0		
+				LEFT JOIN PipeFA pfa
+					ON pfa.ActivityID = sas.ActivityID AND pfa.FARework = 0	
 				LEFT JOIN PipeMisc pmc
 					ON pmc.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "Other" AND pmc.MiscRework = 0
 				WHERE sas.fk_ActivityStatus IN (5,12)
@@ -382,7 +358,7 @@ TRUNCATE(sum(ert.EarnedRFTHours),6) AS EarnedRFTHours,
 TRUNCATE(sum(ert.EarnedHydroHours),6) AS EarnedHydroHours, 
 TRUNCATE(sum(ert.EarnedCTOHours),6) AS EarnedCTOHours,
 
-ROUND((ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')) - SUM(er.EarnedAllHours), 2) AS LooseHours
+ROUND((ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')) - SUM(COALESCE(er.EarnedAllHours,0)), 2) AS LooseHours
 
 FROM PipeTrackerDetails ptd
 
@@ -392,158 +368,134 @@ LEFT JOIN (SELECT er0.BidID,
 			
 		###Earned Hours Calculations ###
 			(
-			IF( 
-			COALESCE(pe.ErectionLengthSpool1,0) 
-			+ COALESCE(pe.ErectionLengthSpool2,0) 
-			+ COALESCE(pe.ErectionLengthSpool3,0) 
-			+ COALESCE(pe.ErectionLengthSpool4,0) 
-			+ COALESCE(pe.ErectionLengthSpool5,0) 
-			+ COALESCE(pe.ErectionLengthSpool6,0)
-			+ COALESCE(pme.MiscQuantity,0)
-			+ sum(COALESCE(cse.InstalledQuantity,0)) > ptd.TakeOffQuantity, /*Is Installed Greater then TakeOff*/
+			IF(COALESCE(pe.FAQuantity,0) + COALESCE(pme.MiscQuantity,0) + sum(COALESCE(cse.InstalledQuantity,0)) > ptd.TakeOffQuantity, /*Is Installed Greater then TakeOff*/
 			/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(cse.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
-			/*FALSE*/
-			COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity) 
-			* (COALESCE(pe.ErectionLengthSpool1,0) 
-			+ COALESCE(pe.ErectionLengthSpool2,0) 
-			+ COALESCE(pe.ErectionLengthSpool3,0) 
-			+ COALESCE(pe.ErectionLengthSpool4,0) 
-			+ COALESCE(pe.ErectionLengthSpool5,0) 
-			+ COALESCE(pe.ErectionLengthSpool6,0) 
-			+ COALESCE(pme.MiscQuantity,0)),0)
+			/*FALSE*/ COALESCE((COALESCE(pe.FAQuantity,0) + COALESCE(pme.MiscQuantity,0)) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity),0)
 			) 
-			+
-			IF(COALESCE(pcb.ConnectionQuantity,0) + COALESCE(pmcb.MiscQuantity,0) + sum(COALESCE(cscb.InstalledQuantity,0))
-				> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+            +
+			IF(COALESCE(pcb.FAQuantity,0) + COALESCE(pmcb.MiscQuantity,0) + sum(COALESCE(cscb.InstalledQuantity,0))	> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
 				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(cscb.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
-				/*FALSE*/ COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity) * (COALESCE(pcb.ConnectionQuantity,0)+COALESCE(pmcb.MiscQuantity,0)), 0)
+				/*FALSE*/ COALESCE((COALESCE(pcb.FAQuantity,0) + COALESCE(pmcb.MiscQuantity,0)) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity), 0)
 				)
 			+
-			IF(COALESCE(pw.WeldPercentCompleted,0) + COALESCE(pmw.MiscQuantity,0) + sum(COALESCE(csw.InstalledQuantity,0))
-				> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+			IF(COALESCE(pw.WeldPercentCompleted,0) + COALESCE(pmw.MiscQuantity,0) + sum(COALESCE(csw.InstalledQuantity,0)) > ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
 				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(csw.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
-				/*FALSE*/ COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity) * (COALESCE(pw.WeldPercentCompleted,0)+COALESCE(pmw.MiscQuantity,0)),0)
+				/*FALSE*/ COALESCE((COALESCE(pw.WeldPercentCompleted,0) + COALESCE(pmw.MiscQuantity,0)) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity),0)
 				)
 			+
-			IF(COALESCE(pcs.ConnectionQuantity,0) + COALESCE(pmcs.MiscQuantity,0) + sum(COALESCE(cscs.InstalledQuantity,0))
-				> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+			IF(COALESCE(pcs.FAQuantity,0) + COALESCE(pmcs.MiscQuantity,0) + sum(COALESCE(cscs.InstalledQuantity,0)) > ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
 				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(cscs.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
-				/*FALSE*/ COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity) * (COALESCE(pcs.ConnectionQuantity,0)+COALESCE(pmcs.MiscQuantity,0)), 0)
+				/*FALSE*/ COALESCE((COALESCE(pcs.FAQuantity,0) + COALESCE(pmcs.MiscQuantity,0)) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity), 0)
 				)
 			+
-			IF(COALESCE(pco.ConnectionQuantity,0) + COALESCE(pmco.MiscQuantity,0) + sum(COALESCE(csco.InstalledQuantity,0))
-				> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+			IF(COALESCE(pco.FAQuantity,0) + COALESCE(pmco.MiscQuantity,0) + sum(COALESCE(csco.InstalledQuantity,0))	> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
 				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(csco.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
-				/*FALSE*/ COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity) * (COALESCE(pco.ConnectionQuantity,0)+COALESCE(pmco.MiscQuantity,0)), 0)
-				) 
-			+
-			IF(COALESCE(pcut.FAQuantity * pcut.FAPercentCompleted,0) + COALESCE(pmcut.MiscQuantity,0) + sum(COALESCE(cscut.InstalledQuantity ,0))
-				> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(cscut.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
-				/*FALSE*/ COALESCE((ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity) * (COALESCE(pcut.FAQuantity * pcut.FAPercentCompleted,0)+COALESCE(pmcut.MiscQuantity,0)),0)
-				) 
-			+
-			IF(COALESCE(pt.FAQuantity * pt.FAPercentCompleted,0) + COALESCE(pmt.MiscQuantity,0) + sum(COALESCE(cst.InstalledQuantity,0))
-				> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(cst.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
-				/*FALSE*/ COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity) * (COALESCE(pt.FAQuantity * pt.FAPercentCompleted,0)+COALESCE(pmt.MiscQuantity,0)),0)
+				/*FALSE*/ COALESCE((COALESCE(pco.FAQuantity,0) + COALESCE(pmco.MiscQuantity,0)) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity), 0)
 				)
 			+
-			IF(COALESCE(psu.FAQuantity * psu.FAPercentCompleted,0) + COALESCE(pmsu.MiscQuantity,0) + sum(COALESCE(cssu.InstalledQuantity,0))
-				> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+			IF(COALESCE(pcut.FAQuantity,0) + COALESCE(pmcut.MiscQuantity,0) + sum(COALESCE(cscut.InstalledQuantity ,0))	> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(cscut.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
+				/*FALSE*/ COALESCE((COALESCE(pcut.FAQuantity,0) + COALESCE(pmcut.MiscQuantity,0)) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity),0)
+				)
+			+
+			IF(COALESCE(pt.FAQuantity,0) + COALESCE(pmt.MiscQuantity,0) + sum(COALESCE(cst.InstalledQuantity,0)) > ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(cst.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
+				/*FALSE*/ COALESCE((COALESCE(pt.FAQuantity,0) + COALESCE(pmt.MiscQuantity,0)) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity),0)
+				)
+			+
+			IF(COALESCE(psu.FAQuantity * psu.FAPercentCompleted,0) + COALESCE(pmsu.MiscQuantity,0) + sum(COALESCE(cssu.InstalledQuantity,0)) > ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
 				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(cssu.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
-				/*FALSE*/ COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity)*(COALESCE(psu.FAQuantity * psu.FAPercentCompleted,0)+COALESCE(pmsu.MiscQuantity,0)),0)
-				) 
+				/*FALSE*/ COALESCE((COALESCE(psu.FAQuantity * psu.FAPercentCompleted,0) + COALESCE(pmsu.MiscQuantity,0)) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity),0)
+				)
 			+
-			IF(COALESCE(pd.FAQuantity * pd.FAPercentCompleted,0) + COALESCE(pmd.MiscQuantity,0) + sum(COALESCE(csd.InstalledQuantity,0))
-				> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
-				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(csd.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
-				/*FALSE*/ COALESCE((ptd.EstimatedHours/ptd.TakeOffQuantity) * (COALESCE(pd.FAQuantity * pd.FAPercentCompleted,0)+COALESCE(pmd.MiscQuantity,0)),0)
-				) 
+			IF(COALESCE(ptd.TakeOffQuantity * pd.FAPercentCompleted,0) + COALESCE(pmd.MiscQuantity,0) + sum(COALESCE(csd.InstalledQuantity,0)) > ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(csd.InstalledQuantity,0)),0) * (ptd.EstimatedHours / ptd.TakeOffQuantity),
+				/*FALSE*/ COALESCE((COALESCE(ptd.TakeOffQuantity * pd.FAPercentCompleted,0) + COALESCE(pmd.MiscQuantity,0)) * (ptd.EstimatedHours / ptd.TakeOffQuantity),0)
+				)
 			+
-			IF(COALESCE(pm.FAQuantity * pm.FAPercentCompleted,0) + COALESCE(pmm.MiscQuantity,0) + sum(COALESCE(csm.InstalledQuantity,0))
-				> ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
+			IF(COALESCE(ptd.TakeOffQuantity * pm.FAPercentCompleted,0) + COALESCE(pmm.MiscQuantity,0) + sum(COALESCE(csm.InstalledQuantity,0)) > ptd.TakeOffQuantity,/*Is Installed Greater then TakeOff*/
 				/*TRUE*/ GREATEST(ptd.TakeOffQuantity - sum(COALESCE(csm.InstalledQuantity,0)),0) * (ptd.EstimatedHours * (SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent') / ptd.TakeOffQuantity),
-				/*FALSE*/ COALESCE((ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity) * (COALESCE(pm.FAQuantity * pm.FAPercentCompleted,0)+COALESCE(pmm.MiscQuantity,0)),0)
-			) 
+				/*FALSE*/ COALESCE((COALESCE(ptd.TakeOffQuantity * pm.FAPercentCompleted,0) + COALESCE(pmm.MiscQuantity,0)) * (ptd.EstimatedHours*(SELECT Value1 FROM SETTINGS WHERE Label = 'PipeMechHoursPercent')/ptd.TakeOffQuantity),0)
+				) 
 			) AS EarnedAllHours
 
 			FROM SubmissionActivityStatus sas
 			JOIN PSA.REF_ActivityTypes at
 				ON at.ID = sas.ActivityType
+		
+			LEFT JOIN `Job1111`.PipeFA pe
+				ON pe.ActivityID = sas.ActivityID AND sas.ActivityType = 11 AND pe.FARework = 0
 
-			JOIN PipeTrackerDetails ptd
-				ON ptd.BidID = sas.fk_BidIDAssigned AND ptd.TestPackageNumber = :TestPackage
-				
-			LEFT JOIN PipeErection pe
-				ON pe.ActivityID = sas.ActivityID AND pe.ErectionRework = 0
+			LEFT JOIN `Job1111`.PipeFA pcb
+				ON pcb.ActivityID = sas.ActivityID AND sas.ActivityType = 21 AND pcb.FARework = 0
+		 
+			LEFT JOIN `Job1111`.PipeWeld pw
+				ON pw.ActivityID = sas.ActivityID AND pw.WeldRework = 0
 
-			LEFT JOIN PipeConnection pcb
-				ON pcb.ActivityID = sas.ActivityID AND sas.ActivityType = 21 AND pcb.ConnectionRework = 0
-
-			LEFT JOIN PipeWeld pw
-				ON pw.ActivityID = sas.ActivityID AND sas.ActivityType = 22  AND  pw.WeldRework = 0
-
-			LEFT JOIN PipeConnection pcs
-				ON pcs.ActivityID = sas.ActivityID AND sas.ActivityType = 24 AND pcs.ConnectionRework = 0
-
-			LEFT JOIN PipeConnection pco
-				ON pco.ActivityID = sas.ActivityID AND sas.ActivityType = 25 AND pco.ConnectionRework = 0
-
-			LEFT JOIN PipeFA pcut
+			LEFT JOIN `Job1111`.PipeFA pcs
+				ON pcs.ActivityID = sas.ActivityID AND sas.ActivityType = 24 AND pcs.FARework = 0
+		 
+			LEFT JOIN `Job1111`.PipeFA pco
+				ON pco.ActivityID = sas.ActivityID AND sas.ActivityType = 25 AND pco.FARework = 0
+		 
+			LEFT JOIN `Job1111`.PipeFA pcut
 				ON pcut.ActivityID = sas.ActivityID AND sas.ActivityType = 23 AND pcut.FARework = 0
 				
-			LEFT JOIN PipeFA pt
+			LEFT JOIN `Job1111`.PipeFA pt
 				ON pt.ActivityID = sas.ActivityID AND sas.ActivityType IN (31,32,33,39) AND pt.FARework = 0
 				
-			LEFT JOIN PipeFA psu
+			LEFT JOIN `Job1111`.PipeFA psu
 				ON psu.ActivityID = sas.ActivityID AND sas.ActivityType = 38 AND psu.FARework = 0
 				
-			LEFT JOIN PipeFA pd
+			LEFT JOIN `Job1111`.PipeFA pd
 				ON pd.ActivityID = sas.ActivityID AND sas.ActivityType IN (51,52,53)
-
-			LEFT JOIN PipeFA pm
+			
+			LEFT JOIN `Job1111`.PipeFA pm
 				ON pm.ActivityID = sas.ActivityID AND sas.ActivityType = 90 AND pm.FARework = 0
 
 
-			/* #### Begining of Misc activities assigned joins #### */	
-			LEFT JOIN PipeMisc pme
-				ON pme.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "PE" AND pme.MiscRework = 0
+	LEFT JOIN `Job1111`.PipeTrackerDetails ptd
+		ON ptd.BidID = sas.fk_BidIDAssigned
 
-			LEFT JOIN PipeMisc pmcb
-				ON pmcb.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "BU" AND pmcb.MiscRework = 0
 
-			LEFT JOIN PipeMisc pmw
-				ON pmw.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "W" AND pmw.MiscRework = 0
+/* #### Begining of Misc activities assigned joins #### */	
+	LEFT JOIN `Job1111`.PipeMisc pme
+		ON pme.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "PE" AND pme.MiscRework = 0
+	
+	LEFT JOIN `Job1111`.PipeMisc pmcb
+		ON pmcb.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "BU" AND pmcb.MiscRework = 0
+	
+	LEFT JOIN `Job1111`.PipeMisc pmw
+		ON pmw.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "W" AND pmw.MiscRework = 0
+	
+	LEFT JOIN `Job1111`.PipeMisc pmcs
+		ON pmcs.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "SCREW" AND pmcs.MiscRework = 0
+	
+	LEFT JOIN `Job1111`.PipeMisc pmco
+		ON pmco.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "Other" AND pmco.MiscRework = 0
+		
+	LEFT JOIN `Job1111`.PipeMisc pmcut
+		ON pmcut.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "CUT" AND pmcut.MiscRework = 0
 
-			LEFT JOIN PipeMisc pmcs
-				ON pmcs.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "SCREW" AND pmcs.MiscRework = 0
+	LEFT JOIN `Job1111`.PipeMisc pmt
+		ON pmt.ActivityID = sas.ActivityID AND ptd.ActivityType = "T" AND pmt.MiscRework = 0
+	   
+	LEFT JOIN `Job1111`.PipeMisc pmsu
+		ON pmsu.ActivityID = sas.ActivityID AND ptd.ActivityType = "S" AND pmsu.MiscRework = 0
 
-			LEFT JOIN PipeMisc pmco
-				ON pmco.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "Other" AND pmco.MiscRework = 0
-				
-			LEFT JOIN PipeMisc pmcut
-				ON pmcut.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "CUT" AND pmcut.MiscRework = 0
-
-			LEFT JOIN PipeMisc pmt
-				ON pmt.ActivityID = sas.ActivityID AND ptd.ActivityType = "T" AND pmt.MiscRework = 0
-			   
-			LEFT JOIN PipeMisc pmsu
-				ON pmsu.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "S" AND pmsu.MiscRework = 0
-
-			LEFT JOIN PipeMisc pmd
-				ON pmd.ActivityID = sas.ActivityID  AND ptd.ActivityType = "D" AND pmd.MiscRework = 0
-				
-			LEFT JOIN PipeMisc pmm
-					ON pmm.ActivityID = sas.ActivityID  AND ptd.ActivityType = "MISC" AND pmm.MiscRework = 0
+	LEFT JOIN `Job1111`.PipeMisc pmd
+		ON pmd.ActivityID = sas.ActivityID  AND ptd.ActivityType = "D" AND pmd.MiscRework = 0
+        
+	LEFT JOIN `Job1111`.PipeMisc pmm
+		ON pmm.ActivityID = sas.ActivityID  AND ptd.ActivityType = "MISC" AND pmm.MiscRework = 0
 				
 			/* #### Begining of Cumulative Past sums Calculation #### */	
-			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(pe.ErectionLengthSpool1,0) + COALESCE(pe.ErectionLengthSpool2,0) + COALESCE(pe.ErectionLengthSpool3,0) + COALESCE(pe.ErectionLengthSpool4,0) + COALESCE(pe.ErectionLengthSpool5,0) + COALESCE(pe.ErectionLengthSpool6,0) + COALESCE(pme.MiscQuantity,0)) AS InstalledQuantity
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(pfa.FAQuantity,0) + COALESCE(pme.MiscQuantity,0)) AS InstalledQuantity
 				FROM SubmissionActivityStatus sas
 				JOIN PipeTrackerDetails ptd
 					ON ptd.BidID = sas.fk_BidIDAssigned AND ptd.TestPackageNumber = :TestPackage
-				LEFT JOIN PipeErection pe
-					ON pe.ActivityID = sas.ActivityID AND ErectionRework = 0
+				LEFT JOIN PipeFA pfa
+					ON pfa.ActivityID = sas.ActivityID AND pfa.FARework = 0
 				LEFT JOIN PipeMisc pme
 					ON pme.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "PE" AND pme.MiscRework = 0
 				WHERE sas.fk_ActivityStatus IN (5,12)
@@ -551,12 +503,12 @@ LEFT JOIN (SELECT er0.BidID,
 				HAVING InstalledQuantity > 0) cse
 				ON sas.ActivityType IN (11,91) AND sas.fk_BidIDAssigned = cse.fk_BidIDAssigned AND cse.ActivityID < sas.ActivityID
 
-			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(pc.ConnectionQuantity,0) + COALESCE(pmc.MiscQuantity,0)) AS InstalledQuantity
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(pfa.FAQuantity,0) + COALESCE(pmc.MiscQuantity,0)) AS InstalledQuantity
 				FROM SubmissionActivityStatus sas
 				JOIN PipeTrackerDetails ptd
 					ON ptd.BidID = sas.fk_BidIDAssigned AND ptd.TestPackageNumber = :TestPackage
-				LEFT JOIN PipeConnection pc
-					ON pc.ActivityID = sas.ActivityID AND ConnectionRework = 0			
+				LEFT JOIN PipeFA pfa
+					ON pfa.ActivityID = sas.ActivityID AND pfa.FARework = 0		
 				LEFT JOIN PipeMisc pmc
 					ON pmc.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "BU" AND pmc.MiscRework = 0
 				WHERE sas.fk_ActivityStatus IN (5,12)
@@ -577,12 +529,12 @@ LEFT JOIN (SELECT er0.BidID,
 				HAVING InstalledQuantity > 0) csw
 				ON sas.ActivityType IN (22,91) AND sas.fk_BidIDAssigned = csw.fk_BidIDAssigned AND csw.ActivityID < sas.ActivityID
 
-			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(pc.ConnectionQuantity,0) + COALESCE(pmc.MiscQuantity,0)) AS InstalledQuantity
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(pfa.FAQuantity,0) + COALESCE(pmc.MiscQuantity,0)) AS InstalledQuantity
 				FROM SubmissionActivityStatus sas
 				JOIN PipeTrackerDetails ptd
 					ON ptd.BidID = sas.fk_BidIDAssigned AND ptd.TestPackageNumber = :TestPackage
-				LEFT JOIN PipeConnection pc
-					ON pc.ActivityID = sas.ActivityID AND ConnectionRework = 0		
+				LEFT JOIN PipeFA pfa
+					ON pfa.ActivityID = sas.ActivityID AND pfa.FARework = 0	
 				LEFT JOIN PipeMisc pmc
 					ON pmc.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "SCREW" AND pmc.MiscRework = 0
 				WHERE sas.fk_ActivityStatus IN (5,12)
@@ -590,12 +542,12 @@ LEFT JOIN (SELECT er0.BidID,
 				HAVING InstalledQuantity > 0) cscs
 				ON sas.ActivityType IN (24,91) AND sas.fk_BidIDAssigned = cscs.fk_BidIDAssigned AND cscs.ActivityID < sas.ActivityID
 
-			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(pc.ConnectionQuantity,0) + COALESCE(pmc.MiscQuantity,0)) AS InstalledQuantity
+			LEFT JOIN (SELECT sas.ActivityID, sas.fk_BidIDAssigned, (COALESCE(pfa.FAQuantity,0) + COALESCE(pmc.MiscQuantity,0)) AS InstalledQuantity
 				FROM SubmissionActivityStatus sas
 				JOIN PipeTrackerDetails ptd
 					ON ptd.BidID = sas.fk_BidIDAssigned AND ptd.TestPackageNumber = :TestPackage
-				LEFT JOIN PipeConnection pc
-					ON pc.ActivityID = sas.ActivityID AND ConnectionRework = 0		
+				LEFT JOIN PipeFA pfa
+					ON pfa.ActivityID = sas.ActivityID AND pfa.FARework = 0	
 				LEFT JOIN PipeMisc pmc
 					ON pmc.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "Other" AND pmc.MiscRework = 0
 				WHERE sas.fk_ActivityStatus IN (5,12)
