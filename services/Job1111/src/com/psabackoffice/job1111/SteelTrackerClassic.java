@@ -1,4 +1,4 @@
-/*Copyright (c) 2016-2017 performance-contractors.com All Rights Reserved.
+/*Copyright (c) 2016-2018 performance-contractors.com All Rights Reserved.
  This software is the confidential and proprietary information of performance-contractors.com You shall not disclose such Confidential Information and shall use it only in accordance
  with the terms of the source code license agreement you entered into with performance-contractors.com*/
 package com.psabackoffice.job1111;
@@ -526,7 +526,7 @@ public class SteelTrackerClassic implements Serializable {
         this.installedSell = installedSell;
     }
 
-    @Column(name = "`InstalledDemo`", nullable = true, scale = 0, precision = 7)
+    @Column(name = "`InstalledDemo`", nullable = true, scale = 2, precision = 7)
     public Integer getInstalledDemo() {
         return this.installedDemo;
     }

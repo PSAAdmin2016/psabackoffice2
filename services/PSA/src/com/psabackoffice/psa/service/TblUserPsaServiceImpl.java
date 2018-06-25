@@ -1,4 +1,4 @@
-/*Copyright (c) 2016-2017 performance-contractors.com All Rights Reserved.
+/*Copyright (c) 2016-2018 performance-contractors.com All Rights Reserved.
  This software is the confidential and proprietary information of performance-contractors.com You shall not disclose such Confidential Information and shall use it only in accordance
  with the terms of the source code license agreement you entered into with performance-contractors.com*/
 package com.psabackoffice.psa.service;
@@ -228,6 +228,46 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
         this.wmGenericDao.refresh(tblUserPsa);
 
         // Deleting children which are not present in the list.
+        if(chatConversationMemberses != null && Hibernate.isInitialized(chatConversationMemberses) && !chatConversationMemberses.isEmpty()) {
+            List<ChatConversationMembers> _remainingChildren = wmGenericDao.execute(
+                session -> DaoUtils.findAllRemainingChildren(session, ChatConversationMembers.class,
+                        new DaoUtils.ChildrenFilter<>("tblUserPsa", tblUserPsa, chatConversationMemberses)));
+            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
+            _remainingChildren.forEach(_chatConversationMembers -> chatConversationMembersService.delete(_chatConversationMembers));
+            tblUserPsa.setChatConversationMemberses(chatConversationMemberses);
+        }
+
+        // Deleting children which are not present in the list.
+        if(chatMessageses != null && Hibernate.isInitialized(chatMessageses) && !chatMessageses.isEmpty()) {
+            List<ChatMessages> _remainingChildren = wmGenericDao.execute(
+                session -> DaoUtils.findAllRemainingChildren(session, ChatMessages.class,
+                        new DaoUtils.ChildrenFilter<>("tblUserPsa", tblUserPsa, chatMessageses)));
+            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
+            _remainingChildren.forEach(_chatMessages -> chatMessagesService.delete(_chatMessages));
+            tblUserPsa.setChatMessageses(chatMessageses);
+        }
+
+        // Deleting children which are not present in the list.
+        if(feedBacks != null && Hibernate.isInitialized(feedBacks) && !feedBacks.isEmpty()) {
+            List<FeedBack> _remainingChildren = wmGenericDao.execute(
+                session -> DaoUtils.findAllRemainingChildren(session, FeedBack.class,
+                        new DaoUtils.ChildrenFilter<>("tblUserPsa", tblUserPsa, feedBacks)));
+            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
+            _remainingChildren.forEach(_feedBack -> feedBackService.delete(_feedBack));
+            tblUserPsa.setFeedBacks(feedBacks);
+        }
+
+        // Deleting children which are not present in the list.
+        if(feedBackNoteses != null && Hibernate.isInitialized(feedBackNoteses) && !feedBackNoteses.isEmpty()) {
+            List<FeedBackNotes> _remainingChildren = wmGenericDao.execute(
+                session -> DaoUtils.findAllRemainingChildren(session, FeedBackNotes.class,
+                        new DaoUtils.ChildrenFilter<>("tblUserPsa", tblUserPsa, feedBackNoteses)));
+            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
+            _remainingChildren.forEach(_feedBackNotes -> feedBackNotesService.delete(_feedBackNotes));
+            tblUserPsa.setFeedBackNoteses(feedBackNoteses);
+        }
+
+        // Deleting children which are not present in the list.
         if(settingsusers != null && Hibernate.isInitialized(settingsusers) && !settingsusers.isEmpty()) {
             List<Settingsuser> _remainingChildren = wmGenericDao.execute(
                 session -> DaoUtils.findAllRemainingChildren(session, Settingsuser.class,
@@ -235,6 +275,86 @@ public class TblUserPsaServiceImpl implements TblUserPsaService {
             LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
             _remainingChildren.forEach(_settingsuser -> settingsuserService.delete(_settingsuser));
             tblUserPsa.setSettingsusers(settingsusers);
+        }
+
+        // Deleting children which are not present in the list.
+        if(tblCrewsesForProjectManager != null && Hibernate.isInitialized(tblCrewsesForProjectManager) && !tblCrewsesForProjectManager.isEmpty()) {
+            List<TblCrews> _remainingChildren = wmGenericDao.execute(
+                session -> DaoUtils.findAllRemainingChildren(session, TblCrews.class,
+                        new DaoUtils.ChildrenFilter<>("tblUserPsaByProjectManager", tblUserPsa, tblCrewsesForProjectManager)));
+            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
+            _remainingChildren.forEach(_tblCrews -> tblCrewsService.delete(_tblCrews));
+            tblUserPsa.setTblCrewsesForProjectManager(tblCrewsesForProjectManager);
+        }
+
+        // Deleting children which are not present in the list.
+        if(tblCrewsesForAreaManager != null && Hibernate.isInitialized(tblCrewsesForAreaManager) && !tblCrewsesForAreaManager.isEmpty()) {
+            List<TblCrews> _remainingChildren = wmGenericDao.execute(
+                session -> DaoUtils.findAllRemainingChildren(session, TblCrews.class,
+                        new DaoUtils.ChildrenFilter<>("tblUserPsaByAreaManager", tblUserPsa, tblCrewsesForAreaManager)));
+            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
+            _remainingChildren.forEach(_tblCrews -> tblCrewsService.delete(_tblCrews));
+            tblUserPsa.setTblCrewsesForAreaManager(tblCrewsesForAreaManager);
+        }
+
+        // Deleting children which are not present in the list.
+        if(tblCrewsesForSiteManager != null && Hibernate.isInitialized(tblCrewsesForSiteManager) && !tblCrewsesForSiteManager.isEmpty()) {
+            List<TblCrews> _remainingChildren = wmGenericDao.execute(
+                session -> DaoUtils.findAllRemainingChildren(session, TblCrews.class,
+                        new DaoUtils.ChildrenFilter<>("tblUserPsaBySiteManager", tblUserPsa, tblCrewsesForSiteManager)));
+            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
+            _remainingChildren.forEach(_tblCrews -> tblCrewsService.delete(_tblCrews));
+            tblUserPsa.setTblCrewsesForSiteManager(tblCrewsesForSiteManager);
+        }
+
+        // Deleting children which are not present in the list.
+        if(tblCrewsesForGf != null && Hibernate.isInitialized(tblCrewsesForGf) && !tblCrewsesForGf.isEmpty()) {
+            List<TblCrews> _remainingChildren = wmGenericDao.execute(
+                session -> DaoUtils.findAllRemainingChildren(session, TblCrews.class,
+                        new DaoUtils.ChildrenFilter<>("tblUserPsaByGf", tblUserPsa, tblCrewsesForGf)));
+            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
+            _remainingChildren.forEach(_tblCrews -> tblCrewsService.delete(_tblCrews));
+            tblUserPsa.setTblCrewsesForGf(tblCrewsesForGf);
+        }
+
+        // Deleting children which are not present in the list.
+        if(tblCrewsesForLeadman != null && Hibernate.isInitialized(tblCrewsesForLeadman) && !tblCrewsesForLeadman.isEmpty()) {
+            List<TblCrews> _remainingChildren = wmGenericDao.execute(
+                session -> DaoUtils.findAllRemainingChildren(session, TblCrews.class,
+                        new DaoUtils.ChildrenFilter<>("tblUserPsaByLeadman", tblUserPsa, tblCrewsesForLeadman)));
+            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
+            _remainingChildren.forEach(_tblCrews -> tblCrewsService.delete(_tblCrews));
+            tblUserPsa.setTblCrewsesForLeadman(tblCrewsesForLeadman);
+        }
+
+        // Deleting children which are not present in the list.
+        if(tblCrewsesForConstructionManager != null && Hibernate.isInitialized(tblCrewsesForConstructionManager) && !tblCrewsesForConstructionManager.isEmpty()) {
+            List<TblCrews> _remainingChildren = wmGenericDao.execute(
+                session -> DaoUtils.findAllRemainingChildren(session, TblCrews.class,
+                        new DaoUtils.ChildrenFilter<>("tblUserPsaByConstructionManager", tblUserPsa, tblCrewsesForConstructionManager)));
+            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
+            _remainingChildren.forEach(_tblCrews -> tblCrewsService.delete(_tblCrews));
+            tblUserPsa.setTblCrewsesForConstructionManager(tblCrewsesForConstructionManager);
+        }
+
+        // Deleting children which are not present in the list.
+        if(tblCrewsesForSuperintendent != null && Hibernate.isInitialized(tblCrewsesForSuperintendent) && !tblCrewsesForSuperintendent.isEmpty()) {
+            List<TblCrews> _remainingChildren = wmGenericDao.execute(
+                session -> DaoUtils.findAllRemainingChildren(session, TblCrews.class,
+                        new DaoUtils.ChildrenFilter<>("tblUserPsaBySuperintendent", tblUserPsa, tblCrewsesForSuperintendent)));
+            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
+            _remainingChildren.forEach(_tblCrews -> tblCrewsService.delete(_tblCrews));
+            tblUserPsa.setTblCrewsesForSuperintendent(tblCrewsesForSuperintendent);
+        }
+
+        // Deleting children which are not present in the list.
+        if(tblUserJobNumberses != null && Hibernate.isInitialized(tblUserJobNumberses) && !tblUserJobNumberses.isEmpty()) {
+            List<TblUserJobNumbers> _remainingChildren = wmGenericDao.execute(
+                session -> DaoUtils.findAllRemainingChildren(session, TblUserJobNumbers.class,
+                        new DaoUtils.ChildrenFilter<>("tblUserPsa", tblUserPsa, tblUserJobNumberses)));
+            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
+            _remainingChildren.forEach(_tblUserJobNumbers -> tblUserJobNumbersService.delete(_tblUserJobNumbers));
+            tblUserPsa.setTblUserJobNumberses(tblUserJobNumberses);
         }
 
         // Deleting children which are not present in the list.

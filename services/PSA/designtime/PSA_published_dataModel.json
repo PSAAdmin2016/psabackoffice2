@@ -143,8 +143,8 @@
     "relations" : [ {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
       },
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -483,8 +483,8 @@
     "relations" : [ {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
       },
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -968,8 +968,8 @@
     }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
       },
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -1225,8 +1225,8 @@
     "relations" : [ {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
       },
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -4690,8 +4690,8 @@
     "relations" : [ {
       "cardinality" : "OneToOne",
       "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
       },
       "columnsUniqueKey" : true,
       "composite" : false,
@@ -4706,7 +4706,7 @@
       } ],
       "name" : "ForemanToUserID",
       "parentFetchOptions" : {
-        "fetch" : false,
+        "fetch" : true,
         "columnsFilter" : [ ]
       },
       "primary" : true,
@@ -4719,8 +4719,8 @@
     }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
       },
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -4748,8 +4748,8 @@
     }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
       },
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -4835,8 +4835,8 @@
     }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
       },
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -4864,8 +4864,8 @@
     }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
       },
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -4893,8 +4893,8 @@
     }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
       },
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -4922,8 +4922,8 @@
     }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
       },
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -4951,8 +4951,8 @@
     }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
       },
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -5921,8 +5921,8 @@
     "relations" : [ {
       "cardinality" : "OneToOne",
       "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
       },
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -5937,7 +5937,7 @@
       } ],
       "name" : "UserIDTOtbluserPSAID",
       "parentFetchOptions" : {
-        "fetch" : false,
+        "fetch" : true,
         "columnsFilter" : [ ]
       },
       "primary" : true,
@@ -6062,8 +6062,8 @@
     "relations" : [ {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
       },
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -6529,7 +6529,7 @@
       "columnValue" : {
         "insertable" : true,
         "updatable" : true,
-        "defaultValue" : null,
+        "defaultValue" : "1",
         "type" : "user-defined"
       },
       "constraintList" : null,
@@ -6732,7 +6732,7 @@
       "columnValue" : {
         "insertable" : true,
         "updatable" : true,
-        "defaultValue" : null,
+        "defaultValue" : "0",
         "type" : "user-defined"
       },
       "constraintList" : null,
@@ -6751,7 +6751,7 @@
       "partOfPrimaryKey" : false,
       "partOfUniqueKey" : false,
       "period" : false,
-      "precision" : 3,
+      "precision" : 5,
       "primaryKey" : false,
       "scale" : 0,
       "sequenceSchema" : null,
@@ -6822,8 +6822,8 @@
     "relations" : [ {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
       },
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -6851,8 +6851,8 @@
     }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
       },
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -6880,8 +6880,8 @@
     }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
       },
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -6909,8 +6909,8 @@
     }, {
       "cardinality" : "ManyToOne",
       "cascadeOptions" : {
-        "cascadeRemove" : "REMOVE",
-        "cascadeReplace" : false
+        "cascadeRemove" : "NONE",
+        "cascadeReplace" : true
       },
       "columnsUniqueKey" : false,
       "composite" : false,

@@ -14877,7 +14877,7 @@
       "period" : false,
       "precision" : 7,
       "primaryKey" : false,
-      "scale" : 0,
+      "scale" : 2,
       "sequenceSchema" : null,
       "sqlType" : "number",
       "unique" : false

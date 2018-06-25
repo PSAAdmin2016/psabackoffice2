@@ -1,4 +1,4 @@
-/*Copyright (c) 2016-2017 performance-contractors.com All Rights Reserved.
+/*Copyright (c) 2016-2018 performance-contractors.com All Rights Reserved.
  This software is the confidential and proprietary information of performance-contractors.com You shall not disclose such Confidential Information and shall use it only in accordance
  with the terms of the source code license agreement you entered into with performance-contractors.com*/
 package com.psabackoffice.psa.service;
@@ -25,6 +25,7 @@ import com.wavemaker.runtime.data.exception.EntityNotFoundException;
 import com.wavemaker.runtime.data.export.ExportType;
 import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
+import com.wavemaker.runtime.data.util.DaoUtils;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.psabackoffice.psa.RefCraftClasses;
@@ -97,6 +98,16 @@ public class RefCraftClassesServiceImpl implements RefCraftClassesService {
 
         this.wmGenericDao.update(refCraftClasses);
         this.wmGenericDao.refresh(refCraftClasses);
+
+        // Deleting children which are not present in the list.
+        if(tblUserPsas != null && Hibernate.isInitialized(tblUserPsas) && !tblUserPsas.isEmpty()) {
+            List<TblUserPsa> _remainingChildren = wmGenericDao.execute(
+                session -> DaoUtils.findAllRemainingChildren(session, TblUserPsa.class,
+                        new DaoUtils.ChildrenFilter<>("refCraftClasses", refCraftClasses, tblUserPsas)));
+            LOGGER.debug("Found {} detached children, deleting", _remainingChildren.size());
+            _remainingChildren.forEach(_tblUserPsa -> tblUserPsaService.delete(_tblUserPsa));
+            refCraftClasses.setTblUserPsas(tblUserPsas);
+        }
 
         return refCraftClasses;
     }

@@ -1,4 +1,4 @@
-/*Copyright (c) 2016-2017 performance-contractors.com All Rights Reserved.
+/*Copyright (c) 2016-2018 performance-contractors.com All Rights Reserved.
  This software is the confidential and proprietary information of performance-contractors.com You shall not disclose such Confidential Information and shall use it only in accordance
  with the terms of the source code license agreement you entered into with performance-contractors.com*/
 package com.psabackoffice.psa;
@@ -50,14 +50,14 @@ public class TblUserPsa implements Serializable {
     private String fullName;
     private String nickname;
     private String email;
-    private Short active;
+    private Short active = 1;
     private LocalDateTime createdDate;
     private Integer lastModifiedBy;
     private Integer fkDisciplineId;
     private Integer fkCraftId;
     private Integer fkCraftClassId;
     private Integer fkDefaultJobNumberId;
-    private short rev;
+    private short rev = 0;
     private Timestamp timeStamp;
     private RefCrafts refCrafts;
     private RefDisciplines refDisciplines;
@@ -208,7 +208,7 @@ public class TblUserPsa implements Serializable {
         this.fkDefaultJobNumberId = fkDefaultJobNumberId;
     }
 
-    @Column(name = "`Rev`", nullable = false, scale = 0, precision = 3)
+    @Column(name = "`Rev`", nullable = false, scale = 0, precision = 5)
     public short getRev() {
         return this.rev;
     }
@@ -288,7 +288,7 @@ public class TblUserPsa implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsa")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+    @Cascade({CascadeType.SAVE_UPDATE})
     public List<ChatConversationMembers> getChatConversationMemberses() {
         return this.chatConversationMemberses;
     }
@@ -299,7 +299,7 @@ public class TblUserPsa implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsa")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+    @Cascade({CascadeType.SAVE_UPDATE})
     public List<ChatMessages> getChatMessageses() {
         return this.chatMessageses;
     }
@@ -310,7 +310,7 @@ public class TblUserPsa implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsa")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+    @Cascade({CascadeType.SAVE_UPDATE})
     public List<FeedBack> getFeedBacks() {
         return this.feedBacks;
     }
@@ -321,7 +321,7 @@ public class TblUserPsa implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsa")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+    @Cascade({CascadeType.SAVE_UPDATE})
     public List<FeedBackNotes> getFeedBackNoteses() {
         return this.feedBackNoteses;
     }
@@ -341,8 +341,9 @@ public class TblUserPsa implements Serializable {
         this.settingsusers = settingsusers;
     }
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "tblUserPsaByForeman")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "tblUserPsaByForeman")
+    @Cascade({CascadeType.SAVE_UPDATE})
+    @Fetch(FetchMode.JOIN)
     public TblCrews getTblCrewsForForeman() {
         return this.tblCrewsForForeman;
     }
@@ -353,7 +354,7 @@ public class TblUserPsa implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsaByProjectManager")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+    @Cascade({CascadeType.SAVE_UPDATE})
     public List<TblCrews> getTblCrewsesForProjectManager() {
         return this.tblCrewsesForProjectManager;
     }
@@ -364,7 +365,7 @@ public class TblUserPsa implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsaByAreaManager")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+    @Cascade({CascadeType.SAVE_UPDATE})
     public List<TblCrews> getTblCrewsesForAreaManager() {
         return this.tblCrewsesForAreaManager;
     }
@@ -375,7 +376,7 @@ public class TblUserPsa implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsaBySiteManager")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+    @Cascade({CascadeType.SAVE_UPDATE})
     public List<TblCrews> getTblCrewsesForSiteManager() {
         return this.tblCrewsesForSiteManager;
     }
@@ -386,7 +387,7 @@ public class TblUserPsa implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsaByGf")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+    @Cascade({CascadeType.SAVE_UPDATE})
     public List<TblCrews> getTblCrewsesForGf() {
         return this.tblCrewsesForGf;
     }
@@ -397,7 +398,7 @@ public class TblUserPsa implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsaByLeadman")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+    @Cascade({CascadeType.SAVE_UPDATE})
     public List<TblCrews> getTblCrewsesForLeadman() {
         return this.tblCrewsesForLeadman;
     }
@@ -408,7 +409,7 @@ public class TblUserPsa implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsaByConstructionManager")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+    @Cascade({CascadeType.SAVE_UPDATE})
     public List<TblCrews> getTblCrewsesForConstructionManager() {
         return this.tblCrewsesForConstructionManager;
     }
@@ -419,7 +420,7 @@ public class TblUserPsa implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsaBySuperintendent")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+    @Cascade({CascadeType.SAVE_UPDATE})
     public List<TblCrews> getTblCrewsesForSuperintendent() {
         return this.tblCrewsesForSuperintendent;
     }
@@ -428,8 +429,9 @@ public class TblUserPsa implements Serializable {
         this.tblCrewsesForSuperintendent = tblCrewsesForSuperintendent;
     }
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "tblUserPsa")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "tblUserPsa")
+    @Cascade({CascadeType.SAVE_UPDATE})
+    @Fetch(FetchMode.JOIN)
     public TblUserCreds getTblUserCreds() {
         return this.tblUserCreds;
     }
@@ -440,7 +442,7 @@ public class TblUserPsa implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUserPsa")
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+    @Cascade({CascadeType.SAVE_UPDATE})
     public List<TblUserJobNumbers> getTblUserJobNumberses() {
         return this.tblUserJobNumberses;
     }

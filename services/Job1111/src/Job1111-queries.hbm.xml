@@ -3474,19 +3474,28 @@ WHERE ActivityID = :ActivityID
 
     <sql-query name="GetReportDPRPipe">
         <![CDATA[
-        SELECT 
+        SELECT
 sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName, 
 
-pe.ErectionDrawingNumber AS DrawingNumber, 
-pe.ErectionSheetNumber AS SheetNumber, 
-pe.ErectionSpool1 AS Spool1, 
-IF(pe.ErectionSpool3 IS NULL OR pe.ErectionSpool3 = '', COALESCE(pe.ErectionSpool2, ''),  CONCAT(pe.ErectionSpool2, '...')) AS Spool2,
-pe.ErectionPipeSize AS Size, 
-(pe.ErectionLengthSpool1 + pe.ErectionLengthSpool2 + pe.ErectionLengthSpool3 + pe.ErectionLengthSpool4 + pe.ErectionLengthSpool5 + pe.ErectionLengthSpool6) AS QuantityInstalled,
+ptd.EngDrawingNumber AS DrawingNumber, 
+ptd.SheetNumber AS SheetNumber, 
+'N/A' AS Spool1, 
+'N/A' AS Spool2, 
+ptd.Size AS Size, 
+
+CASE 
+WHEN (sas.ActivityType = 38) THEN
+	(pfa.FAQuantity * pfa.FAPercentCompleted)
+WHEN (sas.ActivityType IN (51,52,53,90)) THEN
+	CONCAT(pfa.FAPercentCompleted * 100,"%")
+ELSE
+	(pfa.FAQuantity)
+END 
+AS QuantityInstalled,
 ats.Status AS CurrentStatus,
-pe.ErectionNotes AS Notes,
-pe.ErectionRework AS Rework,
-DATE(sd.ReceivedTime) AS DateSubmitted
+pfa.FANotes AS Notes,
+pfa.FARework AS Rework,
+DATE(sd.ReceivedTime)  AS DateSubmitted
 
 FROM SubmissionActivityStatus sas
 JOIN SubsDetails sd
@@ -3495,61 +3504,21 @@ LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-        
+    
 JOIN PSA.REF_ActivityTypes at
 	ON at.ID = sas.ActivityType
 JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
     
-JOIN PipeErection pe
-	ON pe.ActivityID = sas.ActivityID
-        
-WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
-AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
-AND (tc.AreaManager LIKE :ManagerID OR tc.SiteManager LIKE :ManagerID OR tc.ConstructionManager LIKE :ManagerID OR tc.ProjectManager LIKE :ManagerID OR
-	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)     
-AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate + INTERVAL 1 day
-
-
-
-UNION
-
-
-
-SELECT
-sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName, 
-
-pc.ConnectionDrawingNumber, 
-pc.ConnectionSheetNumber, 
-COALESCE(pc.ConnectionSpool1,'N/A'), 
-COALESCE(pc.ConnectionSpool2,'N/A'), 
-pc.ConnectionSize, 
-pc.ConnectionQuantity, 
-ats.Status,
-pc.ConnectionNotes,
-pc.ConnectionRework,
-DATE(sd.ReceivedTime) 
-
-FROM SubmissionActivityStatus sas
-JOIN SubsDetails sd
-	ON sd.SubmissionID = sas.SubmissionID
-LEFT JOIN PSA.tblCrews tc
-	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-LEFT JOIN PSA.tblCrewsRev tcr
-	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-        
-JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
-JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-    
-JOIN PipeConnection pc
-	ON pc.ActivityID = sas.ActivityID
+JOIN PipeFA pfa
+	ON pfa.ActivityID = sas.ActivityID
+JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = pfa.FABidID
     
 WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
 AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
 AND (tc.AreaManager LIKE :ManagerID OR tc.SiteManager LIKE :ManagerID OR tc.ConstructionManager LIKE :ManagerID OR tc.ProjectManager LIKE :ManagerID OR
-	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)      
+	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)       
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate + INTERVAL 1 day
 
 
@@ -3593,50 +3562,6 @@ WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
 AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
 AND (tc.AreaManager LIKE :ManagerID OR tc.SiteManager LIKE :ManagerID OR tc.ConstructionManager LIKE :ManagerID OR tc.ProjectManager LIKE :ManagerID OR
 	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)    
-AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate + INTERVAL 1 day
-
-
-
-UNION
-
-
-
-SELECT
-sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName, 
-
-ptd.EngDrawingNumber, 
-ptd.SheetNumber, 
-'N/A', 
-'N/A', 
-ptd.Size, 
-(pfa.FAQuantity * pfa.FAPercentCompleted), 
-ats.Status,
-pfa.FANotes,
-pfa.FARework,
-DATE(sd.ReceivedTime) 
-
-FROM SubmissionActivityStatus sas
-JOIN SubsDetails sd
-	ON sd.SubmissionID = sas.SubmissionID
-LEFT JOIN PSA.tblCrews tc
-	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-LEFT JOIN PSA.tblCrewsRev tcr
-	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-    
-JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
-JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-    
-JOIN PipeFA pfa
-	ON pfa.ActivityID = sas.ActivityID
-JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = pfa.FABidID
-    
-WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
-AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
-AND (tc.AreaManager LIKE :ManagerID OR tc.SiteManager LIKE :ManagerID OR tc.ConstructionManager LIKE :ManagerID OR tc.ProjectManager LIKE :ManagerID OR
-	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)       
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate + INTERVAL 1 day
         ]]>
     <query-param name="ForemanID" type="java.lang.String"/>
@@ -3648,19 +3573,28 @@ AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate + INTERVAL 1 day
 
     <sql-query name="GetReportDPRPipe__count">
         <![CDATA[
-        select count(*) from (SELECT 
+        select count(*) from (SELECT
 sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName, 
 
-pe.ErectionDrawingNumber AS DrawingNumber, 
-pe.ErectionSheetNumber AS SheetNumber, 
-pe.ErectionSpool1 AS Spool1, 
-IF(pe.ErectionSpool3 IS NULL OR pe.ErectionSpool3 = '', COALESCE(pe.ErectionSpool2, ''),  CONCAT(pe.ErectionSpool2, '...')) AS Spool2,
-pe.ErectionPipeSize AS Size, 
-(pe.ErectionLengthSpool1 + pe.ErectionLengthSpool2 + pe.ErectionLengthSpool3 + pe.ErectionLengthSpool4 + pe.ErectionLengthSpool5 + pe.ErectionLengthSpool6) AS QuantityInstalled,
+ptd.EngDrawingNumber AS DrawingNumber, 
+ptd.SheetNumber AS SheetNumber, 
+'N/A' AS Spool1, 
+'N/A' AS Spool2, 
+ptd.Size AS Size, 
+
+CASE 
+WHEN (sas.ActivityType = 38) THEN
+	(pfa.FAQuantity * pfa.FAPercentCompleted)
+WHEN (sas.ActivityType IN (51,52,53,90)) THEN
+	CONCAT(pfa.FAPercentCompleted * 100,"%")
+ELSE
+	(pfa.FAQuantity)
+END 
+AS QuantityInstalled,
 ats.Status AS CurrentStatus,
-pe.ErectionNotes AS Notes,
-pe.ErectionRework AS Rework,
-DATE(sd.ReceivedTime) AS DateSubmitted
+pfa.FANotes AS Notes,
+pfa.FARework AS Rework,
+DATE(sd.ReceivedTime)  AS DateSubmitted
 
 FROM SubmissionActivityStatus sas
 JOIN SubsDetails sd
@@ -3669,61 +3603,21 @@ LEFT JOIN PSA.tblCrews tc
 	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
 LEFT JOIN PSA.tblCrewsRev tcr
 	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-        
+    
 JOIN PSA.REF_ActivityTypes at
 	ON at.ID = sas.ActivityType
 JOIN PSA.REF_ActivityStatuses ats
 	ON ats.ID = sas.fk_ActivityStatus
     
-JOIN PipeErection pe
-	ON pe.ActivityID = sas.ActivityID
-        
-WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
-AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
-AND (tc.AreaManager LIKE :ManagerID OR tc.SiteManager LIKE :ManagerID OR tc.ConstructionManager LIKE :ManagerID OR tc.ProjectManager LIKE :ManagerID OR
-	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)     
-AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate + INTERVAL 1 day
-
-
-
-UNION
-
-
-
-SELECT
-sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName, 
-
-pc.ConnectionDrawingNumber, 
-pc.ConnectionSheetNumber, 
-COALESCE(pc.ConnectionSpool1,'N/A'), 
-COALESCE(pc.ConnectionSpool2,'N/A'), 
-pc.ConnectionSize, 
-pc.ConnectionQuantity, 
-ats.Status,
-pc.ConnectionNotes,
-pc.ConnectionRework,
-DATE(sd.ReceivedTime) 
-
-FROM SubmissionActivityStatus sas
-JOIN SubsDetails sd
-	ON sd.SubmissionID = sas.SubmissionID
-LEFT JOIN PSA.tblCrews tc
-	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-LEFT JOIN PSA.tblCrewsRev tcr
-	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-        
-JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
-JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-    
-JOIN PipeConnection pc
-	ON pc.ActivityID = sas.ActivityID
+JOIN PipeFA pfa
+	ON pfa.ActivityID = sas.ActivityID
+JOIN PipeTrackerDetails ptd
+	ON ptd.BidID = pfa.FABidID
     
 WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
 AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
 AND (tc.AreaManager LIKE :ManagerID OR tc.SiteManager LIKE :ManagerID OR tc.ConstructionManager LIKE :ManagerID OR tc.ProjectManager LIKE :ManagerID OR
-	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)      
+	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)       
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate + INTERVAL 1 day
 
 
@@ -3767,50 +3661,6 @@ WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
 AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
 AND (tc.AreaManager LIKE :ManagerID OR tc.SiteManager LIKE :ManagerID OR tc.ConstructionManager LIKE :ManagerID OR tc.ProjectManager LIKE :ManagerID OR
 	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)    
-AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate + INTERVAL 1 day
-
-
-
-UNION
-
-
-
-SELECT
-sas.ActivityID, sas.ActivityType AS ActivityTypeID, at.ActivityType AS ActivityTypeName, 
-
-ptd.EngDrawingNumber, 
-ptd.SheetNumber, 
-'N/A', 
-'N/A', 
-ptd.Size, 
-(pfa.FAQuantity * pfa.FAPercentCompleted), 
-ats.Status,
-pfa.FANotes,
-pfa.FARework,
-DATE(sd.ReceivedTime) 
-
-FROM SubmissionActivityStatus sas
-JOIN SubsDetails sd
-	ON sd.SubmissionID = sas.SubmissionID
-LEFT JOIN PSA.tblCrews tc
-	ON tc.ID = sd.CrewID AND tc.Rev = sd.CrewRev
-LEFT JOIN PSA.tblCrewsRev tcr
-	ON tcr.OrgID = sd.CrewID AND tcr.Rev = sd.CrewRev
-    
-JOIN PSA.REF_ActivityTypes at
-	ON at.ID = sas.ActivityType
-JOIN PSA.REF_ActivityStatuses ats
-	ON ats.ID = sas.fk_ActivityStatus
-    
-JOIN PipeFA pfa
-	ON pfa.ActivityID = sas.ActivityID
-JOIN PipeTrackerDetails ptd
-	ON ptd.BidID = pfa.FABidID
-    
-WHERE (tc.Foreman LIKE :ForemanID OR tcr.Foreman LIKE :ForemanID)
-AND (tc.Superintendent LIKE :SuperID OR tcr.Superintendent LIKE :SuperID)
-AND (tc.AreaManager LIKE :ManagerID OR tc.SiteManager LIKE :ManagerID OR tc.ConstructionManager LIKE :ManagerID OR tc.ProjectManager LIKE :ManagerID OR
-	 tcr.AreaManager LIKE :ManagerID OR tcr.SiteManager LIKE :ManagerID OR tcr.ConstructionManager LIKE :ManagerID OR tcr.ProjectManager LIKE :ManagerID)       
 AND sd.ReceivedTime BETWEEN :StartDate AND :EndDate + INTERVAL 1 day) wmTempTable
         ]]>
     <query-param name="ForemanID" type="java.lang.String"/>

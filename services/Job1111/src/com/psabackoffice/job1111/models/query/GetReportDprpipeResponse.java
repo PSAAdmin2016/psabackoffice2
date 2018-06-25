@@ -1,4 +1,4 @@
-/*Copyright (c) 2016-2017 performance-contractors.com All Rights Reserved.
+/*Copyright (c) 2016-2018 performance-contractors.com All Rights Reserved.
  This software is the confidential and proprietary information of performance-contractors.com You shall not disclose such Confidential Information and shall use it only in accordance
  with the terms of the source code license agreement you entered into with performance-contractors.com*/
 package com.psabackoffice.job1111.models.query;
@@ -50,7 +50,7 @@ public class GetReportDprpipeResponse implements Serializable {
 
     @JsonProperty("QuantityInstalled")
     @ColumnAlias("QuantityInstalled")
-    private Double quantityInstalled;
+    private String quantityInstalled;
 
     @JsonProperty("CurrentStatus")
     @ColumnAlias("CurrentStatus")
@@ -132,11 +132,11 @@ public class GetReportDprpipeResponse implements Serializable {
         this.size = size;
     }
 
-    public Double getQuantityInstalled() {
+    public String getQuantityInstalled() {
         return this.quantityInstalled;
     }
 
-    public void setQuantityInstalled(Double quantityInstalled) {
+    public void setQuantityInstalled(String quantityInstalled) {
         this.quantityInstalled = quantityInstalled;
     }
 
