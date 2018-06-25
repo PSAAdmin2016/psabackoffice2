@@ -2,3 +2,10 @@
     height: 100%;
     width: 100%;
 }
+.btn-container .spinner-message {
+ top: 2px;
+}
+
+.btn-container .spinner-text {
+display: none !important;
+}

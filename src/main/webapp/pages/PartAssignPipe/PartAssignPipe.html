@@ -31,8 +31,8 @@
                                         margin="0px unset" name="composite17">
                                         <wm-label class="col-md-3" caption="Activities Completed" hint="The amount installed by this current Activity" fontweight="bold" name="label45"></wm-label>
                                     </wm-composite>
-                                    <wm-text name="textInstalled" hint="The amount installed by this current Activity" datavalue="bind:$parent.$parent.$parent.$parent.$parent.$parent.Widgets.gridApprovalReview.selecteditem.Quantity | numberToString: '2'"
-                                        type="number" updateon="default" backgroundcolor="#b1efe4" readonly="true" width="80%" disabled="false" placeholder="Enter Quantity" scopedatavalue="textInstalled" margin="unset unset 0px unset" color="#000000"></wm-text>
+                                    <wm-text name="textInstalled" hint="The amount installed by this current Activity" datavalue="bind:$parent.$parent.$parent.$parent.$parent.$parent.Widgets.gridApprovalReview.selecteditem.Quantity | numberToString: '2'" type="number" updateon="default"
+                                        backgroundcolor="#b1efe4" readonly="true" width="80%" disabled="false" placeholder="Enter Quantity" scopedatavalue="textInstalled" margin="unset unset 0px unset" color="#000000"></wm-text>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                             <wm-gridrow name="gridrow10">
@@ -107,13 +107,23 @@
                 </wm-gridcolumn>
             </wm-gridrow>
             <wm-gridrow name="gridrow8">
-                <wm-gridcolumn columnwidth="1" name="gridcolumn14" horizontalalign="left">
-                    <wm-spinner show="true" name="spinner1" iconclass="fa fa-gear fa-spin" caption="" servicevariabletotrack="serviceGetQuantities,serviceLockSASActivity" iconsize="1.5em"></wm-spinner>
+                <wm-gridcolumn columnwidth="8" name="gridcolumn14" horizontalalign="left">
                 </wm-gridcolumn>
-                <wm-gridcolumn columnwidth="11" name="gridcolumn15" horizontalalign="right">
-                    <wm-button class="btn-default" caption="Return" type="button" show="true" backgroundcolor="#dc0000" iconclass="wi wi-backward" shortcutkey="r" name="buttonRejectQuantity" hint="Return to Superintendent for further review." margin="unset 1% unset unset"
-                        on-click="buttonRejectQuantityClick($event, $scope)"></wm-button>
-                    <wm-button class="btn-primary" caption="Update" name="buttonQuantitiesUpdate" type="button" on-click="buttonQuantitiesUpdateClick($event, $scope)" hint="Commit this entry to the tracker."></wm-button>
+                <wm-gridcolumn columnwidth="4" name="gridcolumn15" horizontalalign="right">
+                    <wm-container name="containerButtons" padding="0px unset unset unset" class="btn-container">
+                        <wm-spinner show="true" name="spinner1" iconclass="fa fa-gear fa-spin" caption="" servicevariabletotrack="serviceGetQuantities,serviceLockSASActivity" iconsize="100%" class="widget-spinner"></wm-spinner>
+                        <wm-button class="btn-default pull-left" caption="Return" type="button" show="true" backgroundcolor="#dc0000" iconclass="wi wi-backward" shortcutkey="r" name="buttonRejectQuantity" hint="Return to Superintendent for further review." margin="unset 1% unset unset"
+                            on-click="buttonRejectQuantityClick($event, $scope)"></wm-button>
+                        <wm-button class="btn-primary" caption="Update" name="buttonQuantitiesUpdate" type="button" on-click="buttonQuantitiesUpdateClick($event, $scope)" hint="Commit this entry to the tracker."></wm-button>
+                    </wm-container>
+
+
+
+
+
+
+
+
                 </wm-gridcolumn>
             </wm-gridrow>
         </wm-layoutgrid>
