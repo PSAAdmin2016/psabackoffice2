@@ -3609,8 +3609,8 @@
     "name" : "GetBidActivityMatchesCivil",
     "description" : "Name",
     "version" : "V1",
-    "queryString" : "SELECT *\nFROM CivilTrackerDetails\nWHERE BidID = :BidID\nGROUP BY BidID",
-    "countQueryString" : "select count(*) from (SELECT *\nFROM CivilTrackerDetails\nWHERE BidID = :BidID\nGROUP BY BidID) wmTempTable",
+    "queryString" : "SELECT ctd.*,\n(COALESCE(ctd.TakeOffQuantity,0) - COALESCE(er.InstalledFAs,0)) AS RemainingQuantity\nFROM CivilTrackerDetails ctd\nLEFT JOIN (\n\tSELECT min(UID) AS UID, BidID,\n\tSUM(InstalledFAs) AS InstalledFAs\n\t \n\tFROM (SELECT UID, BidID,\n\t\t### Quantities Installed ###\n\t\tIF(sas.ActivityType IN (70),\n\t\t/* TRUE */ \n\t\tCOALESCE(cfa.FAPercentCompleted,0)  * ctd.TakeOffQuantity, \n\t\t/* FALSE */\n\t\tcfa.FAQuantity\n\t\t) AS InstalledFAs\n\n\t\t### SS Joins ###\n\t\tFROM `Job1111`.SubmissionActivityStatus sas\n\t\tJOIN PSA.REF_ActivityTypes at\n\t\t\tON at.ID = sas.ActivityType\n\t\t\t\n\t\tJOIN `Job1111`.CivilFA cfa\n\t\t\tON cfa.ActivityID = sas.ActivityID AND cfa.FARework = 0\n\n\t\tLEFT JOIN `Job1111`.`CivilTrackerDetails` ctd\n\t\t\tON ctd.BidID = sas.fk_BidIDAssigned\n\t\t\t \n\t\t\t \n\t\tWHERE sas.fk_ActivityStatus IN (5,12)\n        AND sas.fk_BidIDAssigned = :BidID\n\t\tGROUP BY sas.ActivityID\n\t) er0\n\tGROUP BY BidID\n\tORDER BY BidID\n) er\n\tON er.BidID = ctd.BidID\n\nWHERE ctd.BidID = :BidID",
+    "countQueryString" : "select count(*) from (SELECT ctd.*,\n(COALESCE(ctd.TakeOffQuantity,0) - COALESCE(er.InstalledFAs,0)) AS RemainingQuantity\nFROM CivilTrackerDetails ctd\nLEFT JOIN (\n\tSELECT min(UID) AS UID, BidID,\n\tSUM(InstalledFAs) AS InstalledFAs\n\t \n\tFROM (SELECT UID, BidID,\n\t\t### Quantities Installed ###\n\t\tIF(sas.ActivityType IN (70),\n\t\t/* TRUE */ \n\t\tCOALESCE(cfa.FAPercentCompleted,0)  * ctd.TakeOffQuantity, \n\t\t/* FALSE */\n\t\tcfa.FAQuantity\n\t\t) AS InstalledFAs\n\n\t\t### SS Joins ###\n\t\tFROM `Job1111`.SubmissionActivityStatus sas\n\t\tJOIN PSA.REF_ActivityTypes at\n\t\t\tON at.ID = sas.ActivityType\n\t\t\t\n\t\tJOIN `Job1111`.CivilFA cfa\n\t\t\tON cfa.ActivityID = sas.ActivityID AND cfa.FARework = 0\n\n\t\tLEFT JOIN `Job1111`.`CivilTrackerDetails` ctd\n\t\t\tON ctd.BidID = sas.fk_BidIDAssigned\n\t\t\t \n\t\t\t \n\t\tWHERE sas.fk_ActivityStatus IN (5,12)\n        AND sas.fk_BidIDAssigned = :BidID\n\t\tGROUP BY sas.ActivityID\n\t) er0\n\tGROUP BY BidID\n\tORDER BY BidID\n) er\n\tON er.BidID = ctd.BidID\n\nWHERE ctd.BidID = :BidID) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -3620,7 +3620,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "variableName" : "",
-      "testValue" : "2",
+      "testValue" : "1585",
       "required" : true
     } ],
     "request" : {
@@ -4054,6 +4054,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.sql.Timestamp",
+          "list" : false
+        }
+      }, {
+        "name" : "RemainingQuantity",
+        "fieldName" : "remainingQuantity",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.math.BigDecimal",
           "list" : false
         }
       } ]

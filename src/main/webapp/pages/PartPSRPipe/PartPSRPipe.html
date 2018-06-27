@@ -115,9 +115,21 @@
                 <wm-label caption="Size" fontweight="bold" textdecoration="underline" borderstyle="none" name="label227_1" bordercolor="#000000" color="#000000"></wm-label>
                 <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Size" show="true" name="label235" color="#000000"></wm-label>
             </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="3" name="gridcolumn168" horizontalalign="center">
+            <wm-gridcolumn columnwidth="2" name="gridcolumn168" horizontalalign="left">
                 <wm-label caption="Submitted Notes" fontweight="bold" textdecoration="underline" borderstyle="none" name="label238_2" hint="Foreman entered notes for this activity" bordercolor="#000000" color="#000000"></wm-label>
                 <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Notes" readonlygrid="true" show="true" name="label240_2" hint="Foreman entered notes for this activity" color="#000000"></wm-label>
+            </wm-gridcolumn>
+            <wm-gridcolumn columnwidth="1" name="gridcolumn133" horizontalalign="left">
+                <wm-label caption="Claimed Quantity" fontweight="bold" textdecoration="underline" borderstyle="none" hint="This is the selected activity." show="true" width="100%" name="label14" color="#000000"></wm-label>
+                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Quantity | numberToString: '2'" readonlygrid="true" show="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 51 &amp;&amp;
+$parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 52 &amp;&amp;
+$parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 53 &amp;&amp;
+$parent.Widgets.gridApprovalReview.selecteditem.ActivityType != 90" hint="This is the selected activity." color="#000000" name="label16"></wm-label>
+                <wm-label width="100%" caption="bind:($parent.Widgets.gridApprovalReview.selecteditem.Quantity | numberToString: '2') + 
+' - (' + ($parent.Widgets.gridApprovalReview.selecteditem.PercentClaim * 100) + '%)'" readonlygrid="true" show="bind:$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 51 ||
+$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 52 ||
+$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 53 ||
+$parent.Widgets.gridApprovalReview.selecteditem.ActivityType == 90" hint="This is the selected activity." color="#000000" name="label120" deferload="true"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="2" name="gridcolumn169" padding="unset 0px">
                 <wm-layoutgrid name="layoutgrid3">
@@ -161,7 +173,7 @@
             <wm-gridcolumn columnwidth="3" name="gridcolumn131_1">
                 <wm-label caption="Description" fontweight="bold" textdecoration="underline" borderstyle="none" name="label151" bordercolor="#000000" color="#000000"></wm-label>
             </wm-gridcolumn>
-            <wm-gridcolumn columnwidth="1" name="gridcolumn160" horizontalalign="center">
+            <wm-gridcolumn columnwidth="1" name="gridcolumn160" horizontalalign="left">
                 <wm-label caption="Remaining Quantity" fontweight="bold" textdecoration="underline" borderstyle="none" name="label215" bordercolor="#000000" color="#000000"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="2" name="gridcolumn132_2"></wm-gridcolumn>
@@ -192,7 +204,7 @@
                                     <wm-label width="100%" caption="bind:(Widgets.livelistBidActivities.currentItem.ComponentNumber != '0') ? Widgets.livelistBidActivities.currentItem.Description + ' - ' + Widgets.livelistBidActivities.currentItem.ComponentNumber : Widgets.livelistBidActivities.currentItem.Description"
                                         name="labelBidDescription"></wm-label>
                                 </wm-gridcolumn>
-                                <wm-gridcolumn columnwidth="1" name="gridcolumn159_1" horizontalalign="center">
+                                <wm-gridcolumn columnwidth="1" name="gridcolumn159_1" horizontalalign="left">
                                     <wm-label width="100%" caption="bind:Widgets.livelistBidActivities.currentItem.RemainingQuantity" name="labelQuantRemaining"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="2" name="gridcolumn122_1" horizontalalign="right" padding="unset 0%">

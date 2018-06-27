@@ -4868,20 +4868,88 @@ VALUES (:ActivityID, :CreatedBy ,:Note)
 
     <sql-query name="GetBidActivityMatchesCivil">
         <![CDATA[
-        SELECT *
-FROM CivilTrackerDetails
-WHERE BidID = :BidID
-GROUP BY BidID
+        SELECT ctd.*,
+(COALESCE(ctd.TakeOffQuantity,0) - COALESCE(er.InstalledFAs,0)) AS RemainingQuantity
+FROM CivilTrackerDetails ctd
+LEFT JOIN (
+	SELECT min(UID) AS UID, BidID,
+	SUM(InstalledFAs) AS InstalledFAs
+	 
+	FROM (SELECT UID, BidID,
+		### Quantities Installed ###
+		IF(sas.ActivityType IN (70),
+		/* TRUE */ 
+		COALESCE(cfa.FAPercentCompleted,0)  * ctd.TakeOffQuantity, 
+		/* FALSE */
+		cfa.FAQuantity
+		) AS InstalledFAs
+
+		### SS Joins ###
+		FROM `Job1111`.SubmissionActivityStatus sas
+		JOIN PSA.REF_ActivityTypes at
+			ON at.ID = sas.ActivityType
+			
+		JOIN `Job1111`.CivilFA cfa
+			ON cfa.ActivityID = sas.ActivityID AND cfa.FARework = 0
+
+		LEFT JOIN `Job1111`.`CivilTrackerDetails` ctd
+			ON ctd.BidID = sas.fk_BidIDAssigned
+			 
+			 
+		WHERE sas.fk_ActivityStatus IN (5,12)
+        AND sas.fk_BidIDAssigned = :BidID
+		GROUP BY sas.ActivityID
+	) er0
+	GROUP BY BidID
+	ORDER BY BidID
+) er
+	ON er.BidID = ctd.BidID
+
+WHERE ctd.BidID = :BidID
         ]]>
     <query-param name="BidID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetBidActivityMatchesCivil__count">
         <![CDATA[
-        select count(*) from (SELECT *
-FROM CivilTrackerDetails
-WHERE BidID = :BidID
-GROUP BY BidID) wmTempTable
+        select count(*) from (SELECT ctd.*,
+(COALESCE(ctd.TakeOffQuantity,0) - COALESCE(er.InstalledFAs,0)) AS RemainingQuantity
+FROM CivilTrackerDetails ctd
+LEFT JOIN (
+	SELECT min(UID) AS UID, BidID,
+	SUM(InstalledFAs) AS InstalledFAs
+	 
+	FROM (SELECT UID, BidID,
+		### Quantities Installed ###
+		IF(sas.ActivityType IN (70),
+		/* TRUE */ 
+		COALESCE(cfa.FAPercentCompleted,0)  * ctd.TakeOffQuantity, 
+		/* FALSE */
+		cfa.FAQuantity
+		) AS InstalledFAs
+
+		### SS Joins ###
+		FROM `Job1111`.SubmissionActivityStatus sas
+		JOIN PSA.REF_ActivityTypes at
+			ON at.ID = sas.ActivityType
+			
+		JOIN `Job1111`.CivilFA cfa
+			ON cfa.ActivityID = sas.ActivityID AND cfa.FARework = 0
+
+		LEFT JOIN `Job1111`.`CivilTrackerDetails` ctd
+			ON ctd.BidID = sas.fk_BidIDAssigned
+			 
+			 
+		WHERE sas.fk_ActivityStatus IN (5,12)
+        AND sas.fk_BidIDAssigned = :BidID
+		GROUP BY sas.ActivityID
+	) er0
+	GROUP BY BidID
+	ORDER BY BidID
+) er
+	ON er.BidID = ctd.BidID
+
+WHERE ctd.BidID = :BidID) wmTempTable
         ]]>
     <query-param name="BidID" type="java.lang.Integer"/>
     </sql-query>

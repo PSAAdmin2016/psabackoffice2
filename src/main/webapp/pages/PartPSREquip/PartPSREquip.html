@@ -31,8 +31,9 @@
                 <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.Notes" show="true" hint="This is the selected activity." color="#000000" name="label12"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="1" name="gridcolumn23">
-                <wm-label caption="Percent Claimed" fontweight="bold" textdecoration="underline" borderstyle="none" hint="This is the selected activity." show="true" width="100%" name="label14" color="#000000"></wm-label>
-                <wm-label width="100%" caption="bind:$parent.Widgets.gridApprovalReview.selecteditem.PercentClaim * 100 | suffix: '%'" readonlygrid="true" show="true" hint="This is the selected activity." color="#000000" name="label16"></wm-label>
+                <wm-label caption="Claimed Quantity" fontweight="bold" textdecoration="underline" borderstyle="none" hint="This is the selected activity." show="true" width="100%" name="label14" color="#000000"></wm-label>
+                <wm-label width="100%" caption="bind:($parent.Widgets.gridApprovalReview.selecteditem.Quantity | numberToString: '2') + 
+' - (' + ($parent.Widgets.gridApprovalReview.selecteditem.PercentClaim * 100) + '%)'" readonlygrid="true" show="true" hint="This is the selected activity." color="#000000" name="label16"></wm-label>
             </wm-gridcolumn>
             <wm-gridcolumn columnwidth="2" padding="unset 0px" name="gridcolumn24">
                 <wm-layoutgrid name="layoutgrid3">

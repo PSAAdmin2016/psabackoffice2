@@ -205,6 +205,10 @@ public class GetBidActivityMatchesCivilResponse implements Serializable {
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
 
+    @JsonProperty("RemainingQuantity")
+    @ColumnAlias("RemainingQuantity")
+    private BigDecimal remainingQuantity;
+
     public Integer getUid() {
         return this.uid;
     }
@@ -581,6 +585,14 @@ public class GetBidActivityMatchesCivilResponse implements Serializable {
         this.timeStamp = timeStamp;
     }
 
+    public BigDecimal getRemainingQuantity() {
+        return this.remainingQuantity;
+    }
+
+    public void setRemainingQuantity(BigDecimal remainingQuantity) {
+        this.remainingQuantity = remainingQuantity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -632,7 +644,8 @@ public class GetBidActivityMatchesCivilResponse implements Serializable {
                 Objects.equals(getWbs9(), getBidActivityMatchesCivilResponse.getWbs9()) &&
                 Objects.equals(getWbs10(), getBidActivityMatchesCivilResponse.getWbs10()) &&
                 Objects.equals(getRev(), getBidActivityMatchesCivilResponse.getRev()) &&
-                Objects.equals(getTimeStamp(), getBidActivityMatchesCivilResponse.getTimeStamp());
+                Objects.equals(getTimeStamp(), getBidActivityMatchesCivilResponse.getTimeStamp()) &&
+                Objects.equals(getRemainingQuantity(), getBidActivityMatchesCivilResponse.getRemainingQuantity());
     }
 
     @Override
@@ -683,6 +696,7 @@ public class GetBidActivityMatchesCivilResponse implements Serializable {
                 getWbs9(),
                 getWbs10(),
                 getRev(),
-                getTimeStamp());
+                getTimeStamp(),
+                getRemainingQuantity());
     }
 }
