@@ -5267,14 +5267,39 @@ WHERE ActivityID= :ActivityID
 (COALESCE(IF(std.ActivityType = 'MISC', std.EstimatedHoursSteel, 0),0)) AS MiscHours,
 
 ### Installed Quantities ###
-sum(COALESCE(er.InstalledShake,0)) AS InstalledShake,
-sum(COALESCE(er.InstalledErect,0)) AS InstalledErect,
-sum(COALESCE(er.InstalledBoltout,0)) AS InstalledBoltout,
-sum(COALESCE(er.InstalledImp,0)) AS InstalledImp,
-sum(COALESCE(er.InstalledWeld,0)) AS InstalledWeld,
-sum(COALESCE(er.InstalledSell,0)) AS InstalledSell,
-sum(COALESCE(er.InstalledDemo * std.TakeOffQuantity,0)) AS InstalledDemo,
-sum(COALESCE(er.InstalledMisc * std.TakeOffQuantity,0)) AS InstalledMisc
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+LEAST(sum(COALESCE(er.InstalledShake,0)), std.TakeOffQuantity) ,/*SETTING FALSE*/
+sum(COALESCE(er.InstalledShake,0))/*SETTING TRUE*/
+) AS InstalledShake,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+LEAST(sum(COALESCE(er.InstalledErect,0)), std.TakeOffQuantity) ,/*SETTING FALSE*/
+sum(COALESCE(er.InstalledErect,0)) /*SETTING TRUE*/
+) AS InstalledErect,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+LEAST(sum(COALESCE(er.InstalledBoltout,0)), std.TakeOffQuantity) ,/*SETTING FALSE*/
+sum(COALESCE(er.InstalledBoltout,0)) /*SETTING TRUE*/
+) AS InstalledBoltout,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+LEAST(sum(COALESCE(er.InstalledImp,0)), std.TakeOffQuantity) ,/*SETTING FALSE*/
+sum(COALESCE(er.InstalledImp,0)) /*SETTING TRUE*/
+) AS InstalledImp,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+LEAST(sum(COALESCE(er.InstalledWeld,0)), std.TakeOffQuantity) ,/*SETTING FALSE*/
+sum(COALESCE(er.InstalledWeld,0)) /*SETTING TRUE*/
+) AS InstalledWeld,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+LEAST(sum(COALESCE(er.InstalledSell,0)), std.TakeOffQuantity) ,/*SETTING FALSE*/
+sum(COALESCE(er.InstalledSell,0)) /*SETTING TRUE*/
+) AS InstalledSell,
+
+LEAST(sum(COALESCE(er.InstalledDemo,0)), std.TakeoffQuantity) AS InstalledDemo,
+
+LEAST(sum(COALESCE(er.InstalledMisc,0)), std.TakeoffQuantity) AS InstalledMisc
 
 FROM SteelTrackerDetails std
 
@@ -5285,10 +5310,13 @@ LEFT JOIN(SELECT sas.fk_BidIDAssigned AS BidID,
 		COALESCE(stli.FAQuantity * stli.FAPercentCompleted,0) AS InstalledImp,
 		COALESCE(stlw.FAQuantity * stlw.FAPercentCompleted,0) AS InstalledWeld,
 		COALESCE(stlsell.FAQuantity * stlsell.FAPercentCompleted,0) AS InstalledSell,
-		COALESCE(stld.DemoPercentCompleted,0) AS InstalledDemo,
-		COALESCE(stlm.MiscPercentCompleted,0) AS InstalledMisc
+		(COALESCE(stld.DemoPercentCompleted,0) * std.TakeoffQuantity) AS InstalledDemo,
+		(COALESCE(stlm.MiscPercentCompleted,0) * std.TakeoffQuantity) AS InstalledMisc
 
 		FROM SubmissionActivityStatus sas
+        
+        JOIN SteelTrackerDetails std
+        	ON std.BidID = sas.fk_BidIDAssigned
         
     	LEFT JOIN SteelFA stls
     		ON stls.ActivityID = sas.ActivityID AND sas.ActivityType = 61 AND stls.FARework = 0
@@ -5335,14 +5363,39 @@ GROUP BY BidID
 (COALESCE(IF(std.ActivityType = 'MISC', std.EstimatedHoursSteel, 0),0)) AS MiscHours,
 
 ### Installed Quantities ###
-sum(COALESCE(er.InstalledShake,0)) AS InstalledShake,
-sum(COALESCE(er.InstalledErect,0)) AS InstalledErect,
-sum(COALESCE(er.InstalledBoltout,0)) AS InstalledBoltout,
-sum(COALESCE(er.InstalledImp,0)) AS InstalledImp,
-sum(COALESCE(er.InstalledWeld,0)) AS InstalledWeld,
-sum(COALESCE(er.InstalledSell,0)) AS InstalledSell,
-sum(COALESCE(er.InstalledDemo * std.TakeOffQuantity,0)) AS InstalledDemo,
-sum(COALESCE(er.InstalledMisc * std.TakeOffQuantity,0)) AS InstalledMisc
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+LEAST(sum(COALESCE(er.InstalledShake,0)), std.TakeOffQuantity) ,/*SETTING FALSE*/
+sum(COALESCE(er.InstalledShake,0))/*SETTING TRUE*/
+) AS InstalledShake,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+LEAST(sum(COALESCE(er.InstalledErect,0)), std.TakeOffQuantity) ,/*SETTING FALSE*/
+sum(COALESCE(er.InstalledErect,0)) /*SETTING TRUE*/
+) AS InstalledErect,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+LEAST(sum(COALESCE(er.InstalledBoltout,0)), std.TakeOffQuantity) ,/*SETTING FALSE*/
+sum(COALESCE(er.InstalledBoltout,0)) /*SETTING TRUE*/
+) AS InstalledBoltout,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+LEAST(sum(COALESCE(er.InstalledImp,0)), std.TakeOffQuantity) ,/*SETTING FALSE*/
+sum(COALESCE(er.InstalledImp,0)) /*SETTING TRUE*/
+) AS InstalledImp,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+LEAST(sum(COALESCE(er.InstalledWeld,0)), std.TakeOffQuantity) ,/*SETTING FALSE*/
+sum(COALESCE(er.InstalledWeld,0)) /*SETTING TRUE*/
+) AS InstalledWeld,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+LEAST(sum(COALESCE(er.InstalledSell,0)), std.TakeOffQuantity) ,/*SETTING FALSE*/
+sum(COALESCE(er.InstalledSell,0)) /*SETTING TRUE*/
+) AS InstalledSell,
+
+LEAST(sum(COALESCE(er.InstalledDemo,0)), std.TakeoffQuantity) AS InstalledDemo,
+
+LEAST(sum(COALESCE(er.InstalledMisc,0)), std.TakeoffQuantity) AS InstalledMisc
 
 FROM SteelTrackerDetails std
 
@@ -5353,10 +5406,13 @@ LEFT JOIN(SELECT sas.fk_BidIDAssigned AS BidID,
 		COALESCE(stli.FAQuantity * stli.FAPercentCompleted,0) AS InstalledImp,
 		COALESCE(stlw.FAQuantity * stlw.FAPercentCompleted,0) AS InstalledWeld,
 		COALESCE(stlsell.FAQuantity * stlsell.FAPercentCompleted,0) AS InstalledSell,
-		COALESCE(stld.DemoPercentCompleted,0) AS InstalledDemo,
-		COALESCE(stlm.MiscPercentCompleted,0) AS InstalledMisc
+		(COALESCE(stld.DemoPercentCompleted,0) * std.TakeoffQuantity) AS InstalledDemo,
+		(COALESCE(stlm.MiscPercentCompleted,0) * std.TakeoffQuantity) AS InstalledMisc
 
 		FROM SubmissionActivityStatus sas
+        
+        JOIN SteelTrackerDetails std
+        	ON std.BidID = sas.fk_BidIDAssigned
         
     	LEFT JOIN SteelFA stls
     		ON stls.ActivityID = sas.ActivityID AND sas.ActivityType = 61 AND stls.FARework = 0
@@ -7227,7 +7283,7 @@ ORDER BY TimeStamp DESC) wmTempTable
         <![CDATA[
         SELECT etd.BidID, etd.TakeOffQuantity, etd.QuantityUnit,
 etd.EstimatedHours AS FAHours,
-COALESCE(er.InstalledPercent,0) AS InstalledPercent
+LEAST(COALESCE(er.InstalledPercent,0),1) AS InstalledPercent
 
 FROM EquipTrackerDetails etd
 LEFT JOIN (SELECT sas.fk_BidIDAssigned AS BidID,
@@ -7250,7 +7306,7 @@ WHERE etd.BidID = :BidID
         <![CDATA[
         select count(*) from (SELECT etd.BidID, etd.TakeOffQuantity, etd.QuantityUnit,
 etd.EstimatedHours AS FAHours,
-COALESCE(er.InstalledPercent,0) AS InstalledPercent
+LEAST(COALESCE(er.InstalledPercent,0),1) AS InstalledPercent
 
 FROM EquipTrackerDetails etd
 LEFT JOIN (SELECT sas.fk_BidIDAssigned AS BidID,
@@ -7758,30 +7814,40 @@ WHERE ActivityID = :FieldActivityID
         <![CDATA[
         SELECT std.*,
 
-IF((SELECT Value2 FROM SETTINGS WHERE Label = "QuantOverClaimPipe") = 0, 
-/*SETTING FALSE*/
-GREATEST(
-(COALESCE(std.TakeOffQuantity,0) -
-COALESCE(er.InstalledShake,0) -
-COALESCE(er.InstalledErect,0) -
-COALESCE(er.InstalledBoltout,0) -
-COALESCE(er.InstalledImp,0) -
-COALESCE(er.InstalledWeld,0) -
-COALESCE(er.InstalledSell,0) -
-COALESCE(er.InstalledDemo,0) -
-COALESCE(er.InstalledMisc,0))
-,0),
-/*SETTING TRUE*/
-(COALESCE(std.TakeOffQuantity,0) -
-COALESCE(er.InstalledShake,0) -
-COALESCE(er.InstalledErect,0) -
-COALESCE(er.InstalledBoltout,0) -
-COALESCE(er.InstalledImp,0) -
-COALESCE(er.InstalledWeld,0) -
-COALESCE(er.InstalledSell,0) -
-COALESCE(er.InstalledDemo,0) -
-COALESCE(er.InstalledMisc,0))
-) AS RemainingQuantity
+### Remaining Quantities ###
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+(std.TakeOffQuantity - LEAST(sum(COALESCE(er.InstalledShake,0)), std.TakeOffQuantity)) ,/*SETTING FALSE*/
+(std.TakeOffQuantity - sum(COALESCE(er.InstalledShake,0)))/*SETTING TRUE*/
+) AS RemainingShake,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+(std.TakeOffQuantity - LEAST(sum(COALESCE(er.InstalledErect,0)), std.TakeOffQuantity)) ,/*SETTING FALSE*/
+(std.TakeOffQuantity - sum(COALESCE(er.InstalledErect,0))) /*SETTING TRUE*/
+) AS RemainingErect,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+(std.TakeOffQuantity - LEAST(sum(COALESCE(er.InstalledBoltout,0)), std.TakeOffQuantity)) ,/*SETTING FALSE*/
+(std.TakeOffQuantity - sum(COALESCE(er.InstalledBoltout,0))) /*SETTING TRUE*/
+) AS RemainingBoltout,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+(std.TakeOffQuantity - LEAST(sum(COALESCE(er.InstalledImp,0)), std.TakeOffQuantity)) ,/*SETTING FALSE*/
+(std.TakeOffQuantity - sum(COALESCE(er.InstalledImp,0))) /*SETTING TRUE*/
+) AS RemainingImp,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+(std.TakeOffQuantity - LEAST(sum(COALESCE(er.InstalledWeld,0)), std.TakeOffQuantity)) ,/*SETTING FALSE*/
+(std.TakeOffQuantity - sum(COALESCE(er.InstalledWeld,0))) /*SETTING TRUE*/
+) AS RemainingWeld,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+(std.TakeOffQuantity - LEAST(sum(COALESCE(er.InstalledSell,0)), std.TakeOffQuantity)) ,/*SETTING FALSE*/
+(std.TakeOffQuantity - sum(COALESCE(er.InstalledSell,0))) /*SETTING TRUE*/
+) AS RemainingSell,
+
+(std.TakeOffQuantity - LEAST(sum(COALESCE(er.InstalledDemo,0)), std.TakeoffQuantity)) AS RemainingDemo,
+
+(std.TakeOffQuantity - LEAST(sum(COALESCE(er.InstalledMisc,0)), std.TakeoffQuantity)) AS RemainingMisc
 
 
 FROM SteelTrackerDetails std
@@ -7857,30 +7923,40 @@ WHERE std.BidID = :BidID
         <![CDATA[
         select count(*) from (SELECT std.*,
 
-IF((SELECT Value2 FROM SETTINGS WHERE Label = "QuantOverClaimPipe") = 0, 
-/*SETTING FALSE*/
-GREATEST(
-(COALESCE(std.TakeOffQuantity,0) -
-COALESCE(er.InstalledShake,0) -
-COALESCE(er.InstalledErect,0) -
-COALESCE(er.InstalledBoltout,0) -
-COALESCE(er.InstalledImp,0) -
-COALESCE(er.InstalledWeld,0) -
-COALESCE(er.InstalledSell,0) -
-COALESCE(er.InstalledDemo,0) -
-COALESCE(er.InstalledMisc,0))
-,0),
-/*SETTING TRUE*/
-(COALESCE(std.TakeOffQuantity,0) -
-COALESCE(er.InstalledShake,0) -
-COALESCE(er.InstalledErect,0) -
-COALESCE(er.InstalledBoltout,0) -
-COALESCE(er.InstalledImp,0) -
-COALESCE(er.InstalledWeld,0) -
-COALESCE(er.InstalledSell,0) -
-COALESCE(er.InstalledDemo,0) -
-COALESCE(er.InstalledMisc,0))
-) AS RemainingQuantity
+### Remaining Quantities ###
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+(std.TakeOffQuantity - LEAST(sum(COALESCE(er.InstalledShake,0)), std.TakeOffQuantity)) ,/*SETTING FALSE*/
+(std.TakeOffQuantity - sum(COALESCE(er.InstalledShake,0)))/*SETTING TRUE*/
+) AS RemainingShake,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+(std.TakeOffQuantity - LEAST(sum(COALESCE(er.InstalledErect,0)), std.TakeOffQuantity)) ,/*SETTING FALSE*/
+(std.TakeOffQuantity - sum(COALESCE(er.InstalledErect,0))) /*SETTING TRUE*/
+) AS RemainingErect,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+(std.TakeOffQuantity - LEAST(sum(COALESCE(er.InstalledBoltout,0)), std.TakeOffQuantity)) ,/*SETTING FALSE*/
+(std.TakeOffQuantity - sum(COALESCE(er.InstalledBoltout,0))) /*SETTING TRUE*/
+) AS RemainingBoltout,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+(std.TakeOffQuantity - LEAST(sum(COALESCE(er.InstalledImp,0)), std.TakeOffQuantity)) ,/*SETTING FALSE*/
+(std.TakeOffQuantity - sum(COALESCE(er.InstalledImp,0))) /*SETTING TRUE*/
+) AS RemainingImp,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+(std.TakeOffQuantity - LEAST(sum(COALESCE(er.InstalledWeld,0)), std.TakeOffQuantity)) ,/*SETTING FALSE*/
+(std.TakeOffQuantity - sum(COALESCE(er.InstalledWeld,0))) /*SETTING TRUE*/
+) AS RemainingWeld,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = 'QuantOverClaimSteel') = 0,
+(std.TakeOffQuantity - LEAST(sum(COALESCE(er.InstalledSell,0)), std.TakeOffQuantity)) ,/*SETTING FALSE*/
+(std.TakeOffQuantity - sum(COALESCE(er.InstalledSell,0))) /*SETTING TRUE*/
+) AS RemainingSell,
+
+(std.TakeOffQuantity - LEAST(sum(COALESCE(er.InstalledDemo,0)), std.TakeoffQuantity)) AS RemainingDemo,
+
+(std.TakeOffQuantity - LEAST(sum(COALESCE(er.InstalledMisc,0)), std.TakeoffQuantity)) AS RemainingMisc
 
 
 FROM SteelTrackerDetails std
@@ -8080,8 +8156,8 @@ WHERE `Label`='SteelSellHoursPercent'
         <![CDATA[
         SELECT ctd.BidID, ctd.TakeOffQuantity, ctd.QuantityUnit,
 (COALESCE(ctd.EstimatedHours, 0) * (SELECT Value1 FROM SETTINGS WHERE Label = 'CivilWorkHoursPercent')) AS FAHours,
-COALESCE(er.InstalledQuantity,0) AS InstalledQuantity,
-COALESCE(er.InstalledPercent,0) AS InstalledPercent
+LEAST(COALESCE(er.InstalledQuantity,0), ctd.TakeOffQuantity) AS InstalledQuantity,
+LEAST(COALESCE(er.InstalledPercent,0), 1) AS InstalledPercent
 
 FROM CivilTrackerDetails ctd
 LEFT JOIN (SELECT ctd.BidID,
@@ -8112,8 +8188,8 @@ WHERE ctd.BidID = :BidID
         <![CDATA[
         select count(*) from (SELECT ctd.BidID, ctd.TakeOffQuantity, ctd.QuantityUnit,
 (COALESCE(ctd.EstimatedHours, 0) * (SELECT Value1 FROM SETTINGS WHERE Label = 'CivilWorkHoursPercent')) AS FAHours,
-COALESCE(er.InstalledQuantity,0) AS InstalledQuantity,
-COALESCE(er.InstalledPercent,0) AS InstalledPercent
+LEAST(COALESCE(er.InstalledQuantity,0), ctd.TakeOffQuantity) AS InstalledQuantity,
+LEAST(COALESCE(er.InstalledPercent,0), 1) AS InstalledPercent
 
 FROM CivilTrackerDetails ctd
 LEFT JOIN (SELECT ctd.BidID,

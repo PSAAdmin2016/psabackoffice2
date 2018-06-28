@@ -201,9 +201,37 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
 
-    @JsonProperty("RemainingQuantity")
-    @ColumnAlias("RemainingQuantity")
-    private BigDecimal remainingQuantity;
+    @JsonProperty("RemainingShake")
+    @ColumnAlias("RemainingShake")
+    private BigDecimal remainingShake;
+
+    @JsonProperty("RemainingErect")
+    @ColumnAlias("RemainingErect")
+    private BigDecimal remainingErect;
+
+    @JsonProperty("RemainingBoltout")
+    @ColumnAlias("RemainingBoltout")
+    private BigDecimal remainingBoltout;
+
+    @JsonProperty("RemainingImp")
+    @ColumnAlias("RemainingImp")
+    private BigDecimal remainingImp;
+
+    @JsonProperty("RemainingWeld")
+    @ColumnAlias("RemainingWeld")
+    private BigDecimal remainingWeld;
+
+    @JsonProperty("RemainingSell")
+    @ColumnAlias("RemainingSell")
+    private BigDecimal remainingSell;
+
+    @JsonProperty("RemainingDemo")
+    @ColumnAlias("RemainingDemo")
+    private BigDecimal remainingDemo;
+
+    @JsonProperty("RemainingMisc")
+    @ColumnAlias("RemainingMisc")
+    private BigDecimal remainingMisc;
 
     public Integer getUid() {
         return this.uid;
@@ -573,12 +601,68 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
         this.timeStamp = timeStamp;
     }
 
-    public BigDecimal getRemainingQuantity() {
-        return this.remainingQuantity;
+    public BigDecimal getRemainingShake() {
+        return this.remainingShake;
     }
 
-    public void setRemainingQuantity(BigDecimal remainingQuantity) {
-        this.remainingQuantity = remainingQuantity;
+    public void setRemainingShake(BigDecimal remainingShake) {
+        this.remainingShake = remainingShake;
+    }
+
+    public BigDecimal getRemainingErect() {
+        return this.remainingErect;
+    }
+
+    public void setRemainingErect(BigDecimal remainingErect) {
+        this.remainingErect = remainingErect;
+    }
+
+    public BigDecimal getRemainingBoltout() {
+        return this.remainingBoltout;
+    }
+
+    public void setRemainingBoltout(BigDecimal remainingBoltout) {
+        this.remainingBoltout = remainingBoltout;
+    }
+
+    public BigDecimal getRemainingImp() {
+        return this.remainingImp;
+    }
+
+    public void setRemainingImp(BigDecimal remainingImp) {
+        this.remainingImp = remainingImp;
+    }
+
+    public BigDecimal getRemainingWeld() {
+        return this.remainingWeld;
+    }
+
+    public void setRemainingWeld(BigDecimal remainingWeld) {
+        this.remainingWeld = remainingWeld;
+    }
+
+    public BigDecimal getRemainingSell() {
+        return this.remainingSell;
+    }
+
+    public void setRemainingSell(BigDecimal remainingSell) {
+        this.remainingSell = remainingSell;
+    }
+
+    public BigDecimal getRemainingDemo() {
+        return this.remainingDemo;
+    }
+
+    public void setRemainingDemo(BigDecimal remainingDemo) {
+        this.remainingDemo = remainingDemo;
+    }
+
+    public BigDecimal getRemainingMisc() {
+        return this.remainingMisc;
+    }
+
+    public void setRemainingMisc(BigDecimal remainingMisc) {
+        this.remainingMisc = remainingMisc;
     }
 
     @Override
@@ -632,7 +716,14 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
                 Objects.equals(getWbs10(), getBidActivityMatchesSteelResponse.getWbs10()) &&
                 Objects.equals(getRev(), getBidActivityMatchesSteelResponse.getRev()) &&
                 Objects.equals(getTimeStamp(), getBidActivityMatchesSteelResponse.getTimeStamp()) &&
-                Objects.equals(getRemainingQuantity(), getBidActivityMatchesSteelResponse.getRemainingQuantity());
+                Objects.equals(getRemainingShake(), getBidActivityMatchesSteelResponse.getRemainingShake()) &&
+                Objects.equals(getRemainingErect(), getBidActivityMatchesSteelResponse.getRemainingErect()) &&
+                Objects.equals(getRemainingBoltout(), getBidActivityMatchesSteelResponse.getRemainingBoltout()) &&
+                Objects.equals(getRemainingImp(), getBidActivityMatchesSteelResponse.getRemainingImp()) &&
+                Objects.equals(getRemainingWeld(), getBidActivityMatchesSteelResponse.getRemainingWeld()) &&
+                Objects.equals(getRemainingSell(), getBidActivityMatchesSteelResponse.getRemainingSell()) &&
+                Objects.equals(getRemainingDemo(), getBidActivityMatchesSteelResponse.getRemainingDemo()) &&
+                Objects.equals(getRemainingMisc(), getBidActivityMatchesSteelResponse.getRemainingMisc());
     }
 
     @Override
@@ -683,6 +774,13 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
                 getWbs10(),
                 getRev(),
                 getTimeStamp(),
-                getRemainingQuantity());
+                getRemainingShake(),
+                getRemainingErect(),
+                getRemainingBoltout(),
+                getRemainingImp(),
+                getRemainingWeld(),
+                getRemainingSell(),
+                getRemainingDemo(),
+                getRemainingMisc());
     }
 }

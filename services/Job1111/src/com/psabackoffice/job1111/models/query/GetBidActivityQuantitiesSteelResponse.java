@@ -8,7 +8,6 @@ package com.psabackoffice.job1111.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -63,7 +62,7 @@ public class GetBidActivityQuantitiesSteelResponse implements Serializable {
 
     @JsonProperty("InstalledShake")
     @ColumnAlias("InstalledShake")
-    private BigInteger installedShake;
+    private BigDecimal installedShake;
 
     @JsonProperty("InstalledErect")
     @ColumnAlias("InstalledErect")
@@ -181,11 +180,11 @@ public class GetBidActivityQuantitiesSteelResponse implements Serializable {
         this.miscHours = miscHours;
     }
 
-    public BigInteger getInstalledShake() {
+    public BigDecimal getInstalledShake() {
         return this.installedShake;
     }
 
-    public void setInstalledShake(BigInteger installedShake) {
+    public void setInstalledShake(BigDecimal installedShake) {
         this.installedShake = installedShake;
     }
 
