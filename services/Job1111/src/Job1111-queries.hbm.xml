@@ -4869,10 +4869,10 @@ VALUES (:ActivityID, :CreatedBy ,:Note)
     <sql-query name="GetBidActivityMatchesCivil">
         <![CDATA[
         SELECT ctd.*,
-(COALESCE(ctd.TakeOffQuantity,0) - COALESCE(er.InstalledFAs,0)) AS RemainingQuantity
+GREATEST((COALESCE(ctd.TakeOffQuantity,0) - COALESCE(er.InstalledFAs,0)),0) AS RemainingQuantity
 FROM CivilTrackerDetails ctd
 LEFT JOIN (
-	SELECT min(UID) AS UID, BidID,
+	SELECT BidID,
 	SUM(InstalledFAs) AS InstalledFAs
 	 
 	FROM (SELECT UID, BidID,
@@ -4885,20 +4885,20 @@ LEFT JOIN (
 		) AS InstalledFAs
 
 		### SS Joins ###
-		FROM `Job1111`.SubmissionActivityStatus sas
+		FROM SubmissionActivityStatus sas
 		JOIN PSA.REF_ActivityTypes at
 			ON at.ID = sas.ActivityType
 			
-		JOIN `Job1111`.CivilFA cfa
+		JOIN CivilFA cfa
 			ON cfa.ActivityID = sas.ActivityID AND cfa.FARework = 0
 
-		LEFT JOIN `Job1111`.`CivilTrackerDetails` ctd
+		LEFT JOIN CivilTrackerDetails ctd
 			ON ctd.BidID = sas.fk_BidIDAssigned
 			 
 			 
 		WHERE sas.fk_ActivityStatus IN (5,12)
         AND sas.fk_BidIDAssigned = :BidID
-		GROUP BY sas.ActivityID
+		AND sas.ActivityType IN (70,71)
 	) er0
 	GROUP BY BidID
 	ORDER BY BidID
@@ -4913,10 +4913,10 @@ WHERE ctd.BidID = :BidID
     <sql-query name="GetBidActivityMatchesCivil__count">
         <![CDATA[
         select count(*) from (SELECT ctd.*,
-(COALESCE(ctd.TakeOffQuantity,0) - COALESCE(er.InstalledFAs,0)) AS RemainingQuantity
+GREATEST((COALESCE(ctd.TakeOffQuantity,0) - COALESCE(er.InstalledFAs,0)),0) AS RemainingQuantity
 FROM CivilTrackerDetails ctd
 LEFT JOIN (
-	SELECT min(UID) AS UID, BidID,
+	SELECT BidID,
 	SUM(InstalledFAs) AS InstalledFAs
 	 
 	FROM (SELECT UID, BidID,
@@ -4929,20 +4929,20 @@ LEFT JOIN (
 		) AS InstalledFAs
 
 		### SS Joins ###
-		FROM `Job1111`.SubmissionActivityStatus sas
+		FROM SubmissionActivityStatus sas
 		JOIN PSA.REF_ActivityTypes at
 			ON at.ID = sas.ActivityType
 			
-		JOIN `Job1111`.CivilFA cfa
+		JOIN CivilFA cfa
 			ON cfa.ActivityID = sas.ActivityID AND cfa.FARework = 0
 
-		LEFT JOIN `Job1111`.`CivilTrackerDetails` ctd
+		LEFT JOIN CivilTrackerDetails ctd
 			ON ctd.BidID = sas.fk_BidIDAssigned
 			 
 			 
 		WHERE sas.fk_ActivityStatus IN (5,12)
         AND sas.fk_BidIDAssigned = :BidID
-		GROUP BY sas.ActivityID
+		AND sas.ActivityType IN (70,71)
 	) er0
 	GROUP BY BidID
 	ORDER BY BidID
@@ -7372,86 +7372,155 @@ WHERE `Label`='PipeCTOHoursPercent'
     <sql-query name="GetBidActivityMatchesPipe">
         <![CDATA[
         SELECT ptd.*,
+IF((SELECT Value2 FROM SETTINGS WHERE Label = "QuantOverClaimPipe") = 0, 
+/*SETTING FALSE*/
+GREATEST(
+(COALESCE(ptd.TakeOffQuantity,0) -
+COALESCE(er.InstalledFootage,0) -
+COALESCE(er.InstalledBoltUps,0) -
+COALESCE(er.InstalledWelds,0) -
+COALESCE(er.InstalledScrewJoints,0) -
+COALESCE(er.InstalledOtherConnections,0) -
+COALESCE(er.InstalledCuts,0) -
+COALESCE(er.InstalledTrim,0) -
+COALESCE(er.InstalledSupports,0) -
+COALESCE(er.InstalledMisc,0) -
+COALESCE(er.InstalledDemo,0))
+,0),
 
-(COALESCE(ptd.TakeOffQuantity,0)
--COALESCE(er.InstalledFootage,0)
--COALESCE(er.InstalledBoltUps,0)
--COALESCE(er.InstalledWelds,0)
--COALESCE(er.InstalledCuts,0)
--COALESCE(er.InstalledTrim,0)
--COALESCE(er.InstalledSupports,0)
--COALESCE(er.InstalledMisc,0)
--COALESCE(er.InstalledDemo,0)) AS RemainingQuantity
+/*SETTING TRUE*/
+(COALESCE(ptd.TakeOffQuantity,0) -
+COALESCE(er.InstalledFootage,0) -
+COALESCE(er.InstalledBoltUps,0) -
+COALESCE(er.InstalledWelds,0) -
+COALESCE(er.InstalledScrewJoints,0) -
+COALESCE(er.InstalledOtherConnections,0) -
+COALESCE(er.InstalledCuts,0) -
+COALESCE(er.InstalledTrim,0) -
+COALESCE(er.InstalledSupports,0) -
+COALESCE(er.InstalledMisc,0) -
+COALESCE(er.InstalledDemo,0))
+) AS RemainingQuantity
 
 
 FROM PipeTrackerDetails ptd
 
-LEFT JOIN (SELECT  ptd.BidID,
-	###Installed Quantities Calculations ###
-		sum(COALESCE(pe.FAQuantity,0) + COALESCE(pme.MiscQuantity,0)) AS InstalledFootage,
-		sum(COALESCE(pcb.FAQuantity,0) + COALESCE(pmcb.MiscQuantity,0)) AS InstalledBoltUps, 
-		sum(COALESCE(pw.WeldPercentCompleted * pw.WeldPercentCompleted,0) + COALESCE(pmw.MiscQuantity,0)) AS InstalledWelds,
-		sum(COALESCE(pcs.FAQuantity,0) + COALESCE(pmcs.MiscQuantity,0)) AS InstalledScrewJoints,
-		sum(COALESCE(pco.FAQuantity,0) + COALESCE(pmco.MiscQuantity,0)) AS InstalledOtherConnections,
-		sum(COALESCE(pcut.FAQuantity,0) + COALESCE(pmcut.MiscQuantity,0)) AS InstalledCuts,
-		sum(COALESCE(pt.FAQuantity,0) + COALESCE(pmt.MiscQuantity,0)) AS InstalledTrim,
-		sum(COALESCE(psu.FAQuantity * psu.FAPercentCompleted,0) + COALESCE(pmsu.MiscQuantity,0)) AS InstalledSupports,
-		sum(COALESCE(pd.FAPercentCompleted * ptd.TakeOffQuantity,0) + COALESCE(pmd.MiscQuantity,0)) AS InstalledDemo,
-		sum(COALESCE(pm.FAPercentCompleted * ptd.TakeOffQuantity,0) + COALESCE(pmm.MiscQuantity,0)) AS InstalledMisc
+LEFT JOIN (SELECT BidID,   
+	sum(InstalledFootage) AS InstalledFootage, 
+	sum(InstalledBoltUps) AS InstalledBoltUps, 
+	sum(InstalledWelds) AS InstalledWelds, 
+	sum(InstalledScrewJoints) AS InstalledScrewJoints, 
+	sum(InstalledOtherConnections) AS InstalledOtherConnections, 
+	sum(InstalledCuts) AS InstalledCuts, 
+	sum(InstalledTrim) AS InstalledTrim, 
+	sum(InstalledSupports) AS InstalledSupports, 
+	sum(InstalledMisc) AS InstalledMisc, 
+	sum(InstalledDemo) AS  InstalledDemo
+
+	FROM(SELECT ptd.UID, ptd.BidID,
+		###Installed Quantities Calculations ###
+			(COALESCE(pe.FAQuantity,0) + COALESCE(pme.MiscQuantity,0)) AS InstalledFootage,
+
+			(COALESCE(pcb.FAQuantity,0) + COALESCE(pmcb.MiscQuantity,0)) AS InstalledBoltUps,
+
+			(COALESCE(pw.WeldPercentCompleted,0) + COALESCE(pmw.MiscQuantity,0)) AS InstalledWelds,
+
+			(COALESCE(pcs.FAQuantity,0) + COALESCE(pmcs.MiscQuantity,0)) AS InstalledScrewJoints,
+
+			(COALESCE(pco.FAQuantity,0) + COALESCE(pmco.MiscQuantity,0)) AS InstalledOtherConnections,
+
+			(COALESCE(pcut.FAQuantity,0) + COALESCE(pmcut.MiscQuantity,0)) AS InstalledCuts,
+
+			(COALESCE(pt.FAQuantity,0) + COALESCE(pmt.MiscQuantity,0)) AS InstalledTrim,
+			
+			(COALESCE(psu.FAQuantity * psu.FAPercentCompleted,0) + COALESCE(pmsu.MiscQuantity,0)) AS InstalledSupports,
+
+			(COALESCE(ptd.TakeOffQuantity * pd.FAPercentCompleted,0) + COALESCE(pmd.MiscQuantity,0)) AS InstalledDemo,
+
+			(COALESCE(ptd.TakeOffQuantity * pm.FAPercentCompleted,0) + COALESCE(pmm.MiscQuantity,0)) AS InstalledMisc
 
 
-		FROM SubmissionActivityStatus sas
-		JOIN PSA.REF_ActivityTypes at
-			ON at.ID = sas.ActivityType
+			FROM SubmissionActivityStatus sas
+			JOIN PSA.REF_ActivityTypes at
+				ON at.ID = sas.ActivityType
+				
+			LEFT JOIN PipeFA pe
+				ON pe.ActivityID = sas.ActivityID AND sas.ActivityType = 11 AND pe.FARework = 0
+
+			LEFT JOIN PipeFA pcb
+				ON pcb.ActivityID = sas.ActivityID AND sas.ActivityType = 21 AND pcb.FARework = 0
+		 
+			LEFT JOIN PipeWeld pw
+				ON pw.ActivityID = sas.ActivityID AND pw.WeldRework = 0
+
+			LEFT JOIN PipeFA pcs
+				ON pcs.ActivityID = sas.ActivityID AND sas.ActivityType = 24 AND pcs.FARework = 0
+		 
+			LEFT JOIN PipeFA pco
+				ON pco.ActivityID = sas.ActivityID AND sas.ActivityType = 25 AND pco.FARework = 0
+		 
+			LEFT JOIN PipeFA pcut
+				ON pcut.ActivityID = sas.ActivityID AND sas.ActivityType = 23 AND pcut.FARework = 0
+				
+			LEFT JOIN PipeFA pt
+				ON pt.ActivityID = sas.ActivityID AND sas.ActivityType IN (31,32,33,39) AND pt.FARework = 0
+				
+			LEFT JOIN PipeFA psu
+				ON psu.ActivityID = sas.ActivityID AND sas.ActivityType = 38 AND psu.FARework = 0
+				
+			LEFT JOIN PipeFA pd
+				ON pd.ActivityID = sas.ActivityID AND sas.ActivityType IN (51,52,53)
 			
-		LEFT JOIN PipeFA pe
-			ON pe.ActivityID = sas.ActivityID AND pe.FARework = 0
-		LEFT JOIN PipeFA pcb
-			ON pcb.ActivityID = sas.ActivityID AND sas.ActivityType = 21 AND pcb.FARework = 0
-		LEFT JOIN PipeWeld pw
-			ON pw.ActivityID = sas.ActivityID  AND  pw.WeldRework = 0
-		LEFT JOIN PipeFA pcs
-			ON pcs.ActivityID = sas.ActivityID AND sas.ActivityType = 24 AND pcs.FARework = 0	 
-		LEFT JOIN PipeFA pco
-			ON pco.ActivityID = sas.ActivityID AND sas.ActivityType = 25 AND pco.FARework = 0	 
-		LEFT JOIN PipeFA pcut
-			ON pcut.ActivityID = sas.ActivityID AND sas.ActivityType = 23 AND pcut.FARework = 0			
-		LEFT JOIN PipeFA pt
-			ON pt.ActivityID = sas.ActivityID AND sas.ActivityType IN (31,32,33,39) AND pt.FARework = 0			
-		LEFT JOIN PipeFA psu
-			ON psu.ActivityID = sas.ActivityID AND sas.ActivityType = 38 AND psu.FARework = 0			
-		LEFT JOIN PipeFA pd
-			ON pd.ActivityID = sas.ActivityID AND sas.ActivityType IN (51,52,53,59)		
-		LEFT JOIN PipeFA pm
-			ON pm.ActivityID = sas.ActivityID AND sas.ActivityType = 90 AND pm.FARework = 0			
-		LEFT JOIN PipeTrackerDetails ptd
-			ON ptd.BidID = sas.fk_BidIDAssigned
+			LEFT JOIN PipeFA pm
+				ON pm.ActivityID = sas.ActivityID AND sas.ActivityType = 90 AND pm.FARework = 0
+
+
+			LEFT JOIN PipeTrackerDetails ptd
+				ON ptd.BidID = sas.fk_BidIDAssigned
+
+
+		/* #### Begining of Misc activities assigned joins #### */	
+			LEFT JOIN PipeMisc pme
+				ON pme.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "PE" AND pme.MiscRework = 0
 			
-	/* #### Begining of Misc activities assigned joins #### */	
-		LEFT JOIN PipeMisc pme
-			ON pme.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "PE" AND pme.MiscRework = 0
-		LEFT JOIN PipeMisc pmcb
-			ON pmcb.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "BU" AND pmcb.MiscRework = 0
-		LEFT JOIN PipeMisc pmw
-			ON pmw.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "W" AND pmw.MiscRework = 0
-		LEFT JOIN PipeMisc pmcs
-			ON pmcs.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "SCREW" AND pmcs.MiscRework = 0
-		LEFT JOIN PipeMisc pmco
-			ON pmco.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "Other" AND pmco.MiscRework = 0
-		LEFT JOIN PipeMisc pmcut
-			ON pmcut.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "CUT" AND pmcut.MiscRework = 0
-		LEFT JOIN PipeMisc pmt
-			ON pmt.ActivityID = sas.ActivityID AND ptd.ActivityType = "T" AND pmt.MiscRework = 0
-		LEFT JOIN PipeMisc pmsu
-			ON pmsu.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "S" AND pmsu.MiscRework = 0
-		LEFT JOIN PipeMisc pmd
-			ON pmd.ActivityID = sas.ActivityID  AND ptd.ActivityType = "D" AND pmd.MiscRework = 0
-		LEFT JOIN PipeMisc pmm
-			ON pmm.ActivityID = sas.ActivityID  AND ptd.ActivityType = "MISC" AND pmm.MiscRework = 0
+			LEFT JOIN PipeMisc pmcb
+				ON pmcb.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "BU" AND pmcb.MiscRework = 0
+			
+			LEFT JOIN PipeMisc pmw
+				ON pmw.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "W" AND pmw.MiscRework = 0
+			
+			LEFT JOIN PipeMisc pmcs
+				ON pmcs.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "SCREW" AND pmcs.MiscRework = 0
+			
+			LEFT JOIN PipeMisc pmco
+				ON pmco.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "Other" AND pmco.MiscRework = 0
+				
+			LEFT JOIN PipeMisc pmcut
+				ON pmcut.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "CUT" AND pmcut.MiscRework = 0
+
+			LEFT JOIN PipeMisc pmt
+				ON pmt.ActivityID = sas.ActivityID AND ptd.ActivityType = "T" AND pmt.MiscRework = 0
+			   
+			LEFT JOIN PipeMisc pmsu
+				ON pmsu.ActivityID = sas.ActivityID AND ptd.ActivityType = "S" AND pmsu.MiscRework = 0
+
+			LEFT JOIN PipeMisc pmd
+				ON pmd.ActivityID = sas.ActivityID  AND ptd.ActivityType = "D" AND pmd.MiscRework = 0
+				
+			LEFT JOIN PipeMisc pmm
+				ON pmm.ActivityID = sas.ActivityID  AND ptd.ActivityType = "MISC" AND pmm.MiscRework = 0
+				
+
 
 		WHERE fk_ActivityStatus IN (5,12)
-		GROUP BY ptd.BidID) er
+        AND sas.fk_BidIDAssigned = :BidID
+		AND sas.ActivityType IN (11,21,22,23,24,25,31,32,33,38,39,51,52,53,90,91)
+		)er0
+	GROUP BY BidID
+) er
 	ON er.BidID = ptd.BidID
+
+
 WHERE ptd.BidID = :BidID
 OR
 (LineNumber LIKE :LineNumber
@@ -7472,86 +7541,155 @@ AND ActivitySubType LIKE :ActivitySubType
     <sql-query name="GetBidActivityMatchesPipe__count">
         <![CDATA[
         select count(*) from (SELECT ptd.*,
+IF((SELECT Value2 FROM SETTINGS WHERE Label = "QuantOverClaimPipe") = 0, 
+/*SETTING FALSE*/
+GREATEST(
+(COALESCE(ptd.TakeOffQuantity,0) -
+COALESCE(er.InstalledFootage,0) -
+COALESCE(er.InstalledBoltUps,0) -
+COALESCE(er.InstalledWelds,0) -
+COALESCE(er.InstalledScrewJoints,0) -
+COALESCE(er.InstalledOtherConnections,0) -
+COALESCE(er.InstalledCuts,0) -
+COALESCE(er.InstalledTrim,0) -
+COALESCE(er.InstalledSupports,0) -
+COALESCE(er.InstalledMisc,0) -
+COALESCE(er.InstalledDemo,0))
+,0),
 
-(COALESCE(ptd.TakeOffQuantity,0)
--COALESCE(er.InstalledFootage,0)
--COALESCE(er.InstalledBoltUps,0)
--COALESCE(er.InstalledWelds,0)
--COALESCE(er.InstalledCuts,0)
--COALESCE(er.InstalledTrim,0)
--COALESCE(er.InstalledSupports,0)
--COALESCE(er.InstalledMisc,0)
--COALESCE(er.InstalledDemo,0)) AS RemainingQuantity
+/*SETTING TRUE*/
+(COALESCE(ptd.TakeOffQuantity,0) -
+COALESCE(er.InstalledFootage,0) -
+COALESCE(er.InstalledBoltUps,0) -
+COALESCE(er.InstalledWelds,0) -
+COALESCE(er.InstalledScrewJoints,0) -
+COALESCE(er.InstalledOtherConnections,0) -
+COALESCE(er.InstalledCuts,0) -
+COALESCE(er.InstalledTrim,0) -
+COALESCE(er.InstalledSupports,0) -
+COALESCE(er.InstalledMisc,0) -
+COALESCE(er.InstalledDemo,0))
+) AS RemainingQuantity
 
 
 FROM PipeTrackerDetails ptd
 
-LEFT JOIN (SELECT  ptd.BidID,
-	###Installed Quantities Calculations ###
-		sum(COALESCE(pe.FAQuantity,0) + COALESCE(pme.MiscQuantity,0)) AS InstalledFootage,
-		sum(COALESCE(pcb.FAQuantity,0) + COALESCE(pmcb.MiscQuantity,0)) AS InstalledBoltUps, 
-		sum(COALESCE(pw.WeldPercentCompleted * pw.WeldPercentCompleted,0) + COALESCE(pmw.MiscQuantity,0)) AS InstalledWelds,
-		sum(COALESCE(pcs.FAQuantity,0) + COALESCE(pmcs.MiscQuantity,0)) AS InstalledScrewJoints,
-		sum(COALESCE(pco.FAQuantity,0) + COALESCE(pmco.MiscQuantity,0)) AS InstalledOtherConnections,
-		sum(COALESCE(pcut.FAQuantity,0) + COALESCE(pmcut.MiscQuantity,0)) AS InstalledCuts,
-		sum(COALESCE(pt.FAQuantity,0) + COALESCE(pmt.MiscQuantity,0)) AS InstalledTrim,
-		sum(COALESCE(psu.FAQuantity * psu.FAPercentCompleted,0) + COALESCE(pmsu.MiscQuantity,0)) AS InstalledSupports,
-		sum(COALESCE(pd.FAPercentCompleted * ptd.TakeOffQuantity,0) + COALESCE(pmd.MiscQuantity,0)) AS InstalledDemo,
-		sum(COALESCE(pm.FAPercentCompleted * ptd.TakeOffQuantity,0) + COALESCE(pmm.MiscQuantity,0)) AS InstalledMisc
+LEFT JOIN (SELECT BidID,   
+	sum(InstalledFootage) AS InstalledFootage, 
+	sum(InstalledBoltUps) AS InstalledBoltUps, 
+	sum(InstalledWelds) AS InstalledWelds, 
+	sum(InstalledScrewJoints) AS InstalledScrewJoints, 
+	sum(InstalledOtherConnections) AS InstalledOtherConnections, 
+	sum(InstalledCuts) AS InstalledCuts, 
+	sum(InstalledTrim) AS InstalledTrim, 
+	sum(InstalledSupports) AS InstalledSupports, 
+	sum(InstalledMisc) AS InstalledMisc, 
+	sum(InstalledDemo) AS  InstalledDemo
+
+	FROM(SELECT ptd.UID, ptd.BidID,
+		###Installed Quantities Calculations ###
+			(COALESCE(pe.FAQuantity,0) + COALESCE(pme.MiscQuantity,0)) AS InstalledFootage,
+
+			(COALESCE(pcb.FAQuantity,0) + COALESCE(pmcb.MiscQuantity,0)) AS InstalledBoltUps,
+
+			(COALESCE(pw.WeldPercentCompleted,0) + COALESCE(pmw.MiscQuantity,0)) AS InstalledWelds,
+
+			(COALESCE(pcs.FAQuantity,0) + COALESCE(pmcs.MiscQuantity,0)) AS InstalledScrewJoints,
+
+			(COALESCE(pco.FAQuantity,0) + COALESCE(pmco.MiscQuantity,0)) AS InstalledOtherConnections,
+
+			(COALESCE(pcut.FAQuantity,0) + COALESCE(pmcut.MiscQuantity,0)) AS InstalledCuts,
+
+			(COALESCE(pt.FAQuantity,0) + COALESCE(pmt.MiscQuantity,0)) AS InstalledTrim,
+			
+			(COALESCE(psu.FAQuantity * psu.FAPercentCompleted,0) + COALESCE(pmsu.MiscQuantity,0)) AS InstalledSupports,
+
+			(COALESCE(ptd.TakeOffQuantity * pd.FAPercentCompleted,0) + COALESCE(pmd.MiscQuantity,0)) AS InstalledDemo,
+
+			(COALESCE(ptd.TakeOffQuantity * pm.FAPercentCompleted,0) + COALESCE(pmm.MiscQuantity,0)) AS InstalledMisc
 
 
-		FROM SubmissionActivityStatus sas
-		JOIN PSA.REF_ActivityTypes at
-			ON at.ID = sas.ActivityType
+			FROM SubmissionActivityStatus sas
+			JOIN PSA.REF_ActivityTypes at
+				ON at.ID = sas.ActivityType
+				
+			LEFT JOIN PipeFA pe
+				ON pe.ActivityID = sas.ActivityID AND sas.ActivityType = 11 AND pe.FARework = 0
+
+			LEFT JOIN PipeFA pcb
+				ON pcb.ActivityID = sas.ActivityID AND sas.ActivityType = 21 AND pcb.FARework = 0
+		 
+			LEFT JOIN PipeWeld pw
+				ON pw.ActivityID = sas.ActivityID AND pw.WeldRework = 0
+
+			LEFT JOIN PipeFA pcs
+				ON pcs.ActivityID = sas.ActivityID AND sas.ActivityType = 24 AND pcs.FARework = 0
+		 
+			LEFT JOIN PipeFA pco
+				ON pco.ActivityID = sas.ActivityID AND sas.ActivityType = 25 AND pco.FARework = 0
+		 
+			LEFT JOIN PipeFA pcut
+				ON pcut.ActivityID = sas.ActivityID AND sas.ActivityType = 23 AND pcut.FARework = 0
+				
+			LEFT JOIN PipeFA pt
+				ON pt.ActivityID = sas.ActivityID AND sas.ActivityType IN (31,32,33,39) AND pt.FARework = 0
+				
+			LEFT JOIN PipeFA psu
+				ON psu.ActivityID = sas.ActivityID AND sas.ActivityType = 38 AND psu.FARework = 0
+				
+			LEFT JOIN PipeFA pd
+				ON pd.ActivityID = sas.ActivityID AND sas.ActivityType IN (51,52,53)
 			
-		LEFT JOIN PipeFA pe
-			ON pe.ActivityID = sas.ActivityID AND pe.FARework = 0
-		LEFT JOIN PipeFA pcb
-			ON pcb.ActivityID = sas.ActivityID AND sas.ActivityType = 21 AND pcb.FARework = 0
-		LEFT JOIN PipeWeld pw
-			ON pw.ActivityID = sas.ActivityID  AND  pw.WeldRework = 0
-		LEFT JOIN PipeFA pcs
-			ON pcs.ActivityID = sas.ActivityID AND sas.ActivityType = 24 AND pcs.FARework = 0	 
-		LEFT JOIN PipeFA pco
-			ON pco.ActivityID = sas.ActivityID AND sas.ActivityType = 25 AND pco.FARework = 0	 
-		LEFT JOIN PipeFA pcut
-			ON pcut.ActivityID = sas.ActivityID AND sas.ActivityType = 23 AND pcut.FARework = 0			
-		LEFT JOIN PipeFA pt
-			ON pt.ActivityID = sas.ActivityID AND sas.ActivityType IN (31,32,33,39) AND pt.FARework = 0			
-		LEFT JOIN PipeFA psu
-			ON psu.ActivityID = sas.ActivityID AND sas.ActivityType = 38 AND psu.FARework = 0			
-		LEFT JOIN PipeFA pd
-			ON pd.ActivityID = sas.ActivityID AND sas.ActivityType IN (51,52,53,59)		
-		LEFT JOIN PipeFA pm
-			ON pm.ActivityID = sas.ActivityID AND sas.ActivityType = 90 AND pm.FARework = 0			
-		LEFT JOIN PipeTrackerDetails ptd
-			ON ptd.BidID = sas.fk_BidIDAssigned
+			LEFT JOIN PipeFA pm
+				ON pm.ActivityID = sas.ActivityID AND sas.ActivityType = 90 AND pm.FARework = 0
+
+
+			LEFT JOIN PipeTrackerDetails ptd
+				ON ptd.BidID = sas.fk_BidIDAssigned
+
+
+		/* #### Begining of Misc activities assigned joins #### */	
+			LEFT JOIN PipeMisc pme
+				ON pme.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "PE" AND pme.MiscRework = 0
 			
-	/* #### Begining of Misc activities assigned joins #### */	
-		LEFT JOIN PipeMisc pme
-			ON pme.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "PE" AND pme.MiscRework = 0
-		LEFT JOIN PipeMisc pmcb
-			ON pmcb.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "BU" AND pmcb.MiscRework = 0
-		LEFT JOIN PipeMisc pmw
-			ON pmw.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "W" AND pmw.MiscRework = 0
-		LEFT JOIN PipeMisc pmcs
-			ON pmcs.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "SCREW" AND pmcs.MiscRework = 0
-		LEFT JOIN PipeMisc pmco
-			ON pmco.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "Other" AND pmco.MiscRework = 0
-		LEFT JOIN PipeMisc pmcut
-			ON pmcut.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "CUT" AND pmcut.MiscRework = 0
-		LEFT JOIN PipeMisc pmt
-			ON pmt.ActivityID = sas.ActivityID AND ptd.ActivityType = "T" AND pmt.MiscRework = 0
-		LEFT JOIN PipeMisc pmsu
-			ON pmsu.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "S" AND pmsu.MiscRework = 0
-		LEFT JOIN PipeMisc pmd
-			ON pmd.ActivityID = sas.ActivityID  AND ptd.ActivityType = "D" AND pmd.MiscRework = 0
-		LEFT JOIN PipeMisc pmm
-			ON pmm.ActivityID = sas.ActivityID  AND ptd.ActivityType = "MISC" AND pmm.MiscRework = 0
+			LEFT JOIN PipeMisc pmcb
+				ON pmcb.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "BU" AND pmcb.MiscRework = 0
+			
+			LEFT JOIN PipeMisc pmw
+				ON pmw.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "W" AND pmw.MiscRework = 0
+			
+			LEFT JOIN PipeMisc pmcs
+				ON pmcs.ActivityID = sas.ActivityID AND ptd.ActivitySubType = "SCREW" AND pmcs.MiscRework = 0
+			
+			LEFT JOIN PipeMisc pmco
+				ON pmco.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "Other" AND pmco.MiscRework = 0
+				
+			LEFT JOIN PipeMisc pmcut
+				ON pmcut.ActivityID = sas.ActivityID AND ptd.ActivityType = "C" AND ptd.ActivitySubType = "CUT" AND pmcut.MiscRework = 0
+
+			LEFT JOIN PipeMisc pmt
+				ON pmt.ActivityID = sas.ActivityID AND ptd.ActivityType = "T" AND pmt.MiscRework = 0
+			   
+			LEFT JOIN PipeMisc pmsu
+				ON pmsu.ActivityID = sas.ActivityID AND ptd.ActivityType = "S" AND pmsu.MiscRework = 0
+
+			LEFT JOIN PipeMisc pmd
+				ON pmd.ActivityID = sas.ActivityID  AND ptd.ActivityType = "D" AND pmd.MiscRework = 0
+				
+			LEFT JOIN PipeMisc pmm
+				ON pmm.ActivityID = sas.ActivityID  AND ptd.ActivityType = "MISC" AND pmm.MiscRework = 0
+				
+
 
 		WHERE fk_ActivityStatus IN (5,12)
-		GROUP BY ptd.BidID) er
+        AND sas.fk_BidIDAssigned = :BidID
+		AND sas.ActivityType IN (11,21,22,23,24,25,31,32,33,38,39,51,52,53,90,91)
+		)er0
+	GROUP BY BidID
+) er
 	ON er.BidID = ptd.BidID
+
+
 WHERE ptd.BidID = :BidID
 OR
 (LineNumber LIKE :LineNumber
@@ -7618,20 +7756,198 @@ WHERE ActivityID = :FieldActivityID
 
     <sql-query name="GetBidActivityMatchesSteel">
         <![CDATA[
-        SELECT std.*
+        SELECT std.*,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = "QuantOverClaimPipe") = 0, 
+/*SETTING FALSE*/
+GREATEST(
+(COALESCE(std.TakeOffQuantity,0) -
+COALESCE(er.InstalledShake,0) -
+COALESCE(er.InstalledErect,0) -
+COALESCE(er.InstalledBoltout,0) -
+COALESCE(er.InstalledImp,0) -
+COALESCE(er.InstalledWeld,0) -
+COALESCE(er.InstalledSell,0) -
+COALESCE(er.InstalledDemo,0) -
+COALESCE(er.InstalledMisc,0))
+,0),
+/*SETTING TRUE*/
+(COALESCE(std.TakeOffQuantity,0) -
+COALESCE(er.InstalledShake,0) -
+COALESCE(er.InstalledErect,0) -
+COALESCE(er.InstalledBoltout,0) -
+COALESCE(er.InstalledImp,0) -
+COALESCE(er.InstalledWeld,0) -
+COALESCE(er.InstalledSell,0) -
+COALESCE(er.InstalledDemo,0) -
+COALESCE(er.InstalledMisc,0))
+) AS RemainingQuantity
+
+
 FROM SteelTrackerDetails std
-WHERE std.BidID = :BidID 
-ORDER BY std.SortGroup1, std.PieceMark
+LEFT JOIN (
+	SELECT BidID,
+	### Installed Quantities ###
+	SUM(er0.InstalledShake) AS InstalledShake,
+	SUM(er0.InstalledErect) AS InstalledErect,
+	SUM(er0.InstalledBoltout) AS InstalledBoltout,
+	SUM(er0.InstalledImp) AS InstalledImp,
+	SUM(er0.InstalledWeld) AS InstalledWeld,
+	SUM(er0.InstalledSell) AS InstalledSell,
+	SUM(er0.InstalledDemo) AS InstalledDemo,
+	SUM(er0.InstalledMisc) AS InstalledMisc
+
+	FROM(SELECT UID, BidID, 
+
+		### Installed Quantities ###
+		(COALESCE(stls.FAQuantity,0)) AS InstalledShake,
+
+		(COALESCE(stle.FAQuantity * stle.FAPercentCompleted,0)) AS InstalledErect,
+
+		(COALESCE(stlb.FAQuantity * stlb.FAPercentCompleted,0)) AS InstalledBoltout,
+
+		(COALESCE(stli.FAQuantity * stli.FAPercentCompleted,0)) AS InstalledImp,
+
+		(COALESCE(stlw.FAQuantity * stlw.FAPercentCompleted,0)) AS InstalledWeld,
+
+		(COALESCE(stlsell.FAQuantity,0)) AS InstalledSell,
+
+		(COALESCE(stld.DemoPercentCompleted,0) * std.TakeoffQuantity) AS InstalledDemo,
+
+		(COALESCE(stlm.MiscPercentCompleted,0) * std.TakeoffQuantity) AS InstalledMisc
+
+		FROM SubmissionActivityStatus sas
+				
+		JOIN SteelTrackerDetails std
+			ON std.BidID = sas.fk_BidIDAssigned
+
+		LEFT JOIN SteelFA stls
+			ON stls.ActivityID = sas.ActivityID AND sas.ActivityType = 61 AND stls.FARework = 0
+		LEFT JOIN SteelFA stle
+			ON stle.ActivityID = sas.ActivityID AND sas.ActivityType = 62 AND stle.FARework = 0
+		LEFT JOIN SteelFA stlb
+			ON stlb.ActivityID = sas.ActivityID AND sas.ActivityType = 63 AND stlb.FARework = 0
+		LEFT JOIN SteelFA stli
+			ON stli.ActivityID = sas.ActivityID AND sas.ActivityType = 64 AND stli.FARework = 0
+		LEFT JOIN SteelFA stlw
+			ON stlw.ActivityID = sas.ActivityID AND sas.ActivityType = 68 AND stlw.FARework = 0
+		LEFT JOIN SteelFA stlsell
+			ON stlsell.ActivityID = sas.ActivityID AND sas.ActivityType = 65 AND stlsell.FARework = 0
+		LEFT JOIN SteelDemo stld
+			ON stld.ActivityID = sas.ActivityID
+		LEFT JOIN SteelMisc stlm
+			ON stlm.ActivityID = sas.ActivityID AND stlm.MiscRework = 0
+
+		WHERE sas.fk_ActivityStatus IN (5,12)
+        AND sas.fk_BidIDAssigned = :BidID
+		AND sas.ActivityType IN (61,62,63,64,65,66,67,68,96) 
+	)er0
+	GROUP BY er0.BidID
+) er
+	ON er.BidID = std.BidID
+
+
+
+WHERE std.BidID = :BidID
         ]]>
     <query-param name="BidID" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="GetBidActivityMatchesSteel__count">
         <![CDATA[
-        select count(*) from (SELECT std.*
+        select count(*) from (SELECT std.*,
+
+IF((SELECT Value2 FROM SETTINGS WHERE Label = "QuantOverClaimPipe") = 0, 
+/*SETTING FALSE*/
+GREATEST(
+(COALESCE(std.TakeOffQuantity,0) -
+COALESCE(er.InstalledShake,0) -
+COALESCE(er.InstalledErect,0) -
+COALESCE(er.InstalledBoltout,0) -
+COALESCE(er.InstalledImp,0) -
+COALESCE(er.InstalledWeld,0) -
+COALESCE(er.InstalledSell,0) -
+COALESCE(er.InstalledDemo,0) -
+COALESCE(er.InstalledMisc,0))
+,0),
+/*SETTING TRUE*/
+(COALESCE(std.TakeOffQuantity,0) -
+COALESCE(er.InstalledShake,0) -
+COALESCE(er.InstalledErect,0) -
+COALESCE(er.InstalledBoltout,0) -
+COALESCE(er.InstalledImp,0) -
+COALESCE(er.InstalledWeld,0) -
+COALESCE(er.InstalledSell,0) -
+COALESCE(er.InstalledDemo,0) -
+COALESCE(er.InstalledMisc,0))
+) AS RemainingQuantity
+
+
 FROM SteelTrackerDetails std
-WHERE std.BidID = :BidID 
-ORDER BY std.SortGroup1, std.PieceMark) wmTempTable
+LEFT JOIN (
+	SELECT BidID,
+	### Installed Quantities ###
+	SUM(er0.InstalledShake) AS InstalledShake,
+	SUM(er0.InstalledErect) AS InstalledErect,
+	SUM(er0.InstalledBoltout) AS InstalledBoltout,
+	SUM(er0.InstalledImp) AS InstalledImp,
+	SUM(er0.InstalledWeld) AS InstalledWeld,
+	SUM(er0.InstalledSell) AS InstalledSell,
+	SUM(er0.InstalledDemo) AS InstalledDemo,
+	SUM(er0.InstalledMisc) AS InstalledMisc
+
+	FROM(SELECT UID, BidID, 
+
+		### Installed Quantities ###
+		(COALESCE(stls.FAQuantity,0)) AS InstalledShake,
+
+		(COALESCE(stle.FAQuantity * stle.FAPercentCompleted,0)) AS InstalledErect,
+
+		(COALESCE(stlb.FAQuantity * stlb.FAPercentCompleted,0)) AS InstalledBoltout,
+
+		(COALESCE(stli.FAQuantity * stli.FAPercentCompleted,0)) AS InstalledImp,
+
+		(COALESCE(stlw.FAQuantity * stlw.FAPercentCompleted,0)) AS InstalledWeld,
+
+		(COALESCE(stlsell.FAQuantity,0)) AS InstalledSell,
+
+		(COALESCE(stld.DemoPercentCompleted,0) * std.TakeoffQuantity) AS InstalledDemo,
+
+		(COALESCE(stlm.MiscPercentCompleted,0) * std.TakeoffQuantity) AS InstalledMisc
+
+		FROM SubmissionActivityStatus sas
+				
+		JOIN SteelTrackerDetails std
+			ON std.BidID = sas.fk_BidIDAssigned
+
+		LEFT JOIN SteelFA stls
+			ON stls.ActivityID = sas.ActivityID AND sas.ActivityType = 61 AND stls.FARework = 0
+		LEFT JOIN SteelFA stle
+			ON stle.ActivityID = sas.ActivityID AND sas.ActivityType = 62 AND stle.FARework = 0
+		LEFT JOIN SteelFA stlb
+			ON stlb.ActivityID = sas.ActivityID AND sas.ActivityType = 63 AND stlb.FARework = 0
+		LEFT JOIN SteelFA stli
+			ON stli.ActivityID = sas.ActivityID AND sas.ActivityType = 64 AND stli.FARework = 0
+		LEFT JOIN SteelFA stlw
+			ON stlw.ActivityID = sas.ActivityID AND sas.ActivityType = 68 AND stlw.FARework = 0
+		LEFT JOIN SteelFA stlsell
+			ON stlsell.ActivityID = sas.ActivityID AND sas.ActivityType = 65 AND stlsell.FARework = 0
+		LEFT JOIN SteelDemo stld
+			ON stld.ActivityID = sas.ActivityID
+		LEFT JOIN SteelMisc stlm
+			ON stlm.ActivityID = sas.ActivityID AND stlm.MiscRework = 0
+
+		WHERE sas.fk_ActivityStatus IN (5,12)
+        AND sas.fk_BidIDAssigned = :BidID
+		AND sas.ActivityType IN (61,62,63,64,65,66,67,68,96) 
+	)er0
+	GROUP BY er0.BidID
+) er
+	ON er.BidID = std.BidID
+
+
+
+WHERE std.BidID = :BidID) wmTempTable
         ]]>
     <query-param name="BidID" type="java.lang.Integer"/>
     </sql-query>

@@ -145,13 +145,13 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
     @ColumnAlias("WeldCount")
     private Short weldCount;
 
-    @JsonProperty("SteelHours")
-    @ColumnAlias("SteelHours")
-    private BigDecimal steelHours;
+    @JsonProperty("EstimatedHoursSteel")
+    @ColumnAlias("EstimatedHoursSteel")
+    private BigDecimal estimatedHoursSteel;
 
-    @JsonProperty("WeldHours")
-    @ColumnAlias("WeldHours")
-    private BigDecimal weldHours;
+    @JsonProperty("EstimatedHoursWeld")
+    @ColumnAlias("EstimatedHoursWeld")
+    private BigDecimal estimatedHoursWeld;
 
     @JsonProperty("WBS1")
     @ColumnAlias("WBS1")
@@ -200,6 +200,10 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
     @JsonProperty("TimeStamp")
     @ColumnAlias("TimeStamp")
     private Timestamp timeStamp;
+
+    @JsonProperty("RemainingQuantity")
+    @ColumnAlias("RemainingQuantity")
+    private BigDecimal remainingQuantity;
 
     public Integer getUid() {
         return this.uid;
@@ -457,20 +461,20 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
         this.weldCount = weldCount;
     }
 
-    public BigDecimal getSteelHours() {
-        return this.steelHours;
+    public BigDecimal getEstimatedHoursSteel() {
+        return this.estimatedHoursSteel;
     }
 
-    public void setSteelHours(BigDecimal steelHours) {
-        this.steelHours = steelHours;
+    public void setEstimatedHoursSteel(BigDecimal estimatedHoursSteel) {
+        this.estimatedHoursSteel = estimatedHoursSteel;
     }
 
-    public BigDecimal getWeldHours() {
-        return this.weldHours;
+    public BigDecimal getEstimatedHoursWeld() {
+        return this.estimatedHoursWeld;
     }
 
-    public void setWeldHours(BigDecimal weldHours) {
-        this.weldHours = weldHours;
+    public void setEstimatedHoursWeld(BigDecimal estimatedHoursWeld) {
+        this.estimatedHoursWeld = estimatedHoursWeld;
     }
 
     public String getWbs1() {
@@ -569,6 +573,14 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
         this.timeStamp = timeStamp;
     }
 
+    public BigDecimal getRemainingQuantity() {
+        return this.remainingQuantity;
+    }
+
+    public void setRemainingQuantity(BigDecimal remainingQuantity) {
+        this.remainingQuantity = remainingQuantity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -606,8 +618,8 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
                 Objects.equals(getService(), getBidActivityMatchesSteelResponse.getService()) &&
                 Objects.equals(getTakeOffQuantity(), getBidActivityMatchesSteelResponse.getTakeOffQuantity()) &&
                 Objects.equals(getWeldCount(), getBidActivityMatchesSteelResponse.getWeldCount()) &&
-                Objects.equals(getSteelHours(), getBidActivityMatchesSteelResponse.getSteelHours()) &&
-                Objects.equals(getWeldHours(), getBidActivityMatchesSteelResponse.getWeldHours()) &&
+                Objects.equals(getEstimatedHoursSteel(), getBidActivityMatchesSteelResponse.getEstimatedHoursSteel()) &&
+                Objects.equals(getEstimatedHoursWeld(), getBidActivityMatchesSteelResponse.getEstimatedHoursWeld()) &&
                 Objects.equals(getWbs1(), getBidActivityMatchesSteelResponse.getWbs1()) &&
                 Objects.equals(getWbs2(), getBidActivityMatchesSteelResponse.getWbs2()) &&
                 Objects.equals(getWbs3(), getBidActivityMatchesSteelResponse.getWbs3()) &&
@@ -619,7 +631,8 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
                 Objects.equals(getWbs9(), getBidActivityMatchesSteelResponse.getWbs9()) &&
                 Objects.equals(getWbs10(), getBidActivityMatchesSteelResponse.getWbs10()) &&
                 Objects.equals(getRev(), getBidActivityMatchesSteelResponse.getRev()) &&
-                Objects.equals(getTimeStamp(), getBidActivityMatchesSteelResponse.getTimeStamp());
+                Objects.equals(getTimeStamp(), getBidActivityMatchesSteelResponse.getTimeStamp()) &&
+                Objects.equals(getRemainingQuantity(), getBidActivityMatchesSteelResponse.getRemainingQuantity());
     }
 
     @Override
@@ -656,8 +669,8 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
                 getService(),
                 getTakeOffQuantity(),
                 getWeldCount(),
-                getSteelHours(),
-                getWeldHours(),
+                getEstimatedHoursSteel(),
+                getEstimatedHoursWeld(),
                 getWbs1(),
                 getWbs2(),
                 getWbs3(),
@@ -669,6 +682,7 @@ public class GetBidActivityMatchesSteelResponse implements Serializable {
                 getWbs9(),
                 getWbs10(),
                 getRev(),
-                getTimeStamp());
+                getTimeStamp(),
+                getRemainingQuantity());
     }
 }
